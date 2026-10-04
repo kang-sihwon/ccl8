@@ -1,0 +1,11 @@
+# setup_local.ps1 generates the ignored config.toml with this machine's paths.
+# Project configuration must be trusted by Codex before it is loaded.
+[mcp_servers.graft]
+command = "node"
+args = ["<repository>/Tools/Agent/graft.cjs", "project"]
+cwd = "<repository>"
+
+[mcp_servers.graft_ue58]
+command = "node"
+args = ["<repository>/Tools/Agent/graft.cjs", "engine"]
+cwd = "<repository>"

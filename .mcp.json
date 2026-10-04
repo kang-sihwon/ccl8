@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "graft": {
+      "command": "node",
+      "args": ["Tools/Agent/graft.cjs", "project"]
+    },
+    "graft_ue58": {
+      "command": "node",
+      "args": ["Tools/Agent/graft.cjs", "engine"]
+    }
+  }
+}

@@ -1,0 +1,4 @@
+# Local knowledge-graph outputs change frequently and should not invalidate Claude's prompt cache.
+.graphify-local/
+graphify-out/
+graph.json

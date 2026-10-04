@@ -1,0 +1,47 @@
+# Engine sources and local dependencies never belong to this repository.
+/Engine/
+/.local/
+**/node_modules/
+
+# Unreal-generated files (including project plugins and platform extensions).
+**/Binaries/
+**/Intermediate/
+**/Saved/
+**/DerivedDataCache/
+/Build/**/FileOpenOrder/
+# Keep Build resources, icons and *_BuiltData.uasset when required by the project.
+
+# IDE and compiler outputs.
+.vs/
+.idea/
+.vscode/
+*.sln
+*.slnx
+*.suo
+*.VC.db
+*.VC.opendb
+*.code-workspace
+*.xcodeproj/
+*.xcworkspace/
+*.obj
+*.pch
+*.pdb
+__pycache__/
+*.pyc
+.DS_Store
+Thumbs.db
+
+# Machine-specific agent settings and credentials.
+/.codex/config.toml
+/.claude/settings.local.json
+/.env
+/.env.*
+!/.env.example
+*.pem
+*.key
+
+# Regenerable context graphs.
+/graft/
+/.graphify-local/
+/graphify-out/
+graph.json

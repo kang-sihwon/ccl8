@@ -1,0 +1,6 @@
+{
+  "engineRoot": "../Engine",
+  "indexRoot": "<absolute path to existing UE_5.8 Graft indexes>",
+  "graftPackageRoot": ".local/graft-runtime/node_modules/@nanonets/graft",
+  "vaultRoot": ""
+}

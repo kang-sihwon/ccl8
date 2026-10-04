@@ -1,0 +1,95 @@
+diff --git a/dist/ingest/fs.js b/dist/ingest/fs.js
+--- a/dist/ingest/fs.js
++++ b/dist/ingest/fs.js
+@@ -288,5 +288,8 @@ function walkFilesystem(dir, includes) {
+             if (shouldSkipDir(entry.name, includes))
+                 continue;
+-            out.push(...walkFilesystem(full, includes));
++            // Orbis local patch: a spread push overflows the call stack once a
++            // subtree holds about 120k or more files (UE source tree); append one by one.
++            for (const file of walkFilesystem(full, includes))
++                out.push(file);
+         }
+         else if (entry.isFile()) {
+diff --git a/dist/graph/generic.js b/dist/graph/generic.js
+--- a/dist/graph/generic.js
++++ b/dist/graph/generic.js
+@@ -177,4 +177,18 @@ export async function loadWasmLanguage(wasm) {
+ }
+ const PARSE_CHUNK = 16384; // <32KB slices — same tree-sitter limit workaround as extract.ts
++// Orbis local patch: web-tree-sitter Parser and Tree objects live in the WASM heap
++// (2 GB cap, no finalizer) and are only released by .delete(). Creating a parser per
++// file and never deleting trees aborted every parse after about 107 MB of source.
++// Reuse one parser per grammar; extractGeneric deletes each tree when done.
++const parsers = new Map();
++function parserFor(language) {
++    let parser = parsers.get(language);
++    if (!parser) {
++        parser = new tsMod.Parser();
++        parser.setLanguage(language);
++        parsers.set(language, parser);
++    }
++    return parser;
++}
+ /** Parse with an already-loaded grammar. Returns the root node, or null if the
+  * grammar was never warmed or the parse blew up. Companion to
+@@ -184,6 +198,7 @@ export function parseWasm(language, source) {
+         return null;
+     try {
+-        const parser = new tsMod.Parser();
+-        parser.setLanguage(language);
++        // Orbis local patch: reuse the parser. The returned root node keeps its tree
++        // alive, so the container tier (.vue and similar) still leaks trees.
++        const parser = parserFor(language);
+         const tree = parser.parse((i) => source.slice(i, i + PARSE_CHUNK));
+         return tree?.rootNode ?? null;
+@@ -213,6 +228,5 @@ export function extractGeneric(rel, source, langName) {
+     let tree;
+     try {
+-        const parser = new tsMod.Parser();
+-        parser.setLanguage(entry.language);
++        const parser = parserFor(entry.language); // Orbis local patch: reuse per grammar
+         tree = parser.parse((i) => source.slice(i, i + PARSE_CHUNK));
+     }
+@@ -227,4 +241,14 @@ export function extractGeneric(rel, source, langName) {
+     if (!tree)
+         return { nodes, rawEdges };
++    // Orbis local patch: everything below only copies plain values out of the tree,
++    // so the tree can be freed as soon as extraction returns or throws.
++    try {
++        return extractFromTree(tree, entry, rel, source, langName, nodes, rawEdges);
++    }
++    finally {
++        tree.delete();
++    }
++}
++function extractFromTree(tree, entry, rel, source, langName, nodes, rawEdges) {
+     const minted = new Set([rel]);
+     const lines = source.split("\n");
+diff --git a/dist/graph/source-files.js b/dist/graph/source-files.js
+--- a/dist/graph/source-files.js
++++ b/dist/graph/source-files.js
+@@ -61,7 +61,23 @@ export function listSourceFiles(root, outDir, repoFiles = walkDir(root, readIncl
+     // grammar (genericLangOf) or a container (containerLangOf) claims its extension.
+     // All three must agree here or `build` and `check` would enumerate different sets.
++    const onlyExts = onlyExtensionsFromEnv();
+     return filterByOnlyDirs(repoFiles.filter((f) => !f.startsWith(outDir) &&
++        (onlyExts === null || onlyExts.has(extensionOf(f))) &&
+         (languageOf(f) !== null || genericLangOf(f) !== null || containerLangOf(f) !== null)), root, onlyDirs);
+ }
++/** Orbis local patch: `graft build -e` only reaches the --deep concept pass, never the
++ * wiring build. GRAFT_ONLY_EXTENSIONS=".h,.cpp,..." restricts the parsed set here, the
++ * one place build and the freshness probe both enumerate. Unset keeps upstream behavior. */
++function onlyExtensionsFromEnv() {
++    const raw = process.env.GRAFT_ONLY_EXTENSIONS;
++    if (!raw || !raw.trim())
++        return null;
++    return new Set(raw.split(",").filter((e) => e.trim() !== "").map(normExt));
++}
++function extensionOf(file) {
++    const slash = Math.max(file.lastIndexOf("/"), file.lastIndexOf("\\"));
++    const dot = file.lastIndexOf(".");
++    return dot > slash ? file.slice(dot).toLowerCase() : "";
++}
+ /**
+  * {@link listSourceFiles} plus each file's `(size, mtimeMs)` — the currency of
