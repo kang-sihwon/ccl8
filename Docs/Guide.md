@@ -23,6 +23,7 @@
 | [WritingGuide](WritingGuide.md) | 문서 작성·검토·결정 기록 |
 | [VersionControl](VersionControl.md) | Git·LFS·커밋 주체와 동기화 |
 | [AgentContextTools](AgentContextTools.md) | 도구 설치·설정·복구·진단 |
+| [AgentToolingResearch](AgentToolingResearch.md) | AI 주도 제작용 도구 후보·근거·도입 제안 |
 | [Setup](Setup.md) | 초기 구성 범위와 검증 결과 |
 | [Decisions](Decisions.md) | 현재 유효한 제작·게임 설계 결정 |
 | [DesignLog](DesignLog.md) | 게임 설계 결정의 이유와 번복 이력 |

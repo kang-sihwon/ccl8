@@ -2,6 +2,10 @@
 
 프로젝트 코드 검색은 Graft, 엔진 검색은 Graft UE 5.8, 문서 관계 분석은 Graphify를 사용한다. 스킬의 자동 선택은 [Guide](Guide.md)가 정한다. 코드·설정 편집 권한과 도구 실행 권한은 서로 다르다.
 
+## AI 주도 제작용 확장 조사
+
+2026-10-05 조사 결과와 설치·설정 기록의 차이는 [AgentToolingResearch](AgentToolingResearch.md)에 있다. UE 5.8.1 내장 Unreal MCP, 에디터 Toolset, 스킬 탐색과 Blender 연계를 비교했다. 후보는 설치·활성화하지 않았으며 아래 복구용 플러그인 목록을 현재 연결 성공 목록으로 해석하지 않는다.
+
 ## 공유 설정과 로컬 설정
 
 | 위치 | 역할 |
