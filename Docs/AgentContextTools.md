@@ -4,7 +4,7 @@
 
 ## AI 주도 제작용 확장 조사
 
-2026-10-05 조사 결과와 설치·설정 기록의 차이는 [AgentToolingResearch](AgentToolingResearch.md)에 있다. UE 5.8.1 내장 Unreal MCP, 에디터 Toolset, 스킬 탐색과 Blender 연계를 비교했다. 후보는 설치·활성화하지 않았으며 아래 복구용 플러그인 목록을 현재 연결 성공 목록으로 해석하지 않는다.
+2026-10-05 조사 결과와 설치·설정 기록의 차이는 [AgentToolingResearch](AgentToolingResearch.md)에 있다. UE 5.8.1 내장 Unreal MCP, 에디터 Toolset, 스킬 탐색과 Blender 연계를 비교했다. 조사 당시 후보는 설치·활성화하지 않았다. 현재 `CCL.uproject`에는 `ModelContextProtocol`, `EditorToolset`, `AutomationTestToolset`이 활성화되어 있고 두 에이전트의 Unreal MCP 주소는 `http://127.0.0.1:8000/mcp`다. 설정과 실제 연결 성공 여부는 구분하며 아래 복구용 플러그인 목록도 연결 성공 목록으로 해석하지 않는다.
 
 ## 공유 설정과 로컬 설정
 
@@ -20,7 +20,7 @@
 | `.local/agent-paths.json` | 엔진·인덱스·런타임·선택적 볼트 경로, Git 제외 |
 | `.local/graft-runtime/` | 이 저장소에만 설치하는 Graft 런타임, Git 제외 |
 
-프로젝트 경로는 실행 파일 위치를 기준으로 계산한다. 엔진은 `Engine/Build/Build.version`이 있는 `Engine` 폴더를 지정한다. 엔진 인덱스는 기존 외부 디렉터리를 참조하며 자동 생성하지 않는다. `Tools/Agent/agent-paths.example.json`에 로컬 경로 형식이 있다.
+저장소 루트는 `<UE 소스 루트>/CCL`이며 `CCL.uproject`와 `.git`이 함께 있다. `ccl8-*` 스킬과 `graphify_ccl8.cmd`의 이름은 폴더명과 독립적으로 유지한다. 공유 도구의 프로젝트 경로는 실행 파일 위치를 기준으로 계산한다. 폴더를 옮겼으면 `.codex/config.toml`의 두 Graft 서버에서 `args`와 `cwd`를 새 저장소 루트로 수정한 뒤 에이전트를 재시작한다. 기존 Unreal MCP 항목은 보존한다. 엔진은 `Engine/Build/Build.version`이 있는 `Engine` 폴더를 지정한다. 엔진 인덱스는 기존 외부 디렉터리를 참조하며 자동 생성하지 않는다. `Tools/Agent/agent-paths.example.json`에 로컬 경로 형식이 있다.
 
 ## 새 기기 준비
 
@@ -56,7 +56,7 @@ node Tools/Agent/graft.cjs cli ask '심볼 또는 질문' --source
 node Tools/Agent/graft.cjs engine --probe 'UObjectBase GetFName'
 ```
 
-게임 코드와 프로젝트 그래프가 아직 없으면 `map`의 미생성 결과는 정상이다. 코드가 생긴 뒤 사용자가 요청하면 `node Tools/Agent/graft.cjs cli build .`로 만든다. `graft/`는 저장소별 캐시이며 이전 프로젝트의 그래프를 복사하지 않는다.
+프로젝트 그래프가 아직 없으면 `map`의 미생성 결과는 정상이다. 사용자가 요청하면 `node Tools/Agent/graft.cjs cli build .`로 만든다. `graft/`는 저장소별 캐시이며 이전 프로젝트의 그래프를 복사하지 않는다.
 
 Graft 0.18.0의 프로젝트 MCP는 그래프가 없을 때 `tools/list`에 빈 목록을 반환한다. 현재는 정상 상태다. 첫 그래프를 만든 뒤 에이전트의 MCP를 다시 로드하면 프로젝트 검색 도구가 표시된다. 엔진 MCP는 기존 인덱스가 있으므로 바로 조회할 수 있다.
 
