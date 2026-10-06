@@ -125,7 +125,7 @@ void ACCLCharacter::Die()
 
 네트워크 검증은 `UnrealEditor-Cmd -game`과 `-server`의 별도 프로세스를 `-nullrhi`로 실행했다. 입력은 Enhanced Input Action에 주입했다. 테스트용 `UCCLNetworkSmokeSubsystem`은 개발 구성에서 `-CCLSmoke=driver` 또는 `witness`를 명시했을 때만 생성된다. 실패하면 `CCL_SMOKE FAIL`, 통과하면 `CCL_SMOKE PASS`를 기록한다.
 
-화면의 실제 렌더링, 물리 키보드·마우스 조작감과 카메라 가림은 수동 확인이 남아 있다. 패키징한 게임·전용 서버, 패킷 손실 환경과 재접속은 미검증이다. `EditorToolset`의 `AgentSkill`, `ToolsetRegistry`의 `PythonTestRunner` Python 초기화 오류도 게임 실행 로그에서 관찰됐으며 기본 흐름 검증은 통과했다. 해당 엔진 플러그인은 수정하지 않았다.
+2026-10-06 사용자가 Standalone에서 이동·점프·마우스 회전, 사망, 카메라의 지형 충돌과 리스폰이 정상 동작함을 수동 확인했다. 패키징한 게임·전용 서버, 패킷 손실 환경과 재접속은 미검증이다. `EditorToolset`의 `AgentSkill`, `ToolsetRegistry`의 `PythonTestRunner` Python 초기화 오류도 게임 실행 로그에서 관찰됐으며 기본 흐름 검증은 통과했다. 해당 엔진 플러그인은 수정하지 않았다.
 
 ## 엔진 근거와 대안
 
