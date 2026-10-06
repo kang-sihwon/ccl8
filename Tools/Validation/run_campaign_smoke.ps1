@@ -1,4 +1,5 @@
 param(
+    [string]$PackagedExecutable,
     [ValidateSet('Standalone', 'Dedicated', 'Listen')][string]$Mode = 'Standalone',
     [int]$Port = 18781,
     [switch]$DriverIsHost,
@@ -11,8 +12,13 @@ param(
 $ErrorActionPreference = 'Stop'
 if ($Content -and $Progression) { throw 'Run content and progression fixtures separately' }
 $repository = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '../..'))
-$paths = Get-Content -LiteralPath (Join-Path $repository '.local/agent-paths.json') -Raw | ConvertFrom-Json
-$editor = Join-Path $paths.engineRoot 'Binaries/Win64/UnrealEditor-Cmd.exe'
+if ($PackagedExecutable) {
+    if ($Mode -eq 'Dedicated') { throw 'This packaged Game target test supports Standalone and Listen only' }
+    $editor = (Resolve-Path -LiteralPath $PackagedExecutable).Path
+} else {
+    $paths = Get-Content -LiteralPath (Join-Path $repository '.local/agent-paths.json') -Raw | ConvertFrom-Json
+    $editor = Join-Path $paths.engineRoot 'Binaries/Win64/UnrealEditor-Cmd.exe'
+}
 if ($Rendered -and $Mode -ne 'Standalone') { throw 'Rendered snapshots require Standalone' }
 $project = Join-Path $repository 'CCL.uproject'
 $map = '/Game/Maps/Campaign'
@@ -23,7 +29,8 @@ $clients = [Collections.Generic.List[string]]::new()
 
 function Start-Game([string]$Label, [string[]]$Options) {
     $log = Join-Path $logDirectory ($Label + '.log')
-    $arguments = @(('"{0}"' -f $project)) + $Options + @(
+    [string[]]$prefix = if ($PackagedExecutable) { @() } else { @(('"{0}"' -f $project)) }
+    $arguments = $prefix + $Options + @(
         '-unattended', '-nosplash', '-nosound', '-NoLiveCoding', '-NoAsyncLoadingThread',
         ('-ExecCmds="t.MaxFPS 60' + $(if ($Rendered) { ',r.MotionBlurQuality 0' } else { '' }) + $(if ($Impaired) { ',NetEmulation.PktLag 50,NetEmulation.PktLoss 2' } else { '' }) + '"'), ('-abslog="{0}"' -f $log)
     )

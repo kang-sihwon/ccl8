@@ -1,4 +1,5 @@
 param(
+    [string]$PackagedExecutable,
     [ValidateSet('Standalone', 'Dedicated', 'Listen')]
     [string]$Mode = 'Standalone',
     [int]$Port = 18777,
@@ -9,8 +10,13 @@ param(
 )
 $ErrorActionPreference = 'Stop'
 $repository = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '../..'))
-$paths = Get-Content -LiteralPath (Join-Path $repository '.local/agent-paths.json') -Raw | ConvertFrom-Json
-$editor = Join-Path $paths.engineRoot 'Binaries/Win64/UnrealEditor-Cmd.exe'
+if ($PackagedExecutable) {
+    if ($Mode -eq 'Dedicated') { throw 'This packaged Game target test supports Standalone and Listen only' }
+    $editor = (Resolve-Path -LiteralPath $PackagedExecutable).Path
+} else {
+    $paths = Get-Content -LiteralPath (Join-Path $repository '.local/agent-paths.json') -Raw | ConvertFrom-Json
+    $editor = Join-Path $paths.engineRoot 'Binaries/Win64/UnrealEditor-Cmd.exe'
+}
 $project = Join-Path $repository 'CCL.uproject'
 $map = '/Game/Maps/CombatPlayground'
 $logDirectory = Join-Path $repository ('Saved/Tests/CombatSmoke/{0}-{1}' -f $Mode, (Get-Date -Format 'yyyyMMdd-HHmmss'))
@@ -20,7 +26,8 @@ $checks = [Collections.Generic.List[string]]::new()
 
 function Start-Game([string]$Label, [string[]]$Options) {
     $log = Join-Path $logDirectory ($Label + '.log')
-    $arguments = @(('"{0}"' -f $project)) + $Options + @(
+    [string[]]$prefix = if ($PackagedExecutable) { @() } else { @(('"{0}"' -f $project)) }
+    $arguments = $prefix + $Options + @(
         '-unattended', '-nosplash', '-nosound', '-nullrhi', '-NoScreenMessages',
         '-DisableAllScreenMessages', '-NoLiveCoding', '-NoAsyncLoadingThread',
         ('-ExecCmds="t.MaxFPS 60' + $(if ($Impaired) { ',NetEmulation.PktLag 50,NetEmulation.PktLoss 2' } else { '' }) + '"'), ('-abslog="{0}"' -f $log)
