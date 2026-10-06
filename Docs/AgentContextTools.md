@@ -20,7 +20,9 @@
 | `.local/agent-paths.json` | 엔진·인덱스·런타임·선택적 볼트 경로, Git 제외 |
 | `.local/graft-runtime/` | 이 저장소에만 설치하는 Graft 런타임, Git 제외 |
 
-저장소 루트는 `<UE 소스 루트>/CCL`이며 `CCL.uproject`와 `.git`이 함께 있다. `ccl8-*` 스킬과 `graphify_ccl8.cmd`의 이름은 폴더명과 독립적으로 유지한다. 공유 도구의 프로젝트 경로는 실행 파일 위치를 기준으로 계산한다. 폴더를 옮겼으면 `.codex/config.toml`의 두 Graft 서버에서 `args`와 `cwd`를 새 저장소 루트로 수정한 뒤 에이전트를 재시작한다. 기존 Unreal MCP 항목은 보존한다. 엔진은 `Engine/Build/Build.version`이 있는 `Engine` 폴더를 지정한다. 엔진 인덱스는 기존 외부 디렉터리를 참조하며 자동 생성하지 않는다. `Tools/Agent/agent-paths.example.json`에 로컬 경로 형식이 있다.
+저장소 루트는 `CCL.uproject`와 `.git`이 함께 있는 폴더이며 위치와 폴더명은 기기마다 달라도 된다. `ccl8-*` 스킬과 `graphify_ccl8.cmd`의 이름은 폴더명과 독립적으로 유지한다. 공유 도구의 프로젝트 경로는 실행 파일 위치를 기준으로 계산한다. 폴더를 옮겼으면 `.codex/config.toml`의 두 Graft 서버에서 `args`와 `cwd`를 새 저장소 루트로 수정한 뒤 에이전트를 재시작한다. 기존 Unreal MCP 항목은 보존한다. 엔진은 `Engine/Build/Build.version`이 있는 `Engine` 폴더를 지정한다. 엔진 인덱스는 기존 외부 디렉터리를 참조하며 자동 생성하지 않는다. `Tools/Agent/agent-paths.example.json`에 로컬 경로 형식이 있다.
+
+실제 경로를 저장·제출하는 기준은 [VersionControl의 기기별 경로와 로컬 설정](VersionControl.md#기기별-경로와-로컬-설정)을 따른다. 새 기기 설정과 폴더 이동은 로컬 설정에 반영한다.
 
 ## 새 기기 준비
 
