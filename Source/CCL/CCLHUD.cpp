@@ -83,7 +83,7 @@ void ACCLHUD::DrawHUD()
 		    FLinearColor::Yellow, 30.f, 185.f, nullptr, 1.5f);
 	}
 
-	DrawText(TEXT("E Collect supplies | I Inventory / Training | Esc Exit"), FLinearColor::White, 30.f, Canvas->SizeY - 45.f);
+	DrawText(TEXT("E Collect supplies | I Inventory / Training | Esc Menu"), FLinearColor::White, 30.f, Canvas->SizeY - 45.f);
 	if (Character)
 	{
 		for (TActorIterator<ACCLWorldPickup> It(GetWorld()); It; ++It)

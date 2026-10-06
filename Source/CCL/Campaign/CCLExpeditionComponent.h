@@ -12,6 +12,7 @@ class CCL_API UCCLExpeditionComponent : public UActorComponent
 public:
 	UCCLExpeditionComponent();
 	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
+	bool Restore(int32 SavedCoins, ECCLQuestStatus SavedQuest);
 	bool Talk(ACCLVillageSteward* Steward);
 	bool Buy(ACCLVillageSteward* Steward);
 	int32 GetCoins() const { return Coins; }

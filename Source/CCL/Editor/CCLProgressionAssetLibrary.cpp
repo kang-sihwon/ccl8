@@ -13,7 +13,7 @@
 namespace
 {
 	template <class T>
-	T* Asset(const TCHAR* Name)
+	T* ProgressionAsset(const TCHAR* Name)
 	{
 		const FString Path = FString(TEXT("/Game/Progression/")) + Name;
 		if (FPackageName::DoesPackageExist(Path))
@@ -26,7 +26,7 @@ namespace
 		return Object;
 	}
 
-	bool Save(UObject* Object)
+	bool SaveProgression(UObject* Object)
 	{
 		if (!Object)
 		{
@@ -39,7 +39,7 @@ namespace
 			*FPackageName::LongPackageNameToFilename(Object->GetOutermost()->GetName(), FPackageName::GetAssetPackageExtension()), Args);
 	}
 
-	void Describe(UCCLItemDefinition* Item, const TCHAR* Label, int32 MaxStack)
+	void DescribeProgression(UCCLItemDefinition* Item, const TCHAR* Label, int32 MaxStack)
 	{
 		Item->Fragments.Reset();
 		auto* Display = NewObject<UCCLItemFragment_Display>(Item);
@@ -55,15 +55,15 @@ namespace
 bool UCCLProgressionAssetLibrary::CreateProgressionAssets()
 {
 #if WITH_EDITOR
-	auto* Gauntlets = Asset<UCCLItemDefinition>(TEXT("DA_IronGauntlets"));
-	auto* Potion = Asset<UCCLItemDefinition>(TEXT("DA_RecoveryPotion"));
-	auto* Power = Asset<UCCLSkillDefinition>(TEXT("DA_PowerTraining"));
-	auto* Vitality = Asset<UCCLSkillDefinition>(TEXT("DA_VitalityTraining"));
+	auto* Gauntlets = ProgressionAsset<UCCLItemDefinition>(TEXT("DA_IronGauntlets"));
+	auto* Potion = ProgressionAsset<UCCLItemDefinition>(TEXT("DA_RecoveryPotion"));
+	auto* Power = ProgressionAsset<UCCLSkillDefinition>(TEXT("DA_PowerTraining"));
+	auto* Vitality = ProgressionAsset<UCCLSkillDefinition>(TEXT("DA_VitalityTraining"));
 	if (!Gauntlets || !Potion || !Power || !Vitality)
 	{
 		return false;
 	}
-	Describe(Gauntlets, TEXT("Iron Gauntlets (+10 attack)"), 1);
+	DescribeProgression(Gauntlets, TEXT("Iron Gauntlets (+10 attack)"), 1);
 	auto* Equipment = NewObject<UCCLItemFragment_Equipment>(Gauntlets);
 	Equipment->Effect = UCCLPersistentPowerEffect::StaticClass();
 	Equipment->Magnitude = 10.f;
@@ -76,7 +76,7 @@ bool UCCLProgressionAssetLibrary::CreateProgressionAssets()
 	{
 		return false;
 	}
-	Describe(Potion, TEXT("Recovery Potion (+50 HP)"), 20);
+	DescribeProgression(Potion, TEXT("Recovery Potion (+50 HP)"), 20);
 	auto* Use = NewObject<UCCLItemFragment_Consumable>(Potion);
 	Use->Effect = UCCLHealthChangeEffect::StaticClass();
 	Use->Magnitude = 50.f;
@@ -89,7 +89,7 @@ bool UCCLProgressionAssetLibrary::CreateProgressionAssets()
 	Vitality->PointCost = 1;
 	Vitality->Effect = UCCLPersistentVitalityEffect::StaticClass();
 	Vitality->Magnitude = 25.f;
-	return Save(Gauntlets) && Save(Potion) && Save(Power) && Save(Vitality);
+	return SaveProgression(Gauntlets) && SaveProgression(Potion) && SaveProgression(Power) && SaveProgression(Vitality);
 #else
 	return false;
 #endif
@@ -103,7 +103,7 @@ bool UCCLProgressionAssetLibrary::CreateEncounterAssets()
 	const TCHAR* Names[] = { TEXT("DA_RaiderStrike"), TEXT("DA_WardenHeavy"), TEXT("DA_WardenSweep") };
 	for (int32 Index = 0; Index < 3; ++Index)
 	{
-		auto* Attack = Asset<UCCLCombatDefinition>(Names[Index]);
+		auto* Attack = ProgressionAsset<UCCLCombatDefinition>(Names[Index]);
 		if (!Attack) { return false; }
 		Attack->DamageEffect = Base->DamageEffect;
 		Attack->MagnitudeTag = Base->MagnitudeTag;
@@ -118,7 +118,7 @@ bool UCCLProgressionAssetLibrary::CreateEncounterAssets()
 		Attack->Radius = Index == 2 ? 100.f : 35.f;
 		Attack->bGuardable = Index != 2;
 		Attack->bParryable = Index != 2;
-		if (!Save(Attack)) { return false; }
+		if (!SaveProgression(Attack)) { return false; }
 	}
 	return true;
 #else

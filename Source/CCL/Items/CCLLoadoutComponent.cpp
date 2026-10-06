@@ -234,3 +234,24 @@ UCCLInventoryComponent* UCCLLoadoutComponent::GetInventory() const
 {
 	return GetOwner()->FindComponentByClass<UCCLInventoryComponent>();
 }
+
+bool UCCLLoadoutComponent::Restore(FGuid Equipment, const TArray<UCCLSkillDefinition*>& Skills, int32 UnspentPoints)
+{
+	if (!CanAct() || UnspentPoints < 0 || UnspentPoints > 1000 || Skills.Num() > AvailableSkills.Num()) { return false; }
+	TSet<UCCLSkillDefinition*> Seen;
+	for (auto* Skill : Skills)
+	{
+		if (!Skill || !AvailableSkills.Contains(Skill) || Seen.Contains(Skill) || Skill->PointCost <= 0) { return false; }
+		Seen.Add(Skill);
+	}
+	if (!Equip(FGuid())) { return false; }
+	for (const auto& Handle : SkillEffects) { GetASC()->RemoveActiveGameplayEffect(Handle); }
+	SkillEffects.Reset();
+	Learned.Reset();
+	Points = 1000;
+	for (auto* Skill : Skills) { if (!Learn(Skill)) { return false; } }
+	Points = UnspentPoints;
+	if (!Equip(Equipment)) { return false; }
+	SyncAvatar(true);
+	return true;
+}

@@ -63,3 +63,12 @@ FString UCCLExpeditionComponent::GetTutorial() const
 	if (Campaign && Campaign->GetPhase() == ECCLCampaignPhase::Victory) { return TEXT("Return to the village steward. T: claim your reward."); }
 	return TEXT("Head east. Read enemy windups; guard or parry strikes, dodge the warden sweep.");
 }
+
+bool UCCLExpeditionComponent::Restore(int32 SavedCoins, ECCLQuestStatus SavedQuest)
+{
+	if (!GetOwner()->HasAuthority() || SavedCoins < 0 || SavedCoins > 1000000 || static_cast<uint8>(SavedQuest) > 2) { return false; }
+	Coins = SavedCoins;
+	Quest = SavedQuest;
+	Notice = TEXT("Expedition checkpoint restored.");
+	return true;
+}

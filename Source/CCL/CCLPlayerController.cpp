@@ -1,4 +1,5 @@
 #include "CCLPlayerController.h"
+#include "Session/CCLGameInstance.h"
 #include "Campaign/CCLExpeditionComponent.h"
 #include "Campaign/CCLVillageSteward.h"
 
@@ -165,10 +166,7 @@ void ACCLPlayerController::CCLDie()
 
 void ACCLPlayerController::CCLLeave()
 {
-	if (IsLocalController())
-	{
-		ConsoleCommand(TEXT("quit"));
-	}
+	if (auto* Session = GetGameInstance<UCCLGameInstance>()) { Session->ToggleMenu(); }
 }
 
 void ACCLPlayerController::ToggleInventory()

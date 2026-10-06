@@ -19,6 +19,8 @@ public:
 	virtual void Tick(float DeltaSeconds) override;
 
 public:
+	uint8 GetDefeatedMask() const;
+	bool RestoreCheckpoint(uint8 Mask, bool bVictory);
 	void NotifyEnemyDefeated(ACCLEnemyCharacter* Enemy);
 	ACCLEnemyCharacter* GetBoss() const { return Boss.Get(); }
 	const TArray<TWeakObjectPtr<ACCLEnemyCharacter>>& GetGuards() const { return Guards; }

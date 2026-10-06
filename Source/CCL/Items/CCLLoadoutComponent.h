@@ -22,6 +22,7 @@ public:
 	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
 
 public:
+	bool Restore(FGuid Equipment, const TArray<UCCLSkillDefinition*>& Skills, int32 UnspentPoints);
 	bool Equip(FGuid Id);
 	bool Use(FGuid Id);
 	bool Learn(UCCLSkillDefinition* Definition);

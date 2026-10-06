@@ -31,7 +31,7 @@ FString ACCLCampaignState::GetObjective() const
 	case ECCLCampaignPhase::Boss:
 		return TEXT("BOSS | Defeat the Gate Warden in the eastern courtyard.");
 	case ECCLCampaignPhase::Victory:
-		return TEXT("VICTORY | The road is open. Expedition complete. Esc: Exit");
+		return TEXT("VICTORY | The road is open. Expedition complete. Esc: Menu");
 	default:
 		return TEXT("Encounter could not start. Restart the session.");
 	}

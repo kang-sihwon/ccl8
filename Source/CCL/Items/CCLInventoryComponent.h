@@ -54,6 +54,7 @@ public:
 	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
 
 public:
+	bool Restore(const TArray<FCCLInventoryEntry>& Entries);
 	FGuid Add(UCCLItemDefinition* Definition, int32 Quantity);
 	bool Remove(FGuid Id, int32 Quantity);
 	bool CanAdd(const UCCLItemDefinition* Definition, int32 Quantity) const;

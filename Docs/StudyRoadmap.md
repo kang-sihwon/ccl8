@@ -11,7 +11,7 @@
 | 3 | 보스 초안과 승리·종료 조건 | 마을부터 일반 몹, 보스 전투와 승리·종료까지 이어짐 | 구현·빌드·AI 접근·네트워크 진행·늦은 접속·화면 확인 완료 |
 | 4 | 인벤토리·장비·능력치·스킬 기능과 UI | 아이템 획득·장착과 스킬 포인트 사용·습득 결과가 전투에 반영됨 | 구현·빌드·네트워크·재스폰·화면 검증 완료 |
 | 5 | 콘텐츠 확장: 일반 몹·보스 보강, NPC·상점·퀘스트·튜토리얼 | 추가한 콘텐츠와 기능이 전체 플레이 흐름에 연결됨 | 구현·빌드·거래·보상·패턴·네트워크·NPC 화면 검증 완료 |
-| 6 | 시작 화면, 방 생성·접속 UI, 세이브·로드·설정 | 배경·시작·종료 화면에서 게임에 진입하고 방 생성·접속과 저장·불러오기·설정을 사용할 수 있음 | 미착수 |
+| 6 | 시작 화면, 방 생성·접속 UI, 세이브·로드·설정 | 배경·시작·종료 화면에서 게임에 진입하고 방 생성·접속과 저장·불러오기·설정을 사용할 수 있음 | 메뉴·저장 복원·접속·실패 처리·빌드·화면 검증 완료 |
 | 7 | 패키징과 전체 흐름 검증 | 패키징한 게임에서 시작부터 접속, 전투, 재도전과 종료까지 검증함 | 미착수 |
 
 평소에는 Standalone으로 테스트 맵에 진입하고 Dedicated Server와 Listen Server 양쪽에서 멀티플레이를 검증한다. 근거는 [결정 5](DesignLog.md)다. PIE(Play In Editor)의 실행 설정과 별도 프로세스 실행을 사용할 수 있다. 패키징 실행도 순서 1-3 사이에 확인해 에디터 밖에서 발생하는 문제를 점검한다.
@@ -35,4 +35,4 @@ CCL 지원은 사용자 설명상 3개월이므로 필수 콘텐츠를 세 번�
 
 캐릭터 스폰, 이동·카메라, 사망 후 개별 재스폰과 테스트 맵을 구현했다. 구현 구조와 실행별 검증 결과는 [MultiplayerFoundation](MultiplayerFoundation.md)이 소유한다.
 
-일반 몹 한 종류와 최소 전투는 [CombatFoundation](CombatFoundation.md)의 사양으로 구현했다. 2026-10-07 UE 5.9에서 에셋 생성, 프로젝트 빌드, 전투·이동 회귀 검사와 기본 화면 캡처 확인을 마쳤다. [CampaignFoundation](CampaignFoundation.md)의 마을·일반 적·보스·승리 흐름과 [ProgressionFoundation](ProgressionFoundation.md)의 인벤토리·장비·성장 UI도 구현하고 단계별 검사를 통과했다. [ContentFoundation](ContentFoundation.md)의 일반 적·보스 보강과 NPC·상점·퀘스트·튜토리얼도 기능 검증을 마쳤다. 다음 작업은 시작·접속 메뉴와 저장·불러오기·설정이다. 정확한 방어 경계와 최종 조작감 등 남은 검사는 전투 사양서에 구분했다.
+일반 몹 한 종류와 최소 전투는 [CombatFoundation](CombatFoundation.md)의 사양으로 구현했다. 2026-10-07 UE 5.9에서 에셋 생성, 프로젝트 빌드, 전투·이동 회귀 검사와 기본 화면 캡처 확인을 마쳤다. [CampaignFoundation](CampaignFoundation.md)의 마을·일반 적·보스·승리 흐름과 [ProgressionFoundation](ProgressionFoundation.md)의 인벤토리·장비·성장 UI도 구현하고 단계별 검사를 통과했다. [ContentFoundation](ContentFoundation.md)의 일반 적·보스 보강과 NPC·상점·퀘스트·튜토리얼도 기능 검증을 마쳤다. [SessionFoundation](SessionFoundation.md)의 시작·접속·저장 메뉴도 구현하고 검증했다. 다음 작업은 Windows 패키징과 에디터 밖의 전체 실행 검사다. 정확한 방어 경계와 최종 조작감 등 남은 검사는 전투 사양서에 구분했다.

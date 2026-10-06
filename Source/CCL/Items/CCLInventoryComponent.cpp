@@ -86,3 +86,26 @@ const FCCLInventoryEntry* UCCLInventoryComponent::Find(FGuid Id) const
 {
 	return List.Entries.FindByPredicate([Id](const FCCLInventoryEntry& Entry) { return Entry.Id == Id; });
 }
+
+bool UCCLInventoryComponent::Restore(const TArray<FCCLInventoryEntry>& Entries)
+{
+	if (!GetOwner()->HasAuthority() || Entries.Num() > FMath::Clamp(Capacity, 1, 128)) { return false; }
+	TSet<FGuid> Seen;
+	for (const auto& Entry : Entries)
+	{
+		if (!Entry.Id.IsValid() || Seen.Contains(Entry.Id) || !Entry.Definition || Entry.Quantity <= 0 || Entry.Quantity > Entry.Definition->GetMaxStack()) { return false; }
+		Seen.Add(Entry.Id);
+	}
+	List.Entries.Reset();
+	for (const auto& Value : Entries)
+	{
+		auto& Entry = List.Entries.AddDefaulted_GetRef();
+		Entry.Id = Value.Id;
+		Entry.Definition = Value.Definition;
+		Entry.Quantity = Value.Quantity;
+		List.MarkItemDirty(Entry);
+	}
+	List.MarkArrayDirty();
+	OnChanged.Broadcast();
+	return true;
+}

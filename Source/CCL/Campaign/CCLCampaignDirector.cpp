@@ -141,3 +141,39 @@ ACCLEnemyCharacter* ACCLCampaignDirector::SpawnEnemy(FVector Location, bool bBos
 	Enemy->FinishSpawning(Transform);
 	return IsValid(Enemy) ? Enemy : nullptr;
 }
+
+uint8 ACCLCampaignDirector::GetDefeatedMask() const
+{
+	uint8 Mask = 0;
+	for (int32 Index = 0; Index < Guards.Num() && Index < 2; ++Index)
+	{
+		if (!Guards[Index].IsValid() || Guards[Index]->IsDead()) { Mask |= 1 << Index; }
+	}
+	return Mask;
+}
+bool ACCLCampaignDirector::RestoreCheckpoint(uint8 Mask, bool bVictory)
+{
+	if (!HasAuthority() || !State.IsValid() || Mask > 3 || (bVictory && Mask != 3) || Guards.Num() != 2) { return false; }
+	for (int32 Index = 0; Index < Guards.Num(); ++Index)
+	{
+		if ((Mask & (1 << Index)) != 0 && Guards[Index].IsValid())
+		{
+			Guards[Index]->OnDefeated.RemoveAll(this);
+			Defeated.Add(Guards[Index]);
+			Guards[Index]->Destroy();
+		}
+	}
+	if (bVictory)
+	{
+		if (Boss.IsValid()) { Boss->OnDefeated.RemoveAll(this); Boss->Destroy(); }
+		State->SetProgress(ECCLCampaignPhase::Victory, 0);
+	}
+	else if (Mask == 3)
+	{
+		if (!Boss.IsValid()) { Boss = SpawnEnemy(BossLocation, true); }
+		State->SetProgress(Boss.IsValid() ? ECCLCampaignPhase::Boss : ECCLCampaignPhase::Error, 0);
+		if (!Boss.IsValid()) { return false; }
+	}
+	else { State->SetProgress(Mask ? ECCLCampaignPhase::Road : ECCLCampaignPhase::Village, 2 - ((Mask & 1) != 0) - ((Mask & 2) != 0)); }
+	return true;
+}
