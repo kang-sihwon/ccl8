@@ -13,6 +13,7 @@
 
 # IDE and compiler outputs.
 .vs/
+/.vsconfig
 .idea/
 .vscode/
 *.sln

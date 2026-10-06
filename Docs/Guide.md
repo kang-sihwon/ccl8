@@ -20,6 +20,7 @@
 | [GameDesign](GameDesign.md) | 플레이 흐름·전투·콘텐츠 기획 초안 |
 | [MultiplayerFoundation](MultiplayerFoundation.md) | 스폰·이동·카메라·사망·재도전 구현과 실행·검증 기준 |
 | [CombatFoundation](CombatFoundation.md) | 일반 몹·최소 전투의 확정 사양, 구현과 검증 상태 |
+| [CampaignFoundation](CampaignFoundation.md) | 마을·일반 적·보스·승리 흐름의 설계 초안과 검증 기준 |
 | [ArtDirection](ArtDirection.md) | 그래픽 스타일·시각 기준·아트 제작 초안 |
 | [Coding](Coding.md) | 코드 설계·리뷰·빌드와 파일 수정 경계 |
 | [WritingGuide](WritingGuide.md) | 문서 작성·검토·결정 기록 |
@@ -32,6 +33,7 @@
 | [Mentoring](Mentoring.md) | 훈련 요청과 학습 기록 절차 |
 | [LearningLog](LearningLog.md) | 현재 학습 과제와 수행 증거 |
 | [StudyRoadmap](StudyRoadmap.md) | 제작 일정 초안·완료 증거·다음 작업 |
+| [DeliveryPlan](DeliveryPlan.md) | 단계별 구현 범위와 생성·빌드·검토·제출 절차 |
 | [NarrativeConcept](NarrativeConcept.md) | 서사 작업 범위와 문서 지도 |
 
 새 문서는 담당 지도에 등록한다. 일반 지식은 연결된 개인 볼트, ccl8 고유 결정은 이 저장소에 기록한다. 볼트가 연결되지 않았으면 외부 경로를 추측하지 않고 저장 없이 답한다.

@@ -2,7 +2,9 @@ param(
     [ValidateSet('Standalone', 'Dedicated', 'Listen')]
     [string]$Mode = 'Standalone',
     [int]$Port = 18777,
-    [switch]$DriverIsHost
+    [switch]$DriverIsHost,
+    [ValidateRange(60, 1800)]
+    [int]$StartupTimeoutSeconds = 600
 )
 $ErrorActionPreference = 'Stop'
 $repository = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '../..'))
@@ -38,11 +40,12 @@ try {
             $serverLog = Start-Game 'host' @(($map + '?listen'), '-game', ('-port={0}' -f $Port), ('-CCLSmoke={0}' -f $hostRole), '-CCLSmokePlayers=2')
             $checks.Add($serverLog)
         }
-        $deadline = [DateTime]::UtcNow.AddSeconds(60)
+        $deadline = [DateTime]::UtcNow.AddSeconds($StartupTimeoutSeconds)
         do {
             if ((Test-Path -LiteralPath $serverLog) -and
                 (Select-String -LiteralPath $serverLog -Pattern ('IpNetDriver listening on port ' + $Port) -Quiet)) { break }
-            if ([DateTime]::UtcNow -gt $deadline) { throw 'Server did not listen within 60 seconds' }
+            if ($started[0].HasExited) { throw ('Server exited before listening: ' + $serverLog) }
+            if ([DateTime]::UtcNow -gt $deadline) { throw ('Server startup timed out: ' + $serverLog) }
             Start-Sleep -Milliseconds 500
         } while ($true)
         if ($Mode -eq 'Dedicated') {
@@ -52,7 +55,7 @@ try {
         $checks.Add((Start-Game $clientRole @(('127.0.0.1:{0}' -f $Port), '-game', ('-CCLSmoke={0}' -f $clientRole), '-CCLSmokePlayers=2')))
     }
 
-    $deadline = [DateTime]::UtcNow.AddSeconds(90)
+    $deadline = [DateTime]::UtcNow.AddSeconds($StartupTimeoutSeconds + 90)
     do {
         $passed = 0
         foreach ($log in $checks) {
@@ -63,6 +66,9 @@ try {
             if (Select-String -LiteralPath $log -Pattern 'CCL_SMOKE PASS' -Quiet) { $passed++ }
         }
         if ($passed -eq $checks.Count) { break }
+        foreach ($process in $started) {
+            if ($process.HasExited) { throw ('Game process exited before test completion: ' + $process.Id) }
+        }
         if ([DateTime]::UtcNow -gt $deadline) { throw 'Smoke test timed out' }
         Start-Sleep -Milliseconds 500
     } while ($true)

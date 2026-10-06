@@ -125,26 +125,40 @@ Instant 효과는 지속 중인 핸들이 없을 수 있으므로 적용 성공�
 
 ## 에셋 생성과 검증 상태
 
+### UE 5.9 실행 호환성 검사
+
+2026-10-07 노트북에서 전투 에셋 생성과 아래 실행 검증을 마쳤다. 현재 엔진은 `Engine/Build/Build.version` 기준 UE 5.9.0이다. 이 환경에서 생성한 바이너리 에셋을 UE 5.8.1에서 여는 것은 검증하지 않았다.
+
+Standalone과 네트워크 실행에서 서버의 전투 검사는 통과했지만, 클라이언트의 GameplayEffect 제거 호출에서 권한 경고가 발생했다. `<GAS>/Private/AbilitySystemComponent.cpp:1275`는 권한 없는 `RemoveActiveGameplayEffect`를 거부한다. 수정 범위는 `UCCLCombatAbility`의 Busy·방어 구간 효과 제거다. 서버가 제거를 확정하고 클라이언트의 예측 효과는 GAS의 예측 키 정리와 서버 복제를 따른다. 엔진의 예측 제거 제한을 완화하는 콘솔 변수는 사용하지 않는다.
+
+수정 후 프로젝트 생성·빌드와 Standalone, Dedicated, Listen 원격·호스트, 지연·손실 전투 검사 5개 구성이 통과했다. 해당 실행 로그에서 권한 없는 효과 제거 경고와 전투 실패 표식은 0건이었다. 에디터 초기 로딩에 대비한 테스트의 기본 시작 대기는 600초이며 `-StartupTimeoutSeconds`로 변경한다. 전투 시나리오의 내부 중단 제한은 유지한다.
+
+화면 검사는 개발 구성의 선택적 `-CCLVisualSmoke` 실행으로 수행한다. 월드 서브시스템이 Standalone에서 적 AI를 멈추고 기본 자세, 공격, 가드, 패링, 회피와 사망 화면을 `Saved/Tests/VisualSmoke/`에 저장한다. 이 검사는 표현을 비교하기 위한 고정 장면이며 AI 추적과 네트워크 검사를 대신하지 않는다. Shipping·Test 구성에서는 서브시스템을 생성하지 않는다.
+
 생성 도구는 `Tools/Validation/create_combat_playground.py`와 `UCCLCombatAssetLibrary`다. 프로젝트 전용 공격·회피 시퀀스, AnimBP, Montage, AbilitySet, Fragment 아이템, StateTree와 맵을 생성하도록 작성했다. 원본 시퀀스는 유지하고 복제한 시퀀스의 루트 이동을 잠가 AbilityTask 이동과 겹치지 않게 한다. 가드·패링 자세와 색상 표시는 임시 표현이다.
 
 | 검증 항목 | 현재 상태 |
 |---|---|
-| 프로젝트 파일 생성·전체 타깃 빌드 | `GenerateProjectFiles.bat`과 `CCLEditor Win64 Development -NoEngineChanges` 통과 |
-| 비대화형 에디터 클래스 로드 | GAS·DataRegistry·StateTree·CCL 클래스 확인 후 정상 종료 |
+| 프로젝트 파일 생성·전체 타깃 빌드 | 최종 `GenerateProjectFiles.bat`과 `CCLEditor Win64 Development` 통과 |
+| 비대화형 에디터 클래스 로드 | GAS·DataRegistry·StateTree·CCL 로드와 에셋 저장 후 정상 종료 |
 | 생성 Python·검증 PowerShell 구문 | 통과 |
-| 전투 에셋·World Partition·Nanite 맵 생성 | 미완료. 생성 도구 실행 필요 |
-| Standalone·Dedicated·Listen 전투 | 실행 미완료 |
-| 새 코드의 기존 이동 회귀 검사 | 실행 미완료. 이전 결과는 MultiplayerFoundation 참조 |
-| 100ms 왕복 지연·2% 손실 | 실행 미완료 |
-| 화면이 있는 애니메이션·방향·예고 가독성 | 미확인 |
+| 전투 에셋·World Partition·Nanite 맵 생성 | 저장 결과 검사 포함 재생성, 종료 코드 0과 `CCL_COMBAT_ASSETS PASS` 확인 |
+| Standalone·Dedicated·Listen 전투 | Standalone, Dedicated, Listen 원격·호스트 통과 |
+| 새 코드의 기존 이동 회귀 검사 | Standalone, Dedicated, Listen 원격·호스트 4개 구성 통과 |
+| 100ms 왕복 지연·2% 손실 | Dedicated 전투 통과 |
+| 화면이 있는 애니메이션·방향·예고 가독성 | 기본 자세·공격·가드·패링·회피·사망 6개 캡처 확인. 최종 조작감·예고 가독성은 추가 검토 필요 |
+
+로컬 근거는 `Saved/StageValidation/Stage2-Generate.log`, `Stage2-Build.log`, `Stage2-Assets-Reviewed.log`, `Stage2-Combat-*-Final.log`, `Stage2-Movement-*.log`와 `Saved/Tests/VisualSmoke/`다. 경로는 저장소 기준으로 표기했다. 화면에서 공격 후 체력 감소, 방어 자세, 회피 이동과 사망 안내를 확인했다. 임시 마네킹·색상 표시는 최종 아트가 아니다.
+
+UE 5.9의 EditorToolset·ToolsetRegistry Python 초기화 오류와 HLOD 편집기 클래스 경고는 게임 실행 로그에 남아 있다. 전투 판정·종료 성공과 이 플러그인 초기화 메시지를 구분한다. 실행 검사 전체가 오류 없는 로그라는 뜻은 아니다.
 
 2026-10-06 사용자 승인으로 UBT의 `WriteMetadata` 두 작업을 실행했다. 실제 내용이 변경된 엔진 파일은 DataRegistry, GameplayAbilities, GameplayStateTree의 `.modules` 세 개이며 엔진 재컴파일은 없었다. 세 플러그인과 CCL의 BuildId가 실행 엔진과 일치한다. 갱신 전 파일과 실제 빌드 로그는 로컬 `Saved/ManifestUpdate/Before/`, `Saved/ManifestUpdate/Build.log`에 보존했다.
 
 `CCLEffects.cpp`의 생성자는 `CreateDefaultSubobject`로 GameplayEffectComponent를 생성하고 `GEComponents`에 등록한다. 생성자에서 `FindOrAddComponent`가 이름 없는 `NewObject`를 호출해 발생한 초기화 오류를 수정했다. 수정 후 프로젝트 파일 생성, 전체 빌드와 클래스 로드 성공 표식 `CCL_MANIFEST_LOAD_PASS`를 확인했다. 로컬 근거는 `Saved/ManifestUpdate/GenerateProjectFiles.log`, `FinalBuild.log`, `EditorLoadFixed.log`다. 클래스 로드 검사는 전투·화면 검증을 대신하지 않는다.
 
-### 완료에 필요한 검사
+### 자동 검사 범위와 추가 검사
 
-`Tools/Validation/run_combat_smoke.ps1`은 Standalone, Dedicated, Listen과 호스트 조작을 선택하고 `-Impaired`로 지연·손실을 설정하도록 작성했다. 서버 판정과 실제 클라이언트 Ability 입력을 연결하며 아래 항목을 검사한다. 스크립트 작성과 실행 통과는 구분한다.
+`Tools/Validation/run_combat_smoke.ps1`은 Standalone, Dedicated, Listen과 호스트 조작을 선택하고 `-Impaired`로 지연·손실을 설정하도록 작성했다. 서버 판정과 실제 클라이언트 Ability 입력을 연결하며 아래 항목을 검사한다. 위 실행 구성에서 아래 시나리오의 통과 표식을 확인했다.
 
 - 기본 공격 적중과 비용의 단일 차감, 정면 가드와 입력 해제.
 - 가드 붕괴 시 해당 공격 차단, 후속 피해, 후방 가드 실패.
@@ -152,7 +166,7 @@ Instant 효과는 지속 중인 핸들이 없을 수 있으므로 적용 성공�
 - 스태미나 없는 표적, 중복·종료된 공격 거부, 자원 상한.
 - 재스폰 후 ASC 유지와 Avatar 교체, 자원 초기화, 능력 중복과 이전 생명 효과 제거.
 
-정확한 방어 구간 경계, 불가 공격, 동시 피격, 서버 예측 거절, 벽 충돌, 재접속·늦은 관전자와 시각 검증은 추가 실행 검증이 필요하다. 현재 자동 시나리오만으로 통과했다고 판단하지 않는다. 기존 `run_network_smoke.ps1`의 네 실행 구성도 다시 통과해야 한다.
+정확한 방어 구간 경계, 불가 공격, 동시 피격, 서버 예측 거절, 벽 충돌, 재접속·늦은 관전자와 최종 표현 품질은 추가 실행 검증이 필요하다. 현재 자동 시나리오만으로 통과했다고 판단하지 않는다. 기존 `run_network_smoke.ps1`의 네 실행 구성도 다시 통과했다.
 
 GAS는 UE5에서 처음 도입된 기능은 아니다. UE5.8의 Attribute 복제·예측과 GameplayEffect Component 구성을 활용한다. 자체 능력·효과 스케줄러를 줄일 수 있지만 ActorInfo 재연결, 생명 효과 정리와 예측 보정 검증이 필요하다.
 

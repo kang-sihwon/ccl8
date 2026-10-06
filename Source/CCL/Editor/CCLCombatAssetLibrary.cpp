@@ -93,12 +93,15 @@ bool UCCLCombatAssetLibrary::CreateCombatAssets()
 		Segment.AnimEndTime = 0.23f;
 		GuardPose->SetCompositeLength(0.01f);
 		GuardPose->CompositeSections[0].NextSectionName = TEXT("Default");
-		Save(GuardPose);
+		if (!Save(GuardPose))
+		{
+			return false;
+		}
 	}
 
 	UAnimMontage* DodgeMontage = Montage(TEXT("AM_Dodge"), TEXT("/Game/Combat/AS_Dodge.AS_Dodge"));
 
-	if (!AttackMontage || !DodgeMontage)
+	if (!AttackMontage || !GuardPose || !DodgeMontage)
 	{
 		return false;
 	}

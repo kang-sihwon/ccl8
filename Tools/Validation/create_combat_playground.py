@@ -9,14 +9,16 @@ for source, destination in (
     ("/Game/Characters/Mannequins/Anims/Unarmed/Attack/MM_Attack_01", "/Game/Combat/AS_UnarmedAttack"),
     ("/Game/Characters/Mannequins/Anims/Unarmed/Jump/MM_Dash", "/Game/Combat/AS_Dodge"),
 ):
-    sequence = unreal.EditorAssetLibrary.load_asset(destination)
+    sequence = (unreal.EditorAssetLibrary.load_asset(destination)
+                if unreal.EditorAssetLibrary.does_asset_exist(destination) else None)
     if not sequence:
         sequence = unreal.EditorAssetLibrary.duplicate_asset(source, destination)
     if not sequence:
         raise RuntimeError("Could not create project animation sequence: " + destination)
     sequence.set_editor_property("enable_root_motion", False)
     sequence.set_editor_property("force_root_lock", True)
-    unreal.EditorAssetLibrary.save_loaded_asset(sequence)
+    if not unreal.EditorAssetLibrary.save_loaded_asset(sequence):
+        raise RuntimeError("Could not save project animation sequence: " + destination)
 
 if not unreal.CCLCombatAssetLibrary.create_combat_assets():
     raise RuntimeError("Combat asset creation or StateTree compilation failed.")
@@ -24,7 +26,8 @@ if not unreal.EditorAssetLibrary.does_asset_exist("/Game/Combat/ABP_Combat"):
     if not unreal.EditorAssetLibrary.duplicate_asset(
         "/Game/Characters/Mannequins/Anims/Unarmed/ABP_Unarmed", "/Game/Combat/ABP_Combat"):
         raise RuntimeError("Could not create project animation blueprint.")
-unreal.EditorAssetLibrary.save_asset("/Game/Combat/ABP_Combat")
+if not unreal.EditorAssetLibrary.save_asset("/Game/Combat/ABP_Combat"):
+    raise RuntimeError("Could not save project animation blueprint.")
 
 levels = unreal.get_editor_subsystem(unreal.LevelEditorSubsystem)
 actors = unreal.get_editor_subsystem(unreal.EditorActorSubsystem)
@@ -32,13 +35,17 @@ if not levels.new_level(MAP, True):
     raise RuntimeError("Could not create World Partition combat map.")
 
 mesh_path = "/Game/Combat/SM_ArenaBlock"
-mesh = unreal.EditorAssetLibrary.load_asset(mesh_path)
+mesh = (unreal.EditorAssetLibrary.load_asset(mesh_path)
+        if unreal.EditorAssetLibrary.does_asset_exist(mesh_path) else None)
 if not mesh:
     mesh = unreal.EditorAssetLibrary.duplicate_asset("/Engine/BasicShapes/Cube", mesh_path)
+if not mesh:
+    raise RuntimeError("Could not create arena mesh.")
 settings = mesh.get_editor_property("nanite_settings")
 settings.set_editor_property("enabled", True)
 mesh.set_editor_property("nanite_settings", settings)
-unreal.EditorAssetLibrary.save_loaded_asset(mesh)
+if not unreal.EditorAssetLibrary.save_loaded_asset(mesh):
+    raise RuntimeError("Could not save arena mesh.")
 
 def block(label, location, scale):
     actor = actors.spawn_actor_from_class(unreal.StaticMeshActor, unreal.Vector(*location))

@@ -157,7 +157,11 @@ void UCCLCombatAbility::EndAbility(const FGameplayAbilitySpecHandle Handle, cons
 	{
 		EndWindow();
 		Fighter->SetAction(ECCLCombatAction::None);
-		ActorInfo->AbilitySystemComponent->RemoveActiveGameplayEffect(BusyEffect);
+
+		if (ActorInfo->IsNetAuthority() && BusyEffect.IsValid())
+		{
+			ActorInfo->AbilitySystemComponent->RemoveActiveGameplayEffect(BusyEffect);
+		}
 	}
 
 	BusyEffect.Invalidate();
@@ -240,7 +244,7 @@ void UCCLCombatAbility::EndWindow()
 		Combat->EndAttack();
 	}
 
-	if (WindowEffect.IsValid())
+	if (CurrentActorInfo->IsNetAuthority() && WindowEffect.IsValid())
 	{
 		Fighter->GetASC()->RemoveActiveGameplayEffect(WindowEffect);
 	}
