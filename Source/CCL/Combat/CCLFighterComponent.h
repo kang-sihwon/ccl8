@@ -49,6 +49,8 @@ private:
 public:
 	UPROPERTY(EditAnywhere, Replicated, Category = "Definition")
 	TObjectPtr<UCCLItemDefinition> Item;
+	UPROPERTY(Replicated)
+	TObjectPtr<UCCLCombatDefinition> AttackOverride;
 
 	UPROPERTY(EditAnywhere, Category = "Definition")
 	int32 Team = 0;

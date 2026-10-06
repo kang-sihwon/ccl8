@@ -94,3 +94,34 @@ bool UCCLProgressionAssetLibrary::CreateProgressionAssets()
 	return false;
 #endif
 }
+
+bool UCCLProgressionAssetLibrary::CreateEncounterAssets()
+{
+#if WITH_EDITOR
+	const auto* Base = LoadObject<UCCLCombatDefinition>(nullptr, TEXT("/Game/Combat/DA_EnemyAttack.DA_EnemyAttack"));
+	if (!Base) { return false; }
+	const TCHAR* Names[] = { TEXT("DA_RaiderStrike"), TEXT("DA_WardenHeavy"), TEXT("DA_WardenSweep") };
+	for (int32 Index = 0; Index < 3; ++Index)
+	{
+		auto* Attack = Asset<UCCLCombatDefinition>(Names[Index]);
+		if (!Attack) { return false; }
+		Attack->DamageEffect = Base->DamageEffect;
+		Attack->MagnitudeTag = Base->MagnitudeTag;
+		Attack->HitRule = Base->HitRule;
+		Attack->Montage = Base->Montage;
+		Attack->Damage = Index == 0 ? 12.f : (Index == 1 ? 30.f : 24.f);
+		Attack->Cost = 0.f;
+		Attack->Windup = Index == 0 ? 0.3f : (Index == 1 ? 1.05f : 0.75f);
+		Attack->Active = 0.2f;
+		Attack->Recovery = Index == 0 ? 0.45f : 0.7f;
+		Attack->Reach = Index == 2 ? 230.f : 165.f;
+		Attack->Radius = Index == 2 ? 100.f : 35.f;
+		Attack->bGuardable = Index != 2;
+		Attack->bParryable = Index != 2;
+		if (!Save(Attack)) { return false; }
+	}
+	return true;
+#else
+	return false;
+#endif
+}

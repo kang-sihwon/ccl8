@@ -12,4 +12,6 @@ class CCL_API UCCLProgressionAssetLibrary : public UBlueprintFunctionLibrary
 public:
 	UFUNCTION(BlueprintCallable, Category = "CCL|Editor")
 	static bool CreateProgressionAssets();
+	UFUNCTION(BlueprintCallable, Category = "CCL|Editor")
+	static bool CreateEncounterAssets();
 };

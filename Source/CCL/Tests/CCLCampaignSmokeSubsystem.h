@@ -26,6 +26,9 @@ public:
 private:
 	void PrepareEnemy(ACCLEnemyCharacter* Enemy);
 	void TickProgression();
+	bool TickContent(bool bAfterVictory);
+	int32 ContentStep = 0;
+	uint8 bContentReady = 0;
 	bool CheckProgressionPersistence();
 	float ProbeDamage();
 	bool Check(bool bCondition, const TCHAR* Description);

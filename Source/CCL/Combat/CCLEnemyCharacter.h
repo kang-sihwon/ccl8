@@ -26,6 +26,11 @@ public:
 	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
 
 public:
+	void SelectAttackPattern();
+	UPROPERTY(EditAnywhere, Replicated, Category = "Encounter")
+	uint8 Archetype = 0;
+	UPROPERTY(Replicated)
+	FString PatternLabel;
 	bool IsDead() const { return bDead != 0; }
 	FVector GetHome() const { return SpawnTransform.GetLocation(); }
 
@@ -67,6 +72,7 @@ private:
 	UPROPERTY(ReplicatedUsing = OnRep_Dead)
 	uint8 bDead = 0;
 
+	uint8 bAlternateAttack = 0;
 	FTransform SpawnTransform;
 	FTimerHandle RespawnTimer;
 	FDelegateHandle HealthChanged;

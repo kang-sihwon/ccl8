@@ -1,4 +1,6 @@
 #include "CCLPlayerController.h"
+#include "Campaign/CCLExpeditionComponent.h"
+#include "Campaign/CCLVillageSteward.h"
 
 #include "CCLCharacter.h"
 #include "CCLPlayerState.h"
@@ -105,6 +107,8 @@ void ACCLPlayerController::SetupInputComponent()
 		InputMapping->MapKey(Action, Key);
 		Input->BindAction(Action, ETriggerEvent::Started, this, Function);
 	};
+	MapMenu(EKeys::T, &ThisClass::ServerTalkToSteward);
+	MapMenu(EKeys::B, &ThisClass::ServerBuyPotion);
 	MapMenu(EKeys::I, &ThisClass::ToggleInventory);
 	MapMenu(EKeys::Up, &ThisClass::SelectPreviousItem);
 	MapMenu(EKeys::Down, &ThisClass::SelectNextItem);
@@ -424,6 +428,33 @@ void ACCLPlayerController::ClientProgressionTestStep_Implementation(int32 Step, 
 	if (auto* Test = GetWorld()->GetSubsystem<UCCLCampaignSmokeSubsystem>())
 	{
 		Test->ExecuteProgressionStep(Step, EntryId);
+	}
+#endif
+}
+
+namespace
+{
+ACCLVillageSteward* NearbySteward(UWorld* World, const APawn* Pawn)
+{
+	for (TActorIterator<ACCLVillageSteward> It(World); It; ++It) { if (It->CanReach(Pawn)) { return *It; } }
+	return nullptr;
+}
+}
+void ACCLPlayerController::ServerTalkToSteward_Implementation()
+{
+	if (auto* State = GetPlayerState<ACCLPlayerState>()) { State->GetExpedition()->Talk(NearbySteward(GetWorld(), GetPawn())); }
+}
+void ACCLPlayerController::ServerBuyPotion_Implementation()
+{
+	if (auto* State = GetPlayerState<ACCLPlayerState>()) { State->GetExpedition()->Buy(NearbySteward(GetWorld(), GetPawn())); }
+}
+void ACCLPlayerController::ClientContentTestStep_Implementation(int32 Step)
+{
+#if !UE_BUILD_SHIPPING && !UE_BUILD_TEST
+	if (GetWorld()->GetSubsystem<UCCLCampaignSmokeSubsystem>() && FParse::Param(FCommandLine::Get(), TEXT("CCLContentSmoke")))
+	{
+		if (Step == 0) { ServerTalkToSteward(); }
+		else { ServerBuyPotion(); }
 	}
 #endif
 }

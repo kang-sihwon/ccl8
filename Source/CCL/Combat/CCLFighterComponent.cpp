@@ -97,6 +97,7 @@ void UCCLFighterComponent::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>&
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
 	DOREPLIFETIME(UCCLFighterComponent, Action);
 	DOREPLIFETIME(UCCLFighterComponent, Item);
+	DOREPLIFETIME(UCCLFighterComponent, AttackOverride);
 }
 
 void UCCLFighterComponent::Initialize(UCCLAbilitySystemComponent* InASC)
@@ -223,6 +224,7 @@ void UCCLFighterComponent::NotifyHit(FGameplayTag Outcome)
 
 const UCCLCombatDefinition* UCCLFighterComponent::GetAttack() const
 {
+	if (AttackOverride) { return AttackOverride; }
 	const auto* Fragment = Item ? Cast<UCCLItemFragment_Combat>(Item->FindFragment(UCCLItemFragment_Combat::StaticClass())) : nullptr;
 	return Fragment ? Fragment->Combat.Get() : nullptr;
 }

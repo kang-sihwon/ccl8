@@ -141,6 +141,7 @@ bool ACCLEnemyAIController::StartAttack()
 	}
 
 	StopMovement();
+	Enemy->SelectAttackPattern();
 	ASC->AbilityInputTagPressed(CCLTags::Input_Attack);
 	ASC->AbilityInputTagReleased(CCLTags::Input_Attack);
 	return ASC->HasMatchingGameplayTag(CCLTags::State_Busy);

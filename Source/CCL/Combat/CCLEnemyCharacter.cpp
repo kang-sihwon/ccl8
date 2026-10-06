@@ -1,4 +1,6 @@
 #include "CCLEnemyCharacter.h"
+#include "CCLCombatDefinition.h"
+#include "AbilitySystem/CCLGameplayTags.h"
 
 #include "CCLEnemyAIController.h"
 #include "CCLFighterComponent.h"
@@ -54,6 +56,7 @@ void ACCLEnemyCharacter::BeginPlay()
 	SpawnTransform = GetActorTransform();
 	AbilitySystem->InitAbilityActorInfo(this, this);
 	Fighter->Initialize(AbilitySystem);
+	SelectAttackPattern();
 	HealthChanged = AbilitySystem->GetGameplayAttributeValueChangeDelegate(UCCLHealthSet::GetHealthAttribute()).AddUObject(this, &ThisClass::OnHealthChanged);
 }
 
@@ -74,6 +77,8 @@ void ACCLEnemyCharacter::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& O
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
 	DOREPLIFETIME(ACCLEnemyCharacter, bDead);
 	DOREPLIFETIME(ACCLEnemyCharacter, DisplayName);
+	DOREPLIFETIME(ACCLEnemyCharacter, Archetype);
+	DOREPLIFETIME(ACCLEnemyCharacter, PatternLabel);
 }
 
 void ACCLEnemyCharacter::OnHealthChanged(const FOnAttributeChangeData& Data)
@@ -132,4 +137,25 @@ void ACCLEnemyCharacter::OnRep_Dead()
 	GetCharacterMovement()->DisableMovement();
 	GetCapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 	GetMesh()->SetRelativeRotation(FRotator(0.f, -90.f, 90.f));
+}
+
+void ACCLEnemyCharacter::SelectAttackPattern()
+{
+	if (!HasAuthority() || IsDead() || AbilitySystem->HasMatchingGameplayTag(CCLTags::State_Busy)) { return; }
+	const TCHAR* Path = nullptr;
+	if (Archetype == 1)
+	{
+		Path = TEXT("/Game/Progression/DA_RaiderStrike.DA_RaiderStrike");
+		PatternLabel = TEXT("Quick strike: guard / parry");
+	}
+	else if (Archetype == 2)
+	{
+		const bool bEnraged = Health->GetHealth() <= Health->GetMaxHealth() * 0.5f;
+		const bool bSweep = bEnraged && !bAlternateAttack;
+		bAlternateAttack = bEnraged ? !bAlternateAttack : 0;
+		Path = bSweep ? TEXT("/Game/Progression/DA_WardenSweep.DA_WardenSweep") : TEXT("/Game/Progression/DA_WardenHeavy.DA_WardenHeavy");
+		PatternLabel = bSweep ? TEXT("ENRAGED SWEEP: DODGE (cannot guard/parry)") : TEXT("Heavy windup: parry / dodge");
+	}
+	else { PatternLabel = TEXT("Measured strike: guard / parry"); }
+	if (Path) { Fighter->AttackOverride = LoadObject<UCCLCombatDefinition>(nullptr, Path); }
 }

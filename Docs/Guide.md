@@ -21,6 +21,7 @@
 | [MultiplayerFoundation](MultiplayerFoundation.md) | 스폰·이동·카메라·사망·재도전 구현과 실행·검증 기준 |
 | [CombatFoundation](CombatFoundation.md) | 일반 몹·최소 전투의 확정 사양, 구현과 검증 상태 |
 | [CampaignFoundation](CampaignFoundation.md) | 마을·일반 적·보스·승리 흐름의 구현과 검증 상태 |
+| [ContentFoundation](ContentFoundation.md) | 일반 적·보스 패턴과 NPC·상점·퀘스트·튜토리얼 |
 | [ProgressionFoundation](ProgressionFoundation.md) | 인벤토리·장비·성장·스킬 UI의 설계와 검증 |
 | [ArtDirection](ArtDirection.md) | 그래픽 스타일·시각 기준·아트 제작 초안 |
 | [Coding](Coding.md) | 코드 설계·리뷰·빌드와 파일 수정 경계 |

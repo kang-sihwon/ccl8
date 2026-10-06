@@ -5,9 +5,11 @@ param(
     [switch]$Impaired,
     [switch]$Rendered,
     [switch]$Progression,
+    [switch]$Content,
     [ValidateRange(60, 1800)][int]$StartupTimeoutSeconds = 600
 )
 $ErrorActionPreference = 'Stop'
+if ($Content -and $Progression) { throw 'Run content and progression fixtures separately' }
 $repository = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '../..'))
 $paths = Get-Content -LiteralPath (Join-Path $repository '.local/agent-paths.json') -Raw | ConvertFrom-Json
 $editor = Join-Path $paths.engineRoot 'Binaries/Win64/UnrealEditor-Cmd.exe'
@@ -26,6 +28,7 @@ function Start-Game([string]$Label, [string[]]$Options) {
         ('-ExecCmds="t.MaxFPS 60' + $(if ($Rendered) { ',r.MotionBlurQuality 0' } else { '' }) + $(if ($Impaired) { ',NetEmulation.PktLag 50,NetEmulation.PktLoss 2' } else { '' }) + '"'), ('-abslog="{0}"' -f $log)
     )
     if ($Progression) { $arguments += '-CCLProgressionSmoke' }
+    if ($Content) { $arguments += '-CCLContentSmoke' }
     if ($Rendered) { $arguments += @('-CCLCampaignCapture', '-windowed', '-ResX=1280', '-ResY=720') } else { $arguments += '-nullrhi' }
     $started.Add((Start-Process -FilePath $editor -ArgumentList $arguments -WindowStyle Hidden -PassThru))
     return $log
@@ -67,6 +70,7 @@ try {
     }
     Wait-Marker $server 'CCL_CAMPAIGN SERVER PASS' ($StartupTimeoutSeconds + 180)
     if ($Progression) { Wait-Marker $server 'CCL_PROGRESSION PERSISTENCE PASS' 15 }
+    if ($Content) { Wait-Marker $server 'CCL_CONTENT REWARD PASS' 15 }
     foreach ($client in $clients) { Wait-Marker $client 'CCL_CAMPAIGN CLIENT PASS' 60 }
     if ($Mode -ne 'Standalone') {
         $late = Start-Game 'late' @(('127.0.0.1:{0}' -f $Port), '-game', '-CCLCampaignSmoke=late')

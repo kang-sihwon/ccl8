@@ -1,4 +1,6 @@
 #include "CCLHUD.h"
+#include "Campaign/CCLExpeditionComponent.h"
+#include "Campaign/CCLVillageSteward.h"
 
 #include "CCLCharacter.h"
 #include "CCLPlayerState.h"
@@ -68,6 +70,11 @@ void ACCLHUD::DrawHUD()
 		             It->IsDead() ? TEXT(" (defeated)") : TEXT("")),
 		    FLinearColor::Red, 30.f, Y);
 		Y += 25.f;
+		if (!It->IsDead() && It->FindComponentByClass<UCCLFighterComponent>()->GetAction() == ECCLCombatAction::Attack)
+		{
+			DrawText(It->PatternLabel, FLinearColor::Yellow, 30.f, Y);
+			Y += 25.f;
+		}
 	}
 
 	if (!Character || Character->IsDead())
@@ -90,6 +97,16 @@ void ACCLHUD::DrawHUD()
 	}
 	const auto* Controller = Cast<ACCLPlayerController>(PlayerOwner);
 	const auto* State = PlayerOwner ? PlayerOwner->GetPlayerState<ACCLPlayerState>() : nullptr;
+	if (State && GetWorld()->GetGameState<ACCLCampaignState>())
+	{
+		const auto* Expedition = State->GetExpedition();
+		DrawText(Expedition->GetTutorial(), FLinearColor::White, 30.f, Canvas->SizeY - 165.f);
+		DrawText(FString::Printf(TEXT("Coins: %d  |  %s"), Expedition->GetCoins(), *Expedition->GetNotice()), FLinearColor::Yellow, 30.f, Canvas->SizeY - 140.f);
+		for (TActorIterator<ACCLVillageSteward> It(GetWorld()); It; ++It)
+		{
+			if (It->CanReach(Character)) { DrawText(TEXT("Village Steward: T Talk / Quest | B Buy potion (10 coins)"), FLinearColor::Green, 30.f, Canvas->SizeY - 105.f); break; }
+		}
+	}
 	if (Controller && Controller->IsInventoryOpen() && State)
 	{
 		const float X = FMath::Max(30.f, static_cast<float>(Canvas->SizeX) - 420.f);

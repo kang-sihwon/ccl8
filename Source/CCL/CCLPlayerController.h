@@ -35,6 +35,12 @@ public:
 	UFUNCTION(Exec)
 	void CCLLeave();
 
+	UFUNCTION(Server, Reliable)
+	void ServerTalkToSteward();
+	UFUNCTION(Server, Reliable)
+	void ServerBuyPotion();
+	UFUNCTION(Client, Reliable)
+	void ClientContentTestStep(int32 Step);
 	void ToggleInventory();
 	void SelectPreviousItem();
 	void SelectNextItem();

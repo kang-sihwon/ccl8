@@ -1,4 +1,5 @@
 #include "CCLPlayerState.h"
+#include "Campaign/CCLExpeditionComponent.h"
 
 #include "AbilitySystem/CCLAbilitySystemComponent.h"
 #include "AbilitySystem/CCLHealthSet.h"
@@ -14,6 +15,7 @@ ACCLPlayerState::ACCLPlayerState()
 	Health = CreateDefaultSubobject<UCCLHealthSet>(TEXT("Health"));
 	Stamina = CreateDefaultSubobject<UCCLStaminaSet>(TEXT("Stamina"));
 	Offense = CreateDefaultSubobject<UCCLOffenseSet>(TEXT("Offense"));
+	Expedition = CreateDefaultSubobject<UCCLExpeditionComponent>(TEXT("Expedition"));
 	Inventory = CreateDefaultSubobject<UCCLInventoryComponent>(TEXT("Inventory"));
 	Loadout = CreateDefaultSubobject<UCCLLoadoutComponent>(TEXT("Loadout"));
 }

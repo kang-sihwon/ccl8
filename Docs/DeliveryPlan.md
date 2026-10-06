@@ -38,3 +38,7 @@
 ## 단계 4 결과
 
 서버 권위의 인벤토리·장비·회복품·훈련과 UI를 연결했다. 생성 BAT·빌드, Standalone·Dedicated·Listen 원격·호스트·지연과 손실, 늦은 접속과 소유자 구분 검사를 통과했다. 실제 피해 증가, 재스폰 후 성장 유지, 잘못된 요청 거부와 일반 Actor 보관 한도를 확인했다. 기존 전투·이동 회귀와 렌더링 화면도 확인했다. 상세 근거와 저장 기능의 범위는 [ProgressionFoundation](ProgressionFoundation.md)을 따른다.
+
+## 단계 5 결과
+
+경비병·척후병·보스 체력별 패턴과 마을 안내인·상점·원정 퀘스트·상황별 안내를 연결했다. 실제 클라이언트 거래, 비용·공간 부족 거부, 한 번만 보상, 재스폰과 늦은 접속 검사를 통과했다. Standalone·Dedicated·Listen 원격·호스트·지연과 손실 구성, 기존 성장·전투 회귀와 NPC 화면을 확인했다. 근거와 임시 아트의 한계는 [ContentFoundation](ContentFoundation.md)을 따른다.

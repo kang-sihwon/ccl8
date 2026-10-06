@@ -131,11 +131,12 @@ ACCLEnemyCharacter* ACCLCampaignDirector::SpawnEnemy(FVector Location, bool bBos
 	}
 
 	Enemy->bRespawnEnabled = 0;
-	Enemy->DisplayName = bBoss ? TEXT("Gate Warden") : TEXT("Gate Guard");
+	Enemy->Archetype = bBoss ? 2 : (Guards.IsEmpty() ? 0 : 1);
+	Enemy->DisplayName = bBoss ? TEXT("Gate Warden") : (Enemy->Archetype == 1 ? TEXT("Road Raider") : TEXT("Gate Guard"));
 	Enemy->DetectionRadius = 650.f;
 	Enemy->LeashRadius = 900.f;
 	Enemy->FindComponentByClass<UCCLFighterComponent>()->InitialHealth = bBoss ? 240.f : 80.f;
-	Enemy->GetCharacterMovement()->MaxWalkSpeed = bBoss ? 210.f : 260.f;
+	Enemy->GetCharacterMovement()->MaxWalkSpeed = bBoss ? 210.f : (Enemy->Archetype == 1 ? 330.f : 260.f);
 	Enemy->OnDefeated.AddUObject(this, &ThisClass::NotifyEnemyDefeated);
 	Enemy->FinishSpawning(Transform);
 	return IsValid(Enemy) ? Enemy : nullptr;

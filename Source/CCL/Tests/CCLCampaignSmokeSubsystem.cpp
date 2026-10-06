@@ -1,4 +1,8 @@
 #include "CCLCampaignSmokeSubsystem.h"
+#include "Campaign/CCLExpeditionComponent.h"
+#include "Campaign/CCLVillageSteward.h"
+#include "Combat/CCLCombatDefinition.h"
+#include "AbilitySystem/CCLEffects.h"
 
 #include "CCLCharacter.h"
 #include "CCLPlayerController.h"
@@ -137,6 +141,11 @@ void UCCLCampaignSmokeSubsystem::Tick(float DeltaTime)
 
 	if (Stage == 0)
 	{
+		if (FParse::Param(FCommandLine::Get(), TEXT("CCLContentSmoke")) && !bContentReady)
+		{
+			bContentReady = TickContent(false);
+			return;
+		}
 		if (FParse::Param(FCommandLine::Get(), TEXT("CCLProgressionSmoke")) && !bProgressionReady)
 		{
 			TickProgression();
@@ -212,6 +221,37 @@ void UCCLCampaignSmokeSubsystem::Tick(float DeltaTime)
 			{
 				return;
 			}
+
+			if (FParse::Param(FCommandLine::Get(), TEXT("CCLContentSmoke")))
+			{
+				auto* Boss = Director->GetBoss();
+				auto* Fighter = Boss->FindComponentByClass<UCCLFighterComponent>();
+				Boss->GetAbilitySystemComponent()->CancelAllAbilities();
+				Boss->SelectAttackPattern();
+				if (!Check(Fighter->GetAttack() && Fighter->GetAttack()->Damage == 30.f && Fighter->GetAttack()->bGuardable, TEXT("boss starts with heavy attack"))) { return; }
+				Boss->GetAbilitySystemComponent()->SetNumericAttributeBase(UCCLHealthSet::GetHealthAttribute(), 120.f);
+				Boss->SelectAttackPattern();
+				if (!Check(Fighter->GetAttack() && !Fighter->GetAttack()->bGuardable && !Fighter->GetAttack()->bParryable && Fighter->GetAttack()->Radius == 100.f, TEXT("half-health boss selects unblockable wide sweep"))) { return; }
+
+				Character->GetAbilitySystemComponent()->CancelAllAbilities();
+				Character->SetActorLocation(Boss->GetActorLocation() - FVector(110.f, 0.f, 0.f));
+				Character->SetActorRotation(FRotator::ZeroRotator);
+				auto* PlayerASC = CastChecked<UCCLAbilitySystemComponent>(Character->GetAbilitySystemComponent());
+				PlayerASC->SetNumericAttributeBase(UCCLHealthSet::GetHealthAttribute(), 100.f);
+				const auto Guard = PlayerASC->ApplyEffect(UCCLGuardEffect::StaticClass());
+				auto* Combat = Boss->FindComponentByClass<UCCLCombatComponent>();
+				const uint32 AttackId = Combat->BeginAttack(Fighter->GetAttack(), -FVector::ForwardVector);
+				FHitResult Hit(Character, nullptr, Character->GetActorLocation(), FVector::UpVector);
+				Hit.ImpactPoint = Character->GetActorLocation();
+				Combat->ResolveHit(Character, Hit, AttackId);
+				Combat->EndAttack();
+				PlayerASC->RemoveActiveGameplayEffect(Guard);
+				if (!Check(PlayerASC->GetNumericAttribute(UCCLHealthSet::GetHealthAttribute()) == 76.f, TEXT("boss sweep deals actual damage through frontal guard"))) { return; }
+				PlayerASC->SetNumericAttributeBase(UCCLHealthSet::GetHealthAttribute(), 100.f);
+				Boss->SelectAttackPattern();
+				if (!Check(Fighter->GetAttack()->bGuardable != 0, TEXT("enraged boss alternates sweep and heavy"))) { return; }
+				Boss->GetAbilitySystemComponent()->SetNumericAttributeBase(UCCLHealthSet::GetHealthAttribute(), 240.f);
+			}
 			PrepareEnemy(Director->GetBoss());
 			Stage = 3;
 		}
@@ -232,6 +272,7 @@ void UCCLCampaignSmokeSubsystem::Tick(float DeltaTime)
 	}
 	if (Stage == 4 && Character != OldPawn.Get() && !Character->IsDead())
 	{
+		if (FParse::Param(FCommandLine::Get(), TEXT("CCLContentSmoke")) && !TickContent(true)) { return; }
 		if (bProgressionReady && !CheckProgressionPersistence())
 		{
 			return;
@@ -514,4 +555,83 @@ float UCCLCampaignSmokeSubsystem::ProbeDamage()
     const float Damage = Before - Dummy->GetAbilitySystemComponent()->GetNumericAttribute(UCCLHealthSet::GetHealthAttribute());
     Dummy->Destroy();
     return Damage;
+}
+
+bool UCCLCampaignSmokeSubsystem::TickContent(bool bAfterVictory)
+{
+	auto* Player = Driver->GetPlayerState<ACCLPlayerState>();
+	APawn* Pawn = Driver->GetPawn();
+	if (!Player || !Pawn) { return false; }
+	auto* Content = Player->GetExpedition();
+	auto* Inventory = Player->GetInventory();
+	ACCLVillageSteward* NPC = nullptr;
+	for (TActorIterator<ACCLVillageSteward> It(GetWorld()); It; ++It) { NPC = *It; break; }
+	if (!Check(NPC != nullptr, TEXT("village steward exists"))) { return false; }
+	if (!bAfterVictory)
+	{
+		switch (ContentStep)
+		{
+		case 0:
+		{
+			Pawn->SetActorLocation(NPC->GetActorLocation() + FVector(800.f, 0.f, 0.f));
+			if (!Check(!Content->Talk(NPC) && !Content->Buy(NPC) && Content->GetCoins() == 30, TEXT("distant NPC requests rejected"))) { return false; }
+			Pawn->SetActorLocation(NPC->GetActorLocation() + FVector(0.f, -150.f, 0.f));
+			const int32 Capacity = Inventory->Capacity;
+			Inventory->Capacity = 1;
+			auto* Item = LoadObject<UCCLItemDefinition>(nullptr, TEXT("/Game/Progression/DA_IronGauntlets.DA_IronGauntlets"));
+			const FGuid Id = Inventory->Add(Item, 1);
+			if (!Check(Id.IsValid() && !Content->Buy(NPC) && Content->GetCoins() == 30, TEXT("full inventory purchase does not debit"))) { return false; }
+			Inventory->Remove(Id, 1);
+			Inventory->Capacity = Capacity;
+			Driver->ClientContentTestStep(0);
+			break;
+		}
+		case 1:
+			if (!Check(Content->GetQuest() == ECCLQuestStatus::Accepted && !Content->Talk(NPC) && Player->GetLoadout()->GetPoints() == 1, TEXT("client accepts quest; premature reward rejected"))) { return false; }
+			Driver->ClientContentTestStep(1);
+			Driver->ClientContentTestStep(1);
+			Driver->ClientContentTestStep(1);
+			Driver->ClientContentTestStep(1);
+			break;
+		case 2:
+			if (!Check(Content->GetCoins() == 0 && Inventory->GetEntries().Num() == 1 && Inventory->GetEntries()[0].Quantity == 3,
+				TEXT("client purchases three; fourth rejected for insufficient funds"))) { return false; }
+			for (TActorIterator<ACCLEnemyCharacter> It(GetWorld()); It; ++It)
+			{
+				if (It->Archetype == 1 && !Check(It->FindComponentByClass<UCCLFighterComponent>()->GetAttack()->Damage == 12.f &&
+					It->GetCharacterMovement()->MaxWalkSpeed == 330.f, TEXT("raider has distinct attack and approach speed"))) { return false; }
+			}
+
+			if (FParse::Param(FCommandLine::Get(), TEXT("CCLCampaignCapture")) && Driver->IsLocalController())
+			{
+				Driver->SetControlRotation(FRotator(-8.f, 90.f, 0.f));
+				FScreenshotRequest::RequestScreenshot(FPaths::ConvertRelativePathToFull(FPaths::ProjectSavedDir() / TEXT("Tests/CampaignVisual/steward.png")), true, false);
+			}
+			NextStageAt = GetWorld()->GetTimeSeconds() + 2.;
+			UE_LOG(LogTemp, Display, TEXT("CCL_CONTENT SERVICES PASS"));
+			ContentStep = 10;
+			return true;
+		}
+	}
+	else
+	{
+		if (ContentStep == 10)
+		{
+			if (!Check(Content->GetQuest() == ECCLQuestStatus::Accepted && Content->GetCoins() == 0 && Inventory->GetEntries()[0].Quantity == 3,
+				TEXT("quest and purchases survive individual respawn"))) { return false; }
+			Pawn->SetActorLocation(NPC->GetActorLocation() + FVector(0.f, -150.f, 0.f));
+			Driver->ClientContentTestStep(0);
+		}
+		else if (ContentStep == 11)
+		{
+			if (!Check(Content->GetQuest() == ECCLQuestStatus::Rewarded && Content->GetCoins() == 60 && Player->GetLoadout()->GetPoints() == 2,
+				TEXT("client returns for quest coins and training reward")) || !Check(!Content->Talk(NPC) && Content->GetCoins() == 60 && Player->GetLoadout()->GetPoints() == 2,
+				TEXT("duplicate reward rejected"))) { return false; }
+			UE_LOG(LogTemp, Display, TEXT("CCL_CONTENT REWARD PASS"));
+			return true;
+		}
+	}
+	++ContentStep;
+	NextStageAt = GetWorld()->GetTimeSeconds() + 1.5;
+	return false;
 }
