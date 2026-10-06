@@ -2,7 +2,7 @@
 
 Orbis의 방향과 그래픽 스타일을 공유하는 소규모 소울라이크 RPG다. AI가 제작을 주도하고 사용자는 검토와 방향 지시를 맡는다. 확정 범위와 기간은 [제작 방향](Docs/Direction.md), 플레이 초안은 [게임 기획](Docs/GameDesign.md), 시각 기준은 [아트 방향](Docs/ArtDirection.md)에 있다.
 
-개발 환경과 기획 초안, `CCL.uproject`의 기본 프로젝트 구조를 구성했다. 게임 구현은 아직 시작하지 않았다. 저장소 루트는 `CCL.uproject`가 있는 `CCL` 폴더다.
+개발 환경과 기획 초안, `CCL.uproject`의 기본 프로젝트 구조를 구성했다. [멀티플레이 기본 흐름](Docs/MultiplayerFoundation.md)에 스폰, 이동·카메라와 개별 재스폰의 구현·검증 상태와 조작법을 정리했다. 저장소 루트에는 `CCL.uproject`가 있다.
 
 ## 폴더
 

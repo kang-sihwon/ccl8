@@ -1,6 +1,6 @@
 # ccl8 안내
 
-새 세션은 저장소 루트에서 시작한다. ccl8은 Orbis의 방향과 그래픽 스타일을 공유하는 단기 소울라이크 RPG다. 제작 범위와 역할은 [Direction](Direction.md), 세부 기획과 아트 초안은 문서 지도에서 확인한다. UE 프로젝트의 기본 구조는 생성되어 있으며 게임 구현은 아직 시작하지 않았다. 프로젝트 위치와 도구 경로는 [AgentContextTools](AgentContextTools.md)를 따른다. 기본 엔진 기준은 UE 5.8.1이다.
+새 세션은 저장소 루트에서 시작한다. ccl8은 Orbis의 방향과 그래픽 스타일을 공유하는 단기 소울라이크 RPG다. 제작 범위와 역할은 [Direction](Direction.md), 세부 기획과 아트 초안은 문서 지도에서 확인한다. 멀티플레이 기본 흐름과 테스트 맵을 구현했으며 검증 상태는 [MultiplayerFoundation](MultiplayerFoundation.md)에 있다. 프로젝트 위치와 도구 경로는 [AgentContextTools](AgentContextTools.md)를 따른다. 기본 엔진 기준은 UE 5.8.1이며 실제 검증에 사용한 설치본은 작업 문서에 기록한다.
 
 ## 협업 규칙
 
@@ -18,7 +18,7 @@
 |---|---|
 | [Direction](Direction.md) | 제작 목표·확정 범위·역할 분담 |
 | [GameDesign](GameDesign.md) | 플레이 흐름·전투·콘텐츠 기획 초안 |
-| [MultiplayerFoundation](MultiplayerFoundation.md) | 스폰·이동·카메라·사망·재도전 설계 초안과 검증 기준 |
+| [MultiplayerFoundation](MultiplayerFoundation.md) | 스폰·이동·카메라·사망·재도전 구현과 실행·검증 기준 |
 | [ArtDirection](ArtDirection.md) | 그래픽 스타일·시각 기준·아트 제작 초안 |
 | [Coding](Coding.md) | 코드 설계·리뷰·빌드와 파일 수정 경계 |
 | [WritingGuide](WritingGuide.md) | 문서 작성·검토·결정 기록 |
