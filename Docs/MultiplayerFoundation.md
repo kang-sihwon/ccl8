@@ -127,6 +127,21 @@ void ACCLCharacter::Die()
 
 2026-10-06 사용자가 Standalone에서 이동·점프·마우스 회전, 사망, 카메라의 지형 충돌과 리스폰이 정상 동작함을 수동 확인했다. 패키징한 게임·전용 서버, 패킷 손실 환경과 재접속은 미검증이다. `EditorToolset`의 `AgentSkill`, `ToolsetRegistry`의 `PythonTestRunner` Python 초기화 오류도 게임 실행 로그에서 관찰됐으며 기본 흐름 검증은 통과했다. 해당 엔진 플러그인은 수정하지 않았다.
 
+## 집 환경 재검증
+
+2026-10-06 집의 설치본은 UE 5.8.1, Changelist 0이다. `c8c6e4a`를 대상으로 `CCLEditor Win64 Development` 빌드가 통과했다. 빌드에는 `-WaitMutex -NoHotReloadFromIDE -NoEngineChanges`를 사용했다.
+
+첫 Standalone 검사는 `Saved/Tests/NetworkSmoke/Standalone-20261006-210226/driver.log`에서 이동 검사 실패를 기록했다. 맵 로드와 캐릭터 스폰은 성공했지만 Python 초기화 이후 7프레임 시점에 검사 구간이 종료됐다. 테스트가 실제 시간으로 이동 구간을 측정하므로 초기화 지연을 이동 시간에 포함할 수 있다. 수정 범위는 `UCCLNetworkSmokeSubsystem::Tick`의 시간 기준이다. 구간 판정에는 월드 게임 시간을 사용하고 전체 중단 제한은 실제 시간으로 유지한다. 수정 후 프로젝트 빌드와 아래 네 실행 검사가 통과했다. 테스트 코드 수정은 로컬 작업 트리에 있으며 회사의 검증 커밋에는 포함되지 않는다.
+
+| 실행 | 결과 | 로그 |
+|---|---|---|
+| Standalone | PASS, 이동·사망·재스폰·KillZ·막힌 시작 위치 복구 | `Saved/Tests/NetworkSmoke/Standalone-20261006-210532/driver.log` |
+| Dedicated Server + 클라이언트 2개 | PASS, 원격 이동·사망·재스폰·생존자 Pawn 보존 | `Saved/Tests/NetworkSmoke/Dedicated-20261006-210615/` |
+| Listen 원격 재스폰 | PASS, 원격 플레이어 재스폰·호스트 Pawn 보존 | `Saved/Tests/NetworkSmoke/Listen-20261006-210649/` |
+| Listen 호스트 재스폰 | PASS, 호스트 재스폰·원격 Pawn 보존 | `Saved/Tests/NetworkSmoke/Listen-20261006-210718/` |
+
+시간 기준은 UE 5.8.1의 `<Engine>/Source/Runtime/Engine/Classes/Engine/World.h:4681`과 `<Engine>/Source/Runtime/Engine/Private/LevelTick.cpp:1610`에서 확인했다. `GetTimeSeconds`는 월드의 `TimeSeconds`를 반환하고 월드 Tick은 게임 DeltaSeconds를 누적한다. 위 검증은 `-nullrhi` 자동 검사이며 집에서 화면을 보며 수행하는 조작감 검증은 아직 하지 않았다. Python 초기화의 `AgentSkill`·`PythonTestRunner` 오류는 여전히 남아 있다.
+
 ## 엔진 근거와 대안
 
 UE 5.8.2의 `<Engine>/Source/Runtime/Engine/Private/GameModeBase.cpp:1068`에서 `HandleStartingNewPlayer_Implementation`은 조건을 확인한 뒤 `RestartPlayer`를 호출한다. 같은 파일의 `:1241`은 시작 위치 선택, `:1264`는 Pawn 확인과 생성, `:1362`는 `Possess`를 담당한다. 이미 Pawn이 있으면 그 Pawn을 사용하므로 재스폰 전에 이전 Pawn을 정리한다.
