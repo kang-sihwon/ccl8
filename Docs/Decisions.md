@@ -10,6 +10,7 @@
 | 불리언 타입 | 헤더의 불리언 멤버 변수만 `uint8`을 사용한다. 함수 반환값·매개변수와 `.cpp` 지역 변수는 `bool`을 유지한다 | 유효 | 결정 4 | [Coding](Coding.md) |
 | 실행·재도전 | 평소에는 Standalone, 서버 검증은 Dedicated Server와 Listen Server에서 수행한다. 사망한 플레이어만 개별 재스폰한다 | 유효 | 결정 5 | [MultiplayerFoundation](MultiplayerFoundation.md) |
 | 베이스 시스템 설계 | 장르에 독립적인 공통 계약과 콘텐츠 규칙을 분리하고 데이터·정책·기능 조합으로 구성한다. Item은 ItemDefinition과 Fragment 조합을 따른다 | 유효 | 결정 9 | [Coding](Coding.md) |
+| 엔진 시스템 선택 | 명확히 불합리한 근거가 없으면 UE5 신규·현행 시스템을 기본 선택으로 사용한다. Nanite, World Partition, GAS와 Attribute·AttributeSet을 포함한다 | 유효 | 결정 10 | [Coding](Coding.md) |
 | 방어 행동 | 최소 전투에 회피, 가드와 패링을 모두 포함한다. 세부 규칙은 설계 초안이다 | 유효 | 결정 8 | [CombatFoundation](CombatFoundation.md) |
 | C++ 배치 | 헤더·CPP를 역할별 영역으로 정리한다. 헤더의 프로퍼티는 마지막에 두며, 주석이나 `UPROPERTY`가 있는 멤버 선언 묶음만 빈 줄로 구분한다 | 유효(부분 보완) | 결정 6, 결정 7 | [Coding](Coding.md) |
 
