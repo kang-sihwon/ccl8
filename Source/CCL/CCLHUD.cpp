@@ -1,6 +1,15 @@
 #include "CCLHUD.h"
 
 #include "CCLCharacter.h"
+#include "CCLPlayerState.h"
+#include "CCLPlayerController.h"
+#include "Items/CCLInventoryComponent.h"
+#include "Items/CCLItemDefinition.h"
+#include "Items/CCLLoadoutComponent.h"
+#include "Items/CCLSkillDefinition.h"
+#include "Items/CCLWorldPickup.h"
+#include "AbilitySystem/CCLOffenseSet.h"
+#include "Engine/Canvas.h"
 #include "UI/CCLCombatViewModel.h"
 #include "AbilitySystem/CCLHealthSet.h"
 #include "AbilitySystem/CCLStaminaSet.h"
@@ -65,5 +74,54 @@ void ACCLHUD::DrawHUD()
 	{
 		DrawText(Character ? TEXT("You died. Press R to retry.") : TEXT("Waiting for spawn. Press R to retry."),
 		    FLinearColor::Yellow, 30.f, 185.f, nullptr, 1.5f);
+	}
+
+	DrawText(TEXT("E Collect supplies | I Inventory / Training | Esc Exit"), FLinearColor::White, 30.f, Canvas->SizeY - 45.f);
+	if (Character)
+	{
+		for (TActorIterator<ACCLWorldPickup> It(GetWorld()); It; ++It)
+		{
+			if (FVector::DistSquared(Character->GetActorLocation(), It->GetActorLocation()) < FMath::Square(225.f) && It->Definition)
+			{
+				DrawText(FString::Printf(TEXT("E: %s x%d"), *It->Definition->GetLabel().ToString(), It->Quantity), FLinearColor::Yellow, 30.f, Canvas->SizeY - 75.f);
+				break;
+			}
+		}
+	}
+	const auto* Controller = Cast<ACCLPlayerController>(PlayerOwner);
+	const auto* State = PlayerOwner ? PlayerOwner->GetPlayerState<ACCLPlayerState>() : nullptr;
+	if (Controller && Controller->IsInventoryOpen() && State)
+	{
+		const float X = FMath::Max(30.f, static_cast<float>(Canvas->SizeX) - 420.f);
+		const auto* Inventory = State->GetInventory();
+		const auto* Loadout = State->GetLoadout();
+		DrawRect(FLinearColor(0.02f, 0.03f, 0.05f, 0.95f), X - 15.f, 25.f, 405.f, 610.f);
+		DrawText(TEXT("INVENTORY & TRAINING"), FLinearColor::White, X, 40.f, nullptr, 1.3f);
+		DrawText(TEXT("Up/Down Select | F Equip | G Unequip | H Use"), FLinearColor::Gray, X, 70.f);
+		float Row = 105.f;
+		for (int32 Index = 0; Index < Inventory->GetEntries().Num(); ++Index)
+		{
+			const auto& Entry = Inventory->GetEntries()[Index];
+			DrawText(FString::Printf(TEXT("%s %s x%d%s"), Index == Controller->GetSelectedItem() ? TEXT(">") : TEXT(" "),
+				Entry.Definition ? *Entry.Definition->GetLabel().ToString() : TEXT("Loading"), Entry.Quantity,
+				Entry.Id == Loadout->GetEquippedId() ? TEXT(" [equipped]") : TEXT("")), FLinearColor::White, X, Row);
+			Row += 23.f;
+		}
+		if (Inventory->GetEntries().IsEmpty())
+		{
+			DrawText(TEXT("Empty. Collect the village supplies with E."), FLinearColor::Gray, X, Row);
+		}
+		Row = FMath::Max(Row + 25.f, 220.f);
+		DrawText(FString::Printf(TEXT("Training points: %d"), Loadout->GetPoints()), FLinearColor::Yellow, X, Row);
+		Row += 30.f;
+		for (int32 Index = 0; Index < Loadout->GetSkills().Num(); ++Index)
+		{
+			const auto* Skill = Loadout->GetSkills()[Index].Get();
+			DrawText(FString::Printf(TEXT("%d: %s (%d pt)%s"), Index + 1, *Skill->Label.ToString(), Skill->PointCost,
+				Loadout->IsLearned(Skill) ? TEXT(" [learned]") : TEXT("")), FLinearColor::White, X, Row);
+			Row += 25.f;
+		}
+		DrawText(FString::Printf(TEXT("Attack bonus: +%.0f"), State->GetAbilitySystemComponent()->GetNumericAttribute(UCCLOffenseSet::GetAttackBonusAttribute())), FLinearColor::Green, X, Row + 15.f);
+		DrawText(Loadout->GetResult(), FLinearColor::Yellow, X, Row + 50.f);
 	}
 }

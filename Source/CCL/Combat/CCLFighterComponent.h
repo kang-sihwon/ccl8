@@ -47,7 +47,7 @@ private:
 	void MulticastFeedback(FGameplayTag Outcome);
 
 public:
-	UPROPERTY(EditAnywhere, Category = "Definition")
+	UPROPERTY(EditAnywhere, Replicated, Category = "Definition")
 	TObjectPtr<UCCLItemDefinition> Item;
 
 	UPROPERTY(EditAnywhere, Category = "Definition")

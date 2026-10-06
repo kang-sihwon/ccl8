@@ -8,6 +8,9 @@
 class UCCLAbilitySystemComponent;
 class UCCLHealthSet;
 class UCCLStaminaSet;
+class UCCLOffenseSet;
+class UCCLInventoryComponent;
+class UCCLLoadoutComponent;
 
 UCLASS()
 class CCL_API ACCLPlayerState : public APlayerState, public IAbilitySystemInterface
@@ -20,6 +23,8 @@ public:
 
 public:
 	UCCLAbilitySystemComponent* GetCCLAbilitySystem() const { return AbilitySystem; }
+	UCCLInventoryComponent* GetInventory() const { return Inventory; }
+	UCCLLoadoutComponent* GetLoadout() const { return Loadout; }
 
 private:
 	UPROPERTY(VisibleAnywhere)
@@ -30,4 +35,13 @@ private:
 
 	UPROPERTY()
 	TObjectPtr<UCCLStaminaSet> Stamina;
+
+	UPROPERTY()
+	TObjectPtr<UCCLOffenseSet> Offense;
+
+	UPROPERTY(VisibleAnywhere)
+	TObjectPtr<UCCLInventoryComponent> Inventory;
+
+	UPROPERTY(VisibleAnywhere)
+	TObjectPtr<UCCLLoadoutComponent> Loadout;
 };

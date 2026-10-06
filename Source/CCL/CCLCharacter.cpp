@@ -1,6 +1,7 @@
 #include "CCLCharacter.h"
 
 #include "CCLPlayerState.h"
+#include "Items/CCLLoadoutComponent.h"
 #include "AbilitySystem/CCLAbilitySystemComponent.h"
 #include "AbilitySystem/CCLHealthSet.h"
 #include "AbilitySystem/CCLEffects.h"
@@ -193,6 +194,10 @@ void ACCLCharacter::InitializeAbilitySystem()
 
 	ASC->InitAbilityActorInfo(GetPlayerState(), this);
 	Fighter->Initialize(ASC);
+	if (auto* State = GetPlayerState<ACCLPlayerState>())
+	{
+		State->GetLoadout()->SyncAvatar(true);
+	}
 	BoundASC = ASC;
 	HealthChanged = ASC->GetGameplayAttributeValueChangeDelegate(UCCLHealthSet::GetHealthAttribute()).AddUObject(this, &ThisClass::OnHealthChanged);
 }

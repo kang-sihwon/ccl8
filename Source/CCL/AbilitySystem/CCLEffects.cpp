@@ -3,6 +3,7 @@
 #include "CCLGameplayTags.h"
 #include "CCLHealthSet.h"
 #include "CCLStaminaSet.h"
+#include "CCLOffenseSet.h"
 #include "GameplayEffectComponents/TargetTagsGameplayEffectComponent.h"
 #include "GameplayEffectComponents/TargetTagRequirementsGameplayEffectComponent.h"
 
@@ -37,6 +38,18 @@ UCCLHealthChangeEffect::UCCLHealthChangeEffect()
 {
 	DurationPolicy = EGameplayEffectDurationType::Instant;
 	SetModifier(*this, UCCLHealthSet::GetHealthAttribute());
+}
+
+UCCLPersistentPowerEffect::UCCLPersistentPowerEffect()
+{
+	DurationPolicy = EGameplayEffectDurationType::Infinite;
+	SetModifier(*this, UCCLOffenseSet::GetAttackBonusAttribute());
+}
+
+UCCLPersistentVitalityEffect::UCCLPersistentVitalityEffect()
+{
+	DurationPolicy = EGameplayEffectDurationType::Infinite;
+	SetModifier(*this, UCCLHealthSet::GetMaxHealthAttribute());
 }
 
 UCCLStaminaChangeEffect::UCCLStaminaChangeEffect()

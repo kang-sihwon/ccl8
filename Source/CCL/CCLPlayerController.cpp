@@ -1,6 +1,12 @@
 #include "CCLPlayerController.h"
 
 #include "CCLCharacter.h"
+#include "CCLPlayerState.h"
+#include "Items/CCLInventoryComponent.h"
+#include "Items/CCLLoadoutComponent.h"
+#include "Items/CCLWorldPickup.h"
+#include "Items/CCLSkillDefinition.h"
+#include "EngineUtils.h"
 #include "AbilitySystem/CCLAbilitySystemComponent.h"
 #include "AbilitySystem/CCLGameplayTags.h"
 #include "CCLGameModeBase.h"
@@ -92,6 +98,22 @@ void ACCLPlayerController::SetupInputComponent()
 	MapCombat(EKeys::RightMouseButton, CCLTags::Input_Guard);
 	MapCombat(EKeys::Q, CCLTags::Input_Parry);
 	MapCombat(EKeys::LeftShift, CCLTags::Input_Dodge);
+	auto MapMenu = [this, Input, &MakeAction](FKey Key, void (ThisClass::*Function)())
+	{
+		UInputAction* Action = MakeAction(EInputActionValueType::Boolean);
+		CombatActions.Add(Action);
+		InputMapping->MapKey(Action, Key);
+		Input->BindAction(Action, ETriggerEvent::Started, this, Function);
+	};
+	MapMenu(EKeys::I, &ThisClass::ToggleInventory);
+	MapMenu(EKeys::Up, &ThisClass::SelectPreviousItem);
+	MapMenu(EKeys::Down, &ThisClass::SelectNextItem);
+	MapMenu(EKeys::F, &ThisClass::EquipSelectedItem);
+	MapMenu(EKeys::G, &ThisClass::UnequipItem);
+	MapMenu(EKeys::H, &ThisClass::UseSelectedItem);
+	MapMenu(EKeys::One, &ThisClass::LearnFirstSkill);
+	MapMenu(EKeys::Two, &ThisClass::LearnSecondSkill);
+	MapMenu(EKeys::E, &ThisClass::ServerCollectNearby);
 	Subsystem->AddMappingContext(InputMapping, 0);
 	SetInputMode(FInputModeGameOnly());
 	bShowMouseCursor = false;
@@ -143,6 +165,139 @@ void ACCLPlayerController::CCLLeave()
 	{
 		ConsoleCommand(TEXT("quit"));
 	}
+}
+
+void ACCLPlayerController::ToggleInventory()
+{
+	bInventoryOpen = !bInventoryOpen;
+	SelectedItem = 0;
+}
+
+void ACCLPlayerController::SelectPreviousItem()
+{
+	if (bInventoryOpen)
+	{
+		SelectedItem = FMath::Max(0, SelectedItem - 1);
+	}
+}
+
+void ACCLPlayerController::SelectNextItem()
+{
+	const auto* State = GetPlayerState<ACCLPlayerState>();
+	if (bInventoryOpen && State)
+	{
+		SelectedItem = FMath::Clamp(SelectedItem + 1, 0, FMath::Max(0, State->GetInventory()->GetEntries().Num() - 1));
+	}
+}
+
+void ACCLPlayerController::EquipSelectedItem()
+{
+	if (bInventoryOpen && GetSelectedEntryId().IsValid())
+	{
+		ServerEquipItem(GetSelectedEntryId());
+	}
+}
+
+void ACCLPlayerController::UnequipItem()
+{
+	if (bInventoryOpen)
+	{
+		ServerEquipItem(FGuid());
+	}
+}
+
+void ACCLPlayerController::UseSelectedItem()
+{
+	if (bInventoryOpen)
+	{
+		ServerUseItem(GetSelectedEntryId());
+	}
+}
+
+void ACCLPlayerController::LearnFirstSkill()
+{
+	const auto* State = GetPlayerState<ACCLPlayerState>();
+	if (bInventoryOpen && State && State->GetLoadout()->GetSkills().IsValidIndex(0))
+	{
+		ServerLearnSkill(State->GetLoadout()->GetSkills()[0]);
+	}
+}
+
+void ACCLPlayerController::LearnSecondSkill()
+{
+	const auto* State = GetPlayerState<ACCLPlayerState>();
+	if (bInventoryOpen && State && State->GetLoadout()->GetSkills().IsValidIndex(1))
+	{
+		ServerLearnSkill(State->GetLoadout()->GetSkills()[1]);
+	}
+}
+
+void ACCLPlayerController::ServerCollectNearby_Implementation()
+{
+	auto* State = GetPlayerState<ACCLPlayerState>();
+	const auto* ControlledCharacter = Cast<ACCLCharacter>(GetPawn());
+	if (!State || !ControlledCharacter || ControlledCharacter->IsDead())
+	{
+		return;
+	}
+	ACCLWorldPickup* Nearest = nullptr;
+	float Distance = FMath::Square(225.f);
+	for (TActorIterator<ACCLWorldPickup> It(GetWorld()); It; ++It)
+	{
+		const float Candidate = FVector::DistSquared(ControlledCharacter->GetActorLocation(), It->GetActorLocation());
+		if (Candidate < Distance)
+		{
+			Distance = Candidate;
+			Nearest = *It;
+		}
+	}
+	if (Nearest)
+	{
+		const bool bCollected = Nearest->TryCollect(State->GetInventory(), GetPawn());
+		State->GetLoadout()->ShowNotice(bCollected ? TEXT("Supplies collected.") : TEXT("Cannot collect: blocked or inventory full."));
+	}
+	else
+	{
+		State->GetLoadout()->ShowNotice(TEXT("No supplies within reach."));
+	}
+}
+
+void ACCLPlayerController::ServerEquipItem_Implementation(FGuid Id)
+{
+	if (auto* State = GetPlayerState<ACCLPlayerState>())
+	{
+		State->GetLoadout()->Equip(Id);
+	}
+}
+
+void ACCLPlayerController::ServerUseItem_Implementation(FGuid Id)
+{
+	if (auto* State = GetPlayerState<ACCLPlayerState>())
+	{
+		State->GetLoadout()->Use(Id);
+	}
+}
+
+void ACCLPlayerController::ServerLearnSkill_Implementation(UCCLSkillDefinition* Definition)
+{
+	if (auto* State = GetPlayerState<ACCLPlayerState>())
+	{
+		State->GetLoadout()->Learn(Definition);
+	}
+}
+
+FGuid ACCLPlayerController::GetSelectedEntryId() const
+{
+	const auto* State = GetPlayerState<ACCLPlayerState>();
+	if (State)
+	{
+		const auto& Entries = State->GetInventory()->GetEntries();
+		if (Entries.IsValidIndex(SelectedItem))
+		{
+			return Entries[SelectedItem].Id;
+		}
+	}
+	return FGuid();
 }
 
 void ACCLPlayerController::Move(const FInputActionValue& Value)
@@ -259,6 +414,16 @@ void ACCLPlayerController::ClientCampaignTestStep_Implementation(int32 Step)
 	if (auto* Test = GetWorld()->GetSubsystem<UCCLCampaignSmokeSubsystem>())
 	{
 		Test->ExecuteClientStep(Step);
+	}
+#endif
+}
+
+void ACCLPlayerController::ClientProgressionTestStep_Implementation(int32 Step, FGuid EntryId)
+{
+#if !UE_BUILD_SHIPPING && !UE_BUILD_TEST
+	if (auto* Test = GetWorld()->GetSubsystem<UCCLCampaignSmokeSubsystem>())
+	{
+		Test->ExecuteProgressionStep(Step, EntryId);
 	}
 #endif
 }

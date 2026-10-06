@@ -34,3 +34,7 @@
 ## 단계 3 결과
 
 마을·일반 적 2명·보스·승리 표시와 종료 입력을 연결했다. 생성 BAT·CCLEditor 빌드, 실제 AI 접근·공격, Standalone·Dedicated·Listen 원격·호스트·지연과 손실 구성과 늦은 접속 검사를 통과했다. 기존 전투·이동 회귀와 화면 검사도 수행했다. 추가 검사에서 발견한 빈 내비게이션 브러시와 표지판 회전을 수정했다. 상세 근거와 임시 아트의 한계는 [CampaignFoundation](CampaignFoundation.md)을 따른다.
+
+## 단계 4 결과
+
+서버 권위의 인벤토리·장비·회복품·훈련과 UI를 연결했다. 생성 BAT·빌드, Standalone·Dedicated·Listen 원격·호스트·지연과 손실, 늦은 접속과 소유자 구분 검사를 통과했다. 실제 피해 증가, 재스폰 후 성장 유지, 잘못된 요청 거부와 일반 Actor 보관 한도를 확인했다. 기존 전투·이동 회귀와 렌더링 화면도 확인했다. 상세 근거와 저장 기능의 범위는 [ProgressionFoundation](ProgressionFoundation.md)을 따른다.

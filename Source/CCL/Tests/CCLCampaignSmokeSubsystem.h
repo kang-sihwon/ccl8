@@ -21,9 +21,13 @@ public:
 public:
 	void RegisterDriver(ACCLPlayerController* Controller);
 	void ExecuteClientStep(int32 Step);
+	void ExecuteProgressionStep(int32 Step, FGuid EntryId);
 
 private:
 	void PrepareEnemy(ACCLEnemyCharacter* Enemy);
+	void TickProgression();
+	bool CheckProgressionPersistence();
+	float ProbeDamage();
 	bool Check(bool bCondition, const TCHAR* Description);
 
 private:
@@ -41,4 +45,8 @@ private:
 	uint8 bComplete = 0;
 	uint8 bFailed = 0;
 	int32 CapturedPhase = -1;
+	int32 ProgressionStep = 0;
+	FGuid EquipmentId;
+	FGuid PotionId;
+	uint8 bProgressionReady = 0;
 };

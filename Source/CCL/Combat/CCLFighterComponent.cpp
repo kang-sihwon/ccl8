@@ -96,6 +96,7 @@ void UCCLFighterComponent::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>&
 {
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
 	DOREPLIFETIME(UCCLFighterComponent, Action);
+	DOREPLIFETIME(UCCLFighterComponent, Item);
 }
 
 void UCCLFighterComponent::Initialize(UCCLAbilitySystemComponent* InASC)

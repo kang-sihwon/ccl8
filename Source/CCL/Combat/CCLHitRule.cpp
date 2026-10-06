@@ -1,4 +1,5 @@
 #include "CCLHitRule.h"
+#include "AbilitySystem/CCLOffenseSet.h"
 
 #include "CCLCombatDefinition.h"
 #include "CCLFighterComponent.h"
@@ -40,7 +41,8 @@ FCCLHitResolution UCCLDuelHitRule::Resolve(const FCCLHitContext& Context) const
 
 	if (!TargetFighter)
 	{
-		return {CCLTags::Outcome_Damage, Context.Definition->DamageEffect, Context.Definition->MagnitudeTag, -Context.Definition->Damage};
+		const float Bonus = Context.SourceASC->GetSet<UCCLOffenseSet>() ? Context.SourceASC->GetNumericAttribute(UCCLOffenseSet::GetAttackBonusAttribute()) : 0.f;
+		return {CCLTags::Outcome_Damage, Context.Definition->DamageEffect, Context.Definition->MagnitudeTag, -(Context.Definition->Damage + Bonus)};
 	}
 
 	auto* TargetASC = Cast<UCCLAbilitySystemComponent>(Context.TargetASC);
@@ -85,5 +87,6 @@ FCCLHitResolution UCCLDuelHitRule::Resolve(const FCCLHitContext& Context) const
 
 	TargetASC->CancelAllAbilities();
 	TargetFighter->NotifyHit(CCLTags::Outcome_Damage);
-	return {CCLTags::Outcome_Damage, Context.Definition->DamageEffect, Context.Definition->MagnitudeTag, -Context.Definition->Damage};
+	const float Bonus = Context.SourceASC->GetSet<UCCLOffenseSet>() ? Context.SourceASC->GetNumericAttribute(UCCLOffenseSet::GetAttackBonusAttribute()) : 0.f;
+	return {CCLTags::Outcome_Damage, Context.Definition->DamageEffect, Context.Definition->MagnitudeTag, -(Context.Definition->Damage + Bonus)};
 }

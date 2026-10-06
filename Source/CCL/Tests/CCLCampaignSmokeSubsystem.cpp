@@ -2,6 +2,16 @@
 
 #include "CCLCharacter.h"
 #include "CCLPlayerController.h"
+#include "CCLPlayerState.h"
+#include "Items/CCLInventoryComponent.h"
+#include "Items/CCLItemDefinition.h"
+#include "Items/CCLLoadoutComponent.h"
+#include "Items/CCLWorldPickup.h"
+#include "Items/CCLSkillDefinition.h"
+#include "AbilitySystem/CCLOffenseSet.h"
+#include "Combat/CCLHealthTarget.h"
+#include "Combat/CCLCombatComponent.h"
+#include "Combat/CCLFighterComponent.h"
 #include "Campaign/CCLCampaignDirector.h"
 #include "Campaign/CCLCampaignState.h"
 #include "Combat/CCLEnemyCharacter.h"
@@ -87,6 +97,15 @@ void UCCLCampaignSmokeSubsystem::Tick(float DeltaTime)
 
 	if (Local && Local->IsLocalController() && Pawn && State && State->GetPhase() == ECCLCampaignPhase::Victory && !bClientReported)
 	{
+		if (FParse::Param(FCommandLine::Get(), TEXT("CCLProgressionSmoke")))
+		{
+			const auto* Player = Local->GetPlayerState<ACCLPlayerState>();
+			if (!Player || !Check(Role == TEXT("driver") ? Player->GetInventory()->GetEntries().Num() == 2 : Player->GetInventory()->GetEntries().IsEmpty(),
+				TEXT("inventory replication stays with owning player")))
+			{
+				return;
+			}
+		}
 		if (!Check(State->GetRemainingGuards() == 0, TEXT("replicated victory has no remaining guards")))
 		{
 			return;
@@ -118,6 +137,11 @@ void UCCLCampaignSmokeSubsystem::Tick(float DeltaTime)
 
 	if (Stage == 0)
 	{
+		if (FParse::Param(FCommandLine::Get(), TEXT("CCLProgressionSmoke")) && !bProgressionReady)
+		{
+			TickProgression();
+			return;
+		}
 		if (!Check(State->GetPhase() == ECCLCampaignPhase::Village && State->GetRemainingGuards() == 2 &&
 			Director->GetGuards().Num() == 2 && !Director->GetBoss(), TEXT("village starts with two guards and no boss")))
 		{
@@ -208,6 +232,10 @@ void UCCLCampaignSmokeSubsystem::Tick(float DeltaTime)
 	}
 	if (Stage == 4 && Character != OldPawn.Get() && !Character->IsDead())
 	{
+		if (bProgressionReady && !CheckProgressionPersistence())
+		{
+			return;
+		}
 		if (!Check(State->GetPhase() == ECCLCampaignPhase::Victory, TEXT("victory survives individual respawn")))
 		{
 			return;
@@ -277,4 +305,213 @@ bool UCCLCampaignSmokeSubsystem::Check(bool bCondition, const TCHAR* Description
 	}
 	UE_LOG(LogTemp, Display, TEXT("CCL_CAMPAIGN CHECK %s"), Description);
 	return true;
+}
+
+void UCCLCampaignSmokeSubsystem::ExecuteProgressionStep(int32 InStep, FGuid EntryId)
+{
+    if (!FParse::Param(FCommandLine::Get(), TEXT("CCLProgressionSmoke")))
+    {
+        return;
+    }
+    auto* Local = Cast<ACCLPlayerController>(GetWorld()->GetFirstPlayerController());
+    auto* State = Local ? Local->GetPlayerState<ACCLPlayerState>() : nullptr;
+    if (!Local || !State)
+    {
+        return;
+    }
+    if (InStep == 0)
+    {
+        Local->ServerCollectNearby();
+    }
+    else if (InStep == 1)
+    {
+        Local->ServerEquipItem(EntryId);
+    }
+    else if (InStep == 2 || InStep == 4)
+    {
+        const int32 Index = InStep == 2 ? 0 : 1;
+        if (State->GetLoadout()->GetSkills().IsValidIndex(Index))
+        {
+            Local->ServerLearnSkill(State->GetLoadout()->GetSkills()[Index]);
+        }
+    }
+    else if (InStep == 3)
+    {
+        Local->ServerUseItem(EntryId);
+        if (!Local->IsInventoryOpen())
+        {
+            Local->ToggleInventory();
+        }
+    }
+}
+
+void UCCLCampaignSmokeSubsystem::TickProgression()
+{
+    auto* State = Driver->GetPlayerState<ACCLPlayerState>();
+    auto* Inventory = State ? State->GetInventory() : nullptr;
+    auto* Loadout = State ? State->GetLoadout() : nullptr;
+    auto* Character = Cast<ACCLCharacter>(Driver->GetPawn());
+    auto* ASC = State ? State->GetCCLAbilitySystem() : nullptr;
+    if (!Inventory || !Loadout || !Character || !ASC)
+    {
+        return;
+    }
+    auto Bonus = [ASC]() { return ASC->GetNumericAttribute(UCCLOffenseSet::GetAttackBonusAttribute()); };
+    auto Collect = [this, Character](bool bEquipment)
+    {
+        for (TActorIterator<ACCLWorldPickup> It(GetWorld()); It; ++It)
+        {
+            if (It->Definition && (It->Definition->FindFragment(UCCLItemFragment_Equipment::StaticClass()) != nullptr) == bEquipment)
+            {
+                Character->SetActorLocation(It->GetActorLocation() + FVector(0.f, -80.f, 55.f));
+                Driver->ClientProgressionTestStep(0, FGuid());
+                return true;
+            }
+        }
+        return false;
+    };
+    switch (ProgressionStep)
+    {
+    case 0:
+        if (!Check(Inventory->GetEntries().IsEmpty() && Loadout->GetPoints() == 1, TEXT("initial inventory and training points")) ||
+            !Check(Collect(true), TEXT("equipment pickup exists")))
+        {
+            return;
+        }
+        break;
+    case 1:
+        if (!Check(Inventory->GetEntries().Num() == 1, TEXT("client collected equipment")))
+        {
+            return;
+        }
+        EquipmentId = Inventory->GetEntries()[0].Id;
+        if (!Check(Collect(false), TEXT("recovery pickup exists")))
+        {
+            return;
+        }
+        break;
+    case 2:
+    {
+        if (!Check(Inventory->GetEntries().Num() == 2, TEXT("client collected recovery stack")))
+        {
+            return;
+        }
+        const auto* Potions = Inventory->GetEntries().FindByPredicate([this](const FCCLInventoryEntry& Entry) { return Entry.Id != EquipmentId; });
+        if (!Check(Potions && Potions->Quantity == 3, TEXT("server pickup quantity retained")))
+        {
+            return;
+        }
+        PotionId = Potions->Id;
+        UCCLItemDefinition* Definition = Potions->Definition;
+        if (!Check(!Inventory->Add(Definition, -1).IsValid() && !Inventory->Remove(PotionId, -1) &&
+            !Inventory->Remove(FGuid::NewGuid(), 1), TEXT("invalid inventory mutations rejected")) ||
+            !Check(!Loadout->Use(PotionId) && Inventory->Find(PotionId)->Quantity == 3, TEXT("full health does not consume recovery item")) ||
+            !Check(FMath::IsNearlyEqual(ProbeDamage(), 20.f), TEXT("base damage before equipment")))
+        {
+            return;
+        }
+        AActor* Container = GetWorld()->SpawnActor<AActor>();
+        auto* Storage = NewObject<UCCLInventoryComponent>(Container);
+        Storage->Capacity = 1;
+        Storage->RegisterComponent();
+        const FGuid Stack = Storage->Add(Definition, 20);
+        const bool bStorageValid = Stack.IsValid() && !Storage->Add(Definition, 1).IsValid() &&
+            !Storage->Remove(Stack, 21) && Storage->Remove(Stack, 20) && Storage->GetEntries().IsEmpty();
+        Container->Destroy();
+        if (!Check(bStorageValid, TEXT("generic actor inventory enforces stack and slot limits")))
+        {
+            return;
+        }
+        Driver->ClientProgressionTestStep(1, EquipmentId);
+        break;
+    }
+    case 3:
+        if (!Check(Loadout->GetEquippedId() == EquipmentId && FMath::IsNearlyEqual(Bonus(), 10.f), TEXT("client equipment applies GAS bonus")) ||
+            !Check(Loadout->Equip(EquipmentId) && FMath::IsNearlyEqual(Bonus(), 10.f), TEXT("repeated equip does not stack effects")) ||
+            !Check(!Loadout->Equip(FGuid::NewGuid()) && Loadout->GetEquippedId() == EquipmentId, TEXT("unowned equipment rejected")))
+        {
+            return;
+        }
+        ASC->SetNumericAttributeBase(UCCLHealthSet::GetHealthAttribute(), 40.f);
+        Driver->ClientProgressionTestStep(3, PotionId);
+        break;
+    case 4:
+        if (!Check(ASC->GetNumericAttribute(UCCLHealthSet::GetHealthAttribute()) == 90.f && Inventory->Find(PotionId)->Quantity == 2,
+            TEXT("client recovery restores health and consumes once")))
+        {
+            return;
+        }
+        Driver->ClientProgressionTestStep(2, FGuid());
+        break;
+    case 5:
+        if (!Check(Loadout->GetSkills().Num() == 2 && Loadout->IsLearned(Loadout->GetSkills()[0]) && Loadout->GetPoints() == 0 &&
+            FMath::IsNearlyEqual(Bonus(), 15.f), TEXT("client training spends one point and grants bonus")) ||
+            !Check(!Loadout->Learn(Loadout->GetSkills()[0]) && !Loadout->Learn(Loadout->GetSkills()[1]) && Loadout->GetPoints() == 0,
+            TEXT("duplicate training and insufficient points rejected")) ||
+            !Check(FMath::IsNearlyEqual(ProbeDamage(), 35.f), TEXT("equipment and training change actual damage")))
+        {
+            return;
+        }
+        if (!Check(Loadout->Equip(FGuid()) && FMath::IsNearlyEqual(Bonus(), 5.f) && Loadout->Equip(EquipmentId) && FMath::IsNearlyEqual(Bonus(), 15.f),
+            TEXT("unequip removes only equipment contribution")))
+        {
+            return;
+        }
+        Loadout->GrantPoints(1);
+        Driver->ClientProgressionTestStep(4, FGuid());
+        break;
+    case 6:
+        if (!Check(Loadout->IsLearned(Loadout->GetSkills()[1]) && Loadout->GetPoints() == 0 &&
+            ASC->GetNumericAttribute(UCCLHealthSet::GetMaxHealthAttribute()) == 125.f, TEXT("vitality training increases GAS maximum")))
+        {
+            return;
+        }
+        ASC->SetNumericAttributeBase(UCCLHealthSet::GetHealthAttribute(), 100.f);
+        bProgressionReady = 1;
+        UE_LOG(LogTemp, Display, TEXT("CCL_PROGRESSION ACTIONS PASS"));
+        return;
+    }
+    ++ProgressionStep;
+    NextStageAt = GetWorld()->GetTimeSeconds() + 1.5;
+}
+
+bool UCCLCampaignSmokeSubsystem::CheckProgressionPersistence()
+{
+    const auto* State = Driver->GetPlayerState<ACCLPlayerState>();
+    const auto* Inventory = State->GetInventory();
+    const auto* Loadout = State->GetLoadout();
+    const auto* ASC = State->GetCCLAbilitySystem();
+    const bool bValid = Inventory->GetEntries().Num() == 2 && Inventory->Find(PotionId) && Inventory->Find(PotionId)->Quantity == 2 &&
+        Loadout->GetEquippedId() == EquipmentId && Loadout->IsLearned(Loadout->GetSkills()[0]) && Loadout->IsLearned(Loadout->GetSkills()[1]) &&
+        FMath::IsNearlyEqual(ASC->GetNumericAttribute(UCCLOffenseSet::GetAttackBonusAttribute()), 15.f) &&
+        ASC->GetNumericAttribute(UCCLHealthSet::GetHealthAttribute()) == 125.f && Loadout->GetPoints() == 0;
+    if (!Check(bValid, TEXT("inventory equipment training and maximum health survive respawn")))
+    {
+        return false;
+    }
+    UE_LOG(LogTemp, Display, TEXT("CCL_PROGRESSION PERSISTENCE PASS"));
+    return true;
+}
+
+float UCCLCampaignSmokeSubsystem::ProbeDamage()
+{
+    AActor* Source = Driver->GetPawn();
+    auto* Combat = Source->FindComponentByClass<UCCLCombatComponent>();
+    auto* Fighter = Source->FindComponentByClass<UCCLFighterComponent>();
+    FActorSpawnParameters Params;
+    Params.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
+    auto* Dummy = GetWorld()->SpawnActor<ACCLHealthTarget>(Source->GetActorLocation() + FVector(110.f, 0.f, 0.f), FRotator::ZeroRotator, Params);
+    if (!Dummy)
+    {
+        return -1.f;
+    }
+    const float Before = Dummy->GetAbilitySystemComponent()->GetNumericAttribute(UCCLHealthSet::GetHealthAttribute());
+    const uint32 Id = Combat->BeginAttack(Fighter->GetAttack(), FVector::ForwardVector);
+    FHitResult Hit(Dummy, nullptr, Dummy->GetActorLocation(), FVector::UpVector);
+    Hit.ImpactPoint = Dummy->GetActorLocation();
+    Combat->ResolveHit(Dummy, Hit, Id);
+    Combat->EndAttack();
+    const float Damage = Before - Dummy->GetAbilitySystemComponent()->GetNumericAttribute(UCCLHealthSet::GetHealthAttribute());
+    Dummy->Destroy();
+    return Damage;
 }

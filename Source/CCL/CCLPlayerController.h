@@ -9,6 +9,7 @@ struct FInputActionValue;
 
 class UInputAction;
 class UInputMappingContext;
+class UCCLSkillDefinition;
 
 UCLASS()
 class CCL_API ACCLPlayerController : public APlayerController
@@ -34,6 +35,27 @@ public:
 	UFUNCTION(Exec)
 	void CCLLeave();
 
+	void ToggleInventory();
+	void SelectPreviousItem();
+	void SelectNextItem();
+	void EquipSelectedItem();
+	void UnequipItem();
+	void UseSelectedItem();
+	void LearnFirstSkill();
+	void LearnSecondSkill();
+
+	UFUNCTION(Server, Reliable)
+	void ServerCollectNearby();
+
+	UFUNCTION(Server, Reliable)
+	void ServerEquipItem(FGuid Id);
+
+	UFUNCTION(Server, Reliable)
+	void ServerUseItem(FGuid Id);
+
+	UFUNCTION(Server, Reliable)
+	void ServerLearnSkill(UCCLSkillDefinition* Definition);
+
 	UFUNCTION(Server, Reliable)
 	void ServerCombatTestReady();
 
@@ -46,7 +68,12 @@ public:
 	UFUNCTION(Client, Reliable)
 	void ClientCampaignTestStep(int32 Step);
 
+	UFUNCTION(Client, Reliable)
+	void ClientProgressionTestStep(int32 Step, FGuid EntryId);
+
 	const UInputAction* GetMoveAction() const { return MoveAction; }
+	bool IsInventoryOpen() const { return bInventoryOpen != 0; }
+	int32 GetSelectedItem() const { return SelectedItem; }
 
 private:
 	void Move(const FInputActionValue& Value);
@@ -55,6 +82,7 @@ private:
 	void StopJump();
 	void CombatPressed(FGameplayTag Tag);
 	void CombatReleased(FGameplayTag Tag);
+	FGuid GetSelectedEntryId() const;
 
 	UFUNCTION(Server, Reliable)
 	void ServerRequestRetry();
@@ -84,4 +112,7 @@ private:
 
 	UPROPERTY(Transient)
 	TArray<TObjectPtr<UInputAction>> CombatActions;
+
+	int32 SelectedItem = 0;
+	uint8 bInventoryOpen = 0;
 };

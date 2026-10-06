@@ -93,3 +93,21 @@ class CCL_API UCCLStaminaRegenEffect : public UGameplayEffect
 public:
 	UCCLStaminaRegenEffect();
 };
+
+UCLASS()
+class CCL_API UCCLPersistentPowerEffect : public UGameplayEffect
+{
+	GENERATED_BODY()
+
+public:
+	UCCLPersistentPowerEffect();
+};
+
+UCLASS()
+class CCL_API UCCLPersistentVitalityEffect : public UGameplayEffect
+{
+	GENERATED_BODY()
+
+public:
+	UCCLPersistentVitalityEffect();
+};
