@@ -5,6 +5,7 @@
 #include "AbilitySystem/CCLGameplayTags.h"
 #include "CCLGameModeBase.h"
 #include "Tests/CCLCombatSmokeSubsystem.h"
+#include "Tests/CCLCampaignSmokeSubsystem.h"
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
 #include "Engine/LocalPlayer.h"
@@ -70,6 +71,10 @@ void ACCLPlayerController::SetupInputComponent()
 	Input->BindAction(JumpAction, ETriggerEvent::Completed, this, &ThisClass::StopJump);
 	Input->BindAction(JumpAction, ETriggerEvent::Canceled, this, &ThisClass::StopJump);
 	Input->BindAction(RetryAction, ETriggerEvent::Started, this, &ThisClass::CCLRetry);
+	UInputAction* LeaveAction = MakeAction(EInputActionValueType::Boolean);
+	CombatActions.Add(LeaveAction);
+	InputMapping->MapKey(LeaveAction, EKeys::Escape);
+	Input->BindAction(LeaveAction, ETriggerEvent::Started, this, &ThisClass::CCLLeave);
 #if !UE_BUILD_SHIPPING && !UE_BUILD_TEST
 	InputMapping->MapKey(DieAction, EKeys::K);
 	Input->BindAction(DieAction, ETriggerEvent::Started, this, &ThisClass::CCLDie);
@@ -130,6 +135,14 @@ void ACCLPlayerController::CCLDie()
 #if !UE_BUILD_SHIPPING && !UE_BUILD_TEST
 	ServerRequestDebugDeath();
 #endif
+}
+
+void ACCLPlayerController::CCLLeave()
+{
+	if (IsLocalController())
+	{
+		ConsoleCommand(TEXT("quit"));
+	}
 }
 
 void ACCLPlayerController::Move(const FInputActionValue& Value)
@@ -224,6 +237,26 @@ void ACCLPlayerController::ClientCombatTestStep_Implementation(int32 Step)
 {
 #if !UE_BUILD_SHIPPING && !UE_BUILD_TEST
 	if (auto* Test = GetWorld()->GetSubsystem<UCCLCombatSmokeSubsystem>())
+	{
+		Test->ExecuteClientStep(Step);
+	}
+#endif
+}
+
+void ACCLPlayerController::ServerCampaignTestReady_Implementation()
+{
+#if !UE_BUILD_SHIPPING && !UE_BUILD_TEST
+	if (auto* Test = GetWorld()->GetSubsystem<UCCLCampaignSmokeSubsystem>())
+	{
+		Test->RegisterDriver(this);
+	}
+#endif
+}
+
+void ACCLPlayerController::ClientCampaignTestStep_Implementation(int32 Step)
+{
+#if !UE_BUILD_SHIPPING && !UE_BUILD_TEST
+	if (auto* Test = GetWorld()->GetSubsystem<UCCLCampaignSmokeSubsystem>())
 	{
 		Test->ExecuteClientStep(Step);
 	}

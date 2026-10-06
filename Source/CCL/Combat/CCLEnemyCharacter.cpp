@@ -73,6 +73,7 @@ void ACCLEnemyCharacter::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& O
 {
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
 	DOREPLIFETIME(ACCLEnemyCharacter, bDead);
+	DOREPLIFETIME(ACCLEnemyCharacter, DisplayName);
 }
 
 void ACCLEnemyCharacter::OnHealthChanged(const FOnAttributeChangeData& Data)
@@ -97,7 +98,12 @@ void ACCLEnemyCharacter::OnHealthChanged(const FOnAttributeChangeData& Data)
 
 	OnRep_Dead();
 	ForceNetUpdate();
-	GetWorldTimerManager().SetTimer(RespawnTimer, this, &ThisClass::Respawn, 5.f);
+	OnDefeated.Broadcast(this);
+
+	if (bRespawnEnabled)
+	{
+		GetWorldTimerManager().SetTimer(RespawnTimer, this, &ThisClass::Respawn, 5.f);
+	}
 }
 
 void ACCLEnemyCharacter::Respawn()

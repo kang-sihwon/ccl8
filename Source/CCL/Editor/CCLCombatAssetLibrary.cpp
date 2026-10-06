@@ -10,6 +10,8 @@
 #include "Combat/CCLEnemyAIController.h"
 #include "Items/CCLItemDefinition.h"
 #include "Editor.h"
+#include "ActorFactories/ActorFactory.h"
+#include "EngineUtils.h"
 #include "WorldPartition/WorldPartition.h"
 #include "NavMesh/NavMeshBoundsVolume.h"
 #include "Builders/CubeBuilder.h"
@@ -188,20 +190,38 @@ bool UCCLCombatAssetLibrary::ConfigureCombatWorld()
 	}
 
 	World->GetWorldPartition()->SetEnableStreaming(false);
-	auto* Bounds = World->SpawnActor<ANavMeshBoundsVolume>();
+	ANavMeshBoundsVolume* Bounds = nullptr;
+	for (TActorIterator<ANavMeshBoundsVolume> It(World); It; ++It)
+	{
+		if (It->GetActorLabel() == TEXT("CombatNavigation"))
+		{
+			Bounds = *It;
+			break;
+		}
+	}
+	if (!Bounds)
+	{
+		Bounds = World->SpawnActor<ANavMeshBoundsVolume>();
+	}
+	if (!Bounds)
+	{
+		return false;
+	}
 	auto* Builder = NewObject<UCubeBuilder>(Bounds);
 	Builder->X = 4000.f;
 	Builder->Y = 4000.f;
 	Builder->Z = 600.f;
 
-	if (!Builder->Build(World, Bounds))
-	{
-		return false;
-	}
+	UActorFactory::CreateBrushForVolumeActor(Bounds, Builder);
 
 	Bounds->SetActorLabel(TEXT("CombatNavigation"));
 	Bounds->SetActorLocation(FVector(0.f, 0.f, 150.f));
 	Bounds->GetRootComponent()->UpdateBounds();
+	if (Bounds->GetComponentsBoundingBox(true).GetExtent().IsNearlyZero())
+	{
+		return false;
+	}
+	Bounds->MarkPackageDirty();
 
 	if (auto* Navigation = FNavigationSystem::GetCurrent<UNavigationSystemV1>(World))
 	{

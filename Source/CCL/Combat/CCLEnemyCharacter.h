@@ -6,6 +6,8 @@
 #include "AbilitySystemComponent.h"
 #include "CCLEnemyCharacter.generated.h"
 
+DECLARE_MULTICAST_DELEGATE_OneParam(FCCLEnemyDefeated, class ACCLEnemyCharacter*);
+
 class UCCLAbilitySystemComponent;
 class UCCLHealthSet;
 class UCCLFighterComponent;
@@ -33,6 +35,21 @@ private:
 
 	UFUNCTION()
 	void OnRep_Dead();
+
+public:
+	UPROPERTY(EditAnywhere, Category = "Encounter")
+	uint8 bRespawnEnabled = 1;
+
+	UPROPERTY(EditAnywhere, Replicated, Category = "Encounter")
+	FString DisplayName = TEXT("Enemy");
+
+	UPROPERTY(EditAnywhere, Category = "Encounter")
+	float DetectionRadius = 1400.f;
+
+	UPROPERTY(EditAnywhere, Category = "Encounter")
+	float LeashRadius = 1800.f;
+
+	FCCLEnemyDefeated OnDefeated;
 
 private:
 	UPROPERTY(VisibleAnywhere)

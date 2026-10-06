@@ -7,6 +7,7 @@
 #include "AbilitySystem/CCLGameplayTags.h"
 #include "Combat/CCLFighterComponent.h"
 #include "Combat/CCLEnemyCharacter.h"
+#include "Campaign/CCLCampaignState.h"
 #include "EngineUtils.h"
 #include "GameFramework/PlayerController.h"
 
@@ -46,11 +47,15 @@ void ACCLHUD::DrawHUD()
 		}
 	}
 
-	float Y = 210.f;
+	float Y = 250.f;
+	if (const auto* Campaign = GetWorld()->GetGameState<ACCLCampaignState>())
+	{
+		DrawText(Campaign->GetObjective(), FLinearColor(1.f, 0.8f, 0.3f), 30.f, 210.f, nullptr, 1.25f);
+	}
 
 	for (TActorIterator<ACCLEnemyCharacter> It(GetWorld()); It; ++It)
 	{
-		DrawText(FString::Printf(TEXT("Enemy HP %.0f%s"), It->GetAbilitySystemComponent()->GetNumericAttribute(UCCLHealthSet::GetHealthAttribute()),
+		DrawText(FString::Printf(TEXT("%s HP %.0f%s"), *It->DisplayName, It->GetAbilitySystemComponent()->GetNumericAttribute(UCCLHealthSet::GetHealthAttribute()),
 		             It->IsDead() ? TEXT(" (defeated)") : TEXT("")),
 		    FLinearColor::Red, 30.f, Y);
 		Y += 25.f;

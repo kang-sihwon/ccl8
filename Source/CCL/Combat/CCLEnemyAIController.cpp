@@ -39,7 +39,6 @@ void ACCLEnemyAIController::OnUnPossess()
 
 bool ACCLEnemyAIController::AcquireTarget()
 {
-	float Best = FMath::Square(1400.f);
 	APawn* Closest = nullptr;
 	const auto* Enemy = Cast<ACCLEnemyCharacter>(GetPawn());
 
@@ -47,6 +46,7 @@ bool ACCLEnemyAIController::AcquireTarget()
 	{
 		return false;
 	}
+	float Best = FMath::Square(Enemy->DetectionRadius);
 
 	for (TActorIterator<ACCLCharacter> It(GetWorld()); It; ++It)
 	{
@@ -73,7 +73,7 @@ bool ACCLEnemyAIController::HasTarget() const
 	const auto* ControlledPawn = Cast<ACCLCharacter>(Target.Get());
 	const auto* Enemy = Cast<ACCLEnemyCharacter>(GetPawn());
 	return ControlledPawn && !ControlledPawn->IsDead() && ControlledPawn->GetController() && Enemy && !Enemy->IsDead() &&
-	       FVector::DistSquared(ControlledPawn->GetActorLocation(), Enemy->GetHome()) < FMath::Square(1800.f);
+	       FVector::DistSquared(ControlledPawn->GetActorLocation(), Enemy->GetHome()) < FMath::Square(Enemy->LeashRadius);
 }
 
 bool ACCLEnemyAIController::Approach()

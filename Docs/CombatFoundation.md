@@ -156,6 +156,10 @@ UE 5.9의 EditorToolset·ToolsetRegistry Python 초기화 오류와 HLOD 편집�
 
 `CCLEffects.cpp`의 생성자는 `CreateDefaultSubobject`로 GameplayEffectComponent를 생성하고 `GEComponents`에 등록한다. 생성자에서 `FindOrAddComponent`가 이름 없는 `NewObject`를 호출해 발생한 초기화 오류를 수정했다. 수정 후 프로젝트 파일 생성, 전체 빌드와 클래스 로드 성공 표식 `CCL_MANIFEST_LOAD_PASS`를 확인했다. 로컬 근거는 `Saved/ManifestUpdate/GenerateProjectFiles.log`, `FinalBuild.log`, `EditorLoadFixed.log`다. 클래스 로드 검사는 전투·화면 검증을 대신하지 않는다.
 
+### 내비게이션 후속 수정
+
+단계 3의 실제 AI 접근 검사에서 전투 맵과 진행 맵의 내비게이션 볼륨 브러시가 비어 있던 결함을 발견했다. 엔진의 볼륨 생성 경로를 사용하도록 고치고 두 맵을 복구했다. 상세 원인과 근거는 [CampaignFoundation](CampaignFoundation.md)의 내비게이션 수정 기록을 따른다. 복구 후 기존 전투의 Standalone·Dedicated 검사도 통과했다. 단계 2의 고정 위치 판정 통과와 실제 AI 접근 확인을 구분한다.
+
 ### 자동 검사 범위와 추가 검사
 
 `Tools/Validation/run_combat_smoke.ps1`은 Standalone, Dedicated, Listen과 호스트 조작을 선택하고 `-Impaired`로 지연·손실을 설정하도록 작성했다. 서버 판정과 실제 클라이언트 Ability 입력을 연결하며 아래 항목을 검사한다. 위 실행 구성에서 아래 시나리오의 통과 표식을 확인했다.

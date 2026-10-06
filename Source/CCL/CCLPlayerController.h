@@ -31,11 +31,20 @@ public:
 	UFUNCTION(Exec)
 	void CCLDie();
 
+	UFUNCTION(Exec)
+	void CCLLeave();
+
 	UFUNCTION(Server, Reliable)
 	void ServerCombatTestReady();
 
 	UFUNCTION(Client, Reliable)
 	void ClientCombatTestStep(int32 Step);
+
+	UFUNCTION(Server, Reliable)
+	void ServerCampaignTestReady();
+
+	UFUNCTION(Client, Reliable)
+	void ClientCampaignTestStep(int32 Step);
 
 	const UInputAction* GetMoveAction() const { return MoveAction; }
 
