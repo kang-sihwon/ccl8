@@ -197,6 +197,34 @@ void ACCLCharacter::PostEditChangeProperty(FPropertyChangedEvent& PropertyChange
 
 배치 예시의 상수와 빈 함수 본문은 기능 구현을 대체하지 않는다. 실제 파일에는 사용하는 선언과 함수만 둔다.
 
+## CPP 함수 본문 가독성
+
+함수 본문은 제어 흐름과 처리 단계를 구분해 읽을 수 있도록 작성한다. 근거는 [결정 14](DesignLog.md)다.
+
+- `if`, `else`, `for`, `while`의 본문은 한 문장이어도 중괄호로 감싼다. 여는 중괄호와 닫는 중괄호는 각각 별도 줄에 둔다.
+- 조건식과 실행문을 한 줄에 붙이지 않는다. 한 줄에는 실행문 하나만 두며 `for`의 초기화·조건·증감 절은 예외다. CPP에 정의한 짧은 함수도 본문을 여러 줄로 펼친다.
+- 독립된 검증·분기 블록 사이와 블록 종료 후 다음 처리 단계 사이에는 빈 줄 하나를 둔다. 같은 작업을 수행하는 연속 선언·호출은 한 묶음으로 유지한다.
+- `if`와 연결된 `else if`·`else` 사이에는 빈 줄을 넣지 않는다. 여는 중괄호 바로 뒤와 닫는 중괄호 바로 앞에도 불필요한 빈 줄을 넣지 않는다.
+- 형식을 정리할 때 조건식, 호출·평가 순서, 반환값과 변수의 수명을 보존한다. 함수 분리·이름 변경·로직 수정은 형식 정리와 구분한다.
+
+```cpp
+if (!TargetASC)
+{
+    return FCCLHitResolution(FGameplayTag(CCLTags::Outcome_Rejected));
+}
+
+if (bBroken)
+{
+    TargetASC->CancelAllAbilities();
+    TargetASC->ApplyEffect(UCCLStaggerEffect::StaticClass(), 0.f, TargetFighter->GuardBreakDuration);
+}
+
+TargetFighter->NotifyHit(Result);
+return Result;
+```
+
+예시는 함수 본문의 배치를 설명하는 발췌다. 중괄호 추가와 줄바꿈 외의 코드가 바뀌지 않았는지 변경 전후를 비교하고 빌드로 확인한다.
+
 ## 코드 작업 완료 검증
 
 코드 작업을 마무리할 때는 최종 변경 상태에서 아래 순서를 반드시 실행한다. 근거는 [결정 12](DesignLog.md)다.

@@ -14,6 +14,6 @@
 | 방어 행동 | 최소 전투에 회피, 가드와 패링을 모두 포함한다. ASC 수명·조작·방어 결과와 초기 수치는 결정 11을 따른다 | 유효 | 결정 8, 결정 11 | [CombatFoundation](CombatFoundation.md) |
 | 최소 전투 구현 | 플레이어 ASC는 PlayerState 소유, 마네킹·맨손으로 시작한다. 가드 붕괴 공격은 막고 경직하며 공격·가드·패링 중 카메라 수평 방향을 따른다 | 유효 | 결정 11 | [CombatFoundation](CombatFoundation.md) |
 | 코드 작업 완료 검증 | 최종 코드 변경 후 GenerateProjectFiles.bat 실행에 성공하면 프로젝트를 빌드하고 두 결과를 각각 확인한다 | 유효 | 결정 12 | [Coding](Coding.md) |
-| C++ 배치 | 헤더·CPP를 역할별 영역으로 정리한다. 헤더 영역은 빈 줄 하나로 구분하고 접근 지정자 다음 선언 묶음은 붙인다. 프로퍼티와 선언 묶음의 세부 배치는 Coding을 따른다 | 유효(부분 보완) | 결정 6, 결정 7, 결정 13 | [Coding](Coding.md) |
+| C++ 배치 | 헤더·CPP를 역할별 영역으로 정리한다. 헤더 영역은 빈 줄 하나로 구분하고 접근 지정자 다음 선언 묶음은 붙인다. CPP 제어문은 중괄호로 펼치고 독립된 처리 단계 사이를 빈 줄로 구분한다. 세부 배치는 Coding을 따른다 | 유효(부분 보완) | 결정 6, 결정 7, 결정 13, 결정 14 | [Coding](Coding.md) |
 
 위 결정으로 확정한 범위 밖의 [GameDesign](GameDesign.md), [ArtDirection](ArtDirection.md) 세부 제안과 [StudyRoadmap](StudyRoadmap.md)의 월별 배분은 후보로 유지한다. 결정 이력은 [DesignLog](DesignLog.md)에 기록한다.
