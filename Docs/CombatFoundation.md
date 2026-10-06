@@ -2,7 +2,7 @@
 
 마네킹의 맨손 공격 하나와 일반 몹 한 종류로 공격, 회피, 가드, 패링, 사망과 개별 재스폰을 연결한다. 범위와 초기 수치는 [결정 11](DesignLog.md)을 따른다. 장르에 독립적인 기반과 UE5 현행 시스템 우선 원칙은 [Coding](Coding.md)이 소유한다.
 
-`Source/CCL/AbilitySystem`, `Combat`, `Items`, `UI`에 전투 코드를 로컬 작업 트리에 작성했다. 게임 코드·설정·도구는 아직 제출하지 않았다. UE 5.8.1의 CCL 모듈 컴파일과 링크는 통과했지만 에셋 생성과 게임 실행 검증은 완료하지 않았다.
+`Source/CCL/AbilitySystem`, `Combat`, `Items`, `UI`에 전투 코드를 로컬 작업 트리에 작성했다. 게임 코드·설정·도구는 아직 제출하지 않았다. UE 5.8.1의 프로젝트 파일 생성, `CCLEditor Win64 Development` 전체 타깃 빌드와 비대화형 에디터의 클래스 로드 검사는 통과했다. 에셋 생성과 전투 실행 검증은 완료하지 않았다.
 
 ## 목표와 경계
 
@@ -129,15 +129,18 @@ Instant 효과는 지속 중인 핸들이 없을 수 있으므로 적용 성공�
 
 | 검증 항목 | 현재 상태 |
 |---|---|
-| CCL 모듈 컴파일·링크 | UE 5.8.1에서 `-NoEngineChanges -Module=CCL`로 통과 |
+| 프로젝트 파일 생성·전체 타깃 빌드 | `GenerateProjectFiles.bat`과 `CCLEditor Win64 Development -NoEngineChanges` 통과 |
+| 비대화형 에디터 클래스 로드 | GAS·DataRegistry·StateTree·CCL 클래스 확인 후 정상 종료 |
 | 생성 Python·검증 PowerShell 구문 | 통과 |
-| 전투 에셋·World Partition·Nanite 맵 생성 | 미완료. 에디터 초기화에서 플러그인 로드 실패 |
+| 전투 에셋·World Partition·Nanite 맵 생성 | 미완료. 생성 도구 실행 필요 |
 | Standalone·Dedicated·Listen 전투 | 실행 미완료 |
 | 새 코드의 기존 이동 회귀 검사 | 실행 미완료. 이전 결과는 MultiplayerFoundation 참조 |
 | 100ms 왕복 지연·2% 손실 | 실행 미완료 |
 | 화면이 있는 애니메이션·방향·예고 가독성 | 미확인 |
 
-현재 설치본의 DataRegistry, GameplayAbilities, GameplayStateTree manifest BuildId가 실행 엔진과 달라 에디터가 플러그인 로드를 거부했다. 실행 전 UBT 작업 목록에서는 엔진 재컴파일 없이 WriteMetadata가 필요한 것으로 확인했다. 공유 엔진 manifest 갱신은 자동 승인 검토가 거부했으며 사용자 승인 전에는 실행하지 않는다. 원본 로그와 작업 목록은 로컬 `Saved/Logs/CombatAssets.log`, `Saved/CombatBuildActions.json`에 있다.
+2026-10-06 사용자 승인으로 UBT의 `WriteMetadata` 두 작업을 실행했다. 실제 내용이 변경된 엔진 파일은 DataRegistry, GameplayAbilities, GameplayStateTree의 `.modules` 세 개이며 엔진 재컴파일은 없었다. 세 플러그인과 CCL의 BuildId가 실행 엔진과 일치한다. 갱신 전 파일과 실제 빌드 로그는 로컬 `Saved/ManifestUpdate/Before/`, `Saved/ManifestUpdate/Build.log`에 보존했다.
+
+`CCLEffects.cpp`의 생성자는 `CreateDefaultSubobject`로 GameplayEffectComponent를 생성하고 `GEComponents`에 등록한다. 생성자에서 `FindOrAddComponent`가 이름 없는 `NewObject`를 호출해 발생한 초기화 오류를 수정했다. 수정 후 프로젝트 파일 생성, 전체 빌드와 클래스 로드 성공 표식 `CCL_MANIFEST_LOAD_PASS`를 확인했다. 로컬 근거는 `Saved/ManifestUpdate/GenerateProjectFiles.log`, `FinalBuild.log`, `EditorLoadFixed.log`다. 클래스 로드 검사는 전투·화면 검증을 대신하지 않는다.
 
 ### 완료에 필요한 검사
 
