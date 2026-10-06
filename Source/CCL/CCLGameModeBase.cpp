@@ -1,6 +1,7 @@
 #include "CCLGameModeBase.h"
 
 #include "CCLCharacter.h"
+#include "CCLPlayerState.h"
 #include "CCLPlayerController.h"
 #include "CCLHUD.h"
 #include "Components/CapsuleComponent.h"
@@ -15,6 +16,7 @@ ACCLGameModeBase::ACCLGameModeBase()
 	DefaultPawnClass = ACCLCharacter::StaticClass();
 	PlayerControllerClass = ACCLPlayerController::StaticClass();
 	HUDClass = ACCLHUD::StaticClass();
+	PlayerStateClass = ACCLPlayerState::StaticClass();
 }
 
 // 부모 인터페이스 함수
@@ -25,17 +27,19 @@ void ACCLGameModeBase::RestartPlayer(AController* NewPlayer)
 	{
 		return;
 	}
+
 	// The base RestartPlayer falls back to the cached StartSpot when no free start exists.
 	// Require a freshly checked start so a blocked checkpoint remains retryable.
 	if (AActor* StartSpot = FindPlayerStart(NewPlayer))
 	{
 		RestartPlayerAtPlayerStart(NewPlayer, StartSpot);
 	}
+
 	if (IsValid(NewPlayer->GetPawn()))
 	{
 		PendingRespawns.Remove(NewPlayer);
 		UE_LOG(LogTemp, Display, TEXT("CCL Spawn Controller=%s Pawn=%s NetMode=%d"),
-			*GetNameSafe(NewPlayer), *GetNameSafe(NewPlayer->GetPawn()), static_cast<int32>(GetNetMode()));
+		    *GetNameSafe(NewPlayer), *GetNameSafe(NewPlayer->GetPawn()), static_cast<int32>(GetNetMode()));
 	}
 	else
 	{
@@ -56,18 +60,21 @@ AActor* ACCLGameModeBase::FindPlayerStart_Implementation(AController* Player, co
 	const ACCLCharacter* DefaultCharacter = GetDefault<ACCLCharacter>();
 	const UCapsuleComponent* Capsule = DefaultCharacter->GetCapsuleComponent();
 	FCollisionQueryParams Params(SCENE_QUERY_STAT(CCLSpawn), false);
+
 	if (Player && Player->GetPawn())
 	{
 		Params.AddIgnoredActor(Player->GetPawn());
 	}
+
 	for (TActorIterator<APlayerStart> It(GetWorld()); It; ++It)
 	{
 		if (!GetWorld()->OverlapBlockingTestByChannel(It->GetActorLocation(), FQuat::Identity, ECC_Pawn,
-			FCollisionShape::MakeCapsule(Capsule->GetScaledCapsuleRadius(), Capsule->GetScaledCapsuleHalfHeight()), Params))
+		        FCollisionShape::MakeCapsule(Capsule->GetScaledCapsuleRadius(), Capsule->GetScaledCapsuleHalfHeight()), Params))
 		{
 			return *It;
 		}
 	}
+
 	return nullptr;
 }
 
@@ -79,12 +86,16 @@ void ACCLGameModeBase::RequestRetry(APlayerController* Player)
 	{
 		return;
 	}
+
 	const double Now = GetWorld()->GetTimeSeconds();
+
 	if (const double* NextRetry = NextRetryTimes.Find(Player); NextRetry && Now < *NextRetry)
 	{
 		return;
 	}
+
 	ACCLCharacter* Character = Cast<ACCLCharacter>(Player->GetPawn());
+
 	if (Character && Character->IsDead())
 	{
 		PendingRespawns.Add(Player);
@@ -95,6 +106,7 @@ void ACCLGameModeBase::RequestRetry(APlayerController* Player)
 	{
 		return;
 	}
+
 	NextRetryTimes.Add(Player, Now + 0.5);
 	RestartPlayer(Player);
 }

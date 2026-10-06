@@ -1,5 +1,13 @@
 #include "CCLCharacter.h"
 
+#include "CCLPlayerState.h"
+#include "AbilitySystem/CCLAbilitySystemComponent.h"
+#include "AbilitySystem/CCLHealthSet.h"
+#include "AbilitySystem/CCLEffects.h"
+#include "Combat/CCLFighterComponent.h"
+#include "Combat/CCLCombatComponent.h"
+#include "Components/SkeletalMeshComponent.h"
+#include "Animation/AnimInstance.h"
 #include "Camera/CameraComponent.h"
 #include "Components/CapsuleComponent.h"
 #include "Components/StaticMeshComponent.h"
@@ -13,6 +21,8 @@
 ACCLCharacter::ACCLCharacter()
 {
 	bReplicates = true;
+	Fighter = CreateDefaultSubobject<UCCLFighterComponent>(TEXT("Fighter"));
+	Combat = CreateDefaultSubobject<UCCLCombatComponent>(TEXT("Combat"));
 	SpawnCollisionHandlingMethod = ESpawnActorCollisionHandlingMethod::AdjustIfPossibleButDontSpawnIfColliding;
 	GetCapsuleComponent()->InitCapsuleSize(42.f, 96.f);
 	bUseControllerRotationYaw = false;
@@ -33,22 +43,69 @@ ACCLCharacter::ACCLCharacter()
 
 	Body = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Body"));
 	Body->SetupAttachment(RootComponent);
+	Body->SetHiddenInGame(true);
 	Body->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 	Body->SetRelativeScale3D(FVector(0.65f, 0.65f, 1.8f));
 	FacingMarker = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("FacingMarker"));
 	FacingMarker->SetupAttachment(Body);
+	FacingMarker->SetHiddenInGame(true);
 	FacingMarker->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 	FacingMarker->SetRelativeLocation(FVector(65.f, 0.f, 20.f));
 	FacingMarker->SetRelativeScale3D(FVector(0.7f, 0.25f, 0.15f));
 	static ConstructorHelpers::FObjectFinder<UStaticMesh> Cube(TEXT("/Engine/BasicShapes/Cube.Cube"));
+
 	if (Cube.Succeeded())
 	{
 		Body->SetStaticMesh(Cube.Object);
 		FacingMarker->SetStaticMesh(Cube.Object);
 	}
+
+	static ConstructorHelpers::FObjectFinder<USkeletalMesh> Manny(TEXT("/Game/Characters/Mannequins/Meshes/SKM_Manny_Simple.SKM_Manny_Simple"));
+
+	if (Manny.Succeeded())
+	{
+		GetMesh()->SetSkeletalMesh(Manny.Object);
+		GetMesh()->SetRelativeLocation(FVector(0.f, 0.f, -96.f));
+		GetMesh()->SetRelativeRotation(FRotator(0.f, -90.f, 0.f));
+	}
+
+	static ConstructorHelpers::FClassFinder<UAnimInstance> Anim(TEXT("/Game/Characters/Mannequins/Anims/Unarmed/ABP_Unarmed"));
+
+	if (Anim.Succeeded())
+	{
+		GetMesh()->SetAnimInstanceClass(Anim.Class);
+	}
 }
 
 // 부모 인터페이스 함수
+
+void ACCLCharacter::PossessedBy(AController* NewController)
+{
+	Super::PossessedBy(NewController);
+	InitializeAbilitySystem();
+}
+
+void ACCLCharacter::OnRep_PlayerState()
+{
+	Super::OnRep_PlayerState();
+	InitializeAbilitySystem();
+}
+
+void ACCLCharacter::EndPlay(const EEndPlayReason::Type EndPlayReason)
+{
+	if (BoundASC.IsValid())
+	{
+		BoundASC->GetGameplayAttributeValueChangeDelegate(UCCLHealthSet::GetHealthAttribute()).Remove(HealthChanged);
+	}
+
+	Super::EndPlay(EndPlayReason);
+}
+
+UAbilitySystemComponent* ACCLCharacter::GetAbilitySystemComponent() const
+{
+	const auto* State = GetPlayerState<ACCLPlayerState>();
+	return State ? State->GetAbilitySystemComponent() : nullptr;
+}
 
 float ACCLCharacter::TakeDamage(float DamageAmount, const FDamageEvent& DamageEvent, AController* EventInstigator, AActor* DamageCauser)
 {
@@ -56,12 +113,23 @@ float ACCLCharacter::TakeDamage(float DamageAmount, const FDamageEvent& DamageEv
 	{
 		return 0.f;
 	}
+
+	auto* ASC = Cast<UCCLAbilitySystemComponent>(GetAbilitySystemComponent());
+
+	if (!ASC)
+	{
+		return 0.f;
+	}
+
+	const float Before = ASC->GetNumericAttribute(UCCLHealthSet::GetHealthAttribute());
 	const float AppliedDamage = Super::TakeDamage(DamageAmount, DamageEvent, EventInstigator, DamageCauser);
+
 	if (AppliedDamage > 0.f)
 	{
-		Die();
+		ASC->ApplyEffect(UCCLHealthChangeEffect::StaticClass(), -AppliedDamage);
 	}
-	return AppliedDamage;
+
+	return FMath::Max(0.f, Before - ASC->GetNumericAttribute(UCCLHealthSet::GetHealthAttribute()));
 }
 
 void ACCLCharacter::FellOutOfWorld(const UDamageType& DamageType)
@@ -83,7 +151,15 @@ void ACCLCharacter::Die()
 	{
 		return;
 	}
+
 	bDead = 1;
+	Fighter->EndLife();
+
+	if (auto* ASC = Cast<UCCLAbilitySystemComponent>(GetAbilitySystemComponent()); ASC && ASC->GetNumericAttribute(UCCLHealthSet::GetHealthAttribute()) > 0.f)
+	{
+		ASC->ApplyEffect(UCCLHealthChangeEffect::StaticClass(), -ASC->GetNumericAttribute(UCCLHealthSet::GetHealthAttribute()));
+	}
+
 	OnRep_Dead();
 	ForceNetUpdate();
 	UE_LOG(LogTemp, Display, TEXT("CCL Death Pawn=%s Controller=%s"), *GetName(), *GetNameSafe(Controller));
@@ -97,5 +173,34 @@ void ACCLCharacter::OnRep_Dead()
 		GetCharacterMovement()->DisableMovement();
 		GetCapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 		Body->SetRelativeRotation(FRotator(0.f, 0.f, 90.f));
+		GetMesh()->SetRelativeRotation(FRotator(0.f, -90.f, 90.f));
+	}
+}
+
+void ACCLCharacter::InitializeAbilitySystem()
+{
+	auto* ASC = Cast<UCCLAbilitySystemComponent>(GetAbilitySystemComponent());
+
+	if (!ASC || BoundASC.Get() == ASC)
+	{
+		return;
+	}
+
+	if (BoundASC.IsValid())
+	{
+		BoundASC->GetGameplayAttributeValueChangeDelegate(UCCLHealthSet::GetHealthAttribute()).Remove(HealthChanged);
+	}
+
+	ASC->InitAbilityActorInfo(GetPlayerState(), this);
+	Fighter->Initialize(ASC);
+	BoundASC = ASC;
+	HealthChanged = ASC->GetGameplayAttributeValueChangeDelegate(UCCLHealthSet::GetHealthAttribute()).AddUObject(this, &ThisClass::OnHealthChanged);
+}
+
+void ACCLCharacter::OnHealthChanged(const FOnAttributeChangeData& Data)
+{
+	if (HasAuthority() && Data.NewValue <= 0.f && BoundASC.IsValid() && BoundASC->GetAvatarActor() == this)
+	{
+		Die();
 	}
 }

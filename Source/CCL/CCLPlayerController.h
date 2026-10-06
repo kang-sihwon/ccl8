@@ -2,6 +2,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/PlayerController.h"
+#include "GameplayTagContainer.h"
 #include "CCLPlayerController.generated.h"
 
 struct FInputActionValue;
@@ -15,6 +16,9 @@ class CCL_API ACCLPlayerController : public APlayerController
 	GENERATED_BODY()
 
 	// 부모 인터페이스 함수
+public:
+	virtual void FlushPressedKeys() override;
+
 protected:
 	virtual void SetupInputComponent() override;
 	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
@@ -27,6 +31,12 @@ public:
 	UFUNCTION(Exec)
 	void CCLDie();
 
+	UFUNCTION(Server, Reliable)
+	void ServerCombatTestReady();
+
+	UFUNCTION(Client, Reliable)
+	void ClientCombatTestStep(int32 Step);
+
 	const UInputAction* GetMoveAction() const { return MoveAction; }
 
 private:
@@ -34,6 +44,8 @@ private:
 	void Look(const FInputActionValue& Value);
 	void StartJump();
 	void StopJump();
+	void CombatPressed(FGameplayTag Tag);
+	void CombatReleased(FGameplayTag Tag);
 
 	UFUNCTION(Server, Reliable)
 	void ServerRequestRetry();
@@ -60,4 +72,7 @@ private:
 
 	UPROPERTY(Transient)
 	TObjectPtr<UInputAction> DieAction;
+
+	UPROPERTY(Transient)
+	TArray<TObjectPtr<UInputAction>> CombatActions;
 };

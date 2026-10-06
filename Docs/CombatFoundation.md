@@ -2,7 +2,7 @@
 
 마네킹의 맨손 공격 하나와 일반 몹 한 종류로 공격, 회피, 가드, 패링, 사망과 개별 재스폰을 연결한다. 범위와 초기 수치는 [결정 11](DesignLog.md)을 따른다. 장르에 독립적인 기반과 UE5 현행 시스템 우선 원칙은 [Coding](Coding.md)이 소유한다.
 
-`Source/CCL/AbilitySystem`, `Combat`, `Items`, `UI`에 전투 코드를 로컬 작업 트리에 작성했다. 게임 코드·설정·도구는 아직 제출하지 않았다. UE 5.8.1의 프로젝트 파일 생성, `CCLEditor Win64 Development` 전체 타깃 빌드와 비대화형 에디터의 클래스 로드 검사는 통과했다. 에셋 생성과 전투 실행 검증은 완료하지 않았다.
+전투 코드는 `Source/CCL/AbilitySystem`, `Combat`, `Items`, `UI`에 있다. UE 5.8.1의 프로젝트 파일 생성, `CCLEditor Win64 Development` 전체 타깃 빌드와 비대화형 에디터의 클래스 로드 검사는 통과했다. 에셋 생성과 전투 실행 검증은 완료하지 않았다.
 
 ## 목표와 경계
 

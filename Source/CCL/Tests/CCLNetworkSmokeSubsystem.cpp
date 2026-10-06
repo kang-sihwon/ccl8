@@ -20,9 +20,7 @@ bool UCCLNetworkSmokeSubsystem::ShouldCreateSubsystem(UObject* Outer) const
 #if !UE_BUILD_SHIPPING && !UE_BUILD_TEST
 	FString Role;
 	const UWorld* World = Cast<UWorld>(Outer);
-	return World && World->IsGameWorld() && !IsRunningDedicatedServer()
-		&& FParse::Value(FCommandLine::Get(), TEXT("CCLSmoke="), Role)
-		&& (Role == TEXT("driver") || Role == TEXT("witness"));
+	return World && World->IsGameWorld() && !IsRunningDedicatedServer() && FParse::Value(FCommandLine::Get(), TEXT("CCLSmoke="), Role) && (Role == TEXT("driver") || Role == TEXT("witness"));
 #else
 	return false;
 #endif
@@ -34,48 +32,66 @@ void UCCLNetworkSmokeSubsystem::Tick(float DeltaTime)
 	{
 		return;
 	}
-	const double Now = FPlatformTime::Seconds();
+
+	const double RealNow = FPlatformTime::Seconds();
+	// Startup stalls count toward the watchdog, but not simulated movement windows.
+	const double Now = GetWorld()->GetTimeSeconds();
+
 	if (StartedAt == 0.0)
 	{
-		StartedAt = Now;
+		StartedAt = RealNow;
 	}
-	if (Now - StartedAt > 60.0)
+
+	if (RealNow - StartedAt > 60.0)
 	{
 		Finish(false, TEXT("Timed out waiting for replicated state"));
 		return;
 	}
+
 	auto* PC = Cast<ACCLPlayerController>(GetWorld()->GetFirstPlayerController());
+
 	if (!PC || !PC->IsLocalController())
 	{
 		return;
 	}
+
 	auto* Character = Cast<ACCLCharacter>(PC->GetPawn());
 	FString Role;
 	FParse::Value(FCommandLine::Get(), TEXT("CCLSmoke="), Role);
 	int32 ExpectedPlayers = 1;
 	FParse::Value(FCommandLine::Get(), TEXT("CCLSmokePlayers="), ExpectedPlayers);
 	TArray<ACCLCharacter*> Characters;
+
 	for (TActorIterator<ACCLCharacter> It(GetWorld()); It; ++It)
 	{
 		Characters.Add(*It);
 	}
+
 	if (Phase == 0)
 	{
 		if (!Character || Characters.Num() != ExpectedPlayers || !PC->GetMoveAction())
 		{
 			return;
 		}
+
 		Original = Character;
+
 		for (auto* Other : Characters)
 		{
-			if (Other != Character) { Peer = Other; PeerStartLocation = Other->GetActorLocation(); }
+			if (Other != Character)
+			{
+				Peer = Other;
+				PeerStartLocation = Other->GetActorLocation();
+			}
 		}
+
 		StartLocation = Character->GetActorLocation();
 		Phase = 1;
 		PhaseStartedAt = Now;
 		PC->CCLRetry(); // A living player must retain the same pawn.
 		return;
 	}
+
 	if (Role == TEXT("witness"))
 	{
 		if (Character != Original.Get() || !Character || Character->IsDead())
@@ -83,19 +99,31 @@ void UCCLNetworkSmokeSubsystem::Tick(float DeltaTime)
 			Finish(false, TEXT("Other player's retry changed the witness pawn"));
 			return;
 		}
-		if (Peer.IsValid() && Peer->IsDead()) { bSawPeerDeath = 1; }
-		if (Peer.IsValid() && FVector::Dist2D(PeerStartLocation, Peer->GetActorLocation()) > 100.f) { bSawPeerMovement = 1; }
+
+		if (Peer.IsValid() && Peer->IsDead())
+		{
+			bSawPeerDeath = 1;
+		}
+
+		if (Peer.IsValid() && FVector::Dist2D(PeerStartLocation, Peer->GetActorLocation()) > 100.f)
+		{
+			bSawPeerMovement = 1;
+		}
+
 		if (Phase == 1 && bSawPeerDeath && bSawPeerMovement && !Peer.IsValid() && Characters.Num() == ExpectedPlayers)
 		{
 			Phase = 2;
 			PhaseStartedAt = Now;
 		}
+
 		if (Phase == 2 && Now - PhaseStartedAt > 6.0)
 		{
 			Finish(true, TEXT("Remote death and replacement observed; witness pawn preserved"));
 		}
+
 		return;
 	}
+
 	auto InjectMove = [PC]()
 	{
 		if (auto* Input = Cast<UEnhancedPlayerInput>(PC->PlayerInput))
@@ -104,16 +132,22 @@ void UCCLNetworkSmokeSubsystem::Tick(float DeltaTime)
 		}
 	};
 	const double Age = Now - PhaseStartedAt;
+
 	if (Phase == 1)
 	{
 		InjectMove();
-		if (Age < 1.0) { return; }
-		if (Character != Original.Get() || !Character || Character->IsDead()
-			|| FVector::Dist2D(StartLocation, Character->GetActorLocation()) < 100.f)
+
+		if (Age < 1.0)
+		{
+			return;
+		}
+
+		if (Character != Original.Get() || !Character || Character->IsDead() || FVector::Dist2D(StartLocation, Character->GetActorLocation()) < 100.f)
 		{
 			Finish(false, TEXT("Living retry guard or input movement failed"));
 			return;
 		}
+
 		PC->CCLDie();
 		PC->CCLDie();
 		Phase = 2;
@@ -128,12 +162,18 @@ void UCCLNetworkSmokeSubsystem::Tick(float DeltaTime)
 	else if (Phase == 3)
 	{
 		InjectMove();
-		if (Age < 1.0) { return; }
+
+		if (Age < 1.0)
+		{
+			return;
+		}
+
 		if (!Character || FVector::Dist(StartLocation, Character->GetActorLocation()) > 5.f)
 		{
 			Finish(false, TEXT("Dead character moved"));
 			return;
 		}
+
 		PC->CCLRetry();
 		PC->CCLRetry();
 		PC->CCLRetry();
@@ -147,6 +187,7 @@ void UCCLNetworkSmokeSubsystem::Tick(float DeltaTime)
 			Finish(false, TEXT("Duplicate pawn or camera target did not recover"));
 			return;
 		}
+
 		StartLocation = Character->GetActorLocation();
 		Phase = 5;
 		PhaseStartedAt = Now;
@@ -154,12 +195,18 @@ void UCCLNetworkSmokeSubsystem::Tick(float DeltaTime)
 	else if (Phase == 5)
 	{
 		InjectMove();
-		if (Age < 1.0) { return; }
+
+		if (Age < 1.0)
+		{
+			return;
+		}
+
 		if (!Character || FVector::Dist2D(StartLocation, Character->GetActorLocation()) < 100.f)
 		{
 			Finish(false, TEXT("Input did not recover after respawn"));
 			return;
 		}
+
 		Phase = 6;
 		PhaseStartedAt = Now;
 	}
@@ -190,11 +237,13 @@ void UCCLNetworkSmokeSubsystem::Tick(float DeltaTime)
 			Blocker->SetActorLocation(It->GetActorLocation());
 			SpawnBlockers.Add(Blocker);
 		}
+
 		if (SpawnBlockers.IsEmpty())
 		{
 			Finish(false, TEXT("No starts found for blocked-start test"));
 			return;
 		}
+
 		Phase = 10;
 		PhaseStartedAt = Now;
 	}
@@ -211,10 +260,15 @@ void UCCLNetworkSmokeSubsystem::Tick(float DeltaTime)
 			Finish(false, TEXT("Spawn ignored blocked starts"));
 			return;
 		}
+
 		for (auto Blocker : SpawnBlockers)
 		{
-			if (Blocker.IsValid()) { Blocker->Destroy(); }
+			if (Blocker.IsValid())
+			{
+				Blocker->Destroy();
+			}
 		}
+
 		SpawnBlockers.Reset();
 		PC->CCLRetry();
 		Phase = 9;
@@ -237,9 +291,14 @@ void UCCLNetworkSmokeSubsystem::Finish(bool bSuccess, const TCHAR* Reason)
 {
 	bFinished = 1;
 	UE_LOG(LogTemp, Display, TEXT("CCL_SMOKE %s: %s NetMode=%d"),
-		bSuccess ? TEXT("PASS") : TEXT("FAIL"), Reason, static_cast<int32>(GetWorld()->GetNetMode()));
+	    bSuccess ? TEXT("PASS") : TEXT("FAIL"), Reason, static_cast<int32>(GetWorld()->GetNetMode()));
 	FString Role;
 	FParse::Value(FCommandLine::Get(), TEXT("CCLSmoke="), Role);
-	if (bSuccess && Role == TEXT("witness")) { return; }
+
+	if (bSuccess && Role == TEXT("witness"))
+	{
+		return;
+	}
+
 	FPlatformMisc::RequestExitWithStatus(false, bSuccess ? 0 : 1);
 }

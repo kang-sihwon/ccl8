@@ -1,7 +1,10 @@
 #include "CCLPlayerController.h"
 
 #include "CCLCharacter.h"
+#include "AbilitySystem/CCLAbilitySystemComponent.h"
+#include "AbilitySystem/CCLGameplayTags.h"
 #include "CCLGameModeBase.h"
+#include "Tests/CCLCombatSmokeSubsystem.h"
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
 #include "Engine/LocalPlayer.h"
@@ -19,10 +22,12 @@ void ACCLPlayerController::SetupInputComponent()
 	UEnhancedInputComponent* Input = CastChecked<UEnhancedInputComponent>(InputComponent);
 	ULocalPlayer* LocalPlayer = GetLocalPlayer();
 	UEnhancedInputLocalPlayerSubsystem* Subsystem = LocalPlayer ? LocalPlayer->GetSubsystem<UEnhancedInputLocalPlayerSubsystem>() : nullptr;
+
 	if (!Subsystem || InputMapping)
 	{
 		return;
 	}
+
 	InputMapping = NewObject<UInputMappingContext>(this);
 	auto MakeAction = [this](EInputActionValueType Type)
 	{
@@ -39,10 +44,12 @@ void ACCLPlayerController::SetupInputComponent()
 	auto MapMove = [this](FKey Key, bool bNegate, bool bSwizzle)
 	{
 		FEnhancedActionKeyMapping& Mapping = InputMapping->MapKey(MoveAction, Key);
+
 		if (bNegate)
 		{
 			Mapping.Modifiers.Add(NewObject<UInputModifierNegate>(InputMapping));
 		}
+
 		if (bSwizzle)
 		{
 			UInputModifierSwizzleAxis* Swizzle = NewObject<UInputModifierSwizzleAxis>(InputMapping);
@@ -67,9 +74,35 @@ void ACCLPlayerController::SetupInputComponent()
 	InputMapping->MapKey(DieAction, EKeys::K);
 	Input->BindAction(DieAction, ETriggerEvent::Started, this, &ThisClass::CCLDie);
 #endif
+	auto MapCombat = [this, Input, &MakeAction](FKey Key, FGameplayTag Tag)
+	{
+		UInputAction* Action = MakeAction(EInputActionValueType::Boolean);
+		CombatActions.Add(Action);
+		InputMapping->MapKey(Action, Key);
+		Input->BindAction(Action, ETriggerEvent::Started, this, &ThisClass::CombatPressed, Tag);
+		Input->BindAction(Action, ETriggerEvent::Completed, this, &ThisClass::CombatReleased, Tag);
+		Input->BindAction(Action, ETriggerEvent::Canceled, this, &ThisClass::CombatReleased, Tag);
+	};
+	MapCombat(EKeys::LeftMouseButton, CCLTags::Input_Attack);
+	MapCombat(EKeys::RightMouseButton, CCLTags::Input_Guard);
+	MapCombat(EKeys::Q, CCLTags::Input_Parry);
+	MapCombat(EKeys::LeftShift, CCLTags::Input_Dodge);
 	Subsystem->AddMappingContext(InputMapping, 0);
 	SetInputMode(FInputModeGameOnly());
 	bShowMouseCursor = false;
+}
+
+void ACCLPlayerController::FlushPressedKeys()
+{
+	Super::FlushPressedKeys();
+
+	if (auto* ControlledPawn = Cast<ACCLCharacter>(GetPawn()))
+	{
+		if (auto* ASC = Cast<UCCLAbilitySystemComponent>(ControlledPawn->GetAbilitySystemComponent()))
+		{
+			ASC->ReleaseAllInputs();
+		}
+	}
 }
 
 void ACCLPlayerController::EndPlay(const EEndPlayReason::Type EndPlayReason)
@@ -81,12 +114,14 @@ void ACCLPlayerController::EndPlay(const EEndPlayReason::Type EndPlayReason)
 			Subsystem->RemoveMappingContext(InputMapping);
 		}
 	}
+
 	Super::EndPlay(EndPlayReason);
 }
 
 // 내 클래스 함수
 
-void ACCLPlayerController::CCLRetry() {
+void ACCLPlayerController::CCLRetry()
+{
 	ServerRequestRetry();
 }
 
@@ -100,10 +135,12 @@ void ACCLPlayerController::CCLDie()
 void ACCLPlayerController::Move(const FInputActionValue& Value)
 {
 	ACCLCharacter* ControlledCharacter = Cast<ACCLCharacter>(GetPawn());
-	if (!ControlledCharacter || ControlledCharacter->IsDead())
+
+	if (!ControlledCharacter || ControlledCharacter->IsDead() || (ControlledCharacter->GetAbilitySystemComponent() && ControlledCharacter->GetAbilitySystemComponent()->HasMatchingGameplayTag(CCLTags::State_Stagger)))
 	{
 		return;
 	}
+
 	const FVector2D Axis = Value.Get<FVector2D>();
 	const FRotator Yaw(0.f, GetControlRotation().Yaw, 0.f);
 	ControlledCharacter->AddMovementInput(FRotationMatrix(Yaw).GetUnitAxis(EAxis::X), Axis.Y);
@@ -147,6 +184,48 @@ void ACCLPlayerController::ServerRequestDebugDeath_Implementation()
 	if (ACCLCharacter* ControlledCharacter = Cast<ACCLCharacter>(GetPawn()))
 	{
 		ControlledCharacter->Die();
+	}
+#endif
+}
+
+void ACCLPlayerController::CombatPressed(FGameplayTag Tag)
+{
+	if (auto* ControlledPawn = Cast<ACCLCharacter>(GetPawn()))
+	{
+		if (auto* ASC = Cast<UCCLAbilitySystemComponent>(ControlledPawn->GetAbilitySystemComponent()))
+		{
+			ASC->AbilityInputTagPressed(Tag);
+		}
+	}
+}
+
+void ACCLPlayerController::CombatReleased(FGameplayTag Tag)
+{
+	if (auto* ControlledPawn = Cast<ACCLCharacter>(GetPawn()))
+	{
+		if (auto* ASC = Cast<UCCLAbilitySystemComponent>(ControlledPawn->GetAbilitySystemComponent()))
+		{
+			ASC->AbilityInputTagReleased(Tag);
+		}
+	}
+}
+
+void ACCLPlayerController::ServerCombatTestReady_Implementation()
+{
+#if !UE_BUILD_SHIPPING && !UE_BUILD_TEST
+	if (auto* Test = GetWorld()->GetSubsystem<UCCLCombatSmokeSubsystem>())
+	{
+		Test->RegisterDriver(this);
+	}
+#endif
+}
+
+void ACCLPlayerController::ClientCombatTestStep_Implementation(int32 Step)
+{
+#if !UE_BUILD_SHIPPING && !UE_BUILD_TEST
+	if (auto* Test = GetWorld()->GetSubsystem<UCCLCombatSmokeSubsystem>())
+	{
+		Test->ExecuteClientStep(Step);
 	}
 #endif
 }
