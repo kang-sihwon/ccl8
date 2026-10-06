@@ -97,3 +97,5 @@ GameState를 사용하면 서버가 계산한 진행을 새 접속자에게도 �
 `UCCLCombatAssetLibrary::ConfigureCombatWorld`는 엔진의 `UActorFactory::CreateBrushForVolumeActor`로 브러시를 만들고 0이 아닌 범위를 검사하도록 수정했다. 근거는 UE 5.9의 `<Engine>/Source/Editor/UnrealEd/Private/Factories/ActorFactory.cpp`에 있는 같은 함수다. `Tools/Validation/repair_navigation.py`로 기존 전투·진행 맵의 배치를 유지하면서 브러시를 복구했다. 저장 검사에서 반범위 `(2000, 2000, 300)`을 확인했다. 근거 로그는 `Saved/StageValidation/Stage3-Nav-Repair.log`다.
 
 복구 후 최종 실행에서 내비게이션 투영 성공과 적의 300cm 이상 이동·공격 피해를 관찰했다. Standalone, Dedicated, Listen 원격·호스트, Dedicated 지연·손실 구성에서 진행·승리·개별 재스폰을 통과했고 네트워크 구성마다 늦은 접속을 확인했다. 화면 캡처의 순간 이동 잔상은 검사 실행에서 Motion Blur를 끄고 확인했다. Python Rotator의 위치 인자로 뒤집혔던 표지판은 이름 있는 pitch·yaw·roll 인자로 수정했다.
+
+World Partition 외부 Actor의 기존 회전을 수정할 때는 `Modify`로 저장 대상을 표시해야 했다. 첫 회전 수정은 재로드 후 유지되지 않아 보정했고, `Saved/StageValidation/Stage3-Presentation-Saved.log`에서 재로드한 표지판의 pitch 0·yaw 180·roll 0을 확인했다.
