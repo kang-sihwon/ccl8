@@ -10,7 +10,7 @@
 | 불리언 타입 | 헤더의 불리언 멤버 변수만 `uint8`을 사용한다. 함수 반환값·매개변수와 `.cpp` 지역 변수는 `bool`을 유지한다 | 유효 | 결정 4 | [Coding](Coding.md) |
 | 실행·재도전 | 평소에는 Standalone, 서버 검증은 Dedicated Server와 Listen Server에서 수행한다. 사망한 플레이어만 개별 재스폰한다 | 유효 | 결정 5 | [MultiplayerFoundation](MultiplayerFoundation.md) |
 | 베이스 시스템 설계 | 장르에 독립적인 공통 계약과 콘텐츠 규칙을 분리하고 데이터·정책·기능 조합으로 구성한다. Item은 ItemDefinition과 Fragment 조합을 따른다 | 유효 | 결정 9 | [Coding](Coding.md) |
-| 아이템·장비 | 공통 정보는 ItemDefinition, 선택 기능은 FInstancedStruct로 구성한다. 양손 점유·반환·손별 액션과 캐릭터 중심 장비 창은 ProgressionFoundation을 따른다 | 유효, 구현 검증 중 | 결정 15 | [ProgressionFoundation](ProgressionFoundation.md) |
+| 아이템·장비 | 공통 정보는 ItemDefinition, 선택 기능은 FInstancedStruct로 구성한다. 슬롯과 부착 지점은 태그로 지정하고 양손 여부는 Weapon이 소유한다. 캐릭터별 AttachmentProfile과 장비 창은 ProgressionFoundation을 따른다 | 유효, 태그 개편 실행 검증 대기 | 결정 15, 결정 16 | [ProgressionFoundation](ProgressionFoundation.md) |
 | 엔진 시스템 선택 | 명확히 불합리한 근거가 없으면 UE5 신규·현행 시스템을 기본 선택으로 사용한다. Nanite, World Partition, GAS와 Attribute·AttributeSet을 포함한다 | 유효 | 결정 10 | [Coding](Coding.md) |
 | 방어 행동 | 최소 전투에 회피, 가드와 패링을 모두 포함한다. ASC 수명·조작·방어 결과와 초기 수치는 결정 11을 따른다 | 유효 | 결정 8, 결정 11 | [CombatFoundation](CombatFoundation.md) |
 | 최소 전투 구현 | 플레이어 ASC는 PlayerState 소유, 마네킹·맨손으로 시작한다. 가드 붕괴 공격은 막고 경직하며 공격·가드·패링 중 카메라 수평 방향을 따른다 | 유효 | 결정 11 | [CombatFoundation](CombatFoundation.md) |

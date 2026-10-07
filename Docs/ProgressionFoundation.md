@@ -4,6 +4,26 @@
 
 ## 목표와 책임
 
+2026-10-07 사용자는 장비·무기 설정을 Gameplay Tag로 지정하고, 부착 지점 태그를 캐릭터별 실제 소켓에 연결하는 개편을 승인했다. 이번 변경에서는 Equip의 허용·기본 슬롯을 태그로, Weapon의 한손·양손 정보를 단일 태그로 옮긴다. 슬롯 점유는 장착 처리와 저장 검증이 같은 규칙으로 계산한다. Visual은 슬롯별 부착 지점 태그를 보관하고 캐릭터가 참조하는 AttachmentProfile이 메시 소켓으로 해석한다. 프로필에는 대상 메시, 소켓 선택 목록, 아이템 미리보기와 데이터 검증을 제공한다. 기존 구조체 에셋은 로드 시 변환하고 저장 형식 1-3은 새 태그 형식 4로 읽는다. 설계 근거는 [결정 16](DesignLog.md)이다. 코드를 반영하고 생성 BAT·UHT·에디터 컴파일을 통과했다. 실행 중인 에디터 때문에 전체 링크·에셋 변환·새 코드의 실행 검증은 아직 완료하지 않았다.
+
+검증은 잘못된 슬롯·무기 사용 방식·소켓 매핑 거부, 기존 양손 교체·반환·원격 입력, 저장 호환, 실제 메시 부착과 장비 창을 포함한다. 기존 소켓을 자동 추정하지 않고 프로필에 등록한 실제 소켓만 사용한다. 기본 마네킹에는 별도의 명명된 장착 소켓을 추가하고 기존 본과 소켓을 보존한다. 양손 슬롯 점유와 보조 손 IK는 구분하며 새 IK·수납 동작은 이번 범위에 포함하지 않는다.
+
+태그 관련 구현과 편집 위치는 다음과 같다. 프로필 에셋은 변환 도구 실행 뒤 생성되며 현재 디스크에는 아직 없다.
+
+| 설정 | 편집 위치와 계약 |
+|---|---|
+| 장착 부위 | Equip의 `AllowedSlots`, `DefaultSlotTag`: `Equipment.Slot.*`의 구체적인 슬롯 |
+| 한손·양손 | Weapon의 `HandUsage`: `Weapon.HandUsage.OneHanded` 또는 `TwoHanded` 중 하나 |
+| 부착 위치 | Visual의 `Attachments`: 슬롯 태그, `Attachment.*` 지점 태그, 아이템별 오프셋 |
+| 메시 소켓 | `UCCLAttachmentProfile`의 `ReferenceMesh`, `Bindings`: 지점 태그를 실제 소켓 이름에 연결 |
+| 에디터 미리보기 | 프로필의 `PreviewItem`, `PreviewSlot`: 기준 포즈의 캐릭터와 선택 장비 표시 |
+
+`CCLEquipment::GetOccupiedSlots`를 장착과 저장 검증에서 함께 사용한다. 복제된 장비 목록은 태그와 GUID로 구성한다. 실제 메시 부착은 Fighter가 프로필을 해석하며 누락된 매핑·소켓이면 경고를 남기고 표시를 생략한다. 본 이름을 소켓으로 간주하거나 루트에 대신 붙이지 않는다. 프로필 데이터 검증과 미리보기는 중복 매핑·부적합한 스켈레톤·잘못된 아이템 설정도 확인한다. 이전 Equip의 양손 플래그와 Visual의 소켓 이름은 로드 변환에만 남기고 새 편집 화면에서는 숨겼다.
+
+`Tools/Validation/migrate_equipment_tags.py`는 기존 정의 12개와 기본 마네킹을 `Saved/EquipmentTagBackup/`에 백업한 뒤 변환을 요청한다. 도구는 기본 마네킹에 `CCL_Grip_L/R`, `CCL_Shield_L/R`, `CCL_Stow_Back` 소켓을 추가하고 `Content/Progression/DA_HumanoidAttachments.uasset`을 생성한다. 기존 소켓과 이미 있는 프로필 설정은 덮어쓰지 않는다. 재시작한 새 에디터 모듈에서 실행해야 하며, 구버전 모듈에서는 에셋 저장 전에 실패하도록 했다. 아직 이 도구를 실행하지 않았으므로 소켓·프로필 에셋 적용도 대기 중이다.
+
+현재 검증 근거는 `Saved/StageValidation/Tags-Generate.log`와 `Tags-Compile.log`다. 후자는 `-NoLink` 컴파일 성공이며 전체 빌드 성공을 뜻하지 않는다. `CCL.Equipment.TagContracts` 자동 검사와 UI의 오른손 단일 메시 검사도 컴파일했지만 실행하지 않았다. 에디터 종료 뒤 전체 `CCLEditor Win64 Development` 빌드, 변환 도구, 태그 자동 검사, 단독·Listen·저장·화면 검사를 이어서 수행해야 한다. 아래의 기존 실행 결과는 태그 변경 이전 결과다.
+
 장비 체계 개편은 [결정 15](DesignLog.md)를 따른다. 구조체 Fragment와 장착·저장 코드를 구현했고 단독 실행·Listen 원격 입력·저장 복원 검사를 통과했다. 화면 수정의 최종 검증 상태는 아래에 구분한다.
 
 ItemDefinition이 이름·설명·아이콘·최대 중첩 수를 소유하고, 선택 기능은 `FInstancedStruct` 배열로 보관한다. 새 구조체의 루트는 `FCCLItemFragmentData`다. 기존 UObject Fragment 클래스는 저장된 에셋을 `PostLoad`에서 읽는 호환 경로로 남긴다. 새 정의에는 Equip, ConsumableData, Visual, SkeletalVisual, HarvestTool, MeleeWeapon, ProjectileWeapon을 조합한다. SkeletalVisual은 Visual의 바닥 표시용 StaticMesh를 상속하고 장착용 SkeletalMesh를 추가한다. 무기 속성은 Weapon 계층 안에 둔다. ProjectileWeapon·HarvestTool은 정의 형식만 추가했으며 발사·채집 실행은 이번 장비 UI 구현에 포함하지 않는다.
@@ -53,6 +73,9 @@ classDiagram
     FInstancedStruct --> FCCLItemFragmentData
     UCCLLoadoutComponent --> UCCLInventoryComponent
     UCCLLoadoutComponent --> UAbilitySystemComponent
+    UCCLFighterComponent --> UCCLAttachmentProfile
+    UCCLAttachmentProfile --> USkeletalMesh
+    UCCLItemDefinition *-- FCCLItemAttachment
     ACCLWorldPickup --> UCCLInventoryComponent
     ACCLHUD --> UCCLInventoryComponent
 ```
@@ -72,7 +95,7 @@ I로 인벤토리 패널을 열고 위·아래로 선택한다. F는 장착, G�
 ```cpp
 FGuid Add(UCCLItemDefinition* Definition, int32 Quantity);
 bool Remove(FGuid EntryId, int32 Quantity);
-bool Equip(FGuid EntryId, ECCLEquipmentSlot Slot = ECCLEquipmentSlot::Count);
+bool Equip(FGuid EntryId, FGameplayTag Slot = FGameplayTag());
 bool Unequip(FGuid EntryId, int32 BagSlot = INDEX_NONE);
 bool Use(FGuid EntryId);
 bool Learn(UCCLSkillDefinition* Definition);
