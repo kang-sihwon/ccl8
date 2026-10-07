@@ -28,6 +28,29 @@ void ACCLWorldPickup::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutL
 	DOREPLIFETIME(ACCLWorldPickup, Quantity);
 }
 
+void ACCLWorldPickup::BeginPlay()
+{
+	Super::BeginPlay();
+	RefreshVisual();
+}
+
+void ACCLWorldPickup::OnConstruction(const FTransform& Transform)
+{
+	Super::OnConstruction(Transform);
+	RefreshVisual();
+}
+
+void ACCLWorldPickup::RefreshVisual()
+{
+	if (!FallbackMesh)
+	{
+		FallbackMesh = Mesh->GetStaticMesh();
+	}
+
+	const auto* Visual = Definition ? Definition->FindFragment<FCCLItemFragment_Visual>() : nullptr;
+	Mesh->SetStaticMesh(Visual && Visual->DroppedMesh ? Visual->DroppedMesh.Get() : FallbackMesh.Get());
+}
+
 bool ACCLWorldPickup::TryCollect(UCCLInventoryComponent* Inventory, AActor* Collector)
 {
 	if (!HasAuthority() || bCollected || !Inventory || !Inventory->GetOwner()->HasAuthority() || !IsValid(Collector) ||

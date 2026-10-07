@@ -6,7 +6,11 @@ UCLASS()
 class CCL_API ACCLVillageSteward : public ACharacter
 {
 	GENERATED_BODY()
+
 public:
 	ACCLVillageSteward();
 	bool CanReach(const APawn* Visitor) const;
+
+	UPROPERTY(EditAnywhere, Category = "Dialogue")
+	FText DisplayName = NSLOCTEXT("CCL", "VillageSteward", "Village Steward");
 };

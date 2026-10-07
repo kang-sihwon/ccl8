@@ -7,8 +7,10 @@
 
 class UCCLAbilitySystemComponent;
 class UCCLItemDefinition;
+class UCCLAttachmentProfile;
 class UCCLCombatDefinition;
 class UAnimMontage;
+class UMeshComponent;
 
 UENUM()
 enum class ECCLCombatAction : uint8 { None, Attack, Dodge, Guard, Parry };
@@ -28,6 +30,8 @@ public:
 public:
 	void Initialize(UCCLAbilitySystemComponent* InASC);
 	void EndLife();
+	UFUNCTION()
+	void RefreshEquipmentVisuals();
 	void SetAction(ECCLCombatAction NewAction);
 	void LockAttackDirection();
 	void NotifyHit(FGameplayTag Outcome);
@@ -47,8 +51,17 @@ private:
 	void MulticastFeedback(FGameplayTag Outcome);
 
 public:
+	UPROPERTY(EditAnywhere, Category = "Presentation")
+	TSoftObjectPtr<UCCLAttachmentProfile> AttachmentProfile;
+
 	UPROPERTY(EditAnywhere, Replicated, Category = "Definition")
 	TObjectPtr<UCCLItemDefinition> Item;
+	UPROPERTY(ReplicatedUsing = RefreshEquipmentVisuals)
+	TObjectPtr<UCCLItemDefinition> LeftHandItem;
+
+	UPROPERTY(ReplicatedUsing = RefreshEquipmentVisuals)
+	TObjectPtr<UCCLItemDefinition> RightHandItem;
+
 	UPROPERTY(Replicated)
 	TObjectPtr<UCCLCombatDefinition> AttackOverride;
 
@@ -118,6 +131,10 @@ public:
 private:
 	UPROPERTY(Transient)
 	TObjectPtr<UCCLAbilitySystemComponent> ASC;
+
+	UPROPERTY(Transient)
+
+	TArray<TObjectPtr<UMeshComponent>> EquipmentVisuals;
 
 	UPROPERTY(ReplicatedUsing = OnRep_Action)
 	ECCLCombatAction Action = ECCLCombatAction::None;

@@ -14,4 +14,12 @@ public:
 	static bool CreateProgressionAssets();
 	UFUNCTION(BlueprintCallable, Category = "CCL|Editor")
 	static bool CreateEncounterAssets();
+	UFUNCTION(BlueprintCallable, Category = "CCL|Editor")
+	static bool CreateEquipmentAssets();
+
+	UFUNCTION(BlueprintCallable, Category = "CCL|Editor")
+	static bool CreateAttachmentProfileAssets();
+
+	UFUNCTION(BlueprintCallable, Category = "CCL|Editor")
+	static bool MigrateEquipmentTagAssets();
 };

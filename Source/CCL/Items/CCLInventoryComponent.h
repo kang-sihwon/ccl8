@@ -22,6 +22,9 @@ struct FCCLInventoryEntry : public FFastArraySerializerItem
 
 	UPROPERTY()
 	int32 Quantity = 0;
+
+	UPROPERTY()
+	int32 Slot = INDEX_NONE;
 };
 
 USTRUCT()
@@ -57,6 +60,8 @@ public:
 	bool Restore(const TArray<FCCLInventoryEntry>& Entries);
 	FGuid Add(UCCLItemDefinition* Definition, int32 Quantity);
 	bool Remove(FGuid Id, int32 Quantity);
+	bool MoveToSlot(FGuid Id, int32 Slot);
+	const FCCLInventoryEntry* FindSlot(int32 Slot) const;
 	bool CanAdd(const UCCLItemDefinition* Definition, int32 Quantity) const;
 	const FCCLInventoryEntry* Find(FGuid Id) const;
 	const TArray<FCCLInventoryEntry>& GetEntries() const { return List.Entries; }

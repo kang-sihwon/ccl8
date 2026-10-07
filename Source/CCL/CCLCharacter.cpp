@@ -6,6 +6,7 @@
 #include "AbilitySystem/CCLHealthSet.h"
 #include "AbilitySystem/CCLEffects.h"
 #include "Combat/CCLFighterComponent.h"
+#include "Items/CCLAttachmentProfile.h"
 #include "Combat/CCLCombatComponent.h"
 #include "Components/SkeletalMeshComponent.h"
 #include "Animation/AnimInstance.h"
@@ -23,6 +24,7 @@ ACCLCharacter::ACCLCharacter()
 {
 	bReplicates = true;
 	Fighter = CreateDefaultSubobject<UCCLFighterComponent>(TEXT("Fighter"));
+	Fighter->AttachmentProfile = TSoftObjectPtr<UCCLAttachmentProfile>(FSoftObjectPath(TEXT("/Game/Progression/DA_HumanoidAttachments.DA_HumanoidAttachments")));
 	Combat = CreateDefaultSubobject<UCCLCombatComponent>(TEXT("Combat"));
 	SpawnCollisionHandlingMethod = ESpawnActorCollisionHandlingMethod::AdjustIfPossibleButDontSpawnIfColliding;
 	GetCapsuleComponent()->InitCapsuleSize(42.f, 96.f);

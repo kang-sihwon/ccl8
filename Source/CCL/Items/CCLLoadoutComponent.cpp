@@ -39,9 +39,9 @@ void UCCLLoadoutComponent::EndPlay(const EEndPlayReason::Type EndPlayReason)
 	}
 	if (auto* ASC = GetASC(); GetOwner()->HasAuthority() && IsValid(ASC) && ASC->IsOwnerActorAuthoritative())
 	{
-		if (EquipmentEffect.IsValid())
+		for (const auto& Pair : EquipmentEffects)
 		{
-			ASC->RemoveActiveGameplayEffect(EquipmentEffect);
+			ASC->RemoveActiveGameplayEffect(Pair.Value);
 		}
 		for (const auto& Handle : SkillEffects)
 		{
@@ -54,47 +54,198 @@ void UCCLLoadoutComponent::EndPlay(const EEndPlayReason::Type EndPlayReason)
 void UCCLLoadoutComponent::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
 {
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
-	DOREPLIFETIME_CONDITION(UCCLLoadoutComponent, EquippedId, COND_OwnerOnly);
+	DOREPLIFETIME_CONDITION(UCCLLoadoutComponent, EquipmentSlots, COND_OwnerOnly);
 	DOREPLIFETIME_CONDITION(UCCLLoadoutComponent, Points, COND_OwnerOnly);
 	DOREPLIFETIME_CONDITION(UCCLLoadoutComponent, Learned, COND_OwnerOnly);
 	DOREPLIFETIME_CONDITION(UCCLLoadoutComponent, LastResult, COND_OwnerOnly);
 }
 
-bool UCCLLoadoutComponent::Equip(FGuid Id)
+bool UCCLLoadoutComponent::Equip(FGuid Id, FGameplayTag Slot)
+{
+	if (!Id.IsValid())
+	{
+		return Unequip(GetEquippedId(!Slot.IsValid() ? CCLItemTags::Slot_RightHand : Slot));
+	}
+
+	if (!CanAct())
+	{
+		return Report(false, TEXT("Cannot change equipment now."));
+	}
+	auto* Inventory = GetInventory();
+	const auto* Entry = Inventory ? Inventory->Find(Id) : nullptr;
+	const auto* Equip = Entry && Entry->Definition ? Entry->Definition->FindFragment<FCCLItemFragment_Equip>() : nullptr;
+	if (!Equip || Entry->Quantity != 1)
+	{
+		return Report(false, TEXT("Select owned equipment."));
+	}
+
+	TArray<FText> DefinitionErrors;
+	if (!Entry->Definition->ValidateDefinition(DefinitionErrors))
+	{
+		return Report(false, TEXT("Invalid equipment definition. Check its asset validation errors."));
+	}
+
+	if (!Slot.IsValid())
+	{
+		Slot = Equip->DefaultSlotTag;
+	}
+	TArray<FGameplayTag> Occupied;
+	if (!CCLEquipment::GetOccupiedSlots(Entry->Definition, Slot, Occupied))
+	{
+		return Report(false, TEXT("This item does not fit this equipment slot."));
+	}
+
+	TArray<FCCLEquippedSlot> NewEquipment = EquipmentSlots;
+	TSet<FGuid> Returning;
+	for (const auto& Existing : EquipmentSlots)
+	{
+		if (Existing.Id != Id && Occupied.Contains(Existing.Slot))
+		{
+			Returning.Add(Existing.Id);
+		}
+	}
+
+	NewEquipment.RemoveAll([&](const FCCLEquippedSlot& Existing) { return Existing.Id == Id || Returning.Contains(Existing.Id); });
+	for (FGameplayTag OccupiedSlot : Occupied)
+	{
+		FCCLEquippedSlot NewSlot;
+		NewSlot.Slot = OccupiedSlot;
+		NewSlot.Id = Id;
+		NewEquipment.Add(NewSlot);
+	}
+
+	TArray<FCCLInventoryEntry> Placement = Inventory->GetEntries();
+	for (auto& Value : Placement)
+	{
+		if (Value.Id == Id)
+		{
+			Value.Slot = INDEX_NONE;
+		}
+	}
+
+	for (FGuid ReturnId : Returning)
+	{
+		auto* Value = Placement.FindByPredicate([ReturnId](const auto& Item) { return Item.Id == ReturnId; });
+		if (!Value)
+		{
+			return Report(false, TEXT("Equipment state is unavailable."));
+		}
+
+		int32 Free = 0;
+		while (Placement.ContainsByPredicate([Free](const auto& Item) { return Item.Slot == Free; }))
+		{
+			++Free;
+		}
+
+		if (Free >= Inventory->Capacity)
+		{
+			return Report(false, TEXT("Not enough inventory space to return equipment."));
+		}
+
+		Value->Slot = Free;
+	}
+
+	FActiveGameplayEffectHandle AddedEffect;
+	if (!IsEquipped(Id) && Equip->Effect)
+	{
+		if (!FMath::IsFinite(Equip->Magnitude) ||
+		    Equip->Effect->GetDefaultObject<UGameplayEffect>()->DurationPolicy != EGameplayEffectDurationType::Infinite)
+		{
+			return Report(false, TEXT("Invalid equipment effect."));
+		}
+		AddedEffect = GetASC()->ApplyEffect(Equip->Effect, Equip->Magnitude);
+		if (!AddedEffect.IsValid())
+		{
+			return Report(false, TEXT("Equipment effect failed."));
+		}
+	}
+	if (!Inventory->Restore(Placement))
+	{
+		if (AddedEffect.IsValid())
+		{
+			GetASC()->RemoveActiveGameplayEffect(AddedEffect);
+		}
+
+		return Report(false, TEXT("Cannot apply equipment placement."));
+	}
+
+	for (FGuid ReturnId : Returning)
+	{
+		if (auto* Handle = EquipmentEffects.Find(ReturnId))
+		{
+			GetASC()->RemoveActiveGameplayEffect(*Handle);
+			EquipmentEffects.Remove(ReturnId);
+		}
+	}
+
+	if (AddedEffect.IsValid())
+	{
+		EquipmentEffects.Add(Id, AddedEffect);
+	}
+
+	EquipmentSlots = MoveTemp(NewEquipment);
+	SyncAvatar();
+	return Report(true, TEXT("Equipment applied."));
+}
+
+bool UCCLLoadoutComponent::Unequip(FGuid Id, int32 BagSlot)
 {
 	if (!CanAct())
 	{
 		return Report(false, TEXT("Cannot change equipment now."));
 	}
-	if (Id == EquippedId)
+
+	if (!Id.IsValid())
 	{
 		return true;
 	}
-	auto* ASC = GetASC();
-	FActiveGameplayEffectHandle NewEffect;
-	if (Id.IsValid())
+
+	if (!IsEquipped(Id))
 	{
-		const auto* Entry = GetInventory() ? GetInventory()->Find(Id) : nullptr;
-		const auto* Fragment = Entry && Entry->Definition ? Cast<UCCLItemFragment_Equipment>(Entry->Definition->FindFragment(UCCLItemFragment_Equipment::StaticClass())) : nullptr;
-		if (!Fragment || !Fragment->Effect || !FMath::IsFinite(Fragment->Magnitude) ||
-			Fragment->Effect->GetDefaultObject<UGameplayEffect>()->DurationPolicy != EGameplayEffectDurationType::Infinite)
+		return Report(false, TEXT("Item is not equipped."));
+	}
+
+	auto* Inventory = GetInventory();
+	if (!Inventory)
+	{
+		return false;
+	}
+
+	if (BagSlot == INDEX_NONE)
+	{
+		BagSlot = 0;
+		while (Inventory->FindSlot(BagSlot))
 		{
-			return Report(false, TEXT("Select owned equipment."));
-		}
-		NewEffect = ASC->ApplyEffect(Fragment->Effect, Fragment->Magnitude);
-		if (!NewEffect.IsValid())
-		{
-			return Report(false, TEXT("Equipment effect failed."));
+			++BagSlot;
 		}
 	}
-	if (EquipmentEffect.IsValid())
+
+	if (BagSlot < 0 || BagSlot >= Inventory->Capacity || Inventory->FindSlot(BagSlot))
 	{
-		ASC->RemoveActiveGameplayEffect(EquipmentEffect);
+		return Report(false, TEXT("Choose an empty inventory slot."));
 	}
-	EquipmentEffect = NewEffect;
-	EquippedId = Id;
+
+	TArray<FCCLInventoryEntry> Placement = Inventory->GetEntries();
+	auto* Item = Placement.FindByPredicate([Id](const auto& Value) { return Value.Id == Id; });
+	if (!Item)
+	{
+		return false;
+	}
+
+	Item->Slot = BagSlot;
+	if (!Inventory->Restore(Placement))
+	{
+		return false;
+	}
+
+	EquipmentSlots.RemoveAll([Id](const auto& Value) { return Value.Id == Id; });
+	if (auto* Handle = EquipmentEffects.Find(Id))
+	{
+		GetASC()->RemoveActiveGameplayEffect(*Handle);
+		EquipmentEffects.Remove(Id);
+	}
 	SyncAvatar();
-	return Report(true, Id.IsValid() ? TEXT("Equipment applied.") : TEXT("Equipment removed."));
+	return Report(true, TEXT("Equipment returned to inventory."));
 }
 
 bool UCCLLoadoutComponent::Use(FGuid Id)
@@ -105,7 +256,7 @@ bool UCCLLoadoutComponent::Use(FGuid Id)
 	}
 	auto* Inventory = GetInventory();
 	const auto* Entry = Inventory ? Inventory->Find(Id) : nullptr;
-	const auto* Fragment = Entry && Entry->Definition ? Cast<UCCLItemFragment_Consumable>(Entry->Definition->FindFragment(UCCLItemFragment_Consumable::StaticClass())) : nullptr;
+	const auto* Fragment = Entry && Entry->Definition ? Entry->Definition->FindFragment<FCCLItemFragment_ConsumableData>() : nullptr;
 	auto* ASC = GetASC();
 	if (!Fragment || !Fragment->Effect || !FMath::IsFinite(Fragment->Magnitude) || Fragment->Magnitude <= 0.f)
 	{
@@ -151,8 +302,11 @@ void UCCLLoadoutComponent::SyncAvatar(bool bResetHealth)
 	}
 	if (auto* Fighter = ASC->GetAvatarActor()->FindComponentByClass<UCCLFighterComponent>())
 	{
-		Fighter->Item = GetEquippedItem();
-		if (!Fighter->Item || !Fighter->Item->FindFragment(UCCLItemFragment_Combat::StaticClass()))
+		Fighter->LeftHandItem = GetEquippedItem(CCLItemTags::Slot_LeftHand);
+		Fighter->RightHandItem = GetEquippedItem(CCLItemTags::Slot_RightHand);
+		Fighter->RefreshEquipmentVisuals();
+		Fighter->Item = Fighter->RightHandItem ? Fighter->RightHandItem : Fighter->LeftHandItem;
+		if (!Fighter->Item || !Fighter->Item->FindFragment<FCCLItemFragment_Weapon>())
 		{
 			Fighter->Item = LoadObject<UCCLItemDefinition>(nullptr, TEXT("/Game/Combat/DA_Unarmed.DA_Unarmed"));
 		}
@@ -181,10 +335,101 @@ void UCCLLoadoutComponent::ShowNotice(const FString& Message)
 	}
 }
 
-UCCLItemDefinition* UCCLLoadoutComponent::GetEquippedItem() const
+FGuid UCCLLoadoutComponent::GetEquippedId(FGameplayTag Slot) const
 {
-	const auto* Entry = GetInventory() ? GetInventory()->Find(EquippedId) : nullptr;
+	const auto* Value = EquipmentSlots.FindByPredicate([Slot](const auto& Entry) { return Entry.Slot == Slot; });
+	return Value ? Value->Id : FGuid();
+}
+
+bool UCCLLoadoutComponent::IsEquipped(FGuid Id) const
+{
+	return Id.IsValid() && EquipmentSlots.ContainsByPredicate([Id](const auto& Entry) { return Entry.Id == Id; });
+}
+
+UCCLItemDefinition* UCCLLoadoutComponent::GetEquippedItem(FGameplayTag Slot) const
+{
+	const auto* Entry = GetInventory() ? GetInventory()->Find(GetEquippedId(Slot)) : nullptr;
 	return Entry ? Entry->Definition.Get() : nullptr;
+}
+
+ECCLHandAction UCCLLoadoutComponent::GetHandAction(FGameplayTag Hand) const
+{
+	if (Hand != CCLItemTags::Slot_LeftHand && Hand != CCLItemTags::Slot_RightHand)
+	{
+		return ECCLHandAction::None;
+	}
+
+	const auto* Item = GetEquippedItem(Hand);
+	if (!Item)
+	{
+		return ECCLHandAction::Attack;
+	}
+
+	const auto* Weapon = Item->FindFragment<FCCLItemFragment_Weapon>();
+	return Weapon ? (Hand == CCLItemTags::Slot_LeftHand ? Weapon->LeftAction : Weapon->RightAction) : ECCLHandAction::None;
+}
+
+FGameplayTag UCCLLoadoutComponent::PrepareHandAction(FGameplayTag Hand)
+{
+	if (Hand != CCLItemTags::Slot_LeftHand && Hand != CCLItemTags::Slot_RightHand)
+	{
+		return FGameplayTag();
+	}
+
+	auto* ASC = GetASC();
+	if (!ASC || !ASC->GetAvatarActor() || ASC->HasMatchingGameplayTag(CCLTags::State_Dead) ||
+	    ASC->HasMatchingGameplayTag(CCLTags::State_Busy) || ASC->HasMatchingGameplayTag(CCLTags::State_Stagger))
+	{
+		return FGameplayTag();
+	}
+
+	const ECCLHandAction Action = GetHandAction(Hand);
+	FGameplayTag Input;
+	if (Action == ECCLHandAction::Attack)
+	{
+		Input = CCLTags::Input_Attack;
+	}
+	else if (Action == ECCLHandAction::Guard)
+	{
+		Input = CCLTags::Input_Guard;
+	}
+	else if (Action == ECCLHandAction::Parry)
+	{
+		Input = CCLTags::Input_Parry;
+	}
+
+	if (!Input.IsValid())
+	{
+		return Input;
+	}
+
+	if (auto* Fighter = ASC->GetAvatarActor()->FindComponentByClass<UCCLFighterComponent>())
+	{
+		Fighter->Item = GetEquippedItem(Hand);
+		if (!Fighter->Item)
+		{
+			Fighter->Item = LoadObject<UCCLItemDefinition>(nullptr, TEXT("/Game/Combat/DA_Unarmed.DA_Unarmed"));
+		}
+
+		if (GetOwner()->HasAuthority())
+		{
+			ASC->GetAvatarActor()->ForceNetUpdate();
+		}
+	}
+
+	// Loadout and ASC share the PlayerState actor channel. Select the hand before
+	// the following predicted GAS activation RPC is processed on the server.
+	if (!GetOwner()->HasAuthority())
+	{
+		ServerPrepareHandAction(Hand);
+	}
+
+	return Input;
+}
+
+void UCCLLoadoutComponent::ServerPrepareHandAction_Implementation(FGameplayTag Hand)
+{
+	PrepareHandAction(Hand);
 }
 
 bool UCCLLoadoutComponent::IsLearned(const UCCLSkillDefinition* Definition) const
@@ -194,14 +439,32 @@ bool UCCLLoadoutComponent::IsLearned(const UCCLSkillDefinition* Definition) cons
 
 void UCCLLoadoutComponent::OnInventoryChanged()
 {
-	if (GetOwner()->HasAuthority() && EquippedId.IsValid() && !GetEquippedItem())
+	if (!GetOwner()->HasAuthority() || !GetInventory())
 	{
-		if (auto* ASC = GetASC(); ASC && EquipmentEffect.IsValid())
+		return;
+	}
+
+	TSet<FGuid> Missing;
+	for (const auto& Value : EquipmentSlots)
+	{
+		if (!GetInventory()->Find(Value.Id))
 		{
-			ASC->RemoveActiveGameplayEffect(EquipmentEffect);
+			Missing.Add(Value.Id);
 		}
-		EquipmentEffect.Invalidate();
-		EquippedId.Invalidate();
+	}
+
+	for (FGuid Id : Missing)
+	{
+		if (auto* Handle = EquipmentEffects.Find(Id))
+		{
+			GetASC()->RemoveActiveGameplayEffect(*Handle);
+			EquipmentEffects.Remove(Id);
+		}
+	}
+
+	if (!Missing.IsEmpty())
+	{
+		EquipmentSlots.RemoveAll([&](const auto& Value) { return Missing.Contains(Value.Id); });
 		SyncAvatar();
 	}
 }
@@ -235,7 +498,8 @@ UCCLInventoryComponent* UCCLLoadoutComponent::GetInventory() const
 	return GetOwner()->FindComponentByClass<UCCLInventoryComponent>();
 }
 
-bool UCCLLoadoutComponent::Restore(FGuid Equipment, const TArray<UCCLSkillDefinition*>& Skills, int32 UnspentPoints)
+bool UCCLLoadoutComponent::Restore(const TArray<FCCLEquippedSlot>& Equipment, const TArray<UCCLSkillDefinition*>& Skills,
+                                   int32 UnspentPoints)
 {
 	if (!CanAct() || UnspentPoints < 0 || UnspentPoints > 1000 || Skills.Num() > AvailableSkills.Num()) { return false; }
 	TSet<UCCLSkillDefinition*> Seen;
@@ -244,14 +508,35 @@ bool UCCLLoadoutComponent::Restore(FGuid Equipment, const TArray<UCCLSkillDefini
 		if (!Skill || !AvailableSkills.Contains(Skill) || Seen.Contains(Skill) || Skill->PointCost <= 0) { return false; }
 		Seen.Add(Skill);
 	}
-	if (!Equip(FGuid())) { return false; }
+	for (const auto& Pair : EquipmentEffects)
+	{
+		GetASC()->RemoveActiveGameplayEffect(Pair.Value);
+	}
+
+	EquipmentEffects.Reset();
+	EquipmentSlots.Reset();
 	for (const auto& Handle : SkillEffects) { GetASC()->RemoveActiveGameplayEffect(Handle); }
 	SkillEffects.Reset();
 	Learned.Reset();
 	Points = 1000;
 	for (auto* Skill : Skills) { if (!Learn(Skill)) { return false; } }
 	Points = UnspentPoints;
-	if (!Equip(Equipment)) { return false; }
+	TSet<FGuid> Applied;
+	for (const auto& Value : Equipment)
+	{
+		if (Applied.Contains(Value.Id))
+		{
+			continue;
+		}
+
+		if (!Equip(Value.Id, Value.Slot))
+		{
+			return false;
+		}
+
+		Applied.Add(Value.Id);
+	}
+
 	SyncAvatar(true);
 	return true;
 }

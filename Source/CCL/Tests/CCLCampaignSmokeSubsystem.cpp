@@ -12,6 +12,7 @@
 #include "Items/CCLLoadoutComponent.h"
 #include "Items/CCLWorldPickup.h"
 #include "Items/CCLSkillDefinition.h"
+#include "Session/CCLSessionRecord.h"
 #include "AbilitySystem/CCLOffenseSet.h"
 #include "Combat/CCLHealthTarget.h"
 #include "Combat/CCLCombatComponent.h"
@@ -374,10 +375,46 @@ void UCCLCampaignSmokeSubsystem::ExecuteProgressionStep(int32 InStep, FGuid Entr
         if (State->GetLoadout()->GetSkills().IsValidIndex(Index))
         {
             Local->ServerLearnSkill(State->GetLoadout()->GetSkills()[Index]);
-        }
-    }
-    else if (InStep == 3)
-    {
+			if (InStep == 4)
+			{
+				Local->CloseInventory();
+			}
+		}
+	}
+	else if (InStep == 5)
+	{
+		Local->ServerUnequipToBag(EntryId, 15);
+		Local->ServerMoveInventoryItem(EntryId, -1);
+		Local->ServerMoveInventoryItem(EntryId, 16);
+		Local->ServerMoveInventoryItem(FGuid::NewGuid(), 15);
+		Local->ServerMoveInventoryItem(EntryId, 15);
+	}
+	else if (InStep == 6)
+	{
+		Local->ServerMoveInventoryItem(EntryId, 1);
+	}
+	else if (InStep == 7)
+	{
+		Local->HandPressed(CCLItemTags::Slot_LeftHand);
+	}
+	else if (InStep == 8)
+	{
+		Local->HandReleased(CCLItemTags::Slot_LeftHand);
+	}
+	else if (InStep == 9)
+	{
+		Local->ServerEquipToSlot(EntryId, CCLItemTags::Slot_RightHand);
+	}
+	else if (InStep == 10)
+	{
+		Local->HandPressed(CCLItemTags::Slot_RightHand);
+	}
+	else if (InStep == 11)
+	{
+		Local->HandReleased(CCLItemTags::Slot_RightHand);
+	}
+	else if (InStep == 3)
+	{
         Local->ServerUseItem(EntryId);
         if (!Local->IsInventoryOpen())
         {
@@ -402,8 +439,8 @@ void UCCLCampaignSmokeSubsystem::TickProgression()
     {
         for (TActorIterator<ACCLWorldPickup> It(GetWorld()); It; ++It)
         {
-            if (It->Definition && (It->Definition->FindFragment(UCCLItemFragment_Equipment::StaticClass()) != nullptr) == bEquipment)
-            {
+			if (It->Definition && (It->Definition->FindFragment<FCCLItemFragment_Equip>() != nullptr) == bEquipment)
+			{
                 Character->SetActorLocation(It->GetActorLocation() + FVector(0.f, -80.f, 55.f));
                 Driver->ClientProgressionTestStep(0, FGuid());
                 return true;
@@ -507,8 +544,85 @@ void UCCLCampaignSmokeSubsystem::TickProgression()
         {
             return;
         }
-        ASC->SetNumericAttributeBase(UCCLHealthSet::GetHealthAttribute(), 100.f);
-        bProgressionReady = 1;
+		Driver->ClientProgressionTestStep(5, EquipmentId);
+		break;
+	case 7:
+		if (!Check(Inventory->Find(EquipmentId)->Slot == 15 && Inventory->Find(PotionId)->Slot == 1 && Inventory->GetEntries().Num() == 2,
+		           TEXT("remote move to empty slot preserves inventory")))
+		{
+			return;
+		}
+
+		Driver->ClientProgressionTestStep(6, EquipmentId);
+		break;
+	case 8:
+		if (!Check(Inventory->Find(EquipmentId)->Slot == 1 && Inventory->Find(PotionId)->Slot == 15 && !Loadout->IsEquipped(EquipmentId) &&
+		               FMath::IsNearlyEqual(Bonus(), 5.f),
+		           TEXT("remote unequip and occupied slot swap preserves ownership")))
+		{
+			return;
+		}
+
+		if (!Check(Loadout->Equip(EquipmentId), TEXT("reequip after remote bag move")))
+		{
+			return;
+		}
+
+		TestShieldId = Inventory->Add(FCCLSessionCodec::Item(TEXT("DA_TrainingShield")), 1);
+		if (!Check(Loadout->Equip(TestShieldId, CCLItemTags::Slot_LeftHand), TEXT("remote hand fixture equipped")))
+		{
+			return;
+		}
+
+		break;
+	case 9:
+		Driver->ClientProgressionTestStep(7, FGuid());
+		break;
+	case 10:
+		if (!Check(ASC->HasMatchingGameplayTag(CCLTags::State_Guard), TEXT("remote left-hand shield activates predicted guard on server")))
+		{
+			return;
+		}
+
+		Driver->ClientProgressionTestStep(8, FGuid());
+		break;
+	case 11:
+		if (!Check(!ASC->HasMatchingGameplayTag(CCLTags::State_Guard), TEXT("remote left-hand release ends guard")))
+		{
+			return;
+		}
+
+		Inventory->Remove(TestShieldId, 1);
+		TestStaffId = Inventory->Add(FCCLSessionCodec::Item(TEXT("DA_TrainingStaff")), 1);
+		Driver->ClientProgressionTestStep(9, TestStaffId);
+		break;
+	case 12:
+		if (!Check(Loadout->GetEquippedId() == TestStaffId && Loadout->GetEquippedId(CCLItemTags::Slot_LeftHand) == TestStaffId &&
+		               Inventory->Find(EquipmentId)->Slot >= 0,
+		           TEXT("remote two-hand equip returns previous weapon")))
+		{
+			return;
+		}
+
+		Driver->ClientProgressionTestStep(10, FGuid());
+		break;
+	case 13:
+		if (!Check(ASC->HasMatchingGameplayTag(CCLTags::State_Guard), TEXT("remote two-hand secondary action guards")))
+		{
+			return;
+		}
+
+		Driver->ClientProgressionTestStep(11, FGuid());
+		break;
+	case 14:
+		if (!Check(!ASC->HasMatchingGameplayTag(CCLTags::State_Guard) && Inventory->Remove(TestStaffId, 1) && Loadout->Equip(EquipmentId),
+		           TEXT("remote secondary release and gear fixture cleanup")))
+		{
+			return;
+		}
+
+		ASC->SetNumericAttributeBase(UCCLHealthSet::GetHealthAttribute(), 100.f);
+		bProgressionReady = 1;
         UE_LOG(LogTemp, Display, TEXT("CCL_PROGRESSION ACTIONS PASS"));
         return;
     }

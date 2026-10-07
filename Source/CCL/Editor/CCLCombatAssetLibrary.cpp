@@ -133,10 +133,11 @@ bool UCCLCombatAssetLibrary::CreateCombatAssets()
 	{
 		auto* Item = Asset<UCCLItemDefinition>(Name);
 		Item->Fragments.Reset();
-		auto* Fragment = NewObject<UCCLItemFragment_Combat>(Item);
-		Fragment->Combat = Combat;
-		Fragment->Abilities = Abilities;
-		Item->Fragments.Add(Fragment);
+		FCCLItemFragment_MeleeWeapon Fragment;
+		Fragment.Combat = Combat;
+		Fragment.Abilities = Abilities;
+		Item->ItemFragments = {FInstancedStruct::Make(Fragment)};
+		Item->ItemName = FText::FromString(Name);
 		return Save(Item);
 	};
 

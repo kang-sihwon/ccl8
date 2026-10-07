@@ -3,6 +3,8 @@
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
 #include "ActiveGameplayEffectHandle.h"
+#include "CCLItemFragments.h"
+#include "GameplayTagContainer.h"
 #include "CCLLoadoutComponent.generated.h"
 
 class UCCLInventoryComponent;
@@ -22,21 +24,28 @@ public:
 	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
 
 public:
-	bool Restore(FGuid Equipment, const TArray<UCCLSkillDefinition*>& Skills, int32 UnspentPoints);
-	bool Equip(FGuid Id);
+	bool Restore(const TArray<FCCLEquippedSlot>& Equipment, const TArray<UCCLSkillDefinition*>& Skills, int32 UnspentPoints);
+	bool Equip(FGuid Id, FGameplayTag Slot = FGameplayTag());
+	bool Unequip(FGuid Id, int32 BagSlot = INDEX_NONE);
 	bool Use(FGuid Id);
 	bool Learn(UCCLSkillDefinition* Definition);
 	void SyncAvatar(bool bResetHealth = false);
 	void GrantPoints(int32 Amount);
 	void ShowNotice(const FString& Message);
-	UCCLItemDefinition* GetEquippedItem() const;
-	FGuid GetEquippedId() const { return EquippedId; }
+	FGameplayTag PrepareHandAction(FGameplayTag Hand);
+	UCCLItemDefinition* GetEquippedItem(FGameplayTag Slot = CCLItemTags::Slot_RightHand) const;
+	FGuid GetEquippedId(FGameplayTag Slot = CCLItemTags::Slot_RightHand) const;
+	bool IsEquipped(FGuid Id) const;
+	const TArray<FCCLEquippedSlot>& GetEquipment() const { return EquipmentSlots; }
+	ECCLHandAction GetHandAction(FGameplayTag Hand) const;
 	int32 GetPoints() const { return Points; }
 	bool IsLearned(const UCCLSkillDefinition* Definition) const;
 	const TArray<TObjectPtr<UCCLSkillDefinition>>& GetSkills() const { return AvailableSkills; }
 	const FString& GetResult() const { return LastResult; }
 
 private:
+	UFUNCTION(Server, Reliable)
+	void ServerPrepareHandAction(FGameplayTag Hand);
 	void OnInventoryChanged();
 	bool Report(bool bSuccess, const TCHAR* Message);
 	bool CanAct() const;
@@ -45,7 +54,7 @@ private:
 
 private:
 	UPROPERTY(Replicated)
-	FGuid EquippedId;
+	TArray<FCCLEquippedSlot> EquipmentSlots;
 
 	UPROPERTY(Replicated)
 	int32 Points = 1;
@@ -59,6 +68,6 @@ private:
 	UPROPERTY(Replicated)
 	FString LastResult;
 
-	FActiveGameplayEffectHandle EquipmentEffect;
+	TMap<FGuid, FActiveGameplayEffectHandle> EquipmentEffects;
 	TArray<FActiveGameplayEffectHandle> SkillEffects;
 };

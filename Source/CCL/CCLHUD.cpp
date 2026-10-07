@@ -2,143 +2,229 @@
 #include "Campaign/CCLExpeditionComponent.h"
 #include "Campaign/CCLVillageSteward.h"
 
+#include "AbilitySystem/CCLGameplayTags.h"
+#include "AbilitySystem/CCLHealthSet.h"
+#include "AbilitySystem/CCLOffenseSet.h"
+#include "AbilitySystem/CCLStaminaSet.h"
 #include "CCLCharacter.h"
-#include "CCLPlayerState.h"
 #include "CCLPlayerController.h"
+#include "CCLPlayerState.h"
+#include "Campaign/CCLCampaignState.h"
+#include "Combat/CCLEnemyCharacter.h"
+#include "Combat/CCLFighterComponent.h"
+#include "Engine/Canvas.h"
+#include "EngineUtils.h"
+#include "GameFramework/PlayerController.h"
 #include "Items/CCLInventoryComponent.h"
 #include "Items/CCLItemDefinition.h"
 #include "Items/CCLLoadoutComponent.h"
 #include "Items/CCLSkillDefinition.h"
 #include "Items/CCLWorldPickup.h"
-#include "AbilitySystem/CCLOffenseSet.h"
-#include "Engine/Canvas.h"
 #include "UI/CCLCombatViewModel.h"
-#include "AbilitySystem/CCLHealthSet.h"
-#include "AbilitySystem/CCLStaminaSet.h"
-#include "AbilitySystem/CCLGameplayTags.h"
-#include "Combat/CCLFighterComponent.h"
-#include "Combat/CCLEnemyCharacter.h"
-#include "Campaign/CCLCampaignState.h"
-#include "EngineUtils.h"
-#include "GameFramework/PlayerController.h"
 
 // 부모 인터페이스 함수
 
 void ACCLHUD::DrawHUD()
 {
 	Super::DrawHUD();
-	DrawText(TEXT("WASD Move  |  Mouse Look  |  Space Jump"), FLinearColor::White, 30.f, 30.f);
-#if !UE_BUILD_SHIPPING && !UE_BUILD_TEST
-	DrawText(TEXT("K Test Death"), FLinearColor::Yellow, 30.f, 55.f);
-#endif
-	const ACCLCharacter* Character = PlayerOwner ? Cast<ACCLCharacter>(PlayerOwner->GetPawn()) : nullptr;
+	if (!Canvas)
+	{
+		return;
+	}
 
+	// Use a 720p layout and scale text and spacing together on larger displays.
+	const float UiScale = FMath::Max(0.5f, FMath::Min(Canvas->SizeX / 1280.f, Canvas->SizeY / 720.f));
+	const float Width = Canvas->SizeX / UiScale;
+	const float Height = Canvas->SizeY / UiScale;
+	constexpr float Margin = 24.f;
+	constexpr float PanelWidth = 560.f;
+	const float LeftWidth = FMath::Min(650.f, Width - PanelWidth - Margin * 3.f);
+
+	// Measure with the same font and scale used for drawing. Return logical height
+	// so wrapped feedback and item names cannot overlap the following row.
+	auto Text = [this, UiScale](const FString& Value, FLinearColor Color, float X, float Y, float MaxWidth, float Emphasis = 1.f,
+	                            bool bDraw = true) {
+		if (Value.IsEmpty())
+		{
+			return 0.f;
+		}
+
+		const float FontScale = 2.f * UiScale * Emphasis;
+		float SampleWidth = 0.f;
+		float SampleHeight = 0.f;
+		GetTextSize(TEXT("Ag"), SampleWidth, SampleHeight, nullptr, FontScale);
+		const float LineHeight = FMath::Max(24.f * Emphasis, SampleHeight / UiScale + 4.f);
+		TArray<FString> Lines;
+		FString Line;
+		TArray<FString> Words;
+		Value.ParseIntoArrayWS(Words);
+		for (const FString& Word : Words)
+		{
+			const FString Candidate = Line.IsEmpty() ? Word : Line + TEXT(" ") + Word;
+			float TextWidth = 0.f;
+			float TextHeight = 0.f;
+			GetTextSize(Candidate, TextWidth, TextHeight, nullptr, FontScale);
+			if (!Line.IsEmpty() && TextWidth > MaxWidth * UiScale)
+			{
+				Lines.Add(Line);
+				Line = Word;
+			}
+			else
+			{
+				Line = Candidate;
+			}
+		}
+
+		Lines.Add(Line);
+		if (bDraw)
+		{
+			for (int32 Index = 0; Index < Lines.Num(); ++Index)
+			{
+				const float ScreenY = (Y + Index * LineHeight) * UiScale;
+				DrawText(Lines[Index], FLinearColor::Black, X * UiScale + UiScale, ScreenY + UiScale, nullptr, FontScale);
+				DrawText(Lines[Index], Color, X * UiScale, ScreenY, nullptr, FontScale);
+			}
+		}
+
+		return Lines.Num() * LineHeight;
+	};
+	auto Panel = [this, UiScale](float X, float Y, float W, float H) {
+		DrawRect(FLinearColor(0.015f, 0.02f, 0.03f, 0.82f), X * UiScale, Y * UiScale, W * UiScale, H * UiScale);
+	};
+
+	const ACCLCharacter* Character = PlayerOwner ? Cast<ACCLCharacter>(PlayerOwner->GetPawn()) : nullptr;
+	auto* Controller = Cast<ACCLPlayerController>(PlayerOwner);
+	if (Controller && !Controller->IsDialogueVisible())
+	{
+		Controller->CloseDialogue();
+	}
+
+	const auto* State = PlayerOwner ? PlayerOwner->GetPlayerState<ACCLPlayerState>() : nullptr;
+	const auto* Campaign = GetWorld()->GetGameState<ACCLCampaignState>();
 	if (!ViewModel)
 	{
 		ViewModel = NewObject<UCCLCombatViewModel>(this);
 	}
 
 	ViewModel->Bind(Character ? Character->GetAbilitySystemComponent() : nullptr);
-	DrawText(TEXT("LMB Attack | RMB Hold Guard | Q Parry | Shift Dodge"), FLinearColor::White, 30.f, 80.f);
-	DrawText(FString::Printf(TEXT("HP %.0f / %.0f   Stamina %.0f / %.0f"),
-	             ViewModel->GetValue(UCCLHealthSet::GetHealthAttribute()), ViewModel->GetValue(UCCLHealthSet::GetMaxHealthAttribute()),
-	             ViewModel->GetValue(UCCLStaminaSet::GetStaminaAttribute()), ViewModel->GetValue(UCCLStaminaSet::GetMaxStaminaAttribute())),
-	    FLinearColor::Green, 30.f, 110.f);
+	float Y = Margin;
+	Y += Text(TEXT("WASD Move | Mouse Look | Space Jump"), FLinearColor::White, Margin, Y, LeftWidth);
+	Y += Text(TEXT("LMB Left hand | RMB Right hand | Q Parry | Shift Dodge"), FLinearColor::White, Margin, Y, LeftWidth);
+	Y += 12.f;
+	Y += Text(FString::Printf(TEXT("HP %.0f / %.0f   Stamina %.0f / %.0f"), ViewModel->GetValue(UCCLHealthSet::GetHealthAttribute()),
+	                          ViewModel->GetValue(UCCLHealthSet::GetMaxHealthAttribute()),
+	                          ViewModel->GetValue(UCCLStaminaSet::GetStaminaAttribute()),
+	                          ViewModel->GetValue(UCCLStaminaSet::GetMaxStaminaAttribute())),
+	          FLinearColor::Green, Margin, Y, LeftWidth, 1.2f);
 
 	if (Character)
 	{
-		if (auto* Fighter = Character->FindComponentByClass<UCCLFighterComponent>())
+		if (const auto* Fighter = Character->FindComponentByClass<UCCLFighterComponent>())
 		{
-			DrawText(Fighter->GetFeedback(), FLinearColor::Yellow, 30.f, 140.f, nullptr, 1.5f);
+			Y += Text(Fighter->GetFeedback(), FLinearColor::Yellow, Margin, Y, LeftWidth);
 		}
 
-		if (auto* ASC = Character->GetAbilitySystemComponent(); ASC && ASC->HasMatchingGameplayTag(CCLTags::State_Stagger))
+		if (const auto* ASC = Character->GetAbilitySystemComponent(); ASC && ASC->HasMatchingGameplayTag(CCLTags::State_Stagger))
 		{
-			DrawText(TEXT("STAGGERED"), FLinearColor::Red, 30.f, 170.f);
-		}
-	}
-
-	float Y = 250.f;
-	if (const auto* Campaign = GetWorld()->GetGameState<ACCLCampaignState>())
-	{
-		DrawText(Campaign->GetObjective(), FLinearColor(1.f, 0.8f, 0.3f), 30.f, 210.f, nullptr, 1.25f);
-	}
-
-	for (TActorIterator<ACCLEnemyCharacter> It(GetWorld()); It; ++It)
-	{
-		DrawText(FString::Printf(TEXT("%s HP %.0f%s"), *It->DisplayName, It->GetAbilitySystemComponent()->GetNumericAttribute(UCCLHealthSet::GetHealthAttribute()),
-		             It->IsDead() ? TEXT(" (defeated)") : TEXT("")),
-		    FLinearColor::Red, 30.f, Y);
-		Y += 25.f;
-		if (!It->IsDead() && It->FindComponentByClass<UCCLFighterComponent>()->GetAction() == ECCLCombatAction::Attack)
-		{
-			DrawText(It->PatternLabel, FLinearColor::Yellow, 30.f, Y);
-			Y += 25.f;
+			Y += Text(TEXT("STAGGERED"), FLinearColor::Red, Margin, Y, LeftWidth);
 		}
 	}
 
 	if (!Character || Character->IsDead())
 	{
-		DrawText(Character ? TEXT("You died. Press R to retry.") : TEXT("Waiting for spawn. Press R to retry."),
-		    FLinearColor::Yellow, 30.f, 185.f, nullptr, 1.5f);
+		Y += Text(Character ? TEXT("You died. Press R to retry.") : TEXT("Waiting for spawn. Press R to retry."), FLinearColor::Yellow,
+		          Margin, Y, LeftWidth, 1.2f);
 	}
 
-	DrawText(TEXT("E Collect supplies | I Inventory / Training | Esc Menu"), FLinearColor::White, 30.f, Canvas->SizeY - 45.f);
+	Y += 12.f;
+	if (Campaign)
+	{
+		Y += Text(Campaign->GetObjective(), FLinearColor(1.f, 0.8f, 0.3f), Margin, Y, LeftWidth);
+	}
+
+	for (TActorIterator<ACCLEnemyCharacter> It(GetWorld()); It; ++It)
+	{
+		Y += Text(FString::Printf(TEXT("%s HP %.0f%s"), *It->DisplayName,
+		                          It->GetAbilitySystemComponent()->GetNumericAttribute(UCCLHealthSet::GetHealthAttribute()),
+		                          It->IsDead() ? TEXT(" (defeated)") : TEXT("")),
+		          FLinearColor(1.f, 0.45f, 0.4f), Margin, Y, LeftWidth);
+		const auto* Fighter = It->FindComponentByClass<UCCLFighterComponent>();
+		if (!It->IsDead() && Fighter && Fighter->GetAction() == ECCLCombatAction::Attack)
+		{
+			Y += Text(It->PatternLabel, FLinearColor::Yellow, Margin, Y, LeftWidth);
+		}
+	}
+
+	TArray<TPair<FString, FLinearColor>> Prompts;
+	if (State && Campaign)
+	{
+		const auto* Expedition = State->GetExpedition();
+		Prompts.Emplace(Expedition->GetTutorial(), FLinearColor::White);
+		Prompts.Emplace(FString::Printf(TEXT("Coins: %d"), Expedition->GetCoins()), FLinearColor::Yellow);
+		for (TActorIterator<ACCLVillageSteward> It(GetWorld()); It; ++It)
+		{
+			if (It->CanReach(Character))
+			{
+				Prompts.Emplace(TEXT("Village Steward: T Talk / Quest | B Buy potion (10 coins)"), FLinearColor::Green);
+				break;
+			}
+		}
+	}
+
 	if (Character)
 	{
 		for (TActorIterator<ACCLWorldPickup> It(GetWorld()); It; ++It)
 		{
 			if (FVector::DistSquared(Character->GetActorLocation(), It->GetActorLocation()) < FMath::Square(225.f) && It->Definition)
 			{
-				DrawText(FString::Printf(TEXT("E: %s x%d"), *It->Definition->GetLabel().ToString(), It->Quantity), FLinearColor::Yellow, 30.f, Canvas->SizeY - 75.f);
+				Prompts.Emplace(FString::Printf(TEXT("E: %s x%d"), *It->Definition->GetLabel().ToString(), It->Quantity),
+				                FLinearColor::Yellow);
 				break;
 			}
 		}
 	}
-	const auto* Controller = Cast<ACCLPlayerController>(PlayerOwner);
-	const auto* State = PlayerOwner ? PlayerOwner->GetPlayerState<ACCLPlayerState>() : nullptr;
-	if (State && GetWorld()->GetGameState<ACCLCampaignState>())
+
+	Prompts.Emplace(TEXT("E Collect | I Inventory / Training | Esc Menu"), FLinearColor::White);
+#if !UE_BUILD_SHIPPING && !UE_BUILD_TEST
+	Prompts.Emplace(TEXT("K Test Death"), FLinearColor::Yellow);
+#endif
+	float PromptHeight = 0.f;
+	for (const auto& Prompt : Prompts)
 	{
-		const auto* Expedition = State->GetExpedition();
-		DrawText(Expedition->GetTutorial(), FLinearColor::White, 30.f, Canvas->SizeY - 165.f);
-		DrawText(FString::Printf(TEXT("Coins: %d  |  %s"), Expedition->GetCoins(), *Expedition->GetNotice()), FLinearColor::Yellow, 30.f, Canvas->SizeY - 140.f);
-		for (TActorIterator<ACCLVillageSteward> It(GetWorld()); It; ++It)
-		{
-			if (It->CanReach(Character)) { DrawText(TEXT("Village Steward: T Talk / Quest | B Buy potion (10 coins)"), FLinearColor::Green, 30.f, Canvas->SizeY - 105.f); break; }
-		}
+		PromptHeight += Text(Prompt.Key, Prompt.Value, Margin, 0.f, LeftWidth, 1.f, false);
 	}
-	if (Controller && Controller->IsInventoryOpen() && State)
+	float PromptY = Height - Margin - PromptHeight;
+	if (Controller && Controller->IsDialogueVisible())
 	{
-		const float X = FMath::Max(30.f, static_cast<float>(Canvas->SizeX) - 420.f);
-		const auto* Inventory = State->GetInventory();
-		const auto* Loadout = State->GetLoadout();
-		DrawRect(FLinearColor(0.02f, 0.03f, 0.05f, 0.95f), X - 15.f, 25.f, 405.f, 610.f);
-		DrawText(TEXT("INVENTORY & TRAINING"), FLinearColor::White, X, 40.f, nullptr, 1.3f);
-		DrawText(TEXT("Up/Down Select | F Equip | G Unequip | H Use"), FLinearColor::Gray, X, 70.f);
-		float Row = 105.f;
-		for (int32 Index = 0; Index < Inventory->GetEntries().Num(); ++Index)
-		{
-			const auto& Entry = Inventory->GetEntries()[Index];
-			DrawText(FString::Printf(TEXT("%s %s x%d%s"), Index == Controller->GetSelectedItem() ? TEXT(">") : TEXT(" "),
-				Entry.Definition ? *Entry.Definition->GetLabel().ToString() : TEXT("Loading"), Entry.Quantity,
-				Entry.Id == Loadout->GetEquippedId() ? TEXT(" [equipped]") : TEXT("")), FLinearColor::White, X, Row);
-			Row += 23.f;
-		}
-		if (Inventory->GetEntries().IsEmpty())
-		{
-			DrawText(TEXT("Empty. Collect the village supplies with E."), FLinearColor::Gray, X, Row);
-		}
-		Row = FMath::Max(Row + 25.f, 220.f);
-		DrawText(FString::Printf(TEXT("Training points: %d"), Loadout->GetPoints()), FLinearColor::Yellow, X, Row);
-		Row += 30.f;
-		for (int32 Index = 0; Index < Loadout->GetSkills().Num(); ++Index)
-		{
-			const auto* Skill = Loadout->GetSkills()[Index].Get();
-			DrawText(FString::Printf(TEXT("%d: %s (%d pt)%s"), Index + 1, *Skill->Label.ToString(), Skill->PointCost,
-				Loadout->IsLearned(Skill) ? TEXT(" [learned]") : TEXT("")), FLinearColor::White, X, Row);
-			Row += 25.f;
-		}
-		DrawText(FString::Printf(TEXT("Attack bonus: +%.0f"), State->GetAbilitySystemComponent()->GetNumericAttribute(UCCLOffenseSet::GetAttackBonusAttribute())), FLinearColor::Green, X, Row + 15.f);
-		DrawText(Loadout->GetResult(), FLinearColor::Yellow, X, Row + 50.f);
+		Prompts.Reset();
+		PromptHeight = 0.f;
+	}
+
+	if (!Prompts.IsEmpty())
+	{
+		Panel(Margin - 8.f, PromptY - 8.f, LeftWidth + 16.f, PromptHeight + 16.f);
+	}
+
+	for (const auto& Prompt : Prompts)
+	{
+		PromptY += Text(Prompt.Key, Prompt.Value, Margin, PromptY, LeftWidth);
+	}
+
+	if (Controller && Controller->IsDialogueVisible())
+	{
+		constexpr float DialogueWidth = 880.f;
+		const float X = (Width - DialogueWidth) * 0.5f;
+		const float InnerWidth = DialogueWidth - 40.f;
+		const float NameHeight = Text(Controller->GetDialogueName(), FLinearColor::Yellow, 0.f, 0.f, InnerWidth, 1.1f, false);
+		const float BodyHeight = Text(Controller->GetDialogueText(), FLinearColor::White, 0.f, 0.f, InnerWidth, 1.f, false);
+		const float BoxHeight = NameHeight + BodyHeight + 76.f;
+		float Row = Height - Margin - BoxHeight;
+		Panel(X - 2.f, Row - 2.f, DialogueWidth + 4.f, BoxHeight + 4.f);
+		Panel(X, Row, DialogueWidth, BoxHeight);
+		Row += 16.f;
+		Row += Text(Controller->GetDialogueName(), FLinearColor(1.f, 0.82f, 0.4f), X + 20.f, Row, InnerWidth, 1.1f);
+		Row += 8.f;
+		Row += Text(Controller->GetDialogueText(), FLinearColor::White, X + 20.f, Row, InnerWidth);
+		Text(TEXT("T Talk / Quest | B Buy potion | Esc Close"), FLinearColor(0.8f, 0.85f, 0.9f), X + 20.f, Row + 12.f, InnerWidth);
 	}
 }

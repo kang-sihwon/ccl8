@@ -8,7 +8,7 @@ public class CCLTarget : TargetRules
 	public CCLTarget(TargetInfo Target) : base(Target)
 	{
 		Type = TargetType.Game;
-		DefaultBuildSettings = BuildSettingsVersion.V7;
+		DefaultBuildSettings = BuildSettingsVersion.V8;
 
 		ExtraModuleNames.AddRange( new string[] { "CCL" } );
 	}

@@ -7,6 +7,8 @@ public class CCL : ModuleRules
 	public CCL(ReadOnlyTargetRules Target) : base(Target)
 	{
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
+		// The runtime module references opt-in validation subsystems from Tests.
+		bForceIncludeTestsFolder = true;
 		PublicIncludePaths.Add(ModuleDirectory);
 
 		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "EnhancedInput", "GameplayAbilities", "GameplayTags", "GameplayTasks", "AIModule", "NavigationSystem", "StateTreeModule", "GameplayStateTreeModule" });
@@ -15,7 +17,7 @@ public class CCL : ModuleRules
 		PublicDependencyModuleNames.Add("NetCore");
 		if (Target.bBuildEditor)
 		{
-			PrivateDependencyModuleNames.AddRange(new string[] { "UnrealEd", "AssetRegistry", "StateTreeEditorModule", "PropertyBindingUtils" });
+			PrivateDependencyModuleNames.AddRange(new string[] { "UnrealEd", "AssetRegistry", "StateTreeEditorModule", "PropertyBindingUtils", "PropertyEditor" });
 		}
 
 		// Uncomment if you are using Slate UI

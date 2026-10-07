@@ -145,13 +145,23 @@ void UCCLSessionSmokeSubsystem::Tick(float DeltaTime)
 	if (Role == TEXT("write"))
 	{
 		const FGuid Equipment = Player->GetInventory()->Add(FCCLSessionCodec::Item(TEXT("DA_IronGauntlets")), 1);
-		Player->GetInventory()->Add(FCCLSessionCodec::Item(TEXT("DA_RecoveryPotion")), 7);
+		const FGuid Potion = Player->GetInventory()->Add(FCCLSessionCodec::Item(TEXT("DA_RecoveryPotion")), 7);
 		Player->GetLoadout()->GrantPoints(1);
 		if (!Check(Player->GetLoadout()->Equip(Equipment) && Player->GetLoadout()->Learn(FCCLSessionCodec::Skill(TEXT("DA_PowerTraining"))) &&
 			Player->GetLoadout()->Learn(FCCLSessionCodec::Skill(TEXT("DA_VitalityTraining"))), TEXT("seed equipped and learned profile"))) { return; }
 		Player->GetExpedition()->Restore(20, ECCLQuestStatus::Accepted);
 		for (TActorIterator<ACCLWorldPickup> It(World); It; ++It) { It->Destroy(); }
-		if (!Check(Director->RestoreCheckpoint(1, false) && Session->SaveSession(), TEXT("save partial road checkpoint"))) { return; }
+		if (!Check(Player->GetInventory()->MoveToSlot(Potion, 12) && !Player->GetInventory()->MoveToSlot(Equipment, -1) &&
+		               !Player->GetInventory()->MoveToSlot(Equipment, 16),
+		           TEXT("saved slot placement and invalid slot rejection")))
+		{
+			return;
+		}
+
+		if (!Check(Director->RestoreCheckpoint(1, false) && Session->SaveSession(), TEXT("save partial road checkpoint")))
+		{
+			return;
+		}
 
 		TArray<uint8> SavedBytes;
 		if (!Check(UGameplayStatics::LoadDataFromSlot(SavedBytes, UCCLGameInstance::SaveSlot(), 0), TEXT("read saved bytes"))) { return; }
@@ -179,13 +189,19 @@ void UCCLSessionSmokeSubsystem::Tick(float DeltaTime)
 		TArray<uint8> Bytes;
 		FCCLSessionRecord Record;
 		if (!Check(UGameplayStatics::LoadDataFromSlot(Bytes, UCCLGameInstance::SaveSlot(), 0) && FCCLSessionCodec::Decode(Bytes, Record), TEXT("saved slot remains intact"))) { return; }
-		if (!Check(Inventory->GetEntries().Num() == 2 && Loadout->GetEquippedId() == Record.Equipped && Loadout->GetPoints() == 0 &&
-			Inventory->Find(Record.Items[1].Id) && Inventory->Find(Record.Items[1].Id)->Quantity == 7 &&
-			Player->GetAbilitySystemComponent()->GetNumericAttribute(UCCLOffenseSet::GetAttackBonusAttribute()) == 15.f &&
-			Player->GetAbilitySystemComponent()->GetNumericAttribute(UCCLHealthSet::GetHealthAttribute()) == 125.f &&
-			Player->GetExpedition()->GetCoins() == 20 && Player->GetExpedition()->GetQuest() == ECCLQuestStatus::Accepted &&
-			Director->GetDefeatedMask() == 1 && World->GetGameState<ACCLCampaignState>()->GetRemainingGuards() == 1,
-			TEXT("profile and partial world restored across processes"))) { return; }
+		if (!Check(Inventory->GetEntries().Num() == 2 && Inventory->FindSlot(12) && Inventory->FindSlot(12)->Id == Record.Items[1].Id &&
+		               Inventory->Find(Record.Equipped) && Inventory->Find(Record.Equipped)->Slot == INDEX_NONE &&
+		               Loadout->GetEquippedId() == Record.Equipped && Loadout->GetPoints() == 0 && Inventory->Find(Record.Items[1].Id) &&
+		               Inventory->Find(Record.Items[1].Id)->Quantity == 7 &&
+		               Player->GetAbilitySystemComponent()->GetNumericAttribute(UCCLOffenseSet::GetAttackBonusAttribute()) == 15.f &&
+		               Player->GetAbilitySystemComponent()->GetNumericAttribute(UCCLHealthSet::GetHealthAttribute()) == 125.f &&
+		               Player->GetExpedition()->GetCoins() == 20 && Player->GetExpedition()->GetQuest() == ECCLQuestStatus::Accepted &&
+		               Director->GetDefeatedMask() == 1 && World->GetGameState<ACCLCampaignState>()->GetRemainingGuards() == 1,
+		           TEXT("profile and partial world restored across processes")))
+		{
+			return;
+		}
+
 		if (!Check(!TActorIterator<ACCLWorldPickup>(World), TEXT("collected supplies do not respawn on load"))) { return; }
 		if (Step == 2) { Session->ReturnToMenu(); Step = 3; Next = Now + 1.; return; }
 		PC->ToggleInventory();

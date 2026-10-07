@@ -1,5 +1,6 @@
 #include "CCLGameInstance.h"
 #include "CCLCharacter.h"
+#include "CCLPlayerController.h"
 #include "CCLPlayerState.h"
 #include "Items/CCLInventoryComponent.h"
 #include "Items/CCLItemDefinition.h"
@@ -64,6 +65,12 @@ void UCCLGameInstance::ShowMenu()
 {
 	if (Menu.IsValid() || !GetGameViewportClient() || !GetFirstLocalPlayerController()) { return; }
 	auto* PC = GetFirstLocalPlayerController();
+	if (auto* CCL = Cast<ACCLPlayerController>(PC))
+	{
+		CCL->CloseInventory();
+		CCL->CloseDialogue();
+	}
+
 	PC->FlushPressedKeys();
 	PC->SetIgnoreMoveInput(true);
 	PC->SetIgnoreLookInput(true);
@@ -181,10 +188,14 @@ bool UCCLGameInstance::SaveSession()
 	for (const auto& Entry : Player->GetInventory()->GetEntries())
 	{
 		FCCLSavedItem Value;
-		Value.Id = Entry.Id; Value.Definition = Entry.Definition ? Entry.Definition->GetFName() : NAME_None; Value.Quantity = Entry.Quantity;
+		Value.Id = Entry.Id;
+		Value.Definition = Entry.Definition ? Entry.Definition->GetFName() : NAME_None;
+		Value.Quantity = Entry.Quantity;
+		Value.Slot = Entry.Slot;
 		Record.Items.Add(Value);
 	}
 	Record.Equipped = Player->GetLoadout()->GetEquippedId();
+	Record.EquipmentSlots = Player->GetLoadout()->GetEquipment();
 	Record.Points = Player->GetLoadout()->GetPoints();
 	for (auto Skill : Player->GetLoadout()->GetSkills()) { if (Player->GetLoadout()->IsLearned(Skill)) { Record.Skills.Add(Skill->GetFName()); } }
 	Record.Coins = Player->GetExpedition()->GetCoins();
@@ -237,12 +248,19 @@ bool UCCLGameInstance::ApplyRecord(const FCCLSessionRecord& Record)
 	for (const auto& Value : Record.Items)
 	{
 		auto& Entry = Entries.AddDefaulted_GetRef();
-		Entry.Id = Value.Id; Entry.Definition = FCCLSessionCodec::Item(Value.Definition); Entry.Quantity = Value.Quantity;
+		Entry.Id = Value.Id;
+		Entry.Definition = FCCLSessionCodec::Item(Value.Definition);
+		Entry.Quantity = Value.Quantity;
+		Entry.Slot = Value.Slot;
 	}
 	TArray<UCCLSkillDefinition*> Skills;
 	for (FName Id : Record.Skills) { Skills.Add(FCCLSessionCodec::Skill(Id)); }
-	if (!Player->GetInventory()->Restore(Entries) || !Player->GetLoadout()->Restore(Record.Equipped, Skills, Record.Points) ||
-		!Player->GetExpedition()->Restore(Record.Coins, static_cast<ECCLQuestStatus>(Record.Quest))) { return false; }
+	if (!Player->GetInventory()->Restore(Entries) || !Player->GetLoadout()->Restore(Record.EquipmentSlots, Skills, Record.Points) ||
+	    !Player->GetExpedition()->Restore(Record.Coins, static_cast<ECCLQuestStatus>(Record.Quest)))
+	{
+		return false;
+	}
+
 	for (TActorIterator<ACCLWorldPickup> It(GetWorld()); It; ++It) { if (It->Definition && !Record.RemainingSupplies.Contains(It->Definition->GetFName())) { It->Destroy(); } }
 	for (TActorIterator<ACCLCampaignDirector> It(GetWorld()); It; ++It) { return It->RestoreCheckpoint(Record.DefeatedGuards, Record.Victory != 0); }
 	return false;

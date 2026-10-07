@@ -1,5 +1,13 @@
 #include "CCLPlayerController.h"
 #include "Session/CCLGameInstance.h"
+#include "UI/SCCLInventoryWidget.h"
+#include "Combat/CCLFighterComponent.h"
+#include "Components/SceneCaptureComponent2D.h"
+#include "Components/SkeletalMeshComponent.h"
+#include "Engine/TextureRenderTarget2D.h"
+#include "Items/CCLItemDefinition.h"
+#include "Engine/GameViewportClient.h"
+#include "Framework/Application/SlateApplication.h"
 #include "Campaign/CCLExpeditionComponent.h"
 #include "Campaign/CCLVillageSteward.h"
 
@@ -97,8 +105,16 @@ void ACCLPlayerController::SetupInputComponent()
 		Input->BindAction(Action, ETriggerEvent::Completed, this, &ThisClass::CombatReleased, Tag);
 		Input->BindAction(Action, ETriggerEvent::Canceled, this, &ThisClass::CombatReleased, Tag);
 	};
-	MapCombat(EKeys::LeftMouseButton, CCLTags::Input_Attack);
-	MapCombat(EKeys::RightMouseButton, CCLTags::Input_Guard);
+	auto MapHand = [this, Input, &MakeAction](FKey Key, FGameplayTag Hand) {
+		auto* Action = MakeAction(EInputActionValueType::Boolean);
+		CombatActions.Add(Action);
+		InputMapping->MapKey(Action, Key);
+		Input->BindAction(Action, ETriggerEvent::Started, this, &ThisClass::HandPressed, Hand);
+		Input->BindAction(Action, ETriggerEvent::Completed, this, &ThisClass::HandReleased, Hand);
+		Input->BindAction(Action, ETriggerEvent::Canceled, this, &ThisClass::HandReleased, Hand);
+	};
+	MapHand(EKeys::LeftMouseButton, CCLItemTags::Slot_LeftHand);
+	MapHand(EKeys::RightMouseButton, CCLItemTags::Slot_RightHand);
 	MapCombat(EKeys::Q, CCLTags::Input_Parry);
 	MapCombat(EKeys::LeftShift, CCLTags::Input_Dodge);
 	auto MapMenu = [this, Input, &MakeAction](FKey Key, void (ThisClass::*Function)())
@@ -127,6 +143,11 @@ void ACCLPlayerController::SetupInputComponent()
 void ACCLPlayerController::FlushPressedKeys()
 {
 	Super::FlushPressedKeys();
+	if (IsLocalController())
+	{
+		HandInput(CCLItemTags::Slot_LeftHand, false);
+		HandInput(CCLItemTags::Slot_RightHand, false);
+	}
 
 	if (auto* ControlledPawn = Cast<ACCLCharacter>(GetPawn()))
 	{
@@ -139,6 +160,8 @@ void ACCLPlayerController::FlushPressedKeys()
 
 void ACCLPlayerController::EndPlay(const EEndPlayReason::Type EndPlayReason)
 {
+	CloseInventory();
+	CloseDialogue();
 	if (ULocalPlayer* LocalPlayer = GetLocalPlayer())
 	{
 		if (auto* Subsystem = LocalPlayer->GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(); Subsystem && InputMapping)
@@ -166,20 +189,136 @@ void ACCLPlayerController::CCLDie()
 
 void ACCLPlayerController::CCLLeave()
 {
+	if (bInventoryOpen)
+	{
+		CloseInventory();
+		return;
+	}
+
+	if (IsDialogueVisible())
+	{
+		CloseDialogue();
+		return;
+	}
+
 	if (auto* Session = GetGameInstance<UCCLGameInstance>()) { Session->ToggleMenu(); }
 }
 
 void ACCLPlayerController::ToggleInventory()
 {
-	bInventoryOpen = !bInventoryOpen;
+	if (bInventoryOpen)
+	{
+		CloseInventory();
+		return;
+	}
+
+	const auto* UIPawn = Cast<ACCLCharacter>(GetPawn());
+	const auto* Session = GetGameInstance<UCCLGameInstance>();
+	if (!IsLocalController() || !UIPawn || UIPawn->IsDead() || (Session && Session->IsMenuVisible()) || !GetWorld()->GetGameViewport())
+	{
+		return;
+	}
+
+	CloseDialogue();
+	FlushPressedKeys();
+	bInventoryOpen = 1;
 	SelectedItem = 0;
+	SelectedEquipment.Invalidate();
+	UpdateEquipmentPreview();
+	InventoryWidget = SNew(SCCLInventoryWidget).Controller(this);
+	GetWorld()->GetGameViewport()->AddViewportWidgetContent(InventoryWidget.ToSharedRef(), 20);
+	bShowMouseCursor = true;
+	FInputModeGameAndUI Mode;
+	Mode.SetWidgetToFocus(InventoryWidget);
+	Mode.SetHideCursorDuringCapture(false);
+	Mode.SetLockMouseToViewportBehavior(EMouseLockMode::DoNotLock);
+	SetInputMode(Mode);
+}
+
+void ACCLPlayerController::CloseInventory()
+{
+	if (!bInventoryOpen && !InventoryWidget.IsValid())
+	{
+		return;
+	}
+
+	bInventoryOpen = 0;
+	if (EquipmentCamera)
+	{
+		EquipmentCamera->DestroyComponent();
+		EquipmentCamera = nullptr;
+	}
+
+	if (InventoryWidget.IsValid() && GetWorld() && GetWorld()->GetGameViewport())
+	{
+		GetWorld()->GetGameViewport()->RemoveViewportWidgetContent(InventoryWidget.ToSharedRef());
+	}
+
+	InventoryWidget.Reset();
+	if (IsLocalController())
+	{
+		if (FSlateApplication::IsInitialized())
+		{
+			FSlateApplication::Get().CancelDragDrop();
+		}
+
+		FlushPressedKeys();
+		bShowMouseCursor = false;
+		SetInputMode(FInputModeGameOnly());
+	}
+}
+
+void ACCLPlayerController::SelectInventorySlot(int32 Slot)
+{
+	const auto* State = GetPlayerState<ACCLPlayerState>();
+	if (State && Slot >= 0 && Slot < State->GetInventory()->Capacity)
+	{
+		SelectedItem = Slot;
+		SelectedEquipment.Invalidate();
+	}
+}
+
+void ACCLPlayerController::ServerMoveInventoryItem_Implementation(FGuid Id, int32 Slot)
+{
+	auto* State = GetPlayerState<ACCLPlayerState>();
+	const auto* UIPawn = Cast<ACCLCharacter>(GetPawn());
+	if (State && UIPawn && !UIPawn->IsDead() && !State->GetLoadout()->IsEquipped(Id))
+	{
+		State->GetLoadout()->ShowNotice(State->GetInventory()->MoveToSlot(Id, Slot) ? TEXT("Item moved.") : TEXT("Cannot move this item."));
+	}
+}
+
+void ACCLPlayerController::ClientShowDialogue_Implementation(ACCLVillageSteward* Speaker, const FString& Name, const FString& Text)
+{
+	if (!IsValid(Speaker) || !Speaker->CanReach(GetPawn()))
+	{
+		return;
+	}
+
+	CloseInventory();
+	DialogueSpeaker = Speaker;
+	DialogueName = Name;
+	DialogueText = Text;
+}
+
+void ACCLPlayerController::CloseDialogue()
+{
+	DialogueSpeaker.Reset();
+	DialogueName.Reset();
+	DialogueText.Reset();
+}
+
+bool ACCLPlayerController::IsDialogueVisible() const
+{
+	const auto* UIPawn = Cast<ACCLCharacter>(GetPawn());
+	return UIPawn && !UIPawn->IsDead() && DialogueSpeaker.IsValid() && DialogueSpeaker->CanReach(UIPawn);
 }
 
 void ACCLPlayerController::SelectPreviousItem()
 {
 	if (bInventoryOpen)
 	{
-		SelectedItem = FMath::Max(0, SelectedItem - 1);
+		SelectInventorySlot(FMath::Max(0, SelectedItem - 1));
 	}
 }
 
@@ -188,7 +327,7 @@ void ACCLPlayerController::SelectNextItem()
 	const auto* State = GetPlayerState<ACCLPlayerState>();
 	if (bInventoryOpen && State)
 	{
-		SelectedItem = FMath::Clamp(SelectedItem + 1, 0, FMath::Max(0, State->GetInventory()->GetEntries().Num() - 1));
+		SelectInventorySlot(FMath::Clamp(SelectedItem + 1, 0, FMath::Max(0, State->GetInventory()->Capacity - 1)));
 	}
 }
 
@@ -202,9 +341,10 @@ void ACCLPlayerController::EquipSelectedItem()
 
 void ACCLPlayerController::UnequipItem()
 {
-	if (bInventoryOpen)
+	if (bInventoryOpen && GetPlayerState<ACCLPlayerState>() && (SelectedEquipment.IsValid() || SelectedItem >= 0))
 	{
-		ServerEquipItem(FGuid());
+		ServerUnequipToBag(SelectedEquipment.IsValid() ? SelectedEquipment
+		                                               : GetPlayerState<ACCLPlayerState>()->GetLoadout()->GetEquippedId());
 	}
 }
 
@@ -290,13 +430,17 @@ void ACCLPlayerController::ServerLearnSkill_Implementation(UCCLSkillDefinition* 
 
 FGuid ACCLPlayerController::GetSelectedEntryId() const
 {
+	if (SelectedEquipment.IsValid())
+	{
+		return SelectedEquipment;
+	}
+
 	const auto* State = GetPlayerState<ACCLPlayerState>();
 	if (State)
 	{
-		const auto& Entries = State->GetInventory()->GetEntries();
-		if (Entries.IsValidIndex(SelectedItem))
+		if (const auto* Entry = State->GetInventory()->FindSlot(SelectedItem))
 		{
-			return Entries[SelectedItem].Id;
+			return Entry->Id;
 		}
 	}
 	return FGuid();
@@ -304,6 +448,11 @@ FGuid ACCLPlayerController::GetSelectedEntryId() const
 
 void ACCLPlayerController::Move(const FInputActionValue& Value)
 {
+	if (bInventoryOpen)
+	{
+		return;
+	}
+
 	ACCLCharacter* ControlledCharacter = Cast<ACCLCharacter>(GetPawn());
 
 	if (!ControlledCharacter || ControlledCharacter->IsDead() || (ControlledCharacter->GetAbilitySystemComponent() && ControlledCharacter->GetAbilitySystemComponent()->HasMatchingGameplayTag(CCLTags::State_Stagger)))
@@ -319,6 +468,11 @@ void ACCLPlayerController::Move(const FInputActionValue& Value)
 
 void ACCLPlayerController::Look(const FInputActionValue& Value)
 {
+	if (bInventoryOpen)
+	{
+		return;
+	}
+
 	const FVector2D Axis = Value.Get<FVector2D>();
 	AddYawInput(Axis.X);
 	AddPitchInput(-Axis.Y);
@@ -326,6 +480,11 @@ void ACCLPlayerController::Look(const FInputActionValue& Value)
 
 void ACCLPlayerController::StartJump()
 {
+	if (bInventoryOpen)
+	{
+		return;
+	}
+
 	if (ACCLCharacter* ControlledCharacter = Cast<ACCLCharacter>(GetPawn()); ControlledCharacter && !ControlledCharacter->IsDead())
 	{
 		ControlledCharacter->Jump();
@@ -360,6 +519,11 @@ void ACCLPlayerController::ServerRequestDebugDeath_Implementation()
 
 void ACCLPlayerController::CombatPressed(FGameplayTag Tag)
 {
+	if (bInventoryOpen)
+	{
+		return;
+	}
+
 	if (auto* ControlledPawn = Cast<ACCLCharacter>(GetPawn()))
 	{
 		if (auto* ASC = Cast<UCCLAbilitySystemComponent>(ControlledPawn->GetAbilitySystemComponent()))
@@ -440,11 +604,27 @@ ACCLVillageSteward* NearbySteward(UWorld* World, const APawn* Pawn)
 }
 void ACCLPlayerController::ServerTalkToSteward_Implementation()
 {
-	if (auto* State = GetPlayerState<ACCLPlayerState>()) { State->GetExpedition()->Talk(NearbySteward(GetWorld(), GetPawn())); }
+	if (auto* State = GetPlayerState<ACCLPlayerState>())
+	{
+		auto* Speaker = NearbySteward(GetWorld(), GetPawn());
+		State->GetExpedition()->Talk(Speaker);
+		if (Speaker)
+		{
+			ClientShowDialogue(Speaker, Speaker->DisplayName.ToString(), State->GetExpedition()->GetNotice());
+		}
+	}
 }
 void ACCLPlayerController::ServerBuyPotion_Implementation()
 {
-	if (auto* State = GetPlayerState<ACCLPlayerState>()) { State->GetExpedition()->Buy(NearbySteward(GetWorld(), GetPawn())); }
+	if (auto* State = GetPlayerState<ACCLPlayerState>())
+	{
+		auto* Speaker = NearbySteward(GetWorld(), GetPawn());
+		State->GetExpedition()->Buy(Speaker);
+		if (Speaker)
+		{
+			ClientShowDialogue(Speaker, Speaker->DisplayName.ToString(), State->GetExpedition()->GetNotice());
+		}
+	}
 }
 void ACCLPlayerController::ClientContentTestStep_Implementation(int32 Step)
 {
@@ -455,4 +635,140 @@ void ACCLPlayerController::ClientContentTestStep_Implementation(int32 Step)
 		else { ServerBuyPotion(); }
 	}
 #endif
+}
+
+void ACCLPlayerController::ServerEquipToSlot_Implementation(FGuid Id, FGameplayTag Slot)
+{
+	if (auto* State = GetPlayerState<ACCLPlayerState>())
+	{
+		State->GetLoadout()->Equip(Id, Slot);
+	}
+}
+
+void ACCLPlayerController::ServerUnequipToBag_Implementation(FGuid Id, int32 BagSlot)
+{
+	if (auto* State = GetPlayerState<ACCLPlayerState>())
+	{
+		State->GetLoadout()->Unequip(Id, BagSlot);
+	}
+}
+
+void ACCLPlayerController::HandPressed(FGameplayTag Hand)
+{
+	if (!bInventoryOpen)
+	{
+		HandInput(Hand, true);
+	}
+}
+
+void ACCLPlayerController::HandReleased(FGameplayTag Hand)
+{
+	HandInput(Hand, false);
+}
+
+void ACCLPlayerController::HandInput(FGameplayTag Hand, bool bPressed)
+{
+	if (Hand != CCLItemTags::Slot_LeftHand && Hand != CCLItemTags::Slot_RightHand)
+	{
+		return;
+	}
+
+	auto* State = GetPlayerState<ACCLPlayerState>();
+	auto* PawnActor = Cast<ACCLCharacter>(GetPawn());
+	auto* ASC = State ? State->GetCCLAbilitySystem() : nullptr;
+	if (!ASC || !PawnActor)
+	{
+		return;
+	}
+
+	FGameplayTag& Held = Hand == CCLItemTags::Slot_LeftHand ? HeldLeftAction : HeldRightAction;
+	if (!bPressed)
+	{
+		if (Held.IsValid())
+		{
+			ASC->AbilityInputTagReleased(Held);
+			Held = FGameplayTag();
+		}
+
+		return;
+	}
+
+	if (PawnActor->IsDead() || ASC->HasMatchingGameplayTag(CCLTags::State_Busy) || ASC->HasMatchingGameplayTag(CCLTags::State_Stagger))
+	{
+		return;
+	}
+
+	const FGameplayTag Input = State->GetLoadout()->PrepareHandAction(Hand);
+	if (!Input.IsValid())
+	{
+		return;
+	}
+
+	Held = Input;
+	ASC->AbilityInputTagPressed(Input);
+}
+
+void ACCLPlayerController::UpdateEquipmentPreview()
+{
+	auto* PawnActor = Cast<ACCLCharacter>(GetPawn());
+	if (!bInventoryOpen || !PawnActor || !IsLocalController())
+	{
+		return;
+	}
+
+	if (!EquipmentPreview)
+	{
+		EquipmentPreview = NewObject<UTextureRenderTarget2D>(this);
+		EquipmentPreview->ClearColor = FLinearColor(0.025f, 0.04f, 0.065f, 1.f);
+		EquipmentPreview->InitAutoFormat(512, 768);
+	}
+
+	if (!EquipmentCamera)
+	{
+		EquipmentCamera = NewObject<USceneCaptureComponent2D>(this);
+		EquipmentCamera->RegisterComponent();
+		EquipmentCamera->TextureTarget = EquipmentPreview;
+		EquipmentCamera->CaptureSource = ESceneCaptureSource::SCS_FinalColorLDR;
+		EquipmentCamera->PrimitiveRenderMode = ESceneCapturePrimitiveRenderMode::PRM_UseShowOnlyList;
+		EquipmentCamera->FOVAngle = 32.f;
+		EquipmentCamera->bCaptureEveryFrame = true;
+		EquipmentCamera->ShowFlags.SetAtmosphere(false);
+		EquipmentCamera->ShowFlags.SetFog(false);
+	}
+
+	const FVector Forward = PawnActor->GetActorForwardVector();
+	EquipmentCamera->SetWorldLocation(PawnActor->GetActorLocation() + Forward * 340.f);
+	EquipmentCamera->SetWorldRotation((-Forward).Rotation());
+	EquipmentCamera->ShowOnlyActors.Reset();
+	EquipmentCamera->ShowOnlyComponents.Reset();
+	EquipmentCamera->ShowOnlyActorComponents(PawnActor, true);
+}
+
+void ACCLPlayerController::CCLEquipmentDemo()
+{
+#if !UE_BUILD_SHIPPING && !UE_BUILD_TEST
+	if (!HasAuthority())
+	{
+		return;
+	}
+
+	if (auto* State = GetPlayerState<ACCLPlayerState>())
+	{
+		for (const TCHAR* Name : {TEXT("DA_TrainingSword"), TEXT("DA_TrainingShield"), TEXT("DA_TrainingStaff"), TEXT("DA_TrainingArmor"),
+		                          TEXT("DA_TrainingBoots"), TEXT("DA_TrainingCloak"), TEXT("DA_TrainingNecklace"), TEXT("DA_TrainingRing")})
+		{
+			auto* Definition = LoadObject<UCCLItemDefinition>(nullptr, *FString::Printf(TEXT("/Game/Progression/%s.%s"), Name, Name));
+			State->GetInventory()->Add(Definition, 1);
+		}
+	}
+#endif
+}
+
+void ACCLPlayerController::SelectEquipmentSlot(FGameplayTag Slot)
+{
+	if (const auto* State = GetPlayerState<ACCLPlayerState>())
+	{
+		SelectedEquipment = State->GetLoadout()->GetEquippedId(Slot);
+		SelectedItem = INDEX_NONE;
+	}
 }

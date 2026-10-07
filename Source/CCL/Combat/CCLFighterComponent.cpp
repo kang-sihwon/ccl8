@@ -1,4 +1,8 @@
 #include "CCLFighterComponent.h"
+#include "Items/CCLAttachmentProfile.h"
+#include "GameFramework/Character.h"
+#include "Components/StaticMeshComponent.h"
+#include "Components/SkeletalMeshComponent.h"
 
 #include "CCLCombatDefinition.h"
 #include "CCLCombatComponent.h"
@@ -10,9 +14,7 @@
 #include "AbilitySystem/CCLHealthSet.h"
 #include "AbilitySystem/CCLStaminaSet.h"
 #include "Items/CCLItemDefinition.h"
-#include "GameFramework/Character.h"
 #include "GameFramework/CharacterMovementComponent.h"
-#include "Components/SkeletalMeshComponent.h"
 #include "DrawDebugHelpers.h"
 #include "Animation/AnimMontage.h"
 #include "Animation/AnimInstance.h"
@@ -97,6 +99,8 @@ void UCCLFighterComponent::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>&
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
 	DOREPLIFETIME(UCCLFighterComponent, Action);
 	DOREPLIFETIME(UCCLFighterComponent, Item);
+	DOREPLIFETIME(UCCLFighterComponent, LeftHandItem);
+	DOREPLIFETIME(UCCLFighterComponent, RightHandItem);
 	DOREPLIFETIME(UCCLFighterComponent, AttackOverride);
 }
 
@@ -146,7 +150,7 @@ void UCCLFighterComponent::Initialize(UCCLAbilitySystemComponent* InASC)
 
 		if (Item)
 		{
-			const auto* Fragment = Cast<UCCLItemFragment_Combat>(Item->FindFragment(UCCLItemFragment_Combat::StaticClass()));
+			const auto* Fragment = Item->FindFragment<FCCLItemFragment_Weapon>();
 
 			if (Fragment && Fragment->Abilities)
 			{
@@ -225,7 +229,7 @@ void UCCLFighterComponent::NotifyHit(FGameplayTag Outcome)
 const UCCLCombatDefinition* UCCLFighterComponent::GetAttack() const
 {
 	if (AttackOverride) { return AttackOverride; }
-	const auto* Fragment = Item ? Cast<UCCLItemFragment_Combat>(Item->FindFragment(UCCLItemFragment_Combat::StaticClass())) : nullptr;
+	const auto* Fragment = Item ? Item->FindFragment<FCCLItemFragment_Weapon>() : nullptr;
 	return Fragment ? Fragment->Combat.Get() : nullptr;
 }
 
@@ -272,4 +276,81 @@ void UCCLFighterComponent::MulticastFeedback_Implementation(FGameplayTag Outcome
 	}
 
 	FeedbackExpires = GetWorld()->GetTimeSeconds() + 0.8;
+}
+
+void UCCLFighterComponent::RefreshEquipmentVisuals()
+{
+	for (UMeshComponent* Mesh : EquipmentVisuals)
+	{
+		if (Mesh)
+		{
+			Mesh->DestroyComponent();
+		}
+	}
+
+	EquipmentVisuals.Reset();
+	const auto* Profile = AttachmentProfile.LoadSynchronous();
+	auto* Character = Cast<ACharacter>(GetOwner());
+	if (!Character || !Character->GetMesh())
+	{
+		return;
+	}
+
+	for (int32 Hand = 0; Hand < 2; ++Hand)
+	{
+		const auto* Definition = Hand == 0 ? LeftHandItem.Get() : RightHandItem.Get();
+		if (!Definition)
+		{
+			continue;
+		}
+
+		if (Hand == 0 && CCLEquipment::IsTwoHanded(Definition))
+		{
+			continue;
+		}
+
+		const auto* Visual = Definition->FindFragment<FCCLItemFragment_Visual>();
+		if (!Visual)
+		{
+			continue;
+		}
+
+		const auto* Binding = Visual->FindAttachment(CCLEquipment::SlotAt(Hand));
+		FName Socket;
+		FString Error;
+		if (!Binding || !Profile ||
+		    !Profile->Resolve(Character->GetMesh()->GetSkeletalMeshAsset(), Binding->Point, Socket, Error))
+		{
+			UE_LOG(LogTemp, Warning, TEXT("CCL attachment rejected for %s: %s"), *Definition->GetName(), *Error);
+			continue;
+		}
+
+		UMeshComponent* Mesh = nullptr;
+		if (const auto* Skeletal = Definition->FindFragment<FCCLItemFragment_SkeletalVisual>(); Skeletal && Skeletal->EquippedMesh)
+		{
+			auto* Component = NewObject<USkeletalMeshComponent>(Character);
+			Component->SetSkeletalMesh(Skeletal->EquippedMesh);
+			if (Skeletal->AnimClass)
+			{
+				Component->SetAnimInstanceClass(Skeletal->AnimClass);
+			}
+
+			Mesh = Component;
+		}
+		else if (Visual->DroppedMesh)
+		{
+			auto* Component = NewObject<UStaticMeshComponent>(Character);
+			Component->SetStaticMesh(Visual->DroppedMesh);
+			Mesh = Component;
+		}
+
+		if (Mesh)
+		{
+			Mesh->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+			Mesh->SetupAttachment(Character->GetMesh(), Socket);
+			Mesh->SetRelativeTransform(Binding->Offset);
+			Mesh->RegisterComponent();
+			EquipmentVisuals.Add(Mesh);
+		}
+	}
 }

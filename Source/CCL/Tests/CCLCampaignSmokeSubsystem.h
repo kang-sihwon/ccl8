@@ -51,5 +51,7 @@ private:
 	int32 ProgressionStep = 0;
 	FGuid EquipmentId;
 	FGuid PotionId;
+	FGuid TestShieldId;
+	FGuid TestStaffId;
 	uint8 bProgressionReady = 0;
 };

@@ -1,5 +1,6 @@
 #pragma once
 #include "CoreMinimal.h"
+#include "Items/CCLItemFragments.h"
 #include "CCLSessionRecord.generated.h"
 class UCCLItemDefinition;
 class UCCLSkillDefinition;
@@ -7,24 +8,56 @@ USTRUCT()
 struct FCCLSavedItem
 {
 	GENERATED_BODY()
-	UPROPERTY() FGuid Id;
-	UPROPERTY() FName Definition;
-	UPROPERTY() int32 Quantity = 0;
+
+	UPROPERTY()
+	FGuid Id;
+
+	UPROPERTY()
+	FName Definition;
+
+	UPROPERTY()
+	int32 Quantity = 0;
+
+	UPROPERTY()
+	int32 Slot = INDEX_NONE;
 };
 USTRUCT()
 struct FCCLSessionRecord
 {
 	GENERATED_BODY()
-	UPROPERTY() int32 Version = 1;
-	UPROPERTY() TArray<FCCLSavedItem> Items;
-	UPROPERTY() FGuid Equipped;
-	UPROPERTY() TArray<FName> Skills;
-	UPROPERTY() int32 Points = 1;
-	UPROPERTY() int32 Coins = 30;
-	UPROPERTY() uint8 Quest = 0;
-	UPROPERTY() uint8 DefeatedGuards = 0;
-	UPROPERTY() uint8 Victory = 0;
-	UPROPERTY() TArray<FName> RemainingSupplies;
+
+	UPROPERTY()
+	int32 Version = 4;
+
+	UPROPERTY()
+	TArray<FCCLSavedItem> Items;
+
+	UPROPERTY()
+	FGuid Equipped;
+
+	UPROPERTY()
+	TArray<FCCLEquippedSlot> EquipmentSlots;
+
+	UPROPERTY()
+	TArray<FName> Skills;
+
+	UPROPERTY()
+	int32 Points = 1;
+
+	UPROPERTY()
+	int32 Coins = 30;
+
+	UPROPERTY()
+	uint8 Quest = 0;
+
+	UPROPERTY()
+	uint8 DefeatedGuards = 0;
+
+	UPROPERTY()
+	uint8 Victory = 0;
+
+	UPROPERTY()
+	TArray<FName> RemainingSupplies;
 };
 class CCL_API FCCLSessionCodec
 {
