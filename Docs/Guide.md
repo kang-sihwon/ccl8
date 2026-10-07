@@ -25,6 +25,7 @@
 | [SessionFoundation](SessionFoundation.md) | 시작·접속 메뉴, 저장 체크포인트·설정과 검증 |
 | [ContentFoundation](ContentFoundation.md) | 일반 적·보스 패턴과 NPC·상점·퀘스트·튜토리얼 |
 | [ProgressionFoundation](ProgressionFoundation.md) | 인벤토리·장비·성장·스킬 UI의 설계와 검증 |
+| [UIFoundation](UIFoundation.md) | 장르 독립적인 UI 관리자·화면·문맥·레이어·연출 제어의 계약과 검증 |
 | [ArtDirection](ArtDirection.md) | 그래픽 스타일·시각 기준·아트 제작 초안 |
 | [Coding](Coding.md) | 코드 설계·리뷰·빌드와 파일 수정 경계 |
 | [WritingGuide](WritingGuide.md) | 문서 작성·검토·결정 기록 |
