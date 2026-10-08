@@ -437,7 +437,8 @@ bool UCCLUISubsystem::AttachScreen(FCCLUIViewHandle Handle)
 		Current->Screen = Screen;
 		Current->World = GetWorld();
 		ApplyPresentation(Handle, 0.f);
-		return true;
+		// A feature hook may close the new view while applying an existing request.
+		return IsViewOpen(Handle);
 	}
 
 	if (Root && Screen)

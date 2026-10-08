@@ -87,6 +87,8 @@ CommonUI 스택의 비활성화는 화면 제거로 이어질 수 있으므로 �
 
 ## 이전과 검증
 
+통합 검사는 Dedicated·Listen 호스트·지연/손실 클라이언트, 저장 파일의 별도 프로세스 복원, 접속·실패 메뉴를 대상으로 한다. 공용 수명 검사에는 RTS의 자원·선택·미니맵 동시 패널과 대화 중심 게임의 본문·선택지 스택을 별도 레지스트리로 구성한다. 이 예시는 게임 규칙이나 완성된 화면 에셋을 추가하지 않고 등록 데이터·입력 정책의 교체 가능성을 검사한다. 월드 일시정지 중 페이드와 숨긴 화면의 복구도 실제 프레임에서 검사한다.
+
 `ACCLHUD`는 로컬 기능 문맥을 소유하고 공용 관리자에서 능력치 화면과 안내 화면을 연다. `UCCLCombatViewModel`은 MVVM FieldNotify로 GAS 변경을 전달하고 능력치 위젯은 해당 통지를 구독한다. NPC 대사 문맥은 컨트롤러의 서버 응답을 받아 변경을 알리고, 거리·생존 검사는 화면의 표시 여부와 무관하게 컨트롤러에서 수행한다. 기존 퀘스트·적 패턴·근접 상호작용은 기능 계층에서 주기적으로 조회하되 문자열이 변할 때만 위젯을 갱신한다. 위치 변화에는 조회가 필요하며 공용 관리자에 게임 월드 검색을 넣지 않는다.
 
 검사는 능력치 변경 통지, 재스폰 후 ASC 재연결, 이전 구독 해제, 대사 교체·거리 이탈·사망·인벤토리 전환, 720p·1080p 배치와 기존 입력 회귀를 포함한다. 선택지 분기나 여러 퀘스트 목록은 별도 콘텐츠 구현이며 이번 이전에서 새 게임 규칙을 추가하지 않는다.
@@ -118,7 +120,21 @@ HUD·대화창 변경의 생성 BAT와 전체 빌드는 `Saved/StageValidation/U
 
 코드 검토에서는 첫 번째 로컬 플레이어에 고정된 메뉴 소유를 플레이어별 핸들로 바꾸고, 드래그 취소도 해당 소유자의 작업에만 적용했다. 컨트롤러의 서버·클라이언트 RPC 정의 18개는 이전과 동일하며 비교 근거는 `Saved/StageValidation/UIInventory-Review.log`에 있다. `Source/CCL/`에서 UI별 직접 입력 모드·뷰포트 추가 호출을 제거한 상태도 확인했다.
 
-실행 검사는 재스폰·맵 이동·저장·Listen 및 Dedicated 입력, 포커스 복원, 인벤토리 드래그, 720p·1080p 표시를 포함한다. 장르 독립성은 RPG 장비 창, RTS 동시 패널, 대화 중심 화면을 구체적인 등록 데이터로 구성해 공용 관리자의 변경 없이 동작하는지 확인한다. 기존 화면 이전 후의 전체 통합 검사는 다음 단계에서 수행한다.
+실행 검사는 재스폰·맵 이동·저장·Listen 및 Dedicated 입력, 포커스 복원, 인벤토리 드래그, 720p·1080p 표시를 포함한다. RPG 장비 창과 별도로 RTS 동시 패널·대화 중심 화면을 등록 데이터로 구성한 검사도 통과했다. 이 결과는 해당 구성과 수명 계약의 재사용을 확인하며 모든 장르의 콘텐츠 기능이 완성됐다는 뜻은 아니다.
+
+| 통합 검사 | 로컬 근거 | 결과 |
+|---|---|---|
+| 최종 생성 BAT·CCLEditor 전체 빌드 | `Saved/StageValidation/UIIntegration-Generate.log`, `UIIntegration-Build.log` | 성공 |
+| RTS 자원·선택·미니맵, 대화 본문·선택지, 일시정지 페이드, 생성 중 닫힘 | `Saved/Tests/UIFoundation/20261008-101321/game.log` | 통과 |
+| Dedicated 원격 장비·양손·서버 검증·복제·재스폰 | `Saved/Tests/CampaignSmoke/Dedicated-20261008-100835/` | 서버·driver·witness·늦은 접속 통과 |
+| Listen 호스트 장비·성장·개별 재스폰 | `Saved/Tests/CampaignSmoke/Listen-20261008-101057/` | 호스트·witness·늦은 접속 통과 |
+| 지연 50ms·손실 2%에서 NPC 거래·퀘스트·중복 보상 거부 | `Saved/Tests/CampaignSmoke/Listen-20261008-101322/` | 서버·driver·witness·늦은 접속 통과 |
+| 시작 메뉴 키 입력·별도 프로세스 저장 복원 | `Saved/Tests/SessionSmoke/20261008-100828/` | write·read 통과 |
+| 방 생성·원격 접속·게스트 저장 거부 | `Saved/Tests/SessionSmoke/20261008-101056/` | host·join 통과 |
+| 접속 실패와 메뉴 복구 | `Saved/Tests/SessionSmoke/20261008-101143/` | badjoin 통과 |
+| 장비 태그·저장 호환, UI 레지스트리·표시 모델 | `Saved/Tests/Automation/20261008-101144-062/report/index.json` | 프로젝트 검사 3개 통과; 함께 선택된 엔진 검사 1개도 통과 |
+
+통합 코드 검토에서는 초기 표시 정책의 기능 콜백이 화면을 닫는 경우에도 `OpenView`가 유효한 핸들을 반환할 수 있는 결함을 수정했다. `UCCLUICloseOnHideProbe`가 해당 경로를 재현하며 열린 화면과 반환 핸들이 모두 남지 않는지 검사한다. 문맥 델리게이트 해제, 풀 재사용 초기화, 소유자 소멸, 맵 이동 후 스택 순서와 입력 소유도 검토했다. 서버 RPC 본문 13개의 보존과 공용 Core 의존성 검사 근거는 `Saved/StageValidation/UIIntegration-Review.log`에 있다.
 
 `CCL.UI.RegistryContracts`는 레이어·확장 지점·중복 태그·문맥 검증과 재연결 시 이전 콜백 해제를 검사한다. 결과는 `Saved/Tests/Automation/20261007-235614-219/report/index.json`에서 성공했다. `Tools/Validation/run_ui_foundation.ps1`은 실제 게임 프로세스에서 동시 패널, 스택·큐, 풀 재사용, 미로드 클래스의 비동기 로딩 취소, 등록 소유자 제거, 로컬 플레이어 분리, 뒤로 가기 입력과 맵 이동을 검사한다. `Saved/Tests/UIFoundation/20261007-235928/game.log`에서 통과했으며 맵 이동 후 스택 순서 보존과 닫기 콜백 재진입 거부도 확인했다. 검사에 필요한 Soft Class 에셋은 `Tools/Validation/create_ui_fixture.py`가 생성한다.
 

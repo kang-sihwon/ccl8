@@ -5,11 +5,20 @@
 #include "Tickable.h"
 #include "UI/Core/CCLUITypes.h"
 #include "UI/Core/CCLUIPresentation.h"
+#include "UI/Core/CCLScreen.h"
 #include "CCLUIFoundationSmoke.generated.h"
 
 class UCCLUIContext;
 class UCCLUIRegistry;
-class UCCLScreen;
+
+UCLASS()
+class UCCLUICloseOnHideProbe : public UCCLScreen
+{
+	GENERATED_BODY()
+
+protected:
+	virtual void OnPresentationChanged() override;
+};
 
 UCLASS()
 class CCL_API UCCLUIFoundationSmoke : public UGameInstanceSubsystem, public FTickableGameObject
@@ -22,10 +31,12 @@ public:
 	virtual TStatId GetStatId() const override;
 	virtual UWorld* GetTickableGameObjectWorld() const override { return GetWorld(); }
 	virtual bool IsTickable() const override { return !IsTemplate() && !bComplete; }
+	virtual bool IsTickableWhenPaused() const override { return true; }
 
 private:
 	bool Check(bool bCondition, const TCHAR* Message);
 	void RequestFinished(FCCLUIRequestHandle Request, FCCLUIViewHandle View, bool bSuccess);
+	bool ConfigureExample(bool bStrategy);
 
 private:
 	UPROPERTY()
