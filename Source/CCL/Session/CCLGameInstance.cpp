@@ -1,4 +1,7 @@
 #include "CCLGameInstance.h"
+#include "Agents/CCLAgentWorldSubsystem.h"
+#include "Agents/CCLAccountComponent.h"
+#include "Misc/Base64.h"
 #include "UI/CCLGameUI.h"
 #include "UI/CCLSessionMenuScreen.h"
 #include "UI/Core/CCLUISubsystem.h"
@@ -154,6 +157,7 @@ bool UCCLGameInstance::IsMenuVisibleForPlayer(const APlayerController* PC) const
 }
 void UCCLGameInstance::StartNew(bool bHost)
 {
+	GetSubsystem<UCCLAgentSessionStore>()->ResetSession();
 	bPendingRestore = 0;
 	Status = bHost ? TEXT("Hosting an expedition.") : TEXT("Solo expedition started.");
 	HideMenu();
@@ -224,6 +228,23 @@ bool UCCLGameInstance::SaveSession()
 	Record.DefeatedGuards = Director->GetDefeatedMask();
 	Record.Victory = Campaign->GetPhase() == ECCLCampaignPhase::Victory;
 	for (TActorIterator<ACCLWorldPickup> It(GetWorld()); It; ++It) { if (It->Definition) { Record.RemainingSupplies.Add(It->Definition->GetFName()); } }
+	if (auto* Agents = GetWorld()->GetSubsystem<UCCLAgentWorldSubsystem>(); Agents && Agents->IsRunning())
+	{
+		TArray<uint8> Simulation;
+		if (!Agents->Save(Simulation))
+		{
+			Status = TEXT("Agent state could not be collected for this checkpoint.");
+			return false;
+		}
+
+		Record.AgentSimulation = FBase64::Encode(Simulation);
+		if (const auto* Account = Player->FindComponentByClass<UCCLAccountComponent>())
+		{
+			Record.AccountId = Account->GetAccountId();
+			Record.Coins = 0;
+		}
+	}
+
 	TArray<uint8> Bytes;
 	const bool bSaved = FCCLSessionCodec::Encode(Record, Bytes) && UGameplayStatics::SaveDataToSlot(Bytes, SaveSlot(), 0);
 	Status = bSaved ? TEXT("Host checkpoint saved. Resume from the village at full health.") : TEXT("Save failed. Check storage and definitions.");
@@ -237,6 +258,7 @@ bool UCCLGameInstance::LoadSession(bool bHost)
 	if (!UGameplayStatics::LoadDataFromSlot(Bytes, SaveSlot(), 0) || !FCCLSessionCodec::Decode(Bytes, Record))
 	{ Status = TEXT("Cannot load: checkpoint missing, damaged, incompatible or references unavailable content."); return false; }
 	Pending = Record;
+	GetSubsystem<UCCLAgentSessionStore>()->ResetSession();
 	bPendingRestore = 1;
 	Status = TEXT("Loading checkpoint ...");
 	HideMenu();
@@ -278,9 +300,29 @@ bool UCCLGameInstance::ApplyRecord(const FCCLSessionRecord& Record)
 	TArray<UCCLSkillDefinition*> Skills;
 	for (FName Id : Record.Skills) { Skills.Add(FCCLSessionCodec::Skill(Id)); }
 	if (!Player->GetInventory()->Restore(Entries) || !Player->GetLoadout()->Restore(Record.EquipmentSlots, Skills, Record.Points) ||
-	    !Player->GetExpedition()->Restore(Record.Coins, static_cast<ECCLQuestStatus>(Record.Quest)))
+	    !Player->GetExpedition()->Restore(Record.Coins, static_cast<ECCLQuestStatus>(Record.Quest), !Record.AccountId.IsValid()))
 	{
 		return false;
+	}
+
+	if (!Record.AgentSimulation.IsEmpty())
+	{
+		TArray<uint8> Simulation;
+		FString Error;
+		auto* Agents = GetWorld()->GetSubsystem<UCCLAgentWorldSubsystem>();
+		if (!Agents || !FBase64::Decode(Record.AgentSimulation, Simulation) || !Agents->Restore(Simulation, Error))
+		{
+			return false;
+		}
+	}
+
+	if (Record.AccountId.IsValid())
+	{
+		auto* Account = Player->FindComponentByClass<UCCLAccountComponent>();
+		if (!Account || !Account->BindAccount(Record.AccountId))
+		{
+			return false;
+		}
 	}
 
 	for (TActorIterator<ACCLWorldPickup> It(GetWorld()); It; ++It) { if (It->Definition && !Record.RemainingSupplies.Contains(It->Definition->GetFName())) { It->Destroy(); } }

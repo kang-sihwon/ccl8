@@ -52,7 +52,17 @@ WorldEvent의 실제 신원과 Agent가 지각한 Observation은 구분한다. �
 
 UE 5.9.0 소스 설치본에서 생성 BAT와 `CCLEditor Win64 Development` 빌드가 성공했다. `CCL.Agent.LifetimeAndMigration`, `CCL.Agent.ObservationAndNeeds` 2개 자동화 검사가 통과했다. 근거는 `Saved/StageValidation/AgentFoundation-Generate.log`, `AgentFoundation-Build.log`, `Saved/Tests/Automation/20261008-150633-274/report/index.json`이다. 로그는 로컬에 보존한다.
 
-계정·실제 거래·판단 커널·Actor 실행·마을·지도·연출·Mass 및 장기 시험의 통합은 아직 완료하지 않았다. 현재 Agent 스냅샷은 기존 캠페인 저장에 연결되지 않았다.
+계정·부채·소유권·기회·거래와 판단 커널을 연결했다. `CCLLifeSimulation`은 실제 잔액·재고·숙련·시설 수준으로 목표를 평가한다. `UCCLLifeGoalDefinition`의 진행 계산기와 완료 정책을 교체할 수 있다. 기본 생활 목표는 유지형이며 나머지는 완료형이다. 새 행동 실행기는 아직 코드로 추가해야 한다. 지원하지 않는 행동은 실패한다.
+
+마을에는 StateTree로 이동·작업하는 생활 NPC 7명과 기존 퀘스트 담당자 1명이 있다. 공통 Store가 8명의 기록을 유지한다. 언로드된 생활 NPC는 간략 실행으로 전환한다. 기존 담당자는 퀘스트 위치를 유지하며 생활 행동을 실행하지 않는다. 마을 시나리오는 `DA_MerchantLifeScenario`에서 읽는다.
+
+플레이어 금화는 `UCCLAccountComponent`가 참조하는 공통 계정이 소유한다. 클라이언트에는 잔액 표시값만 복제한다. 기존 금화는 저장 복원 때 계정으로 옮긴다. 보상은 유한한 공동 금고에서 이전하고, 기존 포션 구매는 실제 상점 재고·플레이어 아이템 인벤토리·계정의 거래 어댑터를 사용한다. 아이템 전달 영수증에는 대상 인벤토리 소유자와 아이템 ID가 남는다. 신규 체크포인트는 Agent·원장 스냅샷과 계정 ID를 포함하며 금화를 중복 저장하지 않는다.
+
+판단 후보는 알고 있는 기회에서 생성한다. 판매자 비공개 재고는 실행 단계에서 검사한다. 거래 실패는 이익이나 욕구 충족 없이 실패 경험만 남기며, 성공한 도움과 거래는 상대의 기억에도 남는다. 두 Agent 결과는 일괄 검증 후 원자적으로 게시한다.
+
+`CCL.Agent` 자동화 6개가 `Saved/Tests/Automation/20261008-162140-650/report/index.json`에서 통과했다. 30일 시험은 화폐·물품 보존과 15일 저장 후 30일 결과 재현을 검사하고 `Saved/Tests/LifeSimulation/merchants-30-days.txt`에 매일 상태와 점수 기여를 남긴다. 실제 마을 이동·작업·저장·재생성·언로드 검사와 정상 종료는 `Saved/Tests/AgentWorld/20261008-161753/editor.log`, 기존 캠페인 저장 회귀는 `Saved/Tests/SessionSmoke/20261008-161753/`에서 통과했다. 생성·빌드 근거는 `Saved/StageValidation/AgentLife-Generate.log`, `AgentLife-Build.log`다.
+
+지도·연출·Mass·네트워크 최종 통합과 전체 시각 검사는 진행 중이다.
 
 공통 `UCCLActionComponent`는 소스 ID마다 GAS Ability 핸들을 등록하고 해제한다. 무기 Fragment의 `ActionSet`과 손별 태그가 이 경로에 연결된다. `ACCLProjectile`은 서버에서 이동·충돌하고 발사 시점의 피해 정의를 사용한다. `CCLHit::Apply`는 근접·투사체의 효과 적용을 공유한다. 기존 근접 입력의 전면 이전, 총구 소켓·발사 연출·조준 카메라와 전투 AI의 새 행동 집합 연결은 남아 있다.
 

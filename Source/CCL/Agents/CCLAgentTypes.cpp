@@ -113,6 +113,34 @@ bool FCCLAgentStore::Commit(const FCCLAgentLease& Lease, FCCLAgentRecord Record,
 	return true;
 }
 
+bool FCCLAgentStore::CommitBatch(TArray<TPair<FCCLAgentLease, FCCLAgentRecord>> Updates,
+	const FCCLFeatureRegistry& Registry, FString& Error)
+{
+	check(IsInGameThread());
+	TSet<FGuid> Seen;
+	for (auto& Update : Updates)
+	{
+		const auto& Lease = Update.Key;
+		auto& Record = Update.Value;
+		const auto* Entry = Records.Find(Lease.Handle.Id);
+		if (!Entry || Seen.Contains(Record.Id) || !Lease.Writer.IsValid() || Entry->Generation != Lease.Handle.Generation ||
+			Entry->Writer != Lease.Writer || Entry->Epoch != Lease.Epoch || Record.Id != Lease.Handle.Id ||
+			Record.LastSimulatedTime < Entry->Record.LastSimulatedTime || !Registry.UpgradeAndValidate(Record, Error))
+		{
+			return false;
+		}
+
+		Seen.Add(Record.Id);
+	}
+
+	for (auto& Update : Updates)
+	{
+		Records[Update.Key.Handle.Id].Record = MoveTemp(Update.Value);
+	}
+
+	return true;
+}
+
 bool FCCLAgentStore::Release(const FCCLAgentLease& Lease)
 {
 	check(IsInGameThread());

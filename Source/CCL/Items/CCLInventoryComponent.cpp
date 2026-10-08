@@ -28,7 +28,7 @@ FGuid UCCLInventoryComponent::Add(UCCLItemDefinition* Definition, int32 Quantity
 			Entry.Quantity += Quantity;
 			List.MarkItemDirty(Entry);
 			const FGuid Id = Entry.Id;
-			OnChanged.Broadcast();
+			NotifyChanged();
 			return Id;
 		}
 	}
@@ -45,7 +45,7 @@ FGuid UCCLInventoryComponent::Add(UCCLItemDefinition* Definition, int32 Quantity
 	Entry.Quantity = Quantity;
 	List.MarkItemDirty(Entry);
 	const FGuid Id = Entry.Id;
-	OnChanged.Broadcast();
+	NotifyChanged();
 	return Id;
 }
 
@@ -70,7 +70,7 @@ bool UCCLInventoryComponent::Remove(FGuid Id, int32 Quantity)
 	{
 		List.MarkItemDirty(List.Entries[Index]);
 	}
-	OnChanged.Broadcast();
+	NotifyChanged();
 	return true;
 }
 
@@ -135,7 +135,7 @@ bool UCCLInventoryComponent::Restore(const TArray<FCCLInventoryEntry>& Entries)
 		List.MarkItemDirty(Entry);
 	}
 	List.MarkArrayDirty();
-	OnChanged.Broadcast();
+	NotifyChanged();
 	return true;
 }
 
@@ -176,7 +176,7 @@ bool UCCLInventoryComponent::MoveToSlot(FGuid Id, int32 Slot)
 
 	Source->Slot = Slot;
 	List.MarkItemDirty(*Source);
-	OnChanged.Broadcast();
+	NotifyChanged();
 	return true;
 }
 
@@ -190,7 +190,7 @@ bool UCCLInventoryComponent::ConsumeShot(FGuid Id)
 	auto* Entry = List.Entries.FindByPredicate([Id](const FCCLInventoryEntry& E) { return E.Id == Id; });
 	--Entry->LoadedAmmo;
 	List.MarkItemDirty(*Entry);
-	OnChanged.Broadcast();
+	NotifyChanged();
 	return true;
 }
 
@@ -236,4 +236,39 @@ bool UCCLInventoryComponent::CanReload(FGuid Id) const
 		{
 			return E.Id != Id && E.Definition == Profile->Ammunition && E.Slot >= 0 && E.Quantity > 0;
 		});
+}
+
+bool UCCLInventoryComponent::BeginTransaction()
+{
+	if (!GetOwner()->HasAuthority() || bTransactionOpen)
+	{
+		return false;
+	}
+
+	bTransactionOpen = 1;
+	bPendingChanged = 0;
+	return true;
+}
+
+void UCCLInventoryComponent::EndTransaction(bool bPublish)
+{
+	const bool bNotify = bTransactionOpen && bPendingChanged && bPublish;
+	bTransactionOpen = 0;
+	bPendingChanged = 0;
+	if (bNotify)
+	{
+		OnChanged.Broadcast();
+	}
+}
+
+void UCCLInventoryComponent::NotifyChanged()
+{
+	if (bTransactionOpen)
+	{
+		bPendingChanged = 1;
+	}
+	else
+	{
+		OnChanged.Broadcast();
+	}
 }

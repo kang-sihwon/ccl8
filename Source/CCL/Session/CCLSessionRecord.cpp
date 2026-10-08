@@ -5,6 +5,8 @@
 #include "JsonObjectConverter.h"
 #include "Serialization/JsonSerializer.h"
 #include "Misc/Crc.h"
+#include "Misc/Base64.h"
+#include "Agents/CCLLifeSimulation.h"
 UCCLItemDefinition* FCCLSessionCodec::Item(FName Id)
 {
 	static const TSet<FName> Known = {TEXT("DA_IronGauntlets"),	 TEXT("DA_RecoveryPotion"), TEXT("DA_TrainingSword"),
@@ -36,6 +38,24 @@ bool FCCLSessionCodec::Validate(const FCCLSessionRecord& R)
 		(R.Victory && R.DefeatedGuards != 3) || (R.Quest == 2 && !R.Victory) || R.RemainingSupplies.Num() > 2)
 	{
 		return false;
+	}
+
+	if (R.AccountId.IsValid() && (R.AgentSimulation.IsEmpty() || R.Coins != 0))
+    {
+        return false;
+    }
+
+    if (!R.AgentSimulation.IsEmpty())
+	{
+		TArray<uint8> State;
+		FCCLLifeSimulation Validation;
+		FString Error;
+		if (R.Version < 5 || R.AgentSimulation.Len() > 48 * 1024 * 1024 ||
+			!FBase64::Decode(R.AgentSimulation, State) || !Validation.Load(State, Error) ||
+			(R.AccountId.IsValid() && !Validation.GetEconomy().Accounts.Contains(R.AccountId)))
+		{
+			return false;
+		}
 	}
 
 	TSet<FGuid> Ids;
@@ -197,7 +217,7 @@ bool FCCLSessionCodec::Encode(const FCCLSessionRecord& Record, TArray<uint8>& By
 	}
 
 	FTCHARToUTF8 Utf8(*Json);
-	if (Utf8.Length() > 65528)
+	if (Utf8.Length() > 64 * 1024 * 1024 - 8)
 	{
 		return false;
 	}
@@ -212,7 +232,7 @@ bool FCCLSessionCodec::Encode(const FCCLSessionRecord& Record, TArray<uint8>& By
 
 bool FCCLSessionCodec::Decode(const TArray<uint8>& Bytes, FCCLSessionRecord& Record)
 {
-	if (Bytes.Num() < 12 || Bytes.Num() > 65536 || FMemory::Memcmp(Bytes.GetData(), "CCL1", 4) != 0)
+	if (Bytes.Num() < 12 || Bytes.Num() > 64 * 1024 * 1024 || FMemory::Memcmp(Bytes.GetData(), "CCL1", 4) != 0)
 	{
 		return false;
 	}
@@ -327,6 +347,16 @@ bool FCCLSessionCodec::Decode(const TArray<uint8>& Bytes, FCCLSessionRecord& Rec
 
 			ParsedEquipment.Add(Slot);
 		}
+	}
+
+	if (!Json->HasField(TEXT("agentSimulation")))
+	{
+		Json->SetStringField(TEXT("agentSimulation"), TEXT(""));
+	}
+
+	if (!Json->HasField(TEXT("accountId")))
+	{
+		Json->SetStringField(TEXT("accountId"), FGuid().ToString());
 	}
 
 	Json->SetArrayField(TEXT("equipmentSlots"), {});

@@ -68,6 +68,13 @@ public:
 	bool Reload(FGuid Id);
 	bool CanFire(FGuid Id) const;
 	bool CanReload(FGuid Id) const;
+	bool BeginTransaction();
+	void EndTransaction(bool bPublish);
+
+private:
+	void NotifyChanged();
+
+public:
 	const FCCLInventoryEntry* FindSlot(int32 Slot) const;
 	bool CanAdd(const UCCLItemDefinition* Definition, int32 Quantity) const;
 	const FCCLInventoryEntry* Find(FGuid Id) const;
@@ -82,4 +89,6 @@ public:
 private:
 	UPROPERTY(Replicated)
 	FCCLInventoryList List;
+	uint8 bTransactionOpen = 0;
+	uint8 bPendingChanged = 0;
 };

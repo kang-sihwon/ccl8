@@ -13,6 +13,7 @@ class UCCLInventoryComponent;
 class UCCLLoadoutComponent;
 class UCCLExpeditionComponent;
 class UCCLActionComponent;
+class UCCLAccountComponent;
 
 UCLASS()
 class CCL_API ACCLPlayerState : public APlayerState, public IAbilitySystemInterface
@@ -33,6 +34,9 @@ public:
 private:
 	UPROPERTY(VisibleAnywhere)
 	TObjectPtr<UCCLActionComponent> Actions;
+
+	UPROPERTY(VisibleAnywhere)
+	TObjectPtr<UCCLAccountComponent> Account;
 
 	UPROPERTY(VisibleAnywhere)
 	TObjectPtr<UCCLExpeditionComponent> Expedition;

@@ -134,6 +134,7 @@ public:
 	FCCLAgentHandle Add(FCCLAgentRecord Record, const FCCLFeatureRegistry& Registry, FString& Error);
 	FCCLAgentLease Acquire(FCCLAgentHandle Handle, FGuid Writer);
 	bool Commit(const FCCLAgentLease& Lease, FCCLAgentRecord Record, const FCCLFeatureRegistry& Registry, FString& Error);
+	bool CommitBatch(TArray<TPair<FCCLAgentLease, FCCLAgentRecord>> Updates, const FCCLFeatureRegistry& Registry, FString& Error);
 	bool Release(const FCCLAgentLease& Lease);
 	bool Replace(TArray<FCCLAgentRecord> Records, const FCCLFeatureRegistry& Registry, FString& Error);
 	bool Snapshot(TArray<FCCLAgentRecord>& OutRecords) const;

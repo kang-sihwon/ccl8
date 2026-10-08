@@ -33,6 +33,12 @@ struct FCCLSessionRecord
 	int32 Version = 5;
 
 	UPROPERTY()
+	FString AgentSimulation;
+
+	UPROPERTY()
+	FGuid AccountId;
+
+	UPROPERTY()
 	TArray<FCCLSavedItem> Items;
 
 	UPROPERTY()

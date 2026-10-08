@@ -1,6 +1,14 @@
 #include "CCLProgressionAssetLibrary.h"
 
 #if WITH_EDITOR
+#include "Agents/CCLAgentAIController.h"
+#include "Agents/CCLLifeSimulation.h"
+#include "StateTree.h"
+#include "StateTreeEditorData.h"
+#include "StateTreeState.h"
+#include "StateTreeCompiler.h"
+#include "StateTreeCompilerLog.h"
+#include "Components/StateTreeAIComponentSchema.h"
 #include "Actions/CCLActionComponent.h"
 #include "Actions/CCLWeaponAbility.h"
 #include "Combat/CCLProjectile.h"
@@ -459,6 +467,34 @@ bool UCCLProgressionAssetLibrary::CreateProjectileAssets()
 	}
 
 	return true;
+#else
+	return false;
+#endif
+}
+
+bool UCCLProgressionAssetLibrary::CreateAgentAssets()
+{
+#if WITH_EDITOR
+	auto* Scenario = ProgressionAsset<UCCLPopulationScenario>(TEXT("DA_MerchantLifeScenario"));
+	Scenario->InitialState = FCCLLifeSimulation::MerchantScenario(42);
+	auto* Tree = ProgressionAsset<UStateTree>(TEXT("ST_LifeAgent"));
+	auto* Data = NewObject<UStateTreeEditorData>(Tree);
+	Tree->EditorData = Data;
+	Data->Schema = NewObject<UStateTreeAIComponentSchema>(Data);
+	auto& Root = Data->AddRootState();
+	auto& Select = Root.AddChildState(TEXT("Select intent"));
+	auto& Approach = Root.AddChildState(TEXT("Approach opportunity"));
+	auto& Perform = Root.AddChildState(TEXT("Perform selected activity"));
+	Select.AddTask<FCCLAgentTask>(ECCLAgentExecutionPhase::Select);
+	Approach.AddTask<FCCLAgentTask>(ECCLAgentExecutionPhase::Approach);
+	Perform.AddTask<FCCLAgentTask>(ECCLAgentExecutionPhase::Perform);
+	Select.AddTransition(EStateTreeTransitionTrigger::OnStateSucceeded, EStateTreeTransitionType::GotoState, &Approach);
+	Approach.AddTransition(EStateTreeTransitionTrigger::OnStateSucceeded, EStateTreeTransitionType::GotoState, &Perform);
+	Approach.AddTransition(EStateTreeTransitionTrigger::OnStateFailed, EStateTreeTransitionType::GotoState, &Select);
+	Perform.AddTransition(EStateTreeTransitionTrigger::OnStateCompleted, EStateTreeTransitionType::GotoState, &Select);
+	FStateTreeCompilerLog Log;
+	FStateTreeCompiler Compiler(Log);
+	return Compiler.Compile(*Tree) && SaveProgression(Tree) && SaveProgression(Scenario);
 #else
 	return false;
 #endif

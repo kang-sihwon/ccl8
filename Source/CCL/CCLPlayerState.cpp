@@ -1,6 +1,7 @@
 #include "CCLPlayerState.h"
 #include "Campaign/CCLExpeditionComponent.h"
 #include "Actions/CCLActionComponent.h"
+#include "Agents/CCLAccountComponent.h"
 
 #include "AbilitySystem/CCLAbilitySystemComponent.h"
 #include "AbilitySystem/CCLHealthSet.h"
@@ -20,6 +21,7 @@ ACCLPlayerState::ACCLPlayerState()
 	Inventory = CreateDefaultSubobject<UCCLInventoryComponent>(TEXT("Inventory"));
 	Loadout = CreateDefaultSubobject<UCCLLoadoutComponent>(TEXT("Loadout"));
 	Actions = CreateDefaultSubobject<UCCLActionComponent>(TEXT("Actions"));
+	Account = CreateDefaultSubobject<UCCLAccountComponent>(TEXT("Account"));
 }
 
 UAbilitySystemComponent* ACCLPlayerState::GetAbilitySystemComponent() const

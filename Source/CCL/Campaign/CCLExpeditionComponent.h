@@ -12,18 +12,16 @@ class CCL_API UCCLExpeditionComponent : public UActorComponent
 public:
 	UCCLExpeditionComponent();
 	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
-	bool Restore(int32 SavedCoins, ECCLQuestStatus SavedQuest);
+	bool Restore(int32 SavedCoins, ECCLQuestStatus SavedQuest, bool bImportCurrency = true);
 	bool Talk(ACCLVillageSteward* Steward);
 	bool Buy(ACCLVillageSteward* Steward);
-	int32 GetCoins() const { return Coins; }
+	int32 GetCoins() const;
 	ECCLQuestStatus GetQuest() const { return Quest; }
 	const FString& GetNotice() const { return Notice; }
 	FString GetTutorial() const;
 private:
 	bool CanInteract(ACCLVillageSteward* Steward) const;
 	bool Report(bool bSuccess, const TCHAR* Message);
-	UPROPERTY(Replicated)
-	int32 Coins = 30;
 	UPROPERTY(Replicated)
 	ECCLQuestStatus Quest = ECCLQuestStatus::Available;
 	UPROPERTY(Replicated)

@@ -25,4 +25,7 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "CCL|Editor")
 	static bool CreateProjectileAssets();
+
+	UFUNCTION(BlueprintCallable, Category = "CCL|Editor")
+	static bool CreateAgentAssets();
 };
