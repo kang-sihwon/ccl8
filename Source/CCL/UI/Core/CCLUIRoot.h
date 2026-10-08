@@ -3,6 +3,7 @@
 #include "CoreMinimal.h"
 #include "CommonActivatableWidget.h"
 #include "Blueprint/UserWidgetPool.h"
+#include "GameplayTagContainer.h"
 #include "CCLUIRoot.generated.h"
 
 struct FCCLUIViewDefinition;
