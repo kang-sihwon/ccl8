@@ -106,25 +106,7 @@ FGameplayTag UCCLCombatComponent::ResolveHit(AActor* Target, const FHitResult& H
 	FCCLHitContext Context{Source, Target, SourceASC, TargetASC, Definition, Hit, AttackId};
 	// Reserve before policy side effects: cancellation can synchronously re-enter the resolver.
 	HitActors.Add(Target);
-	const FCCLHitResolution Resolution = Definition->HitRule->GetDefaultObject<UCCLHitRule>()->Resolve(Context);
-
-	if (Resolution.Effect && Resolution.MagnitudeTag.IsValid() && FMath::IsFinite(Resolution.Magnitude))
-	{
-		FGameplayEffectContextHandle EffectContext = SourceASC->MakeEffectContext();
-		EffectContext.AddHitResult(Hit);
-		FGameplayEffectSpecHandle Spec = SourceASC->MakeOutgoingSpec(Resolution.Effect, 1.f, EffectContext);
-
-		if (Spec.IsValid())
-		{
-			Spec.Data->SetSetByCallerMagnitude(Resolution.MagnitudeTag, Resolution.Magnitude);
-
-			if (!SourceASC->ApplyGameplayEffectSpecToTarget(*Spec.Data.Get(), TargetASC).WasSuccessfullyApplied())
-			{
-				return FGameplayTag();
-			}
-		}
-	}
-
-	OnHitResolved.Broadcast(Target, Resolution.Outcome);
-	return Resolution.Outcome;
+	const FGameplayTag Outcome = CCLHit::Apply(Context);
+	OnHitResolved.Broadcast(Target, Outcome);
+	return Outcome;
 }

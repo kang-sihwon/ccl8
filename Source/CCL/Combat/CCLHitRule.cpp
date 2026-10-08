@@ -16,7 +16,7 @@ FCCLHitResolution UCCLHitRule::Resolve(const FCCLHitContext& Context) const
 
 FCCLHitResolution UCCLDuelHitRule::Resolve(const FCCLHitContext& Context) const
 {
-	if (Context.SourceASC->HasMatchingGameplayTag(CCLTags::State_Dead) || Context.TargetASC->HasMatchingGameplayTag(CCLTags::State_Dead))
+	if ((!Context.bDetachedShot && Context.SourceASC->HasMatchingGameplayTag(CCLTags::State_Dead)) || Context.TargetASC->HasMatchingGameplayTag(CCLTags::State_Dead))
 	{
 		return FCCLHitResolution(FGameplayTag(CCLTags::Outcome_Rejected));
 	}
@@ -41,7 +41,7 @@ FCCLHitResolution UCCLDuelHitRule::Resolve(const FCCLHitContext& Context) const
 
 	if (!TargetFighter)
 	{
-		const float Bonus = Context.SourceASC->GetSet<UCCLOffenseSet>() ? Context.SourceASC->GetNumericAttribute(UCCLOffenseSet::GetAttackBonusAttribute()) : 0.f;
+		const float Bonus = !Context.bDetachedShot && Context.SourceASC->GetSet<UCCLOffenseSet>() ? Context.SourceASC->GetNumericAttribute(UCCLOffenseSet::GetAttackBonusAttribute()) : 0.f;
 		return {CCLTags::Outcome_Damage, Context.Definition->DamageEffect, Context.Definition->MagnitudeTag, -(Context.Definition->Damage + Bonus)};
 	}
 
@@ -52,16 +52,19 @@ FCCLHitResolution UCCLDuelHitRule::Resolve(const FCCLHitContext& Context) const
 		return FCCLHitResolution(FGameplayTag(CCLTags::Outcome_Rejected));
 	}
 
-	const FVector ToAttacker = (Context.Source->GetActorLocation() - Context.Target->GetActorLocation()).GetSafeNormal2D();
+	const FVector ToAttacker = Context.bDetachedShot ? -Context.IncomingDirection.GetSafeNormal2D() :
+		(Context.Source->GetActorLocation() - Context.Target->GetActorLocation()).GetSafeNormal2D();
 	const bool bFrontal = FVector::DotProduct(Context.Target->GetActorForwardVector(), ToAttacker) >= FMath::Cos(FMath::DegreesToRadians(TargetFighter->DefenseAngle * 0.5f));
 
 	if (bFrontal && Context.Definition->bParryable && TargetASC->HasMatchingGameplayTag(CCLTags::State_Parry))
 	{
-		Context.SourceASC->CancelAllAbilities();
-
-		if (auto* SourceASC = Cast<UCCLAbilitySystemComponent>(Context.SourceASC))
+		if (!Context.bDetachedShot)
 		{
-			SourceASC->ApplyEffect(UCCLStaggerEffect::StaticClass(), 0.f, TargetFighter->ParryStaggerDuration);
+			Context.SourceASC->CancelAllAbilities();
+			if (auto* SourceASC = Cast<UCCLAbilitySystemComponent>(Context.SourceASC))
+			{
+				SourceASC->ApplyEffect(UCCLStaggerEffect::StaticClass(), 0.f, TargetFighter->ParryStaggerDuration);
+			}
 		}
 
 		TargetFighter->NotifyHit(CCLTags::Outcome_Parried);
@@ -87,6 +90,41 @@ FCCLHitResolution UCCLDuelHitRule::Resolve(const FCCLHitContext& Context) const
 
 	TargetASC->CancelAllAbilities();
 	TargetFighter->NotifyHit(CCLTags::Outcome_Damage);
-	const float Bonus = Context.SourceASC->GetSet<UCCLOffenseSet>() ? Context.SourceASC->GetNumericAttribute(UCCLOffenseSet::GetAttackBonusAttribute()) : 0.f;
+	const float Bonus = !Context.bDetachedShot && Context.SourceASC->GetSet<UCCLOffenseSet>() ? Context.SourceASC->GetNumericAttribute(UCCLOffenseSet::GetAttackBonusAttribute()) : 0.f;
 	return {CCLTags::Outcome_Damage, Context.Definition->DamageEffect, Context.Definition->MagnitudeTag, -(Context.Definition->Damage + Bonus)};
+}
+
+FGameplayTag CCLHit::Apply(const FCCLHitContext& Context)
+{
+	if (!IsValid(Context.Source) || !IsValid(Context.Target) || !Context.Source->HasAuthority() ||
+		Context.Source == Context.Target || !Context.SourceASC || !Context.TargetASC ||
+		Context.TargetASC->GetAvatarActor() != Context.Target || !Context.Definition || !Context.Definition->HitRule)
+	{
+		return {};
+	}
+
+	const auto Resolution = Context.Definition->HitRule->GetDefaultObject<UCCLHitRule>()->Resolve(Context);
+	if (Resolution.Effect)
+	{
+		if (!Resolution.MagnitudeTag.IsValid() || !FMath::IsFinite(Resolution.Magnitude))
+		{
+			return {};
+		}
+
+		auto EffectContext = Context.SourceASC->MakeEffectContext();
+		EffectContext.AddHitResult(Context.Hit);
+		auto Spec = Context.SourceASC->MakeOutgoingSpec(Resolution.Effect, 1.f, EffectContext);
+		if (!Spec.IsValid())
+		{
+			return {};
+		}
+
+		Spec.Data->SetSetByCallerMagnitude(Resolution.MagnitudeTag, Resolution.Magnitude);
+		if (!Context.SourceASC->ApplyGameplayEffectSpecToTarget(*Spec.Data, Context.TargetASC).WasSuccessfullyApplied())
+		{
+			return {};
+		}
+	}
+
+	return Resolution.Outcome;
 }

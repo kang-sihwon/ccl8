@@ -1,6 +1,7 @@
 #include "CCLSessionRecord.h"
 #include "Items/CCLItemDefinition.h"
 #include "Items/CCLSkillDefinition.h"
+#include "Actions/CCLWeaponAbility.h"
 #include "JsonObjectConverter.h"
 #include "Serialization/JsonSerializer.h"
 #include "Misc/Crc.h"
@@ -9,7 +10,7 @@ UCCLItemDefinition* FCCLSessionCodec::Item(FName Id)
 	static const TSet<FName> Known = {TEXT("DA_IronGauntlets"),	 TEXT("DA_RecoveryPotion"), TEXT("DA_TrainingSword"),
 									  TEXT("DA_TrainingShield"), TEXT("DA_TrainingStaff"),	TEXT("DA_TrainingArmor"),
 									  TEXT("DA_TrainingBoots"),	 TEXT("DA_TrainingCloak"),	TEXT("DA_TrainingNecklace"),
-									  TEXT("DA_TrainingRing")};
+									  TEXT("DA_TrainingRing"), TEXT("DA_Pistol"), TEXT("DA_Rifle"), TEXT("DA_Bullets")};
 	if (!Known.Contains(Id))
 	{
 		return nullptr;
@@ -30,7 +31,7 @@ UCCLSkillDefinition* FCCLSessionCodec::Skill(FName Id)
 
 bool FCCLSessionCodec::Validate(const FCCLSessionRecord& R)
 {
-	if (R.Version < 1 || R.Version > 4 || R.Items.Num() > (R.Version >= 3 ? 24 : 16) || R.Skills.Num() > 2 || R.Points < 0 ||
+	if (R.Version < 1 || R.Version > 5 || R.Items.Num() > (R.Version >= 3 ? 24 : 16) || R.Skills.Num() > 2 || R.Points < 0 ||
 		R.Points > 1000 || R.Coins < 0 || R.Coins > 1000000 || R.Quest > 2 || R.DefeatedGuards > 3 || R.Victory > 1 ||
 		(R.Victory && R.DefeatedGuards != 3) || (R.Quest == 2 && !R.Victory) || R.RemainingSupplies.Num() > 2)
 	{
@@ -45,6 +46,13 @@ bool FCCLSessionCodec::Validate(const FCCLSessionRecord& R)
 		const auto* Definition = Item(Entry.Definition);
 		if (!Entry.Id.IsValid() || Ids.Contains(Entry.Id) || !Definition || Entry.Quantity <= 0 ||
 			Entry.Quantity > Definition->GetMaxStack())
+		{
+			return false;
+		}
+
+		const auto* Weapon = Definition->FindFragment<FCCLItemFragment_ProjectileWeapon>();
+		const int32 Maximum = Weapon && Weapon->Profile ? Weapon->Profile->MagazineSize : 0;
+		if (Entry.LoadedAmmo < 0 || Entry.LoadedAmmo > Maximum)
 		{
 			return false;
 		}
@@ -230,7 +238,7 @@ bool FCCLSessionCodec::Decode(const TArray<uint8>& Bytes, FCCLSessionRecord& Rec
 		return Object && Object->TryGetNumberField(Key, Value) && FMath::IsFinite(Value) && Value >= Min && Value <= Max &&
 			   FMath::FloorToDouble(Value) == Value;
 	};
-	if (!Number(Json, TEXT("version"), 1, 4) || !Number(Json, TEXT("points"), 0, 1000) || !Number(Json, TEXT("coins"), 0, 1000000) ||
+	if (!Number(Json, TEXT("version"), 1, 5) || !Number(Json, TEXT("points"), 0, 1000) || !Number(Json, TEXT("coins"), 0, 1000000) ||
 		!Number(Json, TEXT("quest"), 0, 2) || !Number(Json, TEXT("defeatedGuards"), 0, 3) || !Number(Json, TEXT("victory"), 0, 1))
 	{
 		return false;
@@ -247,6 +255,18 @@ bool FCCLSessionCodec::Decode(const TArray<uint8>& Bytes, FCCLSessionRecord& Rec
 	{
 		if (!Value || Value->Type != EJson::Object || !Number(Value->AsObject(), TEXT("quantity"), 1, 1000) ||
 			(bHasSlots && !Number(Value->AsObject(), TEXT("slot"), Json->GetNumberField(TEXT("version")) >= 3 ? -1 : 0, 15)))
+		{
+			return false;
+		}
+	}
+
+	for (const auto& Value : *Items)
+	{
+		if (Json->GetNumberField(TEXT("version")) < 5)
+		{
+			Value->AsObject()->SetNumberField(TEXT("loadedAmmo"), 0);
+		}
+		else if (!Number(Value->AsObject(), TEXT("loadedAmmo"), 0, 1000))
 		{
 			return false;
 		}
@@ -360,7 +380,7 @@ bool FCCLSessionCodec::Decode(const TArray<uint8>& Bytes, FCCLSessionRecord& Rec
 		}
 	}
 
-	Candidate.Version = 4;
+	Candidate.Version = 5;
 	if (!Validate(Candidate))
 	{
 		return false;

@@ -1,6 +1,7 @@
 #include "CCLInventoryComponent.h"
 
 #include "CCLItemDefinition.h"
+#include "Actions/CCLWeaponAbility.h"
 #include "Net/UnrealNetwork.h"
 
 UCCLInventoryComponent::UCCLInventoryComponent()
@@ -112,6 +113,13 @@ bool UCCLInventoryComponent::Restore(const TArray<FCCLInventoryEntry>& Entries)
 			return false;
 		}
 
+		const auto* Weapon = Entry.Definition->FindFragment<FCCLItemFragment_ProjectileWeapon>();
+		const int32 Maximum = Weapon && Weapon->Profile ? Weapon->Profile->MagazineSize : 0;
+		if (Entry.LoadedAmmo < 0 || Entry.LoadedAmmo > Maximum)
+		{
+			return false;
+		}
+
 		Slots.Add(Entry.Slot);
 		Seen.Add(Entry.Id);
 	}
@@ -123,6 +131,7 @@ bool UCCLInventoryComponent::Restore(const TArray<FCCLInventoryEntry>& Entries)
 		Entry.Definition = Value.Definition;
 		Entry.Quantity = Value.Quantity;
 		Entry.Slot = Value.Slot;
+		Entry.LoadedAmmo = Value.LoadedAmmo;
 		List.MarkItemDirty(Entry);
 	}
 	List.MarkArrayDirty();
@@ -169,4 +178,62 @@ bool UCCLInventoryComponent::MoveToSlot(FGuid Id, int32 Slot)
 	List.MarkItemDirty(*Source);
 	OnChanged.Broadcast();
 	return true;
+}
+
+bool UCCLInventoryComponent::ConsumeShot(FGuid Id)
+{
+	if (!GetOwner()->HasAuthority() || !CanFire(Id))
+	{
+		return false;
+	}
+
+	auto* Entry = List.Entries.FindByPredicate([Id](const FCCLInventoryEntry& E) { return E.Id == Id; });
+	--Entry->LoadedAmmo;
+	List.MarkItemDirty(*Entry);
+	OnChanged.Broadcast();
+	return true;
+}
+
+bool UCCLInventoryComponent::Reload(FGuid Id)
+{
+	if (!GetOwner()->HasAuthority() || !CanReload(Id))
+	{
+		return false;
+	}
+
+	TArray<FCCLInventoryEntry> Candidate = List.Entries;
+	auto* Weapon = Candidate.FindByPredicate([Id](const FCCLInventoryEntry& E) { return E.Id == Id; });
+	const auto* Profile = Weapon->Definition->FindFragment<FCCLItemFragment_ProjectileWeapon>()->Profile.Get();
+	int32 Remaining = Profile->MagazineSize - Weapon->LoadedAmmo;
+	for (auto& Entry : Candidate)
+	{
+		if (Entry.Definition == Profile->Ammunition && Entry.Slot >= 0 && Entry.Id != Id)
+		{
+			const int32 Used = FMath::Min(Entry.Quantity, Remaining);
+			Entry.Quantity -= Used;
+			Weapon->LoadedAmmo += Used;
+			Remaining -= Used;
+		}
+	}
+
+	Candidate.RemoveAll([](const FCCLInventoryEntry& E) { return E.Quantity == 0; });
+	return Restore(Candidate);
+}
+
+bool UCCLInventoryComponent::CanFire(FGuid Id) const
+{
+	const auto* Entry = Find(Id);
+	return Entry && Entry->LoadedAmmo > 0;
+}
+
+bool UCCLInventoryComponent::CanReload(FGuid Id) const
+{
+	const auto* Entry = Find(Id);
+	const auto* Weapon = Entry && Entry->Definition ? Entry->Definition->FindFragment<FCCLItemFragment_ProjectileWeapon>() : nullptr;
+	const auto* Profile = Weapon ? Weapon->Profile.Get() : nullptr;
+	return Profile && Profile->MagazineSize > Entry->LoadedAmmo && Profile->Ammunition &&
+		List.Entries.ContainsByPredicate([Profile, Id](const FCCLInventoryEntry& E)
+		{
+			return E.Id != Id && E.Definition == Profile->Ammunition && E.Slot >= 0 && E.Quantity > 0;
+		});
 }

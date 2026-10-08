@@ -32,7 +32,14 @@ struct FCCLHitContext
 	const UCCLCombatDefinition* Definition = nullptr;
 	FHitResult Hit;
 	uint32 AttackId = 0;
+	FVector IncomingDirection = FVector::ZeroVector;
+	uint8 bDetachedShot = 0;
 };
+
+namespace CCLHit
+{
+CCL_API FGameplayTag Apply(const FCCLHitContext& Context);
+}
 
 UCLASS(Abstract)
 class CCL_API UCCLHitRule : public UObject

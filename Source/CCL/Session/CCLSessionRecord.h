@@ -20,6 +20,9 @@ struct FCCLSavedItem
 
 	UPROPERTY()
 	int32 Slot = INDEX_NONE;
+
+	UPROPERTY()
+	int32 LoadedAmmo = 0;
 };
 USTRUCT()
 struct FCCLSessionRecord
@@ -27,7 +30,7 @@ struct FCCLSessionRecord
 	GENERATED_BODY()
 
 	UPROPERTY()
-	int32 Version = 4;
+	int32 Version = 5;
 
 	UPROPERTY()
 	TArray<FCCLSavedItem> Items;

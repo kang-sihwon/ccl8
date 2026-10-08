@@ -190,6 +190,13 @@ void ACCLPlayerController::EndPlay(const EEndPlayReason::Type EndPlayReason)
 
 void ACCLPlayerController::CCLRetry()
 {
+	const auto* RetryPawn = Cast<ACCLCharacter>(GetPawn());
+	if (auto* State = GetPlayerState<ACCLPlayerState>(); State && RetryPawn && !RetryPawn->IsDead())
+	{
+		State->GetLoadout()->RequestReload();
+		return;
+	}
+
 	ServerRequestRetry();
 }
 
@@ -708,6 +715,11 @@ void ACCLPlayerController::HandInput(FGameplayTag Hand, bool bPressed)
 	auto* PawnActor = Cast<ACCLCharacter>(GetPawn());
 	auto* ASC = State ? State->GetCCLAbilitySystem() : nullptr;
 	if (!ASC || !PawnActor)
+	{
+		return;
+	}
+
+	if (State->GetLoadout()->RequestCustomHandAction(Hand, bPressed))
 	{
 		return;
 	}

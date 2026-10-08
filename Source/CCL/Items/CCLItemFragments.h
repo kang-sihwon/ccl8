@@ -4,6 +4,9 @@
 #include "CCLItemTags.h"
 #include "CCLItemFragments.generated.h"
 
+class UCCLActionSet;
+class UCCLProjectileProfile;
+
 class UCCLCombatDefinition;
 class UCCLAbilitySet;
 class UGameplayEffect;
@@ -132,6 +135,12 @@ struct CCL_API FCCLItemFragment_Weapon : public FCCLItemFragmentData
 {
 	GENERATED_BODY()
 
+	UPROPERTY(EditAnywhere)
+	TObjectPtr<UCCLActionSet> ActionSet;
+
+	UPROPERTY(EditAnywhere)
+	TMap<FGameplayTag, FGameplayTag> HandActions;
+
 	UPROPERTY(EditAnywhere, meta = (Categories = "Weapon.HandUsage"))
 	FGameplayTag HandUsage = CCLItemTags::HandUsage_OneHanded;
 
@@ -158,6 +167,9 @@ USTRUCT(BlueprintType)
 struct CCL_API FCCLItemFragment_ProjectileWeapon : public FCCLItemFragment_Weapon
 {
 	GENERATED_BODY()
+
+	UPROPERTY(EditAnywhere)
+	TObjectPtr<UCCLProjectileProfile> Profile;
 
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<AActor> ProjectileClass;

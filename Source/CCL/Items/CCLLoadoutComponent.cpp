@@ -3,6 +3,8 @@
 #include "CCLInventoryComponent.h"
 #include "CCLItemDefinition.h"
 #include "CCLSkillDefinition.h"
+#include "Actions/CCLActionComponent.h"
+#include "Actions/CCLWeaponAbility.h"
 #include "AbilitySystem/CCLAbilitySystemComponent.h"
 #include "AbilitySystem/CCLGameplayTags.h"
 #include "AbilitySystem/CCLHealthSet.h"
@@ -300,6 +302,18 @@ void UCCLLoadoutComponent::SyncAvatar(bool bResetHealth)
 	{
 		return;
 	}
+	if (auto* Actions = GetOwner()->FindComponentByClass<UCCLActionComponent>())
+	{
+		for (auto It = ActionSources.CreateIterator(); It; ++It)
+		{
+			if (!IsEquipped(*It))
+			{
+				Actions->RemoveSource(*It);
+				It.RemoveCurrent();
+			}
+		}
+	}
+
 	if (auto* Fighter = ASC->GetAvatarActor()->FindComponentByClass<UCCLFighterComponent>())
 	{
 		Fighter->LeftHandItem = GetEquippedItem(CCLItemTags::Slot_LeftHand);
@@ -444,6 +458,18 @@ void UCCLLoadoutComponent::OnInventoryChanged()
 		return;
 	}
 
+	if (auto* Actions = GetOwner()->FindComponentByClass<UCCLActionComponent>())
+	{
+		for (auto It = ActionSources.CreateIterator(); It; ++It)
+		{
+			if (!GetInventory()->Find(*It) || !IsEquipped(*It))
+			{
+				Actions->RemoveSource(*It);
+				It.RemoveCurrent();
+			}
+		}
+	}
+
 	TSet<FGuid> Missing;
 	for (const auto& Value : EquipmentSlots)
 	{
@@ -539,4 +565,104 @@ bool UCCLLoadoutComponent::Restore(const TArray<FCCLEquippedSlot>& Equipment, co
 
 	SyncAvatar(true);
 	return true;
+}
+
+bool UCCLLoadoutComponent::RequestCustomHandAction(FGameplayTag Hand, bool bPressed)
+{
+	const auto* Item = GetEquippedItem(Hand);
+	const auto* Weapon = Item ? Item->FindFragment<FCCLItemFragment_Weapon>() : nullptr;
+	const auto* Action = Weapon ? Weapon->HandActions.Find(Hand) : nullptr;
+	if (!Weapon || !Weapon->ActionSet || !Action)
+	{
+		return false;
+	}
+
+	if (GetOwner()->HasAuthority())
+	{
+		ServerCustomHandAction_Implementation(Hand, bPressed);
+	}
+	else
+	{
+		ServerCustomHandAction(Hand, bPressed);
+	}
+
+	return true;
+}
+
+void UCCLLoadoutComponent::ServerCustomHandAction_Implementation(FGameplayTag Hand, bool bPressed)
+{
+	if (!CCLEquipment::IsHand(Hand))
+	{
+		return;
+	}
+
+	const auto* Item = GetEquippedItem(Hand);
+	const auto* Weapon = Item ? Item->FindFragment<FCCLItemFragment_Weapon>() : nullptr;
+	const auto* Action = Weapon ? Weapon->HandActions.Find(Hand) : nullptr;
+	if (Action)
+	{
+		ExecuteCustom(GetEquippedId(Hand), *Action, bPressed);
+	}
+}
+
+bool UCCLLoadoutComponent::ExecuteCustom(FGuid Id, FGameplayTag Action, bool bPressed)
+{
+	const auto* Entry = GetInventory() ? GetInventory()->Find(Id) : nullptr;
+	const auto* Weapon = Entry && Entry->Definition ? Entry->Definition->FindFragment<FCCLItemFragment_Weapon>() : nullptr;
+	auto* Actions = GetOwner()->FindComponentByClass<UCCLActionComponent>();
+	if (!Actions || !IsEquipped(Id) || !Weapon || !Weapon->ActionSet)
+	{
+		return false;
+	}
+
+	if (!bPressed)
+	{
+		if (Action == CCLActionTags::Aim)
+		{
+			Actions->Release(Id, Action);
+		}
+
+		return true;
+	}
+
+	if (!CanAct())
+	{
+		return false;
+	}
+
+	if (!Actions->HasSource(Id))
+	{
+		if (!Actions->RegisterSource(Id, Entry->Definition, Weapon->ActionSet->Actions))
+		{
+			return false;
+		}
+
+		ActionSources.Add(Id);
+	}
+
+	return Actions->Execute(Id, Action);
+}
+
+void UCCLLoadoutComponent::RequestReload()
+{
+	if (GetOwner()->HasAuthority())
+	{
+		ServerReload_Implementation();
+	}
+	else
+	{
+		ServerReload();
+	}
+}
+
+void UCCLLoadoutComponent::ServerReload_Implementation()
+{
+	for (const auto Hand : {FGameplayTag(CCLItemTags::Slot_RightHand), FGameplayTag(CCLItemTags::Slot_LeftHand)})
+	{
+		const FGuid Id = GetEquippedId(Hand);
+		if (GetInventory() && GetInventory()->CanReload(Id) && ExecuteCustom(Id, CCLActionTags::Reload, true))
+		{
+			return;
+		}
+	}
 }

@@ -12,6 +12,7 @@ class UCCLOffenseSet;
 class UCCLInventoryComponent;
 class UCCLLoadoutComponent;
 class UCCLExpeditionComponent;
+class UCCLActionComponent;
 
 UCLASS()
 class CCL_API ACCLPlayerState : public APlayerState, public IAbilitySystemInterface
@@ -30,6 +31,9 @@ public:
 public:
 	UCCLExpeditionComponent* GetExpedition() const { return Expedition; }
 private:
+	UPROPERTY(VisibleAnywhere)
+	TObjectPtr<UCCLActionComponent> Actions;
+
 	UPROPERTY(VisibleAnywhere)
 	TObjectPtr<UCCLExpeditionComponent> Expedition;
 	UPROPERTY(VisibleAnywhere)

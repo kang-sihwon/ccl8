@@ -22,4 +22,7 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "CCL|Editor")
 	static bool MigrateEquipmentTagAssets();
+
+	UFUNCTION(BlueprintCallable, Category = "CCL|Editor")
+	static bool CreateProjectileAssets();
 };

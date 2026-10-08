@@ -53,3 +53,7 @@ WorldEvent의 실제 신원과 Agent가 지각한 Observation은 구분한다. �
 UE 5.9.0 소스 설치본에서 생성 BAT와 `CCLEditor Win64 Development` 빌드가 성공했다. `CCL.Agent.LifetimeAndMigration`, `CCL.Agent.ObservationAndNeeds` 2개 자동화 검사가 통과했다. 근거는 `Saved/StageValidation/AgentFoundation-Generate.log`, `AgentFoundation-Build.log`, `Saved/Tests/Automation/20261008-150633-274/report/index.json`이다. 로그는 로컬에 보존한다.
 
 계정·실제 거래·판단 커널·Actor 실행·마을·지도·연출·Mass 및 장기 시험의 통합은 아직 완료하지 않았다. 현재 Agent 스냅샷은 기존 캠페인 저장에 연결되지 않았다.
+
+공통 `UCCLActionComponent`는 소스 ID마다 GAS Ability 핸들을 등록하고 해제한다. 무기 Fragment의 `ActionSet`과 손별 태그가 이 경로에 연결된다. `ACCLProjectile`은 서버에서 이동·충돌하고 발사 시점의 피해 정의를 사용한다. `CCLHit::Apply`는 근접·투사체의 효과 적용을 공유한다. 기존 근접 입력의 전면 이전, 총구 소켓·발사 연출·조준 카메라와 전투 AI의 새 행동 집합 연결은 남아 있다.
+
+투사체의 체력 전용 대상 적중, 발사 후 발사자 사망 상태, 탄약 보존·저장 검사가 `Saved/Tests/Projectile/20261008-152320/editor.log`에서 통과했다. 장비 태그·이전 저장 변환은 `Saved/Tests/Automation/20261008-152333-195/report/index.json`, 근접·가드·패링·회피·재스폰 회귀는 `Saved/Tests/CombatSmoke/Standalone-20261008-152443/`에서 통과했다. 생성·빌드 근거는 `Saved/StageValidation/AgentActions-Generate.log`, `AgentActions-Build.log`다. 신규 총기 정의 에셋은 생성했으며 마을 배치는 통합 작업에서 연결한다.

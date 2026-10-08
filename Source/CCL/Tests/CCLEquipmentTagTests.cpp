@@ -94,11 +94,11 @@ bool FCCLEquipmentTagTest::RunTest(const FString& Parameters)
 
 	FCCLSessionRecord Decoded;
 	TArray<uint8> Bytes;
-	TestTrue(TEXT("v4 two-hand round trip"), FCCLSessionCodec::Encode(Record, Bytes) && FCCLSessionCodec::Decode(Bytes, Decoded) &&
-												 Decoded.Version == 4 && Decoded.EquipmentSlots.Num() == 2);
+	TestTrue(TEXT("v5 two-hand round trip"), FCCLSessionCodec::Encode(Record, Bytes) && FCCLSessionCodec::Decode(Bytes, Decoded) &&
+												 Decoded.Version == 5 && Decoded.EquipmentSlots.Num() == 2);
 	Record.Version = 3;
 	TestTrue(TEXT("v3 numeric slots upgrade"), FCCLSessionCodec::Encode(Record, Bytes) && FCCLSessionCodec::Decode(Bytes, Decoded) &&
-												   Decoded.Version == 4 && Decoded.EquipmentSlots[0].Slot == CCLItemTags::Slot_LeftHand);
+												   Decoded.Version == 5 && Decoded.EquipmentSlots[0].Slot == CCLItemTags::Slot_LeftHand);
 
 	auto ChangeWireSlot = [](TArray<uint8>& Data, const FString& Name)
 	{
@@ -115,7 +115,7 @@ bool FCCLEquipmentTagTest::RunTest(const FString& Parameters)
 		FMemory::Memcpy(Data.GetData() + 4, &CRC, 4);
 	};
 	ChangeWireSlot(Bytes, TEXT("LeftHand"));
-	TestTrue(TEXT("v3 enum name slots upgrade"), FCCLSessionCodec::Decode(Bytes, Decoded) && Decoded.Version == 4);
+	TestTrue(TEXT("v3 enum name slots upgrade"), FCCLSessionCodec::Decode(Bytes, Decoded) && Decoded.Version == 5);
 	Record.Version = 4;
 	for (const TCHAR* Invalid : {TEXT("Equipment.Slot.Hand"), TEXT("Equipment.Slot.Unknown"), TEXT("Attachment.Grip.Left")})
 	{
@@ -135,7 +135,7 @@ bool FCCLEquipmentTagTest::RunTest(const FString& Parameters)
 		Record.Items[0].Slot = 0;
 		Record.Equipped = Entry.Id;
 		TestTrue(FString::Printf(TEXT("v%d equipped item upgrade"), Version),
-				 FCCLSessionCodec::Encode(Record, Bytes) && FCCLSessionCodec::Decode(Bytes, Decoded) && Decoded.Version == 4 &&
+				 FCCLSessionCodec::Encode(Record, Bytes) && FCCLSessionCodec::Decode(Bytes, Decoded) && Decoded.Version == 5 &&
 					 Decoded.EquipmentSlots.Num() == 2 && Decoded.Items[0].Slot == INDEX_NONE);
 	}
 

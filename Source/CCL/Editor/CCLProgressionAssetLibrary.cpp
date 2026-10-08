@@ -1,6 +1,11 @@
 #include "CCLProgressionAssetLibrary.h"
 
 #if WITH_EDITOR
+#include "Actions/CCLActionComponent.h"
+#include "Actions/CCLWeaponAbility.h"
+#include "Combat/CCLProjectile.h"
+#include "Combat/CCLHitRule.h"
+#include "AbilitySystem/CCLGameplayTags.h"
 #include "Items/CCLItemDefinition.h"
 #include "Items/CCLSkillDefinition.h"
 #include "AbilitySystem/CCLEffects.h"
@@ -363,6 +368,91 @@ bool UCCLProgressionAssetLibrary::MigrateEquipmentTagAssets()
 	for (auto* Item : Items)
 	{
 		if (!SaveProgression(Item))
+		{
+			return false;
+		}
+	}
+
+	return true;
+#else
+	return false;
+#endif
+}
+
+bool UCCLProgressionAssetLibrary::CreateProjectileAssets()
+{
+#if WITH_EDITOR
+	auto* Bullets = ProgressionAsset<UCCLItemDefinition>(TEXT("DA_Bullets"));
+	DescribeProgression(Bullets, TEXT("Bullets"), 100);
+	if (!SaveProgression(Bullets))
+	{
+		return false;
+	}
+
+	auto* Actions = ProgressionAsset<UCCLActionSet>(TEXT("DA_FirearmActions"));
+	Actions->Actions.Reset();
+	FCCLActionGrant Fire;
+	Fire.Action = CCLActionTags::Fire;
+	Fire.Ability = UCCLProjectileAbility::StaticClass();
+	Actions->Actions.Add(Fire);
+	FCCLActionGrant Reload;
+	Reload.Action = CCLActionTags::Reload;
+	Reload.Ability = UCCLReloadAbility::StaticClass();
+	Actions->Actions.Add(Reload);
+	FCCLActionGrant Aim;
+	Aim.Action = CCLActionTags::Aim;
+	Aim.Ability = UCCLAimAbility::StaticClass();
+	Actions->Actions.Add(Aim);
+	if (!SaveProgression(Actions))
+	{
+		return false;
+	}
+
+	for (int32 Index = 0; Index < 2; ++Index)
+	{
+		const bool bRifle = Index == 1;
+		auto* Combat = ProgressionAsset<UCCLCombatDefinition>(bRifle ? TEXT("DA_RifleHit") : TEXT("DA_PistolHit"));
+		Combat->Damage = bRifle ? 40.f : 20.f;
+		Combat->Cost = 0;
+		Combat->DamageEffect = UCCLHealthChangeEffect::StaticClass();
+		Combat->MagnitudeTag = CCLTags::Data_Magnitude;
+		Combat->HitRule = UCCLDuelHitRule::StaticClass();
+		Combat->bParryable = 0;
+		auto* Profile = ProgressionAsset<UCCLProjectileProfile>(bRifle ? TEXT("DA_RifleBallistics") : TEXT("DA_PistolBallistics"));
+		Profile->Combat = Combat;
+		Profile->ProjectileClass = ACCLProjectile::StaticClass();
+		Profile->Speed = bRifle ? 10000.f : 6000.f;
+		Profile->MagazineSize = bRifle ? 1 : 6;
+		Profile->ReloadSeconds = bRifle ? 4.f : 2.f;
+		Profile->FireInterval = bRifle ? 1.f : 0.4f;
+		Profile->Ammunition = Bullets;
+		auto* Item = ProgressionAsset<UCCLItemDefinition>(bRifle ? TEXT("DA_Rifle") : TEXT("DA_Pistol"));
+		DescribeProgression(Item, bRifle ? TEXT("Slow-loading Rifle") : TEXT("Pistol"), 1);
+		FCCLItemFragment_Equip Equip;
+		Equip.DefaultSlotTag = CCLItemTags::Slot_RightHand;
+		Equip.AllowedSlots.AddTag(CCLItemTags::Slot_LeftHand);
+		Equip.AllowedSlots.AddTag(CCLItemTags::Slot_RightHand);
+		Item->ItemFragments.Add(FInstancedStruct::Make(Equip));
+		FCCLItemFragment_ProjectileWeapon Weapon;
+		Weapon.HandUsage = bRifle ? CCLItemTags::HandUsage_TwoHanded : CCLItemTags::HandUsage_OneHanded;
+		Weapon.Combat = Combat;
+		Weapon.ActionSet = Actions;
+		Weapon.Profile = Profile;
+		Weapon.HandActions.Add(CCLItemTags::Slot_LeftHand, CCLActionTags::Fire);
+		Weapon.HandActions.Add(CCLItemTags::Slot_RightHand, bRifle ? CCLActionTags::Aim : CCLActionTags::Fire);
+		Item->ItemFragments.Add(FInstancedStruct::Make(Weapon));
+		FCCLItemFragment_Visual Visual;
+		Visual.DroppedMesh = LoadObject<UStaticMesh>(nullptr, bRifle ?
+			TEXT("/Game/Weapons/Rifle/Meshes/SM_Rifle.SM_Rifle") : TEXT("/Game/Weapons/Pistol/Meshes/SM_Pistol.SM_Pistol"));
+		for (const auto Slot : {FGameplayTag(CCLItemTags::Slot_LeftHand), FGameplayTag(CCLItemTags::Slot_RightHand)})
+		{
+			auto& Attachment = Visual.Attachments.AddDefaulted_GetRef();
+			Attachment.Slot = Slot;
+			Attachment.Point = Slot == CCLItemTags::Slot_LeftHand ? CCLItemTags::Attachment_GripLeft : CCLItemTags::Attachment_GripRight;
+		}
+
+		Item->ItemFragments.Add(FInstancedStruct::Make(Visual));
+		if (!Visual.DroppedMesh || !SaveProgression(Combat) || !SaveProgression(Profile) || !SaveProgression(Item))
 		{
 			return false;
 		}

@@ -33,6 +33,8 @@ public:
 	void GrantPoints(int32 Amount);
 	void ShowNotice(const FString& Message);
 	FGameplayTag PrepareHandAction(FGameplayTag Hand);
+	bool RequestCustomHandAction(FGameplayTag Hand, bool bPressed);
+	void RequestReload();
 	UCCLItemDefinition* GetEquippedItem(FGameplayTag Slot = CCLItemTags::Slot_RightHand) const;
 	FGuid GetEquippedId(FGameplayTag Slot = CCLItemTags::Slot_RightHand) const;
 	bool IsEquipped(FGuid Id) const;
@@ -44,6 +46,14 @@ public:
 	const FString& GetResult() const { return LastResult; }
 
 private:
+	UFUNCTION(Server, Reliable)
+	void ServerCustomHandAction(FGameplayTag Hand, bool bPressed);
+
+	UFUNCTION(Server, Reliable)
+	void ServerReload();
+
+	bool ExecuteCustom(FGuid Id, FGameplayTag Action, bool bPressed);
+
 	UFUNCTION(Server, Reliable)
 	void ServerPrepareHandAction(FGameplayTag Hand);
 	void OnInventoryChanged();
@@ -70,4 +80,5 @@ private:
 
 	TMap<FGuid, FActiveGameplayEffectHandle> EquipmentEffects;
 	TArray<FActiveGameplayEffectHandle> SkillEffects;
+	TSet<FGuid> ActionSources;
 };

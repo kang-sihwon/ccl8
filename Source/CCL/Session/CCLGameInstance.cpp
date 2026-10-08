@@ -212,6 +212,7 @@ bool UCCLGameInstance::SaveSession()
 		Value.Definition = Entry.Definition ? Entry.Definition->GetFName() : NAME_None;
 		Value.Quantity = Entry.Quantity;
 		Value.Slot = Entry.Slot;
+		Value.LoadedAmmo = Entry.LoadedAmmo;
 		Record.Items.Add(Value);
 	}
 	Record.Equipped = Player->GetLoadout()->GetEquippedId();
@@ -272,6 +273,7 @@ bool UCCLGameInstance::ApplyRecord(const FCCLSessionRecord& Record)
 		Entry.Definition = FCCLSessionCodec::Item(Value.Definition);
 		Entry.Quantity = Value.Quantity;
 		Entry.Slot = Value.Slot;
+		Entry.LoadedAmmo = Value.LoadedAmmo;
 	}
 	TArray<UCCLSkillDefinition*> Skills;
 	for (FName Id : Record.Skills) { Skills.Add(FCCLSessionCodec::Skill(Id)); }

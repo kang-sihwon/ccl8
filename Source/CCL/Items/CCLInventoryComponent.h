@@ -25,6 +25,9 @@ struct FCCLInventoryEntry : public FFastArraySerializerItem
 
 	UPROPERTY()
 	int32 Slot = INDEX_NONE;
+
+	UPROPERTY()
+	int32 LoadedAmmo = 0;
 };
 
 USTRUCT()
@@ -61,6 +64,10 @@ public:
 	FGuid Add(UCCLItemDefinition* Definition, int32 Quantity);
 	bool Remove(FGuid Id, int32 Quantity);
 	bool MoveToSlot(FGuid Id, int32 Slot);
+	bool ConsumeShot(FGuid Id);
+	bool Reload(FGuid Id);
+	bool CanFire(FGuid Id) const;
+	bool CanReload(FGuid Id) const;
 	const FCCLInventoryEntry* FindSlot(int32 Slot) const;
 	bool CanAdd(const UCCLItemDefinition* Definition, int32 Quantity) const;
 	const FCCLInventoryEntry* Find(FGuid Id) const;
