@@ -3,6 +3,7 @@
 #include "CoreMinimal.h"
 #include "UObject/Object.h"
 #include "GameplayTagContainer.h"
+#include "GameplayEffectTypes.h"
 #include "CCLHitRule.generated.h"
 
 class UAbilitySystemComponent;
@@ -34,6 +35,8 @@ struct FCCLHitContext
 	uint32 AttackId = 0;
 	FVector IncomingDirection = FVector::ZeroVector;
 	uint8 bDetachedShot = 0;
+	FGameplayEffectSpecHandle CapturedEffect;
+	int32 CapturedTeam = INDEX_NONE;
 };
 
 namespace CCLHit

@@ -1,5 +1,8 @@
 #include "CCLHUD.h"
 
+#include "Presentation/CCLCinematicSubsystem.h"
+#include "UI/CCLMapScreen.h"
+
 #include "AbilitySystem/CCLGameplayTags.h"
 #include "AbilitySystem/CCLHealthSet.h"
 #include "CCLCharacter.h"
@@ -41,6 +44,15 @@ void ACCLHUD::Tick(float DeltaSeconds)
 		return;
 	}
 
+	if (!MapContext)
+	{
+		MapContext = NewObject<UCCLMapContext>(this);
+	}
+	if (!UI->IsViewOpen(MapHandle))
+	{
+		MapHandle = UI->OpenView(CCLUITags::View_Minimap, MapContext, this);
+	}
+
 	if (!Context)
 	{
 		Context = NewObject<UCCLHUDContext>(this);
@@ -49,6 +61,19 @@ void ACCLHUD::Tick(float DeltaSeconds)
 
 	const auto* Character = Cast<ACCLCharacter>(PC->GetPawn());
 	Context->Vitals->Bind(Character ? Character->GetAbilitySystemComponent() : nullptr);
+	if (const auto* Campaign = GetWorld()->GetGameState<ACCLCampaignState>(); Campaign && Character && !Character->IsDead())
+	{
+		if (!bArrivalShown && GetWorld()->GetTimeSeconds() > 1)
+		{
+			bArrivalShown = 1;
+			PC->GetLocalPlayer()->GetSubsystem<UCCLCinematicSubsystem>()->Play(PC, Character->GetActorLocation() + FVector(300, 0, 40), TEXT("A VILLAGE OF LIVES"));
+		}
+		if (!bVictoryShown && Campaign->GetPhase() == ECCLCampaignPhase::Victory)
+		{
+			bVictoryShown = 1;
+			PC->GetLocalPlayer()->GetSubsystem<UCCLCinematicSubsystem>()->Play(PC, Character->GetActorLocation() + FVector(0, 0, 50), TEXT("THE ROAD IS OPEN"));
+		}
+	}
 	RefreshContent();
 	if (!UI->IsViewOpen(VitalsHandle))
 	{
@@ -69,6 +94,7 @@ void ACCLHUD::EndPlay(const EEndPlayReason::Type EndPlayReason)
 		{
 			UI->CloseView(VitalsHandle);
 			UI->CloseView(FieldHandle);
+			UI->CloseView(MapHandle);
 		}
 	}
 
@@ -151,7 +177,7 @@ void ACCLHUD::RefreshContent()
 		}
 	}
 
-	Prompts.Add(TEXT("E Collect | I Inventory / Training | Esc Menu"));
+	Prompts.Add(TEXT("E Collect | I Inventory | M Map | Esc Menu"));
 #if !UE_BUILD_SHIPPING && !UE_BUILD_TEST
 	Prompts.Add(TEXT("K Test Death"));
 #endif

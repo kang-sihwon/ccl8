@@ -27,6 +27,7 @@
 | [ProgressionFoundation](ProgressionFoundation.md) | 인벤토리·장비·성장·스킬 UI의 설계와 검증 |
 | [UIFoundation](UIFoundation.md) | 장르 독립적인 UI 관리자·화면·문맥·레이어·연출 제어의 계약과 검증 |
 | [AgentFoundation](AgentFoundation.md) | 개인의 삶·기억·목표·자원·판단과 Actor/Mass 수명의 구현 계약 |
+| [생활 Agent·무기·지도 확인 안내](AgentReview-2026-10-08.md) | 직접 확인할 조작, 클래스 관계와 데이터 위치 |
 | [장비·UI 확인 안내](UIReview-2026-10-08.md) | 2026-10-08 구현 요약, 직접 확인할 화면과 검증 범위 |
 | [ArtDirection](ArtDirection.md) | 그래픽 스타일·시각 기준·아트 제작 초안 |
 | [Coding](Coding.md) | 코드 설계·리뷰·빌드와 파일 수정 경계 |

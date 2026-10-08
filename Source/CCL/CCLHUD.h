@@ -6,6 +6,7 @@
 #include "CCLHUD.generated.h"
 
 class UCCLHUDContext;
+class UCCLMapContext;
 
 UCLASS()
 class CCL_API ACCLHUD : public AHUD
@@ -31,4 +32,9 @@ private:
 
 	FCCLUIViewHandle VitalsHandle;
 	FCCLUIViewHandle FieldHandle;
+	uint8 bArrivalShown = 0;
+	uint8 bVictoryShown = 0;
+	FCCLUIViewHandle MapHandle;
+	UPROPERTY()
+	TObjectPtr<UCCLMapContext> MapContext;
 };

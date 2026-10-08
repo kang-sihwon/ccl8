@@ -1,6 +1,9 @@
 #include "CCLAgentWorldSubsystem.h"
 
 #include "CCLAgentComponent.h"
+#include "CCLAgentAIController.h"
+#include "Campaign/CCLWorkshop.h"
+#include "GameFramework/CharacterMovementComponent.h"
 #include "CCLAgentTags.h"
 #include "Campaign/CCLLifeVillager.h"
 #include "Campaign/CCLCampaignState.h"
@@ -32,9 +35,9 @@ void UCCLAgentWorldSubsystem::OnWorldBeginPlay(UWorld& World)
 	Session = Store->Session;
 	FString Error;
 	const auto* Scenario = LoadObject<UCCLPopulationScenario>(nullptr,
-        TEXT("/Game/Progression/DA_MerchantLifeScenario.DA_MerchantLifeScenario"));
-    const bool bReady = Store->Snapshot.IsEmpty() ? Simulation.Initialize(
-        Scenario ? Scenario->InitialState : FCCLLifeSimulation::MerchantScenario(42), Error) : Simulation.Load(Store->Snapshot, Error);
+		TEXT("/Game/Progression/DA_MerchantLifeScenario.DA_MerchantLifeScenario"));
+	const bool bReady = Store->Snapshot.IsEmpty() ? Simulation.Initialize(
+		Scenario ? Scenario->InitialState : FCCLLifeSimulation::MerchantScenario(42), Error) : Simulation.Load(Store->Snapshot, Error);
 	if (!bReady)
 	{
 		UE_LOG(LogTemp, Error, TEXT("CCL_AGENT world initialization failed: %s"), *Error);
@@ -65,12 +68,12 @@ void UCCLAgentWorldSubsystem::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 	if (bRunning)
 	{
-        PendingSeconds += DeltaTime;
-        if (PendingSeconds >= 0.25)
-        {
-            Simulation.AdvanceTo(Simulation.GetTime() + PendingSeconds * 60.);
-            PendingSeconds = 0;
-        }
+		PendingSeconds += DeltaTime;
+		if (PendingSeconds >= 0.25)
+		{
+			Simulation.AdvanceTo(Simulation.GetTime() + PendingSeconds * 60.);
+			PendingSeconds = 0;
+		}
 	}
 }
 
@@ -86,9 +89,12 @@ bool UCCLAgentWorldSubsystem::Save(TArray<uint8>& Bytes)
 		return false;
 	}
 
-	for (TActorIterator<ACCLLifeVillager> It(GetWorld()); It; ++It)
+	for (TActorIterator<APawn> It(GetWorld()); It; ++It)
 	{
-		Simulation.UpdateLocation(It->GetAgent()->AgentId, It->GetActorLocation());
+		if (const auto* Agent = It->FindComponentByClass<UCCLAgentComponent>())
+		{
+			Simulation.UpdateLocation(Agent->AgentId, It->GetActorLocation());
+		}
 	}
 
 	return Simulation.Save(Bytes);
@@ -109,6 +115,13 @@ bool UCCLAgentWorldSubsystem::Restore(const TArray<uint8>& Bytes, FString& Error
 
 	bRunning = 1;
 	SpawnVillage();
+	for (TActorIterator<APawn> It(GetWorld()); It; ++It)
+	{
+		if (auto* Agent = It->FindComponentByClass<UCCLAgentComponent>())
+		{
+			Agent->RestoreHealthFromRecord();
+		}
+	}
 	return true;
 }
 
@@ -120,17 +133,56 @@ void UCCLAgentWorldSubsystem::SpawnVillage()
 		return;
 	}
 
+	for (TActorIterator<ACCLWorkshop> It(GetWorld()); It; ++It)
+	{
+		It->Destroy();
+	}
+	for (const auto& Pair : Snapshot.Economy.Ownerships)
+	{
+		const auto* Owner = Simulation.Find(Pair.Value.OwnerId);
+		const auto* Life = Owner ? Owner->Features.Find(CCLAgentTags::Feature_Life) : nullptr;
+		if (Life)
+		{
+			const FVector Position = Life->Data.Get<FCCLLifeState>().Workplace.Position + FVector(0, 100, -65);
+			auto* Workshop = GetWorld()->SpawnActor<ACCLWorkshop>(Position, FRotator::ZeroRotator);
+			if (Workshop)
+			{
+				Workshop->OwnershipId = Pair.Key;
+			}
+		}
+	}
 	int32 Index = 0;
 	for (const auto& Record : Snapshot.Agents)
 	{
+		if (Record.DefinitionId != FPrimaryAssetId(TEXT("Agent"), TEXT("Merchant")))
+		{
+			continue;
+		}
 		if (Index++ == 0)
 		{
 			for (TActorIterator<ACCLVillageSteward> It(GetWorld()); It; ++It)
 			{
 				if (!Cast<ACCLLifeVillager>(*It))
 				{
+					auto* Component = It->FindComponentByClass<UCCLAgentComponent>();
+					if (!Component)
+					{
+						Component = NewObject<UCCLAgentComponent>(*It);
+						It->AddInstanceComponent(Component);
+						Component->AgentId = Record.Id;
+						Component->RegisterComponent();
+					}
+					if (auto* Controller = It->GetController())
+					{
+						Controller->UnPossess();
+						Controller->Destroy();
+					}
+					It->SetActorLocation(Record.Location.Position);
+					It->GetCharacterMovement()->SetMovementMode(MOVE_Walking);
+					It->GetCharacterMovement()->MaxWalkSpeed = 150;
+					It->AIControllerClass = ACCLAgentAIController::StaticClass();
+					It->SpawnDefaultController();
 					Simulation.SetActorActive(Record.Id, true);
-					Simulation.UpdateLocation(Record.Id, It->GetActorLocation());
 					break;
 				}
 			}

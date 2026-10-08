@@ -143,6 +143,19 @@ bool FCCLLifeThirtyDayTest::RunTest(const FString& Parameters)
 	}
 
 	TestEqual(TEXT("currency conserved across work, trading and debt payments"), FinalMoney, InitialMoney);
+	for (const auto& Pair : Final.Economy.Accounts)
+	{
+		int64 Expected = Pair.Value.OpeningBalance;
+		for (const auto& Receipt : Final.Economy.Journal)
+		{
+			if (Receipt.bSucceeded)
+			{
+				Expected -= Receipt.Request.Buyer == Pair.Key ? Receipt.Request.Price : 0;
+				Expected += Receipt.Request.Seller == Pair.Key ? Receipt.Request.Price : 0;
+			}
+		}
+		TestEqual(TEXT("each balance reconciles to its opening allocation and transfers"), Pair.Value.Balance, Expected);
+	}
 	for (const auto Resource : {FGameplayTag(CCLAgentTags::Food), FGameplayTag(CCLAgentTags::Material)})
 	{
 		int64 Expected = 0;
@@ -171,6 +184,10 @@ bool FCCLLifeThirtyDayTest::RunTest(const FString& Parameters)
 		TestEqual(FString::Printf(TEXT("%s explained by production and consumption"), *Resource.ToString()), Actual, Expected);
 	}
 
+	FCCLLifeSimulation Repeated;
+	TestTrue(TEXT("same input and seed initialize a fresh run"), Repeated.Initialize(Initial, Error));
+	Repeated.AdvanceTo(30 * 86400.);
+	TestEqual(TEXT("fresh 30-day run reproduces decisions and every execution explanation"), Repeated.DailyReport(), Simulation.DailyReport());
 	FCCLLifeSimulation Resumed;
 	TestTrue(TEXT("midpoint restore validates all links"), Resumed.Load(Checkpoint, Error));
 	Resumed.AdvanceTo(30 * 86400.);
@@ -188,40 +205,107 @@ bool FCCLLifeThirtyDayTest::RunTest(const FString& Parameters)
 	return true;
 }
 IMPLEMENT_SIMPLE_AUTOMATION_TEST(FCCLLifeOutcomeTest, "CCL.Agent.ExecutionFeedback",
-    EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
+	EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
 
 bool FCCLLifeOutcomeTest::RunTest(const FString& Parameters)
 {
-    auto Initial = FCCLLifeSimulation::MerchantScenario(42);
-    const FGuid Id = Initial.Agents[0].Id;
-    const auto Purchase = Initial.Opportunities[1];
-    const auto Aid = Initial.Opportunities[4];
-    const auto& Seller = Initial.Agents[1].Features[CCLAgentTags::Feature_Resources].Data.Get<FCCLAgentResourceLinks>();
-    Initial.Economy.Inventories[Seller.Inventory].Resources[CCLAgentTags::Food] = 0;
-    FCCLLifeSimulation Simulation;
-    FString Error;
-    TestTrue(TEXT("initialize depleted supplier"), Simulation.Initialize(Initial, Error));
-    const auto NeedsBefore = Simulation.Find(Id)->Features[CCLAgentTags::Feature_Needs].Data.Get<FCCLAgentNeeds>();
-    const auto& Goal = Initial.Agents[0].Features[CCLAgentTags::Feature_Life].Data.Get<FCCLLifeState>().LifeGoals[0];
-    const float ProgressBefore = Simulation.GoalProgress(*Simulation.Find(Id), Goal);
-    TestFalse(TEXT("selected purchase really fails"), Simulation.Execute(Id, Purchase.OpportunityId, Purchase.Revision, FGuid(90, 5, 1, 1)).bSucceeded != 0);
-    TestEqual(TEXT("failure does not relieve hunger"), Simulation.Find(Id)->Features[CCLAgentTags::Feature_Needs].Data.Get<FCCLAgentNeeds>().Urgency.FindRef(CCLAgentTags::Hunger),
-        NeedsBefore.Urgency.FindRef(CCLAgentTags::Hunger));
-    TestEqual(TEXT("failure cannot progress goal"), Simulation.GoalProgress(*Simulation.Find(Id), Goal), ProgressBefore);
-    TestTrue(TEXT("failed supplier remembered"), Simulation.Find(Id)->Features[CCLAgentTags::Feature_Experience].Data.Get<FCCLAgentExperience>().Beliefs.ContainsByPredicate(
-        [&](const FCCLBelief& B) { return B.Subject.Id == Purchase.ProviderId && B.Predicate == CCLAgentTags::Failure; }));
-    const float TrustBefore = Simulation.Find(Aid.ProviderId)->Features[CCLAgentTags::Feature_Experience].Data.Get<FCCLAgentExperience>().Relationships.FindRef(Id).Trust;
-    TestTrue(TEXT("help transfers actual food"), Simulation.Execute(Id, Aid.OpportunityId, Aid.Revision, FGuid(90, 5, 1, 2)).bSucceeded != 0);
-    TestTrue(TEXT("recipient remembers helper"), Simulation.Find(Aid.ProviderId)->Features[CCLAgentTags::Feature_Experience].Data.Get<FCCLAgentExperience>().Relationships.FindRef(Id).Trust > TrustBefore);
-    const auto Lease = Simulation.GetAgents().Acquire(Simulation.GetAgents().GetHandle(Aid.ProviderId), FGuid(90, 5, 9, 1));
-    const int64 Food = CCLEconomy::Quantity(Simulation.GetEconomy(), Seller.Inventory, CCLAgentTags::Food);
-    TestFalse(TEXT("recipient writer prevents partial multi-agent publication"), Simulation.Execute(Id, Aid.OpportunityId, Aid.Revision, FGuid(90, 5, 1, 3)).bSucceeded != 0);
-    TestEqual(TEXT("lease conflict leaves resources unchanged"), CCLEconomy::Quantity(Simulation.GetEconomy(), Seller.Inventory, CCLAgentTags::Food), Food);
-    Simulation.GetAgents().Release(Lease);
-    auto Invalid = Initial;
-    Invalid.Agents[0].Features[CCLAgentTags::Feature_Life].Data.GetMutable<FCCLLifeState>().LifeGoals[0].Beneficiary.Id = FGuid(99, 99, 99, 99);
-    TestFalse(TEXT("unresolved beneficiary rejected"), Simulation.Initialize(Invalid, Error));
-    TestTrue(TEXT("failed restore retains live state"), Simulation.Find(Id) != nullptr);
-    return true;
+	auto Initial = FCCLLifeSimulation::MerchantScenario(42);
+	const FGuid Id = Initial.Agents[0].Id;
+	const auto Purchase = Initial.Opportunities[1];
+	const auto Aid = Initial.Opportunities[4];
+	const auto& Seller = Initial.Agents[1].Features[CCLAgentTags::Feature_Resources].Data.Get<FCCLAgentResourceLinks>();
+	Initial.Economy.Inventories[Seller.Inventory].Resources[CCLAgentTags::Food] = 0;
+	FCCLLifeSimulation Simulation;
+	FString Error;
+	TestTrue(TEXT("initialize depleted supplier"), Simulation.Initialize(Initial, Error));
+	const auto NeedsBefore = Simulation.Find(Id)->Features[CCLAgentTags::Feature_Needs].Data.Get<FCCLAgentNeeds>();
+	const auto& Goal = Initial.Agents[0].Features[CCLAgentTags::Feature_Life].Data.Get<FCCLLifeState>().LifeGoals[0];
+	const float ProgressBefore = Simulation.GoalProgress(*Simulation.Find(Id), Goal);
+	TestFalse(TEXT("selected purchase really fails"), Simulation.Execute(Id, Purchase.OpportunityId, Purchase.Revision, FGuid(90, 5, 1, 1)).bSucceeded != 0);
+	TestEqual(TEXT("failure does not relieve hunger"), Simulation.Find(Id)->Features[CCLAgentTags::Feature_Needs].Data.Get<FCCLAgentNeeds>().Urgency.FindRef(CCLAgentTags::Hunger),
+		NeedsBefore.Urgency.FindRef(CCLAgentTags::Hunger));
+	TestEqual(TEXT("failure cannot progress goal"), Simulation.GoalProgress(*Simulation.Find(Id), Goal), ProgressBefore);
+	TestTrue(TEXT("failed supplier remembered"), Simulation.Find(Id)->Features[CCLAgentTags::Feature_Experience].Data.Get<FCCLAgentExperience>().Beliefs.ContainsByPredicate(
+		[&](const FCCLBelief& B) { return B.Subject.Id == Purchase.ProviderId && B.Predicate == CCLAgentTags::Failure; }));
+	const float TrustBefore = Simulation.Find(Aid.ProviderId)->Features[CCLAgentTags::Feature_Experience].Data.Get<FCCLAgentExperience>().Relationships.FindRef(Id).Trust;
+	TestTrue(TEXT("help transfers actual food"), Simulation.Execute(Id, Aid.OpportunityId, Aid.Revision, FGuid(90, 5, 1, 2)).bSucceeded != 0);
+	TestTrue(TEXT("recipient remembers helper"), Simulation.Find(Aid.ProviderId)->Features[CCLAgentTags::Feature_Experience].Data.Get<FCCLAgentExperience>().Relationships.FindRef(Id).Trust > TrustBefore);
+	const auto Lease = Simulation.GetAgents().Acquire(Simulation.GetAgents().GetHandle(Aid.ProviderId), FGuid(90, 5, 9, 1));
+	const int64 Food = CCLEconomy::Quantity(Simulation.GetEconomy(), Seller.Inventory, CCLAgentTags::Food);
+	TestFalse(TEXT("recipient writer prevents partial multi-agent publication"), Simulation.Execute(Id, Aid.OpportunityId, Aid.Revision, FGuid(90, 5, 1, 3)).bSucceeded != 0);
+	TestEqual(TEXT("lease conflict leaves resources unchanged"), CCLEconomy::Quantity(Simulation.GetEconomy(), Seller.Inventory, CCLAgentTags::Food), Food);
+	Simulation.GetAgents().Release(Lease);
+	auto Invalid = Initial;
+	Invalid.Agents[0].Features[CCLAgentTags::Feature_Life].Data.GetMutable<FCCLLifeState>().LifeGoals[0].Beneficiary.Id = FGuid(99, 99, 99, 99);
+	TestFalse(TEXT("unresolved beneficiary rejected"), Simulation.Initialize(Invalid, Error));
+	TestTrue(TEXT("failed restore retains live state"), Simulation.Find(Id) != nullptr);
+	auto Slice = FCCLLifeSimulation::MerchantScenario(42);
+	for (int32 Index = 0; Index < Slice.Agents.Num(); ++Index)
+	{
+		Slice.Agents[Index].Features[CCLAgentTags::Feature_Experience].Data.GetMutable<FCCLAgentExperience>().KnownOpportunities =
+			{Slice.Opportunities[Index * 8 + (Index == 0 ? 4 : 3)].OpportunityId};
+	}
+	TestTrue(TEXT("ordered same-tick scenario validates"), Simulation.Initialize(Slice, Error));
+	Simulation.AdvanceTo(3600);
+	const auto& Recipient = Simulation.Find(Slice.Agents[1].Id)->Features[CCLAgentTags::Feature_Experience].Data.Get<FCCLAgentExperience>();
+	TestTrue(TEXT("recipient's later update does not overwrite incoming help memory"), Recipient.Beliefs.ContainsByPredicate(
+		[&](const FCCLBelief& B) { return B.Subject.Id == Slice.Agents[0].Id && B.Predicate == CCLAgentTags::Aid; }));
+	return true;
+}
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FCCLOptionalLifeTest, "CCL.Agent.OptionalFeaturesAndExecutors",
+	EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
+
+bool FCCLOptionalLifeTest::RunTest(const FString& Parameters)
+{
+	auto Initial = FCCLLifeSimulation::MerchantScenario(42);
+	auto& Agent = Initial.Agents[0];
+	Agent.Features.Remove(CCLAgentTags::Feature_Resources);
+	Agent.Features.Remove(CCLAgentTags::Feature_Life);
+	auto& Knowledge = Agent.Features[CCLAgentTags::Feature_Experience].Data.GetMutable<FCCLAgentExperience>();
+	Knowledge.KnownOpportunities = {Initial.Opportunities[3].OpportunityId};
+	FCCLLifeSimulation Simulation;
+	FString Error;
+	TestTrue(TEXT("animal-like agent has no life or economy feature"), Simulation.Initialize(Initial, Error));
+	auto Decision = Simulation.Decide(Agent.Id);
+	TestTrue(TEXT("optional resource-free resting can be chosen"), Decision.bSelected && Decision.Intent.Activity == CCLAgentTags::Rest);
+	TestTrue(TEXT("resource-free rest has a real outcome"), Simulation.Execute(Agent.Id, Decision.Intent.OpportunityId, 1, FGuid(98, 1, 1, 1)).bSucceeded != 0);
+	auto& Custom = Initial.Opportunities[3];
+	Custom.Activity = CCLAgentTags::Safety;
+	TestTrue(TEXT("authored new activity accepts registration later"), Simulation.Initialize(Initial, Error));
+	FCCLActivityProcessor Processor;
+	Processor.Build = [](const FCCLAgentRecord&, const FCCLWorldOpportunity&, const FCCLEconomyState&, FCCLTransactionRequest&, FString&) { return true; };
+	TestTrue(TEXT("register Actor-only executor"), Simulation.RegisterActivity(Custom.Activity, MoveTemp(Processor)));
+	TestFalse(TEXT("reduced execution cannot auto succeed unsupported action"), Simulation.Execute(Agent.Id, Custom.OpportunityId, 1, FGuid(98, 1, 1, 2), true).bSucceeded != 0);
+	TestTrue(TEXT("Actor path uses registered executor"), Simulation.Execute(Agent.Id, Custom.OpportunityId, 1, FGuid(98, 1, 1, 3)).bSucceeded != 0);
+	return true;
+}
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FCCLReservationTest, "CCL.Agent.OpportunityReservations",
+	EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
+
+bool FCCLReservationTest::RunTest(const FString& Parameters)
+{
+	auto Initial = FCCLLifeSimulation::MerchantScenario(42);
+	const auto Opportunity = Initial.Opportunities[0];
+	const FGuid First = Initial.Agents[0].Id;
+	const FGuid Second = Initial.Agents[1].Id;
+	Initial.Agents[1].Features[CCLAgentTags::Feature_Experience].Data.GetMutable<FCCLAgentExperience>().KnownOpportunities.AddUnique(Opportunity.OpportunityId);
+	FCCLLifeSimulation Simulation;
+	FString Error;
+	TestTrue(TEXT("reservation scenario initializes"), Simulation.Initialize(Initial, Error));
+	const FGuid Token = Simulation.ReserveOpportunity(First, Opportunity.OpportunityId);
+	TestTrue(TEXT("known work can be reserved"), Token.IsValid());
+	TestEqual(TEXT("repeat reservation returns the owned token"), Simulation.ReserveOpportunity(First, Opportunity.OpportunityId), Token);
+	TestFalse(TEXT("other actor cannot acquire reserved work"), Simulation.ReserveOpportunity(Second, Opportunity.OpportunityId).IsValid());
+	TestFalse(TEXT("other actor cannot bypass reservation during execution"), Simulation.Execute(Second, Opportunity.OpportunityId, Opportunity.Revision, FGuid(88, 1, 1, 1)).bSucceeded != 0);
+	TArray<uint8> Bytes;
+	TestTrue(TEXT("reservation does not block persistent snapshot"), Simulation.Save(Bytes));
+	TestTrue(TEXT("snapshot reloads"), Simulation.Load(Bytes, Error));
+	TestFalse(TEXT("execution reservations are rebuilt after load"), Simulation.HasReservation(First, Opportunity.OpportunityId, Token));
+	const FGuid Next = Simulation.ReserveOpportunity(Second, Opportunity.OpportunityId);
+	Simulation.ReleaseOpportunity(Token);
+	TestTrue(TEXT("stale token cannot release new reservation"), Simulation.HasReservation(Second, Opportunity.OpportunityId, Next));
+	Simulation.AdvanceTo(Simulation.GetTime() + 7201);
+	TestFalse(TEXT("abandoned reservation expires"), Simulation.HasReservation(Second, Opportunity.OpportunityId, Next));
+	return true;
 }
 #endif

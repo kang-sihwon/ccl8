@@ -1,5 +1,9 @@
 #include "CCLCampaignDirector.h"
 
+#include "Items/CCLWorldPickup.h"
+#include "Agents/CCLAgentComponent.h"
+#include "Items/CCLItemDefinition.h"
+
 #include "CCLCampaignState.h"
 #include "CCLCharacter.h"
 #include "Combat/CCLEnemyCharacter.h"
@@ -30,6 +34,21 @@ void ACCLCampaignDirector::BeginPlay()
 	{
 		UE_LOG(LogTemp, Error, TEXT("CCL_CAMPAIGN missing campaign GameState"));
 		return;
+	}
+
+	const FName Supplies[] = {TEXT("DA_Pistol"), TEXT("DA_Rifle"), TEXT("DA_Bullets")};
+	for (int32 Index = 0; Index < 3; ++Index)
+	{
+		const FTransform Transform(FRotator::ZeroRotator, FVector(-1550, -350 + Index * 130, 45));
+		auto* Pickup = GetWorld()->SpawnActorDeferred<ACCLWorldPickup>(ACCLWorldPickup::StaticClass(), Transform, this, nullptr,
+			ESpawnActorCollisionHandlingMethod::AlwaysSpawn);
+		if (Pickup)
+		{
+			Pickup->Definition = LoadObject<UCCLItemDefinition>(nullptr,
+				*FString::Printf(TEXT("/Game/Progression/%s.%s"), *Supplies[Index].ToString(), *Supplies[Index].ToString()));
+			Pickup->Quantity = Index == 2 ? 60 : 1;
+			Pickup->FinishSpawning(Transform);
+		}
 	}
 
 	State->SetProgress(ECCLCampaignPhase::Village, GuardLocations.Num());
@@ -130,6 +149,7 @@ ACCLEnemyCharacter* ACCLCampaignDirector::SpawnEnemy(FVector Location, bool bBos
 		return nullptr;
 	}
 
+	Enemy->FindComponentByClass<UCCLAgentComponent>()->AgentId = FGuid(0xCC190000, 0, 1, bBoss ? 3 : Guards.Num() + 1);
 	Enemy->bRespawnEnabled = 0;
 	Enemy->Archetype = bBoss ? 2 : (Guards.IsEmpty() ? 0 : 1);
 	Enemy->DisplayName = bBoss ? TEXT("Gate Warden") : (Enemy->Archetype == 1 ? TEXT("Road Raider") : TEXT("Gate Guard"));

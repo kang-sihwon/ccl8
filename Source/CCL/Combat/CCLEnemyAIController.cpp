@@ -1,5 +1,8 @@
 #include "CCLEnemyAIController.h"
 
+#include "Actions/CCLActionComponent.h"
+#include "Agents/CCLAgentComponent.h"
+
 #include "CCLEnemyCharacter.h"
 #include "CCLFighterComponent.h"
 #include "CCLCombatDefinition.h"
@@ -42,7 +45,7 @@ bool ACCLEnemyAIController::AcquireTarget()
 	APawn* Closest = nullptr;
 	const auto* Enemy = Cast<ACCLEnemyCharacter>(GetPawn());
 
-	if (!Enemy || Enemy->IsDead())
+	if (!Enemy || Enemy->IsDead() || GetWorld()->GetTimeSeconds() < ReconsiderAfter)
 	{
 		return false;
 	}
@@ -64,6 +67,12 @@ bool ACCLEnemyAIController::AcquireTarget()
 		}
 	}
 
+	if (const auto* Agent = Enemy->FindComponentByClass<UCCLAgentComponent>(); Closest && Agent && !Agent->ShouldEngage())
+	{
+		ReconsiderAfter = GetWorld()->GetTimeSeconds() + 4;
+		Target.Reset();
+		return false;
+	}
 	Target = Closest;
 	return HasTarget();
 }
@@ -140,10 +149,21 @@ bool ACCLEnemyAIController::StartAttack()
 		return false;
 	}
 
+	if (const auto* Agent = Enemy->FindComponentByClass<UCCLAgentComponent>(); Agent && !Agent->ShouldEngage())
+	{
+		ReconsiderAfter = GetWorld()->GetTimeSeconds() + 4;
+		Target.Reset();
+		return false;
+	}
 	StopMovement();
 	Enemy->SelectAttackPattern();
-	ASC->AbilityInputTagPressed(CCLTags::Input_Attack);
-	ASC->AbilityInputTagReleased(CCLTags::Input_Attack);
+	auto* Actions = Enemy->FindComponentByClass<UCCLActionComponent>();
+	if (!Actions)
+	{
+		return false;
+	}
+	Actions->RequestInput(CCLTags::Input_Attack, true);
+	Actions->RequestInput(CCLTags::Input_Attack, false);
 	return ASC->HasMatchingGameplayTag(CCLTags::State_Busy);
 }
 

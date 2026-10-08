@@ -2,6 +2,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "GameplayEffectTypes.h"
 #include "CCLProjectile.generated.h"
 
 class USphereComponent;
@@ -42,6 +43,10 @@ private:
 
 	UPROPERTY()
 	TObjectPtr<UAbilitySystemComponent> SourceASC;
+
+	UPROPERTY()
+	FGameplayEffectSpecHandle CapturedEffect;
+	int32 CapturedTeam = INDEX_NONE;
 
 	uint8 bResolved = 0;
 };

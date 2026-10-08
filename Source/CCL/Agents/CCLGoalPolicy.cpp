@@ -1,25 +1,26 @@
 #include "CCLGoalPolicy.h"
+
 #include "CCLAgentTags.h"
 namespace
 {
-template<class T> const T* Feature(const FCCLAgentRecord& Agent, FGameplayTag Tag)
+template<class T> const T* GoalFeature(const FCCLAgentRecord& Agent, FGameplayTag Tag)
 {
-    const auto* State = Agent.Features.Find(Tag);
-    return State ? State->Data.GetPtr<T>() : nullptr;
+	const auto* State = Agent.Features.Find(Tag);
+	return State ? State->Data.GetPtr<T>() : nullptr;
 }
 }
 
 float UCCLGoalProgressEvaluator::Evaluate(const FCCLAgentRecord& Agent, const FCCLLifeGoalState& Goal,
-    const FCCLEconomyState& Economy) const
+	const FCCLEconomyState& Economy) const
 {
-    return CCLGoalPolicy::Evaluate(Metric, Skill, Agent, Goal, Economy);
+	return CCLGoalPolicy::Evaluate(Metric, Skill, Agent, Goal, Economy);
 }
 
 float CCLGoalPolicy::Evaluate(ECCLGoalMetric Metric, FGameplayTag SkillTag, const FCCLAgentRecord& Agent,
-    const FCCLLifeGoalState& Goal, const FCCLEconomyState& Economy)
+	const FCCLLifeGoalState& Goal, const FCCLEconomyState& Economy)
 {
 	const auto* Parameters = Goal.Parameters.GetPtr<FCCLLifeGoalParameters>();
-	const auto* Resources = Feature<FCCLAgentResourceLinks>(Agent, CCLAgentTags::Feature_Resources);
+	const auto* Resources = GoalFeature<FCCLAgentResourceLinks>(Agent, CCLAgentTags::Feature_Resources);
 	if (!Parameters || !Resources || Parameters->TargetAmount <= 0)
 	{
 		return 0;
@@ -43,7 +44,7 @@ float CCLGoalPolicy::Evaluate(ECCLGoalMetric Metric, FGameplayTag SkillTag, cons
 	}
 	else if (Metric == ECCLGoalMetric::SkillExperience)
 	{
-		const auto* Life = Feature<FCCLLifeState>(Agent, CCLAgentTags::Feature_Life);
+		const auto* Life = GoalFeature<FCCLLifeState>(Agent, CCLAgentTags::Feature_Life);
 		const auto* Skill = Life ? Life->Skills.Find(SkillTag) : nullptr;
 		Progress = Skill ? Skill->Experience / Parameters->TargetAmount : 0;
 	}
@@ -58,7 +59,7 @@ float CCLGoalPolicy::Evaluate(ECCLGoalMetric Metric, FGameplayTag SkillTag, cons
 				{
 					const auto* Recipient = Economy.Inventories.Find(Item.Destination);
 					if (Item.Source == Resources->Inventory && Recipient && Recipient->OwnerId == Goal.Beneficiary.Id &&
-                        (!Parameters->Resource.IsValid() || Parameters->Resource == Item.Resource))
+						(!Parameters->Resource.IsValid() || Parameters->Resource == Item.Resource))
 					{
 						Delivered += Item.Quantity;
 					}

@@ -1,4 +1,9 @@
 #include "CCLEnemyCharacter.h"
+
+#include "Map/CCLMapSystem.h"
+#include "Actions/CCLActionComponent.h"
+#include "Agents/CCLAgentComponent.h"
+#include "Agents/CCLAgentTags.h"
 #include "CCLCombatDefinition.h"
 #include "AbilitySystem/CCLGameplayTags.h"
 
@@ -18,6 +23,14 @@
 
 ACCLEnemyCharacter::ACCLEnemyCharacter()
 {
+	auto* MapMarker = CreateDefaultSubobject<UCCLMapMarkerComponent>(TEXT("MapMarker"));
+	MapMarker->Kind = ECCLMapKind::Enemy;
+
+	CreateDefaultSubobject<UCCLActionComponent>(TEXT("Actions"));
+	auto* Agent = CreateDefaultSubobject<UCCLAgentComponent>(TEXT("Agent"));
+	Agent->bCreateStandaloneRecord = 1;
+	Agent->DefaultTraits.Axes.Add(CCLAgentTags::Aggressiveness, 0.8f);
+	Agent->DefaultTraits.Axes.Add(CCLAgentTags::RiskTolerance, 0.6f);
 	bReplicates = true;
 	AutoPossessAI = EAutoPossessAI::PlacedInWorldOrSpawned;
 	AIControllerClass = ACCLEnemyAIController::StaticClass();
@@ -58,6 +71,7 @@ void ACCLEnemyCharacter::BeginPlay()
 	Fighter->Initialize(AbilitySystem);
 	SelectAttackPattern();
 	HealthChanged = AbilitySystem->GetGameplayAttributeValueChangeDelegate(UCCLHealthSet::GetHealthAttribute()).AddUObject(this, &ThisClass::OnHealthChanged);
+	FindComponentByClass<UCCLAgentComponent>()->RestoreHealthFromRecord();
 }
 
 void ACCLEnemyCharacter::EndPlay(const EEndPlayReason::Type EndPlayReason)

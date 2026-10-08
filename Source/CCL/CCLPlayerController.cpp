@@ -1,6 +1,12 @@
 #include "CCLPlayerController.h"
+
 #include "Session/CCLGameInstance.h"
 #include "UI/CCLInventoryScreen.h"
+#include "UI/CCLMapScreen.h"
+#include "Actions/CCLActionComponent.h"
+#include "Actions/CCLWeaponAbility.h"
+#include "Camera/CameraComponent.h"
+#include "Presentation/CCLCinematicSubsystem.h"
 #include "UI/CCLGameUI.h"
 #include "UI/CCLHUDScreens.h"
 #include "UI/Core/CCLUISubsystem.h"
@@ -126,6 +132,7 @@ void ACCLPlayerController::SetupInputComponent()
 	MapMenu(EKeys::T, &ThisClass::ServerTalkToSteward);
 	MapMenu(EKeys::B, &ThisClass::ServerBuyPotion);
 	MapMenu(EKeys::I, &ThisClass::ToggleInventory);
+	MapMenu(EKeys::M, &ThisClass::ToggleWorldMap);
 	MapMenu(EKeys::Up, &ThisClass::SelectPreviousItem);
 	MapMenu(EKeys::Down, &ThisClass::SelectNextItem);
 	MapMenu(EKeys::F, &ThisClass::EquipSelectedItem);
@@ -141,6 +148,22 @@ void ACCLPlayerController::SetupInputComponent()
 void ACCLPlayerController::PlayerTick(float DeltaTime)
 {
 	Super::PlayerTick(DeltaTime);
+	if (IsLocalController() && GetPawn())
+	{
+		auto* Camera = GetPawn()->FindComponentByClass<UCameraComponent>();
+		if (Camera && AimCamera != Camera)
+		{
+			AimCamera = Camera;
+			OriginalAimFOV = Camera->FieldOfView;
+		}
+		const auto* State = GetPlayerState<ACCLPlayerState>();
+		const auto* ASC = State ? State->GetAbilitySystemComponent() : nullptr;
+		const bool bAiming = ASC && ASC->HasMatchingGameplayTag(CCLActionTags::Aiming);
+		if (Camera)
+		{
+			Camera->SetFieldOfView(FMath::FInterpTo(Camera->FieldOfView, bAiming ? OriginalAimFOV * 0.7f : OriginalAimFOV, DeltaTime, 10));
+		}
+	}
 	// Interaction validity is independent of whether presentation hides the widget.
 	if (DialogueHandle.IsValid() && !IsDialogueVisible())
 	{
@@ -190,13 +213,7 @@ void ACCLPlayerController::EndPlay(const EEndPlayReason::Type EndPlayReason)
 
 void ACCLPlayerController::CCLRetry()
 {
-	const auto* RetryPawn = Cast<ACCLCharacter>(GetPawn());
-	if (auto* State = GetPlayerState<ACCLPlayerState>(); State && RetryPawn && !RetryPawn->IsDead())
-	{
-		State->GetLoadout()->RequestReload();
-		return;
-	}
-
+	// Death replication may arrive after the key press. Resolve reload/retry on the authoritative pawn.
 	ServerRequestRetry();
 }
 
@@ -209,6 +226,19 @@ void ACCLPlayerController::CCLDie()
 
 void ACCLPlayerController::CCLLeave()
 {
+	if (auto* Local = GetLocalPlayer())
+	{
+		auto* Cinematic = Local->GetSubsystem<UCCLCinematicSubsystem>();
+		if (Cinematic->Cancel(Cinematic->GetActiveHandle()))
+		{
+			return;
+		}
+	}
+	if (auto* UI = CCLGameUI::Get(this); UI && UI->IsViewOpen(WorldMapHandle))
+	{
+		UI->CloseView(WorldMapHandle);
+		return;
+	}
 	if (IsInventoryOpen())
 	{
 		CloseInventory();
@@ -539,6 +569,12 @@ void ACCLPlayerController::StopJump()
 
 void ACCLPlayerController::ServerRequestRetry_Implementation()
 {
+	const auto* RetryPawn = Cast<ACCLCharacter>(GetPawn());
+	if (auto* State = GetPlayerState<ACCLPlayerState>(); State && RetryPawn && !RetryPawn->IsDead())
+	{
+		State->GetLoadout()->RequestReload();
+		return;
+	}
 	if (auto* GameMode = GetWorld()->GetAuthGameMode<ACCLGameModeBase>())
 	{
 		GameMode->RequestRetry(this);
@@ -566,7 +602,10 @@ void ACCLPlayerController::CombatPressed(FGameplayTag Tag)
 	{
 		if (auto* ASC = Cast<UCCLAbilitySystemComponent>(ControlledPawn->GetAbilitySystemComponent()))
 		{
-			ASC->AbilityInputTagPressed(Tag);
+			if (auto* Actions = ASC->GetOwnerActor()->FindComponentByClass<UCCLActionComponent>())
+			{
+				Actions->RequestInput(Tag, true);
+			}
 		}
 	}
 }
@@ -577,7 +616,10 @@ void ACCLPlayerController::CombatReleased(FGameplayTag Tag)
 	{
 		if (auto* ASC = Cast<UCCLAbilitySystemComponent>(ControlledPawn->GetAbilitySystemComponent()))
 		{
-			ASC->AbilityInputTagReleased(Tag);
+			if (auto* Actions = ASC->GetOwnerActor()->FindComponentByClass<UCCLActionComponent>())
+			{
+				Actions->RequestInput(Tag, false);
+			}
 		}
 	}
 }
@@ -729,7 +771,7 @@ void ACCLPlayerController::HandInput(FGameplayTag Hand, bool bPressed)
 	{
 		if (Held.IsValid())
 		{
-			ASC->AbilityInputTagReleased(Held);
+			State->FindComponentByClass<UCCLActionComponent>()->RequestInput(Held, false);
 			Held = FGameplayTag();
 		}
 
@@ -748,7 +790,7 @@ void ACCLPlayerController::HandInput(FGameplayTag Hand, bool bPressed)
 	}
 
 	Held = Input;
-	ASC->AbilityInputTagPressed(Input);
+	State->FindComponentByClass<UCCLActionComponent>()->RequestInput(Input, true);
 }
 
 UTextureRenderTarget2D* ACCLPlayerController::GetEquipmentPreview() const
@@ -826,4 +868,21 @@ int32 ACCLPlayerController::GetSelectedItem() const
 FGuid ACCLPlayerController::GetSelectedEquipment() const
 {
 	return InventoryContext ? InventoryContext->SelectedEquipment : FGuid();
+}
+
+void ACCLPlayerController::ToggleWorldMap()
+{
+	if (auto* UI = CCLGameUI::Get(this))
+	{
+		if (UI->IsViewOpen(WorldMapHandle))
+		{
+			UI->CloseView(WorldMapHandle);
+		}
+		else if (GetPawn())
+		{
+			auto* Context = NewObject<UCCLMapContext>(this);
+			Context->bFullMap = 1;
+			WorldMapHandle = UI->OpenView(CCLUITags::View_WorldMap, Context, this);
+		}
+	}
 }

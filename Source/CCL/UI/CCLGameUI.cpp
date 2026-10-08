@@ -4,12 +4,17 @@
 #include "CCLSessionMenuScreen.h"
 #include "CCLUIInputData.h"
 #include "CCLHUDScreens.h"
+#include "CCLMapScreen.h"
+#include "Presentation/CCLCinematicSubsystem.h"
 #include "Core/CCLUISubsystem.h"
 #include "Engine/LocalPlayer.h"
 #include "GameFramework/PlayerController.h"
 
 namespace CCLUITags
 {
+UE_DEFINE_GAMEPLAY_TAG(View_Cinematic, "UI.View.Cinematic");
+UE_DEFINE_GAMEPLAY_TAG(View_Minimap, "UI.View.Minimap");
+UE_DEFINE_GAMEPLAY_TAG(View_WorldMap, "UI.View.WorldMap");
 UE_DEFINE_GAMEPLAY_TAG(Layer_HUD, "UI.Layer.HUD");
 UE_DEFINE_GAMEPLAY_TAG(Layer_Panels, "UI.Layer.Panels");
 UE_DEFINE_GAMEPLAY_TAG(Layer_Menu, "UI.Layer.Menu");
@@ -77,6 +82,25 @@ UCCLUISubsystem* CCLGameUI::Get(APlayerController* Controller)
 		View.RequiredContextClass = UCCLDialogueContext::StaticClass();
 		View.Groups.Reset();
 		View.Groups.AddTag(CCLUITags::Group_Dialogue);
+		Registry->Views.Add(View);
+		View = FCCLUIViewDefinition();
+		View.Tag = CCLUITags::View_Minimap;
+		View.WidgetClass = UCCLMapScreen::StaticClass();
+		View.RequiredContextClass = UCCLMapContext::StaticClass();
+		View.Layer = CCLUITags::Layer_HUD;
+		View.Groups.AddTag(CCLUITags::Group_HUD);
+		Registry->Views.Add(View);
+		View.Tag = CCLUITags::View_WorldMap;
+		View.Layer = CCLUITags::Layer_Panels;
+		View.Groups.Reset();
+		View.Groups.AddTag(CCLUITags::Group_Menus);
+		View.InputPolicy = ECCLUIInputPolicy::Menu;
+		Registry->Views.Add(View);
+		View = FCCLUIViewDefinition();
+		View.Tag = CCLUITags::View_Cinematic;
+		View.WidgetClass = UCCLCinematicScreen::StaticClass();
+		View.RequiredContextClass = UCCLCinematicContext::StaticClass();
+		View.Layer = CCLUITags::Layer_Notifications;
 		Registry->Views.Add(View);
 		if (!UI->ConfigureRegistry(Registry))
 		{

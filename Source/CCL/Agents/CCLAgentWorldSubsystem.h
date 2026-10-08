@@ -35,6 +35,7 @@ public:
 	bool Save(TArray<uint8>& Bytes);
 	bool Restore(const TArray<uint8>& Bytes, FString& Error);
 	FCCLLifeSimulation& GetSimulation() { return Simulation; }
+	const FCCLLifeSimulation& GetSimulation() const { return Simulation; }
 	bool IsRunning() const { return bRunning != 0; }
 
 private:

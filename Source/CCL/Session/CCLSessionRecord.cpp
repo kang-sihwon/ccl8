@@ -1,4 +1,5 @@
 #include "CCLSessionRecord.h"
+
 #include "Items/CCLItemDefinition.h"
 #include "Items/CCLSkillDefinition.h"
 #include "Actions/CCLWeaponAbility.h"
@@ -35,17 +36,17 @@ bool FCCLSessionCodec::Validate(const FCCLSessionRecord& R)
 {
 	if (R.Version < 1 || R.Version > 5 || R.Items.Num() > (R.Version >= 3 ? 24 : 16) || R.Skills.Num() > 2 || R.Points < 0 ||
 		R.Points > 1000 || R.Coins < 0 || R.Coins > 1000000 || R.Quest > 2 || R.DefeatedGuards > 3 || R.Victory > 1 ||
-		(R.Victory && R.DefeatedGuards != 3) || (R.Quest == 2 && !R.Victory) || R.RemainingSupplies.Num() > 2)
+		(R.Victory && R.DefeatedGuards != 3) || (R.Quest == 2 && !R.Victory) || R.RemainingSupplies.Num() > (R.Version >= 5 ? 5 : 2))
 	{
 		return false;
 	}
 
 	if (R.AccountId.IsValid() && (R.AgentSimulation.IsEmpty() || R.Coins != 0))
-    {
-        return false;
-    }
+	{
+		return false;
+	}
 
-    if (!R.AgentSimulation.IsEmpty())
+	if (!R.AgentSimulation.IsEmpty())
 	{
 		TArray<uint8> State;
 		FCCLLifeSimulation Validation;

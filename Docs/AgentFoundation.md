@@ -1,6 +1,6 @@
 # 개인의 삶이 누적되는 Agent
 
-같은 직업의 Agent도 다른 목표·생활 기반·경험·관계를 가지고 시작한다. 실행 결과가 실제 자원과 세계를 바꾸고, 그 변화가 다음 선택의 원인이 되어야 한다. 이 문서는 결정 18의 구현 계약이다. 구현·검증 상태는 마지막 절에서 별도로 관리한다.
+같은 직업의 Agent도 다른 목표·생활 기반·경험·관계를 가지고 시작한다. 실행 결과가 실제 자원과 세계를 바꾸고, 그 변화가 다음 선택의 원인이 되어야 한다. 이 문서는 결정 18의 구현 계약이다. 구현·검증 상태는 뒷부분에서 별도로 관리한다.
 
 ## 데이터와 소유권
 
@@ -44,26 +44,46 @@ WorldEvent의 실제 신원과 Agent가 지각한 Observation은 구분한다. �
 
 구현 순서는 기반·저장, 공통 행동·전투, 단일 Agent 순환, 생활·거래·목표, 경험 반영, 마을·지도·연출, 장기·Mass·네트워크 검증이다. 각 작업 묶음의 최종 변경 상태에서 생성 BAT, Editor 빌드, 실행 검사와 코드 검토를 수행한다.
 
-## 구현·검증 상태
+## 구현과 확장 경계
 
-구현 진행 중이다. 위 계약은 승인된 목표이며 전체 구현 완료를 뜻하지 않는다.
+`Source/CCL/Agents/`의 `CCLAgentTypes`는 선택적 Feature, 타입·버전·의존성·Migration과 ID·세대·실행권을 구현한다. `CCLAgentFeatures`는 성격·생활·욕구·기억을, `CCLAgentSnapshot`은 실행권 수집 이후 저장을 담당한다. 구조체 인스턴스는 `FInstancedStruct`다. `CCLAgentTraitsCustomization`은 기본 성격과 가치관을 0-100으로 편집하고 내부에는 0-1을 쓴다. 에디터 Details의 수동 조작은 미확인이다.
 
-`Source/CCL/Agents/CCLAgentTypes`는 선택적 Feature 검증·Migration과 ID·세대·실행권을 구현한다. `CCLAgentFeatures`는 생활·성격·욕구·기억 자료형과 관측 반영을, `CCLAgentSnapshot`은 실행권 수집 이후의 저장·복원을 제공한다. 저장의 체크섬은 우발적 손상을 검출하며 외부 입력의 보안 검증을 대신하지 않는다.
+`FCCLLifeSimulation`이 기회 조회·판단 입력 생성·결과 확정·시간·목표 평가를 묶는다. 독립 `CCLDecision::Evaluate`는 값 입력만 읽는다. `ACCLAgentAIController`의 StateTree는 선택, 이동, 예약, 수행과 실패 복구를 실행한다. `UCCLLifeGoalDefinition`은 진행 계산기와 완료 정책을 교체한다. 새 활동은 `RegisterActivity`에 Build·Apply 처리기를 등록하며, 간략 실행 지원 여부를 별도로 선언한다. 미지원 간략 실행은 실패한다.
 
-UE 5.9.0 소스 설치본에서 생성 BAT와 `CCLEditor Win64 Development` 빌드가 성공했다. `CCL.Agent.LifetimeAndMigration`, `CCL.Agent.ObservationAndNeeds` 2개 자동화 검사가 통과했다. 근거는 `Saved/StageValidation/AgentFoundation-Generate.log`, `AgentFoundation-Build.log`, `Saved/Tests/Automation/20261008-150633-274/report/index.json`이다. 로그는 로컬에 보존한다.
+`DA_MerchantLifeScenario`의 동일 상인 Definition을 사용하는 8명이 실제 마을에서 생활한다. 기존 퀘스트 담당자도 생활 의도를 수행한다. 공급처 발견, 작업, 판매·구매, 식사·휴식, 도움, 부채 상환과 정의된 시설 개선을 연결했다. 보관 시설은 개선 수준에 따라 용량과 큐브 외형이 바뀐다. Actor가 언로드되면 기록을 유지하고 지원된 간략 실행으로 전환한다.
 
-계정·부채·소유권·기회·거래와 판단 커널을 연결했다. `CCLLifeSimulation`은 실제 잔액·재고·숙련·시설 수준으로 목표를 평가한다. `UCCLLifeGoalDefinition`의 진행 계산기와 완료 정책을 교체할 수 있다. 기본 생활 목표는 유지형이며 나머지는 완료형이다. 새 행동 실행기는 아직 코드로 추가해야 한다. 지원하지 않는 행동은 실패한다.
+`CCLEconomy`의 계정·재고·의무·소유권·영수증이 자원의 원본이다. 실행은 거래와 관련 Agent 상태를 검증한 뒤 함께 게시한다. 실패는 성공 보상과 욕구 충족을 적용하지 않는다. 거래·도움의 상대도 경험을 받으며, 같은 시간 구간의 후속 갱신이 그 경험을 덮어쓰지 않는다. 재고·능력·권한을 확인하고, 판매자의 비공개 재고는 실행 시 재검사한다.
 
-마을에는 StateTree로 이동·작업하는 생활 NPC 7명과 기존 퀘스트 담당자 1명이 있다. 공통 Store가 8명의 기록을 유지한다. 언로드된 생활 NPC는 간략 실행으로 전환한다. 기존 담당자는 퀘스트 위치를 유지하며 생활 행동을 실행하지 않는다. 마을 시나리오는 `DA_MerchantLifeScenario`에서 읽는다.
+플레이어 금화는 `UCCLAccountComponent`가 공통 계정으로 연결한다. 보상은 유한한 금고에서 이전하고, 포션 구매는 실제 상점 재고와 기존 아이템 인벤토리를 잇는 거래 어댑터다. 영수증에는 외부 아이템의 목적지와 정의가 남는다. 계정의 초기 배분은 `OpeningBalance`로 추적한다. 체크포인트 범위와 기존 금화 변환은 [SessionFoundation](SessionFoundation.md#이번-저장-정책)을 따른다.
 
-플레이어 금화는 `UCCLAccountComponent`가 참조하는 공통 계정이 소유한다. 클라이언트에는 잔액 표시값만 복제한다. 기존 금화는 저장 복원 때 계정으로 옮긴다. 보상은 유한한 공동 금고에서 이전하고, 기존 포션 구매는 실제 상점 재고·플레이어 아이템 인벤토리·계정의 거래 어댑터를 사용한다. 아이템 전달 영수증에는 대상 인벤토리 소유자와 아이템 ID가 남는다. 신규 체크포인트는 Agent·원장 스냅샷과 계정 ID를 포함하며 금화를 중복 저장하지 않는다.
+`UCCLActionComponent`는 소스 ID별 GAS 행동을 등록·해제하고 기존 근접 입력도 같은 진입점으로 전달한다. 무기 Fragment의 ActionSet과 손별 태그가 실행을 선택한다. `ACCLProjectile`은 서버에서 이동·충돌하며 발사 당시 피해·효과·팀을 보존한다. 발사자 Actor가 제거되어도 적중을 처리한다. `CCLHit::Apply`는 근접과 투사체의 정책·효과 적용을 공유한다. 장전은 완료 시 탄약을 옮기며 아이템 GUID별 탄창을 저장한다.
 
-판단 후보는 알고 있는 기회에서 생성한다. 판매자 비공개 재고는 실행 단계에서 검사한다. 거래 실패는 이익이나 욕구 충족 없이 실패 경험만 남기며, 성공한 도움과 거래는 상대의 기억에도 남는다. 두 Agent 결과는 일괄 검증 후 원자적으로 게시한다.
+전투 적은 생활·계정 Feature 없이 성격·욕구·기억을 사용하고, 공통 판단 커널로 공격 지속과 후퇴를 평가한다. 생활 NPC의 실제 피격도 부상·공포·기억으로 이어진다. 인지하지 못한 공격자의 ID는 기억에 넣지 않는다. 저장한 부상은 Actor 체력으로 복원한다. 구체적인 동물 행동과 NPC의 무기 전술은 등록할 콘텐츠다.
 
-`CCL.Agent` 자동화 6개가 `Saved/Tests/Automation/20261008-162140-650/report/index.json`에서 통과했다. 30일 시험은 화폐·물품 보존과 15일 저장 후 30일 결과 재현을 검사하고 `Saved/Tests/LifeSimulation/merchants-30-days.txt`에 매일 상태와 점수 기여를 남긴다. 실제 마을 이동·작업·저장·재생성·언로드 검사와 정상 종료는 `Saved/Tests/AgentWorld/20261008-161753/editor.log`, 기존 캠페인 저장 회귀는 `Saved/Tests/SessionSmoke/20261008-161753/`에서 통과했다. 생성·빌드 근거는 `Saved/StageValidation/AgentLife-Generate.log`, `AgentLife-Build.log`다.
+`UCCLMapSubsystem`과 `UCCLMapMarkerComponent`는 미니맵·전체맵에 지역과 관찰자별 표식을 공급한다. 기본 지형은 레벨의 충돌 StaticMesh 경계 투영이며, `SetRegion`으로 작성한 지역 정의를 쓸 수 있다. 표식 공개는 거리·시야를 확인한다. `UCCLCinematicSubsystem`은 마을 진입·승리의 카메라 이동, UI 숨김, 제목·레터박스, 음향과 광원 연출을 소유 핸들로 정리한다. 취소·완료·소유 Pawn 교체 시 복구한다.
 
-지도·연출·Mass·네트워크 최종 통합과 전체 시각 검사는 진행 중이다.
+`CCLMassAgentBridge`는 실제 `FMassEntityManager`의 Entity를 만든다. Fragment에는 의도와 실행권만 두고 동적 Feature는 공통 Store가 유지한다. 이동 전에는 미반영 의도를 Commit하고 실행권을 반환한다. 실패하면 Entity를 남겨 복구할 수 있다. UE 5.9 소스의 `<Engine>/Source/Runtime/MassEntity/Public/MassEntityManager.h`에 있는 Fragment의 복사 가능 타입 검사에 맞춘 구성이다. Mass 이동·전투·GAS 자동 호환은 제공하지 않는다.
 
-공통 `UCCLActionComponent`는 소스 ID마다 GAS Ability 핸들을 등록하고 해제한다. 무기 Fragment의 `ActionSet`과 손별 태그가 이 경로에 연결된다. `ACCLProjectile`은 서버에서 이동·충돌하고 발사 시점의 피해 정의를 사용한다. `CCLHit::Apply`는 근접·투사체의 효과 적용을 공유한다. 기존 근접 입력의 전면 이전, 총구 소켓·발사 연출·조준 카메라와 전투 AI의 새 행동 집합 연결은 남아 있다.
+## 검증
 
-투사체의 체력 전용 대상 적중, 발사 후 발사자 사망 상태, 탄약 보존·저장 검사가 `Saved/Tests/Projectile/20261008-152320/editor.log`에서 통과했다. 장비 태그·이전 저장 변환은 `Saved/Tests/Automation/20261008-152333-195/report/index.json`, 근접·가드·패링·회피·재스폰 회귀는 `Saved/Tests/CombatSmoke/Standalone-20261008-152443/`에서 통과했다. 생성·빌드 근거는 `Saved/StageValidation/AgentActions-Generate.log`, `AgentActions-Build.log`다. 신규 총기 정의 에셋은 생성했으며 마을 배치는 통합 작업에서 연결한다.
+검증 설치본은 UE 5.9.0 소스 엔진이다. 생성 BAT와 `CCLEditor Win64 Development` 빌드 근거는 로컬 `Saved/StageValidation/AgentIntegration-Generate.log`, `AgentIntegration-Build.log`다. 아래 경로는 저장소 기준이며 로그·캡처는 Git에 넣지 않는다.
+
+| 검사 | 확인한 계약 | 로컬 근거 |
+|---|---|---|
+| 전체 자동화 | 12개 통과: Feature 수명·Migration, 관측, 거래 원자성·중복 요청, 원인별 선택 차이, 실행 실패, 선택적 기능, 예약, 실제 Mass 이전과 기존 UI·장비 검사 | `Saved/Tests/Automation/20261008-172059-858/report/index.json` |
+| 30일 상인 시험 | 자원 보존·계정별 원장 대사, 같은 입력·Seed의 새 실행 재현, 15일 저장 후 30일 결과 재현 | 위 자동화의 `CCL.Agent.ThirtyDays`, `Saved/Tests/LifeSimulation/merchants-30-days.txt` |
+| 투사체 | 발사자 제거 후 적중, 단일 적중·제거, 탄약·저장 | `Saved/Tests/Projectile/20261008-171633/editor.log` |
+| 실제 마을 | 이동·실행·피격 기억·부상 복원, 적 기록과 주민 생성의 분리, 언로드 후 시간 진행 | `Saved/Tests/AgentWorld/20261008-172059/editor.log` |
+| 전투 네트워크 | Dedicated 지연·손실 환경에서 공통 Action 입력, 공격·가드·패링·회피·개별 재스폰 | `Saved/Tests/CombatSmoke/Dedicated-20261008-172059/` |
+| NPC 거래·보상 | Listen 지연·손실 환경에서 포션 재고·잔액·가방 한계, 퀘스트·중복 보상 거부·개별 재스폰 | `Saved/Tests/CampaignSmoke/Listen-20261008-172509/` |
+| 체크포인트 | 별도 프로세스 저장·재개, 장비·금화·퀘스트·처치 상태 | `Saved/Tests/SessionSmoke/20261008-172100/` |
+| 세션 네트워크 | 공개 주민 복제·서버 전용 생활 상태, 계정 소유자 전용 복제, 손님의 호스트 저장 거부 | `Saved/Tests/SessionSmoke/20261008-173011/` |
+| 지도·연출 | 실제 1280×720·1920×1080, 지형·표식·좌표, 완료·취소·오래된 핸들의 복구 | `Saved/Tests/Integration/20261008-171700/`, `Saved/Tests/Integration/20261008-173013/` |
+
+30일 보고서는 매일 계정·재고·부채·목표·관계와 사건을 기록한다. 각 실행 영수증은 선택 당시 점수 기여도와 실행 결과를 연결한다. 성향 차이에 임의의 자산 보너스를 주지 않고 실제 생산·소비·이전으로 잔액과 물량을 설명한다. 이 시험의 실행 시간은 자동화 보고서에 기록되며 대규모 군중 성능 보장은 아니다.
+
+## 현재 제한
+
+마을·시설·탄환·연출은 작동 확인용 표현이다. 총구 소켓에 맞춘 발사 애니메이션·총성·궤적 효과와 최종 아트는 별도 콘텐츠 작업이다. 지도에는 탐험 안개 저장이나 지형 텍스처 베이크가 없다. 기억·믿음에는 크기 제한이 있고, 장기 운영용 사건 압축·원장 보관 정책은 확정하지 않았다.
+
+플레이어와 NPC는 거래 계약을 공유하지만 아이템 인벤토리의 표현은 각각 어댑터와 자원 재고다. 모든 종류의 NPC 장비·아이템 거래 UI를 만든 상태는 아니다. 로컬 체크포인트는 호스트 개인 상태만 복원하며, 손님의 재접속 신원·개인 인벤토리 영속성은 지원하지 않는다. 새 Windows 배포 패키지는 이번 검사에 포함하지 않았다.

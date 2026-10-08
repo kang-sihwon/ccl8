@@ -2,6 +2,7 @@
 
 namespace CCLAgentTags
 {
+UE_DEFINE_GAMEPLAY_TAG(Injury, "Agent.State.Injury");
 UE_DEFINE_GAMEPLAY_TAG(Feature_Traits, "Agent.Feature.Traits");
 UE_DEFINE_GAMEPLAY_TAG(Feature_Life, "Agent.Feature.Life");
 UE_DEFINE_GAMEPLAY_TAG(Feature_Resources, "Agent.Feature.Resources");

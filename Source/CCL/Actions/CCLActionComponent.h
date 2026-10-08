@@ -61,6 +61,7 @@ public:
 	bool RegisterSource(FGuid Id, UObject* Definition, const TArray<FCCLActionGrant>& Grants);
 	void RemoveSource(FGuid Id);
 	bool Execute(FGuid Source, FGameplayTag Action);
+	void RequestInput(FGameplayTag Input, bool bPressed);
 	void Cancel(FGuid Source);
 	void Release(FGuid Source, FGameplayTag Action);
 	bool HasSource(FGuid Id) const;

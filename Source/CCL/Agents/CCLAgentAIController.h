@@ -46,6 +46,7 @@ public:
 	virtual void OnUnPossess() override;
 
 public:
+	void AbortIntent();
 	EStateTreeRunStatus SelectIntent();
 	EStateTreeRunStatus Approach(double StartedTime);
 	EStateTreeRunStatus Perform(double StartedTime);
@@ -55,6 +56,7 @@ private:
 	TObjectPtr<UStateTreeAIComponent> StateTree;
 
 	FGuid OpportunityId;
+	FGuid Reservation;
 	int32 Revision = 0;
 	FVector Destination = FVector::ZeroVector;
 	double NextDecisionTime = 0;

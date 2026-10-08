@@ -28,6 +28,7 @@ void ACCLAgentAIController::OnPossess(APawn* InPawn)
 
 void ACCLAgentAIController::OnUnPossess()
 {
+	AbortIntent();
 	StateTree->StopLogic(TEXT("Agent unloaded"));
 	StopMovement();
 	OpportunityId.Invalidate();
@@ -52,11 +53,17 @@ EStateTreeRunStatus ACCLAgentAIController::SelectIntent()
 	auto& Simulation = World->GetSimulation();
 	const auto Decision = Simulation.Decide(Agent->AgentId);
 	const auto* Opportunity = Decision.bSelected ? Simulation.FindOpportunity(Decision.Intent.OpportunityId) : nullptr;
-	if (!Opportunity || !Simulation.SelectIntent(Agent->AgentId, Decision.Intent))
+	if (!Opportunity || !Simulation.SelectIntent(Agent->AgentId, Decision.Intent, &Decision.Traces))
 	{
 		return EStateTreeRunStatus::Running;
 	}
 
+	Simulation.ReleaseOpportunity(Reservation);
+	Reservation = Simulation.ReserveOpportunity(Agent->AgentId, Opportunity->OpportunityId);
+	if (!Reservation.IsValid())
+	{
+		return EStateTreeRunStatus::Running;
+	}
 	OpportunityId = Opportunity->OpportunityId;
 	Revision = Opportunity->Revision;
 	Destination = Opportunity->Location.Position;
@@ -72,7 +79,7 @@ EStateTreeRunStatus ACCLAgentAIController::Approach(double StartedTime)
 {
 	if (!GetPawn() || GetWorld()->GetTimeSeconds() - StartedTime > 30)
 	{
-		StopMovement();
+		AbortIntent();
 		return EStateTreeRunStatus::Failed;
 	}
 
@@ -87,6 +94,7 @@ EStateTreeRunStatus ACCLAgentAIController::Approach(double StartedTime)
 		const auto Result = MoveToLocation(Destination, 80, true, true, true, false, nullptr, false);
 		if (Result == EPathFollowingRequestResult::Failed)
 		{
+			AbortIntent();
 			return EStateTreeRunStatus::Failed;
 		}
 	}
@@ -98,24 +106,26 @@ EStateTreeRunStatus ACCLAgentAIController::Perform(double StartedTime)
 {
 	auto* World = GetWorld()->GetSubsystem<UCCLAgentWorldSubsystem>();
 	const auto* Agent = GetPawn() ? GetPawn()->FindComponentByClass<UCCLAgentComponent>() : nullptr;
-	if (!Agent || !World || FVector::DistSquared2D(GetPawn()->GetActorLocation(), Destination) > FMath::Square(180.f))
+	if (!Agent || !World || !World->GetSimulation().HasReservation(Agent->AgentId, OpportunityId, Reservation) || FVector::DistSquared2D(GetPawn()->GetActorLocation(), Destination) > FMath::Square(180.f))
 	{
+		AbortIntent();
 		return EStateTreeRunStatus::Failed;
 	}
 
 	auto& Simulation = World->GetSimulation();
-    const bool bCheckDecision = GetWorld()->GetTimeSeconds() >= NextDecisionTime;
-    const auto Decision = bCheckDecision ? Simulation.Decide(Agent->AgentId) : FCCLDecisionResult();
-    if (bCheckDecision)
-    {
-        NextDecisionTime = GetWorld()->GetTimeSeconds() + 1;
-    }
-    if (Decision.bSelected && Decision.Intent.OpportunityId != OpportunityId)
+	const bool bCheckDecision = GetWorld()->GetTimeSeconds() >= NextDecisionTime;
+	const auto Decision = bCheckDecision ? Simulation.Decide(Agent->AgentId) : FCCLDecisionResult();
+	if (bCheckDecision)
+	{
+		NextDecisionTime = GetWorld()->GetTimeSeconds() + 1;
+	}
+	if (Decision.bSelected && Decision.Intent.OpportunityId != OpportunityId)
 	{
 		const auto* Record = Simulation.Find(Agent->AgentId);
 		const auto* Needs = Record ? Record->Features.Find(CCLAgentTags::Feature_Needs) : nullptr;
 		if (Needs && Needs->Data.Get<FCCLAgentNeeds>().Urgency.FindRef(CCLAgentTags::Hunger) >= 0.9f)
 		{
+			AbortIntent();
 			return EStateTreeRunStatus::Failed;
 		}
 	}
@@ -126,6 +136,7 @@ EStateTreeRunStatus ACCLAgentAIController::Perform(double StartedTime)
 	}
 
 	const auto Result = Simulation.Execute(Agent->AgentId, OpportunityId, Revision, FGuid::NewGuid());
+	AbortIntent();
 	NextDecisionTime = GetWorld()->GetTimeSeconds() + 1;
 	return Result.bSucceeded ? EStateTreeRunStatus::Succeeded : EStateTreeRunStatus::Failed;
 }
@@ -151,4 +162,14 @@ EStateTreeRunStatus FCCLAgentTask::Tick(FStateTreeExecutionContext& Context, flo
 	}
 
 	return Phase == ECCLAgentExecutionPhase::Approach ? Controller->Approach(StartedTime) : Controller->Perform(StartedTime);
+}
+
+void ACCLAgentAIController::AbortIntent()
+{
+	StopMovement();
+	if (auto* World = GetWorld()->GetSubsystem<UCCLAgentWorldSubsystem>())
+	{
+		World->GetSimulation().ReleaseOpportunity(Reservation);
+	}
+	Reservation.Invalidate();
 }

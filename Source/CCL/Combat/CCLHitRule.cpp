@@ -1,4 +1,6 @@
 #include "CCLHitRule.h"
+
+#include "Agents/CCLAgentComponent.h"
 #include "AbilitySystem/CCLOffenseSet.h"
 
 #include "CCLCombatDefinition.h"
@@ -29,7 +31,8 @@ FCCLHitResolution UCCLDuelHitRule::Resolve(const FCCLHitContext& Context) const
 	const auto* SourceFighter = Context.Source->FindComponentByClass<UCCLFighterComponent>();
 	auto* TargetFighter = Context.Target->FindComponentByClass<UCCLFighterComponent>();
 
-	if (SourceFighter && TargetFighter && SourceFighter->Team == TargetFighter->Team)
+	const int32 SourceTeam = Context.bDetachedShot ? Context.CapturedTeam : (SourceFighter ? SourceFighter->Team : INDEX_NONE);
+	if (SourceTeam != INDEX_NONE && TargetFighter && SourceTeam == TargetFighter->Team)
 	{
 		return FCCLHitResolution(FGameplayTag(CCLTags::Outcome_Rejected));
 	}
@@ -97,7 +100,7 @@ FCCLHitResolution UCCLDuelHitRule::Resolve(const FCCLHitContext& Context) const
 FGameplayTag CCLHit::Apply(const FCCLHitContext& Context)
 {
 	if (!IsValid(Context.Source) || !IsValid(Context.Target) || !Context.Source->HasAuthority() ||
-		Context.Source == Context.Target || !Context.SourceASC || !Context.TargetASC ||
+		Context.Source == Context.Target || (!Context.SourceASC && !(Context.bDetachedShot && Context.CapturedEffect.IsValid())) || !Context.TargetASC ||
 		Context.TargetASC->GetAvatarActor() != Context.Target || !Context.Definition || !Context.Definition->HitRule)
 	{
 		return {};
@@ -111,20 +114,43 @@ FGameplayTag CCLHit::Apply(const FCCLHitContext& Context)
 			return {};
 		}
 
-		auto EffectContext = Context.SourceASC->MakeEffectContext();
-		EffectContext.AddHitResult(Context.Hit);
-		auto Spec = Context.SourceASC->MakeOutgoingSpec(Resolution.Effect, 1.f, EffectContext);
+		FGameplayEffectSpecHandle Spec;
+		if (Context.bDetachedShot && Context.CapturedEffect.IsValid() &&
+			Context.CapturedEffect.Data->Def->GetClass() == Resolution.Effect)
+		{
+			Spec = FGameplayEffectSpecHandle(new FGameplayEffectSpec(*Context.CapturedEffect.Data));
+			auto EffectContext = Spec.Data->GetContext().Duplicate();
+			EffectContext.AddHitResult(Context.Hit, true);
+			Spec.Data->SetContext(EffectContext);
+		}
+		else if (Context.SourceASC)
+		{
+			auto EffectContext = Context.SourceASC->MakeEffectContext();
+			EffectContext.AddHitResult(Context.Hit);
+			Spec = Context.SourceASC->MakeOutgoingSpec(Resolution.Effect, 1.f, EffectContext);
+		}
 		if (!Spec.IsValid())
 		{
 			return {};
 		}
 
 		Spec.Data->SetSetByCallerMagnitude(Resolution.MagnitudeTag, Resolution.Magnitude);
-		if (!Context.SourceASC->ApplyGameplayEffectSpecToTarget(*Spec.Data, Context.TargetASC).WasSuccessfullyApplied())
+		const auto Applied = Context.SourceASC ? Context.SourceASC->ApplyGameplayEffectSpecToTarget(*Spec.Data, Context.TargetASC) :
+			Context.TargetASC->ApplyGameplayEffectSpecToSelf(*Spec.Data);
+		if (!Applied.WasSuccessfullyApplied())
 		{
 			return {};
 		}
 	}
 
+	if (Resolution.Outcome == CCLTags::Outcome_Damage)
+	{
+		if (auto* Agent = Context.Target->FindComponentByClass<UCCLAgentComponent>())
+		{
+			const float Health = Context.TargetASC->GetNumericAttribute(UCCLHealthSet::GetHealthAttribute());
+			const float Maximum = Context.TargetASC->GetNumericAttribute(UCCLHealthSet::GetMaxHealthAttribute());
+			Agent->RecordDamage(Context.Source, Health / FMath::Max(1.f, Maximum));
+		}
+	}
 	return Resolution.Outcome;
 }

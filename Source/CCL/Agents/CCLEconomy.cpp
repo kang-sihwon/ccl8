@@ -19,7 +19,7 @@ bool SameRequest(const FCCLTransactionRequest& A, const FCCLTransactionRequest& 
 		const auto& X = A.Items[Index];
 		const auto& Y = B.Items[Index];
 		if (X.Source != Y.Source || X.Destination != Y.Destination || X.Resource != Y.Resource || X.Quantity != Y.Quantity ||
-            X.ExternalInventoryOwner != Y.ExternalInventoryOwner || X.ExternalItem != Y.ExternalItem)
+			X.ExternalInventoryOwner != Y.ExternalInventoryOwner || X.ExternalItem != Y.ExternalItem)
 		{
 			return false;
 		}
@@ -104,8 +104,8 @@ FCCLTransactionReceipt CCLEconomy::Execute(FCCLEconomyState& State, const FCCLTr
 	{
 		if (!Item.Resource.IsValid() || Item.Quantity <= 0 || Item.Quantity > Limit || Item.Source == Item.Destination ||
 			(!Item.Source.IsValid() && !Item.Destination.IsValid()) ||
-            (Item.ExternalItem.IsValid() != Item.ExternalInventoryOwner.IsValid()) ||
-            (Item.ExternalItem.IsValid() && (Item.Destination.IsValid() || !Item.Source.IsValid())))
+			(Item.ExternalItem.IsValid() != Item.ExternalInventoryOwner.IsValid()) ||
+			(Item.ExternalItem.IsValid() && (Item.Destination.IsValid() || !Item.Source.IsValid())))
 		{
 			return Fail(TEXT("Invalid item transfer."));
 		}
@@ -228,7 +228,9 @@ bool CCLEconomy::Validate(const FCCLEconomyState& State, FString& Error)
 	TSet<FGuid> Requests;
 	for (const auto& Receipt : State.Journal)
 	{
-		if (!Receipt.Request.RequestId.IsValid() || Requests.Contains(Receipt.Request.RequestId))
+		if (!Receipt.Request.RequestId.IsValid() || Requests.Contains(Receipt.Request.RequestId) ||
+			(Receipt.bSucceeded && (Receipt.Request.Price < 0 || Receipt.Request.Price > Limit ||
+				!FMath::IsFinite(Receipt.Request.Time) || Receipt.Request.Time < 0)))
 		{
 			Error = TEXT("Invalid transaction journal.");
 			return false;

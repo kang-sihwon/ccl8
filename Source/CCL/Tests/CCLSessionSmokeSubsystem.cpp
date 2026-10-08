@@ -1,4 +1,5 @@
 #include "CCLSessionSmokeSubsystem.h"
+
 #include "Session/CCLGameInstance.h"
 #include "Session/CCLSessionRecord.h"
 #include "CCLCharacter.h"
@@ -22,6 +23,10 @@
 #include "Input/Events.h"
 #include "Misc/Paths.h"
 #include "HAL/FileManager.h"
+#include "Agents/CCLAgentWorldSubsystem.h"
+#include "Agents/CCLAccountComponent.h"
+#include "Agents/CCLAgentComponent.h"
+#include "Campaign/CCLLifeVillager.h"
 bool UCCLSessionSmokeSubsystem::ShouldCreateSubsystem(UObject* Outer) const
 {
 #if UE_BUILD_SHIPPING || UE_BUILD_TEST
@@ -130,6 +135,23 @@ void UCCLSessionSmokeSubsystem::Tick(float DeltaTime)
 	if (!Player || !Player->GetPawn() || !Player->GetAbilitySystemComponent()->GetAvatarActor() || !World->GetGameState<ACCLCampaignState>()) { return; }
 	if (Role == TEXT("join"))
 	{
+		int32 PublicVillagers = 0;
+		for (TActorIterator<ACCLLifeVillager> It(World); It; ++It)
+		{
+			PublicVillagers += It->GetAgent()->AgentId.IsValid() && !It->PublicName.IsEmpty() ? 1 : 0;
+		}
+		const auto* Account = Player->FindComponentByClass<UCCLAccountComponent>();
+		if (PublicVillagers != 7 || !Account || !Account->GetAccountId().IsValid())
+		{
+			return;
+		}
+		if (!Check(!World->GetSubsystem<UCCLAgentWorldSubsystem>()->IsRunning(), TEXT("client receives public actors, not the private life simulation"))) { return; }
+		for (auto Other : World->GetGameState()->PlayerArray)
+		{
+			const auto* OtherAccount = Other != Player ? Other->FindComponentByClass<UCCLAccountComponent>() : nullptr;
+			if (OtherAccount && !Check(!OtherAccount->GetAccountId().IsValid(), TEXT("other player's private account is not replicated"))) { return; }
+		}
+		if (!Check(Account->GetBalance() == 30, TEXT("owner receives canonical account balance"))) { return; }
 		if (!Check(World->GetNetMode() == NM_Client && !Session->SaveSession(), TEXT("joined client cannot save host checkpoint"))) { return; }
 		Finish(); return;
 	}

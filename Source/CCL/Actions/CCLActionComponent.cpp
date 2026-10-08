@@ -1,5 +1,7 @@
 #include "CCLActionComponent.h"
 
+#include "AbilitySystem/CCLAbilitySystemComponent.h"
+
 #include "AbilitySystemBlueprintLibrary.h"
 #include "AbilitySystemComponent.h"
 #include "Abilities/GameplayAbility.h"
@@ -132,4 +134,20 @@ bool UCCLActionComponent::HasSource(FGuid Id) const
 UAbilitySystemComponent* UCCLActionComponent::GetASC() const
 {
 	return UAbilitySystemBlueprintLibrary::GetAbilitySystemComponent(GetOwner());
+}
+
+void UCCLActionComponent::RequestInput(FGameplayTag Input, bool bPressed)
+{
+	// Adapter for previously granted/predicted abilities. GAS retains their handles and input release protocol.
+	if (auto* ASC = Cast<UCCLAbilitySystemComponent>(GetASC()))
+	{
+		if (bPressed)
+		{
+			ASC->AbilityInputTagPressed(Input);
+		}
+		else
+		{
+			ASC->AbilityInputTagReleased(Input);
+		}
+	}
 }

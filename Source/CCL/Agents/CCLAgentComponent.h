@@ -2,6 +2,7 @@
 
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
+#include "CCLAgentFeatures.h"
 #include "CCLAgentComponent.generated.h"
 
 UCLASS(ClassGroup = Agent, meta = (BlueprintSpawnableComponent))
@@ -17,6 +18,19 @@ public:
 	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& Out) const override;
 
 public:
+	void RecordDamage(AActor* PerceivedSource, float HealthFraction);
+	void EnsureRecord();
+	void RestoreHealthFromRecord();
+	bool ShouldEngage() const;
+
+	UPROPERTY(EditAnywhere)
+	uint8 bCreateStandaloneRecord = 0;
+
+	UPROPERTY(EditAnywhere)
+	FCCLAgentTraits DefaultTraits;
+
 	UPROPERTY(EditAnywhere, Replicated)
 	FGuid AgentId;
+private:
+	uint8 bHealthRestored = 0;
 };

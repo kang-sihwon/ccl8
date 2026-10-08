@@ -2,6 +2,7 @@
 
 #include "CCLCombatDefinition.h"
 #include "CCLHitRule.h"
+#include "CCLFighterComponent.h"
 #include "AbilitySystem/CCLOffenseSet.h"
 #include "AbilitySystemBlueprintLibrary.h"
 #include "AbilitySystemComponent.h"
@@ -62,6 +63,11 @@ void ACCLProjectile::Launch(UAbilitySystemComponent* ASC, const UCCLCombatDefini
 
 	SourceASC = ASC;
 	ShotDefinition = DuplicateObject<UCCLCombatDefinition>(Definition, this);
+	CapturedEffect = ASC->MakeOutgoingSpec(Definition->DamageEffect, 1.f, ASC->MakeEffectContext());
+	if (const auto* Fighter = GetOwner() ? GetOwner()->FindComponentByClass<UCCLFighterComponent>() : nullptr)
+	{
+		CapturedTeam = Fighter->Team;
+	}
 	if (ASC->HasAttributeSetForAttribute(UCCLOffenseSet::GetAttackBonusAttribute()))
 	{
 		ShotDefinition->Damage += ASC->GetNumericAttribute(UCCLOffenseSet::GetAttackBonusAttribute());
@@ -82,10 +88,13 @@ void ACCLProjectile::Impact(UPrimitiveComponent* HitComponent, AActor* Other,
 
 	bResolved = 1;
 	auto* TargetASC = UAbilitySystemBlueprintLibrary::GetAbilitySystemComponent(Other);
-	if (SourceASC && ShotDefinition && TargetASC && IsValid(GetOwner()) && IsValid(Other))
+	if (CapturedEffect.IsValid() && ShotDefinition && TargetASC && IsValid(Other))
 	{
-		FCCLHitContext Context{GetOwner(), Other, SourceASC, TargetASC, ShotDefinition, Hit, 0};
+		FCCLHitContext Context{IsValid(GetOwner()) ? GetOwner() : this, Other,
+			IsValid(SourceASC) ? SourceASC.Get() : nullptr, TargetASC, ShotDefinition, Hit, 0};
 		Context.bDetachedShot = 1;
+		Context.CapturedEffect = CapturedEffect;
+		Context.CapturedTeam = CapturedTeam;
 		Context.IncomingDirection = (Hit.TraceEnd - Hit.TraceStart).GetSafeNormal();
 		CCLHit::Apply(Context);
 	}

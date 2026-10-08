@@ -14,6 +14,7 @@ class UInputMappingContext;
 class UCCLSkillDefinition;
 class SCCLInventoryWidget;
 class UCCLInventoryContext;
+class UCameraComponent;
 class UCCLDialogueContext;
 class UTextureRenderTarget2D;
 class ACCLVillageSteward;
@@ -50,6 +51,7 @@ public:
 	UFUNCTION(Client, Reliable)
 	void ClientContentTestStep(int32 Step);
 	void ToggleInventory();
+	void ToggleWorldMap();
 	void CloseInventory();
 	void SelectInventorySlot(int32 Slot);
 	void SelectEquipmentSlot(FGameplayTag Slot);
@@ -164,9 +166,12 @@ private:
 	FGameplayTag HeldLeftAction;
 	FGameplayTag HeldRightAction;
 	FCCLUIViewHandle InventoryHandle;
+	FCCLUIViewHandle WorldMapHandle;
 	FCCLUIViewHandle DialogueHandle;
 	TWeakObjectPtr<ACCLVillageSteward> DialogueSpeaker;
 	FString DialogueName;
 	FString DialogueText;
+	TWeakObjectPtr<UCameraComponent> AimCamera;
+	float OriginalAimFOV = 90;
 
 };

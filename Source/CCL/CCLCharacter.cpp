@@ -1,5 +1,7 @@
 #include "CCLCharacter.h"
 
+#include "Map/CCLMapSystem.h"
+
 #include "CCLPlayerState.h"
 #include "Items/CCLLoadoutComponent.h"
 #include "AbilitySystem/CCLAbilitySystemComponent.h"
@@ -22,6 +24,9 @@
 
 ACCLCharacter::ACCLCharacter()
 {
+	auto* MapMarker = CreateDefaultSubobject<UCCLMapMarkerComponent>(TEXT("MapMarker"));
+	MapMarker->Kind = ECCLMapKind::Player;
+
 	bReplicates = true;
 	Fighter = CreateDefaultSubobject<UCCLFighterComponent>(TEXT("Fighter"));
 	Fighter->AttachmentProfile = TSoftObjectPtr<UCCLAttachmentProfile>(FSoftObjectPath(TEXT("/Game/Progression/DA_HumanoidAttachments.DA_HumanoidAttachments")));

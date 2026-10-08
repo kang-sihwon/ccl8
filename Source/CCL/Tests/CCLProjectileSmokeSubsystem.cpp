@@ -98,13 +98,14 @@ void UCCLProjectileSmokeSubsystem::Tick(float DeltaTime)
 		Check(Actions->RegisterSource(IntrinsicId, Intrinsic, {Grant}) && Actions->Execute(IntrinsicId, Grant.Action),
 			TEXT("intrinsic source fires through shared GAS action without equipment or stamina"));
 		Source->GetAbilitySystemComponent()->AddLooseGameplayTag(CCLTags::State_Dead);
+		Source->Destroy();
 		return;
 	}
 
 	if (Elapsed > 2)
 	{
 		Check(IsValid(Target) && FMath::IsNearlyEqual(Target->GetAbilitySystemComponent()->GetNumericAttribute(
-			UCCLHealthSet::GetHealthAttribute()), 80.f), TEXT("moving projectile damages target after source death state"));
+			UCCLHealthSet::GetHealthAttribute()), 80.f), TEXT("moving projectile retains its effect after source Actor is destroyed"));
 		int32 Count = 0;
 		for (TActorIterator<ACCLProjectile> It(GetWorld()); It; ++It)
 		{

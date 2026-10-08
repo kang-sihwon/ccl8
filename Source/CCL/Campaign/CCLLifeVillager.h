@@ -20,6 +20,7 @@ class CCL_API ACCLLifeVillager : public ACCLVillageSteward, public IAbilitySyste
 public:
 	ACCLLifeVillager();
 	virtual void BeginPlay() override;
+	virtual void Tick(float DeltaSeconds) override;
 	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& Out) const override;
 	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override;
 

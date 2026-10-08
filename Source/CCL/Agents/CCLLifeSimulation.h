@@ -100,6 +100,12 @@ struct CCL_API FCCLLifeExecutionReceipt
 	GENERATED_BODY()
 
 	UPROPERTY()
+	double Time = 0;
+
+	UPROPERTY()
+	FString DecisionExplanation;
+
+	UPROPERTY()
 	FGuid RequestId;
 
 	UPROPERTY()
@@ -178,24 +184,35 @@ struct CCL_API FCCLLifeExecutionResult
 	FString Failure;
 };
 
+struct CCL_API FCCLActivityProcessor
+{
+	uint8 bSupportsReducedExecution = 0;
+	TFunction<bool(const FCCLAgentRecord&, const FCCLWorldOpportunity&, const FCCLEconomyState&, FCCLTransactionRequest&, FString&)> Build;
+	TFunction<void(FCCLAgentRecord&, const FCCLWorldOpportunity&)> Apply;
+};
+
 class CCL_API FCCLLifeSimulation
 {
 public:
 	FCCLLifeSimulation();
 	bool RegisterGoal(UCCLLifeGoalDefinition* Definition);
+	bool RegisterActivity(FGameplayTag Activity, FCCLActivityProcessor Processor);
 	bool Initialize(const FCCLSimulationSnapshot& Snapshot, FString& Error);
 	bool Capture(FCCLSimulationSnapshot& Snapshot) const;
 	bool Save(TArray<uint8>& Bytes) const;
 	bool Load(const TArray<uint8>& Bytes, FString& Error);
 	void AdvanceTo(double TargetTime);
 	void SetActorActive(FGuid Id, bool bActive);
-	bool SelectIntent(FGuid Id, const FCCLPersistentIntent& Intent);
+	bool SelectIntent(FGuid Id, const FCCLPersistentIntent& Intent, const TArray<FCCLDecisionTrace>* DecisionTraces = nullptr);
+	FGuid ReserveOpportunity(FGuid AgentId, FGuid OpportunityId);
+	void ReleaseOpportunity(FGuid Token);
+	bool HasReservation(FGuid AgentId, FGuid OpportunityId, FGuid Token) const;
 	bool UpdateLocation(FGuid Id, FVector Position);
 	bool OpenAccount(FGuid Id, int64 InitialBalance);
 	bool ImportAccountBalance(FGuid Id, int64 Balance);
 	FCCLEconomyState& GetServerEconomy() { return Economy; }
 	FCCLDecisionResult Decide(FGuid AgentId) const;
-	FCCLLifeExecutionResult Execute(FGuid AgentId, FGuid OpportunityId, int32 ExpectedRevision, FGuid RequestId);
+	FCCLLifeExecutionResult Execute(FGuid AgentId, FGuid OpportunityId, int32 ExpectedRevision, FGuid RequestId, bool bReduced = false);
 	float GoalProgress(const FCCLAgentRecord& Agent, const FCCLLifeGoalState& Goal) const;
 	const FCCLAgentRecord* Find(FGuid Id) const { return Agents.Find(Agents.GetHandle(Id)); }
 	const FCCLWorldOpportunity* FindOpportunity(FGuid Id) const;
@@ -216,6 +233,7 @@ private:
 
 private:
 	TMap<FGameplayTag, TStrongObjectPtr<UCCLLifeGoalDefinition>> GoalDefinitions;
+	TMap<FGameplayTag, FCCLActivityProcessor> ActivityProcessors;
 	FCCLFeatureRegistry Registry;
 	FCCLAgentStore Agents;
 	FCCLEconomyState Economy;
@@ -224,6 +242,13 @@ private:
 	TArray<FCCLLifeExecutionReceipt> Results;
 	TMap<FGuid, TArray<FCCLDecisionTrace>> Traces;
 	TSet<FGuid> ActiveActors;
+	struct FReservation
+	{
+		FGuid AgentId;
+		FGuid Token;
+		double Until = 0;
+	};
+	TMap<FGuid, FReservation> Reservations;
 	int32 Seed = 42;
 	double Time = 0;
 	int64 Sequence = 0;

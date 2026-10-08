@@ -9,6 +9,7 @@ class CCL_API ACCLVillageSteward : public ACharacter
 
 public:
 	ACCLVillageSteward();
+	virtual void Tick(float DeltaSeconds) override;
 	bool CanReach(const APawn* Visitor) const;
 
 	UPROPERTY(EditAnywhere, Category = "Dialogue")

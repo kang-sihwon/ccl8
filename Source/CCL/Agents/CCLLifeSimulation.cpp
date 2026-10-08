@@ -24,27 +24,27 @@ template <class T> T* MutableFeature(FCCLAgentRecord& Agent, FGameplayTag Tag)
 FCCLLifeSimulation::FCCLLifeSimulation()
 {
 	CCLAgentFeatures::Register(Registry);
-    const TArray<FGameplayTag> Tags = {CCLAgentTags::Goal_Living, CCLAgentTags::Goal_Debt,
-        CCLAgentTags::Goal_Support, CCLAgentTags::Goal_Business, CCLAgentTags::Goal_Mastery};
-    const ECCLGoalMetric Metrics[] = {ECCLGoalMetric::Balance, ECCLGoalMetric::RepaidDebt,
-        ECCLGoalMetric::DeliveredResources, ECCLGoalMetric::FacilityLevel, ECCLGoalMetric::SkillExperience};
-    for (int32 Index = 0; Index < Tags.Num(); ++Index)
-    {
-        auto* Definition = NewObject<UCCLLifeGoalDefinition>();
-        Definition->GoalTag = Tags[Index];
-        Definition->ProgressEvaluator = NewObject<UCCLGoalProgressEvaluator>(Definition);
-        Definition->ProgressEvaluator->Metric = Metrics[Index];
-        Definition->ProgressEvaluator->Skill = CCLAgentTags::Work;
-        Definition->CompletionPolicy = NewObject<UCCLGoalCompletionPolicy>(Definition);
-        Definition->CompletionPolicy->bMaintenance = Index == 0;
-        Definition->bMatchBeneficiary = Index == 2;
-        Definition->SupportingActivities.AddTag(Index == 2 ? CCLAgentTags::Help : CCLAgentTags::Work);
-        if (Index == 1 || Index == 3)
-        {
-            Definition->SupportingActivities.AddTag(Index == 1 ? CCLAgentTags::Repay : CCLAgentTags::Improve);
-        }
-        RegisterGoal(Definition);
-    }
+	const TArray<FGameplayTag> Tags = {CCLAgentTags::Goal_Living, CCLAgentTags::Goal_Debt,
+		CCLAgentTags::Goal_Support, CCLAgentTags::Goal_Business, CCLAgentTags::Goal_Mastery};
+	const ECCLGoalMetric Metrics[] = {ECCLGoalMetric::Balance, ECCLGoalMetric::RepaidDebt,
+		ECCLGoalMetric::DeliveredResources, ECCLGoalMetric::FacilityLevel, ECCLGoalMetric::SkillExperience};
+	for (int32 Index = 0; Index < Tags.Num(); ++Index)
+	{
+		auto* Definition = NewObject<UCCLLifeGoalDefinition>();
+		Definition->GoalTag = Tags[Index];
+		Definition->ProgressEvaluator = NewObject<UCCLGoalProgressEvaluator>(Definition);
+		Definition->ProgressEvaluator->Metric = Metrics[Index];
+		Definition->ProgressEvaluator->Skill = CCLAgentTags::Work;
+		Definition->CompletionPolicy = NewObject<UCCLGoalCompletionPolicy>(Definition);
+		Definition->CompletionPolicy->bMaintenance = Index == 0;
+		Definition->bMatchBeneficiary = Index == 2;
+		Definition->SupportingActivities.AddTag(Index == 2 ? CCLAgentTags::Help : CCLAgentTags::Work);
+		if (Index == 1 || Index == 3)
+		{
+			Definition->SupportingActivities.AddTag(Index == 1 ? CCLAgentTags::Repay : CCLAgentTags::Improve);
+		}
+		RegisterGoal(Definition);
+	}
 }
 
 bool FCCLLifeSimulation::OpenAccount(FGuid Id, int64 InitialBalance)
@@ -60,6 +60,8 @@ bool FCCLLifeSimulation::OpenAccount(FGuid Id, int64 InitialBalance)
 		Account.Id = Id;
 		Account.OwnerId = Id;
 		Account.Balance = InitialBalance;
+		Account.OpeningBalance = InitialBalance;
+		Account.bHasOpeningBalance = 1;
 		Economy.Accounts.Add(Id, Account);
 	}
 
@@ -73,12 +75,36 @@ bool FCCLLifeSimulation::ImportAccountBalance(FGuid Id, int64 Balance)
 		return false;
 	}
 
+	Economy.Accounts[Id].OpeningBalance += Balance - Economy.Accounts[Id].Balance;
 	Economy.Accounts[Id].Balance = Balance;
 	return true;
 }
 
-bool FCCLLifeSimulation::Initialize(const FCCLSimulationSnapshot& Snapshot, FString& Error)
+bool FCCLLifeSimulation::Initialize(const FCCLSimulationSnapshot& InputSnapshot, FString& Error)
 {
+	if (!CCLEconomy::Validate(InputSnapshot.Economy, Error))
+	{
+		return false;
+	}
+	FCCLSimulationSnapshot Snapshot = InputSnapshot;
+	// Optional field migration for snapshots produced before account-opening audit metadata.
+	for (auto& Pair : Snapshot.Economy.Accounts)
+	{
+		auto& Account = Pair.Value;
+		if (!Account.bHasOpeningBalance)
+		{
+			Account.OpeningBalance = Account.Balance;
+			for (const auto& Receipt : Snapshot.Economy.Journal)
+			{
+				if (Receipt.bSucceeded)
+				{
+					Account.OpeningBalance += Receipt.Request.Buyer == Account.Id ? Receipt.Request.Price : 0;
+					Account.OpeningBalance -= Receipt.Request.Seller == Account.Id ? Receipt.Request.Price : 0;
+				}
+			}
+			Account.bHasOpeningBalance = 1;
+		}
+	}
 	if (Snapshot.Version != 1 || !FMath::IsFinite(Snapshot.Time) || Snapshot.Time < 0 || Snapshot.Sequence < 0 ||
 		Snapshot.Agents.Num() > 10000 || Snapshot.Opportunities.Num() > 10000 || !CCLEconomy::Validate(Snapshot.Economy, Error))
 	{
@@ -142,6 +168,14 @@ bool FCCLLifeSimulation::Initialize(const FCCLSimulationSnapshot& Snapshot, FStr
 		const auto* Life = Feature<FCCLLifeState>(Agent, CCLAgentTags::Feature_Life);
 		const auto* Resources = Feature<FCCLAgentResourceLinks>(Agent, CCLAgentTags::Feature_Resources);
 		const auto* Experience = Feature<FCCLAgentExperience>(Agent, CCLAgentTags::Feature_Experience);
+		if ((Agent.Intent.OpportunityId.IsValid() && !OpportunityIds.Contains(Agent.Intent.OpportunityId)) ||
+			(Agent.Intent.Target.Kind == CCLAgentTags::Agent && !AgentIds.Contains(Agent.Intent.Target.Id)) ||
+			(Agent.Intent.SupportingLifeGoalId.IsValid() && (!Life || !Life->LifeGoals.ContainsByPredicate(
+				[&](const FCCLLifeGoalState& Goal) { return Goal.GoalId == Agent.Intent.SupportingLifeGoalId; }))))
+		{
+			Error = TEXT("Unresolved persistent intent reference.");
+			return false;
+		}
 		if (Life)
 		{
 			if (!PlaceIds.Contains(Life->Residence.PlaceId) || !PlaceIds.Contains(Life->Workplace.PlaceId))
@@ -150,19 +184,19 @@ bool FCCLLifeSimulation::Initialize(const FCCLSimulationSnapshot& Snapshot, FStr
 				return false;
 			}
 
-            for (const auto& Goal : Life->LifeGoals)
-            {
-                const auto* Definition = GoalDefinitions.Find(Goal.GoalTag);
-                const auto* Parameters = Goal.Parameters.GetPtr<FCCLLifeGoalParameters>();
-                if (!Definition || Goal.DefinitionId != Definition->Get()->GetPrimaryAssetId() || !Parameters ||
-                    (Goal.Beneficiary.Kind == CCLAgentTags::Agent && !AgentIds.Contains(Goal.Beneficiary.Id)) ||
-                    (Goal.GoalTag == CCLAgentTags::Goal_Debt && !Snapshot.Economy.Obligations.Contains(Parameters->SubjectId)) ||
-                    (Goal.GoalTag == CCLAgentTags::Goal_Business && !Snapshot.Economy.Ownerships.Contains(Parameters->SubjectId)))
-                {
-                    Error = TEXT("Unknown goal definition, beneficiary, or subject.");
-                    return false;
-                }
-            }
+			for (const auto& Goal : Life->LifeGoals)
+			{
+				const auto* Definition = GoalDefinitions.Find(Goal.GoalTag);
+				const auto* Parameters = Goal.Parameters.GetPtr<FCCLLifeGoalParameters>();
+				if (!Definition || Goal.DefinitionId != Definition->Get()->GetPrimaryAssetId() || !Parameters ||
+					(Goal.Beneficiary.Kind == CCLAgentTags::Agent && !AgentIds.Contains(Goal.Beneficiary.Id)) ||
+					(Goal.GoalTag == CCLAgentTags::Goal_Debt && !Snapshot.Economy.Obligations.Contains(Parameters->SubjectId)) ||
+					(Goal.GoalTag == CCLAgentTags::Goal_Business && !Snapshot.Economy.Ownerships.Contains(Parameters->SubjectId)))
+				{
+					Error = TEXT("Unknown goal definition, beneficiary, or subject.");
+					return false;
+				}
+			}
 
 			for (const auto& Link : Life->SocialLinks)
 			{
@@ -184,15 +218,15 @@ bool FCCLLifeSimulation::Initialize(const FCCLSimulationSnapshot& Snapshot, FStr
 				return false;
 			}
 
-            for (FGuid OwnershipId : Resources->Ownerships)
-            {
-                const auto* Ownership = Snapshot.Economy.Ownerships.Find(OwnershipId);
-                if (!Ownership || Ownership->OwnerId != Agent.Id)
-                {
-                    Error = TEXT("Invalid ownership link.");
-                    return false;
-                }
-            }
+			for (FGuid OwnershipId : Resources->Ownerships)
+			{
+				const auto* Ownership = Snapshot.Economy.Ownerships.Find(OwnershipId);
+				if (!Ownership || Ownership->OwnerId != Agent.Id)
+				{
+					Error = TEXT("Invalid ownership link.");
+					return false;
+				}
+			}
 
 			for (FGuid DebtId : Resources->ObligationIds)
 			{
@@ -228,53 +262,54 @@ bool FCCLLifeSimulation::Initialize(const FCCLSimulationSnapshot& Snapshot, FStr
 		}
 	}
 
-    TSet<FGuid> EventIds;
-    for (const auto& Event : Snapshot.Events)
-    {
-        if (!Event.EventId.IsValid() || EventIds.Contains(Event.EventId) || !FMath::IsFinite(Event.Time) || Event.Time < 0 ||
-            (Event.Kind != CCLAgentTags::Eat && Event.Kind != CCLAgentTags::Help && Event.Kind != CCLAgentTags::Failure) ||
-            (Event.Kind == CCLAgentTags::Eat && (!Snapshot.Economy.Inventories.Contains(Event.InventoryId) ||
-                !Event.Resource.IsValid() || Event.Quantity <= 0)) ||
-            (Event.Kind != CCLAgentTags::Eat && !OpportunityIds.Contains(Event.OpportunityId)))
-        {
-            Error = TEXT("Invalid scheduled event.");
-            return false;
-        }
-        EventIds.Add(Event.EventId);
-    }
+	TSet<FGuid> EventIds;
+	for (const auto& Event : Snapshot.Events)
+	{
+		if (!Event.EventId.IsValid() || EventIds.Contains(Event.EventId) || !FMath::IsFinite(Event.Time) || Event.Time < 0 ||
+			(Event.Kind != CCLAgentTags::Eat && Event.Kind != CCLAgentTags::Help && Event.Kind != CCLAgentTags::Failure) ||
+			(Event.Kind == CCLAgentTags::Eat && (!Snapshot.Economy.Inventories.Contains(Event.InventoryId) ||
+				!Event.Resource.IsValid() || Event.Quantity <= 0)) ||
+			(Event.Kind != CCLAgentTags::Eat && !OpportunityIds.Contains(Event.OpportunityId)))
+		{
+			Error = TEXT("Invalid scheduled event.");
+			return false;
+		}
+		EventIds.Add(Event.EventId);
+	}
 
-    for (const auto& Opportunity : Snapshot.Opportunities)
-    {
-        if ((Opportunity.OwnershipId.IsValid() && !Snapshot.Economy.Ownerships.Contains(Opportunity.OwnershipId)) ||
-            (Opportunity.ObligationId.IsValid() && !Snapshot.Economy.Obligations.Contains(Opportunity.ObligationId)) ||
-            (Opportunity.DiscoveredOpportunityId.IsValid() && !OpportunityIds.Contains(Opportunity.DiscoveredOpportunityId)) ||
-            !FMath::IsFinite(Opportunity.BaseUtility))
-        {
-            Error = TEXT("Invalid opportunity references.");
-            return false;
-        }
-        for (const auto& Pair : Opportunity.TraitSignals)
-        {
-            if (!Pair.Key.IsValid() || !FMath::IsFinite(Pair.Value) || FMath::Abs(Pair.Value) > 10)
-            {
-                Error = TEXT("Invalid opportunity evaluation signal.");
-                return false;
-            }
-        }
-        for (const auto& Pair : Opportunity.NeedRelief)
-        {
-            if (!Pair.Key.IsValid() || !FMath::IsFinite(Pair.Value) || FMath::Abs(Pair.Value) > 1)
-            {
-                Error = TEXT("Invalid opportunity outcome.");
-                return false;
-            }
-        }
-    }
+	for (const auto& Opportunity : Snapshot.Opportunities)
+	{
+		if ((Opportunity.OwnershipId.IsValid() && !Snapshot.Economy.Ownerships.Contains(Opportunity.OwnershipId)) ||
+			(Opportunity.ObligationId.IsValid() && !Snapshot.Economy.Obligations.Contains(Opportunity.ObligationId)) ||
+			(Opportunity.DiscoveredOpportunityId.IsValid() && !OpportunityIds.Contains(Opportunity.DiscoveredOpportunityId)) ||
+			!FMath::IsFinite(Opportunity.BaseUtility))
+		{
+			Error = TEXT("Invalid opportunity references.");
+			return false;
+		}
+		for (const auto& Pair : Opportunity.TraitSignals)
+		{
+			if (!Pair.Key.IsValid() || !FMath::IsFinite(Pair.Value) || FMath::Abs(Pair.Value) > 10)
+			{
+				Error = TEXT("Invalid opportunity evaluation signal.");
+				return false;
+			}
+		}
+		for (const auto& Pair : Opportunity.NeedRelief)
+		{
+			if (!Pair.Key.IsValid() || !FMath::IsFinite(Pair.Value) || FMath::Abs(Pair.Value) > 1)
+			{
+				Error = TEXT("Invalid opportunity outcome.");
+				return false;
+			}
+		}
+	}
 
 	TSet<FGuid> ResultIds;
 	for (const auto& Result : Snapshot.Results)
 	{
-		if (!Result.RequestId.IsValid() || ResultIds.Contains(Result.RequestId) || !AgentIds.Contains(Result.AgentId))
+		if (!Result.RequestId.IsValid() || ResultIds.Contains(Result.RequestId) || !AgentIds.Contains(Result.AgentId) ||
+			!FMath::IsFinite(Result.Time) || Result.Time < 0 || Result.Time > Snapshot.Time || Result.DecisionExplanation.Len() > 8192)
 		{
 			Error = TEXT("Invalid execution receipts.");
 			return false;
@@ -301,6 +336,7 @@ bool FCCLLifeSimulation::Initialize(const FCCLSimulationSnapshot& Snapshot, FStr
 	Time = Snapshot.Time;
 	Traces.Reset();
 	ActiveActors.Reset();
+	Reservations.Reset();
 	return true;
 }
 
@@ -385,11 +421,19 @@ FGuid FCCLLifeSimulation::NextId()
 bool FCCLLifeSimulation::BuildTransaction(const FCCLAgentRecord& Agent, const FCCLWorldOpportunity& O,
 	FGuid RequestId, FCCLTransactionRequest& Request, FString& Error) const
 {
+	const auto* CurrentNeeds = Feature<FCCLAgentNeeds>(Agent, CCLAgentTags::Feature_Needs);
+	if (CurrentNeeds && CurrentNeeds->Urgency.FindRef(CCLAgentTags::Injury) >= 1)
+	{
+		Error = TEXT("Incapacitated agent cannot execute activities.");
+		return false;
+	}
 	const auto* Resources = Feature<FCCLAgentResourceLinks>(Agent, CCLAgentTags::Feature_Resources);
 	const auto* Provider = Find(O.ProviderId);
 	const auto* ProviderResources = Provider ? Feature<FCCLAgentResourceLinks>(*Provider, CCLAgentTags::Feature_Resources) : nullptr;
 	const auto* Knowledge = Feature<FCCLAgentExperience>(Agent, CCLAgentTags::Feature_Experience);
-	if (!Resources || !ProviderResources || !Knowledge || !Knowledge->KnownOpportunities.Contains(O.OpportunityId) ||
+	const bool bNeedsResources = O.Activity == CCLAgentTags::Trade || O.Activity == CCLAgentTags::Work ||
+		O.Activity == CCLAgentTags::Eat || O.Activity == CCLAgentTags::Help || O.Activity == CCLAgentTags::Repay || O.Activity == CCLAgentTags::Improve;
+	if ((bNeedsResources && (!Resources || !ProviderResources)) || !Knowledge || !Knowledge->KnownOpportunities.Contains(O.OpportunityId) ||
 		!O.bAvailable || (O.ExpireTime > 0 && O.ExpireTime <= Time))
 	{
 		Error = TEXT("Opportunity is unknown, expired or unavailable.");
@@ -409,8 +453,8 @@ bool FCCLLifeSimulation::BuildTransaction(const FCCLAgentRecord& Agent, const FC
 	Request.RequestId = RequestId;
 	Request.Reason = O.Activity;
 	Request.Time = Time;
-	Request.Buyer = Resources->Account;
-	Request.Seller = ProviderResources->Account;
+	Request.Buyer = Resources ? Resources->Account : FGuid();
+	Request.Seller = ProviderResources ? ProviderResources->Account : FGuid();
 	Request.Price = O.Price;
 	auto Transfer = [&](FGuid Source, FGuid Destination, FGameplayTag Resource, int64 Quantity)
 	{
@@ -477,7 +521,12 @@ bool FCCLLifeSimulation::BuildTransaction(const FCCLAgentRecord& Agent, const FC
 	}
 	else if (O.Activity != CCLAgentTags::Rest)
 	{
-		Error = TEXT("No supported reduced executor for this activity.");
+		const auto* Processor = ActivityProcessors.Find(O.Activity);
+		if (Processor && Processor->Build)
+		{
+			return Processor->Build(Agent, O, Economy, Request, Error);
+		}
+		Error = TEXT("No executor registered for this activity.");
 		return false;
 	}
 
@@ -519,7 +568,7 @@ FCCLDecisionResult FCCLLifeSimulation::Decide(FGuid AgentId) const
 		const auto* Resources = Feature<FCCLAgentResourceLinks>(*Agent, CCLAgentTags::Feature_Resources);
 		const auto* Inventory = Resources ? Economy.Inventories.Find(Resources->Inventory) : nullptr;
 		const auto* Account = Resources ? Economy.Accounts.Find(Resources->Account) : nullptr;
-		if (!Inventory || !Account || (Request.Buyer == Account->Id && Request.Price > Account->Balance))
+		if ((Request.Price > 0 && !Account) || (Account && Request.Buyer == Account->Id && Request.Price > Account->Balance))
 		{
 			continue;
 		}
@@ -530,13 +579,13 @@ FCCLDecisionResult FCCLLifeSimulation::Decide(FGuid AgentId) const
 		TMap<FGameplayTag, int64> Outgoing;
 		for (const auto& Item : Request.Items)
 		{
-			if (Item.Source == Inventory->Id)
+			if (Inventory && Item.Source == Inventory->Id)
 			{
 				Outgoing.FindOrAdd(Item.Resource) += Item.Quantity;
 				SpaceNeeded -= Item.Quantity;
 			}
 
-			if (Item.Destination == Inventory->Id)
+			if (Inventory && Item.Destination == Inventory->Id)
 			{
 				SpaceNeeded += Item.Quantity;
 			}
@@ -547,7 +596,7 @@ FCCLDecisionResult FCCLLifeSimulation::Decide(FGuid AgentId) const
 			bAffordable &= Inventory->Resources.FindRef(Pair.Key) >= Pair.Value;
 		}
 
-		if (!bAffordable || CCLEconomy::UsedCapacity(*Inventory) + SpaceNeeded > Inventory->Capacity)
+		if (!bAffordable || (Inventory && CCLEconomy::UsedCapacity(*Inventory) + SpaceNeeded > Inventory->Capacity))
 		{
 			continue;
 		}
@@ -588,8 +637,8 @@ FCCLDecisionResult FCCLLifeSimulation::Decide(FGuid AgentId) const
 			for (const auto& Goal : Life->LifeGoals)
 			{
 				const auto* Policy = GoalDefinitions.Find(Goal.GoalTag);
-                if (Goal.Status == CCLAgentTags::Active && Policy && Policy->Get()->SupportingActivities.HasTagExact(O->Activity) &&
-                    (!Policy->Get()->bMatchBeneficiary || Goal.Beneficiary.Id == O->ProviderId))
+				if (Goal.Status == CCLAgentTags::Active && Policy && Policy->Get()->SupportingActivities.HasTagExact(O->Activity) &&
+					(!Policy->Get()->bMatchBeneficiary || Goal.Beneficiary.Id == O->ProviderId))
 				{
 					const float Utility = Goal.Commitment * (1 - GoalProgress(*Agent, Goal));
 					if (Utility > Candidate.GoalUtility)
@@ -642,7 +691,7 @@ void FCCLLifeSimulation::ApplyOutcome(FCCLAgentRecord& Agent, const FCCLWorldOpp
 	}
 }
 
-FCCLLifeExecutionResult FCCLLifeSimulation::Execute(FGuid AgentId, FGuid OpportunityId, int32 ExpectedRevision, FGuid RequestId)
+FCCLLifeExecutionResult FCCLLifeSimulation::Execute(FGuid AgentId, FGuid OpportunityId, int32 ExpectedRevision, FGuid RequestId, bool bReduced)
 {
 	FCCLLifeExecutionResult Result;
 	Result.RequestId = RequestId;
@@ -659,6 +708,19 @@ FCCLLifeExecutionResult FCCLLifeSimulation::Execute(FGuid AgentId, FGuid Opportu
 	Receipt.AgentId = AgentId;
 	Receipt.OpportunityId = OpportunityId;
 	Receipt.Revision = ExpectedRevision;
+	Receipt.Time = Time;
+	for (const auto& Trace : GetLastTrace(AgentId))
+	{
+		if (Trace.OpportunityId == OpportunityId)
+		{
+			Receipt.DecisionExplanation = FString::Printf(TEXT("activity=%s score=%.4f"), *Trace.Activity.ToString(), Trace.Score);
+			for (const auto& Contribution : Trace.Contributions)
+			{
+				Receipt.DecisionExplanation += FString::Printf(TEXT(" %s=%.4f"), *Contribution.Source.ToString(), Contribution.Value);
+			}
+			break;
+		}
+	}
 	auto Finish = [&](const FString& Error)
 	{
 		Result.Failure = Error;
@@ -682,8 +744,21 @@ FCCLLifeExecutionResult FCCLLifeSimulation::Execute(FGuid AgentId, FGuid Opportu
 		return Finish(Error.IsEmpty() ? TEXT("Invalid or stale execution request.") : Error);
 	}
 
+	if (const auto* Reservation = Reservations.Find(OpportunityId); Reservation && Reservation->Until > Time && Reservation->AgentId != AgentId)
+	{
+		return Finish(TEXT("Opportunity is reserved by another executor."));
+	}
+	const auto* Processor = ActivityProcessors.Find(O->Activity);
+	if (bReduced && Processor && !Processor->bSupportsReducedExecution)
+	{
+		return Finish(TEXT("This activity requires its Actor executor."));
+	}
 	FCCLAgentRecord Updated = *Agent;
 	ApplyOutcome(Updated, *O, RequestId);
+	if (Processor && Processor->Apply)
+	{
+		Processor->Apply(Updated, *O);
+	}
 	if (!Registry.UpgradeAndValidate(Updated, Error))
 	{
 		return Finish(Error);
@@ -729,36 +804,36 @@ FCCLLifeExecutionResult FCCLLifeSimulation::Execute(FGuid AgentId, FGuid Opportu
 		Candidate.Inventories[Resources->Inventory].Capacity += 10;
 	}
 
-    TArray<TPair<FCCLAgentLease, FCCLAgentRecord>> Updates;
-    Updates.Emplace(Lease, Updated);
-    FCCLAgentLease OtherLease;
-    if (O->ProviderId != AgentId && (O->Activity == CCLAgentTags::Help || O->Activity == CCLAgentTags::Trade))
-    {
-        const auto* Other = Find(O->ProviderId);
-        if (Other)
-        {
-            FCCLAgentRecord Recipient = *Other;
-            if (auto* Experience = MutableFeature<FCCLAgentExperience>(Recipient, CCLAgentTags::Feature_Experience))
-            {
-                FCCLObservation Observation;
-                Observation.EventId = Observation.EvidenceId = RequestId;
-                Observation.Time = Time;
-                Observation.EventType = O->Activity == CCLAgentTags::Help ? CCLAgentTags::Aid : CCLAgentTags::Success;
-                Observation.PerceivedSubject.Kind = CCLAgentTags::Agent;
-                Observation.PerceivedSubject.Id = AgentId;
-                CCLAgentFeatures::Observe(*Experience, Observation);
-                OtherLease = Agents.Acquire(Agents.GetHandle(Other->Id), RequestId);
-                Updates.Emplace(OtherLease, MoveTemp(Recipient));
-            }
-        }
-    }
+	TArray<TPair<FCCLAgentLease, FCCLAgentRecord>> Updates;
+	Updates.Emplace(Lease, Updated);
+	FCCLAgentLease OtherLease;
+	if (O->ProviderId != AgentId && (O->Activity == CCLAgentTags::Help || O->Activity == CCLAgentTags::Trade))
+	{
+		const auto* Other = Find(O->ProviderId);
+		if (Other)
+		{
+			FCCLAgentRecord Recipient = *Other;
+			if (auto* Experience = MutableFeature<FCCLAgentExperience>(Recipient, CCLAgentTags::Feature_Experience))
+			{
+				FCCLObservation Observation;
+				Observation.EventId = Observation.EvidenceId = RequestId;
+				Observation.Time = Time;
+				Observation.EventType = O->Activity == CCLAgentTags::Help ? CCLAgentTags::Aid : CCLAgentTags::Success;
+				Observation.PerceivedSubject.Kind = CCLAgentTags::Agent;
+				Observation.PerceivedSubject.Id = AgentId;
+				CCLAgentFeatures::Observe(*Experience, Observation);
+				OtherLease = Agents.Acquire(Agents.GetHandle(Other->Id), RequestId);
+				Updates.Emplace(OtherLease, MoveTemp(Recipient));
+			}
+		}
+	}
 
-    const bool bCommitted = Agents.CommitBatch(MoveTemp(Updates), Registry, Error);
-    Agents.Release(Lease);
-    if (OtherLease.Writer.IsValid())
-    {
-        Agents.Release(OtherLease);
-    }
+	const bool bCommitted = Agents.CommitBatch(MoveTemp(Updates), Registry, Error);
+	Agents.Release(Lease);
+	if (OtherLease.Writer.IsValid())
+	{
+		Agents.Release(OtherLease);
+	}
 	if (!bCommitted)
 	{
 		return Finish(Error.IsEmpty() ? TEXT("Agent result rejected.") : Error);
@@ -774,24 +849,24 @@ FCCLLifeExecutionResult FCCLLifeSimulation::Execute(FGuid AgentId, FGuid Opportu
 
 float FCCLLifeSimulation::GoalProgress(const FCCLAgentRecord& Agent, const FCCLLifeGoalState& Goal) const
 {
-    const auto* Definition = GoalDefinitions.Find(Goal.GoalTag);
-    if (!Definition || !Definition->Get() || !Definition->Get()->ProgressEvaluator)
-    {
-        return 0;
-    }
+	const auto* Definition = GoalDefinitions.Find(Goal.GoalTag);
+	if (!Definition || !Definition->Get() || !Definition->Get()->ProgressEvaluator)
+	{
+		return 0;
+	}
 
-    return Definition->Get()->ProgressEvaluator->Evaluate(Agent, Goal, Economy);
+	return Definition->Get()->ProgressEvaluator->Evaluate(Agent, Goal, Economy);
 }
 
 bool FCCLLifeSimulation::RegisterGoal(UCCLLifeGoalDefinition* Definition)
 {
-    if (!Definition || !Definition->GoalTag.IsValid() || !Definition->ProgressEvaluator || !Definition->CompletionPolicy)
-    {
-        return false;
-    }
+	if (!Definition || !Definition->GoalTag.IsValid() || !Definition->ProgressEvaluator || !Definition->CompletionPolicy)
+	{
+		return false;
+	}
 
-    GoalDefinitions.Add(Definition->GoalTag, TStrongObjectPtr<UCCLLifeGoalDefinition>(Definition));
-    return true;
+	GoalDefinitions.Add(Definition->GoalTag, TStrongObjectPtr<UCCLLifeGoalDefinition>(Definition));
+	return true;
 }
 
 void FCCLLifeSimulation::ApplyEvents()
@@ -870,6 +945,11 @@ void FCCLLifeSimulation::AdvanceTo(double TargetTime)
 		ApplyEvents();
 		for (auto& Agent : Snapshot)
 		{
+			// Earlier agents in this time slice may already have changed this recipient's experience.
+			if (const auto* Latest = Find(Agent.Id))
+			{
+				Agent = *Latest;
+			}
 			if (auto* Needs = MutableFeature<FCCLAgentNeeds>(Agent, CCLAgentTags::Feature_Needs))
 			{
 				CCLAgentFeatures::AdvanceNeeds(*Needs, Time - Agent.LastSimulatedTime);
@@ -881,8 +961,8 @@ void FCCLLifeSimulation::AdvanceTo(double TargetTime)
 				for (auto& Goal : Life->LifeGoals)
 				{
 					const auto* Policy = GoalDefinitions.Find(Goal.GoalTag);
-                    if (Goal.Status == CCLAgentTags::Active && Policy &&
-                        Policy->Get()->CompletionPolicy->IsComplete(GoalProgress(Agent, Goal)))
+					if (Goal.Status == CCLAgentTags::Active && Policy &&
+						Policy->Get()->CompletionPolicy->IsComplete(GoalProgress(Agent, Goal)))
 					{
 						Goal.Status = CCLAgentTags::Completed;
 					}
@@ -907,7 +987,7 @@ void FCCLLifeSimulation::AdvanceTo(double TargetTime)
 				Agents.Commit(IntentLease, Agent, Registry, Error);
 				Agents.Release(IntentLease);
 				const auto* O = FindOpportunity(Decision.Intent.OpportunityId);
-				Execute(Agent.Id, O->OpportunityId, O->Revision, NextId());
+				Execute(Agent.Id, O->OpportunityId, O->Revision, NextId(), true);
 			}
 		}
 	}
@@ -941,6 +1021,17 @@ FString FCCLLifeSimulation::DailyReport() const
 			Time / 86400, *Agent.Id.ToString(), Account ? Account->Balance : 0,
 			Resources ? CCLEconomy::Quantity(Economy, Resources->Inventory, CCLAgentTags::Food) : 0,
 			Debt, *Agent.Intent.Activity.ToString(), Experience ? Experience->Memories.Num() : 0);
+		if (Resources)
+		{
+			const auto* Inventory = Economy.Inventories.Find(Resources->Inventory);
+			TArray<FGameplayTag> ResourceTags;
+			Inventory->Resources.GetKeys(ResourceTags);
+			ResourceTags.Sort([](FGameplayTag A, FGameplayTag B) { return A.ToString() < B.ToString(); });
+			for (FGameplayTag Resource : ResourceTags)
+			{
+				Report += FString::Printf(TEXT(" inventory=%s quantity=%lld\n"), *Resource.ToString(), Inventory->Resources[Resource]);
+			}
+		}
 		if (Life)
 		{
 			for (const auto& Goal : Life->LifeGoals)
@@ -973,6 +1064,23 @@ FString FCCLLifeSimulation::DailyReport() const
 		}
 	}
 
+	for (const auto& Event : Events)
+	{
+		if (Event.bApplied && Event.Time > Time - 86400 && Event.Time <= Time)
+		{
+			Report += FString::Printf(TEXT(" event=%s time=%.0f kind=%s quantity=%lld\n"),
+				*Event.EventId.ToString(), Event.Time, *Event.Kind.ToString(), Event.Quantity);
+		}
+	}
+	for (const auto& Result : Results)
+	{
+		if (Result.Time > Time - 86400 && Result.Time <= Time)
+		{
+			Report += FString::Printf(TEXT(" execution=%s time=%.0f agent=%s opportunity=%s success=%d failure=%s %s\n"),
+				*Result.RequestId.ToString(), Result.Time, *Result.AgentId.ToString(), *Result.OpportunityId.ToString(),
+				Result.bSucceeded, *Result.Failure, *Result.DecisionExplanation);
+		}
+	}
 	return Report;
 }
 
@@ -1181,7 +1289,7 @@ void FCCLLifeSimulation::SetActorActive(FGuid Id, bool bActive)
 	}
 }
 
-bool FCCLLifeSimulation::SelectIntent(FGuid Id, const FCCLPersistentIntent& Intent)
+bool FCCLLifeSimulation::SelectIntent(FGuid Id, const FCCLPersistentIntent& Intent, const TArray<FCCLDecisionTrace>* DecisionTraces)
 {
 	const auto* Record = Find(Id);
 	if (!Record)
@@ -1195,6 +1303,10 @@ bool FCCLLifeSimulation::SelectIntent(FGuid Id, const FCCLPersistentIntent& Inte
 	FString Error;
 	const bool bCommitted = Agents.Commit(Lease, Updated, Registry, Error);
 	Agents.Release(Lease);
+	if (bCommitted && DecisionTraces)
+	{
+		Traces.Add(Id, *DecisionTraces);
+	}
 	return bCommitted;
 }
 
@@ -1213,4 +1325,54 @@ bool FCCLLifeSimulation::UpdateLocation(FGuid Id, FVector Position)
 	const bool bCommitted = Agents.Commit(Lease, Updated, Registry, Error);
 	Agents.Release(Lease);
 	return bCommitted;
+}
+
+bool FCCLLifeSimulation::RegisterActivity(FGameplayTag Activity, FCCLActivityProcessor Processor)
+{
+	const TArray<FGameplayTag> Native = {CCLAgentTags::Work, CCLAgentTags::Trade, CCLAgentTags::Eat, CCLAgentTags::Rest,
+		CCLAgentTags::Help, CCLAgentTags::Repay, CCLAgentTags::Improve, CCLAgentTags::Discover};
+	if (!Activity.IsValid() || Native.Contains(Activity) || ActivityProcessors.Contains(Activity) || !Processor.Build)
+	{
+		return false;
+	}
+	ActivityProcessors.Add(Activity, MoveTemp(Processor));
+	return true;
+}
+
+FGuid FCCLLifeSimulation::ReserveOpportunity(FGuid AgentId, FGuid OpportunityId)
+{
+	const auto* Record = Find(AgentId);
+	const auto* Opportunity = FindOpportunity(OpportunityId);
+	const auto* Knowledge = Record ? Feature<FCCLAgentExperience>(*Record, CCLAgentTags::Feature_Experience) : nullptr;
+	if (!Opportunity || !Knowledge || !Knowledge->KnownOpportunities.Contains(OpportunityId) || !Opportunity->bAvailable ||
+		(Opportunity->ExpireTime > 0 && Opportunity->ExpireTime <= Time))
+	{
+		return {};
+	}
+	if (const auto* Existing = Reservations.Find(OpportunityId); Existing && Existing->Until > Time)
+	{
+		return Existing->AgentId == AgentId ? Existing->Token : FGuid();
+	}
+	FReservation Reservation;
+	Reservation.AgentId = AgentId;
+	Reservation.Token = FGuid::NewGuid();
+	Reservation.Until = Time + 7200;
+	Reservations.Add(OpportunityId, Reservation);
+	return Reservation.Token;
+}
+void FCCLLifeSimulation::ReleaseOpportunity(FGuid Token)
+{
+	for (auto It = Reservations.CreateIterator(); It; ++It)
+	{
+		if (It.Value().Token == Token)
+		{
+			It.RemoveCurrent();
+			return;
+		}
+	}
+}
+bool FCCLLifeSimulation::HasReservation(FGuid AgentId, FGuid OpportunityId, FGuid Token) const
+{
+	const auto* Reservation = Reservations.Find(OpportunityId);
+	return Reservation && Token.IsValid() && Reservation->AgentId == AgentId && Reservation->Token == Token && Reservation->Until > Time;
 }

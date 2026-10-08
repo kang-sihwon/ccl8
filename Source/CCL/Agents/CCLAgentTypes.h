@@ -10,10 +10,10 @@ struct CCL_API FCCLTargetReference
 {
 	GENERATED_BODY()
 
-	UPROPERTY()
+	UPROPERTY(EditAnywhere)
 	FGameplayTag Kind;
 
-	UPROPERTY()
+	UPROPERTY(EditAnywhere)
 	FGuid Id;
 };
 
@@ -22,10 +22,10 @@ struct CCL_API FCCLLocationReference
 {
 	GENERATED_BODY()
 
-	UPROPERTY()
+	UPROPERTY(EditAnywhere)
 	FGuid PlaceId;
 
-	UPROPERTY()
+	UPROPERTY(EditAnywhere)
 	FVector Position = FVector::ZeroVector;
 };
 
@@ -34,22 +34,22 @@ struct CCL_API FCCLPersistentIntent
 {
 	GENERATED_BODY()
 
-	UPROPERTY()
+	UPROPERTY(EditAnywhere)
 	FGameplayTag Activity;
 
-	UPROPERTY()
+	UPROPERTY(EditAnywhere)
 	FCCLTargetReference Target;
 
-	UPROPERTY()
+	UPROPERTY(EditAnywhere)
 	FGuid SupportingLifeGoalId;
 
-	UPROPERTY()
+	UPROPERTY(EditAnywhere)
 	FGuid OpportunityId;
 
-	UPROPERTY()
+	UPROPERTY(EditAnywhere)
 	double StartedTime = 0;
 
-	UPROPERTY()
+	UPROPERTY(EditAnywhere)
 	double ExpireTime = 0;
 };
 
@@ -58,10 +58,10 @@ struct CCL_API FCCLAgentFeatureState
 {
 	GENERATED_BODY()
 
-	UPROPERTY()
+	UPROPERTY(EditAnywhere)
 	int32 Version = 1;
 
-	UPROPERTY()
+	UPROPERTY(EditAnywhere)
 	FInstancedStruct Data;
 };
 
@@ -70,25 +70,25 @@ struct CCL_API FCCLAgentRecord
 {
 	GENERATED_BODY()
 
-	UPROPERTY()
+	UPROPERTY(EditAnywhere)
 	FGuid Id;
 
-	UPROPERTY()
+	UPROPERTY(EditAnywhere)
 	FPrimaryAssetId DefinitionId;
 
-	UPROPERTY()
+	UPROPERTY(EditAnywhere)
 	FGameplayTagContainer Roles;
 
-	UPROPERTY()
+	UPROPERTY(EditAnywhere)
 	FCCLLocationReference Location;
 
-	UPROPERTY()
+	UPROPERTY(EditAnywhere)
 	double LastSimulatedTime = 0;
 
-	UPROPERTY()
+	UPROPERTY(EditAnywhere)
 	FCCLPersistentIntent Intent;
 
-	UPROPERTY()
+	UPROPERTY(EditAnywhere)
 	TMap<FGameplayTag, FCCLAgentFeatureState> Features;
 };
 

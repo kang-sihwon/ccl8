@@ -31,6 +31,7 @@ private:
 	TObjectPtr<UStateTreeAIComponent> StateTreeComponent;
 
 	TWeakObjectPtr<APawn> Target;
+	double ReconsiderAfter = 0;
 };
 
 UENUM()

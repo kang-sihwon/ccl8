@@ -1,6 +1,7 @@
 #include "CCLCombatSmokeSubsystem.h"
 
 #include "CCLCharacter.h"
+#include "Actions/CCLActionComponent.h"
 #include "CCLPlayerController.h"
 #include "CCLGameModeBase.h"
 #include "AbilitySystem/CCLAbilitySystemComponent.h"
@@ -120,11 +121,16 @@ void UCCLCombatSmokeSubsystem::ExecuteClientStep(int32 InStep)
 
 	if (Input.IsValid())
 	{
-		Component->AbilityInputTagPressed(Input);
+		auto* Actions = Component->GetOwnerActor()->FindComponentByClass<UCCLActionComponent>();
+		if (!Actions)
+		{
+			return;
+		}
+		Actions->RequestInput(Input, true);
 
 		if (Input != CCLTags::Input_Guard)
 		{
-			Component->AbilityInputTagReleased(Input);
+			Actions->RequestInput(Input, false);
 		}
 	}
 

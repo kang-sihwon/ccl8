@@ -17,6 +17,13 @@ struct CCL_API FCCLAccountRecord
 
 	UPROPERTY()
 	int64 Balance = 0;
+
+	// Immutable opening allocation is audit metadata, not another current balance.
+	UPROPERTY()
+	int64 OpeningBalance = 0;
+
+	UPROPERTY()
+	uint8 bHasOpeningBalance = 0;
 };
 
 USTRUCT()
@@ -96,19 +103,19 @@ struct CCL_API FCCLItemTransfer
 	UPROPERTY()
 	FGuid Destination;
 
-    // Adapter receipt for resources delivered into an existing item inventory.
-    // These IDs describe a transfer; they are not another copy of inventory quantity.
-    UPROPERTY()
-    FGuid ExternalInventoryOwner;
+	// Adapter receipt for resources delivered into an existing item inventory.
+	// These IDs describe a transfer; they are not another copy of inventory quantity.
+	UPROPERTY()
+	FGuid ExternalInventoryOwner;
 
-    UPROPERTY()
-    FGuid ExternalItem;
+	UPROPERTY()
+	FGuid ExternalItem;
 
-    UPROPERTY()
-    FGameplayTag Resource;
+	UPROPERTY()
+	FGameplayTag Resource;
 
-    UPROPERTY()
-    int64 Quantity = 0;
+	UPROPERTY()
+	int64 Quantity = 0;
 };
 
 USTRUCT()
