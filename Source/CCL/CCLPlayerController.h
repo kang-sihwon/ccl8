@@ -14,6 +14,7 @@ class UInputMappingContext;
 class UCCLSkillDefinition;
 class SCCLInventoryWidget;
 class UCCLInventoryContext;
+class UCCLDialogueContext;
 class UTextureRenderTarget2D;
 class ACCLVillageSteward;
 
@@ -25,6 +26,7 @@ class CCL_API ACCLPlayerController : public APlayerController
 	// 부모 인터페이스 함수
 public:
 	virtual void FlushPressedKeys() override;
+	virtual void PlayerTick(float DeltaTime) override;
 
 protected:
 	virtual void SetupInputComponent() override;
@@ -112,6 +114,7 @@ public:
 	int32 GetSelectedItem() const;
 	FGuid GetSelectedEquipment() const;
 	FCCLUIViewHandle GetInventoryHandle() const { return InventoryHandle; }
+	FCCLUIViewHandle GetDialogueHandle() const { return DialogueHandle; }
 
 private:
 	void Move(const FInputActionValue& Value);
@@ -155,9 +158,13 @@ private:
 	UPROPERTY(Transient)
 	TObjectPtr<UCCLInventoryContext> InventoryContext;
 
+	UPROPERTY(Transient)
+	TObjectPtr<UCCLDialogueContext> DialogueContext;
+
 	FGameplayTag HeldLeftAction;
 	FGameplayTag HeldRightAction;
 	FCCLUIViewHandle InventoryHandle;
+	FCCLUIViewHandle DialogueHandle;
 	TWeakObjectPtr<ACCLVillageSteward> DialogueSpeaker;
 	FString DialogueName;
 	FString DialogueText;

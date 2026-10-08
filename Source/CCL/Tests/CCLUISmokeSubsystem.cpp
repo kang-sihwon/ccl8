@@ -1,6 +1,10 @@
 #include "CCLUISmokeSubsystem.h"
 
 #include "CCLCharacter.h"
+#include "CCLHUD.h"
+#include "UI/CCLHUDScreens.h"
+#include "UI/CCLCombatViewModel.h"
+#include "AbilitySystem/CCLHealthSet.h"
 #include "CCLPlayerController.h"
 #include "CCLPlayerState.h"
 #include "Components/MeshComponent.h"
@@ -447,6 +451,21 @@ void UCCLUISmokeSubsystem::Tick(float DeltaTime)
 	}
 	else if (Step == 8)
 	{
+		auto* Dialogue = Cast<UCCLDialogueScreen>(UIManager->FindScreen(PC->GetDialogueHandle()));
+		if (!Check(Dialogue && Dialogue->GetDisplayedBody() == PC->GetDialogueText(),
+			TEXT("independent dialogue widget renders server-delivered content")))
+		{
+			return;
+		}
+
+		auto* Context = Cast<UCCLDialogueContext>(Dialogue->GetContext());
+		Context->Update(PC->GetDialogueName(), PC->GetDialogueText() + TEXT("\nPresentation notification check."));
+		if (!Check(Dialogue->GetDisplayedBody() == Context->Body, TEXT("dialogue change notification updates without recreating screen")))
+		{
+			return;
+		}
+
+		Context->Update(PC->GetDialogueName(), PC->GetDialogueText());
 		Capture(TEXT("npc-dialogue"));
 	}
 	else if (Step == 9)
@@ -468,6 +487,11 @@ void UCCLUISmokeSubsystem::Tick(float DeltaTime)
 	}
 	else if (Step == 10)
 	{
+		if (!Check(!UIManager->IsViewOpen(PC->GetDialogueHandle()), TEXT("controller closes out-of-range dialogue independently of painting")))
+		{
+			return;
+		}
+
 		PC->ToggleInventory();
 		PooledScreen = Cast<UCCLInventoryScreen>(UIManager->FindScreen(PC->GetInventoryHandle()));
 		RetainedContext = PooledScreen.IsValid() ? Cast<UCCLInventoryContext>(PooledScreen->GetContext()) : nullptr;
@@ -518,6 +542,22 @@ void UCCLUISmokeSubsystem::Tick(float DeltaTime)
 		}
 
 		RetainedContext = Context;
+		TActorIterator<ACCLVillageSteward> Speaker(GetWorld());
+		if (!Check(static_cast<bool>(Speaker), TEXT("NPC is available for inventory reply check")))
+		{
+			return;
+		}
+
+		const FVector PreviousLocation = Pawn->GetActorLocation();
+		Pawn->SetActorLocation(Speaker->GetActorLocation() + FVector(0.f, -150.f, 0.f));
+		PC->ServerTalkToSteward();
+		if (!Check(PC->IsInventoryOpen() && !PC->IsDialogueVisible() && Context->HasCapture(),
+			TEXT("late NPC response preserves the newer inventory and preview")))
+		{
+			return;
+		}
+
+		Pawn->SetActorLocation(PreviousLocation);
 	}
 	else if (Step == 13)
 	{
@@ -529,6 +569,22 @@ void UCCLUISmokeSubsystem::Tick(float DeltaTime)
 		}
 
 		Capture(TEXT("managed-session-menu"));
+		TActorIterator<ACCLVillageSteward> Speaker(GetWorld());
+		if (!Check(static_cast<bool>(Speaker), TEXT("NPC is available for delayed reply check")))
+		{
+			return;
+		}
+
+		const FVector PreviousLocation = Pawn->GetActorLocation();
+		Pawn->SetActorLocation(Speaker->GetActorLocation() + FVector(0.f, -150.f, 0.f));
+		PC->ServerTalkToSteward();
+		if (!Check(!PC->IsDialogueVisible() && Session->IsMenuVisible(),
+			TEXT("server dialogue reply cannot open a hidden interaction behind the menu")))
+		{
+			return;
+		}
+
+		Pawn->SetActorLocation(PreviousLocation);
 	}
 	else if (Step == 14)
 	{
@@ -626,7 +682,41 @@ void UCCLUISmokeSubsystem::Tick(float DeltaTime)
 		Session->RemoveLocalPlayer(OtherLocal.Get());
 		PC->CloseInventory();
 		RetainedContext = nullptr;
-		UE_LOG(LogTemp, Display, TEXT("CCL_UI PASS drag swap cancel dialogue managed menu pooling respawn players"));
+	}
+	else if (Step == 22)
+	{
+		auto* HUD = Cast<ACCLHUD>(PC->GetHUD());
+		auto* Context = HUD ? HUD->GetHUDContext() : nullptr;
+		auto* Screen = HUD ? Cast<UCCLVitalsScreen>(UIManager->FindScreen(HUD->GetVitalsHandle())) : nullptr;
+		if (!Check(Context && Context->Vitals && Screen, TEXT("independent vitals widget survives respawn and local-player removal")))
+		{
+			return;
+		}
+
+		auto* ASC = Pawn->GetAbilitySystemComponent();
+		const float Health = ASC->GetNumericAttribute(UCCLHealthSet::GetHealthAttribute());
+		const int32 Before = Screen->GetRefreshCount();
+		ASC->SetNumericAttributeBase(UCCLHealthSet::GetHealthAttribute(), Health - 10.f);
+		if (!Check(Context->Vitals->Health == Health - 10.f && Screen->GetRefreshCount() > Before &&
+			Screen->GetDisplayedText().Contains(FString::Printf(TEXT("HP %.0f /"), Health - 10.f)),
+			TEXT("GAS change publishes MVVM FieldNotify and updates displayed HP synchronously")))
+		{
+			return;
+		}
+
+		const int32 After = Screen->GetRefreshCount();
+		Context->Vitals->Bind(ASC);
+		if (!Check(Screen->GetRefreshCount() == After, TEXT("unchanged source binding does not poll the rendered values")))
+		{
+			return;
+		}
+
+		ASC->SetNumericAttributeBase(UCCLHealthSet::GetHealthAttribute(), Health);
+		Capture(TEXT("managed-hud"));
+	}
+	else if (Step == 23)
+	{
+		UE_LOG(LogTemp, Display, TEXT("CCL_UI PASS drag swap cancel dialogue managed menu pooling respawn players FieldNotify"));
 		bComplete = 1;
 		FPlatformMisc::RequestExitWithStatus(false, 0);
 	}

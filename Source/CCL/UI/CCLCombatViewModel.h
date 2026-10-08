@@ -1,14 +1,14 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "UObject/Object.h"
+#include "MVVMViewModelBase.h"
 #include "GameplayEffectTypes.h"
 #include "CCLCombatViewModel.generated.h"
 
 class UAbilitySystemComponent;
 
 UCLASS()
-class CCL_API UCCLCombatViewModel : public UObject
+class CCL_API UCCLCombatViewModel : public UMVVMViewModelBase
 {
 	GENERATED_BODY()
 
@@ -21,6 +21,20 @@ public:
 
 private:
 	void Unbind();
+	void PublishValues();
+
+public:
+	UPROPERTY(BlueprintReadOnly, FieldNotify, Category = "Vitals")
+	float Health = 0.f;
+
+	UPROPERTY(BlueprintReadOnly, FieldNotify, Category = "Vitals")
+	float MaxHealth = 0.f;
+
+	UPROPERTY(BlueprintReadOnly, FieldNotify, Category = "Vitals")
+	float Stamina = 0.f;
+
+	UPROPERTY(BlueprintReadOnly, FieldNotify, Category = "Vitals")
+	float MaxStamina = 0.f;
 
 private:
 	UPROPERTY(Transient)

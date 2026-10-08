@@ -68,6 +68,7 @@ void UCCLUIFoundationSmoke::Tick(float DeltaTime)
 
 	if (Step == 0)
 	{
+		UI->CloseAllViews();
 		Registry = NewObject<UCCLUIRegistry>(this);
 		Registry->InputMapping = GetDefault<UCCLUIInputData>()->GetMapping();
 		for (const auto& Pair : {TPair<FGameplayTag, ECCLUILayerLayout>(OverlayLayer, ECCLUILayerLayout::Overlay),

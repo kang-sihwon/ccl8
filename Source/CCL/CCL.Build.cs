@@ -15,7 +15,7 @@ public class CCL : ModuleRules
 
 		PrivateDependencyModuleNames.AddRange(new string[] { "Slate", "SlateCore", "Json", "JsonUtilities" });
 		PublicDependencyModuleNames.Add("NetCore");
-		PublicDependencyModuleNames.AddRange(new string[] { "UMG", "CommonUI", "CommonInput" });
+		PublicDependencyModuleNames.AddRange(new string[] { "UMG", "CommonUI", "CommonInput", "ModelViewViewModel", "FieldNotification" });
 		if (Target.bBuildEditor)
 		{
 			PrivateDependencyModuleNames.AddRange(new string[] { "UnrealEd", "AssetRegistry", "StateTreeEditorModule", "PropertyBindingUtils", "PropertyEditor" });

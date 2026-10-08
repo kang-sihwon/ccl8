@@ -26,6 +26,8 @@ classDiagram
 
 ## 기능 계약
 
+현재 NPC 표시는 공용 UI에 등록한 `UCCLDialogueScreen`이 담당한다. 컨트롤러가 서버 응답을 `UCCLDialogueContext`에 전달하고 변경 알림으로 이름·본문을 갱신한다. 일반 안내와 능력치도 별도 화면으로 분리했다. 구현·입력·재스폰 검증은 [UIFoundation](UIFoundation.md)에 기록한다.
+
 2026-10-07 사용자의 요청으로 NPC 대사는 화면 하단 중앙의 사각형 상자에 표시한다. 왼쪽 위에 NPC 이름을 두고 다음 줄부터 대화 내용을 줄바꿈한다. 상호작용 결과는 서버가 해당 플레이어에게만 전달하고 HUD가 로컬에서 표시한다. T 대화·B 구매의 기존 규칙을 유지하며, Esc·인벤토리 열기·거리 이탈·사망으로 상자를 닫는다. 일반 퀘스트 안내와 NPC 대사는 별도 영역으로 구분한다. 별도 패키지의 1280×720·1920×1080 캡처에서 이름·대사·조작 안내를 확인했고 인벤토리 전환과 거리 이탈로 닫히는 검사도 통과했다. 근거는 `Saved/StageValidation/Equipment-Packaged-UI-1280.log`, `Equipment-Packaged-UI-1920.log`와 `Saved/Tests/UIVisual/`의 해당 실행 캡처다.
 
 같은 날 옮겨온 커서 4개, 레벨 프로토타입 29개, 무기 27개와 애니메이션 관련 2개를 저장 없이 로드했다. 62개 모두 객체 로드에는 성공했으나 `BP_WobbleTarget`은 `/Game/DemoTemplate/_Core/MI_Intro_Colorway`가 없고, `ABP_FP_Copy`와 `CtrlRig_FPWarp`에는 `/Game/FirstPerson/Anims/` 참조가 남아 있다. `ABP_FP_Copy`는 유효한 Control Rig 클래스가 없어 Blueprint 컴파일 오류도 발생했다. 원본 에셋은 변경하지 않았으며 이번 UI는 해당 리소스에 의존하지 않는다. 원본 결과는 로컬 `Saved/StageValidation/ImportedResources-Report.json`과 `ImportedResources.log`에 보존한다.

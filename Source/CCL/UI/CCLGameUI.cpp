@@ -3,6 +3,7 @@
 #include "CCLInventoryScreen.h"
 #include "CCLSessionMenuScreen.h"
 #include "CCLUIInputData.h"
+#include "CCLHUDScreens.h"
 #include "Core/CCLUISubsystem.h"
 #include "Engine/LocalPlayer.h"
 #include "GameFramework/PlayerController.h"
@@ -15,7 +16,11 @@ UE_DEFINE_GAMEPLAY_TAG(Layer_Menu, "UI.Layer.Menu");
 UE_DEFINE_GAMEPLAY_TAG(Layer_Notifications, "UI.Layer.Notifications");
 UE_DEFINE_GAMEPLAY_TAG(View_Inventory, "UI.View.Inventory");
 UE_DEFINE_GAMEPLAY_TAG(View_SessionMenu, "UI.View.SessionMenu");
+UE_DEFINE_GAMEPLAY_TAG(View_Vitals, "UI.View.Vitals");
+UE_DEFINE_GAMEPLAY_TAG(View_FieldHUD, "UI.View.FieldHUD");
+UE_DEFINE_GAMEPLAY_TAG(View_Dialogue, "UI.View.Dialogue");
 UE_DEFINE_GAMEPLAY_TAG(Group_HUD, "UI.Group.HUD");
+UE_DEFINE_GAMEPLAY_TAG(Group_Dialogue, "UI.Group.Dialogue");
 UE_DEFINE_GAMEPLAY_TAG(Group_Menus, "UI.Group.Menus");
 }
 
@@ -56,6 +61,22 @@ UCCLUISubsystem* CCLGameUI::Get(APlayerController* Controller)
 		View.WidgetClass = UCCLSessionMenuScreen::StaticClass();
 		View.RequiredContextClass = UCCLSessionMenuContext::StaticClass();
 		View.Layer = CCLUITags::Layer_Menu;
+		Registry->Views.Add(View);
+		View = FCCLUIViewDefinition();
+		View.Tag = CCLUITags::View_Vitals;
+		View.WidgetClass = UCCLVitalsScreen::StaticClass();
+		View.RequiredContextClass = UCCLHUDContext::StaticClass();
+		View.Layer = CCLUITags::Layer_HUD;
+		View.Groups.AddTag(CCLUITags::Group_HUD);
+		Registry->Views.Add(View);
+		View.Tag = CCLUITags::View_FieldHUD;
+		View.WidgetClass = UCCLFieldHUDScreen::StaticClass();
+		Registry->Views.Add(View);
+		View.Tag = CCLUITags::View_Dialogue;
+		View.WidgetClass = UCCLDialogueScreen::StaticClass();
+		View.RequiredContextClass = UCCLDialogueContext::StaticClass();
+		View.Groups.Reset();
+		View.Groups.AddTag(CCLUITags::Group_Dialogue);
 		Registry->Views.Add(View);
 		if (!UI->ConfigureRegistry(Registry))
 		{

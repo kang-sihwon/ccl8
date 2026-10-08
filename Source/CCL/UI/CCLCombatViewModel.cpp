@@ -22,6 +22,7 @@ void UCCLCombatViewModel::Bind(UAbilitySystemComponent* InASC)
 
 	if (!ASC)
 	{
+		PublishValues();
 		return;
 	}
 
@@ -35,8 +36,19 @@ void UCCLCombatViewModel::Bind(UAbilitySystemComponent* InASC)
 				[this, Attribute](const FOnAttributeChangeData& Data)
 				{
 					Values.FindOrAdd(Attribute) = Data.NewValue;
+					PublishValues();
 				}));
 	}
+
+	PublishValues();
+}
+
+void UCCLCombatViewModel::PublishValues()
+{
+	UE_MVVM_SET_PROPERTY_VALUE(Health, GetValue(UCCLHealthSet::GetHealthAttribute()));
+	UE_MVVM_SET_PROPERTY_VALUE(MaxHealth, GetValue(UCCLHealthSet::GetMaxHealthAttribute()));
+	UE_MVVM_SET_PROPERTY_VALUE(Stamina, GetValue(UCCLStaminaSet::GetStaminaAttribute()));
+	UE_MVVM_SET_PROPERTY_VALUE(MaxStamina, GetValue(UCCLStaminaSet::GetMaxStaminaAttribute()));
 }
 
 float UCCLCombatViewModel::GetValue(const FGameplayAttribute& Attribute) const

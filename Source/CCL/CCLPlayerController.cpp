@@ -2,6 +2,7 @@
 #include "Session/CCLGameInstance.h"
 #include "UI/CCLInventoryScreen.h"
 #include "UI/CCLGameUI.h"
+#include "UI/CCLHUDScreens.h"
 #include "UI/Core/CCLUISubsystem.h"
 #include "Combat/CCLFighterComponent.h"
 #include "Components/SkeletalMeshComponent.h"
@@ -135,6 +136,16 @@ void ACCLPlayerController::SetupInputComponent()
 	MapMenu(EKeys::E, &ThisClass::ServerCollectNearby);
 	Subsystem->AddMappingContext(InputMapping, 0);
 	CCLGameUI::Get(this);
+}
+
+void ACCLPlayerController::PlayerTick(float DeltaTime)
+{
+	Super::PlayerTick(DeltaTime);
+	// Interaction validity is independent of whether presentation hides the widget.
+	if (DialogueHandle.IsValid() && !IsDialogueVisible())
+	{
+		CloseDialogue();
+	}
 }
 
 void ACCLPlayerController::FlushPressedKeys()
@@ -274,19 +285,52 @@ void ACCLPlayerController::ServerMoveInventoryItem_Implementation(FGuid Id, int3
 
 void ACCLPlayerController::ClientShowDialogue_Implementation(ACCLVillageSteward* Speaker, const FString& Name, const FString& Text)
 {
-	if (!IsValid(Speaker) || !Speaker->CanReach(GetPawn()))
+	const auto* UIPawn = Cast<ACCLCharacter>(GetPawn());
+	const auto* Session = GetGameInstance<UCCLGameInstance>();
+	// A server reply can arrive after death or after another modal screen opens.
+	if (!UIPawn || UIPawn->IsDead() || !IsValid(Speaker) || !Speaker->CanReach(UIPawn) || IsInventoryOpen() ||
+		(Session && Session->IsMenuVisibleForPlayer(this)))
 	{
 		return;
 	}
 
-	CloseInventory();
 	DialogueSpeaker = Speaker;
 	DialogueName = Name;
 	DialogueText = Text;
+	if (auto* UI = CCLGameUI::Get(this))
+	{
+		UI->OnViewClosed.RemoveAll(this);
+		UI->OnViewClosed.AddUObject(this, &ThisClass::HandleUIViewClosed);
+		if (!DialogueContext)
+		{
+			DialogueContext = NewObject<UCCLDialogueContext>(this);
+		}
+
+		DialogueContext->Update(Name, Text);
+		if (!UI->IsViewOpen(DialogueHandle))
+		{
+			DialogueHandle = UI->OpenView(CCLUITags::View_Dialogue, DialogueContext, this);
+		}
+	}
+
+	if (!DialogueHandle.IsValid())
+	{
+		CloseDialogue();
+	}
 }
 
 void ACCLPlayerController::CloseDialogue()
 {
+	if (const auto* Local = GetLocalPlayer())
+	{
+		if (auto* UI = Local->GetSubsystem<UCCLUISubsystem>())
+		{
+			UI->CloseView(DialogueHandle);
+		}
+	}
+
+	DialogueHandle = {};
+	DialogueContext = nullptr;
 	DialogueSpeaker.Reset();
 	DialogueName.Reset();
 	DialogueText.Reset();
@@ -295,7 +339,10 @@ void ACCLPlayerController::CloseDialogue()
 bool ACCLPlayerController::IsDialogueVisible() const
 {
 	const auto* UIPawn = Cast<ACCLCharacter>(GetPawn());
-	return UIPawn && !UIPawn->IsDead() && DialogueSpeaker.IsValid() && DialogueSpeaker->CanReach(UIPawn);
+	const auto* Local = GetLocalPlayer();
+	const auto* UI = Local ? Local->GetSubsystem<UCCLUISubsystem>() : nullptr;
+	return UI && UI->IsViewOpen(DialogueHandle) && UIPawn && !UIPawn->IsDead() &&
+		DialogueSpeaker.IsValid() && DialogueSpeaker->CanReach(UIPawn);
 }
 
 void ACCLPlayerController::SelectPreviousItem()
@@ -728,6 +775,15 @@ void ACCLPlayerController::SelectEquipmentSlot(FGameplayTag Slot)
 
 void ACCLPlayerController::HandleUIViewClosed(FCCLUIViewHandle View)
 {
+	if (View == DialogueHandle)
+	{
+		DialogueHandle = {};
+		DialogueContext = nullptr;
+		DialogueSpeaker.Reset();
+		DialogueName.Reset();
+		DialogueText.Reset();
+	}
+
 	if (View == InventoryHandle)
 	{
 		InventoryHandle = {};
