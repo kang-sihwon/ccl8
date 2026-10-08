@@ -275,3 +275,96 @@ StartCase(FName)이 실행 ID를 반환하고 RequestReset(RunId), Stop(RunId), 
 ## 실행 결과 기록
 
 문서 작성 시점에는 이 계획에 따른 코드·새 맵의 구현과 실행을 시작하지 않았다. 노트북에서 단계별 상태, 변경 파일, 실행 환경, 생성·빌드·자동 검사·수동 검토 결과, 남은 문제와 다음 작업을 기록한다. 실패·미실행을 성공에 포함하지 않는다. 상세 로그와 실제 기기 경로는 Git에서 제외된 로컬 위치에 보관한다.
+
+
+### 2026-10-09 착수 범위
+
+단계 0의 설치 확인을 진행하고 단계 1의 시간 코어를 준비한다. 엔진 설치 완료 전에는 빌드와 에디터 실행을 보류한다. 기존 5.9 리소스의 로드·임포트 문제는 사용자가 보고한 환경 제약이며 이 기기에서 재현 검증하지 않았다. 기존 맵·에셋과 사용자 빌드 설정 변경을 보존한다.
+
+첫 작업 묶음은 설치 상태를 다시 확인하는 진단 도구, 공통 시간의 후보·확정·재시도·복원 계약, 그 계약의 자동 검사 소스다. 목표는 배율 변경 전후의 시간을 구분하고 처리하지 못한 시간을 완료 시각에 포함하지 않는 것이다. 기존 Agent의 시간 소유권 이전은 부분 실패와 저장 계약을 함께 검증할 때 연결한다. 이 준비 작업만으로 단계 1을 통과 처리하지 않는다.
+
+
+#### 단계 0 확인 결과
+
+설치 대상은 UE 5.8.3, Changelist 58210709다. `Engine/Build/Build.version`은 존재하지만 런처의 엔진 설치 완료 등록이 없고 `.egstore/Pending`에 파일이 남아 있다. 엔진 소스 조회, 프로젝트 파일 생성, Editor 빌드와 에디터 실행은 보류했다. 실행 파일이 존재하는 것만으로 설치 완료를 판정하지 않는다.
+
+| 확인 항목 | 결과 | 근거와 남은 검사 |
+|---|---|---|
+| Git | `main`, upstream `origin/main`, 작업 시작 때 기존 변경 7개 | 기존 변경을 보존했고 pull·LFS pull을 실행하지 않았다. 작업 중 추가된 다른 문서도 이번 변경에 포함하지 않는다 |
+| C++ 도구 | MSVC 14.44.35207, Windows SDK 10.0.22621.0·10.0.26100.0 존재 | UBT의 실제 도구 선택과 호환 여부는 빌드 때 확인한다 |
+| 프로젝트 파일 생성 | 미실행 | 현재 설치 경로에는 `Build/BatchFiles/GenerateProjectFiles.bat`이 없다. 설치 완료 후 Launcher 배포본의 UBT 생성 경로를 확인한다 |
+| 테스트 포함 | 기존 `bForceIncludeTestsFolder` 설정은 사용자 변경으로 주석 상태 | 해당 설정을 되돌리지 않았다. 기존 Tests 폴더의 실제 컴파일·테스트 검색 여부는 미확인이다 |
+| 콘텐츠 | 검사한 `.uasset`·`.umap` 279개, LFS 포인터 0개 | 파일 헤더만 확인했다. 5.8.3 로드·임포트 호환을 증명하지 않는다 |
+| 기존 에셋 오류 | 저장된 5.8.2 로그에서 최신 커스텀 버전으로 인한 로드 실패 확인 | `Saved/Logs/CCL.log:473`, `:1121`의 `SKM_Manny_Simple`, `:1123`의 `ABP_Combat`. 이번 실행으로 재현한 결과는 아니다 |
+| 기존 회귀 기준 | 이동·사망·재스폰, 전투·마을·저장, Agent 실행 검사 | [MultiplayerFoundation](MultiplayerFoundation.md#검증-상태), [AgentFoundation](AgentFoundation.md#검증)의 과거 결과를 기준으로 삼는다. 이 기기의 새 실행 결과는 없다 |
+
+진단 원본은 `Saved/Tests/EnvironmentPreflight/20261008T180704Z.json`에 있다. 파일명과 보고 시각은 UTC이며 한국 시각으로 2026-10-09에 해당한다. 실제 기기 경로는 이 로컬 보고서에만 보관했다. `Tools/Validation/environment_preflight.py`는 로컬 경로 설정을 읽고 설치·도구·Git·LFS 상태를 수집한다. 소스 설치본의 BAT가 없는 경우를 별도로 표시하며 빌드 성공을 보고하지 않는다.
+
+#### 시간 코어의 책임과 경계
+
+`Source/CCL/Environment/CCLWorldClock.h`와 `.cpp`는 Actor·에셋을 참조하지 않는 시간 코어다. 현재는 로컬 소스 준비 상태이며 서버 Subsystem과 기존 Agent에는 연결하지 않았다. 모듈 의존성과 기존 빌드 설정은 변경하지 않았다.
+
+| 타입 | 책임과 소유 | 수명·권위 |
+|---|---|---|
+| `FCCLWorldClock` | 입력 시간, 배율 이력, 처리 대기 구간과 완료 시각 소유 | 향후 서버 World 실행기가 단독 소유한다. 코어 자체는 Tick이나 네트워크 권한 검사를 수행하지 않는다 |
+| `FCCLWorldStep` | 후보 시간 구간, 완료 순번과 시도별 Ticket 전달 | Prepare부터 Commit 또는 Abort까지 사용한다. 티켓은 재시도·초기화·복원 뒤 재사용하지 않는다 |
+| `FCCLWorldClockSnapshot` | 완료 시각·순번, 대기 구간, 입력 시점별 배율의 값 복사 | Capture·Restore용 메모리 자료다. 디스크 저장·세션 v5 변환은 아직 연결하지 않았다 |
+| 기존 `UCCLAgentWorldSubsystem` | LifeSimulation의 소유권과 기존 시간 진행 유지 | 공통 실행기 이전 전까지 기존 게임 동작을 유지한다 |
+
+```mermaid
+classDiagram
+    FCCLWorldClock *-- FCCLWorldClockSnapshot : 시간 상태 소유
+    FCCLWorldClock ..> FCCLWorldStep : 후보 반환
+    UCCLAgentWorldSubsystem *-- FCCLLifeSimulation : 기존 소유권 유지
+```
+
+현재 다이어그램에는 두 실행기를 잇는 호출이 없다. Agent의 부분 실패와 외부 자원 변경을 안전하게 확정하는 계약을 만든 뒤 연결해야 한다. `Abort`는 시계의 후보만 취소하며 이미 변경한 Agent·물리·자원 상태를 되돌리는 함수가 아니다.
+
+주요 진입점은 다음과 같다. 전체 계약은 헤더를 따른다.
+
+```cpp
+bool QueueGameTime(double DeltaSeconds, bool bPaused, FString& Error);
+bool ChangeTimeScale(double NewScale, FString& Error);
+bool Prepare(double MaxGameSeconds, double MaxWorldSeconds, FCCLWorldStep& OutStep, FString& Error);
+bool Commit(const FGuid& Ticket, FString& Error);
+bool Abort(const FGuid& Ticket, FString& Error);
+bool Capture(FCCLWorldClockSnapshot& OutSnapshot, FString& Error) const;
+bool Restore(const FCCLWorldClockSnapshot& Snapshot, FString& Error);
+```
+
+다음은 자동 검사에 포함한 재시도 흐름의 발췌다. 소비자 상태를 바꾸기 전 실패한 경우를 가정한다.
+
+```cpp
+FCCLWorldClock Clock;
+FString Error;
+FCCLWorldStep First;
+FCCLWorldStep Retry;
+Clock.QueueGameTime(1, false, Error);
+Clock.Prepare(1, 15, First, Error);
+Clock.Abort(First.Ticket, Error);
+Clock.Prepare(1, 15, Retry, Error);
+// Retry는 같은 시간 구간과 새로운 Ticket을 가진다.
+Clock.Commit(Retry.Ticket, Error);
+```
+
+이 예시의 배율 60과 세계 시간 예산 15초는 검사용 입력이다. 실패하면 완료 시각은 그대로 남고 대기 시간을 다음 시도에서 처리한다. 배율을 바꾸면 이미 받은 시간은 원래 배율로 처리한다. 배율 0에서는 게임 시간이 진행되고 세계 시간만 정지한다. 월드 일시 정지 입력은 두 시간에 모두 누적하지 않는다.
+
+메모리 상한은 대기 구간 256개와 배율 이력 4096개로 두었다. 상한을 넘는 입력·배율 변경은 오류를 반환하며 기존 상태를 유지한다. 이는 구현 보호 한도이며 출시 성능 목표가 아니다. 호출자는 거부된 입력을 처리 완료로 보고하거나 버려서는 안 된다.
+
+배율 이력을 보관하면 먼 지역과 저장 재개에서 과거 입력을 해석할 수 있지만 검증 비용과 저장량이 늘어난다. 단일 배율만 저장하는 구현은 작지만 대기 중 배율 변경을 잘못 적용하므로 채택하지 않았다. UE4와 UE5의 월드 Tick 차이를 바꾸는 작업은 아직 없으며, 이 코어는 UE의 값 타입을 사용하는 일반 C++ 코드다. 실제 UE 5.8.3 컴파일은 미검증이다.
+
+#### 검사 결과와 다음 작업
+
+| 검사 | 결과 | 범위 |
+|---|---|---|
+| 진단 도구 단위 검사 | 9개 통과 | 플러그인만 설치된 상태, 미완료 매니페스트·대기 파일, 경로 불일치, 필수 파일·버전 누락, 주석 처리한 테스트 설정, LFS 포인터 구분 |
+| `CCL.Environment.Clock` 자동 검사 | 4개 작성, 미실행 | 확정·재시도, 배율·일시 정지, 복원·손상, 입력 상한·소수 시간 누적 |
+| 프로젝트 파일 생성·Editor 빌드 | 미실행 | 엔진 설치 완료 대기 |
+| 두 실험 맵·조작부·서버 시계 연결 | 미구현 | 공통 시간 코어와 구분한다 |
+| Agent 시간 이전·통합 저장·Standalone/Listen/Dedicated | 미구현·미검증 | 단계 1 통과 조건으로 남아 있다 |
+
+실행한 도구 검사는 `python -X utf8 -m unittest discover -s Tools/Validation/Tests -p test_environment_preflight.py -v`다. 시간 자동 검사 소스는 `Source/CCL/Environment/CCLWorldClockTests.cpp`에 두고 `WITH_DEV_AUTOMATION_TESTS`로 감쌌다. 기존 Tests 폴더 설정에 의존하지 않는 배치지만 실제 테스트 검색까지 통과한 것은 아니다.
+
+설치 완료 후 AI는 진단 도구를 다시 실행하고 현재 엔진의 프로젝트 파일 생성 경로와 테스트 포함 규칙을 확인한다. 에셋 의존성이 없는 빈 맵에서 시간 자동 검사를 먼저 실행한다. Agent의 실제 완료 시각·부분 실패·외부 자원 확정 계약을 구현한 뒤 자체 Tick의 시간 진행을 공통 실행기로 옮긴다. 두 실험 맵은 기존 맵을 덮지 않고 5.8.3에서 새로 생성하며 통합 저장과 세 가지 실행 모드를 검증한다. 단계 0의 실행 기준과 단계 1의 통과 조건이 확인되기 전에는 단계 2로 넘어가지 않는다.
+
+코드·진단 도구는 로컬 작업 트리에 두었다. 엔진 설치 후 프로젝트 생성·빌드·실행 검증을 마친 뒤 [DeliveryPlan](DeliveryPlan.md)의 단계별 제출 절차를 적용한다. 이 환경 조사 문서의 제출은 기능 검증 통과를 뜻하지 않는다.
