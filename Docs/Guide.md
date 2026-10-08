@@ -26,6 +26,7 @@
 | [ContentFoundation](ContentFoundation.md) | 일반 적·보스 패턴과 NPC·상점·퀘스트·튜토리얼 |
 | [ProgressionFoundation](ProgressionFoundation.md) | 인벤토리·장비·성장·스킬 UI의 설계와 검증 |
 | [UIFoundation](UIFoundation.md) | 장르 독립적인 UI 관리자·화면·문맥·레이어·연출 제어의 계약과 검증 |
+| [EnvironmentPlan](EnvironmentPlan.md) | 천체·날씨·영구 지형·눈·물·불·차폐·생태계와 실험장 구현 계획, 노트북의 다음 작업 |
 | [AgentFoundation](AgentFoundation.md) | 개인의 삶·기억·목표·자원·판단과 Actor/Mass 수명의 구현 계약 |
 | [생활 Agent·무기·지도 확인 안내](AgentReview-2026-10-08.md) | 직접 확인할 조작, 클래스 관계와 데이터 위치 |
 | [장비·UI 확인 안내](UIReview-2026-10-08.md) | 2026-10-08 구현 요약, 직접 확인할 화면과 검증 범위 |

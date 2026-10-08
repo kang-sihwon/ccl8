@@ -2,6 +2,8 @@
 
 로드맵의 각 단계는 구현, 프로젝트 파일 생성, 빌드, 실행 검사와 코드 검토를 통과한 뒤 제출한다. 2026-10-07 사용자는 단계별 오류 수정과 commit·push 후 다음 단계로 진행하도록 지시했다. 제작 범위는 [Direction](Direction.md), 단계의 완료 기준은 [StudyRoadmap](StudyRoadmap.md)을 따른다.
 
+자연 환경과 실험장의 다음 작업은 [EnvironmentPlan](EnvironmentPlan.md)을 따른다. 아래 내용은 기존 제작 단계의 범위와 검증 기록이다. 현재 기기의 엔진 버전은 실제 Build.version에서 다시 확인한다.
+
 ## 선행 검증
 
 최소 전투 에셋 생성과 Standalone, Dedicated Server, Listen Server의 전투·이동 검사를 먼저 수행한다. 현재 노트북 엔진은 `Engine/Build/Build.version` 기준 UE 5.9.0이다. 기존 UE 5.8.1 검증 기록과 구분한다. 최종 프로젝트 파일 생성·CCLEditor 빌드, 에셋 생성, 전투 5개 구성과 이동 4개 구성이 통과했다. 렌더링한 화면 6개를 확인했다. 세부 근거와 남은 검사는 CombatFoundation에 기록했다. 원본 로그는 Git에서 제외한 `Saved/StageValidation/`에 보존한다.
