@@ -3,6 +3,7 @@
 #include "CoreMinimal.h"
 #include "Subsystems/LocalPlayerSubsystem.h"
 #include "CCLUIRegistry.h"
+#include "CCLUIPresentation.h"
 #include "Tickable.h"
 #include "CCLUISubsystem.generated.h"
 
@@ -49,6 +50,7 @@ struct FCCLUIOpenView
 	TWeakObjectPtr<UWorld> World;
 
 	uint64 OpenOrder = 0;
+	FCCLUIViewPresentation BasePresentation;
 };
 
 USTRUCT()
@@ -95,6 +97,12 @@ public:
 	void CancelRequest(FCCLUIRequestHandle Request);
 	void CloseView(FCCLUIViewHandle View);
 	void CloseAllViews();
+	FCCLUIPresentationHandle PushPresentation(const FCCLUIPresentationDefinition& Definition, UObject* Owner);
+	void ReleasePresentation(FCCLUIPresentationHandle Handle);
+	bool SetBasePresentation(FCCLUIViewHandle View, const FCCLUIViewPresentation& State);
+	void InvalidatePresentationRouting() { bPresentationRoutingDirty = 1; }
+	bool IsGameplayInputBlocked() const;
+	int32 GetPresentationCount() const { return Presentations.Num(); }
 	bool EnsureRoot();
 	UCCLScreen* FindScreen(FCCLUIViewHandle View) const;
 	FCCLUIRegistrationHandle FindRegistration(FGameplayTag View) const;
@@ -111,6 +119,8 @@ private:
 	void FinishRequest(FCCLUIRequestHandle Request);
 	void MarkRequestReady(FGuid Id);
 	bool CanOpen(const FCCLUIRegistration* Registration, UCCLUIContext* Context, UObject* Owner) const;
+	void RefreshPresentation(float FadeSeconds = 0.f);
+	void ApplyPresentation(FCCLUIViewHandle View, float FadeSeconds);
 
 public:
 	FCCLUIRequestFinished OnRequestFinished;
@@ -132,6 +142,9 @@ private:
 	UPROPERTY(Transient)
 	TMap<FGuid, FCCLUIPendingView> Pending;
 
+	UPROPERTY(Transient)
+	TMap<FGuid, FCCLUIPresentationRequest> Presentations;
+
 	TMap<FGuid, TSharedPtr<FStreamableHandle>> Loads;
 	TSet<FGuid> OpeningRegistrations;
 	FDelegateHandle WorldCleanupHandle;
@@ -140,4 +153,7 @@ private:
 	uint8 bCleaningWorld = 0;
 	uint8 bClosingAll = 0;
 	uint8 bRemovingScreen = 0;
+	uint8 bPresentationRoutingDirty = 0;
+	uint8 bRefreshingPresentation = 0;
+	uint8 bPresentationDirty = 0;
 };

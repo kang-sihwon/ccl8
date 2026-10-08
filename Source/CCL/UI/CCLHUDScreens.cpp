@@ -125,7 +125,7 @@ void UCCLVitalsScreen::Refresh()
 {
 	const auto* Context = Cast<UCCLHUDContext>(GetContext());
 	const auto* Model = Context ? Context->Vitals.Get() : nullptr;
-	if (!Model || !Values)
+	if (!Model || !Values || !IsPresentationUpdating())
 	{
 		return;
 	}
@@ -135,6 +135,11 @@ void UCCLVitalsScreen::Refresh()
 		Model->Health, Model->MaxHealth, Model->Stamina, Model->MaxStamina)));
 	HealthBar->SetPercent(Model->MaxHealth > 0.f ? FMath::Clamp(Model->Health / Model->MaxHealth, 0.f, 1.f) : 0.f);
 	StaminaBar->SetPercent(Model->MaxStamina > 0.f ? FMath::Clamp(Model->Stamina / Model->MaxStamina, 0.f, 1.f) : 0.f);
+}
+
+void UCCLVitalsScreen::OnPresentationChanged()
+{
+	Refresh();
 }
 
 FString UCCLVitalsScreen::GetDisplayedText() const
@@ -179,12 +184,17 @@ void UCCLFieldHUDScreen::OnContextReleased()
 
 void UCCLFieldHUDScreen::Refresh()
 {
-	if (const auto* Context = Cast<UCCLHUDContext>(GetContext()); Context && Overview && Prompts)
+	if (const auto* Context = Cast<UCCLHUDContext>(GetContext()); Context && Overview && Prompts && IsPresentationUpdating())
 	{
 		Overview->SetText(FText::FromString(Context->Overview));
 		Prompts->SetText(FText::FromString(Context->Prompts));
 		PromptPanel->SetVisibility(Context->Prompts.IsEmpty() ? ESlateVisibility::Collapsed : ESlateVisibility::HitTestInvisible);
 	}
+}
+
+void UCCLFieldHUDScreen::OnPresentationChanged()
+{
+	Refresh();
 }
 
 void UCCLDialogueScreen::NativeOnInitialized()
@@ -229,11 +239,16 @@ void UCCLDialogueScreen::OnContextReleased()
 
 void UCCLDialogueScreen::Refresh()
 {
-	if (const auto* Context = Cast<UCCLDialogueContext>(GetContext()); Context && Speaker && Body)
+	if (const auto* Context = Cast<UCCLDialogueContext>(GetContext()); Context && Speaker && Body && IsPresentationUpdating())
 	{
 		Speaker->SetText(FText::FromString(Context->Speaker));
 		Body->SetText(FText::FromString(Context->Body));
 	}
+}
+
+void UCCLDialogueScreen::OnPresentationChanged()
+{
+	Refresh();
 }
 
 FString UCCLDialogueScreen::GetDisplayedBody() const

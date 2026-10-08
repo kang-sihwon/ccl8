@@ -3,6 +3,7 @@
 #if WITH_DEV_AUTOMATION_TESTS
 #include "UI/Core/CCLScreen.h"
 #include "UI/Core/CCLUIContext.h"
+#include "UI/Core/CCLUIPresentation.h"
 #include "Misc/AutomationTest.h"
 #include "NativeGameplayTags.h"
 
@@ -101,6 +102,18 @@ bool FCCLUIRegistryTest::RunTest(const FString& Parameters)
 	Screen->ReleaseContext();
 	TestTrue(TEXT("release is idempotent and clears all retained context"), !Screen->GetViewHandle().IsValid() && !Screen->GetContext());
 	TestFalse(TEXT("released screen does not retain an input override"), Screen->GetDesiredInputConfig().IsSet());
+	FCCLUIPresentationDefinition Presentation;
+	TestFalse(TEXT("empty selector cannot accidentally affect every screen"), Presentation.IsValid());
+	Presentation.Groups.AddTag(TestGroup);
+	TestTrue(TEXT("valid presentation group accepted"), Presentation.IsValid());
+	Presentation.FadeSeconds = -1.f;
+	TestFalse(TEXT("negative fade duration rejected"), Presentation.IsValid());
+	Presentation.FadeSeconds = 0.f;
+	Presentation.Opacity = 2.f;
+	TestFalse(TEXT("out-of-range opacity rejected"), Presentation.IsValid());
+	Presentation.Opacity = 0.5f;
+	Presentation.Groups.AddTag(TestView);
+	TestFalse(TEXT("view tag cannot be mistaken for a group selector"), Presentation.IsValid());
 	return true;
 }
 #endif

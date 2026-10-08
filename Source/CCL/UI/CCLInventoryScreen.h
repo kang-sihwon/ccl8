@@ -23,11 +23,13 @@ public:
 public:
 	void Initialize(ACCLPlayerController* InController);
 	void UpdatePreview();
+	void SetPreviewEnabled(bool bEnabled);
 	void Release();
 	ACCLPlayerController* GetController() const;
 	UTextureRenderTarget2D* GetPreview() const { return Preview; }
 	bool IsUsable() const;
 	bool HasCapture() const { return Camera != nullptr; }
+	bool IsPreviewRunning() const;
 
 public:
 	FGuid SelectedEquipment;
@@ -51,10 +53,11 @@ class CCL_API UCCLInventoryScreen : public UCCLScreen
 
 protected:
 	virtual void NativeOnInitialized() override;
-	virtual void NativeTick(const FGeometry& Geometry, float DeltaTime) override;
+	virtual void OnManagedTick(float DeltaTime) override;
 	virtual FReply NativeOnFocusReceived(const FGeometry& Geometry, const FFocusEvent& Event) override;
 	virtual void OnContextBound() override;
 	virtual void OnContextReleased() override;
+	virtual void OnPresentationChanged() override;
 
 public:
 	TSharedPtr<SCCLInventoryWidget> GetBody() const { return Body; }

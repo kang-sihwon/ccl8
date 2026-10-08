@@ -4,6 +4,7 @@
 #include "CCLHUD.h"
 #include "UI/CCLHUDScreens.h"
 #include "UI/CCLCombatViewModel.h"
+#include "UI/CCLGameUI.h"
 #include "AbilitySystem/CCLHealthSet.h"
 #include "CCLPlayerController.h"
 #include "CCLPlayerState.h"
@@ -242,7 +243,7 @@ void UCCLUISmokeSubsystem::Tick(float DeltaTime)
 		Started = Now;
 	}
 
-	if (Now - Started >= 90.)
+	if (Now - Started >= 150.)
 	{
 		Check(false, TEXT("UI timeout"));
 		return;
@@ -716,11 +717,214 @@ void UCCLUISmokeSubsystem::Tick(float DeltaTime)
 	}
 	else if (Step == 23)
 	{
-		UE_LOG(LogTemp, Display, TEXT("CCL_UI PASS drag swap cancel dialogue managed menu pooling respawn players FieldNotify"));
+		auto* HUD = CastChecked<ACCLHUD>(PC->GetHUD());
+		auto* Vitals = CastChecked<UCCLVitalsScreen>(UIManager->FindScreen(HUD->GetVitalsHandle()));
+		FCCLUIPresentationDefinition Cutscene;
+		Cutscene.Groups.AddTag(CCLUITags::Group_HUD);
+		Cutscene.bHide = 1;
+		Cutscene.bSuspendUpdates = 1;
+		Cutscene.bBlockGameplay = 1;
+		Cutscene.FadeSeconds = 0.3f;
+		PresentationA = UIManager->PushPresentation(Cutscene, this);
+		const int32 Before = Vitals->GetRefreshCount();
+		auto* ASC = Pawn->GetAbilitySystemComponent();
+		ASC->SetNumericAttributeBase(UCCLHealthSet::GetHealthAttribute(), 70.f);
+		if (!Check(PresentationA.IsValid() && Vitals->IsActivated() && !Vitals->IsPresentationInteractive() &&
+			Vitals->GetRefreshCount() == Before && HUD->GetHUDContext()->Vitals->Health == 70.f,
+			TEXT("cutscene suspends presentation updates but preserves live data and screen activation")))
+		{
+			return;
+		}
+
+		TActorIterator<ACCLVillageSteward> Speaker(GetWorld());
+		Pawn->SetActorLocation(Speaker->GetActorLocation() + FVector(0.f, -150.f, 0.f));
+		PC->ServerTalkToSteward();
+	}
+	else if (Step == 24)
+	{
+		auto* HUD = CastChecked<ACCLHUD>(PC->GetHUD());
+		auto* Vitals = UIManager->FindScreen(HUD->GetVitalsHandle());
+		auto* Dialogue = UIManager->FindScreen(PC->GetDialogueHandle());
+		if (!Check(Vitals && Vitals->GetVisibility() == ESlateVisibility::Hidden && Dialogue && Dialogue->IsVisible() &&
+			PC->IsMoveInputIgnored() && PC->IsLookInputIgnored() && !Router->CanProcessNormalGameInput(),
+			TEXT("dialogue remains visible while the HUD group fades out and gameplay input is blocked")))
+		{
+			return;
+		}
+
+		Capture(TEXT("presentation-dialogue-only"));
+		FCCLUIPresentationDefinition Nested;
+		Nested.Groups.AddTag(CCLUITags::Group_HUD);
+		Nested.bHide = 1;
+		Nested.bSuspendUpdates = 1;
+		Nested.bBlockGameplay = 1;
+		PresentationB = UIManager->PushPresentation(Nested, this);
+		UIManager->ReleasePresentation(PresentationA);
+		UIManager->ReleasePresentation(PresentationA);
+	}
+	else if (Step == 25)
+	{
+		auto* HUD = CastChecked<ACCLHUD>(PC->GetHUD());
+		auto* Vitals = UIManager->FindScreen(HUD->GetVitalsHandle());
+		if (!Check(UIManager->GetPresentationCount() == 1 && Vitals->GetVisibility() == ESlateVisibility::Hidden &&
+			UIManager->IsGameplayInputBlocked(), TEXT("releasing the first request twice preserves the overlapping request")))
+		{
+			return;
+		}
+
+		FCCLUIViewPresentation Base;
+		Base.Opacity = 0.4f;
+		UIManager->SetBasePresentation(HUD->GetVitalsHandle(), Base);
+		UIManager->ReleasePresentation(PresentationB);
+	}
+	else if (Step == 26)
+	{
+		auto* HUD = CastChecked<ACCLHUD>(PC->GetHUD());
+		auto* Vitals = CastChecked<UCCLVitalsScreen>(UIManager->FindScreen(HUD->GetVitalsHandle()));
+		if (!Check(FMath::IsNearlyEqual(Vitals->GetRenderOpacity(), 0.4f) && Vitals->GetDisplayedText().Contains(TEXT("HP 70 /")) &&
+			!UIManager->IsGameplayInputBlocked() && !PC->IsMoveInputIgnored(),
+			TEXT("last release restores the current base opacity and latest data rather than an old snapshot")))
+		{
+			return;
+		}
+
+		FCCLUIPresentationDefinition Hide;
+		Hide.Groups.AddTag(CCLUITags::Group_HUD);
+		Hide.bHide = 1;
+		Hide.FadeSeconds = 1.f;
+		PresentationA = UIManager->PushPresentation(Hide, this);
+	}
+	else if (Step == 27)
+	{
+		auto* HUD = CastChecked<ACCLHUD>(PC->GetHUD());
+		auto* Vitals = UIManager->FindScreen(HUD->GetVitalsHandle());
+		FadeSample = Vitals->GetRenderOpacity();
+		if (!Check(FadeSample > 0.f && FadeSample < 0.4f, TEXT("fade advances between the current and target opacity")))
+		{
+			return;
+		}
+
+		UIManager->ReleasePresentation(PresentationA);
+	}
+	else if (Step == 28)
+	{
+		auto* HUD = CastChecked<ACCLHUD>(PC->GetHUD());
+		auto* Vitals = UIManager->FindScreen(HUD->GetVitalsHandle());
+		if (!Check(Vitals->GetRenderOpacity() > FadeSample && Vitals->GetRenderOpacity() <= 0.4f &&
+			!Vitals->IsPresentationInteractive(), TEXT("reversing an unfinished fade is continuous and keeps input disabled until completion")))
+		{
+			return;
+		}
+	}
+	else if (Step == 29)
+	{
+		PC->CloseDialogue();
+		PC->ToggleInventory();
+		auto* Screen = CastChecked<UCCLInventoryScreen>(UIManager->FindScreen(PC->GetInventoryHandle()));
+		RetainedContext = CastChecked<UCCLInventoryContext>(Screen->GetContext());
+		FCCLUIPresentationDefinition HiddenInventory;
+		HiddenInventory.Groups.AddTag(CCLUITags::Group_Menus);
+		HiddenInventory.bHide = 1;
+		HiddenInventory.bSuspendUpdates = 1;
+		HiddenInventory.bBlockGameplay = 1;
+		PresentationA = UIManager->PushPresentation(HiddenInventory, this);
+		if (!Check(Screen->IsActivated() && PC->IsInventoryOpen() && RetainedContext->HasCapture() && !RetainedContext->IsPreviewRunning(),
+			TEXT("temporary inventory hide preserves its stack entry and stops capture")))
+		{
+			return;
+		}
+
+		PreviousPawn = Pawn;
+		Pawn->Die();
+	}
+	else if (Step == 30)
+	{
+		if (!Check(!PC->IsInventoryOpen() && !RetainedContext->HasCapture(), TEXT("hidden inventory still detects death and releases its resources")))
+		{
+			return;
+		}
+
+		UIManager->ReleasePresentation(PresentationA);
+		PC->CCLRetry();
+	}
+	else if (Step == 31)
+	{
+		if (Pawn == PreviousPawn.Get() || Pawn->IsDead())
+		{
+			return;
+		}
+
+		FCCLUIPresentationDefinition Disable;
+		Disable.Groups.AddTag(CCLUITags::Group_Menus);
+		Disable.bDisableInput = 1;
+		Disable.bBlockGameplay = 1;
+		PresentationA = UIManager->PushPresentation(Disable, this);
+		PC->ToggleInventory();
+	}
+	else if (Step == 32)
+	{
+		auto* Screen = UIManager->FindScreen(PC->GetInventoryHandle());
+		if (!Check(Screen && Screen->IsVisible() && !Screen->IsPresentationInteractive(), TEXT("newly opened views inherit outstanding input requests")))
+		{
+			return;
+		}
+
+		FSlateApplication::Get().ProcessKeyDownEvent(FKeyEvent(EKeys::Escape, FModifierKeysState(), 0, false, 0, 0));
+		FSlateApplication::Get().ProcessKeyUpEvent(FKeyEvent(EKeys::Escape, FModifierKeysState(), 0, false, 0, 0));
+		if (!Check(PC->IsInventoryOpen(), TEXT("suppressed UI does not consume Back or leak it into gameplay")))
+		{
+			return;
+		}
+
+		UIManager->ReleasePresentation(PresentationA);
+	}
+	else if (Step == 33)
+	{
+		auto* Screen = UIManager->FindScreen(PC->GetInventoryHandle());
+		if (!Check(Screen && Screen->IsPresentationInteractive() && Router->GetLeafmostActivatableWidget() == Screen &&
+			FSlateApplication::Get().GetUserFocusedWidget(0) == PC->GetInventoryWidget(),
+			TEXT("release restores the existing screen's input and Slate focus without popping it")))
+		{
+			return;
+		}
+
+		PC->CloseInventory();
+		PresentationOwner = GetWorld()->SpawnActor<AActor>();
+		FCCLUIPresentationDefinition Owned;
+		Owned.bAllViews = 1;
+		Owned.bHide = 1;
+		Owned.bBlockGameplay = 1;
+		PresentationA = UIManager->PushPresentation(Owned, PresentationOwner.Get());
+		PresentationOwner->Destroy();
+	}
+	else if (Step == 34)
+	{
+		if (!Check(UIManager->GetPresentationCount() == 0 && !UIManager->IsGameplayInputBlocked(),
+			TEXT("destroyed request owner releases visibility and gameplay restrictions")))
+		{
+			return;
+		}
+
+		RetainedContext = nullptr;
+		FCCLUIPresentationDefinition Overlap;
+		Overlap.bAllViews = 1;
+		Overlap.bHide = 1;
+		Overlap.bBlockGameplay = 1;
+		PresentationA = UIManager->PushPresentation(Overlap, this);
+		PresentationB = UIManager->PushPresentation(Overlap, this);
+		UIManager->ReleasePresentation(PresentationB);
+		if (!Check(UIManager->GetPresentationCount() == 1 && UIManager->IsGameplayInputBlocked(),
+			TEXT("reverse release order also preserves the earlier request")))
+		{
+			return;
+		}
+
+		UIManager->ReleasePresentation(PresentationA);
+		UE_LOG(LogTemp, Display, TEXT("CCL_UI PASS drag dialogue menu pooling respawn FieldNotify presentation overlap fade input owners"));
 		bComplete = 1;
 		FPlatformMisc::RequestExitWithStatus(false, 0);
 	}
 
 	++Step;
-	Next = Now + 2.;
+	Next = Now + ((Step == 27 || Step == 28) ? 0.2 : 2.);
 }

@@ -4,6 +4,7 @@
 #include "Subsystems/GameInstanceSubsystem.h"
 #include "Tickable.h"
 #include "UI/Core/CCLUITypes.h"
+#include "UI/Core/CCLUIPresentation.h"
 #include "CCLUIFoundationSmoke.generated.h"
 
 class UCCLUIContext;
@@ -57,6 +58,7 @@ private:
 	FCCLUIRegistrationHandle OwnedRegistration;
 	FCCLUIRequestHandle CancelledRequest;
 	FCCLUIRequestHandle LoadingRequest;
+	FCCLUIPresentationHandle PersistentPresentation;
 	int32 CompletedRequests = 0;
 	int32 CancelledRequests = 0;
 	int32 Step = 0;

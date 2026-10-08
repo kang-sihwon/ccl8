@@ -252,6 +252,14 @@ void UCCLUIFoundationSmoke::Tick(float DeltaTime)
 		PersistentView = UI->OpenView(PersistentViewTag, ContextB, this);
 		PersistentStackA = UI->OpenView(PersistentStackTag, ContextA, this);
 		PersistentStackB = UI->OpenView(PersistentStackTag, ContextB, this);
+		FCCLUIPresentationDefinition WorldRestriction;
+		WorldRestriction.bBlockGameplay = 1;
+		UI->PushPresentation(WorldRestriction, this);
+		FCCLUIPresentationDefinition PersistentRestriction;
+		PersistentRestriction.bAllViews = 1;
+		PersistentRestriction.bHide = 1;
+		PersistentRestriction.Scope = ECCLUIScope::LocalPlayer;
+		PersistentPresentation = UI->PushPresentation(PersistentRestriction, this);
 		FString Error;
 		auto* OtherLocal = GetGameInstance()->CreateLocalPlayer(1, Error, true);
 		auto* OtherUI = OtherLocal ? OtherLocal->GetSubsystem<UCCLUISubsystem>() : nullptr;
@@ -261,6 +269,12 @@ void UCCLUIFoundationSmoke::Tick(float DeltaTime)
 		}
 
 		const auto OtherView = OtherUI->OpenView(PanelView, ContextA, this);
+		OtherUI->ReleasePresentation(PersistentPresentation);
+		if (!Check(OtherUI->GetPresentationCount() == 0 && !OtherUI->IsGameplayInputBlocked() &&
+			UI->GetPresentationCount() == 2 && UI->IsGameplayInputBlocked(), TEXT("presentation handles and input restrictions are local-player isolated")))
+		{
+			return;
+		}
 		UI->CloseView(OtherView);
 		if (!Check(OtherView.IsValid() && OtherUI->IsViewOpen(OtherView) && UI->IsViewOpen(WorldView) &&
 			OtherUI->FindScreen(OtherView)->GetOwningLocalPlayer() == OtherLocal,
@@ -279,6 +293,15 @@ void UCCLUIFoundationSmoke::Tick(float DeltaTime)
 		{
 			return;
 		}
+
+		if (!Check(UI->GetPresentationCount() == 1 && !UI->IsGameplayInputBlocked() &&
+			UI->FindScreen(PersistentView)->GetVisibility() == ESlateVisibility::Hidden,
+			TEXT("travel expires world restrictions and reapplies player restrictions to reattached views")))
+		{
+			return;
+		}
+
+		UI->ReleasePresentation(PersistentPresentation);
 
 		if (!Check(!UI->IsViewOpen(WorldView) && UI->IsViewOpen(PersistentView) &&
 			UI->FindScreen(PersistentView)->GetOwningPlayer() == PC && UI->FindScreen(PersistentView)->GetContext() == ContextB,

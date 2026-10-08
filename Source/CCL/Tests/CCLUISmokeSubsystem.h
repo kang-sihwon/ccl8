@@ -2,6 +2,7 @@
 
 #include "CoreMinimal.h"
 #include "Subsystems/WorldSubsystem.h"
+#include "UI/Core/CCLUIPresentation.h"
 #include "CCLUISmokeSubsystem.generated.h"
 
 class ACCLPlayerController;
@@ -32,6 +33,10 @@ private:
 	TWeakObjectPtr<UCCLInventoryScreen> PooledScreen;
 	TWeakObjectPtr<ACCLCharacter> PreviousPawn;
 	TWeakObjectPtr<ULocalPlayer> OtherLocal;
+	TWeakObjectPtr<AActor> PresentationOwner;
+	FCCLUIPresentationHandle PresentationA;
+	FCCLUIPresentationHandle PresentationB;
+	float FadeSample = 0.f;
 	int32 Step = 0;
 	FGuid Equipment;
 	FGuid Potion;

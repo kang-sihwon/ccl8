@@ -2,6 +2,8 @@
 
 #include "CCLScreen.h"
 #include "CCLUIRegistry.h"
+#include "CCLUISubsystem.h"
+#include "Engine/LocalPlayer.h"
 #include "Blueprint/WidgetTree.h"
 #include "Components/Border.h"
 #include "Components/CanvasPanel.h"
@@ -21,6 +23,16 @@ UCCLUIRoot::UCCLUIRoot(const FObjectInitializer& Initializer) : Super(Initialize
 
 TOptional<FUIInputConfig> UCCLUIRoot::GetDesiredInputConfig() const
 {
+	const auto* Local = GetOwningLocalPlayer();
+	const auto* UI = Local ? Local->GetSubsystem<UCCLUISubsystem>() : nullptr;
+	if (UI && UI->IsGameplayInputBlocked())
+	{
+		FUIInputConfig Config(ECommonInputMode::Menu, EMouseCaptureMode::CapturePermanently_IncludingInitialMouseDown);
+		Config.bIgnoreMoveInput = true;
+		Config.bIgnoreLookInput = true;
+		return Config;
+	}
+
 	return FUIInputConfig(ECommonInputMode::Game, EMouseCaptureMode::CapturePermanently_IncludingInitialMouseDown);
 }
 

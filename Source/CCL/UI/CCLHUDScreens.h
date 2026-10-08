@@ -52,6 +52,7 @@ protected:
 	virtual void NativeOnInitialized() override;
 	virtual void OnContextBound() override;
 	virtual void OnContextReleased() override;
+	virtual void OnPresentationChanged() override;
 
 public:
 	FString GetDisplayedText() const;
@@ -82,6 +83,7 @@ protected:
 	virtual void NativeOnInitialized() override;
 	virtual void OnContextBound() override;
 	virtual void OnContextReleased() override;
+	virtual void OnPresentationChanged() override;
 
 private:
 	void Refresh();
@@ -106,6 +108,7 @@ protected:
 	virtual void NativeOnInitialized() override;
 	virtual void OnContextBound() override;
 	virtual void OnContextReleased() override;
+	virtual void OnPresentationChanged() override;
 
 public:
 	FString GetDisplayedBody() const;

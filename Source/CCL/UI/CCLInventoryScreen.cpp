@@ -71,6 +71,20 @@ void UCCLInventoryContext::Release()
 	Pawn.Reset();
 }
 
+void UCCLInventoryContext::SetPreviewEnabled(bool bEnabled)
+{
+	if (Camera)
+	{
+		Camera->bCaptureEveryFrame = bEnabled;
+		Camera->bCaptureOnMovement = bEnabled;
+	}
+}
+
+bool UCCLInventoryContext::IsPreviewRunning() const
+{
+	return Camera && Camera->bCaptureEveryFrame;
+}
+
 bool UCCLInventoryContext::IsUsable() const
 {
 	return Controller.IsValid() && Controller->IsLocalController() && Pawn.IsValid() &&
@@ -89,9 +103,8 @@ void UCCLInventoryScreen::NativeOnInitialized()
 	WidgetTree->RootWidget = Host;
 }
 
-void UCCLInventoryScreen::NativeTick(const FGeometry& Geometry, float DeltaTime)
+void UCCLInventoryScreen::OnManagedTick(float DeltaTime)
 {
-	Super::NativeTick(Geometry, DeltaTime);
 	auto* Context = Cast<UCCLInventoryContext>(GetContext());
 	if (!Context || !Context->IsUsable())
 	{
@@ -99,7 +112,28 @@ void UCCLInventoryScreen::NativeTick(const FGeometry& Geometry, float DeltaTime)
 		return;
 	}
 
-	Context->UpdatePreview();
+	const bool bUpdate = IsActivated() && IsPresentationUpdating() && GetPresentation().bVisible && GetPresentation().Opacity > 0.f;
+	Context->SetPreviewEnabled(bUpdate);
+	if (bUpdate)
+	{
+		Context->UpdatePreview();
+	}
+}
+
+void UCCLInventoryScreen::OnPresentationChanged()
+{
+	if (auto* Context = Cast<UCCLInventoryContext>(GetContext()))
+	{
+		Context->SetPreviewEnabled(IsPresentationUpdating() && GetPresentation().bVisible && GetPresentation().Opacity > 0.f);
+		if (!IsPresentationInteractive())
+		{
+			if (auto* PC = Context->GetController())
+			{
+				SCCLInventoryWidget::CancelOwnedDrag(PC);
+				PC->FlushPressedKeys();
+			}
+		}
+	}
 }
 
 FReply UCCLInventoryScreen::NativeOnFocusReceived(const FGeometry& Geometry, const FFocusEvent& Event)
