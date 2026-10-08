@@ -289,6 +289,7 @@ void UCCLUIFoundationSmoke::Tick(float DeltaTime)
 		{
 			return;
 		}
+
 		UI->CloseView(OtherView);
 		if (!Check(OtherView.IsValid() && OtherUI->IsViewOpen(OtherView) && UI->IsViewOpen(WorldView) &&
 			OtherUI->FindScreen(OtherView)->GetOwningLocalPlayer() == OtherLocal,
@@ -347,7 +348,11 @@ void UCCLUIFoundationSmoke::Tick(float DeltaTime)
 	}
 	else if (Step == 6)
 	{
-		if (!ConfigureExample(true)) { return; }
+		if (!ConfigureExample(true))
+		{
+			return;
+		}
+
 		PanelA = UI->OpenView(StrategyResources, ContextA, this);
 		PanelB = UI->OpenView(StrategySelection, ContextB, this);
 		WorldView = UI->OpenView(StrategyMap, ContextC, this);
@@ -358,29 +363,48 @@ void UCCLUIFoundationSmoke::Tick(float DeltaTime)
 		if (!Check(UI->FindScreen(PanelA) && UI->FindScreen(PanelB) && UI->FindScreen(WorldView) &&
 			UI->FindScreen(PanelA)->IsActivated() && UI->FindScreen(PanelB)->IsActivated() &&
 			UI->FindScreen(WorldView)->IsActivated() && Router->CanProcessNormalGameInput(),
-			TEXT("strategy registry keeps resources selection and minimap active with gameplay input"))) { return; }
+			TEXT("strategy registry keeps resources selection and minimap active with gameplay input")))
+		{
+			return;
+		}
+
 		FCCLUIPresentationDefinition HideMap;
 		HideMap.Groups.AddTag(StrategyMapGroup);
 		HideMap.bHide = 1;
 		HideMap.FadeSeconds = 0.2f;
 		PersistentPresentation = UI->PushPresentation(HideMap, this);
-		if (!Check(UGameplayStatics::SetGamePaused(World, true), TEXT("pause the actual game world for presentation regression"))) { return; }
+		if (!Check(UGameplayStatics::SetGamePaused(World, true), TEXT("pause the actual game world for presentation regression")))
+		{
+			return;
+		}
 	}
 	else if (Step == 8)
 	{
 		if (!Check(UGameplayStatics::IsGamePaused(World) && UI->FindScreen(WorldView)->GetVisibility() == ESlateVisibility::Hidden &&
 			UI->FindScreen(PanelA)->IsVisible() && UI->FindScreen(PanelB)->IsVisible(),
-			TEXT("paused-world fade hides only the tagged strategy minimap"))) { return; }
+			TEXT("paused-world fade hides only the tagged strategy minimap")))
+		{
+			return;
+		}
+
 		UI->ReleasePresentation(PersistentPresentation);
 	}
 	else if (Step == 9)
 	{
 		if (!Check(UGameplayStatics::IsGamePaused(World) && UI->FindScreen(WorldView)->IsVisible() &&
 			FMath::IsNearlyEqual(UI->FindScreen(WorldView)->GetRenderOpacity(), 1.f),
-			TEXT("hidden minimap finishes its restore fade while the game remains paused"))) { return; }
+			TEXT("hidden minimap finishes its restore fade while the game remains paused")))
+		{
+			return;
+		}
+
 		UGameplayStatics::SetGamePaused(World, false);
 		UI->CloseAllViews();
-		if (!ConfigureExample(false)) { return; }
+		if (!ConfigureExample(false))
+		{
+			return;
+		}
+
 		PanelA = UI->OpenView(NarrativeBody, ContextA, this);
 		StackA = UI->OpenView(NarrativeChoices, ContextB, this);
 		FCCLUIPresentationDefinition Conversation;
@@ -392,7 +416,11 @@ void UCCLUIFoundationSmoke::Tick(float DeltaTime)
 		auto* Router = Local->GetSubsystem<UCommonUIActionRouterBase>();
 		if (!Check(UI->FindScreen(PanelA) && UI->FindScreen(StackA) && UI->FindScreen(PanelA)->IsActivated() &&
 			Router->GetLeafmostActivatableWidget() == UI->FindScreen(StackA) && !Router->CanProcessNormalGameInput(),
-			TEXT("narrative registry keeps dialogue body visible while choices own menu input"))) { return; }
+			TEXT("narrative registry keeps dialogue body visible while choices own menu input")))
+		{
+			return;
+		}
+
 		Router->ProcessInput(EKeys::Escape, IE_Pressed);
 		Router->ProcessInput(EKeys::Escape, IE_Released);
 	}
@@ -400,7 +428,11 @@ void UCCLUIFoundationSmoke::Tick(float DeltaTime)
 	{
 		if (!Check(!UI->IsViewOpen(StackA) && UI->IsViewOpen(PanelA) && UI->FindScreen(PanelA)->IsActivated() &&
 			!Local->GetSubsystem<UCommonUIActionRouterBase>()->CanProcessNormalGameInput(),
-			TEXT("closing narrative choices preserves dialogue and its separate gameplay restriction"))) { return; }
+			TEXT("closing narrative choices preserves dialogue and its separate gameplay restriction")))
+		{
+			return;
+		}
+
 		UI->ReleasePresentation(PersistentPresentation);
 		UI->CloseAllViews();
 	}
@@ -408,7 +440,11 @@ void UCCLUIFoundationSmoke::Tick(float DeltaTime)
 	{
 		if (!Check(UI->GetViewCount() == 0 && UI->GetPresentationCount() == 0 &&
 			Local->GetSubsystem<UCommonUIActionRouterBase>()->CanProcessNormalGameInput(),
-			TEXT("ending narrative mode releases all views and restores gameplay"))) { return; }
+			TEXT("ending narrative mode releases all views and restores gameplay")))
+		{
+			return;
+		}
+
 		FCCLUIViewDefinition ClosingView;
 		ClosingView.Tag = OwnedViewTag;
 		ClosingView.Layer = OverlayLayer;
@@ -419,7 +455,11 @@ void UCCLUIFoundationSmoke::Tick(float DeltaTime)
 		Hide.bHide = 1;
 		const auto Request = UI->PushPresentation(Hide, this);
 		if (!Check(Registration.IsValid() && Request.IsValid() && !UI->OpenView(OwnedViewTag, nullptr, this).IsValid() &&
-			UI->GetViewCount() == 0, TEXT("a view closed by its initial presentation hook cannot return a stale open handle"))) { return; }
+			UI->GetViewCount() == 0, TEXT("a view closed by its initial presentation hook cannot return a stale open handle")))
+		{
+			return;
+		}
+
 		UI->ReleasePresentation(Request);
 		UI->UnregisterView(Registration);
 		bComplete = 1;
