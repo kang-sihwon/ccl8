@@ -18,6 +18,12 @@
 #include "Misc/Paths.h"
 #include "Session/CCLSessionRecord.h"
 #include "UI/SCCLInventoryWidget.h"
+#include "UI/CCLInventoryScreen.h"
+#include "UI/Core/CCLUISubsystem.h"
+#include "UI/Core/CCLUIRoot.h"
+#include "Session/CCLGameInstance.h"
+#include "Engine/LocalPlayer.h"
+#include "Input/CommonUIActionRouterBase.h"
 #include "UnrealClient.h"
 #include "Widgets/SWindow.h"
 
@@ -252,6 +258,9 @@ void UCCLUISmokeSubsystem::Tick(float DeltaTime)
 	}
 
 	auto* Inventory = Player->GetInventory();
+	auto* UIManager = PC->GetLocalPlayer()->GetSubsystem<UCCLUISubsystem>();
+	auto* Router = PC->GetLocalPlayer()->GetSubsystem<UCommonUIActionRouterBase>();
+	auto* Session = GetWorld()->GetGameInstance<UCCLGameInstance>();
 
 	auto Drag = [PC](int32 From, int32 To, bool bFromEquipment = false, bool bToEquipment = false) {
 		const auto UI = PC->GetInventoryWidget();
@@ -332,6 +341,15 @@ void UCCLUISmokeSubsystem::Tick(float DeltaTime)
 	}
 	else if (Step == 1)
 	{
+		const auto* Screen = Cast<UCCLInventoryScreen>(UIManager->FindScreen(PC->GetInventoryHandle()));
+		const auto* Context = Screen ? Cast<UCCLInventoryContext>(Screen->GetContext()) : nullptr;
+		if (!Check(Screen && Context && Context->IsUsable() && Context->HasCapture() && Context->GetPreview() &&
+			Screen->GetOwningLocalPlayer() == PC->GetLocalPlayer() && Router->GetActiveInputMode() == ECommonInputMode::Menu,
+			TEXT("inventory is owned by the player UI manager with a live preview and menu input")))
+		{
+			return;
+		}
+
 		Capture(TEXT("inventory-before"));
 	}
 	else if (Step == 2)
@@ -447,7 +465,168 @@ void UCCLUISmokeSubsystem::Tick(float DeltaTime)
 			return;
 		}
 
-		UE_LOG(LogTemp, Display, TEXT("CCL_UI PASS drag swap cancel dialogue"));
+	}
+	else if (Step == 10)
+	{
+		PC->ToggleInventory();
+		PooledScreen = Cast<UCCLInventoryScreen>(UIManager->FindScreen(PC->GetInventoryHandle()));
+		RetainedContext = PooledScreen.IsValid() ? Cast<UCCLInventoryContext>(PooledScreen->GetContext()) : nullptr;
+		if (!Check(RetainedContext && RetainedContext->HasCapture(), TEXT("reopened inventory owns a fresh capture")))
+		{
+			return;
+		}
+	}
+	else if (Step == 11)
+	{
+		const auto Body = PC->GetInventoryWidget();
+		const auto Source = Body ? Body->GetSlotWidget(Inventory->Find(Potion)->Slot) : nullptr;
+		if (!Check(Source.IsValid(), TEXT("drag cancellation source is present")))
+		{
+			return;
+		}
+
+		auto& App = FSlateApplication::Get();
+		const FVector2D Start = Source->GetCachedGeometry().GetAbsolutePosition() + Source->GetCachedGeometry().GetAbsoluteSize() * 0.5f;
+		const auto Window = App.FindWidgetWindow(Source.ToSharedRef());
+		const TSet<FKey> Pressed = {EKeys::LeftMouseButton};
+		App.ProcessMouseButtonDownEvent(Window ? Window->GetNativeWindow() : nullptr,
+			FPointerEvent(0, Start, Start, Pressed, EKeys::LeftMouseButton, 0.f, FModifierKeysState()));
+		App.ProcessMouseMoveEvent(FPointerEvent(0, Start + FVector2D(16.f, 0.f), Start, Pressed, EKeys::Invalid, 0.f, FModifierKeysState()));
+		if (!Check(App.IsDragDropping(), TEXT("real pointer drag remains active before manager close")))
+		{
+			return;
+		}
+
+		UIManager->CloseView(PC->GetInventoryHandle());
+		App.ProcessMouseButtonUpEvent(FPointerEvent(0, Start, Start, TSet<FKey>(), EKeys::LeftMouseButton, 0.f, FModifierKeysState()));
+		if (!Check(!PC->IsInventoryOpen() && !App.IsDragDropping() && !RetainedContext->HasCapture() &&
+			!RetainedContext->GetPreview() && !RetainedContext->GetController(),
+			TEXT("manager close cancels owned drag and releases capture, texture and controller context")))
+		{
+			return;
+		}
+	}
+	else if (Step == 12)
+	{
+		PC->ToggleInventory();
+		auto* Screen = Cast<UCCLInventoryScreen>(UIManager->FindScreen(PC->GetInventoryHandle()));
+		auto* Context = Screen ? Cast<UCCLInventoryContext>(Screen->GetContext()) : nullptr;
+		if (!Check(Screen == PooledScreen.Get() && Context && Context != RetainedContext && Context->HasCapture() &&
+			Context->GetController() == PC && PC->GetSelectedItem() == 0, TEXT("pooled inventory screen binds a fresh selection and preview context")))
+		{
+			return;
+		}
+
+		RetainedContext = Context;
+	}
+	else if (Step == 13)
+	{
+		Session->ShowMenu();
+		if (!Check(Session->IsMenuVisible() && !PC->IsInventoryOpen() && !RetainedContext->HasCapture(),
+			TEXT("session menu replaces inventory through the same manager")))
+		{
+			return;
+		}
+
+		Capture(TEXT("managed-session-menu"));
+	}
+	else if (Step == 14)
+	{
+		if (!Check(PC->bShowMouseCursor && PC->IsMoveInputIgnored() && PC->IsLookInputIgnored() &&
+			Router->GetActiveInputMode() == ECommonInputMode::Menu, TEXT("session menu owns cursor and movement input policy")))
+		{
+			return;
+		}
+
+		FSlateApplication::Get().ProcessKeyDownEvent(FKeyEvent(EKeys::Escape, FModifierKeysState(), 0, false, 0, 0));
+		FSlateApplication::Get().ProcessKeyUpEvent(FKeyEvent(EKeys::Escape, FModifierKeysState(), 0, false, 0, 0));
+		if (!Check(!Session->IsMenuVisible(), TEXT("Escape closes the managed session menu")))
+		{
+			return;
+		}
+	}
+	else if (Step == 15)
+	{
+		if (!Check(!PC->bShowMouseCursor && !PC->IsMoveInputIgnored() && !PC->IsLookInputIgnored() &&
+			Router->GetActiveInputMode() == ECommonInputMode::Game, TEXT("closing menu restores gameplay input without a second input owner")))
+		{
+			return;
+		}
+
+		FSlateApplication::Get().ProcessKeyDownEvent(FKeyEvent(EKeys::Escape, FModifierKeysState(), 0, false, 0, 0));
+	}
+	else if (Step == 16)
+	{
+		FSlateApplication::Get().ProcessKeyUpEvent(FKeyEvent(EKeys::Escape, FModifierKeysState(), 0, false, 0, 0));
+		if (!Check(Session->IsMenuVisible(), TEXT("Escape from gameplay still opens the menu with UI mappings installed")))
+		{
+			return;
+		}
+
+		Session->HideMenu();
+		PC->ToggleInventory();
+		PreviousPawn = Pawn;
+		Pawn->Die();
+	}
+	else if (Step == 17)
+	{
+		if (!Check(!PC->IsInventoryOpen() && !PC->GetEquipmentPreview(), TEXT("death releases the inventory screen and preview")))
+		{
+			return;
+		}
+
+		PC->CCLRetry();
+	}
+	else if (Step == 18)
+	{
+		if (Pawn == PreviousPawn.Get() || Pawn->IsDead())
+		{
+			return;
+		}
+
+		PC->ToggleInventory();
+	}
+	else if (Step == 19)
+	{
+		const auto* Screen = Cast<UCCLInventoryScreen>(UIManager->FindScreen(PC->GetInventoryHandle()));
+		const auto* Context = Screen ? Cast<UCCLInventoryContext>(Screen->GetContext()) : nullptr;
+		if (!Check(Context && Context->IsUsable() && Context->HasCapture() && Pawn != PreviousPawn.Get(),
+			TEXT("respawn opens inventory against the new pawn without retaining the old preview")))
+		{
+			return;
+		}
+
+	}
+	else if (Step == 20)
+	{
+		FString Error;
+		OtherLocal = Session->CreateLocalPlayer(1, Error, true);
+		auto* OtherPC = OtherLocal.IsValid() ? OtherLocal->GetPlayerController(GetWorld()) : nullptr;
+		if (!Check(OtherPC && OtherPC != PC, TEXT("second local player created for feature isolation")))
+		{
+			return;
+		}
+
+		Session->ShowMenuForPlayer(OtherPC);
+		if (!Check(Session->IsMenuVisibleForPlayer(OtherPC) && !Session->IsMenuVisibleForPlayer(PC) && PC->IsInventoryOpen(),
+			TEXT("second player menu does not replace the first player's inventory")))
+		{
+			return;
+		}
+	}
+	else if (Step == 21)
+	{
+		auto* OtherPC = OtherLocal.IsValid() ? OtherLocal->GetPlayerController(GetWorld()) : nullptr;
+		Session->HideMenuForPlayer(OtherPC);
+		if (!Check(!Session->IsMenuVisibleForPlayer(OtherPC) && PC->IsInventoryOpen(), TEXT("closing another player's menu preserves the first view")))
+		{
+			return;
+		}
+
+		Session->RemoveLocalPlayer(OtherLocal.Get());
+		PC->CloseInventory();
+		RetainedContext = nullptr;
+		UE_LOG(LogTemp, Display, TEXT("CCL_UI PASS drag swap cancel dialogue managed menu pooling respawn players"));
 		bComplete = 1;
 		FPlatformMisc::RequestExitWithStatus(false, 0);
 	}

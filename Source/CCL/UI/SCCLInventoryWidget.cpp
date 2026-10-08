@@ -4,6 +4,7 @@
 #include "CCLPlayerController.h"
 #include "CCLPlayerState.h"
 #include "Input/DragAndDrop.h"
+#include "Framework/Application/SlateApplication.h"
 #include "Items/CCLInventoryComponent.h"
 #include "Items/CCLItemDefinition.h"
 #include "Items/CCLLoadoutComponent.h"
@@ -387,18 +388,18 @@ FReply SCCLInventoryWidget::OnKeyDown(const FGeometry& Geometry, const FKeyEvent
 	return FReply::Handled();
 }
 
-void SCCLInventoryWidget::Tick(const FGeometry& Geometry, double Time, float Delta)
+void SCCLInventoryWidget::CancelOwnedDrag(ACCLPlayerController* Owner)
 {
-	SCompoundWidget::Tick(Geometry, Time, Delta);
-	if (Controller.IsValid())
+	if (!FSlateApplication::IsInitialized())
 	{
-		Controller->UpdateEquipmentPreview();
+		return;
 	}
 
-	const auto* Pawn = Controller.IsValid() ? Cast<ACCLCharacter>(Controller->GetPawn()) : nullptr;
-	if (Controller.IsValid() && (!Pawn || Pawn->IsDead()))
+	auto& App = FSlateApplication::Get();
+	const auto Drag = App.GetDragDroppingContent();
+	if (Drag && Drag->IsOfType<FCCLItemDrag>() && StaticCastSharedPtr<FCCLItemDrag>(Drag)->Owner == Owner)
 	{
-		Controller->CloseInventory();
+		App.CancelDragDrop();
 	}
 }
 

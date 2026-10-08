@@ -5,6 +5,10 @@
 #include "CCLUISmokeSubsystem.generated.h"
 
 class ACCLPlayerController;
+class ACCLCharacter;
+class UCCLInventoryScreen;
+class UCCLInventoryContext;
+class ULocalPlayer;
 
 UCLASS()
 class CCL_API UCCLUISmokeSubsystem : public UTickableWorldSubsystem
@@ -20,6 +24,14 @@ private:
 	bool Check(bool Condition, const TCHAR* Message);
 	void Capture(const TCHAR* Name);
 	bool CheckEquipment(ACCLPlayerController* PC);
+
+private:
+	UPROPERTY()
+	TObjectPtr<UCCLInventoryContext> RetainedContext;
+
+	TWeakObjectPtr<UCCLInventoryScreen> PooledScreen;
+	TWeakObjectPtr<ACCLCharacter> PreviousPawn;
+	TWeakObjectPtr<ULocalPlayer> OtherLocal;
 	int32 Step = 0;
 	FGuid Equipment;
 	FGuid Potion;

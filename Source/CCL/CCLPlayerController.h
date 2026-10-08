@@ -4,6 +4,7 @@
 #include "GameFramework/PlayerController.h"
 #include "GameplayTagContainer.h"
 #include "Items/CCLItemFragments.h"
+#include "UI/Core/CCLUITypes.h"
 #include "CCLPlayerController.generated.h"
 
 struct FInputActionValue;
@@ -12,7 +13,7 @@ class UInputAction;
 class UInputMappingContext;
 class UCCLSkillDefinition;
 class SCCLInventoryWidget;
-class USceneCaptureComponent2D;
+class UCCLInventoryContext;
 class UTextureRenderTarget2D;
 class ACCLVillageSteward;
 
@@ -64,8 +65,7 @@ public:
 	void HandInput(FGameplayTag Hand, bool bPressed);
 	void HandPressed(FGameplayTag Hand);
 	void HandReleased(FGameplayTag Hand);
-	void UpdateEquipmentPreview();
-	UTextureRenderTarget2D* GetEquipmentPreview() const { return EquipmentPreview; }
+	UTextureRenderTarget2D* GetEquipmentPreview() const;
 	UFUNCTION(Exec)
 	void CCLEquipmentDemo();
 
@@ -107,10 +107,11 @@ public:
 	void ClientProgressionTestStep(int32 Step, FGuid EntryId);
 
 	const UInputAction* GetMoveAction() const { return MoveAction; }
-	bool IsInventoryOpen() const { return bInventoryOpen != 0; }
-	TSharedPtr<SCCLInventoryWidget> GetInventoryWidget() const { return InventoryWidget; }
-	int32 GetSelectedItem() const { return SelectedItem; }
-	FGuid GetSelectedEquipment() const { return SelectedEquipment; }
+	bool IsInventoryOpen() const;
+	TSharedPtr<SCCLInventoryWidget> GetInventoryWidget() const;
+	int32 GetSelectedItem() const;
+	FGuid GetSelectedEquipment() const;
+	FCCLUIViewHandle GetInventoryHandle() const { return InventoryHandle; }
 
 private:
 	void Move(const FInputActionValue& Value);
@@ -120,6 +121,7 @@ private:
 	void CombatPressed(FGameplayTag Tag);
 	void CombatReleased(FGameplayTag Tag);
 	FGuid GetSelectedEntryId() const;
+	void HandleUIViewClosed(FCCLUIViewHandle View);
 
 	UFUNCTION(Server, Reliable)
 	void ServerRequestRetry();
@@ -151,20 +153,13 @@ private:
 	TArray<TObjectPtr<UInputAction>> CombatActions;
 
 	UPROPERTY(Transient)
-
-	TObjectPtr<USceneCaptureComponent2D> EquipmentCamera;
-
-	UPROPERTY(Transient)
-	TObjectPtr<UTextureRenderTarget2D> EquipmentPreview;
+	TObjectPtr<UCCLInventoryContext> InventoryContext;
 
 	FGameplayTag HeldLeftAction;
 	FGameplayTag HeldRightAction;
-	TSharedPtr<SCCLInventoryWidget> InventoryWidget;
+	FCCLUIViewHandle InventoryHandle;
 	TWeakObjectPtr<ACCLVillageSteward> DialogueSpeaker;
 	FString DialogueName;
 	FString DialogueText;
 
-	FGuid SelectedEquipment;
-	int32 SelectedItem = 0;
-	uint8 bInventoryOpen = 0;
 };

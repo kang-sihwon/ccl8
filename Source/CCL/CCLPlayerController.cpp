@@ -1,13 +1,11 @@
 #include "CCLPlayerController.h"
 #include "Session/CCLGameInstance.h"
-#include "UI/SCCLInventoryWidget.h"
+#include "UI/CCLInventoryScreen.h"
+#include "UI/CCLGameUI.h"
+#include "UI/Core/CCLUISubsystem.h"
 #include "Combat/CCLFighterComponent.h"
-#include "Components/SceneCaptureComponent2D.h"
 #include "Components/SkeletalMeshComponent.h"
-#include "Engine/TextureRenderTarget2D.h"
 #include "Items/CCLItemDefinition.h"
-#include "Engine/GameViewportClient.h"
-#include "Framework/Application/SlateApplication.h"
 #include "Campaign/CCLExpeditionComponent.h"
 #include "Campaign/CCLVillageSteward.h"
 
@@ -136,8 +134,7 @@ void ACCLPlayerController::SetupInputComponent()
 	MapMenu(EKeys::Two, &ThisClass::LearnSecondSkill);
 	MapMenu(EKeys::E, &ThisClass::ServerCollectNearby);
 	Subsystem->AddMappingContext(InputMapping, 0);
-	SetInputMode(FInputModeGameOnly());
-	bShowMouseCursor = false;
+	CCLGameUI::Get(this);
 }
 
 void ACCLPlayerController::FlushPressedKeys()
@@ -164,6 +161,11 @@ void ACCLPlayerController::EndPlay(const EEndPlayReason::Type EndPlayReason)
 	CloseDialogue();
 	if (ULocalPlayer* LocalPlayer = GetLocalPlayer())
 	{
+		if (auto* UI = LocalPlayer->GetSubsystem<UCCLUISubsystem>())
+		{
+			UI->OnViewClosed.RemoveAll(this);
+		}
+
 		if (auto* Subsystem = LocalPlayer->GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(); Subsystem && InputMapping)
 		{
 			Subsystem->RemoveMappingContext(InputMapping);
@@ -189,7 +191,7 @@ void ACCLPlayerController::CCLDie()
 
 void ACCLPlayerController::CCLLeave()
 {
-	if (bInventoryOpen)
+	if (IsInventoryOpen())
 	{
 		CloseInventory();
 		return;
@@ -201,12 +203,12 @@ void ACCLPlayerController::CCLLeave()
 		return;
 	}
 
-	if (auto* Session = GetGameInstance<UCCLGameInstance>()) { Session->ToggleMenu(); }
+	if (auto* Session = GetGameInstance<UCCLGameInstance>()) { Session->ToggleMenuForPlayer(this); }
 }
 
 void ACCLPlayerController::ToggleInventory()
 {
-	if (bInventoryOpen)
+	if (IsInventoryOpen())
 	{
 		CloseInventory();
 		return;
@@ -214,67 +216,49 @@ void ACCLPlayerController::ToggleInventory()
 
 	const auto* UIPawn = Cast<ACCLCharacter>(GetPawn());
 	const auto* Session = GetGameInstance<UCCLGameInstance>();
-	if (!IsLocalController() || !UIPawn || UIPawn->IsDead() || (Session && Session->IsMenuVisible()) || !GetWorld()->GetGameViewport())
+	if (!IsLocalController() || !UIPawn || UIPawn->IsDead() || (Session && Session->IsMenuVisibleForPlayer(this)))
 	{
 		return;
 	}
 
-	CloseDialogue();
-	FlushPressedKeys();
-	bInventoryOpen = 1;
-	SelectedItem = 0;
-	SelectedEquipment.Invalidate();
-	UpdateEquipmentPreview();
-	InventoryWidget = SNew(SCCLInventoryWidget).Controller(this);
-	GetWorld()->GetGameViewport()->AddViewportWidgetContent(InventoryWidget.ToSharedRef(), 20);
-	bShowMouseCursor = true;
-	FInputModeGameAndUI Mode;
-	Mode.SetWidgetToFocus(InventoryWidget);
-	Mode.SetHideCursorDuringCapture(false);
-	Mode.SetLockMouseToViewportBehavior(EMouseLockMode::DoNotLock);
-	SetInputMode(Mode);
+	if (auto* UI = CCLGameUI::Get(this))
+	{
+		CloseDialogue();
+		FlushPressedKeys();
+		UI->OnViewClosed.RemoveAll(this);
+		UI->OnViewClosed.AddUObject(this, &ThisClass::HandleUIViewClosed);
+		InventoryContext = NewObject<UCCLInventoryContext>(this);
+		InventoryContext->Initialize(this);
+		InventoryHandle = UI->OpenView(CCLUITags::View_Inventory, InventoryContext, this);
+		if (!InventoryHandle.IsValid())
+		{
+			InventoryContext->Release();
+			InventoryContext = nullptr;
+		}
+	}
 }
 
 void ACCLPlayerController::CloseInventory()
 {
-	if (!bInventoryOpen && !InventoryWidget.IsValid())
+	if (const auto* Local = GetLocalPlayer())
 	{
-		return;
-	}
-
-	bInventoryOpen = 0;
-	if (EquipmentCamera)
-	{
-		EquipmentCamera->DestroyComponent();
-		EquipmentCamera = nullptr;
-	}
-
-	if (InventoryWidget.IsValid() && GetWorld() && GetWorld()->GetGameViewport())
-	{
-		GetWorld()->GetGameViewport()->RemoveViewportWidgetContent(InventoryWidget.ToSharedRef());
-	}
-
-	InventoryWidget.Reset();
-	if (IsLocalController())
-	{
-		if (FSlateApplication::IsInitialized())
+		if (auto* UI = Local->GetSubsystem<UCCLUISubsystem>())
 		{
-			FSlateApplication::Get().CancelDragDrop();
+			UI->CloseView(InventoryHandle);
 		}
-
-		FlushPressedKeys();
-		bShowMouseCursor = false;
-		SetInputMode(FInputModeGameOnly());
 	}
+
+	InventoryHandle = {};
+	InventoryContext = nullptr;
 }
 
 void ACCLPlayerController::SelectInventorySlot(int32 Slot)
 {
 	const auto* State = GetPlayerState<ACCLPlayerState>();
-	if (State && Slot >= 0 && Slot < State->GetInventory()->Capacity)
+	if (State && InventoryContext && Slot >= 0 && Slot < State->GetInventory()->Capacity)
 	{
-		SelectedItem = Slot;
-		SelectedEquipment.Invalidate();
+		InventoryContext->SelectedItem = Slot;
+		InventoryContext->SelectedEquipment.Invalidate();
 	}
 }
 
@@ -316,24 +300,24 @@ bool ACCLPlayerController::IsDialogueVisible() const
 
 void ACCLPlayerController::SelectPreviousItem()
 {
-	if (bInventoryOpen)
+	if (IsInventoryOpen())
 	{
-		SelectInventorySlot(FMath::Max(0, SelectedItem - 1));
+		SelectInventorySlot(FMath::Max(0, GetSelectedItem() - 1));
 	}
 }
 
 void ACCLPlayerController::SelectNextItem()
 {
 	const auto* State = GetPlayerState<ACCLPlayerState>();
-	if (bInventoryOpen && State)
+	if (IsInventoryOpen() && State)
 	{
-		SelectInventorySlot(FMath::Clamp(SelectedItem + 1, 0, FMath::Max(0, State->GetInventory()->Capacity - 1)));
+		SelectInventorySlot(FMath::Clamp(GetSelectedItem() + 1, 0, FMath::Max(0, State->GetInventory()->Capacity - 1)));
 	}
 }
 
 void ACCLPlayerController::EquipSelectedItem()
 {
-	if (bInventoryOpen && GetSelectedEntryId().IsValid())
+	if (IsInventoryOpen() && GetSelectedEntryId().IsValid())
 	{
 		ServerEquipItem(GetSelectedEntryId());
 	}
@@ -341,16 +325,16 @@ void ACCLPlayerController::EquipSelectedItem()
 
 void ACCLPlayerController::UnequipItem()
 {
-	if (bInventoryOpen && GetPlayerState<ACCLPlayerState>() && (SelectedEquipment.IsValid() || SelectedItem >= 0))
+	if (IsInventoryOpen() && GetPlayerState<ACCLPlayerState>() && (GetSelectedEquipment().IsValid() || GetSelectedItem() >= 0))
 	{
-		ServerUnequipToBag(SelectedEquipment.IsValid() ? SelectedEquipment
+		ServerUnequipToBag(GetSelectedEquipment().IsValid() ? GetSelectedEquipment()
 		                                               : GetPlayerState<ACCLPlayerState>()->GetLoadout()->GetEquippedId());
 	}
 }
 
 void ACCLPlayerController::UseSelectedItem()
 {
-	if (bInventoryOpen)
+	if (IsInventoryOpen())
 	{
 		ServerUseItem(GetSelectedEntryId());
 	}
@@ -359,7 +343,7 @@ void ACCLPlayerController::UseSelectedItem()
 void ACCLPlayerController::LearnFirstSkill()
 {
 	const auto* State = GetPlayerState<ACCLPlayerState>();
-	if (bInventoryOpen && State && State->GetLoadout()->GetSkills().IsValidIndex(0))
+	if (IsInventoryOpen() && State && State->GetLoadout()->GetSkills().IsValidIndex(0))
 	{
 		ServerLearnSkill(State->GetLoadout()->GetSkills()[0]);
 	}
@@ -368,7 +352,7 @@ void ACCLPlayerController::LearnFirstSkill()
 void ACCLPlayerController::LearnSecondSkill()
 {
 	const auto* State = GetPlayerState<ACCLPlayerState>();
-	if (bInventoryOpen && State && State->GetLoadout()->GetSkills().IsValidIndex(1))
+	if (IsInventoryOpen() && State && State->GetLoadout()->GetSkills().IsValidIndex(1))
 	{
 		ServerLearnSkill(State->GetLoadout()->GetSkills()[1]);
 	}
@@ -430,15 +414,15 @@ void ACCLPlayerController::ServerLearnSkill_Implementation(UCCLSkillDefinition* 
 
 FGuid ACCLPlayerController::GetSelectedEntryId() const
 {
-	if (SelectedEquipment.IsValid())
+	if (GetSelectedEquipment().IsValid())
 	{
-		return SelectedEquipment;
+		return GetSelectedEquipment();
 	}
 
 	const auto* State = GetPlayerState<ACCLPlayerState>();
 	if (State)
 	{
-		if (const auto* Entry = State->GetInventory()->FindSlot(SelectedItem))
+		if (const auto* Entry = State->GetInventory()->FindSlot(GetSelectedItem()))
 		{
 			return Entry->Id;
 		}
@@ -448,7 +432,7 @@ FGuid ACCLPlayerController::GetSelectedEntryId() const
 
 void ACCLPlayerController::Move(const FInputActionValue& Value)
 {
-	if (bInventoryOpen)
+	if (IsInventoryOpen())
 	{
 		return;
 	}
@@ -468,7 +452,7 @@ void ACCLPlayerController::Move(const FInputActionValue& Value)
 
 void ACCLPlayerController::Look(const FInputActionValue& Value)
 {
-	if (bInventoryOpen)
+	if (IsInventoryOpen())
 	{
 		return;
 	}
@@ -480,7 +464,7 @@ void ACCLPlayerController::Look(const FInputActionValue& Value)
 
 void ACCLPlayerController::StartJump()
 {
-	if (bInventoryOpen)
+	if (IsInventoryOpen())
 	{
 		return;
 	}
@@ -519,7 +503,7 @@ void ACCLPlayerController::ServerRequestDebugDeath_Implementation()
 
 void ACCLPlayerController::CombatPressed(FGameplayTag Tag)
 {
-	if (bInventoryOpen)
+	if (IsInventoryOpen())
 	{
 		return;
 	}
@@ -655,7 +639,7 @@ void ACCLPlayerController::ServerUnequipToBag_Implementation(FGuid Id, int32 Bag
 
 void ACCLPlayerController::HandPressed(FGameplayTag Hand)
 {
-	if (!bInventoryOpen)
+	if (!IsInventoryOpen())
 	{
 		HandInput(Hand, true);
 	}
@@ -708,40 +692,9 @@ void ACCLPlayerController::HandInput(FGameplayTag Hand, bool bPressed)
 	ASC->AbilityInputTagPressed(Input);
 }
 
-void ACCLPlayerController::UpdateEquipmentPreview()
+UTextureRenderTarget2D* ACCLPlayerController::GetEquipmentPreview() const
 {
-	auto* PawnActor = Cast<ACCLCharacter>(GetPawn());
-	if (!bInventoryOpen || !PawnActor || !IsLocalController())
-	{
-		return;
-	}
-
-	if (!EquipmentPreview)
-	{
-		EquipmentPreview = NewObject<UTextureRenderTarget2D>(this);
-		EquipmentPreview->ClearColor = FLinearColor(0.025f, 0.04f, 0.065f, 1.f);
-		EquipmentPreview->InitAutoFormat(512, 768);
-	}
-
-	if (!EquipmentCamera)
-	{
-		EquipmentCamera = NewObject<USceneCaptureComponent2D>(this);
-		EquipmentCamera->RegisterComponent();
-		EquipmentCamera->TextureTarget = EquipmentPreview;
-		EquipmentCamera->CaptureSource = ESceneCaptureSource::SCS_FinalColorLDR;
-		EquipmentCamera->PrimitiveRenderMode = ESceneCapturePrimitiveRenderMode::PRM_UseShowOnlyList;
-		EquipmentCamera->FOVAngle = 32.f;
-		EquipmentCamera->bCaptureEveryFrame = true;
-		EquipmentCamera->ShowFlags.SetAtmosphere(false);
-		EquipmentCamera->ShowFlags.SetFog(false);
-	}
-
-	const FVector Forward = PawnActor->GetActorForwardVector();
-	EquipmentCamera->SetWorldLocation(PawnActor->GetActorLocation() + Forward * 340.f);
-	EquipmentCamera->SetWorldRotation((-Forward).Rotation());
-	EquipmentCamera->ShowOnlyActors.Reset();
-	EquipmentCamera->ShowOnlyComponents.Reset();
-	EquipmentCamera->ShowOnlyActorComponents(PawnActor, true);
+	return InventoryContext ? InventoryContext->GetPreview() : nullptr;
 }
 
 void ACCLPlayerController::CCLEquipmentDemo()
@@ -766,9 +719,43 @@ void ACCLPlayerController::CCLEquipmentDemo()
 
 void ACCLPlayerController::SelectEquipmentSlot(FGameplayTag Slot)
 {
-	if (const auto* State = GetPlayerState<ACCLPlayerState>())
+	if (const auto* State = GetPlayerState<ACCLPlayerState>(); State && InventoryContext)
 	{
-		SelectedEquipment = State->GetLoadout()->GetEquippedId(Slot);
-		SelectedItem = INDEX_NONE;
+		InventoryContext->SelectedEquipment = State->GetLoadout()->GetEquippedId(Slot);
+		InventoryContext->SelectedItem = INDEX_NONE;
 	}
+}
+
+void ACCLPlayerController::HandleUIViewClosed(FCCLUIViewHandle View)
+{
+	if (View == InventoryHandle)
+	{
+		InventoryHandle = {};
+		InventoryContext = nullptr;
+	}
+}
+
+bool ACCLPlayerController::IsInventoryOpen() const
+{
+	const auto* Local = GetLocalPlayer();
+	const auto* UI = Local ? Local->GetSubsystem<UCCLUISubsystem>() : nullptr;
+	return UI && UI->IsViewOpen(InventoryHandle);
+}
+
+TSharedPtr<SCCLInventoryWidget> ACCLPlayerController::GetInventoryWidget() const
+{
+	const auto* Local = GetLocalPlayer();
+	const auto* UI = Local ? Local->GetSubsystem<UCCLUISubsystem>() : nullptr;
+	const auto* Screen = UI ? Cast<UCCLInventoryScreen>(UI->FindScreen(InventoryHandle)) : nullptr;
+	return Screen ? Screen->GetBody() : nullptr;
+}
+
+int32 ACCLPlayerController::GetSelectedItem() const
+{
+	return InventoryContext ? InventoryContext->SelectedItem : INDEX_NONE;
+}
+
+FGuid ACCLPlayerController::GetSelectedEquipment() const
+{
+	return InventoryContext ? InventoryContext->SelectedEquipment : FGuid();
 }

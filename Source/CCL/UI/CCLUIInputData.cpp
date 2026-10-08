@@ -7,6 +7,8 @@ UCCLUIInputData::UCCLUIInputData()
 {
 	EnhancedInputBackAction = CreateDefaultSubobject<UInputAction>(TEXT("Back"));
 	EnhancedInputClickAction = CreateDefaultSubobject<UInputAction>(TEXT("Accept"));
+	EnhancedInputBackAction->bConsumeInput = false;
+	EnhancedInputClickAction->bConsumeInput = false;
 	Mapping = CreateDefaultSubobject<UInputMappingContext>(TEXT("Mapping"));
 	Mapping->MapKey(EnhancedInputBackAction, EKeys::Escape);
 	Mapping->MapKey(EnhancedInputBackAction, EKeys::Gamepad_FaceButton_Right);

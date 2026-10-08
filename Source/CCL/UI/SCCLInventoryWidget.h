@@ -16,7 +16,7 @@ public:
 	void Construct(const FArguments& Args);
 	virtual bool SupportsKeyboardFocus() const override { return true; }
 	virtual FReply OnKeyDown(const FGeometry& Geometry, const FKeyEvent& Event) override;
-	virtual void Tick(const FGeometry& Geometry, double Time, float Delta) override;
+	static void CancelOwnedDrag(ACCLPlayerController* Owner);
 	TSharedPtr<SWidget> GetSlotWidget(int32 Slot) const;
 	TSharedPtr<SWidget> GetEquipmentSlotWidget(int32 Slot) const;
 

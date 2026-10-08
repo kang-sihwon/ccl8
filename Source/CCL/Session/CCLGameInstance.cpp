@@ -1,4 +1,8 @@
 #include "CCLGameInstance.h"
+#include "UI/CCLGameUI.h"
+#include "UI/CCLSessionMenuScreen.h"
+#include "UI/Core/CCLUISubsystem.h"
+#include "Engine/LocalPlayer.h"
 #include "CCLCharacter.h"
 #include "CCLPlayerController.h"
 #include "CCLPlayerState.h"
@@ -18,14 +22,6 @@
 #include "GameFramework/GameUserSettings.h"
 #include "Kismet/GameplayStatics.h"
 #include "TimerManager.h"
-#include "Widgets/Layout/SBorder.h"
-#include "Widgets/Layout/SBox.h"
-#include "Widgets/Layout/SScrollBox.h"
-#include "Widgets/Input/SButton.h"
-#include "Widgets/Input/SEditableTextBox.h"
-#include "Widgets/Text/STextBlock.h"
-#include "Widgets/SBoxPanel.h"
-#include "Framework/Application/SlateApplication.h"
 
 void UCCLGameInstance::Init()
 {
@@ -63,8 +59,30 @@ void UCCLGameInstance::AfterMap(UWorld* World)
 }
 void UCCLGameInstance::ShowMenu()
 {
-	if (Menu.IsValid() || !GetGameViewportClient() || !GetFirstLocalPlayerController()) { return; }
-	auto* PC = GetFirstLocalPlayerController();
+	ShowMenuForPlayer(GetFirstLocalPlayerController());
+}
+
+void UCCLGameInstance::ShowMenuForPlayer(APlayerController* PC)
+{
+	if (IsMenuVisibleForPlayer(PC))
+	{
+		return;
+	}
+
+	auto* UI = CCLGameUI::Get(PC);
+	if (!UI)
+	{
+		return;
+	}
+
+	for (auto It = MenuHandles.CreateIterator(); It; ++It)
+	{
+		if (!It.Key().IsValid())
+		{
+			It.RemoveCurrent();
+		}
+	}
+
 	if (auto* CCL = Cast<ACCLPlayerController>(PC))
 	{
 		CCL->CloseInventory();
@@ -72,66 +90,68 @@ void UCCLGameInstance::ShowMenu()
 	}
 
 	PC->FlushPressedKeys();
-	PC->SetIgnoreMoveInput(true);
-	PC->SetIgnoreLookInput(true);
-	PC->bShowMouseCursor = true;
-	TSharedRef<SVerticalBox> Choices = SNew(SVerticalBox);
-	TSharedPtr<SButton> FirstButton;
-	auto AddButton = [&Choices, &FirstButton](const TCHAR* Label, TFunction<void()> Action)
+	auto* Context = NewObject<UCCLSessionMenuContext>(this);
+	Context->Session = this;
+	Context->Controller = PC;
+	Context->bInCampaign = GetWorld()->GetGameState<ACCLCampaignState>() != nullptr;
+	MenuHandles.Add(PC->GetLocalPlayer(), UI->OpenView(CCLUITags::View_SessionMenu, Context, PC));
+}
+
+void UCCLGameInstance::HideMenu()
+{
+	const auto Closing = MoveTemp(MenuHandles);
+	MenuHandles.Reset();
+	for (const auto& Pair : Closing)
 	{
-		TSharedPtr<SButton> Button;
-		Choices->AddSlot().AutoHeight().Padding(0.f, 3.f)
-		[ SAssignNew(Button, SButton).ContentPadding(FMargin(12.f, 7.f))
-			.OnClicked_Lambda([Action]() { Action(); return FReply::Handled(); })
-			[SNew(STextBlock).Font(FCoreStyle::GetDefaultFontStyle("Regular", 18)).Text(FText::FromString(Label))] ];
-		if (!FirstButton.IsValid()) { FirstButton = Button; }
-	};
-	Choices->AddSlot().AutoHeight().Padding(0.f, 4.f)[SNew(STextBlock).Font(FCoreStyle::GetDefaultFontStyle("Regular", 18)).Text(FText::FromString(TEXT("CCL | EAST GATE EXPEDITION"))).Font(FCoreStyle::GetDefaultFontStyle("Bold", 32))];
-	Choices->AddSlot().AutoHeight().Padding(0.f, 6.f)[SNew(STextBlock).Font(FCoreStyle::GetDefaultFontStyle("Regular", 18)).Text(FText::FromString(TEXT("Prototype campaign - solo or direct multiplayer")))];
-	const bool bInCampaign = GetWorld()->GetGameState<ACCLCampaignState>() != nullptr;
-	if (bInCampaign)
+		if (auto* UI = Pair.Key.IsValid() ? Pair.Key->GetSubsystem<UCCLUISubsystem>() : nullptr)
+		{
+			UI->CloseView(Pair.Value);
+		}
+	}
+}
+
+void UCCLGameInstance::HideMenuForPlayer(APlayerController* PC)
+{
+	const auto* Local = PC ? PC->GetLocalPlayer() : nullptr;
+	if (auto* UI = Local ? Local->GetSubsystem<UCCLUISubsystem>() : nullptr)
 	{
-		AddButton(TEXT("Resume"), [this]() { HideMenu(); });
-		AddButton(TEXT("Save host checkpoint"), [this]() { SaveSession(); });
-		AddButton(TEXT("Return to start screen (unsaved changes are lost)"), [this]() { ReturnToMenu(); });
+		FCCLUIViewHandle Handle;
+		if (MenuHandles.RemoveAndCopyValue(PC->GetLocalPlayer(), Handle))
+		{
+			UI->CloseView(Handle);
+		}
+	}
+}
+
+void UCCLGameInstance::ToggleMenu()
+{
+	ToggleMenuForPlayer(GetFirstLocalPlayerController());
+}
+
+void UCCLGameInstance::ToggleMenuForPlayer(APlayerController* PC)
+{
+	if (IsMenuVisibleForPlayer(PC))
+	{
+		HideMenuForPlayer(PC);
 	}
 	else
 	{
-		AddButton(TEXT("New solo expedition"), [this]() { StartNew(false); });
-		AddButton(TEXT("Host new expedition"), [this]() { StartNew(true); });
-		AddButton(TEXT("Load solo checkpoint"), [this]() { LoadSession(false); });
-		AddButton(TEXT("Host saved checkpoint"), [this]() { LoadSession(true); });
-		Choices->AddSlot().AutoHeight().Padding(0.f, 6.f)[SAssignNew(AddressBox, SEditableTextBox).Font(FCoreStyle::GetDefaultFontStyle("Regular", 18)).Text(FText::FromString(TEXT("127.0.0.1:7777"))).HintText(FText::FromString(TEXT("Host name or IPv4:port")))];
-		AddButton(TEXT("Join address"), [this]() { if (AddressBox.IsValid()) { Join(AddressBox->GetText().ToString()); } });
+		ShowMenuForPlayer(PC);
 	}
-	AddButton(TEXT("Cycle graphics quality (Low / Medium / High / Epic)"), [this]() { CycleQuality(); });
-	AddButton(TEXT("Toggle 1280x720 window / borderless desktop"), [this]() { ToggleWindowMode(); });
-	AddButton(TEXT("Quit game"), [this]() { Quit(); });
-	Choices->AddSlot().AutoHeight().Padding(0.f, 12.f)[SNew(STextBlock).Font(FCoreStyle::GetDefaultFontStyle("Regular", 18)).WrapTextAt(780.f).Text_Lambda([this]() { return FText::FromString(Status); })];
-	Choices->AddSlot().AutoHeight()[SNew(STextBlock).Font(FCoreStyle::GetDefaultFontStyle("Regular", 18)).WrapTextAt(780.f).Text(FText::FromString(TEXT("Host checkpoint only; guests are session-only. Opening this menu does not pause the world.")))];
-	Menu = SNew(SBorder).BorderImage(FCoreStyle::Get().GetBrush("WhiteBrush")).BorderBackgroundColor(FLinearColor(0.035f, 0.06f, 0.09f, 0.97f)).HAlign(HAlign_Center).VAlign(VAlign_Center)
-	[ SNew(SBox).WidthOverride(800.f).MaxDesiredHeight(940.f)[SNew(SScrollBox)+SScrollBox::Slot()[Choices]] ];
-	GetGameViewportClient()->AddViewportWidgetContent(Menu.ToSharedRef(), 100);
-	FInputModeUIOnly InputMode;
-	InputMode.SetWidgetToFocus(FirstButton);
-	PC->SetInputMode(InputMode);
-	FSlateApplication::Get().SetKeyboardFocus(FirstButton, EFocusCause::SetDirectly);
 }
-void UCCLGameInstance::HideMenu()
+
+bool UCCLGameInstance::IsMenuVisible() const
 {
-	if (!Menu.IsValid()) { return; }
-	if (GetGameViewportClient()) { GetGameViewportClient()->RemoveViewportWidgetContent(Menu.ToSharedRef()); }
-	Menu.Reset();
-	AddressBox.Reset();
-	if (auto* PC = GetFirstLocalPlayerController())
-	{
-		PC->ResetIgnoreMoveInput();
-		PC->ResetIgnoreLookInput();
-		PC->bShowMouseCursor = false;
-		PC->SetInputMode(FInputModeGameOnly());
-	}
+	return IsMenuVisibleForPlayer(GetFirstLocalPlayerController());
 }
-void UCCLGameInstance::ToggleMenu() { if (Menu.IsValid()) { HideMenu(); } else { ShowMenu(); } }
+
+bool UCCLGameInstance::IsMenuVisibleForPlayer(const APlayerController* PC) const
+{
+	const auto* Local = PC ? PC->GetLocalPlayer() : nullptr;
+	const auto* UI = Local ? Local->GetSubsystem<UCCLUISubsystem>() : nullptr;
+	const auto* Handle = Local ? MenuHandles.Find(PC->GetLocalPlayer()) : nullptr;
+	return UI && Handle && UI->IsViewOpen(*Handle);
+}
 void UCCLGameInstance::StartNew(bool bHost)
 {
 	bPendingRestore = 0;

@@ -95,6 +95,7 @@ public:
 	void CancelRequest(FCCLUIRequestHandle Request);
 	void CloseView(FCCLUIViewHandle View);
 	void CloseAllViews();
+	bool EnsureRoot();
 	UCCLScreen* FindScreen(FCCLUIViewHandle View) const;
 	FCCLUIRegistrationHandle FindRegistration(FGameplayTag View) const;
 	UCCLUIRoot* GetRoot() const { return Root; }
@@ -104,7 +105,6 @@ public:
 	bool IsViewOpen(FCCLUIViewHandle View) const { return Views.Contains(View.Id); }
 
 private:
-	bool EnsureRoot();
 	bool AttachScreen(FCCLUIViewHandle Handle);
 	void ResetRoot();
 	void OnWorldCleanup(UWorld* World, bool bSessionEnded, bool bCleanupResources);

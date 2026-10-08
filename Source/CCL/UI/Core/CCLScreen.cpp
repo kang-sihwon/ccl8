@@ -25,8 +25,11 @@ TOptional<FUIInputConfig> UCCLScreen::GetDesiredInputConfig() const
 		return FUIInputConfig(ECommonInputMode::Game, EMouseCaptureMode::CapturePermanently_IncludingInitialMouseDown);
 	}
 
-	return FUIInputConfig(InputPolicy == ECCLUIInputPolicy::Menu ? ECommonInputMode::Menu : ECommonInputMode::All,
+	FUIInputConfig Config(InputPolicy == ECCLUIInputPolicy::Menu ? ECommonInputMode::Menu : ECommonInputMode::All,
 		EMouseCaptureMode::NoCapture, EMouseLockMode::DoNotLock, false);
+	Config.bIgnoreMoveInput = InputPolicy == ECCLUIInputPolicy::Menu;
+	Config.bIgnoreLookInput = InputPolicy == ECCLUIInputPolicy::Menu;
+	return Config;
 }
 
 void UCCLScreen::NativeConstruct()

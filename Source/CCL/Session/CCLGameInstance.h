@@ -3,9 +3,8 @@
 #include "Engine/GameInstance.h"
 #include "Engine/EngineBaseTypes.h"
 #include "CCLSessionRecord.h"
+#include "UI/Core/CCLUITypes.h"
 #include "CCLGameInstance.generated.h"
-class SWidget;
-class SEditableTextBox;
 UCLASS()
 class CCL_API UCCLGameInstance : public UGameInstance
 {
@@ -16,7 +15,11 @@ public:
 	void ShowMenu();
 	void HideMenu();
 	void ToggleMenu();
-	bool IsMenuVisible() const { return Menu.IsValid(); }
+	bool IsMenuVisible() const;
+	void ShowMenuForPlayer(APlayerController* Player);
+	void HideMenuForPlayer(APlayerController* Player);
+	void ToggleMenuForPlayer(APlayerController* Player);
+	bool IsMenuVisibleForPlayer(const APlayerController* Player) const;
 	void StartNew(bool bHost);
 	bool Join(const FString& Address);
 	bool SaveSession();
@@ -36,8 +39,7 @@ private:
 	void NetworkFailed(UWorld* World, UNetDriver* Driver, ENetworkFailure::Type Type, const FString& Error);
 	void TravelFailed(UWorld* World, ETravelFailure::Type Type, const FString& Error);
 	bool ApplyRecord(const FCCLSessionRecord& Record);
-	TSharedPtr<SWidget> Menu;
-	TSharedPtr<SEditableTextBox> AddressBox;
+	TMap<TWeakObjectPtr<ULocalPlayer>, FCCLUIViewHandle> MenuHandles;
 	FString Status = TEXT("Choose a mode. Direct connection requires a reachable host address.");
 	UPROPERTY() FCCLSessionRecord Pending;
 	uint8 bPendingRestore = 0;

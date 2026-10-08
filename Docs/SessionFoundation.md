@@ -6,11 +6,13 @@
 
 | 구성 | 책임과 수명 |
 |---|---|
-| GameInstance | 맵 이동을 넘는 로컬 메뉴·접속 결과·보류한 불러오기 |
-| Slate 메뉴 | 버튼·주소 입력·설정·성공과 실패 표시, 뷰포트 수명 |
+| GameInstance | 접속 결과·보류한 불러오기와 LocalPlayer별 메뉴 핸들 |
+| SessionMenuScreen·문맥 | 버튼·주소 입력·설정·성공과 실패 표시, 공용 UI 관리자의 월드 범위 화면 |
 | SessionRecord와 Codec | 버전·무결성·수량·정의 ID 검증, Actor와 UI를 참조하지 않는 값 |
 | Inventory·Loadout·Expedition | 검증된 개인 상태 적용, 서버 PlayerState 수명 |
 | CampaignDirector | 처치 체크포인트와 남은 적 재구성, 서버 월드 수명 |
+
+시작·일시정지 메뉴는 `UCCLSessionMenuScreen`에서 기존 Slate 본문을 표시한다. 포커스와 입력 모드는 CommonUI가 적용하며 GameInstance가 별도로 `SetInputMode`를 호출하지 않는다. 게임 중 뒤로 가기는 해당 플레이어의 메뉴를 닫고, 시작 화면에서는 메뉴를 유지한다. 메뉴를 여는 플레이어만 인벤토리·대화창을 닫는다. 맵 이동 전에는 모든 로컬 메뉴를 닫는다. 구현과 이전 검사 근거는 [UIFoundation](UIFoundation.md)을 따른다.
 
 ```mermaid
 sequenceDiagram
