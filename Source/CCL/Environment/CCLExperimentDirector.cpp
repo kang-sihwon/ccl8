@@ -3,6 +3,7 @@
 #include "Agents/CCLAgentWorldSubsystem.h"
 #include "CCLWorldSimulationSubsystem.h"
 #include "CCLWorldSnapshot.h"
+#include "CCLWorldEnvironmentConfig.h"
 #include "AIController.h"
 #include "BrainComponent.h"
 #include "Engine/World.h"
@@ -186,6 +187,12 @@ bool ACCLExperimentDirector::Execute(APlayerController* Requester, ECCLExperimen
 		return SaveCheckpoint(Message);
 	case ECCLExperimentAction::Load:
 		return LoadCheckpoint(Message);
+	case ECCLExperimentAction::NextLatitude:
+	case ECCLExperimentAction::NextObliquity:
+	case ECCLExperimentAction::RotateQuarter:
+	case ECCLExperimentAction::OrbitQuarter:
+	case ECCLExperimentAction::CycleOpening:
+		return ChangeEnvironment(Action, Message);
 	case ECCLExperimentAction::ScaleZero:
 	case ECCLExperimentAction::ScaleOne:
 	case ECCLExperimentAction::ScaleSixty:
@@ -395,6 +402,10 @@ void ACCLExperimentDirector::CompleteCase(FName CaseId, FGuid RunId, FGuid Token
 		break;
 	case ECCLExperimentKind::Clock: bPassed = RunClock(Error); break;
 	case ECCLExperimentKind::Snapshot: bPassed = RunSnapshot(RunId, Error); break;
+	case ECCLExperimentKind::Celestial:
+		bPassed = RunCelestials(Error) && (UCCLWorldSimulationSubsystem::DomainForWorld(GetWorld()) != ECCLWorldDomain::Scenario || RunClock(Error));
+		break;
+	case ECCLExperimentKind::Shelter: bPassed = RunShelter(Error); break;
 	default: Error = TEXT("미구현 시험은 실행할 수 없다."); break;
 	}
 
@@ -617,4 +628,168 @@ FString ACCLExperimentDirector::SlotName() const
 	}
 #endif
 	return Slot;
+}
+
+bool ACCLExperimentDirector::RunCelestials(FString& Error)
+{
+	const auto* Runtime = GetWorld()->GetSubsystem<UCCLWorldSimulationSubsystem>();
+	FCCLCelestialObservation A;
+	FCCLCelestialObservation B;
+	FCCLCelestialSystem Rebuilt;
+	const auto& Inputs = Runtime->GetEnvironmentInputs();
+	if (!Runtime->ObserveCelestials(A, Error) || !Rebuilt.Initialize(Inputs.Celestial, Error)
+		|| !Rebuilt.Observe(Runtime->GetClock().GetWorldSeconds(), Inputs.Observer, B, Error))
+	{
+		return false;
+	}
+
+	if (A.Stars.IsEmpty() || A.Stars.Num() != B.Stars.Num() || A.ObserverPositionKm != B.ObserverPositionKm
+		|| A.TotalHorizontalIrradianceWattsPerM2 != B.TotalHorizontalIrradianceWattsPerM2)
+	{
+		Error = TEXT("천체 관측 재현 결과가 다르다.");
+		return false;
+	}
+
+	for (int32 Index = 0; Index < A.Stars.Num(); ++Index)
+	{
+		if (A.Stars[Index].SolarHours != B.Stars[Index].SolarHours || A.Stars[Index].LocalDirection != B.Stars[Index].LocalDirection)
+		{
+			Error = TEXT("현지 시각 또는 항성 방향이 일치하지 않는다.");
+			return false;
+		}
+	}
+
+	return true;
+}
+
+bool ACCLExperimentDirector::RunShelter(FString& Error)
+{
+	const auto* Runtime = GetWorld()->GetSubsystem<UCCLWorldSimulationSubsystem>();
+	const auto* Config = ACCLWorldEnvironmentConfig::Find(GetWorld());
+	if (!Config)
+	{
+		Error = TEXT("차폐 시험의 맵 설정이 없다.");
+		return false;
+	}
+
+	const auto* Inside = Config->Probes.FindByPredicate([](const auto& Probe) { return Probe.ProbeId == TEXT("Inside"); });
+	const auto* Outside = Config->Probes.FindByPredicate([](const auto& Probe) { return Probe.ProbeId == TEXT("Outside"); });
+	auto Inputs = Runtime->GetEnvironmentInputs();
+	if (!Inside || !Outside || Inputs.Openings.IsEmpty())
+	{
+		Error = TEXT("실내외 진단 위치 또는 문 입력이 없다.");
+		return false;
+	}
+
+	FCCLSurfaceScene Scene;
+	FCCLShelterQuery Query;
+	Query.BodyId = Inputs.Observer.BodyId;
+	Query.PositionMeters = Inside->PositionMeters;
+	Query.ToWindSource = Inside->ToWindSource;
+	FCCLShelterSample Sample;
+	Inputs.Openings[0].OpenFraction = 0.;
+	if (!Scene.Replace(Inputs.Surfaces, Inputs.Openings, 1, Error)
+		|| !FCCLShelterEvaluator::Evaluate(Scene, Query, Sample, Error)
+		|| Sample.Transmission.Precipitation != 0. || Sample.Transmission.Wind != 0.)
+	{
+		Error = TEXT("닫힌 문과 지붕의 차폐 결과가 다르다.");
+		return false;
+	}
+
+	Inputs.Openings[0].OpenFraction = 1.;
+	if (!Scene.Replace(Inputs.Surfaces, Inputs.Openings, 2, Error)
+		|| !FCCLShelterEvaluator::Evaluate(Scene, Query, Sample, Error)
+		|| Sample.Transmission.Wind != 1. || Sample.Transmission.Precipitation != 0.)
+	{
+		Error = TEXT("문을 열어도 지붕의 강수 차폐는 유지되어야 한다.");
+		return false;
+	}
+
+	Query.PositionMeters = Outside->PositionMeters;
+	if (!FCCLShelterEvaluator::Evaluate(Scene, Query, Sample, Error) || Sample.Transmission.Precipitation != 1.)
+	{
+		Error = TEXT("실외 진단 위치의 강수 노출이 다르다.");
+		return false;
+	}
+
+	FCCLSurfaceQuery Ray;
+	Ray.BodyId = Inputs.Observer.BodyId;
+	Ray.OriginMeters = Inside->PositionMeters;
+	TArray<FCCLSurfaceSample> Above;
+	TArray<FCCLSurfaceSample> Below;
+	if (!Scene.QuerySurfaces(Ray, Above, Error))
+	{
+		return false;
+	}
+
+	Ray.Direction = -FVector::UpVector;
+	if (!Scene.QuerySurfaces(Ray, Below, Error) || Above.IsEmpty() || Below.IsEmpty()
+		|| Above[0].Normal.Z > -0.9 || Below[0].Normal.Z < 0.9 || Above[0].SurfaceId == Below[0].SurfaceId)
+	{
+		Error = TEXT("천장 아랫면과 바닥을 별도 표면으로 찾지 못했다.");
+		return false;
+	}
+
+	return true;
+}
+
+bool ACCLExperimentDirector::ChangeEnvironment(ECCLExperimentAction Action, FString& Error)
+{
+	if (Action != ECCLExperimentAction::CycleOpening
+		&& UCCLWorldSimulationSubsystem::DomainForWorld(GetWorld()) != ECCLWorldDomain::Scenario)
+	{
+		Error = TEXT("천체 입력 변경은 격리 실험 맵에서만 할 수 있다.");
+		return false;
+	}
+
+	auto* Runtime = GetWorld()->GetSubsystem<UCCLWorldSimulationSubsystem>();
+	auto Inputs = Runtime->GetEnvironmentInputs();
+	if (Inputs.Revision == MAX_uint64 || Inputs.SurfaceRevision == MAX_uint64)
+	{
+		Error = TEXT("환경 입력 리비전을 더 증가시킬 수 없다.");
+		return false;
+	}
+
+	++Inputs.Revision;
+	++Inputs.SurfaceRevision;
+	auto* Body = Inputs.Celestial.Bodies.FindByPredicate([&Inputs](const auto& Value) { return Value.BodyId == Inputs.Observer.BodyId; });
+	if (!Body)
+	{
+		return false;
+	}
+
+	switch (Action)
+	{
+	case ECCLExperimentAction::NextLatitude:
+		Inputs.Observer.LatitudeDegrees = Inputs.Observer.LatitudeDegrees >= 89. ? -90. : FMath::Min(90., Inputs.Observer.LatitudeDegrees + 45.);
+		break;
+	case ECCLExperimentAction::NextObliquity:
+		Body->ObliquityDegrees = Body->ObliquityDegrees >= 44. ? 0. : Body->ObliquityDegrees < 1. ? 23.44 : 45.;
+		break;
+	case ECCLExperimentAction::RotateQuarter:
+		Body->SpinPhaseDegrees = FMath::Fmod(Body->SpinPhaseDegrees + 90., 360.);
+		break;
+	case ECCLExperimentAction::OrbitQuarter:
+		Body->MeanAnomalyDegrees = FMath::Fmod(Body->MeanAnomalyDegrees + 90., 360.);
+		break;
+	case ECCLExperimentAction::CycleOpening:
+		if (Inputs.Openings.IsEmpty())
+		{
+			Error = TEXT("조작할 개구부가 없다.");
+			return false;
+		}
+
+		Inputs.Openings[0].OpenFraction = Inputs.Openings[0].OpenFraction >= 1. ? 0. : Inputs.Openings[0].OpenFraction + 0.5;
+		break;
+	default:
+		return false;
+	}
+
+	if (!Runtime->ReplaceEnvironmentInputs(Inputs, Error))
+	{
+		return false;
+	}
+
+	Error = TEXT("시험 입력을 변경했다. 위상 조작은 세계 시각을 건너뛰지 않으며 저장·초기화 대상이다.");
+	return true;
 }

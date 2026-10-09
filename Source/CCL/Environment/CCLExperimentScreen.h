@@ -34,6 +34,8 @@ protected:
 public:
 	void SelectCase(FName CaseId) { SelectedCase = CaseId; }
 	TSharedPtr<SWidget> GetStartButton() const { return StartButton; }
+	TSharedPtr<SWidget> GetRotationButton() const { return RotationButton; }
+	TSharedPtr<SWidget> GetDoorButton() const { return DoorButton; }
 
 private:
 	ACCLExperimentPlayerController* Controller() const;
@@ -46,4 +48,6 @@ private:
 	FName SelectedCase = TEXT("Zone_00");
 	TSharedPtr<SWidget> FirstButton;
 	TSharedPtr<SWidget> StartButton;
+	TSharedPtr<SWidget> RotationButton;
+	TSharedPtr<SWidget> DoorButton;
 };

@@ -168,6 +168,7 @@ bool FCCLWorldSnapshotCodec::Decode(const TArray<uint8>& Bytes, FCCLWorldSnapsho
 	}
 
 	// Schema 1 had no environment. Its constructor-supplied default is the explicit migration.
+	Candidate.bEnvironmentMigrated = Candidate.Schema == 1;
 	Candidate.Schema = 2;
 	if (!Validate(Candidate, Error))
 	{

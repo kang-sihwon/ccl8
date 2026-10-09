@@ -10,7 +10,9 @@ enum class ECCLExperimentKind : uint8
 	Guide,
 	Clock,
 	Snapshot,
-	Reserved
+	Reserved,
+	Celestial,
+	Shelter
 };
 
 UENUM(BlueprintType)
@@ -39,7 +41,12 @@ enum class ECCLExperimentAction : uint8
 	TravelHub,
 	TravelScenario,
 	TravelCombat,
-	TravelMultiplayer
+	TravelMultiplayer,
+	NextLatitude,
+	NextObliquity,
+	RotateQuarter,
+	OrbitQuarter,
+	CycleOpening
 };
 
 USTRUCT()

@@ -87,7 +87,7 @@ try {
         }
     }
     if ($Rendered) {
-        foreach ($name in @('controls.png', 'station.png', 'overview.png')) {
+        foreach ($name in @('controls.png', 'station.png', 'overview.png', 'celestial-controls.png', 'shelter-controls.png', 'shelter-half.png', 'shelter-open.png')) {
             $path = Join-Path $directory $name
             if (-not (Test-Path -LiteralPath $path) -or (Get-Item -LiteralPath $path).Length -lt 1000) { throw "Missing capture $path" }
         }

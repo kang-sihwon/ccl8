@@ -3,6 +3,7 @@
 #include "CoreMinimal.h"
 #include "Subsystems/WorldSubsystem.h"
 #include "CCLWorldSnapshot.h"
+#include "CCLEnvironmentView.h"
 #include "CCLWorldSimulationSubsystem.generated.h"
 
 class ACCLWorldEnvironmentState;
@@ -39,6 +40,7 @@ public:
 
 private:
 	void Publish();
+	bool BuildEnvironmentView(FCCLEnvironmentView& OutView, FString& Error) const;
 	bool CheckAuthority(FString& Error) const;
 	void ReportFailure(const FString& Error);
 

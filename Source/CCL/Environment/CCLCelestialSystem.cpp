@@ -82,6 +82,11 @@ namespace
 	}
 }
 
+void UCCLCelestialDefinition::ConfigureDefault(int32 Seed)
+{
+	Definition = FCCLCelestialSystem::MakeDefaultDefinition(Seed);
+}
+
 bool FCCLCelestialSystem::Initialize(const FCCLCelestialDefinitionData& Candidate, FString& Error)
 {
 	if (!Candidate.DefinitionId.IsValid() || Candidate.Version < 1 || Candidate.Bodies.IsEmpty()

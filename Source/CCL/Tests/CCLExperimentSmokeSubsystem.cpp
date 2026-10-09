@@ -6,11 +6,16 @@
 #include "Environment/CCLExperimentScreen.h"
 #include "Environment/CCLExperimentStation.h"
 #include "Environment/CCLWorldSimulationSubsystem.h"
+#include "Environment/CCLWorldEnvironmentConfig.h"
+#include "Environment/CCLWorldEnvironmentState.h"
+#include "Environment/CCLWorldEnvironmentPresentation.h"
 #include "Agents/CCLAgentWorldSubsystem.h"
 #include "UI/CCLGameUI.h"
 #include "UI/Core/CCLUISubsystem.h"
 #include "Input/CommonUIActionRouterBase.h"
 #include "Engine/World.h"
+#include "Engine/DirectionalLight.h"
+#include "Components/LightComponent.h"
 #include "Engine/GameInstance.h"
 #include "Engine/LocalPlayer.h"
 #include "EngineUtils.h"
@@ -104,6 +109,11 @@ void UCCLExperimentSmokeSubsystem::Tick(float DeltaTime)
 				return;
 			}
 
+			if (!CheckReplicatedEnvironment())
+			{
+				return;
+			}
+
 			PreviousGeneration = Director->GetGeneration();
 			PreviousRun = Director->FindResult(Guide)->RunId;
 			PC->Submit(Role == TEXT("driver") ? ECCLExperimentAction::Start : ECCLExperimentAction::Reset, Guide);
@@ -149,6 +159,12 @@ void UCCLExperimentSmokeSubsystem::Tick(float DeltaTime)
 		{
 			FCCLWorldSnapshot Expected;
 			TArray<uint8> ExpectedBytes;
+			if (!Check(Execute(ECCLExperimentAction::CycleOpening) &&
+				(!bScenario || Execute(ECCLExperimentAction::NextLatitude)), TEXT("persist changed observer and partial door")))
+			{
+				return;
+			}
+
 			if (!Check(Runtime->QueueGameTime(37, Error) && Runtime->AdvancePending(40, 2400, Error) &&
 				Runtime->ChangeTimeScale(7, Error) && Runtime->QueueGameTime(1.25, Error) && Execute(ECCLExperimentAction::Save) &&
 				FCCLWorldSnapshotCodec::Capture(Runtime->GetIdentity(), Runtime->GetClock(), Agents->GetSimulation(), Expected, Error, &Runtime->GetEnvironmentInputs()) &&
@@ -204,7 +220,7 @@ void UCCLExperimentSmokeSubsystem::Tick(float DeltaTime)
 			return;
 		}
 
-		if (!bScenario && !Check(!Execute(ECCLExperimentAction::ScaleOne) && !Execute(ECCLExperimentAction::Start, Clock),
+		if (!bScenario && !Check(!Execute(ECCLExperimentAction::ScaleOne) && !Execute(ECCLExperimentAction::NextLatitude, Clock),
 			TEXT("global time controls require isolated map")))
 		{
 			return;
@@ -420,9 +436,9 @@ void UCCLExperimentSmokeSubsystem::Tick(float DeltaTime)
 		return;
 	}
 
-	if (Step == 10)
+	if (Step >= 10)
 	{
-		Finish(TEXT("Authority"));
+		TickEnvironment(Now);
 	}
 }
 
@@ -553,5 +569,329 @@ void UCCLExperimentSmokeSubsystem::Finish(const TCHAR* Role)
 	if (GetWorld()->GetNetMode() == NM_Standalone || FCString::Strcmp(Role, TEXT("Observer")) == 0)
 	{
 		FPlatformMisc::RequestExitWithStatus(false, 0);
+	}
+}
+
+bool UCCLExperimentSmokeSubsystem::ClickControl(TSharedPtr<SWidget> Control)
+{
+	if (!Control || !Control->IsEnabled() || Control->GetCachedGeometry().GetAbsoluteSize().IsNearlyZero())
+	{
+		return Check(false, TEXT("visible enabled environment control"));
+	}
+
+	const FVector2D Point = Control->GetCachedGeometry().GetAbsolutePosition() + Control->GetCachedGeometry().GetAbsoluteSize() * 0.5;
+	auto& App = FSlateApplication::Get();
+	const auto Window = App.FindWidgetWindow(Control.ToSharedRef());
+	App.ProcessMouseMoveEvent(FPointerEvent(0, Point, Point, TSet<FKey>(), EKeys::Invalid, 0, FModifierKeysState()));
+	App.ProcessMouseButtonDownEvent(Window ? Window->GetNativeWindow() : nullptr,
+		FPointerEvent(0, Point, Point, TSet<FKey>{EKeys::LeftMouseButton}, EKeys::LeftMouseButton, 0, FModifierKeysState()));
+	App.ProcessMouseButtonUpEvent(FPointerEvent(0, Point, Point, TSet<FKey>(), EKeys::LeftMouseButton, 0, FModifierKeysState()));
+	return true;
+}
+
+bool UCCLExperimentSmokeSubsystem::CheckReplicatedEnvironment()
+{
+	const auto* Config = ACCLWorldEnvironmentConfig::Find(GetWorld());
+	if (!Config || !Config->CelestialDefinition)
+	{
+		return Check(false, TEXT("client map config exists"));
+	}
+
+	for (TActorIterator<ACCLWorldEnvironmentState> It(GetWorld()); It; ++It)
+	{
+		const auto Time = It->GetTime();
+		const auto& View = Time.Environment;
+		if (!View.bValid || View.Surfaces.Num() != 8 || View.Openings.Num() != 1 || View.Openings[0].OpenFraction != 1.)
+		{
+			return false;
+		}
+
+		FString Error;
+		FCCLCelestialSystem System;
+		FCCLCelestialObservation Observation;
+		if (!Check(System.Initialize(Config->CelestialDefinition->Definition, Error)
+			&& System.Observe(Time.WorldSeconds, View.Observer, Observation, Error)
+			&& Observation.Stars.Num() == View.Stars.Num(), TEXT("client rebuilds exact server observation timestamp")))
+		{
+			return false;
+		}
+
+		for (int32 Index = 0; Index < View.Stars.Num(); ++Index)
+		{
+			if (!Check(Observation.Stars[Index].LocalDirection.Equals(View.Stars[Index].LocalDirection, 1.e-10)
+				&& FMath::IsNearlyEqual(Observation.Stars[Index].SolarHours, View.Stars[Index].SolarHours, 1.e-9),
+				TEXT("replicated stellar direction and local time match their committed world time")))
+			{
+				return false;
+			}
+		}
+
+		const auto* Inside = View.Probes.FindByPredicate([](const auto& Probe) { return Probe.ProbeId == TEXT("Inside"); });
+		return Check(View.DefinitionId == Config->CelestialDefinition->Definition.DefinitionId
+			&& View.DefinitionVersion == Config->CelestialDefinition->Definition.Version
+			&& View.Seed == Config->CelestialDefinition->Definition.Seed && View.SurfaceEpoch.IsValid()
+			&& View.InputRevision > 1 && Inside && Inside->Transmission.Wind == 1. && Inside->Transmission.Precipitation == 0.,
+			TEXT("late joining client receives opened door and independent roof shelter"));
+	}
+
+	return false;
+}
+
+void UCCLExperimentSmokeSubsystem::TickEnvironment(double Now)
+{
+	auto* World = GetWorld();
+	auto* Director = ACCLExperimentDirector::Find(World);
+	auto* Runtime = World->GetSubsystem<UCCLWorldSimulationSubsystem>();
+	auto* PC = Cast<ACCLExperimentPlayerController>(GetGameInstance()->GetFirstLocalPlayerController());
+	auto* UI = PC ? CCLGameUI::Get(PC) : nullptr;
+	auto* Screen = UI ? Cast<UCCLExperimentScreen>(UI->FindScreen(PC->GetExperimentView())) : nullptr;
+	const auto* Config = ACCLWorldEnvironmentConfig::Find(World);
+	const bool bRendered = FParse::Param(FCommandLine::Get(), TEXT("CCLExperimentCapture"));
+	const bool bScenario = UCCLWorldSimulationSubsystem::DomainForWorld(World) == ECCLWorldDomain::Scenario;
+	FString Error;
+	auto Execute = [&](ECCLExperimentAction Action, FName Case = NAME_None)
+	{
+		return Director->Execute(PC, Action, Case, Director->GetGeneration(), FGuid(), Error);
+	};
+	auto Passed = [&](FName Case)
+	{
+		const auto* Result = Director->FindResult(Case);
+		if (Result && Result->Status == ECCLExperimentStatus::Failed)
+		{
+			Check(false, *Result->Detail);
+		}
+
+		return Result && Result->Status == ECCLExperimentStatus::Passed;
+	};
+	auto DoorBlocked = [&]()
+	{
+		FHitResult Hit;
+		return World->LineTraceSingleByChannel(Hit, FVector(7700., 4950., 150.), FVector(8000., 4950., 150.), ECC_Visibility);
+	};
+	if (Step == 10)
+	{
+		if (Check(Config && Execute(ECCLExperimentAction::Start, TEXT("Zone_01")), TEXT("map celestial reproduction case starts")))
+		{
+			Step = 11;
+		}
+
+		return;
+	}
+
+	if (Step == 11 && Passed(TEXT("Zone_01")))
+	{
+		if (Check(Execute(ECCLExperimentAction::Start, TEXT("Zone_11")), TEXT("map shelter case starts")))
+		{
+			Step = 12;
+		}
+
+		return;
+	}
+
+	if (Step == 12 && Passed(TEXT("Zone_11")))
+	{
+		auto IncompleteView = Runtime->GetEnvironmentInputs();
+		const uint64 OriginalRevision = IncompleteView.Revision;
+		const FGuid OriginalEpoch = Runtime->GetSurfaceProvider().GetEpoch();
+		++IncompleteView.Revision;
+		++IncompleteView.SurfaceRevision;
+		IncompleteView.Surfaces.Pop();
+		if (!Check(!Runtime->ReplaceEnvironmentInputs(IncompleteView, Error)
+			&& Runtime->GetEnvironmentInputs().Revision == OriginalRevision
+			&& Runtime->GetSurfaceProvider().GetEpoch() == OriginalEpoch,
+			TEXT("missing displayed surface rejects replacement without partial state")))
+		{
+			return;
+		}
+
+		auto MissingOpening = Runtime->GetEnvironmentInputs();
+		++MissingOpening.Revision;
+		++MissingOpening.SurfaceRevision;
+		auto ExtraOpening = MissingOpening.Openings[0];
+		ExtraOpening.OpeningId = FGuid::NewGuid();
+		ExtraOpening.CenterUV = FVector2D(2., 0.);
+		ExtraOpening.HalfExtentsMeters = FVector2D(0.4, 0.4);
+		MissingOpening.Openings.Add(ExtraOpening);
+		if (!Check(!Runtime->ReplaceEnvironmentInputs(MissingOpening, Error)
+			&& Runtime->GetEnvironmentInputs().Revision == OriginalRevision,
+			TEXT("unlisted opening cannot silently disagree with rendered collision")))
+		{
+			return;
+		}
+
+		if (!Check(DoorBlocked(), TEXT("closed door has real collision on authority")))
+		{
+			return;
+		}
+
+		if (bRendered && PC)
+		{
+			PC->CCLExperiment();
+			auto* NewScreen = Cast<UCCLExperimentScreen>(UI->FindScreen(PC->GetExperimentView()));
+			if (!Check(NewScreen != nullptr, TEXT("celestial controls opened")))
+			{
+				return;
+			}
+
+			NewScreen->SelectCase(TEXT("Zone_01"));
+		}
+
+		Step = 13;
+		Next = Now + 1;
+		return;
+	}
+
+	if (Step == 13)
+	{
+		Capture(TEXT("celestial-controls"));
+		if (bScenario)
+		{
+			const auto& Inputs = Runtime->GetEnvironmentInputs();
+			PreviousSpinPhase = Inputs.Celestial.Bodies.FindByPredicate([&Inputs](const auto& Body) { return Body.BodyId == Inputs.Observer.BodyId; })->SpinPhaseDegrees;
+			if (!Check(Execute(ECCLExperimentAction::NextLatitude) && Execute(ECCLExperimentAction::NextObliquity), TEXT("server changes latitude and obliquity"))
+				|| !(bRendered ? ClickControl(Screen ? Screen->GetRotationButton() : nullptr) : Execute(ECCLExperimentAction::RotateQuarter)))
+			{
+				return;
+			}
+		}
+
+		Step = 14;
+		Next = Now + 1;
+		return;
+	}
+
+	if (Step == 14)
+	{
+		if (World->GetNetMode() != NM_DedicatedServer)
+		{
+			for (TActorIterator<ACCLWorldEnvironmentState> It(World); It; ++It)
+			{
+				const auto& View = It->GetTime().Environment;
+				const auto* Star = View.Stars.FindByPredicate([&View](const auto& Value) { return Value.BodyId == View.DominantStarId; });
+				for (TActorIterator<ACCLWorldEnvironmentPresentation> Display(World); Display; ++Display)
+				{
+					const auto* Sun = Display->Sun.Get();
+					if (!Check(Star && Sun && FVector::DotProduct(Sun->GetActorForwardVector(), -Star->LocalDirection) > 0.9999
+						&& (Star->ElevationDegrees > 0. || Sun->GetLightComponent()->Intensity == 0.f),
+						TEXT("directional light follows celestial direction and turns off below horizon")))
+					{
+						return;
+					}
+				}
+			}
+		}
+
+		if (bScenario)
+		{
+			const auto& Inputs = Runtime->GetEnvironmentInputs();
+			const auto* Body = Inputs.Celestial.Bodies.FindByPredicate([&Inputs](const auto& Value) { return Value.BodyId == Inputs.Observer.BodyId; });
+			if (!Check(Inputs.Observer.LatitudeDegrees == 90. && Body->ObliquityDegrees == 45.
+				&& Body->SpinPhaseDegrees == FMath::Fmod(PreviousSpinPhase + 90., 360.), TEXT("latitude tilt and actual rotation control applied"))
+				|| !Check(Execute(ECCLExperimentAction::OrbitQuarter), TEXT("orbital phase control applied")))
+			{
+				return;
+			}
+		}
+
+		if (Screen)
+		{
+			Screen->SelectCase(TEXT("Zone_11"));
+		}
+
+		Step = 15;
+		Next = Now + 1;
+		return;
+	}
+
+	if (Step == 15)
+	{
+		Capture(TEXT("shelter-controls"));
+		if (!(bRendered ? ClickControl(Screen ? Screen->GetDoorButton() : nullptr) : Execute(ECCLExperimentAction::CycleOpening)))
+		{
+			return;
+		}
+
+		Step = 16;
+		Next = Now + 1;
+		return;
+	}
+
+	if (Step == 16)
+	{
+		if (!Check(Runtime->GetEnvironmentInputs().Openings[0].OpenFraction == 0.5 && !DoorBlocked(), TEXT("half-open aperture changes visible-mesh collision")))
+		{
+			return;
+		}
+
+		// Return celestial parameters to the map definition for the subsequent late-join comparison.
+		auto Inputs = Runtime->GetEnvironmentInputs();
+		Inputs.Celestial = Config->CelestialDefinition->Definition;
+		Inputs.Observer = Config->Observer;
+		++Inputs.Revision;
+		++Inputs.SurfaceRevision;
+		if (!Check(Runtime->ReplaceEnvironmentInputs(Inputs, Error), TEXT("restore map celestial comparison baseline")))
+		{
+			return;
+		}
+
+		if (bRendered && PC)
+		{
+			PC->CCLExperiment();
+			const FVector Location(8150., 4250., 600.);
+			auto* Camera = World->SpawnActor<ACameraActor>(Location, UKismetMathLibrary::FindLookAtRotation(Location, FVector(7350., 5000., 180.)));
+			PC->SetViewTarget(Camera);
+		}
+
+		Step = 17;
+		Next = Now + 2;
+		return;
+	}
+
+	if (Step == 17)
+	{
+		Capture(TEXT("shelter-half"));
+		if (!Check(Execute(ECCLExperimentAction::CycleOpening), TEXT("fully open door")))
+		{
+			return;
+		}
+
+		Step = 18;
+		Next = Now + 1;
+		return;
+	}
+
+	if (Step == 18)
+	{
+		const FGuid BeforeEpoch = Runtime->GetSurfaceProvider().GetEpoch();
+		if (!Check(Runtime->GetEnvironmentInputs().Openings[0].OpenFraction == 1. && !DoorBlocked(), TEXT("fully open door has no residual collision"))
+			|| !Check(Execute(ECCLExperimentAction::Save) && Execute(ECCLExperimentAction::CycleOpening)
+				&& Runtime->GetEnvironmentInputs().Openings[0].OpenFraction == 0. && Execute(ECCLExperimentAction::Load)
+				&& Runtime->GetEnvironmentInputs().Openings[0].OpenFraction == 1.
+				&& Runtime->GetSurfaceProvider().GetEpoch() != BeforeEpoch, TEXT("opening restore rebuilds scene in a new execution epoch")))
+		{
+			return;
+		}
+
+		Step = 19;
+		Next = Now + 2;
+		return;
+	}
+
+	if (Step == 19)
+	{
+		Capture(TEXT("shelter-open"));
+		if (!CheckReplicatedEnvironment())
+		{
+			return;
+		}
+
+		Step = 20;
+		Next = Now + 1;
+		return;
+	}
+
+	if (Step == 20)
+	{
+		Finish(TEXT("Authority"));
 	}
 }

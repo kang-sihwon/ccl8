@@ -22,7 +22,20 @@ for name in ('EnvironmentPlayground','EnvironmentScenario'):
     definitions=directors[0].get_editor_property('definitions')
     assert len(definitions)==12 and sorted(d.get_editor_property('zone') for d in definitions)==list(range(12))
     assert sorted(a.get_editor_property('definition').get_editor_property('zone') for a in stations)==list(range(12))
+    configs=[a for a in current if isinstance(a,unreal.CCLWorldEnvironmentConfig)]
+    presentations=[a for a in current if isinstance(a,unreal.CCLWorldEnvironmentPresentation)]
+    assert len(configs)==1 and len(presentations)==1
+    config=configs[0]
+    assert len(config.get_editor_property('surfaces'))==8
+    assert len(config.get_editor_property('openings'))==1
+    assert len(config.get_editor_property('probes'))==3
+    assert len(config.get_editor_property('view_surface_ids'))==8
+    assert config.get_editor_property('celestial_definition')
+    sun=presentations[0].get_editor_property('sun')
+    assert sun and sun.light_component.get_editor_property('mobility') == unreal.ComponentMobility.MOVABLE
+    assert presentations[0].get_editor_property('solid_mesh')
+    presentations[0].refresh_preview()
     assert levels.save_current_level()
-    rows.append(dict(map=path,stations=len(stations),definitions=len(definitions),opened_and_saved=True))
+    rows.append(dict(map=path,stations=len(stations),definitions=len(definitions),opened_and_saved=True,celestial_config=True,surfaces=8,openings=1,probes=3))
 (root/'Saved/EnvironmentGoal/experiment-assets.json').write_text(json.dumps(dict(maps=rows,fresh_editor_reload=True),indent=2),encoding='utf-8')
 unreal.log('CCL_EXPERIMENT_ASSETS PASS maps=2 stations_per_map=12 fresh_reload=True')

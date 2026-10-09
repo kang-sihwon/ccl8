@@ -5,6 +5,8 @@
 #include "Tickable.h"
 #include "CCLExperimentSmokeSubsystem.generated.h"
 
+class SWidget;
+
 UCLASS()
 class UCCLExperimentSmokeSubsystem : public UGameInstanceSubsystem, public FTickableGameObject
 {
@@ -19,6 +21,9 @@ public:
 
 private:
 	void TickTravel(double Now);
+	void TickEnvironment(double Now);
+	bool CheckReplicatedEnvironment();
+	bool ClickControl(TSharedPtr<SWidget> Control);
 	bool Check(bool bCondition, const TCHAR* Message);
 	void Capture(const TCHAR* Name);
 	void Finish(const TCHAR* Role);
@@ -32,4 +37,5 @@ private:
 	double HubGameSeconds = 0;
 	FGuid PreviousGeneration;
 	FGuid PreviousRun;
+	double PreviousSpinPhase = 0.;
 };

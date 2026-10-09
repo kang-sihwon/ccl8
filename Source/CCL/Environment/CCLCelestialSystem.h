@@ -154,6 +154,10 @@ class CCL_API UCCLCelestialDefinition : public UDataAsset
 	GENERATED_BODY()
 
 public:
+	UFUNCTION(BlueprintCallable, CallInEditor)
+	void ConfigureDefault(int32 Seed);
+
+public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FCCLCelestialDefinitionData Definition;
 };

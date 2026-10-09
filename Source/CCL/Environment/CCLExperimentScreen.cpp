@@ -123,6 +123,82 @@ void UCCLExperimentScreen::OnContextBound()
 		Storage->AddSlot().AutoWidth().Padding(0, 0, 6, 0)[Button(Rate.Key, [Action, Command = Rate.Value]() { Action(Command); }, ScaleAllowed)];
 	}
 
+	auto IsEnvironmentCase = [this]() { return SelectedCase == TEXT("Zone_01") || SelectedCase == TEXT("Zone_11"); };
+	auto EnvironmentControls = SNew(SVerticalBox).Visibility_Lambda([IsEnvironmentCase]()
+	{
+		return IsEnvironmentCase() ? EVisibility::Visible : EVisibility::Collapsed;
+	});
+	EnvironmentControls->AddSlot().AutoHeight().Padding(0, 0, 0, 8)
+		[SNew(STextBlock).Font(FCoreStyle::GetDefaultFontStyle("Regular", 16)).WrapTextAt(760)
+		.Text_Lambda([this]()
+		{
+			for (TActorIterator<ACCLWorldEnvironmentState> It(GetWorld()); It; ++It)
+			{
+				const auto& View = It->GetTime().Environment;
+				if (!View.bValid)
+				{
+					return FText::FromString(TEXT("서버 환경 관측 수신 대기"));
+				}
+
+				FString Text = FString::Printf(TEXT("위도 %.1f° | 기울기 %.2f° | 입력 %llu | 표면 %llu\n"),
+					View.Observer.LatitudeDegrees, View.ObliquityDegrees, View.InputRevision, View.SurfaceRevision);
+				for (const auto& Star : View.Stars)
+				{
+					if (Star.BodyId == View.DominantStarId)
+					{
+						Text += FString::Printf(TEXT("태양시 %.2f시 | 고도 %.2f° | 수평 일사 %.2f W/m²\n"),
+							Star.SolarHours, Star.ElevationDegrees, Star.HorizontalIrradiance);
+					}
+				}
+
+				if (SelectedCase == TEXT("Zone_11"))
+				{
+					for (const auto& Probe : View.Probes)
+					{
+						Text += FString::Printf(TEXT("%s  빛 %.0f%% · 비 %.0f%% · 바람 %.0f%%\n"), *Probe.ProbeId.ToString(),
+							100. * Probe.Transmission.Sun, 100. * Probe.Transmission.Precipitation, 100. * Probe.Transmission.Wind);
+					}
+
+					if (!View.Openings.IsEmpty())
+					{
+						Text += FString::Printf(TEXT("문 열림 %.0f%% · 청록/노랑 구체가 진단 위치다."), View.Openings[0].OpenFraction * 100.);
+					}
+				}
+				else
+				{
+					for (const auto& Body : View.SkyBodies)
+					{
+						Text += FString::Printf(TEXT("%s  밝은 면 %.1f%% · 각반경 %.3f°\n"), *Body.BodyId.ToString(),
+							Body.IlluminatedFraction * 100., Body.AngularRadiusDegrees);
+					}
+
+					Text += TEXT("위상 버튼은 초기 천체 요소를 바꾸는 시험이며 NPC 시간을 건너뛰지 않는다.");
+				}
+
+				return FText::FromString(Text);
+			}
+
+			return FText::FromString(TEXT("서버 관측 수신 대기"));
+		})];
+	auto CelestialButtons = SNew(SHorizontalBox);
+	const TPair<const TCHAR*, ECCLExperimentAction> CelestialActions[] = {
+		{TEXT("위도 +45°"), ECCLExperimentAction::NextLatitude}, {TEXT("기울기 변경"), ECCLExperimentAction::NextObliquity},
+		{TEXT("자전 위상 +90°"), ECCLExperimentAction::RotateQuarter}, {TEXT("공전 위상 +90°"), ECCLExperimentAction::OrbitQuarter}};
+	for (const auto& Entry : CelestialActions)
+	{
+		auto Control = Button(Entry.Key, [Action, Command = Entry.Value]() { Action(Command); }, ScaleAllowed);
+		CelestialButtons->AddSlot().AutoWidth().Padding(0, 0, 5, 0)[Control];
+		if (Entry.Value == ECCLExperimentAction::RotateQuarter)
+		{
+			RotationButton = Control;
+		}
+	}
+
+	EnvironmentControls->AddSlot().AutoHeight().Padding(0, 0, 0, 8)[CelestialButtons];
+	auto Door = Button(TEXT("문: 닫힘 → 반 열림 → 열림"), [Action]() { Action(ECCLExperimentAction::CycleOpening); }, Allowed);
+	DoorButton = Door;
+	EnvironmentControls->AddSlot().AutoHeight()[Door];
+
 	auto Detail = SNew(SVerticalBox)
 		+ SVerticalBox::Slot().AutoHeight().Padding(0, 0, 0, 12)
 		[SNew(STextBlock).Font(FCoreStyle::GetDefaultFontStyle("Bold", 26)).Text_Lambda([this]()
@@ -138,13 +214,15 @@ void UCCLExperimentScreen::OnContextBound()
 			return FText::FromString(TEXT("상태: ") + UCCLExperimentDefinition::StatusText(Result ? Result->Status : ECCLExperimentStatus::NotImplemented));
 		})]
 		+ SVerticalBox::Slot().AutoHeight().Padding(0, 0, 0, 12)
-		[SNew(STextBlock).Font(FCoreStyle::GetDefaultFontStyle("Regular", 18)).WrapTextAt(780).Text_Lambda([this]()
+		[SNew(STextBlock).Visibility_Lambda([IsEnvironmentCase]() { return IsEnvironmentCase() ? EVisibility::Collapsed : EVisibility::Visible; })
+		.Font(FCoreStyle::GetDefaultFontStyle("Regular", 18)).WrapTextAt(780).Text_Lambda([this]()
 		{
 			const auto* Definition = Director() ? Director()->FindDefinition(SelectedCase) : nullptr;
 			return FText::FromString(Definition ? TEXT("조작: ") + Definition->Instructions.ToString() + TEXT("\n\n예상 결과: ") + Definition->Expected.ToString() : FString());
 		})]
 		+ SVerticalBox::Slot().AutoHeight().Padding(0, 0, 0, 12)
-		[SNew(STextBlock).Font(FCoreStyle::GetDefaultFontStyle("Regular", 17)).WrapTextAt(780).Text_Lambda([this]()
+		[SNew(STextBlock).Visibility_Lambda([IsEnvironmentCase]() { return IsEnvironmentCase() ? EVisibility::Collapsed : EVisibility::Visible; })
+		.Font(FCoreStyle::GetDefaultFontStyle("Regular", 17)).WrapTextAt(780).Text_Lambda([this]()
 		{
 			const auto* Result = Director() ? Director()->FindResult(SelectedCase) : nullptr;
 			if (!Result)
@@ -155,13 +233,13 @@ void UCCLExperimentScreen::OnContextBound()
 			return FText::FromString(FString::Printf(TEXT("결과: %s\n완료 세계 시각: %.2f초\n실행 ID: %s"), *Result->Detail,
 				Result->CompletedWorldSeconds, Result->RunId.IsValid() ? *Result->RunId.ToString().Left(8) : TEXT("미실행")));
 		})]
-		+ SVerticalBox::Slot().FillHeight(1)
-		+ SVerticalBox::Slot().AutoHeight().Padding(0, 0, 0, 10)[Controls]
+		+ SVerticalBox::Slot().AutoHeight()[EnvironmentControls]
+		+ SVerticalBox::Slot().AutoHeight().Padding(0, 10, 0, 10)[Controls]
 		+ SVerticalBox::Slot().AutoHeight()[Storage];
 
 	Host->SetContent(SNew(SBorder).BorderImage(FCoreStyle::Get().GetBrush("WhiteBrush"))
 		.BorderBackgroundColor(FLinearColor(0.025f, 0.045f, 0.075f, 0.97f)).Padding(20).HAlign(HAlign_Center).VAlign(VAlign_Center)
-		[SNew(SBox).WidthOverride(1160).HeightOverride(620)
+		[SNew(SBox).WidthOverride(1160).HeightOverride(720)
 		[SNew(SVerticalBox)
 			+ SVerticalBox::Slot().AutoHeight().Padding(0, 0, 0, 8)
 			[SNew(STextBlock).Font(FCoreStyle::GetDefaultFontStyle("Bold", 30)).Text(FText::FromString(TEXT("자연 환경 실험장"))) ]
@@ -206,6 +284,8 @@ void UCCLExperimentScreen::OnContextReleased()
 
 	FirstButton.Reset();
 	StartButton.Reset();
+	RotationButton.Reset();
+	DoorButton.Reset();
 }
 
 ACCLExperimentPlayerController* UCCLExperimentScreen::Controller() const

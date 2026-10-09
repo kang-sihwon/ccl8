@@ -24,6 +24,7 @@ struct FCCLWorldIdentity
 struct FCCLWorldSnapshot
 {
 	uint32 Schema = 2;
+	uint8 bEnvironmentMigrated = 0;
 	FCCLWorldIdentity Identity;
 	FCCLWorldClockSnapshot Clock;
 	TArray<uint8> Life;

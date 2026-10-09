@@ -3,8 +3,19 @@
 #include "Agents/CCLAgentWorldSubsystem.h"
 #include "CCLWorldAdvance.h"
 #include "CCLWorldEnvironmentState.h"
+#include "CCLWorldEnvironmentConfig.h"
+#include "EngineUtils.h"
 #include "Engine/World.h"
 #include "Kismet/GameplayStatics.h"
+
+namespace
+{
+	bool CheckMapInterest(const UWorld* World, const FCCLEnvironmentInputs& Inputs, FString& Error)
+	{
+		const auto* Config = ACCLWorldEnvironmentConfig::Find(World);
+		return !Config || Config->ValidateViewInputs(Inputs, Error);
+	}
+}
 
 bool UCCLWorldSimulationSubsystem::ShouldCreateSubsystem(UObject* Outer) const
 {
@@ -66,6 +77,16 @@ bool UCCLWorldSimulationSubsystem::Start(FCCLLifeSimulation& Life, ECCLWorldDoma
 	CandidateIdentity.WorldId = FGuid::NewGuid();
 	FCCLWorldClock CandidateClock;
 	FCCLEnvironmentInputs CandidateInputs = FCCLEnvironmentInputsCodec::MakeDefault(42);
+	int32 ConfigCount = 0;
+	for (TActorIterator<ACCLWorldEnvironmentConfig> It(GetWorld()); It; ++It)
+	{
+		if (++ConfigCount > 1 || !It->BuildInputs(CandidateInputs, Error))
+		{
+			Error = TEXT("A world requires one valid environment config at most.");
+			return false;
+		}
+	}
+
 	FCCLCelestialSystem CandidateCelestial;
 	FCCLSurfaceScene CandidateSurfaces;
 	FCCLCelestialObservation Observation;
@@ -80,8 +101,18 @@ bool UCCLWorldSimulationSubsystem::Start(FCCLLifeSimulation& Life, ECCLWorldDoma
 	else
 	{
 		FCCLWorldSnapshot Snapshot;
-		if (!FCCLWorldSnapshotCodec::Decode(Saved, Snapshot, Error)
-			|| !FCCLEnvironmentInputsCodec::CheckDefinition(Snapshot.Environment, CandidateInputs.Celestial.DefinitionId, CandidateInputs.Celestial.Version, Error)
+		if (!FCCLWorldSnapshotCodec::Decode(Saved, Snapshot, Error))
+		{
+			return false;
+		}
+
+		if (Snapshot.bEnvironmentMigrated)
+		{
+			Snapshot.Environment = CandidateInputs;
+		}
+
+		if (!CheckMapInterest(GetWorld(), Snapshot.Environment, Error)
+		|| !FCCLEnvironmentInputsCodec::CheckDefinition(Snapshot.Environment, CandidateInputs.Celestial.DefinitionId, CandidateInputs.Celestial.Version, Error)
 			|| !FCCLEnvironmentInputsCodec::Prepare(Snapshot.Environment, Snapshot.Clock.WorldSeconds, CandidateCelestial, CandidateSurfaces, Observation, Error)
 			|| !FCCLWorldSnapshotCodec::Restore(Snapshot, Domain, CandidateClock, Life, Error))
 		{
@@ -198,7 +229,21 @@ bool UCCLWorldSimulationSubsystem::Restore(FCCLLifeSimulation& Life, const TArra
 	FCCLCelestialSystem CandidateCelestial;
 	FCCLSurfaceScene CandidateSurfaces;
 	FCCLCelestialObservation Observation;
-	if (!FCCLWorldSnapshotCodec::Decode(Bytes, Snapshot, Error)
+	if (!FCCLWorldSnapshotCodec::Decode(Bytes, Snapshot, Error))
+	{
+		return false;
+	}
+
+	if (Snapshot.bEnvironmentMigrated)
+	{
+		Snapshot.Environment = FCCLEnvironmentInputsCodec::MakeDefault(42);
+		if (const auto* Config = ACCLWorldEnvironmentConfig::Find(GetWorld()); Config && !Config->BuildInputs(Snapshot.Environment, Error))
+		{
+			return false;
+		}
+	}
+
+	if (!CheckMapInterest(GetWorld(), Snapshot.Environment, Error)
 		|| !FCCLEnvironmentInputsCodec::CheckDefinition(Snapshot.Environment, EnvironmentInputs.Celestial.DefinitionId, EnvironmentInputs.Celestial.Version, Error)
 		|| !FCCLEnvironmentInputsCodec::Prepare(Snapshot.Environment, Snapshot.Clock.WorldSeconds, CandidateCelestial, CandidateSurfaces, Observation, Error)
 		|| !FCCLWorldSnapshotCodec::Restore(Snapshot, Identity.Domain, Clock, Life, Error))
@@ -233,7 +278,8 @@ bool UCCLWorldSimulationSubsystem::ReplaceEnvironmentInputs(const FCCLEnvironmen
 	FCCLCelestialSystem CandidateCelestial;
 	FCCLSurfaceScene CandidateSurfaces;
 	FCCLCelestialObservation Observation;
-	if (!FCCLEnvironmentInputsCodec::CheckDefinition(Candidate, EnvironmentInputs.Celestial.DefinitionId, EnvironmentInputs.Celestial.Version, Error)
+	if (!CheckMapInterest(GetWorld(), Candidate, Error)
+		|| !FCCLEnvironmentInputsCodec::CheckDefinition(Candidate, EnvironmentInputs.Celestial.DefinitionId, EnvironmentInputs.Celestial.Version, Error)
 		|| !FCCLEnvironmentInputsCodec::Prepare(Candidate, Clock.GetWorldSeconds(), CandidateCelestial, CandidateSurfaces, Observation, Error))
 	{
 		return false;
@@ -286,8 +332,110 @@ void UCCLWorldSimulationSubsystem::Publish()
 		Time.PendingGameSeconds = Clock.GetPendingGameSeconds() + UnqueuedGameSeconds;
 		Time.CompletedStepId = Clock.GetCompletedStepId();
 		Time.bAdvanceFailed = !LastError.IsEmpty();
+		FString ViewError;
+		BuildEnvironmentView(Time.Environment, ViewError);
 		ReplicatedState->Publish(Time);
 	}
+}
+
+bool UCCLWorldSimulationSubsystem::BuildEnvironmentView(FCCLEnvironmentView& OutView, FString& Error) const
+{
+	FCCLCelestialObservation Observation;
+	if (!ObserveCelestials(Observation, Error))
+	{
+		return false;
+	}
+
+	FCCLEnvironmentView View;
+	View.DefinitionId = EnvironmentInputs.Celestial.DefinitionId;
+	View.DefinitionVersion = EnvironmentInputs.Celestial.Version;
+	View.Seed = EnvironmentInputs.Celestial.Seed;
+	View.Observer = EnvironmentInputs.Observer;
+	View.InputRevision = EnvironmentInputs.Revision;
+	View.SurfaceRevision = SurfaceScene.GetRevision();
+	View.SurfaceEpoch = SurfaceScene.GetEpoch();
+	View.DominantStarId = Observation.DominantStarId;
+	for (const auto& Body : EnvironmentInputs.Celestial.Bodies)
+	{
+		if (Body.BodyId == View.Observer.BodyId)
+		{
+			View.ObliquityDegrees = Body.ObliquityDegrees;
+		}
+	}
+
+	FVector ToSun = FVector::UpVector;
+	for (const auto& Source : Observation.Stars)
+	{
+		FCCLCelestialSourceView Star;
+		Star.BodyId = Source.BodyId;
+		Star.LocalDirection = Source.LocalDirection;
+		Star.SolarHours = Source.SolarHours;
+		Star.ElevationDegrees = Source.ElevationDegrees;
+		Star.NormalIrradiance = Source.NormalIrradianceWattsPerM2;
+		Star.HorizontalIrradiance = Source.HorizontalIrradianceWattsPerM2;
+		Star.bOcculted = Source.bOcculted;
+		View.Stars.Add(Star);
+		if (Star.BodyId == View.DominantStarId)
+		{
+			ToSun = Star.LocalDirection;
+		}
+	}
+
+	for (const auto& Body : Observation.SkyBodies)
+	{
+		FCCLCelestialBodyView Sky;
+		Sky.BodyId = Body.BodyId;
+		Sky.LocalDirection = Body.LocalDirection;
+		Sky.AngularRadiusDegrees = Body.AngularRadiusDegrees;
+		Sky.IlluminatedFraction = Body.IlluminatedFraction;
+		View.SkyBodies.Add(Sky);
+	}
+
+	if (const auto* Config = ACCLWorldEnvironmentConfig::Find(GetWorld()))
+	{
+		for (const auto& Probe : Config->Probes)
+		{
+			FCCLShelterQuery Query;
+			Query.BodyId = View.Observer.BodyId;
+			Query.PositionMeters = Probe.PositionMeters;
+			Query.ToSun = ToSun;
+			Query.ToPrecipitationSource = Probe.ToPrecipitationSource;
+			Query.ToWindSource = Probe.ToWindSource;
+			Query.RequiredEpoch = View.SurfaceEpoch;
+			Query.RequiredRevision = View.SurfaceRevision;
+			FCCLShelterSample Sample;
+			if (!FCCLShelterEvaluator::Evaluate(SurfaceScene, Query, Sample, Error))
+			{
+				return false;
+			}
+
+			FCCLEnvironmentProbeView Result;
+			Result.ProbeId = Probe.ProbeId;
+			Result.PositionMeters = Probe.PositionMeters;
+			Result.Transmission = Sample.Transmission;
+			View.Probes.Add(Result);
+		}
+
+		for (const auto& Opening : EnvironmentInputs.Openings)
+		{
+			if (Config->ViewOpeningIds.Contains(Opening.OpeningId))
+			{
+				View.Openings.Add(Opening);
+			}
+		}
+
+		for (const auto& Surface : EnvironmentInputs.Surfaces)
+		{
+			if (Config->ViewSurfaceIds.Contains(Surface.SurfaceId))
+			{
+				View.Surfaces.Add(Surface);
+			}
+		}
+	}
+
+	View.bValid = 1;
+	OutView = MoveTemp(View);
+	return true;
 }
 
 bool UCCLWorldSimulationSubsystem::CheckAuthority(FString& Error) const

@@ -41,6 +41,9 @@ private:
 	void Finish(FCCLExperimentResult& Result, bool bPassed, const FString& Detail);
 	bool RunClock(FString& Error);
 	bool RunSnapshot(FGuid RunId, FString& Error);
+	bool RunCelestials(FString& Error);
+	bool RunShelter(FString& Error);
+	bool ChangeEnvironment(ECCLExperimentAction Action, FString& Error);
 	bool SaveCheckpoint(FString& Error);
 	bool LoadCheckpoint(FString& Error);
 	bool MoveToSafety(APlayerController* OnlyPlayer, int32 Zone, FString& Error);

@@ -2,12 +2,15 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "CCLEnvironmentView.h"
 #include "CCLWorldEnvironmentState.generated.h"
 
 USTRUCT()
 struct FCCLReplicatedWorldTime
 {
 	GENERATED_BODY()
+
+	bool NetSerialize(FArchive& Ar, UPackageMap* Map, bool& bOutSuccess);
 
 	UPROPERTY()
 	FGuid WorldId;
@@ -33,6 +36,15 @@ struct FCCLReplicatedWorldTime
 
 	UPROPERTY()
 	uint8 bAdvanceFailed = 0;
+
+	UPROPERTY()
+	FCCLEnvironmentView Environment;
+};
+
+template<>
+struct TStructOpsTypeTraits<FCCLReplicatedWorldTime> : TStructOpsTypeTraitsBase2<FCCLReplicatedWorldTime>
+{
+	enum { WithNetSerializer = true };
 };
 
 UCLASS()
