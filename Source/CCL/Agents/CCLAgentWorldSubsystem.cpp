@@ -11,6 +11,7 @@
 #include "Engine/World.h"
 #include "EngineUtils.h"
 #include "Environment/CCLWorldSimulationSubsystem.h"
+#include "Environment/CCLExperimentDefinition.h"
 
 void UCCLAgentSessionStore::ResetSession()
 {
@@ -27,6 +28,7 @@ void UCCLAgentSessionStore::ResetDomain(ECCLWorldDomain Domain)
 	}
 
 	Experiments.Remove(Domain);
+	ExperimentInitialSnapshots.Remove(Domain);
 	++ExperimentSessions.FindOrAdd(Domain);
 }
 
@@ -49,7 +51,8 @@ bool UCCLAgentWorldSubsystem::ShouldCreateSubsystem(UObject* Outer) const
 void UCCLAgentWorldSubsystem::OnWorldBeginPlay(UWorld& World)
 {
 	Super::OnWorldBeginPlay(World);
-	if (World.GetNetMode() == NM_Client || !World.GetGameState<ACCLCampaignState>())
+	if (World.GetNetMode() == NM_Client || (!World.GetGameState<ACCLCampaignState>() &&
+		UCCLWorldSimulationSubsystem::DomainForWorld(&World) == ECCLWorldDomain::Campaign))
 	{
 		return;
 	}
@@ -62,8 +65,11 @@ void UCCLAgentWorldSubsystem::OnWorldBeginPlay(UWorld& World)
 	const ECCLWorldDomain Domain = UCCLWorldSimulationSubsystem::DomainForWorld(&World);
 	Session = Store->SessionFor(Domain);
 	const auto& Saved = Store->SnapshotFor(Domain);
-	const bool bReady = WorldSimulation && (Saved.IsEmpty() ? Simulation.Initialize(
-		Scenario ? Scenario->InitialState : FCCLLifeSimulation::MerchantScenario(42), Error) : true) &&
+	const auto* Experiment = Domain != ECCLWorldDomain::Campaign ? LoadObject<UCCLExperimentDefinition>(nullptr,
+		TEXT("/Game/Environment/Experiments/DA_Environment_00.DA_Environment_00")) : nullptr;
+	const auto Initial = Domain == ECCLWorldDomain::Campaign && Scenario ? Scenario->InitialState :
+		FCCLLifeSimulation::MerchantScenario(Experiment ? Experiment->Seed : 42);
+	const bool bReady = WorldSimulation && (!Saved.IsEmpty() || Simulation.Initialize(Initial, Error)) &&
 		WorldSimulation->Start(Simulation, Domain, Saved, Error);
 	if (!bReady)
 	{
@@ -140,6 +146,12 @@ bool UCCLAgentWorldSubsystem::Restore(const TArray<uint8>& Bytes, FString& Error
 
 void UCCLAgentWorldSubsystem::SpawnVillage()
 {
+	// Experiment population stays in reduced execution until its Actor/Mass cases are implemented.
+	if (UCCLWorldSimulationSubsystem::DomainForWorld(GetWorld()) != ECCLWorldDomain::Campaign)
+	{
+		return;
+	}
+
 	FCCLSimulationSnapshot Snapshot;
 	if (!Simulation.Capture(Snapshot))
 	{

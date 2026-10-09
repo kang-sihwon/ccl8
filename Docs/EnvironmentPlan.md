@@ -460,3 +460,45 @@ classDiagram
 재실행 명령은 `Tools/Validation/run_world_smoke.ps1 -Mode Standalone`, `-Mode Listen -Port 19782`, `-Mode Dedicated -Port 19783`이다. 세 실행 모드 검사는 기존 Campaign 맵과 NullRHI를 사용했다. 실험장 화면이나 눈·물·날씨를 검증한 결과가 아니다. Listen·Dedicated와 NPC 검사는 영역별 초기화 보완 전 실행했으며, 해당 보완 후 전체 자동 검사·Standalone·세션 재시작 검사를 다시 실행했다. 로컬 로그 경로는 저장소 기준 상대 경로로 기재했다.
 
 단계 1에는 두 실험장 맵, CommonUI 조작부·시험 상태, 안전한 실험 초기화와 해당 맵의 세 실행 모드·화면 검사가 남아 있다. 현재 단계는 계속 진행 중이며 단계 2-9도 전체 목표에 포함된다. 단계 완료 알림은 남은 통과 기준을 만족한 뒤 보낸다.
+
+#### 실험장 맵과 조작부 제작 범위
+
+단계 1의 다음 묶음은 `EnvironmentPlayground`와 `EnvironmentScenario`를 새 에셋으로 생성하는 작업이다. 두 맵은 같은 `UCCLExperimentDefinition` 자산 12개를 참조하고 구역 이름·조작법·기대값·구현 여부를 표시한다. 현재 실행 가능한 시험은 도구 준비 확인, 공통 시간의 실패·재시도, 통합 저장 복원이다. 천체 계산·날씨·눈·물·지형·생태·불·차폐 시험은 해당 단계에서 구현할 때까지 실행 버튼을 비활성화한다.
+
+`ACCLExperimentDirector`는 서버에서 실행 ID·세대·결과·초기 상태를 소유한다. `ACCLExperimentPlayerController`는 소유 연결의 RPC를 전달하고 기존 CommonUI에 `UCCLExperimentScreen`을 등록한다. 첫 접속자를 조작 담당자로 지정하며 다른 참가자는 결과를 볼 수 있다. 서버는 영역·담당자·세대·실행 ID를 확인한다. 단계 1의 시험 실행은 맵마다 하나로 제한한다. 공통 시간 변경은 격리 맵에서만 허용한다.
+
+초기화는 플레이어를 안내 구역의 안전 지점으로 옮기고 AI 이동·판단을 중지한 뒤 공통 시계와 Agent를 초기 스냅샷으로 복원한다. 실행 세대를 바꾸고 이전 실행의 타이머·요청을 거부한다. 이후 구현할 지형·수역·비동기 작업도 이 초기화 경계에 참가해야 하며, 이번 묶음만으로 해당 기능의 복구를 검증했다고 처리하지 않는다.
+
+실험 저장 슬롯은 캠페인과 분리하고 자동 검사에는 검사용 슬롯을 쓴다. 실험 화면은 기존 CommonUI의 입력·포커스·닫기 경로를 사용한다. 검사는 구역별 상태, 미구현 시험 거부, 서버 권한·낡은 세대 거부, 실제 실패 후 재시도, 초기화·재실행·저장 재개를 포함한다. 에디터 저장과 세 실행 모드, 화면 캡처까지 확인한 뒤 단계 1 통과 여부를 다시 판단한다.
+
+
+#### 실험장 구현과 단계 1 통과
+
+단계 1의 통과 기준을 충족했다. `EnvironmentPlayground`와 `EnvironmentScenario`는 각각 12개 구역 표지판과 같은 실험 정의를 갖춘 World Partition 맵이다. CommonUI 화면에서 구역 이동, 시작·중지·초기화·재실행, 저장·복원과 기존 두 테스트 맵으로 이동할 수 있다. 공통 시간 시험과 배율 변경은 격리 맵에서만 실행한다. 천체·날씨·눈·물·지형·생태·불·차폐의 후속 시험은 미구현 표시와 비활성화 상태를 유지한다.
+
+`ACCLExperimentDirector`가 서버의 조작 담당자와 실행 세대를 검증한다. 쓰기 중 초기화는 상태를 바꾸기 전에 거부하고, 플레이어를 안전 지점으로 옮기고 진행 중인 시험을 취소한 뒤 기준 상태를 복원한다. 이전 세대와 실행 ID의 요청은 거부한다. 종합 맵에서 격리·전투·멀티플레이 맵을 왕복한 뒤에도 원래 세계 ID와 시각을 이어가며, 초기화는 첫 진입 때의 기준 상태로 복원한다.
+
+실험 저장은 맵별 슬롯을 사용한다. 자동 검사는 실행 GUID를 붙인 검사용 슬롯으로 분리한다. 별도 프로세스 재시작에서 세계 ID, 시계 전체, 미처리 시간과 Agent 상태를 비교했다. Unreal SaveGame 헤더의 커스텀 버전 등록 순서는 프로세스마다 달라질 수 있으므로 읽는 프로세스에서 헤더를 정규화한다. 시각·Agent 본문의 차이를 제외하거나 오프라인 경과 시간을 추가하지 않는다. 결과 JSON에는 엔진·Seed·맵·세계 ID·실행 세대·조작·기대값·시각·배율을 기록한다.
+
+| 검사 | 결과와 근거 |
+|---|---|
+| 최종 프로젝트 파일 생성 | 성공, `Saved/EnvironmentGoal/experiment-generate.log` |
+| 최종 CCLEditor Win64 Development 빌드 | 성공, `Saved/EnvironmentGoal/experiment-build.log` |
+| CCL 전체 자동 검사 | 24개 성공, 실패·미실행 0개, `Saved/Tests/Automation/20261009-133042-749/report/index.json` |
+| 새 에디터의 저장 맵 검사 | 두 맵의 표지판 12개·공통 정의 12개 확인, `Saved/EnvironmentGoal/experiment-assets-verify.log` |
+| 종합 맵 Standalone·화면 | `Saved/Tests/Environment/EnvironmentPlayground-Standalone-20261009-133542-865/` |
+| 격리 맵 Standalone·화면 | `Saved/Tests/Environment/EnvironmentScenario-Standalone-20261009-133634-902/` |
+| 종합 맵 Listen·Dedicated | `Saved/Tests/Environment/EnvironmentPlayground-Listen-20261009-132542-350/`, `EnvironmentPlayground-Dedicated-20261009-133043-397/` |
+| 격리 맵 Listen·Dedicated | `Saved/Tests/Environment/EnvironmentScenario-Listen-20261009-133139-710/`, `EnvironmentScenario-Dedicated-20261009-131955-908/` |
+| 두 맵의 별도 프로세스 복원 | `Saved/Tests/Environment/EnvironmentPlayground-Standalone-20261009-132542-101/`, `EnvironmentScenario-Standalone-20261009-132542-350/` |
+| 네 맵 왕복·UI 해제·원래 초기 상태 복원 | `Saved/Tests/Environment/EnvironmentPlayground-Standalone-20261009-133043-121/` |
+| 기존 NPC 행동·경제·복원 | `Saved/Tests/AgentWorld/20261009-133138/editor.log` |
+| 기존 캠페인 별도 프로세스 저장 복원 | `Saved/Tests/SessionSmoke/20261009-133139/` |
+
+화면 검사는 1280×720에서 실제 Slate 포인터 클릭과 F8 닫기를 실행하고 `controls.png`, `station.png`, `overview.png`를 열어 한국어·배치·구역 색상을 확인했다. Nanite 재질의 사용 플래그와 표지판의 Dedicated 처리도 수정했다. 현재 조명은 실험장 가독성을 위한 고정 조명이며 천체에 따른 일조는 단계 2에서 연결한다. 네트워크 검사는 Editor의 게임·서버 모드이며 실제 Server 타깃 패키지의 증거로 사용하지 않는다. 기존 선택적 엔진 플러그인의 Python 초기화 오류는 앞 절과 같다.
+
+직접 확인하려면 에디터에서 `/Game/Maps/EnvironmentPlayground` 또는 `/Game/Maps/EnvironmentScenario`를 열고 실행한다. F8로 실험 화면을 열고 닫는다. 화면의 구역 목록을 스크롤해 00-11을 선택할 수 있다. 각 실행 결과는 `Saved/EnvironmentExperiments/Results/`에 남는다.
+
+재현 도구는 `Tools/Validation/run_environment_smoke.ps1`이다. `-Map`에 두 맵 중 하나를 지정하고 `-Mode Standalone`, `-Mode Listen`, `-Mode Dedicated`로 검사한다. `-Rendered`는 Standalone의 화면 검사, `-Restart`는 별도 프로세스 저장 복원, `-Map EnvironmentPlayground -Travel`은 맵 왕복 검사다. 새 에셋 생성은 `create_environment_playgrounds.py`, 가독성 조명 설정은 `configure_environment_visuals.py`, 새 에디터의 저장 내용 확인은 `verify_environment_playgrounds.py` 순으로 실행한다.
+
+현재 완료 단계는 0·1이다. 다음 작업은 단계 2의 천체 계산·일조·현지 시각과 다중 표면·차폐 입력이다. 단계 2-9는 미완료이며 기존 전체 목표에 포함된다. 단계별 알림 자동화는 새로 통과한 단계만 알려주도록 유지한다.

@@ -23,6 +23,7 @@ public:
 	uint64 Session = 1;
 	TMap<ECCLWorldDomain, TArray<uint8>> Experiments;
 	TMap<ECCLWorldDomain, uint64> ExperimentSessions;
+	TMap<ECCLWorldDomain, TArray<uint8>> ExperimentInitialSnapshots;
 };
 
 UCLASS()
