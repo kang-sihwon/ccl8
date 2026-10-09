@@ -1,6 +1,6 @@
 # 영구 지형 통합과 검증
 
-[EnvironmentPlan](EnvironmentPlan.md) 단계 3의 표면 질의, 저장 세대, 내비게이션, 복제와 구역 05 연결을 다룬다. 2026-10-09 UE 5.8.3 소스 빌드에서 단계 3의 통과 조건을 확인했다. 구현 위치는 `Source/CCL/Environment/`이며 실행 검사는 `Source/CCL/Tests/`와 `Tools/Validation/`에 있다. 단계 4의 물과 후속 눈 상태는 아직 연결하지 않았다.
+[EnvironmentPlan](EnvironmentPlan.md) 단계 3의 표면 질의, 저장 세대, 내비게이션, 복제와 구역 05 연결을 다룬다. 2026-10-09 UE 5.8.3 소스 빌드에서 단계 3의 통과 조건을 확인했다. 구현 위치는 `Source/CCL/Environment/`이며 실행 검사는 `Source/CCL/Tests/`와 `Tools/Validation/`에 있다. 물과의 확정·복원 연결은 [물 순환 설계와 검증](EnvironmentWater.md)이 소유한다. 눈의 지지·체적 보존과 이동·저장 연결은 [깊은 눈과 캐릭터 이동](EnvironmentSnow.md)에 기록했다.
 
 > 제출 범위: 이 문서는 로컬 작업 트리의 구현과 검증을 기록한다. 이번 코드와 에셋 변경은 아직 commit·push하지 않았다. 다른 기기의 원격 코드가 같은 상태라고 가정하지 않는다.
 

@@ -28,6 +28,8 @@
 | [UIFoundation](UIFoundation.md) | 장르 독립적인 UI 관리자·화면·문맥·레이어·연출 제어의 계약과 검증 |
 | [EnvironmentPlan](EnvironmentPlan.md) | 천체·날씨·영구 지형·눈·물·불·차폐·생태계와 실험장 구현 계획, 단계별 현재 상태 |
 | [영구 지형 통합과 검증](EnvironmentTerrain.md) | 단계 3의 다층 표면·완료 세대·경로·클라이언트 준비와 구역 05 조작·검증 |
+| [물 순환 설계와 검증](EnvironmentWater.md) | 보존량·경계 유량·물과 지형의 확정·저장·실험장 구현 |
+| [깊은 눈과 캐릭터 이동](EnvironmentSnow.md) | 단계 5의 적설·압축·흔적·CMC 예측·발 IK와 구역 03 조작·검증 |
 | [AgentFoundation](AgentFoundation.md) | 개인의 삶·기억·목표·자원·판단과 Actor/Mass 수명의 구현 계약 |
 | [생활 Agent·무기·지도 확인 안내](AgentReview-2026-10-08.md) | 직접 확인할 조작, 클래스 관계와 데이터 위치 |
 | [장비·UI 확인 안내](UIReview-2026-10-08.md) | 2026-10-08 구현 요약, 직접 확인할 화면과 검증 범위 |
