@@ -471,7 +471,7 @@ ECCLTerrainPrepareResult FCCLTerrainStore::PrepareEdit(const FCCLTerrainEdit& Re
 	return ECCLTerrainPrepareResult::Prepared;
 }
 
-bool FCCLTerrainStore::CommitEdit(const FCCLTerrainCandidate& Candidate, const FCCLTerrainAuthority& Authority, FString& Error)
+bool FCCLTerrainStore::ValidateCandidate(const FCCLTerrainCandidate& Candidate, const FCCLTerrainAuthority& Authority, FString& Error) const
 {
 	Error.Reset();
 	FBox Affected;
@@ -483,6 +483,16 @@ bool FCCLTerrainStore::CommitEdit(const FCCLTerrainCandidate& Candidate, const F
 	}
 
 	if (!ValidateRequest(Candidate.Request, Authority, Affected, Error))
+	{
+		return false;
+	}
+
+	return true;
+}
+
+bool FCCLTerrainStore::CommitEdit(const FCCLTerrainCandidate& Candidate, const FCCLTerrainAuthority& Authority, FString& Error)
+{
+	if (!ValidateCandidate(Candidate, Authority, Error))
 	{
 		return false;
 	}

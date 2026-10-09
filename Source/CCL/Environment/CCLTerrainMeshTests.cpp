@@ -3,6 +3,7 @@
 #if WITH_DEV_AUTOMATION_TESTS
 #include "CCLTerrainStore.h"
 #include "Misc/AutomationTest.h"
+#include "VectorUtil.h"
 
 namespace
 {
@@ -94,8 +95,8 @@ bool FCCLTerrainPlaneMeshTest::RunTest(const FString& Parameters)
 
 	for (const FIntVector& T : Mesh.Triangles)
 	{
-		const FVector N = FVector::CrossProduct(Mesh.VerticesMeters[T.Y] - Mesh.VerticesMeters[T.X],
-			Mesh.VerticesMeters[T.Z] - Mesh.VerticesMeters[T.X]);
+		const FVector N = UE::Geometry::VectorUtil::Normal(Mesh.VerticesMeters[T.X],
+			Mesh.VerticesMeters[T.Y], Mesh.VerticesMeters[T.Z]);
 		TestTrue(TEXT("ground triangle faces empty space above it"), N.Z > 0.);
 	}
 
@@ -183,7 +184,7 @@ bool FCCLTerrainCaveMeshTest::RunTest(const FString& Parameters)
 			++CavityTriangles;
 			CeilingTriangles += Mid.Z > Center.Z + 1.;
 			FloorTriangles += Mid.Z < Center.Z - 1.;
-			TestTrue(TEXT("cavity wall faces its empty interior"), FVector::DotProduct(FVector::CrossProduct(B - A, C - A), Center - Mid) > 0.);
+			TestTrue(TEXT("cavity wall faces its empty interior"), FVector::DotProduct(UE::Geometry::VectorUtil::Normal(A, B, C), Center - Mid) > 0.);
 			for (int32 I = 0; I < 3; ++I)
 			{
 				const uint32 Low = FMath::Min(T[I], T[(I + 1) % 3]);

@@ -15,6 +15,8 @@ public class CCL : ModuleRules
 
 		PrivateDependencyModuleNames.AddRange(new string[] { "Slate", "SlateCore", "Json", "JsonUtilities" });
 		PrivateDependencyModuleNames.Add("GeometryCore");
+		PrivateDependencyModuleNames.AddRange(new string[] { "PhysicsCore", "Chaos", "ChaosCore" });
+		PublicDependencyModuleNames.Add("GeometryFramework");
 		PublicDependencyModuleNames.Add("NetCore");
 		PublicDependencyModuleNames.AddRange(new string[] { "UMG", "CommonUI", "CommonInput", "ModelViewViewModel", "FieldNotification" });
 		if (Target.bBuildEditor)

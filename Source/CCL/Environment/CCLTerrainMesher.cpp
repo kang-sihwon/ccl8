@@ -145,7 +145,8 @@ bool FCCLTerrainMesher::BuildChunk(const FCCLTerrainSnapshot& Snapshot, const FI
 			}
 		}
 
-		Mesh.Triangles.Add(FIntVector(T.A, T.B, T.C));
+		// Positive density is air; reverse the generator winding for Unreal clockwise front faces.
+		Mesh.Triangles.Add(FIntVector(T.A, T.C, T.B));
 		Mesh.TriangleCells.Add(Cell);
 		Mesh.TriangleMaterials.Add(Material);
 	}

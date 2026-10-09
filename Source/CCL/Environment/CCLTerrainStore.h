@@ -135,6 +135,7 @@ public:
 	ECCLTerrainPrepareResult PrepareEdit(const FCCLTerrainEdit& Request, const FCCLTerrainAuthority& Authority,
 		FCCLTerrainCandidate& OutCandidate, FString& Error) const;
 	// Scalar publication only. The runtime coordinator must prepare collision and all dependent state first.
+	bool ValidateCandidate(const FCCLTerrainCandidate& Candidate, const FCCLTerrainAuthority& Authority, FString& Error) const;
 	bool CommitEdit(const FCCLTerrainCandidate& Candidate, const FCCLTerrainAuthority& Authority, FString& Error);
 	bool Capture(const FCCLTerrainSaveContext& Context, TArray<uint8>& OutBytes, FString& Error) const;
 	bool Restore(const TArray<uint8>& Bytes, const FCCLTerrainSaveContext& ExpectedContext, FString& Error);
