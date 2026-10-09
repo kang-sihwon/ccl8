@@ -16,6 +16,7 @@
 | `ACCLTerrainRegion` | 후보 충돌 준비, 확정 상태, 내비게이션 리비전과 클라이언트 적용 순번을 관리한다 |
 | `UCCLTerrainReplication` | PlayerController 하나의 전송, 마지막 확인 바이트와 준비 완료 응답을 관리한다 |
 | `ACCLExperimentDirector` | 실험 조작 권한, 구역 05와 세계 저장 복원을 연결한다 |
+| `UCCLAgentSessionStore` | GameInstance 수명 동안 도메인별 세계·지형 전환 스냅샷을 보관한다 |
 
 ```mermaid
 classDiagram
@@ -59,6 +60,18 @@ bool IsReplicaReady() const;
 
 보호 한도는 지역 파일 32MiB, 한 묶음 64개 지역과 전체 256MiB다. 이전 디렉터리는 보존하며 자동 정리 정책은 아직 없다. 불변 세대는 실패 시 되돌리기 쉽지만 저장 공간이 계속 늘어난다. 현재 실험장의 복원은 한 지역을 대상으로 하며 여러 로드 지역의 동시 런타임 복원은 후속 확장 범위다.
 
+## 맵 전환과 세션 복원
+
+실험장의 맵 전환은 `SaveSessionForTravel`로 시계, Agent와 로드된 지형을 같은 게임 스레드에서 캡처한 뒤 시작한다. 모든 지역이 확정됐을 때만 후보 묶음을 `UCCLAgentSessionStore::TravelSnapshots`에 넣는다. 준비 중인 지역이 있으면 전환을 거부하며 작업 완료 후 재시도할 수 있다. 전환 요청이 접수된 뒤에는 추가 조작을 막는다.
+
+`EnvironmentPlayground`와 `EnvironmentScenario`는 서로 다른 도메인에 저장한다. 새 월드는 해당 세계 스냅샷으로 시작하고 `InitializeTerrain`이 저장된 지형으로 첫 메시와 충돌을 준비한다. 지역 ID와 저장 문맥이 맞지 않으면 초기화를 거부한다. 평평한 기본 지형을 중간 상태로 게시하지 않는다. Actor와 Epoch는 새 월드에서 다시 만든다.
+
+일반 월드 종료에서는 `OnWorldBeginTearDown`에서 진행 중 후보를 취소하고 확정된 상태를 보관한다. 명시적 전환에서 이미 캡처한 경우에는 그 묶음을 유지한다. 뒤늦은 `Deinitialize`가 세계 바이트만 덮어 지형과 세대를 섞지 않도록 막는다. 도메인을 초기화하면 그 도메인의 전환 묶음도 지운다.
+
+이 경로는 프로세스 안의 세션 보존이다. 디스크 저장은 앞 절의 완료 세대 저장소가 담당한다. 맵별 마지막 묶음을 메모리에 유지하는 비용이 생기며, 현재 실험장의 초기 복원은 한 지역을 대상으로 한다. Framework 분리 시점과 후보는 [FrameworkPlan](FrameworkPlan.md)이 소유하고 실제 분리는 보류한다.
+
+엔진 근거는 `<Engine>/Source/Runtime/Engine/Private/World.cpp:6138`의 `BeginTearingDown`과 `<Engine>/Source/Runtime/Engine/Private/UnrealEngine.cpp:16183`의 맵 해제 순서다. 프로젝트 연결은 `Source/CCL/Agents/CCLAgentWorldSubsystem.cpp`와 `Source/CCL/Environment/CCLExperimentTerrain.cpp`에 있다.
+
 ## 경로와 복제
 
 활성 청크는 직접 메시를 NavMesh에 내보낸다. 게시 후 동적 갱신 완료 이벤트, 남은 작업과 대기 영역을 확인해 현재 리비전을 준비 상태로 만든다. 생활 Agent와 적 AI는 시작점과 목표뿐 아니라 현재 찾은 우회 경로가 준비되지 않은 지형을 지나는지도 검사한다.
@@ -68,6 +81,8 @@ UE 근거는 `<Engine>/Source/Runtime/NavigationSystem/Private/NavigationSystem.
 복제는 접속자마다 마지막으로 충돌 준비를 확인한 바이트를 기준으로 한다. 첫 접속과 기준 상태가 없을 때는 전체 스냅샷을 보낸다. 이후에는 공통 접두부와 접미부를 제외한 바이트를 보내며 최대 8KiB씩 응답을 기다린다. CRC, 바이트 수, 기준 순번과 게시 순번을 확인한다. 최신 게시가 바뀌면 이전 전송을 취소한다.
 
 클라이언트는 후보 충돌 게시 후에 준비 응답을 보낸다. 준비되지 않은 클라이언트는 구역 05로 이동할 수 없고, 이미 주변에 있다면 해당 접속자의 이동을 보류한다. 다른 접속자를 함께 기다리게 하지 않는다. Actor 참조가 먼저 도착해 해석되지 않으면 0.5초 뒤 재전송한다. 지역별 압축이나 편집 명령 재연보다 구현은 단순하지만 변경 위치에 따라 전송량이 전체 스냅샷에 가까워질 수 있다.
+
+같은 게시 순번을 다시 받으면 이미 적용한 지형 또는 준비 중 후보의 정본 바이트와 비교한다. 내용이 같으면 기존 준비와 Epoch를 유지하고 실제 충돌 준비 조건을 만족한 뒤 새 전송 ID에 완료 응답을 보낸다. 동일 순번의 다른 내용과 오래된 순번은 거부한다. 완료 응답을 서버가 제한 시간 안에 처리하지 못한 경우에도 전체 스냅샷 재전송으로 준비 상태를 회복할 수 있다.
 
 ## 직접 확인
 
@@ -81,27 +96,38 @@ UE 근거는 `<Engine>/Source/Runtime/NavigationSystem/Private/NavigationSystem.
 
 | 검사 | 결과와 근거 |
 |---|---|
-| 프로젝트 파일 생성·Editor 빌드 | 성공. `Saved/EnvironmentGoal/terrain-integration-generate.log`, `terrain-integration-build.log` |
-| CCL 자동 검사 | 55개 성공, 경고·실패·미실행 0개. `Saved/Tests/Automation/20261009-181843-785/report/index.json` |
-| 충돌·점유·실패·취소·복원·경로 | 통과. `Saved/Tests/Terrain/20261009-182004-419/result.json` |
-| Dedicated와 클라이언트 2개 | 전체 스냅샷, 변경량, 늦은 접속의 실제 충돌, 오래된 요청과 권한 거부 통과. `Saved/Tests/TerrainNetwork/Dedicated-20261009-181455-197/result.json` |
-| Listen과 클라이언트 2개 | 같은 조건 통과. `Saved/Tests/TerrainNetwork/Listen-20261009-181843-294/result.json` |
-| 격리 실험장 화면·새 프로세스 복원 | 실제 Slate 시작 버튼, 굴착·성토·수로·초기화·재실행 취소, 세계·지형 복원 통과. `Saved/Tests/TerrainScenario/EnvironmentScenario-20261009-182619-883/result.json` |
-| 종합 실험장 화면·새 프로세스 복원 | 같은 조건 통과. `Saved/Tests/TerrainScenario/EnvironmentPlayground-20261009-182720-205/result.json` |
+| 프로젝트 파일 생성·Editor 빌드 | 성공. `Saved/Reviews/terrain-fixes-generate.log`, `terrain-fixes-build.log` |
+| CCL 환경 자동 검사 | 42개 성공, 경고·실패·미실행 0개. `Saved/Tests/Automation/20261009-205054-003/report/index.json` |
+| 충돌·점유·실패·취소·복원·경로 | 통과. `Saved/Tests/Terrain/20261009-205052-778/result.json` |
+| Dedicated와 클라이언트 2개 | 완료 응답 지연 후 재전송, 중복 후보 유지, 동순번 내용 충돌 거부, 전체·변경량 전송과 늦은 접속 통과. `Saved/Tests/TerrainNetwork/Dedicated-20261009-203137-699/result.json` |
+| Listen과 클라이언트 2개 | 같은 조건 통과. `Saved/Tests/TerrainNetwork/Listen-20261009-203409-541/result.json` |
+| Standalone 맵 왕복 | 두 실험장 사이 4회 전환, 도메인별 세계·지형 복원과 준비 중 전환 거부 통과. `Saved/Tests/TerrainTravel/Standalone-20261009-204919-429/result.json` |
+| Listen 맵 왕복 | 클라이언트 1개와 4회 전환, 복귀 후 최신 충돌 준비 응답까지 통과. `Saved/Tests/TerrainTravel/Listen-20261009-204919-041/result.json` |
+| Dedicated 맵 왕복 | 같은 조건 통과. `Saved/Tests/TerrainTravel/Dedicated-20261009-205053-123/result.json` |
+| 격리 실험장 디스크 저장·새 프로세스 복원 | 굴착·성토·수로·초기화·취소와 세계·지형 복원 통과. `Saved/Tests/TerrainScenario/EnvironmentScenario-20261009-204920-951/result.json` |
+| 격리 실험장 화면·새 프로세스 복원(기존 검사) | 실제 Slate 시작 버튼, 굴착·성토·수로·초기화·재실행 취소, 세계·지형 복원 통과. `Saved/Tests/TerrainScenario/EnvironmentScenario-20261009-182619-883/result.json` |
+| 종합 실험장 화면·새 프로세스 복원(기존 검사) | 같은 조건 통과. `Saved/Tests/TerrainScenario/EnvironmentPlayground-20261009-182720-205/result.json` |
 | 기존 세계 저장 재시작 | 통과. `Saved/Tests/Environment/EnvironmentScenario-Standalone-20261009-175521-967/result.json` |
-| 기존 생활 Agent 실행 | 행동·저장·Actor 재구성 통과. `Saved/Tests/AgentWorld/20261009-182005/editor.log` |
+| 기존 생활 Agent 실행 | 행동·저장·Actor 재구성 통과. `Saved/Tests/AgentWorld/20261009-210014/editor.log` |
 
-화면 검토는 두 지형 시나리오 폴더의 `terrain-controls.png`와 `terrain-overview.png`를 사용했다. 한국어 버튼과 상태가 잘리지 않고 굴착과 성토가 표시되는지 확인했다. 초기 화면 검사에서 DDC 종료 대기와 첫 Slate 클릭의 미반영이 발생했다. 종료 제한을 120초로 조정하고 실제 실행 상태를 확인해 클릭을 최대 네 번 재시도한다. 위 최종 실행은 정상 종료까지 통과했다.
+기존 화면 검토는 두 지형 시나리오 폴더의 `terrain-controls.png`와 `terrain-overview.png`를 사용했다. 한국어 버튼과 상태가 잘리지 않고 굴착과 성토가 표시되는지 확인했다. 초기 화면 검사에서 DDC 종료 대기와 첫 Slate 클릭의 미반영이 발생했다. 종료 제한을 120초로 조정하고 실제 실행 상태를 확인해 클릭을 최대 네 번 재시도한다. 위 최종 실행은 정상 종료까지 통과했다.
 
 표면 자동 검사는 같은 XY의 지상·천장·동굴 바닥, 재질, 청크 순서 독립적인 ID, 오래된 질의와 결과 예산을 확인한다. 세대 저장 자동 검사는 최신 파일 손상, 완료 표식 누락과 세대 혼합 거부, 이전 완료 세대 선택을 확인한다. 지형 시나리오 검사는 비동기 복원 중 시계의 자동 Tick을 끄고 명시적으로 누적한 시간·대기 입력·Agent와 실제 충돌을 비교한다.
 
+왕복 검사는 자동 시계 Tick을 끄고 서로 다른 완료 시간과 대기 입력을 넣는다. 저장된 Agent의 필드 전체와 기존 경제 기록, 지형 바이트, 충돌 높이와 새 Epoch를 비교한다. 맵 로드 후 새 PlayerState가 개설한 계좌만 현재 접속자 ID와 미사용 초기 잔액으로 따로 검사한다. 그 밖의 추가 기록이나 기존 기록의 변화는 허용하지 않는다.
+
+복제 재시도 검사는 최종 준비 응답 하나를 서버에서 무시하고 해당 전송의 제한 시간을 넘긴다. 정상 시간 초과 분기, 변경량 기준 불일치에 따른 전체 전송과 서버 준비 상태의 회복을 확인한다. 같은 순번을 준비 중 또는 적용 후 다시 처리해도 후보 작업과 Epoch가 바뀌지 않는지 검사한다. 이는 조건을 주입한 재현이며 실제 패킷 손실 측정은 아니다.
+
 ```powershell
-& Tools/Validation/run_automation.ps1 -Filter 'CCL.' -TimeoutSeconds 240
+& Tools/Validation/run_automation.ps1 -Filter 'CCL.Environment' -TimeoutSeconds 240
 & Tools/Validation/run_terrain_smoke.ps1 -Rendered -TimeoutSeconds 240
 & Tools/Validation/run_terrain_scenario_smoke.ps1 -Map EnvironmentScenario -Rendered
 & Tools/Validation/run_terrain_scenario_smoke.ps1 -Map EnvironmentPlayground -Rendered
 & Tools/Validation/run_terrain_network_smoke.ps1 -Mode Dedicated -Port 19831
 & Tools/Validation/run_terrain_network_smoke.ps1 -Mode Listen -Port 19832
+& Tools/Validation/run_terrain_travel_smoke.ps1 -Mode Standalone
+& Tools/Validation/run_terrain_travel_smoke.ps1 -Mode Listen -Port 19841
+& Tools/Validation/run_terrain_travel_smoke.ps1 -Mode Dedicated -Port 19842
 ```
 
 대규모 지역의 질의 시간, 다수 접속자의 메모리와 전송량, 실제 네트워크 손실, 패키지 실행과 아트 품질은 별도 측정이 필요하다. 현재 표면은 기본 재질을 사용한다. 기존 선택적 EditorToolset의 Python 초기화 오류는 지형 PASS와 구분해 기록한다.
