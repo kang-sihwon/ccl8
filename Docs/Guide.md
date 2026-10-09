@@ -33,6 +33,7 @@
 | [장비·UI 확인 안내](UIReview-2026-10-08.md) | 2026-10-08 구현 요약, 직접 확인할 화면과 검증 범위 |
 | [ArtDirection](ArtDirection.md) | 그래픽 스타일·시각 기준·아트 제작 초안 |
 | [Coding](Coding.md) | 코드 설계·리뷰·빌드와 파일 수정 경계 |
+| [FrameworkPlan](FrameworkPlan.md) | 공용 시스템 후보·Framework 명명·독립성 검증과 분리 보류·재검토 기준 |
 | [WritingGuide](WritingGuide.md) | 문서 작성·검토·결정 기록 |
 | [시스템 학습 문서 작성 규칙](SystemExplanationGuide.md) | 교사식 설명, Git 전후 코드 비교, 변경 이유와 검증의 작성 기준 |
 | [인벤토리 UI 학습](Learning/InventoryUI.md) | Slate 문법부터 공용 화면 관리로의 변경 이유까지 설명하는 전체 예시 |
