@@ -86,7 +86,7 @@ UE 근거는 `<Engine>/Source/Runtime/NavigationSystem/Private/NavigationSystem.
 
 ## 직접 확인
 
-`/Game/Maps/EnvironmentPlayground` 또는 `/Game/Maps/EnvironmentScenario`를 실행하고 F8 조작 화면에서 구역 05를 선택한다. 시작은 지형 초기화 후 굴착, 실제 충돌, 경로와 보호 구역 검사를 실행한다. 개별 버튼으로 굴착, 성토, 수로, 보호 구역 거부와 지형 초기화를 요청할 수 있다. 저장과 불러오기는 세계 시계, Agent와 지형의 같은 완료 세대를 사용한다.
+`/Game/Maps/EnvironmentPlayground` 또는 `/Game/Maps/EnvironmentScenario`를 실행하고 F7 조작 화면에서 구역 05를 선택한다. 시작은 지형 초기화 후 굴착, 실제 충돌, 경로와 보호 구역 검사를 실행한다. 개별 버튼으로 굴착, 성토, 수로, 보호 구역 거부와 지형 초기화를 요청할 수 있다. 저장과 불러오기는 세계 시계, Agent와 지형의 같은 완료 세대를 사용한다.
 
 구역 05는 가로세로 16m, 높이 8m의 실험 지역이다. 표면 높이는 기존 바닥보다 4m 높다. 보호 위치로 이동해 조작하며, 물이 흐르는 수로의 유동은 단계 4에서 연결한다. 현재 수로 버튼은 지형만 굴착한다.
 

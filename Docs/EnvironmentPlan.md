@@ -10,6 +10,25 @@
 
 다음 작업자는 Guide, Coding, VersionControl과 [눈·이동 문서](EnvironmentSnow.md)의 직접 테스트 절차를 읽고 현재 Git 상태를 확인한다. 단계 6 재개는 사용자의 후속 요청을 따른다. 기기가 바뀌었으면 기기별 경로 설정과 실제 UE 버전을 확인한 뒤 프로젝트 파일 생성, 빌드와 지형 시나리오를 재실행한다. 다른 작업의 변경을 자동으로 stash·reset하지 않는다. 이번 검증 환경은 UE 5.8.3이며 과거 엔진 버전의 기록을 현재 검증으로 대신하지 않는다.
 
+## 실험 메뉴 조작과 검증
+
+두 환경 실험장의 메뉴는 **F7**로 열고 닫는다. 닫기 버튼을 사용한 뒤에도 F7로 다시 연다. 메뉴가 닫힌 동안 화면 왼쪽 아래의 HUD에 같은 키를 표시한다. PIE에서 마우스를 해제했다면 게임 화면을 클릭해 입력 초점을 돌린다.
+
+`CCLExperimentPlayerController`는 게임 입력의 열기를, `CCLExperimentScreen`은 메뉴가 입력을 소유할 때의 닫기를 처리한다. CommonUI의 메뉴 정책과 닫힌 뒤 게임 입력 복구는 유지한다. UE 5.8.3의 F8은 에디터의 `PossessEjectPlayer`에 배정돼 있으므로 실험 메뉴에는 사용하지 않는다. 근거는 `<Engine>/Source/Editor/UnrealEd/Private/Kismet2/DebuggerCommands.cpp:365`와 `<Engine>/Source/Runtime/Engine/Private/GameViewportClient.cpp:776`이다. 아래 과거 검증 기록의 F8은 당시 단축키다.
+
+회귀 검사 `Tools/Validation/run_experiment_menu_smoke.ps1`은 실제 Slate 클릭과 키 입력으로 닫기 버튼, F7 재열기, F7 닫기와 두 번째 재열기를 실행한다. 키를 누른 채 발생하는 반복 입력이 메뉴를 다시 닫지 않는지도 검사한다. 메뉴 상태, 이동·시점 입력 정책과 플레이어 소유권을 확인한다. `-Map EnvironmentScenario` 또는 `-Map EnvironmentPlayground`를 지정하며, `-PIE`를 추가하면 실제 에디터 뷰포트에서 검사한다. 기본은 Standalone이다.
+
+2026-10-10의 최종 코드에서 아래 검사를 통과했다. 두 맵과 실행 방식별로 두 번의 재열기를 확인했으며, PIE는 조종 해제로 전환되지 않았다. 닫힌 화면의 F7 안내와 다시 열린 메뉴도 캡처로 확인했다. 경로는 저장소 기준이며 원본 로그와 이미지는 로컬 `Saved/`에 보관한다.
+
+| 검사 | 결과와 근거 |
+|---|---|
+| 프로젝트 파일 생성 | 성공, `Saved/EnvironmentStages/MenuReopen-GPF.log` |
+| CCLEditor Win64 Development 빌드 | 성공, `Saved/EnvironmentStages/MenuReopen-Build.log` |
+| EnvironmentScenario PIE | 성공, `Saved/Tests/ExperimentMenu/EnvironmentScenario-PIE-20261010-003047-721` |
+| EnvironmentPlayground PIE | 성공, `Saved/Tests/ExperimentMenu/EnvironmentPlayground-PIE-20261010-003120-569` |
+| EnvironmentScenario Standalone | 성공, `Saved/Tests/ExperimentMenu/EnvironmentScenario-Standalone-20261010-003152-817` |
+| EnvironmentPlayground Standalone | 성공, `Saved/Tests/ExperimentMenu/EnvironmentPlayground-Standalone-20261010-003220-459` |
+
 ## 확정 범위
 
 날씨와 지면의 상호작용이 우선이다. 처음에는 한 행성의 지상에서 플레이하되 다른 행성·위성·우주 공간으로 확장할 기반을 설계한다. 기존 마을·전투·보스 흐름을 유지한다. 환경 전체를 기존 3-4개월 목표 안에 완성할 수 있다는 일정 검증은 아직 없다.
