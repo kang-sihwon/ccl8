@@ -69,6 +69,7 @@ private:
 	int32 AcknowledgedOffset = 0;
 	double StartedAt = 0.;
 	double NextSendAt = 0.;
+	double NextChunkAt = 0.;
 	uint8 bWaiting = 0;
 	uint8 bHasAcknowledgedSnapshot = 0;
 };

@@ -62,6 +62,7 @@ private:
 	uint32 ExpectedCRC = 0;
 	double LastProgress = 0.;
 	double NextTransferAttempt = 0.;
+	double NextChunkAt = 0.;
 	uint8 bWaiting = 0;
 	uint8 bApplying = 0;
 };

@@ -23,12 +23,44 @@
 #include "Framework/Application/SlateApplication.h"
 #include "Widgets/SWindow.h"
 #include "Camera/CameraActor.h"
+#include "Engine/GameViewportClient.h"
+#include "Widgets/SViewport.h"
+#include "Blueprint/SlateBlueprintLibrary.h"
 #include "Kismet/KismetMathLibrary.h"
 #include "Kismet/GameplayStatics.h"
 #include "UnrealClient.h"
 #include "Misc/Paths.h"
 #include "Misc/FileHelper.h"
 #include "HAL/FileManager.h"
+#if WITH_EDITOR
+#include "Editor.h"
+#include "Containers/Ticker.h"
+#endif
+
+namespace
+{
+void FinishExperimentTest(UWorld* World, uint8 ExitCode)
+{
+#if WITH_EDITOR
+	if (World && World->WorldType == EWorldType::PIE && GEditor)
+	{
+		GEditor->RequestEndPlayMap();
+		FTSTicker::GetCoreTicker().AddTicker(FTickerDelegate::CreateLambda([ExitCode](float)
+		{
+			if (GEditor && GEditor->PlayWorld)
+			{
+				return true;
+			}
+
+			FPlatformMisc::RequestExitWithStatus(false, ExitCode);
+			return false;
+		}), 1.f);
+		return;
+	}
+#endif
+	FPlatformMisc::RequestExitWithStatus(false, ExitCode);
+}
+}
 
 bool UCCLExperimentSmokeSubsystem::ShouldCreateSubsystem(UObject* Outer) const
 {
@@ -56,6 +88,12 @@ void UCCLExperimentSmokeSubsystem::Tick(float DeltaTime)
 	auto* World = GetWorld();
 	if (!World || !World->HasBegunPlay() || Now < Next)
 	{
+		static bool bReportedWorld = false;
+		if (World && !World->HasBegunPlay() && !bReportedWorld && Now - Started > 20.)
+		{
+			UE_LOG(LogTemp, Warning, TEXT("CCL_EXPERIMENT_WAIT World=%s has not begun play Mode=%d"), *World->GetName(), int32(World->GetNetMode()));
+			bReportedWorld = true;
+		}
 		return;
 	}
 
@@ -69,13 +107,27 @@ void UCCLExperimentSmokeSubsystem::Tick(float DeltaTime)
 	auto* PC = Cast<ACCLExperimentPlayerController>(GetGameInstance()->GetFirstLocalPlayerController());
 	if (!Director || !Director->IsReady() || (World->GetNetMode() != NM_DedicatedServer && (!PC || !PC->GetPawn())))
 	{
+		static bool bReportedReadiness = false;
+		if (!bReportedReadiness && Now - Started > 20.)
+		{
+			UE_LOG(LogTemp, Warning, TEXT("CCL_EXPERIMENT_WAIT Director=%s Ready=%d Results=%d PC=%s Pawn=%s CanOperate=%d Mode=%d"),
+				*GetNameSafe(Director), Director && Director->IsReady(), Director ? Director->GetResults().Num() : 0,
+				*GetNameSafe(PC), *GetNameSafe(PC ? PC->GetPawn() : nullptr), Director && Director->CanOperate(PC), int32(World->GetNetMode()));
+			bReportedReadiness = true;
+		}
+		return;
+	}
+
+	if (FParse::Param(FCommandLine::Get(), TEXT("CCLExperimentMenuSmoke")))
+	{
+		TickMenuInput(Now);
 		return;
 	}
 
 	FString Error;
 	const FName Guide(TEXT("Zone_00"));
 	const FName Clock(TEXT("Zone_01"));
-	const FName Reserved(TEXT("Zone_03"));
+	const FName Reserved(TEXT("Zone_02"));
 	const FName Snapshot(TEXT("Zone_08"));
 	auto Execute = [&](ECCLExperimentAction Action, FName Case = NAME_None)
 	{
@@ -380,8 +432,8 @@ void UCCLExperimentSmokeSubsystem::Tick(float DeltaTime)
 		{
 			if (bRendered)
 			{
-				FSlateApplication::Get().ProcessKeyDownEvent(FKeyEvent(EKeys::F8, FModifierKeysState(), 0, false, 0, 0));
-				FSlateApplication::Get().ProcessKeyUpEvent(FKeyEvent(EKeys::F8, FModifierKeysState(), 0, false, 0, 0));
+				FSlateApplication::Get().ProcessKeyDownEvent(FKeyEvent(EKeys::F7, FModifierKeysState(), 0, false, 0, 0));
+				FSlateApplication::Get().ProcessKeyUpEvent(FKeyEvent(EKeys::F7, FModifierKeysState(), 0, false, 0, 0));
 			}
 			else
 			{
@@ -451,6 +503,102 @@ void UCCLExperimentSmokeSubsystem::Tick(float DeltaTime)
 TStatId UCCLExperimentSmokeSubsystem::GetStatId() const
 {
 	RETURN_QUICK_DECLARE_CYCLE_STAT(UCCLExperimentSmokeSubsystem, STATGROUP_Tickables);
+}
+
+void UCCLExperimentSmokeSubsystem::TickMenuInput(double Now)
+{
+	if (Step >= 20)
+	{
+		TickLab(Now);
+		return;
+	}
+	auto* PC = Cast<ACCLExperimentPlayerController>(GetGameInstance()->GetFirstLocalPlayerController());
+	auto* UI = CCLGameUI::Get(PC);
+	const auto* Router = PC->GetLocalPlayer()->GetSubsystem<UCommonUIActionRouterBase>();
+	if (!UI || !Router)
+	{
+		return;
+	}
+
+	const bool bOpen = UI->IsViewOpen(PC->GetExperimentView());
+	const auto KeyEvent = FKeyEvent(EKeys::F7, FModifierKeysState(), 0, false, 0, 0);
+	auto& App = FSlateApplication::Get();
+	if (Step == 0)
+	{
+		if (!bOpen)
+		{
+			return;
+		}
+
+		Capture(TEXT("menu-initial"));
+	}
+	else if (Step == 1)
+	{
+		auto* Screen = Cast<UCCLExperimentScreen>(UI->FindScreen(PC->GetExperimentView()));
+		if (!ClickControl(Screen ? Screen->GetCloseButton() : nullptr))
+		{
+			return;
+		}
+	}
+	else if (Step == 2 || Step == 8)
+	{
+		if (!Check(!bOpen && Router->CanProcessNormalGameInput() && !PC->IsMoveInputIgnored() && !PC->IsLookInputIgnored(),
+			TEXT("menu closed and gameplay input restored")))
+		{
+			return;
+		}
+
+		Capture(TEXT("menu-closed"));
+	}
+	else if (Step == 3 || Step == 6 || Step == 9)
+	{
+		// Reopening must pass through the focused viewport and Enhanced Input, not the menu command.
+		App.ProcessKeyDownEvent(KeyEvent);
+	}
+	else if (Step == 4 || Step == 7 || Step == 10)
+	{
+		if (Step != 7)
+		{
+			App.ProcessKeyDownEvent(FKeyEvent(EKeys::F7, FModifierKeysState(), 0, true, 0, 0));
+			if (!Check(UI->IsViewOpen(PC->GetExperimentView()), TEXT("held menu key does not close the reopened menu")))
+			{
+				return;
+			}
+		}
+
+		App.ProcessKeyUpEvent(KeyEvent);
+	}
+	else if (Step == 5 || Step == 11)
+	{
+		if (!Check(bOpen && !Router->CanProcessNormalGameInput() && PC->IsMoveInputIgnored() && PC->IsLookInputIgnored(),
+			TEXT("F7 reopens menu and applies menu input")) ||
+			!Check(PC->GetPawn() && PC->GetPawn()->GetController() == PC, TEXT("menu shortcut preserves player possession")))
+		{
+			return;
+		}
+
+#if WITH_EDITOR
+		if (GetWorld()->WorldType == EWorldType::PIE && !Check(GEditor && !GEditor->bIsSimulatingInEditor,
+			TEXT("PIE remains in play mode after menu shortcut")))
+		{
+			return;
+		}
+#endif
+		Capture(TEXT("menu-reopened"));
+	}
+	else if (Step == 12)
+	{
+		if (FParse::Param(FCommandLine::Get(), TEXT("CCLExperimentLabSmoke")))
+		{
+			Step = 20;
+			return;
+		}
+		Finish(TEXT("MenuInput"));
+		return;
+	}
+
+	++Step;
+	Next = Now + 0.75;
 }
 
 void UCCLExperimentSmokeSubsystem::TickTravel(double Now)
@@ -547,7 +695,7 @@ bool UCCLExperimentSmokeSubsystem::Check(bool bCondition, const TCHAR* Message)
 	if (!bCondition)
 	{
 		bComplete = 1;
-		FPlatformMisc::RequestExitWithStatus(false, 1);
+		FinishExperimentTest(GetWorld(), 1);
 	}
 
 	return bCondition;
@@ -574,7 +722,7 @@ void UCCLExperimentSmokeSubsystem::Finish(const TCHAR* Role)
 	bComplete = 1;
 	if (GetWorld()->GetNetMode() == NM_Standalone || FCString::Strcmp(Role, TEXT("Observer")) == 0)
 	{
-		FPlatformMisc::RequestExitWithStatus(false, 0);
+		FinishExperimentTest(GetWorld(), 0);
 	}
 }
 
@@ -582,7 +730,8 @@ bool UCCLExperimentSmokeSubsystem::ClickControl(TSharedPtr<SWidget> Control)
 {
 	if (!Control || !Control->IsEnabled() || Control->GetCachedGeometry().GetAbsoluteSize().IsNearlyZero())
 	{
-		return Check(false, TEXT("visible enabled environment control"));
+		return Check(false, *FString::Printf(TEXT("visible enabled environment control: exists=%d enabled=%d size=%s"),
+			Control.IsValid(), Control && Control->IsEnabled(), Control ? *Control->GetCachedGeometry().GetAbsoluteSize().ToString() : TEXT("none")));
 	}
 
 	const FVector2D Point = Control->GetCachedGeometry().GetAbsolutePosition() + Control->GetCachedGeometry().GetAbsoluteSize() * 0.5;
@@ -740,6 +889,7 @@ void UCCLExperimentSmokeSubsystem::TickEnvironment(double Now)
 			}
 
 			NewScreen->SelectCase(TEXT("Zone_01"));
+			NewScreen->RevealControl(NewScreen->GetRotationButton());
 		}
 
 		Step = 13;
@@ -747,7 +897,18 @@ void UCCLExperimentSmokeSubsystem::TickEnvironment(double Now)
 		return;
 	}
 
-	if (Step == 13)
+	if (Step == 13 && bRendered)
+	{
+		if (!Screen)
+		{
+			return;
+		}
+		Screen->RevealControl(Screen->GetRotationButton());
+		Step = 131;
+		Next = Now + 1.;
+		return;
+	}
+	if (Step == 13 || Step == 131)
 	{
 		Capture(TEXT("celestial-controls"));
 		if (bScenario)
@@ -802,6 +963,7 @@ void UCCLExperimentSmokeSubsystem::TickEnvironment(double Now)
 		if (Screen)
 		{
 			Screen->SelectCase(TEXT("Zone_11"));
+			Screen->RevealControl(Screen->GetDoorButton());
 		}
 
 		Step = 15;
@@ -809,7 +971,18 @@ void UCCLExperimentSmokeSubsystem::TickEnvironment(double Now)
 		return;
 	}
 
-	if (Step == 15)
+	if (Step == 15 && bRendered)
+	{
+		if (!Screen)
+		{
+			return;
+		}
+		Screen->RevealControl(Screen->GetDoorButton());
+		Step = 151;
+		Next = Now + 1.;
+		return;
+	}
+	if (Step == 15 || Step == 151)
 	{
 		Capture(TEXT("shelter-controls"));
 		if (!(bRendered ? ClickControl(Screen ? Screen->GetDoorButton() : nullptr) : Execute(ECCLExperimentAction::CycleOpening)))
@@ -900,4 +1073,173 @@ void UCCLExperimentSmokeSubsystem::TickEnvironment(double Now)
 	{
 		Finish(TEXT("Authority"));
 	}
+}
+
+void UCCLExperimentSmokeSubsystem::TickLab(double Now)
+{
+	auto* World = GetWorld();
+	auto* PC = Cast<ACCLExperimentPlayerController>(GetGameInstance()->GetFirstLocalPlayerController());
+	auto* UI = CCLGameUI::Get(PC);
+	auto* Screen = Cast<UCCLExperimentScreen>(UI->FindScreen(PC->GetExperimentView()));
+	auto* Director = ACCLExperimentDirector::Find(World);
+	auto* Region = Director->GetTerrainRegion();
+	auto* Runtime = World->GetSubsystem<UCCLWorldSimulationSubsystem>();
+	if (!Screen || !Region || !Region->IsTerrainReady() || Region->IsPreparing())
+	{
+		return;
+	}
+	auto& App = FSlateApplication::Get();
+	FString Error;
+	if (Step == 20)
+	{
+		const FGeometry Full = Screen->GetCachedGeometry();
+		const FGeometry Panel = Screen->GetMenuPanel()->GetCachedGeometry();
+		const FVector2D Local = Full.AbsoluteToLocal(Panel.GetAbsolutePosition());
+		if (!Check(FMath::Abs(Local.X) < 2. && Panel.GetAbsoluteSize().X < Full.GetAbsoluteSize().X * 0.43
+			&& FMath::Abs(Local.Y + Panel.GetLocalSize().Y * 0.5 - Full.GetLocalSize().Y * 0.5) < 2.,
+			TEXT("menu flush left, vertically centered and narrower than half viewport")))
+		{
+			return;
+		}
+		Screen->SelectCase(TEXT("Zone_01"));
+		PC->Submit(ECCLExperimentAction::ScaleZero, TEXT("Zone_01"));
+	}
+	else if (Step == 21)
+	{
+		Screen->RevealControl(Screen->GetCelestialViewButton());
+	}
+	else if (Step == 22)
+	{
+		if (!ClickControl(Screen->GetCelestialViewButton()))
+		{
+			return;
+		}
+	}
+	else if (Step == 23)
+	{
+		if (!Check(Screen->GetCelestialView()->GetCachedGeometry().GetLocalSize().X > 300., TEXT("3D celestial inspection receives layout")))
+		{
+			return;
+		}
+		Capture(TEXT("celestial-debug"));
+		PreviousTerrainRevision = Runtime->GetEnvironmentInputs().Revision;
+		Screen->RevealControl(Screen->GetRotationButton());
+	}
+	else if (Step == 24)
+	{
+		if (!ClickControl(Screen->GetRotationButton()))
+		{
+			return;
+		}
+	}
+	else if (Step == 25)
+	{
+		if (!Check(Runtime->GetEnvironmentInputs().Revision > PreviousTerrainRevision, TEXT("visible rotation button changes published input")))
+		{
+			return;
+		}
+		Capture(TEXT("celestial-rotated"));
+		Screen->SelectCase(TEXT("Zone_05"));
+		const FVector Focus = Region->GetActorLocation();
+		const FVector Location = Focus + FVector(1600., -1600., 1500.);
+		auto* Camera = World->SpawnActor<ACameraActor>(Location, UKismetMathLibrary::FindLookAtRotation(Location, Focus));
+		PC->SetViewTarget(Camera);
+		PC->SelectTerrainTool(ECCLExperimentAction::TerrainExcavate);
+	}
+	else if (Step == 26)
+	{
+		for (int32 I = 0; I < 3; ++I)
+		{
+			PC->Submit(ECCLExperimentAction::RotateQuarter, TEXT("Zone_01"));
+		}
+
+		FHitResult Hit;
+		const FVector Target = Region->GetActorLocation() + FVector(200., 0., 0.);
+		if (!Check(World->LineTraceSingleByChannel(Hit, Target + FVector(0, 0, 1000), Target - FVector(0, 0, 1000), ECC_Visibility)
+			&& Hit.GetActor() == Region, TEXT("editable surface cursor target exists"))) { return; }
+		FVector2D Pixel;
+		if (!Check(PC->ProjectWorldLocationToScreen(Hit.ImpactPoint, Pixel), TEXT("terrain cursor projects to viewport")))
+		{
+			return;
+		}
+		USlateBlueprintLibrary::ScreenToWidgetAbsolute(World, Pixel, LabCursor, false);
+		if (!Check(!Screen->GetMenuPanel()->GetCachedGeometry().IsUnderLocation(LabCursor), TEXT("terrain cursor outside menu")))
+		{
+			return;
+		}
+		PreviousTerrainRevision = Region->GetTerrainStore().GetRevision();
+		LabTarget = Hit.ImpactPoint;
+		FVector2D RoundTrip, WidgetPosition;
+		USlateBlueprintLibrary::AbsoluteToViewport(World, LabCursor, RoundTrip, WidgetPosition);
+		if (!Check(RoundTrip.Equals(Pixel, 0.1), TEXT("viewport pixel and Slate absolute coordinates round trip"))) { return; }
+		FHitResult DirectHit;
+		FCollisionQueryParams Query(SCENE_QUERY_STAT(ExperimentLabPointer), true);
+		Query.AddIgnoredActor(PC->GetPawn());
+		const bool bDirectHit = PC->GetHitResultAtScreenPosition(Pixel, ECC_Visibility, Query, DirectHit);
+		FVector2D HitPixel;
+		// UE deprojection truncates subpixels. Bound error in pixels, not world centimeters.
+		if (!Check(bDirectHit && DirectHit.GetActor() == Region
+			&& PC->ProjectWorldLocationToScreen(DirectHit.ImpactPoint, HitPixel) && HitPixel.Equals(Pixel, 1.1),
+			TEXT("projected target deprojects within one viewport pixel"))) { return; }
+		LabTarget = DirectHit.ImpactPoint;
+		App.SetCursorPos(LabCursor);
+		App.ProcessMouseMoveEvent(FPointerEvent(0, LabCursor, LabCursor, TSet<FKey>(), EKeys::Invalid, 0, FModifierKeysState()));
+	}
+	else if (Step == 27)
+	{
+		Capture(TEXT("terrain-cursor"));
+		const auto Window = App.FindWidgetWindow(Screen->TakeWidget());
+		App.ProcessMouseButtonDownEvent(Window ? Window->GetNativeWindow() : nullptr,
+			FPointerEvent(0, LabCursor, LabCursor, TSet<FKey>{EKeys::LeftMouseButton}, EKeys::LeftMouseButton, 0, FModifierKeysState()));
+		App.ProcessMouseButtonUpEvent(FPointerEvent(0, LabCursor, LabCursor, TSet<FKey>(), EKeys::LeftMouseButton, 0, FModifierKeysState()));
+		FHitResult CursorHit;
+		const bool bHit = PC->TraceTerrainCursor(CursorHit);
+		if (!Check(bHit && CursorHit.GetActor() == Region && CursorHit.ImpactPoint.Equals(LabTarget, 2.),
+			*FString::Printf(TEXT("Slate click maps to world target: expected=%s actual=%s actor=%s"),
+				*LabTarget.ToString(), *CursorHit.ImpactPoint.ToString(), *GetNameSafe(CursorHit.GetActor())))) { return; }
+	}
+	else if (Step == 28)
+	{
+		if (!Check(Region->GetTerrainStore().GetRevision() > PreviousTerrainRevision, *FString::Printf(TEXT("menu exterior click commits terrain at cursor: %s"), *PC->GetExperimentMessage())))
+		{
+			return;
+		}
+		Capture(TEXT("terrain-edited"));
+		const uint64 Revision = Region->GetTerrainStore().GetRevision();
+		const FVector Invalid(1.e9, 1.e9, 1.e9);
+		if (!Check(!Director->Execute(PC, ECCLExperimentAction::TerrainDeposit, TEXT("Zone_05"), Director->GetGeneration(), FGuid(), Error,
+			Region->GetPublicationSerial(), &Invalid) && Region->GetTerrainStore().GetRevision() == Revision, TEXT("out of bounds terrain request rejected atomically"))) { return; }
+		PC->CancelTerrainTool();
+		PC->Submit(ECCLExperimentAction::Save, TEXT("Zone_08"));
+	}
+	else if (Step == 29)
+	{
+		if (!Check(Director->GetSavedGameSeconds() >= 0. && Director->GetSavedTerrainRevision() == Region->GetTerrainStore().GetRevision(),
+			TEXT("save feedback describes stored snapshot")))
+		{
+			return;
+		}
+		PC->Submit(ECCLExperimentAction::RotateQuarter, TEXT("Zone_01"));
+		PC->Submit(ECCLExperimentAction::Load, TEXT("Zone_08"));
+		Screen->SelectCase(TEXT("Zone_08"));
+	}
+	else if (Step == 30)
+	{
+		if (Director->IsRestoring())
+		{
+			return;
+		}
+		if (!Check(Director->GetStorageMessage().Contains(TEXT("복원 완료")), TEXT("restore feedback waits for terrain and world commit")))
+		{
+			return;
+		}
+		Capture(TEXT("snapshot-restored"));
+	}
+	else if (Step == 31)
+	{
+		Finish(TEXT("MenuInput"));
+		return;
+	}
+	++Step;
+	Next = Now + 1.;
 }

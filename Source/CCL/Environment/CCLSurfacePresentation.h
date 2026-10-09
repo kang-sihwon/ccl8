@@ -5,6 +5,7 @@
 #include "CCLSurfacePresentation.generated.h"
 
 class UInstancedStaticMeshComponent;
+class UDynamicMeshComponent;
 
 UCLASS()
 class CCL_API ACCLSurfacePresentation : public AActor
@@ -21,11 +22,11 @@ private:
 	UPROPERTY()
 	TObjectPtr<UInstancedStaticMeshComponent> Beds;
 	UPROPERTY()
-	TObjectPtr<UInstancedStaticMeshComponent> Water;
+	TObjectPtr<UDynamicMeshComponent> Water;
 	UPROPERTY()
-	TObjectPtr<UInstancedStaticMeshComponent> Ice;
+	TObjectPtr<UDynamicMeshComponent> Ice;
 	UPROPERTY()
-	TObjectPtr<UInstancedStaticMeshComponent> Mud;
+	TObjectPtr<UDynamicMeshComponent> Mud;
 	UPROPERTY()
-	TObjectPtr<UInstancedStaticMeshComponent> Snow;
+	TObjectPtr<UDynamicMeshComponent> Snow;
 };

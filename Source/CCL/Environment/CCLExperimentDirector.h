@@ -27,10 +27,15 @@ public:
 	void AssignOperator(APlayerController* Controller);
 	void ReleaseOperator(APlayerController* Controller);
 	bool Execute(APlayerController* Requester, ECCLExperimentAction Action, FName CaseId,
-		FGuid ExpectedGeneration, FGuid ExpectedRun, FString& Message, uint64 ExpectedTerrainSerial = 0);
+		FGuid ExpectedGeneration, FGuid ExpectedRun, FString& Message, uint64 ExpectedTerrainSerial = 0, const FVector* TerrainTarget = nullptr);
 	ACCLTerrainRegion* GetTerrainRegion() const { return TerrainRegion; }
 	bool ResetExperiment(FString& Error);
 	bool CanOperate(const APlayerController* Requester) const;
+	bool IsRestoring() const { return bTerrainRestorePending != 0; }
+	const FString& GetStorageMessage() const { return StorageMessage; }
+	double GetSavedGameSeconds() const { return SavedGameSeconds; }
+	double GetSavedWorldSeconds() const { return SavedWorldSeconds; }
+	uint64 GetSavedTerrainRevision() const { return SavedTerrainRevision; }
 	bool CanStart(FName CaseId, FString& Error) const;
 	const UCCLExperimentDefinition* FindDefinition(FName CaseId) const;
 	const FCCLExperimentResult* FindResult(FName CaseId) const;
@@ -53,7 +58,7 @@ private:
 	bool WaterAction(ECCLExperimentAction Action, FName CaseId, FString& Error);
 	void InitializeTerrainExperiment();
 	void TickTerrainExperiment();
-	bool TerrainAction(APlayerController* Requester, ECCLExperimentAction Action, FString& Error);
+	bool TerrainAction(APlayerController* Requester, ECCLExperimentAction Action, FString& Error, const FVector* Target = nullptr);
 	bool ResetTerrain(FString& Error);
 	bool SaveTerrainWorld(FString& Error);
 	bool LoadTerrainWorld(FString& Error);
@@ -101,7 +106,21 @@ private:
 	uint8 bWaterParticipantBound = 0;
 	uint64 TerrainAuthoritySequence = 0;
 	int32 TerrainCaseStep = 0;
+	UPROPERTY(Replicated)
 	uint8 bTerrainRestorePending = 0;
+
+	UPROPERTY(Replicated)
+	FString StorageMessage = TEXT("이 실행에서는 아직 저장하지 않았다. 이전 실행의 저장은 불러올 수 있다.");
+
+	UPROPERTY(Replicated)
+	double SavedGameSeconds = -1.;
+
+	UPROPERTY(Replicated)
+	double SavedWorldSeconds = -1.;
+
+	UPROPERTY(Replicated)
+	uint64 SavedTerrainRevision = 0;
+
 	uint8 bTravelPending = 0;
 	TArray<uint8> InitialSnapshot;
 	FTimerHandle RunTimer;

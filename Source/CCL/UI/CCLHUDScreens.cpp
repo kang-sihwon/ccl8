@@ -7,7 +7,6 @@
 #include "Components/CanvasPanel.h"
 #include "Components/CanvasPanelSlot.h"
 #include "Components/ProgressBar.h"
-#include "Components/ScaleBox.h"
 #include "Components/SizeBox.h"
 #include "Components/TextBlock.h"
 #include "Components/VerticalBox.h"
@@ -40,14 +39,7 @@ void Position(UCanvasPanel* Canvas, UWidget* Widget, FVector2D Anchor, FVector2D
 UCanvasPanel* MakeCanvas(UCCLScreen* Screen, UWidgetTree* Tree)
 {
 	auto* Canvas = Tree->ConstructWidget<UCanvasPanel>();
-	auto* DesignSize = Tree->ConstructWidget<USizeBox>();
-	DesignSize->SetWidthOverride(1280.f);
-	DesignSize->SetHeightOverride(720.f);
-	DesignSize->SetContent(Canvas);
-	auto* Scale = Tree->ConstructWidget<UScaleBox>();
-	Scale->SetStretch(EStretch::ScaleToFit);
-	Scale->SetContent(DesignSize);
-	Tree->RootWidget = Scale;
+	Tree->RootWidget = Canvas;
 	Screen->SetVisibility(ESlateVisibility::HitTestInvisible);
 	return Canvas;
 }
@@ -93,7 +85,7 @@ void UCCLVitalsScreen::NativeOnInitialized()
 		Box->AddChildToVerticalBox(Size)->SetPadding(FMargin(0.f, 3.f));
 	}
 
-	Position(Canvas, Box, FVector2D::ZeroVector, FVector2D(24.f, 100.f));
+	Position(Canvas, Box, FVector2D::ZeroVector, FVector2D(16.f, 86.f));
 }
 
 void UCCLVitalsScreen::OnContextBound()
@@ -154,9 +146,9 @@ void UCCLFieldHUDScreen::NativeOnInitialized()
 	auto* Canvas = MakeCanvas(this, WidgetTree);
 	auto* Instructions = MakeText(WidgetTree, 18, FLinearColor::White, 650.f);
 	Instructions->SetText(FText::FromString(TEXT("WASD 이동 · 마우스 시점 · Space 점프\n마우스 왼쪽: 왼손 · 오른쪽: 오른손 · Q 패링 · Shift 회피")));
-	Position(Canvas, Instructions, FVector2D::ZeroVector, FVector2D(24.f));
+	Position(Canvas, Instructions, FVector2D::ZeroVector, FVector2D(16.f));
 	Overview = MakeText(WidgetTree, 18, FLinearColor(1.f, 0.8f, 0.3f), 650.f);
-	Position(Canvas, Overview, FVector2D::ZeroVector, FVector2D(24.f, 170.f));
+	Position(Canvas, Overview, FVector2D::ZeroVector, FVector2D(16.f, 154.f));
 	Prompts = MakeText(WidgetTree, 18, FLinearColor::White, 640.f);
 	PromptPanel = WidgetTree->ConstructWidget<UBorder>();
 	PromptPanel->SetBrushColor(FLinearColor(0.015f, 0.02f, 0.03f, 0.85f));

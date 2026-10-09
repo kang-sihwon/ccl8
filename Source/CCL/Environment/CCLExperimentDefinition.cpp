@@ -30,10 +30,18 @@ void UCCLExperimentDefinition::ConfigureZone(int32 Index)
 	Expected = FText::FromString(ExpectedValues[Index]);
 	Kind = Index == 0 ? ECCLExperimentKind::Guide : Index == 1 ? ECCLExperimentKind::Celestial :
 		Index == 3 ? ECCLExperimentKind::Snow : Index == 4 ? ECCLExperimentKind::Water : Index == 5 ? ECCLExperimentKind::Terrain : Index == 8 ? ECCLExperimentKind::Snapshot : Index == 11 ? ECCLExperimentKind::Shelter : ECCLExperimentKind::Reserved;
-	Instructions = FText::FromString(Index == 1 ?
-		TEXT("같은 시각의 천체 재현을 시험한다. 격리 맵에서는 시간 실패·재시도와 위도·기울기·위상 조작도 가능하다.") :
-		IsImplemented() ? TEXT("구역 선택 후 시작. 초기화 후 재실행할 수 있다.") :
-		TEXT("후속 구현 예정. 현재 실행할 수 없는 구역이다."));
+	const TCHAR* Help = TEXT("후속 구현 예정. 현재 실행할 수 없는 구역이다.");
+	switch (Index)
+	{
+	case 0: Help = TEXT("구역을 고르고 구역 이동을 누른다. F7로 메뉴를 닫으면 WASD로 걸을 수 있다. 자동 검사는 기능 회귀 확인용이다."); break;
+	case 1: Help = TEXT("천체 3D 관측을 연 뒤 드래그로 회전하고 휠로 확대한다. 격리 실험장에서 시간을 정지하고 위도·기울기·자전·공전 위상을 하나씩 바꾼다. 녹색 관측점, 청록 자전축, 노란 적도와 낮/밤 경계를 비교한다."); break;
+	case 3: Help = TEXT("구역으로 이동한 뒤 F7을 닫고 눈 위를 걷는다. 처음 지나갈 때와 만들어진 눈길의 이동 저항·발자국 깊이를 비교한다. 메뉴에서 새 적설과 융해를 조작할 수 있다."); break;
+	case 4: Help = TEXT("구역으로 이동한 뒤 비·결빙·융해·건조를 선택한다. 변화에는 세계 시간이 필요하다. 시간 60배에서 수면·얼음·젖은 흙과 아래 물 수지를 함께 확인한다."); break;
+	case 5: Help = TEXT("구역으로 이동하고 굴착·흙 쌓기·수로 중 도구를 고른다. 메뉴 밖 지형에 커서를 대면 화살표와 범위가 보인다. 왼쪽 클릭으로 적용, 오른쪽 클릭으로 해제한다. 수로는 작은 굴착 범위를 겹쳐 클릭해 잇는다. 보호 영역이나 캐릭터와 겹치는 편집은 거부된다."); break;
+	case 8: Help = TEXT("실험 저장 → 천체·문·지형·물·눈 변경 → 저장 불러오기 순으로 비교한다. 저장 시각과 복원 완료 메시지를 확인하고 원하는 구역으로 다시 이동한다. 복원 중에는 지형 충돌을 준비하며 캐릭터는 안전 위치로 옮긴다. 자동 검사는 저장 손상 거부와 복원을 따로 검사한다."); break;
+	case 11: Help = TEXT("구역으로 이동하고 문을 닫힘·반 열림·열림으로 바꾼다. 노랑은 빛, 파랑은 비, 청록은 바람 경로다. 밝은 화살표와 통과율이 함께 바뀐다. 현재는 방향별 차폐 시험이며 공기 교환량·실내 온도·연기는 후속 구현이다."); break;
+	}
+	Instructions = FText::FromString(Help);
 }
 
 bool UCCLExperimentDefinition::Validate(FString& Error) const

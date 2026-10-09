@@ -66,7 +66,7 @@ void ACCLExperimentDirector::InitializeTerrainExperiment()
 	}
 }
 
-bool ACCLExperimentDirector::TerrainAction(APlayerController* Requester, ECCLExperimentAction Action, FString& Error)
+bool ACCLExperimentDirector::TerrainAction(APlayerController* Requester, ECCLExperimentAction Action, FString& Error, const FVector* Target)
 {
 	if (!TerrainRegion || !TerrainRegion->IsTerrainReady() || TerrainRegion->IsPreparing())
 	{
@@ -77,6 +77,30 @@ bool ACCLExperimentDirector::TerrainAction(APlayerController* Requester, ECCLExp
 	if (Action == ECCLExperimentAction::TerrainReset)
 	{
 		return ResetTerrain(Error);
+	}
+
+	if (Target)
+	{
+		if (Target->ContainsNaN() || !TerrainRegion->GetWorldTerrainBounds().ExpandBy(10.).IsInsideOrOn(*Target)
+			|| Action < ECCLExperimentAction::TerrainExcavate || Action > ECCLExperimentAction::TerrainChannel)
+		{
+			Error = TEXT("편집 가능한 지형 바닥을 선택해 줘.");
+			return false;
+		}
+
+		FHitResult SurfaceHit;
+		FCollisionQueryParams Query;
+		if (Requester && Requester->GetPawn())
+		{
+			Query.AddIgnoredActor(Requester->GetPawn());
+		}
+		if (!GetWorld()->LineTraceSingleByChannel(SurfaceHit, *Target + FVector(0., 0., 100.),
+			*Target - FVector(0., 0., 100.), ECC_Visibility, Query) || SurfaceHit.GetActor() != TerrainRegion
+			|| FVector::DistSquared(SurfaceHit.ImpactPoint, *Target) > FMath::Square(20.))
+		{
+			Error = TEXT("선택한 바닥이 바뀌었다. 미리보기를 확인하고 다시 클릭해 줘.");
+			return false;
+		}
 	}
 
 	const auto& Store = TerrainRegion->GetTerrainStore();
@@ -120,6 +144,18 @@ bool ACCLExperimentDirector::TerrainAction(APlayerController* Requester, ECCLExp
 		Edit.RadiusMeters = 0.5;
 	}
 
+	if (Target)
+	{
+		Edit.CenterMeters = (*Target - TerrainRegion->GetActorLocation()) / 100.;
+		// Leave room for the five-sample interpolation band above and below the clicked surface.
+		Edit.RadiusMeters = 1.;
+		if (Action == ECCLExperimentAction::TerrainChannel)
+		{
+			Edit.RadiusMeters = 0.8;
+			Edit.CenterMeters.Z += 0.35;
+		}
+	}
+
 	const auto Result = TerrainRegion->RequestEdit(Edit, Error);
 	if (Action == ECCLExperimentAction::TerrainProtection)
 	{
@@ -134,6 +170,14 @@ bool ACCLExperimentDirector::TerrainAction(APlayerController* Requester, ECCLExp
 		return true;
 	}
 
+	if (Target && Error.Contains(TEXT("allowed bounds")))
+	{
+		Error = TEXT("브러시와 보간 범위가 지형의 가장자리·높이 한계를 넘는다. 안쪽의 평평한 바닥을 선택해 줘.");
+	}
+	else if (Target && Error.Contains(TEXT("protected")))
+	{
+		Error = TEXT("보호 구역과 겹쳐 편집을 거부했다. 청록색 영역 안의 다른 위치를 선택해 줘.");
+	}
 	return false;
 }
 
@@ -165,6 +209,10 @@ void ACCLExperimentDirector::TickTerrainExperiment()
 	if (bTerrainRestorePending && !TerrainRegion->IsPreparing())
 	{
 		bTerrainRestorePending = 0;
+		StorageMessage = TerrainRegion->DidLastRequestSucceed()
+			? TEXT("복원 완료. 안전 지점으로 이동했다. 확인할 구역으로 다시 이동해 줘.")
+			: TEXT("복원 실패: ") + TerrainRegion->GetLastError();
+		ForceNetUpdate();
 		if (!TerrainRegion->DidLastRequestSucceed())
 		{
 			if (auto* Result = Results.FindByPredicate([](const auto& R) { return R.CaseId == TEXT("Zone_08"); }))
@@ -271,7 +319,10 @@ bool ACCLExperimentDirector::SaveTerrainWorld(FString& Error)
 		return false;
 	}
 
-	Error = TEXT("세계 시계·Agent·지형을 같은 완료 세대로 저장했다.");
+	SavedGameSeconds = WorldState.Clock.GameSeconds;
+	SavedWorldSeconds = WorldState.Clock.WorldSeconds;
+	SavedTerrainRevision = TerrainRegion->GetTerrainStore().GetRevision();
+	Error = TEXT("저장 완료. 시계·천체 설정·문 상태·Agent·지형·눈·물을 함께 저장했다.");
 	return true;
 }
 
@@ -340,5 +391,20 @@ bool ACCLExperimentDirector::LoadTerrainWorld(FString& Error)
 		return false;
 	}
 
-	return QueueWorldRestore(*Bytes, Bundle.Context, Bundle.World, Error);
+	FCCLWorldSnapshot Saved;
+	FCCLTerrainSnapshot SavedTerrain;
+	FCCLTerrainSaveContext SavedContext;
+	if (!FCCLWorldSnapshotCodec::Decode(Bundle.World, Saved, Error)
+		|| !FCCLTerrainCodec::Decode(*Bytes, SavedTerrain, SavedContext, Error)
+		|| !QueueWorldRestore(*Bytes, Bundle.Context, Bundle.World, Error))
+	{
+		return false;
+	}
+
+	SavedGameSeconds = Saved.Clock.GameSeconds;
+	SavedWorldSeconds = Saved.Clock.WorldSeconds;
+	SavedTerrainRevision = SavedTerrain.Revision;
+	Error = bTerrainRestorePending ? TEXT("복원 중: 저장된 지형 충돌과 세계 상태를 준비하고 있다.")
+		: TEXT("복원 완료. 안전 지점으로 이동했다. 확인할 구역으로 다시 이동해 줘.");
+	return true;
 }

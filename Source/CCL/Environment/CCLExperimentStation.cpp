@@ -42,7 +42,7 @@ void ACCLExperimentStation::OnConstruction(const FTransform& Transform)
 	if (Definition)
 	{
 		Label->SetText(Definition->Title);
-		State->SetText(FText::FromString(Definition->IsImplemented() ? TEXT("시험 준비 · F8 조작 화면") : TEXT("미구현 · 후속 단계에서 연결")));
+		State->SetText(FText::FromString(Definition->IsImplemented() ? TEXT("시험 준비 · F7 조작 화면") : TEXT("미구현 · 후속 단계에서 연결")));
 	}
 }
 
@@ -54,7 +54,7 @@ void ACCLExperimentStation::Tick(float DeltaSeconds)
 		const auto* Director = ACCLExperimentDirector::Find(GetWorld());
 		if (const auto* Result = Director ? Director->FindResult(Definition->CaseId) : nullptr)
 		{
-			State->SetText(FText::FromString(UCCLExperimentDefinition::StatusText(Result->Status) + TEXT(" · F8 조작 화면")));
+			State->SetText(FText::FromString(UCCLExperimentDefinition::StatusText(Result->Status) + TEXT(" · F7 조작 화면")));
 		}
 	}
 }

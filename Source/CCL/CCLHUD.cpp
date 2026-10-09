@@ -15,6 +15,7 @@
 #include "Combat/CCLEnemyCharacter.h"
 #include "Combat/CCLFighterComponent.h"
 #include "Engine/LocalPlayer.h"
+#include "Environment/CCLExperimentPlayerController.h"
 #include "EngineUtils.h"
 #include "Items/CCLItemDefinition.h"
 #include "Items/CCLWorldPickup.h"
@@ -116,6 +117,11 @@ void ACCLHUD::RefreshContent()
 	const auto* Campaign = GetWorld()->GetGameState<ACCLCampaignState>();
 	TArray<FString> Overview;
 	TArray<FString> Prompts;
+	if (PC->IsA<ACCLExperimentPlayerController>())
+	{
+		Prompts.Add(TEXT("F7 실험 메뉴 열기 / 닫기"));
+	}
+
 	if (Character)
 	{
 		if (const auto* Fighter = Character->FindComponentByClass<UCCLFighterComponent>(); Fighter && !Fighter->GetFeedback().IsEmpty())

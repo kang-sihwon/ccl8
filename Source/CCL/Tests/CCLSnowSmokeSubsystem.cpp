@@ -85,7 +85,7 @@ void UCCLSnowSmokeSubsystem::Tick(float Dt)
 	{
 		for (TActorIterator<ACCLSurfacePresentation> It(World); It; ++It)
 		{
-			TArray<UInstancedStaticMeshComponent*> Components;
+			TArray<UPrimitiveComponent*> Components;
 			It->GetComponents(Components);
 			for (auto* Component : Components)
 			{

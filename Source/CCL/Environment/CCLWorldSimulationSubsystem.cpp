@@ -357,6 +357,8 @@ bool UCCLWorldSimulationSubsystem::BuildEnvironmentView(FCCLEnvironmentView& Out
 	View.DefinitionVersion = EnvironmentInputs.Celestial.Version;
 	View.Seed = EnvironmentInputs.Celestial.Seed;
 	View.Observer = EnvironmentInputs.Observer;
+	View.CelestialEpochSeconds = EnvironmentInputs.Celestial.EpochWorldSeconds;
+	View.CelestialBodies = EnvironmentInputs.Celestial.Bodies;
 	View.InputRevision = EnvironmentInputs.Revision;
 	View.SurfaceRevision = SurfaceScene.GetRevision();
 	View.SurfaceEpoch = SurfaceScene.GetEpoch();
@@ -418,6 +420,9 @@ bool UCCLWorldSimulationSubsystem::BuildEnvironmentView(FCCLEnvironmentView& Out
 			FCCLEnvironmentProbeView Result;
 			Result.ProbeId = Probe.ProbeId;
 			Result.PositionMeters = Probe.PositionMeters;
+			Result.ToSun = ToSun;
+			Result.ToPrecipitationSource = Probe.ToPrecipitationSource;
+			Result.ToWindSource = Probe.ToWindSource;
 			Result.Transmission = Sample.Transmission;
 			View.Probes.Add(Result);
 		}

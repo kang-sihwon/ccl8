@@ -2,6 +2,7 @@
 
 #include "CCLTerrainRegion.h"
 #include "EngineUtils.h"
+#include "Engine/NetConnection.h"
 #include "GameFramework/PlayerController.h"
 #include "GameFramework/Character.h"
 #include "GameFramework/CharacterMovementComponent.h"
@@ -83,9 +84,14 @@ void UCCLTerrainReplication::TickComponent(float DeltaTime, ELevelTick TickType,
 		}
 	}
 
-	if (TransferId.IsValid() && !bWaiting)
+	if (TransferId.IsValid() && !bWaiting && FPlatformTime::Seconds() >= NextChunkAt)
 	{
-		const int32 Count = FMath::Min(8192, Payload.Num() - NextOffset);
+		// Each of the two bulk streams uses at most 20% of the connection budget.
+		// ACK pacing alone saturates loopback and can starve initial GameState replication.
+		const auto* Connection = PC->GetNetConnection();
+		const double BytesPerSecond = FMath::Max(1, Connection ? Connection->CurrentNetSpeed : 10000) * 0.2;
+		const int32 Count = FMath::Min3(8192, Payload.Num() - NextOffset, FMath::Max(1, FMath::FloorToInt32(BytesPerSecond * 0.1)));
+		NextChunkAt = FPlatformTime::Seconds() + (Count + 128.) / BytesPerSecond;
 		TArray<uint8> Chunk;
 		Chunk.Append(Payload.GetData() + NextOffset, Count);
 		SentOffset = NextOffset + Count;

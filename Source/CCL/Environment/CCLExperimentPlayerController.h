@@ -32,6 +32,17 @@ public:
 	UFUNCTION(Server, Reliable)
 	void ServerExperiment(ECCLExperimentAction Action, FName CaseId, FGuid Generation, FGuid RunId, uint64 TerrainSerial = 0);
 
+	void SelectTerrainTool(ECCLExperimentAction Action);
+	void CancelTerrainTool();
+	bool ApplyTerrainTool();
+	void SetTerrainCursor(const FVector2D& ViewportPosition);
+	bool TraceTerrainCursor(FHitResult& Hit) const;
+	bool HasTerrainTool() const { return bTerrainToolActive != 0; }
+	ECCLExperimentAction GetTerrainTool() const { return TerrainTool; }
+
+	UFUNCTION(Server, Reliable)
+	void ServerTerrainEdit(ECCLExperimentAction Action, FVector Target, FGuid Generation, uint64 TerrainSerial);
+
 	UFUNCTION(Client, Reliable)
 	void ClientExperimentResponse(const FString& Message);
 
@@ -55,4 +66,8 @@ private:
 	FCCLUIViewHandle ExperimentView;
 	FString LastMessage;
 	uint8 bOpenedOnce = 0;
+	uint8 bTerrainToolActive = 0;
+	uint8 bHasTerrainCursor = 0;
+	FVector2D TerrainCursor = FVector2D::ZeroVector;
+	ECCLExperimentAction TerrainTool = ECCLExperimentAction::TerrainExcavate;
 };

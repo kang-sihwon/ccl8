@@ -20,6 +20,8 @@ public:
 	virtual UWorld* GetTickableGameObjectWorld() const override { return GetWorld(); }
 
 private:
+	void TickMenuInput(double Now);
+	void TickLab(double Now);
 	void TickTravel(double Now);
 	void TickEnvironment(double Now);
 	bool CheckReplicatedEnvironment();
@@ -38,4 +40,7 @@ private:
 	FGuid PreviousGeneration;
 	FGuid PreviousRun;
 	double PreviousSpinPhase = 0.;
+	uint64 PreviousTerrainRevision = 0;
+	FVector2D LabCursor = FVector2D::ZeroVector;
+	FVector LabTarget = FVector::ZeroVector;
 };

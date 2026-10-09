@@ -6,6 +6,7 @@
 #include "Components/StaticMeshComponent.h"
 #include "Engine/DirectionalLight.h"
 #include "Engine/World.h"
+#include "GameFramework/PlayerController.h"
 #include "EngineUtils.h"
 #include "DrawDebugHelpers.h"
 #include "Math/RotationMatrix.h"
@@ -62,12 +63,41 @@ void ACCLWorldEnvironmentPresentation::Tick(float DeltaSeconds)
 			}
 		}
 
+		FVector CameraPosition = FVector::ZeroVector;
+		FRotator CameraRotation;
+		const auto* PC = GetWorld()->GetFirstPlayerController();
+		if (PC)
+		{
+			PC->GetPlayerViewPoint(CameraPosition, CameraRotation);
+		}
 		for (const auto& Probe : View.Probes)
 		{
 			const FVector Position = Probe.PositionMeters * 100.;
-			DrawDebugSphere(GetWorld(), Position, 16.f, 12,
-				Probe.Transmission.Precipitation < 0.5 ? FColor::Cyan : FColor::Yellow, false, 0.f, 0, 2.f);
-			DrawDebugLine(GetWorld(), Position, Position + FVector(0., 0., 150.), FColor::Cyan, false, 0.f, 0, 2.f);
+			if (!PC || FVector::DistSquared(CameraPosition, Position) > FMath::Square(2500.))
+			{
+				continue;
+			}
+			DrawDebugSphere(GetWorld(), Position, 12.f, 12, FColor::White, false, 0.f, 0, 1.f);
+			auto DrawTransmission = [&](const FVector& Direction, double Fraction, FColor Color, const FVector& Offset)
+			{
+				const FVector End = Position + Offset;
+				const FVector Source = End + Direction.GetSafeNormal() * 220.;
+				DrawDebugLine(GetWorld(), Source, End, FColor(45, 50, 55), false, 0.f, 0, 1.f);
+				if (Fraction > 0.001)
+				{
+					DrawDebugDirectionalArrow(GetWorld(), Source, FMath::Lerp(Source, End, Fraction), 18.f, Color, false, 0.f, 0, 3.f);
+				}
+				else
+				{
+					DrawDebugPoint(GetWorld(), Source, 10.f, FColor::Red, false, 0.f);
+				}
+			};
+			DrawTransmission(Probe.ToSun, Probe.Transmission.Sun, FColor::Yellow, FVector(0, -24, 0));
+			DrawTransmission(Probe.ToPrecipitationSource, Probe.Transmission.Precipitation, FColor(70, 140, 255), FVector(0, 0, 0));
+			DrawTransmission(Probe.ToWindSource, Probe.Transmission.Wind, FColor::Cyan, FVector(0, 24, 0));
+			DrawDebugString(GetWorld(), Position + FVector(0, 0, 260), FString::Printf(TEXT("%s\nSun %.0f%% | Rain %.0f%% | Wind %.0f%%"),
+				*Probe.ProbeId.ToString(), 100. * Probe.Transmission.Sun, 100. * Probe.Transmission.Precipitation,
+				100. * Probe.Transmission.Wind), nullptr, FColor::White, 0.f, true, 1.f);
 		}
 
 		return;

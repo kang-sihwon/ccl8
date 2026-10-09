@@ -114,6 +114,11 @@ void ACCLExperimentDirector::GetLifetimeReplicatedProps(TArray<FLifetimeProperty
 {
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
 	DOREPLIFETIME(ACCLExperimentDirector, Results);
+	DOREPLIFETIME(ACCLExperimentDirector, bTerrainRestorePending);
+	DOREPLIFETIME(ACCLExperimentDirector, StorageMessage);
+	DOREPLIFETIME(ACCLExperimentDirector, SavedGameSeconds);
+	DOREPLIFETIME(ACCLExperimentDirector, SavedWorldSeconds);
+	DOREPLIFETIME(ACCLExperimentDirector, SavedTerrainRevision);
 	DOREPLIFETIME(ACCLExperimentDirector, Generation);
 	DOREPLIFETIME(ACCLExperimentDirector, Operator);
 	DOREPLIFETIME(ACCLExperimentDirector, ActiveCase);
@@ -147,7 +152,7 @@ void ACCLExperimentDirector::ReleaseOperator(APlayerController* Controller)
 }
 
 bool ACCLExperimentDirector::Execute(APlayerController* Requester, ECCLExperimentAction Action, FName CaseId,
-	FGuid ExpectedGeneration, FGuid ExpectedRun, FString& Message, uint64 ExpectedTerrainSerial)
+	FGuid ExpectedGeneration, FGuid ExpectedRun, FString& Message, uint64 ExpectedTerrainSerial, const FVector* TerrainTarget)
 {
 	Message.Reset();
 	if (!HasAuthority() || !IsReady() || ExpectedGeneration != Generation ||
@@ -193,7 +198,13 @@ bool ACCLExperimentDirector::Execute(APlayerController* Requester, ECCLExperimen
 			return false;
 		}
 
-		return ActiveCase.IsNone() && TerrainAction(Requester, Action, Message);
+		if (!ActiveCase.IsNone())
+		{
+			Message = TEXT("자동 검사를 마치거나 중지한 뒤 지형을 편집할 수 있다.");
+			return false;
+		}
+
+		return TerrainAction(Requester, Action, Message, TerrainTarget);
 	}
 
 	if (Action == ECCLExperimentAction::Reset)
@@ -233,12 +244,16 @@ bool ACCLExperimentDirector::Execute(APlayerController* Requester, ECCLExperimen
 	case ECCLExperimentAction::SnowMelt:
 		return SnowAction(Action, CaseId, Message);
 	case ECCLExperimentAction::Start:
-		SnowWalker = Requester->GetPawn();
+		SnowWalker = Requester ? Requester->GetPawn() : nullptr;
 		return StartCase(CaseId, Message);
 	case ECCLExperimentAction::Save:
-		return SaveCheckpoint(Message);
 	case ECCLExperimentAction::Load:
-		return LoadCheckpoint(Message);
+	{
+		const bool bSucceeded = Action == ECCLExperimentAction::Save ? SaveCheckpoint(Message) : LoadCheckpoint(Message);
+		StorageMessage = Message;
+		ForceNetUpdate();
+		return bSucceeded;
+	}
 	case ECCLExperimentAction::NextLatitude:
 	case ECCLExperimentAction::NextObliquity:
 	case ECCLExperimentAction::RotateQuarter:
@@ -678,7 +693,11 @@ bool ACCLExperimentDirector::SaveCheckpoint(FString& Error)
 		return false;
 	}
 
-	Error = TEXT("이 실험 맵의 상태를 저장했다.");
+	const auto& Clock = GetWorld()->GetSubsystem<UCCLWorldSimulationSubsystem>()->GetClock();
+	SavedGameSeconds = Clock.GetGameSeconds();
+	SavedWorldSeconds = Clock.GetWorldSeconds();
+	SavedTerrainRevision = 0;
+	Error = TEXT("저장 완료. 이후 변경한 상태를 이 시점으로 되돌릴 수 있다.");
 	return true;
 }
 
@@ -709,7 +728,10 @@ bool ACCLExperimentDirector::LoadCheckpoint(FString& Error)
 	}
 
 	ForceNetUpdate();
-	Error = TEXT("이 실험 맵의 저장 상태를 복원했다.");
+	SavedGameSeconds = Snapshot.Clock.GameSeconds;
+	SavedWorldSeconds = Snapshot.Clock.WorldSeconds;
+	SavedTerrainRevision = 0;
+	Error = TEXT("복원 완료. 안전 지점으로 이동했다. 확인할 구역으로 다시 이동해 줘.");
 	return true;
 }
 

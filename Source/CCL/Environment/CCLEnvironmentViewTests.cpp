@@ -24,6 +24,8 @@ bool FCCLEnvironmentViewWireTest::RunTest(const FString& Parameters)
 	Sent.Environment.SurfaceEpoch = FGuid::NewGuid();
 	Sent.Environment.Observer.BodyId = TEXT("World");
 	Sent.Environment.Observer.LatitudeDegrees = -45.;
+	Sent.Environment.CelestialEpochSeconds = 100.;
+	Sent.Environment.CelestialBodies = FCCLCelestialSystem::MakeDefaultDefinition(42).Bodies;
 	FCCLCelestialSourceView Star;
 	Star.BodyId = TEXT("Star");
 	Star.SolarHours = 14.25;
@@ -53,6 +55,15 @@ bool FCCLEnvironmentViewWireTest::RunTest(const FString& Parameters)
 		TestEqual(TEXT("local solar time retained"), Received.Environment.Stars[0].SolarHours, 14.25);
 	}
 
+	TestEqual(TEXT("celestial definition epoch retained"), Received.Environment.CelestialEpochSeconds, 100.);
+	if (TestEqual(TEXT("celestial definition retained"), Received.Environment.CelestialBodies.Num(), Sent.Environment.CelestialBodies.Num()))
+	{
+		for (int32 I = 0; I < Sent.Environment.CelestialBodies.Num(); ++I)
+		{
+			TestEqual(TEXT("orbital phase retained"), Received.Environment.CelestialBodies[I].MeanAnomalyDegrees, Sent.Environment.CelestialBodies[I].MeanAnomalyDegrees);
+			TestEqual(TEXT("spin phase retained"), Received.Environment.CelestialBodies[I].SpinPhaseDegrees, Sent.Environment.CelestialBodies[I].SpinPhaseDegrees);
+		}
+	}
 	TestEqual(TEXT("opening state retained"), Received.Environment.Openings[0].OpenFraction, 0.5);
 	for (int32 Failure = 0; Failure < 2; ++Failure)
 	{
@@ -84,14 +95,24 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(FCCLEnvironmentViewBudgetTest, "CCL.Environment
 
 bool FCCLEnvironmentViewBudgetTest::RunTest(const FString& Parameters)
 {
-	FCCLReplicatedWorldTime Value;
-	Value.Environment.Stars.SetNum(65);
-	TArray<uint8> Bytes;
-	FMemoryWriter Writer(Bytes);
-	FObjectAndNameAsStringProxyArchive Save(Writer, false);
-	bool bSuccess = true;
-	Value.NetSerialize(Save, nullptr, bSuccess);
-	TestFalse(TEXT("oversized interest set is rejected rather than truncated"), bSuccess);
+	for (int32 Array = 0; Array < 2; ++Array)
+	{
+		FCCLReplicatedWorldTime Value;
+		if (Array == 0)
+		{
+			Value.Environment.CelestialBodies.SetNum(65);
+		}
+		else
+		{
+			Value.Environment.Stars.SetNum(65);
+		}
+		TArray<uint8> Bytes;
+		FMemoryWriter Writer(Bytes);
+		FObjectAndNameAsStringProxyArchive Save(Writer, false);
+		bool bSuccess = true;
+		Value.NetSerialize(Save, nullptr, bSuccess);
+		TestFalse(TEXT("oversized definition or observation set is rejected rather than truncated"), bSuccess);
+	}
 	return true;
 }
 #endif

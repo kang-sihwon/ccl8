@@ -35,6 +35,15 @@ struct FCCLEnvironmentProbeView
 	FVector PositionMeters = FVector::ZeroVector;
 
 	UPROPERTY()
+	FVector ToSun = FVector::UpVector;
+
+	UPROPERTY()
+	FVector ToPrecipitationSource = FVector::UpVector;
+
+	UPROPERTY()
+	FVector ToWindSource = FVector::ForwardVector;
+
+	UPROPERTY()
 	FCCLSurfaceTransmission Transmission;
 };
 
@@ -115,6 +124,13 @@ struct FCCLEnvironmentView
 
 	UPROPERTY()
 	double ObliquityDegrees = 0.;
+
+	// The diagnostic view evaluates this definition at the same committed WorldSeconds.
+	UPROPERTY()
+	double CelestialEpochSeconds = 0.;
+
+	UPROPERTY()
+	TArray<FCCLCelestialBodyDefinition> CelestialBodies;
 
 	UPROPERTY()
 	FName DominantStarId;
