@@ -60,6 +60,8 @@ public:
 	double GetGameSeconds() const { return State.GameSeconds; }
 	double GetWorldSeconds() const { return State.WorldSeconds; }
 	double GetTimeScale() const { return State.TimeScale; }
+	double GetPendingGameSeconds() const { return State.AcceptedGameSeconds - State.GameSeconds; }
+	uint64 GetCompletedStepId() const { return State.CompletedStepId; }
 	bool HasPendingTime() const { return !State.Pending.IsEmpty(); }
 	bool HasPreparedStep() const { return Prepared.Ticket.IsValid(); }
 

@@ -30,7 +30,7 @@ struct FCCLSessionRecord
 	GENERATED_BODY()
 
 	UPROPERTY()
-	int32 Version = 5;
+	int32 Version = 6;
 
 	UPROPERTY()
 	FString AgentSimulation;

@@ -8,6 +8,8 @@
 #include "Misc/Crc.h"
 #include "Misc/Base64.h"
 #include "Agents/CCLLifeSimulation.h"
+#include "Environment/CCLWorldSnapshot.h"
+
 UCCLItemDefinition* FCCLSessionCodec::Item(FName Id)
 {
 	static const TSet<FName> Known = {TEXT("DA_IronGauntlets"),	 TEXT("DA_RecoveryPotion"), TEXT("DA_TrainingSword"),
@@ -34,7 +36,7 @@ UCCLSkillDefinition* FCCLSessionCodec::Skill(FName Id)
 
 bool FCCLSessionCodec::Validate(const FCCLSessionRecord& R)
 {
-	if (R.Version < 1 || R.Version > 5 || R.Items.Num() > (R.Version >= 3 ? 24 : 16) || R.Skills.Num() > 2 || R.Points < 0 ||
+	if (R.Version < 1 || R.Version > 6 || R.Items.Num() > (R.Version >= 3 ? 24 : 16) || R.Skills.Num() > 2 || R.Points < 0 ||
 		R.Points > 1000 || R.Coins < 0 || R.Coins > 1000000 || R.Quest > 2 || R.DefeatedGuards > 3 || R.Victory > 1 ||
 		(R.Victory && R.DefeatedGuards != 3) || (R.Quest == 2 && !R.Victory) || R.RemainingSupplies.Num() > (R.Version >= 5 ? 5 : 2))
 	{
@@ -51,8 +53,23 @@ bool FCCLSessionCodec::Validate(const FCCLSessionRecord& R)
 		TArray<uint8> State;
 		FCCLLifeSimulation Validation;
 		FString Error;
-		if (R.Version < 5 || R.AgentSimulation.Len() > 48 * 1024 * 1024 ||
-			!FBase64::Decode(R.AgentSimulation, State) || !Validation.Load(State, Error) ||
+		if (R.Version < 5 || R.AgentSimulation.Len() > 48 * 1024 * 1024 || !FBase64::Decode(R.AgentSimulation, State))
+		{
+			return false;
+		}
+
+		if (R.Version >= 6)
+		{
+			FCCLWorldSnapshot World;
+			if (!FCCLWorldSnapshotCodec::Decode(State, World, Error) || World.Identity.Domain != ECCLWorldDomain::Campaign)
+			{
+				return false;
+			}
+
+			State = MoveTemp(World.Life);
+		}
+
+		if (!Validation.Load(State, Error) ||
 			(R.AccountId.IsValid() && !Validation.GetEconomy().Accounts.Contains(R.AccountId)))
 		{
 			return false;
@@ -259,7 +276,7 @@ bool FCCLSessionCodec::Decode(const TArray<uint8>& Bytes, FCCLSessionRecord& Rec
 		return Object && Object->TryGetNumberField(Key, Value) && FMath::IsFinite(Value) && Value >= Min && Value <= Max &&
 			   FMath::FloorToDouble(Value) == Value;
 	};
-	if (!Number(Json, TEXT("version"), 1, 5) || !Number(Json, TEXT("points"), 0, 1000) || !Number(Json, TEXT("coins"), 0, 1000000) ||
+	if (!Number(Json, TEXT("version"), 1, 6) || !Number(Json, TEXT("points"), 0, 1000) || !Number(Json, TEXT("coins"), 0, 1000000) ||
 		!Number(Json, TEXT("quest"), 0, 2) || !Number(Json, TEXT("defeatedGuards"), 0, 3) || !Number(Json, TEXT("victory"), 0, 1))
 	{
 		return false;
@@ -411,7 +428,23 @@ bool FCCLSessionCodec::Decode(const TArray<uint8>& Bytes, FCCLSessionRecord& Rec
 		}
 	}
 
-	Candidate.Version = 5;
+	if (Candidate.Version < 6 && !Candidate.AgentSimulation.IsEmpty())
+	{
+		TArray<uint8> Legacy;
+		TArray<uint8> Upgraded;
+		FCCLWorldSnapshot Snapshot;
+		FString Error;
+		if (!FBase64::Decode(Candidate.AgentSimulation, Legacy) ||
+			!FCCLWorldSnapshotCodec::MigrateLegacy(Legacy, ECCLWorldDomain::Campaign, Snapshot, Error) ||
+			!FCCLWorldSnapshotCodec::Encode(Snapshot, Upgraded, Error))
+		{
+			return false;
+		}
+
+		Candidate.AgentSimulation = FBase64::Encode(Upgraded);
+	}
+
+	Candidate.Version = 6;
 	if (!Validate(Candidate))
 	{
 		return false;

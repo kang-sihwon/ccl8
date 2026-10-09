@@ -10,11 +10,34 @@
 #include "Engine/GameInstance.h"
 #include "Engine/World.h"
 #include "EngineUtils.h"
+#include "Environment/CCLWorldSimulationSubsystem.h"
 
 void UCCLAgentSessionStore::ResetSession()
 {
 	Snapshot.Reset();
 	++Session;
+}
+
+void UCCLAgentSessionStore::ResetDomain(ECCLWorldDomain Domain)
+{
+	if (Domain == ECCLWorldDomain::Campaign)
+	{
+		ResetSession();
+		return;
+	}
+
+	Experiments.Remove(Domain);
+	++ExperimentSessions.FindOrAdd(Domain);
+}
+
+uint64 UCCLAgentSessionStore::SessionFor(ECCLWorldDomain Domain) const
+{
+	return Domain == ECCLWorldDomain::Campaign ? Session : ExperimentSessions.FindRef(Domain);
+}
+
+TArray<uint8>& UCCLAgentSessionStore::SnapshotFor(ECCLWorldDomain Domain)
+{
+	return Domain == ECCLWorldDomain::Campaign ? Snapshot : Experiments.FindOrAdd(Domain);
 }
 
 bool UCCLAgentWorldSubsystem::ShouldCreateSubsystem(UObject* Outer) const
@@ -32,12 +55,16 @@ void UCCLAgentWorldSubsystem::OnWorldBeginPlay(UWorld& World)
 	}
 
 	auto* Store = World.GetGameInstance()->GetSubsystem<UCCLAgentSessionStore>();
-	Session = Store->Session;
 	FString Error;
 	const auto* Scenario = LoadObject<UCCLPopulationScenario>(nullptr,
 		TEXT("/Game/Progression/DA_MerchantLifeScenario.DA_MerchantLifeScenario"));
-	const bool bReady = Store->Snapshot.IsEmpty() ? Simulation.Initialize(
-		Scenario ? Scenario->InitialState : FCCLLifeSimulation::MerchantScenario(42), Error) : Simulation.Load(Store->Snapshot, Error);
+	auto* WorldSimulation = World.GetSubsystem<UCCLWorldSimulationSubsystem>();
+	const ECCLWorldDomain Domain = UCCLWorldSimulationSubsystem::DomainForWorld(&World);
+	Session = Store->SessionFor(Domain);
+	const auto& Saved = Store->SnapshotFor(Domain);
+	const bool bReady = WorldSimulation && (Saved.IsEmpty() ? Simulation.Initialize(
+		Scenario ? Scenario->InitialState : FCCLLifeSimulation::MerchantScenario(42), Error) : true) &&
+		WorldSimulation->Start(Simulation, Domain, Saved, Error);
 	if (!bReady)
 	{
 		UE_LOG(LogTemp, Error, TEXT("CCL_AGENT world initialization failed: %s"), *Error);
@@ -53,33 +80,15 @@ void UCCLAgentWorldSubsystem::Deinitialize()
 	if (bRunning && GetWorld()->GetGameInstance())
 	{
 		auto* Store = GetWorld()->GetGameInstance()->GetSubsystem<UCCLAgentSessionStore>();
-		if (Store && Store->Session == Session)
+		const ECCLWorldDomain Domain = UCCLWorldSimulationSubsystem::DomainForWorld(GetWorld());
+		if (Store && Store->SessionFor(Domain) == Session)
 		{
-			Save(Store->Snapshot);
+			Save(Store->SnapshotFor(Domain));
 		}
 	}
 
 	bRunning = 0;
 	Super::Deinitialize();
-}
-
-void UCCLAgentWorldSubsystem::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-	if (bRunning)
-	{
-		PendingSeconds += DeltaTime;
-		if (PendingSeconds >= 0.25)
-		{
-			Simulation.AdvanceTo(Simulation.GetTime() + PendingSeconds * 60.);
-			PendingSeconds = 0;
-		}
-	}
-}
-
-TStatId UCCLAgentWorldSubsystem::GetStatId() const
-{
-	RETURN_QUICK_DECLARE_CYCLE_STAT(UCCLAgentWorldSubsystem, STATGROUP_Tickables);
 }
 
 bool UCCLAgentWorldSubsystem::Save(TArray<uint8>& Bytes)
@@ -97,12 +106,16 @@ bool UCCLAgentWorldSubsystem::Save(TArray<uint8>& Bytes)
 		}
 	}
 
-	return Simulation.Save(Bytes);
+	FString Error;
+	auto* WorldSimulation = GetWorld()->GetSubsystem<UCCLWorldSimulationSubsystem>();
+	return WorldSimulation && WorldSimulation->Save(Simulation, Bytes, Error);
 }
 
 bool UCCLAgentWorldSubsystem::Restore(const TArray<uint8>& Bytes, FString& Error)
 {
-	if (!bRunning || GetWorld()->GetNetMode() == NM_Client || !Simulation.Load(Bytes, Error))
+	auto* WorldSimulation = GetWorld()->GetSubsystem<UCCLWorldSimulationSubsystem>();
+	if (!bRunning || GetWorld()->GetNetMode() == NM_Client || !WorldSimulation ||
+		!WorldSimulation->Restore(Simulation, Bytes, Error))
 	{
 		return false;
 	}

@@ -1,5 +1,7 @@
 #include "CCLAgentWorldSmokeSubsystem.h"
 
+#include "Environment/CCLWorldSimulationSubsystem.h"
+
 #include "Agents/CCLAgentWorldSubsystem.h"
 #include "Agents/CCLAgentComponent.h"
 #include "Campaign/CCLLifeVillager.h"
@@ -115,7 +117,9 @@ void UCCLAgentWorldSmokeSubsystem::Tick(float DeltaTime)
 			const FGuid Id = It->GetAgent()->AgentId;
 			It->Destroy();
 			const double OldTime = World->GetSimulation().Find(Id)->LastSimulatedTime;
-			World->GetSimulation().AdvanceTo(World->GetSimulation().GetTime() + 3600);
+			auto* Clock = GetWorld()->GetSubsystem<UCCLWorldSimulationSubsystem>();
+			Check(Clock && Clock->QueueGameTime(60, Error) && Clock->AdvancePending(61, 3660, Error),
+				TEXT("common server clock advances unloaded life"));
 			Check(World->GetSimulation().Find(Id) && World->GetSimulation().Find(Id)->LastSimulatedTime > OldTime,
 				TEXT("unloaded Actor retains its record and advances through reduced execution"));
 			break;

@@ -415,3 +415,48 @@ bool bCommitted = CCLWorldAdvance::Advance(Clock, Life, 0.25, 15, Error);
 실제 게임 실행에서는 기존 선택적 EditorToolset의 `AgentSkill`, ToolsetRegistry의 `PythonTestRunner` 초기화 오류가 남아 있다. 위 게임 회귀의 PASS와 구분하며 엔진 플러그인은 수정하지 않았다. NullRHI 검사로 최종 화면 품질이나 패키지 실행을 증명하지 않는다.
 
 단계 0은 현재 엔진의 빌드 가능 여부와 기존 실패를 구분하는 통과 기준을 충족했다. 단계 1은 시간 트랜잭션 검사까지 진행했으며 두 실험 맵·CommonUI 조작부·서버 Tick 이전·시간과 Agent의 통합 저장·세 가지 실행 모드의 환경 검사가 남아 있다. 단계 2-9는 아직 시작하지 않았다.
+
+#### 서버 시간과 통합 저장 연결 설계
+
+다음 작업은 단계 1의 서버 실행과 저장 이전이다. `UCCLWorldSimulationSubsystem`이 시계를 소유하고 기존 `UCCLAgentWorldSubsystem`의 독립 Tick을 제거한다. Agent 상태의 소유자는 바꾸지 않는다. 클라이언트는 복제 Actor의 확정 시각과 대기량을 읽으며 서버 진행 함수를 실행할 수 없다.
+
+`FCCLWorldSnapshot`은 세계 ID, 기반 세계 버전, 스키마, 저장 세대, 캠페인 또는 실험 영역, 시계 스냅샷과 Agent 저장 바이트를 묶는다. CRC, 배열 한도, 두 시각의 일치와 영역을 검증한 후 복원한다. 기존 `UCCLAgentSessionStore`를 맵 전환 보관소로 확장하고 캠페인·실험장·격리 실험의 바이트를 구분한다. 별도의 삶 시뮬레이터를 만들지 않는다.
+
+세션 버전 6은 기존 `AgentSimulation` 필드에 통합 스냅샷을 넣는다. 버전 5의 Agent 저장은 해당 완료 시각을 새 시계의 시작으로 이전한다. Agent 데이터가 없는 버전 1-4는 기존 초기화 경로를 유지한다. 오프라인 경과 시간은 추가하지 않는다. 이번 묶음의 세대는 시간·Agent 동기화를 식별하며, 큰 지형 파일의 세대별 원자적 게시와 복구는 단계 3·9에서 연결한다.
+
+```mermaid
+classDiagram
+    UCCLWorldSimulationSubsystem *-- FCCLWorldClock
+    UCCLWorldSimulationSubsystem --> UCCLAgentWorldSubsystem : advance together
+    UCCLAgentWorldSubsystem *-- FCCLLifeSimulation
+    UCCLAgentSessionStore o-- FCCLWorldSnapshot : encoded travel snapshot
+    UCCLWorldSimulationSubsystem --> ACCLWorldEnvironmentState : publish committed time
+```
+
+공통 실행은 `QueueGameTime`, `AdvancePending`, `ChangeTimeScale`을 제공한다. 저장은 `Capture`·`Encode`, 복원은 `Decode`·`Restore`로 나누어 손상된 입력이 실행 상태를 변경하지 않도록 한다. Tick은 게임 시간 0.25초를 모아 제한된 횟수로 처리하고 남은 시간을 버리지 않는다. 후보 복사 비용과 처리 지연이 생기므로 후속 규모 시험에서 실제 비용을 측정한다.
+
+검사는 배율 변경 전후의 대기 시간 보존, CRC·길이·영역·시각 불일치 거부, 쓰기 중 복원 실패, 구버전 이전을 포함한다. 실제 캠페인의 Agent·세션 스모크로 연결 결과를 확인하고 세 실행 모드에서 서버 단독 진행과 클라이언트 복제를 검증한다. 두 실험 맵과 CommonUI는 이 연결 이후 제작하며 이 저장 작업만으로 단계 1을 완료 처리하지 않는다.
+
+#### 서버 실행과 통합 저장 검증 결과
+
+단계 1의 서버 시계 연결과 세션 버전 6 저장을 구현했다. `Source/CCL/Environment/CCLWorldSimulationSubsystem.cpp:21`의 Tick이 공통 시간을 입력하고 `CCLWorldAdvance`로 Agent와 함께 확정한다. 기존 Agent 서브시스템은 Tick을 제거한 `UWorldSubsystem`으로 바꿨다. `ACCLWorldEnvironmentState`는 세계 ID·실행 세대·확정 시각·배율·대기량을 하나의 복제 구조체로 전달한다. 서버만 상태를 갱신한다.
+
+`CCLWorldSnapshot.cpp:165`의 복원은 영역과 저장 내용을 먼저 검증하고 Agent 교체 성공 후 시계를 게시한다. 캠페인·실험장·격리 실험은 맵 전환 저장과 초기화 세대를 따로 보관한다. 캠페인 새 게임은 실험 기록을 지우지 않는다. 저장 성공 시 묶음의 세대를 올리고, 복원 시 실행 세대 GUID를 새로 부여한다. 큰 지형 파일과 완료 표식의 원자적 저장은 아직 구현하지 않았으며 단계 3·9에서 이어간다.
+
+현재 엔진의 `Source/Runtime/Engine/Private/Subsystems/WorldSubsystem.cpp:94`와 `:104`에서 Tick 등록·해제가 Initialize·Deinitialize에 연결된 것을 확인했다. 새 서브시스템은 Super 호출과 기존 Agent 초기화 의존성을 유지한다. 해당 경로는 UE 5.8.3 소스 기준이며 이번 변경에 UE4 구현을 적용하지 않았다.
+
+| 검사 | 결과 | 근거 |
+|---|---|---|
+| 최종 프로젝트 파일 생성 | 성공 | `Saved/EnvironmentGoal/runtime-generate.log` |
+| 최종 CCLEditor Development 빌드 | 성공 | `Saved/EnvironmentGoal/runtime-build.log` |
+| 전체 자동 검사 | 24개 성공, 실패·미실행 0개 | `Saved/Tests/Automation/20261009-123047-132/report/index.json` |
+| 통합 저장 검사 | 미처리 시간·배율 이력, 손상·영역·기반 버전 거부, 쓰기 충돌, 버전 1-5 이전, 영역별 초기화 통과 | `CCL.Environment.Save`의 4개 검사 |
+| Standalone 시간·복원 | 세계 배율 0에서 게임 시계 진행, Agent 동시 복원과 세계 식별 유지 통과 | `Saved/Tests/WorldSmoke/Standalone-20261009-122659-925/result.json` |
+| Listen 시간 복제 | 호스트 검사와 클라이언트 권한 거부·동일 시각 수신 통과 | `Saved/Tests/WorldSmoke/Listen-20261009-122322-354/result.json` |
+| Dedicated 시간 복제 | 서버 검사와 순차 접속 클라이언트 2개의 동일 세계 ID·시각 수신 통과 | `Saved/Tests/WorldSmoke/Dedicated-20261009-122320-929/result.json` |
+| 실제 NPC 연결 | 작업·부상·저장 복원·Actor 제거 후 공통 시계 진행 통과 | `Saved/Tests/AgentWorld/20261009-122236/editor.log` |
+| 별도 프로세스 세션 저장·복원 | 쓰기·읽기 및 메뉴 복귀 후 재복원 통과 | `Saved/Tests/SessionSmoke/20261009-122659/` |
+
+재실행 명령은 `Tools/Validation/run_world_smoke.ps1 -Mode Standalone`, `-Mode Listen -Port 19782`, `-Mode Dedicated -Port 19783`이다. 세 실행 모드 검사는 기존 Campaign 맵과 NullRHI를 사용했다. 실험장 화면이나 눈·물·날씨를 검증한 결과가 아니다. Listen·Dedicated와 NPC 검사는 영역별 초기화 보완 전 실행했으며, 해당 보완 후 전체 자동 검사·Standalone·세션 재시작 검사를 다시 실행했다. 로컬 로그 경로는 저장소 기준 상대 경로로 기재했다.
+
+단계 1에는 두 실험장 맵, CommonUI 조작부·시험 상태, 안전한 실험 초기화와 해당 맵의 세 실행 모드·화면 검사가 남아 있다. 현재 단계는 계속 진행 중이며 단계 2-9도 전체 목표에 포함된다. 단계 완료 알림은 남은 통과 기준을 만족한 뒤 보낸다.
