@@ -1,5 +1,6 @@
-#include "CCLCinematicSubsystem.h"
+﻿#include "CCLCinematicSubsystem.h"
 
+#include "UI/CCLUIInputData.h"
 #include "UI/CCLGameUI.h"
 #include "UI/Core/CCLUISubsystem.h"
 #include "Blueprint/WidgetTree.h"
@@ -43,7 +44,7 @@ int32 UCCLCinematicScreen::NativePaint(const FPaintArgs& Args, const FGeometry& 
 			FCoreStyle::Get().GetBrush(TEXT("WhiteBrush")), ESlateDrawEffect::None, FLinearColor::Black);
 	}
 	FSlateDrawElement::MakeText(Elements, ++Layer, Geometry.ToPaintGeometry(FVector2D(1), FSlateLayoutTransform(FVector2D(40, Size.Y - 76 * Scale))),
-		Context->Title + TEXT("   |   Esc: skip"), FCoreStyle::GetDefaultFontStyle(TEXT("Bold"), FMath::RoundToInt(28 * Scale)),
+		Context->Title + FString::Printf(TEXT("   ·   %s: 건너뛰기"), UCCLUIInputData::GetBackKeyLabel(this)), FCoreStyle::GetDefaultFontStyle(TEXT("Bold"), FMath::RoundToInt(28 * Scale)),
 		ESlateDrawEffect::None, FLinearColor(0.95f, 0.85f, 0.6f));
 	return Layer;
 }

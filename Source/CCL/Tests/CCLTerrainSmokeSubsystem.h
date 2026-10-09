@@ -36,6 +36,8 @@ private:
 
 	TWeakObjectPtr<UCCLTerrainChunkComponent> CancelledChunk;
 	TSharedPtr<FCCLTerrainSmokeParticipant> Participant;
+	TArray<uint8> RestoreBytes;
+	FGuid BeforeRestoreEpoch;
 	FGuid Principal = FGuid(100, 200, 300, 400);
 	double Started = 0.;
 	double Next = 0.;

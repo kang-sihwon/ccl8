@@ -3,6 +3,9 @@
 #include "Agents/CCLAgentWorldSubsystem.h"
 #include "CCLWorldSimulationSubsystem.h"
 #include "CCLWorldSnapshot.h"
+#include "CCLTerrainRegion.h"
+#include "CCLWorldGenerationStore.h"
+#include "CCLTerrainReplication.h"
 #include "CCLWorldEnvironmentConfig.h"
 #include "AIController.h"
 #include "BrainComponent.h"
@@ -76,12 +79,23 @@ void ACCLExperimentDirector::BeginPlay()
 	}
 
 	InitialSnapshot = Baseline;
+	if (!InitialSnapshot.IsEmpty())
+	{
+		InitializeTerrainExperiment();
+	}
 }
 
 void ACCLExperimentDirector::Tick(float DeltaSeconds)
 {
 	Super::Tick(DeltaSeconds);
-	if (!ActiveCase.IsNone() && FPlatformTime::Seconds() - RunStarted > 10)
+	if (HasAuthority())
+	{
+		InitializeWaterExperiment();
+		TickTerrainExperiment();
+		TickWaterExperiment();
+		TickSnowExperiment();
+	}
+	if (!ActiveCase.IsNone() && FPlatformTime::Seconds() - RunStarted > ((ActiveCase == TEXT("Zone_05") || ActiveCase == TEXT("Zone_04") || ActiveCase == TEXT("Zone_03")) ? 120. : 10.))
 	{
 		if (auto* Result = Results.FindByPredicate([this](const auto& R) { return R.CaseId == ActiveCase; }))
 		{
@@ -103,6 +117,7 @@ void ACCLExperimentDirector::GetLifetimeReplicatedProps(TArray<FLifetimeProperty
 	DOREPLIFETIME(ACCLExperimentDirector, Generation);
 	DOREPLIFETIME(ACCLExperimentDirector, Operator);
 	DOREPLIFETIME(ACCLExperimentDirector, ActiveCase);
+	DOREPLIFETIME(ACCLExperimentDirector, TerrainRegion);
 }
 
 void ACCLExperimentDirector::AssignOperator(APlayerController* Controller)
@@ -132,13 +147,19 @@ void ACCLExperimentDirector::ReleaseOperator(APlayerController* Controller)
 }
 
 bool ACCLExperimentDirector::Execute(APlayerController* Requester, ECCLExperimentAction Action, FName CaseId,
-	FGuid ExpectedGeneration, FGuid ExpectedRun, FString& Message)
+	FGuid ExpectedGeneration, FGuid ExpectedRun, FString& Message, uint64 ExpectedTerrainSerial)
 {
 	Message.Reset();
 	if (!HasAuthority() || !IsReady() || ExpectedGeneration != Generation ||
 		UCCLWorldSimulationSubsystem::DomainForWorld(GetWorld()) == ECCLWorldDomain::Campaign)
 	{
 		Message = TEXT("실험이 준비되지 않았거나 이전 실행 세대의 요청이다.");
+		return false;
+	}
+
+	if (bTerrainRestorePending || bTravelPending)
+	{
+		Message = TEXT("저장된 지형과 세계 상태를 함께 복원하고 있다.");
 		return false;
 	}
 
@@ -152,6 +173,27 @@ bool ACCLExperimentDirector::Execute(APlayerController* Requester, ECCLExperimen
 	{
 		Message = TEXT("조작 담당자만 실행할 수 있다. 다른 참가자는 결과를 확인할 수 있다.");
 		return false;
+	}
+
+	if (Action >= ECCLExperimentAction::WaterRain && Action <= ECCLExperimentAction::WaterDry)
+	{
+		if (!ActiveCase.IsNone())
+		{
+			Message = TEXT("실행 중인 시험을 마치거나 중지한 뒤 물 입력을 바꿀 수 있다.");
+			return false;
+		}
+		return WaterAction(Action, CaseId, Message);
+	}
+
+	if (Action >= ECCLExperimentAction::TerrainExcavate && Action <= ECCLExperimentAction::TerrainReset)
+	{
+		if (!TerrainRegion || ExpectedTerrainSerial != TerrainRegion->GetPublicationSerial())
+		{
+			Message = TEXT("지형 상태가 바뀌었다. 최신 상태 수신 후 다시 조작해 줘.");
+			return false;
+		}
+
+		return ActiveCase.IsNone() && TerrainAction(Requester, Action, Message);
 	}
 
 	if (Action == ECCLExperimentAction::Reset)
@@ -168,6 +210,12 @@ bool ACCLExperimentDirector::Execute(APlayerController* Requester, ECCLExperimen
 			return false;
 		}
 
+		if (CaseId == TEXT("Zone_05") && TerrainRegion)
+		{
+			TerrainRegion->CancelPendingEdit();
+			TerrainCaseStep = 0;
+		}
+
 		Finish(*Result, false, TEXT("조작 담당자가 실행을 중지했다."));
 		return true;
 	}
@@ -181,7 +229,11 @@ bool ACCLExperimentDirector::Execute(APlayerController* Requester, ECCLExperimen
 	auto* Runtime = GetWorld()->GetSubsystem<UCCLWorldSimulationSubsystem>();
 	switch (Action)
 	{
+	case ECCLExperimentAction::SnowFall:
+	case ECCLExperimentAction::SnowMelt:
+		return SnowAction(Action, CaseId, Message);
 	case ECCLExperimentAction::Start:
+		SnowWalker = Requester->GetPawn();
 		return StartCase(CaseId, Message);
 	case ECCLExperimentAction::Save:
 		return SaveCheckpoint(Message);
@@ -218,13 +270,28 @@ bool ACCLExperimentDirector::Execute(APlayerController* Requester, ECCLExperimen
 	default: Message = TEXT("지원하지 않는 실험 조작이다."); return false;
 	}
 
+	auto* Agents = GetWorld()->GetSubsystem<UCCLAgentWorldSubsystem>();
+	if (!Agents || !Agents->SaveSessionForTravel(Message))
+	{
+		return false;
+	}
+
+	bTravelPending = 1;
 	if (GetNetMode() == NM_Standalone)
 	{
 		UGameplayStatics::OpenLevel(this, FName(*Destination));
 		return true;
 	}
 
-	return GetWorld()->ServerTravel(Destination);
+	if (GetWorld()->ServerTravel(Destination))
+	{
+		return true;
+	}
+
+	bTravelPending = 0;
+	Agents->CancelPreparedTravel();
+	Message = TEXT("맵 전환을 시작할 수 없다.");
+	return false;
 }
 
 bool ACCLExperimentDirector::ResetExperiment(FString& Error)
@@ -258,6 +325,17 @@ bool ACCLExperimentDirector::ResetExperiment(FString& Error)
 		return false;
 	}
 
+	if (TerrainRegion && TerrainRegion->IsTerrainReady())
+	{
+		FCCLTerrainStore Base;
+		auto Definition = TerrainRegion->GetTerrainStore().GetSnapshot().Definition;
+		Definition.WorldId = Initial.Identity.WorldId;
+		const auto Context = FCCLWorldGenerationStore::ContextFor(Initial);
+		TArray<uint8> TerrainBytes;
+		return Base.Initialize(Definition, Error) && Base.Capture(Context, TerrainBytes, Error)
+			&& QueueWorldRestore(TerrainBytes, Context, ResetBytes, Error);
+	}
+
 	for (TActorIterator<AAIController> It(GetWorld()); It; ++It)
 	{
 		It->StopMovement();
@@ -270,12 +348,15 @@ bool ACCLExperimentDirector::ResetExperiment(FString& Error)
 	GetWorldTimerManager().ClearTimer(RunTimer);
 	Generation = FGuid::NewGuid();
 	ActiveCase = NAME_None;
+	WaterCaseStep = 0;
 	if (!Agents->Restore(ResetBytes, Error))
 	{
 		return false;
 	}
 
-	GetGameInstance()->GetSubsystem<UCCLAgentSessionStore>()->SnapshotFor(Initial.Identity.Domain) = ResetBytes;
+	auto* SessionStore = GetGameInstance()->GetSubsystem<UCCLAgentSessionStore>();
+	SessionStore->TravelSnapshots.Remove(Initial.Identity.Domain);
+	SessionStore->SnapshotFor(Initial.Identity.Domain) = ResetBytes;
 	for (auto& Result : Results)
 	{
 		Result.RunId.Invalidate();
@@ -376,6 +457,39 @@ bool ACCLExperimentDirector::StartCase(FName CaseId, FString& Error)
 	Result->Detail = TEXT("시험을 실행하고 있다.");
 	ActiveCase = CaseId;
 	RunStarted = FPlatformTime::Seconds();
+	if (CaseId == TEXT("Zone_03"))
+	{
+		if (!StartSnowExperiment(Error))
+		{
+			Finish(*Result, false, Error);
+			return false;
+		}
+		ForceNetUpdate();
+		return true;
+	}
+	if (CaseId == TEXT("Zone_04"))
+	{
+		if (!StartWaterExperiment(Error))
+		{
+			Finish(*Result, false, Error);
+			return false;
+		}
+		ForceNetUpdate();
+		return true;
+	}
+	if (CaseId == TEXT("Zone_05"))
+	{
+		if (!ResetTerrain(Error))
+		{
+			Finish(*Result, false, Error);
+			return false;
+		}
+
+		TerrainCaseStep = 1;
+		ForceNetUpdate();
+		return true;
+	}
+
 	GetWorldTimerManager().SetTimer(RunTimer, [this, CaseId, Run = Result->RunId, Token = Generation]()
 	{
 		CompleteCase(CaseId, Run, Token);
@@ -415,6 +529,12 @@ void ACCLExperimentDirector::CompleteCase(FName CaseId, FGuid RunId, FGuid Token
 void ACCLExperimentDirector::Finish(FCCLExperimentResult& Result, bool bPassed, const FString& Detail)
 {
 	GetWorldTimerManager().ClearTimer(RunTimer);
+	if (WaterCaseStep)
+	{
+		FString Ignore;
+		GetWorld()->GetSubsystem<UCCLWorldSimulationSubsystem>()->ChangeSurfaceForcing(WaterRegionId(), WaterCaseForcing, Ignore);
+		WaterCaseStep = 0;
+	}
 	ActiveCase = NAME_None;
 	Result.Status = bPassed ? ECCLExperimentStatus::Passed : ECCLExperimentStatus::Failed;
 	Result.Detail = Detail;
@@ -546,6 +666,11 @@ bool ACCLExperimentDirector::RunSnapshot(FGuid RunId, FString& Error)
 
 bool ACCLExperimentDirector::SaveCheckpoint(FString& Error)
 {
+	if (TerrainRegion)
+	{
+		return SaveTerrainWorld(Error);
+	}
+
 	TArray<uint8> Bytes;
 	if (!GetWorld()->GetSubsystem<UCCLAgentWorldSubsystem>()->Save(Bytes) || !UGameplayStatics::SaveDataToSlot(Bytes, SlotName(), 0))
 	{
@@ -559,6 +684,11 @@ bool ACCLExperimentDirector::SaveCheckpoint(FString& Error)
 
 bool ACCLExperimentDirector::LoadCheckpoint(FString& Error)
 {
+	if (TerrainRegion)
+	{
+		return LoadTerrainWorld(Error);
+	}
+
 	TArray<uint8> Bytes;
 	FCCLWorldSnapshot Snapshot;
 	if (!UGameplayStatics::LoadDataFromSlot(Bytes, SlotName(), 0) || !FCCLWorldSnapshotCodec::Decode(Bytes, Snapshot, Error) ||
@@ -601,7 +731,17 @@ bool ACCLExperimentDirector::MoveToSafety(APlayerController* OnlyPlayer, int32 Z
 				Character->GetCharacterMovement()->StopMovementImmediately();
 			}
 
-			const FVector Destination = UCCLExperimentDefinition::ZoneCenter(Zone) + FVector(-550, -450 + 180 * Index++, 130);
+			if (Zone == 5 && TerrainRegion)
+			{
+				const auto* Replication = PC->FindComponentByClass<UCCLTerrainReplication>();
+				if (!TerrainRegion->IsTerrainReady() || TerrainRegion->IsPreparing() || !Replication || !Replication->IsClientReady(TerrainRegion))
+				{
+					Error = TEXT("참가자의 지형 충돌 준비가 끝나면 이동할 수 있다.");
+					return false;
+				}
+			}
+
+			const FVector Destination = UCCLExperimentDefinition::ZoneCenter(Zone) + FVector(-550, -450 + 180 * Index++, Zone == 5 ? 530 : 130);
 			if (!Pawn->TeleportTo(Destination, FRotator::ZeroRotator))
 			{
 				Error = TEXT("안전 지점으로 이동할 수 없어 초기화를 중단했다.");
@@ -616,7 +756,10 @@ bool ACCLExperimentDirector::MoveToSafety(APlayerController* OnlyPlayer, int32 Z
 FString ACCLExperimentDirector::SlotName() const
 {
 	const bool bScenario = UCCLWorldSimulationSubsystem::DomainForWorld(GetWorld()) == ECCLWorldDomain::Scenario;
-	const bool bTest = FParse::Param(FCommandLine::Get(), TEXT("CCLExperimentSmoke"));
+	const bool bTest = FParse::Param(FCommandLine::Get(), TEXT("CCLExperimentSmoke"))
+		|| FParse::Param(FCommandLine::Get(), TEXT("CCLTerrainScenarioSmoke"))
+		|| FParse::Param(FCommandLine::Get(), TEXT("CCLWaterSmoke"))
+		|| FParse::Param(FCommandLine::Get(), TEXT("CCLSnowSmoke"));
 	FString Slot = FString(bTest ? TEXT("CCL_Experiment_Validation_") : TEXT("CCL_Experiment_")) +
 		(bScenario ? TEXT("Scenario") : TEXT("Playground"));
 #if !UE_BUILD_SHIPPING && !UE_BUILD_TEST

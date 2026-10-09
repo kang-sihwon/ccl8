@@ -1,8 +1,9 @@
-#include "CCLVillageSteward.h"
+﻿#include "CCLVillageSteward.h"
 
 #include "Map/CCLMapSystem.h"
 #include "Components/SkeletalMeshComponent.h"
 #include "Components/TextRenderComponent.h"
+#include "Engine/Font.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Animation/AnimInstance.h"
 #include "UObject/ConstructorHelpers.h"
@@ -25,8 +26,10 @@ ACCLVillageSteward::ACCLVillageSteward()
 	if (Anim.Succeeded()) { GetMesh()->SetAnimInstanceClass(Anim.Class); }
 	auto* Label = CreateDefaultSubobject<UTextRenderComponent>(TEXT("Label"));
 	Label->SetupAttachment(GetRootComponent());
+	static ConstructorHelpers::FObjectFinder<UFont> KoreanFont(TEXT("/Game/UI/Fonts/F_KoreanLabel.F_KoreanLabel"));
+	if (KoreanFont.Succeeded()) { Label->SetFont(KoreanFont.Object); }
 	Label->SetRelativeLocation(FVector(0.f, 0.f, 130.f));
-	Label->SetText(FText::FromString(TEXT("VILLAGE STEWARD")));
+	Label->SetText(FText::FromString(TEXT("마을 관리인")));
 	Label->SetWorldSize(20.f);
 	Label->SetHorizontalAlignment(EHTA_Center);
 	Label->SetTextRenderColor(FColor::Yellow);

@@ -76,6 +76,7 @@ bool UCCLWorldSimulationSubsystem::Start(FCCLLifeSimulation& Life, ECCLWorldDoma
 	CandidateIdentity.Domain = Domain;
 	CandidateIdentity.WorldId = FGuid::NewGuid();
 	FCCLWorldClock CandidateClock;
+	FCCLSurfaceSimulation CandidateSurfaceSimulation;
 	FCCLEnvironmentInputs CandidateInputs = FCCLEnvironmentInputsCodec::MakeDefault(42);
 	int32 ConfigCount = 0;
 	for (TActorIterator<ACCLWorldEnvironmentConfig> It(GetWorld()); It; ++It)
@@ -93,6 +94,7 @@ bool UCCLWorldSimulationSubsystem::Start(FCCLLifeSimulation& Life, ECCLWorldDoma
 	if (Saved.IsEmpty())
 	{
 		if (!CandidateClock.Reset(Life.GetTime(), 60, Error)
+			|| !CandidateSurfaceSimulation.Initialize(CandidateIdentity.WorldId, CandidateClock.GetGameSeconds(), Life.GetTime(), 0, Error)
 			|| !FCCLEnvironmentInputsCodec::Prepare(CandidateInputs, Life.GetTime(), CandidateCelestial, CandidateSurfaces, Observation, Error))
 		{
 			return false;
@@ -114,7 +116,7 @@ bool UCCLWorldSimulationSubsystem::Start(FCCLLifeSimulation& Life, ECCLWorldDoma
 		if (!CheckMapInterest(GetWorld(), Snapshot.Environment, Error)
 		|| !FCCLEnvironmentInputsCodec::CheckDefinition(Snapshot.Environment, CandidateInputs.Celestial.DefinitionId, CandidateInputs.Celestial.Version, Error)
 			|| !FCCLEnvironmentInputsCodec::Prepare(Snapshot.Environment, Snapshot.Clock.WorldSeconds, CandidateCelestial, CandidateSurfaces, Observation, Error)
-			|| !FCCLWorldSnapshotCodec::Restore(Snapshot, Domain, CandidateClock, Life, Error))
+			|| !FCCLWorldSnapshotCodec::Restore(Snapshot, Domain, CandidateClock, Life, Error, &CandidateSurfaceSimulation))
 		{
 			return false;
 		}
@@ -124,8 +126,10 @@ bool UCCLWorldSimulationSubsystem::Start(FCCLLifeSimulation& Life, ECCLWorldDoma
 	}
 
 	Clock = MoveTemp(CandidateClock);
+	SurfaceSimulation = MoveTemp(CandidateSurfaceSimulation);
 	EnvironmentInputs = MoveTemp(CandidateInputs);
 	CelestialSystem = MoveTemp(CandidateCelestial);
+	CandidateSurfaces.CopyGeometryProviders(SurfaceScene);
 	SurfaceScene = MoveTemp(CandidateSurfaces);
 	Identity = CandidateIdentity;
 	Epoch = FGuid::NewGuid();
@@ -153,7 +157,7 @@ bool UCCLWorldSimulationSubsystem::AdvancePending(double MaxGameSeconds, double 
 		return false;
 	}
 
-	if (!CCLWorldAdvance::Advance(Clock, Agents->GetSimulation(), MaxGameSeconds, MaxWorldSeconds, Error, MaxLifeSlices))
+	if (!CCLWorldAdvance::Advance(Clock, Agents->GetSimulation(), MaxGameSeconds, MaxWorldSeconds, Error, MaxLifeSlices, &SurfaceSimulation))
 	{
 		ReportFailure(Error);
 		Publish();
@@ -208,7 +212,7 @@ bool UCCLWorldSimulationSubsystem::Save(const FCCLLifeSimulation& Life, TArray<u
 	FCCLWorldIdentity NextIdentity = Identity;
 	++NextIdentity.Generation;
 	FCCLWorldSnapshot Snapshot;
-	if (!FCCLWorldSnapshotCodec::Capture(NextIdentity, Clock, Life, Snapshot, Error, &EnvironmentInputs) ||
+	if (!FCCLWorldSnapshotCodec::Capture(NextIdentity, Clock, Life, Snapshot, Error, &EnvironmentInputs, &SurfaceSimulation) ||
 		!FCCLWorldSnapshotCodec::Encode(Snapshot, Bytes, Error))
 	{
 		return false;
@@ -246,13 +250,14 @@ bool UCCLWorldSimulationSubsystem::Restore(FCCLLifeSimulation& Life, const TArra
 	if (!CheckMapInterest(GetWorld(), Snapshot.Environment, Error)
 		|| !FCCLEnvironmentInputsCodec::CheckDefinition(Snapshot.Environment, EnvironmentInputs.Celestial.DefinitionId, EnvironmentInputs.Celestial.Version, Error)
 		|| !FCCLEnvironmentInputsCodec::Prepare(Snapshot.Environment, Snapshot.Clock.WorldSeconds, CandidateCelestial, CandidateSurfaces, Observation, Error)
-		|| !FCCLWorldSnapshotCodec::Restore(Snapshot, Identity.Domain, Clock, Life, Error))
+		|| !FCCLWorldSnapshotCodec::Restore(Snapshot, Identity.Domain, Clock, Life, Error, &SurfaceSimulation))
 	{
 		return false;
 	}
 
 	EnvironmentInputs = MoveTemp(Snapshot.Environment);
 	CelestialSystem = MoveTemp(CandidateCelestial);
+	CandidateSurfaces.CopyGeometryProviders(SurfaceScene);
 	SurfaceScene = MoveTemp(CandidateSurfaces);
 	Identity = Snapshot.Identity;
 	Epoch = FGuid::NewGuid();
@@ -287,6 +292,7 @@ bool UCCLWorldSimulationSubsystem::ReplaceEnvironmentInputs(const FCCLEnvironmen
 
 	EnvironmentInputs = Candidate;
 	CelestialSystem = MoveTemp(CandidateCelestial);
+	CandidateSurfaces.CopyGeometryProviders(SurfaceScene);
 	SurfaceScene = MoveTemp(CandidateSurfaces);
 	Publish();
 	return true;
@@ -458,4 +464,30 @@ void UCCLWorldSimulationSubsystem::ReportFailure(const FString& Error)
 	}
 
 	LastError = Error;
+}
+
+void UCCLWorldSimulationSubsystem::SetGeometryProvider(FGuid Id, TSharedPtr<const ICCLSurfaceProvider> Provider)
+{
+	SurfaceScene.SetGeometryProvider(Id, MoveTemp(Provider));
+	if (bRunning && GetWorld()->GetNetMode() != NM_Client && !GetWorld()->bIsTearingDown)
+	{
+		Publish();
+	}
+}
+
+bool UCCLWorldSimulationSubsystem::AddSurfaceRegion(FCCLSurfaceGrid Region, FString& Error)
+{
+	return CheckAuthority(Error) && SurfaceSimulation.AddRegion(MoveTemp(Region), Error);
+}
+
+bool UCCLWorldSimulationSubsystem::ChangeSurfaceForcing(FGuid RegionId, const FCCLSurfaceForcing& Forcing, FString& Error)
+{
+	return CheckAuthority(Error) && SurfaceSimulation.ChangeForcing(RegionId, Forcing, Error);
+}
+
+bool UCCLWorldSimulationSubsystem::ApplySnowContact(FGuid RegionId, FGuid SourceId, uint64 Sequence,
+	const FVector& PositionMeters, double RadiusMeters, FString& Error)
+{
+	return CheckAuthority(Error) && bRunning
+		&& SurfaceSimulation.ApplySnowContact(RegionId, SourceId, Sequence, PositionMeters, RadiusMeters, Error);
 }

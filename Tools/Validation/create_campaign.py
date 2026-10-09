@@ -1,4 +1,4 @@
-"""Create the village-road-boss prototype without replacing existing maps."""
+﻿"""Create the village-road-boss prototype without replacing existing maps."""
 import unreal
 
 MAP = '/Game/Maps/Campaign'
@@ -22,6 +22,10 @@ def block(label, location, scale):
 def sign(text, location):
     actor = actors.spawn_actor_from_class(unreal.TextRenderActor, unreal.Vector(*location))
     actor.text_render.set_text(text)
+    font = unreal.load_asset('/Game/UI/Fonts/F_KoreanLabel')
+    if not font:
+        raise RuntimeError('Korean world font is missing.')
+    actor.text_render.set_editor_property('font', font)
     actor.text_render.set_editor_property('world_size', 48.0)
     actor.set_actor_rotation(unreal.Rotator(pitch=0, yaw=180, roll=0), False)
 
@@ -36,8 +40,8 @@ block('GateLintel', (900, 0, 400), (1.5, 13.5, 1))
 block('CourtyardEnd', (1850, 0, 180), (1, 30, 3.6))
 for y in (-400, -150, 150, 400):
     actors.spawn_actor_from_class(unreal.PlayerStart, unreal.Vector(-1450, y, 110))
-sign('VILLAGE  >  EAST GATE', (-750, 550, 230))
-sign('GATE WARDEN', (1000, 0, 450))
+sign('마을 → 동쪽 성문', (-750, 550, 230))
+sign('성문 수호자', (1000, 0, 450))
 sun = actors.spawn_actor_from_class(unreal.DirectionalLight, unreal.Vector(0, 0, 700))
 sun.set_actor_rotation(unreal.Rotator(pitch=-45, yaw=-30, roll=0), False)
 actors.spawn_actor_from_class(unreal.SkyLight, unreal.Vector(0, 0, 500))

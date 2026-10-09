@@ -5,6 +5,8 @@
 #include "CCLExperimentDefinition.h"
 #include "CCLExperimentPlayerController.generated.h"
 
+class UCCLTerrainReplication;
+class UCCLSurfaceReplication;
 class UInputAction;
 class UInputMappingContext;
 
@@ -14,6 +16,7 @@ class CCL_API ACCLExperimentPlayerController : public ACCLPlayerController
 	GENERATED_BODY()
 
 public:
+	ACCLExperimentPlayerController();
 	virtual void PlayerTick(float DeltaTime) override;
 
 protected:
@@ -27,7 +30,7 @@ public:
 	void Submit(ECCLExperimentAction Action, FName CaseId = NAME_None);
 
 	UFUNCTION(Server, Reliable)
-	void ServerExperiment(ECCLExperimentAction Action, FName CaseId, FGuid Generation, FGuid RunId);
+	void ServerExperiment(ECCLExperimentAction Action, FName CaseId, FGuid Generation, FGuid RunId, uint64 TerrainSerial = 0);
 
 	UFUNCTION(Client, Reliable)
 	void ClientExperimentResponse(const FString& Message);
@@ -36,6 +39,12 @@ public:
 	FCCLUIViewHandle GetExperimentView() const { return ExperimentView; }
 
 private:
+	UPROPERTY()
+	TObjectPtr<UCCLTerrainReplication> TerrainReplication;
+
+	UPROPERTY()
+	TObjectPtr<UCCLSurfaceReplication> SurfaceReplication;
+
 	UPROPERTY(Transient)
 	TObjectPtr<UInputAction> ToggleAction;
 

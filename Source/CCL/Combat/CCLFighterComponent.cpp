@@ -1,4 +1,4 @@
-#include "CCLFighterComponent.h"
+﻿#include "CCLFighterComponent.h"
 #include "Items/CCLAttachmentProfile.h"
 #include "GameFramework/Character.h"
 #include "Components/StaticMeshComponent.h"
@@ -256,23 +256,23 @@ void UCCLFighterComponent::MulticastFeedback_Implementation(FGameplayTag Outcome
 {
 	if (Outcome == CCLTags::Outcome_Parried)
 	{
-		Feedback = TEXT("PARRY");
+		Feedback = TEXT("패링 성공");
 	}
 	else if (Outcome == CCLTags::Outcome_Guarded)
 	{
-		Feedback = TEXT("GUARD");
+		Feedback = TEXT("방어");
 	}
 	else if (Outcome == CCLTags::Outcome_GuardBroken)
 	{
-		Feedback = TEXT("GUARD BREAK");
+		Feedback = TEXT("방어 붕괴");
 	}
 	else if (Outcome == CCLTags::Outcome_Damage)
 	{
-		Feedback = TEXT("HIT");
+		Feedback = TEXT("피격");
 	}
 	else
 	{
-		Feedback = TEXT("EVADE");
+		Feedback = TEXT("회피");
 	}
 
 	FeedbackExpires = GetWorld()->GetTimeSeconds() + 0.8;

@@ -2,11 +2,21 @@
   "mcpServers": {
     "graft": {
       "command": "node",
-      "args": ["Tools/Agent/graft.cjs", "project"]
+      "args": [
+        "Tools/Agent/graft.cjs",
+        "project"
+      ]
     },
     "graft_ue58": {
       "command": "node",
-      "args": ["Tools/Agent/graft.cjs", "engine"]
+      "args": [
+        "Tools/Agent/graft.cjs",
+        "engine"
+      ]
+    },
+    "unreal-mcp": {
+    "type": "http",
+    "url": "http://127.0.0.1:8000/mcp"
     }
   }
 }

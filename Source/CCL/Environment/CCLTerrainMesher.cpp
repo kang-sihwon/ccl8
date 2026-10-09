@@ -58,6 +58,10 @@ bool FCCLTerrainMesher::BuildChunk(const FCCLTerrainSnapshot& Snapshot, const FI
 	}
 
 	UE::Geometry::FMarchingCubes Generator;
+	// Integer millimeter samples never equal this isovalue. Avoid the engine's endpoint
+	// nudge and tiny triangles discarded by Chaos at exact zero-valued lattice corners.
+	// The half-quantum inset preserves the original integer solid/air classification.
+	Generator.IsoValue = -0.5;
 	// The engine uses floor(dimension / CubeSize) + 1 cells. A half-cell adjustment fixes the loop count.
 	Generator.Bounds = UE::Geometry::FAxisAlignedBox3d(FVector(Mesh.MinimumCell), FVector(Mesh.MaximumCell) - FVector(0.5));
 	Generator.CubeSize = 1.;

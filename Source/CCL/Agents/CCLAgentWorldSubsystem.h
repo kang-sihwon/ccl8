@@ -4,7 +4,7 @@
 #include "Subsystems/WorldSubsystem.h"
 #include "Subsystems/GameInstanceSubsystem.h"
 #include "CCLLifeSimulation.h"
-#include "Environment/CCLWorldSnapshot.h"
+#include "Environment/CCLWorldGenerationStore.h"
 #include "CCLAgentWorldSubsystem.generated.h"
 
 UCLASS()
@@ -24,6 +24,7 @@ public:
 	TMap<ECCLWorldDomain, TArray<uint8>> Experiments;
 	TMap<ECCLWorldDomain, uint64> ExperimentSessions;
 	TMap<ECCLWorldDomain, TArray<uint8>> ExperimentInitialSnapshots;
+	TMap<ECCLWorldDomain, FCCLWorldGenerationBundle> TravelSnapshots;
 };
 
 UCLASS()
@@ -38,6 +39,8 @@ public:
 
 public:
 	bool Save(TArray<uint8>& Bytes);
+	bool SaveSessionForTravel(FString& Error);
+	void CancelPreparedTravel() { bTravelPrepared = 0; }
 	bool Restore(const TArray<uint8>& Bytes, FString& Error);
 	FCCLLifeSimulation& GetSimulation() { return Simulation; }
 	const FCCLLifeSimulation& GetSimulation() const { return Simulation; }
@@ -45,9 +48,11 @@ public:
 
 private:
 	void SpawnVillage();
+	void OnWorldBeginTearDown(UWorld* World);
 
 private:
 	FCCLLifeSimulation Simulation;
 	uint64 Session = 0;
 	uint8 bRunning = 0;
+	uint8 bTravelPrepared = 0;
 };

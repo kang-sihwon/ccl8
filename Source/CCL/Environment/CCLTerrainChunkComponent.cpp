@@ -1,5 +1,6 @@
 #include "CCLTerrainChunkComponent.h"
 
+#include "AI/NavigationSystemHelpers.h"
 #include "Chaos/Capsule.h"
 #include "Chaos/TriangleMeshImplicitObject.h"
 #include "DynamicMesh/DynamicMeshAttributeSet.h"
@@ -17,6 +18,7 @@ UCCLTerrainChunkComponent::UCCLTerrainChunkComponent()
 	SetCollisionEnabled(ECollisionEnabled::NoCollision);
 	SetGenerateOverlapEvents(false);
 	SetCanEverAffectNavigation(false);
+	bHasCustomNavigableGeometry = EHasCustomNavigableGeometry::Yes;
 	SetHiddenInGame(true);
 	SetVisibility(false);
 	SetDeferredCollisionUpdatesEnabled(true, false);
@@ -196,5 +198,37 @@ bool UCCLTerrainChunkComponent::OverlapsCapsule(const FVector& WorldCenter, cons
 		}
 	}
 
+	return false;
+}
+
+bool UCCLTerrainChunkComponent::DoCustomNavigableGeometryExport(FNavigableGeometryExport& Export) const
+{
+	if (State != ECCLTerrainChunkState::Active)
+	{
+		return false;
+	}
+
+	TArray<FVector> Vertices;
+	Vertices.Reserve(SourceMesh.VerticesMeters.Num());
+	for (const FVector& Vertex : SourceMesh.VerticesMeters)
+	{
+		Vertices.Add(Vertex * 100.);
+	}
+
+	TArray<int32> Indices;
+	Indices.Reserve(SourceMesh.Triangles.Num() * 3);
+	for (const auto& Triangle : SourceMesh.Triangles)
+	{
+		Indices.Add(Triangle.X);
+		Indices.Add(Triangle.Y);
+		Indices.Add(Triangle.Z);
+	}
+
+	if (FParse::Param(FCommandLine::Get(), TEXT("CCLTerrainSmoke")))
+	{
+		UE_LOG(LogTemp, Display, TEXT("CCL_TERRAIN_NAV_EXPORT %s verts=%d triangles=%d transform=%s"), *GetName(), Vertices.Num(), SourceMesh.Triangles.Num(), *GetComponentLocation().ToString());
+	}
+
+	Export.ExportCustomMesh(Vertices.GetData(), Vertices.Num(), Indices.GetData(), Indices.Num(), GetComponentTransform());
 	return false;
 }

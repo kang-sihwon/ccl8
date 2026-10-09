@@ -49,6 +49,8 @@ struct CCL_API FCCLSurfaceSample
 	FName BodyId;
 	uint64 Revision = 0;
 	FGuid Epoch;
+	uint64 SourceRevision = 0;
+	FGuid SourceEpoch;
 	FVector3d PositionMeters = FVector3d::ZeroVector;
 	FVector3d Normal = FVector3d::ZAxisVector;
 	double DistanceMeters = 0.;
@@ -59,7 +61,7 @@ struct CCL_API FCCLSurfaceSample
 	FCCLSurfaceTransmission Transmission;
 };
 
-// Finite planar fixture. Permanent voxel terrain implements the same query contract in stage 3.
+// Finite planar fixture; terrain providers use the same query contract.
 USTRUCT(BlueprintType)
 struct CCL_API FCCLSurfacePatch
 {
@@ -178,6 +180,9 @@ public:
 	bool Replace(const TArray<FCCLSurfacePatch>& CandidatePatches, const TArray<FCCLSurfaceOpening>& CandidateOpenings,
 		uint64 NewRevision, FString& Error);
 
+	void SetGeometryProvider(FGuid Id, TSharedPtr<const ICCLSurfaceProvider> Provider);
+	void CopyGeometryProviders(const FCCLSurfaceScene& Other);
+
 	double GetEffectiveOpeningAreaM2(const FGuid& SpaceId) const;
 
 	const TArray<FCCLSurfacePatch>& GetPatches() const { return Patches; }
@@ -185,6 +190,7 @@ public:
 	const TArray<FCCLSurfaceOpening>& GetOpenings() const { return Openings; }
 
 private:
+	TMap<FGuid, TSharedPtr<const ICCLSurfaceProvider>> GeometryProviders;
 	TArray<FCCLSurfacePatch> Patches;
 	TArray<FCCLSurfaceOpening> Openings;
 	TMap<FGuid, TArray<int32>> OpeningsBySurface;

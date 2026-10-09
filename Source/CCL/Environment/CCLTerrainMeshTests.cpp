@@ -90,7 +90,7 @@ bool FCCLTerrainPlaneMeshTest::RunTest(const FString& Parameters)
 	for (const FVector& P : Mesh.VerticesMeters)
 	{
 		TestTrue(TEXT("no vertex spills over chunk XY bounds"), P.X >= 0. && P.X <= 16. && P.Y >= 0. && P.Y <= 16.);
-		TestTrue(TEXT("zero surface respects engine interpolation tolerance"), FMath::Abs((P + Mesh.OriginMeters).Z) < 1.e-6);
+		TestTrue(TEXT("half-millimeter inset avoids zero-corner collision cracks"), FMath::Abs((P + Mesh.OriginMeters).Z + 0.0005) < 1.e-9);
 	}
 
 	for (const FIntVector& T : Mesh.Triangles)

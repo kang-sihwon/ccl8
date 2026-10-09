@@ -1,6 +1,9 @@
 #include "CCLExperimentPlayerController.h"
 
 #include "CCLExperimentDirector.h"
+#include "CCLTerrainReplication.h"
+#include "CCLSurfaceReplication.h"
+#include "CCLTerrainRegion.h"
 #include "CCLExperimentScreen.h"
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
@@ -12,6 +15,12 @@
 #include "NativeGameplayTags.h"
 
 UE_DEFINE_GAMEPLAY_TAG_STATIC(TAG_ExperimentScreen, "UI.View.EnvironmentExperiment");
+
+ACCLExperimentPlayerController::ACCLExperimentPlayerController()
+{
+	TerrainReplication = CreateDefaultSubobject<UCCLTerrainReplication>(TEXT("TerrainReplication"));
+	SurfaceReplication = CreateDefaultSubobject<UCCLSurfaceReplication>(TEXT("SurfaceReplication"));
+}
 
 void ACCLExperimentPlayerController::PlayerTick(float DeltaTime)
 {
@@ -99,16 +108,16 @@ void ACCLExperimentPlayerController::Submit(ECCLExperimentAction Action, FName C
 	if (const auto* Director = ACCLExperimentDirector::Find(GetWorld()))
 	{
 		const auto* Result = Director->FindResult(CaseId);
-		ServerExperiment(Action, CaseId, Director->GetGeneration(), Result ? Result->RunId : FGuid());
+		ServerExperiment(Action, CaseId, Director->GetGeneration(), Result ? Result->RunId : FGuid(), Director->GetTerrainRegion() ? Director->GetTerrainRegion()->GetPublicationSerial() : 0);
 	}
 }
 
 void ACCLExperimentPlayerController::ServerExperiment_Implementation(ECCLExperimentAction Action, FName CaseId,
-	FGuid Generation, FGuid RunId)
+	FGuid Generation, FGuid RunId, uint64 TerrainSerial)
 {
 	FString Message;
 	auto* Director = ACCLExperimentDirector::Find(GetWorld());
-	const bool bAccepted = Director && Director->Execute(this, Action, CaseId, Generation, RunId, Message);
+	const bool bAccepted = Director && Director->Execute(this, Action, CaseId, Generation, RunId, Message, TerrainSerial);
 	ClientExperimentResponse(Message.IsEmpty() ? (bAccepted ? TEXT("조작 요청을 처리했다.") : TEXT("조작 요청을 거부했다.")) : Message);
 }
 

@@ -19,8 +19,9 @@ class CCL_API ACCLCharacter : public ACharacter, public IAbilitySystemInterface
 
 	// 부모 인터페이스 함수
 public:
-	ACCLCharacter();
+	ACCLCharacter(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get());
 
+	virtual void BeginPlay() override;
 	virtual void PossessedBy(AController* NewController) override;
 	virtual void OnRep_PlayerState() override;
 	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;

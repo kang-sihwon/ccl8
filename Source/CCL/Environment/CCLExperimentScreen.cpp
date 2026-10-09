@@ -1,6 +1,8 @@
 #include "CCLExperimentScreen.h"
 
 #include "CCLExperimentDirector.h"
+#include "CCLTerrainRegion.h"
+#include "CCLSurfaceReplication.h"
 #include "CCLExperimentPlayerController.h"
 #include "CCLWorldEnvironmentState.h"
 #include "CCLWorldSimulationSubsystem.h"
@@ -199,6 +201,99 @@ void UCCLExperimentScreen::OnContextBound()
 	DoorButton = Door;
 	EnvironmentControls->AddSlot().AutoHeight()[Door];
 
+	auto TerrainControls = SNew(SVerticalBox).Visibility_Lambda([this]()
+	{
+		return SelectedCase == TEXT("Zone_05") ? EVisibility::Visible : EVisibility::Collapsed;
+	});
+	TerrainControls->AddSlot().AutoHeight().Padding(0, 0, 0, 8)
+		[SNew(STextBlock).Font(FCoreStyle::GetDefaultFontStyle("Regular", 16)).WrapTextAt(760)
+		.Text_Lambda([this]()
+		{
+			const auto* Region = Director() ? Director()->GetTerrainRegion() : nullptr;
+			if (!Region || !Region->IsTerrainReady())
+			{
+				return FText::FromString(TEXT("지형 수신과 충돌 준비 대기"));
+			}
+
+			return FText::FromString(FString::Printf(TEXT("지형 %llu | 배포 %llu | 충돌 %s | AI 경로 %s\n%s"),
+				Region->GetTerrainStore().GetRevision(), Region->GetPublicationSerial(),
+				!Region->HasAuthority() && !Region->IsReplicaReady() ? TEXT("수신·충돌 대기") : (Region->IsPreparing() ? TEXT("후보 준비 중") : TEXT("준비")),
+				Region->HasAuthority() ? (Region->IsNavigationReady() ? TEXT("준비") : TEXT("갱신 대기")) : TEXT("서버 판정"),
+				*Region->GetLastError()));
+		})];
+	auto TerrainButtons = SNew(SHorizontalBox);
+	const TPair<const TCHAR*, ECCLExperimentAction> TerrainActions[] = {
+		{TEXT("구덩이 굴착"), ECCLExperimentAction::TerrainExcavate}, {TEXT("흙 쌓기"), ECCLExperimentAction::TerrainDeposit},
+		{TEXT("수로 연결"), ECCLExperimentAction::TerrainChannel}, {TEXT("보호 구역 확인"), ECCLExperimentAction::TerrainProtection},
+		{TEXT("지형 초기화"), ECCLExperimentAction::TerrainReset}};
+	for (const auto& Entry : TerrainActions)
+	{
+		TerrainButtons->AddSlot().AutoWidth().Padding(0, 0, 4, 0)[Button(Entry.Key,
+			[Action, Command = Entry.Value]() { Action(Command); }, [this, Allowed]()
+			{
+				const auto* Region = Director() ? Director()->GetTerrainRegion() : nullptr;
+				return Allowed() && Region && Region->IsTerrainReady() && !Region->IsPreparing()
+					&& (Region->HasAuthority() || Region->IsReplicaReady());
+			})];
+	}
+
+	TerrainControls->AddSlot().AutoHeight()[TerrainButtons];
+
+	auto WaterControls = SNew(SVerticalBox).Visibility_Lambda([this]()
+	{
+		return SelectedCase == TEXT("Zone_04") || SelectedCase == TEXT("Zone_05") ? EVisibility::Visible : EVisibility::Collapsed;
+	});
+	WaterControls->AddSlot().AutoHeight().Padding(0, 8)
+		[SNew(STextBlock).Font(FCoreStyle::GetDefaultFontStyle("Regular", 16)).WrapTextAt(760).Text_Lambda([this]()
+		{
+			const auto* Model = UCCLSurfaceReplication::View(GetWorld());
+			const auto* G = Model ? Model->FindRegion(SelectedCase == TEXT("Zone_05")
+				? ACCLExperimentDirector::TerrainWaterRegionId() : ACCLExperimentDirector::WaterRegionId()) : nullptr;
+			if (!G || !UCCLSurfaceReplication::IsGeometryReady(GetWorld(), *Model, *G))
+			{
+				return FText::FromString(TEXT("서버의 물과 지형을 준비하고 있다."));
+			}
+			double Liquid = 0., Ice = 0., Soil = 0.;
+			for (const auto& C : G->Cells)
+			{
+				Liquid += C.WaterCubicMeters;
+				Ice += C.IceCubicMeters;
+				Soil += C.SoilCubicMeters;
+			}
+			return FText::FromString(FString::Printf(TEXT("물 %.3f · 얼음 %.3f · 토양 수분 %.3f m³\n기온 %.1f°C · 강수 %.1f mm/h · 수지 오차 %.8f m³\n청록: 수면 · 흰색: 얼음 · 짙은 갈색: 진흙"),
+				Liquid, Ice, Soil, G->Forcing.TemperatureCelsius, G->Forcing.RainMetersPerWorldSecond * 3600000., G->BalanceErrorCubicMeters()));
+		})];
+	auto WaterAllowed = [this, Allowed]()
+	{
+		FString Reason;
+		return Allowed() && Director()->CanStart(SelectedCase, Reason);
+	};
+	auto WaterButtons = SNew(SHorizontalBox);
+	const TPair<const TCHAR*, ECCLExperimentAction> WaterActions[] = {
+		{TEXT("비 켜기 / 끄기"), ECCLExperimentAction::WaterRain}, {TEXT("결빙"), ECCLExperimentAction::WaterFreeze},
+		{TEXT("융해"), ECCLExperimentAction::WaterThaw}, {TEXT("건조"), ECCLExperimentAction::WaterDry}};
+	for (const auto& Command : WaterActions)
+	{
+		WaterButtons->AddSlot().AutoWidth().Padding(0, 0, 6, 0)
+			[Button(Command.Key, [Action, Value = Command.Value]() { Action(Value); }, WaterAllowed)];
+	}
+	WaterControls->AddSlot().AutoHeight()[WaterButtons];
+
+	auto SnowControls = SNew(SHorizontalBox).Visibility_Lambda([this]()
+	{
+		return SelectedCase == TEXT("Zone_03") ? EVisibility::Visible : EVisibility::Collapsed;
+	});
+	for (const auto& Entry : TArray<TPair<FString, ECCLExperimentAction>>{
+		{TEXT("새 적설 켜기 / 끄기"), ECCLExperimentAction::SnowFall}, {TEXT("융해"), ECCLExperimentAction::SnowMelt}})
+	{
+		SnowControls->AddSlot().AutoWidth().Padding(0, 0, 5, 0)[Button(*Entry.Key,
+			[Action, Value = Entry.Value]() { Action(Value); }, [this, Allowed]()
+			{
+				FString Why;
+				return Allowed() && Director() && Director()->CanStart(SelectedCase, Why);
+			})];
+	}
+
 	auto Detail = SNew(SVerticalBox)
 		+ SVerticalBox::Slot().AutoHeight().Padding(0, 0, 0, 12)
 		[SNew(STextBlock).Font(FCoreStyle::GetDefaultFontStyle("Bold", 26)).Text_Lambda([this]()
@@ -234,6 +329,9 @@ void UCCLExperimentScreen::OnContextBound()
 				Result->CompletedWorldSeconds, Result->RunId.IsValid() ? *Result->RunId.ToString().Left(8) : TEXT("미실행")));
 		})]
 		+ SVerticalBox::Slot().AutoHeight()[EnvironmentControls]
+		+ SVerticalBox::Slot().AutoHeight()[TerrainControls]
+		+ SVerticalBox::Slot().AutoHeight()[WaterControls]
+		+ SVerticalBox::Slot().AutoHeight()[SnowControls]
 		+ SVerticalBox::Slot().AutoHeight().Padding(0, 10, 0, 10)[Controls]
 		+ SVerticalBox::Slot().AutoHeight()[Storage];
 

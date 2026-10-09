@@ -1,6 +1,7 @@
 #include "CCLWorldSnapshot.h"
 
 #include "Agents/CCLLifeSimulation.h"
+#include "CCLSurfaceSimulation.h"
 #include "Misc/Crc.h"
 #include "Serialization/MemoryReader.h"
 #include "Serialization/MemoryWriter.h"
@@ -8,7 +9,7 @@
 namespace
 {
 	constexpr uint32 Magic = 0x574C4343; // CCLW
-	constexpr int32 MaxBytes = 36 * 1024 * 1024;
+	constexpr int32 MaxBytes = 40 * 1024 * 1024;
 
 	bool Reject(FString& Error, const TCHAR* Reason)
 	{
@@ -24,7 +25,7 @@ namespace
 		S.Identity.Domain = static_cast<ECCLWorldDomain>(Domain);
 		Ar << S.Clock.Version << S.Clock.CompletedStepId << S.Clock.GameSeconds << S.Clock.WorldSeconds;
 		Ar << S.Clock.AcceptedGameSeconds << S.Clock.RequestedWorldSeconds << S.Clock.TimeScale;
-		if (Ar.IsError() || Tag != Magic || (S.Schema != 1 && S.Schema != 2))
+		if (Ar.IsError() || Tag != Magic || (S.Schema < 1 || S.Schema > 3))
 		{
 			return false;
 		}
@@ -82,6 +83,19 @@ namespace
 			}
 		}
 
+		if (S.Schema >= 3)
+		{
+			Count = S.Surface.Num();
+			Ar << Count;
+			if (Ar.IsError() || Count < 56 || Count > FCCLSurfaceSimulation::MaximumBytes
+				|| (Ar.IsLoading() && Count > Ar.TotalSize() - Ar.Tell()))
+			{
+				return false;
+			}
+			S.Surface.SetNumUninitialized(Count);
+			Ar.Serialize(S.Surface.GetData(), Count);
+		}
+
 		Count = S.Life.Num();
 		Ar << Count;
 		if (Ar.IsError() || Count < 32 || Count > MaxBytes - 128 ||
@@ -97,7 +111,7 @@ namespace
 }
 
 bool FCCLWorldSnapshotCodec::Capture(const FCCLWorldIdentity& Identity, const FCCLWorldClock& Clock,
-	const FCCLLifeSimulation& Life, FCCLWorldSnapshot& Snapshot, FString& Error, const FCCLEnvironmentInputs* Environment)
+	const FCCLLifeSimulation& Life, FCCLWorldSnapshot& Snapshot, FString& Error, const FCCLEnvironmentInputs* Environment, const FCCLSurfaceSimulation* Surface)
 {
 	Error.Reset();
 	FCCLWorldSnapshot Candidate;
@@ -110,6 +124,20 @@ bool FCCLWorldSnapshotCodec::Capture(const FCCLWorldIdentity& Identity, const FC
 	if (!Clock.Capture(Candidate.Clock, Error) || Clock.GetWorldSeconds() != Life.GetTime() || !Life.Save(Candidate.Life))
 	{
 		return Reject(Error, TEXT("Cannot capture inconsistent or busy clock/life state."));
+	}
+
+	FCCLSurfaceSimulation EmptySurface;
+	if (!Surface)
+	{
+		if (!EmptySurface.Initialize(Identity.WorldId, Clock.GetGameSeconds(), Clock.GetWorldSeconds(), Clock.GetCompletedStepId(), Error))
+		{
+			return false;
+		}
+		Surface = &EmptySurface;
+	}
+	if (!Surface->Capture(Candidate.Surface, Error))
+	{
+		return false;
 	}
 
 	if (!Validate(Candidate, Error))
@@ -169,7 +197,17 @@ bool FCCLWorldSnapshotCodec::Decode(const TArray<uint8>& Bytes, FCCLWorldSnapsho
 
 	// Schema 1 had no environment. Its constructor-supplied default is the explicit migration.
 	Candidate.bEnvironmentMigrated = Candidate.Schema == 1;
-	Candidate.Schema = 2;
+	Candidate.bSurfaceMigrated = Candidate.Schema < 3;
+	if (Candidate.Schema < 3)
+	{
+		FCCLSurfaceSimulation EmptySurface;
+		if (!EmptySurface.Initialize(Candidate.Identity.WorldId, Candidate.Clock.GameSeconds,
+			Candidate.Clock.WorldSeconds, Candidate.Clock.CompletedStepId, Error) || !EmptySurface.Capture(Candidate.Surface, Error))
+		{
+			return false;
+		}
+	}
+	Candidate.Schema = 3;
 	if (!Validate(Candidate, Error))
 	{
 		return false;
@@ -196,7 +234,7 @@ bool FCCLWorldSnapshotCodec::MigrateLegacy(const TArray<uint8>& LifeBytes, ECCLW
 }
 
 bool FCCLWorldSnapshotCodec::Restore(const FCCLWorldSnapshot& Snapshot, ECCLWorldDomain ExpectedDomain,
-	FCCLWorldClock& Clock, FCCLLifeSimulation& Life, FString& Error)
+	FCCLWorldClock& Clock, FCCLLifeSimulation& Life, FString& Error, FCCLSurfaceSimulation* Surface)
 {
 	if (Snapshot.Identity.Domain != ExpectedDomain)
 	{
@@ -204,12 +242,18 @@ bool FCCLWorldSnapshotCodec::Restore(const FCCLWorldSnapshot& Snapshot, ECCLWorl
 	}
 
 	FCCLWorldClock CandidateClock;
-	if (!Validate(Snapshot, Error) || !CandidateClock.Restore(Snapshot.Clock, Error) || !Life.Load(Snapshot.Life, Error))
+	FCCLSurfaceSimulation CandidateSurface;
+	if (!Validate(Snapshot, Error) || !CandidateClock.Restore(Snapshot.Clock, Error)
+		|| !CandidateSurface.Restore(Snapshot.Surface, Error) || !Life.Load(Snapshot.Life, Error))
 	{
 		return false;
 	}
 
 	// Life.Load validates before replacing its store; publication below cannot fail.
+	if (Surface)
+	{
+		*Surface = MoveTemp(CandidateSurface);
+	}
 	Clock = MoveTemp(CandidateClock);
 	return true;
 }
@@ -217,11 +261,19 @@ bool FCCLWorldSnapshotCodec::Restore(const FCCLWorldSnapshot& Snapshot, ECCLWorl
 bool FCCLWorldSnapshotCodec::Validate(const FCCLWorldSnapshot& Snapshot, FString& Error)
 {
 	Error.Reset();
-	if (Snapshot.Schema != 2 || Snapshot.Identity.BaseWorldVersion != 1 || !Snapshot.Identity.WorldId.IsValid() ||
+	if (Snapshot.Schema != 3 || Snapshot.Identity.BaseWorldVersion != 1 || !Snapshot.Identity.WorldId.IsValid() ||
 		Snapshot.Identity.Generation == 0 || static_cast<uint8>(Snapshot.Identity.Domain) > static_cast<uint8>(ECCLWorldDomain::Scenario) ||
 		Snapshot.Life.Num() < 32 || Snapshot.Life.Num() > MaxBytes - 128)
 	{
 		return Reject(Error, TEXT("Unsupported world identity, version or life payload."));
+	}
+
+	FCCLSurfaceSimulation Surface;
+	if (!Surface.Restore(Snapshot.Surface, Error) || Surface.GetWorldId() != Snapshot.Identity.WorldId
+		|| Surface.GetGameSeconds() != Snapshot.Clock.GameSeconds || Surface.GetWorldSeconds() != Snapshot.Clock.WorldSeconds
+		|| Surface.GetStepId() != Snapshot.Clock.CompletedStepId)
+	{
+		return Reject(Error, TEXT("World clock and surface snapshot do not agree."));
 	}
 
 	FCCLCelestialSystem Celestial;

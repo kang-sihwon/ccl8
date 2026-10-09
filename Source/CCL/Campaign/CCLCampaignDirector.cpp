@@ -1,4 +1,4 @@
-#include "CCLCampaignDirector.h"
+﻿#include "CCLCampaignDirector.h"
 
 #include "Items/CCLWorldPickup.h"
 #include "Agents/CCLAgentComponent.h"
@@ -152,7 +152,7 @@ ACCLEnemyCharacter* ACCLCampaignDirector::SpawnEnemy(FVector Location, bool bBos
 	Enemy->FindComponentByClass<UCCLAgentComponent>()->AgentId = FGuid(0xCC190000, 0, 1, bBoss ? 3 : Guards.Num() + 1);
 	Enemy->bRespawnEnabled = 0;
 	Enemy->Archetype = bBoss ? 2 : (Guards.IsEmpty() ? 0 : 1);
-	Enemy->DisplayName = bBoss ? TEXT("Gate Warden") : (Enemy->Archetype == 1 ? TEXT("Road Raider") : TEXT("Gate Guard"));
+	Enemy->DisplayName = bBoss ? TEXT("성문 수호자") : (Enemy->Archetype == 1 ? TEXT("길목 약탈자") : TEXT("성문 경비병"));
 	Enemy->DetectionRadius = 650.f;
 	Enemy->LeashRadius = 900.f;
 	Enemy->FindComponentByClass<UCCLFighterComponent>()->InitialHealth = bBoss ? 240.f : 80.f;

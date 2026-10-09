@@ -1,5 +1,6 @@
-#include "CCLPlayerController.h"
+﻿#include "CCLPlayerController.h"
 
+#include "UI/CCLUIInputData.h"
 #include "Session/CCLGameInstance.h"
 #include "UI/CCLInventoryScreen.h"
 #include "UI/CCLMapScreen.h"
@@ -95,7 +96,7 @@ void ACCLPlayerController::SetupInputComponent()
 	Input->BindAction(RetryAction, ETriggerEvent::Started, this, &ThisClass::CCLRetry);
 	UInputAction* LeaveAction = MakeAction(EInputActionValueType::Boolean);
 	CombatActions.Add(LeaveAction);
-	InputMapping->MapKey(LeaveAction, EKeys::Escape);
+	InputMapping->MapKey(LeaveAction, UCCLUIInputData::GetBackKey(this));
 	Input->BindAction(LeaveAction, ETriggerEvent::Started, this, &ThisClass::CCLLeave);
 #if !UE_BUILD_SHIPPING && !UE_BUILD_TEST
 	InputMapping->MapKey(DieAction, EKeys::K);
@@ -316,7 +317,7 @@ void ACCLPlayerController::ServerMoveInventoryItem_Implementation(FGuid Id, int3
 	const auto* UIPawn = Cast<ACCLCharacter>(GetPawn());
 	if (State && UIPawn && !UIPawn->IsDead() && !State->GetLoadout()->IsEquipped(Id))
 	{
-		State->GetLoadout()->ShowNotice(State->GetInventory()->MoveToSlot(Id, Slot) ? TEXT("Item moved.") : TEXT("Cannot move this item."));
+		State->GetLoadout()->ShowNotice(State->GetInventory()->MoveToSlot(Id, Slot) ? TEXT("아이템을 옮겼다.") : TEXT("이 아이템은 옮길 수 없다."));
 	}
 }
 
@@ -464,11 +465,11 @@ void ACCLPlayerController::ServerCollectNearby_Implementation()
 	if (Nearest)
 	{
 		const bool bCollected = Nearest->TryCollect(State->GetInventory(), GetPawn());
-		State->GetLoadout()->ShowNotice(bCollected ? TEXT("Supplies collected.") : TEXT("Cannot collect: blocked or inventory full."));
+		State->GetLoadout()->ShowNotice(bCollected ? TEXT("보급품을 주웠다.") : TEXT("줍기 불가: 장애물이 있거나 소지품이 가득 찼다."));
 	}
 	else
 	{
-		State->GetLoadout()->ShowNotice(TEXT("No supplies within reach."));
+		State->GetLoadout()->ShowNotice(TEXT("손이 닿는 곳에 보급품이 없다."));
 	}
 }
 

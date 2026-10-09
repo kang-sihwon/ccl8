@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "CCLVillageSteward.generated.h"
@@ -13,5 +13,5 @@ public:
 	bool CanReach(const APawn* Visitor) const;
 
 	UPROPERTY(EditAnywhere, Category = "Dialogue")
-	FText DisplayName = NSLOCTEXT("CCL", "VillageSteward", "Village Steward");
+	FText DisplayName = NSLOCTEXT("CCL", "VillageSteward", "마을 관리인");
 };

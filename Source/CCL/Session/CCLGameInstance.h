@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "CoreMinimal.h"
 #include "Engine/GameInstance.h"
 #include "Engine/EngineBaseTypes.h"
@@ -40,7 +40,7 @@ private:
 	void TravelFailed(UWorld* World, ETravelFailure::Type Type, const FString& Error);
 	bool ApplyRecord(const FCCLSessionRecord& Record);
 	TMap<TWeakObjectPtr<ULocalPlayer>, FCCLUIViewHandle> MenuHandles;
-	FString Status = TEXT("Choose a mode. Direct connection requires a reachable host address.");
+	FString Status = TEXT("게임 방식을 선택해 줘. 직접 접속하려면 접속 가능한 호스트 주소가 필요해.");
 	UPROPERTY() FCCLSessionRecord Pending;
 	uint8 bPendingRestore = 0;
 	FTimerHandle RestoreTimer;

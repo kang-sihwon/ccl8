@@ -1,5 +1,6 @@
-#include "SCCLInventoryWidget.h"
+﻿#include "SCCLInventoryWidget.h"
 
+#include "UI/CCLUIInputData.h"
 #include "CCLCharacter.h"
 #include "CCLPlayerController.h"
 #include "CCLPlayerState.h"
@@ -32,9 +33,9 @@ const FCCLInventoryEntry* InventorySlotEntry(const TWeakObjectPtr<ACCLPlayerCont
 
 const TCHAR* EquipmentSlotLabel(int32 Slot)
 {
-	const TCHAR* Names[] = {TEXT("LEFT HAND"), TEXT("RIGHT HAND"), TEXT("ARMOR"),  TEXT("BOOTS"),
-	                        TEXT("CLOAK"),     TEXT("NECKLACE"),   TEXT("RING 1"), TEXT("RING 2")};
-	return Slot >= 0 && Slot < 8 ? Names[Slot] : TEXT("EQUIPMENT");
+	const TCHAR* Names[] = {TEXT("왼손"), TEXT("오른손"), TEXT("갑옷"),  TEXT("장화"),
+	                        TEXT("망토"),     TEXT("목걸이"),   TEXT("반지 1"), TEXT("반지 2")};
+	return Slot >= 0 && Slot < 8 ? Names[Slot] : TEXT("장비");
 }
 
 class FCCLItemDrag : public FDragDropOperation
@@ -96,7 +97,7 @@ public:
 					const auto* Entry = GetEntry();
 					if (!Entry || !Entry->Definition)
 					{
-						return bEquipment ? FText::FromString(TEXT("Empty")) : FText::GetEmpty();
+						return bEquipment ? FText::FromString(TEXT("비어 있음")) : FText::GetEmpty();
 					}
 
 					FString Name = Entry->Definition->GetLabel().ToString();
@@ -106,7 +107,7 @@ public:
 						Name.LeftInline(Stats);
 					}
 
-					return FText::FromString(bEquipment ? Name : FString::Printf(TEXT("%s\nx%d"), *Name, Entry->Quantity));
+					return FText::FromString(bEquipment ? Name : FString::Printf(TEXT("%s\n%d개"), *Name, Entry->Quantity));
 				})]
 			]]
 		];
@@ -211,10 +212,10 @@ void SCCLInventoryWidget::Construct(const FArguments& Args)
 	auto Body = SNew(SVerticalBox);
 	Body->AddSlot().AutoHeight().Padding(
 	    0.f, 0.f, 0.f,
-	    8.f)[SNew(STextBlock).Font(FCoreStyle::GetDefaultFontStyle("Bold", 24)).Text(FText::FromString(TEXT("INVENTORY & TRAINING")))];
+	    8.f)[SNew(STextBlock).Font(FCoreStyle::GetDefaultFontStyle("Bold", 24)).Text(FText::FromString(TEXT("소지품과 훈련")))];
 	Body->AddSlot().AutoHeight().Padding(0.f, 0.f, 0.f, 8.f)[SNew(STextBlock)
 	                                                             .Font(FCoreStyle::GetDefaultFontStyle("Regular", 18))
-	                                                             .Text(FText::FromString(TEXT("Drag to move / swap | I or Esc: close")))];
+	                                                             .Text(FText::FromString(FString::Printf(TEXT("끌어서 이동 / 교환 · I 또는 %s: 닫기"), UCCLUIInputData::GetBackKeyLabel(Controller.Get()))))];
 	auto Grid = SNew(SUniformGridPanel).SlotPadding(3.f);
 	for (int32 Index = 0; Index < 16; ++Index)
 	{
@@ -236,14 +237,14 @@ void SCCLInventoryWidget::Construct(const FArguments& Args)
 			return FReply::Handled();
 		})[SNew(STextBlock).Font(FCoreStyle::GetDefaultFontStyle("Regular", 18)).Text(FText::FromString(Label))]];
 	};
-	AddButton(TEXT("F Equip"), &ACCLPlayerController::EquipSelectedItem);
-	AddButton(TEXT("G Unequip"), &ACCLPlayerController::UnequipItem);
-	AddButton(TEXT("H Use"), &ACCLPlayerController::UseSelectedItem);
+	AddButton(TEXT("F 장착"), &ACCLPlayerController::EquipSelectedItem);
+	AddButton(TEXT("G 해제"), &ACCLPlayerController::UnequipItem);
+	AddButton(TEXT("H 사용"), &ACCLPlayerController::UseSelectedItem);
 	Body->AddSlot().AutoHeight().Padding(0.f, 6.f)[Buttons];
 	Body->AddSlot().AutoHeight()[SNew(STextBlock).Font(FCoreStyle::GetDefaultFontStyle("Regular", 18)).Text_Lambda([Weak = Controller]() {
 		const auto* State = Weak.IsValid() ? Weak->GetPlayerState<ACCLPlayerState>() : nullptr;
-		return FText::FromString(State ? FString::Printf(TEXT("Training points: %d"), State->GetLoadout()->GetPoints())
-		                               : TEXT("Loading..."));
+		return FText::FromString(State ? FString::Printf(TEXT("훈련 점수: %d"), State->GetLoadout()->GetPoints())
+		                               : TEXT("불러오는 중..."));
 	})];
 	for (int32 Index = 0; Index < 2; ++Index)
 	{
@@ -269,12 +270,12 @@ void SCCLInventoryWidget::Construct(const FArguments& Args)
 			       const auto* State = Weak.IsValid() ? Weak->GetPlayerState<ACCLPlayerState>() : nullptr;
 			       if (!State || !State->GetLoadout()->GetSkills().IsValidIndex(Index))
 			       {
-				       return FText::FromString(TEXT("Loading..."));
+				       return FText::FromString(TEXT("불러오는 중..."));
 			       }
 
 			       const auto* Skill = State->GetLoadout()->GetSkills()[Index].Get();
 			       return FText::FromString(FString::Printf(TEXT("%d: %s%s"), Index + 1, *Skill->Label.ToString(),
-			                                                State->GetLoadout()->IsLearned(Skill) ? TEXT(" [learned]") : TEXT(" (1 pt)")));
+			                                                State->GetLoadout()->IsLearned(Skill) ? TEXT(" [습득함]") : TEXT(" (1점)")));
 		       })]];
 	}
 
@@ -306,12 +307,12 @@ void SCCLInventoryWidget::Construct(const FArguments& Args)
 	auto Equipment =
 	    SNew(SVerticalBox) +
 	    SVerticalBox::Slot().AutoHeight().Padding(10.f)
-	        [SNew(STextBlock).Font(FCoreStyle::GetDefaultFontStyle("Bold", 24)).Text(FText::FromString(TEXT("CHARACTER & EQUIPMENT")))] +
+	        [SNew(STextBlock).Font(FCoreStyle::GetDefaultFontStyle("Bold", 24)).Text(FText::FromString(TEXT("캐릭터와 장비")))] +
 	    SVerticalBox::Slot().AutoHeight().Padding(
 	        10.f, 0.f)[SNew(STextBlock)
 	                       .Font(FCoreStyle::GetDefaultFontStyle("Regular", 18))
 	                       .AutoWrapText(true)
-	                       .Text(FText::FromString(TEXT("Drag gear to a slot. Two-hand gear occupies both hands.")))] +
+	                       .Text(FText::FromString(TEXT("장비를 끌어 장착해 줘. 양손 장비는 양손을 모두 차지한다.")))] +
 	    SVerticalBox::Slot().FillHeight(1.f).VAlign(
 	        VAlign_Center)[SNew(SHorizontalBox) + SHorizontalBox::Slot().AutoWidth().VAlign(VAlign_Center)[Left] +
 	                       SHorizontalBox::Slot().FillWidth(1.f).HAlign(HAlign_Center).VAlign(
@@ -322,7 +323,7 @@ void SCCLInventoryWidget::Construct(const FArguments& Args)
 	                  .Font(FCoreStyle::GetDefaultFontStyle("Regular", 18))
 	                  .AutoWrapText(true)
 	                  .Text(FText::FromString(
-	                      TEXT("LMB: left-hand action | RMB: right-hand action\nDrag equipped gear to an empty bag slot to remove it.")))];
+	                      TEXT("마우스 왼쪽: 왼손 행동 · 오른쪽: 오른손 행동\n장비를 빈 소지품 칸으로 끌면 해제할 수 있다.")))];
 	ChildSlot[SNew(SBorder)
 	              .BorderImage(FCoreStyle::Get().GetBrush("WhiteBrush"))
 	              .BorderBackgroundColor(FLinearColor(0.012f, 0.018f, 0.028f, 0.97f))[SNew(SScaleBox).Stretch(
@@ -344,7 +345,7 @@ FReply SCCLInventoryWidget::OnKeyDown(const FGeometry& Geometry, const FKeyEvent
 	}
 
 	const FKey Key = Event.GetKey();
-	if (Key == EKeys::I || Key == EKeys::Escape)
+	if (Key == EKeys::I || Key == UCCLUIInputData::GetBackKey(Controller.Get()))
 	{
 		Controller->CloseInventory();
 	}

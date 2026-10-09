@@ -1,4 +1,4 @@
-#include "CCLMapSystem.h"
+﻿#include "CCLMapSystem.h"
 
 #include "GameFramework/PlayerController.h"
 #include "GameFramework/Pawn.h"
@@ -89,7 +89,7 @@ void UCCLMapSubsystem::Refresh(APlayerController* Observer)
 		View.Position = It->GetActorLocation();
 		View.Heading = It->GetActorRotation().Yaw;
 		View.Kind = Marker->Kind;
-		View.Label = Marker->Label.IsEmpty() ? (It->IsA<APawn>() && *It == Observer->GetPawn() ? TEXT("You") : TEXT("")) : Marker->Label.ToString();
+		View.Label = Marker->Label.IsEmpty() ? (It->IsA<APawn>() && *It == Observer->GetPawn() ? TEXT("나") : TEXT("")) : Marker->Label.ToString();
 	}
 }
 

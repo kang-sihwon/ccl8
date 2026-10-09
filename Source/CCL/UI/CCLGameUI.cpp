@@ -1,4 +1,4 @@
-#include "CCLGameUI.h"
+﻿#include "CCLGameUI.h"
 
 #include "CCLInventoryScreen.h"
 #include "CCLSessionMenuScreen.h"
@@ -41,7 +41,7 @@ UCCLUISubsystem* CCLGameUI::Get(APlayerController* Controller)
 	if (!UI->GetRegistry())
 	{
 		auto* Registry = NewObject<UCCLUIRegistry>(UI);
-		Registry->InputMapping = GetDefault<UCCLUIInputData>()->GetMapping();
+		Registry->InputMapping = GetDefault<UCCLUIInputData>()->GetMapping(Controller);
 		auto AddLayer = [Registry](FGameplayTag Tag, ECCLUILayerLayout Layout, int32 Order)
 		{
 			FCCLUILayerDefinition Layer;

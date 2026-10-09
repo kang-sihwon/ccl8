@@ -1,4 +1,4 @@
-#include "CCLGameInstance.h"
+﻿#include "CCLGameInstance.h"
 #include "Agents/CCLAgentWorldSubsystem.h"
 #include "Agents/CCLAccountComponent.h"
 #include "Misc/Base64.h"
@@ -159,7 +159,7 @@ void UCCLGameInstance::StartNew(bool bHost)
 {
 	GetSubsystem<UCCLAgentSessionStore>()->ResetSession();
 	bPendingRestore = 0;
-	Status = bHost ? TEXT("Hosting an expedition.") : TEXT("Solo expedition started.");
+	Status = bHost ? TEXT("원정 방을 열었다.") : TEXT("혼자 하는 원정을 시작했다.");
 	HideMenu();
 	UGameplayStatics::OpenLevel(this, TEXT("/Game/Maps/Campaign"), true, bHost ? TEXT("listen") : TEXT(""));
 }
@@ -180,11 +180,11 @@ bool UCCLGameInstance::ValidateAddress(const FString& Address)
 }
 bool UCCLGameInstance::Join(const FString& Address)
 {
-	if (!ValidateAddress(Address)) { Status = TEXT("Invalid address. Use host name or IPv4:port (1-65535)."); return false; }
+	if (!ValidateAddress(Address)) { Status = TEXT("주소가 올바르지 않다. 호스트 이름 또는 IPv4 주소:포트 (1~65535)를 입력해 줘."); return false; }
 	auto* PC = GetFirstLocalPlayerController();
-	if (!PC) { Status = TEXT("Local player is not ready."); return false; }
+	if (!PC) { Status = TEXT("플레이어가 아직 준비되지 않았다."); return false; }
 	bPendingRestore = 0;
-	Status = TEXT("Connecting to ") + Address + TEXT(" ...");
+	Status = TEXT("접속 중: ") + Address + TEXT(" ...");
 	PC->ClientTravel(Address, TRAVEL_Absolute);
 	return true;
 }
@@ -207,7 +207,7 @@ bool UCCLGameInstance::SaveSession()
 	if (!Player || !Pawn || !PC->HasAuthority() || Pawn->IsDead() || !Campaign || !Director ||
 		(Player->GetAbilitySystemComponent()->HasMatchingGameplayTag(CCLTags::State_Busy) || Player->GetAbilitySystemComponent()->HasMatchingGameplayTag(CCLTags::State_Stagger)) ||
 		Campaign->GetPhase() == ECCLCampaignPhase::Error)
-	{ Status = TEXT("Save rejected. A living, idle host in a valid expedition is required."); return false; }
+	{ Status = TEXT("저장할 수 없다. 원정 중 살아 있는 호스트가 행동을 멈춘 상태에서 저장해 줘."); return false; }
 	FCCLSessionRecord Record;
 	for (const auto& Entry : Player->GetInventory()->GetEntries())
 	{
@@ -233,7 +233,7 @@ bool UCCLGameInstance::SaveSession()
 		TArray<uint8> Simulation;
 		if (!Agents->Save(Simulation))
 		{
-			Status = TEXT("Agent state could not be collected for this checkpoint.");
+			Status = TEXT("주민 상태를 수집하지 못해 저장할 수 없다.");
 			return false;
 		}
 
@@ -247,7 +247,7 @@ bool UCCLGameInstance::SaveSession()
 
 	TArray<uint8> Bytes;
 	const bool bSaved = FCCLSessionCodec::Encode(Record, Bytes) && UGameplayStatics::SaveDataToSlot(Bytes, SaveSlot(), 0);
-	Status = bSaved ? TEXT("Host checkpoint saved. Resume from the village at full health.") : TEXT("Save failed. Check storage and definitions.");
+	Status = bSaved ? TEXT("호스트의 진행 상황을 저장했다. 불러오면 마을에서 체력이 가득 찬 상태로 시작한다.") : TEXT("저장하지 못했다. 저장 공간과 콘텐츠 정보를 확인해 줘.");
 	UE_LOG(LogTemp, Display, TEXT("CCL_SESSION save=%d"), bSaved);
 	return bSaved;
 }
@@ -256,11 +256,11 @@ bool UCCLGameInstance::LoadSession(bool bHost)
 	TArray<uint8> Bytes;
 	FCCLSessionRecord Record;
 	if (!UGameplayStatics::LoadDataFromSlot(Bytes, SaveSlot(), 0) || !FCCLSessionCodec::Decode(Bytes, Record))
-	{ Status = TEXT("Cannot load: checkpoint missing, damaged, incompatible or references unavailable content."); return false; }
+	{ Status = TEXT("불러올 수 없다. 저장 파일이 없거나 손상되었으며, 버전 또는 콘텐츠가 맞지 않을 수도 있다."); return false; }
 	Pending = Record;
 	GetSubsystem<UCCLAgentSessionStore>()->ResetSession();
 	bPendingRestore = 1;
-	Status = TEXT("Loading checkpoint ...");
+	Status = TEXT("저장한 진행 상황을 불러오는 중...");
 	HideMenu();
 	UGameplayStatics::OpenLevel(this, TEXT("/Game/Maps/Campaign"), true, bHost ? TEXT("listen") : TEXT(""));
 	return true;
@@ -277,7 +277,7 @@ void UCCLGameInstance::TryRestore()
 	const bool bLoaded = Player && ApplyRecord(Pending);
 	bPendingRestore = 0;
 	GetWorld()->GetTimerManager().ClearTimer(RestoreTimer);
-	Status = bLoaded ? TEXT("Checkpoint restored. Surviving enemies reset; host progress retained.") : TEXT("Checkpoint application failed. Return to start and retry.");
+	Status = bLoaded ? TEXT("진행 상황을 불러왔다. 살아남은 적은 초기화되고 호스트의 진행은 유지된다.") : TEXT("진행 상황을 적용하지 못했다. 시작 화면에서 다시 시도해 줘.");
 	UE_LOG(LogTemp, Display, TEXT("CCL_SESSION restore=%d"), bLoaded);
 	if (!bLoaded) { ReturnToMenu(); }
 }
@@ -346,7 +346,7 @@ void UCCLGameInstance::CycleQuality()
 	const int32 Quality = (FMath::Max(0, Settings->GetOverallScalabilityLevel()) + 1) % 4;
 	Settings->SetOverallScalabilityLevel(Quality);
 	Settings->ApplySettings(false);
-	Status = FString::Printf(TEXT("Graphics quality saved: %s"), Quality == 0 ? TEXT("Low") : Quality == 1 ? TEXT("Medium") : Quality == 2 ? TEXT("High") : TEXT("Epic"));
+	Status = FString::Printf(TEXT("그래픽 품질 저장됨: %s"), Quality == 0 ? TEXT("낮음") : Quality == 1 ? TEXT("보통") : Quality == 2 ? TEXT("높음") : TEXT("최고"));
 }
 void UCCLGameInstance::ToggleWindowMode()
 {
@@ -356,12 +356,13 @@ void UCCLGameInstance::ToggleWindowMode()
 	Settings->SetFullscreenMode(bWindowed ? EWindowMode::Windowed : EWindowMode::WindowedFullscreen);
 	Settings->SetScreenResolution(bWindowed ? FIntPoint(1280, 720) : Settings->GetDesktopResolution());
 	Settings->ApplySettings(false);
-	Status = bWindowed ? TEXT("Windowed 1280x720 saved.") : TEXT("Borderless desktop mode saved.");
+	Status = bWindowed ? TEXT("1280×720 창 모드로 저장했다.") : TEXT("테두리 없는 창 모드로 저장했다.");
 }
 void UCCLGameInstance::NetworkFailed(UWorld* World, UNetDriver* Driver, ENetworkFailure::Type Type, const FString& Error)
 {
 	if (World && World->GetGameInstance() != this) { return; }
-	Status = TEXT("Connection failed: ") + Error.Left(300);
+	Status = TEXT("접속하지 못했다. 호스트 주소와 네트워크 연결을 확인해 줘.");
+	UE_LOG(LogTemp, Warning, TEXT("CCL_SESSION network failure: %s"), *Error);
 	bPendingRestore = 0;
 	ShowMenu();
 	UE_LOG(LogTemp, Display, TEXT("CCL_SESSION connection failed"));
@@ -369,7 +370,8 @@ void UCCLGameInstance::NetworkFailed(UWorld* World, UNetDriver* Driver, ENetwork
 void UCCLGameInstance::TravelFailed(UWorld* World, ETravelFailure::Type Type, const FString& Error)
 {
 	if (World && World->GetGameInstance() != this) { return; }
-	Status = TEXT("Travel failed: ") + Error.Left(300);
+	Status = TEXT("맵으로 이동하지 못했다. 시작 화면에서 다시 시도해 줘.");
+	UE_LOG(LogTemp, Warning, TEXT("CCL_SESSION travel failure: %s"), *Error);
 	bPendingRestore = 0;
 	ShowMenu();
 }

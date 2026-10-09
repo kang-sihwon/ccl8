@@ -1,10 +1,11 @@
 #include "CCLWorldAdvance.h"
 
 #include "CCLWorldClock.h"
+#include "CCLSurfaceSimulation.h"
 #include "Agents/CCLLifeSimulation.h"
 
 bool CCLWorldAdvance::Advance(FCCLWorldClock& Clock, FCCLLifeSimulation& Life,
-	double MaxGameSeconds, double MaxWorldSeconds, FString& Error, int32 MaxLifeSlices)
+	double MaxGameSeconds, double MaxWorldSeconds, FString& Error, int32 MaxLifeSlices, FCCLSurfaceSimulation* Surface)
 {
 	Error.Reset();
 	if (Clock.GetWorldSeconds() != Life.GetTime())
@@ -21,11 +22,25 @@ bool CCLWorldAdvance::Advance(FCCLWorldClock& Clock, FCCLLifeSimulation& Life,
 		return false;
 	}
 
+	FCCLSurfaceSimulation CandidateSurface;
+	if (Surface)
+	{
+		CandidateSurface = *Surface;
+		if (!CandidateSurface.Advance(Step, Error))
+		{
+			return false;
+		}
+	}
+
 	if (!Life.TryAdvanceTo(Step.WorldToSeconds, Error, MaxLifeSlices))
 	{
 		return false;
 	}
 
+	if (Surface)
+	{
+		*Surface = MoveTemp(CandidateSurface);
+	}
 	Clock = MoveTemp(CandidateClock);
 	return true;
 }

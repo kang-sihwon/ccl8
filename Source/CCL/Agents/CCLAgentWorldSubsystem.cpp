@@ -1,4 +1,4 @@
-#include "CCLAgentWorldSubsystem.h"
+﻿#include "CCLAgentWorldSubsystem.h"
 
 #include "CCLAgentComponent.h"
 #include "CCLAgentAIController.h"
@@ -12,10 +12,12 @@
 #include "EngineUtils.h"
 #include "Environment/CCLWorldSimulationSubsystem.h"
 #include "Environment/CCLExperimentDefinition.h"
+#include "Environment/CCLTerrainRegion.h"
 
 void UCCLAgentSessionStore::ResetSession()
 {
 	Snapshot.Reset();
+	TravelSnapshots.Remove(ECCLWorldDomain::Campaign);
 	++Session;
 }
 
@@ -28,6 +30,7 @@ void UCCLAgentSessionStore::ResetDomain(ECCLWorldDomain Domain)
 	}
 
 	Experiments.Remove(Domain);
+	TravelSnapshots.Remove(Domain);
 	ExperimentInitialSnapshots.Remove(Domain);
 	++ExperimentSessions.FindOrAdd(Domain);
 }
@@ -39,6 +42,11 @@ uint64 UCCLAgentSessionStore::SessionFor(ECCLWorldDomain Domain) const
 
 TArray<uint8>& UCCLAgentSessionStore::SnapshotFor(ECCLWorldDomain Domain)
 {
+	if (auto* Bundle = TravelSnapshots.Find(Domain))
+	{
+		return Bundle->World;
+	}
+
 	return Domain == ECCLWorldDomain::Campaign ? Snapshot : Experiments.FindOrAdd(Domain);
 }
 
@@ -79,15 +87,17 @@ void UCCLAgentWorldSubsystem::OnWorldBeginPlay(UWorld& World)
 
 	bRunning = 1;
 	SpawnVillage();
+	FWorldDelegates::OnWorldBeginTearDown.AddUObject(this, &UCCLAgentWorldSubsystem::OnWorldBeginTearDown);
 }
 
 void UCCLAgentWorldSubsystem::Deinitialize()
 {
+	FWorldDelegates::OnWorldBeginTearDown.RemoveAll(this);
 	if (bRunning && GetWorld()->GetGameInstance())
 	{
 		auto* Store = GetWorld()->GetGameInstance()->GetSubsystem<UCCLAgentSessionStore>();
 		const ECCLWorldDomain Domain = UCCLWorldSimulationSubsystem::DomainForWorld(GetWorld());
-		if (Store && Store->SessionFor(Domain) == Session)
+		if (Store && Store->SessionFor(Domain) == Session && !bTravelPrepared && !Store->TravelSnapshots.Contains(Domain))
 		{
 			Save(Store->SnapshotFor(Domain));
 		}
@@ -115,6 +125,53 @@ bool UCCLAgentWorldSubsystem::Save(TArray<uint8>& Bytes)
 	FString Error;
 	auto* WorldSimulation = GetWorld()->GetSubsystem<UCCLWorldSimulationSubsystem>();
 	return WorldSimulation && WorldSimulation->Save(Simulation, Bytes, Error);
+}
+
+bool UCCLAgentWorldSubsystem::SaveSessionForTravel(FString& Error)
+{
+	Error.Reset();
+	auto* SessionStore = GetWorld()->GetGameInstance()->GetSubsystem<UCCLAgentSessionStore>();
+	const auto Domain = UCCLWorldSimulationSubsystem::DomainForWorld(GetWorld());
+	if (!bRunning || GetWorld()->GetNetMode() == NM_Client || !SessionStore || SessionStore->SessionFor(Domain) != Session)
+	{
+		Error = TEXT("현재 서버 세션을 저장할 수 없다.");
+		return false;
+	}
+
+	TArray<ACCLTerrainRegion*> Regions;
+	for (TActorIterator<ACCLTerrainRegion> It(GetWorld()); It; ++It)
+	{
+		if (!It->IsTerrainReady() || It->IsPreparing())
+		{
+			Error = TEXT("지형 작업이 끝난 뒤 맵을 전환할 수 있다.");
+			return false;
+		}
+
+		Regions.Add(*It);
+	}
+
+	FCCLWorldGenerationBundle Bundle;
+	FCCLWorldSnapshot WorldState;
+	if (!Save(Bundle.World) || !FCCLWorldSnapshotCodec::Decode(Bundle.World, WorldState, Error))
+	{
+		return false;
+	}
+
+	Bundle.Context = FCCLWorldGenerationStore::ContextFor(WorldState);
+	for (const auto* Region : Regions)
+	{
+		const auto& Terrain = Region->GetTerrainStore();
+		const FGuid RegionId = Terrain.GetSnapshot().Definition.RegionId;
+		if (Bundle.Terrain.Contains(RegionId) || !Terrain.Capture(Bundle.Context, Bundle.Terrain.FindOrAdd(RegionId), Error))
+		{
+			return false;
+		}
+	}
+
+	// Publish the complete in-memory checkpoint once; teardown must not replace only its world bytes.
+	SessionStore->TravelSnapshots.Add(Domain, MoveTemp(Bundle));
+	bTravelPrepared = 1;
+	return true;
 }
 
 bool UCCLAgentWorldSubsystem::Restore(const TArray<uint8>& Bytes, FString& Error)
@@ -221,8 +278,28 @@ void UCCLAgentWorldSubsystem::SpawnVillage()
 		if (Villager)
 		{
 			Villager->GetAgent()->AgentId = Record.Id;
-			Villager->PublicName = FString::Printf(TEXT("Villager %d"), Index);
+			Villager->PublicName = FString::Printf(TEXT("주민 %d"), Index);
 			Villager->FinishSpawning(Transform);
 		}
+	}
+}
+
+void UCCLAgentWorldSubsystem::OnWorldBeginTearDown(UWorld* World)
+{
+	if (World != GetWorld() || !bRunning || bTravelPrepared || World->GetNetMode() == NM_Client)
+	{
+		return;
+	}
+
+	// External travel has already started. Discard unfinished candidates and retain committed terrain.
+	for (TActorIterator<ACCLTerrainRegion> It(World); It; ++It)
+	{
+		It->CancelPendingEdit();
+	}
+
+	FString Error;
+	if (!SaveSessionForTravel(Error))
+	{
+		UE_LOG(LogTemp, Warning, TEXT("CCL_AGENT travel checkpoint retained previous state: %s"), *Error);
 	}
 }

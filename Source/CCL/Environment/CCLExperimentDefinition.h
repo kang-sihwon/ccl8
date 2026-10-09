@@ -12,7 +12,10 @@ enum class ECCLExperimentKind : uint8
 	Snapshot,
 	Reserved,
 	Celestial,
-	Shelter
+	Shelter,
+	Terrain,
+	Water,
+	Snow
 };
 
 UENUM(BlueprintType)
@@ -46,7 +49,18 @@ enum class ECCLExperimentAction : uint8
 	NextObliquity,
 	RotateQuarter,
 	OrbitQuarter,
-	CycleOpening
+	CycleOpening,
+	TerrainExcavate,
+	TerrainDeposit,
+	TerrainChannel,
+	TerrainProtection,
+	TerrainReset,
+	WaterRain,
+	WaterFreeze,
+	WaterThaw,
+	WaterDry,
+	SnowFall,
+	SnowMelt
 };
 
 USTRUCT()

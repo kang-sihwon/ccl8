@@ -1,5 +1,6 @@
-#include "CCLHUD.h"
+﻿#include "CCLHUD.h"
 
+#include "UI/CCLUIInputData.h"
 #include "Presentation/CCLCinematicSubsystem.h"
 #include "UI/CCLMapScreen.h"
 
@@ -66,12 +67,12 @@ void ACCLHUD::Tick(float DeltaSeconds)
 		if (!bArrivalShown && GetWorld()->GetTimeSeconds() > 1)
 		{
 			bArrivalShown = 1;
-			PC->GetLocalPlayer()->GetSubsystem<UCCLCinematicSubsystem>()->Play(PC, Character->GetActorLocation() + FVector(300, 0, 40), TEXT("A VILLAGE OF LIVES"));
+			PC->GetLocalPlayer()->GetSubsystem<UCCLCinematicSubsystem>()->Play(PC, Character->GetActorLocation() + FVector(300, 0, 40), TEXT("사람들이 살아가는 마을"));
 		}
 		if (!bVictoryShown && Campaign->GetPhase() == ECCLCampaignPhase::Victory)
 		{
 			bVictoryShown = 1;
-			PC->GetLocalPlayer()->GetSubsystem<UCCLCinematicSubsystem>()->Play(PC, Character->GetActorLocation() + FVector(0, 0, 50), TEXT("THE ROAD IS OPEN"));
+			PC->GetLocalPlayer()->GetSubsystem<UCCLCinematicSubsystem>()->Play(PC, Character->GetActorLocation() + FVector(0, 0, 50), TEXT("길이 열렸다"));
 		}
 	}
 	RefreshContent();
@@ -124,13 +125,13 @@ void ACCLHUD::RefreshContent()
 
 		if (const auto* ASC = Character->GetAbilitySystemComponent(); ASC && ASC->HasMatchingGameplayTag(CCLTags::State_Stagger))
 		{
-			Overview.Add(TEXT("STAGGERED"));
+			Overview.Add(TEXT("경직"));
 		}
 	}
 
 	if (!Character || Character->IsDead())
 	{
-		Overview.Add(Character ? TEXT("You died. Press R to retry.") : TEXT("Waiting for spawn. Press R to retry."));
+		Overview.Add(Character ? TEXT("쓰러졌다. R 키를 눌러 다시 시작할 수 있다.") : TEXT("생성을 기다리는 중이다. R 키로 다시 시도할 수 있다."));
 	}
 
 	if (Campaign)
@@ -140,9 +141,9 @@ void ACCLHUD::RefreshContent()
 
 	for (TActorIterator<ACCLEnemyCharacter> It(GetWorld()); It; ++It)
 	{
-		Overview.Add(FString::Printf(TEXT("%s HP %.0f%s"), *It->DisplayName,
+		Overview.Add(FString::Printf(TEXT("%s 체력 %.0f%s"), *It->DisplayName,
 			It->GetAbilitySystemComponent()->GetNumericAttribute(UCCLHealthSet::GetHealthAttribute()),
-			It->IsDead() ? TEXT(" (defeated)") : TEXT("")));
+			It->IsDead() ? TEXT(" (처치됨)") : TEXT("")));
 		const auto* Fighter = It->FindComponentByClass<UCCLFighterComponent>();
 		if (!It->IsDead() && Fighter && Fighter->GetAction() == ECCLCombatAction::Attack)
 		{
@@ -154,12 +155,12 @@ void ACCLHUD::RefreshContent()
 	{
 		const auto* Expedition = State->GetExpedition();
 		Prompts.Add(Expedition->GetTutorial());
-		Prompts.Add(FString::Printf(TEXT("Coins: %d"), Expedition->GetCoins()));
+		Prompts.Add(FString::Printf(TEXT("보유 동전: %d"), Expedition->GetCoins()));
 		for (TActorIterator<ACCLVillageSteward> It(GetWorld()); It; ++It)
 		{
 			if (It->CanReach(Character))
 			{
-				Prompts.Add(TEXT("Village Steward: T Talk / Quest | B Buy potion (10 coins)"));
+				Prompts.Add(TEXT("마을 관리인: T 대화 / 의뢰 · B 회복약 구입 (동전 10개)"));
 				break;
 			}
 		}
@@ -171,15 +172,15 @@ void ACCLHUD::RefreshContent()
 		{
 			if (FVector::DistSquared(Character->GetActorLocation(), It->GetActorLocation()) < FMath::Square(225.f) && It->Definition)
 			{
-				Prompts.Add(FString::Printf(TEXT("E: %s x%d"), *It->Definition->GetLabel().ToString(), It->Quantity));
+				Prompts.Add(FString::Printf(TEXT("E: %s %d개 줍기"), *It->Definition->GetLabel().ToString(), It->Quantity));
 				break;
 			}
 		}
 	}
 
-	Prompts.Add(TEXT("E Collect | I Inventory | M Map | Esc Menu"));
+	Prompts.Add(FString::Printf(TEXT("E 줍기 · I 소지품 · M 지도 · %s 메뉴"), UCCLUIInputData::GetBackKeyLabel(this)));
 #if !UE_BUILD_SHIPPING && !UE_BUILD_TEST
-	Prompts.Add(TEXT("K Test Death"));
+	Prompts.Add(TEXT("K 사망 테스트"));
 #endif
 	Context->Update(FString::Join(Overview, TEXT("\n")), PC->IsDialogueVisible() ? FString() : FString::Join(Prompts, TEXT("\n")));
 }

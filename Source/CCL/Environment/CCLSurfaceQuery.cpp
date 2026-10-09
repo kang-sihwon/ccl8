@@ -135,6 +135,33 @@ bool FCCLSurfaceScene::QuerySurfaces(const FCCLSurfaceQuery& Query, TArray<FCCLS
 		Candidate.Add(Sample);
 	}
 
+	for (const auto& Pair : GeometryProviders)
+	{
+		FCCLSurfaceQuery GeometryQuery = Query;
+		GeometryQuery.RequiredRevision = 0;
+		GeometryQuery.RequiredEpoch.Invalidate();
+		TArray<FCCLSurfaceSample> GeometrySamples;
+		if (!Pair.Value->QuerySurfaces(GeometryQuery, GeometrySamples, Error))
+		{
+			return false;
+		}
+
+		if (Candidate.Num() + GeometrySamples.Num() > Query.MaximumResults)
+		{
+			Error = TEXT("Combined surface query exceeded its result budget.");
+			return false;
+		}
+
+		for (auto& Sample : GeometrySamples)
+		{
+			Sample.SourceRevision = Sample.Revision;
+			Sample.SourceEpoch = Sample.Epoch;
+			Sample.Revision = Revision;
+			Sample.Epoch = Epoch;
+			Candidate.Add(MoveTemp(Sample));
+		}
+	}
+
 	Candidate.Sort([](const FCCLSurfaceSample& A, const FCCLSurfaceSample& B)
 	{
 		return A.DistanceMeters == B.DistanceMeters ? GuidLess(A.SurfaceId, B.SurfaceId) : A.DistanceMeters < B.DistanceMeters;
@@ -303,4 +330,23 @@ bool FCCLShelterEvaluator::Evaluate(const ICCLSurfaceProvider& Provider, const F
 	OutSample = Candidate;
 	Error.Reset();
 	return true;
+}
+
+void FCCLSurfaceScene::SetGeometryProvider(FGuid Id, TSharedPtr<const ICCLSurfaceProvider> Provider)
+{
+	if (Provider)
+	{
+		GeometryProviders.Add(Id, MoveTemp(Provider));
+	}
+	else
+	{
+		GeometryProviders.Remove(Id);
+	}
+
+	Epoch = FGuid::NewGuid();
+}
+
+void FCCLSurfaceScene::CopyGeometryProviders(const FCCLSurfaceScene& Other)
+{
+	GeometryProviders = Other.GeometryProviders;
 }

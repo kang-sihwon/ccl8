@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
@@ -46,7 +46,7 @@ public:
 	uint8 bRespawnEnabled = 1;
 
 	UPROPERTY(EditAnywhere, Replicated, Category = "Encounter")
-	FString DisplayName = TEXT("Enemy");
+	FString DisplayName = TEXT("적");
 
 	UPROPERTY(EditAnywhere, Category = "Encounter")
 	float DetectionRadius = 1400.f;

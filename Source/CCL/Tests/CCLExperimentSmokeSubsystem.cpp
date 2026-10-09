@@ -2,6 +2,7 @@
 
 #include "Environment/CCLExperimentDefinition.h"
 #include "Environment/CCLExperimentDirector.h"
+#include "Environment/CCLTerrainRegion.h"
 #include "Environment/CCLExperimentPlayerController.h"
 #include "Environment/CCLExperimentScreen.h"
 #include "Environment/CCLExperimentStation.h"
@@ -148,6 +149,11 @@ void UCCLExperimentSmokeSubsystem::Tick(float DeltaTime)
 	FString CheckpointMode;
 	if (FParse::Value(FCommandLine::Get(), TEXT("CCLExperimentCheckpoint="), CheckpointMode))
 	{
+		if (!Director->GetTerrainRegion() || !Director->GetTerrainRegion()->IsTerrainReady())
+		{
+			return;
+		}
+
 		FString ExpectedPath;
 		if (!Check(World->GetNetMode() == NM_Standalone &&
 			FParse::Value(FCommandLine::Get(), TEXT("CCLExperimentExpected="), ExpectedPath), TEXT("checkpoint test has an isolated expected record")))
@@ -167,7 +173,7 @@ void UCCLExperimentSmokeSubsystem::Tick(float DeltaTime)
 
 			if (!Check(Runtime->QueueGameTime(37, Error) && Runtime->AdvancePending(40, 2400, Error) &&
 				Runtime->ChangeTimeScale(7, Error) && Runtime->QueueGameTime(1.25, Error) && Execute(ECCLExperimentAction::Save) &&
-				FCCLWorldSnapshotCodec::Capture(Runtime->GetIdentity(), Runtime->GetClock(), Agents->GetSimulation(), Expected, Error, &Runtime->GetEnvironmentInputs()) &&
+				FCCLWorldSnapshotCodec::Capture(Runtime->GetIdentity(), Runtime->GetClock(), Agents->GetSimulation(), Expected, Error, &Runtime->GetEnvironmentInputs(), &Runtime->GetSurfaceSimulation()) &&
 				FCCLWorldSnapshotCodec::Encode(Expected, ExpectedBytes, Error) && FFileHelper::SaveArrayToFile(ExpectedBytes, *ExpectedPath),
 				TEXT("write checkpoint with advanced life, scale history and pending time")))
 			{
@@ -190,7 +196,7 @@ void UCCLExperimentSmokeSubsystem::Tick(float DeltaTime)
 			ExpectedLife.Load(Expected.Life, Error) && ExpectedLife.Save(Expected.Life) &&
 			FCCLWorldSnapshotCodec::Encode(Expected, NormalizedExpected, Error) &&
 			Runtime->GetIdentity().WorldId != Expected.Identity.WorldId && Execute(ECCLExperimentAction::Load) &&
-			FCCLWorldSnapshotCodec::Capture(Runtime->GetIdentity(), Runtime->GetClock(), Agents->GetSimulation(), Actual, Error, &Runtime->GetEnvironmentInputs()) &&
+			FCCLWorldSnapshotCodec::Capture(Runtime->GetIdentity(), Runtime->GetClock(), Agents->GetSimulation(), Actual, Error, &Runtime->GetEnvironmentInputs(), &Runtime->GetSurfaceSimulation()) &&
 			FCCLWorldSnapshotCodec::Encode(Actual, ActualBytes, Error) && ActualBytes == NormalizedExpected,
 			TEXT("new process restores exact world identity, clock, pending input and life without offline aging")))
 		{

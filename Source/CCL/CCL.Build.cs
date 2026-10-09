@@ -8,20 +8,21 @@ public class CCL : ModuleRules
 	{
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 		// The runtime module references opt-in validation subsystems from Tests.
-		bForceIncludeTestsFolder = true;
+		//bForceIncludeTestsFolder = true;
 		PublicIncludePaths.Add(ModuleDirectory);
 
 		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "EnhancedInput", "GameplayAbilities", "GameplayTags", "GameplayTasks", "AIModule", "NavigationSystem", "StateTreeModule", "GameplayStateTreeModule", "MassEntity", "MassCore" });
 
 		PrivateDependencyModuleNames.AddRange(new string[] { "Slate", "SlateCore", "Json", "JsonUtilities" });
 		PrivateDependencyModuleNames.Add("GeometryCore");
+		PrivateDependencyModuleNames.Add("AnimationCore");
 		PrivateDependencyModuleNames.AddRange(new string[] { "PhysicsCore", "Chaos", "ChaosCore" });
 		PublicDependencyModuleNames.Add("GeometryFramework");
 		PublicDependencyModuleNames.Add("NetCore");
 		PublicDependencyModuleNames.AddRange(new string[] { "UMG", "CommonUI", "CommonInput", "ModelViewViewModel", "FieldNotification" });
 		if (Target.bBuildEditor)
 		{
-			PrivateDependencyModuleNames.AddRange(new string[] { "UnrealEd", "AssetRegistry", "StateTreeEditorModule", "PropertyBindingUtils", "PropertyEditor" });
+			PrivateDependencyModuleNames.AddRange(new string[] { "UnrealEd", "AnimGraph", "BlueprintGraph", "KismetCompiler", "AssetRegistry", "StateTreeEditorModule", "PropertyBindingUtils", "PropertyEditor" });
 		}
 
 		// Uncomment if you are using Slate UI

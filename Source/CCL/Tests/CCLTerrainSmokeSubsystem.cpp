@@ -2,6 +2,10 @@
 
 #include "Environment/CCLTerrainChunkComponent.h"
 #include "Environment/CCLTerrainRegion.h"
+#include "Environment/CCLSurfaceQuery.h"
+#include "Environment/CCLTerrainNavigation.h"
+#include "NavigationSystem.h"
+#include "NavigationPath.h"
 #include "Camera/CameraActor.h"
 #include "Camera/CameraComponent.h"
 #include "Components/CapsuleComponent.h"
@@ -191,7 +195,7 @@ void UCCLTerrainSmokeSubsystem::Tick(float DeltaTime)
 		return;
 	}
 
-	if (Region->IsPreparing())
+	if (Step < 12 && Region->IsPreparing())
 	{
 		Check(Region->GetTerrainStore().GetRevision() == 2, TEXT("pending requests leave committed terrain at revision two"));
 		return;
@@ -424,6 +428,137 @@ void UCCLTerrainSmokeSubsystem::Tick(float DeltaTime)
 
 	if (Step == 9 || Step == 11)
 	{
+		FCCLTerrainSaveContext Context;
+		Context.WorldId = Region->GetTerrainStore().GetSnapshot().Definition.WorldId;
+		Context.WorldGeneration = 1;
+		if (!Check(Region->GetTerrainStore().Capture(Context, RestoreBytes, Error), TEXT("capture committed terrain for runtime restore")))
+		{
+			return;
+		}
+
+		const auto Definition = Region->GetTerrainStore().GetSnapshot().Definition;
+		const FVector Position = Region->GetActorLocation() + FVector(6000., 0., 0.);
+		Region = World->SpawnActor<ACCLTerrainRegion>();
+		Region->SetActorLocation(Position);
+		if (!Check(Region->InitializeTerrain(Definition, Error), TEXT("initialize replacement region")))
+		{
+			return;
+		}
+
+		auto* Bounds = World->SpawnActor<ACCLTerrainNavigationBounds>();
+		Bounds->Configure(Region->GetWorldTerrainBounds().ExpandBy(300.));
+		if (auto* Nav = FNavigationSystem::GetCurrent<UNavigationSystemV1>(World))
+		{
+			Nav->GetDefaultNavDataInstance(FNavigationSystem::Create);
+		}
+		Step = 12;
+		return;
+	}
+
+	if (Step == 12)
+	{
+		if (Region->IsPreparing())
+		{
+			return;
+		}
+
+		FCCLTerrainSaveContext Context;
+		Context.WorldId = Region->GetTerrainStore().GetSnapshot().Definition.WorldId;
+		Context.WorldGeneration = 1;
+		BeforeRestoreEpoch = Region->GetTerrainStore().GetEpoch();
+		TArray<uint8> Broken = RestoreBytes;
+		Broken[20] ^= 1;
+		if (!Check(!Region->RequestRestore(Broken, Context, Error), TEXT("corrupt runtime restore rejected")) || !CheckHeight(-8., 0., 0.))
+		{
+			return;
+		}
+
+#if WITH_DEV_AUTOMATION_TESTS
+		Region->RejectNextCookForTesting();
+#endif
+		if (!Check(Region->RequestRestore(RestoreBytes, Context, Error), TEXT("prepare restore with failed collision")))
+		{
+			return;
+		}
+
+		Step = 13;
+		return;
+	}
+
+	if (Step == 13)
+	{
+		if (!CheckHeight(-8., 0., 0.) || !Check(Region->GetTerrainStore().GetRevision() == 1, TEXT("restore keeps old density while preparing")))
+		{
+			return;
+		}
+
+		if (Region->IsPreparing())
+		{
+			return;
+		}
+
+		if (!Check(!Region->DidLastRequestSucceed() && Region->GetTerrainStore().GetEpoch() == BeforeRestoreEpoch, TEXT("failed restore retains old epoch")))
+		{
+			return;
+		}
+
+		FCCLTerrainSaveContext Context;
+		Context.WorldId = Region->GetTerrainStore().GetSnapshot().Definition.WorldId;
+		Context.WorldGeneration = 1;
+		if (!Check(Region->RequestRestore(RestoreBytes, Context, Error), TEXT("prepare valid runtime restore")))
+		{
+			return;
+		}
+
+		Step = 14;
+		return;
+	}
+
+	if (Step == 14)
+	{
+		if (Region->IsPreparing())
+		{
+			CheckHeight(-8., 0., 0.);
+			return;
+		}
+
+		if (!Check(Region->DidLastRequestSucceed() && Region->GetTerrainStore().GetRevision() == 3
+			&& Region->GetTerrainStore().GetEpoch() != BeforeRestoreEpoch, TEXT("restore publishes a fresh epoch and saved revision"))
+			|| !CheckHeight(-8., 0., 2.) || !CheckHeight(0., 0., -2.3))
+		{
+			return;
+		}
+
+		Step = 15;
+		return;
+	}
+
+	if (Step == 15)
+	{
+		if (GFrameCounter % 300 == 0)
+		{
+			if (auto* Nav = FNavigationSystem::GetCurrent<UNavigationSystemV1>(World))
+			{
+				for (const auto& Bounds : Nav->GetNavigationBounds())
+				{
+					UE_LOG(LogTemp, Display, TEXT("CCL_TERRAIN_NAV_BOUNDS %s"), *Bounds.AreaBox.ToString());
+				}
+			}
+		}
+
+		if (!Region->IsNavigationReady())
+		{
+			return;
+		}
+
+		const FVector Origin = Region->GetActorLocation();
+		auto* Path = UNavigationSystemV1::FindPathToLocationSynchronously(World, Origin + FVector(-1200., 600., 10.),
+			Origin + FVector(1200., 600., 10.));
+		if (!Check(Path && Path->IsValid() && !Path->IsPartial(), TEXT("actual path after terrain rebuild")))
+		{
+			return;
+		}
+
 		UE_LOG(LogTemp, Display, TEXT("CCL_TERRAIN_SMOKE PASS Revision=3 Chunks=%d Commits=%d Aborts=%d"), Region->GetActiveChunkCount(), Participant->Commits, Participant->Aborts);
 		bComplete = 1;
 		FPlatformMisc::RequestExitWithStatus(false, 0);
@@ -460,7 +595,24 @@ bool UCCLTerrainSmokeSubsystem::CheckHeight(double X, double Y, double ExpectedM
 		UE_LOG(LogTemp, Warning, TEXT("Terrain probe X=%.2f Y=%.2f Expected=%.3f Actual=%.3f Hit=%s"), X, Y, ExpectedMeters, Height, *GetNameSafe(Hit.GetActor()));
 	}
 
-	return Check(bHit && Hit.GetActor() == Region && FMath::Abs(Height - ExpectedMeters) <= Tolerance, TEXT("live collision height matches committed terrain"));
+	if (!Check(bHit && Hit.GetActor() == Region && FMath::Abs(Height - ExpectedMeters) <= Tolerance, TEXT("live collision height matches committed terrain")))
+	{
+		return false;
+	}
+
+	FCCLSurfaceQuery Query;
+	Query.BodyId = Region->GetTerrainStore().GetSnapshot().Definition.BodyId;
+	Query.OriginMeters = (Center + FVector(0., 0., 800.)) * 0.01;
+	Query.Direction = -FVector::ZAxisVector;
+	Query.MaximumDistanceMeters = 16.;
+	Query.RequiredRevision = Region->GetTerrainStore().GetRevision();
+	Query.RequiredEpoch = Region->GetTerrainStore().GetEpoch();
+	TArray<FCCLSurfaceSample> Samples;
+	FString Error;
+	const auto* Provider = Region->GetSurfaceProvider();
+	return Check(Provider && Provider->QuerySurfaces(Query, Samples, Error) && !Samples.IsEmpty()
+		&& FVector::Dist(Samples[0].PositionMeters, Hit.ImpactPoint * 0.01) < 0.01,
+		TEXT("committed surface query agrees with actual collision"));
 }
 
 bool UCCLTerrainSmokeSubsystem::Queue(bool bDeposit, double X, uint64 Sequence)

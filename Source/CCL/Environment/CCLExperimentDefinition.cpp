@@ -12,7 +12,7 @@ void UCCLExperimentDefinition::ConfigureZone(int32 Index)
 		TEXT("일조와 계절에 따라 기온·강수·바람 변화"),
 		TEXT("무릎 깊이 눈을 통과한 연속 눈길과 질량 보존"),
 		TEXT("낮은 곳으로 유출, 젖음·진흙·결빙과 물 총량 보존"),
-		TEXT("굴착·성토 후 충돌·물·눈·AI 경로 갱신"),
+		TEXT("굴착·성토 후 표면·충돌·AI 경로 갱신, 저장 복구와 참가자 충돌 준비. 물 수지 유지, 눈은 후속 구현"),
 		TEXT("근거리 개체와 먼 개체군 사이 전환 시 총수 보존"),
 		TEXT("공통 시간에 따른 성장·휴면·부패와 핵심 NPC 보호"),
 		TEXT("손상 저장 거부, 세계 ID·시계·Agent 상태 동시 복원"),
@@ -29,7 +29,7 @@ void UCCLExperimentDefinition::ConfigureZone(int32 Index)
 	Title = FText::FromString(FString::Printf(TEXT("%02d  %s"), Index, Titles[Index]));
 	Expected = FText::FromString(ExpectedValues[Index]);
 	Kind = Index == 0 ? ECCLExperimentKind::Guide : Index == 1 ? ECCLExperimentKind::Celestial :
-		Index == 8 ? ECCLExperimentKind::Snapshot : Index == 11 ? ECCLExperimentKind::Shelter : ECCLExperimentKind::Reserved;
+		Index == 3 ? ECCLExperimentKind::Snow : Index == 4 ? ECCLExperimentKind::Water : Index == 5 ? ECCLExperimentKind::Terrain : Index == 8 ? ECCLExperimentKind::Snapshot : Index == 11 ? ECCLExperimentKind::Shelter : ECCLExperimentKind::Reserved;
 	Instructions = FText::FromString(Index == 1 ?
 		TEXT("같은 시각의 천체 재현을 시험한다. 격리 맵에서는 시간 실패·재시도와 위도·기울기·위상 조작도 가능하다.") :
 		IsImplemented() ? TEXT("구역 선택 후 시작. 초기화 후 재실행할 수 있다.") :
@@ -39,7 +39,7 @@ void UCCLExperimentDefinition::ConfigureZone(int32 Index)
 bool UCCLExperimentDefinition::Validate(FString& Error) const
 {
 	const ECCLExperimentKind ExpectedKind = Zone == 0 ? ECCLExperimentKind::Guide : Zone == 1 ? ECCLExperimentKind::Celestial :
-		Zone == 8 ? ECCLExperimentKind::Snapshot : Zone == 11 ? ECCLExperimentKind::Shelter : ECCLExperimentKind::Reserved;
+		Zone == 3 ? ECCLExperimentKind::Snow : Zone == 4 ? ECCLExperimentKind::Water : Zone == 5 ? ECCLExperimentKind::Terrain : Zone == 8 ? ECCLExperimentKind::Snapshot : Zone == 11 ? ECCLExperimentKind::Shelter : ECCLExperimentKind::Reserved;
 	if (Zone < 0 || Zone > 11 || CaseId.IsNone() || Title.IsEmpty() || Instructions.IsEmpty() || Expected.IsEmpty() || Kind != ExpectedKind)
 	{
 		Error = TEXT("Invalid experiment definition or unsupported implementation claim.");

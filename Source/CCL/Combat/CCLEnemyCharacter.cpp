@@ -1,4 +1,4 @@
-#include "CCLEnemyCharacter.h"
+﻿#include "CCLEnemyCharacter.h"
 
 #include "Map/CCLMapSystem.h"
 #include "Actions/CCLActionComponent.h"
@@ -160,7 +160,7 @@ void ACCLEnemyCharacter::SelectAttackPattern()
 	if (Archetype == 1)
 	{
 		Path = TEXT("/Game/Progression/DA_RaiderStrike.DA_RaiderStrike");
-		PatternLabel = TEXT("Quick strike: guard / parry");
+		PatternLabel = TEXT("빠른 공격: 방어 / 패링");
 	}
 	else if (Archetype == 2)
 	{
@@ -168,8 +168,8 @@ void ACCLEnemyCharacter::SelectAttackPattern()
 		const bool bSweep = bEnraged && !bAlternateAttack;
 		bAlternateAttack = bEnraged ? !bAlternateAttack : 0;
 		Path = bSweep ? TEXT("/Game/Progression/DA_WardenSweep.DA_WardenSweep") : TEXT("/Game/Progression/DA_WardenHeavy.DA_WardenHeavy");
-		PatternLabel = bSweep ? TEXT("ENRAGED SWEEP: DODGE (cannot guard/parry)") : TEXT("Heavy windup: parry / dodge");
+		PatternLabel = bSweep ? TEXT("격노의 휩쓸기: 회피 (방어 / 패링 불가)") : TEXT("강한 공격 준비: 패링 / 회피");
 	}
-	else { PatternLabel = TEXT("Measured strike: guard / parry"); }
+	else { PatternLabel = TEXT("신중한 공격: 방어 / 패링"); }
 	if (Path) { Fighter->AttackOverride = LoadObject<UCCLCombatDefinition>(nullptr, Path); }
 }

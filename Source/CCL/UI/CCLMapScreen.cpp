@@ -1,5 +1,6 @@
-#include "CCLMapScreen.h"
+﻿#include "CCLMapScreen.h"
 
+#include "UI/CCLUIInputData.h"
 #include "CCLGameUI.h"
 #include "Core/CCLUISubsystem.h"
 #include "Map/CCLMapSystem.h"
@@ -62,7 +63,7 @@ int32 UCCLMapScreen::NativePaint(const FPaintArgs& Args, const FGeometry& Geomet
 			ESlateDrawEffect::None, Color * Style.GetColorAndOpacityTint());
 	};
 	Box(Origin - FVector2D(3, 36) * Scale, Size + FVector2D(6, 72) * Scale, FLinearColor(0.02f, 0.035f, 0.05f, 0.96f));
-	Text(Origin - FVector2D(0, 31) * Scale, Context->bFullMap ? TEXT("REGION MAP   |   Esc: close") : TEXT("NEARBY   |   M: map"), FLinearColor::White, 20);
+	Text(Origin - FVector2D(0, 31) * Scale, Context->bFullMap ? FString::Printf(TEXT("지역 지도 · %s: 닫기"), UCCLUIInputData::GetBackKeyLabel(this)) : TEXT("주변 지도 · M: 지도"), FLinearColor::White, 20);
 	Elements.PushClip(FSlateClippingZone(Geometry.ToPaintGeometry(Size, FSlateLayoutTransform(Origin))));
 	for (const auto& Terrain : Map->GetTerrain())
 	{
@@ -85,7 +86,7 @@ int32 UCCLMapScreen::NativePaint(const FPaintArgs& Args, const FGeometry& Geomet
 		}
 	}
 	Elements.PopClip();
-	Text(Origin + FVector2D(0, Size.Y + 5 * Scale), Context->bFullMap ? TEXT("Blue: you   Gold: NPC   Red: visible enemy") : TEXT("N ^   Player / NPC / Enemy"), FLinearColor(0.7f, 0.8f, 0.85f), Context->bFullMap ? 18 : 15);
+	Text(Origin + FVector2D(0, Size.Y + 5 * Scale), Context->bFullMap ? TEXT("파랑: 나   금색: 주민   빨강: 보이는 적") : TEXT("북쪽 ↑   나 / 주민 / 적"), FLinearColor(0.7f, 0.8f, 0.85f), Context->bFullMap ? 18 : 15);
 	return Layer;
 }
 

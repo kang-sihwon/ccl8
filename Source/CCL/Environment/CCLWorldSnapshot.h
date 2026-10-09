@@ -5,6 +5,7 @@
 #include "CCLEnvironmentInputs.h"
 
 class FCCLLifeSimulation;
+class FCCLSurfaceSimulation;
 
 enum class ECCLWorldDomain : uint8
 {
@@ -23,11 +24,13 @@ struct FCCLWorldIdentity
 
 struct FCCLWorldSnapshot
 {
-	uint32 Schema = 2;
+	uint32 Schema = 3;
 	uint8 bEnvironmentMigrated = 0;
+	uint8 bSurfaceMigrated = 0;
 	FCCLWorldIdentity Identity;
 	FCCLWorldClockSnapshot Clock;
 	TArray<uint8> Life;
+	TArray<uint8> Surface;
 	FCCLEnvironmentInputs Environment = FCCLEnvironmentInputsCodec::MakeDefault(42);
 };
 
@@ -37,12 +40,12 @@ class CCL_API FCCLWorldSnapshotCodec
 public:
 	static bool Capture(const FCCLWorldIdentity& Identity, const FCCLWorldClock& Clock,
 		const FCCLLifeSimulation& Life, FCCLWorldSnapshot& Snapshot, FString& Error,
-		const FCCLEnvironmentInputs* Environment = nullptr);
+		const FCCLEnvironmentInputs* Environment = nullptr, const FCCLSurfaceSimulation* Surface = nullptr);
 	static bool Encode(const FCCLWorldSnapshot& Snapshot, TArray<uint8>& Bytes, FString& Error);
 	static bool Decode(const TArray<uint8>& Bytes, FCCLWorldSnapshot& Snapshot, FString& Error);
 	static bool MigrateLegacy(const TArray<uint8>& LifeBytes, ECCLWorldDomain Domain,
 		FCCLWorldSnapshot& Snapshot, FString& Error);
 	static bool Restore(const FCCLWorldSnapshot& Snapshot, ECCLWorldDomain ExpectedDomain,
-		FCCLWorldClock& Clock, FCCLLifeSimulation& Life, FString& Error);
+		FCCLWorldClock& Clock, FCCLLifeSimulation& Life, FString& Error, FCCLSurfaceSimulation* Surface = nullptr);
 	static bool Validate(const FCCLWorldSnapshot& Snapshot, FString& Error);
 };

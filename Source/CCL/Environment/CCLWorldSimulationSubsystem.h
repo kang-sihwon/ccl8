@@ -3,10 +3,12 @@
 #include "CoreMinimal.h"
 #include "Subsystems/WorldSubsystem.h"
 #include "CCLWorldSnapshot.h"
+#include "CCLSurfaceSimulation.h"
 #include "CCLEnvironmentView.h"
 #include "CCLWorldSimulationSubsystem.generated.h"
 
 class ACCLWorldEnvironmentState;
+class FCCLTerrainWaterParticipant;
 
 UCLASS()
 class CCL_API UCCLWorldSimulationSubsystem : public UTickableWorldSubsystem
@@ -27,9 +29,15 @@ public:
 	bool Save(const FCCLLifeSimulation& Life, TArray<uint8>& Bytes, FString& Error);
 	bool Restore(FCCLLifeSimulation& Life, const TArray<uint8>& Bytes, FString& Error);
 
+	bool AddSurfaceRegion(FCCLSurfaceGrid Region, FString& Error);
+	bool ChangeSurfaceForcing(FGuid RegionId, const FCCLSurfaceForcing& Forcing, FString& Error);
+	bool ApplySnowContact(FGuid RegionId, FGuid SourceId, uint64 Sequence, const FVector& PositionMeters, double RadiusMeters, FString& Error);
+	FGuid GetEpoch() const { return Epoch; }
 	bool ReplaceEnvironmentInputs(const FCCLEnvironmentInputs& Candidate, FString& Error);
+	void SetGeometryProvider(FGuid Id, TSharedPtr<const ICCLSurfaceProvider> Provider);
 	bool ObserveCelestials(FCCLCelestialObservation& Observation, FString& Error) const;
 
+	const FCCLSurfaceSimulation& GetSurfaceSimulation() const { return SurfaceSimulation; }
 	const FCCLEnvironmentInputs& GetEnvironmentInputs() const { return EnvironmentInputs; }
 	const ICCLSurfaceProvider& GetSurfaceProvider() const { return SurfaceScene; }
 	const FCCLWorldClock& GetClock() const { return Clock; }
@@ -39,6 +47,7 @@ public:
 	static ECCLWorldDomain DomainForWorld(const UWorld* World);
 
 private:
+	friend class FCCLTerrainWaterParticipant;
 	void Publish();
 	bool BuildEnvironmentView(FCCLEnvironmentView& OutView, FString& Error) const;
 	bool CheckAuthority(FString& Error) const;
@@ -49,6 +58,7 @@ private:
 	TObjectPtr<ACCLWorldEnvironmentState> ReplicatedState;
 
 	FCCLWorldClock Clock;
+	FCCLSurfaceSimulation SurfaceSimulation;
 	FCCLEnvironmentInputs EnvironmentInputs;
 	FCCLCelestialSystem CelestialSystem;
 	FCCLSurfaceScene SurfaceScene;

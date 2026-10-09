@@ -8,7 +8,7 @@ public class CCLEditorTarget : TargetRules
 	public CCLEditorTarget(TargetInfo Target) : base(Target)
 	{
 		Type = TargetType.Editor;
-		DefaultBuildSettings = BuildSettingsVersion.V8;
+		DefaultBuildSettings = BuildSettingsVersion.Latest;
 
 		ExtraModuleNames.AddRange( new string[] { "CCL" } );
 	}

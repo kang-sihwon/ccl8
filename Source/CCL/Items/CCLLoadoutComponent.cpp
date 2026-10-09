@@ -1,4 +1,4 @@
-#include "CCLLoadoutComponent.h"
+﻿#include "CCLLoadoutComponent.h"
 
 #include "CCLInventoryComponent.h"
 #include "CCLItemDefinition.h"
@@ -71,20 +71,20 @@ bool UCCLLoadoutComponent::Equip(FGuid Id, FGameplayTag Slot)
 
 	if (!CanAct())
 	{
-		return Report(false, TEXT("Cannot change equipment now."));
+		return Report(false, TEXT("지금은 장비를 바꿀 수 없다."));
 	}
 	auto* Inventory = GetInventory();
 	const auto* Entry = Inventory ? Inventory->Find(Id) : nullptr;
 	const auto* Equip = Entry && Entry->Definition ? Entry->Definition->FindFragment<FCCLItemFragment_Equip>() : nullptr;
 	if (!Equip || Entry->Quantity != 1)
 	{
-		return Report(false, TEXT("Select owned equipment."));
+		return Report(false, TEXT("소지 중인 장비를 선택해 줘."));
 	}
 
 	TArray<FText> DefinitionErrors;
 	if (!Entry->Definition->ValidateDefinition(DefinitionErrors))
 	{
-		return Report(false, TEXT("Invalid equipment definition. Check its asset validation errors."));
+		return Report(false, TEXT("장비 정보에 오류가 있어 장착할 수 없다."));
 	}
 
 	if (!Slot.IsValid())
@@ -94,7 +94,7 @@ bool UCCLLoadoutComponent::Equip(FGuid Id, FGameplayTag Slot)
 	TArray<FGameplayTag> Occupied;
 	if (!CCLEquipment::GetOccupiedSlots(Entry->Definition, Slot, Occupied))
 	{
-		return Report(false, TEXT("This item does not fit this equipment slot."));
+		return Report(false, TEXT("이 장착 부위에는 사용할 수 없는 장비다."));
 	}
 
 	TArray<FCCLEquippedSlot> NewEquipment = EquipmentSlots;
@@ -130,7 +130,7 @@ bool UCCLLoadoutComponent::Equip(FGuid Id, FGameplayTag Slot)
 		auto* Value = Placement.FindByPredicate([ReturnId](const auto& Item) { return Item.Id == ReturnId; });
 		if (!Value)
 		{
-			return Report(false, TEXT("Equipment state is unavailable."));
+			return Report(false, TEXT("장비 상태를 확인할 수 없다."));
 		}
 
 		int32 Free = 0;
@@ -141,7 +141,7 @@ bool UCCLLoadoutComponent::Equip(FGuid Id, FGameplayTag Slot)
 
 		if (Free >= Inventory->Capacity)
 		{
-			return Report(false, TEXT("Not enough inventory space to return equipment."));
+			return Report(false, TEXT("장비를 돌려놓을 소지품 공간이 부족하다."));
 		}
 
 		Value->Slot = Free;
@@ -153,12 +153,12 @@ bool UCCLLoadoutComponent::Equip(FGuid Id, FGameplayTag Slot)
 		if (!FMath::IsFinite(Equip->Magnitude) ||
 		    Equip->Effect->GetDefaultObject<UGameplayEffect>()->DurationPolicy != EGameplayEffectDurationType::Infinite)
 		{
-			return Report(false, TEXT("Invalid equipment effect."));
+			return Report(false, TEXT("장비 효과에 오류가 있다."));
 		}
 		AddedEffect = GetASC()->ApplyEffect(Equip->Effect, Equip->Magnitude);
 		if (!AddedEffect.IsValid())
 		{
-			return Report(false, TEXT("Equipment effect failed."));
+			return Report(false, TEXT("장비 효과를 적용하지 못했다."));
 		}
 	}
 	if (!Inventory->Restore(Placement))
@@ -168,7 +168,7 @@ bool UCCLLoadoutComponent::Equip(FGuid Id, FGameplayTag Slot)
 			GetASC()->RemoveActiveGameplayEffect(AddedEffect);
 		}
 
-		return Report(false, TEXT("Cannot apply equipment placement."));
+		return Report(false, TEXT("장비를 배치할 수 없다."));
 	}
 
 	for (FGuid ReturnId : Returning)
@@ -187,14 +187,14 @@ bool UCCLLoadoutComponent::Equip(FGuid Id, FGameplayTag Slot)
 
 	EquipmentSlots = MoveTemp(NewEquipment);
 	SyncAvatar();
-	return Report(true, TEXT("Equipment applied."));
+	return Report(true, TEXT("장비를 장착했다."));
 }
 
 bool UCCLLoadoutComponent::Unequip(FGuid Id, int32 BagSlot)
 {
 	if (!CanAct())
 	{
-		return Report(false, TEXT("Cannot change equipment now."));
+		return Report(false, TEXT("지금은 장비를 바꿀 수 없다."));
 	}
 
 	if (!Id.IsValid())
@@ -204,7 +204,7 @@ bool UCCLLoadoutComponent::Unequip(FGuid Id, int32 BagSlot)
 
 	if (!IsEquipped(Id))
 	{
-		return Report(false, TEXT("Item is not equipped."));
+		return Report(false, TEXT("장착 중인 아이템이 아니다."));
 	}
 
 	auto* Inventory = GetInventory();
@@ -224,7 +224,7 @@ bool UCCLLoadoutComponent::Unequip(FGuid Id, int32 BagSlot)
 
 	if (BagSlot < 0 || BagSlot >= Inventory->Capacity || Inventory->FindSlot(BagSlot))
 	{
-		return Report(false, TEXT("Choose an empty inventory slot."));
+		return Report(false, TEXT("빈 소지품 칸을 선택해 줘."));
 	}
 
 	TArray<FCCLInventoryEntry> Placement = Inventory->GetEntries();
@@ -247,14 +247,14 @@ bool UCCLLoadoutComponent::Unequip(FGuid Id, int32 BagSlot)
 		EquipmentEffects.Remove(Id);
 	}
 	SyncAvatar();
-	return Report(true, TEXT("Equipment returned to inventory."));
+	return Report(true, TEXT("장비를 해제해 소지품으로 옮겼다."));
 }
 
 bool UCCLLoadoutComponent::Use(FGuid Id)
 {
 	if (!CanAct())
 	{
-		return Report(false, TEXT("Cannot use an item now."));
+		return Report(false, TEXT("지금은 아이템을 사용할 수 없다."));
 	}
 	auto* Inventory = GetInventory();
 	const auto* Entry = Inventory ? Inventory->Find(Id) : nullptr;
@@ -262,18 +262,18 @@ bool UCCLLoadoutComponent::Use(FGuid Id)
 	auto* ASC = GetASC();
 	if (!Fragment || !Fragment->Effect || !FMath::IsFinite(Fragment->Magnitude) || Fragment->Magnitude <= 0.f)
 	{
-		return Report(false, TEXT("Select a recovery item."));
+		return Report(false, TEXT("회복 아이템을 선택해 줘."));
 	}
 	if (ASC->GetNumericAttribute(UCCLHealthSet::GetHealthAttribute()) >= ASC->GetNumericAttribute(UCCLHealthSet::GetMaxHealthAttribute()))
 	{
-		return Report(false, TEXT("Health is already full."));
+		return Report(false, TEXT("체력이 이미 가득 차 있다."));
 	}
 	if (!ASC->ApplyEffect(Fragment->Effect, Fragment->Magnitude).WasSuccessfullyApplied())
 	{
-		return Report(false, TEXT("Item effect failed."));
+		return Report(false, TEXT("아이템 효과를 적용하지 못했다."));
 	}
 	Inventory->Remove(Id, 1);
-	return Report(true, TEXT("Recovery item used."));
+	return Report(true, TEXT("회복 아이템을 사용했다."));
 }
 
 bool UCCLLoadoutComponent::Learn(UCCLSkillDefinition* Definition)
@@ -282,17 +282,17 @@ bool UCCLLoadoutComponent::Learn(UCCLSkillDefinition* Definition)
 		Definition->PointCost <= 0 || Points < Definition->PointCost || !Definition->Effect || !FMath::IsFinite(Definition->Magnitude) ||
 		Definition->Effect->GetDefaultObject<UGameplayEffect>()->DurationPolicy != EGameplayEffectDurationType::Infinite)
 	{
-		return Report(false, TEXT("Training unavailable or not enough points."));
+		return Report(false, TEXT("훈련할 수 없거나 훈련 점수가 부족하다."));
 	}
 	const FActiveGameplayEffectHandle Handle = GetASC()->ApplyEffect(Definition->Effect, Definition->Magnitude);
 	if (!Handle.IsValid())
 	{
-		return Report(false, TEXT("Training effect failed."));
+		return Report(false, TEXT("훈련 효과를 적용하지 못했다."));
 	}
 	SkillEffects.Add(Handle);
 	Learned.Add(Definition);
 	Points -= Definition->PointCost;
-	return Report(true, TEXT("Training learned."));
+	return Report(true, TEXT("훈련을 완료했다."));
 }
 
 void UCCLLoadoutComponent::SyncAvatar(bool bResetHealth)

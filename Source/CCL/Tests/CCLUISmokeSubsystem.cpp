@@ -1,5 +1,6 @@
-#include "CCLUISmokeSubsystem.h"
+﻿#include "CCLUISmokeSubsystem.h"
 
+#include "UI/CCLUIInputData.h"
 #include "CCLCharacter.h"
 #include "CCLHUD.h"
 #include "UI/CCLHUDScreens.h"
@@ -31,6 +32,32 @@
 #include "Input/CommonUIActionRouterBase.h"
 #include "UnrealClient.h"
 #include "Widgets/SWindow.h"
+#if WITH_EDITOR
+#include "Editor.h"
+#include "Containers/Ticker.h"
+#endif
+
+namespace
+{
+void FinishUITest(UWorld* World, uint8 ExitCode)
+{
+#if WITH_EDITOR
+	if (World && World->WorldType == EWorldType::PIE && GEditor)
+	{
+		GEditor->RequestEndPlayMap();
+		FTSTicker::GetCoreTicker().AddTicker(FTickerDelegate::CreateLambda([ExitCode](float)
+		{
+			if (GEditor && GEditor->PlayWorld) { return true; }
+			FPlatformMisc::RequestExitWithStatus(false, ExitCode);
+			return false;
+		}), 1.f);
+		return;
+	}
+#endif
+	FPlatformMisc::RequestExitWithStatus(false, ExitCode);
+}
+}
+
 
 bool UCCLUISmokeSubsystem::ShouldCreateSubsystem(UObject* Outer) const
 {
@@ -53,7 +80,7 @@ bool UCCLUISmokeSubsystem::Check(bool Condition, const TCHAR* Message)
 	if (!Condition)
 	{
 		bComplete = 1;
-		FPlatformMisc::RequestExitWithStatus(false, 1);
+		FinishUITest(GetWorld(), 1);
 	}
 
 	return Condition;
@@ -249,7 +276,8 @@ void UCCLUISmokeSubsystem::Tick(float DeltaTime)
 		return;
 	}
 
-	if (Now < Next)
+	// Let the arrival cinematic finish before testing inventory pointer input.
+	if (Now < Next || (Step == 0 && GetWorld()->GetTimeSeconds() < 6.f))
 	{
 		return;
 	}
@@ -300,6 +328,12 @@ void UCCLUISmokeSubsystem::Tick(float DeltaTime)
 
 	if (Step == 0)
 	{
+		if (!Check(GetWorld()->WorldType == (FParse::Param(FCommandLine::Get(), TEXT("CCLUISmokePIE")) ? EWorldType::PIE : EWorldType::Game),
+			TEXT("requested UI test world type is active")))
+		{
+			return;
+		}
+		UE_LOG(LogTemp, Display, TEXT("CCL_UI back key=%s"), UCCLUIInputData::GetBackKeyLabel(this));
 		if (!CheckEquipment(PC))
 		{
 			return;
@@ -320,7 +354,7 @@ void UCCLUISmokeSubsystem::Tick(float DeltaTime)
 		Item.Quantity = 1;
 		Legacy.Items.Add(Item);
 		TArray<uint8> Bytes;
-		if (!Check(FCCLSessionCodec::Encode(Legacy, Bytes) && FCCLSessionCodec::Decode(Bytes, Decoded) && Decoded.Version == 4 &&
+		if (!Check(FCCLSessionCodec::Encode(Legacy, Bytes) && FCCLSessionCodec::Decode(Bytes, Decoded) && Decoded.Version == FCCLSessionRecord().Version &&
 		               Decoded.Items[0].Slot == 0,
 		           TEXT("legacy save upgrades to slots")))
 		{
@@ -342,12 +376,16 @@ void UCCLUISmokeSubsystem::Tick(float DeltaTime)
 			return;
 		}
 
+		FSlateApplication::Get().SetAllUserFocusToGameViewport();
 		PC->ToggleInventory();
 	}
 	else if (Step == 1)
 	{
 		const auto* Screen = Cast<UCCLInventoryScreen>(UIManager->FindScreen(PC->GetInventoryHandle()));
 		const auto* Context = Screen ? Cast<UCCLInventoryContext>(Screen->GetContext()) : nullptr;
+		UE_LOG(LogTemp, Display, TEXT("CCL_UI inventory screen=%d context=%d usable=%d capture=%d preview=%d owner=%d mode=%d"),
+			Screen != nullptr, Context != nullptr, Context && Context->IsUsable(), Context && Context->HasCapture(),
+			Context && Context->GetPreview(), Screen && Screen->GetOwningLocalPlayer() == PC->GetLocalPlayer(), static_cast<int32>(Router->GetActiveInputMode()));
 		if (!Check(Screen && Context && Context->IsUsable() && Context->HasCapture() && Context->GetPreview() &&
 			Screen->GetOwningLocalPlayer() == PC->GetLocalPlayer() && Router->GetActiveInputMode() == ECommonInputMode::Menu,
 			TEXT("inventory is owned by the player UI manager with a live preview and menu input")))
@@ -460,7 +498,7 @@ void UCCLUISmokeSubsystem::Tick(float DeltaTime)
 		}
 
 		auto* Context = Cast<UCCLDialogueContext>(Dialogue->GetContext());
-		Context->Update(PC->GetDialogueName(), PC->GetDialogueText() + TEXT("\nPresentation notification check."));
+		Context->Update(PC->GetDialogueName(), PC->GetDialogueText() + TEXT("\n대사 변경 알림을 확인하는 중이야."));
 		if (!Check(Dialogue->GetDisplayedBody() == Context->Body, TEXT("dialogue change notification updates without recreating screen")))
 		{
 			return;
@@ -595,9 +633,9 @@ void UCCLUISmokeSubsystem::Tick(float DeltaTime)
 			return;
 		}
 
-		FSlateApplication::Get().ProcessKeyDownEvent(FKeyEvent(EKeys::Escape, FModifierKeysState(), 0, false, 0, 0));
-		FSlateApplication::Get().ProcessKeyUpEvent(FKeyEvent(EKeys::Escape, FModifierKeysState(), 0, false, 0, 0));
-		if (!Check(!Session->IsMenuVisible(), TEXT("Escape closes the managed session menu")))
+		FSlateApplication::Get().ProcessKeyDownEvent(FKeyEvent(UCCLUIInputData::GetBackKey(this), FModifierKeysState(), 0, false, 0, 0));
+		FSlateApplication::Get().ProcessKeyUpEvent(FKeyEvent(UCCLUIInputData::GetBackKey(this), FModifierKeysState(), 0, false, 0, 0));
+		if (!Check(!Session->IsMenuVisible(), TEXT("Back key closes the managed session menu")))
 		{
 			return;
 		}
@@ -610,12 +648,12 @@ void UCCLUISmokeSubsystem::Tick(float DeltaTime)
 			return;
 		}
 
-		FSlateApplication::Get().ProcessKeyDownEvent(FKeyEvent(EKeys::Escape, FModifierKeysState(), 0, false, 0, 0));
+		FSlateApplication::Get().ProcessKeyDownEvent(FKeyEvent(UCCLUIInputData::GetBackKey(this), FModifierKeysState(), 0, false, 0, 0));
 	}
 	else if (Step == 16)
 	{
-		FSlateApplication::Get().ProcessKeyUpEvent(FKeyEvent(EKeys::Escape, FModifierKeysState(), 0, false, 0, 0));
-		if (!Check(Session->IsMenuVisible(), TEXT("Escape from gameplay still opens the menu with UI mappings installed")))
+		FSlateApplication::Get().ProcessKeyUpEvent(FKeyEvent(UCCLUIInputData::GetBackKey(this), FModifierKeysState(), 0, false, 0, 0));
+		if (!Check(Session->IsMenuVisible(), TEXT("Back key from gameplay still opens the menu with UI mappings installed")))
 		{
 			return;
 		}
@@ -699,7 +737,7 @@ void UCCLUISmokeSubsystem::Tick(float DeltaTime)
 		const int32 Before = Screen->GetRefreshCount();
 		ASC->SetNumericAttributeBase(UCCLHealthSet::GetHealthAttribute(), Health - 10.f);
 		if (!Check(Context->Vitals->Health == Health - 10.f && Screen->GetRefreshCount() > Before &&
-			Screen->GetDisplayedText().Contains(FString::Printf(TEXT("HP %.0f /"), Health - 10.f)),
+			Screen->GetDisplayedText().Contains(FString::Printf(TEXT("체력 %.0f /"), Health - 10.f)),
 			TEXT("GAS change publishes MVVM FieldNotify and updates displayed HP synchronously")))
 		{
 			return;
@@ -781,7 +819,7 @@ void UCCLUISmokeSubsystem::Tick(float DeltaTime)
 	{
 		auto* HUD = CastChecked<ACCLHUD>(PC->GetHUD());
 		auto* Vitals = CastChecked<UCCLVitalsScreen>(UIManager->FindScreen(HUD->GetVitalsHandle()));
-		if (!Check(FMath::IsNearlyEqual(Vitals->GetRenderOpacity(), 0.4f) && Vitals->GetDisplayedText().Contains(TEXT("HP 70 /")) &&
+		if (!Check(FMath::IsNearlyEqual(Vitals->GetRenderOpacity(), 0.4f) && Vitals->GetDisplayedText().Contains(TEXT("체력 70 /")) &&
 			!UIManager->IsGameplayInputBlocked() && !PC->IsMoveInputIgnored(),
 			TEXT("last release restores the current base opacity and latest data rather than an old snapshot")))
 		{
@@ -869,8 +907,8 @@ void UCCLUISmokeSubsystem::Tick(float DeltaTime)
 			return;
 		}
 
-		FSlateApplication::Get().ProcessKeyDownEvent(FKeyEvent(EKeys::Escape, FModifierKeysState(), 0, false, 0, 0));
-		FSlateApplication::Get().ProcessKeyUpEvent(FKeyEvent(EKeys::Escape, FModifierKeysState(), 0, false, 0, 0));
+		FSlateApplication::Get().ProcessKeyDownEvent(FKeyEvent(UCCLUIInputData::GetBackKey(this), FModifierKeysState(), 0, false, 0, 0));
+		FSlateApplication::Get().ProcessKeyUpEvent(FKeyEvent(UCCLUIInputData::GetBackKey(this), FModifierKeysState(), 0, false, 0, 0));
 		if (!Check(PC->IsInventoryOpen(), TEXT("suppressed UI does not consume Back or leak it into gameplay")))
 		{
 			return;
@@ -922,7 +960,7 @@ void UCCLUISmokeSubsystem::Tick(float DeltaTime)
 		UIManager->ReleasePresentation(PresentationA);
 		UE_LOG(LogTemp, Display, TEXT("CCL_UI PASS drag dialogue menu pooling respawn FieldNotify presentation overlap fade input owners"));
 		bComplete = 1;
-		FPlatformMisc::RequestExitWithStatus(false, 0);
+		FinishUITest(GetWorld(), 0);
 	}
 
 	++Step;

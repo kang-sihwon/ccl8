@@ -1,4 +1,4 @@
-#include "CCLUIFoundationSmoke.h"
+﻿#include "CCLUIFoundationSmoke.h"
 
 #include "UI/Core/CCLUIContext.h"
 #include "UI/Core/CCLUIRegistry.h"
@@ -84,7 +84,7 @@ void UCCLUIFoundationSmoke::Tick(float DeltaTime)
 	{
 		UI->CloseAllViews();
 		Registry = NewObject<UCCLUIRegistry>(this);
-		Registry->InputMapping = GetDefault<UCCLUIInputData>()->GetMapping();
+		Registry->InputMapping = GetDefault<UCCLUIInputData>()->GetMapping(this);
 		for (const auto& Pair : {TPair<FGameplayTag, ECCLUILayerLayout>(OverlayLayer, ECCLUILayerLayout::Overlay),
 			TPair<FGameplayTag, ECCLUILayerLayout>(StackLayer, ECCLUILayerLayout::Stack),
 			TPair<FGameplayTag, ECCLUILayerLayout>(QueueLayer, ECCLUILayerLayout::Queue)})
@@ -178,8 +178,8 @@ void UCCLUIFoundationSmoke::Tick(float DeltaTime)
 			return;
 		}
 
-		Local->GetSubsystem<UCommonUIActionRouterBase>()->ProcessInput(EKeys::Escape, IE_Pressed);
-		Local->GetSubsystem<UCommonUIActionRouterBase>()->ProcessInput(EKeys::Escape, IE_Released);
+		Local->GetSubsystem<UCommonUIActionRouterBase>()->ProcessInput(UCCLUIInputData::GetBackKey(this), IE_Pressed);
+		Local->GetSubsystem<UCommonUIActionRouterBase>()->ProcessInput(UCCLUIInputData::GetBackKey(this), IE_Released);
 		if (!Check(!UI->IsViewOpen(StackB), TEXT("CommonUI enhanced back action closes the focused stack view")))
 		{
 			return;
@@ -421,8 +421,8 @@ void UCCLUIFoundationSmoke::Tick(float DeltaTime)
 			return;
 		}
 
-		Router->ProcessInput(EKeys::Escape, IE_Pressed);
-		Router->ProcessInput(EKeys::Escape, IE_Released);
+		Router->ProcessInput(UCCLUIInputData::GetBackKey(this), IE_Pressed);
+		Router->ProcessInput(UCCLUIInputData::GetBackKey(this), IE_Released);
 	}
 	else if (Step == 11)
 	{
@@ -474,7 +474,7 @@ void UCCLUIFoundationSmoke::Tick(float DeltaTime)
 bool UCCLUIFoundationSmoke::ConfigureExample(bool bStrategy)
 {
 	Registry = NewObject<UCCLUIRegistry>(this);
-	Registry->InputMapping = GetDefault<UCCLUIInputData>()->GetMapping();
+	Registry->InputMapping = GetDefault<UCCLUIInputData>()->GetMapping(this);
 	FCCLUILayerDefinition Layer;
 	Layer.Tag = OverlayLayer;
 	Layer.Layout = ECCLUILayerLayout::Overlay;

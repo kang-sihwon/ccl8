@@ -1,10 +1,12 @@
-param(
+﻿param(
     [string]$PackagedExecutable,
     [switch]$Offscreen,
+    [switch]$PIE,
     [ValidateRange(1280, 3840)][int]$Width = 1280,
     [ValidateRange(720, 2160)][int]$Height = 720
 )
 $ErrorActionPreference = 'Stop'
+if ($PIE -and $PackagedExecutable) { throw 'PIE requires the editor executable.' }
 $root = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '../..'))
 if ($PackagedExecutable) {
     $executable = (Resolve-Path -LiteralPath $PackagedExecutable).Path
@@ -18,6 +20,13 @@ $directory = Join-Path $root ('Saved/Tests/UIVisual/{0}x{1}-{2}' -f $Width, $Hei
 New-Item -ItemType Directory -Path $directory -Force | Out-Null
 $log = Join-Path $directory 'game.log'
 $options = $prefix + @('/Game/Maps/Campaign', '-game', '-CCLUISmoke', '-unattended', '-nosplash', '-nosound', '-NoLiveCoding', '-windowed', '-ForceRes', "-ResX=$Width", "-ResY=$Height", ('-CCLUICapture="' + $directory + '"'), ('-abslog="' + $log + '"'), '-ExecCmds="t.MaxFPS 60,r.MotionBlurQuality 0"')
+if ($PIE) {
+    $options += '-CCLUISmokePIE'
+    $options += '-ini:EditorPerProjectUserSettings:[/Script/UnrealEd.LevelEditorPlaySettings]:PlayNumberOfClients=1,PlayNetMode=PIE_Standalone'
+    $options = @($options | Where-Object { $_ -ne '-game' -and $_ -notlike '-ExecCmds=*' })
+    $script = (Join-Path $root 'Tools/Validation/start_ui_pie.py').Replace('\', '/')
+    $options += ('-ExecCmds="py ' + $script + ',t.MaxFPS 60,r.MotionBlurQuality 0"')
+}
 if ($Offscreen) { $options += '-RenderOffScreen' }
 $process = Start-Process -FilePath $executable -ArgumentList $options -WindowStyle Hidden -PassThru
 try {

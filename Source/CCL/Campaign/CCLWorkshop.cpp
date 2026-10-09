@@ -1,8 +1,9 @@
-#include "CCLWorkshop.h"
+﻿#include "CCLWorkshop.h"
 
 #include "Agents/CCLAgentWorldSubsystem.h"
 #include "Components/StaticMeshComponent.h"
 #include "Components/TextRenderComponent.h"
+#include "Engine/Font.h"
 #include "Engine/StaticMesh.h"
 #include "Net/UnrealNetwork.h"
 #include "UObject/ConstructorHelpers.h"
@@ -22,6 +23,8 @@ ACCLWorkshop::ACCLWorkshop()
 	Store->SetStaticMesh(Mesh.Object);
 	Label = CreateDefaultSubobject<UTextRenderComponent>(TEXT("Label"));
 	Label->SetupAttachment(Store);
+	static ConstructorHelpers::FObjectFinder<UFont> KoreanFont(TEXT("/Game/UI/Fonts/F_KoreanLabel.F_KoreanLabel"));
+	if (KoreanFont.Succeeded()) { Label->SetFont(KoreanFont.Object); }
 	Label->SetRelativeLocation(FVector(0, 0, 110));
 	Label->SetWorldSize(16);
 	Label->SetAbsolute(false, false, true);
@@ -48,7 +51,7 @@ void ACCLWorkshop::Tick(float DeltaTime)
 void ACCLWorkshop::Refresh()
 {
 	Store->SetRelativeScale3D(FVector(0.55f + Level * 0.18f, 0.55f, 0.4f + Level * 0.15f));
-	Label->SetText(FText::FromString(FString::Printf(TEXT("Storage L%d"), Level)));
+	Label->SetText(FText::FromString(FString::Printf(TEXT("창고 %d단계"), Level)));
 }
 void ACCLWorkshop::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
 {

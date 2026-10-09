@@ -1,4 +1,6 @@
 #include "CCLCharacter.h"
+#include "Environment/CCLSnowMovementComponent.h"
+#include "Environment/CCLSnowAnimInstance.h"
 
 #include "Map/CCLMapSystem.h"
 
@@ -22,7 +24,8 @@
 
 // 생성자
 
-ACCLCharacter::ACCLCharacter()
+ACCLCharacter::ACCLCharacter(const FObjectInitializer& ObjectInitializer)
+	: Super(ObjectInitializer.SetDefaultSubobjectClass<UCCLSnowMovementComponent>(ACharacter::CharacterMovementComponentName))
 {
 	auto* MapMarker = CreateDefaultSubobject<UCCLMapMarkerComponent>(TEXT("MapMarker"));
 	MapMarker->Kind = ECCLMapKind::Player;
@@ -86,6 +89,18 @@ ACCLCharacter::ACCLCharacter()
 }
 
 // 부모 인터페이스 함수
+
+void ACCLCharacter::BeginPlay()
+{
+	Super::BeginPlay();
+	if (GetWorld()->GetMapName().Contains(TEXT("Environment")))
+	{
+		if (auto* SnowClass = LoadClass<UAnimInstance>(nullptr, TEXT("/Game/Environment/Animation/ABP_SnowPostProcess.ABP_SnowPostProcess_C")))
+		{
+			GetMesh()->SetOverridePostProcessAnimBP(SnowClass);
+		}
+	}
+}
 
 void ACCLCharacter::PossessedBy(AController* NewController)
 {

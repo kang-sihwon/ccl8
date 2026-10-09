@@ -1,5 +1,6 @@
 #include "CCLEnemyAIController.h"
 
+#include "Environment/CCLTerrainNavigation.h"
 #include "Actions/CCLActionComponent.h"
 #include "Agents/CCLAgentComponent.h"
 
@@ -92,6 +93,12 @@ bool ACCLEnemyAIController::Approach()
 		return false;
 	}
 
+	if (!FCCLTerrainNavigation::IsRouteReady(GetWorld(), GetPawn()->GetActorLocation(), Target->GetActorLocation()))
+	{
+		StopMovement();
+		return false;
+	}
+
 	SetFocus(Target.Get());
 
 	if (IsActionRunning())
@@ -124,6 +131,12 @@ bool ACCLEnemyAIController::ReturnHome()
 	if (!Enemy)
 	{
 		return true;
+	}
+
+	if (!FCCLTerrainNavigation::IsRouteReady(GetWorld(), Enemy->GetActorLocation(), Enemy->GetHome()))
+	{
+		StopMovement();
+		return false;
 	}
 
 	if (FVector::Dist2D(Enemy->GetActorLocation(), Enemy->GetHome()) < 70.f)

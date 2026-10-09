@@ -1,4 +1,4 @@
-#include "CCLProgressionAssetLibrary.h"
+﻿#include "CCLProgressionAssetLibrary.h"
 
 #if WITH_EDITOR
 #include "Agents/CCLAgentAIController.h"
@@ -80,7 +80,7 @@ bool UCCLProgressionAssetLibrary::CreateProgressionAssets()
 		return false;
 	}
 
-	DescribeProgression(Gauntlets, TEXT("Iron Gauntlets (+10 attack)"), 1);
+	DescribeProgression(Gauntlets, TEXT("철 장갑 (공격력 +10)"), 1);
 	FCCLItemFragment_Equip Equipment;
 	Equipment.DefaultSlotTag = CCLItemTags::Slot_RightHand;
 	Equipment.AllowedSlots.AddTag(CCLItemTags::Slot_LeftHand);
@@ -97,16 +97,16 @@ bool UCCLProgressionAssetLibrary::CreateProgressionAssets()
 		return false;
 	}
 
-	DescribeProgression(Potion, TEXT("Recovery Potion (+50 HP)"), 20);
+	DescribeProgression(Potion, TEXT("회복약 (체력 +50)"), 20);
 	FCCLItemFragment_ConsumableData Use;
 	Use.Effect = UCCLHealthChangeEffect::StaticClass();
 	Use.Magnitude = 50.f;
 	Potion->ItemFragments.Add(FInstancedStruct::Make(Use));
-	Power->Label = FText::FromString(TEXT("Power Training (+5 attack)"));
+	Power->Label = FText::FromString(TEXT("공격 훈련 (공격력 +5)"));
 	Power->PointCost = 1;
 	Power->Effect = UCCLPersistentPowerEffect::StaticClass();
 	Power->Magnitude = 5.f;
-	Vitality->Label = FText::FromString(TEXT("Vitality Training (+25 HP)"));
+	Vitality->Label = FText::FromString(TEXT("체력 훈련 (체력 +25)"));
 	Vitality->PointCost = 1;
 	Vitality->Effect = UCCLPersistentVitalityEffect::StaticClass();
 	Vitality->Magnitude = 25.f;
@@ -164,8 +164,8 @@ bool UCCLProgressionAssetLibrary::CreateEquipmentAssets()
 #if WITH_EDITOR
 	const TCHAR* Names[] = {TEXT("DA_TrainingSword"), TEXT("DA_TrainingShield"), TEXT("DA_TrainingStaff"),	  TEXT("DA_TrainingArmor"),
 							TEXT("DA_TrainingBoots"), TEXT("DA_TrainingCloak"),	 TEXT("DA_TrainingNecklace"), TEXT("DA_TrainingRing")};
-	const TCHAR* Labels[] = {TEXT("Training Sword"), TEXT("Training Shield"), TEXT("Two-hand Staff"),	 TEXT("Training Armor"),
-							 TEXT("Training Boots"), TEXT("Training Cloak"),  TEXT("Training Necklace"), TEXT("Training Ring")};
+	const TCHAR* Labels[] = {TEXT("훈련용 검"), TEXT("훈련용 방패"), TEXT("양손 지팡이"),	 TEXT("훈련용 갑옷"),
+							 TEXT("훈련용 장화"), TEXT("훈련용 망토"),  TEXT("훈련용 목걸이"), TEXT("훈련용 반지")};
 	const FGameplayTag Slots[] = {CCLItemTags::Slot_RightHand, CCLItemTags::Slot_RightHand, CCLItemTags::Slot_RightHand,
 								  CCLItemTags::Slot_Armor,	   CCLItemTags::Slot_Boots,		CCLItemTags::Slot_Cloak,
 								  CCLItemTags::Slot_Necklace,  CCLItemTags::Slot_RingOne};
@@ -183,7 +183,7 @@ bool UCCLProgressionAssetLibrary::CreateEquipmentAssets()
 		}
 
 		DescribeProgression(Item, Labels[Index], 1);
-		Item->Description = FText::FromString(TEXT("Equipment-system prototype. Final art and balance are pending."));
+		Item->Description = FText::FromString(TEXT("장비 기능을 시험하기 위한 시제품이다. 외형과 수치는 추후 조정될 수 있다."));
 		FCCLItemFragment_Equip Equip;
 		Equip.DefaultSlotTag = Slots[Index];
 		Equip.AllowedSlots.AddTag(Slots[Index]);
@@ -391,7 +391,7 @@ bool UCCLProgressionAssetLibrary::CreateProjectileAssets()
 {
 #if WITH_EDITOR
 	auto* Bullets = ProgressionAsset<UCCLItemDefinition>(TEXT("DA_Bullets"));
-	DescribeProgression(Bullets, TEXT("Bullets"), 100);
+	DescribeProgression(Bullets, TEXT("탄환"), 100);
 	if (!SaveProgression(Bullets))
 	{
 		return false;
@@ -435,7 +435,7 @@ bool UCCLProgressionAssetLibrary::CreateProjectileAssets()
 		Profile->FireInterval = bRifle ? 1.f : 0.4f;
 		Profile->Ammunition = Bullets;
 		auto* Item = ProgressionAsset<UCCLItemDefinition>(bRifle ? TEXT("DA_Rifle") : TEXT("DA_Pistol"));
-		DescribeProgression(Item, bRifle ? TEXT("Slow-loading Rifle") : TEXT("Pistol"), 1);
+		DescribeProgression(Item, bRifle ? TEXT("저속 장전 소총") : TEXT("권총"), 1);
 		FCCLItemFragment_Equip Equip;
 		Equip.DefaultSlotTag = CCLItemTags::Slot_RightHand;
 		Equip.AllowedSlots.AddTag(CCLItemTags::Slot_LeftHand);

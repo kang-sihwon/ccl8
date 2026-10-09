@@ -1,5 +1,6 @@
 #include "CCLAgentAIController.h"
 
+#include "Environment/CCLTerrainNavigation.h"
 #include "CCLAgentComponent.h"
 #include "CCLAgentWorldSubsystem.h"
 #include "CCLAgentTags.h"
@@ -81,6 +82,12 @@ EStateTreeRunStatus ACCLAgentAIController::Approach(double StartedTime)
 	{
 		AbortIntent();
 		return EStateTreeRunStatus::Failed;
+	}
+
+	if (!FCCLTerrainNavigation::IsRouteReady(GetWorld(), GetPawn()->GetActorLocation(), Destination))
+	{
+		StopMovement();
+		return EStateTreeRunStatus::Running;
 	}
 
 	if (FVector::DistSquared2D(GetPawn()->GetActorLocation(), Destination) < FMath::Square(140.f))

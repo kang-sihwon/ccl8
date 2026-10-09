@@ -1,4 +1,4 @@
-#include "CCLCombatAssetLibrary.h"
+﻿#include "CCLCombatAssetLibrary.h"
 
 #if WITH_EDITOR
 #include "AbilitySystem/CCLAbilitySet.h"
@@ -137,7 +137,7 @@ bool UCCLCombatAssetLibrary::CreateCombatAssets()
 		Fragment.Combat = Combat;
 		Fragment.Abilities = Abilities;
 		Item->ItemFragments = {FInstancedStruct::Make(Fragment)};
-		Item->ItemName = FText::FromString(Name);
+		Item->ItemName = FText::FromString(FCString::Strcmp(Name, TEXT("DA_Unarmed")) == 0 ? TEXT("맨손") : TEXT("적의 맨손"));
 		return Save(Item);
 	};
 

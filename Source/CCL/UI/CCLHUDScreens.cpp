@@ -1,5 +1,6 @@
-#include "CCLHUDScreens.h"
+﻿#include "CCLHUDScreens.h"
 
+#include "UI/CCLUIInputData.h"
 #include "CCLCombatViewModel.h"
 #include "Blueprint/WidgetTree.h"
 #include "Components/Border.h"
@@ -131,7 +132,7 @@ void UCCLVitalsScreen::Refresh()
 	}
 
 	++RefreshCount;
-	Values->SetText(FText::FromString(FString::Printf(TEXT("HP %.0f / %.0f   Stamina %.0f / %.0f"),
+	Values->SetText(FText::FromString(FString::Printf(TEXT("체력 %.0f / %.0f   스태미나 %.0f / %.0f"),
 		Model->Health, Model->MaxHealth, Model->Stamina, Model->MaxStamina)));
 	HealthBar->SetPercent(Model->MaxHealth > 0.f ? FMath::Clamp(Model->Health / Model->MaxHealth, 0.f, 1.f) : 0.f);
 	StaminaBar->SetPercent(Model->MaxStamina > 0.f ? FMath::Clamp(Model->Stamina / Model->MaxStamina, 0.f, 1.f) : 0.f);
@@ -152,7 +153,7 @@ void UCCLFieldHUDScreen::NativeOnInitialized()
 	Super::NativeOnInitialized();
 	auto* Canvas = MakeCanvas(this, WidgetTree);
 	auto* Instructions = MakeText(WidgetTree, 18, FLinearColor::White, 650.f);
-	Instructions->SetText(FText::FromString(TEXT("WASD Move | Mouse Look | Space Jump\nLMB Left hand | RMB Right hand | Q Parry | Shift Dodge")));
+	Instructions->SetText(FText::FromString(TEXT("WASD 이동 · 마우스 시점 · Space 점프\n마우스 왼쪽: 왼손 · 오른쪽: 오른손 · Q 패링 · Shift 회피")));
 	Position(Canvas, Instructions, FVector2D::ZeroVector, FVector2D(24.f));
 	Overview = MakeText(WidgetTree, 18, FLinearColor(1.f, 0.8f, 0.3f), 650.f);
 	Position(Canvas, Overview, FVector2D::ZeroVector, FVector2D(24.f, 170.f));
@@ -212,7 +213,7 @@ void UCCLDialogueScreen::NativeOnInitialized()
 	Speaker = MakeText(WidgetTree, 22, FLinearColor(1.f, 0.82f, 0.4f), 840.f);
 	Body = MakeText(WidgetTree, 20, FLinearColor::White, 840.f);
 	auto* Hint = MakeText(WidgetTree, 17, FLinearColor(0.8f, 0.85f, 0.9f), 840.f);
-	Hint->SetText(FText::FromString(TEXT("T Talk / Quest | B Buy potion | Esc Close")));
+	Hint->SetText(FText::FromString(FString::Printf(TEXT("T 대화 / 의뢰 · B 회복약 구입 · %s 닫기"), UCCLUIInputData::GetBackKeyLabel(this))));
 	Lines->AddChildToVerticalBox(Speaker);
 	Lines->AddChildToVerticalBox(Body)->SetPadding(FMargin(0.f, 8.f, 0.f, 12.f));
 	Lines->AddChildToVerticalBox(Hint);

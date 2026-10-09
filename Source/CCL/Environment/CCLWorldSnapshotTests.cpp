@@ -1,6 +1,7 @@
 #include "CCLWorldSnapshot.h"
 
 #include "CCLWorldAdvance.h"
+#include "CCLSurfaceSimulation.h"
 #include "Agents/CCLLifeSimulation.h"
 #include "Agents/CCLAgentWorldSubsystem.h"
 #include "Engine/GameInstance.h"
@@ -183,6 +184,12 @@ bool FCCLWorldDomainStoreTest::RunTest(const FString& Parameters)
 	Store->SnapshotFor(ECCLWorldDomain::Campaign) = {1};
 	Store->SnapshotFor(ECCLWorldDomain::Playground) = {2};
 	Store->SnapshotFor(ECCLWorldDomain::Scenario) = {3};
+	Store->TravelSnapshots.FindOrAdd(ECCLWorldDomain::Campaign).World = {1};
+	Store->TravelSnapshots.FindOrAdd(ECCLWorldDomain::Playground).World = {2};
+	Store->TravelSnapshots.FindOrAdd(ECCLWorldDomain::Scenario).World = {3};
+	const FGuid RegionId(1, 2, 3, 4);
+	Store->TravelSnapshots[ECCLWorldDomain::Playground].Terrain.Add(RegionId, {20});
+	Store->TravelSnapshots[ECCLWorldDomain::Scenario].Terrain.Add(RegionId, {30});
 	const uint64 ExperimentSession = Store->SessionFor(ECCLWorldDomain::Playground);
 	Store->ResetSession();
 	TestTrue(TEXT("new campaign clears campaign state"), Store->SnapshotFor(ECCLWorldDomain::Campaign).IsEmpty());
@@ -197,6 +204,9 @@ bool FCCLWorldDomainStoreTest::RunTest(const FString& Parameters)
 		Store->SnapshotFor(ECCLWorldDomain::Scenario) == TArray<uint8>{3});
 	TestTrue(TEXT("old experiment cannot overwrite reset session"), Store->SessionFor(ECCLWorldDomain::Playground) > ExperimentSession);
 	TestEqual(TEXT("campaign travel generation unchanged"), Store->SessionFor(ECCLWorldDomain::Campaign), CampaignSession);
+	TestFalse(TEXT("campaign reset removes whole travel checkpoint"), Store->TravelSnapshots.Contains(ECCLWorldDomain::Campaign));
+	TestFalse(TEXT("selected experiment reset removes terrain with its world"), Store->TravelSnapshots.Contains(ECCLWorldDomain::Playground));
+	TestTrue(TEXT("other experiment terrain survives both resets"), Store->TravelSnapshots[ECCLWorldDomain::Scenario].Terrain[RegionId] == TArray<uint8>{30});
 	return true;
 }
 
@@ -224,15 +234,27 @@ bool FCCLWorldEnvironmentMigrationTest::RunTest(const FString& Parameters)
 	const int32 EnvironmentOffset = 89 + 4 + Snapshot.Clock.Pending.Num() * 32 + 4 + Snapshot.Clock.Rates.Num() * 24;
 	int32 EnvironmentCount = 0;
 	FMemory::Memcpy(&EnvironmentCount, Bytes.GetData() + EnvironmentOffset, 4);
+	TArray<uint8> SchemaTwo = Bytes;
+	SchemaTwo.RemoveAt(EnvironmentOffset + 4 + EnvironmentCount, 4 + Snapshot.Surface.Num());
+	const uint32 SchemaTwoVersion = 2;
+	FMemory::Memcpy(SchemaTwo.GetData() + 4, &SchemaTwoVersion, 4);
+	uint32 SchemaTwoCRC = FCrc::MemCrc32(SchemaTwo.GetData(), SchemaTwo.Num() - 4);
+	FMemory::Memcpy(SchemaTwo.GetData() + SchemaTwo.Num() - 4, &SchemaTwoCRC, 4);
+	FCCLWorldSnapshot FromTwo;
+	TestTrue(TEXT("schema two migrates its missing surface"), FCCLWorldSnapshotCodec::Decode(SchemaTwo, FromTwo, Error));
+	FCCLSurfaceSimulation MigratedWater;
+	TestTrue(TEXT("migration records the completed clock"), FromTwo.bSurfaceMigrated && MigratedWater.Restore(FromTwo.Surface, Error)
+		&& MigratedWater.GetWorldSeconds() == 60. && MigratedWater.GetRegions().IsEmpty());
+
 	// Construct the actual schema-1 wire layout: clock/rates followed directly by life.
-	Bytes.RemoveAt(EnvironmentOffset, 4 + EnvironmentCount);
+	Bytes.RemoveAt(EnvironmentOffset, 4 + EnvironmentCount + 4 + Snapshot.Surface.Num());
 	const uint32 LegacySchema = 1;
 	FMemory::Memcpy(Bytes.GetData() + 4, &LegacySchema, 4);
 	uint32 CRC = FCrc::MemCrc32(Bytes.GetData(), Bytes.Num() - 4);
 	FMemory::Memcpy(Bytes.GetData() + Bytes.Num() - 4, &CRC, 4);
 	FCCLWorldSnapshot Migrated;
 	TestTrue(TEXT("old world envelope migrates"), FCCLWorldSnapshotCodec::Decode(Bytes, Migrated, Error));
-	TestEqual(TEXT("upgraded world schema"), Migrated.Schema, uint32(2));
+	TestEqual(TEXT("upgraded world schema"), Migrated.Schema, uint32(3));
 	TestEqual(TEXT("old identity retained"), Migrated.Identity.WorldId, Identity.WorldId);
 	TestEqual(TEXT("old time retained without offline advance"), Migrated.Clock.WorldSeconds, 60.);
 	TestEqual(TEXT("explicit default environment seed"), Migrated.Environment.Celestial.Seed, 42);

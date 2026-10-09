@@ -22,6 +22,7 @@ class CCL_API UCCLTerrainChunkComponent : public UDynamicMeshComponent
 
 public:
 	UCCLTerrainChunkComponent();
+	virtual bool DoCustomNavigableGeometryExport(FNavigableGeometryExport& Export) const override;
 
 protected:
 	virtual void FinishPhysicsAsyncCook(bool bSuccess, UBodySetup* FinishedBodySetup) override;
