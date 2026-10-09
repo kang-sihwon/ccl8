@@ -202,6 +202,7 @@ public:
 	bool Save(TArray<uint8>& Bytes) const;
 	bool Load(const TArray<uint8>& Bytes, FString& Error);
 	void AdvanceTo(double TargetTime);
+	bool TryAdvanceTo(double TargetTime, FString& Error, int32 MaxSlices = 4096);
 	void SetActorActive(FGuid Id, bool bActive);
 	bool SelectIntent(FGuid Id, const FCCLPersistentIntent& Intent, const TArray<FCCLDecisionTrace>* DecisionTraces = nullptr);
 	FGuid ReserveOpportunity(FGuid AgentId, FGuid OpportunityId);
@@ -227,7 +228,8 @@ public:
 private:
 	bool BuildTransaction(const FCCLAgentRecord& Agent, const FCCLWorldOpportunity& Opportunity,
 		FGuid RequestId, FCCLTransactionRequest& Request, FString& Error) const;
-	void ApplyEvents();
+	bool ApplyEvents(FString& Error);
+	bool AdvanceCandidate(double TargetTime, int32 MaxSlices, FString& Error);
 	void ApplyOutcome(FCCLAgentRecord& Agent, const FCCLWorldOpportunity& Opportunity, FGuid RequestId);
 	FGuid NextId();
 

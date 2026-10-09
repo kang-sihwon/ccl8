@@ -869,7 +869,7 @@ bool FCCLLifeSimulation::RegisterGoal(UCCLLifeGoalDefinition* Definition)
 	return true;
 }
 
-void FCCLLifeSimulation::ApplyEvents()
+bool FCCLLifeSimulation::ApplyEvents(FString& Error)
 {
 	for (auto& Event : Events)
 	{
@@ -907,24 +907,63 @@ void FCCLLifeSimulation::ApplyEvents()
 			if (Loss.Quantity > 0)
 			{
 				Request.Items.Add(Loss);
-				CCLEconomy::Execute(Economy, Request);
+				const auto Result = CCLEconomy::Execute(Economy, Request);
+				if (!Result.bSucceeded)
+				{
+					Error = Result.Failure;
+					return false;
+				}
 			}
 		}
 
 		Event.bApplied = 1;
 	}
+	return true;
 }
 
 void FCCLLifeSimulation::AdvanceTo(double TargetTime)
 {
-	if (!FMath::IsFinite(TargetTime) || TargetTime < Time)
+	FString Error;
+	TryAdvanceTo(TargetTime, Error);
+}
+
+bool FCCLLifeSimulation::TryAdvanceTo(double TargetTime, FString& Error, int32 MaxSlices)
+{
+	Error.Reset();
+	if (!FMath::IsFinite(TargetTime) || TargetTime < Time || MaxSlices <= 0)
 	{
-		return;
+		Error = TEXT("Invalid life time or slice budget.");
+		return false;
 	}
 
+	if (TargetTime == Time)
+	{
+		return true;
+	}
+
+	// Copy preserves stable handles, reservations and Actor ownership. Policies are read-only.
+	FCCLLifeSimulation Candidate(*this);
+	if (!Candidate.AdvanceCandidate(TargetTime, MaxSlices, Error) || !CCLEconomy::Validate(Candidate.Economy, Error))
+	{
+		return false;
+	}
+
+	*this = MoveTemp(Candidate);
+	return true;
+}
+
+bool FCCLLifeSimulation::AdvanceCandidate(double TargetTime, int32 MaxSlices, FString& Error)
+{
 	// Written reduced activities complete at hourly boundaries; scheduled events split a boundary.
+	int32 Slices = 0;
 	while (Time < TargetTime)
 	{
+		if (++Slices > MaxSlices)
+		{
+			Error = TEXT("Life advance exceeded its slice budget; no state was published.");
+			return false;
+		}
+
 		const double HourBoundary = (FMath::FloorToDouble(Time / 3600) + 1) * 3600;
 		double Next = FMath::Min(TargetTime, HourBoundary);
 		for (const auto& Event : Events)
@@ -938,11 +977,22 @@ void FCCLLifeSimulation::AdvanceTo(double TargetTime)
 		TArray<FCCLAgentRecord> Snapshot;
 		if (!Agents.Snapshot(Snapshot))
 		{
-			return;
+			Error = TEXT("An Agent writer still owns state; release it before advancing.");
+			return false;
+		}
+
+		if (Next <= Time)
+		{
+			Error = TEXT("Life time cannot advance at this precision.");
+			return false;
 		}
 
 		Time = Next;
-		ApplyEvents();
+		if (!ApplyEvents(Error))
+		{
+			return false;
+		}
+
 		for (auto& Agent : Snapshot)
 		{
 			// Earlier agents in this time slice may already have changed this recipient's experience.
@@ -970,10 +1020,14 @@ void FCCLLifeSimulation::AdvanceTo(double TargetTime)
 			}
 
 			const auto Lease = Agents.Acquire(Agents.GetHandle(Agent.Id), FGuid(0xCC18, 0, 0, 1));
-			FString Error;
 			const bool bCommitted = Agents.Commit(Lease, Agent, Registry, Error);
 			Agents.Release(Lease);
-			if (!bCommitted || Time != HourBoundary || ActiveActors.Contains(Agent.Id))
+			if (!bCommitted)
+			{
+				return false;
+			}
+
+			if (Time != HourBoundary || ActiveActors.Contains(Agent.Id))
 			{
 				continue;
 			}
@@ -984,13 +1038,23 @@ void FCCLLifeSimulation::AdvanceTo(double TargetTime)
 			{
 				const auto IntentLease = Agents.Acquire(Agents.GetHandle(Agent.Id), FGuid(0xCC18, 0, 0, 2));
 				Agent.Intent = Decision.Intent;
-				Agents.Commit(IntentLease, Agent, Registry, Error);
+				const bool bIntentCommitted = Agents.Commit(IntentLease, Agent, Registry, Error);
 				Agents.Release(IntentLease);
+				if (!bIntentCommitted)
+				{
+					return false;
+				}
 				const auto* O = FindOpportunity(Decision.Intent.OpportunityId);
+				if (!O)
+				{
+					Error = TEXT("Selected opportunity disappeared.");
+					return false;
+				}
 				Execute(Agent.Id, O->OpportunityId, O->Revision, NextId(), true);
 			}
 		}
 	}
+	return true;
 }
 
 FString FCCLLifeSimulation::DailyReport() const

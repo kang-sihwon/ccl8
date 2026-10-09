@@ -368,3 +368,50 @@ Clock.Commit(Retry.Ticket, Error);
 설치 완료 후 AI는 진단 도구를 다시 실행하고 현재 엔진의 프로젝트 파일 생성 경로와 테스트 포함 규칙을 확인한다. 에셋 의존성이 없는 빈 맵에서 시간 자동 검사를 먼저 실행한다. Agent의 실제 완료 시각·부분 실패·외부 자원 확정 계약을 구현한 뒤 자체 Tick의 시간 진행을 공통 실행기로 옮긴다. 두 실험 맵은 기존 맵을 덮지 않고 5.8.3에서 새로 생성하며 통합 저장과 세 가지 실행 모드를 검증한다. 단계 0의 실행 기준과 단계 1의 통과 조건이 확인되기 전에는 단계 2로 넘어가지 않는다.
 
 2026-10-09 사용자의 전체 push 지시에 따라 시간 코어·자동 검사·진단 도구를 문서와 함께 제출한다. 프로젝트 생성·빌드·실행 검증은 엔진 설치 후 수행하며, 이번 소스 제출을 단계 1 통과로 처리하지 않는다.
+
+
+### 9단계까지의 실행 관리
+
+사용자가 9단계까지의 구현과 단계별 완료 알림을 요청했다. 위 통과 기준을 그대로 적용하며 코드 작성·빌드·실행·시각 검토를 구분한다. 완료 알림은 통과 근거를 확인한 단계에만 보낸다.
+
+현재 작업은 단계 0의 실행 기준 재확인과 단계 1의 시간 트랜잭션이다. 소스 엔진을 런처 등록 누락 때문에 미설치로 판정하지 않도록 진단 도구를 보완한다. 기존 게임과 시간 자동 검사를 실제 엔진에서 실행한다. 기존 로컬 에셋·UI 수정은 이 작업의 변경과 구분해 보존한다.
+
+Agent 시간 진행은 후보 상태에서 사건·욕구·판단·경제를 계산하고 모든 갱신이 성공했을 때 게시한다. 진행 중인 실행권이나 데이터 오류, 처리 예산 초과가 있으면 완료 시각과 자원 상태를 유지하고 재시도 가능한 오류를 반환한다. Activity 처리기와 Goal 정책은 입력 자료만 계산하며 외부 Actor나 자원을 직접 변경하지 않아야 한다. 후보 복사는 초기 구현 비용을 늘리므로 실제 시간과 메모리를 측정하고, 이후 변경 기록 방식과 비교한다.
+
+기존 `UCCLAgentWorldSubsystem`은 삶의 단일 소유자로 유지한다. 공통 실행 함수는 시계 후보를 먼저 검증하고 삶의 후보가 성공했을 때 두 상태를 함께 확정한다. 먼저 실패·재시도와 기존 30일 경제 검사를 통과시킨 뒤 서버 실행·실험 맵·통합 저장을 연결한다. 단계 2 이후의 구현 범위와 완료 기준은 위 표를 따른다.
+
+#### 시간 트랜잭션 구현과 검증
+
+`FCCLLifeSimulation::TryAdvanceTo`는 실제 완료 시각을 바꾸기 전에 후보 계산을 끝낸다. 처리 예산 초과나 실행권 충돌은 실패로 반환한다. `CCLWorldAdvance::Advance`는 기존 삶의 소유권을 가져오지 않고 호출자가 넘긴 시계와 삶을 같은 시각으로 확정한다. 기존 `AdvanceTo` 호출부는 호환 경로를 유지하며 서버 Tick 이전은 아직 하지 않았다.
+
+```mermaid
+classDiagram
+    UCCLAgentWorldSubsystem *-- FCCLLifeSimulation : 삶 소유
+    CCLWorldAdvance ..> FCCLLifeSimulation : 후보 계산 후 게시
+    CCLWorldAdvance ..> FCCLWorldClock : 동일 시각 확정
+```
+
+```cpp
+bool FCCLLifeSimulation::TryAdvanceTo(double TargetTime, FString& Error, int32 MaxSlices);
+// 실패하면 대기 입력과 두 시스템의 완료 시각을 유지한다.
+bool bCommitted = CCLWorldAdvance::Advance(Clock, Life, 0.25, 15, Error);
+```
+
+입력 예산은 호출자가 정한다. 위 게임 시간 0.25초·세계 시간 15초는 실행 예시이며 최종 배율을 고정하지 않는다. 값 상태의 후보 복사와 게임 스레드 확정은 일반 C++ 계약이다. UE4에서 UE5로 바뀐 Tick API라고 설명하지 않는다. Agent의 `FInstancedStruct`와 강한 UObject 참조를 포함한 복사 코드는 UE 5.8.3에서 컴파일됐고, 아래 자동 검사에서 후보 계산과 게시를 확인했다.
+
+| 검사 | 결과 | 로컬 근거 |
+|---|---|---|
+| 엔진 진단 | UE 5.8.3 소스 설치, 필수 파일 존재, LFS 포인터 0개 | `Saved/EnvironmentGoal/preflight.json` |
+| 진단 도구 | 12개 통과 | `Tools/Validation/Tests/test_environment_preflight.py`의 실행 결과 |
+| 프로젝트 파일 생성 | 성공 | `Saved/EnvironmentGoal/generate-project.log` |
+| Editor 빌드 | 성공 | `Saved/EnvironmentGoal/build.log` |
+| CCL 자동 검사 | 20개 통과, 실패·미실행 0개 | `Saved/Tests/Automation/20261009-115646-020/report/index.json` |
+| 실제 생활 Agent | 행동·경제·피해 기억·저장 복원 통과 | `Saved/Tests/AgentWorld/20261009-115349/editor.log` |
+| Dedicated와 클라이언트 2개 | 이동·사망·재스폰·다른 Pawn 유지 통과 | `Saved/Tests/NetworkSmoke/Dedicated-20261009-115350/` |
+| 별도 프로세스 저장 복원 | 검증 슬롯 기록·재시작·아이템·진행 복원 통과 | `Saved/Tests/SessionSmoke/20261009-115720/` |
+
+새 검사는 후보의 첫 시간 구간에서 자원이 바뀐 뒤 다음 구간이 예산 때문에 실패하는 상황을 포함한다. 실패 전후 저장 바이트가 같고, 재시도 결과가 중단 없는 실행의 경제·판단 기록과 같은지 확인한다. 실행권과 예약·Actor 실행 주체도 보존한다. 배율 변경 전에 받은 대기 입력이 새 배율로 해석되지 않는지 함께 확인한다. 30일 경제 검사도 통과했다.
+
+실제 게임 실행에서는 기존 선택적 EditorToolset의 `AgentSkill`, ToolsetRegistry의 `PythonTestRunner` 초기화 오류가 남아 있다. 위 게임 회귀의 PASS와 구분하며 엔진 플러그인은 수정하지 않았다. NullRHI 검사로 최종 화면 품질이나 패키지 실행을 증명하지 않는다.
+
+단계 0은 현재 엔진의 빌드 가능 여부와 기존 실패를 구분하는 통과 기준을 충족했다. 단계 1은 시간 트랜잭션 검사까지 진행했으며 두 실험 맵·CommonUI 조작부·서버 Tick 이전·시간과 Agent의 통합 저장·세 가지 실행 모드의 환경 검사가 남아 있다. 단계 2-9는 아직 시작하지 않았다.

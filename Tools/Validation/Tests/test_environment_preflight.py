@@ -52,6 +52,29 @@ class EnvironmentPreflightTests(unittest.TestCase):
         self.assertTrue(result["installation_ready"])
         self.assertFalse(result["generate_project_files_bat"])
 
+    def source_checkout(self):
+        (self.install / ".git").mkdir()
+        (self.install / "Setup.bat").write_text("fixture")
+        (self.install / "GenerateProjectFiles.bat").write_text("fixture")
+        (self.engine / "Source/Runtime/Core").mkdir(parents=True)
+        self.installed = {}
+
+    def test_source_checkout_needs_no_launcher_registration(self):
+        self.source_checkout()
+        result = self.inspect()
+        self.assertEqual(result["distribution"], "source")
+        self.assertTrue(result["installation_ready"])
+
+    def test_source_checkout_requires_generation_entrypoint(self):
+        self.source_checkout()
+        (self.install / "GenerateProjectFiles.bat").unlink()
+        self.assertFalse(self.inspect()["installation_ready"])
+
+    def test_installed_build_does_not_bypass_launcher_checks(self):
+        self.source_checkout()
+        (self.engine / "Build/InstalledBuild.txt").write_text("fixture")
+        self.assertFalse(self.inspect()["installation_ready"])
+
     def test_corrupt_version_blocks_readiness(self):
         (self.engine / "Build/Build.version").write_text("{}")
         self.assertFalse(self.inspect()["installation_ready"])

@@ -48,8 +48,15 @@ def inspect_engine(engine, installed, manifests):
     incomplete = any(item.get("bIsIncompleteInstall") is True for item in matching)
     pending = engine.parent / ".egstore/Pending"
     pending_files = pending.exists() and any(path.is_file() for path in pending.rglob("*"))
+    source_checkout = ((engine.parent / ".git").exists()
+                       and (engine.parent / "Setup.bat").is_file()
+                       and (engine / "Source/Runtime/Core").is_dir()
+                       and not (engine / "Build/InstalledBuild.txt").exists())
+    distribution = "source" if source_checkout else "launcher"
     reasons = []
-    if not registered:
+    if source_checkout and not (engine.parent / "GenerateProjectFiles.bat").is_file():
+        reasons.append("Source checkout is missing GenerateProjectFiles.bat.")
+    if not source_checkout and not registered:
         reasons.append("Engine has no matching LauncherInstalled registration; plugin entries do not count.")
     if incomplete or pending_files:
         reasons.append("Launcher still has incomplete or pending installation data.")
@@ -58,6 +65,7 @@ def inspect_engine(engine, installed, manifests):
     if not isinstance(version, dict) or not all(type(version.get(key)) is int for key in ("MajorVersion", "MinorVersion", "PatchVersion")):
         reasons.append("Build.version does not contain a valid version tuple.")
     return {
+        "distribution": distribution,
         "engine_root": str(engine),
         "version": version,
         "version_error": version_error,
@@ -118,7 +126,7 @@ def collect(root, engine, program_data):
         elif error:
             manifest_errors.append(str(path))
     installation = inspect_engine(engine, installed, manifests)
-    if installed_error or manifest_errors:
+    if installation["distribution"] == "launcher" and (installed_error or manifest_errors):
         installation["installation_ready"] = False
         installation["reasons"].append("Launcher metadata could not be fully read.")
     build = root / "Source/CCL/CCL.Build.cs"
