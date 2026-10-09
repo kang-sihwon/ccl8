@@ -14,6 +14,8 @@
 
 두 환경 실험장의 메뉴는 **F7**로 열고 닫는다. 닫기 버튼을 사용한 뒤에도 F7로 다시 연다. 메뉴가 닫힌 동안 화면 왼쪽 아래의 HUD에 같은 키를 표시한다. PIE에서 마우스를 해제했다면 게임 화면을 클릭해 입력 초점을 돌린다.
 
+메뉴의 게임 시간, 세계 시간과 완료 세계 시각은 `01시 23분 45초` 형식으로 표시한다. 초 미만은 버리고, 누적 시간이 하루를 넘으면 `25시 00분 00초`처럼 계속 표시한다. 시간 배율과 미처리 대기량은 별도 항목이며 대기량은 소수 초를 유지한다. 표시 문자열만 변환하므로 계산·저장·복제는 기존 초 단위를 사용한다. 구현은 `Source/CCL/Environment/CCLExperimentScreen.cpp`의 `FormatElapsedTime`과 화면 텍스트 바인딩에 있다.
+
 `CCLExperimentPlayerController`는 게임 입력의 열기를, `CCLExperimentScreen`은 메뉴가 입력을 소유할 때의 닫기를 처리한다. CommonUI의 메뉴 정책과 닫힌 뒤 게임 입력 복구는 유지한다. UE 5.8.3의 F8은 에디터의 `PossessEjectPlayer`에 배정돼 있으므로 실험 메뉴에는 사용하지 않는다. 근거는 `<Engine>/Source/Editor/UnrealEd/Private/Kismet2/DebuggerCommands.cpp:365`와 `<Engine>/Source/Runtime/Engine/Private/GameViewportClient.cpp:776`이다. 아래 과거 검증 기록의 F8은 당시 단축키다.
 
 회귀 검사 `Tools/Validation/run_experiment_menu_smoke.ps1`은 실제 Slate 클릭과 키 입력으로 닫기 버튼, F7 재열기, F7 닫기와 두 번째 재열기를 실행한다. 키를 누른 채 발생하는 반복 입력이 메뉴를 다시 닫지 않는지도 검사한다. 메뉴 상태, 이동·시점 입력 정책과 플레이어 소유권을 확인한다. `-Map EnvironmentScenario` 또는 `-Map EnvironmentPlayground`를 지정하며, `-PIE`를 추가하면 실제 에디터 뷰포트에서 검사한다. 기본은 Standalone이다.
@@ -28,6 +30,51 @@
 | EnvironmentPlayground PIE | 성공, `Saved/Tests/ExperimentMenu/EnvironmentPlayground-PIE-20261010-003120-569` |
 | EnvironmentScenario Standalone | 성공, `Saved/Tests/ExperimentMenu/EnvironmentScenario-Standalone-20261010-003152-817` |
 | EnvironmentPlayground Standalone | 성공, `Saved/Tests/ExperimentMenu/EnvironmentPlayground-Standalone-20261010-003220-459` |
+
+## 실험실 배치와 관측 도구
+
+2026-10-10 사용성·표현 보완은 단계 5 이후의 실험장 개선이다. 단계 6-9와 Framework 분리는 시작하지 않는다. 검증 대상은 로컬 작업 트리다.
+
+HUD는 실제 뷰포트에 맞춘다. 키 안내와 체력·스태미나는 왼쪽 위, 하단 도움말은 왼쪽 아래, 미니맵은 오른쪽 위에 둔다. F7 메뉴는 왼쪽 끝의 세로 중앙에 배치하고 폭을 제한한다. 구역별 직접 조작을 설명보다 먼저 보여 준다. 기존 자동 시나리오의 버튼 이름은 **자동 검사**다.
+
+| 구역 | 조작과 표시 |
+|---|---|
+| 01 시간·천체 | **천체 3D 관측 열기 / 닫기**로 오른쪽 관측창을 연다. 드래그로 시점을 돌리고 휠로 확대한다. 위도·기울기·자전·공전 위상을 바꾸며 궤도·자전축·적도·관찰자·광원 방향을 비교한다 |
+| 03 깊은 눈·눈길 | [눈 직접 테스트](EnvironmentSnow.md#직접-테스트하는-순서)를 따른다. 연속 표면과 절차적 재질로 눌림·경계를 표시한다 |
+| 04 물·진흙·얼음 | 기존 표면 수치에 연속 메시와 색·거칠기·법선 변화를 적용한다. [표면 표현](EnvironmentWater.md#표면-표현)이 책임과 한계를 소유한다 |
+| 05 영구 지형 | 도구를 선택한 뒤 패널 밖 바닥을 클릭한다. 화살표와 브러시 범위를 확인하며 우클릭으로 취소한다. [지형 직접 확인](EnvironmentTerrain.md#직접-확인)을 따른다 |
+| 08 상태 저장·복원 | 저장 범위, 저장 당시 게임·세계 시각과 지형 리비전을 표시한다. 충돌과 세계 상태가 확정된 뒤 복원 완료로 표시한다 |
+| 11 차폐·환기 | 관측 지점 가까이에서 노랑은 빛, 파랑은 비, 청록은 바람의 질의 방향·통과율을 본다. 문 열림 비율과 채널별 수치를 비교한다. 공기 교환량·실내 온도·연기 이동은 아직 계산하지 않는다 |
+
+천체 관측창은 게시된 정의와 완료 세계 시각을 기존 천체 계산기에 넣는다. 표시 전용 시계로 따로 진행하지 않는다. 계 전체 그림의 거리·반지름은 가독성을 위해 축척을 바꾸며 행성 확대창은 관찰 위치와 방향을 비교한다. 작성된 궤도를 평가하는 디버그 도구이며 N체 중력 계산이나 실제 크기 비교는 제공하지 않는다.
+
+차폐 통과율은 문 열림 비율과 별개다. 한 방향의 질의선이 열린 영역을 지나면 반 열린 문에서도 바람 통과율이 100%일 수 있다. 지붕이 막는 비는 문을 열어도 0%를 유지할 수 있다.
+
+저장 대상은 시계·천체 입력·문 상태·Agent·지형·눈·물의 같은 완료 세대다. 불러오기를 누른 시점과 실제 복원 완료를 구분하고 실패 시 이유를 표시한다. 복원 시 캐릭터를 안전 지점으로 옮기므로 확인할 구역으로 다시 이동한다. UI 카메라·메뉴 스크롤 위치는 저장 대상이 아니다.
+
+### 실험실 보완 검증
+
+UE 5.8.3에서 프로젝트 생성과 Editor 빌드를 마치고 아래 검사를 통과했다. 경로는 저장소 기준이며 원본은 로컬 Saved 폴더에 보관한다. 같은 빌드의 서버·클라이언트로 검사했으며 패키지·실제 Server 타깃·대규모 비용은 이번 결과에 포함하지 않는다.
+
+| 검사 | 결과와 근거 |
+|---|---|
+| 생성·Editor 빌드 | 성공. `Saved/EnvironmentStages/LabUX-GPF.log`, `LabUX-Build.log` |
+| 환경 자동 검사 | 52/52, 경고·실패·미실행 0. `Saved/Tests/Automation/20261010-025650-348/report/index.json` |
+| 2560×1080 실험실 | F7 재열기, 왼쪽 배치, 천체 관측·자전 조작, 실제 바닥 클릭·편집, 경계 거부, 저장·복원 통과. `Saved/Tests/ExperimentMenu/EnvironmentScenario-Standalone-20261010-024431-727` |
+| 1280×720 PIE | 같은 조작과 플레이 모드·Pawn 유지 통과. `Saved/Tests/ExperimentMenu/EnvironmentScenario-PIE-20261010-024948-644` |
+| Dedicated 첫·늦은 참가자 | 입력 정의와 완료 시각의 재계산, 문 상태, 조작 권한 거부 통과. `Saved/Tests/Environment/EnvironmentScenario-Dedicated-20261010-023602-366` |
+| 지형 전송 회귀 | 전체·변경량 전송과 완료 ACK 재전송, 클라이언트 2개 통과. `Saved/Tests/TerrainNetwork/Dedicated-20261010-024026-509` |
+| 눈 이동 네트워크 | 50ms 지연·2% 손실과 이력 만료 조건의 보정, 첫·늦은 참가자 상태 일치 통과. `Saved/Tests/Snow/Dedicated-20261010-024431-637` |
+| 눈 렌더링 | 보행·발 배치·눈가루 검사와 흰 연속 표면·눌림 캡처 확인. `Saved/Tests/Snow/Standalone-20261010-025651-744` |
+| 물·얼음·진흙 렌더링 | 상태 전환·수지 검사와 재질별 화면 확인. `Saved/Tests/Water/Standalone-20261010-025718-220` |
+| 차폐 렌더링 | 닫힘·반 열림·열림의 충돌과 독립 채널, 저장 복원 통과. 방향·통과율 화면 확인. `Saved/Tests/Environment/EnvironmentScenario-Standalone-20261010-025744-853` |
+| 2560×1080 일반 UI | 장비·메뉴·대화 검사 통과. HUD 가장자리와 대화창 캡처 확인. `Saved/Tests/UIVisual/2560x1080-20261010-025827` |
+
+검토에서 Dedicated 자동 조작의 빈 Requester 접근, 대용량 RPC가 초기 GameState 복제를 밀어내는 문제와 표면 메시의 뒤집힌 앞면을 수정했다. 지형·표면 청크는 접속 속도에 맞춰 간격을 제한하고 관측의 정기 게시는 설정된 4Hz를 따른다. 천체 정의를 포함한 관측 복제 포맷은 버전 2다.
+
+클릭 시험에서는 위젯 좌표 변환, 한 픽셀 범위의 투영·역투영, 실제 Slate 클릭과 지형 게시 변경을 각각 검사한다. UE가 역투영에서 소수 픽셀을 버리므로 먼 카메라에 고정 2cm 기준을 적용하지 않는다. PIE 검사에는 해당 실행에만 마우스 제어와 오프스크린 렌더링 옵션을 지정한다.
+
+재실행은 `Tools/Validation/run_experiment_menu_smoke.ps1`에 `-Lab`을 붙인다. `-Width 2560 -Height 1080`으로 넓은 화면, `-PIE`로 에디터 뷰포트를 검사한다. 표면은 `run_snow_smoke.ps1 -Rendered`와 `run_water_smoke.ps1 -Rendered`, 차폐는 `run_environment_smoke.ps1 -Rendered`로 확인한다.
 
 ## 확정 범위
 
