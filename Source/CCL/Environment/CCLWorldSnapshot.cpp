@@ -24,7 +24,7 @@ namespace
 		S.Identity.Domain = static_cast<ECCLWorldDomain>(Domain);
 		Ar << S.Clock.Version << S.Clock.CompletedStepId << S.Clock.GameSeconds << S.Clock.WorldSeconds;
 		Ar << S.Clock.AcceptedGameSeconds << S.Clock.RequestedWorldSeconds << S.Clock.TimeScale;
-		if (Ar.IsError() || Tag != Magic)
+		if (Ar.IsError() || Tag != Magic || (S.Schema != 1 && S.Schema != 2))
 		{
 			return false;
 		}
@@ -57,6 +57,31 @@ namespace
 			Ar << R.GameSeconds << R.WorldSeconds << R.Scale;
 		}
 
+		if (S.Schema >= 2)
+		{
+			TArray<uint8> EnvironmentBytes;
+			FString Error;
+			if (Ar.IsSaving() && !FCCLEnvironmentInputsCodec::Encode(S.Environment, EnvironmentBytes, Error))
+			{
+				return false;
+			}
+
+			int32 EnvironmentCount = EnvironmentBytes.Num();
+			Ar << EnvironmentCount;
+			if (Ar.IsError() || EnvironmentCount < 64 || EnvironmentCount > 4 * 1024 * 1024
+				|| (Ar.IsLoading() && EnvironmentCount > Ar.TotalSize() - Ar.Tell()))
+			{
+				return false;
+			}
+
+			EnvironmentBytes.SetNumUninitialized(EnvironmentCount);
+			Ar.Serialize(EnvironmentBytes.GetData(), EnvironmentCount);
+			if (Ar.IsError() || (Ar.IsLoading() && !FCCLEnvironmentInputsCodec::Decode(EnvironmentBytes, S.Environment, Error)))
+			{
+				return false;
+			}
+		}
+
 		Count = S.Life.Num();
 		Ar << Count;
 		if (Ar.IsError() || Count < 32 || Count > MaxBytes - 128 ||
@@ -72,11 +97,16 @@ namespace
 }
 
 bool FCCLWorldSnapshotCodec::Capture(const FCCLWorldIdentity& Identity, const FCCLWorldClock& Clock,
-	const FCCLLifeSimulation& Life, FCCLWorldSnapshot& Snapshot, FString& Error)
+	const FCCLLifeSimulation& Life, FCCLWorldSnapshot& Snapshot, FString& Error, const FCCLEnvironmentInputs* Environment)
 {
 	Error.Reset();
 	FCCLWorldSnapshot Candidate;
 	Candidate.Identity = Identity;
+	if (Environment)
+	{
+		Candidate.Environment = *Environment;
+	}
+
 	if (!Clock.Capture(Candidate.Clock, Error) || Clock.GetWorldSeconds() != Life.GetTime() || !Life.Save(Candidate.Life))
 	{
 		return Reject(Error, TEXT("Cannot capture inconsistent or busy clock/life state."));
@@ -137,6 +167,8 @@ bool FCCLWorldSnapshotCodec::Decode(const TArray<uint8>& Bytes, FCCLWorldSnapsho
 		return Reject(Error, TEXT("Malformed world snapshot payload."));
 	}
 
+	// Schema 1 had no environment. Its constructor-supplied default is the explicit migration.
+	Candidate.Schema = 2;
 	if (!Validate(Candidate, Error))
 	{
 		return false;
@@ -184,11 +216,20 @@ bool FCCLWorldSnapshotCodec::Restore(const FCCLWorldSnapshot& Snapshot, ECCLWorl
 bool FCCLWorldSnapshotCodec::Validate(const FCCLWorldSnapshot& Snapshot, FString& Error)
 {
 	Error.Reset();
-	if (Snapshot.Schema != 1 || Snapshot.Identity.BaseWorldVersion != 1 || !Snapshot.Identity.WorldId.IsValid() ||
+	if (Snapshot.Schema != 2 || Snapshot.Identity.BaseWorldVersion != 1 || !Snapshot.Identity.WorldId.IsValid() ||
 		Snapshot.Identity.Generation == 0 || static_cast<uint8>(Snapshot.Identity.Domain) > static_cast<uint8>(ECCLWorldDomain::Scenario) ||
 		Snapshot.Life.Num() < 32 || Snapshot.Life.Num() > MaxBytes - 128)
 	{
 		return Reject(Error, TEXT("Unsupported world identity, version or life payload."));
+	}
+
+	FCCLCelestialSystem Celestial;
+	FCCLSurfaceScene Surfaces;
+	FCCLCelestialObservation Observation;
+	if (!FCCLEnvironmentInputsCodec::Prepare(Snapshot.Environment, Snapshot.Clock.WorldSeconds,
+		Celestial, Surfaces, Observation, Error))
+	{
+		return false;
 	}
 
 	FCCLWorldClock Clock;

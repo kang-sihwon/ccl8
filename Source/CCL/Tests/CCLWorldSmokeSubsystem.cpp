@@ -54,7 +54,8 @@ void UCCLWorldSmokeSubsystem::Tick(float DeltaTime)
 			}
 
 			if (!Check(Runtime && Agents && !Runtime->IsRunning() && !Agents->IsRunning(), TEXT("client has no simulation owner")) ||
-				!Check(!Runtime->QueueGameTime(1, Error) && !Runtime->ChangeTimeScale(500, Error), TEXT("client time mutations rejected")) ||
+				!Check(!Runtime->QueueGameTime(1, Error) && !Runtime->ChangeTimeScale(500, Error)
+					&& !Runtime->ReplaceEnvironmentInputs(FCCLEnvironmentInputsCodec::MakeDefault(42), Error), TEXT("client time and environment mutations rejected")) ||
 				!Check(Time.Epoch.IsValid() && Time.CompletedStepId > 0 && Time.GameSeconds > 0 && !Time.bAdvanceFailed,
 					TEXT("replicated server time, epoch and completion received")))
 			{
@@ -100,8 +101,45 @@ void UCCLWorldSmokeSubsystem::Tick(float DeltaTime)
 			return;
 		}
 
+		FCCLEnvironmentInputs Inputs = Runtime->GetEnvironmentInputs();
+		++Inputs.Revision;
+		++Inputs.SurfaceRevision;
+		Inputs.Observer.LatitudeDegrees = -35.;
+		Inputs.Observer.LongitudeDegrees = 127.;
+		FCCLSurfacePatch Roof;
+		Roof.SurfaceId = FGuid(11, 12, 13, 14);
+		Roof.BodyId = Inputs.Observer.BodyId;
+		Roof.MaterialId = TEXT("Stone");
+		Roof.CenterMeters.Z = 4.;
+		Roof.HalfExtentsMeters = FVector2d(10., 10.);
+		Inputs.Surfaces = { Roof };
+		FCCLSurfaceOpening Opening;
+		Opening.OpeningId = FGuid(15, 16, 17, 18);
+		Opening.SurfaceId = Roof.SurfaceId;
+		Opening.SpaceA = FGuid(19, 20, 21, 22);
+		Opening.OpenFraction = 0.5;
+		Inputs.Openings = { Opening };
+		FCCLCelestialObservation BeforeObservation;
+		if (!Check(Runtime->ReplaceEnvironmentInputs(Inputs, Error), TEXT("server installs celestial observer and partial opening"))
+			|| !Check(!Runtime->ReplaceEnvironmentInputs(Inputs, Error), TEXT("old environment revision rejected"))
+			|| !Check(Runtime->ObserveCelestials(BeforeObservation, Error) && BeforeObservation.WorldSeconds == Frozen,
+				TEXT("celestials use the same committed world time")))
+		{
+			return;
+		}
+
 		TArray<uint8> Saved;
 		if (!Check(Agents->Save(Saved), TEXT("save common clock and Actor life")))
+		{
+			return;
+		}
+
+		FCCLEnvironmentInputs Changed = Inputs;
+		++Changed.Revision;
+		++Changed.SurfaceRevision;
+		Changed.Observer.LatitudeDegrees = 65.;
+		Changed.Openings[0].OpenFraction = 0.;
+		if (!Check(Runtime->ReplaceEnvironmentInputs(Changed, Error), TEXT("observer and opening changed after checkpoint")))
 		{
 			return;
 		}
@@ -114,6 +152,36 @@ void UCCLWorldSmokeSubsystem::Tick(float DeltaTime)
 			!Check(Runtime->GetClock().GetWorldSeconds() == Frozen && Agents->GetSimulation().GetTime() == Frozen &&
 				Runtime->GetIdentity().WorldId == SavedId && Runtime->GetIdentity().Generation == Generation,
 				TEXT("restore preserves world identity generation and completed time")))
+		{
+			return;
+		}
+
+		FCCLCelestialObservation AfterObservation;
+		const auto& RestoredInputs = Runtime->GetEnvironmentInputs();
+		if (!Check(RestoredInputs.Revision == Inputs.Revision && RestoredInputs.SurfaceRevision == Inputs.SurfaceRevision
+			&& RestoredInputs.Observer.LatitudeDegrees == -35. && RestoredInputs.Openings.Num() == 1
+			&& RestoredInputs.Openings[0].OpenFraction == 0.5, TEXT("clock life observer and opening restore together"))
+			|| !Check(Runtime->ObserveCelestials(AfterObservation, Error)
+				&& AfterObservation.WorldSeconds == BeforeObservation.WorldSeconds
+				&& AfterObservation.Stars[0].SolarHours == BeforeObservation.Stars[0].SolarHours
+				&& AfterObservation.TotalHorizontalIrradianceWattsPerM2 == BeforeObservation.TotalHorizontalIrradianceWattsPerM2,
+				TEXT("saved celestial observation exactly reproduced")))
+		{
+			return;
+		}
+
+		FCCLWorldSnapshot Mismatch;
+		TArray<uint8> MismatchBytes;
+		if (!Check(FCCLWorldSnapshotCodec::Decode(Saved, Mismatch, Error), TEXT("prepare definition mismatch")))
+		{
+			return;
+		}
+
+		Mismatch.Environment.Celestial.Version += 1;
+		if (!Check(FCCLWorldSnapshotCodec::Encode(Mismatch, MismatchBytes, Error)
+			&& !Runtime->Restore(Agents->GetSimulation(), MismatchBytes, Error)
+			&& Runtime->GetEnvironmentInputs().Revision == Inputs.Revision
+			&& Runtime->GetClock().GetWorldSeconds() == Frozen, TEXT("incompatible definition rejected before live replacement")))
 		{
 			return;
 		}

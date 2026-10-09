@@ -28,12 +28,18 @@ bool FCCLWorldSaveRoundTripTest::RunTest(const FString& Parameters)
 	Identity.WorldId = FGuid::NewGuid();
 	Identity.Generation = 19;
 	FCCLWorldSnapshot Saved;
-	TestTrue(TEXT("capture pending intervals"), FCCLWorldSnapshotCodec::Capture(Identity, Clock, Life, Saved, Error));
+	FCCLEnvironmentInputs Inputs = FCCLEnvironmentInputsCodec::MakeDefault(123);
+	Inputs.Revision = 9;
+	Inputs.Observer.LatitudeDegrees = -35.;
+	TestTrue(TEXT("capture pending intervals"), FCCLWorldSnapshotCodec::Capture(Identity, Clock, Life, Saved, Error, &Inputs));
 	TArray<uint8> Bytes;
 	TestTrue(TEXT("encode"), FCCLWorldSnapshotCodec::Encode(Saved, Bytes, Error));
 	FCCLWorldSnapshot Decoded;
 	TestTrue(TEXT("decode"), FCCLWorldSnapshotCodec::Decode(Bytes, Decoded, Error));
 	TestEqual(TEXT("same world"), Decoded.Identity.WorldId, Identity.WorldId);
+	TestEqual(TEXT("environment included in world generation"), Decoded.Environment.Revision, uint64(9));
+	TestEqual(TEXT("celestial seed included"), Decoded.Environment.Celestial.Seed, 123);
+	TestEqual(TEXT("observer included"), Decoded.Environment.Observer.LatitudeDegrees, -35.);
 	TestEqual(TEXT("same generation"), Decoded.Identity.Generation, uint64(19));
 	TestEqual(TEXT("pending old and new rate intervals"), Decoded.Clock.Pending.Num(), 2);
 	TestEqual(TEXT("rate history retained"), Decoded.Clock.Rates.Num(), 2);
@@ -191,6 +197,57 @@ bool FCCLWorldDomainStoreTest::RunTest(const FString& Parameters)
 		Store->SnapshotFor(ECCLWorldDomain::Scenario) == TArray<uint8>{3});
 	TestTrue(TEXT("old experiment cannot overwrite reset session"), Store->SessionFor(ECCLWorldDomain::Playground) > ExperimentSession);
 	TestEqual(TEXT("campaign travel generation unchanged"), Store->SessionFor(ECCLWorldDomain::Campaign), CampaignSession);
+	return true;
+}
+
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FCCLWorldEnvironmentMigrationTest, "CCL.Environment.Save.EnvironmentSchemaMigration",
+	EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
+
+bool FCCLWorldEnvironmentMigrationTest::RunTest(const FString& Parameters)
+{
+	FString Error;
+	FCCLLifeSimulation Life;
+	FCCLWorldClock Clock;
+	TestTrue(TEXT("life fixture"), Life.Initialize(FCCLLifeSimulation::MerchantScenario(42), Error));
+	TestTrue(TEXT("nonzero saved time"), Clock.QueueGameTime(1., false, Error)
+		&& CCLWorldAdvance::Advance(Clock, Life, 1., 60., Error));
+	FCCLWorldIdentity Identity;
+	Identity.WorldId = FGuid::NewGuid();
+	FCCLWorldSnapshot Snapshot;
+	TestTrue(TEXT("capture"), FCCLWorldSnapshotCodec::Capture(Identity, Clock, Life, Snapshot, Error));
+	TArray<uint8> Bytes;
+	if (!TestTrue(TEXT("encode current schema"), FCCLWorldSnapshotCodec::Encode(Snapshot, Bytes, Error)))
+	{
+		return false;
+	}
+
+	const int32 EnvironmentOffset = 89 + 4 + Snapshot.Clock.Pending.Num() * 32 + 4 + Snapshot.Clock.Rates.Num() * 24;
+	int32 EnvironmentCount = 0;
+	FMemory::Memcpy(&EnvironmentCount, Bytes.GetData() + EnvironmentOffset, 4);
+	// Construct the actual schema-1 wire layout: clock/rates followed directly by life.
+	Bytes.RemoveAt(EnvironmentOffset, 4 + EnvironmentCount);
+	const uint32 LegacySchema = 1;
+	FMemory::Memcpy(Bytes.GetData() + 4, &LegacySchema, 4);
+	uint32 CRC = FCrc::MemCrc32(Bytes.GetData(), Bytes.Num() - 4);
+	FMemory::Memcpy(Bytes.GetData() + Bytes.Num() - 4, &CRC, 4);
+	FCCLWorldSnapshot Migrated;
+	TestTrue(TEXT("old world envelope migrates"), FCCLWorldSnapshotCodec::Decode(Bytes, Migrated, Error));
+	TestEqual(TEXT("upgraded world schema"), Migrated.Schema, uint32(2));
+	TestEqual(TEXT("old identity retained"), Migrated.Identity.WorldId, Identity.WorldId);
+	TestEqual(TEXT("old time retained without offline advance"), Migrated.Clock.WorldSeconds, 60.);
+	TestEqual(TEXT("explicit default environment seed"), Migrated.Environment.Celestial.Seed, 42);
+	TestEqual(TEXT("default observer"), Migrated.Environment.Observer.BodyId, FName(TEXT("World")));
+	TestTrue(TEXT("default scene empty until map inputs load"), Migrated.Environment.Surfaces.IsEmpty());
+	TestTrue(TEXT("resave current format"), FCCLWorldSnapshotCodec::Encode(Migrated, Bytes, Error));
+	FCCLWorldSnapshot Again;
+	TestTrue(TEXT("reload current format"), FCCLWorldSnapshotCodec::Decode(Bytes, Again, Error));
+	TestEqual(TEXT("resave preserves input revision"), Again.Environment.Revision, Migrated.Environment.Revision);
+
+	FCCLWorldSnapshot Bad = Snapshot;
+	Bad.Environment.Observer.LatitudeDegrees = 91.;
+	TestFalse(TEXT("bad environment blocks whole restore"), FCCLWorldSnapshotCodec::Restore(Bad, Identity.Domain, Clock, Life, Error));
+	TestEqual(TEXT("life time unchanged by invalid environment"), Life.GetTime(), 60.);
+	TestEqual(TEXT("clock unchanged by invalid environment"), Clock.GetWorldSeconds(), 60.);
 	return true;
 }
 

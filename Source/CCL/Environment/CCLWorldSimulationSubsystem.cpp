@@ -65,9 +65,14 @@ bool UCCLWorldSimulationSubsystem::Start(FCCLLifeSimulation& Life, ECCLWorldDoma
 	CandidateIdentity.Domain = Domain;
 	CandidateIdentity.WorldId = FGuid::NewGuid();
 	FCCLWorldClock CandidateClock;
+	FCCLEnvironmentInputs CandidateInputs = FCCLEnvironmentInputsCodec::MakeDefault(42);
+	FCCLCelestialSystem CandidateCelestial;
+	FCCLSurfaceScene CandidateSurfaces;
+	FCCLCelestialObservation Observation;
 	if (Saved.IsEmpty())
 	{
-		if (!CandidateClock.Reset(Life.GetTime(), 60, Error))
+		if (!CandidateClock.Reset(Life.GetTime(), 60, Error)
+			|| !FCCLEnvironmentInputsCodec::Prepare(CandidateInputs, Life.GetTime(), CandidateCelestial, CandidateSurfaces, Observation, Error))
 		{
 			return false;
 		}
@@ -75,16 +80,22 @@ bool UCCLWorldSimulationSubsystem::Start(FCCLLifeSimulation& Life, ECCLWorldDoma
 	else
 	{
 		FCCLWorldSnapshot Snapshot;
-		if (!FCCLWorldSnapshotCodec::Decode(Saved, Snapshot, Error) ||
-			!FCCLWorldSnapshotCodec::Restore(Snapshot, Domain, CandidateClock, Life, Error))
+		if (!FCCLWorldSnapshotCodec::Decode(Saved, Snapshot, Error)
+			|| !FCCLEnvironmentInputsCodec::CheckDefinition(Snapshot.Environment, CandidateInputs.Celestial.DefinitionId, CandidateInputs.Celestial.Version, Error)
+			|| !FCCLEnvironmentInputsCodec::Prepare(Snapshot.Environment, Snapshot.Clock.WorldSeconds, CandidateCelestial, CandidateSurfaces, Observation, Error)
+			|| !FCCLWorldSnapshotCodec::Restore(Snapshot, Domain, CandidateClock, Life, Error))
 		{
 			return false;
 		}
 
 		CandidateIdentity = Snapshot.Identity;
+		CandidateInputs = MoveTemp(Snapshot.Environment);
 	}
 
 	Clock = MoveTemp(CandidateClock);
+	EnvironmentInputs = MoveTemp(CandidateInputs);
+	CelestialSystem = MoveTemp(CandidateCelestial);
+	SurfaceScene = MoveTemp(CandidateSurfaces);
 	Identity = CandidateIdentity;
 	Epoch = FGuid::NewGuid();
 	bRunning = 1;
@@ -166,7 +177,7 @@ bool UCCLWorldSimulationSubsystem::Save(const FCCLLifeSimulation& Life, TArray<u
 	FCCLWorldIdentity NextIdentity = Identity;
 	++NextIdentity.Generation;
 	FCCLWorldSnapshot Snapshot;
-	if (!FCCLWorldSnapshotCodec::Capture(NextIdentity, Clock, Life, Snapshot, Error) ||
+	if (!FCCLWorldSnapshotCodec::Capture(NextIdentity, Clock, Life, Snapshot, Error, &EnvironmentInputs) ||
 		!FCCLWorldSnapshotCodec::Encode(Snapshot, Bytes, Error))
 	{
 		return false;
@@ -184,18 +195,66 @@ bool UCCLWorldSimulationSubsystem::Restore(FCCLLifeSimulation& Life, const TArra
 	}
 
 	FCCLWorldSnapshot Snapshot;
-	if (!FCCLWorldSnapshotCodec::Decode(Bytes, Snapshot, Error) ||
-		!FCCLWorldSnapshotCodec::Restore(Snapshot, Identity.Domain, Clock, Life, Error))
+	FCCLCelestialSystem CandidateCelestial;
+	FCCLSurfaceScene CandidateSurfaces;
+	FCCLCelestialObservation Observation;
+	if (!FCCLWorldSnapshotCodec::Decode(Bytes, Snapshot, Error)
+		|| !FCCLEnvironmentInputsCodec::CheckDefinition(Snapshot.Environment, EnvironmentInputs.Celestial.DefinitionId, EnvironmentInputs.Celestial.Version, Error)
+		|| !FCCLEnvironmentInputsCodec::Prepare(Snapshot.Environment, Snapshot.Clock.WorldSeconds, CandidateCelestial, CandidateSurfaces, Observation, Error)
+		|| !FCCLWorldSnapshotCodec::Restore(Snapshot, Identity.Domain, Clock, Life, Error))
 	{
 		return false;
 	}
 
+	EnvironmentInputs = MoveTemp(Snapshot.Environment);
+	CelestialSystem = MoveTemp(CandidateCelestial);
+	SurfaceScene = MoveTemp(CandidateSurfaces);
 	Identity = Snapshot.Identity;
 	Epoch = FGuid::NewGuid();
 	UnqueuedGameSeconds = 0;
 	LastError.Reset();
 	Publish();
 	return true;
+}
+
+bool UCCLWorldSimulationSubsystem::ReplaceEnvironmentInputs(const FCCLEnvironmentInputs& Candidate, FString& Error)
+{
+	if (!CheckAuthority(Error))
+	{
+		return false;
+	}
+
+	if (Candidate.Revision <= EnvironmentInputs.Revision || Candidate.SurfaceRevision <= EnvironmentInputs.SurfaceRevision)
+	{
+		Error = TEXT("Environment replacement requires newer input and surface revisions.");
+		return false;
+	}
+
+	FCCLCelestialSystem CandidateCelestial;
+	FCCLSurfaceScene CandidateSurfaces;
+	FCCLCelestialObservation Observation;
+	if (!FCCLEnvironmentInputsCodec::CheckDefinition(Candidate, EnvironmentInputs.Celestial.DefinitionId, EnvironmentInputs.Celestial.Version, Error)
+		|| !FCCLEnvironmentInputsCodec::Prepare(Candidate, Clock.GetWorldSeconds(), CandidateCelestial, CandidateSurfaces, Observation, Error))
+	{
+		return false;
+	}
+
+	EnvironmentInputs = Candidate;
+	CelestialSystem = MoveTemp(CandidateCelestial);
+	SurfaceScene = MoveTemp(CandidateSurfaces);
+	Publish();
+	return true;
+}
+
+bool UCCLWorldSimulationSubsystem::ObserveCelestials(FCCLCelestialObservation& Observation, FString& Error) const
+{
+	if (!bRunning)
+	{
+		Error = TEXT("Celestial inputs are not initialized on this world.");
+		return false;
+	}
+
+	return CelestialSystem.Observe(Clock.GetWorldSeconds(), EnvironmentInputs.Observer, Observation, Error);
 }
 
 ECCLWorldDomain UCCLWorldSimulationSubsystem::DomainForWorld(const UWorld* World)

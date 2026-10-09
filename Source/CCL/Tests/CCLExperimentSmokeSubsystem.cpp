@@ -151,7 +151,7 @@ void UCCLExperimentSmokeSubsystem::Tick(float DeltaTime)
 			TArray<uint8> ExpectedBytes;
 			if (!Check(Runtime->QueueGameTime(37, Error) && Runtime->AdvancePending(40, 2400, Error) &&
 				Runtime->ChangeTimeScale(7, Error) && Runtime->QueueGameTime(1.25, Error) && Execute(ECCLExperimentAction::Save) &&
-				FCCLWorldSnapshotCodec::Capture(Runtime->GetIdentity(), Runtime->GetClock(), Agents->GetSimulation(), Expected, Error) &&
+				FCCLWorldSnapshotCodec::Capture(Runtime->GetIdentity(), Runtime->GetClock(), Agents->GetSimulation(), Expected, Error, &Runtime->GetEnvironmentInputs()) &&
 				FCCLWorldSnapshotCodec::Encode(Expected, ExpectedBytes, Error) && FFileHelper::SaveArrayToFile(ExpectedBytes, *ExpectedPath),
 				TEXT("write checkpoint with advanced life, scale history and pending time")))
 			{
@@ -174,7 +174,7 @@ void UCCLExperimentSmokeSubsystem::Tick(float DeltaTime)
 			ExpectedLife.Load(Expected.Life, Error) && ExpectedLife.Save(Expected.Life) &&
 			FCCLWorldSnapshotCodec::Encode(Expected, NormalizedExpected, Error) &&
 			Runtime->GetIdentity().WorldId != Expected.Identity.WorldId && Execute(ECCLExperimentAction::Load) &&
-			FCCLWorldSnapshotCodec::Capture(Runtime->GetIdentity(), Runtime->GetClock(), Agents->GetSimulation(), Actual, Error) &&
+			FCCLWorldSnapshotCodec::Capture(Runtime->GetIdentity(), Runtime->GetClock(), Agents->GetSimulation(), Actual, Error, &Runtime->GetEnvironmentInputs()) &&
 			FCCLWorldSnapshotCodec::Encode(Actual, ActualBytes, Error) && ActualBytes == NormalizedExpected,
 			TEXT("new process restores exact world identity, clock, pending input and life without offline aging")))
 		{

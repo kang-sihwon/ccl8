@@ -502,3 +502,67 @@ classDiagram
 재현 도구는 `Tools/Validation/run_environment_smoke.ps1`이다. `-Map`에 두 맵 중 하나를 지정하고 `-Mode Standalone`, `-Mode Listen`, `-Mode Dedicated`로 검사한다. `-Rendered`는 Standalone의 화면 검사, `-Restart`는 별도 프로세스 저장 복원, `-Map EnvironmentPlayground -Travel`은 맵 왕복 검사다. 새 에셋 생성은 `create_environment_playgrounds.py`, 가독성 조명 설정은 `configure_environment_visuals.py`, 새 에디터의 저장 내용 확인은 `verify_environment_playgrounds.py` 순으로 실행한다.
 
 현재 완료 단계는 0·1이다. 다음 작업은 단계 2의 천체 계산·일조·현지 시각과 다중 표면·차폐 입력이다. 단계 2-9는 미완료이며 기존 전체 목표에 포함된다. 단계별 알림 자동화는 새로 통과한 단계만 알려주도록 유지한다.
+
+
+#### 천체·표면 질의의 구현 설계
+
+단계 2는 천체 계산·표면 질의 코어를 먼저 검증한 뒤 서버 저장·복제와 실험장 표현을 연결한다. 천체 코어에는 별도 시계를 두지 않는다. 확정된 `WorldSeconds`와 정의 버전·Seed에서 위치와 일조를 재계산한다. 우주 좌표는 double km, 지역 표면 질의는 double m, 에디터 Actor 좌표는 cm로 구분한다. 표현 경계에서만 변환한다.
+
+`FCCLCelestialSystem`은 항성·행성·위성의 안정적인 이름 ID와 부모 관계를 검증하고 타원 궤도를 계산한다. 궤도 요소는 부모 위치에 상대적이며 축 방향은 공통 관성 좌표를 기준으로 한다. 자전축은 공전 위치를 따라 회전시키지 않는다. 자전은 부호 있는 항성일 주기, 현지 태양시는 관측 지점 자오선과 항성 방향의 차이로 계산한다. 따라서 자전 주기와 태양일을 같은 값으로 취급하지 않는다. 계산식은 [JPL의 케플러 요소와 좌표 변환](https://ssd.jpl.nasa.gov/planets/approx_pos.html)을 참고한다. 게임 천체의 수치와 주기는 정의 데이터이며 JPL의 실제 태양계 천문력이라고 표시하지 않는다.
+
+위도·경도·축 기울기에서 지역의 북·동·상 방향을 구한다. 항성별 고도·방위·현지 태양시와 대기권 밖의 복사량을 반환하고, 이후 기후가 대기·구름·지역 차폐를 적용한다. 계절은 거리 하나로 분류하지 않고 공전 위치에 따른 태양 적위와 일조에서 파생한다. [NASA의 축 기울기·계절 설명](https://science.nasa.gov/helio-and-you-seasons-on-earth-mars-and-beyond/)과 부합하는지 무기울기·남북 반구·극지 시험으로 확인한다. 천체 간 차폐는 우선 점광원 광선과 구체로 검사하며 반영식·굴절·N체 중력은 이번 계산의 정확도 주장에 포함하지 않는다.
+
+`ICCLSurfaceProvider`는 천체 ID·지역 광선·종류 필터·요구 리비전으로 여러 표면을 질의하는 공통 경계다. 시험용 `FCCLSurfaceScene`은 유한 평면 패치와 직사각형 개구부를 사용한다. 표면 ID·법선·재질·리비전·눈·물 입력을 반환하며 Actor 주소나 삼각형 인덱스를 영구 ID로 쓰지 않는다. 표면 질의 공급자를 교체하는 방식으로 단계 3의 실제 지형을 연결한다.
+
+차폐는 일사·강수·바람의 서로 다른 광선과 투과율로 계산한다. 개구부에는 닫힘 비율 대신 0-1의 열림 비율과 연결 공간 ID를 둔다. 부분 개방은 열린 실제 사각 영역에 적용하고 환기 입력으로 유효 개구 면적을 반환한다. 열·습도·연기의 시간 진행은 단계 7에서 이 공간 연결을 사용한다. 전체 입력 교체는 먼저 검증하고 성공했을 때만 새 리비전을 게시한다.
+
+```mermaid
+classDiagram
+    UCCLWorldSimulationSubsystem *-- FCCLWorldClock
+    UCCLCelestialDefinition *-- FCCLCelestialDefinitionData
+    FCCLCelestialSystem ..> FCCLCelestialDefinitionData : validate and evaluate
+    UCCLWorldSimulationSubsystem --> FCCLCelestialSystem : committed world seconds
+    ICCLSurfaceProvider <|.. FCCLSurfaceScene
+    FCCLShelterEvaluator --> ICCLSurfaceProvider : independent rays
+```
+
+```cpp
+bool FCCLCelestialSystem::Initialize(const FCCLCelestialDefinitionData& Definition, FString& Error);
+bool FCCLCelestialSystem::Observe(double WorldSeconds, const FCCLCelestialObserver& Observer,
+    FCCLCelestialObservation& OutObservation, FString& Error) const;
+bool ICCLSurfaceProvider::QuerySurfaces(const FCCLSurfaceQuery& Query,
+    TArray<FCCLSurfaceSample>& OutSamples, FString& Error) const;
+```
+
+최대 64개 천체와 제한된 반복의 케플러 해법은 첫 구현의 계산 한도다. 표면 시험 장면은 선형 탐색을 사용하므로 광범위 지형에는 공간 인덱스가 필요하다. 이 한도를 대규모 월드 성능 검증으로 대신하지 않는다. 천체 정의 버전·관측 위치·개구부 상태는 실행 연결 때 저장·복제 계약에 포함하고, 다른 정의의 저장을 조용히 적용하지 않는다. 기존 환경 없는 저장의 이전 경로도 함께 검사한다.
+
+예상 검증은 원·타원 궤도의 알려진 좌표, 부모가 움직이는 위성, 같은 Seed·시각 재현, 역행 자전, 위도·기울기·남북 반구·극지, 거리 제곱에 따른 복사량, 천체 차폐, 위아래 표면·재질 필터·오래된 리비전, 닫힌 문·열린 문·부분 개구부의 독립 차폐다. 잘못된 입력은 기존 정의와 출력 상태를 유지해야 한다. 코어 검사만 통과해도 실험장·저장·네트워크 연결 전에는 단계 2 완료로 표시하지 않는다.
+
+
+#### 천체·차폐 코어와 세계 저장 연결
+
+단계 2의 수치 코어와 서버 저장 연결을 구현했다. `CCLCelestialSystem`은 항성·행성·위성의 부모 관계를 검증하고, 확정 세계 시각에서 타원 궤도·자전·현지 태양시·항성 고도·방위·복사량을 계산한다. 같은 정의와 시각을 다시 넣으면 이전 계산 순서와 관계없이 같은 관측값을 얻는다. 초기 제공 정의는 항성 1개, 행성 2개, 위성 1개다. `UCCLCelestialDefinition`으로 에디터 편집용 타입을 만들었으며 현재 서버 시작은 Seed 42의 기본 정의를 사용한다. 천체 에셋 선택과 실험 조작 연결은 남아 있다.
+
+`CCLSurfaceQuery`는 안정적인 표면 ID, 천체 ID, 재질, 미터 단위 위치·법선과 빛·강수·바람 투과율을 반환한다. 같은 XY의 바닥·지붕 윗면·아랫면을 따로 질의하고 거리순으로 정렬한다. 개구부는 실제 열린 사각형 영역으로 처리한다. 반쯤 열린 문은 열린 쪽의 광선을 통과시키며 닫힌 쪽은 계속 막는다. 방별 유효 개구 면적도 조회할 수 있다. 요청 개수 한도를 넘으면 결과를 잘라 차폐가 사라진 것처럼 처리하지 않고 질의 전체를 거부한다.
+
+표면 질의는 리비전과 실행 세대 GUID를 제공한다. 복원으로 같은 리비전 숫자가 재등장해도 이전 실행 세대를 지정한 질의는 거부한다. 지연 작업은 두 값을 함께 보관해야 한다. 이 코어는 게임 스레드의 검증 후 교체를 전제로 하며 공유 가변 장면의 동시 쓰기를 허용하는 구현은 아니다. 단계 3의 비동기 추출은 별도 불변 입력과 완료 검증으로 연결한다.
+
+`CCLEnvironmentInputsCodec`은 정의 ID·버전·Seed·전체 천체 요소, 관측 위치, 표면과 개구부를 길이 제한과 CRC가 있는 입력 묶음으로 저장한다. 세계 스냅샷 스키마 2는 이 묶음을 시계·생활 상태와 같은 저장 세대에 포함한다. 스키마 1은 원래 세계 ID와 완료 시각을 유지하면서 기본 환경을 부여한다. 세션 버전 1-5의 기존 이전 경로도 유지한다. 서버는 환경 후보를 먼저 검증하고 생활 복원이 성공한 뒤 시계·환경을 게시한다. 현재 실행과 다른 천체 정의 ID·버전, 오래된 입력 리비전과 클라이언트 변경은 거부한다.
+
+현재 범위는 고정 궤도 요소를 이용하는 계층 모델, 점광원 기준 천체 차폐, 기하학적 위상과 대기 밖 복사량이다. 다체 중력, 반그림자, 굴절, 대기·구름 감쇠, 고도에 따른 지평선 하강은 계산하지 않는다. 표면은 유한 평면 시험 자료이며 영구 지형 메시와 물리 충돌은 단계 3의 작업이다. 태양 고도에 따른 실험장 조명·하늘 표현, 개구부 Actor 조작, CommonUI, 환경 관측의 클라이언트 복제도 아직 연결하지 않았다.
+
+천체는 최대 64개, 표면과 개구부는 각각 최대 4096개, 환경 입력 직렬화는 최대 4 MiB로 제한한다. 천체 시각 범위는 0-10¹²초다. 표면 탐색은 선형이며 최대 규모 성능을 보장하지 않는다. 같은 실행의 정확한 재현을 검사했으며 다른 플랫폼 사이의 비트 단위 일치를 검증한 것은 아니다.
+
+최종 소스의 프로젝트 파일 생성과 `CCLEditor Win64 Development` 빌드는 성공했다. 로그는 `Saved/EnvironmentGoal/celestial-generate.log`, `celestial-build.log`다. 전체 자동 검사 40개가 성공했고 경고·실패·미실행은 0개다. 보고서는 `Saved/Tests/Automation/20261009-141915-846/report/index.json`이며 실행 시간은 약 2.75초다. 천체 7개·표면 5개·입력 저장 3개·세계 저장 이전 1개를 새로 포함한다. 초기 시험 코드의 배열 자기 참조와 길이 비교의 부호 경고를 수정한 뒤 다시 생성·빌드·검사한 결과다.
+
+실제 실행 검사는 다음과 같다. Dedicated의 클라이언트 검사는 기존 공통 시각 수신과 새 환경 변경 API의 권한 거부를 확인했다. 환경 관측값 자체의 클라이언트 복제 검증은 남아 있다. 이번 화면 없는 검사로 천체 조명이나 차폐 외형의 시각 품질을 판단하지 않는다.
+
+| 검사 | 결과와 근거 |
+|---|---|
+| Standalone 환경·시계·생활 동시 복원 | 성공, `Saved/Tests/WorldSmoke/Standalone-20261009-141957-839/` |
+| Dedicated 서버와 클라이언트 2개 | 성공, `Saved/Tests/WorldSmoke/Dedicated-20261009-142016-231/` |
+| 격리 실험장 별도 프로세스 복원 | 성공, `Saved/Tests/Environment/EnvironmentScenario-Standalone-20261009-141959-683/` |
+| 종합·격리·전투·멀티플레이 맵 왕복 | 성공, `Saved/Tests/Environment/EnvironmentPlayground-Standalone-20261009-142029-962/` |
+| 기존 캠페인 세션 재시작 | 성공, `Saved/Tests/SessionSmoke/20261009-141959/` |
+
+단계 2는 계속 진행 중이다. 다음 작업은 두 실험 맵의 천체·차폐 배치, 서버 조작, 조명·하늘·진단 화면, 저장된 변경 사항의 재시작과 클라이언트 표시 검증이다. 단계 3-9의 기존 범위는 유지한다.

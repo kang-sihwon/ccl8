@@ -26,6 +26,11 @@ public:
 	bool Save(const FCCLLifeSimulation& Life, TArray<uint8>& Bytes, FString& Error);
 	bool Restore(FCCLLifeSimulation& Life, const TArray<uint8>& Bytes, FString& Error);
 
+	bool ReplaceEnvironmentInputs(const FCCLEnvironmentInputs& Candidate, FString& Error);
+	bool ObserveCelestials(FCCLCelestialObservation& Observation, FString& Error) const;
+
+	const FCCLEnvironmentInputs& GetEnvironmentInputs() const { return EnvironmentInputs; }
+	const ICCLSurfaceProvider& GetSurfaceProvider() const { return SurfaceScene; }
 	const FCCLWorldClock& GetClock() const { return Clock; }
 	const FCCLWorldIdentity& GetIdentity() const { return Identity; }
 	const FString& GetLastError() const { return LastError; }
@@ -42,6 +47,9 @@ private:
 	TObjectPtr<ACCLWorldEnvironmentState> ReplicatedState;
 
 	FCCLWorldClock Clock;
+	FCCLEnvironmentInputs EnvironmentInputs;
+	FCCLCelestialSystem CelestialSystem;
+	FCCLSurfaceScene SurfaceScene;
 	FCCLWorldIdentity Identity;
 	FGuid Epoch;
 	FString LastError;
