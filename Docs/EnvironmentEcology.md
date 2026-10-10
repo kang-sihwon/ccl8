@@ -920,3 +920,47 @@ Inventories->CommitRestore();
 환경 자동화는 공간 선택·이력 계산을 검증한다. Scenario 화면 검사는 최종 시간 제어 보강 전의 같은 게임 구현으로 수행했고, Playground 화면과 두 구역 07 네트워크 검사는 보강 후 결과다. Dedicated는 Editor 서버 모드다. 최종 음식 아트, 실제 플레이어 E 회수·장비를 포함한 세계 저장, 위치 이동 궤적의 연속 노출, 대량 픽업 비용·회수 기록 정리, Server 타깃 패키지·지연과 손실 검증은 남아 있다.
 
 재실행은 `Tools/Validation/run_food_zone.ps1 -Rendered -Map EnvironmentPlayground`로 화면을 확인한다. 네트워크는 `-Mode Listen -Map EnvironmentScenario -Port 20282` 또는 `-Mode Dedicated -Map EnvironmentPlayground -Port 20281`을 사용한다. 단계 8·9는 진행 중이며 다음은 Agent 생애 관측·조작과 피해 연결, 플레이어 장비·계정을 포함한 저장 통합이다.
+
+
+## GAS 치명 피해와 Agent 생애 연결 설계
+
+생애 Feature가 있는 Agent의 GAS 체력이 0이 되면 공통 완료 세계 시각에서 외부 사망을 기록한다. 자연 노화 보호는 이 요청을 막지 않는다. 기존 피해 관측 경로와 체력 변경 delegate를 함께 사용해 일반 명중과 직접 GameplayEffect를 처리한다. 생애 Feature가 없는 기존 전투 Actor의 사망 정책은 유지한다.
+
+Writer 충돌로 사망을 바로 기록하지 못하면 Actor가 아닌 세계 Agent 소유자가 ID·현재 Epoch를 가진 요청을 보관한다. 저장과 다음 세계 진행 전에 요청을 재시도한다. 아직 확정하지 못한 요청이 있으면 저장·시간 진행을 거부하고 큐의 시간은 보존한다. Actor가 제거돼도 요청은 남으며, 저장 복원으로 Epoch가 바뀌면 이전 세계의 미확정 요청을 폐기한다. 이는 Actor Tick만으로 재시도하는 방법보다 세계 소유자의 연결 비용이 늘지만 사망 요청의 Actor 수명 의존과 저장 누락을 방지한다.
+
+실행 검사는 기존 세 맵의 생애 시나리오에 실제 치명 GameplayEffect, Writer 충돌 중 저장·진행 거부, 해제 뒤 사망 확정, 이전 세대 요청 폐기와 저장 복원을 추가한다. 구역 07의 상시 관측·조작은 이 경계를 사용해 후속 연결한다. 화재 노출량의 피해 변환과 생태 개체의 Agent 승격은 별도 구현 범위다.
+
+
+구역 07은 일반 주민과 자연 노화 보호 주민 두 명을 사용한다. 초기 나이 20초·성숙 10초·수명 300초는 실험 입력이다. 일반 주민의 남은 수명을 10초로 줄이는 조작, 보호 주민의 자연 노화 보호 전환, 보호 주민에게 실제 치명 GameplayEffect를 적용하는 조작을 제공한다. 이미 수명을 넘긴 주민의 보호 해제는 거부하며 전체 초기화로 처음 상태에서 다시 비교한다. 공개 관측은 완료 세대·세계 시각·나이·수명·보호·사망 원인·현재 체력만 복제한다.
+
+생애 값은 기존 LifeSimulation에 저장한다. 실험 표현 Actor는 살아 있는 실험 ID만 만들고, 복원 Epoch가 바뀌면 이전 표현을 제거한 뒤 저장 상태에서 다시 만든다. 처음 채우기는 새 환경 세계에만 적용하며 이전 저장에 표본이 없다면 전체 초기화로 기준 상태를 적용한다. 저장 기준 상태에 두 표본을 포함한다. 표본은 지면 위에 정지한 Manny이며 일반 주민 AI·직업·거래를 별도로 만들지 않는다.
+
+
+## Agent 치명 피해와 구역 07 생애 실험 구현·검증
+
+두 환경 맵에서 F7 메뉴의 **07 생애·식생·부패**를 선택하면 일반 주민과 노화 보호 주민의 나이·수명·체력·사망 원인을 볼 수 있다. **일반 주민: 남은 수명 10초**를 누르고 세계 시간을 진행하면 자연 사망을 확인할 수 있다. **보호 주민: 노화 보호 전환**으로 보호를 켜고 끄며, **보호 주민: 치명 피해**는 실제 GAS 효과를 적용한다. 전체 초기화는 두 주민을 처음 생애 상태로 되돌린다. 구역 08에서 저장한 뒤 초기화·불러오기를 하면 저장 당시 살아 있던 주민만 다시 생성한다.
+
+`UCCLAgentComponent`는 서버 ASC의 체력 변경을 관측하고 `UCCLAgentWorldSubsystem::RequestExternalDeath`가 외부 사망을 요청한다. 기존 명중 경로의 `RecordDamage`도 같은 요청을 사용한다. 이미 죽은 기록의 사망 원인은 바꾸지 않는다. `FlushExternalDeaths`는 세계 진행과 저장 전에 보류 요청을 확정한다. 실험 Actor `ACCLBiologyExperiment`는 생애 원본을 소유하지 않고 두 ID의 공개 관측과 표현 재구성만 담당한다. 저장 형식은 기존 생애 Feature를 사용한다.
+
+실제 치명 효과를 Writer 예약 중 적용한 뒤 저장·세계 진행이 거부되는 것을 확인했다. 충돌 상태에서 Actor를 먼저 제거해도 요청이 남았으며, 예약 반환 후 저장은 외부 사망과 충격 당시 세계 시각을 확정했다. 다른 검사에서는 보류 요청이 있는 상태에서 이전 저장을 복원하고, 이전 Epoch의 요청이 살아 있는 복원 기록을 죽이지 않는 것을 확인했다. 이는 프로세스 충돌 뒤 요청 복구까지 검증한 결과는 아니다. 보류 요청 자체를 파일에 쓰지 않으므로 확정하지 못한 저장은 거부한다.
+
+| 검사 | 결과와 로컬 근거 |
+|---|---|
+| 프로젝트 생성·최종 Editor 빌드 | 통과. `Saved/EnvironmentStages/AgentZone-GPF.log`, `Saved/EnvironmentStages/AgentZone-FinalBuild.log` |
+| Campaign 치명 효과·Actor 제거·Writer 충돌·세대 복원 | 통과. `Saved/Tests/AgentBiology/Campaign-20261010-205005-458` |
+| Scenario 같은 생애 경계 검사 | 통과. `Saved/Tests/AgentBiology/EnvironmentScenario-20261010-205022-963` |
+| Playground 같은 생애 경계 검사 | 통과. `Saved/Tests/AgentBiology/EnvironmentPlayground-20261010-205040-926` |
+| Scenario 실제 Slate 조작·화면·자연/외부 사망·초기화·복원 | 통과. `Saved/Tests/BiologyZone/Standalone-20261010-204819-824` |
+| Playground 실제 Slate 조작·화면·생애 복원 | 통과. `Saved/Tests/BiologyZone/Standalone-20261010-205005-784` |
+| Listen Scenario 첫·늦은 접속 | 통과. `Saved/Tests/BiologyZone/Listen-20261010-205004-534` |
+| Dedicated Playground 첫·늦은 접속 | 통과. `Saved/Tests/BiologyZone/Dedicated-20261010-204820-938` |
+| 환경 자동화 | 125/125, 경고·실패·미실행 0. `Saved/Tests/Automation/20261010-204846-934/report/index.json` |
+| 기존 음식 메뉴·위치 환경·저장·초기화 회귀 | 통과. `Saved/Tests/FoodZone/Standalone-20261010-205005-461` |
+
+모든 검사는 UE 5.8.3의 로컬 작업 트리에서 수행했다. 표의 경로는 프로젝트 기준이며 원본 로그의 기기별 절대 경로는 옮기지 않았다. Scenario 화면·Dedicated·환경 자동화 이후 변경은 생애 검사에 Actor 선제 제거 조건을 추가한 것뿐이다. 나머지 검사는 그 조건을 포함한 최종 빌드에서 실행했다. 두 렌더링 실행의 생존·자연 사망·외부 사망 화면을 확인했다. 실제 Slate 입력은 남은 수명과 치명 피해 버튼에 적용했고 보호 전환은 Director 명령 경로로 검사했다.
+
+네트워크 검사는 최초의 두 Actor를 첫 접속자가 관측한 뒤 시작한다. 최종 복원 후 두 클라이언트가 서버의 Epoch·세계 시각·두 공개 행 전체와 죽은 Actor의 부재를 대조했다. 클라이언트의 직접 조작은 거부됐다. Dedicated는 Editor 서버 모드이며 실제 Server 타깃 패키지, 지연·손실과 대규모 비용 검증은 포함하지 않는다.
+
+재실행은 `Tools/Validation/run_biology_zone.ps1 -Rendered -Map EnvironmentScenario`를 사용한다. 다른 맵은 `-Map EnvironmentPlayground`, 네트워크는 `-Mode Listen -Port 20446` 또는 `-Mode Dedicated -Port 20445`로 실행한다. 생애 경계 검사는 `Tools/Validation/run_agent_biology.ps1 -Map Campaign`에 같은 두 환경 맵 이름도 지정할 수 있다.
+
+화재의 열·연기 노출을 GAS 피해로 바꾸는 규칙, 생태 개체와 Agent 사이의 소유권 이전, 전체 플레이어 장비·계정 저장은 남아 있다. 직접 GAS 비치명 피해의 모든 종류를 지속 부상 값으로 변환한 것은 아니다. 기존 명중의 부상 기록과 이번 치명 사망 연결을 구분한다. 단계 8·9는 진행 중이다.
