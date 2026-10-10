@@ -162,7 +162,7 @@ static bool Execute(TConstArrayView<FCCLLoadoutRestoreRequest> Requests,
 
 자동 검사·개인 세션 검사 이후의 변경은 실제 세계 파일을 사용하도록 강화한 실행 검사뿐이다. 프로덕션 코드는 그 검사 이후 바뀌지 않았다. 이 실행은 같은 서버 월드에 있는 두 PlayerState를 사용했으며 두 원격 클라이언트의 복제 검증은 아니다. 아래 세계 참가자는 등록된 프로필 수집·해석과 계정·퀘스트 확정, 보관함 알림을 연결한다. 접속·맵 전환·재접속의 자동 신원 연결은 남아 있다. 바깥 개인 세션의 호스트 계정·퀘스트도 아래 확정 콜백을 통해 알림 전에 적용한다. 캠페인 후처리는 `ApplyRecord`의 별도 경로다.
 
-엔진 근거는 `<Engine>/Plugins/Runtime/GameplayAbilities/Source/GameplayAbilities/Private/GameplayEffectAggregator.cpp:687`의 `FScopedAggregatorOnDirtyBatch::EndLock`이다. 전역 잠금 수가 0일 때만 Dirty Aggregator를 게시한다. 일괄 갱신은 모든 ASC의 Attribute 변경 콜백을 동시에 관측하게 만드는 트랜잭션은 아니며, 여기서 검증한 최종 관측 경계는 Loadout 인벤토리 알림이다. 프로젝트 구현은 `Source/CCL/Items/CCLLoadoutRestore.cpp:157`과 `Source/CCL/Session/CCLGameInstance.cpp:320`에 있다.
+엔진 근거는 `<Engine>/Plugins/Runtime/GameplayAbilities/Source/GameplayAbilities/Private/GameplayEffectAggregator.cpp:687`의 `FScopedAggregatorOnDirtyBatch::EndLock`이다. 전역 잠금 수가 0일 때만 Dirty Aggregator를 게시한다. 일괄 갱신은 모든 ASC의 Attribute 변경 콜백을 동시에 관측하게 만드는 트랜잭션은 아니며, 여기서 검증한 최종 관측 경계는 Loadout 인벤토리 알림이다. 프로젝트 구현은 `Source/CCL/Items/CCLLoadoutRestore.cpp:158`과 `Source/CCL/Session/CCLGameInstance.cpp:320`에 있다.
 
 
 ## 세계 플레이어 참가자 구현·검증
@@ -189,7 +189,7 @@ static bool Execute(TConstArrayView<FCCLLoadoutRestoreRequest> Requests,
 
 일반 플레이 흐름은 아직 `Bind`를 자동 호출하지 않는다. 접속 키 발급·재접속 검증, 계정의 최초 생성 시점, 맵 전환의 재등록, 프로필 없는 이전 저장·실험 초기화 정책을 연결해야 한다. 현재 살아 있는 등록 플레이어의 프로필이 없는 복원은 거부하므로 그 상태의 기존 초기화 버튼까지 완료했다고 주장하지 않는다. 저장 용량과 다른 가방, 사망·행동 중 복원 정책, 바깥 개인 세션의 캠페인 후처리, 실제 두 원격 클라이언트의 소유자 복제·지연·손실 검증도 남아 있다. 계정 잔액은 기존 원장이 소유하고 프로필은 참조만 복원한다.
 
-주요 구현은 `Source/CCL/Session/CCLPlayerPersistenceSubsystem.cpp:53`의 수집, 175줄의 개인 값 확정, 323줄의 일괄 복원, 412줄의 동적 음식 준비다. 세계 복원 연결은 `Source/CCL/Environment/CCLWorldSimulationSubsystem.cpp:376`, 보관함의 지연 알림은 `Source/CCL/Items/CCLInventoryPersistenceSubsystem.cpp:431`에 있다.
+주요 구현은 `Source/CCL/Session/CCLPlayerPersistenceSubsystem.cpp:53`의 수집, 175줄의 개인 값 확정, 323줄의 일괄 복원, 412줄의 동적 음식 준비다. 세계 복원 연결은 `Source/CCL/Environment/CCLWorldSimulationSubsystem.cpp:393`, 보관함의 지연 알림은 `Source/CCL/Items/CCLInventoryPersistenceSubsystem.cpp:431`에 있다.
 
 
 ## 호스트 계정·퀘스트의 알림 전 확정
@@ -208,6 +208,16 @@ static bool Execute(TConstArrayView<FCCLLoadoutRestoreRequest> Requests,
 | 다중 플레이어·동적 음식·새 프로세스 세계 시작 | 통과. `Saved/Tests/LoadoutRestore/20261010-224202-605/result.json` |
 | 기존 CCL 자동 검사 | 143/143, 경고·실패·미실행 0. `Saved/Tests/Automation/20261010-224201-653/report/index.json` |
 
-구현은 `Source/CCL/Session/CCLGameInstance.cpp:305`의 `FinalizeProfile`, `Source/CCL/Environment/CCLWorldSimulationSubsystem.cpp:383`의 콜백 호출과 그 뒤의 보관함 알림이다. 실행 검사는 `Source/CCL/Tests/CCLSessionPublicationSmoke.cpp:17`의 `CheckPublication`이 소유한다. 개인 세션 재개 검사의 쓰기 단계에서 실행하며 일반 체크포인트 슬롯을 사용하지 않는다.
+구현은 `Source/CCL/Session/CCLGameInstance.cpp:305`의 `FinalizeProfile`, `Source/CCL/Environment/CCLWorldSimulationSubsystem.cpp:400`의 콜백 호출과 그 뒤의 보관함 알림이다. 실행 검사는 `Source/CCL/Tests/CCLSessionPublicationSmoke.cpp:17`의 `CheckPublication`이 소유한다. 개인 세션 재개 검사의 쓰기 단계에서 실행하며 일반 체크포인트 슬롯을 사용하지 않는다.
 
 캠페인 적 생성·보급품 정리는 별도 후처리이며 그 실패까지 되돌리는 계약은 남아 있다. GAS의 개별 Attribute 콜백이나 임의 외부 코드까지 같은 관측 시점으로 묶은 결과도 아니다. 일반 접속 키·재접속·맵 전환의 자동 연결과 최초 계정 생성 정책은 후속 작업이다.
+
+## 계정 조회와 초기 생성 분리 구현·검증
+
+복원된 세계에서 `UCCLAccountComponent::Resolve`와 잔액 조회는 원장을 변경하지 않는다. 초기 계좌 생성은 서버 컴포넌트의 시작·Tick 또는 금화 변경 요청에서 명시적으로 수행하며, 성공한 세계 ID를 기억한다. 같은 세계에서 사라진 계좌는 Tick·조회·보상·이전 금화 가져오기로 재생성하지 않는다. 저장 계좌 연결은 원장에 존재하는 계좌만 받는다. 새로운 세계 ID에서는 초기 생성 절차를 다시 수행한다.
+
+저장 프로필보다 초기 계정 생성이 먼저 실행되는 접속 순서는 별도 연결 작업으로 남는다. 이 변경은 조회의 부작용을 제거하지만 인증 키나 초기 계좌의 중복을 해결했다고 뜻하지 않는다. 실제 계좌를 원장에서 잠시 제거한 뒤 조회·Tick·보상·이전 금화 가져오기를 실행해 계좌가 늘지 않는지 검사했다. 표시 값은 마지막 잔액 캐시를 유지하고 금화 변경 요청은 거부한다.
+
+환경 실험의 전체 초기화는 살아 있는 플레이어의 계정 ID와 원장 잔액을 초기 세계 후보에 명시적으로 넣는다. 누락된 현재 계좌는 초기화를 거부한다. 따라서 초기화를 성공시킨 뒤 화면 조회나 다음 Tick에 계좌를 만드는 순서에 의존하지 않는다. 이는 미등록 플레이어의 금화 보존이며, 등록된 전체 프로필의 초기화 정책은 별도 작업으로 남아 있다.
+
+2026-10-10 UE 5.8.3에서 `Tools/Validation/run_session_smoke.ps1`의 실제 저장·별도 프로세스 재개·메뉴 복귀·승리 재개와 새 계좌 누락 검사를 통과했다. 근거는 `Saved/Tests/SessionSmoke/20261010-230750`이다. 계정 분리 후 실제 두 플레이어·세계 재개는 `Saved/Tests/LoadoutRestore/20261010-230751-715`에서 통과했다. 환경 초기화의 금화 83 보존은 `Saved/Tests/Environment/EnvironmentPlayground-Standalone-20261010-232808-742/standalone.log`에서 확인했다. 계정 생성 경계는 `Source/CCL/Agents/CCLAccountComponent.cpp:195`, 명시적 초기화는 `Source/CCL/Environment/CCLExperimentDirector.cpp`의 `ResetLife.ImportAccountBalance`가 소유한다.
