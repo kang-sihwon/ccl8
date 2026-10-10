@@ -67,3 +67,50 @@ sequenceDiagram
 
 
 Agent 생활 저장 통합은 결정 18과 [AgentFoundation](AgentFoundation.md)을 따른다. v5에는 선택적 `AgentSimulation` 스냅샷과 `AccountId`가 추가된다. 계정이 포함된 저장의 이전 `Coins` 필드는 0이며, 옛 저장에만 금화 이관 값으로 쓰인다. 생활 스냅샷은 Unreal 구조체 기반 로컬 저장이므로 JSON의 Definition 허용 목록과 별개로 Feature 타입·버전·교차 참조를 검증한다. 신뢰할 수 없는 외부 저장 파일을 안전하게 읽는 보안 경계로 사용하지 않는다.
+
+
+## 공통 세계의 플레이어 프로필 설계
+
+아래 내용은 후속 통합 설계이며 현재 세계 형식은 5다. 목표는 일반 세계 저장·복원과 맵 전환에서도 플레이어가 회수한 음식, 장비·스킬·포인트·퀘스트와 계정 연결을 같은 세대에 포함하는 것이다. 개인 프로필은 서버가 정한 식별 키와 계정 ID를 가진다. 계정 잔액은 LifeSimulation의 경제 원장에만 저장하며 프로필에는 중복하지 않는다. 인벤토리·바닥 픽업·다른 플레이어 사이의 아이템 GUID 중복도 세계 저장 검증에서 거부한다.
+
+제안한 세계 형식 6은 플레이어 프로필 배열을 추가한다. 항목은 기존 개인 세션의 정의 ID·음식 표현과 장비 점유 검증을 재사용하고, 중첩 세계 스냅샷을 프로필에 넣지 않는다. 형식 1-5는 프로필이 없는 저장으로 명시적으로 변환한다. 빈 프로필 배열을 읽었다는 이유로 현재 플레이어의 음식과 계정 연결을 조용히 누락하는 방식은 사용하지 않는다.
+
+`FCCLPlayerSnapshot`은 식별 키·계정 ID·항목·장비 슬롯·스킬·포인트·퀘스트·체력과 스태미나 비율을 소유한다. 값 검증기는 Actor를 생성하지 않고 개수·길이·음식 시각·장비 참조·계정 존재·중복 GUID를 확인한다. 런타임 참여자는 복원 전에 실제 항목·정의·장비 효과와 연결할 PlayerState를 준비하고 모든 인벤토리 알림을 보류한다. 값 검사 이후에도 GAS가 실제 적용을 거부할 수 있으므로 준비 단계는 그 실패와 새 효과의 취소까지 포함해야 한다. 공통 모델이 성공한 뒤 준비된 개인 배열·계정 연결·장비 효과·능력치를 확정하고 마지막에 알림을 보낸다.
+
+```mermaid
+classDiagram
+    FCCLWorldSnapshot *-- FCCLPlayerSnapshot : profiles
+    FCCLPlayerSnapshot --> FCCLSessionCodec : item and equipment validation
+    FCCLWorldSnapshotCodec --> FCCLLifeSimulation : account membership
+    UCCLPlayerPersistenceSubsystem --> ACCLPlayerState : live profile binding
+    UCCLPlayerPersistenceSubsystem --> UCCLLoadoutComponent : prepared restore
+    UCCLWorldSimulationSubsystem --> UCCLPlayerPersistenceSubsystem : capture prepare commit
+```
+
+장비 복원에서 기존 효과를 먼저 제거한 뒤 `Equip`을 반복 호출하면 나중 항목의 오류가 앞의 장비·스킬을 일부 적용한 채 남길 수 있다. 준비 단계에서 전체 장착 점유와 정의·스킬 효과를 검사하고, 확정 단계에서는 장비를 하나씩 교환하는 UI 경로를 사용하지 않는다. 이 구조는 준비 자료와 상태 보류 비용이 늘지만 세계·개인 상태의 실패 경계를 대조할 수 있다. GAS 이벤트의 임의 재진입이나 외부 플러그인 효과의 무조건 성공을 보장하는 계약은 별도로 다뤄야 한다.
+
+검증은 형식 왕복·이전 저장 변환, 중복 계정·항목·식별 키와 없는 장비·부분 양손 점유의 거부, 실제 음식 회수 후 세계 저장, 다중 플레이어의 장비·부상·금화·퀘스트 복원, 실패 원본 보존, 맵 전환·새 프로세스 재개와 소유자 전용 복제를 대상으로 한다. 원격 플레이어의 자동 재연결은 서버가 신뢰하는 신원과 연결해야 하며 클라이언트가 임의 계정 ID를 제출하는 방식으로 구현하지 않는다. 호스트 개인 슬롯의 기존 완전 체력 재개 정책과 일반 세계의 상태 복원 정책을 구분한다.
+
+
+## 인벤토리·장비 복원 준비와 실행 검증
+
+`UCCLLoadoutComponent::RestoreState`는 인벤토리 항목·장착 점유·스킬·포인트를 함께 검사하고 적용한다. 장착 항목은 가방 슬롯 밖에 있어야 하며 양손 장비는 양쪽 참조를 모두 가져야 한다. 누락된 아이템·중복 부위·고립된 장착 항목·잘못된 스킬·포인트는 상태 변경 전에 거부한다. 후보를 먼저 복사하므로 호출자가 현재 인벤토리·장비 배열 자체를 넘겨도 복원 중 배열을 잃지 않는다.
+
+복원 대상 효과는 비주기·비중첩 Infinite 효과의 수치 가산 Modifier로 제한한다. 현재 체력·스태미나를 직접 수정하는 Modifier, Execution·GameplayEffect Component·Cue와 Attribute 기반·커스텀 계산은 거부한다. 정적 수치 또는 SetByCaller로 계산한 결과와 대상 AttributeSet도 검사한다. 기존 장착 기능이 허용하는 모든 효과가 이 복원 계약에 포함되지는 않는다. 조건부 효과를 추가할 때는 그 효과의 가역적인 준비·취소 계약도 구현해야 한다.
+
+서버는 새 효과를 모두 적용한 뒤 기존 효과를 제거한다. 도중 GAS가 적용을 거부하면 새 핸들만 제거하고 기존 효과 핸들·개인 항목·포인트·부상을 유지한다. `FScopedAggregatorOnDirtyBatch`로 Attribute 계산 알림을 묶고 인벤토리 알림은 항목·장착 목록·스킬·포인트와 아바타 동기화 뒤 한 번 게시한다. 복원 성공 시 이전 무기 행동 부여도 정리해 같은 GUID가 과거 정의를 계속 참조하지 않게 한다. 다음 무기 조작에서 복원된 정의로 능력을 부여한다.
+
+`bResetHealth=false`는 부상을 유지하며 최종 최대 체력이 낮아지면 그 값으로 제한한다. 기존 개인 체크포인트는 기본값 `true`로 완전 체력을 유지한다. `UCCLGameInstance::ApplyRecord`도 세계 적용 전에 개인 후보를 검사하고 인벤토리·장비는 이 통합 경로로 적용한다. 구현은 `Source/CCL/Items/CCLLoadoutRestore.cpp`와 `Source/CCL/Session/CCLGameInstance.cpp`에 있다.
+
+이 계약은 임의 GAS 적용 델리게이트의 외부 부작용을 되돌리는 트랜잭션은 아니다. Attribute 알림 묶음이 효과 적용 델리게이트 자체를 지연하지 않으며, 인벤토리의 기존 트랜잭션도 모든 외부 변경을 차단하는 잠금은 아니다. 복원 중 같은 Loadout의 조작·복원 재진입은 거부하지만 외부 코드가 다른 상태를 수정하는 경우까지 보장하지 않는다. 세계·계정·모든 플레이어를 함께 준비하는 런타임 참여자는 아직 구현하지 않았다. 따라서 개인 세션의 세계 복원이 성공한 뒤 개인 효과 적용이 거부되는 경우까지 세계 원본 보존을 보장하지 않는다.
+
+UE 5.8.3 소스에서 `AbilitySystemComponent.cpp:1037`의 적용 Query 거부와 2160줄의 효과 적용 델리게이트 호출을 확인했다. 경로 기준은 `<Engine>/Plugins/Runtime/GameplayAbilities/Source/GameplayAbilities/Private/`다. Attribute 알림 보류 계약은 같은 모듈의 `Public/GameplayEffectAggregator.h:392`에 있다. 이 확인만으로 해당 기능이 UE5에서 처음 도입됐다고 주장하지 않는다.
+
+| 검사 | 결과와 로컬 근거 |
+|---|---|
+| 최종 프로젝트 생성·Editor 빌드 | 성공. `Saved/EnvironmentStages/LoadoutRestore-FinalGPF.log`, `LoadoutRestore-FinalBuild.log` |
+| 실제 PlayerState·GAS 복원 | 실패 원본·효과 핸들 보존, 가득 찬 가방에서 양손 장비 교체, 중복 보너스 방지, 부상·완전 체력 정책, 이전 무기 부여 제거 통과. `Saved/Tests/LoadoutRestore/20261010-212916-155/game.log` |
+| 별도 프로세스의 개인 세션 재개 | 음식 이력·장비·스킬·부분 체크포인트, 메뉴 왕복·승리 재개 통과. `Saved/Tests/SessionSmoke/20261010-212913` |
+| CCL 자동 검사 | 140/140, 경고·실패·미실행 0. `Saved/Tests/Automation/20261010-212917-604/report/index.json` |
+
+실행기는 `Tools/Validation/run_loadout_restore.ps1`이며 EnvironmentScenario의 Standalone에서 확인했다. 네트워크의 전체 개인 프로필 복원, 실제 플레이어가 회수한 음식의 일반 세계 저장과 맵 전환, 신뢰한 계정 신원의 재연결은 후속 통합 검증이다.
