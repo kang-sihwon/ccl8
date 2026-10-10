@@ -12,7 +12,7 @@
 | 베이스 시스템 설계 | 장르에 독립적인 공통 계약과 콘텐츠 규칙을 분리하고 데이터·정책·기능 조합으로 구성한다. Item은 ItemDefinition과 Fragment 조합을 따른다 | 유효 | 결정 9 | [Coding](Coding.md) |
 | 공용 시스템 분리 | 시스템 단위 재사용과 Framework 명명을 계획으로 기록한다. 실제 분리는 작업량·의존·재사용 수요를 재검토한 뒤 착수한다 | 유효, 계획 기록·구현 보류 | 결정 20 | [FrameworkPlan](FrameworkPlan.md) |
 | 공용 UI | LocalPlayer별 관리자와 UMG·CommonUI를 사용한다. 화면 등록·문맥·핸들·수명과 중첩 표시 요청을 공용화하고 장르별 데이터는 기능 계층이 연결한다 | 유효, 구현 중 | 결정 17 | [UIFoundation](UIFoundation.md) |
-| 자연 환경·실험장 | 공통 시간·천체·날씨, 영구 지형과 눈·물·불·차폐, 생태·생애 주기와 기능별 실험장을 단계적으로 구현한다. 60배속은 변경 가능한 실험 기본 후보이며 최종 게임 배율은 미정이다 | 유효, 단계 0-5 검증 완료·단계 6 진행 | 결정 19 | [EnvironmentPlan](EnvironmentPlan.md), [영구 지형 통합과 검증](EnvironmentTerrain.md) |
+| 자연 환경·실험장 | 공통 시간·천체·날씨, 영구 지형과 눈·물·불·차폐, 생태·생애 주기와 기능별 실험장을 단계적으로 구현한다. 60배속은 변경 가능한 실험 기본 후보이며 최종 게임 배율은 미정이다 | 유효, 단계 0-6 검증 완료·단계 7 진행 | 결정 19 | [EnvironmentPlan](EnvironmentPlan.md), [영구 지형 통합과 검증](EnvironmentTerrain.md) |
 | Agent의 삶 | 성격 6개·가치관 3개에서 시작하고 목표·경험·관계·실제 자원의 상호작용으로 개인의 삶을 누적한다. 선택적 Feature와 공통 실행 계약을 유지한다 | 유효, 구현 중 | 결정 18 | [AgentFoundation](AgentFoundation.md) |
 | 아이템·장비 | 공통 정보는 ItemDefinition, 선택 기능은 FInstancedStruct로 구성한다. 슬롯과 부착 지점은 태그로 지정하고 양손 여부는 Weapon이 소유한다. 캐릭터별 AttachmentProfile과 장비 창은 ProgressionFoundation을 따른다 | 유효, 태그 개편 실행 검증 완료 | 결정 15, 결정 16 | [ProgressionFoundation](ProgressionFoundation.md) |
 | 엔진 시스템 선택 | 명확히 불합리한 근거가 없으면 UE5 신규·현행 시스템을 기본 선택으로 사용한다. Nanite, World Partition, GAS와 Attribute·AttributeSet을 포함한다 | 유효 | 결정 10 | [Coding](Coding.md) |

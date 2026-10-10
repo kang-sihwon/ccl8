@@ -27,6 +27,7 @@
 | [ProgressionFoundation](ProgressionFoundation.md) | 인벤토리·장비·성장·스킬 UI의 설계와 검증 |
 | [UIFoundation](UIFoundation.md) | 장르 독립적인 UI 관리자·화면·문맥·레이어·연출 제어의 계약과 검증 |
 | [EnvironmentPlan](EnvironmentPlan.md) | 천체·날씨·영구 지형·눈·물·불·차폐·생태계와 실험장 구현 계획, 단계별 현재 상태 |
+| [불·열·공간 환경](EnvironmentFire.md) | 단계 7의 연소 코어·수지 검증과 표면·환기 통합 계약 |
 | [자연 날씨 계산과 검증](EnvironmentWeather.md) | 지역 기후·천체 일조·대기 수분과 물·눈 연결, 구역 02 조작·검증 |
 | [영구 지형 통합과 검증](EnvironmentTerrain.md) | 단계 3의 다층 표면·완료 세대·경로·클라이언트 준비와 구역 05 조작·검증 |
 | [물 순환 설계와 검증](EnvironmentWater.md) | 보존량·경계 유량·물과 지형의 확정·저장·실험장 구현 |
