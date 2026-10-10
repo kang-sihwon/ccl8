@@ -102,7 +102,7 @@ classDiagram
 
 `bResetHealth=false`는 부상을 유지하며 최종 최대 체력이 낮아지면 그 값으로 제한한다. 기존 개인 체크포인트는 기본값 `true`로 완전 체력을 유지한다. `UCCLGameInstance::ApplyRecord`도 세계 적용 전에 개인 후보와 실제 GAS 효과 적용을 준비하고 인벤토리·장비는 이 통합 경로로 적용한다. 구현은 `Source/CCL/Items/CCLLoadoutRestore.cpp`와 `Source/CCL/Session/CCLGameInstance.cpp`에 있다.
 
-이 계약은 임의 GAS 적용 델리게이트의 외부 부작용을 되돌리는 트랜잭션은 아니다. Attribute 알림 묶음이 효과 적용 델리게이트 자체를 지연하지 않으며, 인벤토리의 기존 트랜잭션도 모든 외부 변경을 차단하는 잠금은 아니다. 복원 중 같은 Loadout의 조작·복원 재진입은 거부하지만 외부 코드가 다른 상태를 수정하는 경우까지 보장하지 않는다. 다중 Loadout의 준비 경계와 개인 세션 연결은 아래 절을 따른다. 등록된 세계 프로필의 계정·퀘스트 확정은 아래 참가자가 처리한다. 모든 접속자의 자동 등록과 신원 연결은 아직 구현하지 않았다. 개인 세션의 계정·퀘스트·캠페인 체크포인트 후처리는 별도 경로이므로 이 결과를 전체 세션의 원자 복원으로 확대하지 않는다.
+이 계약은 임의 GAS 적용 델리게이트의 외부 부작용을 되돌리는 트랜잭션은 아니다. Attribute 알림 묶음이 효과 적용 델리게이트 자체를 지연하지 않으며, 인벤토리의 기존 트랜잭션도 모든 외부 변경을 차단하는 잠금은 아니다. 복원 중 같은 Loadout의 조작·복원 재진입은 거부하지만 외부 코드가 다른 상태를 수정하는 경우까지 보장하지 않는다. 다중 Loadout의 준비 경계와 개인 세션 연결은 아래 절을 따른다. 등록된 세계 프로필의 계정·퀘스트 확정은 아래 참가자가 처리한다. 모든 접속자의 자동 등록과 신원 연결은 아직 구현하지 않았다. 호스트 계정·퀘스트의 확정은 [알림 전 확정](#호스트-계정퀘스트의-알림-전-확정)을 따른다. 캠페인 체크포인트 후처리는 별도 경로이므로 이 결과를 전체 세션의 원자 복원으로 확대하지 않는다.
 
 UE 5.8.3 소스에서 `AbilitySystemComponent.cpp:1037`의 적용 Query 거부와 2160줄의 효과 적용 델리게이트 호출을 확인했다. 경로 기준은 `<Engine>/Plugins/Runtime/GameplayAbilities/Source/GameplayAbilities/Private/`다. Attribute 알림 보류 계약은 같은 모듈의 `Public/GameplayEffectAggregator.h:392`에 있다. 이 확인만으로 해당 기능이 UE5에서 처음 도입됐다고 주장하지 않는다.
 
@@ -160,7 +160,7 @@ static bool Execute(TConstArrayView<FCCLLoadoutRestoreRequest> Requests,
 | 개인 세션의 별도 프로세스 재개 | 쓰기·읽기·메뉴 재진입·완료 체크포인트 통과. `Saved/Tests/SessionSmoke/20261010-215945` |
 | 기존 CCL 자동 검사 | 143/143, 경고·실패·미실행 0. `Saved/Tests/Automation/20261010-215946-005/report/index.json` |
 
-자동 검사·개인 세션 검사 이후의 변경은 실제 세계 파일을 사용하도록 강화한 실행 검사뿐이다. 프로덕션 코드는 그 검사 이후 바뀌지 않았다. 이 실행은 같은 서버 월드에 있는 두 PlayerState를 사용했으며 두 원격 클라이언트의 복제 검증은 아니다. 아래 세계 참가자는 등록된 프로필 수집·해석과 계정·퀘스트 확정, 보관함 알림을 연결한다. 접속·맵 전환·재접속의 자동 신원 연결은 남아 있다. 바깥 개인 세션의 호스트 계정·퀘스트·캠페인 후처리는 여전히 `ApplyRecord`의 별도 경로다.
+자동 검사·개인 세션 검사 이후의 변경은 실제 세계 파일을 사용하도록 강화한 실행 검사뿐이다. 프로덕션 코드는 그 검사 이후 바뀌지 않았다. 이 실행은 같은 서버 월드에 있는 두 PlayerState를 사용했으며 두 원격 클라이언트의 복제 검증은 아니다. 아래 세계 참가자는 등록된 프로필 수집·해석과 계정·퀘스트 확정, 보관함 알림을 연결한다. 접속·맵 전환·재접속의 자동 신원 연결은 남아 있다. 바깥 개인 세션의 호스트 계정·퀘스트도 아래 확정 콜백을 통해 알림 전에 적용한다. 캠페인 후처리는 `ApplyRecord`의 별도 경로다.
 
 엔진 근거는 `<Engine>/Plugins/Runtime/GameplayAbilities/Source/GameplayAbilities/Private/GameplayEffectAggregator.cpp:687`의 `FScopedAggregatorOnDirtyBatch::EndLock`이다. 전역 잠금 수가 0일 때만 Dirty Aggregator를 게시한다. 일괄 갱신은 모든 ASC의 Attribute 변경 콜백을 동시에 관측하게 만드는 트랜잭션은 아니며, 여기서 검증한 최종 관측 경계는 Loadout 인벤토리 알림이다. 프로젝트 구현은 `Source/CCL/Items/CCLLoadoutRestore.cpp:157`과 `Source/CCL/Session/CCLGameInstance.cpp:320`에 있다.
 
@@ -187,6 +187,27 @@ static bool Execute(TConstArrayView<FCCLLoadoutRestoreRequest> Requests,
 
 자동 검사·기존 세션·보관함 회귀 이후에는 새 프로세스 시작 검사를 추가하고 새 파일의 서식을 정리했다. 프로덕션 동작 변경은 없었다. 첫 실행 검사의 준비 대기 실패는 `Saved/Tests/LoadoutRestore/20261010-221553-552/game.log`에 남아 있다. 다음 실행에서 드러난 동적 보관 API의 보관함 전용 제한은 등록 플레이어 검사로 보완했다. 당시 원본은 `Saved/Tests/LoadoutRestore/20261010-221905-762/game.log`에 남아 있다.
 
-일반 플레이 흐름은 아직 `Bind`를 자동 호출하지 않는다. 접속 키 발급·재접속 검증, 계정의 최초 생성 시점, 맵 전환의 재등록, 프로필 없는 이전 저장·실험 초기화 정책을 연결해야 한다. 현재 살아 있는 등록 플레이어의 프로필이 없는 복원은 거부하므로 그 상태의 기존 초기화 버튼까지 완료했다고 주장하지 않는다. 저장 용량과 다른 가방, 사망·행동 중 복원 정책, 바깥 개인 세션의 호스트 후처리, 실제 두 원격 클라이언트의 소유자 복제·지연·손실 검증도 남아 있다. 계정 잔액은 기존 원장이 소유하고 프로필은 참조만 복원한다.
+일반 플레이 흐름은 아직 `Bind`를 자동 호출하지 않는다. 접속 키 발급·재접속 검증, 계정의 최초 생성 시점, 맵 전환의 재등록, 프로필 없는 이전 저장·실험 초기화 정책을 연결해야 한다. 현재 살아 있는 등록 플레이어의 프로필이 없는 복원은 거부하므로 그 상태의 기존 초기화 버튼까지 완료했다고 주장하지 않는다. 저장 용량과 다른 가방, 사망·행동 중 복원 정책, 바깥 개인 세션의 캠페인 후처리, 실제 두 원격 클라이언트의 소유자 복제·지연·손실 검증도 남아 있다. 계정 잔액은 기존 원장이 소유하고 프로필은 참조만 복원한다.
 
-주요 구현은 `Source/CCL/Session/CCLPlayerPersistenceSubsystem.cpp:53`의 수집, 175줄의 개인 값 확정, 323줄의 일괄 복원, 412줄의 동적 음식 준비다. 세계 복원 연결은 `Source/CCL/Environment/CCLWorldSimulationSubsystem.cpp:371`, 보관함의 지연 알림은 `Source/CCL/Items/CCLInventoryPersistenceSubsystem.cpp:431`에 있다.
+주요 구현은 `Source/CCL/Session/CCLPlayerPersistenceSubsystem.cpp:53`의 수집, 175줄의 개인 값 확정, 323줄의 일괄 복원, 412줄의 동적 음식 준비다. 세계 복원 연결은 `Source/CCL/Environment/CCLWorldSimulationSubsystem.cpp:376`, 보관함의 지연 알림은 `Source/CCL/Items/CCLInventoryPersistenceSubsystem.cpp:431`에 있다.
+
+
+## 호스트 계정·퀘스트의 알림 전 확정
+
+호스트 개인 세션의 계정·퀘스트는 보관함·플레이어 인벤토리의 복원 알림 전에 확정한다. `ApplyRecord`가 값·정의·계정 원장 참조와 현재 컴포넌트를 검사한 뒤 동기 확정 콜백을 만든다. 세계가 있는 세션은 `AgentWorldSubsystem::Restore`와 `WorldSimulationSubsystem::Restore`를 통해 이 콜백을 전달한다. 세계가 없는 이전 개인 저장은 같은 콜백을 Loadout 복원의 마지막 단계에 사용한다.
+
+확정 콜백은 성공한 복원 안에서 한 번만 실행하며 실패하거나 객체를 파괴하거나 복원을 다시 호출하지 않는다. 세계 모델·모든 Loadout 배열·세계 프로필의 개인 값을 적용한 뒤 호스트 계정·퀘스트를 확정하고 보관함·플레이어 알림을 보낸다. 세계 복원 API는 개인 참가자 없이 확정 콜백만 넘기는 호출을 거부한다. 이 경로는 기존 계정 원장을 참조하므로 잔액을 개인 기록에 중복하지 않는다. 콜백 전달은 준비 계약을 늘리는 대신 UI 구독자마다 복원 순서를 추측하지 않게 한다.
+
+2026-10-10 UE 5.8.3의 실제 `ApplyRecord` 실행에서 호스트와 보관함의 알림 두 번이 저장 계정·잔액 20·수락한 퀘스트·포인트·체력 125를 관측했다. 알림에서 잔액을 조회한 뒤에도 원장의 계좌 개수가 저장 값과 같았고, 복원 전에 연결했던 다른 계좌는 다시 생성되지 않았다. 없는 계정 참조와 GAS 적용 거부에서는 알림 0회와 함께 세계 Epoch·계정·잔액·퀘스트·개인 항목·포인트·체력·보관함 수량이 유지됐다. 세계 본문이 없는 개인 저장은 금화 41과 미수락 퀘스트를 먼저 이관하고 개인 인벤토리 알림을 한 번 보냈다.
+
+| 검사 | 결과와 로컬 근거 |
+|---|---|
+| 최종 프로젝트 생성·Editor 빌드 | 성공. `Saved/EnvironmentStages/SessionFinalize-FinalGPF.log`, `SessionFinalize-FinalBuild.log` |
+| 호스트·보관함 알림, 실패 보존, 이전 금화 이관 | 통과. `Saved/Tests/SessionSmoke/20261010-224139/write.log` |
+| 별도 프로세스 재개·메뉴 재진입·승리 재개 | 통과. 같은 디렉터리의 `read.log` |
+| 다중 플레이어·동적 음식·새 프로세스 세계 시작 | 통과. `Saved/Tests/LoadoutRestore/20261010-224202-605/result.json` |
+| 기존 CCL 자동 검사 | 143/143, 경고·실패·미실행 0. `Saved/Tests/Automation/20261010-224201-653/report/index.json` |
+
+구현은 `Source/CCL/Session/CCLGameInstance.cpp:305`의 `FinalizeProfile`, `Source/CCL/Environment/CCLWorldSimulationSubsystem.cpp:383`의 콜백 호출과 그 뒤의 보관함 알림이다. 실행 검사는 `Source/CCL/Tests/CCLSessionPublicationSmoke.cpp:17`의 `CheckPublication`이 소유한다. 개인 세션 재개 검사의 쓰기 단계에서 실행하며 일반 체크포인트 슬롯을 사용하지 않는다.
+
+캠페인 적 생성·보급품 정리는 별도 후처리이며 그 실패까지 되돌리는 계약은 남아 있다. GAS의 개별 Attribute 콜백이나 임의 외부 코드까지 같은 관측 시점으로 묶은 결과도 아니다. 일반 접속 키·재접속·맵 전환의 자동 연결과 최초 계정 생성 정책은 후속 작업이다.
