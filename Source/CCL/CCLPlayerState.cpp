@@ -1,4 +1,6 @@
 #include "CCLPlayerState.h"
+#include "Session/CCLPlayerPersistenceSubsystem.h"
+#include "Engine/World.h"
 #include "Campaign/CCLExpeditionComponent.h"
 #include "Actions/CCLActionComponent.h"
 #include "Agents/CCLAccountComponent.h"
@@ -27,4 +29,13 @@ ACCLPlayerState::ACCLPlayerState()
 UAbilitySystemComponent* ACCLPlayerState::GetAbilitySystemComponent() const
 {
 	return AbilitySystem;
+}
+
+void ACCLPlayerState::EndPlay(const EEndPlayReason::Type EndPlayReason)
+{
+    if (auto* Store = GetWorld()->GetSubsystem<UCCLPlayerPersistenceSubsystem>())
+    {
+        Store->Unbind(*this);
+    }
+    Super::EndPlay(EndPlayReason);
 }

@@ -2,6 +2,14 @@
 
 #include "CoreMinimal.h"
 #include "CCLWorldClock.h"
+#include "CCLWeatherModel.h"
+#include "CCLSurfaceFire.h"
+#include "CCLSurfaceVegetation.h"
+
+class FCCLCelestialSystem;
+class ICCLSurfaceProvider;
+struct FCCLCelestialObserver;
+struct FCCLSurfaceOpening;
 
 struct FCCLSurfaceForcing
 {
@@ -28,6 +36,8 @@ struct FCCLSurfaceCell
 	double SnowCubicMeters = 0.;
 	double SnowVolumeCubicMeters = 0.;
 	double RainExposure = 1.;
+	double SunExposure = 1.;
+	double WindExposure = 1.;
 	uint8 bOpenBoundary = 0;
 };
 
@@ -51,7 +61,14 @@ struct FCCLSurfaceGrid
 	uint64 Revision = 1;
 	uint64 TerrainRevision = 0;
 	FCCLSurfaceForcing Forcing;
+	FCCLClimate Climate;
+	FCCLWeatherState Weather;
 	FCCLWaterLedger Ledger;
+	FCCLSurfaceFireLayer Fire;
+	FCCLSurfaceVegetationLayer Vegetation;
+	double AirHeatToSurfaceJoules = 0.;
+	double SurfaceHeatToAirJoules = 0.;
+	uint8 bDynamicShelter = 0;
 	TArray<FCCLSurfaceCell> Cells;
 
 	double TotalCubicMeters() const;
@@ -78,7 +95,12 @@ public:
 	bool Initialize(FGuid WorldId, double GameSeconds, double WorldSeconds, uint64 StepId, FString& Error);
 	bool AddRegion(FCCLSurfaceGrid Region, FString& Error);
 	bool ChangeForcing(FGuid RegionId, const FCCLSurfaceForcing& Forcing, FString& Error);
-	bool Advance(const FCCLWorldStep& Step, FString& Error);
+	bool AddAirSpace(const FCCLAirSpace& Space, FString& Error);
+	bool Ignite(FGuid RegionId, int32 CellIndex, double HeatJoules, FString& Error);
+	bool ChangeClimate(FGuid RegionId, const FCCLClimate& Climate, FString& Error);
+	bool Advance(const FCCLWorldStep& Step, FString& Error, const FCCLCelestialSystem* Celestial = nullptr,
+		const FCCLCelestialObserver* Observer = nullptr, const ICCLSurfaceProvider* Shelter = nullptr,
+		const TArray<FCCLSurfaceOpening>* Openings = nullptr);
 	bool RebaseTerrain(FGuid RegionId, const TArray<double>& BedsMeters, uint64 TerrainRevision, FString& Error, bool bRestoring = false);
 	bool ApplySnowContact(FGuid RegionId, FGuid SourceId, uint64 Sequence, const FVector& PositionMeters,
 		double RadiusMeters, FString& Error);
@@ -88,8 +110,10 @@ public:
 	bool Restore(const TArray<uint8>& Bytes, FString& Error);
 
 	bool Validate(FString& Error) const;
+	bool ValidateAirContext(const TArray<FCCLSurfaceOpening>& Openings, FString& Error) const;
 	static bool ValidateRegion(const FCCLSurfaceGrid& Region, FString& Error);
 
+	const FCCLAirSimulation& GetAirSimulation() const { return Air; }
 	const FCCLSurfaceGrid* FindRegion(FGuid Id) const { return Regions.Find(Id); }
 	const TMap<FGuid, FCCLSurfaceGrid>& GetRegions() const { return Regions; }
 	FGuid GetWorldId() const { return WorldId; }
@@ -104,9 +128,14 @@ public:
 	static constexpr int32 MaximumSubsteps = 4096;
 
 private:
+	void BuildAirExteriors(TMap<FGuid, FCCLAirExterior>& Exteriors) const;
+	bool AdvanceSlice(double GameDelta, double WorldFrom, double WorldDelta, FString& Error,
+		const FCCLCelestialSystem* Celestial, const FCCLCelestialObserver* Observer,
+		const ICCLSurfaceProvider* Shelter, const TArray<FCCLSurfaceOpening>* Openings);
 	bool Serialize(FArchive& Archive);
 
 private:
+	FCCLAirSimulation Air;
 	TMap<FGuid, FCCLSurfaceGrid> Regions;
 	TMap<FGuid, uint64> SnowContacts;
 	FGuid WorldId;

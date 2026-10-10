@@ -11,10 +11,15 @@
 #include "Environment/CCLWorldEnvironmentState.h"
 #include "Environment/CCLWorldEnvironmentPresentation.h"
 #include "Agents/CCLAgentWorldSubsystem.h"
+#include "Agents/CCLAccountComponent.h"
+#include "GameFramework/PlayerState.h"
 #include "UI/CCLGameUI.h"
 #include "UI/Core/CCLUISubsystem.h"
 #include "Input/CommonUIActionRouterBase.h"
 #include "Engine/World.h"
+#include "Engine/NetDriver.h"
+#include "Engine/NetConnection.h"
+#include "NavigationSystem.h"
 #include "Engine/DirectionalLight.h"
 #include "Components/LightComponent.h"
 #include "Engine/GameInstance.h"
@@ -127,7 +132,7 @@ void UCCLExperimentSmokeSubsystem::Tick(float DeltaTime)
 	FString Error;
 	const FName Guide(TEXT("Zone_00"));
 	const FName Clock(TEXT("Zone_01"));
-	const FName Reserved(TEXT("Zone_02"));
+	const FName Missing(TEXT("Zone_99"));
 	const FName Snapshot(TEXT("Zone_08"));
 	auto Execute = [&](ECCLExperimentAction Action, FName Case = NAME_None)
 	{
@@ -196,6 +201,15 @@ void UCCLExperimentSmokeSubsystem::Tick(float DeltaTime)
 
 	auto* Runtime = World->GetSubsystem<UCCLWorldSimulationSubsystem>();
 	auto* Agents = World->GetSubsystem<UCCLAgentWorldSubsystem>();
+    if (Runtime->GetEcologySimulation().HasSpatialBehavior())
+    {
+        auto* Nav = FNavigationSystem::GetCurrent<UNavigationSystemV1>(World);
+        if (!Nav || !Nav->GetDefaultNavDataInstance(FNavigationSystem::DontCreate)
+            || Nav->GetNumRemainingBuildTasks() != 0 || UNavigationSystemV1::IsNavigationBeingBuiltOrLocked(World))
+        {
+            return;
+        }
+    }
 	const bool bScenario = UCCLWorldSimulationSubsystem::DomainForWorld(World) == ECCLWorldDomain::Scenario;
 	const bool bRendered = FParse::Param(FCommandLine::Get(), TEXT("CCLExperimentCapture"));
 	FString CheckpointMode;
@@ -225,7 +239,7 @@ void UCCLExperimentSmokeSubsystem::Tick(float DeltaTime)
 
 			if (!Check(Runtime->QueueGameTime(37, Error) && Runtime->AdvancePending(40, 2400, Error) &&
 				Runtime->ChangeTimeScale(7, Error) && Runtime->QueueGameTime(1.25, Error) && Execute(ECCLExperimentAction::Save) &&
-				FCCLWorldSnapshotCodec::Capture(Runtime->GetIdentity(), Runtime->GetClock(), Agents->GetSimulation(), Expected, Error, &Runtime->GetEnvironmentInputs(), &Runtime->GetSurfaceSimulation()) &&
+				FCCLWorldSnapshotCodec::Capture(Runtime->GetIdentity(), Runtime->GetClock(), Agents->GetSimulation(), Expected, Error, &Runtime->GetEnvironmentInputs(), &Runtime->GetSurfaceSimulation(), &Runtime->GetEcologySimulation()) &&
 				FCCLWorldSnapshotCodec::Encode(Expected, ExpectedBytes, Error) && FFileHelper::SaveArrayToFile(ExpectedBytes, *ExpectedPath),
 				TEXT("write checkpoint with advanced life, scale history and pending time")))
 			{
@@ -248,7 +262,7 @@ void UCCLExperimentSmokeSubsystem::Tick(float DeltaTime)
 			ExpectedLife.Load(Expected.Life, Error) && ExpectedLife.Save(Expected.Life) &&
 			FCCLWorldSnapshotCodec::Encode(Expected, NormalizedExpected, Error) &&
 			Runtime->GetIdentity().WorldId != Expected.Identity.WorldId && Execute(ECCLExperimentAction::Load) &&
-			FCCLWorldSnapshotCodec::Capture(Runtime->GetIdentity(), Runtime->GetClock(), Agents->GetSimulation(), Actual, Error, &Runtime->GetEnvironmentInputs(), &Runtime->GetSurfaceSimulation()) &&
+			FCCLWorldSnapshotCodec::Capture(Runtime->GetIdentity(), Runtime->GetClock(), Agents->GetSimulation(), Actual, Error, &Runtime->GetEnvironmentInputs(), &Runtime->GetSurfaceSimulation(), &Runtime->GetEcologySimulation()) &&
 			FCCLWorldSnapshotCodec::Encode(Actual, ActualBytes, Error) && ActualBytes == NormalizedExpected,
 			TEXT("new process restores exact world identity, clock, pending input and life without offline aging")))
 		{
@@ -264,6 +278,18 @@ void UCCLExperimentSmokeSubsystem::Tick(float DeltaTime)
 
 	if (Step == 0)
 	{
+		FCCLWorldClockSnapshot BeforeManual, WhileManual, AfterManual;
+		if (!Check(Runtime->GetClock().Capture(BeforeManual, Error) && Runtime->AcquireManualAdvance(this, Error) &&
+			!Runtime->AcquireManualAdvance(Director, Error), TEXT("manual clock control has one world owner"))) { return; }
+		Runtime->ReleaseManualAdvance(Director);
+		Runtime->Tick(.25f);
+		const bool bHeld = Runtime->GetClock().Capture(WhileManual, Error) &&
+			WhileManual.AcceptedGameSeconds == BeforeManual.AcceptedGameSeconds;
+		Runtime->ReleaseManualAdvance(this);
+		Runtime->Tick(.25f);
+		if (!Check(bHeld && Runtime->GetClock().Capture(AfterManual, Error) &&
+			AfterManual.AcceptedGameSeconds == BeforeManual.AcceptedGameSeconds + .25,
+			TEXT("foreign release cannot resume automatic input; owner release resumes it"))) { return; }
 		int32 Stations = 0;
 		for (TActorIterator<ACCLExperimentStation> It(World); It; ++It)
 		{
@@ -272,8 +298,8 @@ void UCCLExperimentSmokeSubsystem::Tick(float DeltaTime)
 
 		if (!Check(Stations == 12 && Director->Definitions.Num() == 12 && Director->GetResults().Num() == 12,
 			TEXT("twelve marked zones and shared case definitions")) ||
-			!Check(!Execute(ECCLExperimentAction::Start, Reserved) &&
-				Director->FindResult(Reserved)->Status == ECCLExperimentStatus::NotImplemented, TEXT("unimplemented case rejected honestly")))
+			!Check(!Execute(ECCLExperimentAction::Start, Missing) &&
+				!Director->FindResult(Missing), TEXT("unknown case rejected without result")))
 		{
 			return;
 		}
@@ -379,6 +405,12 @@ void UCCLExperimentSmokeSubsystem::Tick(float DeltaTime)
 
 	if (Step == 4 && (!bScenario || Passed(Clock)))
 	{
+		if (PC && PC->PlayerState)
+		{
+			auto* Account = PC->PlayerState->FindComponentByClass<UCCLAccountComponent>();
+			if (!Check(Account && Account->ImportLegacy(83), TEXT("set player currency before environment reset"))) { return; }
+			ResetAccountId = Account->GetAccountId();
+		}
 		if (!Check(Execute(ECCLExperimentAction::Start, Guide), TEXT("start a case before reset")))
 		{
 			return;
@@ -410,6 +442,11 @@ void UCCLExperimentSmokeSubsystem::Tick(float DeltaTime)
 
 	if (Step == 5 && Passed(Guide))
 	{
+		if (ResetAccountId.IsValid())
+		{
+			const auto* Account = Agents->GetSimulation().GetEconomy().Accounts.Find(ResetAccountId);
+			if (!Check(Account && Account->Balance == 83, TEXT("environment reset preserves explicit player account and currency"))) { return; }
+		}
 		const double SavedTime = Runtime->GetClock().GetWorldSeconds();
 		const FGuid SavedWorld = Runtime->GetIdentity().WorldId;
 		if (!Check(Execute(ECCLExperimentAction::Save), TEXT("dedicated experiment slot saved")) ||
@@ -625,7 +662,14 @@ void UCCLExperimentSmokeSubsystem::TickTravel(double Now)
 	if (Step == 0)
 	{
 		HubWorldId = Runtime->GetIdentity().WorldId;
-		if (!Check(Runtime->QueueGameTime(5, Error) && Runtime->AdvancePending(6, 360, Error), TEXT("advance hub before map travel")))
+		if (!bTravelTimeQueued)
+		{
+			if (!Check(Runtime->QueueGameTime(5, Error), TEXT("queue hub time once before map travel"))) { return; }
+			bTravelTimeQueued = 1;
+		}
+		const bool bAdvanced = Runtime->AdvancePending(6, 360, Error);
+		if (!bAdvanced && Error == TEXT("Ground ecology route awaits ready navigation data.")) { return; }
+		if (!Check(bAdvanced, TEXT("advance hub before map travel")))
 		{
 			return;
 		}
@@ -718,6 +762,18 @@ void UCCLExperimentSmokeSubsystem::Capture(const TCHAR* Name)
 
 void UCCLExperimentSmokeSubsystem::Finish(const TCHAR* Role)
 {
+	if (const auto* Driver = GetWorld()->GetNetDriver())
+	{
+		auto Record = [&](const UNetConnection* Connection)
+		{
+			if (!Connection) { return; }
+			const double Seconds = FMath::Max(0., Driver->GetElapsedTime() - Connection->GetConnectTime());
+			UE_LOG(LogTemp, Display, TEXT("CCL_EXPERIMENT_NET Role=%s Seconds=%.6f InBytes=%d OutBytes=%d InPackets=%d OutPackets=%d"),
+				Role, Seconds, Connection->InTotalBytes, Connection->OutTotalBytes, Connection->InTotalPackets, Connection->OutTotalPackets);
+		};
+		Record(Driver->ServerConnection);
+		for (const auto& Connection : Driver->ClientConnections) { Record(Connection.Get()); }
+	}
 	UE_LOG(LogTemp, Display, TEXT("CCL_EXPERIMENT_SMOKE PASS Role=%s Map=%s"), Role, *GetWorld()->GetMapName());
 	bComplete = 1;
 	if (GetWorld()->GetNetMode() == NM_Standalone || FCString::Strcmp(Role, TEXT("Observer")) == 0)
@@ -756,9 +812,14 @@ bool UCCLExperimentSmokeSubsystem::CheckReplicatedEnvironment()
 	{
 		const auto Time = It->GetTime();
 		const auto& View = Time.Environment;
-		if (!View.bValid || View.Surfaces.Num() != 8 || View.Openings.Num() != 1 || View.Openings[0].OpenFraction != 1.)
+		if (!View.bValid || View.Surfaces.Num() != Config->ViewSurfaceIds.Num() || View.Openings.Num() != 1 || View.Openings[0].OpenFraction != 1.)
 		{
 			return false;
+		}
+
+		for (const auto& Id : Config->ViewSurfaceIds)
+		{
+			if (!View.Surfaces.ContainsByPredicate([&](const auto& Patch) { return Patch.SurfaceId == Id; })) { return false; }
 		}
 
 		FString Error;
@@ -1070,6 +1131,33 @@ void UCCLExperimentSmokeSubsystem::TickEnvironment(double Now)
 	}
 
 	if (Step == 20)
+	{
+		const auto* CycleGrid = Runtime->GetSurfaceSimulation().FindRegion(ACCLExperimentDirector::CycleRegionId());
+		if (!Check(CycleGrid != nullptr, TEXT("integrated cycle surface registered"))) { return; }
+		const auto Original = CycleGrid->Forcing;
+		if (!Check(Execute(ECCLExperimentAction::Start, TEXT("Zone_09")), TEXT("integrated cycle starts for cancellation"))) { return; }
+		const FGuid CancelledRun = Director->FindResult(TEXT("Zone_09"))->RunId;
+		if (!Check(!Director->Execute(PC, ECCLExperimentAction::Stop, TEXT("Zone_09"), Director->GetGeneration(), FGuid::NewGuid(), Error)
+			&& Director->Execute(PC, ECCLExperimentAction::Stop, TEXT("Zone_09"), Director->GetGeneration(), CancelledRun, Error),
+			TEXT("cycle stop requires the current run identity"))) { return; }
+		const auto* Restored = Runtime->GetSurfaceSimulation().FindRegion(ACCLExperimentDirector::CycleRegionId());
+		if (!Check(Restored && Restored->Forcing.TemperatureCelsius == Original.TemperatureCelsius
+			&& Restored->Forcing.SnowMetersPerWorldSecond == Original.SnowMetersPerWorldSecond
+			&& Restored->Forcing.EvaporationMetersPerWorldSecond == Original.EvaporationMetersPerWorldSecond,
+			TEXT("cancelled cycle restores original forcing"))) { return; }
+		if (!Check(Execute(ECCLExperimentAction::Start, TEXT("Zone_09")), TEXT("integrated cycle starts"))) { return; }
+		if (!Check(!Director->Execute(PC, ECCLExperimentAction::Stop, TEXT("Zone_09"), Director->GetGeneration(), CancelledRun, Error),
+			TEXT("old cycle run cannot cancel its replacement"))) { return; }
+		Step = 201;
+		return;
+	}
+	if (Step == 201 && Passed(TEXT("Zone_09")))
+	{
+		if (!Check(Execute(ECCLExperimentAction::Start, TEXT("Zone_09")), TEXT("integrated cycle restarts"))) { return; }
+		Step = 202;
+		return;
+	}
+	if (Step == 202 && Passed(TEXT("Zone_09")))
 	{
 		Finish(TEXT("Authority"));
 	}

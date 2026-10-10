@@ -350,3 +350,120 @@ void FCCLSurfaceScene::CopyGeometryProviders(const FCCLSurfaceScene& Other)
 {
 	GeometryProviders = Other.GeometryProviders;
 }
+
+
+bool ICCLSurfaceProvider::QuerySolidPoint(FName BodyId, const FVector3d& PositionMeters, bool& bOutSolid, FString& Error) const
+{
+	Error = TEXT("Surface provider does not support volume occupancy queries.");
+	return false;
+}
+
+bool ICCLSurfaceProvider::QueryOpeningFraction(const FCCLSurfaceOpening& Opening, double& OutFraction, FString& Error) const
+{
+	Error = TEXT("Surface provider does not resolve ventilation openings.");
+	return false;
+}
+
+bool FCCLSurfaceScene::QuerySolidPoint(FName BodyId, const FVector3d& PositionMeters, bool& bOutSolid, FString& Error) const
+{
+	if (!Revision || BodyId.IsNone() || !FiniteVector(PositionMeters))
+	{
+		Error = TEXT("Scene occupancy query is invalid.");
+		return false;
+	}
+
+	bool bSolid = false;
+	for (const auto& Pair : GeometryProviders)
+	{
+		bool bProviderSolid = false;
+		if (!Pair.Value->QuerySolidPoint(BodyId, PositionMeters, bProviderSolid, Error))
+		{
+			return false;
+		}
+
+		bSolid |= bProviderSolid;
+	}
+
+	bOutSolid = bSolid;
+	Error.Reset();
+	return true;
+}
+
+bool FCCLSurfaceScene::QueryOpeningFraction(const FCCLSurfaceOpening& Opening, double& OutFraction, FString& Error) const
+{
+	const auto* Current = Openings.FindByPredicate([&](const auto& O) { return O.OpeningId == Opening.OpeningId; });
+	const auto* Patch = Patches.FindByPredicate([&](const auto& P) { return P.SurfaceId == Opening.SurfaceId; });
+	if (!Revision || !Current || !Patch || Current->SurfaceId != Opening.SurfaceId
+		|| Current->SpaceA != Opening.SpaceA || Current->SpaceB != Opening.SpaceB
+		|| Current->CenterUV != Opening.CenterUV || Current->HalfExtentsMeters != Opening.HalfExtentsMeters
+		|| Current->OpenFraction != Opening.OpenFraction)
+	{
+		Error = TEXT("Ventilation opening does not match the committed surface scene.");
+		return false;
+	}
+
+	const uint64 QueryRevision = Revision;
+	const FGuid QueryEpoch = Epoch;
+	double Sum = 0.;
+	constexpr int32 AxisSamples = 4;
+	for (int32 V = 0; V < AxisSamples && Opening.OpenFraction > 0.; ++V)
+	{
+		for (int32 U = 0; U < AxisSamples; ++U)
+		{
+			const double X = Opening.CenterUV.X - Opening.HalfExtentsMeters.X
+				+ 2. * Opening.HalfExtentsMeters.X * Opening.OpenFraction * (U + 0.5) / AxisSamples;
+			const double Y = Opening.CenterUV.Y - Opening.HalfExtentsMeters.Y
+				+ 2. * Opening.HalfExtentsMeters.Y * (V + 0.5) / AxisSamples;
+			const FVector3d Position = Patch->CenterMeters + X * Patch->TangentU + Y * Patch->TangentV;
+			bool bSolid = false;
+			if (!QuerySolidPoint(Patch->BodyId, Position, bSolid, Error))
+			{
+				return false;
+			}
+
+			if (bSolid)
+			{
+				continue;
+			}
+
+			FCCLSurfaceQuery Ray;
+			Ray.BodyId = Patch->BodyId;
+			Ray.OriginMeters = Position - Patch->Normal * 0.5;
+			Ray.Direction = Patch->Normal;
+			Ray.MinimumDistanceMeters = 0.;
+			Ray.MaximumDistanceMeters = 1.;
+			Ray.RequiredRevision = QueryRevision;
+			Ray.RequiredEpoch = QueryEpoch;
+			Ray.KindMask = uint8(ECCLSurfaceKind::Terrain) | uint8(ECCLSurfaceKind::Structure);
+			TArray<FCCLSurfaceSample> Hits;
+			if (!QuerySurfaces(Ray, Hits, Error))
+			{
+				return false;
+			}
+
+			double Transmission = 1.;
+			for (const auto& Hit : Hits)
+			{
+				if (Hit.Revision != QueryRevision || Hit.Epoch != QueryEpoch || !Fraction(Hit.Transmission.Wind))
+				{
+					Error = TEXT("Ventilation geometry returned an inconsistent sample.");
+					return false;
+				}
+
+				Transmission *= Hit.Transmission.Wind;
+			}
+
+			Sum += Transmission;
+		}
+	}
+
+	if (Revision != QueryRevision || Epoch != QueryEpoch)
+	{
+		Error = TEXT("Surface scene changed during ventilation query.");
+		return false;
+	}
+
+	OutFraction = Opening.OpenFraction * Sum / (AxisSamples * AxisSamples);
+	Error.Reset();
+	return true;
+}

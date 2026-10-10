@@ -1,4 +1,7 @@
 #include "CCLExperimentDirector.h"
+#include "CCLFoodExperiment.h"
+#include "CCLBiologyExperiment.h"
+#include "CCLEcologyExperiment.h"
 
 #include "CCLWorldSimulationSubsystem.h"
 #include "CCLTerrainWaterParticipant.h"
@@ -82,19 +85,37 @@ void ACCLExperimentDirector::InitializeWaterExperiment()
 	}
 	if (bWaterReady && Runtime->GetSurfaceSimulation().FindRegion(WaterRegionId())
 		&& Runtime->GetSurfaceSimulation().FindRegion(TerrainWaterRegionId())
-		&& Runtime->GetSurfaceSimulation().FindRegion(SnowRegionId()))
+		&& Runtime->GetSurfaceSimulation().FindRegion(SnowRegionId())
+		&& Runtime->GetSurfaceSimulation().FindRegion(CycleRegionId())
+		&& Runtime->GetSurfaceSimulation().FindRegion(WeatherRegionId())
+		&& Runtime->GetSurfaceSimulation().FindRegion(FireRegionId(false))
+		&& Runtime->GetSurfaceSimulation().FindRegion(FireRegionId(true))
+		&& Runtime->GetSurfaceSimulation().GetAirSimulation().FindSpace(FireSpaceId()))
 	{
 		return;
 	}
 	FString Error;
+	const bool bFreshSurface = Runtime->GetSurfaceSimulation().GetRegions().IsEmpty();
+	FCCLSurfaceGrid Plants;
+	if (bFreshSurface && !VegetationGrid(Runtime->GetClock().GetWorldSeconds(), Plants, Error))
+	{
+		UE_LOG(LogTemp, Error, TEXT("CCL_VEGETATION_INIT %s"), *Error);
+		return;
+	}
 	FCCLSurfaceGrid TerrainWater;
 	if (!TerrainGrid(TerrainRegion->GetTerrainStore().GetSnapshot(), TerrainRegion->GetActorTransform(), TerrainWater, Error))
 	{
 		UE_LOG(LogTemp, Error, TEXT("CCL_WATER_INIT terrain: %s"), *Error);
 		return;
 	}
-	if ((!Runtime->GetSurfaceSimulation().FindRegion(WaterRegionId()) && !Runtime->AddSurfaceRegion(WaterGrid(), Error))
+	if ((bFreshSurface && (!Runtime->AddSurfaceRegion(Plants, Error)||!Runtime->AddSurfaceRegion(ACCLEcologyExperiment::Pond(),Error)))
+		|| (!Runtime->GetSurfaceSimulation().FindRegion(WaterRegionId()) && !Runtime->AddSurfaceRegion(WaterGrid(), Error))
+		|| (!Runtime->GetSurfaceSimulation().FindRegion(WeatherRegionId()) && !Runtime->AddSurfaceRegion(WeatherGrid(), Error))
+		|| (!Runtime->GetSurfaceSimulation().FindRegion(CycleRegionId()) && !Runtime->AddSurfaceRegion(CycleGrid(), Error))
 		|| (!Runtime->GetSurfaceSimulation().FindRegion(SnowRegionId()) && !Runtime->AddSurfaceRegion(SnowGrid(), Error))
+		|| (!Runtime->GetSurfaceSimulation().FindRegion(FireRegionId(false)) && !Runtime->AddSurfaceRegion(FireGrid(false), Error))
+		|| (!Runtime->GetSurfaceSimulation().FindRegion(FireRegionId(true)) && !Runtime->AddSurfaceRegion(FireGrid(true), Error))
+		|| (!Runtime->GetSurfaceSimulation().GetAirSimulation().FindSpace(FireSpaceId()) && !Runtime->AddAirSpace(FireRoom(), Error))
 		|| (!Runtime->GetSurfaceSimulation().FindRegion(TerrainWaterRegionId()) && !Runtime->AddSurfaceRegion(TerrainWater, Error)))
 	{
 		UE_LOG(LogTemp, Error, TEXT("CCL_WATER_INIT regions: %s"), *Error);
@@ -121,10 +142,34 @@ void ACCLExperimentDirector::InitializeWaterExperiment()
 		UE_LOG(LogTemp, Error, TEXT("CCL_WATER_INIT baseline: %s"), *Error);
 		return;
 	}
+    auto* Biology = ACCLBiologyExperiment::Find(GetWorld());
+    if (!Biology) { Biology = GetWorld()->SpawnActor<ACCLBiologyExperiment>(); }
+    if (!Biology || !Biology->Initialize(bFreshSurface, Initial, Error))
+    {
+        UE_LOG(LogTemp, Error, TEXT("CCL_BIOLOGY_ZONE_INIT %s"), *Error);
+        return;
+    }
+    auto* Food = ACCLFoodExperiment::Find(GetWorld());
+    if (!Food)
+    {
+        Food = GetWorld()->SpawnActor<ACCLFoodExperiment>(UCCLExperimentDefinition::ZoneCenter(7) + FVector(0, -650, 0), FRotator::ZeroRotator);
+    }
+    if (!Food || !Food->Initialize(bFreshSurface, Initial, Error))
+    {
+        UE_LOG(LogTemp, Error, TEXT("CCL_FOOD_INIT %s"), *Error);
+        return;
+    }
+    auto* Ecology=ACCLEcologyExperiment::Find(GetWorld());
+    if (!Ecology) { Ecology=GetWorld()->SpawnActor<ACCLEcologyExperiment>(UCCLExperimentDefinition::ZoneCenter(6),FRotator::ZeroRotator); }
+    if (!Ecology||!Ecology->Initialize(bFreshSurface,Initial,Error)) { UE_LOG(LogTemp,Error,TEXT("CCL_ECOLOGY_ZONE_INIT %s"),*Error); return; }
 	Definition.WorldId = Initial.Identity.WorldId;
-	if (!Base.Initialize(Definition, Error) || !TerrainGrid(Base.GetSnapshot(), TerrainRegion->GetActorTransform(), TerrainWater, Error)
+	if (!VegetationGrid(Initial.Clock.WorldSeconds, Plants, Error)
+		|| !Base.Initialize(Definition, Error) || !TerrainGrid(Base.GetSnapshot(), TerrainRegion->GetActorTransform(), TerrainWater, Error)
 		|| !InitialWater.Initialize(Initial.Identity.WorldId, Initial.Clock.GameSeconds, Initial.Clock.WorldSeconds, Initial.Clock.CompletedStepId, Error)
-		|| !InitialWater.AddRegion(SnowGrid(), Error) || !InitialWater.AddRegion(WaterGrid(), Error) || !InitialWater.AddRegion(TerrainWater, Error)
+		|| !InitialWater.AddRegion(WeatherGrid(), Error) || !InitialWater.AddRegion(SnowGrid(), Error) || !InitialWater.AddRegion(WaterGrid(), Error) || !InitialWater.AddRegion(TerrainWater, Error)
+		|| !InitialWater.AddRegion(ACCLEcologyExperiment::Pond(),Error) || !InitialWater.AddRegion(Plants, Error) || !InitialWater.AddRegion(FireGrid(false), Error) || !InitialWater.AddRegion(FireGrid(true), Error)
+		|| !InitialWater.AddRegion(CycleGrid(), Error)
+		|| !InitialWater.AddAirSpace(FireRoom(), Error)
 		|| !InitialWater.Capture(Initial.Surface, Error) || !FCCLWorldSnapshotCodec::Encode(Initial, InitialSnapshot, Error))
 	{
 		UE_LOG(LogTemp, Error, TEXT("CCL_WATER_INIT baseline water: %s"), *Error);
@@ -132,7 +177,9 @@ void ACCLExperimentDirector::InitializeWaterExperiment()
 	}
 	GetGameInstance()->GetSubsystem<UCCLAgentSessionStore>()->ExperimentInitialSnapshots.FindOrAdd(Initial.Identity.Domain) = InitialSnapshot;
 	bWaterReady = 1;
-	UE_LOG(LogTemp, Display, TEXT("CCL_WATER_INIT ready cells=5504 world=%s"), *Runtime->GetIdentity().WorldId.ToString());
+	int32 TotalCells = 0;
+	for (const auto& Pair : Runtime->GetSurfaceSimulation().GetRegions()) { TotalCells += Pair.Value.Cells.Num(); }
+	UE_LOG(LogTemp, Display, TEXT("CCL_WATER_INIT ready cells=%d world=%s"), TotalCells, *Runtime->GetIdentity().WorldId.ToString());
 }
 
 bool ACCLExperimentDirector::WaterAction(ECCLExperimentAction Action, FName CaseId, FString& Error)

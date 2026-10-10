@@ -203,6 +203,7 @@ public:
 	bool Load(const TArray<uint8>& Bytes, FString& Error);
 	void AdvanceTo(double TargetTime);
 	bool TryAdvanceTo(double TargetTime, FString& Error, int32 MaxSlices = 4096);
+	bool EndLife(FGuid AgentId, ECCLAgentDeathCause Cause, FString& Error);
 	void SetActorActive(FGuid Id, bool bActive);
 	bool SelectIntent(FGuid Id, const FCCLPersistentIntent& Intent, const TArray<FCCLDecisionTrace>* DecisionTraces = nullptr);
 	FGuid ReserveOpportunity(FGuid AgentId, FGuid OpportunityId);
@@ -215,6 +216,7 @@ public:
 	FCCLDecisionResult Decide(FGuid AgentId) const;
 	FCCLLifeExecutionResult Execute(FGuid AgentId, FGuid OpportunityId, int32 ExpectedRevision, FGuid RequestId, bool bReduced = false);
 	float GoalProgress(const FCCLAgentRecord& Agent, const FCCLLifeGoalState& Goal) const;
+	bool IsAlive(FGuid Id) const;
 	const FCCLAgentRecord* Find(FGuid Id) const { return Agents.Find(Agents.GetHandle(Id)); }
 	const FCCLWorldOpportunity* FindOpportunity(FGuid Id) const;
 	const FCCLEconomyState& GetEconomy() const { return Economy; }

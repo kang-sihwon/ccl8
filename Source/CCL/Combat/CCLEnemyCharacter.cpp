@@ -1,4 +1,5 @@
 ﻿#include "CCLEnemyCharacter.h"
+#include "Environment/CCLThermalExposure.h"
 
 #include "Map/CCLMapSystem.h"
 #include "Actions/CCLActionComponent.h"
@@ -23,6 +24,7 @@
 
 ACCLEnemyCharacter::ACCLEnemyCharacter()
 {
+	CreateDefaultSubobject<UCCLThermalReceiverComponent>(TEXT("ThermalReceiver"));
 	auto* MapMarker = CreateDefaultSubobject<UCCLMapMarkerComponent>(TEXT("MapMarker"));
 	MapMarker->Kind = ECCLMapKind::Enemy;
 

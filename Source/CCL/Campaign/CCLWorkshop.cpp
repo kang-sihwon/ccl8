@@ -34,7 +34,7 @@ ACCLWorkshop::ACCLWorkshop()
 void ACCLWorkshop::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-	if (auto* PC = GetWorld()->GetFirstPlayerController(); PC && PC->PlayerCameraManager && PC->GetPawn())
+	if (auto* PC = GetWorld()->GetFirstPlayerController(); Label && PC && PC->PlayerCameraManager && PC->GetPawn())
 	{
 		Label->SetWorldRotation((PC->PlayerCameraManager->GetCameraLocation() - Label->GetComponentLocation()).Rotation());
 		Label->SetVisibility(FVector::DistSquared(PC->GetPawn()->GetActorLocation(), GetActorLocation()) < FMath::Square(300.f));
@@ -50,8 +50,8 @@ void ACCLWorkshop::Tick(float DeltaTime)
 }
 void ACCLWorkshop::Refresh()
 {
-	Store->SetRelativeScale3D(FVector(0.55f + Level * 0.18f, 0.55f, 0.4f + Level * 0.15f));
-	Label->SetText(FText::FromString(FString::Printf(TEXT("창고 %d단계"), Level)));
+	if (Store) { Store->SetRelativeScale3D(FVector(0.55f + Level * 0.18f, 0.55f, 0.4f + Level * 0.15f)); }
+	if (Label) { Label->SetText(FText::FromString(FString::Printf(TEXT("창고 %d단계"), Level))); }
 }
 void ACCLWorkshop::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
 {

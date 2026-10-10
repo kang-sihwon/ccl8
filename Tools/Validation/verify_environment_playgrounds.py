@@ -25,17 +25,27 @@ for name in ('EnvironmentPlayground','EnvironmentScenario'):
     configs=[a for a in current if isinstance(a,unreal.CCLWorldEnvironmentConfig)]
     presentations=[a for a in current if isinstance(a,unreal.CCLWorldEnvironmentPresentation)]
     assert len(configs)==1 and len(presentations)==1
+    weather=[a for a in current if isinstance(a,unreal.CCLWeatherPresentation)]
+    assert len(weather)==1 and weather[0].rain_system and weather[0].snow_system and weather[0].cloud_material
+    fire=[a for a in current if isinstance(a,unreal.CCLFirePresentation)]
+    assert len(fire)==1 and fire[0].flame_system and fire[0].smoke_system and fire[0].fuel_material and fire[0].char_material
+    vegetation=[a for a in current if isinstance(a,unreal.CCLVegetationPresentation)]
+    assert len(vegetation)==1 and len(vegetation[0].state_materials)==4 and all(vegetation[0].state_materials)
+    assert definitions[6].get_editor_property('kind')==unreal.CCLExperimentKind.ECOLOGY
+    assert definitions[7].get_editor_property('kind')==unreal.CCLExperimentKind.VEGETATION
+    assert definitions[9].get_editor_property('kind')==unreal.CCLExperimentKind.CYCLE
+    assert definitions[10].get_editor_property('kind')==unreal.CCLExperimentKind.FIRE
     config=configs[0]
-    assert len(config.get_editor_property('surfaces'))==8
+    assert len(config.get_editor_property('surfaces'))==9
     assert len(config.get_editor_property('openings'))==1
     assert len(config.get_editor_property('probes'))==3
-    assert len(config.get_editor_property('view_surface_ids'))==8
+    assert len(config.get_editor_property('view_surface_ids'))==9
     assert config.get_editor_property('celestial_definition')
     sun=presentations[0].get_editor_property('sun')
     assert sun and sun.light_component.get_editor_property('mobility') == unreal.ComponentMobility.MOVABLE
     assert presentations[0].get_editor_property('solid_mesh')
     presentations[0].refresh_preview()
     assert levels.save_current_level()
-    rows.append(dict(map=path,stations=len(stations),definitions=len(definitions),opened_and_saved=True,celestial_config=True,surfaces=8,openings=1,probes=3))
+    rows.append(dict(map=path,stations=len(stations),definitions=len(definitions),opened_and_saved=True,celestial_config=True,surfaces=9,openings=1,probes=3))
 (root/'Saved/EnvironmentGoal/experiment-assets.json').write_text(json.dumps(dict(maps=rows,fresh_editor_reload=True),indent=2),encoding='utf-8')
 unreal.log('CCL_EXPERIMENT_ASSETS PASS maps=2 stations_per_map=12 fresh_reload=True')

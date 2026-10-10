@@ -23,6 +23,9 @@ struct FCCLSavedItem
 
 	UPROPERTY()
 	int32 LoadedAmmo = 0;
+
+	UPROPERTY()
+	FString Food;
 };
 USTRUCT()
 struct FCCLSessionRecord
@@ -30,7 +33,7 @@ struct FCCLSessionRecord
 	GENERATED_BODY()
 
 	UPROPERTY()
-	int32 Version = 6;
+	int32 Version = 7;
 
 	UPROPERTY()
 	FString AgentSimulation;
@@ -74,6 +77,7 @@ public:
 	static UCCLItemDefinition* Item(FName Id);
 	static UCCLSkillDefinition* Skill(FName Id);
 	static bool Validate(const FCCLSessionRecord& Record);
+    static bool ValidateProfile(const FCCLSessionRecord& Record, FGuid WorldId, double WorldSeconds, int32 Capacity);
 	static bool Encode(const FCCLSessionRecord& Record, TArray<uint8>& Bytes);
 	static bool Decode(const TArray<uint8>& Bytes, FCCLSessionRecord& Record);
 };

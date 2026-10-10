@@ -165,9 +165,10 @@ bool FCCLWorldClock::Prepare(double MaxGameSeconds, double MaxWorldSeconds, FCCL
 	Candidate.GameToSeconds = State.GameSeconds + Delta;
 	Candidate.WorldFromSeconds = State.WorldSeconds;
 	Candidate.WorldToSeconds = State.WorldSeconds + Delta * Pending.Scale;
-	if (Delta == Pending.GameSeconds)
+	if (Pending.GameToSeconds - State.GameSeconds <= MaxGameSeconds &&
+		Pending.WorldToSeconds - State.WorldSeconds <= MaxWorldSeconds)
 	{
-		// Preserve the accepted boundary exactly when finishing an input segment.
+		// Test both accepted endpoints, not a repeatedly rounded scale conversion.
 		Candidate.GameToSeconds = Pending.GameToSeconds;
 		Candidate.WorldToSeconds = Pending.WorldToSeconds;
 	}

@@ -350,6 +350,7 @@ bool ACCLExperimentDirector::QueueWorldRestore(const TArray<uint8>& TerrainBytes
 
 		auto* Director = Weak.Get();
 		Director->GetWorldTimerManager().ClearTimer(Director->RunTimer);
+		Director->GetWorld()->GetSubsystem<UCCLWorldSimulationSubsystem>()->ReleaseManualAdvance(Director);
 		Director->Generation = FGuid::NewGuid();
 		Director->ActiveCase = NAME_None;
 		Director->TerrainCaseStep = 0;

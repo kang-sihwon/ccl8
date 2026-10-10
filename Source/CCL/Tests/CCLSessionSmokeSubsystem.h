@@ -15,6 +15,7 @@ public:
 	virtual UWorld* GetTickableGameObjectWorld() const override { return GetWorld(); }
 private:
 	bool Check(bool bCondition, const TCHAR* Message);
+    bool CheckPublication(const struct FCCLSessionRecord& Record);
 	void Finish();
 	void Capture(const TCHAR* Name);
 	int32 Step = 0;

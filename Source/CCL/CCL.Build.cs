@@ -16,6 +16,12 @@ public class CCL : ModuleRules
 		PrivateDependencyModuleNames.AddRange(new string[] { "Slate", "SlateCore", "Json", "JsonUtilities" });
 		PrivateDependencyModuleNames.Add("GeometryCore");
 		PrivateDependencyModuleNames.Add("AnimationCore");
+		PrivateDependencyModuleNames.Add("Niagara");
+		if (Target.bBuildEditor)
+		{
+			PrivateIncludePaths.Add(System.IO.Path.Combine(EngineDirectory, "Plugins/FX/Niagara/Source/Niagara/Internal"));
+			PrivateIncludePaths.Add(System.IO.Path.Combine(EngineDirectory, "Plugins/FX/Niagara/Source/NiagaraShader/Internal"));
+		}
 		PrivateDependencyModuleNames.AddRange(new string[] { "PhysicsCore", "Chaos", "ChaosCore" });
 		PublicDependencyModuleNames.Add("GeometryFramework");
 		PublicDependencyModuleNames.Add("NetCore");

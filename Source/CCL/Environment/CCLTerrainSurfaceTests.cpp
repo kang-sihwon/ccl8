@@ -59,7 +59,7 @@ bool FCCLTerrainSurfaceTest::RunTest(const FString& Parameters)
 	}
 
 	const FTransform Transform(FRotator::ZeroRotator, FVector(1000., 2000., 3000.));
-	auto Surface = MakeShared<FCCLTerrainSurface>(Definition, Store.GetRevision(), Store.GetEpoch(), Transform, Meshes);
+	auto Surface = MakeShared<FCCLTerrainSurface>(Store.GetSnapshot(), Store.GetEpoch(), Transform, Meshes);
 	FCCLSurfaceQuery Query;
 	Query.BodyId = Definition.BodyId;
 	Query.OriginMeters = FVector(10.13, 20.17, 32.);
@@ -90,7 +90,7 @@ bool FCCLTerrainSurfaceTest::RunTest(const FString& Parameters)
 	TestFalse(TEXT("reject stale epoch"), Surface->QuerySurfaces(Query, Hits, Error));
 	Query.RequiredEpoch = Store.GetEpoch();
 	Algo::Reverse(Meshes);
-	FCCLTerrainSurface Reordered(Definition, Store.GetRevision(), Store.GetEpoch(), Transform, Meshes);
+	FCCLTerrainSurface Reordered(Store.GetSnapshot(), Store.GetEpoch(), Transform, Meshes);
 	TestTrue(TEXT("reordered chunks queried"), Reordered.QuerySurfaces(Query, Hits, Error));
 	for (int32 Index = 0; Index < Hits.Num(); ++Index)
 	{
@@ -113,6 +113,72 @@ bool FCCLTerrainSurfaceTest::RunTest(const FString& Parameters)
 	Query.RequiredEpoch = Scene.GetEpoch();
 	TestTrue(TEXT("removed terrain query"), Scene.QuerySurfaces(Query, Hits, Error));
 	TestEqual(TEXT("removed terrain has no hits"), Hits.Num(), 0);
+	return true;
+}
+
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FCCLTerrainSurfaceBoundsTest, "CCL.Environment.Terrain.SurfaceChunkBounds",
+	EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
+
+bool FCCLTerrainSurfaceBoundsTest::RunTest(const FString& Parameters)
+{
+	FCCLTerrainDefinition Definition;
+	Definition.WorldId = FGuid(1, 2, 3, 4);
+	Definition.RegionId = FGuid(5, 6, 7, 8);
+	Definition.DefinitionId = FGuid(9, 10, 11, 12);
+	FCCLTerrainStore Store;
+	FString Error;
+	if (!TestTrue(TEXT("initialize layered query fixture"), Store.Initialize(Definition, Error))) { return false; }
+	TArray<TSharedRef<const FCCLTerrainMesh>> Meshes;
+	for (int32 Layer = 0; Layer < 2; ++Layer)
+	{
+		auto Mesh = MakeShared<FCCLTerrainMesh>();
+		Mesh->OriginMeters = FVector(0., 0., -4. * Layer);
+		Mesh->VerticesMeters = {FVector(0., 0., 0.), FVector(0., 4., 0.), FVector(4., 4., 0.), FVector(4., 0., 0.)};
+		Mesh->Triangles = {FIntVector(0, 1, 2), FIntVector(0, 2, 3)};
+		Mesh->TriangleCells = {FIntVector(0, 0, -4 * Layer), FIntVector(0, 0, -4 * Layer)};
+		Mesh->TriangleMaterials = {0, 0};
+		Meshes.Add(Mesh);
+	}
+	Meshes.Add(MakeShared<FCCLTerrainMesh>());
+	for (const FRotator Rotation : {FRotator::ZeroRotator, FRotator(17., 63., -12.)})
+	{
+		const FTransform Transform(Rotation, FVector(1000., 2000., 3000.));
+		const FCCLTerrainSurface Surface(Store.GetSnapshot(), Store.GetEpoch(), Transform, Meshes);
+		FCCLSurfaceQuery Query;
+		Query.BodyId = Definition.BodyId;
+		Query.RequiredRevision = Store.GetRevision();
+		Query.RequiredEpoch = Store.GetEpoch();
+		Query.MaximumDistanceMeters = 12.;
+		Query.Direction = Transform.TransformVectorNoScale(-FVector::ZAxisVector);
+		TArray<FCCLSurfaceSample> Hits;
+		for (const FVector2D XY : {FVector2D(2., 2.), FVector2D(0., 0.), FVector2D(4., 4.),
+			FVector2D(-2.e-10, 2.), FVector2D(4. + 2.e-10, 2.)})
+		{
+			Query.OriginMeters = Transform.TransformPosition(FVector(XY.X, XY.Y, 2.) * 100.) / 100.;
+			if (!TestTrue(TEXT("axis, vertex and tolerant edge rays query"), Surface.QuerySurfaces(Query, Hits, Error))
+				|| !TestEqual(TEXT("both layers survive chunk bounds"), Hits.Num(), 2)) { return false; }
+			TestTrue(TEXT("top distance unchanged"), FMath::IsNearlyEqual(Hits[0].DistanceMeters, 2., 1.e-7));
+			TestTrue(TEXT("bottom distance unchanged"), FMath::IsNearlyEqual(Hits[1].DistanceMeters, 6., 1.e-7));
+		}
+		Query.OriginMeters = Transform.TransformPosition(FVector(2., 2., 2.) * 100.) / 100.;
+		Query.MaximumDistanceMeters = 1.9;
+		TestTrue(TEXT("short segment valid"), Surface.QuerySurfaces(Query, Hits, Error));
+		TestEqual(TEXT("short segment cannot reach terrain"), Hits.Num(), 0);
+		Query.MinimumDistanceMeters = 2.1;
+		Query.MaximumDistanceMeters = 6.1;
+		TestTrue(TEXT("minimum distance clips near layer"), Surface.QuerySurfaces(Query, Hits, Error));
+		TestEqual(TEXT("only distant layer remains"), Hits.Num(), 1);
+		Query.MinimumDistanceMeters = 0.;
+		Query.MaximumDistanceMeters = 12.;
+		Query.OriginMeters = Transform.TransformPosition(FVector(2., 2., -6.) * 100.) / 100.;
+		Query.Direction = -Query.Direction;
+		TestTrue(TEXT("reverse direction valid"), Surface.QuerySurfaces(Query, Hits, Error));
+		TestEqual(TEXT("reverse direction preserves both layers"), Hits.Num(), 2);
+		Query.OriginMeters = Transform.TransformPosition(FVector(200., 200., 2.) * 100.) / 100.;
+		Query.Direction = -Query.Direction;
+		TestTrue(TEXT("distant parallel ray valid"), Surface.QuerySurfaces(Query, Hits, Error));
+		TestEqual(TEXT("distant ray has no false hits"), Hits.Num(), 0);
+	}
 	return true;
 }
 #endif

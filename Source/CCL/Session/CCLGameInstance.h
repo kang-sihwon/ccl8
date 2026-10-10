@@ -33,6 +33,7 @@ public:
 	static bool ValidateAddress(const FString& Address);
 	static FString SaveSlot();
 private:
+    friend class UCCLSessionSmokeSubsystem;
 	void BeforeMap(const FString& MapName);
 	void AfterMap(UWorld* World);
 	void TryRestore();

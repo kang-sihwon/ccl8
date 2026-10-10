@@ -199,4 +199,54 @@ bool FCCLWorldClockBoundsTest::RunTest(const FString& Parameters)
 	TestTrue(TEXT("input endpoint survives different accumulation order"), Clock.Capture(Snapshot, Error));
 	return true;
 }
+
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FCCLWorldClockSplitBoundaryTest, "CCL.Environment.Clock.SplitAcceptedBoundaries",
+    EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
+
+bool FCCLWorldClockSplitBoundaryTest::RunTest(const FString& Parameters)
+{
+    for (double Start : {0., 86400., 315360000.})
+    {
+        FCCLWorldClock Clock;
+        FString Error;
+        if (!TestTrue(TEXT("reset split clock"), Clock.Reset(Start, 60., Error))) { return false; }
+        for (int32 Frame = 0; Frame < 200; ++Frame)
+        {
+            if (!Clock.QueueGameTime(.25, false, Error) || !Clock.QueueGameTime(100., true, Error))
+            {
+                AddError(Error);
+                return false;
+            }
+            for (int32 Slice = 0; Slice < 15; ++Slice)
+            {
+                FCCLWorldStep Step, Retry;
+                FCCLWorldClockSnapshot Saved;
+                if (!Clock.Prepare(.25, 1., Step, Error) || !Clock.Abort(Step.Ticket, Error) ||
+                    !Clock.Prepare(.25, 1., Retry, Error))
+                {
+                    AddError(FString::Printf(TEXT("frame %d slice %d: %s"), Frame, Slice, *Error));
+                    return false;
+                }
+                TestEqual(TEXT("retry keeps accepted game boundary"), Retry.GameToSeconds, Step.GameToSeconds);
+                TestEqual(TEXT("retry keeps accepted world boundary"), Retry.WorldToSeconds, Step.WorldToSeconds);
+                TestEqual(TEXT("one world second per slice"), Retry.WorldToSeconds - Retry.WorldFromSeconds, 1.);
+                if (!Clock.Commit(Retry.Ticket, Error) || !Clock.Capture(Saved, Error))
+                {
+                    AddError(Error);
+                    return false;
+                }
+                FCCLWorldClock Restored;
+                if (!Restored.Restore(Saved, Error)) { AddError(Error); return false; }
+                Clock = MoveTemp(Restored);
+            }
+            if (!TestFalse(TEXT("fifteen slices consume the full accepted segment"), Clock.HasPendingTime()))
+            {
+                return false;
+            }
+            TestEqual(TEXT("game endpoint preserved without paused input"), Clock.GetGameSeconds(), (Frame + 1) * .25);
+            TestEqual(TEXT("world endpoint preserved"), Clock.GetWorldSeconds(), Start + (Frame + 1) * 15.);
+        }
+    }
+    return true;
+}
 #endif

@@ -1,5 +1,7 @@
 #include "CCLSurfaceSimulation.h"
 
+#include "CCLCelestialSystem.h"
+#include "CCLSurfaceQuery.h"
 #include "Misc/Crc.h"
 #include "Serialization/MemoryReader.h"
 #include "Serialization/MemoryWriter.h"
@@ -64,7 +66,8 @@ namespace
 		double Amount;
 	};
 
-	bool AdvanceGrid(FCCLSurfaceGrid& G, double GameDelta, double WorldDelta, int32 Steps, FString& Error)
+	bool AdvanceGrid(FCCLSurfaceGrid& G, double GameDelta, double WorldFrom, double WorldDelta, int32 Steps,
+		double Irradiance, double DaylightHours, FString& Error, FCCLSurfaceThermalContext& Context)
 	{
 		const double Area = FMath::Square(G.SpacingMeters);
 		const double Dt = GameDelta / Steps;
@@ -82,8 +85,10 @@ namespace
 		Transfers.Reserve(G.Cells.Num() * 2);
 		for (int32 Substep = 0; Substep < Steps; ++Substep)
 		{
-			for (auto& Cell : G.Cells)
+			for (int32 CellIndex = 0; CellIndex < G.Cells.Num(); ++CellIndex)
 			{
+				auto& Cell = G.Cells[CellIndex];
+				const auto* Room = Context.PreviousAir->FindSpaceAt(FCCLSurfaceThermalContext::CellPosition(G, CellIndex));
 				const double Rain = F.RainMetersPerWorldSecond * WorldDt * Area * Cell.RainExposure;
 				Cell.WaterCubicMeters += Rain;
 				G.Ledger.RainCubicMeters += Rain;
@@ -99,7 +104,45 @@ namespace
 				Cell.SoilCubicMeters -= Drainage;
 				Cell.WaterCubicMeters += Drainage;
 				const double Phase = F.PhaseMetersPerDegreeWorldSecond * FMath::Abs(F.TemperatureCelsius) * WorldDt * Area;
-				if (F.TemperatureCelsius < 0.)
+				if (Room)
+				{
+					const double Temperature = Room->TemperatureCelsius();
+					const double CapacityPerCell = Room->VolumeCubicMeters * FCCLAirSimulation::HeatCapacityPerCubicMeter
+						/ FMath::Max(1, Context.ContactCounts.FindRef(Room->SpaceId));
+					const double Heat = FMath::Min(FMath::Abs(Temperature) * 30. * Area * Dt,
+						FMath::Abs(Temperature) * CapacityPerCell * 0.5);
+					if (Temperature > 0.)
+					{
+						const double IceMelt = FMath::Min(Cell.IceCubicMeters, Heat / 334000000.);
+						const double SnowMelt = FMath::Min(Cell.SnowCubicMeters, FMath::Max(0., Heat / 334000000. - IceMelt));
+						const double Fraction = Cell.SnowCubicMeters > 0. ? SnowMelt / Cell.SnowCubicMeters : 0.;
+						Cell.SnowVolumeCubicMeters *= 1. - Fraction;
+						Cell.SnowCubicMeters -= SnowMelt;
+						Cell.IceCubicMeters -= IceMelt;
+						Cell.WaterCubicMeters += IceMelt + SnowMelt;
+						const double MeltHeat = (IceMelt + SnowMelt) * 334000000.;
+						const double Vapor = FMath::Min(Cell.WaterCubicMeters + Cell.SoilCubicMeters,
+							FMath::Max(0., Heat - MeltHeat) / 2500000000.);
+						const double LiquidLoss = FMath::Min(Cell.WaterCubicMeters, Vapor);
+						const double SoilLoss = FMath::Min(Cell.SoilCubicMeters, FMath::Max(0., Vapor - LiquidLoss));
+						Cell.WaterCubicMeters -= LiquidLoss;
+						Cell.SoilCubicMeters -= SoilLoss;
+						G.Ledger.EvaporatedCubicMeters += LiquidLoss + SoilLoss;
+						const double UsedHeat = MeltHeat + (LiquidLoss + SoilLoss) * 2500000000.;
+						G.AirHeatToSurfaceJoules += UsedHeat;
+						Context.AddSource(Room->SpaceId, -UsedHeat, (LiquidLoss + SoilLoss) * 1000., 0.);
+					}
+					else
+					{
+						const double Frozen = FMath::Min(Cell.WaterCubicMeters, Heat / 334000000.);
+						Cell.WaterCubicMeters -= Frozen;
+						Cell.IceCubicMeters += Frozen;
+						const double Released = Frozen * 334000000.;
+						G.SurfaceHeatToAirJoules += Released;
+						Context.AddSource(Room->SpaceId, Released, 0., 0.);
+					}
+				}
+				else if (F.TemperatureCelsius < 0.)
 				{
 					const double Frozen = FMath::Min(Cell.WaterCubicMeters, Phase);
 					Cell.WaterCubicMeters -= Frozen;
@@ -117,7 +160,7 @@ namespace
 					Cell.WaterCubicMeters += SnowMelt;
 				}
 
-				const double Demand = F.EvaporationMetersPerWorldSecond * WorldDt * Area;
+				const double Demand = Room ? 0. : F.EvaporationMetersPerWorldSecond * WorldDt * Area;
 				const double LiquidLoss = FMath::Min(Cell.WaterCubicMeters, Demand);
 				const double SoilLoss = FMath::Min(Cell.SoilCubicMeters, Demand - LiquidLoss);
 				Cell.WaterCubicMeters -= LiquidLoss;
@@ -127,6 +170,12 @@ namespace
 				{
 					return Fail(Error, TEXT("Surface input exceeds the cell's explicit storage capacity."));
 				}
+			}
+
+			if (!CCLSurfaceFire::AdvanceCandidate(G, Dt, Error, &Context)
+				|| !CCLSurfaceVegetation::AdvanceCandidate(G, WorldFrom + Substep * WorldDt, WorldDt, Irradiance, DaylightHours, Error, &Context))
+			{
+				return false;
 			}
 
 			Transfers.Reset();
@@ -266,6 +315,7 @@ bool FCCLSurfaceSimulation::Initialize(FGuid InWorldId, double InGameSeconds, do
 		return Fail(Error, TEXT("Surface simulation requires valid world and completed times."));
 	}
 
+	Air = {};
 	Regions.Reset();
 	SnowContacts.Reset();
 	WorldId = InWorldId;
@@ -277,7 +327,7 @@ bool FCCLSurfaceSimulation::Initialize(FGuid InWorldId, double InGameSeconds, do
 
 bool FCCLSurfaceSimulation::AddRegion(FCCLSurfaceGrid Region, FString& Error)
 {
-	if (!IsInitialized() || Regions.Contains(Region.RegionId) || Regions.Num() >= MaximumRegions || !ValidateRegion(Region, Error))
+	if (!IsInitialized() || Regions.Contains(Region.RegionId) || Regions.Num() >= MaximumRegions || (!ValidateRegion(Region, Error) || !Region.Vegetation.ValidateAt(WorldSeconds, Error)))
 	{
 		return Fail(Error, TEXT("Surface region is invalid, duplicated or over budget."));
 	}
@@ -305,11 +355,52 @@ bool FCCLSurfaceSimulation::ChangeForcing(FGuid RegionId, const FCCLSurfaceForci
 	}
 
 	Region->Forcing = Forcing;
+	Region->Climate.bEnabled = 0;
 	++Region->Revision;
 	return true;
 }
 
-bool FCCLSurfaceSimulation::Advance(const FCCLWorldStep& Step, FString& Error)
+bool FCCLSurfaceSimulation::AddAirSpace(const FCCLAirSpace& Space, FString& Error)
+{
+	if (!IsInitialized() || (Space.ClimateRegionId.IsValid() && !Regions.Contains(Space.ClimateRegionId)))
+	{
+		return Fail(Error, TEXT("Air space requires an initialized world and existing climate region."));
+	}
+	return Air.AddSpace(Space, Error);
+}
+
+bool FCCLSurfaceSimulation::Ignite(FGuid RegionId, int32 CellIndex, double HeatJoules, FString& Error)
+{
+	auto* Region = Regions.Find(RegionId);
+	if (!Region || Region->Revision == MAX_uint64 || !Region->Fire.Cells.IsValidIndex(CellIndex))
+	{
+		return Fail(Error, TEXT("Ignition requires an existing fuel cell and available revision."));
+	}
+	if (!FCCLCombustionModel::AddHeat(Region->Fire.Material, HeatJoules, Region->Fire.Cells[CellIndex], Error))
+	{
+		return false;
+	}
+	++Region->Revision;
+	return true;
+}
+
+bool FCCLSurfaceSimulation::ChangeClimate(FGuid RegionId, const FCCLClimate& Climate, FString& Error)
+{
+	auto* Region = Regions.Find(RegionId);
+	if (!Region || Region->Revision == MAX_uint64 || !FCCLWeatherModel::Validate(Climate, Region->Weather, Error))
+	{
+		Error = TEXT("Invalid weather region, climate or exhausted revision.");
+		return false;
+	}
+
+	Region->Climate = Climate;
+	++Region->Revision;
+	return true;
+}
+
+bool FCCLSurfaceSimulation::Advance(const FCCLWorldStep& Step, FString& Error,
+	const FCCLCelestialSystem* Celestial, const FCCLCelestialObserver* Observer, const ICCLSurfaceProvider* Shelter,
+	const TArray<FCCLSurfaceOpening>* Openings)
 {
 	Error.Reset();
 	if (!Validate(Error) || Step.StepId != StepId + 1 || StepId == MAX_uint64
@@ -319,28 +410,239 @@ bool FCCLSurfaceSimulation::Advance(const FCCLWorldStep& Step, FString& Error)
 	{
 		return Fail(Error, TEXT("Surface step does not match its committed world clock."));
 	}
-
 	const double Delta = Step.GameToSeconds - GameSeconds;
+	const double WorldDelta = Step.WorldToSeconds - WorldSeconds;
+	const bool bAir = !Air.GetSpaces().IsEmpty();
 	const double StepCount = FMath::CeilToDouble(Delta / 0.25);
-	if (!Regions.IsEmpty() && StepCount > MaximumSubsteps)
+	if ((!Regions.IsEmpty() || bAir) && StepCount > MaximumSubsteps)
 	{
 		return Fail(Error, TEXT("Surface substep budget exceeded; world time remains pending."));
 	}
-
-	FCCLSurfaceSimulation Candidate = *this;
-	for (auto& Pair : Candidate.Regions)
+	bool bNatural = false;
+	for (const auto& Pair : Regions)
 	{
-		if (Pair.Value.Revision == MAX_uint64 || !AdvanceGrid(Pair.Value, Delta, Step.WorldToSeconds - WorldSeconds, int32(StepCount), Error))
+		bNatural |= Pair.Value.Climate.bEnabled != 0 || !Pair.Value.Vegetation.Cells.IsEmpty();
+	}
+	const double Slices = bAir ? FMath::Max(StepCount, bNatural ? FMath::CeilToDouble(WorldDelta / 60.) : 1.) : 1.;
+	if (Slices > MaximumSubsteps || (bAir && !Openings))
+	{
+		return Fail(Error, TEXT("Air coupling requires bounded common steps and explicit opening context."));
+	}
+	FCCLSurfaceSimulation Candidate = *this;
+	for (int32 I = 0; I < int32(Slices); ++I)
+	{
+		if (!Candidate.AdvanceSlice(Delta / Slices, WorldSeconds + I * WorldDelta / Slices,
+			WorldDelta / Slices, Error, Celestial, Observer, Shelter, Openings))
 		{
 			return false;
 		}
 	}
-
 	Candidate.GameSeconds = Step.GameToSeconds;
 	Candidate.WorldSeconds = Step.WorldToSeconds;
 	Candidate.StepId = Step.StepId;
+	if (!Candidate.Validate(Error))
+	{
+		return false;
+	}
 	*this = MoveTemp(Candidate);
 	return true;
+}
+
+bool FCCLSurfaceSimulation::AdvanceSlice(double GameDelta, double WorldFrom, double WorldDelta, FString& Error,
+	const FCCLCelestialSystem* Celestial, const FCCLCelestialObserver* Observer,
+	const ICCLSurfaceProvider* Shelter, const TArray<FCCLSurfaceOpening>* Openings)
+{
+	const FCCLAirSimulation PreviousAir = Air;
+	FCCLSurfaceThermalContext Context;
+	Context.PreviousAir = &PreviousAir;
+	Context.Shelter = Shelter;
+	Context.Observer = Observer;
+	for (const auto& Pair : Regions)
+	{
+		for (int32 I = 0; I < Pair.Value.Cells.Num(); ++I)
+		{
+			if (const auto* Room = PreviousAir.FindSpaceAt(FCCLSurfaceThermalContext::CellPosition(Pair.Value, I)))
+			{
+				++Context.ContactCounts.FindOrAdd(Room->SpaceId);
+			}
+		}
+	}
+	const double WeatherCount = FMath::Max(1., FMath::CeilToDouble(WorldDelta / 60.));
+	TArray<double> Irradiance, Daylight;
+	for (const auto& Pair : Regions)
+	{
+		if ((!Pair.Value.Climate.bEnabled && Pair.Value.Vegetation.Cells.IsEmpty()) || WorldDelta == 0.)
+		{
+			continue;
+		}
+		if (!Celestial || !Observer || WeatherCount > MaximumSubsteps)
+		{
+			return Fail(Error, TEXT("Natural weather requires celestial context and a bounded world-time budget."));
+		}
+
+		Irradiance.Reserve(int32(WeatherCount));
+		for (int32 I = 0; I < int32(WeatherCount); ++I)
+		{
+			FCCLCelestialObservation Observation;
+			if (!Celestial->Observe(WorldFrom + (I + 0.5) * WorldDelta / WeatherCount, *Observer, Observation, Error))
+			{
+				return false;
+			}
+			Irradiance.Add(Observation.TotalHorizontalIrradianceWattsPerM2);
+			const auto* Star = Observation.Stars.FindByPredicate([&](const FCCLStellarObservation& S)
+			{
+				return S.BodyId == Observation.DominantStarId;
+			});
+			double Hours = 0.;
+			if (Star)
+			{
+				const double Latitude = FMath::DegreesToRadians(FMath::Clamp(Observer->LatitudeDegrees, -89.999, 89.999));
+				const double Declination = FMath::DegreesToRadians(Star->DeclinationDegrees);
+				const double CosHourAngle = -FMath::Tan(Latitude) * FMath::Tan(Declination);
+				Hours = 24. * FMath::Acos(FMath::Clamp(CosHourAngle, -1., 1.)) / UE_DOUBLE_PI;
+			}
+
+			Daylight.Add(Hours);
+		}
+		break;
+	}
+
+	TArray<FGuid> RegionIds;
+	Regions.GetKeys(RegionIds);
+	RegionIds.Sort(GuidLess);
+	for (FGuid RegionId : RegionIds)
+	{
+		auto& G = Regions[RegionId];
+		if (G.bDynamicShelter)
+		{
+			if (!Shelter || !Observer || !Celestial)
+			{
+				return Fail(Error, TEXT("Dynamic shelter requires surface and celestial context."));
+			}
+			FCCLCelestialObservation Observation;
+			if (!Celestial->Observe(WorldFrom + WorldDelta * 0.5, *Observer, Observation, Error))
+			{
+				return false;
+			}
+			FCCLShelterQuery Query;
+			Query.BodyId = Observer->BodyId;
+			Query.RequiredRevision = Shelter->GetRevision();
+			Query.RequiredEpoch = Shelter->GetEpoch();
+			Query.ToWindSource = FVector::ForwardVector;
+			if (!Observation.Stars.IsEmpty())
+			{
+				Query.ToSun = Observation.Stars[0].LocalDirection;
+			}
+			for (int32 Index = 0; Index < G.Cells.Num(); ++Index)
+			{
+				auto& Cell = G.Cells[Index];
+				Query.PositionMeters = FVector(G.OriginMeters.X + (Index % G.Size.X + 0.5) * G.SpacingMeters,
+					G.OriginMeters.Y + (Index / G.Size.X + 0.5) * G.SpacingMeters,
+					Cell.BedMeters + G.SnowDepthMeters(Index) + 0.01);
+				FCCLShelterSample Sample;
+				if (!FCCLShelterEvaluator::Evaluate(*Shelter, Query, Sample, Error))
+				{
+					return false;
+				}
+				Cell.RainExposure = Sample.Transmission.Precipitation;
+				Cell.SunExposure = Sample.Transmission.Sun;
+				Cell.WindExposure = Sample.Transmission.Wind;
+			}
+		}
+		const bool bNatural = G.Climate.bEnabled && WorldDelta > 0.;
+		const bool bVegetation = !G.Vegetation.Cells.IsEmpty() && WorldDelta > 0.;
+		const int32 Count = bNatural || bVegetation ? Irradiance.Num() : 1;
+		const double GameDt = GameDelta / Count;
+		const double WorldDt = WorldDelta / Count;
+		const int32 FlowSteps = FMath::CeilToInt32(GameDt / 0.25);
+		for (int32 I = 0; I < Count; ++I)
+		{
+			if (bNatural)
+			{
+				if (!FCCLWeatherModel::Advance(G.Climate, WorldFrom + I * WorldDt, WorldDt,
+					Irradiance[I], G.Weather, Error))
+				{
+					return false;
+				}
+				G.Forcing.TemperatureCelsius = G.Weather.TemperatureCelsius;
+				G.Forcing.RainMetersPerWorldSecond = G.Weather.RainMetersPerSecond;
+				G.Forcing.SnowMetersPerWorldSecond = G.Weather.SnowMetersPerSecond;
+				G.Forcing.EvaporationMetersPerWorldSecond = G.Weather.EvaporationMetersPerSecond;
+			}
+
+			const double Sun = bNatural ? G.Weather.IrradianceWattsPerM2 : bVegetation ? Irradiance[I] : 0.;
+			const double Hours = bVegetation ? Daylight[I] : 0.;
+			if (G.Revision == MAX_uint64 || !AdvanceGrid(G, GameDt, WorldFrom + I * WorldDt, WorldDt, FlowSteps, Sun, Hours, Error, Context))
+			{
+				return false;
+			}
+		}
+	}
+
+	if (!Air.GetSpaces().IsEmpty())
+	{
+		TArray<FGuid> SpaceIds;
+		Air.GetSpaces().GetKeys(SpaceIds);
+		SpaceIds.Sort(GuidLess);
+		TMap<FGuid, FCCLAirExterior> Exteriors;
+		BuildAirExteriors(Exteriors);
+		for (FGuid Id : SpaceIds)
+		{
+			const auto Source = Context.Sources.FindRef(Id);
+			if (!Air.AddSource(Id, Source.HeatJoules, Source.VaporKg, Source.SmokeKg, Error))
+			{
+				return false;
+			}
+		}
+		TArray<FCCLSurfaceOpening> EffectiveOpenings = *Openings;
+		if (Shelter)
+		{
+			for (auto& Opening : EffectiveOpenings)
+			{
+				if (Air.FindSpace(Opening.SpaceA) || Air.FindSpace(Opening.SpaceB))
+				{
+					if (!Shelter->QueryOpeningFraction(Opening, Opening.OpenFraction, Error))
+					{
+						return false;
+					}
+				}
+			}
+		}
+
+		if (!Air.Advance(GameDelta, EffectiveOpenings, Exteriors, Error))
+		{
+			return false;
+		}
+	}
+	return true;
+}
+
+void FCCLSurfaceSimulation::BuildAirExteriors(TMap<FGuid, FCCLAirExterior>& Exteriors) const
+{
+	for (const auto& Pair : Air.GetSpaces())
+	{
+		FCCLAirExterior Outside;
+		if (const auto* Region = Regions.Find(Pair.Value.ClimateRegionId))
+		{
+			Outside.TemperatureCelsius = Region->Forcing.TemperatureCelsius;
+			// Liquid-equivalent weather column / 1000 m mixing height, with 1000 kg/m3 water.
+			Outside.VaporKgPerCubicMeter = Region->Weather.VaporMeters;
+			Outside.WindMetersPerSecond = Region->Weather.WindMetersPerSecond;
+		}
+		Exteriors.Add(Pair.Key, Outside);
+	}
+}
+
+bool FCCLSurfaceSimulation::ValidateAirContext(const TArray<FCCLSurfaceOpening>& Openings, FString& Error) const
+{
+	if (Air.GetSpaces().IsEmpty())
+	{
+		return true;
+	}
+	FCCLAirSimulation Candidate = Air;
+	TMap<FGuid, FCCLAirExterior> Exteriors;
+	BuildAirExteriors(Exteriors);
+	return Candidate.Advance(0., Openings, Exteriors, Error);
 }
 
 bool FCCLSurfaceSimulation::RebaseTerrain(FGuid RegionId, const TArray<double>& BedsMeters, uint64 TerrainRevision, FString& Error, bool bRestoring)
@@ -358,6 +660,7 @@ bool FCCLSurfaceSimulation::RebaseTerrain(FGuid RegionId, const TArray<double>& 
 		{
 			return Fail(Error, TEXT("New terrain bed is outside its explicit surface storage."));
 		}
+		CCLSurfaceVegetation::RemoveSupport(Candidate, I, BedsMeters[I], WorldSeconds);
 		Candidate.Cells[I].BedMeters = BedsMeters[I];
 	}
 
@@ -470,16 +773,23 @@ bool FCCLSurfaceSimulation::Restore(const TArray<uint8>& Bytes, FString& Error)
 
 bool FCCLSurfaceSimulation::Validate(FString& Error) const
 {
-	if (!WorldId.IsValid() || !Quantity(GameSeconds) || !Quantity(WorldSeconds) || Regions.Num() > MaximumRegions)
+	if (!WorldId.IsValid() || !Quantity(GameSeconds) || !Quantity(WorldSeconds) || Regions.Num() > MaximumRegions || !Air.Validate(Error))
 	{
 		return Fail(Error, TEXT("Invalid surface world identity or time."));
 	}
 
+	for (const auto& Pair : Air.GetSpaces())
+	{
+		if (Pair.Value.ClimateRegionId.IsValid() && !Regions.Contains(Pair.Value.ClimateRegionId))
+		{
+			return Fail(Error, TEXT("Air space climate region is missing."));
+		}
+	}
 	int32 Count = 0;
 	for (const auto& Pair : Regions)
 	{
 		Count += Pair.Value.Cells.Num();
-		if (Pair.Key != Pair.Value.RegionId || !ValidateRegion(Pair.Value, Error) || Count > MaximumCells)
+		if (Pair.Key != Pair.Value.RegionId || !ValidateRegion(Pair.Value, Error) || !Pair.Value.Vegetation.ValidateAt(WorldSeconds, Error) || Count > MaximumCells)
 		{
 			return false;
 		}
@@ -492,7 +802,8 @@ bool FCCLSurfaceSimulation::ValidateRegion(const FCCLSurfaceGrid& G, FString& Er
 	if (!G.RegionId.IsValid() || G.Size.X < 1 || G.Size.Y < 1 || G.Size.X > 128 || G.Size.Y > 128
 		|| G.Cells.Num() != G.Size.X * G.Size.Y || G.OriginMeters.ContainsNaN() || G.OriginMeters.GetAbsMax() > 1.e7
 		|| !FMath::IsFinite(G.SpacingMeters) || G.SpacingMeters < 0.05 || G.SpacingMeters > 16.
-		|| G.Revision == 0 || (G.TerrainId.IsValid() && G.TerrainRevision == 0) || !ValidForcing(G.Forcing))
+		|| G.Revision == 0 || G.bDynamicShelter > 1 || (G.TerrainId.IsValid() && G.TerrainRevision == 0) || !Quantity(G.AirHeatToSurfaceJoules) || !Quantity(G.SurfaceHeatToAirJoules)
+		|| !G.Fire.Validate(G.Cells.Num(), Error) || !G.Vegetation.Validate(G, Error) || !ValidForcing(G.Forcing) || !FCCLWeatherModel::Validate(G.Climate, G.Weather, Error))
 	{
 		return Fail(Error, TEXT("Invalid surface region definition."));
 	}
@@ -506,7 +817,9 @@ bool FCCLSurfaceSimulation::ValidateRegion(const FCCLSurfaceGrid& G, FString& Er
 			|| Cell.SnowVolumeCubicMeters > Cell.SnowCubicMeters / 0.05 + 1.e-12
 			|| !Quantity(Cell.WaterCubicMeters) || !Quantity(Cell.IceCubicMeters) || !Quantity(Cell.SoilCubicMeters)
 			|| Cell.WaterCubicMeters + Cell.IceCubicMeters + Cell.SnowVolumeCubicMeters > Capacity(G, Cell) + 1.e-8
-			|| !FMath::IsFinite(Cell.RainExposure) || Cell.RainExposure < 0. || Cell.RainExposure > 1. || Cell.bOpenBoundary > 1)
+			|| !FMath::IsFinite(Cell.RainExposure) || Cell.RainExposure < 0. || Cell.RainExposure > 1. || Cell.bOpenBoundary > 1
+			|| !FMath::IsFinite(Cell.SunExposure) || Cell.SunExposure < 0. || Cell.SunExposure > 1.
+			|| !FMath::IsFinite(Cell.WindExposure) || Cell.WindExposure < 0. || Cell.WindExposure > 1.)
 		{
 			Error = FString::Printf(TEXT("Invalid surface cell: water=%.17g ice=%.17g soil=%.17g capacity=%.17g bed=%.17g ceiling=%.17g"),
 				Cell.WaterCubicMeters, Cell.IceCubicMeters, Cell.SoilCubicMeters, Capacity(G, Cell), Cell.BedMeters, Cell.CeilingMeters);
@@ -526,11 +839,11 @@ bool FCCLSurfaceSimulation::ValidateRegion(const FCCLSurfaceGrid& G, FString& Er
 
 bool FCCLSurfaceSimulation::Serialize(FArchive& Ar)
 {
-	uint32 Tag = Magic, Version = 2;
+	uint32 Tag = Magic, Version = 7;
 	Ar << Tag << Version << WorldId << GameSeconds << WorldSeconds << StepId;
 	int32 Count = Regions.Num();
 	Ar << Count;
-	if (Ar.IsError() || Tag != Magic || (Version != 1 && Version != 2) || Count < 0 || Count > MaximumRegions)
+	if (Ar.IsError() || Tag != Magic || (Version < 1 || Version > 7) || Count < 0 || Count > MaximumRegions)
 	{
 		return false;
 	}
@@ -555,6 +868,14 @@ bool FCCLSurfaceSimulation::Serialize(FArchive& Ar)
 		{
 			Ar << F.SnowMetersPerWorldSecond;
 		}
+		if (Version >= 3)
+		{
+			FCCLWeatherModel::Serialize(Ar, G.Climate, G.Weather);
+		}
+		if (Version >= 4)
+		{
+			Ar << G.bDynamicShelter;
+		}
 		auto& L = G.Ledger;
 		Ar << L.InitialCubicMeters << L.RainCubicMeters << L.BoundaryInCubicMeters << L.BoundaryOutCubicMeters << L.EvaporatedCubicMeters;
 		if (Version >= 2)
@@ -564,7 +885,7 @@ bool FCCLSurfaceSimulation::Serialize(FArchive& Ar)
 		int32 Cells = G.Cells.Num();
 		Ar << Cells;
 		if (Ar.IsError() || Cells < 1 || Cells > 16384 || TotalCells > MaximumCells - Cells
-			|| (Ar.IsLoading() && int64(Cells) * (Version >= 2 ? 65 : 49) > Ar.TotalSize() - Ar.Tell()))
+			|| (Ar.IsLoading() && int64(Cells) * (Version >= 4 ? 81 : Version >= 2 ? 65 : 49) > Ar.TotalSize() - Ar.Tell()))
 		{
 			return false;
 		}
@@ -578,7 +899,24 @@ bool FCCLSurfaceSimulation::Serialize(FArchive& Ar)
 			{
 				Ar << C.SnowCubicMeters << C.SnowVolumeCubicMeters;
 			}
+			if (Version >= 4)
+			{
+				Ar << C.SunExposure << C.WindExposure;
+			}
 		}
+		if (Version >= 5 && !G.Fire.Serialize(Ar, Cells, Version >= 7))
+		{
+			return false;
+		}
+		if (Version >= 6)
+		{
+			Ar << G.AirHeatToSurfaceJoules << G.SurfaceHeatToAirJoules;
+		}
+		if (Version >= 7 && !G.Vegetation.Serialize(Ar, Cells))
+		{
+			return false;
+		}
+
 		if (Ar.IsLoading())
 		{
 			if (Regions.Contains(G.RegionId))
@@ -619,5 +957,5 @@ bool FCCLSurfaceSimulation::Serialize(FArchive& Ar)
 			}
 		}
 	}
-	return !Ar.IsError();
+	return !Ar.IsError() && (Version < 6 || Air.Serialize(Ar));
 }

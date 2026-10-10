@@ -23,6 +23,7 @@ class CCL_API ACCLPlayerState : public APlayerState, public IAbilitySystemInterf
 public:
 	ACCLPlayerState();
 	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override;
+    virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
 
 public:
 	UCCLAbilitySystemComponent* GetCCLAbilitySystem() const { return AbilitySystem; }

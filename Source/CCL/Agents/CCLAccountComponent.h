@@ -29,9 +29,12 @@ public:
 
 private:
 	FCCLLifeSimulation* Resolve() const;
+	bool InitializeAccount();
 	void RefreshView();
 
 private:
+	FGuid InitializedWorldId;
+
 	UPROPERTY(Replicated)
 	FGuid AccountId;
 

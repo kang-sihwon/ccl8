@@ -12,6 +12,10 @@
 	],
 	"Plugins": [
 		{
+			"Name": "Niagara",
+			"Enabled": true
+		},
+		{
 			"Name": "ModelViewViewModel",
 			"Enabled": true
 		},
@@ -62,6 +66,10 @@
 		{
 			"Name": "PropertyBindingUtils",
 			"Enabled": true
+		},
+		{
+			"Name": "AndroidFileServer",
+			"Enabled": false
 		}
 	]
 }

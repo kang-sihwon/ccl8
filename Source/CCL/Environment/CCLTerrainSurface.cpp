@@ -1,9 +1,20 @@
 #include "CCLTerrainSurface.h"
 
-FCCLTerrainSurface::FCCLTerrainSurface(const FCCLTerrainDefinition& InDefinition, uint64 InRevision, FGuid InEpoch,
+FCCLTerrainSurface::FCCLTerrainSurface(const FCCLTerrainSnapshot& InSnapshot, FGuid InEpoch,
 	const FTransform& InTransform, TArray<TSharedRef<const FCCLTerrainMesh>> InMeshes)
-	: Definition(InDefinition), Revision(InRevision), Epoch(InEpoch), Transform(InTransform), Meshes(MoveTemp(InMeshes))
+	: Snapshot(InSnapshot), Definition(InSnapshot.Definition), Revision(InSnapshot.Revision), Epoch(InEpoch), Transform(InTransform), Meshes(MoveTemp(InMeshes))
 {
+	MeshBounds.Reserve(Meshes.Num());
+	for (const auto& Mesh : Meshes)
+	{
+		FBox Bounds(ForceInit);
+		for (const FVector& Vertex : Mesh->VerticesMeters)
+		{
+			Bounds += Mesh->OriginMeters + Vertex;
+		}
+		// Keep the broad phase conservative relative to the barycentric edge tolerance.
+		MeshBounds.Add(Bounds.IsValid ? Bounds.ExpandBy(1.e-6 + Bounds.GetSize().GetMax() * 2.e-9) : Bounds);
+	}
 }
 
 bool FCCLTerrainSurface::QuerySurfaces(const FCCLSurfaceQuery& Query, TArray<FCCLSurfaceSample>& OutSamples, FString& Error) const
@@ -27,8 +38,16 @@ bool FCCLTerrainSurface::QuerySurfaces(const FCCLSurfaceQuery& Query, TArray<FCC
 	{
 		const FVector Origin = Transform.InverseTransformPosition(Query.OriginMeters * 100.) * 0.01;
 		const FVector Direction = Transform.InverseTransformVectorNoScale(Query.Direction);
-		for (const auto& Mesh : Meshes)
+		const FVector Start = Origin + Direction * Query.MinimumDistanceMeters;
+		const FVector End = Origin + Direction * Query.MaximumDistanceMeters;
+		const FVector Segment = End - Start;
+		for (int32 MeshIndex = 0; MeshIndex < Meshes.Num(); ++MeshIndex)
 		{
+			if (!MeshBounds[MeshIndex].IsValid || !FMath::LineBoxIntersection(MeshBounds[MeshIndex], Start, End, Segment))
+			{
+				continue;
+			}
+			const auto& Mesh = Meshes[MeshIndex];
 			for (int32 Index = 0; Index < Mesh->Triangles.Num(); ++Index)
 			{
 				const auto T = Mesh->Triangles[Index];
@@ -101,6 +120,34 @@ bool FCCLTerrainSurface::QuerySurfaces(const FCCLSurfaceQuery& Query, TArray<FCC
 	}
 
 	OutSamples = MoveTemp(Unique);
+	Error.Reset();
+	return true;
+}
+
+
+bool FCCLTerrainSurface::QuerySolidPoint(FName BodyId, const FVector3d& PositionMeters, bool& bOutSolid, FString& Error) const
+{
+	if (!Revision || !Epoch.IsValid() || BodyId.IsNone() || PositionMeters.ContainsNaN() || PositionMeters.GetAbsMax() > 1.e9)
+	{
+		Error = TEXT("Terrain occupancy query is invalid.");
+		return false;
+	}
+
+	const FVector Local = Transform.InverseTransformPosition(PositionMeters * 100.) * 0.01;
+	bool bSolid = false;
+	if (BodyId == Definition.BodyId && FCCLTerrainStore::EditableBoundsMeters(Definition).IsInsideOrOn(Local))
+	{
+		double Density = 0.;
+		if (!FCCLTerrainStore::ReadDensityMeters(Snapshot, Local, Density, Error))
+		{
+			return false;
+		}
+
+		// Match the half-millimeter isovalue used by the published mesh.
+		bSolid = Density <= -0.0005;
+	}
+
+	bOutSolid = bSolid;
 	Error.Reset();
 	return true;
 }

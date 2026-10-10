@@ -3,6 +3,7 @@
 #if WITH_EDITOR
 #include "Agents/CCLAgentAIController.h"
 #include "Agents/CCLLifeSimulation.h"
+#include "Agents/CCLAgentTags.h"
 #include "StateTree.h"
 #include "StateTreeEditorData.h"
 #include "StateTreeState.h"
@@ -495,6 +496,64 @@ bool UCCLProgressionAssetLibrary::CreateAgentAssets()
 	FStateTreeCompilerLog Log;
 	FStateTreeCompiler Compiler(Log);
 	return Compiler.Compile(*Tree) && SaveProgression(Tree) && SaveProgression(Scenario);
+#else
+	return false;
+#endif
+}
+
+
+bool UCCLProgressionAssetLibrary::MigrateAgentBiologyAssets()
+{
+#if WITH_EDITOR
+	auto* Scenario = LoadObject<UCCLPopulationScenario>(nullptr,
+		TEXT("/Game/Progression/DA_MerchantLifeScenario.DA_MerchantLifeScenario"));
+	if (!Scenario)
+	{
+		return false;
+	}
+
+	auto Candidate = Scenario->InitialState;
+	const auto Defaults = FCCLLifeSimulation::MerchantScenario(Candidate.Seed);
+	int32 Added = 0;
+	for (auto& Agent : Candidate.Agents)
+	{
+		if (Agent.Features.Contains(CCLAgentTags::Feature_Biology))
+		{
+			continue;
+		}
+
+		const auto* Default = Defaults.Agents.FindByPredicate([&](const FCCLAgentRecord& R)
+		{
+			return R.Id == Agent.Id && R.DefinitionId == Agent.DefinitionId;
+		});
+		if (Default)
+		{
+			Agent.Features.Add(CCLAgentTags::Feature_Biology, Default->Features[CCLAgentTags::Feature_Biology]);
+			++Added;
+		}
+	}
+
+	FCCLLifeSimulation Validation;
+	FString Error;
+	if (!Validation.Initialize(Candidate, Error))
+	{
+		UE_LOG(LogTemp, Error, TEXT("CCL_AGENT_BIOLOGY_ASSET invalid candidate: %s"), *Error);
+		return false;
+	}
+
+	if (Added > 0)
+	{
+		const auto Previous = Scenario->InitialState;
+		Scenario->InitialState = MoveTemp(Candidate);
+		if (!SaveProgression(Scenario))
+		{
+			Scenario->InitialState = Previous;
+			return false;
+		}
+	}
+
+	UE_LOG(LogTemp, Display, TEXT("CCL_AGENT_BIOLOGY_ASSET PASS added=%d residents=%d"), Added, Scenario->InitialState.Agents.Num());
+	return true;
 #else
 	return false;
 #endif

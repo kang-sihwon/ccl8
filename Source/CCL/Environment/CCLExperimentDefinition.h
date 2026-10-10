@@ -15,7 +15,12 @@ enum class ECCLExperimentKind : uint8
 	Shelter,
 	Terrain,
 	Water,
-	Snow
+	Snow,
+	Weather,
+	Fire,
+	Vegetation,
+	Ecology,
+	Cycle
 };
 
 UENUM(BlueprintType)
@@ -60,7 +65,34 @@ enum class ECCLExperimentAction : uint8
 	WaterThaw,
 	WaterDry,
 	SnowFall,
-	SnowMelt
+	SnowMelt,
+	WeatherNatural,
+	WeatherRain,
+	WeatherSnow,
+	FireIgnite,
+	FireRain,
+	VegetationRain,
+	VegetationDry,
+	VegetationWinter,
+	VegetationGrow,
+	VegetationIgnite,
+	FoodAdd,
+	FoodMoveCold,
+	FoodThaw,
+	EcologyFeedGround,
+	EcologyFeedWater,
+	EcologyFeedAir,
+	EcologyFeedInsect,
+	EcologyActors,
+	EcologyMass,
+	EcologyHidden,
+    FoodWeather,
+    FoodIndoor,
+    FoodDrop,
+    FoodCollect,
+    BiologyAge,
+    BiologyProtect,
+    BiologyDamage
 };
 
 USTRUCT()

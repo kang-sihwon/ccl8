@@ -2,6 +2,7 @@
 
 #include "CCLAgentWorldSubsystem.h"
 #include "CCLAgentTags.h"
+#include "Environment/CCLWorldSimulationSubsystem.h"
 #include "Items/CCLInventoryComponent.h"
 #include "Items/CCLItemDefinition.h"
 #include "Net/UnrealNetwork.h"
@@ -30,12 +31,14 @@ void UCCLAccountComponent::BeginPlay()
 		AccountId = FGuid::NewGuid();
 	}
 
+	InitializeAccount();
 	RefreshView();
 }
 
 void UCCLAccountComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* Function)
 {
 	Super::TickComponent(DeltaTime, TickType, Function);
+	InitializeAccount();
 	RefreshView();
 }
 
@@ -53,9 +56,12 @@ bool UCCLAccountComponent::ImportLegacy(int64 Coins)
 		return false;
 	}
 
-	if (auto* Simulation = Resolve())
+	auto* World = GetWorld()->GetSubsystem<UCCLAgentWorldSubsystem>();
+	if (World && World->IsRunning())
 	{
-		Simulation->ImportAccountBalance(AccountId, Coins);
+		if (!InitializeAccount()) { return false; }
+		auto* Simulation = Resolve();
+		if (!Simulation || !Simulation->ImportAccountBalance(AccountId, Coins)) { return false; }
 	}
 
 	BalanceView = Coins;
@@ -72,12 +78,14 @@ bool UCCLAccountComponent::BindAccount(FGuid Id)
 	}
 
 	AccountId = Id;
+	InitializedWorldId = GetWorld()->GetSubsystem<UCCLWorldSimulationSubsystem>()->GetIdentity().WorldId;
 	RefreshView();
 	return true;
 }
 
 bool UCCLAccountComponent::Reward(int64 Amount)
 {
+	if (!InitializeAccount()) { return false; }
 	auto* Simulation = Resolve();
 	if (!Simulation || Amount <= 0 || Amount > 1000000 - GetBalance())
 	{
@@ -99,6 +107,7 @@ bool UCCLAccountComponent::Reward(int64 Amount)
 
 bool UCCLAccountComponent::Purchase(UCCLInventoryComponent* Inventory, UCCLItemDefinition* Item, int64 Price)
 {
+	if (!InitializeAccount()) { return false; }
 	auto* Simulation = Resolve();
 	if (!Simulation || !Inventory || Inventory->GetOwner() != GetOwner() || !Item || Item->GetFName() != TEXT("DA_RecoveryPotion") || Price != 10 ||
 		GetBalance() < Price || !Inventory->CanAdd(Item, 1))
@@ -180,9 +189,22 @@ FCCLLifeSimulation* UCCLAccountComponent::Resolve() const
 		return nullptr;
 	}
 
-	auto& Simulation = World->GetSimulation();
-	Simulation.OpenAccount(AccountId, BalanceView);
-	return &Simulation;
+	return &World->GetSimulation();
+}
+
+bool UCCLAccountComponent::InitializeAccount()
+{
+	auto* Simulation = Resolve();
+	auto* World = GetWorld()->GetSubsystem<UCCLWorldSimulationSubsystem>();
+	if (!Simulation || !World || !World->IsRunning()) { return false; }
+	const FGuid WorldId = World->GetIdentity().WorldId;
+	if (InitializedWorldId == WorldId)
+	{
+		return Simulation->GetEconomy().Accounts.Contains(AccountId);
+	}
+	if (!Simulation->OpenAccount(AccountId, BalanceView)) { return false; }
+	InitializedWorldId = WorldId;
+	return true;
 }
 
 void UCCLAccountComponent::RefreshView()

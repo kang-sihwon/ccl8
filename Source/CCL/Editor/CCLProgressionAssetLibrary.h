@@ -28,4 +28,7 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "CCL|Editor")
 	static bool CreateAgentAssets();
+
+	UFUNCTION(BlueprintCallable, Category = "CCL|Editor")
+	static bool MigrateAgentBiologyAssets();
 };

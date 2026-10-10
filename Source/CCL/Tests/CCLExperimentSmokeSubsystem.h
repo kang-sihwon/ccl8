@@ -35,6 +35,8 @@ private:
 	double Next = 0;
 	int32 Step = 0;
 	uint8 bComplete = 0;
+	uint8 bTravelTimeQueued = 0;
+	FGuid ResetAccountId;
 	FGuid HubWorldId;
 	double HubGameSeconds = 0;
 	FGuid PreviousGeneration;

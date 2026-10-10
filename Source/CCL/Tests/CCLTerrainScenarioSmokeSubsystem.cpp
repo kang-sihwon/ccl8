@@ -145,7 +145,7 @@ void UCCLTerrainScenarioSmokeSubsystem::Tick(float DeltaTime)
             && Runtime->ApplySnowContact(ACCLExperimentDirector::SnowRegionId(), FGuid(15, 1, 1, 1), 1, UCCLExperimentDefinition::ZoneCenter(3) / 100., 0.27, Error)
             && Runtime->QueueGameTime(37., Error) && Runtime->AdvancePending(40.,2400.,Error)
             && Runtime->ChangeTimeScale(7.,Error) && Runtime->QueueGameTime(1.25,Error) && Execute(ECCLExperimentAction::Save)
-            && FCCLWorldSnapshotCodec::Capture(Runtime->GetIdentity(),Runtime->GetClock(),Agents->GetSimulation(),Expected,Error,&Runtime->GetEnvironmentInputs(), &Runtime->GetSurfaceSimulation())
+            && FCCLWorldSnapshotCodec::Capture(Runtime->GetIdentity(),Runtime->GetClock(),Agents->GetSimulation(),Expected,Error,&Runtime->GetEnvironmentInputs(), &Runtime->GetSurfaceSimulation(), &Runtime->GetEcologySimulation())
             && FCCLWorldSnapshotCodec::Encode(Expected,ExpectedBytes,Error)
             && FFileHelper::SaveArrayToFile(ExpectedBytes, *(Directory / TEXT("expected.bin"))))) { return; }
         if (bRendered) { FScreenshotRequest::RequestScreenshot(Directory / TEXT("terrain-controls.png"),true,false); }
@@ -199,7 +199,7 @@ void UCCLTerrainScenarioSmokeSubsystem::Tick(float DeltaTime)
             && FCCLWorldSnapshotCodec::Decode(ExpectedBytes,Expected,Error)
             && ExpectedLife.Load(Expected.Life,Error) && ExpectedLife.Save(Expected.Life)
             && FCCLWorldSnapshotCodec::Encode(Expected,NormalizedExpected,Error)
-            && FCCLWorldSnapshotCodec::Capture(Runtime->GetIdentity(),Runtime->GetClock(),Agents->GetSimulation(),Actual,Error,&Runtime->GetEnvironmentInputs(), &Runtime->GetSurfaceSimulation())
+            && FCCLWorldSnapshotCodec::Capture(Runtime->GetIdentity(),Runtime->GetClock(),Agents->GetSimulation(),Actual,Error,&Runtime->GetEnvironmentInputs(), &Runtime->GetSurfaceSimulation(), &Runtime->GetEcologySimulation())
             && FCCLWorldSnapshotCodec::Encode(Actual,ActualBytes,Error) && ActualBytes == NormalizedExpected)) { return; }
         if (Mode == TEXT("write"))
         {

@@ -2,6 +2,7 @@
 
 #include "CoreMinimal.h"
 #include "CCLItemTags.h"
+#include "CCLFoodState.h"
 #include "CCLItemFragments.generated.h"
 
 class UCCLActionSet;
@@ -203,4 +204,13 @@ struct CCL_API FCCLEquippedSlot
 
 	UPROPERTY()
 	FGuid Id;
+};
+
+USTRUCT(BlueprintType)
+struct CCL_API FCCLItemFragment_Perishable : public FCCLItemFragmentData
+{
+	GENERATED_BODY()
+
+	UPROPERTY(EditAnywhere)
+	FCCLFoodPolicy Policy;
 };

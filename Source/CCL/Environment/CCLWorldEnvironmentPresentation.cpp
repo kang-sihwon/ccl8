@@ -1,6 +1,7 @@
 #include "CCLWorldEnvironmentPresentation.h"
 
 #include "CCLWorldEnvironmentConfig.h"
+#include "CCLWeatherPresentation.h"
 #include "CCLWorldEnvironmentState.h"
 #include "Components/DirectionalLightComponent.h"
 #include "Components/StaticMeshComponent.h"
@@ -58,7 +59,7 @@ void ACCLWorldEnvironmentPresentation::Tick(float DeltaSeconds)
 					Sun->SetActorRotation((-Star.LocalDirection).Rotation());
 					Component->SetAtmosphereSunLightIndex(0);
 					Component->SetIntensity(Star.bOcculted || Star.ElevationDegrees <= 0. ? 0.f
-						: ReferenceSunIntensity * float(Star.NormalIrradiance / 1361.));
+						: ReferenceSunIntensity * float(Star.NormalIrradiance / 1361.) * (1.f - 0.75f * ACCLWeatherPresentation::GetCloudFraction(GetWorld())));
 				}
 			}
 		}

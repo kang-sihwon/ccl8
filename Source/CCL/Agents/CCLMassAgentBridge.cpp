@@ -1,12 +1,13 @@
 #include "CCLMassAgentBridge.h"
 
 #include "MassEntityManager.h"
+#include "CCLAgentBiology.h"
 
 FMassEntityHandle CCLMassAgentBridge::Enter(FMassEntityManager& Manager, FCCLAgentStore& Store, FGuid Id)
 {
 	const auto Handle = Store.GetHandle(Id);
 	const auto* Record = Store.Find(Handle);
-	if (!Record)
+	if (!Record || !CCLAgentBiology::IsAlive(*Record))
 	{
 		return {};
 	}

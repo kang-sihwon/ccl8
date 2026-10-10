@@ -2,6 +2,7 @@
 
 #include "Agents/CCLLifeSimulation.h"
 #include "CCLSurfaceSimulation.h"
+#include "CCLEcologySimulation.h"
 #include "Misc/Crc.h"
 #include "Serialization/MemoryReader.h"
 #include "Serialization/MemoryWriter.h"
@@ -25,7 +26,7 @@ namespace
 		S.Identity.Domain = static_cast<ECCLWorldDomain>(Domain);
 		Ar << S.Clock.Version << S.Clock.CompletedStepId << S.Clock.GameSeconds << S.Clock.WorldSeconds;
 		Ar << S.Clock.AcceptedGameSeconds << S.Clock.RequestedWorldSeconds << S.Clock.TimeScale;
-		if (Ar.IsError() || Tag != Magic || (S.Schema < 1 || S.Schema > 3))
+		if (Ar.IsError() || Tag != Magic || (S.Schema < 1 || S.Schema > 6))
 		{
 			return false;
 		}
@@ -96,6 +97,68 @@ namespace
 			Ar.Serialize(S.Surface.GetData(), Count);
 		}
 
+		if (S.Schema >= 4)
+		{
+			Count = S.Ecology.Num();
+			Ar << Count;
+			if (Ar.IsError() || Count < 60 || Count > FCCLEcologySimulation::MaximumBytes
+				|| (Ar.IsLoading() && Count > Ar.TotalSize() - Ar.Tell()))
+			{
+				return false;
+			}
+
+			S.Ecology.SetNumUninitialized(Count);
+			Ar.Serialize(S.Ecology.GetData(), Count);
+		}
+
+        if (S.Schema >= 5)
+        {
+            TArray<uint8> InventoryBytes;
+            FString Error;
+            if (Ar.IsSaving() && !CCLInventorySnapshot::Encode(S.Inventories, S.Identity.WorldId, S.Clock.WorldSeconds, InventoryBytes, Error))
+            {
+                return false;
+            }
+            int32 InventoryCount = InventoryBytes.Num();
+            Ar << InventoryCount;
+            if (Ar.IsError() || InventoryCount < 10 || InventoryCount > CCLInventorySnapshot::MaximumBytes
+                || (Ar.IsLoading() && InventoryCount > Ar.TotalSize() - Ar.Tell()))
+            {
+                return false;
+            }
+            InventoryBytes.SetNumUninitialized(InventoryCount);
+            Ar.Serialize(InventoryBytes.GetData(), InventoryCount);
+            if (Ar.IsError() || (Ar.IsLoading() && !CCLInventorySnapshot::Decode(InventoryBytes,
+                S.Identity.WorldId, S.Clock.WorldSeconds, S.Inventories, Error)))
+            {
+                return false;
+            }
+        }
+
+        if (S.Schema >= 6)
+        {
+            TArray<uint8> PlayerBytes;
+            FString Error;
+            if (Ar.IsSaving() && !CCLPlayerSnapshot::Encode(S.Players, S.Identity.WorldId, S.Clock.WorldSeconds, PlayerBytes, Error))
+            {
+                return false;
+            }
+            int32 PlayerCount = PlayerBytes.Num();
+            Ar << PlayerCount;
+            if (Ar.IsError() || PlayerCount < 10 || PlayerCount > CCLPlayerSnapshot::MaximumBytes ||
+                (Ar.IsLoading() && PlayerCount > Ar.TotalSize() - Ar.Tell()))
+            {
+                return false;
+            }
+            PlayerBytes.SetNumUninitialized(PlayerCount);
+            Ar.Serialize(PlayerBytes.GetData(), PlayerCount);
+            if (Ar.IsError() || (Ar.IsLoading() && !CCLPlayerSnapshot::Decode(PlayerBytes,
+                S.Identity.WorldId, S.Clock.WorldSeconds, S.Players, Error)))
+            {
+                return false;
+            }
+        }
+
 		Count = S.Life.Num();
 		Ar << Count;
 		if (Ar.IsError() || Count < 32 || Count > MaxBytes - 128 ||
@@ -111,7 +174,8 @@ namespace
 }
 
 bool FCCLWorldSnapshotCodec::Capture(const FCCLWorldIdentity& Identity, const FCCLWorldClock& Clock,
-	const FCCLLifeSimulation& Life, FCCLWorldSnapshot& Snapshot, FString& Error, const FCCLEnvironmentInputs* Environment, const FCCLSurfaceSimulation* Surface)
+	const FCCLLifeSimulation& Life, FCCLWorldSnapshot& Snapshot, FString& Error, const FCCLEnvironmentInputs* Environment, const FCCLSurfaceSimulation* Surface,
+	const FCCLEcologySimulation* Ecology)
 {
 	Error.Reset();
 	FCCLWorldSnapshot Candidate;
@@ -136,6 +200,22 @@ bool FCCLWorldSnapshotCodec::Capture(const FCCLWorldIdentity& Identity, const FC
 		Surface = &EmptySurface;
 	}
 	if (!Surface->Capture(Candidate.Surface, Error))
+	{
+		return false;
+	}
+
+	FCCLEcologySimulation EmptyEcology;
+	if (!Ecology)
+	{
+		if (!EmptyEcology.Initialize(Identity.WorldId, Clock.GetWorldSeconds(), Error))
+		{
+			return false;
+		}
+
+		Ecology = &EmptyEcology;
+	}
+
+	if (!Ecology->Capture(Candidate.Ecology, Error))
 	{
 		return false;
 	}
@@ -207,7 +287,20 @@ bool FCCLWorldSnapshotCodec::Decode(const TArray<uint8>& Bytes, FCCLWorldSnapsho
 			return false;
 		}
 	}
-	Candidate.Schema = 3;
+	Candidate.bEcologyMigrated = Candidate.Schema < 4;
+	if (Candidate.bEcologyMigrated)
+	{
+		FCCLEcologySimulation EmptyEcology;
+		if (!EmptyEcology.Initialize(Candidate.Identity.WorldId, Candidate.Clock.WorldSeconds, Error)
+			|| !EmptyEcology.Capture(Candidate.Ecology, Error))
+		{
+			return false;
+		}
+	}
+
+	Candidate.bInventoriesMigrated = Candidate.Schema < 5;
+	Candidate.bPlayersMigrated = Candidate.Schema < 6;
+	Candidate.Schema = 6;
 	if (!Validate(Candidate, Error))
 	{
 		return false;
@@ -234,7 +327,8 @@ bool FCCLWorldSnapshotCodec::MigrateLegacy(const TArray<uint8>& LifeBytes, ECCLW
 }
 
 bool FCCLWorldSnapshotCodec::Restore(const FCCLWorldSnapshot& Snapshot, ECCLWorldDomain ExpectedDomain,
-	FCCLWorldClock& Clock, FCCLLifeSimulation& Life, FString& Error, FCCLSurfaceSimulation* Surface)
+	FCCLWorldClock& Clock, FCCLLifeSimulation& Life, FString& Error, FCCLSurfaceSimulation* Surface,
+	FCCLEcologySimulation* Ecology)
 {
 	if (Snapshot.Identity.Domain != ExpectedDomain)
 	{
@@ -243,8 +337,10 @@ bool FCCLWorldSnapshotCodec::Restore(const FCCLWorldSnapshot& Snapshot, ECCLWorl
 
 	FCCLWorldClock CandidateClock;
 	FCCLSurfaceSimulation CandidateSurface;
+	FCCLEcologySimulation CandidateEcology;
 	if (!Validate(Snapshot, Error) || !CandidateClock.Restore(Snapshot.Clock, Error)
-		|| !CandidateSurface.Restore(Snapshot.Surface, Error) || !Life.Load(Snapshot.Life, Error))
+		|| !CandidateSurface.Restore(Snapshot.Surface, Error) || !CandidateEcology.Restore(Snapshot.Ecology, Error)
+		|| !Life.Load(Snapshot.Life, Error))
 	{
 		return false;
 	}
@@ -254,6 +350,11 @@ bool FCCLWorldSnapshotCodec::Restore(const FCCLWorldSnapshot& Snapshot, ECCLWorl
 	{
 		*Surface = MoveTemp(CandidateSurface);
 	}
+	if (Ecology)
+	{
+		*Ecology = MoveTemp(CandidateEcology);
+	}
+
 	Clock = MoveTemp(CandidateClock);
 	return true;
 }
@@ -261,12 +362,41 @@ bool FCCLWorldSnapshotCodec::Restore(const FCCLWorldSnapshot& Snapshot, ECCLWorl
 bool FCCLWorldSnapshotCodec::Validate(const FCCLWorldSnapshot& Snapshot, FString& Error)
 {
 	Error.Reset();
-	if (Snapshot.Schema != 3 || Snapshot.Identity.BaseWorldVersion != 1 || !Snapshot.Identity.WorldId.IsValid() ||
+	if (Snapshot.Schema != 6 || Snapshot.Identity.BaseWorldVersion != 1 || !Snapshot.Identity.WorldId.IsValid() ||
 		Snapshot.Identity.Generation == 0 || static_cast<uint8>(Snapshot.Identity.Domain) > static_cast<uint8>(ECCLWorldDomain::Scenario) ||
 		Snapshot.Life.Num() < 32 || Snapshot.Life.Num() > MaxBytes - 128)
 	{
 		return Reject(Error, TEXT("Unsupported world identity, version or life payload."));
 	}
+
+    if (!CCLInventorySnapshot::Validate(Snapshot.Inventories, Snapshot.Identity.WorldId, Snapshot.Clock.WorldSeconds, Error))
+    {
+        return false;
+    }
+
+    if (!CCLPlayerSnapshot::Validate(Snapshot.Players, Snapshot.Identity.WorldId, Snapshot.Clock.WorldSeconds, Error))
+    {
+        return false;
+    }
+    TSet<FGuid> ItemIds;
+    for (const auto& Container : Snapshot.Inventories)
+    {
+        for (const auto& Item : Container.Items)
+        {
+            ItemIds.Add(Item.Id);
+        }
+    }
+    for (const auto& Profile : Snapshot.Players)
+    {
+        for (const auto& Item : Profile.Items)
+        {
+            if (ItemIds.Contains(Item.Id))
+            {
+                return Reject(Error, TEXT("An item cannot belong to both a world container and a player."));
+            }
+            ItemIds.Add(Item.Id);
+        }
+    }
 
 	FCCLSurfaceSimulation Surface;
 	if (!Surface.Restore(Snapshot.Surface, Error) || Surface.GetWorldId() != Snapshot.Identity.WorldId
@@ -276,11 +406,36 @@ bool FCCLWorldSnapshotCodec::Validate(const FCCLWorldSnapshot& Snapshot, FString
 		return Reject(Error, TEXT("World clock and surface snapshot do not agree."));
 	}
 
+    for (const auto& Record : Snapshot.Inventories)
+    {
+        auto Binding = Record.Environment;
+        if (!CCLFoodEnvironment::Sample(Binding, Surface, Error))
+        {
+            return false;
+        }
+    }
+
+    for (const auto& Profile : Snapshot.Players)
+    {
+        auto Binding = Profile.Environment;
+        if (!CCLFoodEnvironment::Sample(Binding, Surface, Error))
+        {
+            return false;
+        }
+    }
+
+	FCCLEcologySimulation Ecology;
+	if (!Ecology.Restore(Snapshot.Ecology, Error) || Ecology.GetWorldId() != Snapshot.Identity.WorldId
+		|| Ecology.GetWorldSeconds() != Snapshot.Clock.WorldSeconds)
+	{
+		return Reject(Error, TEXT("World clock and ecology snapshot do not agree."));
+	}
+
 	FCCLCelestialSystem Celestial;
 	FCCLSurfaceScene Surfaces;
 	FCCLCelestialObservation Observation;
 	if (!FCCLEnvironmentInputsCodec::Prepare(Snapshot.Environment, Snapshot.Clock.WorldSeconds,
-		Celestial, Surfaces, Observation, Error))
+		Celestial, Surfaces, Observation, Error) || !Surface.ValidateAirContext(Snapshot.Environment.Openings, Error))
 	{
 		return false;
 	}
@@ -290,6 +445,23 @@ bool FCCLWorldSnapshotCodec::Validate(const FCCLWorldSnapshot& Snapshot, FString
 	if (!Clock.Restore(Snapshot.Clock, Error) || !Life.Load(Snapshot.Life, Error) || Clock.GetWorldSeconds() != Life.GetTime())
 	{
 		return Reject(Error, TEXT("World clock and life snapshot do not agree."));
+	}
+
+    for (const auto& Profile : Snapshot.Players)
+    {
+        if (!Life.GetEconomy().Accounts.Contains(Profile.AccountId))
+        {
+            return Reject(Error, TEXT("A player profile refers to an account outside the world economy."));
+        }
+    }
+
+	for (const auto& Pair : Ecology.GetIndividuals())
+	{
+		const auto* Agent = Life.Find(Pair.Key);
+		if (Agent && CCLAgentBiology::Find(*Agent))
+		{
+			return Reject(Error, TEXT("An individual cannot have both ecology and Agent biology ownership."));
+		}
 	}
 
 	return true;

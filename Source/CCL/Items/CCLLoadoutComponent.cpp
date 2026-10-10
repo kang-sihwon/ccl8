@@ -264,6 +264,15 @@ bool UCCLLoadoutComponent::Use(FGuid Id)
 	{
 		return Report(false, TEXT("회복 아이템을 선택해 줘."));
 	}
+	if (Entry->Food.IsPresent())
+	{
+		FCCLFoodQuality Quality;
+		if (!Inventory->GetFoodQuality(Id, Quality) || Quality.SpoiledQuantity > 0 || Quality.MoldyQuantity > 0)
+		{
+			return Report(false, TEXT("부패하거나 곰팡이가 생긴 음식 묶음은 사용할 수 없다."));
+		}
+	}
+
 	if (ASC->GetNumericAttribute(UCCLHealthSet::GetHealthAttribute()) >= ASC->GetNumericAttribute(UCCLHealthSet::GetMaxHealthAttribute()))
 	{
 		return Report(false, TEXT("체력이 이미 가득 차 있다."));
@@ -453,7 +462,7 @@ bool UCCLLoadoutComponent::IsLearned(const UCCLSkillDefinition* Definition) cons
 
 void UCCLLoadoutComponent::OnInventoryChanged()
 {
-	if (!GetOwner()->HasAuthority() || !GetInventory())
+	if (bRestoring || !GetOwner()->HasAuthority() || !GetInventory())
 	{
 		return;
 	}
@@ -508,7 +517,7 @@ bool UCCLLoadoutComponent::Report(bool bSuccess, const TCHAR* Message)
 bool UCCLLoadoutComponent::CanAct() const
 {
 	const auto* ASC = GetASC();
-	return GetOwner()->HasAuthority() && ASC && IsValid(ASC->GetAvatarActor()) &&
+	return !bRestoring && GetOwner()->HasAuthority() && ASC && IsValid(ASC->GetAvatarActor()) &&
 		!ASC->HasMatchingGameplayTag(CCLTags::State_Dead) && !ASC->HasMatchingGameplayTag(CCLTags::State_Busy) &&
 		!ASC->HasMatchingGameplayTag(CCLTags::State_Stagger);
 }
@@ -525,46 +534,10 @@ UCCLInventoryComponent* UCCLLoadoutComponent::GetInventory() const
 }
 
 bool UCCLLoadoutComponent::Restore(const TArray<FCCLEquippedSlot>& Equipment, const TArray<UCCLSkillDefinition*>& Skills,
-                                   int32 UnspentPoints)
+                                  int32 UnspentPoints)
 {
-	if (!CanAct() || UnspentPoints < 0 || UnspentPoints > 1000 || Skills.Num() > AvailableSkills.Num()) { return false; }
-	TSet<UCCLSkillDefinition*> Seen;
-	for (auto* Skill : Skills)
-	{
-		if (!Skill || !AvailableSkills.Contains(Skill) || Seen.Contains(Skill) || Skill->PointCost <= 0) { return false; }
-		Seen.Add(Skill);
-	}
-	for (const auto& Pair : EquipmentEffects)
-	{
-		GetASC()->RemoveActiveGameplayEffect(Pair.Value);
-	}
-
-	EquipmentEffects.Reset();
-	EquipmentSlots.Reset();
-	for (const auto& Handle : SkillEffects) { GetASC()->RemoveActiveGameplayEffect(Handle); }
-	SkillEffects.Reset();
-	Learned.Reset();
-	Points = 1000;
-	for (auto* Skill : Skills) { if (!Learn(Skill)) { return false; } }
-	Points = UnspentPoints;
-	TSet<FGuid> Applied;
-	for (const auto& Value : Equipment)
-	{
-		if (Applied.Contains(Value.Id))
-		{
-			continue;
-		}
-
-		if (!Equip(Value.Id, Value.Slot))
-		{
-			return false;
-		}
-
-		Applied.Add(Value.Id);
-	}
-
-	SyncAvatar(true);
-	return true;
+    const auto* Inventory = GetInventory();
+    return Inventory && RestoreState(Inventory->GetEntries(), Equipment, Skills, UnspentPoints);
 }
 
 bool UCCLLoadoutComponent::RequestCustomHandAction(FGameplayTag Hand, bool bPressed)

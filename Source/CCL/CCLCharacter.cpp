@@ -1,4 +1,5 @@
 #include "CCLCharacter.h"
+#include "Environment/CCLThermalExposure.h"
 #include "Environment/CCLSnowMovementComponent.h"
 #include "Environment/CCLSnowAnimInstance.h"
 
@@ -27,6 +28,7 @@
 ACCLCharacter::ACCLCharacter(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer.SetDefaultSubobjectClass<UCCLSnowMovementComponent>(ACharacter::CharacterMovementComponentName))
 {
+	CreateDefaultSubobject<UCCLThermalReceiverComponent>(TEXT("ThermalReceiver"));
 	auto* MapMarker = CreateDefaultSubobject<UCCLMapMarkerComponent>(TEXT("MapMarker"));
 	MapMarker->Kind = ECCLMapKind::Player;
 

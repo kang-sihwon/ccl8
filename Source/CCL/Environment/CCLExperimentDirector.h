@@ -42,8 +42,18 @@ public:
 	const FGuid& GetGeneration() const { return Generation; }
 	bool IsReady() const { return HasAuthority() ? !InitialSnapshot.IsEmpty() && bWaterReady : Generation.IsValid() && Results.Num() == 12; }
 	const TArray<FCCLExperimentResult>& GetResults() const { return Results; }
+	static FGuid VegetationRegionId() { return FGuid(7011, 7012, 7013, 7014); }
+	static bool VegetationGrid(double WorldSeconds, FCCLSurfaceGrid& Grid, FString& Error);
+	static FGuid WeatherRegionId() { return FGuid(201, 202, 203, 204); }
+	static FCCLSurfaceGrid WeatherGrid();
+	static FGuid FireRegionId(bool bIndoor = false) { return bIndoor ? FGuid(1101, 1102, 1103, 1104) : FGuid(1001, 1002, 1003, 1004); }
+	static FGuid FireSpaceId() { return FGuid(0x43434C32, 0x20261009, 0, 200); }
+	static FCCLSurfaceGrid FireGrid(bool bIndoor);
+	static FCCLAirSpace FireRoom();
 	static FGuid SnowRegionId() { return FGuid(301, 302, 303, 304); }
 	static FCCLSurfaceGrid SnowGrid();
+	static FGuid CycleRegionId() { return FGuid(901, 902, 903, 904); }
+	static FCCLSurfaceGrid CycleGrid();
 	static FGuid WaterRegionId() { return FGuid(401, 402, 403, 404); }
 	static FGuid TerrainWaterRegionId() { return FGuid(451, 452, 453, 454); }
 	static ACCLExperimentDirector* Find(const UWorld* World);
@@ -52,6 +62,16 @@ private:
 	void InitializeWaterExperiment();
 	void TickWaterExperiment();
 	void TickSnowExperiment();
+	bool StartCycleExperiment(FString& Error);
+	void TickCycleExperiment();
+	bool SetCyclePhase(int32 Phase, FString& Error);
+	void StopCycleExperiment();
+	bool VegetationAction(ECCLExperimentAction Action, FName CaseId, FString& Error);
+	bool RunVegetation(FString& Error);
+	bool WeatherAction(ECCLExperimentAction Action, FName CaseId, FString& Error);
+	bool RunWeather(FString& Error);
+	bool FireAction(ECCLExperimentAction Action, FName CaseId, FString& Error);
+	bool RunFire(bool bIndoor, FString& Error);
 	bool StartSnowExperiment(FString& Error);
 	bool SnowAction(ECCLExperimentAction Action, FName CaseId, FString& Error);
 	bool StartWaterExperiment(FString& Error);
@@ -102,6 +122,10 @@ private:
 	double WaterCaseRain = 0.;
 	double WaterCaseIce = 0.;
 	int32 WaterCaseStep = 0;
+	FCCLSurfaceForcing CycleOriginalForcing;
+	double CyclePhaseTime = 0.;
+	int32 CyclePhase = -1;
+	int32 CycleCount = 0;
 	uint8 bWaterReady = 0;
 	uint8 bWaterParticipantBound = 0;
 	uint64 TerrainAuthoritySequence = 0;
@@ -127,4 +151,7 @@ private:
 	UPROPERTY(Replicated)
 	FName ActiveCase;
 	double RunStarted = 0;
+	double ClockExpectedWorldSeconds = 0;
+	uint8 bClockInputQueued = 0;
+	uint8 bClockWaiting = 0;
 };

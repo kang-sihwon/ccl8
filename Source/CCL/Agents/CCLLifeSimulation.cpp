@@ -121,6 +121,11 @@ bool FCCLLifeSimulation::Initialize(const FCCLSimulationSnapshot& InputSnapshot,
 			return false;
 		}
 
+		if (!CCLAgentBiology::ValidateAt(Agent, Snapshot.Time, Error))
+		{
+			return false;
+		}
+
 		AgentIds.Add(Agent.Id);
 	}
 
@@ -421,6 +426,12 @@ FGuid FCCLLifeSimulation::NextId()
 bool FCCLLifeSimulation::BuildTransaction(const FCCLAgentRecord& Agent, const FCCLWorldOpportunity& O,
 	FGuid RequestId, FCCLTransactionRequest& Request, FString& Error) const
 {
+	if (!CCLAgentBiology::IsAlive(Agent) || !IsAlive(O.ProviderId))
+	{
+		Error = TEXT("Dead agents cannot execute or provide activities.");
+		return false;
+	}
+
 	const auto* CurrentNeeds = Feature<FCCLAgentNeeds>(Agent, CCLAgentTags::Feature_Needs);
 	if (CurrentNeeds && CurrentNeeds->Urgency.FindRef(CCLAgentTags::Injury) >= 1)
 	{
@@ -537,7 +548,7 @@ FCCLDecisionResult FCCLLifeSimulation::Decide(FGuid AgentId) const
 {
 	const auto* Agent = Find(AgentId);
 	const auto* Knowledge = Agent ? Feature<FCCLAgentExperience>(*Agent, CCLAgentTags::Feature_Experience) : nullptr;
-	if (!Agent || !Knowledge)
+	if (!Agent || !Knowledge || !CCLAgentBiology::IsAlive(*Agent))
 	{
 		return {};
 	}
@@ -981,6 +992,15 @@ bool FCCLLifeSimulation::AdvanceCandidate(double TargetTime, int32 MaxSlices, FS
 			return false;
 		}
 
+		for (const auto& Agent : Snapshot)
+		{
+			if (const auto* B = CCLAgentBiology::Find(Agent); B && B->DeathCause == ECCLAgentDeathCause::None
+				&& !B->bProtectNaturalAging && B->LifespanSeconds > 0.)
+			{
+				Next = FMath::Min(Next, B->BirthWorldSeconds + B->LifespanSeconds);
+			}
+		}
+
 		if (Next <= Time)
 		{
 			Error = TEXT("Life time cannot advance at this precision.");
@@ -988,6 +1008,20 @@ bool FCCLLifeSimulation::AdvanceCandidate(double TargetTime, int32 MaxSlices, FS
 		}
 
 		Time = Next;
+		// Resolve every expiry before any activity can use a dying provider at this boundary.
+		for (const auto& Agent : Snapshot)
+		{
+			if (const auto* B = CCLAgentBiology::Find(Agent); B && B->DeathCause == ECCLAgentDeathCause::None
+				&& !B->bProtectNaturalAging && B->LifespanSeconds > 0.
+				&& B->BirthWorldSeconds + B->LifespanSeconds <= Time)
+			{
+				if (!EndLife(Agent.Id, ECCLAgentDeathCause::NaturalAge, Error))
+				{
+					return false;
+				}
+			}
+		}
+
 		if (!ApplyEvents(Error))
 		{
 			return false;
@@ -1000,6 +1034,11 @@ bool FCCLLifeSimulation::AdvanceCandidate(double TargetTime, int32 MaxSlices, FS
 			{
 				Agent = *Latest;
 			}
+			if (!CCLAgentBiology::IsAlive(Agent))
+			{
+				continue;
+			}
+
 			if (auto* Needs = MutableFeature<FCCLAgentNeeds>(Agent, CCLAgentTags::Feature_Needs))
 			{
 				CCLAgentFeatures::AdvanceNeeds(*Needs, Time - Agent.LastSimulatedTime);
@@ -1207,6 +1246,13 @@ FCCLSimulationSnapshot FCCLLifeSimulation::MerchantScenario(int32 InSeed)
 		Debt.DueTime = 20 * 86400;
 		Debt.Status = CCLAgentTags::Active;
 		S.Economy.Obligations.Add(Debt.ObligationId, Debt);
+		FCCLAgentBiology Biology;
+		constexpr double YearSeconds = 365. * 86400.;
+		Biology.BirthWorldSeconds = -(20. + Index) * YearSeconds;
+		Biology.MaturitySeconds = 18. * YearSeconds;
+		Biology.LifespanSeconds = 80. * YearSeconds;
+		Biology.bProtectNaturalAging = Index == 0;
+		Agent.Features.Add(CCLAgentTags::Feature_Biology, {1, FInstancedStruct::Make(Biology)});
 		FCCLLifeState Life;
 		Life.Occupation = CCLAgentTags::Merchant;
 		Life.Residence = Agent.Location;
@@ -1341,9 +1387,71 @@ FCCLSimulationSnapshot FCCLLifeSimulation::MerchantScenario(int32 InSeed)
 	return S;
 }
 
+bool FCCLLifeSimulation::EndLife(FGuid AgentId, ECCLAgentDeathCause Cause, FString& Error)
+{
+	Error.Reset();
+	const auto* Record = Find(AgentId);
+	const auto* Existing = Record ? CCLAgentBiology::Find(*Record) : nullptr;
+	if (!Existing || (Cause != ECCLAgentDeathCause::NaturalAge && Cause != ECCLAgentDeathCause::External))
+	{
+		Error = TEXT("Death requires an authored biology feature and a supported cause.");
+		return false;
+	}
+
+	if (Existing->DeathCause != ECCLAgentDeathCause::None)
+	{
+		if (Existing->DeathCause != Cause)
+		{
+			Error = TEXT("The recorded death cause cannot be replaced.");
+			return false;
+		}
+
+		return true;
+	}
+
+	if (Cause == ECCLAgentDeathCause::NaturalAge && (Existing->bProtectNaturalAging
+		|| Existing->LifespanSeconds <= 0. || Existing->BirthWorldSeconds + Existing->LifespanSeconds != Time))
+	{
+		Error = TEXT("Natural death requires this agent's unprotected lifetime boundary.");
+		return false;
+	}
+
+	FCCLAgentRecord Updated = *Record;
+	auto* B = MutableFeature<FCCLAgentBiology>(Updated, CCLAgentTags::Feature_Biology);
+	B->DeathCause = Cause;
+	B->DeathWorldSeconds = Time;
+	if (auto* Needs = MutableFeature<FCCLAgentNeeds>(Updated, CCLAgentTags::Feature_Needs))
+	{
+		CCLAgentFeatures::AdvanceNeeds(*Needs, Time - Updated.LastSimulatedTime);
+	}
+
+	Updated.LastSimulatedTime = Time;
+	Updated.Intent = {};
+	const auto Lease = Agents.Acquire(Agents.GetHandle(AgentId), FGuid(0xCC18, 0, 2, 1));
+	const bool bCommitted = Agents.Commit(Lease, Updated, Registry, Error);
+	Agents.Release(Lease);
+	if (!bCommitted)
+	{
+		return false;
+	}
+
+	ActiveActors.Remove(AgentId);
+	Traces.Remove(AgentId);
+	for (auto It = Reservations.CreateIterator(); It; ++It)
+	{
+		const auto* O = FindOpportunity(It.Key());
+		if (It.Value().AgentId == AgentId || (O && O->ProviderId == AgentId))
+		{
+			It.RemoveCurrent();
+		}
+	}
+
+	return true;
+}
+
 void FCCLLifeSimulation::SetActorActive(FGuid Id, bool bActive)
 {
-	if (bActive)
+	if (bActive && IsAlive(Id))
 	{
 		ActiveActors.Add(Id);
 	}
@@ -1356,7 +1464,7 @@ void FCCLLifeSimulation::SetActorActive(FGuid Id, bool bActive)
 bool FCCLLifeSimulation::SelectIntent(FGuid Id, const FCCLPersistentIntent& Intent, const TArray<FCCLDecisionTrace>* DecisionTraces)
 {
 	const auto* Record = Find(Id);
-	if (!Record)
+	if (!Record || !CCLAgentBiology::IsAlive(*Record))
 	{
 		return false;
 	}
@@ -1377,7 +1485,7 @@ bool FCCLLifeSimulation::SelectIntent(FGuid Id, const FCCLPersistentIntent& Inte
 bool FCCLLifeSimulation::UpdateLocation(FGuid Id, FVector Position)
 {
 	const auto* Record = Find(Id);
-	if (!Record || Position.ContainsNaN())
+	if (!Record || !CCLAgentBiology::IsAlive(*Record) || Position.ContainsNaN())
 	{
 		return false;
 	}
@@ -1408,7 +1516,7 @@ FGuid FCCLLifeSimulation::ReserveOpportunity(FGuid AgentId, FGuid OpportunityId)
 	const auto* Record = Find(AgentId);
 	const auto* Opportunity = FindOpportunity(OpportunityId);
 	const auto* Knowledge = Record ? Feature<FCCLAgentExperience>(*Record, CCLAgentTags::Feature_Experience) : nullptr;
-	if (!Opportunity || !Knowledge || !Knowledge->KnownOpportunities.Contains(OpportunityId) || !Opportunity->bAvailable ||
+	if (!IsAlive(AgentId) || !Opportunity || !IsAlive(Opportunity->ProviderId) || !Knowledge || !Knowledge->KnownOpportunities.Contains(OpportunityId) || !Opportunity->bAvailable ||
 		(Opportunity->ExpireTime > 0 && Opportunity->ExpireTime <= Time))
 	{
 		return {};
@@ -1439,4 +1547,10 @@ bool FCCLLifeSimulation::HasReservation(FGuid AgentId, FGuid OpportunityId, FGui
 {
 	const auto* Reservation = Reservations.Find(OpportunityId);
 	return Reservation && Token.IsValid() && Reservation->AgentId == AgentId && Reservation->Token == Token && Reservation->Until > Time;
+}
+
+bool FCCLLifeSimulation::IsAlive(FGuid Id) const
+{
+	const auto* Record = Find(Id);
+	return Record && CCLAgentBiology::IsAlive(*Record);
 }

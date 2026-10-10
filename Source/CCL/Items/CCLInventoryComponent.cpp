@@ -1,6 +1,8 @@
 #include "CCLInventoryComponent.h"
 
 #include "CCLItemDefinition.h"
+#include "CCLInventoryPersistenceSubsystem.h"
+#include "Engine/World.h"
 #include "Actions/CCLWeaponAbility.h"
 #include "Net/UnrealNetwork.h"
 
@@ -21,9 +23,20 @@ FGuid UCCLInventoryComponent::Add(UCCLItemDefinition* Definition, int32 Quantity
 	{
 		return FGuid();
 	}
+	if (const auto* Fragment = Definition->FindFragment<FCCLItemFragment_Perishable>())
+	{
+		FGuid WorldId;
+		double WorldSeconds = 0.;
+		FCCLFoodState Food;
+		FString Error;
+		return FoodContext(WorldId, WorldSeconds)
+			&& CCLFood::Create(WorldId, FGuid::NewGuid(), Quantity, WorldSeconds, Fragment->Policy, {}, Food, Error)
+			? AddFood(Definition, Food) : FGuid();
+	}
+
 	for (auto& Entry : List.Entries)
 	{
-		if (Entry.Slot >= 0 && Entry.Definition == Definition && Quantity <= Definition->GetMaxStack() - Entry.Quantity)
+		if (Entry.Slot >= 0 && Entry.Definition == Definition && !Entry.Food.IsPresent() && Quantity <= Definition->GetMaxStack() - Entry.Quantity)
 		{
 			Entry.Quantity += Quantity;
 			List.MarkItemDirty(Entry);
@@ -60,6 +73,22 @@ bool UCCLInventoryComponent::Remove(FGuid Id, int32 Quantity)
 	{
 		return false;
 	}
+	if (List.Entries[Index].Food.IsPresent())
+	{
+		FGuid WorldId;
+		double WorldSeconds = 0.;
+		FCCLFoodState Candidate = List.Entries[Index].Food;
+		FCCLFoodState Removed;
+		FString Error;
+		if (!FoodContext(WorldId, WorldSeconds) || WorldId != Candidate.WorldId
+			|| !CCLFood::Split(Candidate, Quantity, WorldSeconds, Removed, Error))
+		{
+			return false;
+		}
+
+		List.Entries[Index].Food = MoveTemp(Candidate);
+	}
+
 	List.Entries[Index].Quantity -= Quantity;
 	if (List.Entries[Index].Quantity == 0)
 	{
@@ -82,7 +111,9 @@ bool UCCLInventoryComponent::CanAdd(const UCCLItemDefinition* Definition, int32 
 	}
 	for (const auto& Entry : List.Entries)
 	{
-		if (Entry.Slot >= 0 && Entry.Definition == Definition && Quantity <= Definition->GetMaxStack() - Entry.Quantity)
+		if (Entry.Slot >= 0 && Entry.Definition == Definition && Quantity <= Definition->GetMaxStack() - Entry.Quantity
+			&& (Definition->FindFragment<FCCLItemFragment_Perishable>() ? Entry.Food.IsPresent()
+				&& Entry.Food.Lots.Num() < CCLFood::MaxLots : !Entry.Food.IsPresent()))
 		{
 			return true;
 		}
@@ -96,9 +127,14 @@ const FCCLInventoryEntry* UCCLInventoryComponent::Find(FGuid Id) const
 	return List.Entries.FindByPredicate([Id](const FCCLInventoryEntry& Entry) { return Entry.Id == Id; });
 }
 
-bool UCCLInventoryComponent::Restore(const TArray<FCCLInventoryEntry>& Entries)
+bool UCCLInventoryComponent::CanRestore(const TArray<FCCLInventoryEntry>& Entries) const
 {
-	if (!GetOwner()->HasAuthority() || Entries.Num() > FMath::Clamp(Capacity, 1, 128) + 128)
+	return GetOwner() && GetOwner()->HasAuthority() && ValidateEntries(Entries, Capacity);
+}
+
+bool UCCLInventoryComponent::ValidateEntries(const TArray<FCCLInventoryEntry>& Entries, int32 Capacity)
+{
+	if (Capacity < 1 || Capacity > 128 || Entries.Num() > Capacity + 128)
 	{
 		return false;
 	}
@@ -120,9 +156,33 @@ bool UCCLInventoryComponent::Restore(const TArray<FCCLInventoryEntry>& Entries)
 			return false;
 		}
 
+		FString FoodError;
+		if (!CCLFood::Validate(Entry.Food, Entry.Food.IsPresent() ? Entry.Quantity : 0, FoodError)
+			|| (Entry.Food.IsPresent() && !Entry.Definition->FindFragment<FCCLItemFragment_Perishable>()))
+		{
+			return false;
+		}
+
 		Slots.Add(Entry.Slot);
 		Seen.Add(Entry.Id);
 	}
+	return true;
+}
+
+bool UCCLInventoryComponent::Restore(const TArray<FCCLInventoryEntry>& Entries)
+{
+	if (!CanRestore(Entries))
+	{
+		return false;
+	}
+    // Restore may receive GetEntries() from this same component.
+    const TArray<FCCLInventoryEntry> Candidate = Entries;
+    RestoreValidated(Candidate);
+    return true;
+}
+
+void UCCLInventoryComponent::RestoreValidated(const TArray<FCCLInventoryEntry>& Entries)
+{
 	List.Entries.Reset();
 	for (const auto& Value : Entries)
 	{
@@ -132,11 +192,11 @@ bool UCCLInventoryComponent::Restore(const TArray<FCCLInventoryEntry>& Entries)
 		Entry.Quantity = Value.Quantity;
 		Entry.Slot = Value.Slot;
 		Entry.LoadedAmmo = Value.LoadedAmmo;
+		Entry.Food = Value.Food;
 		List.MarkItemDirty(Entry);
 	}
 	List.MarkArrayDirty();
 	NotifyChanged();
-	return true;
 }
 
 const FCCLInventoryEntry* UCCLInventoryComponent::FindSlot(int32 Slot) const
@@ -271,4 +331,19 @@ void UCCLInventoryComponent::NotifyChanged()
 	{
 		OnChanged.Broadcast();
 	}
+}
+
+void UCCLInventoryComponent::EndPlay(const EEndPlayReason::Type EndPlayReason)
+{
+    if (auto* Store = GetWorld()->GetSubsystem<UCCLInventoryPersistenceSubsystem>())
+    {
+        Store->Unbind(*this);
+    }
+    Super::EndPlay(EndPlayReason);
+}
+
+bool UCCLInventoryComponent::BindPersistence(FGuid ContainerId, FString& Error)
+{
+    auto* Store = GetWorld() ? GetWorld()->GetSubsystem<UCCLInventoryPersistenceSubsystem>() : nullptr;
+    return Store && Store->Bind(*this, ContainerId, Error);
 }

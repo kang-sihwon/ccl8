@@ -162,6 +162,11 @@ public:
 	// Nearest first, stable ID tie break. Any failure leaves OutSamples unchanged.
 	virtual bool QuerySurfaces(const FCCLSurfaceQuery& Query, TArray<FCCLSurfaceSample>& OutSamples, FString& Error) const = 0;
 
+	// Volume occupancy; providers without this contract reject rather than assume clear air.
+	virtual bool QuerySolidPoint(FName BodyId, const FVector3d& PositionMeters, bool& bOutSolid, FString& Error) const;
+
+	virtual bool QueryOpeningFraction(const FCCLSurfaceOpening& Opening, double& OutFraction, FString& Error) const;
+
 	virtual uint64 GetRevision() const = 0;
 
 	virtual FGuid GetEpoch() const = 0;
@@ -171,6 +176,10 @@ class CCL_API FCCLSurfaceScene final : public ICCLSurfaceProvider
 {
 public:
 	virtual bool QuerySurfaces(const FCCLSurfaceQuery& Query, TArray<FCCLSurfaceSample>& OutSamples, FString& Error) const override;
+
+	virtual bool QuerySolidPoint(FName BodyId, const FVector3d& PositionMeters, bool& bOutSolid, FString& Error) const override;
+
+	virtual bool QueryOpeningFraction(const FCCLSurfaceOpening& Opening, double& OutFraction, FString& Error) const override;
 
 	virtual uint64 GetRevision() const override { return Revision; }
 

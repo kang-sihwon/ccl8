@@ -238,7 +238,7 @@ bool ACCLTerrainRegion::RequestRestore(const TArray<uint8>& Bytes, const FCCLTer
 		Store = MoveTemp(Candidate);
 		TArray<TSharedRef<const FCCLTerrainMesh>> Meshes;
 		SurfaceMeshes.GenerateValueArray(Meshes);
-		SurfaceProvider = MakeShared<FCCLTerrainSurface>(Store.GetSnapshot().Definition, Store.GetRevision(), Store.GetEpoch(), InitialTransform, MoveTemp(Meshes));
+		SurfaceProvider = MakeShared<FCCLTerrainSurface>(Store.GetSnapshot(), Store.GetEpoch(), InitialTransform, MoveTemp(Meshes));
 		if (auto* Simulation = GetWorld()->GetSubsystem<UCCLWorldSimulationSubsystem>())
 		{
 			Simulation->SetGeometryProvider(Store.GetSnapshot().Definition.RegionId, SurfaceProvider);
@@ -510,7 +510,7 @@ void ACCLTerrainRegion::PublishPrepared()
 
 	TArray<TSharedRef<const FCCLTerrainMesh>> Meshes;
 	SurfaceMeshes.GenerateValueArray(Meshes);
-	SurfaceProvider = MakeShared<FCCLTerrainSurface>(Store.GetSnapshot().Definition, Store.GetRevision(),
+	SurfaceProvider = MakeShared<FCCLTerrainSurface>(Store.GetSnapshot(),
 		Store.GetEpoch(), InitialTransform, MoveTemp(Meshes));
 	if (auto* Simulation = GetWorld()->GetSubsystem<UCCLWorldSimulationSubsystem>())
 	{

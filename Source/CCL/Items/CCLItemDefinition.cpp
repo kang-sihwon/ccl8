@@ -108,6 +108,25 @@ void UCCLItemDefinition::PostLoad()
 	}
 }
 
+bool UCCLItemDefinition::ConfigurePerishable(double ShelfLifeSeconds, double MoldDelaySeconds, double MoldGrowthSeconds)
+{
+	FCCLItemFragment_Perishable Food;
+	Food.Policy.ShelfLifeSeconds = ShelfLifeSeconds;
+	Food.Policy.MoldDelaySeconds = MoldDelaySeconds;
+	Food.Policy.MoldGrowthSeconds = MoldGrowthSeconds;
+	if (!CCLFood::ValidatePolicy(Food.Policy))
+	{
+		return false;
+	}
+
+	ItemFragments.RemoveAll([](const FInstancedStruct& Fragment)
+	{
+		return Fragment.GetPtr<FCCLItemFragment_Perishable>() != nullptr;
+	});
+	ItemFragments.Add(FInstancedStruct::Make(Food));
+	return true;
+}
+
 FText UCCLItemDefinition::GetLabel() const
 {
 	return ItemName.IsEmpty() ? FText::FromString(GetName()) : ItemName;
@@ -124,7 +143,7 @@ bool UCCLItemDefinition::ValidateDefinition(TArray<FText>& Errors) const
 	const auto* Equip = FindFragment<FCCLItemFragment_Equip>();
 	const auto* Weapon = FindFragment<FCCLItemFragment_Weapon>();
 	const auto* Visual = FindFragment<FCCLItemFragment_Visual>();
-	int32 EquipCount = 0, WeaponCount = 0, VisualCount = 0;
+	int32 EquipCount = 0, WeaponCount = 0, VisualCount = 0, FoodCount = 0;
 	for (const auto& Fragment : ItemFragments)
 	{
 		if (!Fragment.IsValid())
@@ -135,11 +154,24 @@ bool UCCLItemDefinition::ValidateDefinition(TArray<FText>& Errors) const
 		EquipCount += Fragment.GetPtr<FCCLItemFragment_Equip>() != nullptr;
 		WeaponCount += Fragment.GetPtr<FCCLItemFragment_Weapon>() != nullptr;
 		VisualCount += Fragment.GetPtr<FCCLItemFragment_Visual>() != nullptr;
+		if (const auto* Food = Fragment.GetPtr<FCCLItemFragment_Perishable>())
+		{
+			++FoodCount;
+			if (!CCLFood::ValidatePolicy(Food->Policy))
+			{
+				Fail(TEXT("Invalid perishable food policy."));
+			}
+		}
 	}
 
 	if (EquipCount > 1 || WeaponCount > 1 || VisualCount > 1)
 	{
 		Fail(TEXT("Equip, Weapon and Visual each allow one fragment, including derived types."));
+	}
+
+	if (FoodCount > 1)
+	{
+		Fail(TEXT("Only one perishable fragment is allowed."));
 	}
 
 	if (MaxStackCount < 1 || MaxStackCount > 1000 || (Equip && MaxStackCount != 1))

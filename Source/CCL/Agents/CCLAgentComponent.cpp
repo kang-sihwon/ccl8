@@ -7,194 +7,277 @@
 #include "AbilitySystem/CCLHealthSet.h"
 #include "Engine/World.h"
 #include "Net/UnrealNetwork.h"
+#include "Environment/CCLWorldSimulationSubsystem.h"
 
 UCCLAgentComponent::UCCLAgentComponent()
 {
-	SetIsReplicatedByDefault(true);
-	PrimaryComponentTick.bCanEverTick = true;
-	PrimaryComponentTick.TickInterval = 1.f;
+    SetIsReplicatedByDefault(true);
+    PrimaryComponentTick.bCanEverTick = true;
+    PrimaryComponentTick.TickInterval = 1.f;
 }
 
 void UCCLAgentComponent::BeginPlay()
 {
-	Super::BeginPlay();
-	if (GetOwner()->HasAuthority())
-	{
-		if (auto* World = GetWorld()->GetSubsystem<UCCLAgentWorldSubsystem>(); World && World->IsRunning())
-		{
-			World->GetSimulation().SetActorActive(AgentId, true);
-		}
-	}
+    Super::BeginPlay();
+    if (GetOwner()->HasAuthority())
+    {
+        if (auto* World = GetWorld()->GetSubsystem<UCCLAgentWorldSubsystem>(); World && World->IsRunning())
+        {
+            World->GetSimulation().SetActorActive(AgentId, true);
+        }
+    }
 }
 
 void UCCLAgentComponent::EndPlay(EEndPlayReason::Type Reason)
 {
-	if (GetOwner()->HasAuthority())
-	{
-		if (auto* World = GetWorld()->GetSubsystem<UCCLAgentWorldSubsystem>(); World && World->IsRunning())
-		{
-			World->GetSimulation().UpdateLocation(AgentId, GetOwner()->GetActorLocation());
-			World->GetSimulation().SetActorActive(AgentId, false);
-		}
-	}
+    if (auto* ASC = BoundHealthASC.Get())
+    {
+        ASC->GetGameplayAttributeValueChangeDelegate(UCCLHealthSet::GetHealthAttribute()).Remove(HealthChanged);
+    }
+    BoundHealthASC.Reset();
+    if (GetOwner()->HasAuthority())
+    {
+        if (auto* World = GetWorld()->GetSubsystem<UCCLAgentWorldSubsystem>(); World && World->IsRunning())
+        {
+            World->GetSimulation().UpdateLocation(AgentId, GetOwner()->GetActorLocation());
+            World->GetSimulation().SetActorActive(AgentId, false);
+        }
+    }
 
-	Super::EndPlay(Reason);
+    Super::EndPlay(Reason);
 }
 
 void UCCLAgentComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* Function)
 {
-	Super::TickComponent(DeltaTime, TickType, Function);
-	if (GetOwner()->HasAuthority())
-	{
-		if (auto* World = GetWorld()->GetSubsystem<UCCLAgentWorldSubsystem>(); World && World->IsRunning())
-		{
-			auto& Simulation = World->GetSimulation();
-			EnsureRecord();
-			if (!bHealthRestored)
-			{
-				RestoreHealthFromRecord();
-			}
-			Simulation.SetActorActive(AgentId, true);
-			Simulation.UpdateLocation(AgentId, GetOwner()->GetActorLocation());
-		}
-	}
+    Super::TickComponent(DeltaTime, TickType, Function);
+    if (GetOwner()->HasAuthority())
+    {
+        if (auto* World = GetWorld()->GetSubsystem<UCCLAgentWorldSubsystem>(); World && World->IsRunning())
+        {
+            auto& Simulation = World->GetSimulation();
+            EnsureRecord();
+            const auto* Record = Simulation.Find(AgentId);
+            if (Record && !CCLAgentBiology::IsAlive(*Record))
+            {
+                GetOwner()->Destroy();
+                return;
+            }
+
+            BindHealth();
+            const auto* Runtime = GetWorld()->GetSubsystem<UCCLWorldSimulationSubsystem>();
+            if (!bHealthRestored || (Runtime && HealthEpoch != Runtime->GetEpoch()))
+            {
+                RestoreHealthFromRecord();
+            }
+            RecordHealthDeath();
+            const auto* AfterHealth = Simulation.Find(AgentId);
+            if (AfterHealth && !CCLAgentBiology::IsAlive(*AfterHealth))
+            {
+                GetOwner()->Destroy();
+                return;
+            }
+            Simulation.SetActorActive(AgentId, true);
+            Simulation.UpdateLocation(AgentId, GetOwner()->GetActorLocation());
+        }
+    }
 }
 
 void UCCLAgentComponent::EnsureRecord()
 {
-	auto* World = GetWorld()->GetSubsystem<UCCLAgentWorldSubsystem>();
-	if (!GetOwner()->HasAuthority() || !World || !World->IsRunning())
-	{
-		return;
-	}
-	auto& Simulation = World->GetSimulation();
-	if (bCreateStandaloneRecord && !Simulation.Find(AgentId))
-	{
-		if (!AgentId.IsValid())
-		{
-			AgentId = FGuid::NewGuid();
-		}
-		FCCLAgentRecord Record;
-		Record.Id = AgentId;
-		Record.DefinitionId = FPrimaryAssetId(TEXT("Agent"), TEXT("Combatant"));
-		Record.Location.Position = GetOwner()->GetActorLocation();
-		Record.LastSimulatedTime = Simulation.GetTime();
-		Record.Features.Add(CCLAgentTags::Feature_Traits, {1, FInstancedStruct::Make(DefaultTraits)});
-		Record.Features.Add(CCLAgentTags::Feature_Needs, {1, FInstancedStruct::Make(FCCLAgentNeeds())});
-		Record.Features.Add(CCLAgentTags::Feature_Experience, {1, FInstancedStruct::Make(FCCLAgentExperience())});
-		FString Error;
-		Simulation.GetAgents().Add(Record, Simulation.GetRegistry(), Error);
-	}
+    auto* World = GetWorld()->GetSubsystem<UCCLAgentWorldSubsystem>();
+    if (!GetOwner()->HasAuthority() || !World || !World->IsRunning())
+    {
+        return;
+    }
+    auto& Simulation = World->GetSimulation();
+    if (bCreateStandaloneRecord && !Simulation.Find(AgentId))
+    {
+        if (!AgentId.IsValid())
+        {
+            AgentId = FGuid::NewGuid();
+        }
+        FCCLAgentRecord Record;
+        Record.Id = AgentId;
+        Record.DefinitionId = FPrimaryAssetId(TEXT("Agent"), TEXT("Combatant"));
+        Record.Location.Position = GetOwner()->GetActorLocation();
+        Record.LastSimulatedTime = Simulation.GetTime();
+        Record.Features.Add(CCLAgentTags::Feature_Traits, {1, FInstancedStruct::Make(DefaultTraits)});
+        Record.Features.Add(CCLAgentTags::Feature_Needs, {1, FInstancedStruct::Make(FCCLAgentNeeds())});
+        Record.Features.Add(CCLAgentTags::Feature_Experience, {1, FInstancedStruct::Make(FCCLAgentExperience())});
+        FString Error;
+        Simulation.GetAgents().Add(Record, Simulation.GetRegistry(), Error);
+    }
 }
 
 void UCCLAgentComponent::RestoreHealthFromRecord()
 {
-	EnsureRecord();
-	auto* World = GetWorld()->GetSubsystem<UCCLAgentWorldSubsystem>();
-	auto* ASC = UAbilitySystemBlueprintLibrary::GetAbilitySystemComponent(GetOwner());
-	const auto* Record = World && World->IsRunning() ? World->GetSimulation().Find(AgentId) : nullptr;
-	const auto* Needs = Record ? Record->Features.Find(CCLAgentTags::Feature_Needs) : nullptr;
-	if (!GetOwner()->HasAuthority() || !ASC || !Needs || ASC->GetAvatarActor() != GetOwner() ||
-		!ASC->HasAttributeSetForAttribute(UCCLHealthSet::GetHealthAttribute()))
-	{
-		return;
-	}
-	const float Injury = Needs->Data.Get<FCCLAgentNeeds>().Urgency.FindRef(CCLAgentTags::Injury);
-	ASC->SetNumericAttributeBase(UCCLHealthSet::GetHealthAttribute(),
-		(1 - Injury) * ASC->GetNumericAttribute(UCCLHealthSet::GetMaxHealthAttribute()));
-	bHealthRestored = 1;
+    EnsureRecord();
+    BindHealth();
+    auto* World = GetWorld()->GetSubsystem<UCCLAgentWorldSubsystem>();
+    auto* ASC = UAbilitySystemBlueprintLibrary::GetAbilitySystemComponent(GetOwner());
+    const auto* Record = World && World->IsRunning() ? World->GetSimulation().Find(AgentId) : nullptr;
+    const auto* Needs = Record ? Record->Features.Find(CCLAgentTags::Feature_Needs) : nullptr;
+    if (!GetOwner()->HasAuthority() || !ASC || !Needs || ASC->GetAvatarActor() != GetOwner() ||
+        !ASC->HasAttributeSetForAttribute(UCCLHealthSet::GetHealthAttribute()))
+    {
+        return;
+    }
+    const float Injury = Needs->Data.Get<FCCLAgentNeeds>().Urgency.FindRef(CCLAgentTags::Injury);
+    BindHealth();
+    if (const auto* Runtime = GetWorld()->GetSubsystem<UCCLWorldSimulationSubsystem>())
+    {
+        HealthEpoch = Runtime->GetEpoch();
+    }
+    ASC->SetNumericAttributeBase(UCCLHealthSet::GetHealthAttribute(),
+                                 (1 - Injury) * ASC->GetNumericAttribute(UCCLHealthSet::GetMaxHealthAttribute()));
+    bHealthRestored = 1;
 }
 
 void UCCLAgentComponent::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
 {
-	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
-	DOREPLIFETIME(UCCLAgentComponent, AgentId);
+    Super::GetLifetimeReplicatedProps(OutLifetimeProps);
+    DOREPLIFETIME(UCCLAgentComponent, AgentId);
 }
 
 void UCCLAgentComponent::RecordDamage(AActor* PerceivedSource, float HealthFraction)
 {
-	EnsureRecord();
-	auto* World = GetWorld()->GetSubsystem<UCCLAgentWorldSubsystem>();
-	if (!GetOwner()->HasAuthority() || !World || !World->IsRunning() || !FMath::IsFinite(HealthFraction))
-	{
-		return;
-	}
-	auto& Simulation = World->GetSimulation();
-	const auto* Current = Simulation.Find(AgentId);
-	if (!Current)
-	{
-		return;
-	}
-	auto Updated = *Current;
-	if (auto* Feature = Updated.Features.Find(CCLAgentTags::Feature_Needs))
-	{
-		auto& Needs = Feature->Data.GetMutable<FCCLAgentNeeds>();
-		Needs.Urgency.Add(CCLAgentTags::Injury, FMath::Clamp(1 - HealthFraction, 0.f, 1.f));
-		Needs.Urgency.Add(CCLAgentTags::Safety, FMath::Clamp(1 - HealthFraction, 0.f, 1.f));
-		auto& Fear = Needs.Emotions.FindOrAdd(CCLAgentTags::Fear);
-		Fear.Intensity = FMath::Min(1.f, Fear.Intensity + 0.35f);
-		Fear.HalfLifeSeconds = 3600;
-	}
-	if (auto* Feature = Updated.Features.Find(CCLAgentTags::Feature_Experience))
-	{
-		FCCLObservation Observation;
-		Observation.EventId = Observation.EvidenceId = FGuid::NewGuid();
-		Observation.Time = Simulation.GetTime();
-		Observation.EventType = CCLAgentTags::Failure;
-		const auto* Source = PerceivedSource ? PerceivedSource->FindComponentByClass<UCCLAgentComponent>() : nullptr;
-		bool bIdentified = false;
-		if (Source && Simulation.Find(Source->AgentId))
-		{
-			FVector Eye;
-			FRotator Facing;
-			GetOwner()->GetActorEyesViewPoint(Eye, Facing);
-			const FVector Direction = PerceivedSource->GetActorLocation() - Eye;
-			FHitResult Obstruction;
-			FCollisionQueryParams Query(SCENE_QUERY_STAT(CCLAgentIdentity), false, GetOwner());
-			const bool bBlocked = GetWorld()->LineTraceSingleByChannel(Obstruction, Eye, PerceivedSource->GetActorLocation(), ECC_Visibility, Query);
-			bIdentified = Direction.SizeSquared() < FMath::Square(1800.f) && FVector::DotProduct(Facing.Vector(), Direction.GetSafeNormal()) > 0.3f &&
-				(!bBlocked || Obstruction.GetActor() == PerceivedSource);
-		}
-		Observation.PerceivedSubject.Kind = bIdentified ? CCLAgentTags::Agent : CCLAgentTags::Unknown;
-		Observation.PerceivedSubject.Id = bIdentified ? Source->AgentId : FGuid();
-		CCLAgentFeatures::Observe(Feature->Data.GetMutable<FCCLAgentExperience>(), Observation);
-	}
-	auto& Store = Simulation.GetAgents();
-	const auto Lease = Store.Acquire(Store.GetHandle(AgentId), FGuid::NewGuid());
-	FString Error;
-	Store.Commit(Lease, Updated, Simulation.GetRegistry(), Error);
-	Store.Release(Lease);
+    EnsureRecord();
+    auto* World = GetWorld()->GetSubsystem<UCCLAgentWorldSubsystem>();
+    if (!GetOwner()->HasAuthority() || !World || !World->IsRunning() || !FMath::IsFinite(HealthFraction))
+    {
+        return;
+    }
+    auto& Simulation = World->GetSimulation();
+    const auto* Current = Simulation.Find(AgentId);
+    if (!Current || !CCLAgentBiology::IsAlive(*Current))
+    {
+        return;
+    }
+    auto Updated = *Current;
+    if (auto* Feature = Updated.Features.Find(CCLAgentTags::Feature_Needs))
+    {
+        auto& Needs = Feature->Data.GetMutable<FCCLAgentNeeds>();
+        Needs.Urgency.Add(CCLAgentTags::Injury, FMath::Clamp(1 - HealthFraction, 0.f, 1.f));
+        Needs.Urgency.Add(CCLAgentTags::Safety, FMath::Clamp(1 - HealthFraction, 0.f, 1.f));
+        auto& Fear = Needs.Emotions.FindOrAdd(CCLAgentTags::Fear);
+        Fear.Intensity = FMath::Min(1.f, Fear.Intensity + 0.35f);
+        Fear.HalfLifeSeconds = 3600;
+    }
+    if (auto* Feature = Updated.Features.Find(CCLAgentTags::Feature_Experience))
+    {
+        FCCLObservation Observation;
+        Observation.EventId = Observation.EvidenceId = FGuid::NewGuid();
+        Observation.Time = Simulation.GetTime();
+        Observation.EventType = CCLAgentTags::Failure;
+        const auto* Source = PerceivedSource ? PerceivedSource->FindComponentByClass<UCCLAgentComponent>() : nullptr;
+        bool bIdentified = false;
+        if (Source && Simulation.Find(Source->AgentId))
+        {
+            FVector Eye;
+            FRotator Facing;
+            GetOwner()->GetActorEyesViewPoint(Eye, Facing);
+            const FVector Direction = PerceivedSource->GetActorLocation() - Eye;
+            FHitResult Obstruction;
+            FCollisionQueryParams Query(SCENE_QUERY_STAT(CCLAgentIdentity), false, GetOwner());
+            const bool bBlocked = GetWorld()->LineTraceSingleByChannel(
+                Obstruction, Eye, PerceivedSource->GetActorLocation(), ECC_Visibility, Query);
+            bIdentified = Direction.SizeSquared() < FMath::Square(1800.f) &&
+                          FVector::DotProduct(Facing.Vector(), Direction.GetSafeNormal()) > 0.3f &&
+                          (!bBlocked || Obstruction.GetActor() == PerceivedSource);
+        }
+        Observation.PerceivedSubject.Kind = bIdentified ? CCLAgentTags::Agent : CCLAgentTags::Unknown;
+        Observation.PerceivedSubject.Id = bIdentified ? Source->AgentId : FGuid();
+        CCLAgentFeatures::Observe(Feature->Data.GetMutable<FCCLAgentExperience>(), Observation);
+    }
+    auto& Store = Simulation.GetAgents();
+    const auto Lease = Store.Acquire(Store.GetHandle(AgentId), FGuid::NewGuid());
+    FString Error;
+    Store.Commit(Lease, Updated, Simulation.GetRegistry(), Error);
+    Store.Release(Lease);
+    if (HealthFraction <= 0. && CCLAgentBiology::Find(Updated))
+    {
+        World->RequestExternalDeath(AgentId, Error);
+    }
 }
 
 bool UCCLAgentComponent::ShouldEngage() const
 {
-	const auto* World = GetWorld()->GetSubsystem<UCCLAgentWorldSubsystem>();
-	const auto* Record = World && World->IsRunning() ? World->GetSimulation().Find(AgentId) : nullptr;
-	if (!Record)
-	{
-		return true;
-	}
-	FCCLDecisionInput Input;
-	Input.Time = World->GetSimulation().GetTime();
-	if (const auto* Feature = Record->Features.Find(CCLAgentTags::Feature_Traits))
-	{
-		Input.Traits = Feature->Data.Get<FCCLAgentTraits>();
-	}
-	if (const auto* Feature = Record->Features.Find(CCLAgentTags::Feature_Needs))
-	{
-		Input.Needs = Feature->Data.Get<FCCLAgentNeeds>();
-	}
-	FCCLDecisionCandidate Attack;
-	Attack.OpportunityId = FGuid(0xCC18, 9, 0, 1);
-	Attack.Activity = CCLAgentTags::Aggressiveness;
-	Attack.BaseUtility = 0.4f;
-	Attack.TraitSignals.Add(CCLAgentTags::Aggressiveness, 0.7f);
-	Attack.TraitSignals.Add(CCLAgentTags::RiskTolerance, 0.7f);
-	FCCLDecisionCandidate Withdraw;
-	Withdraw.OpportunityId = FGuid(0xCC18, 9, 0, 2);
-	Withdraw.Activity = CCLAgentTags::Safety;
-	Withdraw.NeedRelief.Add(CCLAgentTags::Safety, 1);
-	Withdraw.TraitSignals.Add(CCLAgentTags::SelfControl, 0.3f);
-	Input.Candidates = {Attack, Withdraw};
-	return CCLDecision::Evaluate(Input).Intent.OpportunityId == Attack.OpportunityId;
+    const auto* World = GetWorld()->GetSubsystem<UCCLAgentWorldSubsystem>();
+    const auto* Record = World && World->IsRunning() ? World->GetSimulation().Find(AgentId) : nullptr;
+    if (!Record)
+    {
+        return true;
+    }
+    FCCLDecisionInput Input;
+    Input.Time = World->GetSimulation().GetTime();
+    if (const auto* Feature = Record->Features.Find(CCLAgentTags::Feature_Traits))
+    {
+        Input.Traits = Feature->Data.Get<FCCLAgentTraits>();
+    }
+    if (const auto* Feature = Record->Features.Find(CCLAgentTags::Feature_Needs))
+    {
+        Input.Needs = Feature->Data.Get<FCCLAgentNeeds>();
+    }
+    FCCLDecisionCandidate Attack;
+    Attack.OpportunityId = FGuid(0xCC18, 9, 0, 1);
+    Attack.Activity = CCLAgentTags::Aggressiveness;
+    Attack.BaseUtility = 0.4f;
+    Attack.TraitSignals.Add(CCLAgentTags::Aggressiveness, 0.7f);
+    Attack.TraitSignals.Add(CCLAgentTags::RiskTolerance, 0.7f);
+    FCCLDecisionCandidate Withdraw;
+    Withdraw.OpportunityId = FGuid(0xCC18, 9, 0, 2);
+    Withdraw.Activity = CCLAgentTags::Safety;
+    Withdraw.NeedRelief.Add(CCLAgentTags::Safety, 1);
+    Withdraw.TraitSignals.Add(CCLAgentTags::SelfControl, 0.3f);
+    Input.Candidates = {Attack, Withdraw};
+    return CCLDecision::Evaluate(Input).Intent.OpportunityId == Attack.OpportunityId;
+}
+
+void UCCLAgentComponent::BindHealth()
+{
+    if (!GetOwner()->HasAuthority())
+    {
+        return;
+    }
+    auto* ASC = UAbilitySystemBlueprintLibrary::GetAbilitySystemComponent(GetOwner());
+    if (!ASC || ASC->GetAvatarActor() != GetOwner() ||
+        !ASC->HasAttributeSetForAttribute(UCCLHealthSet::GetHealthAttribute()) || BoundHealthASC.Get() == ASC)
+    {
+        return;
+    }
+    if (auto* Previous = BoundHealthASC.Get())
+    {
+        Previous->GetGameplayAttributeValueChangeDelegate(UCCLHealthSet::GetHealthAttribute()).Remove(HealthChanged);
+    }
+    BoundHealthASC = ASC;
+    if (const auto* Runtime = GetWorld()->GetSubsystem<UCCLWorldSimulationSubsystem>())
+    {
+        HealthEpoch = Runtime->GetEpoch();
+    }
+    HealthChanged = ASC->GetGameplayAttributeValueChangeDelegate(UCCLHealthSet::GetHealthAttribute())
+                        .AddUObject(this, &ThisClass::OnHealthChanged);
+}
+
+void UCCLAgentComponent::OnHealthChanged(const FOnAttributeChangeData& Data)
+{
+    if (Data.NewValue <= 0.f)
+    {
+        RecordHealthDeath();
+    }
+}
+
+void UCCLAgentComponent::RecordHealthDeath()
+{
+    auto* Owner = GetOwner();
+    auto* Agents = GetWorld()->GetSubsystem<UCCLAgentWorldSubsystem>();
+    const auto* Runtime = GetWorld()->GetSubsystem<UCCLWorldSimulationSubsystem>();
+    const auto* ASC = BoundHealthASC.Get();
+    if (!Owner || !Owner->HasAuthority() || !Agents || !Agents->IsRunning() || !Runtime ||
+        HealthEpoch != Runtime->GetEpoch() || !ASC ||
+        ASC->GetNumericAttribute(UCCLHealthSet::GetHealthAttribute()) > 0.f)
+    {
+        return;
+    }
+    FString Error;
+    Agents->RequestExternalDeath(AgentId, Error);
 }

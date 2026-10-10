@@ -142,6 +142,11 @@ bool ValidNeeds(const FInstancedStruct& Data)
 
 void CCLAgentFeatures::Register(FCCLFeatureRegistry& Registry)
 {
+	Registry.Register({CCLAgentTags::Feature_Biology, FCCLAgentBiology::StaticStruct(), 1, {}, {},
+		[](const FInstancedStruct& Data)
+		{
+			return CCLAgentBiology::ValidateFields(Data.Get<FCCLAgentBiology>());
+		}});
 	Registry.Register({CCLAgentTags::Feature_Traits, FCCLAgentTraits::StaticStruct(), 1, {}, {}, ValidTraits});
 	Registry.Register({CCLAgentTags::Feature_Life, FCCLLifeState::StaticStruct(), 1, {}, {}, ValidLife});
 	Registry.Register({CCLAgentTags::Feature_Experience, FCCLAgentExperience::StaticStruct(), 1, {}, {}, ValidExperience});

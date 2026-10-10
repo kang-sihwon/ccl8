@@ -2,6 +2,7 @@
 
 #include "CoreMinimal.h"
 #include "CCLAgentTypes.h"
+#include "CCLAgentBiology.h"
 #include "CCLAgentFeatures.generated.h"
 
 USTRUCT(BlueprintType)

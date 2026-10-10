@@ -1,6 +1,10 @@
 #include "CCLExperimentDirector.h"
+#include "CCLFoodExperiment.h"
+#include "CCLBiologyExperiment.h"
+#include "CCLEcologyExperiment.h"
 
 #include "Agents/CCLAgentWorldSubsystem.h"
+#include "Agents/CCLAccountComponent.h"
 #include "CCLWorldSimulationSubsystem.h"
 #include "CCLWorldSnapshot.h"
 #include "CCLTerrainRegion.h"
@@ -94,8 +98,9 @@ void ACCLExperimentDirector::Tick(float DeltaSeconds)
 		TickTerrainExperiment();
 		TickWaterExperiment();
 		TickSnowExperiment();
+		TickCycleExperiment();
 	}
-	if (!ActiveCase.IsNone() && FPlatformTime::Seconds() - RunStarted > ((ActiveCase == TEXT("Zone_05") || ActiveCase == TEXT("Zone_04") || ActiveCase == TEXT("Zone_03")) ? 120. : 10.))
+	if (!ActiveCase.IsNone() && FPlatformTime::Seconds() - RunStarted > ((ActiveCase == TEXT("Zone_01") || ActiveCase == TEXT("Zone_05") || ActiveCase == TEXT("Zone_04") || ActiveCase == TEXT("Zone_03") || ActiveCase == TEXT("Zone_09")) ? 120. : 10.))
 	{
 		if (auto* Result = Results.FindByPredicate([this](const auto& R) { return R.CaseId == ActiveCase; }))
 		{
@@ -107,6 +112,8 @@ void ACCLExperimentDirector::Tick(float DeltaSeconds)
 void ACCLExperimentDirector::EndPlay(EEndPlayReason::Type Reason)
 {
 	GetWorldTimerManager().ClearTimer(RunTimer);
+	GetWorld()->GetSubsystem<UCCLWorldSimulationSubsystem>()->ReleaseManualAdvance(this);
+	StopCycleExperiment();
 	Super::EndPlay(Reason);
 }
 
@@ -240,6 +247,50 @@ bool ACCLExperimentDirector::Execute(APlayerController* Requester, ECCLExperimen
 	auto* Runtime = GetWorld()->GetSubsystem<UCCLWorldSimulationSubsystem>();
 	switch (Action)
 	{
+    case ECCLExperimentAction::EcologyFeedGround:
+    case ECCLExperimentAction::EcologyFeedWater:
+    case ECCLExperimentAction::EcologyFeedAir:
+    case ECCLExperimentAction::EcologyFeedInsect:
+    case ECCLExperimentAction::EcologyActors:
+    case ECCLExperimentAction::EcologyMass:
+    case ECCLExperimentAction::EcologyHidden:
+        if (auto* Ecology=ACCLEcologyExperiment::Find(GetWorld()); Ecology&&CaseId==TEXT("Zone_06")) { return Ecology->Execute(Action,Message); }
+        Message=TEXT("생태 구역이 준비되지 않았다."); return false;
+    case ECCLExperimentAction::BiologyAge:
+    case ECCLExperimentAction::BiologyProtect:
+    case ECCLExperimentAction::BiologyDamage:
+        if (auto* Biology = ACCLBiologyExperiment::Find(GetWorld()); Biology && CaseId == TEXT("Zone_07"))
+        {
+            return Biology->Execute(Action, Message);
+        }
+        Message = TEXT("생애 실험 준비를 기다려 줘.");
+        return false;
+    case ECCLExperimentAction::FoodDrop:
+    case ECCLExperimentAction::FoodCollect:
+    case ECCLExperimentAction::FoodWeather:
+    case ECCLExperimentAction::FoodIndoor:
+    case ECCLExperimentAction::FoodAdd:
+    case ECCLExperimentAction::FoodMoveCold:
+    case ECCLExperimentAction::FoodThaw:
+        if (auto* Food = ACCLFoodExperiment::Find(GetWorld()); Food && CaseId == TEXT("Zone_07"))
+        {
+            return Food->Execute(Action, Message);
+        }
+        Message = TEXT("음식 비교 보관함이 준비되지 않았다.");
+        return false;
+	case ECCLExperimentAction::VegetationRain:
+	case ECCLExperimentAction::VegetationDry:
+	case ECCLExperimentAction::VegetationWinter:
+	case ECCLExperimentAction::VegetationGrow:
+	case ECCLExperimentAction::VegetationIgnite:
+		return VegetationAction(Action, CaseId, Message);
+	case ECCLExperimentAction::FireIgnite:
+	case ECCLExperimentAction::FireRain:
+		return FireAction(Action, CaseId, Message);
+	case ECCLExperimentAction::WeatherNatural:
+	case ECCLExperimentAction::WeatherRain:
+	case ECCLExperimentAction::WeatherSnow:
+		return WeatherAction(Action, CaseId, Message);
 	case ECCLExperimentAction::SnowFall:
 	case ECCLExperimentAction::SnowMelt:
 		return SnowAction(Action, CaseId, Message);
@@ -333,6 +384,22 @@ bool ACCLExperimentDirector::ResetExperiment(FString& Error)
 		return false;
 	}
 
+	// Environment reset preserves the live players' currency explicitly, without lazy account creation.
+	FCCLLifeSimulation ResetLife;
+	if (!ResetLife.Load(Initial.Life, Error)) { return false; }
+	for (TActorIterator<APlayerState> It(GetWorld()); It; ++It)
+	{
+		if (const auto* Account = It->FindComponentByClass<UCCLAccountComponent>())
+		{
+			const auto* Existing = Agents->GetSimulation().GetEconomy().Accounts.Find(Account->GetAccountId());
+			if (!Existing || !ResetLife.ImportAccountBalance(Account->GetAccountId(), Existing->Balance))
+			{
+				Error = TEXT("실험 초기화에 보존할 플레이어 계좌가 없다.");
+				return false;
+			}
+		}
+	}
+	if (!ResetLife.Save(Initial.Life)) { Error = TEXT("초기화할 계좌를 저장하지 못했다."); return false; }
 	Initial.Identity.Generation = Runtime->GetIdentity().Generation + 1;
 	TArray<uint8> ResetBytes;
 	if (!FCCLWorldSnapshotCodec::Encode(Initial, ResetBytes, Error) || !MoveToSafety(nullptr, 0, Error))
@@ -361,7 +428,9 @@ bool ACCLExperimentDirector::ResetExperiment(FString& Error)
 	}
 
 	GetWorldTimerManager().ClearTimer(RunTimer);
+	GetWorld()->GetSubsystem<UCCLWorldSimulationSubsystem>()->ReleaseManualAdvance(this);
 	Generation = FGuid::NewGuid();
+	StopCycleExperiment();
 	ActiveCase = NAME_None;
 	WaterCaseStep = 0;
 	if (!Agents->Restore(ResetBytes, Error))
@@ -394,7 +463,9 @@ bool ACCLExperimentDirector::CanOperate(const APlayerController* Requester) cons
 	}
 
 #if !UE_BUILD_SHIPPING && !UE_BUILD_TEST
-	return !Requester && HasAuthority() && FParse::Param(FCommandLine::Get(), TEXT("CCLExperimentSmoke"));
+	return !Requester && HasAuthority() && (FParse::Param(FCommandLine::Get(), TEXT("CCLExperimentSmoke"))
+		|| FParse::Param(FCommandLine::Get(), TEXT("CCLWeatherSmoke"))
+		|| FParse::Param(FCommandLine::Get(), TEXT("CCLFireZoneSmoke")));
 #else
 	return false;
 #endif
@@ -466,12 +537,24 @@ bool ACCLExperimentDirector::StartCase(FName CaseId, FString& Error)
 		return false;
 	}
 
+	const auto* Definition = FindDefinition(CaseId);
+	const bool bManualClock = Definition && (Definition->Kind == ECCLExperimentKind::Clock ||
+		(Definition->Kind == ECCLExperimentKind::Celestial && UCCLWorldSimulationSubsystem::DomainForWorld(GetWorld()) == ECCLWorldDomain::Scenario));
+	if (bManualClock && !GetWorld()->GetSubsystem<UCCLWorldSimulationSubsystem>()->AcquireManualAdvance(this, Error)) { return false; }
 	Result->RunId = FGuid::NewGuid();
 	Result->Generation = Generation;
 	Result->Status = ECCLExperimentStatus::Running;
 	Result->Detail = TEXT("시험을 실행하고 있다.");
 	ActiveCase = CaseId;
 	RunStarted = FPlatformTime::Seconds();
+	bClockInputQueued = 0;
+	bClockWaiting = 0;
+	if (CaseId == TEXT("Zone_09"))
+	{
+		if (!StartCycleExperiment(Error)) { Finish(*Result, false, Error); return false; }
+		ForceNetUpdate();
+		return true;
+	}
 	if (CaseId == TEXT("Zone_03"))
 	{
 		if (!StartSnowExperiment(Error))
@@ -524,6 +607,7 @@ void ACCLExperimentDirector::CompleteCase(FName CaseId, FGuid RunId, FGuid Token
 
 	FString Error;
 	bool bPassed = false;
+	bClockWaiting = 0;
 	switch (Definition->Kind)
 	{
 	case ECCLExperimentKind::Guide:
@@ -534,22 +618,39 @@ void ACCLExperimentDirector::CompleteCase(FName CaseId, FGuid RunId, FGuid Token
 	case ECCLExperimentKind::Celestial:
 		bPassed = RunCelestials(Error) && (UCCLWorldSimulationSubsystem::DomainForWorld(GetWorld()) != ECCLWorldDomain::Scenario || RunClock(Error));
 		break;
-	case ECCLExperimentKind::Shelter: bPassed = RunShelter(Error); break;
+	case ECCLExperimentKind::Ecology:
+        if (auto* Ecology=ACCLEcologyExperiment::Find(GetWorld())) { bPassed=Ecology->CheckState(Error); }
+        break;
+	case ECCLExperimentKind::Vegetation: bPassed = RunVegetation(Error); break;
+	case ECCLExperimentKind::Weather: bPassed = RunWeather(Error); break;
+	case ECCLExperimentKind::Fire: bPassed = RunFire(false, Error); break;
+	case ECCLExperimentKind::Shelter: bPassed = RunShelter(Error) && RunFire(true, Error); break;
 	default: Error = TEXT("미구현 시험은 실행할 수 없다."); break;
 	}
 
+	if (!bPassed && bClockWaiting)
+	{
+		Result->Detail = TEXT("시계 시험의 남은 구간과 내비게이션 준비를 기다리고 있다.");
+		GetWorldTimerManager().SetTimer(RunTimer, [this, CaseId, RunId, Token]()
+		{
+			CompleteCase(CaseId, RunId, Token);
+		}, 0.05f, false);
+		return;
+	}
 	Finish(*Result, bPassed, bPassed ? TEXT("예상 결과를 확인했다. 같은 조건으로 재실행할 수 있다.") : Error);
 }
 
 void ACCLExperimentDirector::Finish(FCCLExperimentResult& Result, bool bPassed, const FString& Detail)
 {
 	GetWorldTimerManager().ClearTimer(RunTimer);
+	GetWorld()->GetSubsystem<UCCLWorldSimulationSubsystem>()->ReleaseManualAdvance(this);
 	if (WaterCaseStep)
 	{
 		FString Ignore;
 		GetWorld()->GetSubsystem<UCCLWorldSimulationSubsystem>()->ChangeSurfaceForcing(WaterRegionId(), WaterCaseForcing, Ignore);
 		WaterCaseStep = 0;
 	}
+	StopCycleExperiment();
 	ActiveCase = NAME_None;
 	Result.Status = bPassed ? ECCLExperimentStatus::Passed : ECCLExperimentStatus::Failed;
 	Result.Detail = Detail;
@@ -595,50 +696,48 @@ bool ACCLExperimentDirector::RunClock(FString& Error)
 {
 	auto* Runtime = GetWorld()->GetSubsystem<UCCLWorldSimulationSubsystem>();
 	auto* Agents = GetWorld()->GetSubsystem<UCCLAgentWorldSubsystem>();
-	for (int32 Index = 0; Index < 256 && Runtime->GetClock().HasPendingTime(); ++Index)
+	bClockWaiting = 0;
+	auto Drain = [&]()
 	{
-		if (!Runtime->AdvancePending(200, 20000, Error))
+		for (int32 Index = 0; Index < 16 && Runtime->GetClock().HasPendingTime(); ++Index)
 		{
+			if (!Runtime->AdvancePending(.25, 1., Error))
+			{
+				bClockWaiting = Error == TEXT("Ground ecology route awaits ready navigation data.");
+				return false;
+			}
+		}
+		bClockWaiting = Runtime->GetClock().HasPendingTime();
+		return !bClockWaiting;
+	};
+	if (!Drain()) { return false; }
+
+	if (!bClockInputQueued)
+	{
+		const double Before = Runtime->GetClock().GetWorldSeconds();
+		if (!Runtime->ChangeTimeScale(60, Error) || !Runtime->QueueGameTime(2, Error)) { return false; }
+		FCCLWorldClockSnapshot Queued;
+		if (!Runtime->GetClock().Capture(Queued, Error)) { return false; }
+		ClockExpectedWorldSeconds = Queued.RequestedWorldSeconds;
+		if (Runtime->AdvancePending(.25, 1., Error, 0) || Runtime->GetClock().GetWorldSeconds() != Before ||
+			Agents->GetSimulation().GetTime() != Before)
+		{
+			Error = TEXT("의도한 처리 예산 실패가 시계·Agent 상태를 보존하지 못했다.");
 			return false;
 		}
+		bClockInputQueued = 1;
+		if (!Drain()) { return false; }
 	}
 
-	if (Runtime->GetClock().HasPendingTime())
-	{
-		Error = TEXT("기존 대기 시간을 처리한 뒤 다시 실행해야 한다.");
-		return false;
-	}
-
-	const double Before = Runtime->GetClock().GetWorldSeconds();
-	if (!Runtime->ChangeTimeScale(60, Error) || !Runtime->QueueGameTime(120, Error))
-	{
-		return false;
-	}
-
-	FCCLWorldClockSnapshot Queued;
-	Runtime->GetClock().Capture(Queued, Error);
-	if (Runtime->AdvancePending(200, 20000, Error, 1) || Runtime->GetClock().GetWorldSeconds() != Before ||
-		Agents->GetSimulation().GetTime() != Before)
-	{
-		Error = TEXT("의도한 처리 예산 실패가 시계·Agent 상태를 보존하지 못했다.");
-		return false;
-	}
-
-	for (int32 Index = 0; Index < 256 && Runtime->GetClock().HasPendingTime(); ++Index)
-	{
-		if (!Runtime->AdvancePending(200, 20000, Error))
-		{
-			return false;
-		}
-	}
-
-	if (Runtime->GetClock().HasPendingTime() || Runtime->GetClock().GetWorldSeconds() != Queued.RequestedWorldSeconds ||
-		Runtime->GetClock().GetWorldSeconds() != Agents->GetSimulation().GetTime())
+	// Automatic input is suspended until this experiment finishes or is cancelled.
+	FCCLWorldClockSnapshot Completed;
+	if (!Runtime->GetClock().Capture(Completed, Error) || !Completed.Pending.IsEmpty() ||
+		Completed.WorldSeconds != ClockExpectedWorldSeconds || Completed.WorldSeconds != Completed.RequestedWorldSeconds ||
+		Completed.GameSeconds != Completed.AcceptedGameSeconds || Completed.WorldSeconds != Agents->GetSimulation().GetTime())
 	{
 		Error = TEXT("재시도 후 요청 시각과 실제 완료 시각이 다르다.");
 		return false;
 	}
-
 	return true;
 }
 
@@ -781,7 +880,9 @@ FString ACCLExperimentDirector::SlotName() const
 	const bool bTest = FParse::Param(FCommandLine::Get(), TEXT("CCLExperimentSmoke"))
 		|| FParse::Param(FCommandLine::Get(), TEXT("CCLTerrainScenarioSmoke"))
 		|| FParse::Param(FCommandLine::Get(), TEXT("CCLWaterSmoke"))
-		|| FParse::Param(FCommandLine::Get(), TEXT("CCLSnowSmoke"));
+		|| FParse::Param(FCommandLine::Get(), TEXT("CCLSnowSmoke"))
+		|| FParse::Param(FCommandLine::Get(), TEXT("CCLWeatherSmoke"))
+		|| FParse::Param(FCommandLine::Get(), TEXT("CCLFireZoneSmoke"));
 	FString Slot = FString(bTest ? TEXT("CCL_Experiment_Validation_") : TEXT("CCL_Experiment_")) +
 		(bScenario ? TEXT("Scenario") : TEXT("Playground"));
 #if !UE_BUILD_SHIPPING && !UE_BUILD_TEST

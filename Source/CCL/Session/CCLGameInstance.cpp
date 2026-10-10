@@ -12,6 +12,7 @@
 #include "Items/CCLInventoryComponent.h"
 #include "Items/CCLItemDefinition.h"
 #include "Items/CCLLoadoutComponent.h"
+#include "Items/CCLLoadoutRestore.h"
 #include "Items/CCLSkillDefinition.h"
 #include "Items/CCLWorldPickup.h"
 #include "Campaign/CCLCampaignDirector.h"
@@ -217,6 +218,12 @@ bool UCCLGameInstance::SaveSession()
 		Value.Quantity = Entry.Quantity;
 		Value.Slot = Entry.Slot;
 		Value.LoadedAmmo = Entry.LoadedAmmo;
+		FString FoodError;
+		if (!CCLFood::Encode(Entry.Food, Value.Food, FoodError))
+		{
+			Status = TEXT("음식 상태를 수집하지 못해 저장할 수 없다.");
+			return false;
+		}
 		Record.Items.Add(Value);
 	}
 	Record.Equipped = Player->GetLoadout()->GetEquippedId();
@@ -231,7 +238,7 @@ bool UCCLGameInstance::SaveSession()
 	if (auto* Agents = GetWorld()->GetSubsystem<UCCLAgentWorldSubsystem>(); Agents && Agents->IsRunning())
 	{
 		TArray<uint8> Simulation;
-		if (!Agents->Save(Simulation))
+		if (!Agents->Save(Simulation, Player->GetInventory()))
 		{
 			Status = TEXT("주민 상태를 수집하지 못해 저장할 수 없다.");
 			return false;
@@ -287,6 +294,24 @@ bool UCCLGameInstance::ApplyRecord(const FCCLSessionRecord& Record)
 	auto* PC = GetFirstLocalPlayerController();
 	auto* Player = PC ? PC->GetPlayerState<ACCLPlayerState>() : nullptr;
 	if (!Player || !PC->HasAuthority()) { return false; }
+    auto* Account = Player->FindComponentByClass<UCCLAccountComponent>();
+    auto* Expedition = Player->GetExpedition();
+    if (!Account || !Expedition)
+    {
+        return false;
+    }
+    // Validate() checked the saved account in the candidate world's ledger.
+    // Components and record remain alive throughout this synchronous restore.
+    auto FinalizeProfile = [&]
+    {
+        if (Record.AccountId.IsValid())
+        {
+            verify(Account->BindAccount(Record.AccountId));
+        }
+        verify(Expedition->Restore(Record.Coins, static_cast<ECCLQuestStatus>(Record.Quest),
+                                   !Record.AccountId.IsValid()));
+        Player->ForceNetUpdate();
+    };
 	TArray<FCCLInventoryEntry> Entries;
 	for (const auto& Value : Record.Items)
 	{
@@ -296,34 +321,37 @@ bool UCCLGameInstance::ApplyRecord(const FCCLSessionRecord& Record)
 		Entry.Quantity = Value.Quantity;
 		Entry.Slot = Value.Slot;
 		Entry.LoadedAmmo = Value.LoadedAmmo;
-	}
-	TArray<UCCLSkillDefinition*> Skills;
-	for (FName Id : Record.Skills) { Skills.Add(FCCLSessionCodec::Skill(Id)); }
-	if (!Player->GetInventory()->Restore(Entries) || !Player->GetLoadout()->Restore(Record.EquipmentSlots, Skills, Record.Points) ||
-	    !Player->GetExpedition()->Restore(Record.Coins, static_cast<ECCLQuestStatus>(Record.Quest), !Record.AccountId.IsValid()))
-	{
-		return false;
-	}
-
-	if (!Record.AgentSimulation.IsEmpty())
-	{
-		TArray<uint8> Simulation;
-		FString Error;
-		auto* Agents = GetWorld()->GetSubsystem<UCCLAgentWorldSubsystem>();
-		if (!Agents || !FBase64::Decode(Record.AgentSimulation, Simulation) || !Agents->Restore(Simulation, Error))
+		FString FoodError;
+		if (!CCLFood::Decode(Value.Food, Entry.Food, FoodError))
 		{
 			return false;
 		}
 	}
-
-	if (Record.AccountId.IsValid())
-	{
-		auto* Account = Player->FindComponentByClass<UCCLAccountComponent>();
-		if (!Account || !Account->BindAccount(Record.AccountId))
-		{
-			return false;
-		}
-	}
+    TArray<UCCLSkillDefinition*> Skills;
+    for (FName Id : Record.Skills) { Skills.Add(FCCLSessionCodec::Skill(Id)); }
+    FCCLLoadoutRestoreRequest Request;
+    Request.Loadout = Player->GetLoadout();
+    Request.Entries = MoveTemp(Entries);
+    Request.Equipment = Record.EquipmentSlots;
+    Request.Skills = MoveTemp(Skills);
+    Request.Points = Record.Points;
+    bool bRestored = false;
+    if (Record.AgentSimulation.IsEmpty())
+    {
+        bRestored = FCCLLoadoutRestoreBatch::Execute(MakeArrayView(&Request, 1), [] { return true; }, FinalizeProfile);
+    }
+    else
+    {
+        TArray<uint8> Simulation;
+        FString Error;
+        auto* Agents = GetWorld()->GetSubsystem<UCCLAgentWorldSubsystem>();
+        bRestored = Agents && FBase64::Decode(Record.AgentSimulation, Simulation) &&
+            Agents->Restore(Simulation, Error, &Request, FinalizeProfile);
+    }
+    if (!bRestored)
+    {
+        return false;
+    }
 
 	for (TActorIterator<ACCLWorldPickup> It(GetWorld()); It; ++It) { if (It->Definition && !Record.RemainingSupplies.Contains(It->Definition->GetFName())) { It->Destroy(); } }
 	for (TActorIterator<ACCLCampaignDirector> It(GetWorld()); It; ++It) { return It->RestoreCheckpoint(Record.DefeatedGuards, Record.Victory != 0); }

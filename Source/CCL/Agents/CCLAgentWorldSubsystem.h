@@ -38,13 +38,17 @@ public:
 	virtual void Deinitialize() override;
 
 public:
-	bool Save(TArray<uint8>& Bytes);
+	bool Save(TArray<uint8>& Bytes, const class UCCLInventoryComponent* SessionInventory = nullptr);
 	bool SaveSessionForTravel(FString& Error);
 	void CancelPreparedTravel() { bTravelPrepared = 0; }
-	bool Restore(const TArray<uint8>& Bytes, FString& Error);
+    // FinalizeSession requires SessionRequest and must synchronously succeed without reentry or destruction.
+	bool Restore(const TArray<uint8>& Bytes, FString& Error,
+        const struct FCCLLoadoutRestoreRequest* SessionRequest = nullptr, TFunction<void()> FinalizeSession = {});
 	FCCLLifeSimulation& GetSimulation() { return Simulation; }
 	const FCCLLifeSimulation& GetSimulation() const { return Simulation; }
 	bool IsRunning() const { return bRunning != 0; }
+    bool RequestExternalDeath(FGuid AgentId, FString& Error);
+    bool FlushExternalDeaths(FString& Error);
 
 private:
 	void SpawnVillage();
@@ -52,6 +56,7 @@ private:
 
 private:
 	FCCLLifeSimulation Simulation;
+    TMap<FGuid, FGuid> PendingExternalDeaths;
 	uint64 Session = 0;
 	uint8 bRunning = 0;
 	uint8 bTravelPrepared = 0;

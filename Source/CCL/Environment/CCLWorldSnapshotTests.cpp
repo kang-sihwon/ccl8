@@ -2,6 +2,7 @@
 
 #include "CCLWorldAdvance.h"
 #include "CCLSurfaceSimulation.h"
+#include "CCLEcologySimulation.h"
 #include "Agents/CCLLifeSimulation.h"
 #include "Agents/CCLAgentWorldSubsystem.h"
 #include "Engine/GameInstance.h"
@@ -136,7 +137,7 @@ bool FCCLWorldSaveMigrationTest::RunTest(const FString& Parameters)
 	TestTrue(TEXT("legacy completion time"), Life.TryAdvanceTo(7200, Error));
 	TArray<uint8> Legacy;
 	TestTrue(TEXT("legacy serialization"), Life.Save(Legacy));
-	for (int32 Version = 1; Version <= 5; ++Version)
+	for (int32 Version = 1; Version <= 6; ++Version)
 	{
 		FCCLSessionRecord Record;
 		Record.Version = Version;
@@ -145,12 +146,22 @@ bool FCCLWorldSaveMigrationTest::RunTest(const FString& Parameters)
 			Record.AgentSimulation = FBase64::Encode(Legacy);
 		}
 
+		if (Version == 6)
+		{
+			FCCLWorldSnapshot PreviousWorld;
+			TArray<uint8> PreviousBytes;
+			TestTrue(TEXT("previous world envelope"),
+				FCCLWorldSnapshotCodec::MigrateLegacy(Legacy, ECCLWorldDomain::Campaign, PreviousWorld, Error)
+				&& FCCLWorldSnapshotCodec::Encode(PreviousWorld, PreviousBytes, Error));
+			Record.AgentSimulation = FBase64::Encode(PreviousBytes);
+		}
+
 		TArray<uint8> Bytes;
 		FCCLSessionRecord Upgraded;
 		TestTrue(TEXT("encode legacy session"), FCCLSessionCodec::Encode(Record, Bytes));
 		TestTrue(TEXT("migrate session"), FCCLSessionCodec::Decode(Bytes, Upgraded));
-		TestEqual(TEXT("current schema"), Upgraded.Version, 6);
-		if (Version == 5)
+		TestEqual(TEXT("current schema"), Upgraded.Version, FCCLSessionRecord().Version);
+		if (Version >= 5)
 		{
 			TArray<uint8> WorldBytes;
 			FCCLWorldSnapshot Snapshot;
@@ -234,8 +245,43 @@ bool FCCLWorldEnvironmentMigrationTest::RunTest(const FString& Parameters)
 	const int32 EnvironmentOffset = 89 + 4 + Snapshot.Clock.Pending.Num() * 32 + 4 + Snapshot.Clock.Rates.Num() * 24;
 	int32 EnvironmentCount = 0;
 	FMemory::Memcpy(&EnvironmentCount, Bytes.GetData() + EnvironmentOffset, 4);
+    const int32 PlayerOffset = EnvironmentOffset + 4 + EnvironmentCount + 4 + Snapshot.Surface.Num() + 4 + Snapshot.Ecology.Num() + 14;
+    TArray<uint8> SchemaFive = Bytes;
+    SchemaFive.RemoveAt(PlayerOffset, 14);
+    const uint32 Five = 5;
+    FMemory::Memcpy(SchemaFive.GetData() + 4, &Five, 4);
+    uint32 FiveCRC = FCrc::MemCrc32(SchemaFive.GetData(), SchemaFive.Num() - 4);
+    FMemory::Memcpy(SchemaFive.GetData() + SchemaFive.Num() - 4, &FiveCRC, 4);
+    FCCLWorldSnapshot FromFive;
+    TestTrue(TEXT("schema five migrates missing players"), FCCLWorldSnapshotCodec::Decode(SchemaFive, FromFive, Error));
+    TestTrue(TEXT("legacy world does not invent player profiles"), FromFive.bPlayersMigrated && FromFive.Players.IsEmpty());
+    Bytes = SchemaFive;
+    TArray<uint8> SchemaFour = Bytes;
+    SchemaFour.RemoveAt(EnvironmentOffset + 4 + EnvironmentCount + 4 + Snapshot.Surface.Num() + 4 + Snapshot.Ecology.Num(), 14);
+    const uint32 Four = 4;
+    FMemory::Memcpy(SchemaFour.GetData() + 4, &Four, 4);
+    uint32 FourCRC = FCrc::MemCrc32(SchemaFour.GetData(), SchemaFour.Num() - 4);
+    FMemory::Memcpy(SchemaFour.GetData() + SchemaFour.Num() - 4, &FourCRC, 4);
+    FCCLWorldSnapshot FromFour;
+    TestTrue(TEXT("schema four migrates missing inventories"), FCCLWorldSnapshotCodec::Decode(SchemaFour, FromFour, Error));
+    TestTrue(TEXT("legacy has no fabricated food"), FromFour.bInventoriesMigrated && FromFour.Inventories.IsEmpty());
+
+	TArray<uint8> SchemaThree = Bytes;
+	SchemaThree.RemoveAt(EnvironmentOffset + 4 + EnvironmentCount + 4 + Snapshot.Surface.Num(), 4 + Snapshot.Ecology.Num() + 14);
+	const uint32 SchemaThreeVersion = 3;
+	FMemory::Memcpy(SchemaThree.GetData() + 4, &SchemaThreeVersion, 4);
+	uint32 SchemaThreeCRC = FCrc::MemCrc32(SchemaThree.GetData(), SchemaThree.Num() - 4);
+	FMemory::Memcpy(SchemaThree.GetData() + SchemaThree.Num() - 4, &SchemaThreeCRC, 4);
+	FCCLWorldSnapshot FromThree;
+	TestTrue(TEXT("schema three migrates missing ecology"), FCCLWorldSnapshotCodec::Decode(SchemaThree, FromThree, Error));
+	FCCLEcologySimulation MigratedEcology;
+	TestTrue(TEXT("migration keeps world and completed time without inventing population"), FromThree.bEcologyMigrated
+		&& MigratedEcology.Restore(FromThree.Ecology, Error) && MigratedEcology.GetWorldId() == Identity.WorldId
+		&& MigratedEcology.GetWorldSeconds() == 60. && MigratedEcology.GetPopulations().IsEmpty());
+	TestTrue(TEXT("schema three preserves its surface"), FromThree.Surface == Snapshot.Surface && !FromThree.bSurfaceMigrated);
+
 	TArray<uint8> SchemaTwo = Bytes;
-	SchemaTwo.RemoveAt(EnvironmentOffset + 4 + EnvironmentCount, 4 + Snapshot.Surface.Num());
+	SchemaTwo.RemoveAt(EnvironmentOffset + 4 + EnvironmentCount, 4 + Snapshot.Surface.Num() + 4 + Snapshot.Ecology.Num() + 14);
 	const uint32 SchemaTwoVersion = 2;
 	FMemory::Memcpy(SchemaTwo.GetData() + 4, &SchemaTwoVersion, 4);
 	uint32 SchemaTwoCRC = FCrc::MemCrc32(SchemaTwo.GetData(), SchemaTwo.Num() - 4);
@@ -247,14 +293,14 @@ bool FCCLWorldEnvironmentMigrationTest::RunTest(const FString& Parameters)
 		&& MigratedWater.GetWorldSeconds() == 60. && MigratedWater.GetRegions().IsEmpty());
 
 	// Construct the actual schema-1 wire layout: clock/rates followed directly by life.
-	Bytes.RemoveAt(EnvironmentOffset, 4 + EnvironmentCount + 4 + Snapshot.Surface.Num());
+	Bytes.RemoveAt(EnvironmentOffset, 4 + EnvironmentCount + 4 + Snapshot.Surface.Num() + 4 + Snapshot.Ecology.Num() + 14);
 	const uint32 LegacySchema = 1;
 	FMemory::Memcpy(Bytes.GetData() + 4, &LegacySchema, 4);
 	uint32 CRC = FCrc::MemCrc32(Bytes.GetData(), Bytes.Num() - 4);
 	FMemory::Memcpy(Bytes.GetData() + Bytes.Num() - 4, &CRC, 4);
 	FCCLWorldSnapshot Migrated;
 	TestTrue(TEXT("old world envelope migrates"), FCCLWorldSnapshotCodec::Decode(Bytes, Migrated, Error));
-	TestEqual(TEXT("upgraded world schema"), Migrated.Schema, uint32(3));
+	TestEqual(TEXT("upgraded world schema"), Migrated.Schema, uint32(6));
 	TestEqual(TEXT("old identity retained"), Migrated.Identity.WorldId, Identity.WorldId);
 	TestEqual(TEXT("old time retained without offline advance"), Migrated.Clock.WorldSeconds, 60.);
 	TestEqual(TEXT("explicit default environment seed"), Migrated.Environment.Celestial.Seed, 42);

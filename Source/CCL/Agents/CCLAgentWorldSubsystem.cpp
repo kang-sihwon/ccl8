@@ -107,7 +107,7 @@ void UCCLAgentWorldSubsystem::Deinitialize()
 	Super::Deinitialize();
 }
 
-bool UCCLAgentWorldSubsystem::Save(TArray<uint8>& Bytes)
+bool UCCLAgentWorldSubsystem::Save(TArray<uint8>& Bytes, const UCCLInventoryComponent* SessionInventory)
 {
 	if (!bRunning || GetWorld()->GetNetMode() == NM_Client)
 	{
@@ -124,7 +124,7 @@ bool UCCLAgentWorldSubsystem::Save(TArray<uint8>& Bytes)
 
 	FString Error;
 	auto* WorldSimulation = GetWorld()->GetSubsystem<UCCLWorldSimulationSubsystem>();
-	return WorldSimulation && WorldSimulation->Save(Simulation, Bytes, Error);
+	return WorldSimulation && WorldSimulation->Save(Simulation, Bytes, Error, SessionInventory);
 }
 
 bool UCCLAgentWorldSubsystem::SaveSessionForTravel(FString& Error)
@@ -174,11 +174,12 @@ bool UCCLAgentWorldSubsystem::SaveSessionForTravel(FString& Error)
 	return true;
 }
 
-bool UCCLAgentWorldSubsystem::Restore(const TArray<uint8>& Bytes, FString& Error)
+bool UCCLAgentWorldSubsystem::Restore(const TArray<uint8>& Bytes, FString& Error,
+    const FCCLLoadoutRestoreRequest* SessionRequest, TFunction<void()> FinalizeSession)
 {
 	auto* WorldSimulation = GetWorld()->GetSubsystem<UCCLWorldSimulationSubsystem>();
 	if (!bRunning || GetWorld()->GetNetMode() == NM_Client || !WorldSimulation ||
-		!WorldSimulation->Restore(Simulation, Bytes, Error))
+		!WorldSimulation->Restore(Simulation, Bytes, Error, SessionRequest, MoveTemp(FinalizeSession)))
 	{
 		return false;
 	}
@@ -240,7 +241,25 @@ void UCCLAgentWorldSubsystem::SpawnVillage()
 		{
 			continue;
 		}
-		if (Index++ == 0)
+
+		const int32 MerchantIndex = Index++;
+		if (!CCLAgentBiology::IsAlive(Record))
+		{
+			if (MerchantIndex == 0)
+			{
+				for (TActorIterator<ACCLVillageSteward> It(GetWorld()); It; ++It)
+				{
+					if (!Cast<ACCLLifeVillager>(*It))
+					{
+						It->Destroy();
+					}
+				}
+			}
+
+			continue;
+		}
+
+		if (MerchantIndex == 0)
 		{
 			for (TActorIterator<ACCLVillageSteward> It(GetWorld()); It; ++It)
 			{
@@ -302,4 +321,55 @@ void UCCLAgentWorldSubsystem::OnWorldBeginTearDown(UWorld* World)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("CCL_AGENT travel checkpoint retained previous state: %s"), *Error);
 	}
+}
+
+
+bool UCCLAgentWorldSubsystem::RequestExternalDeath(FGuid Id, FString& Error)
+{
+    auto* Runtime = GetWorld()->GetSubsystem<UCCLWorldSimulationSubsystem>();
+    const auto* Record = Simulation.Find(Id);
+    if (!bRunning || GetWorld()->GetNetMode() == NM_Client || !Runtime || !Runtime->IsRunning() ||
+        !Record || !CCLAgentBiology::Find(*Record))
+    {
+        Error = TEXT("External death requires an authoritative biological Agent.");
+        return false;
+    }
+    if (!CCLAgentBiology::IsAlive(*Record))
+    {
+        PendingExternalDeaths.Remove(Id);
+        return true;
+    }
+    PendingExternalDeaths.Add(Id, Runtime->GetEpoch());
+    if (!Simulation.EndLife(Id, ECCLAgentDeathCause::External, Error))
+    {
+        return false;
+    }
+    PendingExternalDeaths.Remove(Id);
+    return true;
+}
+
+bool UCCLAgentWorldSubsystem::FlushExternalDeaths(FString& Error)
+{
+    if (PendingExternalDeaths.IsEmpty()) { return true; }
+    auto* Runtime = GetWorld()->GetSubsystem<UCCLWorldSimulationSubsystem>();
+    if (!bRunning || !Runtime || !Runtime->IsRunning() || GetWorld()->GetNetMode() == NM_Client)
+    {
+        Error = TEXT("World awaits the Agent death owner.");
+        return false;
+    }
+    for (auto It = PendingExternalDeaths.CreateIterator(); It; ++It)
+    {
+        if (It.Value() != Runtime->GetEpoch())
+        {
+            It.RemoveCurrent();
+            continue;
+        }
+        if (Simulation.IsAlive(It.Key()) && !Simulation.EndLife(It.Key(), ECCLAgentDeathCause::External, Error))
+        {
+            Error = TEXT("World awaits a pending Agent death: ") + Error;
+            return false;
+        }
+        It.RemoveCurrent();
+    }
+    return true;
 }

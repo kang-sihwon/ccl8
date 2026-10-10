@@ -97,6 +97,9 @@ public:
 		}
 		return nullptr;
 	}
+	UFUNCTION(BlueprintCallable, Category = "Item")
+	bool ConfigurePerishable(double ShelfLifeSeconds, double MoldDelaySeconds, double MoldGrowthSeconds);
+
 	FText GetLabel() const;
 	int32 GetMaxStack() const;
 	bool ValidateDefinition(TArray<FText>& Errors) const;

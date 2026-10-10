@@ -168,7 +168,9 @@ void UCCLSessionSmokeSubsystem::Tick(float DeltaTime)
 	{
 		const FGuid Equipment = Player->GetInventory()->Add(FCCLSessionCodec::Item(TEXT("DA_IronGauntlets")), 1);
 		const FGuid Potion = Player->GetInventory()->Add(FCCLSessionCodec::Item(TEXT("DA_RecoveryPotion")), 7);
-		Player->GetLoadout()->GrantPoints(1);
+		const FGuid FoodId = Player->GetInventory()->Add(FCCLSessionCodec::Item(TEXT("DA_Bread")), 2);
+        if (!Check(FoodId.IsValid(), TEXT("seed session-owned food"))) { return; }
+        Player->GetLoadout()->GrantPoints(1);
 		if (!Check(Player->GetLoadout()->Equip(Equipment) && Player->GetLoadout()->Learn(FCCLSessionCodec::Skill(TEXT("DA_PowerTraining"))) &&
 			Player->GetLoadout()->Learn(FCCLSessionCodec::Skill(TEXT("DA_VitalityTraining"))), TEXT("seed equipped and learned profile"))) { return; }
 		Player->GetExpedition()->Restore(20, ECCLQuestStatus::Accepted);
@@ -187,6 +189,12 @@ void UCCLSessionSmokeSubsystem::Tick(float DeltaTime)
 
 		TArray<uint8> SavedBytes;
 		if (!Check(UGameplayStatics::LoadDataFromSlot(SavedBytes, UCCLGameInstance::SaveSlot(), 0), TEXT("read saved bytes"))) { return; }
+        FCCLSessionRecord SavedRecord;
+        if (!Check(FCCLSessionCodec::Decode(SavedBytes, SavedRecord), TEXT("decode publication fixture")) ||
+            !CheckPublication(SavedRecord))
+        {
+            return;
+        }
 		TArray<uint8> BrokenBytes = SavedBytes;
 		BrokenBytes.Last() ^= 1;
 		if (!Check(UGameplayStatics::SaveDataToSlot(BrokenBytes, UCCLGameInstance::SaveSlot(), 0) && !Session->LoadSession(false), TEXT("load menu rejects damaged slot"))) { return; }
@@ -211,7 +219,7 @@ void UCCLSessionSmokeSubsystem::Tick(float DeltaTime)
 		TArray<uint8> Bytes;
 		FCCLSessionRecord Record;
 		if (!Check(UGameplayStatics::LoadDataFromSlot(Bytes, UCCLGameInstance::SaveSlot(), 0) && FCCLSessionCodec::Decode(Bytes, Record), TEXT("saved slot remains intact"))) { return; }
-		if (!Check(Inventory->GetEntries().Num() == 2 && Inventory->FindSlot(12) && Inventory->FindSlot(12)->Id == Record.Items[1].Id &&
+		if (!Check(Inventory->GetEntries().Num() == 3 && Inventory->FindSlot(12) && Inventory->FindSlot(12)->Id == Record.Items[1].Id &&
 		               Inventory->Find(Record.Equipped) && Inventory->Find(Record.Equipped)->Slot == INDEX_NONE &&
 		               Loadout->GetEquippedId() == Record.Equipped && Loadout->GetPoints() == 0 && Inventory->Find(Record.Items[1].Id) &&
 		               Inventory->Find(Record.Items[1].Id)->Quantity == 7 &&
@@ -224,6 +232,11 @@ void UCCLSessionSmokeSubsystem::Tick(float DeltaTime)
 			return;
 		}
 
+        const auto* FoodItem = Record.Items.FindByPredicate([](const auto& E) { return E.Definition == TEXT("DA_Bread"); });
+        FString ActualFood, FoodError;
+        if (!Check(FoodItem && Inventory->Find(FoodItem->Id) && Inventory->Find(FoodItem->Id)->Quantity == 2
+            && CCLFood::Encode(Inventory->Find(FoodItem->Id)->Food, ActualFood, FoodError)
+            && ActualFood == FoodItem->Food && !ActualFood.IsEmpty(), TEXT("session food history restored with equipped profile"))) { return; }
 		if (!Check(!TActorIterator<ACCLWorldPickup>(World), TEXT("collected supplies do not respawn on load"))) { return; }
 		if (Step == 2) { Session->ReturnToMenu(); Step = 3; Next = Now + 1.; return; }
 		PC->ToggleInventory();

@@ -11,6 +11,7 @@ class UCCLInventoryComponent;
 class UCCLAbilitySystemComponent;
 class UCCLItemDefinition;
 class UCCLSkillDefinition;
+struct FCCLInventoryEntry;
 
 UCLASS(ClassGroup = Progression, meta = (BlueprintSpawnableComponent))
 class CCL_API UCCLLoadoutComponent : public UActorComponent
@@ -25,6 +26,10 @@ public:
 
 public:
 	bool Restore(const TArray<FCCLEquippedSlot>& Equipment, const TArray<UCCLSkillDefinition*>& Skills, int32 UnspentPoints);
+    bool CanRestoreState(const TArray<FCCLInventoryEntry>& Entries, const TArray<FCCLEquippedSlot>& Equipment,
+                         const TArray<UCCLSkillDefinition*>& Skills, int32 UnspentPoints) const;
+    bool RestoreState(const TArray<FCCLInventoryEntry>& Entries, const TArray<FCCLEquippedSlot>& Equipment,
+                      const TArray<UCCLSkillDefinition*>& Skills, int32 UnspentPoints, bool bResetHealth = true);
 	bool Equip(FGuid Id, FGameplayTag Slot = FGameplayTag());
 	bool Unequip(FGuid Id, int32 BagSlot = INDEX_NONE);
 	bool Use(FGuid Id);
@@ -63,6 +68,8 @@ private:
 	UCCLInventoryComponent* GetInventory() const;
 
 private:
+    friend class FCCLLoadoutRestoreBatch;
+
 	UPROPERTY(Replicated)
 	TArray<FCCLEquippedSlot> EquipmentSlots;
 
@@ -81,4 +88,5 @@ private:
 	TMap<FGuid, FActiveGameplayEffectHandle> EquipmentEffects;
 	TArray<FActiveGameplayEffectHandle> SkillEffects;
 	TSet<FGuid> ActionSources;
+    uint8 bRestoring = 0;
 };

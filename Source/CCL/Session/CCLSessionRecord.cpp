@@ -12,10 +12,14 @@
 
 UCCLItemDefinition* FCCLSessionCodec::Item(FName Id)
 {
+    if (Id == TEXT("DA_FoodSample"))
+    {
+        return LoadObject<UCCLItemDefinition>(nullptr, TEXT("/Game/Environment/Experiments/DA_FoodSample.DA_FoodSample"));
+    }
 	static const TSet<FName> Known = {TEXT("DA_IronGauntlets"),	 TEXT("DA_RecoveryPotion"), TEXT("DA_TrainingSword"),
 									  TEXT("DA_TrainingShield"), TEXT("DA_TrainingStaff"),	TEXT("DA_TrainingArmor"),
 									  TEXT("DA_TrainingBoots"),	 TEXT("DA_TrainingCloak"),	TEXT("DA_TrainingNecklace"),
-									  TEXT("DA_TrainingRing"), TEXT("DA_Pistol"), TEXT("DA_Rifle"), TEXT("DA_Bullets")};
+									  TEXT("DA_TrainingRing"), TEXT("DA_Pistol"), TEXT("DA_Rifle"), TEXT("DA_Bullets"), TEXT("DA_Bread")};
 	if (!Known.Contains(Id))
 	{
 		return nullptr;
@@ -34,20 +38,31 @@ UCCLSkillDefinition* FCCLSessionCodec::Skill(FName Id)
 	return LoadObject<UCCLSkillDefinition>(nullptr, *FString::Printf(TEXT("/Game/Progression/%s.%s"), *Id.ToString(), *Id.ToString()));
 }
 
-bool FCCLSessionCodec::Validate(const FCCLSessionRecord& R)
+namespace
 {
-	if (R.Version < 1 || R.Version > 6 || R.Items.Num() > (R.Version >= 3 ? 24 : 16) || R.Skills.Num() > 2 || R.Points < 0 ||
+bool ValidateRecord(const FCCLSessionRecord& R, bool bProfile, FGuid ProfileWorld, double ProfileTime, int32 Capacity)
+{
+    if (bProfile && (R.Version != 7 || !R.AccountId.IsValid() || !R.AgentSimulation.IsEmpty() || R.Coins != 0 ||
+        R.Equipped.IsValid() || R.Victory || R.DefeatedGuards || !R.RemainingSupplies.IsEmpty() ||
+        !ProfileWorld.IsValid() || !FMath::IsFinite(ProfileTime) || ProfileTime < 0. || Capacity < 1 || Capacity > 128))
+    {
+        return false;
+    }
+	if (R.Version < 1 || R.Version > 7 || R.Items.Num() > (bProfile ? Capacity + 8 : (R.Version >= 3 ? 24 : 16)) || R.Skills.Num() > 2 || R.Points < 0 ||
 		R.Points > 1000 || R.Coins < 0 || R.Coins > 1000000 || R.Quest > 2 || R.DefeatedGuards > 3 || R.Victory > 1 ||
-		(R.Victory && R.DefeatedGuards != 3) || (R.Quest == 2 && !R.Victory) || R.RemainingSupplies.Num() > (R.Version >= 5 ? 5 : 2))
+		(R.Victory && R.DefeatedGuards != 3) || (!bProfile && R.Quest == 2 && !R.Victory) || R.RemainingSupplies.Num() > (R.Version >= 5 ? 5 : 2))
 	{
 		return false;
 	}
 
-	if (R.AccountId.IsValid() && (R.AgentSimulation.IsEmpty() || R.Coins != 0))
+	if (!bProfile && R.AccountId.IsValid() && (R.AgentSimulation.IsEmpty() || R.Coins != 0))
 	{
 		return false;
 	}
 
+	TSet<FGuid> WorldItemIds;
+	FGuid FoodWorldId = ProfileWorld;
+	double FoodWorldSeconds = ProfileTime;
 	if (!R.AgentSimulation.IsEmpty())
 	{
 		TArray<uint8> State;
@@ -66,6 +81,26 @@ bool FCCLSessionCodec::Validate(const FCCLSessionRecord& R)
 				return false;
 			}
 
+            for (const auto& Container : World.Inventories)
+            {
+                for (const auto& Stored : Container.Items)
+                {
+                    WorldItemIds.Add(Stored.Id);
+                }
+            }
+            for (const auto& Profile : World.Players)
+            {
+                if (Profile.AccountId == R.AccountId)
+                {
+                    return false;
+                }
+                for (const auto& Stored : Profile.Items)
+                {
+                    WorldItemIds.Add(Stored.Id);
+                }
+            }
+			FoodWorldId = World.Identity.WorldId;
+			FoodWorldSeconds = World.Clock.WorldSeconds;
 			State = MoveTemp(World.Life);
 		}
 
@@ -81,8 +116,8 @@ bool FCCLSessionCodec::Validate(const FCCLSessionRecord& R)
 	bool bLegacyEquipmentFound = !R.Equipped.IsValid();
 	for (const auto& Entry : R.Items)
 	{
-		const auto* Definition = Item(Entry.Definition);
-		if (!Entry.Id.IsValid() || Ids.Contains(Entry.Id) || !Definition || Entry.Quantity <= 0 ||
+		const auto* Definition = FCCLSessionCodec::Item(Entry.Definition);
+		if (!Entry.Id.IsValid() || Ids.Contains(Entry.Id) || WorldItemIds.Contains(Entry.Id) || !Definition || Entry.Quantity <= 0 ||
 			Entry.Quantity > Definition->GetMaxStack())
 		{
 			return false;
@@ -95,10 +130,20 @@ bool FCCLSessionCodec::Validate(const FCCLSessionRecord& R)
 			return false;
 		}
 
+		FCCLFoodState Food;
+		FString FoodError;
+		if (!CCLFood::Decode(Entry.Food, Food, FoodError)
+			|| !CCLFood::Validate(Food, Food.IsPresent() ? Entry.Quantity : 0, FoodError)
+			|| (Food.IsPresent() && (R.Version < 7 || !Definition->FindFragment<FCCLItemFragment_Perishable>()
+				|| Food.WorldId != FoodWorldId || Food.UpdatedWorldSeconds > FoodWorldSeconds)))
+		{
+			return false;
+		}
+
 		Ids.Add(Entry.Id);
 		if (R.Version >= 2)
 		{
-			if (Entry.Slot < (R.Version >= 3 ? -1 : 0) || Entry.Slot >= 16 || (Entry.Slot >= 0 && BagSlots.Contains(Entry.Slot)))
+			if (Entry.Slot < (R.Version >= 3 ? -1 : 0) || Entry.Slot >= Capacity || (Entry.Slot >= 0 && BagSlots.Contains(Entry.Slot)))
 			{
 				return false;
 			}
@@ -137,7 +182,7 @@ bool FCCLSessionCodec::Validate(const FCCLSessionRecord& R)
 			}
 
 			const auto* Entry = R.Items.FindByPredicate([&](const auto& Value) { return Value.Id == Slot.Id; });
-			const auto* Definition = Entry ? Item(Entry->Definition) : nullptr;
+			const auto* Definition = Entry ? FCCLSessionCodec::Item(Entry->Definition) : nullptr;
 			const auto* Equip = Definition ? Definition->FindFragment<FCCLItemFragment_Equip>() : nullptr;
 			if (!Entry || Entry->Slot != INDEX_NONE || Entry->Quantity != 1 || !Equip || !Equip->Allows(Slot.Slot))
 			{
@@ -163,7 +208,7 @@ bool FCCLSessionCodec::Validate(const FCCLSessionRecord& R)
 
 			TArray<FGameplayTag> ExpectedSlots;
 			const auto* Slot = R.EquipmentSlots.FindByPredicate([&](const auto& Value) { return Value.Id == Entry.Id; });
-			if (!Slot || !CCLEquipment::GetOccupiedSlots(Item(Entry.Definition), Slot->Slot, ExpectedSlots) ||
+			if (!Slot || !CCLEquipment::GetOccupiedSlots(FCCLSessionCodec::Item(Entry.Definition), Slot->Slot, ExpectedSlots) ||
 				ExpectedSlots.Num() != ActualSlots->Num() ||
 				ExpectedSlots.ContainsByPredicate([&](FGameplayTag Tag) { return !ActualSlots->Contains(Tag); }))
 			{
@@ -175,7 +220,7 @@ bool FCCLSessionCodec::Validate(const FCCLSessionRecord& R)
 	TSet<FName> Skills;
 	for (FName Id : R.Skills)
 	{
-		if (!Skill(Id) || Skills.Contains(Id))
+		if (!FCCLSessionCodec::Skill(Id) || Skills.Contains(Id))
 		{
 			return false;
 		}
@@ -186,7 +231,7 @@ bool FCCLSessionCodec::Validate(const FCCLSessionRecord& R)
 	TSet<FName> Supplies;
 	for (FName Id : R.RemainingSupplies)
 	{
-		if (!Item(Id) || Supplies.Contains(Id))
+		if (!FCCLSessionCodec::Item(Id) || Supplies.Contains(Id))
 		{
 			return false;
 		}
@@ -195,6 +240,18 @@ bool FCCLSessionCodec::Validate(const FCCLSessionRecord& R)
 	}
 
 	return true;
+}
+
+} // namespace
+
+bool FCCLSessionCodec::Validate(const FCCLSessionRecord& Record)
+{
+    return ValidateRecord(Record, false, {}, 0., 16);
+}
+
+bool FCCLSessionCodec::ValidateProfile(const FCCLSessionRecord& Record, FGuid WorldId, double WorldSeconds, int32 Capacity)
+{
+    return ValidateRecord(Record, true, WorldId, WorldSeconds, Capacity);
 }
 
 bool FCCLSessionCodec::Encode(const FCCLSessionRecord& Record, TArray<uint8>& Bytes)
@@ -276,7 +333,7 @@ bool FCCLSessionCodec::Decode(const TArray<uint8>& Bytes, FCCLSessionRecord& Rec
 		return Object && Object->TryGetNumberField(Key, Value) && FMath::IsFinite(Value) && Value >= Min && Value <= Max &&
 			   FMath::FloorToDouble(Value) == Value;
 	};
-	if (!Number(Json, TEXT("version"), 1, 6) || !Number(Json, TEXT("points"), 0, 1000) || !Number(Json, TEXT("coins"), 0, 1000000) ||
+	if (!Number(Json, TEXT("version"), 1, 7) || !Number(Json, TEXT("points"), 0, 1000) || !Number(Json, TEXT("coins"), 0, 1000000) ||
 		!Number(Json, TEXT("quest"), 0, 2) || !Number(Json, TEXT("defeatedGuards"), 0, 3) || !Number(Json, TEXT("victory"), 0, 1))
 	{
 		return false;
@@ -300,6 +357,18 @@ bool FCCLSessionCodec::Decode(const TArray<uint8>& Bytes, FCCLSessionRecord& Rec
 
 	for (const auto& Value : *Items)
 	{
+		if (Json->GetNumberField(TEXT("version")) < 7)
+		{
+			FString UnexpectedFood;
+			if (Value->AsObject()->HasField(TEXT("food"))
+				&& (!Value->AsObject()->TryGetStringField(TEXT("food"), UnexpectedFood) || !UnexpectedFood.IsEmpty()))
+			{
+				return false;
+			}
+
+			Value->AsObject()->SetStringField(TEXT("food"), TEXT(""));
+		}
+
 		if (Json->GetNumberField(TEXT("version")) < 5)
 		{
 			Value->AsObject()->SetNumberField(TEXT("loadedAmmo"), 0);
@@ -444,7 +513,7 @@ bool FCCLSessionCodec::Decode(const TArray<uint8>& Bytes, FCCLSessionRecord& Rec
 		Candidate.AgentSimulation = FBase64::Encode(Upgraded);
 	}
 
-	Candidate.Version = 6;
+	Candidate.Version = 7;
 	if (!Validate(Candidate))
 	{
 		return false;

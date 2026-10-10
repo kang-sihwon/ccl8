@@ -1,4 +1,5 @@
 ﻿#include "CCLLifeVillager.h"
+#include "Environment/CCLThermalExposure.h"
 
 #include "Agents/CCLAgentComponent.h"
 #include "Agents/CCLAgentAIController.h"
@@ -40,6 +41,7 @@ const TCHAR* LifeLabel(FGameplayTag Tag)
 
 ACCLLifeVillager::ACCLLifeVillager()
 {
+	CreateDefaultSubobject<UCCLThermalReceiverComponent>(TEXT("ThermalReceiver"));
 	PrimaryActorTick.bCanEverTick = true;
 	PrimaryActorTick.TickInterval = 0.1f;
 	Agent = CreateDefaultSubobject<UCCLAgentComponent>(TEXT("Agent"));
@@ -61,14 +63,7 @@ void ACCLLifeVillager::BeginPlay()
 	AbilitySystem->InitAbilityActorInfo(this, this);
 	if (HasAuthority())
 	{
-		const auto* World = GetWorld()->GetSubsystem<UCCLAgentWorldSubsystem>();
-		const auto* Record = World ? World->GetSimulation().Find(Agent->AgentId) : nullptr;
-		const auto* Needs = Record ? Record->Features.Find(CCLAgentTags::Feature_Needs) : nullptr;
-		if (Needs)
-		{
-			const float Injury = Needs->Data.Get<FCCLAgentNeeds>().Urgency.FindRef(CCLAgentTags::Injury);
-			AbilitySystem->SetNumericAttributeBase(UCCLHealthSet::GetHealthAttribute(), (1 - Injury) * 100);
-		}
+        Agent->RestoreHealthFromRecord();
 	}
 	RefreshLabel();
 }

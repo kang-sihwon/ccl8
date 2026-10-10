@@ -41,10 +41,20 @@ public:
 	TSharedPtr<SWidget> GetStartButton() const { return StartButton; }
 	TSharedPtr<SWidget> GetRotationButton() const { return RotationButton; }
 	TSharedPtr<SWidget> GetDoorButton() const { return DoorButton; }
+	TSharedPtr<SWidget> GetFoodAddButton() const { return FoodAddButton; }
+    TSharedPtr<SWidget> GetFoodDropButton() const { return FoodDropButton; }
+    TSharedPtr<SWidget> GetFoodCollectButton() const { return FoodCollectButton; }
+    TSharedPtr<SWidget> GetFoodWeatherButton() const { return FoodWeatherButton; }
 	TSharedPtr<SWidget> GetMenuPanel() const { return MenuPanel; }
 	TSharedPtr<SWidget> GetCelestialViewButton() const { return CelestialViewButton; }
 	TSharedPtr<SWidget> GetCelestialView() const { return CelestialView; }
 	void RevealControl(const TSharedPtr<SWidget>& Widget);
+	void RevealFoodControls();
+    void RevealBiologyControls();
+    TSharedPtr<SWidget> GetBiologyAgeButton() const { return BiologyAgeButton; }
+    TSharedPtr<SWidget> GetBiologyDamageButton() const { return BiologyDamageButton; }
+	void RevealEcologyControls();
+	TSharedPtr<SWidget> GetEcologyFeedButton() const { return EcologyFeedButton; }
 
 private:
 	ACCLExperimentPlayerController* Controller() const;
@@ -66,4 +76,14 @@ private:
 	TSharedPtr<SWidget> StartButton;
 	TSharedPtr<SWidget> RotationButton;
 	TSharedPtr<SWidget> DoorButton;
+	TSharedPtr<SWidget> FoodAddButton;
+    TSharedPtr<SWidget> FoodWeatherButton;
+    TSharedPtr<SWidget> FoodDropButton;
+    TSharedPtr<SWidget> FoodCollectButton;
+	TSharedPtr<SWidget> FoodPanel;
+    TSharedPtr<SWidget> BiologyPanel;
+    TSharedPtr<SWidget> BiologyAgeButton;
+    TSharedPtr<SWidget> BiologyDamageButton;
+	TSharedPtr<SWidget> EcologyPanel;
+	TSharedPtr<SWidget> EcologyFeedButton;
 };
