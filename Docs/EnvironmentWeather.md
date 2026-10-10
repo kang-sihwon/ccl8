@@ -147,3 +147,14 @@ return true;
 에셋 생성 재실행에서 Python `Guid` 객체 비교가 같은 ID를 제거하지 않아 지붕이 중복된 결함을 찾았다. `export_text()` 값으로 찾아 교체하고 저장 전에 ID 유일성을 확인하도록 수정했다. 기존 회귀 검사의 고정 표면 개수 8도 현재 맵의 등록 ID 집합과 비교하도록 고쳤다. 실패한 중간 실행을 통과 근거에 포함하지 않았다.
 
 Niagara 에셋은 엔진의 `FountainLightweight`를 복제한 뒤 초기 수명·크기·위치·속도·강수율 바인딩을 구성한다. 매 게임에서 생성·컴파일하지 않는다. 에디터 생성 경로만 Niagara 내부 헤더를 사용하므로 엔진 이전 시 이 경로를 다시 빌드·저장해야 한다. `FNiagaraDistributionRangeVector2`의 일부 가상 함수는 외부 export가 없어 임시 객체 생성 대신 공개 `InitConstant`를 호출했다. 일반 게임·Server 패키지는 단계 9에서 별도 검증한다.
+
+
+## 눈 Niagara 생성 이력 보완
+
+2026-10-10 구역 07의 실제 렌더링에서 눈 Niagara의 활성 생성 이력이 GPU 처리 상한을 넘었다는 경고를 확인했다. 눈 입자의 최대 수명은 2.7초인데 0.25초마다 반복하며 변하는 강수율을 평가하고 있었다. 서로 다른 강수율의 생성 기록이 입자 수명 동안 함께 남아 한도를 넘는 조건이었다.
+
+UE 5.8.3의 `<Engine>/Plugins/FX/Niagara/Source/Niagara/Private/Stateless/NiagaraStatelessEmitterInstance.cpp:705`는 반복마다 생성율을 다시 평가한다. 같은 파일 743줄부터는 생성율과 시간 경계·확률·수명 조건이 맞는 기록만 합치며, 846줄부터는 생성 종료 시각에 최대 수명을 더한 경계가 지나야 기록을 제거한다. `NiagaraStatelessEmitterData.cpp:114`는 GPU 생성 기록 상한을 검사하고 148줄에서 화면 경고를 만든다. 이 근거는 UE 5.8.3 Stateless Niagara 경로에 해당한다.
+
+`CCLWeatherPresentation.cpp`의 에디터 에셋 구성에서 눈의 반복 길이를 1초로 늘렸다. 비는 0.25초를 유지한다. 눈은 강수율 표현의 반응 간격이 길어지는 대신 동시에 보존하는 생성 기록 수가 줄어든다. 서버의 강수량·물·눈 계산은 바꾸지 않았다. `Tools/Validation/update_precipitation_lifecycle.py`로 기존 비·눈 에셋을 갱신하고 새 게임 프로세스의 화면에서 경고가 사라진 것을 확인했다.
+
+에셋 작업 근거는 `Saved/EnvironmentStages/VegetationZone-Precipitation.log`다. 두 맵의 최종 성장 화면은 `Saved/Tests/VegetationZone/Standalone-20261010-154431-351/vegetation-growing.png`와 `Standalone-20261010-154431-371/vegetation-growing.png`다. 생성·빌드와 관련 실행 범위는 [구역 07 검증](EnvironmentEcology.md#구역-07-식생-조작과-복제-검증)에 기록한다. 장시간·최대 강수량의 효과 비용 검증까지 완료한 결과는 아니다.
