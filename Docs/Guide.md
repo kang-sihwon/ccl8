@@ -63,7 +63,18 @@
 | [생활·경제 학습](Learning/LifeEconomy.md) | 기회·거래·목표·실패 경험·저장 |
 | [Actor·StateTree·Mass 학습](Learning/AgentExecution.md) | 실행 예약·축약 실행·표현 전환 |
 | [콘텐츠 제작·검증 학습](Learning/ContentValidation.md) | 에디터 도구·에셋·자동 검사·패키징 |
-| [환경·생태계 계획 학습](Learning/Environment.md) | 공통 시간·천체·날씨·지형·눈·물·불·차폐·생명 |
+| [자연환경 시스템 학습](Learning/Environment.md) | 단계 0-7의 메인 문서·하위 장·기존 게임 연결 |
+| [공통 시간 학습](Learning/EnvironmentTime.md) | 독립 Tick에서 생활·환경의 후보 확정으로 변경 |
+| [천체·차폐 학습](Learning/EnvironmentCelestial.md) | 공통 시각의 관측·다층 표면·세 채널 차폐 |
+| [영구 지형 학습](Learning/EnvironmentTerrain.md) | 밀도 값·비동기 충돌·경로·클라이언트 준비 |
+| [물 순환 학습](Learning/EnvironmentWater.md) | 물 환산 체적·유량 예산·최신 지형 재배치 |
+| [깊은 눈·이동 학습](Learning/EnvironmentSnow.md) | 압축·질량·접촉 중복·CMC 예측·IK |
+| [자연 날씨 학습](Learning/EnvironmentWeather.md) | 수동 입력에서 기후·지속 대기 상태로 확장 |
+| [불·열 학습](Learning/EnvironmentFire.md) | 연료·열·수분 수지와 후속 GAS 피해 |
+| [실내 환기 학습](Learning/EnvironmentAir.md) | 여러 표면의 공통 공기·교환 예산·기하 차폐 |
+| [환경 저장·실험장 학습](Learning/EnvironmentPersistence.md) | 완료 세대·맵 전환·서버 요청·검증 구분 |
+| [환경 학습 비교 근거](Learning/EnvironmentEvidence.md) | 브랜치·전체 커밋·작업 트리 해시·기존 보고서 |
+| [환경 착수 전 학습 기록](Learning/EnvironmentPlanningHistory.md) | 구현 이전의 고정 기준 해설 보존 |
 | [학습 문서 엔진 근거](Learning/EngineEvidence.md) | UE 5.8.3의 ASC·Fast Array·구조체·CommonUI·MVVM·Mass 소스 근거 |
 | [VersionControl](VersionControl.md) | Git·LFS·커밋 주체와 동기화 |
 | [AgentContextTools](AgentContextTools.md) | 도구 설치·설정·복구·진단 |

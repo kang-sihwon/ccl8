@@ -185,3 +185,44 @@ bool FCCLLifeSimulation::Load(const TArray<uint8>& Bytes, FString& Error)
 **CRC가 일치하면 저장을 그대로 신뢰해도 될까?**
 
 아니다. 자료형·ID·수량·참조 관계 등 의미 검증이 별도로 필요하며 CRC 자체는 변경 주체를 인증하지 않는다.
+
+## 13. 환경 시간에 참여하기 위한 실패 계약
+
+앞의 `50e5838` 생활·경제 구조는 이후 `fe5c143`에서 실패를 보고하는 시간 진행으로 확장됐다. [공통 시간 학습](EnvironmentTime.md)이 그 변경의 상위 설명이며 전체 커밋은 [비교 근거](EnvironmentEvidence.md)에 있다. 거래·기억·자원의 정본을 별도 환경 사본으로 옮긴 변경은 아니다.
+
+이전 진입점은 완료 여부를 반환하지 않았다.
+
+출처: `50e5838`, [CCLLifeSimulation.cpp](../../Source/CCL/Agents/CCLLifeSimulation.cpp), `void FCCLLifeSimulation::AdvanceTo(double TargetTime)`, 918-919줄. 실제 코드의 연속 발췌이며 들여쓰기만 정리했다.
+
+```cpp
+void FCCLLifeSimulation::AdvanceTo(double TargetTime)
+{
+```
+
+이전 반복문은 원본 시각을 옮긴 뒤 사건을 적용했다. 따라서 뒤의 처리가 끝나지 못할 때도 호출자는 반환값으로 전체 완료를 판단할 수 없었다.
+
+출처: `50e5838`, [CCLLifeSimulation.cpp](../../Source/CCL/Agents/CCLLifeSimulation.cpp), `Time = Next;`, 944-945줄. 실제 코드의 연속 발췌이며 들여쓰기만 정리했다.
+
+```cpp
+Time = Next;
+ApplyEvents();
+```
+
+변경 후 `TryAdvanceTo` 내부는 생활 전체 후보와 경제 유효성을 확인한 뒤 원본을 교체한다.
+
+출처: `fe5c143`, [CCLLifeSimulation.cpp](../../Source/CCL/Agents/CCLLifeSimulation.cpp), `FCCLLifeSimulation Candidate(*this);`, 945-952줄. 실제 코드의 연속 발췌이며 들여쓰기만 정리했다.
+
+```cpp
+FCCLLifeSimulation Candidate(*this);
+if (!Candidate.AdvanceCandidate(TargetTime, MaxSlices, Error) || !CCLEconomy::Validate(Candidate.Economy, Error))
+{
+    return false;
+}
+
+*this = MoveTemp(Candidate);
+return true;
+```
+
+발췌 앞에서는 유한 시각·역행·계산 예산을 검사한다. `AdvanceCandidate`는 시간 경계와 사건을 처리하고 Writer 충돌·경제 사건 실패를 상위로 돌려준다. 기존 void 함수는 호환 진입점으로 남아 있지만 공통 실행기는 성공 여부를 받는 함수를 사용한다. 따라서 비가 내린 후보를 만든 뒤 생활 실패가 발생해도 둘 다 원본 상태에서 재시도할 수 있다.
+
+전체 복사는 실패 원본 보존을 단순하게 만들지만 경제·개인 기록 수가 늘면 비용이 증가한다. 대안인 변경 원장은 되돌릴 항목과 사건 영수증을 더 세밀하게 관리해야 한다. 기존 [시간 검증 기록](../EnvironmentPlan.md#시간-트랜잭션-구현과-검증)을 대조했으며 이번에 생활 시뮬레이션을 실행하지 않았다. **함수 반환값만 bool로 바꾸면 원자적 진행이 될까?** 이미 바꾼 원본을 보존할 후보·확정 순서가 함께 필요하다.

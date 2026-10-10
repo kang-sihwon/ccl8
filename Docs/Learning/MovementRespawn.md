@@ -187,3 +187,9 @@ Character의 사망은 `bDead`를 복제하고 이동·충돌을 정리한다. �
 **장비가 재스폰 뒤 유지되는 이유는 무엇일까?**
 
 소유 데이터와 효과가 PlayerState 수명을 따르기 때문이다. 새 Character에는 기존 ASC와 장비 표현을 다시 연결한다.
+
+## 눈 이동과 지형 준비로 이어지는 학습
+
+`0408d94`는 Character의 기본 이동 컴포넌트를 `UCCLSnowMovementComponent`로 지정했다. 앞의 이동·개별 재스폰 비교는 당시 커밋의 기록이고, 환경 이후에는 같은 CMC 경로에서 눈 깊이·접촉 순번과 저장 이동을 처리한다. 캡슐은 지지 바닥을 걷고 눈의 외형과 발 IK는 별도로 계산한다.
+
+실제 전후 코드·실패 경계·대안과 확인 방법은 [깊은 눈과 이동](EnvironmentSnow.md), [영구 지형](EnvironmentTerrain.md)에서 이어 읽는다. 현재 브랜치와 고정 기준은 [환경 비교 근거](EnvironmentEvidence.md)를 따른다.

@@ -173,3 +173,9 @@ Entity를 파괴했다고 Store의 Lease가 자동으로 해제된다고 가정�
 **Mass가 Actor보다 항상 빠르다고 이 문서에서 결론 낼 수 있을까?**
 
 없다. 현재 확인한 것은 Entity와 기록의 연결이다. 실제 개체 수, Processor 구성, 이동·표현 비용으로 성능을 측정해야 한다.
+
+## 독립 Tick 이후의 공통 실행기
+
+앞의 7절에 있는 0.25초 누적·60배 Tick은 `50e5838`의 실제 코드다. `64a7549` 이후에는 `UCCLWorldSimulationSubsystem`이 시간을 진행하고 Agent Subsystem은 생활 정본을 유지한다. Actor·Mass의 표현 수명과 개인 ID를 구분하는 원리는 유지되며, 후속 생태계 8단계의 전환 전체를 이 장의 완료 결과에 포함하지 않는다.
+
+실제 전후 코드·실패 경계·대안과 확인 방법은 [공통 시간](EnvironmentTime.md), [생활 진행의 실패 계약](LifeEconomy.md#13-환경-시간에-참여하기-위한-실패-계약)에서 이어 읽는다. 현재 브랜치와 고정 기준은 [환경 비교 근거](EnvironmentEvidence.md)를 따른다.

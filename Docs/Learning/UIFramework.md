@@ -194,3 +194,33 @@ UMG·Slate는 UE4에도 있었고 이 프로젝트의 공용 관리자는 자체
 **풀에 남은 화면에서 Destruct만 기다리면 충분할까?**
 
 객체 파괴 전에 다음 문맥으로 재사용될 수 있다. 닫을 때 이전 구독과 기능 자원을 해제해야 한다.
+
+## 13. 환경 실험장으로 확장된 입력 경로
+
+이 절은 앞의 `50e5838` 비교 이후 `0408d94`와 `a817082`의 보완이다. 전체 해시는 [환경 비교 근거](EnvironmentEvidence.md)에 있다. 공용 화면의 등록·문맥·핸들 구조는 유지하고 PIE와 일반 게임의 뒤로 가기 입력을 나눴다.
+
+이전에는 같은 Mapping에 Esc를 지정했다.
+
+출처: `50e5838`, [CCLUIInputData.cpp](../../Source/CCL/UI/CCLUIInputData.cpp), `Mapping->MapKey(EnhancedInputBackAction, EKeys::Escape);`, 13줄. 실제 코드의 연속 발췌이며 들여쓰기만 정리했다.
+
+```cpp
+Mapping->MapKey(EnhancedInputBackAction, EKeys::Escape);
+```
+
+변경 후에는 월드 실행 종류에서 키를 고른다.
+
+출처: `0408d94`, [CCLUIInputData.cpp](../../Source/CCL/UI/CCLUIInputData.cpp), `FKey UCCLUIInputData::GetBackKey`, 25-29줄. 실제 코드의 연속 발췌이며 들여쓰기만 정리했다.
+
+```cpp
+FKey UCCLUIInputData::GetBackKey(const UObject* WorldContext)
+{
+    const UWorld* World = WorldContext ? WorldContext->GetWorld() : nullptr;
+    return World && World->WorldType == EWorldType::PIE ? EKeys::F6 : EKeys::Escape;
+}
+```
+
+PIE는 에디터 안의 Play 실행 종류다. PIE 종료 키와 게임 UI 뒤로 가기를 구분하려고 F6를 사용하고 일반 게임에서는 Esc를 유지한다. `GetMapping`과 `GetBackKeyLabel`도 같은 판단을 사용한다. 표시만 F6로 바꾸고 실제 입력 매핑은 Esc로 남기면 안내와 동작이 달라진다. 이전 방식은 실행 환경이 하나일 때 단순했고, 새 방식은 매핑·표시가 같은 정책을 읽도록 유지해야 하는 비용이 생긴다.
+
+실험장 F7 열기·닫기는 이 일반 Back과 별도다. CommonUI가 입력을 받는 동안에도 닫기 동작이 도달하도록 PlayerController와 화면의 입력 경로를 함께 다룬다. 등록·OpenView·서버 RPC의 실제 연결과 권한·세대 검사는 [환경 저장과 실험장](EnvironmentPersistence.md#실험-ui에서-서버까지)에서 이어진다. 화면을 닫아도 서버 실험 상태가 사라지는 구조는 아니다.
+
+기존 실행 근거는 [실험 메뉴 조작과 검증](../EnvironmentPlan.md#실험-메뉴-조작과-검증)이다. 이번에는 Git 소스와 기록을 대조했고 키 입력을 새로 실행하지 않았다. **안내 문자열만 바꾸면 키 정책도 바뀔까?** 실제 Mapping과 활성 화면의 입력 수신 경로까지 바뀌어야 한다.
