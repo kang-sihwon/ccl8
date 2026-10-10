@@ -35,7 +35,7 @@ sequenceDiagram
 
 현재 저장 버전은 7이다. 버전 6부터 공통 세계 시계·환경·생활을 함께 저장하며, 버전 7에는 선택적인 음식 묶음 이력을 추가했다. 음식은 세계 ID·완료 시각·수량을 함께 검증하고 형식 1-6의 누락 상태는 빈 그대로 읽는다. 구현·검증 범위는 [음식 상태·인벤토리·세션 검증](EnvironmentEcology.md#음식-상태인벤토리세션-검증)을 따른다.
 
-세계 형식 5의 등록 보관함과 호스트 개인 항목은 서로 다른 저장 소유자다. `SaveSession`은 같은 호출에서 개인 항목을 수집하고 해당 인벤토리만 세계 수집에서 제외한다. 다른 미등록 음식은 거부하며, 개인 항목과 세계 보관함의 아이템 GUID 중복도 거부한다. 불러오기는 세계를 먼저 복원한 뒤 개인 인벤토리·장비·진행을 적용한다. 이는 새 맵에서의 세션 재개 순서이며 현재 월드의 개인 프로필 전체를 원자적으로 되돌리는 계약은 아니다. 일반 세계 저장·맵 전환의 개인 음식 연결은 남아 있다. 검증은 [컨테이너 세계 저장 검증](EnvironmentEcology.md#컨테이너-세계-저장-검증)을 따른다.
+세계 저장의 등록 보관함과 호스트 개인 항목은 서로 다른 저장 소유자다. `SaveSession`은 같은 호출에서 개인 항목을 수집하고 해당 인벤토리만 세계 수집에서 제외한다. 다른 미등록 음식은 거부하며, 개인 항목과 세계 보관함의 아이템 GUID 중복도 거부한다. 불러오기는 개인 장비 효과를 먼저 준비한 뒤 세계를 복원하고 개인 인벤토리·장비·진행을 확정한다. 이는 새 맵에서의 세션 재개 순서이며 현재 월드의 개인 프로필 전체를 원자적으로 되돌리는 계약은 아니다. 일반 세계 저장·맵 전환의 개인 음식 연결은 남아 있다. 검증은 [컨테이너 세계 저장 검증](EnvironmentEcology.md#컨테이너-세계-저장-검증)을 따른다.
 
 버전 5부터 아이템 GUID별 `LoadedAmmo`를 기록하며 형식 1-4는 탄창을 비운 상태로 변환한다. 탄약 값은 해당 무기의 탄창 용량을 넘을 수 없다. 부위는 `Equipment.Slot.*` 문자열로 기록한다. 형식 3의 enum 이름 또는 숫자는 구체적인 슬롯 태그로 변환하고, 알 수 없는 태그·상위 태그·다른 범주의 태그는 거부한다. 형식 1-3 변환과 형식 4 왕복 자동 검사, 별도 프로세스 저장·복원을 통과했다. 검사 근거는 [ProgressionFoundation](ProgressionFoundation.md)의 태그 개편 검사 표를 따른다.
 
@@ -100,9 +100,9 @@ classDiagram
 
 서버는 새 효과를 모두 적용한 뒤 기존 효과를 제거한다. 도중 GAS가 적용을 거부하면 새 핸들만 제거하고 기존 효과 핸들·개인 항목·포인트·부상을 유지한다. `FScopedAggregatorOnDirtyBatch`로 Attribute 계산 알림을 묶고 인벤토리 알림은 항목·장착 목록·스킬·포인트와 아바타 동기화 뒤 한 번 게시한다. 복원 성공 시 이전 무기 행동 부여도 정리해 같은 GUID가 과거 정의를 계속 참조하지 않게 한다. 다음 무기 조작에서 복원된 정의로 능력을 부여한다.
 
-`bResetHealth=false`는 부상을 유지하며 최종 최대 체력이 낮아지면 그 값으로 제한한다. 기존 개인 체크포인트는 기본값 `true`로 완전 체력을 유지한다. `UCCLGameInstance::ApplyRecord`도 세계 적용 전에 개인 후보를 검사하고 인벤토리·장비는 이 통합 경로로 적용한다. 구현은 `Source/CCL/Items/CCLLoadoutRestore.cpp`와 `Source/CCL/Session/CCLGameInstance.cpp`에 있다.
+`bResetHealth=false`는 부상을 유지하며 최종 최대 체력이 낮아지면 그 값으로 제한한다. 기존 개인 체크포인트는 기본값 `true`로 완전 체력을 유지한다. `UCCLGameInstance::ApplyRecord`도 세계 적용 전에 개인 후보와 실제 GAS 효과 적용을 준비하고 인벤토리·장비는 이 통합 경로로 적용한다. 구현은 `Source/CCL/Items/CCLLoadoutRestore.cpp`와 `Source/CCL/Session/CCLGameInstance.cpp`에 있다.
 
-이 계약은 임의 GAS 적용 델리게이트의 외부 부작용을 되돌리는 트랜잭션은 아니다. Attribute 알림 묶음이 효과 적용 델리게이트 자체를 지연하지 않으며, 인벤토리의 기존 트랜잭션도 모든 외부 변경을 차단하는 잠금은 아니다. 복원 중 같은 Loadout의 조작·복원 재진입은 거부하지만 외부 코드가 다른 상태를 수정하는 경우까지 보장하지 않는다. 세계·계정·모든 플레이어를 함께 준비하는 런타임 참여자는 아직 구현하지 않았다. 따라서 개인 세션의 세계 복원이 성공한 뒤 개인 효과 적용이 거부되는 경우까지 세계 원본 보존을 보장하지 않는다.
+이 계약은 임의 GAS 적용 델리게이트의 외부 부작용을 되돌리는 트랜잭션은 아니다. Attribute 알림 묶음이 효과 적용 델리게이트 자체를 지연하지 않으며, 인벤토리의 기존 트랜잭션도 모든 외부 변경을 차단하는 잠금은 아니다. 복원 중 같은 Loadout의 조작·복원 재진입은 거부하지만 외부 코드가 다른 상태를 수정하는 경우까지 보장하지 않는다. 다중 Loadout의 준비 경계와 개인 세션 연결은 아래 절을 따른다. 세계·계정·모든 플레이어의 자동 수집과 신원 연결은 아직 구현하지 않았다. 개인 세션의 계정·퀘스트·캠페인 체크포인트 후처리는 별도 경로이므로 이 결과를 전체 세션의 원자 복원으로 확대하지 않는다.
 
 UE 5.8.3 소스에서 `AbilitySystemComponent.cpp:1037`의 적용 Query 거부와 2160줄의 효과 적용 델리게이트 호출을 확인했다. 경로 기준은 `<Engine>/Plugins/Runtime/GameplayAbilities/Source/GameplayAbilities/Private/`다. Attribute 알림 보류 계약은 같은 모듈의 `Public/GameplayEffectAggregator.h:392`에 있다. 이 확인만으로 해당 기능이 UE5에서 처음 도입됐다고 주장하지 않는다.
 
@@ -135,3 +135,31 @@ UE 5.8.3 소스에서 `AbilitySystemComponent.cpp:1037`의 적용 Query 거부�
 새 자동 검사는 프로필·양손 점유·음식·부상 비율·계정 잔액의 왕복, 불완전한 점유·잘못된 참조·음식 시각·수량·중복 소유권의 거부와 실패 출력 보존을 확인했다. 정상 프로필 64명과 65명, 정상 항목 총 4,096개와 4,097개를 각각 대조했다. 잘못된 UTF-8·큰 길이·큰 배열 수·잘림·뒷부분 추가도 거부했다. 저장을 읽는 보안·인증 경계 전체를 검증한 결과는 아니며 식별 키 형식 검사도 계정 인증을 대신하지 않는다.
 
 첫 맵 왕복 검사는 현재 상태를 비교하는 후보가 보관함을 수집하지 않아 실패했다. `CCLTerrainTravelSmokeSubsystem`이 실제 `UCCLInventoryPersistenceSubsystem::Capture` 결과를 비교 후보에 넣도록 보완한 뒤 통과했다. 저장된 값을 비교 후보에 복사하지 않는다. 원본 실패 로그는 `Saved/Tests/TerrainTravel/Standalone-20261010-214223-530/server.log`에 보존했다. 자동 검사·개인 세션 검사 이후의 코드 변경은 이 실행 검사의 수집·진단 보완뿐이다.
+
+
+## 다중 플레이어 복원 준비 경계
+
+`FCCLLoadoutRestoreBatch::Execute`는 여러 Loadout의 효과 적용과 세계 복원을 한 동기 호출로 묶는다. `FCCLLoadoutRestoreBatch`는 후보 배열을 복사하고 모든 대상의 인벤토리 알림과 Loadout 조작을 보류한다. 새 효과를 전부 준비한 뒤 `CommitWorld`를 호출하고, 성공하면 준비된 항목·장비·스킬을 확정한다. `CommitWorld`는 실패할 때 자신의 세계 상태를 보존해야 하며 플레이어 후보나 효과를 수정해서는 안 된다. Attribute 일괄 갱신이 끝난 다음 아바타·체력 정책과 개인 상태 후처리를 적용하고 인벤토리 알림을 게시한다.
+
+```cpp
+static bool Execute(TConstArrayView<FCCLLoadoutRestoreRequest> Requests,
+                    TFunctionRef<bool()> CommitWorld,
+                    TFunctionRef<void()> FinalizeProfiles);
+```
+
+요청과 준비 자료는 같은 게임 스레드 호출 안에서만 생존한다. GAS의 일괄 갱신 잠금은 전역이므로 이미 잠금이 열린 상태에서는 거부한다. 중첩 잠금 안에서 체력을 확정하면 아직 계산하지 않은 최대 체력을 사용할 수 있다. 각 플레이어를 순서대로 완전히 복원하는 방식보다 후보 메모리와 일괄 알림 관리가 늘지만, 뒤 플레이어의 GAS 거부로 앞 플레이어만 바뀌는 실패를 막을 수 있다. 임의 효과 델리게이트의 파괴·재진입 부작용은 지원 범위가 아니다.
+
+`UCCLLoadoutComponent::RestoreState`는 한 요청으로 이 경계를 사용하고, `UCCLGameInstance::ApplyRecord`는 `Agents->Restore`를 `CommitWorld`에 연결한다. GAS 적용이 거부되면 세계 복원을 호출하지 않는다. 세계 복원이 거부되면 모든 대상의 새 효과를 제거한다. 성공 후 항목 교체는 이미 검증한 복사본을 받는 비공개 `RestoreValidated` 경로로 수행한다. 기존 `Inventory::Restore`도 자기 배열을 입력으로 받을 수 있도록 교체 전에 복사한다.
+
+2026-10-10 UE 5.8.3에서 `Tools/Validation/run_loadout_restore.ps1`로 두 실제 PlayerState와 EnvironmentScenario의 세계 스냅샷을 검사했다. 뒤 대상의 두 번째 GAS 효과 거부에서 세계 복원 호출은 0회였고 양쪽 기존 효과 핸들·항목·포인트·부상이 유지됐다. 효과를 모두 준비한 뒤 손상된 세계 파일을 전달했을 때도 같은 값과 세계 Epoch·시각을 유지했다. 정상 파일은 Epoch를 교체하고 저장 시각으로 복원했으며, 두 최대 체력 100·125를 계산한 뒤 후처리에서 체력 50·62.5를 적용했다. 인벤토리 알림은 각 대상에 한 번 발생했고 두 대상의 최종 값을 관측했다. 중복 대상·중복 아이템·외부 GAS 잠금은 세계 변경 전에 거부했다.
+
+| 검사 | 결과와 로컬 근거 |
+|---|---|
+| 최종 프로젝트 생성·Editor 빌드 | 성공. `Saved/EnvironmentStages/PlayerBatch-FinalGPF.log`, `PlayerBatch-FinalBuild.log` |
+| 두 PlayerState·실제 세계 복원 실행 | Standalone 통과, 종료 코드 0. `Saved/Tests/LoadoutRestore/20261010-220226-670/result.json` |
+| 개인 세션의 별도 프로세스 재개 | 쓰기·읽기·메뉴 재진입·완료 체크포인트 통과. `Saved/Tests/SessionSmoke/20261010-215945` |
+| 기존 CCL 자동 검사 | 143/143, 경고·실패·미실행 0. `Saved/Tests/Automation/20261010-215946-005/report/index.json` |
+
+자동 검사·개인 세션 검사 이후의 변경은 실제 세계 파일을 사용하도록 강화한 실행 검사뿐이다. 프로덕션 코드는 그 검사 이후 바뀌지 않았다. 이 실행은 같은 서버 월드에 있는 두 PlayerState를 사용했으며 두 원격 클라이언트의 복제 검증은 아니다. 세계 프로필 배열의 자동 수집·해석, 계정·퀘스트 확정과 모든 세계 보관함까지 묶은 알림, 맵 전환·재접속의 신원 연결은 후속 통합 대상이다. 세계 보관함 알림은 현재 `CommitWorld` 안에서 먼저 발생할 수 있다.
+
+엔진 근거는 `<Engine>/Plugins/Runtime/GameplayAbilities/Source/GameplayAbilities/Private/GameplayEffectAggregator.cpp:687`의 `FScopedAggregatorOnDirtyBatch::EndLock`이다. 전역 잠금 수가 0일 때만 Dirty Aggregator를 게시한다. 일괄 갱신은 모든 ASC의 Attribute 변경 콜백을 동시에 관측하게 만드는 트랜잭션은 아니며, 여기서 검증한 최종 관측 경계는 Loadout 인벤토리 알림이다. 프로젝트 구현은 `Source/CCL/Items/CCLLoadoutRestore.cpp:157`과 `Source/CCL/Session/CCLGameInstance.cpp:320`에 있다.
