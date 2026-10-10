@@ -1,6 +1,6 @@
 # 생태계·생애 구현과 검증
 
-단계 8의 범위는 [환경 계획](EnvironmentPlan.md#생태계와-생애-주기)을 따른다. 현재 작업은 개체군·식생·부패·Agent 나이를 공통 세계 시간과 저장에 연결하는 것이다. 개체군 값 모델과 시간순 생애 계산을 구현하고 월드 공통 진행·저장에 연결했다. 실제 Actor/Mass 전환과 Actor의 첫·늦은 접속자 복제를 검증했다. Agent의 공통 시간 나이·수명·자연 노화 보호와 실제 Actor 제거·복원도 연결했다. 식생의 성장·연소·재생과 구역 07 식생 조작·표현·복제를 검증했다. 음식 묶음의 부패·곰팡이, 인벤토리 이동과 세션 저장을 연결했다. 구역 07 음식 보관 비교·표시·조작과 첫·늦은 접속자의 공개 관측 복제를 연결했다. 지속 예약 개체의 이동 후보·먹이 수지·무리 목표·기아 사망을 공통 시간과 저장에 연결하고 실제 Actor/Mass 및 접속자로 검증했다. 실제 지형 내비게이션과 수중·공중 장애물 경로를 연결하고 두 환경 맵의 네 매체 Actor 이동·섭취·저장 복원을 검증했다. 같은 기하에서 새 프로세스로 재개한 결과와 Listen·Dedicated 첫·늦은 접속자의 복원 위치도 확인했다. 구역 06의 네 서식지·공개 관측·먹이 추가·Actor/Mass/숨김과 저장·초기화, 실제 메뉴 조작·렌더링·첫 및 늦은 접속을 연결해 검증했다. 집계 생물의 먹이 계산은 후속 작업이다. 음식 보관 조건을 날씨·실내 온습도에 연결하고 실패 원본 보존·언로드 진행·새 프로세스 재개·공개 관측 복제를 검증했다. 음식 픽업의 이력 이동·일부 및 전체 드롭·공개 품질 복제를 연결해 검증했다. 바닥 픽업의 저장·재생성과 환경 전체 저장 통합은 남아 있다.
+단계 8의 범위는 [환경 계획](EnvironmentPlan.md#생태계와-생애-주기)을 따른다. 현재 작업은 개체군·식생·부패·Agent 나이를 공통 세계 시간과 저장에 연결하는 것이다. 개체군 값 모델과 시간순 생애 계산을 구현하고 월드 공통 진행·저장에 연결했다. 실제 Actor/Mass 전환과 Actor의 첫·늦은 접속자 복제를 검증했다. Agent의 공통 시간 나이·수명·자연 노화 보호와 실제 Actor 제거·복원도 연결했다. 식생의 성장·연소·재생과 구역 07 식생 조작·표현·복제를 검증했다. 음식 묶음의 부패·곰팡이, 인벤토리 이동과 세션 저장을 연결했다. 구역 07 음식 보관 비교·표시·조작과 첫·늦은 접속자의 공개 관측 복제를 연결했다. 지속 예약 개체의 이동 후보·먹이 수지·무리 목표·기아 사망을 공통 시간과 저장에 연결하고 실제 Actor/Mass 및 접속자로 검증했다. 실제 지형 내비게이션과 수중·공중 장애물 경로를 연결하고 두 환경 맵의 네 매체 Actor 이동·섭취·저장 복원을 검증했다. 같은 기하에서 새 프로세스로 재개한 결과와 Listen·Dedicated 첫·늦은 접속자의 복원 위치도 확인했다. 구역 06의 네 서식지·공개 관측·먹이 추가·Actor/Mass/숨김과 저장·초기화, 실제 메뉴 조작·렌더링·첫 및 늦은 접속을 연결해 검증했다. 집계 생물의 먹이 계산은 후속 작업이다. 음식 보관 조건을 날씨·실내 온습도에 연결하고 실패 원본 보존·언로드 진행·새 프로세스 재개·공개 관측 복제를 검증했다. 음식 픽업의 이력 이동·일부 및 전체 드롭·공개 품질 복제를 연결해 검증했다. 바닥 음식 픽업의 세계 저장·재생성·회수 기록·언로드 후 재등록과 두 맵의 새 프로세스 재개를 검증했다. 상시 픽업 조작과 환경 전체 저장 통합은 남아 있다.
 
 ## 목표와 제약
 
@@ -809,3 +809,75 @@ return true;
 | 기존 캠페인 Standalone | 통과. `Saved/Tests/CampaignSmoke/Standalone-20261010-192417` |
 
 검사는 NullRHI이며 Dedicated는 Editor 서버 모드다. 검사 이후 헤더의 기존 `RefreshVisual` 선언을 함수 영역으로 옮겼으며 동작 코드는 바꾸지 않았다. 최종 프로젝트 생성·빌드는 이 선언 정리를 포함한다. 재실행은 `Tools/Validation/run_food_pickup.ps1 -Mode Standalone -Map EnvironmentScenario`이며 Listen은 `-Port 20422`, Dedicated는 `-Map EnvironmentPlayground -Port 20421`을 쓴다. 실제 Server 타깃·지연·손실·대규모 픽업 비용과 바닥 픽업의 새 프로세스 복원은 아직 검증하지 않았다.
+
+
+### 음식 픽업의 세계 저장 설계
+
+목표는 바닥 음식·등록 컨테이너·시계를 같은 저장 세대로 되돌리고 새 프로세스에서도 픽업을 재생성하는 것이다. 컨테이너 본문 버전 3에 소유자 종류와 Transform을 추가한다. 일반 컨테이너는 기존대로 연결하고 음식 픽업은 하나의 슬롯과 명시적 지속 ID를 사용한다. 빈 픽업 기록은 회수된 상태다. 이전 버전 1·2는 일반 컨테이너로 읽으며 바깥 세계 형식 5는 유지한다.
+
+`UCCLInventoryPersistenceSubsystem`이 살아 있는 픽업·언로드 기록·복원 후보를 관리한다. `ACCLWorldPickup`은 음식 초기화 때 등록하고 회수 후 빈 인벤토리를 남겨 중복 재생성을 막는다. 런타임 드롭은 새 지속 ID를 만들고 맵에 저장한 음식 픽업은 작성된 지속 ID를 요구한다. 항목 ID와 픽업 소유자 ID는 별개다.
+
+```mermaid
+classDiagram
+    UCCLWorldSimulationSubsystem --> UCCLInventoryPersistenceSubsystem : prepare commit cancel
+    UCCLInventoryPersistenceSubsystem *-- FCCLInventorySnapshot
+    UCCLInventoryPersistenceSubsystem --> ACCLWorldPickup : restore candidate
+    ACCLWorldPickup *-- UCCLInventoryComponent
+    FCCLInventorySnapshot --> FTransform
+```
+
+인터페이스는 `BindPickup(Pickup, Error)`와 기존 `Capture`, `PrepareRestore`, `CommitRestore`, `CancelRestore`다. Prepare는 저장 정의·슬롯·Transform과 현재 소유자를 검증하고 필요한 픽업을 복제·표현하지 않는 지연 생성 후보로 확보한다. 실패하면 후보만 폐기한다. 시계·생활 복원이 성공한 뒤 기존 픽업을 제거하고 후보를 완성하며 모든 배열이 확정된 다음 알림을 보낸다.
+
+```cpp
+if (!Inventories->PrepareRestore(Records, WorldId, WorldSeconds, Error))
+{
+    return false;
+}
+if (!RestoreWorldCandidate())
+{
+    Inventories->CancelRestore();
+    return false;
+}
+Inventories->CommitRestore();
+```
+
+검증은 변환·중복 ID·잘못된 소유자 거부, 저장 전후 드롭·회수·빈 기록, 복원 실패의 원래 Actor 보존, 새 프로세스 재생성·노화 재개와 첫·늦은 접속자의 세대·위치·품질이다. 플레이어 장비·계정과 모든 콘텐츠 픽업을 저장하는 범위로 확대하지 않는다. 음식 픽업만 이 소유자 종류에 등록하고 일반 보급품의 기존 세션 정책은 유지한다.
+
+값 기록과 실제 Actor를 분리하면 언로드 중에도 상태를 보존하고 복원 전에 실패를 검사할 수 있다. 대신 복원 시 Actor 교체와 후보 메모리 비용이 든다. 살아 있는 Actor를 즉시 수정하는 방식보다 실패 원본 보존이 쉽다. UE4에도 있던 지연 Actor 생성과 UE5에서 사용하는 기존 WorldSubsystem·인벤토리 계약을 조합하며 새 엔진 모듈 의존은 없다.
+
+
+### 음식 픽업의 세계 저장 구현·검증
+
+2026-10-10 UE 5.8.3에서 음식 픽업을 지속 컨테이너 소유자로 등록했다. 인벤토리 본문 버전 3의 `ECCLInventoryOwner::FoodPickup`은 지속 ID·Transform과 단일 슬롯 음식 이력을 가진다. 위치·회전·배율은 저장 값이며 빈 항목 배열은 회수된 상태를 뜻한다. 버전 1·2는 일반 컨테이너로 변환하고 바깥 세계 형식 5·개인 세션 형식 7은 유지한다. 아이템 ID의 소유자 중복, 픽업의 비음식 항목·추가 슬롯·잘못된 Transform은 거부한다.
+
+`InitializeFood`와 `DropFood`는 등록된 픽업을 만든다. 새 런타임 픽업에는 지속 ID를 발급하며 맵에서 로드한 음식 픽업에는 작성된 ID를 요구한다. 같은 ID의 언로드 기록이 있으면 저장된 음식·수량·Transform을 적용한다. 이미 회수된 기록이면 새 음식 생성을 취소하고 Actor를 제거한다. 일반 보급품은 기존 개인 세션의 남은 보급품 정책을 유지한다.
+
+세계 복원은 정의·수량·소유자 종류를 검증하고 실제 음식 픽업 후보를 지연 생성한다. 후보는 준비 중에 표시·복제하지 않는다. 생활 상태 복원이 실패하면 후보를 제거하고 현재 Actor와 항목을 보존한다. 성공하면 이전 픽업을 제거하고 저장된 후보를 완성한 뒤 모든 컨테이너의 변경 알림을 보낸다. 이 순서는 기존 월드 시계·표면·생태 확정 경계를 사용한다.
+
+저장 Transform을 적용하는 생성에는 `ESpawnActorScaleMethod::OverrideRootScale`을 명시한다. 기본 `MultiplyWithRoot`는 이미 저장된 배율에 생성자 루트 배율을 다시 곱할 수 있다. UE 5.8.3의 근거는 `<Engine>/Source/Runtime/Engine/Classes/Engine/World.h:3851`의 `SpawnActorDeferred`와 `Source/Runtime/Engine/Private/Actor.cpp:4314`의 배율 선택 분기다. 제거 판정은 `Classes/GameFramework/Actor.h:2152`의 `IsActorBeingDestroyed`와 4679줄의 `FMarkActorIsBeingDestroyed`에서 확인했다. 뒤 두 파일 경로의 기준은 `<Engine>/Source/Runtime/Engine/`이다.
+
+실제 검사는 회전 `(10, 20, 30)`과 비균일 입력 배율 `(2, 3, 4)`의 픽업을 사용한다. 생성자 루트 배율 0.4가 반영된 실제 `(0.8, 1.2, 1.6)`을 저장하고, 복원·언로드 재등록·새 프로세스에서 전체 Transform을 대조했다. 서버의 Transform 허용 오차는 1e-6이다. 접속자는 위치 0.01cm, 회전 0.01도, 배율 0.001과 지속 ID를 확인했다. 공개 품질·시각은 1e-8로 대조한다.
+
+바닥 상태를 저장하고 회수·혼합·드롭한 뒤 불러오면 원래 항목을 가진 픽업이 재생성되고 대상 컨테이너는 저장 당시의 빈 상태로 돌아왔다. 반대로 회수된 상태를 불러오면 바닥 Actor가 제거되고 대상의 여섯 음식·두 묶음이 복원됐다. 회수된 지속 ID를 다시 생성하려는 요청에서도 음식이 늘어나지 않았다. 언로드 후에는 다른 위치·수량으로 같은 ID를 등록해도 저장된 위치·수량·이력을 적용했다. Actor가 없는 상태로 저장한 기록에서도 픽업을 다시 만들었다.
+
+생활 상태의 쓰기 예약을 확보해 복원을 실패시키는 검사도 수행했다. 새 후보가 필요한 경우에는 후보가 남지 않았고, 현재 픽업을 제거해야 하는 경우에는 원래 Actor 포인터와 항목이 유지됐다. 컨테이너 잠금은 해제됐으며, 소유자 종류가 현재 컴포넌트와 다른 저장도 현재 Actor를 유지한 채 거부했다.
+
+두 맵의 별도 프로세스에서 바닥 저장을 읽어 음식 본문 전체와 Transform을 확인했다. 10세계초 더 진행해 나이가 늘어나는 것을 확인한 뒤 회수 상태 저장을 읽었을 때 바닥 Actor는 없고 대상 수량은 여섯 개였다. Listen·Dedicated 첫·늦은 접속자는 같은 실행 중 바닥 복원 세대·지속 ID·Transform·품질과 회수 상태의 Actor 제거를 확인했다. 접속자는 상세 음식 인벤토리를 받지 않았다.
+
+| 검사 | 결과와 로컬 근거 |
+|---|---|
+| 최종 프로젝트 생성·Editor 빌드 | 성공. `Saved/EnvironmentStages/FoodPickupSave-GPF.log`, `FoodPickupSave-Build.log` |
+| Scenario 저장·실패·언로드·재등록·새 프로세스 | 통과. `Saved/Tests/FoodPickup/Standalone-20261010-195252-881` |
+| Playground 저장·실패·언로드·재등록·새 프로세스 | 통과. `Saved/Tests/FoodPickup/Standalone-20261010-195253-793` |
+| Listen Scenario 첫·늦은 접속·복원 | 통과. `Saved/Tests/FoodPickup/Listen-20261010-195254-001` |
+| Dedicated Playground 첫·늦은 접속·복원 | 통과. `Saved/Tests/FoodPickup/Dedicated-20261010-195256-418` |
+| 환경 자동화와 이전 본문 변환 | 124/124, 경고·실패·미실행 0. `Saved/Tests/Automation/20261010-194359-317/report/index.json` |
+| 기존 음식 이동·컨테이너 복원·새 프로세스 | 통과. `Saved/Tests/Food/EnvironmentScenario-20261010-194359-178` |
+| 기존 환경 연동 음식 재개 | 통과. `Saved/Tests/FoodEnvironment/Standalone-20261010-193802-414` |
+| 개인 세션 저장·재개 회귀 | 통과. `Saved/Tests/SessionSmoke/20261010-194520` |
+
+기존 음식 검사기의 100세계초 진행은 최대 32회 반복을 전제해 첫 회귀 검사에서 미완료로 실패했다. 상시 생태 경로가 세계 진행을 다음 정수초까지 제한하므로 요청 초 수에 32회 여유를 더하는 검사 예산으로 수정했다. 세계 진행 제한을 풀거나 시간 입력을 버리지 않았다. 위 음식 회귀는 수정 후 결과다.
+
+자동화·기존 음식·환경·개인 세션 회귀는 픽업의 배율 덮어쓰기와 재등록 위치 보완 전의 같은 저장 형식에서 실행했다. 표의 네 픽업 실행은 두 보완을 포함한 최종 빌드다. 모든 실행은 NullRHI이며 Dedicated는 Editor 서버 모드다. 실제 렌더링·Server 타깃 패키지·지연과 손실·대규모 비용은 포함하지 않는다. 맵에 작성된 음식 픽업 에셋의 ID 편집·중복 검증, 회수 기록의 장시간 누적과 압축 정책도 후속 작업이다.
+
+재실행은 `Tools/Validation/run_food_pickup.ps1`에 `-Map EnvironmentScenario` 또는 `-Map EnvironmentPlayground`를 지정한다. Standalone은 저장 후 새 프로세스까지 실행하며 Listen은 `-Mode Listen -Port 20422`, Dedicated는 `-Mode Dedicated -Port 20421`을 쓴다. 단계 8·9는 진행 중이다. 다음은 구역 07의 상시 픽업·드롭 조작과 관측, 위치 기반 보관 조건, Agent 생애 관측·피해 연결과 플레이어 장비·계정을 포함한 전체 저장 통합이다.
