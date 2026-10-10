@@ -1,6 +1,6 @@
 # 생태계·생애 구현과 검증
 
-단계 8의 범위는 [환경 계획](EnvironmentPlan.md#생태계와-생애-주기)을 따른다. 현재 작업은 개체군·식생·부패·Agent 나이를 공통 세계 시간과 저장에 연결하는 것이다. 개체군 값 모델과 시간순 생애 계산을 구현하고 월드 공통 진행·저장에 연결했다. 실제 Actor/Mass·Agent 연결, 식생·음식과 구역 06·07 조작은 후속 작업이다.
+단계 8의 범위는 [환경 계획](EnvironmentPlan.md#생태계와-생애-주기)을 따른다. 현재 작업은 개체군·식생·부패·Agent 나이를 공통 세계 시간과 저장에 연결하는 것이다. 개체군 값 모델과 시간순 생애 계산을 구현하고 월드 공통 진행·저장에 연결했다. 실제 Actor/Mass 전환과 Actor의 첫·늦은 접속자 복제를 검증했다. Agent 생애, 식생·음식과 구역 06·07 조작은 후속 작업이다.
 
 ## 목표와 제약
 
@@ -19,7 +19,8 @@
 | `FCCLEcologySimulation` | 서버 값 상태와 사건 영수증·표현 실행권. 실패 시 후보를 폐기 |
 | `UCCLWorldSimulationSubsystem` | 생태·표면·시계의 월드 수명과 서버 권한. Agent 진행까지 성공한 후보를 함께 게시 |
 | `FCCLWorldSnapshotCodec` | 같은 세계 ID·완료 시각·저장 세대의 생태·시계·표면·Agent 검증과 복원 |
-| Actor/Mass 어댑터 | 후속 구현. 공통 ID를 사용하며 실행권 반납 뒤 집계 또는 지속 개체로 복귀 |
+| `UCCLEcologyRepresentationSubsystem` | 실제 Actor·Mass Entity의 생성·전환·위치 수집·폐기. 서버 실행권과 예약을 연결 |
+| `ACCLCreatureActor` / `FCCLEcologyMassFragment` | 가까운 복제 Actor / 서버 Mass 표현. 개체군 수량은 직접 소유하지 않음 |
 
 ```mermaid
 classDiagram
@@ -82,7 +83,7 @@ return true;
 
 대표 네 종에서 예약·반환을 반복해 총수가 바뀌지 않는지 검사한다. 이주 양쪽 원장, 중복 사건, 같은 ID의 다른 요청, 부족한 수량, 다른 종·서식 매체, 실행권 충돌, 오래된 실행권, 저장 재개와 손상 저장 거부를 확인한다. 저장은 실행권을 포함하지 않으며 복원 후 새 세대를 발급해 복원 전 쓰기를 거부해야 한다.
 
-후속 검증은 실제 Actor/Mass·Agent 연결과 생태 복제, 식생의 성장·화재·재생, 음식의 보관·합치기, 보호 NPC와 일반 생물의 수명, 구역 06·07 조작·네트워크·저장이다. 이 문서의 초기 값 모델 검사가 전체 단계 8의 완료를 뜻하지 않는다.
+후속 검증은 Agent 생애 연결과 원거리 집계 복제, 식생의 성장·화재·재생, 음식의 보관·합치기, 보호 NPC와 일반 생물의 수명, 구역 06·07 조작·네트워크·저장이다. 이 문서의 초기 값 모델 검사가 전체 단계 8의 완료를 뜻하지 않는다.
 
 ## 트레이드오프와 UE 통합
 
@@ -104,7 +105,7 @@ return true;
 
 구현은 `CCLEcologySimulation.h/.cpp`, `CCLEcologyAdvance.cpp`와 `CCLEcologyTests.cpp`에 있다. 저장은 정렬된 키 순서와 CRC를 사용하며 최대 8MiB로 제한한다. 실행권은 저장하지 않고 개체 예약과 영수증을 저장한다. 버전 2에는 종의 번식 간격이 추가되었다. 버전 1의 자동 번식은 꺼진 상태로 읽도록 구현했으며 과거 저장의 전체 통합 검사는 단계 9에서 수행한다.
 
-생태 값 모델과 월드 통합 검사에서 Actor/Mass는 실행권 종류다. 실제 Actor 생성·Mass Entity 전환을 실행한 결과가 아니다. 종의 이동 매체도 서식지 적합성 검사이며 이동·먹이 탐색 구현을 뜻하지 않는다. Agent 나이·보호 NPC, 식생·버섯·음식 부패, 무리 행동과 구역 06·07의 조작·네트워크를 연결해야 단계 8을 완료할 수 있다.
+위의 초기 값 모델과 월드 통합 검사에서 Actor/Mass는 실행권 종류다. 실제 Actor 생성·Mass Entity 전환의 검증은 아래 별도 절에 기록한다. 종의 이동 매체도 서식지 적합성 검사이며 이동·먹이 탐색 구현을 뜻하지 않는다. Agent 나이·보호 NPC, 식생·버섯·음식 부패, 무리 행동과 구역 06·07의 조작·네트워크를 연결해야 단계 8을 완료할 수 있다.
 
 
 ### 월드 통합 실행 근거
@@ -121,3 +122,52 @@ return true;
 | EnvironmentScenario 생태 저장·새 프로세스 재개 | 통과. `Saved/Tests/Ecology/EnvironmentScenario-20261010-140252-611` |
 | EnvironmentPlayground 생태 저장·새 프로세스 재개 | 통과. `Saved/Tests/Ecology/EnvironmentPlayground-20261010-140251-169` |
 | 캠페인 세션 저장·재개 | 통과. `Saved/Tests/SessionSmoke/20261010-140251` |
+
+
+### Actor/Mass 연결과 실행 근거
+
+실제 표현은 `UCCLEcologyRepresentationSubsystem`이 월드 수명으로 관리한다. `ACCLCreatureActor`와 `FCCLEcologyMassFragment`는 개체 ID·위치와 현재 실행권을 읽고, 수량 원장은 `FCCLEcologySimulation`에 유지한다. 새 표현을 준비한 다음 실행권을 원자적으로 교체하고 이전 표현을 제거한다. 준비나 전환이 실패하면 기존 표현·실행권을 유지한다.
+
+```mermaid
+classDiagram
+    UCCLEcologyRepresentationSubsystem --> UCCLWorldSimulationSubsystem
+    UCCLEcologyRepresentationSubsystem o-- ACCLCreatureActor
+    UCCLEcologyRepresentationSubsystem --> UMassEntitySubsystem
+    FCCLEcologyMassFragment --> FCCLEcologyLease
+    ACCLCreatureActor --> FCCLEcologyLease
+```
+
+`SetRepresentation(IndividualId, Representation, Error)`는 예약된 개체의 표현을 바꾼다. `Transfer`는 같은 개체의 예약을 보존하고 실행권 순번·소유자를 교체한다. `UpdatePosition`과 `Finish`는 현재 실행권으로만 위치·사망·포획·이주를 반영한다. 초기 위치는 서식지 중심이며, 위치도 저장한다. 자동 거리 전환·먹이 탐색·종별 이동과 네트워크 관심 영역은 이 연결 위에서 별도로 검증한다.
+
+```cpp
+FCCLEcologyLease NewLease;
+if (!Runtime->TransferEcologyIndividual(OldLease, NewRepresentation,
+    NewWriter, NewLease, Error))
+{
+    DestroyPreparedRepresentation();
+    return false;
+}
+PublishPreparedRepresentation(NewLease);
+DestroyPreviousRepresentation();
+```
+
+실제 Actor와 Mass Entity의 존재, 전환 전후 집계·예약 합계, 오래된 Actor 종료, 외부 Entity 제거, 저장 복원 뒤 표현 폐기, 사망과 중복 반환을 검사한다. Mass의 즉시 생성·파괴는 처리 중이 아닌 게임 스레드에서만 수행하고 처리 중이면 재시도를 요청한다. 기존 `MassEntity`, `MassCore` 의존을 사용한다. UE5 Mass Entity는 실행 표현이며 개체군 보존·저장 계약을 대신하지 않는다. 임시 표현을 준비하는 동안 메모리를 조금 더 쓰는 대신 실패 시 기존 상태를 보존한다.
+
+
+표현 전환과 저장 직전에는 현재 Actor 또는 Fragment의 위치를 값 모델에 반영한다. 잘못된 위치는 거부하고 표현을 마지막 유효 위치로 되돌린다. 생태 저장 버전 3은 예약 개체의 위치를 포함하며 이전 버전 1·2의 위치는 서식지 중심으로 읽도록 구현했다. 이전 위치 형식의 별도 파일 검증은 아직 수행하지 않았다. 저장에 실행권은 넣지 않는다. 복원 성공 시 이전 표현을 즉시 폐기하고 저장된 예약을 새 실행권으로 다시 표현할 수 있다.
+
+`Suspend`는 표현만 해제하고 예약을 보존한다. 일반적인 언로드는 `Release`로 집계에 반환한다. `Transfer`는 준비된 표현에 새 실행권을 발급한 뒤 이전 표현을 폐기하므로 오래된 Actor의 `EndPlay`가 새 실행권을 반납하지 못한다. 자연 사망이 실행권을 회수한 경우에도 같은 규칙으로 객체만 정리한다. Mass 처리가 진행 중인 즉시 생성·파괴 요청은 거부한다. 근거는 UE 5.8.3의 `<Engine>/Source/Runtime/MassEntity/Public/MassEntitySubsystem.h`의 `GetMutableEntityManager`와 `MassEntityManager.h`의 `IsProcessing`이다.
+
+`Tools/Validation/run_ecology_representation.ps1`은 실제 네 매체의 Actor와 Mass Entity를 생성한다. 직접 변경한 Actor·Fragment 위치의 인계, 집계 합계, 외부 객체 제거, 준비 실패 시 Entity 회수, 처리 중 변경 거부, 저장·복원과 자연 사망을 검사한다. Listen·Dedicated에서는 첫 클라이언트가 네 개체를 확인한 뒤 두 번째 클라이언트를 접속시킨다. 양쪽의 ID·매체·위치와 쓰기 거부를 확인한 다음 세계 시간을 진행하고 양쪽에서 사망 제거를 확인한다.
+
+| 검사 | 결과와 근거 |
+|---|---|
+| 최종 프로젝트 파일 생성·Editor 빌드 | 성공. `Saved/EnvironmentStages/EcologyRepresentation-GPF.log`, `EcologyRepresentation-Build.log` |
+| 환경 자동화 | 92/92, 경고·실패·미실행 0. `Saved/Tests/Automation/20261010-142038-105/report/index.json` |
+| 두 맵의 실제 Actor/Mass 전환 | 통과. `Saved/Tests/EcologyRepresentation/EnvironmentScenario-20261010-142159-887`, `EnvironmentPlayground-20261010-142156-736` |
+| 최종 Standalone 검사 | 통과. `Saved/Tests/EcologyRepresentation/EnvironmentScenario-Standalone-20261010-142833-091` |
+| Listen 첫·늦은 접속자 | 통과. `Saved/Tests/EcologyRepresentation/EnvironmentScenario-Listen-20261010-142833-759` |
+| Dedicated 첫·늦은 접속자 | 통과. `Saved/Tests/EcologyRepresentation/EnvironmentScenario-Dedicated-20261010-142834-865` |
+| 생태 저장·새 프로세스 재개 회귀 | 통과. `Saved/Tests/Ecology/EnvironmentScenario-20261010-142157-584` |
+
+이 검사는 NullRHI의 Editor 실행 파일을 사용했다. Dedicated는 `-server` 실행이며 별도 Server 타깃 빌드나 패키지 검증은 아니다. Actor 외형은 기본 Sphere·Cube로 구분한 임시 표현이고 충돌·애니메이션·종별 이동·먹이 탐색·거리 자동 전환은 아직 없다. 실제 렌더링 외관, 지연·손실·재접속, 원거리 집계와 Mass의 클라이언트 표현은 후속 검증이다. 기존 Agent 기록의 생애 소유권도 아직 연결하지 않았다.
