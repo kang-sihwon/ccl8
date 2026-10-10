@@ -47,3 +47,23 @@
 이번 결과는 Windows 노트북 한 대에서 실행한 Development 패키지다. 패키지의 Standalone·Listen을 검증했고 Dedicated Server는 이전 단계의 에디터 실행 결과만 있다. Shipping 게임 타깃, 다른 PC, 외부 인터넷·NAT 환경은 검증하지 않았다. UE 5.8 호환성을 확인한 결과도 아니다.
 
 Development에는 명시적인 인자로 동작하는 검사 서브시스템과 디버그 사망 입력이 남아 있다. 아트·애니메이션·밸런스는 프로토타입 수준이며 최종 조작감은 사용자 검토가 필요하다. 메뉴의 모든 마우스 조작과 창 모드 전환에 대한 수동 검사는 [SessionFoundation](SessionFoundation.md)의 미확인 항목을 따른다.
+
+## 자연 환경의 Server 타깃 검증 계획
+
+환경 통합은 `CCLServer`의 `TargetType.Server`와 Windows Development 게임 패키지에서 각각 확인한다. `package_windows.ps1 -Server`는 UAT의 `-server -noclient -serverconfig=Development -serverplatform=Win64`를 사용한다. 서버 패키지와 게임 패키지는 별도 아카이브 경로에 생성하고 여섯 검사 맵을 쿠킹 대상으로 명시한다. 실제 서버 실행 파일에 게임 클라이언트 두 개를 연결해 환경 상태와 조작을 검사한다. 타깃 선언과 빌드·쿠킹·실행 성공은 구분하며, 아직 이 계획은 패키지 성공을 뜻하지 않는다.
+
+
+### 최초 Server 패키지와 시작 실패
+
+2026-10-11 UE 5.8.3에서 `CCLServer Win64 Development`의 컴파일·링크와 여섯 맵의 WindowsServer 쿠킹·스테이징·아카이브가 성공했다. 빌드 영수증의 `TargetType`은 `Server`다. UAT는 `BUILD SUCCESSFUL`, 종료 코드 0과 총 3236.68초를 기록했다. 근거는 `Saved/EnvironmentStages/ServerTarget-VerifiedSource-Package.log`이며 산출물은 `Saved/EnvironmentServerPackage/WindowsServer/`다. 이 첫 바이너리에는 이후 작성한 지형 경계 최적화가 들어 있지 않다.
+
+실제 패키지의 첫 실행은 실패했다. `Saved/Tests/Environment/EnvironmentScenario-Dedicated-20261011-002648-327/server.log`에서 맵 로딩과 19971 포트 개방 뒤 `ACCLVegetationPresentation::BeginPlay`의 `Clear`가 없는 레이블에 접근해 종료됐다. 결과 JSON은 `passed=false`다. 따라서 패키지 생성 성공을 실행 통과로 기록하지 않는다. Game 최초 빌드는 이 문제를 먼저 수정·재검증하기 위해 중단했고 중간 산출물은 보존했다.
+
+Dedicated Server에서는 시각 요소 갱신 전에 서버 모드를 확인하도록 식생·생태 표현 경로를 수정한다. 작업장은 레이블이 없어도 권위 단계 갱신과 복제를 계속해야 하므로 표현 포인터만 선택적으로 사용한다. 표면의 서버 충돌과 내비게이션·생태 상태 계산은 유지한다. 엔진의 `UPrimitiveComponent::NeedsLoadForServer`는 충돌이 없고 `AlwaysLoadOnServer`도 꺼진 컴포넌트를 제외한다. 근거는 `<Engine>/Source/Runtime/Engine/Private/Components/PrimitiveComponent.cpp:2076`이다. 최종 생성·Editor 빌드와 재패키징 뒤 실제 Server의 기동·첫 접속·관측·재접속을 다시 검사한다.
+
+
+### Server 실행 수정과 실제 네트워크 통과
+
+표현 컴포넌트가 없는 서버 경로를 수정하고 프로젝트 생성·Editor 빌드를 통과했다. 로그는 `Saved/EnvironmentStages/ServerPresentation-GPF.log`, `ServerPresentation-ActualCompile.log`, `ServerPresentation-EditorBuild.log`다. 재패키징은 `ServerPresentation-ServerPackage.log`에서 93.71초·종료 코드 0으로 통과했다. 다음 실행은 서버가 기동됐지만 경로로 로딩하는 `DA_FoodSample`이 쿠킹에서 빠져 실험 준비를 끝내지 못했다. 이 실패는 `EnvironmentScenario-Dedicated-20261011-004014-729`에 보존했다.
+
+`Config/DefaultGame.ini`의 패키징 목록에 두 환경 맵과 `/Game/Environment`를 추가했다. 음식 정의와 경로로 선택하는 표면 재질 등 환경 에셋을 포함한다. 맵에서 직접 참조하는 것만 쿠킹하는 방식보다 패키지 크기가 늘지만, 현재 실험장이 경로로 선택하는 에셋을 함께 전달한다. `Saved/EnvironmentStages/EnvironmentCook-ServerPackage.log`의 재쿠킹·아카이브 후 실제 `CCLServer.exe`에서 80ms 지연·2% 손실·조작자·관측자·관측자 재접속 검사를 통과했다. 결과는 `Saved/Tests/Environment/EnvironmentScenario-Dedicated-20261011-004432-782/result.json`이다. 서버는 실제 Server 타깃이고 클라이언트는 Editor 게임 모드다. 일반 Game 타깃 패키지는 아직 최초 컴파일 중이며 이 결과로 완료 처리하지 않는다. 구역 09의 후속 변경 전 검증 결과다.

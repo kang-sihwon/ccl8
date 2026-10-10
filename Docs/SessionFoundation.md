@@ -189,7 +189,7 @@ static bool Execute(TConstArrayView<FCCLLoadoutRestoreRequest> Requests,
 
 일반 플레이 흐름은 아직 `Bind`를 자동 호출하지 않는다. 접속 키 발급·재접속 검증, 계정의 최초 생성 시점, 맵 전환의 재등록, 프로필 없는 이전 저장·실험 초기화 정책을 연결해야 한다. 현재 살아 있는 등록 플레이어의 프로필이 없는 복원은 거부하므로 그 상태의 기존 초기화 버튼까지 완료했다고 주장하지 않는다. 저장 용량과 다른 가방, 사망·행동 중 복원 정책, 바깥 개인 세션의 캠페인 후처리, 실제 두 원격 클라이언트의 소유자 복제·지연·손실 검증도 남아 있다. 계정 잔액은 기존 원장이 소유하고 프로필은 참조만 복원한다.
 
-주요 구현은 `Source/CCL/Session/CCLPlayerPersistenceSubsystem.cpp:53`의 수집, 175줄의 개인 값 확정, 323줄의 일괄 복원, 412줄의 동적 음식 준비다. 세계 복원 연결은 `Source/CCL/Environment/CCLWorldSimulationSubsystem.cpp:393`, 보관함의 지연 알림은 `Source/CCL/Items/CCLInventoryPersistenceSubsystem.cpp:431`에 있다.
+주요 구현은 `Source/CCL/Session/CCLPlayerPersistenceSubsystem.cpp:53`의 수집, 175줄의 개인 값 확정, 323줄의 일괄 복원, 412줄의 동적 음식 준비다. 세계 복원 연결은 `Source/CCL/Environment/CCLWorldSimulationSubsystem.cpp:397`, 보관함의 지연 알림은 `Source/CCL/Items/CCLInventoryPersistenceSubsystem.cpp:431`에 있다.
 
 
 ## 호스트 계정·퀘스트의 알림 전 확정
@@ -208,7 +208,7 @@ static bool Execute(TConstArrayView<FCCLLoadoutRestoreRequest> Requests,
 | 다중 플레이어·동적 음식·새 프로세스 세계 시작 | 통과. `Saved/Tests/LoadoutRestore/20261010-224202-605/result.json` |
 | 기존 CCL 자동 검사 | 143/143, 경고·실패·미실행 0. `Saved/Tests/Automation/20261010-224201-653/report/index.json` |
 
-구현은 `Source/CCL/Session/CCLGameInstance.cpp:305`의 `FinalizeProfile`, `Source/CCL/Environment/CCLWorldSimulationSubsystem.cpp:400`의 콜백 호출과 그 뒤의 보관함 알림이다. 실행 검사는 `Source/CCL/Tests/CCLSessionPublicationSmoke.cpp:17`의 `CheckPublication`이 소유한다. 개인 세션 재개 검사의 쓰기 단계에서 실행하며 일반 체크포인트 슬롯을 사용하지 않는다.
+구현은 `Source/CCL/Session/CCLGameInstance.cpp:305`의 `FinalizeProfile`, `Source/CCL/Environment/CCLWorldSimulationSubsystem.cpp:404`의 콜백 호출과 그 뒤의 보관함 알림이다. 실행 검사는 `Source/CCL/Tests/CCLSessionPublicationSmoke.cpp:17`의 `CheckPublication`이 소유한다. 개인 세션 재개 검사의 쓰기 단계에서 실행하며 일반 체크포인트 슬롯을 사용하지 않는다.
 
 캠페인 적 생성·보급품 정리는 별도 후처리이며 그 실패까지 되돌리는 계약은 남아 있다. GAS의 개별 Attribute 콜백이나 임의 외부 코드까지 같은 관측 시점으로 묶은 결과도 아니다. 일반 접속 키·재접속·맵 전환의 자동 연결과 최초 계정 생성 정책은 후속 작업이다.
 
