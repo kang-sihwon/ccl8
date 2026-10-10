@@ -221,3 +221,64 @@ double Age = Biology.DeathCause == ECCLAgentDeathCause::None
 `Tools/Validation/update_agent_biology.py`는 `DA_MerchantLifeScenario`에서 알려진 주민의 누락 Feature만 추가하고 기존 Feature·경제·목표·StateTree를 보존한다. 신규 주민의 시험 기본값은 20-27년 나이, 18년 성숙, 80년 수명이며 1년을 365일의 초로 작성한다. 첫 주민은 자연 노화 보호를 사용한다. 이 수치는 짧은 자동 검사에서 쓰는 100초 수명과 별개이며 최종 제작 밸런스가 아니다. 기존 저장의 누락 Feature에는 이 기본값을 소급 주입하지 않는다.
 
 현재 생애 Actor 검사는 Standalone·NullRHI 결과다. 생애 사망의 첫·늦은 접속자·재접속 검증, 개체군에서 Agent로 생애 소유권 이전, 생애 관측 UI, 성숙에 따른 외형·행동과 플레이어 노화는 이 결과에 포함하지 않는다. 플레이어 노화는 원래 범위에서 제외된다. 식생·음식 부패·실제 종별 이동과 구역 06·07은 계속 작업한다.
+
+
+### 식생·토양 결합 설계
+
+`FCCLSurfaceVegetationLayer`는 표면 지역의 셀별 식생 패치와 토양 양분·유기물을 소유한다. 한 셀은 한 종의 패치를 표현하며 종 데이터는 나무·풀·꽃·관목·이끼·양치류·조류·수생 식물·버섯을 구분할 수 있다. 패치의 성장·성숙·휴면·죽음, 생체량·고사량·탄 누계·재생 횟수와 현재 생장 주기의 시작 시각을 저장한다. 개별 잎·줄기는 시뮬레이션 개체로 만들지 않는다. PCG와 Actor·인스턴스 메시는 이후 이 저장 상태를 배치·표현한다.
+
+성장은 공통 세계 시간과 실제 토양 물·양분으로 제한한다. 광합성 종은 천체 일조와 셀의 햇빛 통과율을 사용한다. 버섯은 토양 유기물도 소비하며 그늘 조건을 적용한다. 위도와 주광원의 적위로 얻은 낮 길이, 온도와 수분이 생장·휴면을 정한다. 자연 수명과 가뭄 스트레스가 끝나는 경계에서 죽음을 기록하고, 재생 가능한 뿌리·균사와 대기 시간·자원이 남아 있을 때만 새 생장 주기를 시작한다. 재생 자체가 생체량을 채우지는 않는다.
+
+```mermaid
+classDiagram
+    FCCLSurfaceGrid *-- FCCLSurfaceVegetationLayer
+    FCCLSurfaceVegetationLayer *-- FCCLVegetationSpecies
+    FCCLSurfaceVegetationLayer *-- FCCLVegetationCell
+    FCCLSurfaceVegetationLayer --> FCCLSurfaceFireLayer
+    FCCLSurfaceSimulation --> FCCLCelestialSystem
+```
+
+식생 패치가 있는 셀의 연소 가능한 생체·고사량은 같은 셀의 연료와 일치해야 한다. 연료 원장에 성장 유입·분해 유출을 추가한다. 화재의 실제 연소량을 식생에서 차감하고 탄 누계·양분 환원을 기록한다. 열에 죽은 생체는 고사량으로 옮기며 심한 열은 재생 원본도 없앤다. 고사체 분해는 연료를 줄이고 토양 유기물·양분을 늘린다. 토양 수분 소비는 식생의 증산 누계와 기존 표면 증발 유출에 한 번 기록한다. 실내에서는 같은 물을 방의 수증기로 옮기고 잠열을 방의 가용 열에서 차감한다. 앞서 예약한 표면·식생의 열 소비를 제외한 잔여량으로 성장을 제한한다. 질소·탄소·산소 화학을 모두 푸는 정밀 물질 모델은 아니다.
+
+```cpp
+bool Initialize(FCCLSurfaceGrid& Grid, const TArray<FCCLVegetationSpecies>& Species,
+    const TArray<FCCLVegetationSeed>& Seeds, double WorldSeconds, FString& Error);
+bool AdvanceCandidate(FCCLSurfaceGrid& Grid, double WorldFrom, double WorldDelta,
+    double IrradianceWattsPerM2, double DaylightHours, FString& Error,
+    FCCLSurfaceThermalContext* Context = nullptr);
+// 호출자는 게시 전 표면 후보만 전달한다.
+if (!CCLSurfaceVegetation::AdvanceCandidate(Candidate, From, Delta, Sun, Daylight, Error))
+{
+    return false;
+}
+```
+
+표면 저장 버전 7에 식생과 연료 유입·유출을 추가한다. 이전 버전은 식생 없는 표면으로 읽는다. 지형의 지지 높이가 패치 허용치를 넘게 바뀌면 같은 지형 후보 안에서 식생을 죽이고 재생을 막는다. 물 수용량 등 후속 지형 검증이 실패하면 식생 변경도 폐기한다. 같은 표면 저장 바이트가 기존 월드 저장·지역 묶음·복제로 전달된다.
+
+값 모델 검증은 물·양분·유기물·연료 수지, 맑음·차광·계절 휴면·가뭄, 버섯 유기물 고갈, 자연 사망·재생·심한 화재·지형 지지 제거, 저장 재개·이전 형식·손상·실패 원본 보존을 포함한다. 실제 두 환경 맵의 구역 07 조작·표현·네트워크와 음식 부패는 이 값 모델 위의 필수 연결이다. 값 모델과 런타임 검증 결과는 아래에 구분한다. 구역 전체의 완료 판정으로 확대하지 않는다.
+
+셀 패치는 멀리 있는 식생의 비용을 제한하는 대신 같은 셀에 여러 종이 겹치는 경쟁을 직접 표현하지 못한다. 대표 종마다 셀·지역을 나눠 검사하고 밀도·세부 메시는 표현 계층에서 처리한다. 기존 UE5 표면 값 모델과 월드 수명을 사용하며 새로운 엔진 모듈은 필요 없다.
+
+
+### 식생 값 모델과 실제 월드 검증
+
+2026-10-10 UE 5.8.3의 로컬 작업 트리에서 표면 버전 7과 식생 진행을 검증했다. 나무·풀·꽃·관목·이끼·양치류·조류·수생 식물·버섯의 9개 분류를 저장하며 수생 종은 표면 물, 다른 종은 토양 물을 소비한다. 버섯은 유기물이 없으면 성장하지 않는다. 종별 외형·실제 생물학 수치를 완성한 결과는 아니다.
+
+식생 자동 검사 6개는 일조·그늘·계절 휴면·가뭄 사망, 정확한 수명 경계와 자원 기반 재생, 연소·분해, 실내 증산의 물·열 수지, 공통 진행 실패의 원본 보존, 저장 재개와 지형 지지 제거를 확인한다. 기존 표면 형식 1–6은 식생 없이 복원되며 원래 연료 원장을 유지한다. 성장 유입을 여러 번 누적할 때 부동소수점 반올림으로 정상 연료 상태를 거부하던 상한 검사를 보완했다. 별도의 연료 잔량 수지 검사도 유지한다.
+
+| 검사 | 결과와 근거 |
+|---|---|
+| 프로젝트 파일 생성·Editor 빌드 | 성공. `Saved/EnvironmentStages/Vegetation-GPF.log`, `Vegetation-Build.log` |
+| 환경 자동화 | 102/102, 경고·실패·미실행 0. `Saved/Tests/Automation/20261010-151606-674/report/index.json` |
+| EnvironmentScenario 실제 월드·새 프로세스 | 통과. `Saved/Tests/Vegetation/EnvironmentScenario-20261010-151634-489` |
+| EnvironmentPlayground 실제 월드·새 프로세스 | 통과. `Saved/Tests/Vegetation/EnvironmentPlayground-20261010-151635-660` |
+
+두 맵의 검사는 실행 중 임시 표면에 9종을 넣고 실제 공통 시계로 자연 사망·고사체 분해·재생을 진행했다. 세계 시계·표면·Agent 시각의 일치, 버섯의 실제 유기물 소비, 월드 저장·변경·복원을 확인했다. 별도 프로세스는 저장된 전체 표면 바이트와 CRC가 같은지 확인한 뒤 생장 주기를 이어 갔다. 검사 명령은 다음과 같다.
+
+```powershell
+& Tools/Validation/run_automation.ps1 -Filter CCL.Environment -TimeoutSeconds 300
+& Tools/Validation/run_vegetation_smoke.ps1 -Map EnvironmentScenario
+& Tools/Validation/run_vegetation_smoke.ps1 -Map EnvironmentPlayground
+```
+
+위 실행은 Editor 바이너리의 Standalone·NullRHI 검사다. 저장된 맵에 식생 배치를 추가하거나 PCG·메시·재질을 표시한 검사는 아니다. 식생은 서버 표면의 같은 저장 바이트를 사용하지만 이번 검사에서 식생이 있는 상태의 Listen·Dedicated 복제를 실행하지는 않았다. 구역 07의 직접 조작·표시·초기화, 식생 에셋과 장거리 배치, 음식의 신선도·곰팡이·합치기는 다음 연결 대상이다. 단계 8은 진행 중이며 단계 9의 최종 통합·규모 검증도 남아 있다.
