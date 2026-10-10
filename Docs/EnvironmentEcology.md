@@ -1,6 +1,6 @@
 # 생태계·생애 구현과 검증
 
-단계 8의 범위는 [환경 계획](EnvironmentPlan.md#생태계와-생애-주기)을 따른다. 현재 작업은 개체군·식생·부패·Agent 나이를 공통 세계 시간과 저장에 연결하는 것이다. 개체군 값 모델과 시간순 생애 계산을 구현하고 월드 공통 진행·저장에 연결했다. 실제 Actor/Mass 전환과 Actor의 첫·늦은 접속자 복제를 검증했다. Agent의 공통 시간 나이·수명·자연 노화 보호와 실제 Actor 제거·복원도 연결했다. 식생의 성장·연소·재생과 구역 07 식생 조작·표현·복제를 검증했다. 음식 묶음의 부패·곰팡이, 인벤토리 이동과 세션 저장을 연결했다. 구역 07 음식 보관 비교·표시·조작과 첫·늦은 접속자의 공개 관측 복제를 연결했다. 동적 보관 환경·픽업과 환경 전체 저장 통합, 생물 행동과 구역 06은 후속 작업이다.
+단계 8의 범위는 [환경 계획](EnvironmentPlan.md#생태계와-생애-주기)을 따른다. 현재 작업은 개체군·식생·부패·Agent 나이를 공통 세계 시간과 저장에 연결하는 것이다. 개체군 값 모델과 시간순 생애 계산을 구현하고 월드 공통 진행·저장에 연결했다. 실제 Actor/Mass 전환과 Actor의 첫·늦은 접속자 복제를 검증했다. Agent의 공통 시간 나이·수명·자연 노화 보호와 실제 Actor 제거·복원도 연결했다. 식생의 성장·연소·재생과 구역 07 식생 조작·표현·복제를 검증했다. 음식 묶음의 부패·곰팡이, 인벤토리 이동과 세션 저장을 연결했다. 구역 07 음식 보관 비교·표시·조작과 첫·늦은 접속자의 공개 관측 복제를 연결했다. 지속 예약 개체의 이동 후보·먹이 수지·무리 목표·기아 사망을 공통 시간과 저장에 연결하고 실제 Actor/Mass 및 접속자로 검증했다. 실제 지형·수역·비행 경로, 집계 생물의 먹이 계산과 구역 06은 후속 작업이다. 동적 음식 보관 환경·픽업과 환경 전체 저장 통합도 남아 있다.
 
 ## 목표와 제약
 
@@ -501,3 +501,66 @@ classDiagram
 재실행은 `Tools/Validation/run_food_zone.ps1 -Map EnvironmentScenario -Rendered`와 `-Map EnvironmentPlayground -Rendered`로 한다. `-Mode Listen` 또는 `-Mode Dedicated`는 렌더링 없는 서버·클라이언트 검사를 실행한다. Dedicated는 Editor의 `-server` 실행이며 실제 Server 타깃 패키지 검증이 아니다. 구역 메뉴의 기존 **자동 검사**는 식생 검사이며 음식 검사는 이 별도 실행기가 소유한다.
 
 음식 실험 조건은 고정 입력이다. 날씨·실내 온습도의 시간 구간 연결, 월드 픽업의 생성·이동 이력, 플레이어 계정·장비와 배치 컨테이너의 전체 저장·맵 전환은 남아 있다. Agent 관측·조작과 생물의 이동·먹이·무리, 원거리 집계 복제, 최종 아트·PCG 규모, 실제 Server 타깃과 단계 9 통합·장시간 검증도 남아 있다.
+
+
+### 생물 행동과 먹이 수지 연결 설계
+
+예약된 생물의 이동·먹이 섭취·무리 복귀를 공통 세계 시간의 후보 상태에서 계산한다. `FCCLEcologyBehavior`는 개체별 이동 속도·먹이 종류·에너지·굶주림·선택 대상을, `FCCLEcologyForage`는 서식지의 먹이 위치·잔량·재생·누적 소비를, `FCCLEcologyGroup`은 같은 서식지의 무리 기준점·반경을 소유한다. 표현 객체의 Tick에서 먹이를 다시 소비하지 않는다. 기존 종·개체군 수량과 사건 원장은 그대로 생태 모델이 소유한다.
+
+```mermaid
+classDiagram
+    FCCLEcologySimulation *-- FCCLEcologyBehavior
+    FCCLEcologySimulation *-- FCCLEcologyForage
+    FCCLEcologySimulation *-- FCCLEcologyGroup
+    UCCLEcologyRepresentationSubsystem --> FCCLEcologySimulation
+    UCCLEcologyRepresentationSubsystem --> ACCLCreatureActor
+    UCCLEcologyRepresentationSubsystem --> FCCLEcologyMassFragment
+```
+
+최초 연결은 지속 ID를 유지하는 예약 개체에 적용한다. 일반 집계의 평균 에너지로 개별 먹이 이력을 축약하는 정책은 아직 없으므로 비지속 예약의 행동 등록을 거부한다. Actor·Mass·표현 없는 지속 예약은 같은 모델의 위치와 에너지를 읽는다. 행동을 등록한 개체의 위치는 생태 모델이 쓰며 표현의 오래된 위치를 다시 원본에 반영하지 않는다. 기존 수동 표현의 위치 인계 계약은 유지한다.
+
+`AddGroup`, `AddForage`, `AddBehavior`는 등록 후보 전체를 검증하고 실패 시 원본을 보존한다. 행동 진행은 세계의 정수 초 경계에서 순서가 고정된 개체 ID로 처리한다. 각 개체와 먹이는 마지막 처리 시각을 저장하므로 소수 시각의 등록·저장·분할 진행에도 경과 시간이 중복되지 않는다. 먹이 잔량과 소비·재생 원장을 같은 후보에서 갱신한다. 먹이 부족·처리 예산 초과·후속 Agent 실패는 다른 세계 소유자와 함께 검증한다.
+
+```cpp
+FCCLEcologySimulation Candidate = Simulation;
+if (!Candidate.AddForage(Source, Error) || !Candidate.AddBehavior(Behavior, Error))
+{
+    return false;
+}
+Simulation = MoveTemp(Candidate);
+```
+
+지상·기어 다니는 곤충은 초기 수평면, 물고기·새는 서식지 체적에서 이동 후보를 계산한다. 굶주린 개체는 허용된 먹이 중 가장 가까운 잔량을 찾고, 도착 후 남은 시간만큼 섭취한다. 배부른 개체는 무리의 공통 이동 목표와 개체별 간격을 따른다. 먹이·무리의 콘텐츠 좌표는 데이터로 입력한다. 이 후보 계산만으로 실제 지형 충돌·내비게이션, 물 깊이와 비행 장애물 회피가 해결되지는 않는다. 해당 공간 경로 연결과 구역 06의 실제 배치는 후속 실행 검증에 포함한다.
+
+고정 경계는 저장 재개와 실행 분할의 재현성을 얻는 대신 큰 시간 가속에서 처리량을 제한한다. 예산 초과는 시간을 버리지 않고 더 짧은 구간으로 재시도한다. 전역 행동 Tree 대신 값 상태의 의도 계산을 공통 모델에 두며, UE5의 Actor·Mass 실행기는 같은 결과를 표현한다. 먹이 수치는 게임 자원 단위이며 실제 생태 에너지 모델의 정확도를 주장하지 않는다. 검증은 네 이동 매체·먹이 종류 거부·경쟁 소비·기아 사망·무리 복귀, 저장 바이트 일치·이전 형식 변환, 실패 후 원본 보존과 실제 Actor/Mass 전환을 포함한다.
+
+
+### 생물 행동 기반 실행 검증
+
+`CCLEcologyBehavior.cpp`는 지속 예약 개체의 이동 후보·먹이 선택·섭취와 무리 목표를 계산한다. 지상 생물과 기어 다니는 곤충은 고정 수평면, 물고기와 새는 서식지 상자 안에서 높이를 포함해 이동한다. 기존 표현 위치를 직접 수정하는 방식은 행동을 등록하지 않은 개체에 유지한다. 행동이 있는 개체의 Actor·Mass 위치는 확정된 모델에서 읽으며 표현의 오래된 위치를 반영하는 요청은 거부한다.
+
+먹이는 잔량과 함께 초기량·재생량·소비량을 기록한다. 검증은 `초기량 + 재생량 = 잔량 + 소비량`과 전체 먹이 소비량·개체별 누적 섭취량의 합을 대조한다. 같은 먹이를 두 개체가 중복 소비하지 않도록 안정적인 ID 순서로 처리한다. 이 순서는 재현하기 쉽지만 먼저 처리되는 개체가 부족한 자원을 먼저 얻는다. 공정한 분배나 경쟁의 생태적 정확성을 구현한 것은 아니다. 허용된 종류·같은 서식지·잔량을 만족하는 가까운 먹이만 선택하며, 도착에 쓴 시간을 제외하고 섭취한다.
+
+에너지가 없는 시간이 정책의 기아 한도에 도달하면 기존 사망 원장에 한 번 반영하고 실행권을 무효화한다. 사망과 먹이 수지는 표현이 없는 지속 예약에서도 같은 경계로 진행한다. 생태 저장 형식 4는 행동·무리·먹이 기록을 함께 보관하며 이전 형식 1-3에는 이 기록을 만들지 않는다. 형식 3의 실제 바이트 배치를 읽는 변환 검사와 유효한 CRC를 갖더라도 섭취 합계가 맞지 않는 기록의 거부를 추가했다. 외부 세계 저장 형식은 5를 유지한다.
+
+2026-10-10 UE 5.8.3의 검증 결과는 다음과 같다. 경로는 저장소 기준이며 원본은 로컬 `Saved/`에 보관한다.
+
+| 검사 | 결과와 근거 |
+|---|---|
+| 최종 프로젝트 파일 생성·Editor 빌드 | 성공. `Saved/EnvironmentStages/EcologyBehavior-GPF.log`, `EcologyBehavior-Build.log` |
+| 최종 환경 자동화 | 115/115, 경고·실패·미실행 0. `Saved/Tests/Automation/20261010-173153-420/report/index.json` |
+| Scenario 행동·별도 프로세스 복원 | 통과. `Saved/Tests/EcologyBehavior/EnvironmentScenario-Standalone-20261010-172703-692` |
+| 최종 Playground 행동·별도 프로세스 복원 | 통과. `Saved/Tests/EcologyBehavior/EnvironmentPlayground-Standalone-20261010-173155-803` |
+| 최종 Dedicated Playground 첫·늦은 접속 | 통과. `Saved/Tests/EcologyBehavior/EnvironmentPlayground-Dedicated-20261010-173152-997` |
+| 최종 Listen Scenario 첫·늦은 접속 | 통과. `Saved/Tests/EcologyBehavior/EnvironmentScenario-Listen-20261010-173236-721` |
+| 기존 수동 Actor/Mass 전환 회귀 | 통과. `Saved/Tests/EcologyRepresentation/EnvironmentScenario-Standalone-20261010-173231-518` |
+
+자동화의 새 행동 검사 6개는 네 이동 매체의 실제 위치 변화·섭취, 소수 구간 분할·저장 재개 뒤 바이트 일치, 무리 기준점 복귀와 개체별 목표 차이, 등록 전 시간의 먹이 재생 방지, 먹이 경쟁·종류 거부·기아 사망·실행권 무효화, 예산 실패와 후속 Agent 실패의 원본 보존을 확인한다. 먹이를 실제 식생에서 가져오거나 피식 개체를 제거하는 검사까지 포함하지는 않는다.
+
+실제 월드 검사는 네 매체의 Actor를 만들고 공통 시간을 진행해 이동과 섭취를 확인한다. Actor에서 Mass로, 다시 Actor로 바꾸며 위치·ID·수량과 과거 Actor 종료 콜백의 거부를 대조한다. 저장 이후 더 진행한 상태를 되돌린 뒤 생태 본문 전체를 바이트 단위로 비교하고, 별도 프로세스에서도 같은 파일을 읽는다. Scenario의 첫 검사는 마지막 무리 검사·소비 합계 검증 보강 전 결과이며 최종 Playground·네트워크·기존 표현 회귀는 마지막 빌드에서 수행했다.
+
+네트워크의 첫 접속자는 초기 위치를 관측한 뒤 이동·저장 복원이 끝난 위치를 확인한다. 늦은 접속자는 복원 이후에 들어온다. 두 접속자 모두 서버가 기록한 위치와 이동 매체를 대조하고 클라이언트의 행동 변경 거부를 검사한다. 첫 Dedicated 실행은 위치 허용 오차를 0.2cm로 두어 시간 초과됐다. `FRepMovement`의 기본 위치 양자화가 `RoundWholeNumber`인 것을 확인하고 1cm로 맞춘 뒤 통과했다. 근거는 `<Engine>/Source/Runtime/Engine/Private/Engine/ReplicatedState.cpp:24`의 `FRepMovement::FRepMovement()`다. 엔진의 위치 전송 정밀도를 바꾸지는 않았다.
+
+재실행은 `Tools/Validation/run_ecology_behavior.ps1 -Map EnvironmentPlayground`다. 기본 Standalone은 별도 읽기 프로세스까지 실행한다. `-Mode Listen -Port 20322` 또는 `-Mode Dedicated`를 지정하면 첫·늦은 접속을 검사한다. 이번 실행은 모두 NullRHI이며 Dedicated는 Editor의 서버 모드다. 렌더링·실제 Server 타깃 패키지와 성능 측정의 근거로 쓰지 않는다.
+
+이 기반은 고정 공간 입력의 행동 진행을 검증한 상태다. 지형·내비게이션과 물 깊이·비행 장애물, 무리의 충돌 회피·먹이 경쟁 정책, 식생·피식자와 연결한 실제 먹이 공급, 일반 집계의 에너지·기아 계산, Agent 생애 소유권 이전, 구역 06의 상시 배치·관측·조작과 원거리 집계 복제는 남아 있다. 1초 경계와 상태 예산은 재현·보호 기준이며 대규모 또는 장기간 실행 비용을 측정한 수치가 아니다. 단계 8·9 전체는 계속 진행 중이다.
