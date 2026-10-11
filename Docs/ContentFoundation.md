@@ -58,7 +58,7 @@ classDiagram
 
 ## 현재 상태
 
-현재 설치본은 UE 5.8.3이며, 콘텐츠 재검증의 구성과 결과는 [DeliveryPlan](DeliveryPlan.md#2026-10-11-전체-검토-수정과-ue-583-재검증)이 소유한다. 아래 2026-10-07 결과와 `Saved/StageValidation/` 경로는 UE 5.9.0 노트북에서 확인한 과거 기록이다. 해당 원본 로그는 현재 작업 공간에 없으므로 이번 문서 검토에서 다시 확인한 결과로 취급하지 않는다.
+현재 설치본은 UE 5.8.3이다. 전체 검토 직후의 재검증은 [DeliveryPlan](DeliveryPlan.md#2026-10-11-전체-검토-수정과-ue-583-재검증), 상품 복제 보완의 검증은 아래 [상품 복제와 거부 조건 보완](#상품-복제와-거부-조건-보완)을 따른다. 아래 2026-10-07 결과와 `Saved/StageValidation/` 경로는 UE 5.9.0 노트북에서 확인한 과거 기록이다. 해당 원본 로그는 현재 작업 공간에 없으므로 이번 문서 검토에서 다시 확인한 결과로 취급하지 않는다.
 
 2026-10-07 UE 5.9에서 생성 BAT·CCLEditor 빌드·공격 정의 3개와 NPC 저장을 통과했다. Standalone·Dedicated·Listen 원격·호스트·왕복 지연 100ms와 손실 2% 구성에서 실제 클라이언트 요청으로 수락·구매·귀환 보상을 검사했다. 각 네트워크 구성에서 늦은 접속도 통과했다. 원거리 거래, 잔액 부족, 보관 공간 부족과 중복 보상을 거부했고 재스폰 후 개인 상태를 유지했다. 보스는 절반 체력에서 휩쓸기와 강공격을 교대하며, 정면 방어 중인 대상에게 휩쓸기 피해 24가 적용됐다. 기존 성장·전투 회귀도 통과했다.
 
@@ -89,3 +89,33 @@ NPC 렌더링 화면에서 안내인·이름·구매 가격·거부 결과·다�
 공통 계정 코드는 상품의 가격·재고 범위와 보관 공간만 검사한다. 특정 아이템 이름은 검사하지 않는다. 재고 자원은 처음 구매 요청이 올 때 `InitialStock`으로 한 번 채운다. 경비병 처치 기록은 비트 마스크이므로 `Guards`는 최대 8명이다.
 
 에셋은 `Tools/Validation/create_content_definitions.py`로 생성하고 저장 결과를 검사한다. 2026-10-11 실행은 `PASS`였다. 캠페인 스모크는 약탈자를 Archetype 번호가 아닌 정의 이름으로 찾는다. UE 5.8.3 재검증 결과는 [DeliveryPlan의 2026-10-11 재검증](DeliveryPlan.md#2026-10-11-전체-검토-수정과-ue-583-재검증)을 따른다.
+
+## 상품 복제와 거부 조건 보완
+
+서버에서 바꾼 상품의 아이템·가격·초기 재고 설정은 `ACCLVillageSteward::Offer`를 통해 클라이언트에 복제된다. Actor 관련성 범위의 기존 접속자와 늦은 참가자가 현재 상품을 받는다. 변경 전에는 `Offer`가 `EditAnywhere`에만 노출돼 런타임의 서버 설정이 원격 플레이어의 안내에 반영되지 않았다. 근거는 `Source/CCL/Campaign/CCLVillageSteward.h`의 `Offer`와 같은 이름의 CPP에 있는 `GetLifetimeReplicatedProps`다.
+
+거래 권위와 계정·재고 원본은 기존 서버 경로를 유지한다. 복제되는 `InitialStock`은 초기 설정이며 실제 남은 재고가 아니다. 재고를 소진한 뒤 이 값을 바꿔도 해당 자원을 다시 채우지 않는다. 상품 정의를 Actor에서 복제하면 공통 에셋만 참조하는 방식보다 변경 데이터 전송이 늘지만, 소규모 NPC의 단일 상품을 별도 UI 요청 없이 전달할 수 있다.
+
+`UCCLCampaignSmokeSubsystem::TickContent`는 전투 행동 중이거나 경직된 플레이어의 요청을 거부하고 개인 상태를 유지하는지 검사한다. 재고를 소진한 뒤 잔액이 충분해도 구매가 실패하는지, 초기 재고 설정을 바꿔도 금화·아이템이 그대로인지 확인한다. 기존의 원거리·보관 공간 부족·잔액 부족·중복 보상 거부와 보스 체력별 공격 검사도 유지한다.
+
+클라이언트 검사는 `CheckContentReplication`이 맡는다. 기본값과 다른 상품 아이템·가격·초기 재고 설정이 도착하고, 조작자·관찰자·늦은 참가자 각각의 퀘스트·잔액·훈련 포인트·인벤토리가 기대 상태가 된 뒤 완료를 기록한다. 월드 승리 수신만으로 개인 콘텐츠 검사를 완료하지 않는다. 검사용 상품·재고 값은 스모크 프로세스 안에서만 바꾸며 콘텐츠 에셋을 저장하지 않는다.
+
+### UE 5.8.3 검증
+
+2026-10-11 검증 대상은 기존 설계 수정과 이번 상품 복제를 포함한 로컬 작업 트리다. 아래 기록은 소스 변경의 커밋·원격 반영 여부와 별개인 실행 근거다.
+
+| 검사 | 결과 | 로컬 근거 |
+|---|---|---|
+| 프로젝트 파일 생성 | 성공 | `Saved/Tests/ContentFoundation-20261011/GenerateProjectFiles.log` |
+| `CCLEditor Win64 Development` | 성공 | 같은 폴더의 `EditorBuild.log` |
+| CCL 자동 검사 | 161개 성공, 경고·실패·미실행·진행 중 0 | `Saved/Tests/Automation/20261011-211541-112/report/index.json` |
+| 콘텐츠 Standalone | 통과 | `Saved/Tests/CampaignSmoke/Standalone-20261011-211506` |
+| 콘텐츠 Dedicated | 조작자·관찰자·늦은 참가자 통과 | `Saved/Tests/CampaignSmoke/Dedicated-20261011-211615` |
+| 콘텐츠 Listen 원격 조작 | 호스트 관찰자·원격 조작자·늦은 참가자 통과 | `Saved/Tests/CampaignSmoke/Listen-20261011-211754` |
+| 콘텐츠 Listen 호스트 조작 | 호스트 조작자·원격 관찰자·늦은 참가자 통과 | `Saved/Tests/CampaignSmoke/Listen-20261011-211927` |
+| 콘텐츠 Dedicated 지연·손실 | `PktLag 50`, `PktLoss 2` 적용과 모든 역할 통과 | `Saved/Tests/CampaignSmoke/Dedicated-20261011-212058` |
+| 콘텐츠 렌더링 실행 | Standalone 전체 흐름 통과, 1280×720 NPC 이름·대사·잔액 부족 안내와 조작 안내 확인 | `Saved/Tests/CampaignSmoke/Standalone-20261011-212233`, `Saved/Tests/ContentFoundation-20261011/Visual/steward.png` |
+
+실행 도구는 `Tools/Validation/run_campaign_smoke.ps1`이며 모든 구성에 `-Content`를 사용했다. Listen 호스트 조작에는 `-DriverIsHost`, 지연·손실에는 `-Impaired`, 렌더링에는 `-Rendered`를 추가했다. 자동 검사는 `Tools/Validation/run_automation.ps1 -Filter 'CCL.' -TimeoutSeconds 600`으로 실행했다. 역할별 확인 결과는 `Saved/Tests/ContentFoundation-20261011/verified-results.json`에 묶었다. 렌더링 캡처는 기본 회복약의 대화 화면이며, 변경 상품의 수신은 각 클라이언트의 데이터 검사로 확인했다.
+
+Windows 패키지는 다시 생성하지 않았다. 최종 캐릭터 아트·보스 모션·효과음 제작과 사용자 조작감 검토는 남아 있다.
