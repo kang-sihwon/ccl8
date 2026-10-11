@@ -38,6 +38,7 @@
 | [생활 Agent·무기·지도 확인 안내](AgentReview-2026-10-08.md) | 직접 확인할 조작, 클래스 관계와 데이터 위치 |
 | [장비·UI 확인 안내](UIReview-2026-10-08.md) | 2026-10-08 구현 요약, 직접 확인할 화면과 검증 범위 |
 | [ArtDirection](ArtDirection.md) | 그래픽 스타일·시각 기준·아트 제작 초안 |
+| [코드 설계 후속 수정](CodeDesignFixes-2026-10-11.md) | 장비 일관성·카탈로그 식별·기능과 시간 진행 분리·표면 공유 발행본 검증 |
 | [Coding](Coding.md) | 코드 설계·리뷰·빌드와 파일 수정 경계 |
 | [FrameworkPlan](FrameworkPlan.md) | 공용 시스템 후보·Framework 명명·독립성 검증과 분리 보류·재검토 기준 |
 | [WritingGuide](WritingGuide.md) | 문서 작성·검토·결정 기록 |
