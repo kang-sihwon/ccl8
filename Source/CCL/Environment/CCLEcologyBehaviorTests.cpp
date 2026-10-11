@@ -1,7 +1,7 @@
 #include "CCLEcologyLegacyTest.h"
-#include "CCLEcologySimulation.h"
+#include "KSIEcologySimulation.h"
 #include "CCLWorldAdvance.h"
-#include "CCLWorldClock.h"
+#include "KSIWorldClock.h"
 #include "Agents/CCLLifeSimulation.h"
 #include "Misc/AutomationTest.h"
 #include "Misc/Crc.h"
@@ -14,7 +14,7 @@ namespace
 		return FGuid(920, 921, 922, N);
 	}
 
-	TArray<uint8> Bytes(const FCCLEcologySimulation& S)
+	TArray<uint8> Bytes(const FKSIEcologySimulation& S)
 	{
 		TArray<uint8> Result;
 		FString Error;
@@ -22,7 +22,7 @@ namespace
 		return Result;
 	}
 
-	bool Setup(FCCLEcologySimulation& S, FString& Error, bool bBehavior = true)
+	bool Setup(FKSIEcologySimulation& S, FString& Error, bool bBehavior = true)
 	{
 		if (!S.Initialize(BehaviorId(1), 0., Error))
 		{
@@ -31,16 +31,16 @@ namespace
 
 		for (uint32 Index = 0; Index < 4; ++Index)
 		{
-			FCCLEcologySpecies Species;
+			FKSIEcologySpecies Species;
 			Species.Id = BehaviorId(10 + Index);
-			Species.Movement = ECCLEcologyMovement(Index);
+			Species.Movement = EKSIEcologyMovement(Index);
 			Species.MaturitySeconds = 10.;
 			Species.LifespanSeconds = 10000.;
-			FCCLEcologyHabitat H;
+			FKSIEcologyHabitat H;
 			H.Id = BehaviorId(20 + Index);
 			H.MaximumMeters = FVector(10., 10., 4.);
 			H.MovementMask = 1 << Index;
-			FCCLEcologyPopulation P;
+			FKSIEcologyPopulation P;
 			P.Id = BehaviorId(30 + Index);
 			P.SpeciesId = Species.Id;
 			P.HabitatId = H.Id;
@@ -56,18 +56,18 @@ namespace
 				continue;
 			}
 
-			FCCLEcologyGroup G;
+			FKSIEcologyGroup G;
 			G.Id = BehaviorId(70 + Index);
 			G.HabitatId = H.Id;
 			G.AnchorMeters = FVector(2., 2., 2.);
 			G.RadiusMeters = 1.;
-			FCCLEcologyForage F;
+			FKSIEcologyForage F;
 			F.Id = BehaviorId(80 + Index);
 			F.HabitatId = H.Id;
 			F.PositionMeters = FVector(8., 5., (Index == 1 || Index == 2) ? 3. : 2.);
 			F.FoodMask = 1 << Index;
 			F.RegrowthPerSecond = .1;
-			FCCLEcologyBehavior B;
+			FKSIEcologyBehavior B;
 			B.Id = BehaviorId(60 + Index);
 			B.GroupId = G.Id;
 			B.DietMask = F.FoodMask;
@@ -87,7 +87,7 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(FCCLBehaviorPartitionTest, "CCL.Environment.Eco
 	EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
 bool FCCLBehaviorPartitionTest::RunTest(const FString& Parameters)
 {
-	FCCLEcologySimulation Whole, Split, Restored;
+	FKSIEcologySimulation Whole, Split, Restored;
 	FString Error;
 	if (!TestTrue(TEXT("four media behavior fixture"), Setup(Whole, Error)))
 	{
@@ -130,20 +130,20 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(FCCLBehaviorGroupTest, "CCL.Environment.Ecology
 	EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
 bool FCCLBehaviorGroupTest::RunTest(const FString& Parameters)
 {
-	FCCLEcologySimulation S;
+	FKSIEcologySimulation S;
 	FString Error;
 	if (!TestTrue(TEXT("fixture"), Setup(S, Error, false) && S.AdvanceTo(.75, Error)))
 	{
 		return false;
 	}
 
-	FCCLEcologyGroup G;
+	FKSIEcologyGroup G;
 	G.Id = BehaviorId(70);
 	G.HabitatId = BehaviorId(20);
 	G.AnchorMeters = FVector(2., 2., 2.);
 	G.RadiusMeters = 1.;
 	TestTrue(TEXT("group"), S.AddGroup(G, Error));
-	FCCLEcologyForage F;
+	FKSIEcologyForage F;
 	F.Id = BehaviorId(80);
 	F.HabitatId = G.HabitatId;
 	F.PositionMeters = G.AnchorMeters;
@@ -157,7 +157,7 @@ bool FCCLBehaviorGroupTest::RunTest(const FString& Parameters)
 			TestTrue(TEXT("second member"), S.Materialize(BehaviorId(150), BehaviorId(30), BehaviorId(40), BehaviorId(N), true, Error));
 		}
 
-		FCCLEcologyBehavior B;
+		FKSIEcologyBehavior B;
 		B.Id = BehaviorId(N);
 		B.GroupId = G.Id;
 		B.Energy = 1.;
@@ -182,20 +182,20 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(FCCLBehaviorCompetitionTest, "CCL.Environment.E
 	EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
 bool FCCLBehaviorCompetitionTest::RunTest(const FString& Parameters)
 {
-	FCCLEcologySimulation S;
+	FKSIEcologySimulation S;
 	FString Error;
 	if (!TestTrue(TEXT("fixture"), Setup(S, Error, false)))
 	{
 		return false;
 	}
 
-	FCCLEcologyForage F;
+	FKSIEcologyForage F;
 	F.Id = BehaviorId(80);
 	F.HabitatId = BehaviorId(20);
 	F.PositionMeters = FVector(5., 5., 2.);
 	F.InitialUnits = F.AvailableUnits = F.CapacityUnits = .5;
 	TestTrue(TEXT("finite source"), S.AddForage(F, Error));
-	FCCLEcologyLease Lease;
+	FKSIEcologyLease Lease;
 	for (uint32 N = 0; N < 3; ++N)
 	{
 		const FGuid Id = BehaviorId(60 + N * 100);
@@ -204,7 +204,7 @@ bool FCCLBehaviorCompetitionTest::RunTest(const FString& Parameters)
 			TestTrue(TEXT("another competitor"), S.Materialize(BehaviorId(150 + N), BehaviorId(30), BehaviorId(40), Id, true, Error));
 		}
 
-		FCCLEcologyBehavior B;
+		FKSIEcologyBehavior B;
 		B.Id = Id;
 		B.Energy = 0.;
 		B.MetabolismPerSecond = 0.;
@@ -214,7 +214,7 @@ bool FCCLBehaviorCompetitionTest::RunTest(const FString& Parameters)
 		TestTrue(TEXT("competitor behavior"), S.AddBehavior(B, Error));
 		if (N == 1)
 		{
-			TestTrue(TEXT("active starvation victim"), S.Acquire(Id, ECCLEcologyRepresentation::Mass, BehaviorId(300), Lease, Error));
+			TestTrue(TEXT("active starvation victim"), S.Acquire(Id, EKSIEcologyRepresentation::Mass, BehaviorId(300), Lease, Error));
 		}
 	}
 	TestTrue(TEXT("finite food shared once"), S.AdvanceTo(2., Error));
@@ -227,7 +227,7 @@ bool FCCLBehaviorCompetitionTest::RunTest(const FString& Parameters)
 	TestFalse(TEXT("starvation revokes Mass lease"), S.IsLeaseCurrent(Lease));
 	TestTrue(TEXT("starvation retry no duplicate death"), S.AdvanceTo(6., Error));
 	TestEqual(TEXT("same two deaths"), S.GetPopulations()[BehaviorId(30)].Died, int64(2));
-	FCCLEcologySimulation Restored;
+	FKSIEcologySimulation Restored;
 	TestTrue(TEXT("terminal history restored"), Restored.Restore(Bytes(S), Error) && Bytes(Restored) == Bytes(S));
 	return true;
 }
@@ -236,7 +236,7 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(FCCLBehaviorFailureTest, "CCL.Environment.Ecolo
 	EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
 bool FCCLBehaviorFailureTest::RunTest(const FString& Parameters)
 {
-	FCCLEcologySimulation S;
+	FKSIEcologySimulation S;
 	FString Error;
 	if (!TestTrue(TEXT("fixture"), Setup(S, Error)))
 	{
@@ -244,7 +244,7 @@ bool FCCLBehaviorFailureTest::RunTest(const FString& Parameters)
 	}
 
 	const auto Before = Bytes(S);
-	FCCLEcologyForage Bad;
+	FKSIEcologyForage Bad;
 	Bad.Id = BehaviorId(900);
 	Bad.HabitatId = BehaviorId(20);
 	Bad.PositionMeters = FVector(100.);
@@ -255,8 +255,8 @@ bool FCCLBehaviorFailureTest::RunTest(const FString& Parameters)
 	TestFalse(TEXT("duplicate behavior cannot reset energy"), S.AddBehavior(S.GetBehaviors()[BehaviorId(60)], Error));
 	TestFalse(TEXT("boundary budget fails"), S.AdvanceTo(30., Error, 2));
 	TestTrue(TEXT("failed candidate preserves all behavior bytes"), Before == Bytes(S));
-	FCCLEcologyLease Lease;
-	TestTrue(TEXT("acquire Actor"), S.Acquire(BehaviorId(60), ECCLEcologyRepresentation::Actor, BehaviorId(901), Lease, Error));
+	FKSIEcologyLease Lease;
+	TestTrue(TEXT("acquire Actor"), S.Acquire(BehaviorId(60), EKSIEcologyRepresentation::Actor, BehaviorId(901), Lease, Error));
 	TestFalse(TEXT("representation cannot overwrite autonomous position"), S.UpdatePosition(Lease, FVector(4., 4., 2.), Error));
 	TestTrue(TEXT("release preserves persistent behavior"), S.Release(Lease, Error));
 	TestTrue(TEXT("dormant movement still progresses"), S.AdvanceTo(10., Error));
@@ -269,7 +269,7 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(FCCLBehaviorLegacyTest, "CCL.Environment.Ecolog
 	EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
 bool FCCLBehaviorLegacyTest::RunTest(const FString& Parameters)
 {
-	FCCLEcologySimulation Old, Read;
+	FKSIEcologySimulation Old, Read;
 	FString Error;
 	if (!TestTrue(TEXT("legacy-shaped fixture"), Setup(Old, Error, false)))
 	{
@@ -305,8 +305,8 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(FCCLBehaviorWorldFailureTest, "CCL.Environment.
 	EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
 bool FCCLBehaviorWorldFailureTest::RunTest(const FString& Parameters)
 {
-	FCCLEcologySimulation E;
-	FCCLWorldClock Clock;
+	FKSIEcologySimulation E;
+	FKSIWorldClock Clock;
 	FCCLLifeSimulation Life;
 	FString Error;
 	if (!TestTrue(TEXT("world setup"), Setup(E, Error) && Life.Initialize(FCCLLifeSimulation::MerchantScenario(42), Error)

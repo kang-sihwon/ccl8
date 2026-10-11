@@ -5,8 +5,8 @@
 #include "Subsystems/WorldSubsystem.h"
 #include "CCLThermalExposure.generated.h"
 
-class FCCLSurfaceSimulation;
-class ICCLSurfaceProvider;
+class FKSISurfaceSimulation;
+class IKSISurfaceProvider;
 class UCCLAbilitySystemComponent;
 struct FKSIWorldStep;
 
@@ -35,8 +35,8 @@ struct CCL_API FCCLThermalDamagePolicy
 
 namespace CCLThermalExposure
 {
-bool Sample(const FCCLSurfaceSimulation& Surface, const FVector& PositionMeters, const FCCLThermalDamagePolicy& Policy,
-			const ICCLSurfaceProvider* Shelter, FName BodyId, double& DamagePerSecond, FString& Error);
+bool Sample(const FKSISurfaceSimulation& Surface, const FVector& PositionMeters, const FCCLThermalDamagePolicy& Policy,
+			const IKSISurfaceProvider* Shelter, FName BodyId, double& DamagePerSecond, FString& Error);
 }
 
 UCLASS(ClassGroup = (Environment), meta = (BlueprintSpawnableComponent))
@@ -74,7 +74,7 @@ public:
 public:
 	void Register(UCCLThermalReceiverComponent* Receiver);
 	void Unregister(UCCLThermalReceiverComponent* Receiver);
-	bool Prepare(const FKSIWorldStep& Step, const FCCLSurfaceSimulation& Previous, FString& Error);
+	bool Prepare(const FKSIWorldStep& Step, const FKSISurfaceSimulation& Previous, FString& Error);
 	void Commit();
 	void Cancel();
 

@@ -1,5 +1,6 @@
 #include "CCLTerrainTravelSmokeSubsystem.h"
 #include "Items/CCLInventoryPersistenceSubsystem.h"
+#include "Session/CCLPlayerPersistenceSubsystem.h"
 
 #include "Agents/CCLAgentWorldSubsystem.h"
 #include "Agents/CCLAccountComponent.h"
@@ -140,31 +141,39 @@ void UCCLTerrainTravelSmokeSubsystem::Tick(float DeltaTime)
 			return false;
 		}
 
-		TArray<FCCLInventorySnapshot> ActualRecords;
-		if (!World->GetSubsystem<UCCLInventoryPersistenceSubsystem>()->Capture(
-			Actual.Identity.WorldId, Actual.Clock.WorldSeconds, ActualRecords, Error) ||
-			!CCLInventorySnapshot::WriteWorld(Actual, ActualRecords, Error))
-		{
-			return false;
-		}
+        FKSIWorldCaptureContext CaptureContext;
+        CaptureContext.WorldId = Actual.Identity.WorldId;
+        CaptureContext.WorldSeconds = Actual.Clock.WorldSeconds;
+        auto* Players = World->GetSubsystem<UCCLPlayerPersistenceSubsystem>();
+        auto* Inventories = World->GetSubsystem<UCCLInventoryPersistenceSubsystem>();
+        TArray<uint8> PlayerSection, InventorySection;
+        if (!Players || !Inventories || !Players->CaptureWorldSection(CaptureContext, PlayerSection, Error)
+            || !Inventories->CaptureWorldSection(CaptureContext, InventorySection, Error))
+        {
+            return false;
+        }
+        Actual.SetSection(Players->GetWorldSection(), MoveTemp(PlayerSection));
+        Actual.SetSection(Inventories->GetWorldSection(), MoveTemp(InventorySection));
 
-		// A new PlayerState opens a new account after world restoration. All saved accounts
-		// must still match; allow only the current players' untouched opening balances.
-		for (TActorIterator<APlayerState> It(World); It; ++It)
-		{
-			const auto* Account = It->FindComponentByClass<UCCLAccountComponent>();
-			if (Account && !ExpectedLife.Economy.Accounts.Contains(Account->GetAccountId()))
-			{
-				const auto* Opened = ActualLife.Economy.Accounts.Find(Account->GetAccountId());
-				if (!Opened || !Opened->bHasOpeningBalance || Opened->Balance != Opened->OpeningBalance)
-				{
-					Error = TEXT("new player account is not an untouched opening balance");
-					return false;
-				}
-
-				ActualLife.Economy.Accounts.Remove(Account->GetAccountId());
-			}
-		}
+        // A returning PlayerState may bind its saved account after opening a temporary one.
+        // Permit only player accounts observed at creation, with every opening field unchanged.
+        for (const auto& Pair : PlayerOpeningAccounts)
+        {
+            if (ExpectedLife.Economy.Accounts.Contains(Pair.Key))
+            {
+                continue;
+            }
+            const auto* Opened = ActualLife.Economy.Accounts.Find(Pair.Key);
+            if (Opened)
+            {
+                if (!FCCLAccountRecord::StaticStruct()->CompareScriptStruct(&Pair.Value, Opened, PPF_None))
+                {
+                    Error = TEXT("new player account changed after its observed opening");
+                    return false;
+                }
+                ActualLife.Economy.Accounts.Remove(Pair.Key);
+            }
+        }
 
 		if (!FCCLSimulationSnapshot::StaticStruct()->CompareScriptStruct(&ExpectedLife, &ActualLife, PPF_None))
 		{
@@ -176,6 +185,31 @@ void UCCLTerrainTravelSmokeSubsystem::Tick(float DeltaTime)
 				}
 			}
 
+            for (TFieldIterator<FProperty> Property(FCCLEconomyState::StaticStruct()); Property; ++Property)
+            {
+                if (!Property->Identical_InContainer(&ExpectedLife.Economy, &ActualLife.Economy, PPF_None))
+                {
+                    UE_LOG(LogTemp, Display, TEXT("CCL_TERRAIN_TRAVEL economy difference: %s"), *Property->GetName());
+                }
+            }
+            for (const auto& Pair : ExpectedLife.Economy.Accounts)
+            {
+                const auto* Found = ActualLife.Economy.Accounts.Find(Pair.Key);
+                if (!Found || !FCCLAccountRecord::StaticStruct()->CompareScriptStruct(&Pair.Value, Found, PPF_None))
+                {
+                    UE_LOG(LogTemp, Display, TEXT("CCL_TERRAIN_TRAVEL expected account %s balance=%lld opening=%lld actual=%lld/%lld"),
+                        *Pair.Key.ToString(), Pair.Value.Balance, Pair.Value.OpeningBalance,
+                        Found ? Found->Balance : -1, Found ? Found->OpeningBalance : -1);
+                }
+            }
+            for (const auto& Pair : ActualLife.Economy.Accounts)
+            {
+                if (!ExpectedLife.Economy.Accounts.Contains(Pair.Key))
+                {
+                    UE_LOG(LogTemp, Display, TEXT("CCL_TERRAIN_TRAVEL extra account %s balance=%lld opening=%lld"),
+                        *Pair.Key.ToString(), Pair.Value.Balance, Pair.Value.OpeningBalance);
+                }
+            }
 			Error = TEXT("life fields differ: ") + Error;
 			return false;
 		}
@@ -272,6 +306,27 @@ void UCCLTerrainTravelSmokeSubsystem::FreezeClock(UWorld* World, ELevelTick Tick
 		if (auto* Runtime = World->GetSubsystem<UCCLWorldSimulationSubsystem>())
 		{
 			Runtime->SetTickableTickType(ETickableTickType::Never);
+            const auto* Agents = World->GetSubsystem<UCCLAgentWorldSubsystem>();
+            if (Agents && Agents->IsRunning())
+            {
+                for (TActorIterator<APlayerState> It(World); It; ++It)
+                {
+                    const auto* Account = It->FindComponentByClass<UCCLAccountComponent>();
+                    if (Account && Account->GetProvisionalAccountId().IsValid()
+                        && !PlayerOpeningAccounts.Contains(Account->GetProvisionalAccountId()))
+                    {
+                        FCCLAccountRecord Opening;
+                        Opening.Id = Account->GetProvisionalAccountId();
+                        Opening.OwnerId = Opening.Id;
+                        Opening.Balance = Account->GetProvisionalOpeningBalance();
+                        Opening.OpeningBalance = Opening.Balance;
+                        Opening.bHasOpeningBalance = 1;
+                        PlayerOpeningAccounts.Add(Opening.Id, Opening);
+                        UE_LOG(LogTemp, Display, TEXT("CCL_TERRAIN_TRAVEL observed player opening %s balance=%lld"),
+                            *Opening.Id.ToString(), Opening.Balance);
+                    }
+                }
+            }
 		}
 	}
 }

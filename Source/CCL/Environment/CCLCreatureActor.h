@@ -2,7 +2,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "CCLEcologySimulation.h"
+#include "KSIEcologySimulation.h"
 #include "CCLCreatureActor.generated.h"
 
 class UStaticMeshComponent;
@@ -18,10 +18,10 @@ public:
 	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
 
 public:
-	void Bind(const FCCLEcologyLease& Lease, ECCLEcologyMovement Movement);
-	ECCLEcologyMovement GetMovementMedium() const { return ECCLEcologyMovement(Medium); }
+	void Bind(const FKSIEcologyLease& Lease, EKSIEcologyMovement Movement);
+	EKSIEcologyMovement GetMovementMedium() const { return EKSIEcologyMovement(Medium); }
 	FGuid GetIndividualId() const { return IndividualId; }
-	const FCCLEcologyLease& GetLease() const { return Lease; }
+	const FKSIEcologyLease& GetLease() const { return Lease; }
 
 private:
 	UFUNCTION()
@@ -40,5 +40,5 @@ private:
 	UPROPERTY(ReplicatedUsing=OnRep_Medium)
 	uint8 Medium = 0;
 
-	FCCLEcologyLease Lease;
+	FKSIEcologyLease Lease;
 };

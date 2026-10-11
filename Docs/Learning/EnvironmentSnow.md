@@ -1,5 +1,7 @@
 # 깊은 눈과 이동: 질량·깊이·예측 입력을 나누기
 
+2026-10-12 공용 모듈 분리 이후의 위치는 [Framework 파일 이동표](../FrameworkPlan.md#코드-위치의-전후-비교)를 따른다. 아래 발췌·이름·줄 번호·해시는 기록 당시 기준을 유지하며 소스 링크는 현재 대응 파일을 연다.
+
 후속 변경에서 눈 후처리를 Character의 맵 이름 조건에서 컴포넌트의 설정 참조로 옮겼다. 실제 전후 코드는 [환경 맵 설정](EnvironmentMapConfiguration.md)에 있으며 아래의 기존 예측·질량 설명은 당시 기준을 유지한다.
 
 깊은 눈은 물의 양을 보존하면서 눌리고, 캐릭터는 그 깊이에 따라 저항과 발 배치를 바꾼다. 이 장에서는 일반 CMC를 확장한 이유와 클라이언트 재실행에서 과거 눈 입력을 유지하는 방법을 배운다.
@@ -41,7 +43,7 @@ ACCLCharacter::ACCLCharacter(const FObjectInitializer& ObjectInitializer)
 
 접촉 계산은 일부 눈을 이웃으로 옮기고 남은 눈을 압축한다. 이웃 공간이 부족하면 남은 양을 원래 셀에 보관한다. 융해할 때는 물 환산량을 액체로 옮긴다. 물과 눈을 함께 보존하는 장부는 [물 순환](EnvironmentWater.md)에서 설명했다.
 
-출처: `0408d94`, [CCLSnowSimulation.cpp](../../Source/CCL/Environment/CCLSnowSimulation.cpp), `if (Sequence <= SnowContacts.FindRef(SourceId))`, 57-60줄. 실제 코드의 연속 발췌이며 들여쓰기만 정리했다.
+출처: `0408d94`, [CCLSnowSimulation.cpp](../../Source/KSIEnvironment/Private/KSISnowSimulation.cpp), `if (Sequence <= SnowContacts.FindRef(SourceId))`, 57-60줄. 실제 코드의 연속 발췌이며 들여쓰기만 정리했다.
 
 ```cpp
 if (Sequence <= SnowContacts.FindRef(SourceId))

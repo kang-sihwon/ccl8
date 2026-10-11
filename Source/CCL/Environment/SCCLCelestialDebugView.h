@@ -1,7 +1,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "CCLCelestialSystem.h"
+#include "KSICelestialSystem.h"
 #include "CCLWorldEnvironmentState.h"
 #include "Widgets/SLeafWidget.h"
 
@@ -25,8 +25,8 @@ public:
 private:
 	TWeakObjectPtr<UWorld> World;
 	FCCLReplicatedWorldTime Published;
-	FCCLCelestialSystem System;
-	TArray<FCCLCelestialBodyState> States;
+	FKSICelestialSystem System;
+	TArray<FKSICelestialBodyState> States;
 	TArray<TArray<FVector3d>> Orbits;
 	FGuid CachedEpoch;
 	uint64 CachedRevision = MAX_uint64;

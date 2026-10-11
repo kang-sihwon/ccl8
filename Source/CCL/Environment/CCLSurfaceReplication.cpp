@@ -114,8 +114,8 @@ void UCCLSurfaceReplication::TickComponent(float DeltaTime, ELevelTick TickType,
 void UCCLSurfaceReplication::ClientBegin_Implementation(FGuid Transfer, uint64 Serial, int32 Total, uint32 Checksum, const TArray<FGuid>& TerrainIds, const TArray<uint64>& TerrainSerials)
 {
 	ClearTransfer();
-	if (!Transfer.IsValid() || !Serial || Serial <= PublishedSerial || Total < 56 || Total > FCCLSurfaceSimulation::MaximumBytes
-		|| TerrainIds.Num() != TerrainSerials.Num() || TerrainIds.Num() > FCCLSurfaceSimulation::MaximumRegions)
+	if (!Transfer.IsValid() || !Serial || Serial <= PublishedSerial || Total < 56 || Total > FKSISurfaceSimulation::MaximumBytes
+		|| TerrainIds.Num() != TerrainSerials.Num() || TerrainIds.Num() > FKSISurfaceSimulation::MaximumRegions)
 	{
 		ServerAck(Transfer, -1);
 		return;
@@ -153,7 +153,7 @@ void UCCLSurfaceReplication::ClientChunk_Implementation(FGuid Transfer, int32 Of
 	if (Payload.Num() == TotalBytes)
 	{
 		FString Error;
-		FCCLSurfaceSimulation Candidate;
+		FKSISurfaceSimulation Candidate;
 		if (FCrc::MemCrc32(Payload.GetData(), Payload.Num() - 4) != ExpectedCRC || !Candidate.Restore(Payload, Error))
 		{
 			ServerAck(Transfer, -1);
@@ -228,7 +228,7 @@ void UCCLSurfaceReplication::ClearTransfer()
 	bWaiting = 0;
 }
 
-const FCCLSurfaceSimulation* UCCLSurfaceReplication::View(const UWorld* World)
+const FKSISurfaceSimulation* UCCLSurfaceReplication::View(const UWorld* World)
 {
 	if (!World)
 	{
@@ -244,7 +244,7 @@ const FCCLSurfaceSimulation* UCCLSurfaceReplication::View(const UWorld* World)
 	return Receiver && Receiver->Replica.IsInitialized() ? &Receiver->Replica : nullptr;
 }
 
-bool UCCLSurfaceReplication::IsGeometryReady(const UWorld* World, const FCCLSurfaceSimulation& Surface, const FCCLSurfaceGrid& Grid)
+bool UCCLSurfaceReplication::IsGeometryReady(const UWorld* World, const FKSISurfaceSimulation& Surface, const FKSISurfaceGrid& Grid)
 {
 	if (!Grid.TerrainId.IsValid())
 	{
@@ -273,7 +273,7 @@ bool UCCLSurfaceReplication::IsGeometryReady(const UWorld* World, const FCCLSurf
 	return false;
 }
 
-bool UCCLSurfaceReplication::HasCurrentState(const FCCLSurfaceSimulation& Surface) const
+bool UCCLSurfaceReplication::HasCurrentState(const FKSISurfaceSimulation& Surface) const
 {
 	TArray<uint8> Bytes;
 	FString Error;
@@ -285,7 +285,7 @@ bool UCCLSurfaceReplication::HasCurrentState(const FCCLSurfaceSimulation& Surfac
 		&& LastCRC == FCrc::MemCrc32(Bytes.GetData(), Bytes.Num() - 4);
 }
 
-bool UCCLSurfaceReplication::SampleHistoricalSnow(uint64 Serial, const FVector& Position, FCCLSnowSample& Sample) const
+bool UCCLSurfaceReplication::SampleHistoricalSnow(uint64 Serial, const FVector& Position, FKSISnowSample& Sample) const
 {
 	const auto* Runtime = GetWorld()->GetSubsystem<UCCLWorldSimulationSubsystem>();
 	if (!Runtime)

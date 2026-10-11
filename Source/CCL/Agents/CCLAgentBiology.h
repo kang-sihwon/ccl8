@@ -1,7 +1,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "CCLAgentTypes.h"
+#include "KSIAgentTypes.h"
 #include "CCLAgentBiology.generated.h"
 
 UENUM(BlueprintType)
@@ -39,9 +39,9 @@ struct CCL_API FCCLAgentBiology
 
 namespace CCLAgentBiology
 {
-CCL_API const FCCLAgentBiology* Find(const FCCLAgentRecord& Record);
+CCL_API const FCCLAgentBiology* Find(const FKSIAgentRecord& Record);
 CCL_API bool ValidateFields(const FCCLAgentBiology& Biology);
-CCL_API bool ValidateAt(const FCCLAgentRecord& Record, double WorldSeconds, FString& Error);
-CCL_API bool IsAlive(const FCCLAgentRecord& Record);
+CCL_API bool ValidateAt(const FKSIAgentRecord& Record, double WorldSeconds, FString& Error);
+CCL_API bool IsAlive(const FKSIAgentRecord& Record);
 CCL_API double AgeSeconds(const FCCLAgentBiology& Biology, double WorldSeconds);
 }

@@ -48,7 +48,7 @@ TStatId UCCLEcologyRepresentationSubsystem::GetStatId() const
 	RETURN_QUICK_DECLARE_CYCLE_STAT(UCCLEcologyRepresentationSubsystem, STATGROUP_Tickables);
 }
 
-bool UCCLEcologyRepresentationSubsystem::SetRepresentation(FGuid Id, ECCLEcologyRepresentation Representation, FString& Error)
+bool UCCLEcologyRepresentationSubsystem::SetRepresentation(FGuid Id, EKSIEcologyRepresentation Representation, FString& Error)
 {
 	if (!CanModify(Error))
 	{
@@ -70,14 +70,14 @@ bool UCCLEcologyRepresentationSubsystem::SetRepresentation(FGuid Id, ECCLEcology
 	}
 
 	const auto* I = Ecology.FindIndividual(Id);
-	if (!I || I->State != ECCLEcologyLifeState::Alive || uint8(Representation) > uint8(ECCLEcologyRepresentation::Mass))
+	if (!I || I->State != EKSIEcologyLifeState::Alive || uint8(Representation) > uint8(EKSIEcologyRepresentation::Mass))
 	{
 		Error = TEXT("Representation requires a live reserved individual and a supported mode.");
 		return false;
 	}
 
 	const auto* Existing = Entries.Find(Id);
-	if (Representation == ECCLEcologyRepresentation::Dormant)
+	if (Representation == EKSIEcologyRepresentation::Dormant)
 	{
 		if (!Existing)
 		{
@@ -97,7 +97,7 @@ bool UCCLEcologyRepresentationSubsystem::SetRepresentation(FGuid Id, ECCLEcology
 
 	auto* EntityManager = Manager();
 	if (Existing && Existing->Lease.Representation == Representation
-		&& (Representation == ECCLEcologyRepresentation::Actor ? Existing->Actor.IsValid() : EntityManager->IsEntityValid(Existing->Entity)))
+		&& (Representation == EKSIEcologyRepresentation::Actor ? Existing->Actor.IsValid() : EntityManager->IsEntityValid(Existing->Entity)))
 	{
 		Error.Reset();
 		return true;
@@ -106,7 +106,7 @@ bool UCCLEcologyRepresentationSubsystem::SetRepresentation(FGuid Id, ECCLEcology
 	const FVector Position = I->PositionMeters;
 	const auto Movement = Ecology.GetSpecies()[Ecology.GetPopulations()[I->PopulationId].SpeciesId].Movement;
 	FCCLEcologyRepresentationEntry Prepared;
-	if (Representation == ECCLEcologyRepresentation::Actor)
+	if (Representation == EKSIEcologyRepresentation::Actor)
 	{
 		Prepared.Actor = GetWorld()->SpawnActorDeferred<ACCLCreatureActor>(ACCLCreatureActor::StaticClass(),
 			FTransform(FRotator::ZeroRotator, Position * 100.), nullptr, nullptr, ESpawnActorCollisionHandlingMethod::AlwaysSpawn);
@@ -168,7 +168,7 @@ bool UCCLEcologyRepresentationSubsystem::SetPosition(FGuid Id, const FVector& Po
 	}
 
 	const auto* E = Entries.Find(Id);
-	if (!E || (E->Lease.Representation == ECCLEcologyRepresentation::Actor ? !E->Actor.IsValid() : !Manager()->IsEntityValid(E->Entity)))
+	if (!E || (E->Lease.Representation == EKSIEcologyRepresentation::Actor ? !E->Actor.IsValid() : !Manager()->IsEntityValid(E->Entity)))
 	{
 		Error = TEXT("A live ecology representation is required to move.");
 		return false;
@@ -192,7 +192,7 @@ bool UCCLEcologyRepresentationSubsystem::SetPosition(FGuid Id, const FVector& Po
 	return true;
 }
 
-bool UCCLEcologyRepresentationSubsystem::FinishIndividual(FGuid Id, const FCCLEcologyEvent& Event, FString& Error)
+bool UCCLEcologyRepresentationSubsystem::FinishIndividual(FGuid Id, const FKSIEcologyEvent& Event, FString& Error)
 {
 	if (!CanModify(Error))
 	{
@@ -233,7 +233,7 @@ bool UCCLEcologyRepresentationSubsystem::Flush(FString& Error)
 			continue;
 		}
 
-		const bool bActor = E.Lease.Representation == ECCLEcologyRepresentation::Actor;
+		const bool bActor = E.Lease.Representation == EKSIEcologyRepresentation::Actor;
 		auto* Actor = E.Actor.Get();
 		const bool bExists = bActor ? Actor && !Actor->IsActorBeingDestroyed() : Manager()->IsEntityValid(E.Entity);
 		if (!bExists)
@@ -326,7 +326,7 @@ void UCCLEcologyRepresentationSubsystem::DiscardRepresentations()
 	}
 }
 
-void UCCLEcologyRepresentationSubsystem::OnActorEnded(const FCCLEcologyLease& Lease)
+void UCCLEcologyRepresentationSubsystem::OnActorEnded(const FKSIEcologyLease& Lease)
 {
 	const auto* Existing = Entries.Find(Lease.IndividualId);
 	if (!Existing || Existing->Lease.Epoch != Lease.Epoch || Existing->Lease.Sequence != Lease.Sequence || Existing->Lease.Writer != Lease.Writer)

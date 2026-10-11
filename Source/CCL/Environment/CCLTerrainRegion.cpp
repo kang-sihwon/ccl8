@@ -1,7 +1,7 @@
 #include "CCLTerrainRegion.h"
 
-#include "CCLTerrainChunkComponent.h"
-#include "CCLTerrainSurface.h"
+#include "KSITerrainChunkComponent.h"
+#include "KSITerrainSurface.h"
 #include "NavigationSystem.h"
 #include "NavigationData.h"
 #include "Net/UnrealNetwork.h"
@@ -63,11 +63,11 @@ void ACCLTerrainRegion::EndPlay(const EEndPlayReason::Type Reason)
 	Super::EndPlay(Reason);
 }
 
-bool ACCLTerrainRegion::InitializeTerrain(const FCCLTerrainDefinition& Definition, FString& Error, const TArray<uint8>& SavedBytes)
+bool ACCLTerrainRegion::InitializeTerrain(const FKSITerrainDefinition& Definition, FString& Error, const TArray<uint8>& SavedBytes)
 {
 	Error.Reset();
 	if (!CanMutate() || bPublished || bPending || !GetActorScale3D().Equals(FVector::OneVector, 1.e-6)
-		|| !FCCLTerrainStore::ValidateDefinition(Definition, Error))
+		|| !FKSITerrainStore::ValidateDefinition(Definition, Error))
 	{
 		if (Error.IsEmpty())
 		{
@@ -77,8 +77,8 @@ bool ACCLTerrainRegion::InitializeTerrain(const FCCLTerrainDefinition& Definitio
 		return false;
 	}
 
-	const FIntVector First = FCCLTerrainStore::OwnerForSample(Definition.MinimumCell);
-	const FIntVector Last = FCCLTerrainStore::OwnerForSample(Definition.MaximumCell - FIntVector(1));
+	const FIntVector First = FKSITerrainStore::OwnerForSample(Definition.MinimumCell);
+	const FIntVector Last = FKSITerrainStore::OwnerForSample(Definition.MaximumCell - FIntVector(1));
 	int64 Count = 1;
 	for (int32 Axis = 0; Axis < 3; ++Axis)
 	{
@@ -92,7 +92,7 @@ bool ACCLTerrainRegion::InitializeTerrain(const FCCLTerrainDefinition& Definitio
 		Count *= Size;
 	}
 
-	FCCLTerrainStore InitialStore;
+	FKSITerrainStore InitialStore;
 	if (!InitialStore.Initialize(Definition, Error))
 	{
 		return false;
@@ -100,9 +100,9 @@ bool ACCLTerrainRegion::InitializeTerrain(const FCCLTerrainDefinition& Definitio
 
 	if (!SavedBytes.IsEmpty())
 	{
-		FCCLTerrainSnapshot Saved;
-		FCCLTerrainSaveContext Context;
-		if (!FCCLTerrainCodec::Decode(SavedBytes, Saved, Context, Error) || !InitialStore.Restore(SavedBytes, Context, Error))
+		FKSITerrainSnapshot Saved;
+		FKSITerrainSaveContext Context;
+		if (!FKSITerrainCodec::Decode(SavedBytes, Saved, Context, Error) || !InitialStore.Restore(SavedBytes, Context, Error))
 		{
 			return false;
 		}
@@ -128,7 +128,7 @@ bool ACCLTerrainRegion::InitializeTerrain(const FCCLTerrainDefinition& Definitio
 	return true;
 }
 
-bool ACCLTerrainRegion::SetEditAuthority(const FCCLTerrainAuthority& Authority, FString& Error)
+bool ACCLTerrainRegion::SetEditAuthority(const FKSITerrainAuthority& Authority, FString& Error)
 {
 	Error.Reset();
 	const auto* Previous = Authorities.Find(Authority.PrincipalId);
@@ -143,19 +143,19 @@ bool ACCLTerrainRegion::SetEditAuthority(const FCCLTerrainAuthority& Authority, 
 	return true;
 }
 
-ECCLTerrainPrepareResult ACCLTerrainRegion::RequestEdit(const FCCLTerrainEdit& Request, FString& Error)
+EKSITerrainPrepareResult ACCLTerrainRegion::RequestEdit(const FKSITerrainEdit& Request, FString& Error)
 {
 	Error.Reset();
 	const auto* Authority = Authorities.Find(Request.PrincipalId);
 	if (!CanMutate() || !bPublished || bPending || !Authority || !InitialTransform.Equals(GetActorTransform()))
 	{
 		Error = TEXT("Terrain request requires a ready server region, registered authority and unchanged region transform.");
-		return ECCLTerrainPrepareResult::Failed;
+		return EKSITerrainPrepareResult::Failed;
 	}
 
-	FCCLTerrainCandidate Candidate;
+	FKSITerrainCandidate Candidate;
 	const auto Result = Store.PrepareEdit(Request, *Authority, Candidate, Error);
-	if (Result != ECCLTerrainPrepareResult::Prepared)
+	if (Result != EKSITerrainPrepareResult::Prepared)
 	{
 		return Result;
 	}
@@ -169,7 +169,7 @@ ECCLTerrainPrepareResult ACCLTerrainRegion::RequestEdit(const FCCLTerrainEdit& R
 		if (!Participant->Prepare(PendingCandidate, Error))
 		{
 			FailPending(Error);
-			return ECCLTerrainPrepareResult::Failed;
+			return EKSITerrainPrepareResult::Failed;
 		}
 	}
 
@@ -178,7 +178,7 @@ ECCLTerrainPrepareResult ACCLTerrainRegion::RequestEdit(const FCCLTerrainEdit& R
 	return Result;
 }
 
-bool ACCLTerrainRegion::RequestRestore(const TArray<uint8>& Bytes, const FCCLTerrainSaveContext& Context, FString& Error, TFunction<bool(FString&)> BeforePublish, const FCCLWorldSnapshot* WorldState)
+bool ACCLTerrainRegion::RequestRestore(const TArray<uint8>& Bytes, const FKSITerrainSaveContext& Context, FString& Error, TFunction<bool(FString&)> BeforePublish, const FCCLWorldSnapshot* WorldState)
 {
 	Error.Reset();
 	if (!CanMutate() || !bPublished || bPending || (BeforePublish && !Participants.IsEmpty() && !WorldState) || !InitialTransform.Equals(GetActorTransform()))
@@ -195,7 +195,7 @@ bool ACCLTerrainRegion::RequestRestore(const TArray<uint8>& Bytes, const FCCLTer
 		return false;
 	}
 
-	FCCLTerrainStore Candidate = Store;
+	FKSITerrainStore Candidate = Store;
 	if (BeforePublish && Context.WorldId != Store.GetSnapshot().Definition.WorldId)
 	{
 		auto Definition = Store.GetSnapshot().Definition;
@@ -223,7 +223,7 @@ bool ACCLTerrainRegion::RequestRestore(const TArray<uint8>& Bytes, const FCCLTer
 	auto Current = Store.GetSnapshot();
 	Current.Definition.WorldId = Context.WorldId;
 	TArray<uint8> CurrentBytes;
-	if (BeforePublish && FCCLTerrainCodec::Encode(Current, Context, CurrentBytes, Error) && CurrentBytes == Bytes)
+	if (BeforePublish && FKSITerrainCodec::Encode(Current, Context, CurrentBytes, Error) && CurrentBytes == Bytes)
 	{
 		if (!BeforePublish(Error))
 		{
@@ -236,9 +236,9 @@ bool ACCLTerrainRegion::RequestRestore(const TArray<uint8>& Bytes, const FCCLTer
 		}
 		const bool bNavigationWasReady = IsNavigationReady();
 		Store = MoveTemp(Candidate);
-		TArray<TSharedRef<const FCCLTerrainMesh>> Meshes;
+		TArray<TSharedRef<const FKSITerrainMesh>> Meshes;
 		SurfaceMeshes.GenerateValueArray(Meshes);
-		SurfaceProvider = MakeShared<FCCLTerrainSurface>(Store.GetSnapshot(), Store.GetEpoch(), InitialTransform, MoveTemp(Meshes));
+		SurfaceProvider = MakeShared<FKSITerrainSurface>(Store.GetSnapshot(), Store.GetEpoch(), InitialTransform, MoveTemp(Meshes));
 		if (auto* Simulation = GetWorld()->GetSubsystem<UCCLWorldSimulationSubsystem>())
 		{
 			Simulation->SetGeometryProvider(Store.GetSnapshot().Definition.RegionId, SurfaceProvider);
@@ -293,10 +293,10 @@ void ACCLTerrainRegion::CancelPendingEdit()
 	}
 }
 
-void ACCLTerrainRegion::StartPreparation(const FCCLTerrainSnapshot& Snapshot, TArray<FIntVector> Chunks)
+void ACCLTerrainRegion::StartPreparation(const FKSITerrainSnapshot& Snapshot, TArray<FIntVector> Chunks)
 {
 	PreparationEpoch = bRestoring ? RestoreStore.GetEpoch() : Store.GetEpoch();
-	PendingSnapshot = MakeShared<FCCLTerrainSnapshot, ESPMode::ThreadSafe>(Snapshot);
+	PendingSnapshot = MakeShared<FKSITerrainSnapshot, ESPMode::ThreadSafe>(Snapshot);
 	Cancellation = MakeShared<FThreadSafeBool, ESPMode::ThreadSafe>(false);
 	PendingChunks = MoveTemp(Chunks);
 	NextChunk = 0;
@@ -331,7 +331,7 @@ void ACCLTerrainRegion::AdvancePreparation()
 			return;
 		}
 
-		auto* Component = NewObject<UCCLTerrainChunkComponent>(this);
+		auto* Component = NewObject<UKSITerrainChunkComponent>(this);
 		Component->SetupAttachment(RootComponent);
 		PreparedChunks.Add(Result.Mesh.Chunk, Component);
 #if WITH_DEV_AUTOMATION_TESTS
@@ -353,13 +353,13 @@ void ACCLTerrainRegion::AdvancePreparation()
 	for (const auto& Pair : PreparedChunks)
 	{
 		const auto State = Pair.Value->GetPreparationState();
-		if (State == ECCLTerrainChunkState::Failed || State == ECCLTerrainChunkState::Cancelled)
+		if (State == EKSITerrainChunkState::Failed || State == EKSITerrainChunkState::Cancelled)
 		{
 			FailPending(Pair.Value->GetFailure());
 			return;
 		}
 
-		bAllReady &= State == ECCLTerrainChunkState::Ready;
+		bAllReady &= State == EKSITerrainChunkState::Ready;
 	}
 
 	while (NextChunk < PendingChunks.Num() && MeshJobs.Num() < 2)
@@ -372,7 +372,7 @@ void ACCLTerrainRegion::AdvancePreparation()
 		Job.Future = Async(EAsyncExecution::ThreadPool, [Snapshot, Cancel, Chunk, Epoch]()
 		{
 			FCCLTerrainMeshJobResult Result;
-			Result.bSucceeded = FCCLTerrainMesher::BuildChunk(*Snapshot, Chunk, Epoch, Result.Mesh, Result.Error,
+			Result.bSucceeded = FKSITerrainMesher::BuildChunk(*Snapshot, Chunk, Epoch, Result.Mesh, Result.Error,
 				[Cancel]() { return bool(*Cancel); }) ? 1 : 0;
 			return Result;
 		});
@@ -505,12 +505,12 @@ void ACCLTerrainRegion::PublishPrepared()
 
 	for (const auto& Pair : PreparedChunks)
 	{
-		SurfaceMeshes.Add(Pair.Key, MakeShared<FCCLTerrainMesh>(Pair.Value->GetSourceMesh()));
+		SurfaceMeshes.Add(Pair.Key, MakeShared<FKSITerrainMesh>(Pair.Value->GetSourceMesh()));
 	}
 
-	TArray<TSharedRef<const FCCLTerrainMesh>> Meshes;
+	TArray<TSharedRef<const FKSITerrainMesh>> Meshes;
 	SurfaceMeshes.GenerateValueArray(Meshes);
-	SurfaceProvider = MakeShared<FCCLTerrainSurface>(Store.GetSnapshot(),
+	SurfaceProvider = MakeShared<FKSITerrainSurface>(Store.GetSnapshot(),
 		Store.GetEpoch(), InitialTransform, MoveTemp(Meshes));
 	if (auto* Simulation = GetWorld()->GetSubsystem<UCCLWorldSimulationSubsystem>())
 	{
@@ -521,7 +521,7 @@ void ACCLTerrainRegion::PublishPrepared()
 	PendingChunks.Reset();
 	PendingParticipants.Reset();
 	PendingSnapshot.Reset();
-	PendingCandidate = FCCLTerrainCandidate();
+	PendingCandidate = FKSITerrainCandidate();
 	Cancellation.Reset();
 	bInitialPreparation = 0;
 	RestoreBeforePublish = {};
@@ -566,13 +566,13 @@ void ACCLTerrainRegion::FailPending(const FString& Error)
 	MeshJobs.Reset();
 	PendingSnapshot.Reset();
 	PendingChunks.Reset();
-	PendingCandidate = FCCLTerrainCandidate();
+	PendingCandidate = FKSITerrainCandidate();
 	Cancellation.Reset();
 	bPending = 0;
 	RestoreBeforePublish = {};
 	RestoreWorldState.Reset();
 	bRestoring = 0;
-	RestoreStore = FCCLTerrainStore();
+	RestoreStore = FKSITerrainStore();
 	bInitialPreparation = 0;
 	bLastSucceeded = 0;
 }
@@ -580,7 +580,7 @@ void ACCLTerrainRegion::FailPending(const FString& Error)
 bool ACCLTerrainRegion::CheckOccupancy(FString& Error) const
 {
 	const auto& Snapshot = *PendingSnapshot;
-	const FBox Bounds = bInitialPreparation ? FCCLTerrainStore::EditableBoundsMeters(Snapshot.Definition)
+	const FBox Bounds = bInitialPreparation ? FKSITerrainStore::EditableBoundsMeters(Snapshot.Definition)
 		: PendingCandidate.GetAffectedBoundsMeters();
 	for (TActorIterator<ACharacter> It(GetWorld()); It; ++It)
 	{
@@ -600,7 +600,7 @@ bool ACCLTerrainRegion::CheckOccupancy(FString& Error) const
 		}
 
 		double Density = 0.;
-		if (!FCCLTerrainStore::ReadDensityMeters(Snapshot, RegionCenter, Density, Error) || Density < -0.001)
+		if (!FKSITerrainStore::ReadDensityMeters(Snapshot, RegionCenter, Density, Error) || Density < -0.001)
 		{
 			Error = TEXT("Terrain publication would bury a character inside solid material.");
 			return false;
@@ -624,7 +624,7 @@ bool ACCLTerrainRegion::CanMutate() const
 	return IsInGameThread() && HasAuthority() && GetWorld() && GetWorld()->IsGameWorld() && GetNetMode() != NM_Client;
 }
 
-const ICCLSurfaceProvider* ACCLTerrainRegion::GetSurfaceProvider() const
+const IKSISurfaceProvider* ACCLTerrainRegion::GetSurfaceProvider() const
 {
 	return SurfaceProvider.Get();
 }
@@ -636,7 +636,7 @@ FBox ACCLTerrainRegion::GetWorldTerrainBounds() const
 		return FBox(EForceInit::ForceInit);
 	}
 
-	const FBox Local = FCCLTerrainStore::EditableBoundsMeters(Store.GetSnapshot().Definition);
+	const FBox Local = FKSITerrainStore::EditableBoundsMeters(Store.GetSnapshot().Definition);
 	return FBox(Local.Min * 100., Local.Max * 100.).TransformBy(GetActorTransform());
 }
 
@@ -694,7 +694,7 @@ bool ACCLTerrainRegion::CaptureReplica(TArray<uint8>& Bytes, FString& Error) con
 		return false;
 	}
 
-	FCCLTerrainSaveContext Context;
+	FKSITerrainSaveContext Context;
 	Context.WorldId = Store.GetSnapshot().Definition.WorldId;
 	Context.BaseWorldVersion = Store.GetSnapshot().Definition.BaseWorldVersion;
 	Context.WorldGeneration = 1;
@@ -712,7 +712,7 @@ bool ACCLTerrainRegion::ApplyReplica(const TArray<uint8>& Bytes, uint64 Serial, 
 	if (Serial == ReplicaSerial || (bPending && Serial == PendingReplicaSerial))
 	{
 		const auto& Existing = Serial == ReplicaSerial ? Store : RestoreStore;
-		FCCLTerrainSaveContext ExistingContext;
+		FKSITerrainSaveContext ExistingContext;
 		ExistingContext.WorldId = Existing.GetSnapshot().Definition.WorldId;
 		ExistingContext.BaseWorldVersion = Existing.GetSnapshot().Definition.BaseWorldVersion;
 		ExistingContext.WorldGeneration = 1;
@@ -728,10 +728,10 @@ bool ACCLTerrainRegion::ApplyReplica(const TArray<uint8>& Bytes, uint64 Serial, 
 		return false;
 	}
 
-	FCCLTerrainSnapshot Snapshot;
-	FCCLTerrainSaveContext Context;
-	FCCLTerrainStore Candidate;
-	if (!FCCLTerrainCodec::Decode(Bytes, Snapshot, Context, Error))
+	FKSITerrainSnapshot Snapshot;
+	FKSITerrainSaveContext Context;
+	FKSITerrainStore Candidate;
+	if (!FKSITerrainCodec::Decode(Bytes, Snapshot, Context, Error))
 	{
 		return false;
 	}
@@ -741,7 +741,7 @@ bool ACCLTerrainRegion::ApplyReplica(const TArray<uint8>& Bytes, uint64 Serial, 
 		auto ExpectedDefinition = Store.GetSnapshot().Definition;
 		// A newer server publication may restore a different saved world identity.
 		ExpectedDefinition.WorldId = Snapshot.Definition.WorldId;
-		if (!FCCLTerrainCodec::SameDefinition(ExpectedDefinition, Snapshot.Definition))
+		if (!FKSITerrainCodec::SameDefinition(ExpectedDefinition, Snapshot.Definition))
 		{
 			Error = TEXT("Replica region definition does not match the loaded region.");
 			return false;
@@ -754,8 +754,8 @@ bool ACCLTerrainRegion::ApplyReplica(const TArray<uint8>& Bytes, uint64 Serial, 
 	}
 
 	const auto& D = Snapshot.Definition;
-	const FIntVector First = FCCLTerrainStore::OwnerForSample(D.MinimumCell);
-	const FIntVector Last = FCCLTerrainStore::OwnerForSample(D.MaximumCell - FIntVector(1));
+	const FIntVector First = FKSITerrainStore::OwnerForSample(D.MinimumCell);
+	const FIntVector Last = FKSITerrainStore::OwnerForSample(D.MaximumCell - FIntVector(1));
 	int64 Count = 1;
 	for (int32 Axis = 0; Axis < 3; ++Axis)
 	{

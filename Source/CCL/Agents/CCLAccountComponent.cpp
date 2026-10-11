@@ -28,6 +28,8 @@ void UCCLAccountComponent::BeginPlay()
 	if (GetOwner()->HasAuthority() && !AccountId.IsValid())
 	{
 		AccountId = FGuid::NewGuid();
+		ProvisionalAccountId = AccountId;
+		ProvisionalOpeningBalance = BalanceView;
 	}
 
 	InitializeAccount();

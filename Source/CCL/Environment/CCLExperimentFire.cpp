@@ -2,9 +2,9 @@
 
 #include "CCLWorldSimulationSubsystem.h"
 
-FCCLSurfaceGrid ACCLExperimentDirector::FireGrid(bool bIndoor)
+FKSISurfaceGrid ACCLExperimentDirector::FireGrid(bool bIndoor)
 {
-	FCCLSurfaceGrid G;
+	FKSISurfaceGrid G;
 	G.RegionId = FireRegionId(bIndoor);
 	G.OriginMeters = UCCLExperimentDefinition::ZoneCenter(bIndoor ? 11 : 10) / 100. + FVector(-2., -2., 0.);
 	G.Size = FIntPoint(4, 4);
@@ -26,16 +26,16 @@ FCCLSurfaceGrid ACCLExperimentDirector::FireGrid(bool bIndoor)
 		Cell.SnowCubicMeters = I % 4 == 0 ? 0.002 : 0.;
 		Cell.SnowVolumeCubicMeters = Cell.SnowCubicMeters * 10.;
 		Cell.SoilCubicMeters = I % 4 == 3 ? 0.002 : 0.;
-		FCCLCombustionModel::Initialize(G.Fire.Material, 0.5, 20., G.Fire.Cells[I], Error);
+		FKSICombustionModel::Initialize(G.Fire.Material, 0.5, 20., G.Fire.Cells[I], Error);
 	}
 
 	G.Ledger.InitialCubicMeters = G.TotalCubicMeters();
 	return G;
 }
 
-FCCLAirSpace ACCLExperimentDirector::FireRoom()
+FKSIAirSpace ACCLExperimentDirector::FireRoom()
 {
-	FCCLAirSpace Room;
+	FKSIAirSpace Room;
 	Room.SpaceId = FireSpaceId();
 	Room.ClimateRegionId = FireRegionId(true);
 	Room.MinimumMeters = FVector(71., 47., 0.);
@@ -77,8 +77,8 @@ bool ACCLExperimentDirector::RunFire(bool bIndoor, FString& Error)
 {
 	const auto* Runtime = GetWorld()->GetSubsystem<UCCLWorldSimulationSubsystem>();
 	const auto& Inputs = Runtime->GetEnvironmentInputs();
-	FCCLSurfaceSimulation Candidate;
-	FCCLCelestialSystem Celestial;
+	FKSISurfaceSimulation Candidate;
+	FKSICelestialSystem Celestial;
 	if (!Candidate.Initialize(FGuid::NewGuid(), 0., 0., 0, Error) || !Candidate.AddRegion(FireGrid(bIndoor), Error)
 		|| (bIndoor && !Candidate.AddAirSpace(FireRoom(), Error)) || !Celestial.Initialize(Inputs.Celestial, Error)
 		|| !Candidate.Ignite(FireRegionId(bIndoor), 5, 600000., Error))
@@ -106,7 +106,7 @@ bool ACCLExperimentDirector::RunFire(bool bIndoor, FString& Error)
 	}
 
 	TArray<uint8> Before, After;
-	FCCLSurfaceSimulation Restored;
+	FKSISurfaceSimulation Restored;
 	return Candidate.Validate(Error) && Candidate.Capture(Before, Error) && Restored.Restore(Before, Error)
 		&& Restored.Capture(After, Error) && Before == After;
 }

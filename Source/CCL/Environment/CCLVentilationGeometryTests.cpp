@@ -1,15 +1,15 @@
-#include "CCLSurfaceQuery.h"
+#include "KSISurfaceQuery.h"
 
 #if WITH_DEV_AUTOMATION_TESTS
-#include "CCLSurfaceSimulation.h"
-#include "CCLTerrainSurface.h"
+#include "KSISurfaceSimulation.h"
+#include "KSITerrainSurface.h"
 #include "Misc/AutomationTest.h"
 
 namespace
 {
-	FCCLSurfacePatch VentWall()
+	FKSISurfacePatch VentWall()
 	{
-		FCCLSurfacePatch P;
+		FKSISurfacePatch P;
 		P.SurfaceId = FGuid(1101, 1102, 1103, 1104);
 		P.BodyId = TEXT("World");
 		P.MaterialId = TEXT("Stone");
@@ -20,9 +20,9 @@ namespace
 		return P;
 	}
 
-	FCCLSurfaceOpening VentDoor()
+	FKSISurfaceOpening VentDoor()
 	{
-		FCCLSurfaceOpening O;
+		FKSISurfaceOpening O;
 		O.OpeningId = FGuid(1111, 1112, 1113, 1114);
 		O.SurfaceId = VentWall().SurfaceId;
 		O.SpaceA = FGuid(1121, 1122, 1123, 1124);
@@ -31,7 +31,7 @@ namespace
 		return O;
 	}
 
-	FCCLSurfacePatch VentBlocker()
+	FKSISurfacePatch VentBlocker()
 	{
 		auto P = VentWall();
 		P.SurfaceId = FGuid(1131, 1132, 1133, 1134);
@@ -39,19 +39,19 @@ namespace
 		return P;
 	}
 
-	TSharedRef<FCCLTerrainSurface> VentTerrain(const FCCLTerrainStore& Store, const FTransform& Transform, FString& Error)
+	TSharedRef<FKSITerrainSurface> VentTerrain(const FKSITerrainStore& Store, const FTransform& Transform, FString& Error)
 	{
-		TArray<TSharedRef<const FCCLTerrainMesh>> Meshes;
+		TArray<TSharedRef<const FKSITerrainMesh>> Meshes;
 		for (int32 Z = -1; Z < 1; ++Z)
 		{
 			for (int32 Y = -1; Y < 1; ++Y)
 			{
 				for (int32 X = -1; X < 1; ++X)
 				{
-					auto Mesh = MakeShared<FCCLTerrainMesh>();
-					if (!FCCLTerrainMesher::BuildChunk(Store.GetSnapshot(), FIntVector(X, Y, Z), Store.GetEpoch(), *Mesh, Error))
+					auto Mesh = MakeShared<FKSITerrainMesh>();
+					if (!FKSITerrainMesher::BuildChunk(Store.GetSnapshot(), FIntVector(X, Y, Z), Store.GetEpoch(), *Mesh, Error))
 					{
-						return MakeShared<FCCLTerrainSurface>(Store.GetSnapshot(), Store.GetEpoch(), Transform, MoveTemp(Meshes));
+						return MakeShared<FKSITerrainSurface>(Store.GetSnapshot(), Store.GetEpoch(), Transform, MoveTemp(Meshes));
 					}
 
 					Meshes.Add(Mesh);
@@ -59,7 +59,7 @@ namespace
 			}
 		}
 
-		return MakeShared<FCCLTerrainSurface>(Store.GetSnapshot(), Store.GetEpoch(), Transform, MoveTemp(Meshes));
+		return MakeShared<FKSITerrainSurface>(Store.GetSnapshot(), Store.GetEpoch(), Transform, MoveTemp(Meshes));
 	}
 }
 
@@ -68,7 +68,7 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(FCCLVentApertureTest, "CCL.Environment.Air.Geom
 bool FCCLVentApertureTest::RunTest(const FString& Parameters)
 {
 	FString Error;
-	FCCLSurfaceScene Scene;
+	FKSISurfaceScene Scene;
 	auto Door = VentDoor();
 	auto Blocker = VentBlocker();
 	double Fraction = -1.;
@@ -107,19 +107,19 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(FCCLVentBuriedTest, "CCL.Environment.Air.Buried
 bool FCCLVentBuriedTest::RunTest(const FString& Parameters)
 {
 	FString Error;
-	FCCLTerrainDefinition D;
+	FKSITerrainDefinition D;
 	D.WorldId = FGuid(1141, 1142, 1143, 1144);
 	D.RegionId = FGuid(1151, 1152, 1153, 1154);
 	D.DefinitionId = FGuid(1161, 1162, 1163, 1164);
 	D.MinimumCell = FIntVector(-16, -16, -20);
 	D.MaximumCell = FIntVector(16, 16, 8);
-	FCCLTerrainStore Store;
+	FKSITerrainStore Store;
 	TestTrue(TEXT("terrain"), Store.Initialize(D, Error));
 	const FTransform Transform(FRotator::ZeroRotator, FVector(1000., 2000., 3000.));
 	auto Wall = VentWall();
 	Wall.CenterMeters = FVector(10., 20., 26.);
 	const auto Door = VentDoor();
-	FCCLSurfaceScene Scene;
+	FKSISurfaceScene Scene;
 	TestTrue(TEXT("buried scene"), Scene.Replace({Wall}, {Door}, 1, Error));
 	const auto Original = VentTerrain(Store, Transform, Error);
 	TestTrue(TEXT("original mesh built"), Error.IsEmpty());
@@ -127,21 +127,21 @@ bool FCCLVentBuriedTest::RunTest(const FString& Parameters)
 	double Fraction = -1.;
 	TestTrue(TEXT("buried query"), Scene.QueryOpeningFraction(Door, Fraction, Error));
 	TestEqual(TEXT("solid interior blocks despite no nearby triangle"), Fraction, 0.);
-	FCCLTerrainAuthority Authority;
+	FKSITerrainAuthority Authority;
 	Authority.PrincipalId = FGuid(1171, 1172, 1173, 1174);
-	Authority.AllowedBoundsMeters = FCCLTerrainStore::EditableBoundsMeters(D);
+	Authority.AllowedBoundsMeters = FKSITerrainStore::EditableBoundsMeters(D);
 	Authority.bCanExcavate = 1;
 	Authority.bCanDeposit = 1;
-	FCCLTerrainEdit Edit;
+	FKSITerrainEdit Edit;
 	Edit.PrincipalId = Authority.PrincipalId;
 	Edit.Sequence = 1;
 	Edit.ExpectedRevision = Store.GetRevision();
 	Edit.Epoch = Store.GetEpoch();
 	Edit.CenterMeters = FVector(0., 0., -4.);
 	Edit.RadiusMeters = 2.;
-	FCCLTerrainCandidate Candidate;
+	FKSITerrainCandidate Candidate;
 	const auto ExcavationResult = Store.PrepareEdit(Edit, Authority, Candidate, Error);
-	if (!TestTrue(FString::Printf(TEXT("prepare excavation: %s"), *Error), ExcavationResult == ECCLTerrainPrepareResult::Prepared))
+	if (!TestTrue(FString::Printf(TEXT("prepare excavation: %s"), *Error), ExcavationResult == EKSITerrainPrepareResult::Prepared))
 	{
 		return false;
 	}
@@ -159,9 +159,9 @@ bool FCCLVentBuriedTest::RunTest(const FString& Parameters)
 	TestTrue(TEXT("previous publication retains solid volume"), bOldSolid);
 	Edit.Sequence++;
 	Edit.ExpectedRevision = Store.GetRevision();
-	Edit.Kind = ECCLTerrainEditKind::Deposit;
+	Edit.Kind = EKSITerrainEditKind::Deposit;
 	const auto DepositResult = Store.PrepareEdit(Edit, Authority, Candidate, Error);
-	if (!TestTrue(FString::Printf(TEXT("prepare deposit: %s"), *Error), DepositResult == ECCLTerrainPrepareResult::Prepared))
+	if (!TestTrue(FString::Printf(TEXT("prepare deposit: %s"), *Error), DepositResult == EKSITerrainPrepareResult::Prepared))
 	{
 		return false;
 	}
@@ -178,9 +178,9 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(FCCLVentCoupledTest, "CCL.Environment.Air.Geome
 bool FCCLVentCoupledTest::RunTest(const FString& Parameters)
 {
 	FString Error;
-	FCCLSurfaceSimulation Original;
+	FKSISurfaceSimulation Original;
 	TestTrue(TEXT("world"), Original.Initialize(FGuid::NewGuid(), 0., 0., 0, Error));
-	FCCLAirSpace Room;
+	FKSIAirSpace Room;
 	Room.SpaceId = VentDoor().SpaceA;
 	Room.MinimumMeters = FVector(-4., -4., -4.);
 	Room.MaximumMeters = FVector(0., 4., 4.);
@@ -188,8 +188,8 @@ bool FCCLVentCoupledTest::RunTest(const FString& Parameters)
 	TestTrue(TEXT("room initialized"), Room.Initialize(20., 0.004, Error));
 	Room.Initial.SmokeKg = Room.Contents.SmokeKg = 1.;
 	TestTrue(TEXT("room added"), Original.AddAirSpace(Room, Error));
-	TArray<FCCLSurfaceOpening> Doors = {VentDoor()};
-	FCCLSurfaceScene Scene;
+	TArray<FKSISurfaceOpening> Doors = {VentDoor()};
+	FKSISurfaceScene Scene;
 	FKSIWorldStep Step;
 	Step.StepId = 1;
 	Step.GameToSeconds = 0.25;

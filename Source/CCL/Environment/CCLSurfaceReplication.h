@@ -2,7 +2,7 @@
 
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
-#include "CCLSurfaceSimulation.h"
+#include "KSISurfaceSimulation.h"
 #include "CCLSurfaceReplication.generated.h"
 
 struct FCCLSurfacePublication;
@@ -39,20 +39,20 @@ public:
 	UFUNCTION(Server, Reliable)
 	void ServerAck(FGuid Transfer, int32 Offset);
 
-	bool SampleHistoricalSnow(uint64 Serial, const FVector& PositionMeters, FCCLSnowSample& Sample) const;
+	bool SampleHistoricalSnow(uint64 Serial, const FVector& PositionMeters, FKSISnowSample& Sample) const;
 	void PredictSnowContact(FGuid SourceId, uint64 Sequence, const FVector& PositionMeters);
 	double PredictedSnowScale(const FVector& PositionMeters) const;
-	bool HasCurrentState(const FCCLSurfaceSimulation& Surface) const;
-	const FCCLSurfaceSimulation& GetReplica() const { return Replica; }
+	bool HasCurrentState(const FKSISurfaceSimulation& Surface) const;
+	const FKSISurfaceSimulation& GetReplica() const { return Replica; }
 	uint64 GetSerial() const { return PublishedSerial; }
-	static const FCCLSurfaceSimulation* View(const UWorld* World);
-	static bool IsGeometryReady(const UWorld* World, const FCCLSurfaceSimulation& Surface, const FCCLSurfaceGrid& Grid);
+	static const FKSISurfaceSimulation* View(const UWorld* World);
+	static bool IsGeometryReady(const UWorld* World, const FKSISurfaceSimulation& Surface, const FKSISurfaceGrid& Grid);
 
 private:
 	void ClearTransfer();
 
 private:
-	FCCLSurfaceSimulation Replica;
+	FKSISurfaceSimulation Replica;
 	TArray<FCCLSurfaceHistoryFrame> History;
 	TArray<FCCLPredictedSnowContact> PredictedContacts;
 	TMap<FGuid, uint64> TransferTerrainSerials;

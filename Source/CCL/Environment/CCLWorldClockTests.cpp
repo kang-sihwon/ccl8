@@ -1,4 +1,4 @@
-#include "CCLWorldClock.h"
+#include "KSIWorldClock.h"
 
 #if WITH_DEV_AUTOMATION_TESTS
 #include "Misc/AutomationTest.h"
@@ -9,14 +9,14 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(FCCLWorldClockCommitTest, "CCL.Environment.Cloc
 
 bool FCCLWorldClockCommitTest::RunTest(const FString& Parameters)
 {
-	FCCLWorldClock Clock;
+	FKSIWorldClock Clock;
 	FString Error;
 	FKSIWorldStep First;
 	TestTrue(TEXT("accept a game second"), Clock.QueueGameTime(1, false, Error));
 	TestTrue(TEXT("prepare bounded world interval"), Clock.Prepare(1, 15, First, Error));
 	TestEqual(TEXT("world budget limits game delta"), First.GameToSeconds, 0.25);
 	TestEqual(TEXT("preparation does not publish time"), Clock.GetWorldSeconds(), 0.);
-	FCCLWorldClockSnapshot Snapshot;
+	FKSIWorldClockSnapshot Snapshot;
 	TestFalse(TEXT("cannot save an in-flight step"), Clock.Capture(Snapshot, Error));
 	FKSIWorldStep Concurrent;
 	TestFalse(TEXT("only one step can be in flight"), Clock.Prepare(1, 15, Concurrent, Error));
@@ -45,7 +45,7 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(FCCLWorldClockRateTest, "CCL.Environment.Clock.
 
 bool FCCLWorldClockRateTest::RunTest(const FString& Parameters)
 {
-	FCCLWorldClock Clock;
+	FKSIWorldClock Clock;
 	FString Error;
 	TestTrue(TEXT("old rate input"), Clock.QueueGameTime(1, false, Error));
 	TestTrue(TEXT("new rate does not reinterpret pending input"), Clock.ChangeTimeScale(10, Error));
@@ -66,7 +66,7 @@ bool FCCLWorldClockRateTest::RunTest(const FString& Parameters)
 	TestEqual(TEXT("game time advances at zero scale"), Clock.GetGameSeconds(), 4.);
 	TestEqual(TEXT("world time remains frozen"), Clock.GetWorldSeconds(), 80.);
 	TestFalse(TEXT("nothing remains pending"), Clock.HasPendingTime());
-	FCCLWorldClockSnapshot Snapshot;
+	FKSIWorldClockSnapshot Snapshot;
 	TestTrue(TEXT("rate history reconciles"), Clock.Capture(Snapshot, Error));
 	if (TestTrue(TEXT("rate boundaries captured"), Snapshot.Rates.Num() >= 2))
 	{
@@ -85,7 +85,7 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(FCCLWorldClockRestoreTest, "CCL.Environment.Clo
 
 bool FCCLWorldClockRestoreTest::RunTest(const FString& Parameters)
 {
-	FCCLWorldClock Clock;
+	FKSIWorldClock Clock;
 	FString Error;
 	TestTrue(TEXT("legacy Agent time can seed world time"), Clock.Reset(86400, 60, Error));
 	TestTrue(TEXT("accept old rate time"), Clock.QueueGameTime(1, false, Error));
@@ -94,14 +94,14 @@ bool FCCLWorldClockRestoreTest::RunTest(const FString& Parameters)
 	FKSIWorldStep Step;
 	TestTrue(TEXT("partial step"), Clock.Prepare(0.5, 100, Step, Error));
 	TestTrue(TEXT("commit partial step"), Clock.Commit(Step.Ticket, Error));
-	FCCLWorldClockSnapshot Saved;
+	FKSIWorldClockSnapshot Saved;
 	if (!TestTrue(TEXT("capture completed and pending time"), Clock.Capture(Saved, Error)))
 	{
 		AddError(Error);
 		return false;
 	}
 
-	FCCLWorldClock Restored;
+	FKSIWorldClock Restored;
 	TestTrue(TEXT("restore committed snapshot"), Restored.Restore(Saved, Error));
 	while (Clock.HasPendingTime())
 	{
@@ -147,7 +147,7 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(FCCLWorldClockBoundsTest, "CCL.Environment.Cloc
 
 bool FCCLWorldClockBoundsTest::RunTest(const FString& Parameters)
 {
-	FCCLWorldClock Clock;
+	FKSIWorldClock Clock;
 	FString Error;
 	TestFalse(TEXT("negative input rejected"), Clock.QueueGameTime(-1, false, Error));
 	TestFalse(TEXT("NaN input rejected"), Clock.QueueGameTime(std::numeric_limits<double>::quiet_NaN(), false, Error));
@@ -161,7 +161,7 @@ bool FCCLWorldClockBoundsTest::RunTest(const FString& Parameters)
 
 	TestTrue(TEXT("change after filling queue"), Clock.ChangeTimeScale(3, Error));
 	TestFalse(TEXT("queue overflow rejects whole input"), Clock.QueueGameTime(1, false, Error));
-	FCCLWorldClockSnapshot Snapshot;
+	FKSIWorldClockSnapshot Snapshot;
 	TestTrue(TEXT("queue rejection preserves valid snapshot"), Clock.Capture(Snapshot, Error));
 	TestEqual(TEXT("rejected input not accepted"), Snapshot.AcceptedGameSeconds, 256.);
 	FKSIWorldStep Step;
@@ -207,7 +207,7 @@ bool FCCLWorldClockSplitBoundaryTest::RunTest(const FString& Parameters)
 {
 	for (double Start : {0., 86400., 315360000.})
 	{
-		FCCLWorldClock Clock;
+		FKSIWorldClock Clock;
 		FString Error;
 		if (!TestTrue(TEXT("reset split clock"), Clock.Reset(Start, 60., Error)))
 		{
@@ -224,7 +224,7 @@ bool FCCLWorldClockSplitBoundaryTest::RunTest(const FString& Parameters)
 			for (int32 Slice = 0; Slice < 15; ++Slice)
 			{
 				FKSIWorldStep Step, Retry;
-				FCCLWorldClockSnapshot Saved;
+				FKSIWorldClockSnapshot Saved;
 				if (!Clock.Prepare(.25, 1., Step, Error) || !Clock.Abort(Step.Ticket, Error) ||
 					!Clock.Prepare(.25, 1., Retry, Error))
 				{
@@ -239,7 +239,7 @@ bool FCCLWorldClockSplitBoundaryTest::RunTest(const FString& Parameters)
 					AddError(Error);
 					return false;
 				}
-				FCCLWorldClock Restored;
+				FKSIWorldClock Restored;
 				if (!Restored.Restore(Saved, Error))
 				{
 					AddError(Error);

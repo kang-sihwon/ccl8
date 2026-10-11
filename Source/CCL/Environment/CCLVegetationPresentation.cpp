@@ -89,7 +89,7 @@ void ACCLVegetationPresentation::Tick(float DeltaSeconds)
 		return;
 	}
 
-	TArray<const FCCLSurfaceGrid*> Grids;
+	TArray<const FKSISurfaceGrid*> Grids;
 	TArray<double> Values;
 	for (const auto& Pair : Model->GetRegions())
 	{
@@ -109,7 +109,7 @@ void ACCLVegetationPresentation::Tick(float DeltaSeconds)
 			{
 				const auto& S = G.Vegetation.Species[C.SpeciesIndex];
 				Values.Append({double(S.Kind), S.MaximumBiomassKg});
-				if (S.Kind == ECCLVegetationKind::Algae)
+				if (S.Kind == EKSIVegetationKind::Algae)
 				{
 					Values.Add(G.WaterLevelMeters(I));
 				}
@@ -144,7 +144,7 @@ void ACCLVegetationPresentation::RefreshPreview()
 		return;
 	}
 
-	FCCLSurfaceGrid Grid;
+	FKSISurfaceGrid Grid;
 	FString Error;
 	Clear();
 	if (ACCLExperimentDirector::VegetationGrid(0., Grid, Error))
@@ -153,7 +153,7 @@ void ACCLVegetationPresentation::RefreshPreview()
 	}
 }
 
-void ACCLVegetationPresentation::Append(const FCCLSurfaceGrid& G)
+void ACCLVegetationPresentation::Append(const FKSISurfaceGrid& G)
 {
 	if (G.RegionId == ACCLExperimentDirector::VegetationRegionId() && G.Size.X == 9)
 	{
@@ -197,13 +197,13 @@ void ACCLVegetationPresentation::Append(const FCCLSurfaceGrid& G)
 		++RenderedPatchCount;
 		FVector Base((G.OriginMeters.X + (I % G.Size.X + 0.5) * G.SpacingMeters) * 100.,
 			(G.OriginMeters.Y + (I / G.Size.X + 0.5) * G.SpacingMeters) * 100., G.Cells[I].BedMeters * 100. + 2.);
-		if (Species.Kind == ECCLVegetationKind::Algae)
+		if (Species.Kind == EKSIVegetationKind::Algae)
 		{
 			Base.Z = G.WaterLevelMeters(I) * 100. + 2.;
 		}
 
-		const bool bDead = C.State == ECCLVegetationState::Dead;
-		const int32 Palette = bDead ? (C.BurnedBiomassKg > 0.001 ? 2 : 1) : C.State == ECCLVegetationState::Dormant ? 1 : 0;
+		const bool bDead = C.State == EKSIVegetationState::Dead;
+		const int32 Palette = bDead ? (C.BurnedBiomassKg > 0.001 ? 2 : 1) : C.State == EKSIVegetationState::Dormant ? 1 : 0;
 		const double Size = FMath::Clamp(FMath::Sqrt(Biomass / Species.MaximumBiomassKg), 0.12, 1.);
 		auto Add = [&](int32 Shape, FVector Offset, FVector Scale, FRotator Rotation = FRotator::ZeroRotator, int32 Color = INDEX_NONE)
 		{
@@ -218,7 +218,7 @@ void ACCLVegetationPresentation::Append(const FCCLSurfaceGrid& G)
 		};
 		switch (Species.Kind)
 		{
-		case ECCLVegetationKind::Tree:
+		case EKSIVegetationKind::Tree:
 			Add(2, FVector(0., 0., 65.), FVector(.16, .16, 1.3));
 			for (int32 K = 0; K < 3; ++K)
 			{
@@ -226,15 +226,15 @@ void ACCLVegetationPresentation::Append(const FCCLSurfaceGrid& G)
 			}
 
 			break;
-		case ECCLVegetationKind::Grass:
-		case ECCLVegetationKind::AquaticPlant:
+		case EKSIVegetationKind::Grass:
+		case EKSIVegetationKind::AquaticPlant:
 			for (int32 K = 0; K < 7; ++K)
 			{
 				Add(3, FVector((K % 3 - 1) * 15., (K / 3 - 1) * 15., 25.), FVector(.04, .07, .5), FRotator(K * 7. - 20., K * 51., 0.));
 			}
 
 			break;
-		case ECCLVegetationKind::Flower:
+		case EKSIVegetationKind::Flower:
 			Add(2, FVector(0., 0., 25.), FVector(.035, .035, .5));
 			for (int32 K = 0; K < 5; ++K)
 			{
@@ -242,29 +242,29 @@ void ACCLVegetationPresentation::Append(const FCCLSurfaceGrid& G)
 			}
 
 			break;
-		case ECCLVegetationKind::Shrub:
+		case EKSIVegetationKind::Shrub:
 			for (int32 K = 0; K < 4; ++K)
 			{
 				Add(0, FVector((K % 2 - .5) * 32., (K / 2 - .5) * 32., 24.), FVector(.6, .6, .6));
 			}
 
 			break;
-		case ECCLVegetationKind::Moss:
-		case ECCLVegetationKind::Algae:
+		case EKSIVegetationKind::Moss:
+		case EKSIVegetationKind::Algae:
 			for (int32 K = 0; K < 5; ++K)
 			{
 				Add(0, FVector((K % 3 - 1) * 20., (K / 3 - .5) * 22., 4.), FVector(.4, .4, .06));
 			}
 
 			break;
-		case ECCLVegetationKind::Fern:
+		case EKSIVegetationKind::Fern:
 			for (int32 K = 0; K < 8; ++K)
 			{
 				Add(3, FVector(0., 0., 8. + K * 2.), FVector(.55 - K * .045, .07, .03), FRotator(15., K * 45., 0.));
 			}
 
 			break;
-		case ECCLVegetationKind::Fungus:
+		case EKSIVegetationKind::Fungus:
 			Add(2, FVector(0., 0., 15.), FVector(.1, .1, .3));
 			Add(0, FVector(0., 0., 31.), FVector(.55, .55, .2), FRotator::ZeroRotator, Palette != 0 ? Palette : 3);
 			break;

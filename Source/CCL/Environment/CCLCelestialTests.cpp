@@ -1,4 +1,4 @@
-#include "CCLCelestialSystem.h"
+#include "KSICelestialSystem.h"
 
 #if WITH_DEV_AUTOMATION_TESTS
 #include "Misc/AutomationTest.h"
@@ -8,17 +8,17 @@ namespace
 {
 	constexpr double Pi = 3.14159265358979323846;
 
-	FCCLCelestialDefinitionData SimpleSystem()
+	FKSICelestialDefinitionData SimpleSystem()
 	{
-		FCCLCelestialDefinitionData Result;
+		FKSICelestialDefinitionData Result;
 		Result.DefinitionId = FGuid(1, 2, 3, 4);
-		FCCLCelestialBodyDefinition Star;
+		FKSICelestialBodyDefinition Star;
 		Star.BodyId = TEXT("Star");
-		Star.Kind = ECCLCelestialKind::Star;
+		Star.Kind = EKSICelestialKind::Star;
 		Star.RadiusKm = 10.;
 		Star.LuminosityWatts = 4. * Pi * 1.e12;
 		Result.Bodies.Add(Star);
-		FCCLCelestialBodyDefinition World;
+		FKSICelestialBodyDefinition World;
 		World.BodyId = TEXT("World");
 		World.ParentBodyId = Star.BodyId;
 		World.SemiMajorAxisKm = 10000.;
@@ -29,19 +29,19 @@ namespace
 		return Result;
 	}
 
-	FCCLCelestialBodyDefinition SmallMoon()
+	FKSICelestialBodyDefinition SmallMoon()
 	{
-		FCCLCelestialBodyDefinition Moon;
+		FKSICelestialBodyDefinition Moon;
 		Moon.BodyId = TEXT("Moon");
 		Moon.ParentBodyId = TEXT("World");
-		Moon.Kind = ECCLCelestialKind::Moon;
+		Moon.Kind = EKSICelestialKind::Moon;
 		Moon.RadiusKm = 0.1;
 		Moon.SemiMajorAxisKm = 100.;
 		Moon.OrbitalPeriodSeconds = 40.;
 		return Moon;
 	}
 
-	const FCCLCelestialBodyState* Find(const TArray<FCCLCelestialBodyState>& States, FName Id)
+	const FKSICelestialBodyState* Find(const TArray<FKSICelestialBodyState>& States, FName Id)
 	{
 		return States.FindByPredicate([Id](const auto& State) { return State.BodyId == Id; });
 	}
@@ -52,8 +52,8 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(FCCLCelestialOrbitTest, "CCL.Environment.Celest
 
 bool FCCLCelestialOrbitTest::RunTest(const FString& Parameters)
 {
-	FCCLCelestialSystem System;
-	FCCLCelestialDefinitionData Definition = SimpleSystem();
+	FKSICelestialSystem System;
+	FKSICelestialDefinitionData Definition = SimpleSystem();
 	Definition.Bodies.Add(SmallMoon());
 	FString Error;
 	if (!TestTrue(TEXT("valid hierarchy"), System.Initialize(Definition, Error)))
@@ -61,7 +61,7 @@ bool FCCLCelestialOrbitTest::RunTest(const FString& Parameters)
 		return false;
 	}
 
-	TArray<FCCLCelestialBodyState> States;
+	TArray<FKSICelestialBodyState> States;
 	TestTrue(TEXT("epoch"), System.Evaluate(0., States, Error));
 	TestTrue(TEXT("planet starts on X axis"), Find(States, TEXT("World"))->PositionKm.Equals(FVector3d(10000., 0., 0.), 1.e-8));
 	TestTrue(TEXT("moon includes parent translation"), Find(States, TEXT("Moon"))->PositionKm.Equals(FVector3d(10100., 0., 0.), 1.e-8));
@@ -84,14 +84,14 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(FCCLCelestialEllipseTest, "CCL.Environment.Cele
 
 bool FCCLCelestialEllipseTest::RunTest(const FString& Parameters)
 {
-	FCCLCelestialDefinitionData Definition = SimpleSystem();
+	FKSICelestialDefinitionData Definition = SimpleSystem();
 	Definition.Bodies[1].SemiMajorAxisKm = 1000.;
 	Definition.Bodies[1].Eccentricity = 0.6;
 	Definition.Bodies[1].OrbitalPeriodSeconds = 100.;
-	FCCLCelestialSystem System;
+	FKSICelestialSystem System;
 	FString Error;
 	TestTrue(TEXT("elliptical definition"), System.Initialize(Definition, Error));
-	TArray<FCCLCelestialBodyState> States;
+	TArray<FKSICelestialBodyState> States;
 	TestTrue(TEXT("periapsis"), System.Evaluate(0., States, Error));
 	TestTrue(TEXT("known periapsis 400 km"), Find(States, TEXT("World"))->PositionKm.Equals(FVector3d(400., 0., 0.), 1.e-8));
 	TestTrue(TEXT("apoapsis"), System.Evaluate(50., States, Error));
@@ -111,18 +111,18 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(FCCLCelestialSeasonsTest, "CCL.Environment.Cele
 
 bool FCCLCelestialSeasonsTest::RunTest(const FString& Parameters)
 {
-	FCCLCelestialDefinitionData Definition = SimpleSystem();
+	FKSICelestialDefinitionData Definition = SimpleSystem();
 	Definition.Bodies[1].SemiMajorAxisKm = 1.e8;
 	Definition.Bodies[1].OrbitalPeriodSeconds = 360. * 86400.;
 	Definition.Bodies[1].SpinPeriodSeconds = 86400.;
 	Definition.Bodies[1].ObliquityDegrees = 30.;
-	FCCLCelestialSystem System;
+	FKSICelestialSystem System;
 	FString Error;
 	TestTrue(TEXT("tilted planet"), System.Initialize(Definition, Error));
-	FCCLCelestialObserver Observer;
+	FKSICelestialObserver Observer;
 	Observer.BodyId = TEXT("World");
 	Observer.LatitudeDegrees = 45.;
-	FCCLCelestialObservation Observation;
+	FKSICelestialObservation Observation;
 	TestTrue(TEXT("northern winter noon"), System.Observe(0., Observer, Observation, Error));
 	TestTrue(TEXT("winter noon elevation 15 degrees"), FMath::IsNearlyEqual(Observation.Stars[0].ElevationDegrees, 15., 1.e-5));
 	TestTrue(TEXT("negative winter declination"), FMath::IsNearlyEqual(Observation.Stars[0].DeclinationDegrees, -30., 1.e-5));
@@ -159,16 +159,16 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(FCCLCelestialSolarTimeTest, "CCL.Environment.Ce
 
 bool FCCLCelestialSolarTimeTest::RunTest(const FString& Parameters)
 {
-	FCCLCelestialDefinitionData Definition = SimpleSystem();
+	FKSICelestialDefinitionData Definition = SimpleSystem();
 	Definition.Bodies[1].SemiMajorAxisKm = 1.e8;
 	Definition.Bodies[1].OrbitalPeriodSeconds = 100.;
 	Definition.Bodies[1].SpinPeriodSeconds = 10.;
-	FCCLCelestialSystem System;
+	FKSICelestialSystem System;
 	FString Error;
 	TestTrue(TEXT("clock definition"), System.Initialize(Definition, Error));
-	FCCLCelestialObserver Observer;
+	FKSICelestialObserver Observer;
 	Observer.BodyId = TEXT("World");
-	FCCLCelestialObservation Observation;
+	FKSICelestialObservation Observation;
 	TestTrue(TEXT("epoch noon"), System.Observe(0., Observer, Observation, Error));
 	TestTrue(TEXT("noon is 12 solar hours"), FMath::IsNearlyEqual(Observation.Stars[0].SolarHours, 12., 1.e-6));
 	TestTrue(TEXT("one sidereal rotation"), System.Observe(10., Observer, Observation, Error));
@@ -191,15 +191,15 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(FCCLCelestialReproducibilityTest, "CCL.Environm
 
 bool FCCLCelestialReproducibilityTest::RunTest(const FString& Parameters)
 {
-	FCCLCelestialDefinitionData Definition = FCCLCelestialSystem::MakeDefaultDefinition(42);
-	FCCLCelestialSystem First;
-	FCCLCelestialSystem Second;
+	FKSICelestialDefinitionData Definition = FKSICelestialSystem::MakeDefaultDefinition(42);
+	FKSICelestialSystem First;
+	FKSICelestialSystem Second;
 	FString Error;
 	TestTrue(TEXT("default definition"), First.Initialize(Definition, Error));
 	Swap(Definition.Bodies[0], Definition.Bodies[3]);
 	TestTrue(TEXT("unordered input"), Second.Initialize(Definition, Error));
-	TArray<FCCLCelestialBodyState> A;
-	TArray<FCCLCelestialBodyState> B;
+	TArray<FKSICelestialBodyState> A;
+	TArray<FKSICelestialBodyState> B;
 	TestTrue(TEXT("direct evaluation"), First.Evaluate(123456789., A, Error));
 	TestTrue(TEXT("distant intermediate time"), Second.Evaluate(1.e12, B, Error));
 	TestTrue(TEXT("rewind reevaluation"), Second.Evaluate(123456789., B, Error));
@@ -210,7 +210,7 @@ bool FCCLCelestialReproducibilityTest::RunTest(const FString& Parameters)
 		TestEqual(TEXT("spin reproducible"), A[Index].SpinRadians, B[Index].SpinRadians);
 	}
 
-	TestTrue(TEXT("different seed"), Second.Initialize(FCCLCelestialSystem::MakeDefaultDefinition(43), Error));
+	TestTrue(TEXT("different seed"), Second.Initialize(FKSICelestialSystem::MakeDefaultDefinition(43), Error));
 	TestTrue(TEXT("different seed evaluation"), Second.Evaluate(123456789., B, Error));
 	TestFalse(TEXT("seed changes moon phase"), Find(A, TEXT("Moon"))->PositionKm.Equals(Find(B, TEXT("Moon"))->PositionKm, 1.));
 	TestTrue(TEXT("seed does not move main planet"), Find(A, TEXT("World"))->PositionKm == Find(B, TEXT("World"))->PositionKm);
@@ -222,12 +222,12 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(FCCLCelestialInvalidTest, "CCL.Environment.Cele
 
 bool FCCLCelestialInvalidTest::RunTest(const FString& Parameters)
 {
-	FCCLCelestialSystem System;
-	const FCCLCelestialDefinitionData Valid = SimpleSystem();
+	FKSICelestialSystem System;
+	const FKSICelestialDefinitionData Valid = SimpleSystem();
 	FString Error;
 	TestTrue(TEXT("valid starting definition"), System.Initialize(Valid, Error));
-	TArray<FCCLCelestialDefinitionData> Invalid;
-	FCCLCelestialDefinitionData Bad = Valid;
+	TArray<FKSICelestialDefinitionData> Invalid;
+	FKSICelestialDefinitionData Bad = Valid;
 	Bad.Bodies.Add(Valid.Bodies[1]);
 	Invalid.Add(Bad);
 	Bad = Valid;
@@ -259,15 +259,15 @@ bool FCCLCelestialInvalidTest::RunTest(const FString& Parameters)
 		TestEqual(TEXT("previous definition remains intact"), System.GetDefinition().Bodies.Num(), 2);
 	}
 
-	TArray<FCCLCelestialBodyState> States;
+	TArray<FKSICelestialBodyState> States;
 	TestTrue(TEXT("previous definition remains evaluable"), System.Evaluate(0., States, Error));
 	const FVector3d Position = States[1].PositionKm;
 	TestFalse(TEXT("negative world time rejected"), System.Evaluate(-1., States, Error));
 	TestFalse(TEXT("nonfinite world time rejected"), System.Evaluate(std::numeric_limits<double>::infinity(), States, Error));
 	TestTrue(TEXT("failed evaluation preserves output"), States[1].PositionKm == Position);
-	FCCLCelestialObserver Observer;
+	FKSICelestialObserver Observer;
 	Observer.BodyId = TEXT("World");
-	FCCLCelestialObservation Observation;
+	FKSICelestialObservation Observation;
 	TestTrue(TEXT("valid observer"), System.Observe(0., Observer, Observation, Error));
 	Observer.LatitudeDegrees = 91.;
 	TestFalse(TEXT("invalid latitude"), System.Observe(1., Observer, Observation, Error));
@@ -280,13 +280,13 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(FCCLCelestialRadiationTest, "CCL.Environment.Ce
 
 bool FCCLCelestialRadiationTest::RunTest(const FString& Parameters)
 {
-	FCCLCelestialDefinitionData Definition = SimpleSystem();
-	FCCLCelestialSystem System;
+	FKSICelestialDefinitionData Definition = SimpleSystem();
+	FKSICelestialSystem System;
 	FString Error;
 	TestTrue(TEXT("radiation fixture"), System.Initialize(Definition, Error));
-	FCCLCelestialObserver Observer;
+	FKSICelestialObserver Observer;
 	Observer.BodyId = TEXT("World");
-	FCCLCelestialObservation Observation;
+	FKSICelestialObservation Observation;
 	TestTrue(TEXT("near side noon"), System.Observe(0., Observer, Observation, Error));
 	const double NearRadiation = Observation.Stars[0].NormalIrradianceWattsPerM2;
 	TestTrue(TEXT("analytical irradiance uses meters squared"), FMath::IsNearlyEqual(NearRadiation, 1.e12 / FMath::Square(9999. * 1000.), 1.e-12));
@@ -310,7 +310,7 @@ bool FCCLCelestialRadiationTest::RunTest(const FString& Parameters)
 	TestTrue(TEXT("off-axis moon definition"), System.Initialize(Definition, Error));
 	TestTrue(TEXT("off-axis observation"), System.Observe(0., Observer, Observation, Error));
 	TestFalse(TEXT("off-axis moon does not occult"), Observation.Stars[0].bOcculted != 0);
-	FCCLCelestialBodyDefinition OtherStar = Definition.Bodies[0];
+	FKSICelestialBodyDefinition OtherStar = Definition.Bodies[0];
 	OtherStar.BodyId = TEXT("OtherStar");
 	OtherStar.ParentBodyId = TEXT("Star");
 	OtherStar.SemiMajorAxisKm = 30000.;

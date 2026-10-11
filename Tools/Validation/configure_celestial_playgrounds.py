@@ -16,14 +16,14 @@ def guid(value):
     return result
 
 def patch(index, center, normal=(0, 0, 1), tangent_u=(1, 0, 0), tangent_v=(0, 1, 0), extent=(4, 3), glass=False):
-    result = unreal.CCLSurfacePatch()
+    result = unreal.KSISurfacePatch()
     for key, value in dict(surface_id=guid(index), body_id='World', material_id='Glass' if glass else 'Stone',
             center_meters=unreal.Vector(*center), normal=unreal.Vector(*normal),
             tangent_u=unreal.Vector(*tangent_u), tangent_v=unreal.Vector(*tangent_v),
             half_extents_meters=unreal.Vector2D(*extent)).items():
         result.set_editor_property(key, value)
     if glass:
-        transmission = unreal.CCLSurfaceTransmission()
+        transmission = unreal.KSISurfaceTransmission()
         transmission.set_editor_property('sun', 0.7)
         result.set_editor_property('transmission', transmission)
     return result
@@ -32,8 +32,8 @@ celestial_path = '/Game/Environment/Experiments/DA_CelestialSystem'
 celestial = unreal.load_asset(celestial_path) if assets.does_asset_exist(celestial_path) else None
 if not celestial:
     factory = unreal.DataAssetFactory()
-    factory.set_editor_property('data_asset_class', unreal.CCLCelestialDefinition)
-    celestial = tools.create_asset('DA_CelestialSystem', '/Game/Environment/Experiments', unreal.CCLCelestialDefinition, factory)
+    factory.set_editor_property('data_asset_class', unreal.KSICelestialDefinition)
+    celestial = tools.create_asset('DA_CelestialSystem', '/Game/Environment/Experiments', unreal.KSICelestialDefinition, factory)
     celestial.configure_default(42)
 definition_data = celestial.get_editor_property('definition')
 definition_data.set_editor_property('version', 2)
@@ -65,17 +65,17 @@ surfaces = [
     patch(6, (75, 47, 2), (0, -1, 0), (1, 0, 0), (0, 0, 1), (4, 2)),
     patch(7, (75, 53, 2), (0, 1, 0), (-1, 0, 0), (0, 0, 1), (4, 2)),
     patch(8, (66, 49, 4), extent=(2, 2), glass=True)]
-opening = unreal.CCLSurfaceOpening()
+opening = unreal.KSISurfaceOpening()
 for key, value in dict(opening_id=guid(100), surface_id=guid(4), center_uv=unreal.Vector2D(0, -0.5),
         half_extents_meters=unreal.Vector2D(1, 1.5), open_fraction=0.0, space_a=guid(200)).items():
     opening.set_editor_property(key, value)
 probes = []
 for name, position in [('Inside', (77, 49.5, 1.5)), ('Outside', (84, 50, 1.5)), ('Glass', (66, 49, 1.5))]:
-    probe = unreal.CCLEnvironmentProbe()
+    probe = unreal.KSIEnvironmentProbe()
     probe.set_editor_property('probe_id', name)
     probe.set_editor_property('position_meters', unreal.Vector(*position))
     probes.append(probe)
-observer = unreal.CCLCelestialObserver()
+observer = unreal.KSICelestialObserver()
 observer.set_editor_property('body_id', 'World')
 observer.set_editor_property('latitude_degrees', 45.0)
 

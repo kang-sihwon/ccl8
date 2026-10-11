@@ -25,7 +25,7 @@ struct CCL_API FCCLWorldOpportunity
 	FGuid ProviderId;
 
 	UPROPERTY(EditAnywhere)
-	FCCLLocationReference Location;
+	FKSILocationReference Location;
 
 	UPROPERTY(EditAnywhere)
 	FGuid OwnershipId;
@@ -142,7 +142,7 @@ struct CCL_API FCCLSimulationSnapshot
 	int64 Sequence = 0;
 
 	UPROPERTY(EditAnywhere)
-	TArray<FCCLAgentRecord> Agents;
+	TArray<FKSIAgentRecord> Agents;
 
 	UPROPERTY(EditAnywhere)
 	FCCLEconomyState Economy;
@@ -187,8 +187,8 @@ struct CCL_API FCCLLifeExecutionResult
 struct CCL_API FCCLActivityProcessor
 {
 	uint8 bSupportsReducedExecution = 0;
-	TFunction<bool(const FCCLAgentRecord&, const FCCLWorldOpportunity&, const FCCLEconomyState&, FCCLTransactionRequest&, FString&)> Build;
-	TFunction<void(FCCLAgentRecord&, const FCCLWorldOpportunity&)> Apply;
+	TFunction<bool(const FKSIAgentRecord&, const FCCLWorldOpportunity&, const FCCLEconomyState&, FCCLTransactionRequest&, FString&)> Build;
+	TFunction<void(FKSIAgentRecord&, const FCCLWorldOpportunity&)> Apply;
 };
 
 class CCL_API FCCLLifeSimulation
@@ -205,7 +205,7 @@ public:
 	bool TryAdvanceTo(double TargetTime, FString& Error, int32 MaxSlices = 4096);
 	bool EndLife(FGuid AgentId, ECCLAgentDeathCause Cause, FString& Error);
 	void SetActorActive(FGuid Id, bool bActive);
-	bool SelectIntent(FGuid Id, const FCCLPersistentIntent& Intent, const TArray<FCCLDecisionTrace>* DecisionTraces = nullptr);
+	bool SelectIntent(FGuid Id, const FKSIPersistentIntent& Intent, const TArray<FCCLDecisionTrace>* DecisionTraces = nullptr);
 	FGuid ReserveOpportunity(FGuid AgentId, FGuid OpportunityId);
 	void ReleaseOpportunity(FGuid Token);
 	bool HasReservation(FGuid AgentId, FGuid OpportunityId, FGuid Token) const;
@@ -215,31 +215,31 @@ public:
 	FCCLEconomyState& GetServerEconomy() { return Economy; }
 	FCCLDecisionResult Decide(FGuid AgentId) const;
 	FCCLLifeExecutionResult Execute(FGuid AgentId, FGuid OpportunityId, int32 ExpectedRevision, FGuid RequestId, bool bReduced = false);
-	float GoalProgress(const FCCLAgentRecord& Agent, const FCCLLifeGoalState& Goal) const;
+	float GoalProgress(const FKSIAgentRecord& Agent, const FCCLLifeGoalState& Goal) const;
 	bool IsAlive(FGuid Id) const;
-	const FCCLAgentRecord* Find(FGuid Id) const { return Agents.Find(Agents.GetHandle(Id)); }
+	const FKSIAgentRecord* Find(FGuid Id) const { return Agents.Find(Agents.GetHandle(Id)); }
 	const FCCLWorldOpportunity* FindOpportunity(FGuid Id) const;
 	const FCCLEconomyState& GetEconomy() const { return Economy; }
 	double GetTime() const { return Time; }
 	const TArray<FCCLDecisionTrace>& GetLastTrace(FGuid Id) const;
-	FCCLAgentStore& GetAgents() { return Agents; }
-	const FCCLFeatureRegistry& GetRegistry() const { return Registry; }
+	FKSIAgentStore& GetAgents() { return Agents; }
+	const FKSIFeatureRegistry& GetRegistry() const { return Registry; }
 	FString DailyReport() const;
 	static FCCLSimulationSnapshot MerchantScenario(int32 Seed);
 
 private:
-	bool BuildTransaction(const FCCLAgentRecord& Agent, const FCCLWorldOpportunity& Opportunity,
+	bool BuildTransaction(const FKSIAgentRecord& Agent, const FCCLWorldOpportunity& Opportunity,
 		FGuid RequestId, FCCLTransactionRequest& Request, FString& Error) const;
 	bool ApplyEvents(FString& Error);
 	bool AdvanceCandidate(double TargetTime, int32 MaxSlices, FString& Error);
-	void ApplyOutcome(FCCLAgentRecord& Agent, const FCCLWorldOpportunity& Opportunity, FGuid RequestId);
+	void ApplyOutcome(FKSIAgentRecord& Agent, const FCCLWorldOpportunity& Opportunity, FGuid RequestId);
 	FGuid NextId();
 
 private:
 	TMap<FGameplayTag, TStrongObjectPtr<UCCLLifeGoalDefinition>> GoalDefinitions;
 	TMap<FGameplayTag, FCCLActivityProcessor> ActivityProcessors;
-	FCCLFeatureRegistry Registry;
-	FCCLAgentStore Agents;
+	FKSIFeatureRegistry Registry;
+	FKSIAgentStore Agents;
 	FCCLEconomyState Economy;
 	TArray<FCCLWorldOpportunity> Opportunities;
 	TArray<FCCLScheduledWorldEvent> Events;

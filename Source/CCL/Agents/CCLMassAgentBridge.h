@@ -3,7 +3,7 @@
 #include "CoreMinimal.h"
 #include "MassEntityTypes.h"
 #include "Mass/EntityHandle.h"
-#include "CCLAgentTypes.h"
+#include "KSIAgentTypes.h"
 #include "CCLDecision.h"
 #include "CCLMassAgentBridge.generated.h"
 
@@ -15,14 +15,14 @@ struct CCL_API FCCLMassAgentFragment : public FMassFragment
 {
 	GENERATED_BODY()
 
-	FCCLPersistentIntent Intent;
-	FCCLAgentLease Lease;
+	FKSIPersistentIntent Intent;
+	FKSIAgentLease Lease;
 };
 
 namespace CCLMassAgentBridge
 {
-CCL_API FMassEntityHandle Enter(FMassEntityManager& Manager, FCCLAgentStore& Store, FGuid Id);
+CCL_API FMassEntityHandle Enter(FMassEntityManager& Manager, FKSIAgentStore& Store, FGuid Id);
 CCL_API FCCLDecisionResult Decide(FMassEntityManager& Manager, FMassEntityHandle Entity, const FCCLDecisionInput& Input);
-CCL_API bool Leave(FMassEntityManager& Manager, FMassEntityHandle Entity, FCCLAgentStore& Store,
-	const FCCLFeatureRegistry& Registry, FString& Error);
+CCL_API bool Leave(FMassEntityManager& Manager, FMassEntityHandle Entity, FKSIAgentStore& Store,
+	const FKSIFeatureRegistry& Registry, FString& Error);
 }

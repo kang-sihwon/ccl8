@@ -1,7 +1,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "CCLAgentTypes.h"
+#include "KSIAgentTypes.h"
 #include "CCLAgentBiology.h"
 #include "CCLAgentFeatures.generated.h"
 
@@ -68,7 +68,7 @@ struct CCL_API FCCLLifeGoalState
 	FPrimaryAssetId DefinitionId;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Agent")
-	FCCLTargetReference Beneficiary;
+	FKSITargetReference Beneficiary;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Agent")
 	FInstancedStruct Parameters;
@@ -98,10 +98,10 @@ struct CCL_API FCCLLifeState
 	FGameplayTagContainer Roles;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Agent")
-	FCCLLocationReference Residence;
+	FKSILocationReference Residence;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Agent")
-	FCCLLocationReference Workplace;
+	FKSILocationReference Workplace;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Agent")
 	TArray<FCCLSocialLink> SocialLinks;
@@ -164,7 +164,7 @@ struct CCL_API FCCLObservation
 	FGuid EvidenceId;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Agent")
-	FCCLTargetReference PerceivedSubject;
+	FKSITargetReference PerceivedSubject;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Agent")
 	FGameplayTag EventType;
@@ -197,7 +197,7 @@ struct CCL_API FCCLBelief
 	GENERATED_BODY()
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Agent")
-	FCCLTargetReference Subject;
+	FKSITargetReference Subject;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Agent")
 	FGameplayTag Predicate;
@@ -256,7 +256,7 @@ struct CCL_API FCCLAgentNeeds
 
 namespace CCLAgentFeatures
 {
-CCL_API void Register(FCCLFeatureRegistry& Registry);
+CCL_API void Register(FKSIFeatureRegistry& Registry);
 CCL_API float Trait(const FCCLAgentTraits& Traits, FGameplayTag Axis);
 CCL_API bool Observe(FCCLAgentExperience& Experience, const FCCLObservation& Observation);
 CCL_API void AdvanceNeeds(FCCLAgentNeeds& Needs, double ElapsedSeconds);

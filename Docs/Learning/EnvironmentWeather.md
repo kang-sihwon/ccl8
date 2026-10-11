@@ -1,5 +1,7 @@
 # 자연 날씨: 수동 강수 입력을 지속 대기 상태로 확장하기
 
+2026-10-12 공용 모듈 분리 이후의 위치는 [Framework 파일 이동표](../FrameworkPlan.md#코드-위치의-전후-비교)를 따른다. 아래 발췌·이름·줄 번호·해시는 기록 당시 기준을 유지하며 소스 링크는 현재 대응 파일을 연다.
+
 자연 날씨는 천체의 일조와 이전 기온·수분을 읽어 다음 강수 입력을 만든다. 기존 물·눈 계산을 유지하면서 입력의 생산자가 어떻게 달라졌는지, 날씨도 실패 시 되돌려야 하는 이유를 배운다.
 
 ## 비교 기준과 변경 이유
@@ -14,7 +16,7 @@
 
 ## 이전 수동 입력과 모드 전환
 
-출처: `a817082`, [CCLSurfaceSimulation.cpp](../../Source/CCL/Environment/CCLSurfaceSimulation.cpp), `bool FCCLSurfaceSimulation::ChangeForcing`, 299-311줄. 실제 코드의 연속 발췌이며 들여쓰기만 정리했다.
+출처: `a817082`, [CCLSurfaceSimulation.cpp](../../Source/KSIEnvironment/Private/KSISurfaceSimulation.cpp), `bool FCCLSurfaceSimulation::ChangeForcing`, 299-311줄. 실제 코드의 연속 발췌이며 들여쓰기만 정리했다.
 
 ```cpp
 bool FCCLSurfaceSimulation::ChangeForcing(FGuid RegionId, const FCCLSurfaceForcing& Forcing, FString& Error)
@@ -33,7 +35,7 @@ bool FCCLSurfaceSimulation::ChangeForcing(FGuid RegionId, const FCCLSurfaceForci
 
 이전 함수는 검증한 Forcing을 대입했다. 값이 바뀌기 전까지 같은 강수율·기온을 사용했다. 현재 함수는 직접 강수 입력을 바꾸면 자연 모드를 끈다.
 
-출처: `WT-2026-10-10`, [CCLSurfaceSimulation.cpp](../../Source/CCL/Environment/CCLSurfaceSimulation.cpp), `Region->Climate.bEnabled = 0;`, 358-361줄. 실제 코드의 연속 발췌이며 들여쓰기만 정리했다.
+출처: `WT-2026-10-10`, [CCLSurfaceSimulation.cpp](../../Source/KSIEnvironment/Private/KSISurfaceSimulation.cpp), `Region->Climate.bEnabled = 0;`, 358-361줄. 실제 코드의 연속 발췌이며 들여쓰기만 정리했다.
 
 ```cpp
     Region->Climate.bEnabled = 0;
@@ -48,7 +50,7 @@ bool FCCLSurfaceSimulation::ChangeForcing(FGuid RegionId, const FCCLSurfaceForci
 
 현재 값 모델의 일부를 보자. 발췌 앞에서는 입력 범위와 시간 상한을 검사하고 이전 상태를 `Next`로 복사한다.
 
-출처: `WT-2026-10-10`, [CCLWeatherModel.cpp](../../Source/CCL/Environment/CCLWeatherModel.cpp), `const double Target =`, 33-41줄. 실제 코드의 연속 발췌이며 들여쓰기만 정리했다.
+출처: `WT-2026-10-10`, [CCLWeatherModel.cpp](../../Source/KSIEnvironment/Private/KSIWeatherModel.cpp), `const double Target =`, 33-41줄. 실제 코드의 연속 발췌이며 들여쓰기만 정리했다.
 
 ```cpp
 const double Target = C.BaseTemperatureCelsius + C.SolarWarmingCelsius * FMath::Min(2., Next.IrradianceWattsPerM2 / 1000.);
@@ -70,7 +72,7 @@ Next.CloudMeters -= Precipitation;
 
 `FCCLSurfaceSimulation::AdvanceSlice`는 구간 중간 시각의 일조를 구하고 날씨를 진행한다. 성공한 날씨의 기온·비·눈·증발률을 Forcing에 넣은 뒤 표면 계산을 실행한다. 날씨의 한 계산 구간은 최대 60세계 초다. 큰 요청은 내부에서 구간을 나누며 실행 예산 초과 시 원본과 대기 시간을 보존한다.
 
-출처: `WT-2026-10-10`, [CCLSurfaceSimulation.cpp](../../Source/CCL/Environment/CCLSurfaceSimulation.cpp), `G.Forcing.TemperatureCelsius = G.Weather`, 567-570줄. 실제 코드의 연속 발췌이며 들여쓰기만 정리했다.
+출처: `WT-2026-10-10`, [CCLSurfaceSimulation.cpp](../../Source/KSIEnvironment/Private/KSISurfaceSimulation.cpp), `G.Forcing.TemperatureCelsius = G.Weather`, 567-570줄. 실제 코드의 연속 발췌이며 들여쓰기만 정리했다.
 
 ```cpp
 G.Forcing.TemperatureCelsius = G.Weather.TemperatureCelsius;

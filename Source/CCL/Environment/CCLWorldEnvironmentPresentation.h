@@ -2,7 +2,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "CCLEnvironmentView.h"
+#include "KSIEnvironmentView.h"
 #include "CCLWorldEnvironmentPresentation.generated.h"
 
 class ADirectionalLight;
@@ -29,9 +29,9 @@ public:
 	uint64 GetDisplayedRevision() const { return DisplayedRevision; }
 
 private:
-	void RebuildSurfaces(const FCCLEnvironmentView& View);
+	void RebuildSurfaces(const FKSIEnvironmentView& View);
 	void ClearSurfaces();
-	void AddPiece(const FCCLSurfacePatch& Patch, const FVector2D& Minimum, const FVector2D& Maximum);
+	void AddPiece(const FKSISurfacePatch& Patch, const FVector2D& Minimum, const FVector2D& Maximum);
 
 #if WITH_EDITOR
 public:

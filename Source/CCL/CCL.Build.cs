@@ -7,6 +7,7 @@ public class CCL : ModuleRules
 	public CCL(ReadOnlyTargetRules Target) : base(Target)
 	{
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
+		PublicDependencyModuleNames.AddRange(new[] { "KSIWorldTime", "KSICelestial", "KSITerrain", "KSIAgent", "KSIEnvironment", "KSISave" });
 		PublicIncludePaths.Add(ModuleDirectory);
 		PublicDependencyModuleNames.AddRange(new[] { "KSIUI", "KSIMap", "KSICore", "KSIInventory", "KSICombat" });
 

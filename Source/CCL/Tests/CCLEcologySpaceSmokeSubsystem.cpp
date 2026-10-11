@@ -21,10 +21,10 @@ namespace
 		return FGuid(950,951,952,N);
 	}
 	const FVector Origin(25.,25.,30.);
-	const ECCLEcologyMovement Media[]={ECCLEcologyMovement::Air,ECCLEcologyMovement::Water,ECCLEcologyMovement::Ground,ECCLEcologyMovement::Insect};
-	FCCLSurfaceGrid WaterGrid(bool bDry)
+	const EKSIEcologyMovement Media[]={EKSIEcologyMovement::Air,EKSIEcologyMovement::Water,EKSIEcologyMovement::Ground,EKSIEcologyMovement::Insect};
+	FKSISurfaceGrid WaterGrid(bool bDry)
 	{
-		FCCLSurfaceGrid G;
+		FKSISurfaceGrid G;
 		G.RegionId=Id(1);
 		G.OriginMeters=Origin;
 		G.Size=FIntPoint(12,12);
@@ -144,7 +144,7 @@ void UCCLEcologySpaceSmokeSubsystem::Tick(float DeltaTime)
 
 			return;
 		}
-		FCCLEcologyBehavior Forbidden;
+		FKSIEcologyBehavior Forbidden;
 		Forbidden.Id=Id(60);
 		if (!Check(!Runtime->AddEcologyBehavior(Forbidden,Error),TEXT("client spatial policy mutation refused")))
 		{
@@ -184,7 +184,7 @@ void UCCLEcologySpaceSmokeSubsystem::Tick(float DeltaTime)
 	{
 		for (uint32 N=0;N<4;++N)
 		{
-			if (!R->SetRepresentation(Id(60+N),ECCLEcologyRepresentation::Actor,Error))
+			if (!R->SetRepresentation(Id(60+N),EKSIEcologyRepresentation::Actor,Error))
 			{
 				return false;
 			}
@@ -251,7 +251,7 @@ void UCCLEcologySpaceSmokeSubsystem::Tick(float DeltaTime)
 			Next=Now+5.;
 			return;
 		}
-		FCCLEcologyRouteRequest Q;
+		FKSIEcologyRouteRequest Q;
 		const FVector Base=Terrain->GetActorLocation()/100.;
 		Q.FromMeters=Base+FVector(-6.,3.,.35);
 		Q.TargetMeters=Base+FVector(6.,3.,.35);
@@ -271,7 +271,7 @@ void UCCLEcologySpaceSmokeSubsystem::Tick(float DeltaTime)
 		}
 
 		UE_LOG(LogTemp,Display,TEXT("CCL_ECOLOGY_SPACE GROUND_READY points=%d"),Route.Num());
-		const FCCLEcologyRouteRequest Ground=Q;
+		const FKSIEcologyRouteRequest Ground=Q;
 		auto* Wall=W->SpawnActor<AActor>();
 		auto* Box=NewObject<UBoxComponent>(Wall);
 		Wall->SetRootComponent(Box);
@@ -303,7 +303,7 @@ void UCCLEcologySpaceSmokeSubsystem::Tick(float DeltaTime)
 			Step=5;
 			return;
 		}
-		Q.Medium=ECCLEcologyMovement::Air;
+		Q.Medium=EKSIEcologyMovement::Air;
 		Q.FromMeters=Origin+FVector(1.,3.,2.);
 		Q.TargetMeters=Origin+FVector(5.,3.,2.);
 		Q.HabitatMeters=FBox(Origin,Origin+FVector(6.,6.,4.));
@@ -330,14 +330,14 @@ void UCCLEcologySpaceSmokeSubsystem::Tick(float DeltaTime)
 		}
 
 		Box->SetBoxExtent(FVector(20.,150.,180.),true);
-		FCCLSurfaceSimulation Water,Dry;
+		FKSISurfaceSimulation Water,Dry;
 		if (!Check(Water.Initialize(E.GetWorldId(),0.,Q.WorldSeconds,0,Error)&&Water.AddRegion(WaterGrid(false),Error)
 			&&Dry.Initialize(E.GetWorldId(),0.,Q.WorldSeconds,0,Error)&&Dry.AddRegion(WaterGrid(true),Error),TEXT("water fixtures")))
 		{
 			return;
 		}
 
-		Q.Medium=ECCLEcologyMovement::Water;
+		Q.Medium=EKSIEcologyMovement::Water;
 		if (!Check(Space.FindRoute(Q,&Water,Route,Error)&&Route.Num()>2,TEXT("fish follows liquid around wall")))
 		{
 			return;
@@ -364,38 +364,38 @@ void UCCLEcologySpaceSmokeSubsystem::Tick(float DeltaTime)
 		for (uint32 N=0;N<4;++N)
 		{
 			const auto& RouteInput=N<2?Q:Ground;
-			FCCLEcologySpecies S;
+			FKSIEcologySpecies S;
 			S.Id=Id(10+N);
 			S.Movement=Media[N];
-			FCCLEcologyHabitat H;
+			FKSIEcologyHabitat H;
 			H.Id=Id(20+N);
 			H.MinimumMeters=RouteInput.HabitatMeters.Min;
 			H.MaximumMeters=RouteInput.HabitatMeters.Max;
 			H.MovementMask=1<<uint8(S.Movement);
-			FCCLEcologyPopulation P;
+			FKSIEcologyPopulation P;
 			P.Id=Id(30+N);
 			P.SpeciesId=S.Id;
 			P.HabitatId=H.Id;
 			P.Cohorts.Add(Id(40+N),{Id(40+N),Q.WorldSeconds,2});
-			FCCLEcologyEvent Event;
+			FKSIEcologyEvent Event;
 			Event.Id=Id(50+N);
-			Event.Kind=ECCLEcologyEventKind::Materialize;
+			Event.Kind=EKSIEcologyEventKind::Materialize;
 			Event.Source=P.Id;
 			Event.CohortId=Id(40+N);
 			Event.IndividualId=Id(60+N);
 			Event.BirthWorldSeconds=Q.WorldSeconds;
 			Event.bPersistent=1;
-			FCCLEcologyForage F;
+			FKSIEcologyForage F;
 			F.Id=Id(70+N);
 			F.HabitatId=H.Id;
 			F.PositionMeters=RouteInput.TargetMeters;
-			FCCLEcologyBehavior B;
+			FKSIEcologyBehavior B;
 			B.Id=Event.IndividualId;
 			B.bUseWorldSpace=1;
 			B.Energy=.1;
 			B.MetabolismPerSecond=.005;
 			if (!Check(Runtime->AddEcologySpecies(S,Error)&&Runtime->AddEcologyHabitat(H,Error)&&Runtime->AddEcologyPopulation(P,Error)
-				&&Runtime->ApplyEcologyEvent(Event,Error)&&R->SetRepresentation(B.Id,ECCLEcologyRepresentation::Actor,Error)
+				&&Runtime->ApplyEcologyEvent(Event,Error)&&R->SetRepresentation(B.Id,EKSIEcologyRepresentation::Actor,Error)
 				&&R->SetPosition(B.Id,RouteInput.FromMeters,Error)&&Runtime->AddEcologyForage(F,Error)&&Runtime->AddEcologyBehavior(B,Error),TEXT("world spatial behavior")))
 			{
 				return;

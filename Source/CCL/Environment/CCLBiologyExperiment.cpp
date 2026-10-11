@@ -19,9 +19,9 @@
 
 namespace
 {
-FCCLAgentRecord MakeRecord(int32 Index, double Time)
+FKSIAgentRecord MakeRecord(int32 Index, double Time)
 {
-	FCCLAgentRecord R;
+	FKSIAgentRecord R;
 	R.Id = ACCLBiologyExperiment::AgentId(Index);
 	R.DefinitionId = FPrimaryAssetId(TEXT("Agent"), TEXT("BiologyExperiment"));
 	R.LastSimulatedTime = Time;

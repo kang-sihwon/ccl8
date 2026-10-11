@@ -1,5 +1,7 @@
 # 물 순환: 높이 대신 보존할 양부터 정하기
 
+2026-10-12 공용 모듈 분리 이후의 위치는 [Framework 파일 이동표](../FrameworkPlan.md#코드-위치의-전후-비교)를 따른다. 아래 발췌·이름·줄 번호·해시는 기록 당시 기준을 유지하며 소스 링크는 현재 대응 파일을 연다.
+
 표면 시스템은 물·얼음·토양 수분을 물 환산 체적으로 보관하고, 이동·상변화·외부 출입을 같은 장부로 검증한다. 이 장을 읽으면 수면 메시를 움직이는 일과 물의 양을 보존하는 계산이 어떻게 연결되는지 설명할 수 있다.
 
 ## 비교 기준과 처음 필요한 구현
@@ -14,7 +16,7 @@
 
 강수율이 초당 0.001m, 시간 간격이 10세계 초, 셀 면적이 4m²라고 가정하자. 내린 깊이는 `0.001 × 10 = 0.01m`다. 체적은 `0.01 × 4 = 0.04m³`다. 지붕 때문에 절반만 도달하면 `0.04 × 0.5 = 0.02m³`를 더한다. 설명용 숫자이며 현재 기후 기본값이 아니다.
 
-출처: `a817082`, [CCLSurfaceSimulation.cpp](../../Source/CCL/Environment/CCLSurfaceSimulation.cpp), `const double Rain =`, 87-89줄. 실제 코드의 연속 발췌이며 들여쓰기만 정리했다.
+출처: `a817082`, [CCLSurfaceSimulation.cpp](../../Source/KSIEnvironment/Private/KSISurfaceSimulation.cpp), `const double Rain =`, 87-89줄. 실제 코드의 연속 발췌이며 들여쓰기만 정리했다.
 
 ```cpp
 const double Rain = F.RainMetersPerWorldSecond * WorldDt * Area * Cell.RainExposure;
@@ -28,7 +30,7 @@ G.Ledger.RainCubicMeters += Rain;
 
 모든 경계의 유량 후보를 먼저 만든 뒤 출발 셀의 물과 도착 셀의 빈 공간으로 제한한다. 적용 중 받은 물을 바로 다음 경계의 출발 예산으로 쓰면 셀 순회 방향에 따라 한 단계에서 이동하는 거리가 달라진다.
 
-출처: `a817082`, [CCLSurfaceSimulation.cpp](../../Source/CCL/Environment/CCLSurfaceSimulation.cpp), `const double Requested = Transfer.Amount`, 189-194줄. 실제 코드의 연속 발췌이며 들여쓰기만 정리했다.
+출처: `a817082`, [CCLSurfaceSimulation.cpp](../../Source/KSIEnvironment/Private/KSISurfaceSimulation.cpp), `const double Requested = Transfer.Amount`, 189-194줄. 실제 코드의 연속 발췌이며 들여쓰기만 정리했다.
 
 ```cpp
 const double Requested = Transfer.Amount * FMath::Min(SourceScales[Transfer.From], TargetScales[Transfer.To]);

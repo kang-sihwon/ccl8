@@ -522,7 +522,7 @@ bool UCCLProgressionAssetLibrary::MigrateAgentBiologyAssets()
 			continue;
 		}
 
-		const auto* Default = Defaults.Agents.FindByPredicate([&](const FCCLAgentRecord& R)
+		const auto* Default = Defaults.Agents.FindByPredicate([&](const FKSIAgentRecord& R)
 		{
 			return R.Id == Agent.Id && R.DefinitionId == Agent.DefinitionId;
 		});

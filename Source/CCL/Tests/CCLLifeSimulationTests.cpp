@@ -273,7 +273,7 @@ bool FCCLOptionalLifeTest::RunTest(const FString& Parameters)
 	Custom.Activity = CCLAgentTags::Safety;
 	TestTrue(TEXT("authored new activity accepts registration later"), Simulation.Initialize(Initial, Error));
 	FCCLActivityProcessor Processor;
-	Processor.Build = [](const FCCLAgentRecord&, const FCCLWorldOpportunity&, const FCCLEconomyState&, FCCLTransactionRequest&, FString&) { return true; };
+	Processor.Build = [](const FKSIAgentRecord&, const FCCLWorldOpportunity&, const FCCLEconomyState&, FCCLTransactionRequest&, FString&) { return true; };
 	TestTrue(TEXT("register Actor-only executor"), Simulation.RegisterActivity(Custom.Activity, MoveTemp(Processor)));
 	TestFalse(TEXT("reduced execution cannot auto succeed unsupported action"), Simulation.Execute(Agent.Id, Custom.OpportunityId, 1, FGuid(98, 1, 1, 2), true).bSucceeded != 0);
 	TestTrue(TEXT("Actor path uses registered executor"), Simulation.Execute(Agent.Id, Custom.OpportunityId, 1, FGuid(98, 1, 1, 3)).bSucceeded != 0);

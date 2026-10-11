@@ -25,13 +25,13 @@ bool FCCLEnvironmentViewWireTest::RunTest(const FString& Parameters)
 	Sent.Environment.Observer.BodyId = TEXT("World");
 	Sent.Environment.Observer.LatitudeDegrees = -45.;
 	Sent.Environment.CelestialEpochSeconds = 100.;
-	Sent.Environment.CelestialBodies = FCCLCelestialSystem::MakeDefaultDefinition(42).Bodies;
-	FCCLCelestialSourceView Star;
+	Sent.Environment.CelestialBodies = FKSICelestialSystem::MakeDefaultDefinition(42).Bodies;
+	FKSICelestialSourceView Star;
 	Star.BodyId = TEXT("Star");
 	Star.SolarHours = 14.25;
 	Star.LocalDirection = FVector(0.6, 0., 0.8);
 	Sent.Environment.Stars.Add(Star);
-	FCCLSurfaceOpening Opening;
+	FKSISurfaceOpening Opening;
 	Opening.OpeningId = FGuid::NewGuid();
 	Opening.OpenFraction = 0.5;
 	Sent.Environment.Openings.Add(Opening);

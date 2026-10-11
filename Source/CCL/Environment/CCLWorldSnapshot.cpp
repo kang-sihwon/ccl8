@@ -2,8 +2,8 @@
 
 #include "Agents/CCLAgentBiology.h"
 #include "Agents/CCLLifeSimulation.h"
-#include "CCLSurfaceSimulation.h"
-#include "CCLEcologySimulation.h"
+#include "KSISurfaceSimulation.h"
+#include "KSIEcologySimulation.h"
 #include "KSIWorldParticipant.h"
 #include "CCLWorldSectionFacts.h"
 #include "Misc/Crc.h"
@@ -70,7 +70,7 @@ namespace
 		{
 			TArray<uint8> EnvironmentBytes;
 			FString Error;
-			if (Ar.IsSaving() && !FCCLEnvironmentInputsCodec::Encode(S.Environment, EnvironmentBytes, Error))
+			if (Ar.IsSaving() && !FKSIEnvironmentInputsCodec::Encode(S.Environment, EnvironmentBytes, Error))
 			{
 				return false;
 			}
@@ -85,7 +85,7 @@ namespace
 
 			EnvironmentBytes.SetNumUninitialized(EnvironmentCount);
 			Ar.Serialize(EnvironmentBytes.GetData(), EnvironmentCount);
-			if (Ar.IsError() || (Ar.IsLoading() && !FCCLEnvironmentInputsCodec::Decode(EnvironmentBytes, S.Environment, Error)))
+			if (Ar.IsError() || (Ar.IsLoading() && !FKSIEnvironmentInputsCodec::Decode(EnvironmentBytes, S.Environment, Error)))
 			{
 				return false;
 			}
@@ -95,7 +95,7 @@ namespace
 		{
 			Count = S.Surface.Num();
 			Ar << Count;
-			if (Ar.IsError() || Count < 56 || Count > FCCLSurfaceSimulation::MaximumBytes
+			if (Ar.IsError() || Count < 56 || Count > FKSISurfaceSimulation::MaximumBytes
 				|| (Ar.IsLoading() && Count > Ar.TotalSize() - Ar.Tell()))
 			{
 				return false;
@@ -108,7 +108,7 @@ namespace
 		{
 			Count = S.Ecology.Num();
 			Ar << Count;
-			if (Ar.IsError() || Count < 60 || Count > FCCLEcologySimulation::MaximumBytes
+			if (Ar.IsError() || Count < 60 || Count > FKSIEcologySimulation::MaximumBytes
 				|| (Ar.IsLoading() && Count > Ar.TotalSize() - Ar.Tell()))
 			{
 				return false;
@@ -190,9 +190,9 @@ namespace
 	}
 }
 
-bool FCCLWorldSnapshotCodec::Capture(const FCCLWorldIdentity& Identity, const FCCLWorldClock& Clock,
-	const FCCLLifeSimulation& Life, FCCLWorldSnapshot& Snapshot, FString& Error, const FCCLEnvironmentInputs* Environment, const FCCLSurfaceSimulation* Surface,
-	const FCCLEcologySimulation* Ecology)
+bool FCCLWorldSnapshotCodec::Capture(const FCCLWorldIdentity& Identity, const FKSIWorldClock& Clock,
+	const FCCLLifeSimulation& Life, FCCLWorldSnapshot& Snapshot, FString& Error, const FKSIEnvironmentInputs* Environment, const FKSISurfaceSimulation* Surface,
+	const FKSIEcologySimulation* Ecology)
 {
 	Error.Reset();
 	FCCLWorldSnapshot Candidate;
@@ -207,7 +207,7 @@ bool FCCLWorldSnapshotCodec::Capture(const FCCLWorldIdentity& Identity, const FC
 		return Reject(Error, TEXT("Cannot capture inconsistent or busy clock/life state."));
 	}
 
-	FCCLSurfaceSimulation EmptySurface;
+	FKSISurfaceSimulation EmptySurface;
 	if (!Surface)
 	{
 		if (!EmptySurface.Initialize(Identity.WorldId, Clock.GetGameSeconds(), Clock.GetWorldSeconds(), Clock.GetCompletedStepId(), Error))
@@ -221,7 +221,7 @@ bool FCCLWorldSnapshotCodec::Capture(const FCCLWorldIdentity& Identity, const FC
 		return false;
 	}
 
-	FCCLEcologySimulation EmptyEcology;
+	FKSIEcologySimulation EmptyEcology;
 	if (!Ecology)
 	{
 		if (!EmptyEcology.Initialize(Identity.WorldId, Clock.GetWorldSeconds(), Error))
@@ -297,7 +297,7 @@ bool FCCLWorldSnapshotCodec::Decode(const TArray<uint8>& Bytes, FCCLWorldSnapsho
 	Candidate.bSurfaceMigrated = Candidate.Schema < 3;
 	if (Candidate.Schema < 3)
 	{
-		FCCLSurfaceSimulation EmptySurface;
+		FKSISurfaceSimulation EmptySurface;
 		if (!EmptySurface.Initialize(Candidate.Identity.WorldId, Candidate.Clock.GameSeconds,
 			Candidate.Clock.WorldSeconds, Candidate.Clock.CompletedStepId, Error) || !EmptySurface.Capture(Candidate.Surface, Error))
 		{
@@ -307,7 +307,7 @@ bool FCCLWorldSnapshotCodec::Decode(const TArray<uint8>& Bytes, FCCLWorldSnapsho
 	Candidate.bEcologyMigrated = Candidate.Schema < 4;
 	if (Candidate.bEcologyMigrated)
 	{
-		FCCLEcologySimulation EmptyEcology;
+		FKSIEcologySimulation EmptyEcology;
 		if (!EmptyEcology.Initialize(Candidate.Identity.WorldId, Candidate.Clock.WorldSeconds, Error)
 			|| !EmptyEcology.Capture(Candidate.Ecology, Error))
 		{
@@ -333,7 +333,7 @@ bool FCCLWorldSnapshotCodec::MigrateLegacy(const TArray<uint8>& LifeBytes, ECCLW
 	FCCLWorldSnapshot& Snapshot, FString& Error)
 {
 	FCCLLifeSimulation Life;
-	FCCLWorldClock Clock;
+	FKSIWorldClock Clock;
 	if (!Life.Load(LifeBytes, Error) || !Clock.Reset(Life.GetTime(), 60, Error))
 	{
 		return Reject(Error, TEXT("Legacy life snapshot could not be migrated."));
@@ -346,17 +346,17 @@ bool FCCLWorldSnapshotCodec::MigrateLegacy(const TArray<uint8>& LifeBytes, ECCLW
 }
 
 bool FCCLWorldSnapshotCodec::Restore(const FCCLWorldSnapshot& Snapshot, ECCLWorldDomain ExpectedDomain,
-	FCCLWorldClock& Clock, FCCLLifeSimulation& Life, FString& Error, FCCLSurfaceSimulation* Surface,
-	FCCLEcologySimulation* Ecology)
+	FKSIWorldClock& Clock, FCCLLifeSimulation& Life, FString& Error, FKSISurfaceSimulation* Surface,
+	FKSIEcologySimulation* Ecology)
 {
 	if (Snapshot.Identity.Domain != ExpectedDomain)
 	{
 		return Reject(Error, TEXT("World snapshot belongs to a different play domain."));
 	}
 
-	FCCLWorldClock CandidateClock;
-	FCCLSurfaceSimulation CandidateSurface;
-	FCCLEcologySimulation CandidateEcology;
+	FKSIWorldClock CandidateClock;
+	FKSISurfaceSimulation CandidateSurface;
+	FKSIEcologySimulation CandidateEcology;
 	if (!Validate(Snapshot, Error) || !CandidateClock.Restore(Snapshot.Clock, Error)
 		|| !CandidateSurface.Restore(Snapshot.Surface, Error) || !CandidateEcology.Restore(Snapshot.Ecology, Error)
 		|| !Life.Load(Snapshot.Life, Error))
@@ -388,7 +388,7 @@ bool FCCLWorldSnapshotCodec::Validate(const FCCLWorldSnapshot& Snapshot, FString
 		return Reject(Error, TEXT("Unsupported world identity, version or life payload."));
 	}
 
-	FCCLSurfaceSimulation Surface;
+	FKSISurfaceSimulation Surface;
 	if (!Surface.Restore(Snapshot.Surface, Error) || Surface.GetWorldId() != Snapshot.Identity.WorldId
 		|| Surface.GetGameSeconds() != Snapshot.Clock.GameSeconds || Surface.GetWorldSeconds() != Snapshot.Clock.WorldSeconds
 		|| Surface.GetStepId() != Snapshot.Clock.CompletedStepId)
@@ -396,23 +396,23 @@ bool FCCLWorldSnapshotCodec::Validate(const FCCLWorldSnapshot& Snapshot, FString
 		return Reject(Error, TEXT("World clock and surface snapshot do not agree."));
 	}
 
-	FCCLEcologySimulation Ecology;
+	FKSIEcologySimulation Ecology;
 	if (!Ecology.Restore(Snapshot.Ecology, Error) || Ecology.GetWorldId() != Snapshot.Identity.WorldId
 		|| Ecology.GetWorldSeconds() != Snapshot.Clock.WorldSeconds)
 	{
 		return Reject(Error, TEXT("World clock and ecology snapshot do not agree."));
 	}
 
-	FCCLCelestialSystem Celestial;
-	FCCLSurfaceScene Surfaces;
-	FCCLCelestialObservation Observation;
-	if (!FCCLEnvironmentInputsCodec::Prepare(Snapshot.Environment, Snapshot.Clock.WorldSeconds,
+	FKSICelestialSystem Celestial;
+	FKSISurfaceScene Surfaces;
+	FKSICelestialObservation Observation;
+	if (!FKSIEnvironmentInputsCodec::Prepare(Snapshot.Environment, Snapshot.Clock.WorldSeconds,
 		Celestial, Surfaces, Observation, Error) || !Surface.ValidateAirContext(Snapshot.Environment.Openings, Error))
 	{
 		return false;
 	}
 
-	FCCLWorldClock Clock;
+	FKSIWorldClock Clock;
 	FCCLLifeSimulation Life;
 	if (!Clock.Restore(Snapshot.Clock, Error) || !Life.Load(Snapshot.Life, Error) || Clock.GetWorldSeconds() != Life.GetTime())
 	{

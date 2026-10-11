@@ -3,10 +3,10 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "CCLExperimentDefinition.h"
-#include "CCLSurfaceSimulation.h"
+#include "KSISurfaceSimulation.h"
 #include "CCLExperimentDirector.generated.h"
 
-struct FCCLTerrainSaveContext;
+struct FKSITerrainSaveContext;
 class ACCLTerrainRegion;
 class APlayerController;
 class APlayerState;
@@ -43,17 +43,17 @@ public:
 	bool IsReady() const { return HasAuthority() ? !InitialSnapshot.IsEmpty() && bWaterReady : Generation.IsValid() && Results.Num() == 12; }
 	const TArray<FCCLExperimentResult>& GetResults() const { return Results; }
 	static FGuid VegetationRegionId() { return FGuid(7011, 7012, 7013, 7014); }
-	static bool VegetationGrid(double WorldSeconds, FCCLSurfaceGrid& Grid, FString& Error);
+	static bool VegetationGrid(double WorldSeconds, FKSISurfaceGrid& Grid, FString& Error);
 	static FGuid WeatherRegionId() { return FGuid(201, 202, 203, 204); }
-	static FCCLSurfaceGrid WeatherGrid();
+	static FKSISurfaceGrid WeatherGrid();
 	static FGuid FireRegionId(bool bIndoor = false) { return bIndoor ? FGuid(1101, 1102, 1103, 1104) : FGuid(1001, 1002, 1003, 1004); }
 	static FGuid FireSpaceId() { return FGuid(0x43434C32, 0x20261009, 0, 200); }
-	static FCCLSurfaceGrid FireGrid(bool bIndoor);
-	static FCCLAirSpace FireRoom();
+	static FKSISurfaceGrid FireGrid(bool bIndoor);
+	static FKSIAirSpace FireRoom();
 	static FGuid SnowRegionId() { return FGuid(301, 302, 303, 304); }
-	static FCCLSurfaceGrid SnowGrid();
+	static FKSISurfaceGrid SnowGrid();
 	static FGuid CycleRegionId() { return FGuid(901, 902, 903, 904); }
-	static FCCLSurfaceGrid CycleGrid();
+	static FKSISurfaceGrid CycleGrid();
 	static FGuid WaterRegionId() { return FGuid(401, 402, 403, 404); }
 	static FGuid TerrainWaterRegionId() { return FGuid(451, 452, 453, 454); }
 	static ACCLExperimentDirector* Find(const UWorld* World);
@@ -82,7 +82,7 @@ private:
 	bool ResetTerrain(FString& Error);
 	bool SaveTerrainWorld(FString& Error);
 	bool LoadTerrainWorld(FString& Error);
-	bool QueueWorldRestore(const TArray<uint8>& TerrainBytes, const FCCLTerrainSaveContext& Context, const TArray<uint8>& WorldBytes, FString& Error);
+	bool QueueWorldRestore(const TArray<uint8>& TerrainBytes, const FKSITerrainSaveContext& Context, const TArray<uint8>& WorldBytes, FString& Error);
 	FString GenerationRoot() const;
 	bool StartCase(FName CaseId, FString& Error);
 	void CompleteCase(FName CaseId, FGuid RunId, FGuid Token);
@@ -117,12 +117,12 @@ private:
 	TWeakObjectPtr<APawn> SnowWalker;
 	FVector SnowWalkStart = FVector::ZeroVector;
 	double SnowStartVolume = 0.;
-	FCCLSurfaceForcing WaterCaseForcing;
+	FKSISurfaceForcing WaterCaseForcing;
 	double WaterCaseTime = 0.;
 	double WaterCaseRain = 0.;
 	double WaterCaseIce = 0.;
 	int32 WaterCaseStep = 0;
-	FCCLSurfaceForcing CycleOriginalForcing;
+	FKSISurfaceForcing CycleOriginalForcing;
 	double CyclePhaseTime = 0.;
 	double CyclePhaseGameTime = 0.;
 	int32 CyclePhase = -1;

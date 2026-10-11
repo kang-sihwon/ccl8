@@ -7,7 +7,7 @@
 
 namespace CCLSurfacePublication
 {
-	bool CollectTerrainSerials(const UWorld* World, const FCCLSurfaceSimulation& Surface, TMap<FGuid, uint64>& Result)
+	bool CollectTerrainSerials(const UWorld* World, const FKSISurfaceSimulation& Surface, TMap<FGuid, uint64>& Result)
 	{
 		for (const auto& Pair : Surface.GetRegions())
 		{
@@ -35,7 +35,7 @@ namespace CCLSurfacePublication
 	}
 }
 
-TSharedPtr<const FCCLSurfacePublication> FCCLSurfacePublicationCache::Capture(const FCCLSurfaceSimulation& Surface,
+TSharedPtr<const FCCLSurfacePublication> FCCLSurfacePublicationCache::Capture(const FKSISurfaceSimulation& Surface,
 	FGuid Epoch, const TMap<FGuid, uint64>& TerrainSerials, FString& Error)
 {
 	TArray<uint8> Bytes;

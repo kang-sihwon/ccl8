@@ -5,9 +5,9 @@
 #include "Agents/CCLLifeSimulation.h"
 #include "Agents/CCLMassAgentBridge.h"
 #include "Environment/CCLWorldAdvance.h"
-#include "Environment/CCLWorldClock.h"
+#include "KSIWorldClock.h"
 #include "Environment/CCLWorldSnapshot.h"
-#include "Environment/CCLEcologySimulation.h"
+#include "KSIEcologySimulation.h"
 #include "MassEntityManager.h"
 #include "Misc/AutomationTest.h"
 
@@ -23,7 +23,7 @@ namespace
 		FCCLSimulationSnapshot S;
 		for (uint32 I = 1; I <= 2; ++I)
 		{
-			FCCLAgentRecord R;
+			FKSIAgentRecord R;
 			R.Id = BiologyId(I);
 			R.DefinitionId = FPrimaryAssetId(TEXT("Agent"), TEXT("AgeTest"));
 			FCCLAgentBiology B;
@@ -51,7 +51,7 @@ bool FCCLAgentBiologyTimeTest::RunTest(const FString& Parameters)
 		return false;
 	}
 
-	FCCLWorldClock Clock;
+	FKSIWorldClock Clock;
 	TestTrue(TEXT("freeze clock"), Clock.ChangeTimeScale(0., Error));
 	TestTrue(TEXT("queue real interval while frozen"), Clock.QueueGameTime(10., false, Error));
 	TestTrue(TEXT("frozen commit"), CCLWorldAdvance::Advance(Clock, Life, 10., 100., Error));
@@ -153,7 +153,7 @@ bool FCCLAgentBiologyTradeTest::RunTest(const FString& Parameters)
 	FString Error;
 	auto S = FCCLLifeSimulation::MerchantScenario(42);
 	const FGuid ProviderId = S.Opportunities[0].ProviderId;
-	const auto* Provider = S.Agents.FindByPredicate([&](const FCCLAgentRecord& R) { return R.Id == ProviderId; });
+	const auto* Provider = S.Agents.FindByPredicate([&](const FKSIAgentRecord& R) { return R.Id == ProviderId; });
 	const FGuid BuyerId = S.Agents[0].Id;
 	FCCLLifeSimulation Life;
 	TestTrue(TEXT("merchant init"), Life.Initialize(S, Error));
@@ -167,14 +167,14 @@ bool FCCLAgentBiologyTradeTest::RunTest(const FString& Parameters)
 		S.Opportunities[0].Revision, BiologyId(30)).bSucceeded != 0);
 	TestFalse(TEXT("dead provider cannot be reserved"), Life.ReserveOpportunity(BuyerId, S.Opportunities[0].OpportunityId).IsValid());
 
-	FCCLEcologySimulation Ecology;
-	FCCLWorldClock Clock;
+	FKSIEcologySimulation Ecology;
+	FKSIWorldClock Clock;
 	TestTrue(TEXT("ecology init"), Ecology.Initialize(BiologyId(90), 0., Error));
-	FCCLEcologySpecies Species;
+	FKSIEcologySpecies Species;
 	Species.Id = BiologyId(91);
-	FCCLEcologyHabitat Habitat;
+	FKSIEcologyHabitat Habitat;
 	Habitat.Id = BiologyId(92);
-	FCCLEcologyPopulation P;
+	FKSIEcologyPopulation P;
 	P.Id = BiologyId(93);
 	P.SpeciesId = Species.Id;
 	P.HabitatId = Habitat.Id;

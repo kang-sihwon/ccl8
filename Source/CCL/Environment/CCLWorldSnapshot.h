@@ -1,12 +1,12 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "CCLWorldClock.h"
-#include "CCLEnvironmentInputs.h"
+#include "KSIWorldClock.h"
+#include "KSIEnvironmentInputs.h"
 
 class FCCLLifeSimulation;
-class FCCLSurfaceSimulation;
-class FCCLEcologySimulation;
+class FKSISurfaceSimulation;
+class FKSIEcologySimulation;
 
 enum class ECCLWorldDomain : uint8
 {
@@ -41,30 +41,30 @@ struct CCL_API FCCLWorldSnapshot
 	uint8 bSurfaceMigrated = 0;
 	uint8 bEcologyMigrated = 0;
 	FCCLWorldIdentity Identity;
-	FCCLWorldClockSnapshot Clock;
+	FKSIWorldClockSnapshot Clock;
 	TArray<uint8> Life;
 	TArray<uint8> Surface;
 	TArray<uint8> Ecology;
 
 	// Sorted by name. A section missing from an older schema reads as empty.
 	TArray<FCCLWorldSection> Sections;
-	FCCLEnvironmentInputs Environment = FCCLEnvironmentInputsCodec::MakeDefault(42);
+	FKSIEnvironmentInputs Environment = FKSIEnvironmentInputsCodec::MakeDefault(42);
 };
 
 // The bounded clock/life/ecology envelope stays separate from future terrain chunk files.
 class CCL_API FCCLWorldSnapshotCodec
 {
 public:
-	static bool Capture(const FCCLWorldIdentity& Identity, const FCCLWorldClock& Clock,
+	static bool Capture(const FCCLWorldIdentity& Identity, const FKSIWorldClock& Clock,
 		const FCCLLifeSimulation& Life, FCCLWorldSnapshot& Snapshot, FString& Error,
-		const FCCLEnvironmentInputs* Environment = nullptr, const FCCLSurfaceSimulation* Surface = nullptr,
-		const FCCLEcologySimulation* Ecology = nullptr);
+		const FKSIEnvironmentInputs* Environment = nullptr, const FKSISurfaceSimulation* Surface = nullptr,
+		const FKSIEcologySimulation* Ecology = nullptr);
 	static bool Encode(const FCCLWorldSnapshot& Snapshot, TArray<uint8>& Bytes, FString& Error);
 	static bool Decode(const TArray<uint8>& Bytes, FCCLWorldSnapshot& Snapshot, FString& Error);
 	static bool MigrateLegacy(const TArray<uint8>& LifeBytes, ECCLWorldDomain Domain,
 		FCCLWorldSnapshot& Snapshot, FString& Error);
 	static bool Restore(const FCCLWorldSnapshot& Snapshot, ECCLWorldDomain ExpectedDomain,
-		FCCLWorldClock& Clock, FCCLLifeSimulation& Life, FString& Error, FCCLSurfaceSimulation* Surface = nullptr,
-		FCCLEcologySimulation* Ecology = nullptr);
+		FKSIWorldClock& Clock, FCCLLifeSimulation& Life, FString& Error, FKSISurfaceSimulation* Surface = nullptr,
+		FKSIEcologySimulation* Ecology = nullptr);
 	static bool Validate(const FCCLWorldSnapshot& Snapshot, FString& Error);
 };

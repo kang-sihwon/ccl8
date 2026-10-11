@@ -6,15 +6,53 @@
 #include "Misc/AutomationTest.h"
 #include "Misc/FileHelper.h"
 #include "Misc/Paths.h"
+#include "Misc/CommandLine.h"
+#include "Misc/Parse.h"
+#include "KSISurfaceSimulation.h"
+#include "KSIEcologySimulation.h"
 
 IMPLEMENT_SIMPLE_AUTOMATION_TEST(FCCLWorldGenerationTest, "CCL.Environment.Save.GenerationRecovery",
 	EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
 
 bool FCCLWorldGenerationTest::RunTest(const FString& Parameters)
 {
-	const FString Root = FPaths::ProjectSavedDir() / TEXT("Tests/Generation") / FGuid::NewGuid().ToString(EGuidFormats::Digits);
+    FString LegacyDirectory;
+    if (FParse::Value(FCommandLine::Get(), TEXT("CCLLegacyGeneration="), LegacyDirectory))
+    {
+        FCCLWorldGenerationBundle Legacy;
+        FString LegacyError;
+        if (!TestTrue(TEXT("recover pre-extraction generation"), FCCLWorldGenerationStore::Recover(
+            LegacyDirectory, ECCLWorldDomain::Scenario, Legacy, LegacyError)))
+        {
+            AddError(LegacyError);
+            return false;
+        }
+        FCCLWorldSnapshot Snapshot;
+        FKSIWorldClock LegacyClock;
+        FCCLLifeSimulation LegacyLife;
+        FKSISurfaceSimulation LegacySurface;
+        FKSIEcologySimulation LegacyEcology;
+        TestTrue(TEXT("decode pre-extraction world"), FCCLWorldSnapshotCodec::Decode(Legacy.World, Snapshot, LegacyError));
+        TestTrue(TEXT("restore pre-extraction time life surface ecology"), FCCLWorldSnapshotCodec::Restore(
+            Snapshot, ECCLWorldDomain::Scenario, LegacyClock, LegacyLife, LegacyError, &LegacySurface, &LegacyEcology));
+        TestEqual(TEXT("legacy completed world time"), LegacyClock.GetWorldSeconds(), Legacy.Context.WorldSeconds);
+        for (const auto& Part : Legacy.Terrain)
+        {
+            FKSITerrainSnapshot Region;
+            FKSITerrainSaveContext Context;
+            TestTrue(TEXT("legacy terrain decoded"), FKSITerrainCodec::Decode(Part.Value, Region, Context, LegacyError));
+            FKSITerrainStore Store;
+            TestTrue(TEXT("legacy terrain restored"), Store.Initialize(Region.Definition, LegacyError)
+                && Store.Restore(Part.Value, Legacy.Context, LegacyError));
+            TArray<uint8> RoundTrip;
+            TestTrue(TEXT("legacy terrain bytes unchanged"), Store.Capture(Legacy.Context, RoundTrip, LegacyError) && RoundTrip == Part.Value);
+        }
+        AddInfo(FString::Printf(TEXT("CCL_LEGACY_GENERATION restored generation=%llu world=%.9f regions=%d"),
+            Legacy.Context.WorldGeneration, LegacyClock.GetWorldSeconds(), Legacy.Terrain.Num()));
+    }
+    const FString Root = FPaths::ProjectSavedDir() / TEXT("Tests/Generation") / FGuid::NewGuid().ToString(EGuidFormats::Digits);
 	FCCLLifeSimulation Life;
-	FCCLWorldClock Clock;
+	FKSIWorldClock Clock;
 	FCCLWorldIdentity Identity;
 	Identity.WorldId = FGuid::NewGuid();
 	Identity.Domain = ECCLWorldDomain::Scenario;
@@ -24,11 +62,11 @@ bool FCCLWorldGenerationTest::RunTest(const FString& Parameters)
 		return false;
 	}
 
-	FCCLTerrainDefinition Definition;
+	FKSITerrainDefinition Definition;
 	Definition.WorldId = Identity.WorldId;
 	Definition.RegionId = FGuid::NewGuid();
 	Definition.DefinitionId = FGuid::NewGuid();
-	FCCLTerrainStore Terrain;
+	FKSITerrainStore Terrain;
 	TestTrue(TEXT("terrain init"), Terrain.Initialize(Definition, Error));
 	TArray<FString> Directories;
 	TArray<TArray<uint8>> WorldBytes;

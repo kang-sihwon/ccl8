@@ -115,7 +115,7 @@ void UCCLFireSmokeSubsystem::Tick(float DeltaTime)
 
 	if (Step == 0)
 	{
-		FCCLSurfaceGrid G;
+		FKSISurfaceGrid G;
 		G.RegionId = FireRegion;
 		G.OriginMeters = FVector(148., 0., 0.);
 		G.SpacingMeters = 1.;
@@ -134,7 +134,7 @@ void UCCLFireSmokeSubsystem::Tick(float DeltaTime)
 		G.Ledger.InitialCubicMeters = G.TotalCubicMeters();
 		for (auto& Cell : G.Fire.Cells)
 		{
-			if (!Check(FCCLCombustionModel::Initialize(G.Fire.Material, 2., 20., Cell, Error)))
+			if (!Check(FKSICombustionModel::Initialize(G.Fire.Material, 2., 20., Cell, Error)))
 			{
 				return;
 			}
@@ -143,7 +143,7 @@ void UCCLFireSmokeSubsystem::Tick(float DeltaTime)
 		{
 			return;
 		}
-		FCCLAirSpace Space;
+		FKSIAirSpace Space;
 		Space.SpaceId = FireSpace;
 		Space.ClimateRegionId = FireRegion;
 		Space.MinimumMeters = FVector(148., -1., 0.);
@@ -154,7 +154,7 @@ void UCCLFireSmokeSubsystem::Tick(float DeltaTime)
 			return;
 		}
 		auto Inputs = Runtime->GetEnvironmentInputs();
-		FCCLSurfacePatch Wall;
+		FKSISurfacePatch Wall;
 		Wall.SurfaceId = FireWall;
 		Wall.BodyId = Inputs.Observer.BodyId;
 		Wall.MaterialId = TEXT("FireSmokeWall");
@@ -163,7 +163,7 @@ void UCCLFireSmokeSubsystem::Tick(float DeltaTime)
 		Wall.TangentU = FVector::RightVector;
 		Wall.TangentV = FVector::UpVector;
 		Wall.HalfExtentsMeters = FVector2D(1.5, 1.5);
-		FCCLSurfaceOpening Door;
+		FKSISurfaceOpening Door;
 		Door.OpeningId = FireDoor;
 		Door.SurfaceId = FireWall;
 		Door.SpaceA = FireSpace;

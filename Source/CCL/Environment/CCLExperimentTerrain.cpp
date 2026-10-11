@@ -18,13 +18,13 @@
 void ACCLExperimentDirector::InitializeTerrainExperiment()
 {
 	auto* Runtime = GetWorld()->GetSubsystem<UCCLWorldSimulationSubsystem>();
-	FCCLTerrainDefinition Definition;
+	FKSITerrainDefinition Definition;
 	Definition.WorldId = Runtime->GetIdentity().WorldId;
 	Definition.RegionId = FGuid(501, 502, 503, 504);
 	Definition.DefinitionId = FGuid(510, 520, 530, 540);
 	Definition.MinimumCell = FIntVector(-16, -16, -8);
 	Definition.MaximumCell = FIntVector(16, 16, 8);
-	FCCLTerrainProtection Protection;
+	FKSITerrainProtection Protection;
 	Protection.Id = FGuid(551, 552, 553, 554);
 	Protection.BoundsMeters = FBox(FVector(-8., -8., -4.), FVector(-4.5, -2., 4.));
 	Definition.ProtectedRegions.Add(Protection);
@@ -37,11 +37,11 @@ void ACCLExperimentDirector::InitializeTerrainExperiment()
 	{
 		const auto* Bytes = Bundle->Terrain.Find(Definition.RegionId);
 		FCCLWorldSnapshot SavedWorld;
-		FCCLTerrainSnapshot Saved;
-		FCCLTerrainSaveContext Context;
+		FKSITerrainSnapshot Saved;
+		FKSITerrainSaveContext Context;
 		if (!Bytes || Bundle->Terrain.Num() != 1 || !FCCLWorldSnapshotCodec::Decode(Bundle->World, SavedWorld, Error)
 			|| !(FCCLWorldGenerationStore::ContextFor(SavedWorld) == Bundle->Context)
-			|| !FCCLTerrainCodec::Decode(*Bytes, Saved, Context, Error)
+			|| !FKSITerrainCodec::Decode(*Bytes, Saved, Context, Error)
 			|| !(Context == Bundle->Context))
 		{
 			UE_LOG(LogTemp, Error, TEXT("CCL_TERRAIN_EXPERIMENT invalid session terrain: %s"), *Error);
@@ -106,10 +106,10 @@ bool ACCLExperimentDirector::TerrainAction(APlayerController* Requester, ECCLExp
 	const auto& Store = TerrainRegion->GetTerrainStore();
 	const auto& Snapshot = Store.GetSnapshot();
 	const FString PrincipalName = Requester && Requester->PlayerState ? FString::FromInt(Requester->PlayerState->GetPlayerId()) : TEXT("ServerExperiment");
-	FCCLTerrainAuthority Authority;
+	FKSITerrainAuthority Authority;
 	Authority.PrincipalId = FGuid::NewDeterministicGuid(Snapshot.Definition.WorldId.ToString() + TEXT("/Terrain/") + PrincipalName);
 	Authority.PolicyRevision = TerrainRegion->GetPublicationSerial() + 1;
-	Authority.AllowedBoundsMeters = FCCLTerrainStore::EditableBoundsMeters(Snapshot.Definition);
+	Authority.AllowedBoundsMeters = FKSITerrainStore::EditableBoundsMeters(Snapshot.Definition);
 	Authority.MaximumRadiusMeters = 2.5;
 	Authority.bCanExcavate = 1;
 	Authority.bCanDeposit = 1;
@@ -120,7 +120,7 @@ bool ACCLExperimentDirector::TerrainAction(APlayerController* Requester, ECCLExp
 		return false;
 	}
 
-	FCCLTerrainEdit Edit;
+	FKSITerrainEdit Edit;
 	Edit.PrincipalId = Authority.PrincipalId;
 	const auto* Receipt = Snapshot.Receipts.Find(Authority.PrincipalId);
 	Edit.Sequence = Receipt ? Receipt->Request.Sequence + 1 : 1;
@@ -130,7 +130,7 @@ bool ACCLExperimentDirector::TerrainAction(APlayerController* Requester, ECCLExp
 	Edit.CenterMeters = FVector(0., 0., 0.);
 	if (Action == ECCLExperimentAction::TerrainDeposit)
 	{
-		Edit.Kind = ECCLTerrainEditKind::Deposit;
+		Edit.Kind = EKSITerrainEditKind::Deposit;
 		Edit.CenterMeters = FVector(4., 3., 0.);
 		Edit.Material = 2;
 	}
@@ -159,12 +159,12 @@ bool ACCLExperimentDirector::TerrainAction(APlayerController* Requester, ECCLExp
 	const auto Result = TerrainRegion->RequestEdit(Edit, Error);
 	if (Action == ECCLExperimentAction::TerrainProtection)
 	{
-		const bool bProtected = Result == ECCLTerrainPrepareResult::Failed && Error.Contains(TEXT("protected"));
+		const bool bProtected = Result == EKSITerrainPrepareResult::Failed && Error.Contains(TEXT("protected"));
 		Error = bProtected ? TEXT("보호 구역 편집을 거부했고 기존 지형을 유지했다.") : TEXT("보호 구역 거부 검사에 실패했다.");
 		return bProtected;
 	}
 
-	if (Result == ECCLTerrainPrepareResult::Prepared)
+	if (Result == EKSITerrainPrepareResult::Prepared)
 	{
 		Error = TEXT("후보 지형과 충돌을 준비하고 있다. 완료 후 함께 적용한다.");
 		return true;
@@ -189,9 +189,9 @@ bool ACCLExperimentDirector::ResetTerrain(FString& Error)
 	}
 
 	TerrainRegion->CancelPendingEdit();
-	FCCLTerrainStore Base;
+	FKSITerrainStore Base;
 	const auto& Definition = TerrainRegion->GetTerrainStore().GetSnapshot().Definition;
-	FCCLTerrainSaveContext Context;
+	FKSITerrainSaveContext Context;
 	Context.WorldId = Definition.WorldId;
 	Context.BaseWorldVersion = Definition.BaseWorldVersion;
 	Context.WorldGeneration = 1;
@@ -326,7 +326,7 @@ bool ACCLExperimentDirector::SaveTerrainWorld(FString& Error)
 	return true;
 }
 
-bool ACCLExperimentDirector::QueueWorldRestore(const TArray<uint8>& TerrainBytes, const FCCLTerrainSaveContext& Context,
+bool ACCLExperimentDirector::QueueWorldRestore(const TArray<uint8>& TerrainBytes, const FKSITerrainSaveContext& Context,
 	const TArray<uint8>& WorldBytes, FString& Error)
 {
 	if (!TerrainRegion || !MoveToSafety(nullptr, 0, Error))
@@ -393,10 +393,10 @@ bool ACCLExperimentDirector::LoadTerrainWorld(FString& Error)
 	}
 
 	FCCLWorldSnapshot Saved;
-	FCCLTerrainSnapshot SavedTerrain;
-	FCCLTerrainSaveContext SavedContext;
+	FKSITerrainSnapshot SavedTerrain;
+	FKSITerrainSaveContext SavedContext;
 	if (!FCCLWorldSnapshotCodec::Decode(Bundle.World, Saved, Error)
-		|| !FCCLTerrainCodec::Decode(*Bytes, SavedTerrain, SavedContext, Error)
+		|| !FKSITerrainCodec::Decode(*Bytes, SavedTerrain, SavedContext, Error)
 		|| !QueueWorldRestore(*Bytes, Bundle.Context, Bundle.World, Error))
 	{
 		return false;

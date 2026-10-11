@@ -17,7 +17,7 @@
 
 namespace
 {
-	bool CheckMapInterest(const UWorld* World, const FCCLEnvironmentInputs& Inputs, FString& Error)
+	bool CheckMapInterest(const UWorld* World, const FKSIEnvironmentInputs& Inputs, FString& Error)
 	{
 		const auto* Config = ACCLWorldEnvironmentConfig::Find(World);
 		return !Config || Config->ValidateViewInputs(Inputs, Error);
@@ -86,10 +86,10 @@ bool UCCLWorldSimulationSubsystem::Start(FCCLLifeSimulation& Life, ECCLWorldDoma
 	FCCLWorldIdentity CandidateIdentity;
 	CandidateIdentity.Domain = Domain;
 	CandidateIdentity.WorldId = FGuid::NewGuid();
-	FCCLWorldClock CandidateClock;
-	FCCLSurfaceSimulation CandidateSurfaceSimulation;
-	FCCLEcologySimulation CandidateEcologySimulation;
-	FCCLEnvironmentInputs CandidateInputs = FCCLEnvironmentInputsCodec::MakeDefault(42);
+	FKSIWorldClock CandidateClock;
+	FKSISurfaceSimulation CandidateSurfaceSimulation;
+	FKSIEcologySimulation CandidateEcologySimulation;
+	FKSIEnvironmentInputs CandidateInputs = FKSIEnvironmentInputsCodec::MakeDefault(42);
 	int32 ConfigCount = 0;
 	for (TActorIterator<ACCLWorldEnvironmentConfig> It(GetWorld()); It; ++It)
 	{
@@ -100,9 +100,9 @@ bool UCCLWorldSimulationSubsystem::Start(FCCLLifeSimulation& Life, ECCLWorldDoma
 		}
 	}
 
-	FCCLCelestialSystem CandidateCelestial;
-	FCCLSurfaceScene CandidateSurfaces;
-	FCCLCelestialObservation Observation;
+	FKSICelestialSystem CandidateCelestial;
+	FKSISurfaceScene CandidateSurfaces;
+	FKSICelestialObservation Observation;
 	FCCLWorldSnapshot Snapshot;
 	const bool bSaved = !Saved.IsEmpty();
 	if (!bSaved)
@@ -110,7 +110,7 @@ bool UCCLWorldSimulationSubsystem::Start(FCCLLifeSimulation& Life, ECCLWorldDoma
 		if (!CandidateClock.Reset(Life.GetTime(), 60, Error)
 			|| !CandidateSurfaceSimulation.Initialize(CandidateIdentity.WorldId, CandidateClock.GetGameSeconds(), Life.GetTime(), 0, Error)
 			|| !CandidateEcologySimulation.Initialize(CandidateIdentity.WorldId, Life.GetTime(), Error)
-			|| !FCCLEnvironmentInputsCodec::Prepare(CandidateInputs, Life.GetTime(), CandidateCelestial, CandidateSurfaces, Observation, Error))
+			|| !FKSIEnvironmentInputsCodec::Prepare(CandidateInputs, Life.GetTime(), CandidateCelestial, CandidateSurfaces, Observation, Error))
 		{
 			return false;
 		}
@@ -128,8 +128,8 @@ bool UCCLWorldSimulationSubsystem::Start(FCCLLifeSimulation& Life, ECCLWorldDoma
 		}
 
 		if (!CheckMapInterest(GetWorld(), Snapshot.Environment, Error)
-			|| !FCCLEnvironmentInputsCodec::CheckDefinition(Snapshot.Environment, CandidateInputs.Celestial.DefinitionId, CandidateInputs.Celestial.Version, Error)
-			|| !FCCLEnvironmentInputsCodec::Prepare(Snapshot.Environment, Snapshot.Clock.WorldSeconds, CandidateCelestial, CandidateSurfaces, Observation, Error))
+			|| !FKSIEnvironmentInputsCodec::CheckDefinition(Snapshot.Environment, CandidateInputs.Celestial.DefinitionId, CandidateInputs.Celestial.Version, Error)
+			|| !FKSIEnvironmentInputsCodec::Prepare(Snapshot.Environment, Snapshot.Clock.WorldSeconds, CandidateCelestial, CandidateSurfaces, Observation, Error))
 		{
 			return false;
 		}
@@ -246,8 +246,8 @@ bool UCCLWorldSimulationSubsystem::AdvancePending(double MaxGameSeconds, double 
 
 	auto* Thermal = GetWorld()->GetSubsystem<UCCLThermalExposureSubsystem>();
 	MaxGameSeconds = FMath::Min(MaxGameSeconds, .25);
-	TFunction<bool(const FKSIWorldStep&, const FCCLSurfaceSimulation*, FString&)> Prepare =
-		[this, &Advancing, Thermal](const FKSIWorldStep& Step, const FCCLSurfaceSimulation* Surface, FString& Reason)
+	TFunction<bool(const FKSIWorldStep&, const FKSISurfaceSimulation*, FString&)> Prepare =
+		[this, &Advancing, Thermal](const FKSIWorldStep& Step, const FKSISurfaceSimulation* Surface, FString& Reason)
 	{
 		if (!Thermal || !Thermal->Prepare(Step, SurfaceSimulation, Reason))
 		{
@@ -371,9 +371,9 @@ bool UCCLWorldSimulationSubsystem::Restore(FCCLLifeSimulation& Life, const TArra
 	}
 
 	FCCLWorldSnapshot Snapshot;
-	FCCLCelestialSystem CandidateCelestial;
-	FCCLSurfaceScene CandidateSurfaces;
-	FCCLCelestialObservation Observation;
+	FKSICelestialSystem CandidateCelestial;
+	FKSISurfaceScene CandidateSurfaces;
+	FKSICelestialObservation Observation;
 	if (!FCCLWorldSnapshotCodec::Decode(Bytes, Snapshot, Error))
 	{
 		return false;
@@ -381,7 +381,7 @@ bool UCCLWorldSimulationSubsystem::Restore(FCCLLifeSimulation& Life, const TArra
 
 	if (Snapshot.bEnvironmentMigrated)
 	{
-		Snapshot.Environment = FCCLEnvironmentInputsCodec::MakeDefault(42);
+		Snapshot.Environment = FKSIEnvironmentInputsCodec::MakeDefault(42);
 		if (const auto* Config = ACCLWorldEnvironmentConfig::Find(GetWorld()); Config && !Config->BuildInputs(Snapshot.Environment, Error))
 		{
 			return false;
@@ -389,8 +389,8 @@ bool UCCLWorldSimulationSubsystem::Restore(FCCLLifeSimulation& Life, const TArra
 	}
 
 	if (!CheckMapInterest(GetWorld(), Snapshot.Environment, Error)
-		|| !FCCLEnvironmentInputsCodec::CheckDefinition(Snapshot.Environment, EnvironmentInputs.Celestial.DefinitionId, EnvironmentInputs.Celestial.Version, Error)
-		|| !FCCLEnvironmentInputsCodec::Prepare(Snapshot.Environment, Snapshot.Clock.WorldSeconds, CandidateCelestial, CandidateSurfaces, Observation, Error))
+		|| !FKSIEnvironmentInputsCodec::CheckDefinition(Snapshot.Environment, EnvironmentInputs.Celestial.DefinitionId, EnvironmentInputs.Celestial.Version, Error)
+		|| !FKSIEnvironmentInputsCodec::Prepare(Snapshot.Environment, Snapshot.Clock.WorldSeconds, CandidateCelestial, CandidateSurfaces, Observation, Error))
 	{
 		return false;
 	}
@@ -469,7 +469,7 @@ void UCCLWorldSimulationSubsystem::UnregisterAdvanceParticipant(ICCLWorldAdvance
 	AdvanceParticipants.Remove(&Participant);
 }
 
-bool UCCLWorldSimulationSubsystem::ReplaceEnvironmentInputs(const FCCLEnvironmentInputs& Candidate, FString& Error)
+bool UCCLWorldSimulationSubsystem::ReplaceEnvironmentInputs(const FKSIEnvironmentInputs& Candidate, FString& Error)
 {
 	if (!CheckAuthority(Error))
 	{
@@ -482,12 +482,12 @@ bool UCCLWorldSimulationSubsystem::ReplaceEnvironmentInputs(const FCCLEnvironmen
 		return false;
 	}
 
-	FCCLCelestialSystem CandidateCelestial;
-	FCCLSurfaceScene CandidateSurfaces;
-	FCCLCelestialObservation Observation;
+	FKSICelestialSystem CandidateCelestial;
+	FKSISurfaceScene CandidateSurfaces;
+	FKSICelestialObservation Observation;
 	if (!CheckMapInterest(GetWorld(), Candidate, Error)
-		|| !FCCLEnvironmentInputsCodec::CheckDefinition(Candidate, EnvironmentInputs.Celestial.DefinitionId, EnvironmentInputs.Celestial.Version, Error)
-		|| !FCCLEnvironmentInputsCodec::Prepare(Candidate, Clock.GetWorldSeconds(), CandidateCelestial, CandidateSurfaces, Observation, Error)
+		|| !FKSIEnvironmentInputsCodec::CheckDefinition(Candidate, EnvironmentInputs.Celestial.DefinitionId, EnvironmentInputs.Celestial.Version, Error)
+		|| !FKSIEnvironmentInputsCodec::Prepare(Candidate, Clock.GetWorldSeconds(), CandidateCelestial, CandidateSurfaces, Observation, Error)
 		|| !SurfaceSimulation.ValidateAirContext(Candidate.Openings, Error))
 	{
 		return false;
@@ -501,7 +501,7 @@ bool UCCLWorldSimulationSubsystem::ReplaceEnvironmentInputs(const FCCLEnvironmen
 	return true;
 }
 
-bool UCCLWorldSimulationSubsystem::ObserveCelestials(FCCLCelestialObservation& Observation, FString& Error) const
+bool UCCLWorldSimulationSubsystem::ObserveCelestials(FKSICelestialObservation& Observation, FString& Error) const
 {
 	if (!bRunning)
 	{
@@ -547,15 +547,15 @@ void UCCLWorldSimulationSubsystem::Publish()
 	}
 }
 
-bool UCCLWorldSimulationSubsystem::BuildEnvironmentView(FCCLEnvironmentView& OutView, FString& Error) const
+bool UCCLWorldSimulationSubsystem::BuildEnvironmentView(FKSIEnvironmentView& OutView, FString& Error) const
 {
-	FCCLCelestialObservation Observation;
+	FKSICelestialObservation Observation;
 	if (!ObserveCelestials(Observation, Error))
 	{
 		return false;
 	}
 
-	FCCLEnvironmentView View;
+	FKSIEnvironmentView View;
 	View.DefinitionId = EnvironmentInputs.Celestial.DefinitionId;
 	View.DefinitionVersion = EnvironmentInputs.Celestial.Version;
 	View.Seed = EnvironmentInputs.Celestial.Seed;
@@ -577,7 +577,7 @@ bool UCCLWorldSimulationSubsystem::BuildEnvironmentView(FCCLEnvironmentView& Out
 	FVector ToSun = FVector::UpVector;
 	for (const auto& Source : Observation.Stars)
 	{
-		FCCLCelestialSourceView Star;
+		FKSICelestialSourceView Star;
 		Star.BodyId = Source.BodyId;
 		Star.LocalDirection = Source.LocalDirection;
 		Star.SolarHours = Source.SolarHours;
@@ -594,7 +594,7 @@ bool UCCLWorldSimulationSubsystem::BuildEnvironmentView(FCCLEnvironmentView& Out
 
 	for (const auto& Body : Observation.SkyBodies)
 	{
-		FCCLCelestialBodyView Sky;
+		FKSICelestialBodyView Sky;
 		Sky.BodyId = Body.BodyId;
 		Sky.LocalDirection = Body.LocalDirection;
 		Sky.AngularRadiusDegrees = Body.AngularRadiusDegrees;
@@ -606,7 +606,7 @@ bool UCCLWorldSimulationSubsystem::BuildEnvironmentView(FCCLEnvironmentView& Out
 	{
 		for (const auto& Probe : Config->Probes)
 		{
-			FCCLShelterQuery Query;
+			FKSIShelterQuery Query;
 			Query.BodyId = View.Observer.BodyId;
 			Query.PositionMeters = Probe.PositionMeters;
 			Query.ToSun = ToSun;
@@ -614,13 +614,13 @@ bool UCCLWorldSimulationSubsystem::BuildEnvironmentView(FCCLEnvironmentView& Out
 			Query.ToWindSource = Probe.ToWindSource;
 			Query.RequiredEpoch = View.SurfaceEpoch;
 			Query.RequiredRevision = View.SurfaceRevision;
-			FCCLShelterSample Sample;
-			if (!FCCLShelterEvaluator::Evaluate(SurfaceScene, Query, Sample, Error))
+			FKSIShelterSample Sample;
+			if (!FKSIShelterEvaluator::Evaluate(SurfaceScene, Query, Sample, Error))
 			{
 				return false;
 			}
 
-			FCCLEnvironmentProbeView Result;
+			FKSIEnvironmentProbeView Result;
 			Result.ProbeId = Probe.ProbeId;
 			Result.PositionMeters = Probe.PositionMeters;
 			Result.ToSun = ToSun;
@@ -739,7 +739,7 @@ void UCCLWorldSimulationSubsystem::ReportFailure(const FString& Error)
 	LastError = Error;
 }
 
-void UCCLWorldSimulationSubsystem::SetGeometryProvider(FGuid Id, TSharedPtr<const ICCLSurfaceProvider> Provider)
+void UCCLWorldSimulationSubsystem::SetGeometryProvider(FGuid Id, TSharedPtr<const IKSISurfaceProvider> Provider)
 {
 	SurfaceScene.SetGeometryProvider(Id, MoveTemp(Provider));
 	if (bRunning && GetWorld()->GetNetMode() != NM_Client && !GetWorld()->bIsTearingDown)
@@ -748,38 +748,38 @@ void UCCLWorldSimulationSubsystem::SetGeometryProvider(FGuid Id, TSharedPtr<cons
 	}
 }
 
-bool UCCLWorldSimulationSubsystem::AddEcologySpecies(const FCCLEcologySpecies& Species, FString& Error)
+bool UCCLWorldSimulationSubsystem::AddEcologySpecies(const FKSIEcologySpecies& Species, FString& Error)
 {
 	return CheckAuthority(Error) && EcologySimulation.AddSpecies(Species, Error);
 }
 
-bool UCCLWorldSimulationSubsystem::AddEcologyHabitat(const FCCLEcologyHabitat& Habitat, FString& Error)
+bool UCCLWorldSimulationSubsystem::AddEcologyHabitat(const FKSIEcologyHabitat& Habitat, FString& Error)
 {
 	return CheckAuthority(Error) && EcologySimulation.AddHabitat(Habitat, Error);
 }
 
-bool UCCLWorldSimulationSubsystem::AddEcologyPopulation(FCCLEcologyPopulation Population, FString& Error)
+bool UCCLWorldSimulationSubsystem::AddEcologyPopulation(FKSIEcologyPopulation Population, FString& Error)
 {
 	return CheckAuthority(Error) && EcologySimulation.AddPopulation(MoveTemp(Population), Error);
 }
 
-bool UCCLWorldSimulationSubsystem::ApplyEcologyEvent(const FCCLEcologyEvent& Event, FString& Error)
+bool UCCLWorldSimulationSubsystem::ApplyEcologyEvent(const FKSIEcologyEvent& Event, FString& Error)
 {
 	return CheckAuthority(Error) && EcologySimulation.Apply(Event, Error);
 }
 
-bool UCCLWorldSimulationSubsystem::AcquireEcologyIndividual(FGuid Id, ECCLEcologyRepresentation Representation,
-	FGuid Writer, FCCLEcologyLease& Lease, FString& Error)
+bool UCCLWorldSimulationSubsystem::AcquireEcologyIndividual(FGuid Id, EKSIEcologyRepresentation Representation,
+	FGuid Writer, FKSIEcologyLease& Lease, FString& Error)
 {
 	return CheckAuthority(Error) && EcologySimulation.Acquire(Id, Representation, Writer, Lease, Error);
 }
 
-bool UCCLWorldSimulationSubsystem::ReleaseEcologyIndividual(const FCCLEcologyLease& Lease, FString& Error)
+bool UCCLWorldSimulationSubsystem::ReleaseEcologyIndividual(const FKSIEcologyLease& Lease, FString& Error)
 {
 	return CheckAuthority(Error) && EcologySimulation.Release(Lease, Error);
 }
 
-bool UCCLWorldSimulationSubsystem::SuspendEcologyIndividual(const FCCLEcologyLease& Lease, FString& Error)
+bool UCCLWorldSimulationSubsystem::SuspendEcologyIndividual(const FKSIEcologyLease& Lease, FString& Error)
 {
 	return CheckAuthority(Error) && EcologySimulation.Suspend(Lease, Error);
 }
@@ -789,34 +789,34 @@ bool UCCLWorldSimulationSubsystem::ReturnEcologyIndividual(FGuid Id, FString& Er
 	return CheckAuthority(Error) && EcologySimulation.ReturnToAggregate(Id, Error);
 }
 
-bool UCCLWorldSimulationSubsystem::TransferEcologyIndividual(const FCCLEcologyLease& Lease,
-	ECCLEcologyRepresentation Representation, FGuid Writer, FCCLEcologyLease& OutLease, FString& Error)
+bool UCCLWorldSimulationSubsystem::TransferEcologyIndividual(const FKSIEcologyLease& Lease,
+	EKSIEcologyRepresentation Representation, FGuid Writer, FKSIEcologyLease& OutLease, FString& Error)
 {
 	return CheckAuthority(Error) && EcologySimulation.Transfer(Lease, Representation, Writer, OutLease, Error);
 }
 
-bool UCCLWorldSimulationSubsystem::UpdateEcologyPosition(const FCCLEcologyLease& Lease, const FVector& PositionMeters, FString& Error)
+bool UCCLWorldSimulationSubsystem::UpdateEcologyPosition(const FKSIEcologyLease& Lease, const FVector& PositionMeters, FString& Error)
 {
 	return CheckAuthority(Error) && EcologySimulation.UpdatePosition(Lease, PositionMeters, Error);
 }
 
-bool UCCLWorldSimulationSubsystem::FinishEcologyIndividual(const FCCLEcologyLease& Lease, const FCCLEcologyEvent& Event, FString& Error)
+bool UCCLWorldSimulationSubsystem::FinishEcologyIndividual(const FKSIEcologyLease& Lease, const FKSIEcologyEvent& Event, FString& Error)
 {
 	return CheckAuthority(Error) && EcologySimulation.Finish(Lease, Event, Error);
 }
 
-bool UCCLWorldSimulationSubsystem::AddSurfaceRegion(FCCLSurfaceGrid Region, FString& Error)
+bool UCCLWorldSimulationSubsystem::AddSurfaceRegion(FKSISurfaceGrid Region, FString& Error)
 {
 	return CheckAuthority(Error) && SurfaceSimulation.AddRegion(MoveTemp(Region), Error);
 }
 
-bool UCCLWorldSimulationSubsystem::AddAirSpace(const FCCLAirSpace& Space, FString& Error)
+bool UCCLWorldSimulationSubsystem::AddAirSpace(const FKSIAirSpace& Space, FString& Error)
 {
 	if (!CheckAuthority(Error))
 	{
 		return false;
 	}
-	FCCLSurfaceSimulation Candidate = SurfaceSimulation;
+	FKSISurfaceSimulation Candidate = SurfaceSimulation;
 	if (!Candidate.AddAirSpace(Space, Error) || !Candidate.ValidateAirContext(EnvironmentInputs.Openings, Error))
 	{
 		return false;
@@ -830,12 +830,12 @@ bool UCCLWorldSimulationSubsystem::IgniteSurface(FGuid RegionId, int32 CellIndex
 	return CheckAuthority(Error) && SurfaceSimulation.Ignite(RegionId, CellIndex, HeatJoules, Error);
 }
 
-bool UCCLWorldSimulationSubsystem::ChangeClimate(FGuid RegionId, const FCCLClimate& Climate, FString& Error)
+bool UCCLWorldSimulationSubsystem::ChangeClimate(FGuid RegionId, const FKSIClimate& Climate, FString& Error)
 {
 	return CheckAuthority(Error) && SurfaceSimulation.ChangeClimate(RegionId, Climate, Error);
 }
 
-bool UCCLWorldSimulationSubsystem::ChangeSurfaceForcing(FGuid RegionId, const FCCLSurfaceForcing& Forcing, FString& Error)
+bool UCCLWorldSimulationSubsystem::ChangeSurfaceForcing(FGuid RegionId, const FKSISurfaceForcing& Forcing, FString& Error)
 {
 	return CheckAuthority(Error) && SurfaceSimulation.ChangeForcing(RegionId, Forcing, Error);
 }
@@ -848,23 +848,23 @@ bool UCCLWorldSimulationSubsystem::ApplySnowContact(FGuid RegionId, FGuid Source
 }
 
 
-bool UCCLWorldSimulationSubsystem::AddEcologyGroup(const FCCLEcologyGroup& Group, FString& Error)
+bool UCCLWorldSimulationSubsystem::AddEcologyGroup(const FKSIEcologyGroup& Group, FString& Error)
 {
 	return CheckAuthority(Error) && EcologySimulation.AddGroup(Group, Error);
 }
 
-bool UCCLWorldSimulationSubsystem::AddEcologyForage(FCCLEcologyForage Forage, FString& Error)
+bool UCCLWorldSimulationSubsystem::AddEcologyForage(FKSIEcologyForage Forage, FString& Error)
 {
 	return CheckAuthority(Error) && EcologySimulation.AddForage(Forage, Error);
 }
 
-bool UCCLWorldSimulationSubsystem::AddEcologyBehavior(FCCLEcologyBehavior Behavior, FString& Error)
+bool UCCLWorldSimulationSubsystem::AddEcologyBehavior(FKSIEcologyBehavior Behavior, FString& Error)
 {
 	return CheckAuthority(Error) && EcologySimulation.AddBehavior(Behavior, Error);
 }
 
 
-bool UCCLWorldSimulationSubsystem::SeedEcology(const FCCLEcologySimulation& Candidate,FString& Error)
+bool UCCLWorldSimulationSubsystem::SeedEcology(const FKSIEcologySimulation& Candidate,FString& Error)
 {
 	if (!CheckAuthority(Error)||!EcologySimulation.GetSpecies().IsEmpty()||!EcologySimulation.GetIndividuals().IsEmpty()
 		||!EcologySimulation.GetHabitats().IsEmpty()||!EcologySimulation.GetPopulations().IsEmpty()
@@ -876,7 +876,7 @@ bool UCCLWorldSimulationSubsystem::SeedEcology(const FCCLEcologySimulation& Cand
 		return false;
 	}
 	TArray<uint8> Bytes;
-	FCCLEcologySimulation Prepared;
+	FKSIEcologySimulation Prepared;
 	if (!Candidate.Capture(Bytes,Error)||!Prepared.Restore(Bytes,Error))
 	{
 		return false;

@@ -97,7 +97,7 @@ void UCCLAgentComponent::EnsureRecord()
 		{
 			AgentId = FGuid::NewGuid();
 		}
-		FCCLAgentRecord Record;
+		FKSIAgentRecord Record;
 		Record.Id = AgentId;
 		Record.DefinitionId = FPrimaryAssetId(TEXT("Agent"), TEXT("Combatant"));
 		Record.Location.Position = GetOwner()->GetActorLocation();

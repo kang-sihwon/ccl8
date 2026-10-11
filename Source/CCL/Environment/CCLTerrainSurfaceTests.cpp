@@ -1,4 +1,4 @@
-#include "CCLTerrainSurface.h"
+#include "KSITerrainSurface.h"
 
 #if WITH_DEV_AUTOMATION_TESTS
 #include "Misc/AutomationTest.h"
@@ -9,46 +9,46 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(FCCLTerrainSurfaceTest, "CCL.Environment.Terrai
 
 bool FCCLTerrainSurfaceTest::RunTest(const FString& Parameters)
 {
-	FCCLTerrainDefinition Definition;
+	FKSITerrainDefinition Definition;
 	Definition.WorldId = FGuid(1, 2, 3, 4);
 	Definition.RegionId = FGuid(5, 6, 7, 8);
 	Definition.DefinitionId = FGuid(9, 10, 11, 12);
 	Definition.MinimumCell = FIntVector(-16, -16, -16);
 	Definition.MaximumCell = FIntVector(16, 16, 8);
-	FCCLTerrainStore Store;
+	FKSITerrainStore Store;
 	FString Error;
 	if (!TestTrue(TEXT("initialize"), Store.Initialize(Definition, Error)))
 	{
 		return false;
 	}
 
-	FCCLTerrainAuthority Authority;
+	FKSITerrainAuthority Authority;
 	Authority.PrincipalId = FGuid(11, 12, 13, 14);
-	Authority.AllowedBoundsMeters = FCCLTerrainStore::EditableBoundsMeters(Definition);
+	Authority.AllowedBoundsMeters = FKSITerrainStore::EditableBoundsMeters(Definition);
 	Authority.bCanExcavate = 1;
-	FCCLTerrainEdit Edit;
+	FKSITerrainEdit Edit;
 	Edit.PrincipalId = Authority.PrincipalId;
 	Edit.Sequence = 1;
 	Edit.ExpectedRevision = Store.GetRevision();
 	Edit.Epoch = Store.GetEpoch();
 	Edit.CenterMeters = FVector(0., 0., -4.);
 	Edit.RadiusMeters = 1.5;
-	FCCLTerrainCandidate Candidate;
-	if (!TestTrue(TEXT("cavity prepared"), Store.PrepareEdit(Edit, Authority, Candidate, Error) == ECCLTerrainPrepareResult::Prepared)
+	FKSITerrainCandidate Candidate;
+	if (!TestTrue(TEXT("cavity prepared"), Store.PrepareEdit(Edit, Authority, Candidate, Error) == EKSITerrainPrepareResult::Prepared)
 		|| !TestTrue(TEXT("cavity committed"), Store.CommitEdit(Candidate, Authority, Error)))
 	{
 		return false;
 	}
 
-	TArray<TSharedRef<const FCCLTerrainMesh>> Meshes;
+	TArray<TSharedRef<const FKSITerrainMesh>> Meshes;
 	for (int32 Z = -1; Z < 1; ++Z)
 	{
 		for (int32 Y = -1; Y < 1; ++Y)
 		{
 			for (int32 X = -1; X < 1; ++X)
 			{
-				auto Mesh = MakeShared<FCCLTerrainMesh>();
-				if (!TestTrue(TEXT("mesh extraction"), FCCLTerrainMesher::BuildChunk(Store.GetSnapshot(), FIntVector(X, Y, Z), Store.GetEpoch(), *Mesh, Error)))
+				auto Mesh = MakeShared<FKSITerrainMesh>();
+				if (!TestTrue(TEXT("mesh extraction"), FKSITerrainMesher::BuildChunk(Store.GetSnapshot(), FIntVector(X, Y, Z), Store.GetEpoch(), *Mesh, Error)))
 				{
 					return false;
 				}
@@ -59,15 +59,15 @@ bool FCCLTerrainSurfaceTest::RunTest(const FString& Parameters)
 	}
 
 	const FTransform Transform(FRotator::ZeroRotator, FVector(1000., 2000., 3000.));
-	auto Surface = MakeShared<FCCLTerrainSurface>(Store.GetSnapshot(), Store.GetEpoch(), Transform, Meshes);
-	FCCLSurfaceQuery Query;
+	auto Surface = MakeShared<FKSITerrainSurface>(Store.GetSnapshot(), Store.GetEpoch(), Transform, Meshes);
+	FKSISurfaceQuery Query;
 	Query.BodyId = Definition.BodyId;
 	Query.OriginMeters = FVector(10.13, 20.17, 32.);
 	Query.Direction = -FVector::ZAxisVector;
 	Query.MaximumDistanceMeters = 12.;
 	Query.RequiredRevision = Store.GetRevision();
 	Query.RequiredEpoch = Store.GetEpoch();
-	TArray<FCCLSurfaceSample> Hits;
+	TArray<FKSISurfaceSample> Hits;
 	if (!TestTrue(TEXT("multi-layer query"), Surface->QuerySurfaces(Query, Hits, Error)) || !TestEqual(TEXT("ground ceiling floor"), Hits.Num(), 3))
 	{
 		return false;
@@ -90,14 +90,14 @@ bool FCCLTerrainSurfaceTest::RunTest(const FString& Parameters)
 	TestFalse(TEXT("reject stale epoch"), Surface->QuerySurfaces(Query, Hits, Error));
 	Query.RequiredEpoch = Store.GetEpoch();
 	Algo::Reverse(Meshes);
-	FCCLTerrainSurface Reordered(Store.GetSnapshot(), Store.GetEpoch(), Transform, Meshes);
+	FKSITerrainSurface Reordered(Store.GetSnapshot(), Store.GetEpoch(), Transform, Meshes);
 	TestTrue(TEXT("reordered chunks queried"), Reordered.QuerySurfaces(Query, Hits, Error));
 	for (int32 Index = 0; Index < Hits.Num(); ++Index)
 	{
 		TestEqual(TEXT("ID independent of chunk iteration"), Hits[Index].SurfaceId, Original[Index].SurfaceId);
 	}
 
-	FCCLSurfaceScene Scene;
+	FKSISurfaceScene Scene;
 	TestTrue(TEXT("empty fixture scene"), Scene.Replace({}, {}, 1, Error));
 	const FGuid OldEpoch = Scene.GetEpoch();
 	Scene.SetGeometryProvider(Definition.RegionId, Surface);
@@ -121,21 +121,21 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(FCCLTerrainSurfaceBoundsTest, "CCL.Environment.
 
 bool FCCLTerrainSurfaceBoundsTest::RunTest(const FString& Parameters)
 {
-	FCCLTerrainDefinition Definition;
+	FKSITerrainDefinition Definition;
 	Definition.WorldId = FGuid(1, 2, 3, 4);
 	Definition.RegionId = FGuid(5, 6, 7, 8);
 	Definition.DefinitionId = FGuid(9, 10, 11, 12);
-	FCCLTerrainStore Store;
+	FKSITerrainStore Store;
 	FString Error;
 	if (!TestTrue(TEXT("initialize layered query fixture"), Store.Initialize(Definition, Error)))
 	{
 		return false;
 	}
 
-	TArray<TSharedRef<const FCCLTerrainMesh>> Meshes;
+	TArray<TSharedRef<const FKSITerrainMesh>> Meshes;
 	for (int32 Layer = 0; Layer < 2; ++Layer)
 	{
-		auto Mesh = MakeShared<FCCLTerrainMesh>();
+		auto Mesh = MakeShared<FKSITerrainMesh>();
 		Mesh->OriginMeters = FVector(0., 0., -4. * Layer);
 		Mesh->VerticesMeters = {FVector(0., 0., 0.), FVector(0., 4., 0.), FVector(4., 4., 0.), FVector(4., 0., 0.)};
 		Mesh->Triangles = {FIntVector(0, 1, 2), FIntVector(0, 2, 3)};
@@ -143,18 +143,18 @@ bool FCCLTerrainSurfaceBoundsTest::RunTest(const FString& Parameters)
 		Mesh->TriangleMaterials = {0, 0};
 		Meshes.Add(Mesh);
 	}
-	Meshes.Add(MakeShared<FCCLTerrainMesh>());
+	Meshes.Add(MakeShared<FKSITerrainMesh>());
 	for (const FRotator Rotation : {FRotator::ZeroRotator, FRotator(17., 63., -12.)})
 	{
 		const FTransform Transform(Rotation, FVector(1000., 2000., 3000.));
-		const FCCLTerrainSurface Surface(Store.GetSnapshot(), Store.GetEpoch(), Transform, Meshes);
-		FCCLSurfaceQuery Query;
+		const FKSITerrainSurface Surface(Store.GetSnapshot(), Store.GetEpoch(), Transform, Meshes);
+		FKSISurfaceQuery Query;
 		Query.BodyId = Definition.BodyId;
 		Query.RequiredRevision = Store.GetRevision();
 		Query.RequiredEpoch = Store.GetEpoch();
 		Query.MaximumDistanceMeters = 12.;
 		Query.Direction = Transform.TransformVectorNoScale(-FVector::ZAxisVector);
-		TArray<FCCLSurfaceSample> Hits;
+		TArray<FKSISurfaceSample> Hits;
 		for (const FVector2D XY : {FVector2D(2., 2.), FVector2D(0., 0.), FVector2D(4., 4.),
 			FVector2D(-2.e-10, 2.), FVector2D(4. + 2.e-10, 2.)})
 		{

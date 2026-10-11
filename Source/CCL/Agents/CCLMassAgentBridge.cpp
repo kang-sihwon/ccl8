@@ -3,7 +3,7 @@
 #include "MassEntityManager.h"
 #include "CCLAgentBiology.h"
 
-FMassEntityHandle CCLMassAgentBridge::Enter(FMassEntityManager& Manager, FCCLAgentStore& Store, FGuid Id)
+FMassEntityHandle CCLMassAgentBridge::Enter(FMassEntityManager& Manager, FKSIAgentStore& Store, FGuid Id)
 {
 	const auto Handle = Store.GetHandle(Id);
 	const auto* Record = Store.Find(Handle);
@@ -38,8 +38,8 @@ FCCLDecisionResult CCLMassAgentBridge::Decide(FMassEntityManager& Manager, FMass
 	return Result;
 }
 
-bool CCLMassAgentBridge::Leave(FMassEntityManager& Manager, FMassEntityHandle Entity, FCCLAgentStore& Store,
-	const FCCLFeatureRegistry& Registry, FString& Error)
+bool CCLMassAgentBridge::Leave(FMassEntityManager& Manager, FMassEntityHandle Entity, FKSIAgentStore& Store,
+	const FKSIFeatureRegistry& Registry, FString& Error)
 {
 	if (!Manager.IsEntityValid(Entity))
 	{

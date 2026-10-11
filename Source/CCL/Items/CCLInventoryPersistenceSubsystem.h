@@ -29,7 +29,7 @@ public:
 	virtual void CancelWorldRestore() override { CancelRestore(); }
 	virtual int32 GetWorldAdvanceOrder() const override { return GetWorldOrder(); }
 	virtual bool NeedsWorldAdvance() const override { return HasEnvironmentBindings(); }
-	virtual bool PrepareWorldAdvance(const FKSIWorldStep& Step, const FCCLSurfaceSimulation& Surface, FString& Error) override
+	virtual bool PrepareWorldAdvance(const FKSIWorldStep& Step, const FKSISurfaceSimulation& Surface, FString& Error) override
 	{
 		return PrepareAdvance(Step, Surface, Error);
 	}
@@ -48,7 +48,7 @@ public:
 
 private:
 	bool HasEnvironmentBindings() const;
-	bool PrepareAdvance(const FKSIWorldStep& Step, const FCCLSurfaceSimulation& Surface, FString& Error);
+	bool PrepareAdvance(const FKSIWorldStep& Step, const FKSISurfaceSimulation& Surface, FString& Error);
 	bool PrepareRestore(const TArray<FCCLInventorySnapshot>& Input, FGuid WorldId, double WorldSeconds, FString& Error,
 						TConstArrayView<UCCLInventoryComponent*> PlayerInventories = {});
 	void CancelRestore();

@@ -1,5 +1,7 @@
 # 천체와 차폐: 같은 세계 시각에서 지역의 환경 입력 구하기
 
+2026-10-12 공용 모듈 분리 이후의 위치는 [Framework 파일 이동표](../FrameworkPlan.md#코드-위치의-전후-비교)를 따른다. 아래 발췌·이름·줄 번호·해시는 기록 당시 기준을 유지하며 소스 링크는 현재 대응 파일을 연다.
+
 천체 시스템은 확정 시각에서 하늘을 계산하고, 표면 질의는 그 빛·강수·바람이 특정 위치에 도달하는지를 계산한다. 태양 Actor를 회전시키는 표현과 게임 규칙이 소비하는 일조를 분리하는 것이 학습 목표다.
 
 ## 비교 기준과 필요한 개념
@@ -14,7 +16,7 @@
 
 고정 조명은 실험 메뉴를 읽기에는 충분했다. 그러나 낮·밤과 날씨를 연결하려면 저장을 복원한 같은 시각에서 같은 태양 방향이 나와야 한다. [결정 19](../DesignLog.md)와 [천체·표면 질의 설계](../EnvironmentPlan.md#천체표면-질의의-구현-설계)가 이 요구의 근거다.
 
-출처: `4458dea`, [CCLCelestialSystem.cpp](../../Source/CCL/Environment/CCLCelestialSystem.cpp), `const double E = EccentricAnomaly`, 205-209줄. 실제 코드의 연속 발췌이며 들여쓰기만 정리했다.
+출처: `4458dea`, [CCLCelestialSystem.cpp](../../Source/KSICelestial/Private/KSICelestialSystem.cpp), `const double E = EccentricAnomaly`, 205-209줄. 실제 코드의 연속 발췌이며 들여쓰기만 정리했다.
 
 ```cpp
     const double E = EccentricAnomaly(Phase(Elapsed, Body.OrbitalPeriodSeconds, Body.MeanAnomalyDegrees), Body.Eccentricity);
@@ -34,7 +36,7 @@
 
 동굴 바닥과 지붕이 같은 수평 좌표에 있을 수 있다. 단일 높이값으로는 둘을 구별하기 어렵다. `ICCLSurfaceProvider`는 광선에 걸리는 여러 표면과 각 표면의 재질·투과율을 반환하는 프로젝트 인터페이스다. 처음에는 유한 평면 패치를 사용했고, 영구 지형 단계에서는 확정 밀도 지형 공급자를 같은 경계에 연결했다.
 
-출처: `4458dea`, [CCLSurfaceQuery.cpp](../../Source/CCL/Environment/CCLSurfaceQuery.cpp), `const FVector3d Directions[]`, 254-259줄. 실제 코드의 연속 발췌이며 들여쓰기만 정리했다.
+출처: `4458dea`, [CCLSurfaceQuery.cpp](../../Source/KSICore/Private/KSISurfaceQuery.cpp), `const FVector3d Directions[]`, 254-259줄. 실제 코드의 연속 발췌이며 들여쓰기만 정리했다.
 
 ```cpp
 const FVector3d Directions[] = { Query.ToSun, Query.ToPrecipitationSource, Query.ToWindSource };

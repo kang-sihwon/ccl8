@@ -1,5 +1,7 @@
 # Agent 지속 상태: ID, 세대와 실행권으로 쓰기를 제한하기
 
+2026-10-12 공용 모듈 분리 이후의 위치는 [Framework 파일 이동표](../FrameworkPlan.md#코드-위치의-전후-비교)를 따른다. 아래 발췌·이름·줄 번호·해시는 기록 당시 기준을 유지하며 소스 링크는 현재 대응 파일을 연다.
+
 Agent의 삶은 Actor가 아닌 Record에 남는다. Actor·간략 실행기·Mass가 같은 Record를 다룰 때 Store가 세대와 실행권을 검증한다. `Source/CCL/Agents/CCLAgentTypes.cpp`와 `CCLAgentSnapshot.cpp`에서 교체·저장·실패 때 원본을 지키는 방식을 이해한다.
 
 ## 1. 비교 기준
@@ -29,7 +31,7 @@ FInstancedStruct는 [엔진 근거](EngineEvidence.md)의 UE5 타입을 사용�
 
 ## 4. 최초 실행권 발급
 
-출처: `6867271`, [CCLAgentTypes.cpp](../../Source/CCL/Agents/CCLAgentTypes.cpp):86의 `FCCLAgentStore::Acquire`. 실제 코드 전체 함수이며 들여쓰기를 공백으로 바꿨다.
+출처: `6867271`, [CCLAgentTypes.cpp](../../Source/KSIAgent/Private/KSIAgentTypes.cpp):86의 `FCCLAgentStore::Acquire`. 실제 코드 전체 함수이며 들여쓰기를 공백으로 바꿨다.
 
 ```cpp
 FCCLAgentLease FCCLAgentStore::Acquire(FCCLAgentHandle Handle, FGuid Writer)
@@ -57,7 +59,7 @@ FCCLAgentLease FCCLAgentStore::Acquire(FCCLAgentHandle Handle, FGuid Writer)
 
 ## 6. 현재 Commit과 일괄 검사
 
-출처: `50e5838`, [CCLAgentTypes.cpp](../../Source/CCL/Agents/CCLAgentTypes.cpp):100의 `FCCLAgentStore::Commit`. 실제 코드 전체 함수이며 들여쓰기를 공백으로 바꿨다.
+출처: `50e5838`, [CCLAgentTypes.cpp](../../Source/KSIAgent/Private/KSIAgentTypes.cpp):100의 `FCCLAgentStore::Commit`. 실제 코드 전체 함수이며 들여쓰기를 공백으로 바꿨다.
 
 ```cpp
 bool FCCLAgentStore::Commit(const FCCLAgentLease& Lease, FCCLAgentRecord Record,
@@ -79,7 +81,7 @@ bool FCCLAgentStore::Commit(const FCCLAgentLease& Lease, FCCLAgentRecord Record,
 
 Writer와 세대가 맞아도 Epoch가 다르면 실패한다. 시간 역행과 Record ID 바꿔치기도 거부한다. Registry가 후보 Feature를 변환·검증한 후에만 원본을 교체한다.
 
-출처: `50e5838`, [CCLAgentTypes.cpp](../../Source/CCL/Agents/CCLAgentTypes.cpp):116의 `FCCLAgentStore::CommitBatch`. 실제 코드 전체 함수이며 들여쓰기를 공백으로 바꿨다.
+출처: `50e5838`, [CCLAgentTypes.cpp](../../Source/KSIAgent/Private/KSIAgentTypes.cpp):116의 `FCCLAgentStore::CommitBatch`. 실제 코드 전체 함수이며 들여쓰기를 공백으로 바꿨다.
 
 ```cpp
 bool FCCLAgentStore::CommitBatch(TArray<TPair<FCCLAgentLease, FCCLAgentRecord>> Updates,

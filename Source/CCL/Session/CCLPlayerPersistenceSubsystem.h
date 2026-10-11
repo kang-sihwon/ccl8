@@ -9,7 +9,7 @@
 #include "CCLPlayerPersistenceSubsystem.generated.h"
 
 class ACCLPlayerState;
-class FCCLSurfaceSimulation;
+class FKSISurfaceSimulation;
 struct FKSIWorldStep;
 
 // Owns player profiles of a server world and stores them in the "Players" world section.
@@ -33,7 +33,7 @@ public:
 	virtual void CancelWorldRestore() override;
 	virtual int32 GetWorldAdvanceOrder() const override { return GetWorldOrder(); }
 	virtual bool NeedsWorldAdvance() const override;
-	virtual bool PrepareWorldAdvance(const FKSIWorldStep& Step, const FCCLSurfaceSimulation& Surface, FString& Error) override;
+	virtual bool PrepareWorldAdvance(const FKSIWorldStep& Step, const FKSISurfaceSimulation& Surface, FString& Error) override;
 	virtual void CommitWorldAdvance() override;
 	virtual void PublishWorldAdvance() override;
 	virtual void CancelWorldAdvance() override;

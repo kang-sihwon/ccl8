@@ -161,7 +161,7 @@ void UCCLThermalSmokeSubsystem::Tick(float DeltaTime)
 		{
 			return;
 		}
-		HotPosition = FCCLSurfaceThermalContext::CellPosition(*Grid, 5) * 100. + FVector(0., 0., 90.);
+		HotPosition = FKSISurfaceThermalContext::CellPosition(*Grid, 5) * 100. + FVector(0., 0., 90.);
 		SafePosition = TargetActor->GetActorLocation();
 		TargetActor->SetActorLocation(HotPosition, false, nullptr, ETeleportType::TeleportPhysics);
 		if (!Check(R->IgniteSurface(Id, 5, 600000., Error), TEXT("ignite actual fuel")))
@@ -259,7 +259,7 @@ void UCCLThermalSmokeSubsystem::Tick(float DeltaTime)
 		{
 			return;
 		}
-		FCCLAirSpace Room;
+		FKSIAirSpace Room;
 		Room.SpaceId = FGuid(7117, 7117, 7117, 1);
 		Room.MinimumMeters = SafePosition / 100. - FVector(.5, .5, .8);
 		Room.MaximumMeters = SafePosition / 100. + FVector(.5, .5, .8);

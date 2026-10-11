@@ -1,21 +1,21 @@
 #include "CCLThermalExposure.h"
-#include "CCLSurfaceSimulation.h"
-#include "CCLSurfaceQuery.h"
+#include "KSISurfaceSimulation.h"
+#include "KSISurfaceQuery.h"
 #include "Misc/AutomationTest.h"
 
 #if WITH_DEV_AUTOMATION_TESTS
 namespace
 {
-FCCLSurfaceGrid ThermalGrid(FGuid Id, double Temperature)
+FKSISurfaceGrid ThermalGrid(FGuid Id, double Temperature)
 {
-	FCCLSurfaceGrid G;
+	FKSISurfaceGrid G;
 	G.RegionId = Id;
 	G.Size = FIntPoint(1, 1);
 	G.SpacingMeters = 1.;
 	G.Cells.SetNum(1);
 	G.Fire.Cells.SetNum(1);
 	FString Error;
-	FCCLCombustionModel::Initialize(G.Fire.Material, 1., Temperature, G.Fire.Cells[0], Error);
+	FKSICombustionModel::Initialize(G.Fire.Material, 1., Temperature, G.Fire.Cells[0], Error);
 	return G;
 }
 } // namespace
@@ -23,7 +23,7 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(FCCLThermalSamplingTest, "CCL.Environment.Therm
 								 EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
 bool FCCLThermalSamplingTest::RunTest(const FString& Parameters)
 {
-	FCCLSurfaceSimulation S;
+	FKSISurfaceSimulation S;
 	FCCLThermalDamagePolicy P;
 	FString E;
 	TestTrue(TEXT("initialize"), S.Initialize(FGuid::NewGuid(), 0., 0., 0, E));
@@ -40,7 +40,7 @@ bool FCCLThermalSamplingTest::RunTest(const FString& Parameters)
 		CCLThermalExposure::Sample(S, Pos, P, nullptr, NAME_None, Rate, E);
 		TestEqual(TEXT("outside horizontal or vertical contact"), Rate, 0.);
 	}
-	FCCLAirSpace Room;
+	FKSIAirSpace Room;
 	Room.SpaceId = FGuid(2, 2, 2, 2);
 	Room.MaximumMeters = FVector(2., 2., 3.);
 	Room.VolumeCubicMeters = 12.;
@@ -61,8 +61,8 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(FCCLThermalBarrierTest, "CCL.Environment.Therma
 								 EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
 bool FCCLThermalBarrierTest::RunTest(const FString& Parameters)
 {
-	FCCLSurfaceSimulation S;
-	FCCLSurfaceScene Scene;
+	FKSISurfaceSimulation S;
+	FKSISurfaceScene Scene;
 	FCCLThermalDamagePolicy P;
 	FString E;
 	auto G = ThermalGrid(FGuid(3, 3, 3, 3), 260.);
@@ -75,7 +75,7 @@ bool FCCLThermalBarrierTest::RunTest(const FString& Parameters)
 	TestTrue(TEXT("absolute bed contact"),
 			 CCLThermalExposure::Sample(S, FVector(.5, .5, 6.), P, &Scene, TEXT("Earth"), Rate, E));
 	TestEqual(TEXT("origin height not added to absolute bed"), Rate, 10.);
-	FCCLSurfacePatch Roof;
+	FKSISurfacePatch Roof;
 	Roof.SurfaceId = FGuid(4, 4, 4, 4);
 	Roof.BodyId = TEXT("Earth");
 	Roof.MaterialId = TEXT("Stone");
@@ -87,7 +87,7 @@ bool FCCLThermalBarrierTest::RunTest(const FString& Parameters)
 	TestTrue(TEXT("partial barrier"), Scene.Replace({Roof}, {}, 3, E));
 	CCLThermalExposure::Sample(S, FVector(.5, .5, 6.), P, &Scene, TEXT("Earth"), Rate, E);
 	TestEqual(TEXT("transmitted contact"), Rate, 2.5);
-	FCCLSurfaceScene Invalid;
+	FKSISurfaceScene Invalid;
 	TestFalse(TEXT("uninitialized geometry rejected"),
 			  CCLThermalExposure::Sample(S, FVector(.5, .5, 6.), P, &Invalid, TEXT("Earth"), Rate, E));
 	TestEqual(TEXT("failure preserves output"), Rate, 2.5);

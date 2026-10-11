@@ -14,7 +14,7 @@ namespace
 		double Mud = 0.;
 	};
 
-	FCycleTotals MeasureCycle(const FCCLSurfaceGrid& Grid)
+	FCycleTotals MeasureCycle(const FKSISurfaceGrid& Grid)
 	{
 		FCycleTotals Result;
 		for (int32 Index = 0; Index < Grid.Cells.Num(); ++Index)
@@ -34,9 +34,9 @@ namespace
 	}
 }
 
-FCCLSurfaceGrid ACCLExperimentDirector::CycleGrid()
+FKSISurfaceGrid ACCLExperimentDirector::CycleGrid()
 {
-	FCCLSurfaceGrid Grid;
+	FKSISurfaceGrid Grid;
 	Grid.RegionId = CycleRegionId();
 	Grid.OriginMeters = UCCLExperimentDefinition::ZoneCenter(9) / 100. + FVector(-4., -4., 0.);
 	Grid.Size = FIntPoint(16, 16);
@@ -149,7 +149,7 @@ void ACCLExperimentDirector::TickCycleExperiment()
 	}
 
 	FString Error;
-	if (!Grid || !FCCLSurfaceSimulation::ValidateRegion(*Grid, Error)
+	if (!Grid || !FKSISurfaceSimulation::ValidateRegion(*Grid, Error)
 		|| FMath::Abs(Grid->BalanceErrorCubicMeters()) > 1.e-7)
 	{
 		Finish(*Result, false, TEXT("순환 표면의 유효성 또는 물질 수지가 깨졌다. ") + Error);
@@ -202,7 +202,7 @@ void ACCLExperimentDirector::TickCycleExperiment()
 	if (CyclePhase == 5 && ++CycleCount == 2)
 	{
 		TArray<uint8> Bytes, RestoredBytes;
-		FCCLSurfaceSimulation Restored;
+		FKSISurfaceSimulation Restored;
 		bPassed = Runtime->GetSurfaceSimulation().Capture(Bytes, Error) && Restored.Restore(Bytes, Error)
 			&& Restored.Capture(RestoredBytes, Error) && Bytes == RestoredBytes;
 		Finish(*Result, bPassed, bPassed ? TEXT("적설·압축·융해·유출·진흙·결빙·건조 두 회차와 표면 저장 복원을 확인했다. 영구 수로는 구역 05에서 별도 검증한다.") : Error);

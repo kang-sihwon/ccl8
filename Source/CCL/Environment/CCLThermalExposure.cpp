@@ -1,7 +1,7 @@
 #include "CCLThermalExposure.h"
 
-#include "CCLSurfaceSimulation.h"
-#include "CCLSurfaceQuery.h"
+#include "KSISurfaceSimulation.h"
+#include "KSISurfaceQuery.h"
 #include "CCLWorldSimulationSubsystem.h"
 #include "Agents/CCLAgentComponent.h"
 #include "Agents/CCLAgentWorldSubsystem.h"
@@ -22,8 +22,8 @@ bool FCCLThermalDamagePolicy::Validate() const
 		   ContactHeightMeters <= 10.;
 }
 
-bool CCLThermalExposure::Sample(const FCCLSurfaceSimulation& Surface, const FVector& Position,
-								const FCCLThermalDamagePolicy& Policy, const ICCLSurfaceProvider* Shelter, FName BodyId,
+bool CCLThermalExposure::Sample(const FKSISurfaceSimulation& Surface, const FVector& Position,
+								const FCCLThermalDamagePolicy& Policy, const IKSISurfaceProvider* Shelter, FName BodyId,
 								double& DamagePerSecond, FString& Error)
 {
 	if (!Policy.Validate() || Position.ContainsNaN() || !Surface.IsInitialized())
@@ -63,18 +63,18 @@ bool CCLThermalExposure::Sample(const FCCLSurfaceSimulation& Surface, const FVec
 		double Transmission = 1.;
 		if (Shelter)
 		{
-			FCCLSurfaceQuery Q;
+			FKSISurfaceQuery Q;
 			Q.BodyId = BodyId;
-			Q.OriginMeters = FCCLSurfaceThermalContext::CellPosition(G, Index);
+			Q.OriginMeters = FKSISurfaceThermalContext::CellPosition(G, Index);
 			const FVector Segment = Position - Q.OriginMeters;
 			if (Segment.Length() > 2.e-5)
 			{
 				Q.Direction = Segment.GetSafeNormal();
 				Q.MaximumDistanceMeters = Segment.Length() - 1.e-5;
-				Q.KindMask = uint8(ECCLSurfaceKind::Terrain) | uint8(ECCLSurfaceKind::Structure);
+				Q.KindMask = uint8(EKSISurfaceKind::Terrain) | uint8(EKSISurfaceKind::Structure);
 				Q.RequiredRevision = Shelter->GetRevision();
 				Q.RequiredEpoch = Shelter->GetEpoch();
-				TArray<FCCLSurfaceSample> Hits;
+				TArray<FKSISurfaceSample> Hits;
 				if (!Shelter->QuerySurfaces(Q, Hits, Error))
 				{
 					return false;
@@ -142,7 +142,7 @@ void UCCLThermalExposureSubsystem::Cancel()
 	PendingStep = 0;
 }
 
-bool UCCLThermalExposureSubsystem::Prepare(const FKSIWorldStep& Step, const FCCLSurfaceSimulation& Previous,
+bool UCCLThermalExposureSubsystem::Prepare(const FKSIWorldStep& Step, const FKSISurfaceSimulation& Previous,
 										   FString& Error)
 {
 	Cancel();

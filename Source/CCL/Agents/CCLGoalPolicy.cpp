@@ -3,20 +3,20 @@
 #include "CCLAgentTags.h"
 namespace
 {
-template<class T> const T* GoalFeature(const FCCLAgentRecord& Agent, FGameplayTag Tag)
+template<class T> const T* GoalFeature(const FKSIAgentRecord& Agent, FGameplayTag Tag)
 {
 	const auto* State = Agent.Features.Find(Tag);
 	return State ? State->Data.GetPtr<T>() : nullptr;
 }
 }
 
-float UCCLGoalProgressEvaluator::Evaluate(const FCCLAgentRecord& Agent, const FCCLLifeGoalState& Goal,
+float UCCLGoalProgressEvaluator::Evaluate(const FKSIAgentRecord& Agent, const FCCLLifeGoalState& Goal,
 	const FCCLEconomyState& Economy) const
 {
 	return CCLGoalPolicy::Evaluate(Metric, Skill, Agent, Goal, Economy);
 }
 
-float CCLGoalPolicy::Evaluate(ECCLGoalMetric Metric, FGameplayTag SkillTag, const FCCLAgentRecord& Agent,
+float CCLGoalPolicy::Evaluate(ECCLGoalMetric Metric, FGameplayTag SkillTag, const FKSIAgentRecord& Agent,
 	const FCCLLifeGoalState& Goal, const FCCLEconomyState& Economy)
 {
 	const auto* Parameters = Goal.Parameters.GetPtr<FCCLLifeGoalParameters>();

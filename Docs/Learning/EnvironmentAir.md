@@ -1,5 +1,7 @@
 # 실내 환기: 여러 표면이 공유하는 공기를 한 번만 진행하기
 
+2026-10-12 공용 모듈 분리 이후의 위치는 [Framework 파일 이동표](../FrameworkPlan.md#코드-위치의-전후-비교)를 따른다. 아래 발췌·이름·줄 번호·해시는 기록 당시 기준을 유지하며 소스 링크는 현재 대응 파일을 연다.
+
 공기 모델은 방의 열·수증기·연기를 보관하고 문으로 교환되는 양을 계산한다. 한 방에 표면 지역이 여러 개 있어도 환기 시간은 한 번만 진행해야 한다. 이 장은 상태 후보 복사에 더해 계산 순서와 공유 예산이 필요한 이유를 설명한다.
 
 ## 비교 기준과 이전의 차폐
@@ -12,7 +14,7 @@
 
 ## 문 면적을 교환 부피로 바꾸기
 
-출처: `WT-2026-10-10`, [CCLAirSimulation.cpp](../../Source/CCL/Environment/CCLAirSimulation.cpp), `const double Speed =`, 237-238줄. 실제 코드의 연속 발췌이며 들여쓰기만 정리했다.
+출처: `WT-2026-10-10`, [CCLAirSimulation.cpp](../../Source/KSIEnvironment/Private/KSIAirSimulation.cpp), `const double Speed =`, 237-238줄. 실제 코드의 연속 발췌이며 들여쓰기만 정리했다.
 
 ```cpp
 const double Speed = 0.05 + Wind * 0.1 + FMath::Sqrt(FMath::Abs(TA - TB)) * 0.01;
@@ -31,7 +33,7 @@ HalfExtents는 사각형의 반너비·반높이다. 둘에 4를 곱해야 전�
 
 ## 표면을 다 계산한 뒤 환기를 한 번 실행한다
 
-출처: `WT-2026-10-10`, [CCLSurfaceSimulation.cpp](../../Source/CCL/Environment/CCLSurfaceSimulation.cpp), `const FCCLAirSimulation PreviousAir = Air;`, 455-459줄. 실제 코드의 연속 발췌이며 들여쓰기만 정리했다.
+출처: `WT-2026-10-10`, [CCLSurfaceSimulation.cpp](../../Source/KSIEnvironment/Private/KSISurfaceSimulation.cpp), `const FCCLAirSimulation PreviousAir = Air;`, 455-459줄. 실제 코드의 연속 발췌이며 들여쓰기만 정리했다.
 
 ```cpp
 const FCCLAirSimulation PreviousAir = Air;
@@ -43,7 +45,7 @@ Context.Observer = Observer;
 
 공통 하위 단계가 시작되면 공기를 고정한다. 모든 표면 지역은 같은 `PreviousAir`를 읽고 연소·증발의 전달량을 `Context`에 모은다. 그 후 공간별 전달량을 더하고 환기를 한 번 실행한다.
 
-출처: `WT-2026-10-10`, [CCLSurfaceSimulation.cpp](../../Source/CCL/Environment/CCLSurfaceSimulation.cpp), `if (!Air.Advance(GameDelta, EffectiveOpenings, Exteriors, Error))`, 612-615줄. 실제 코드의 연속 발췌이며 들여쓰기만 정리했다.
+출처: `WT-2026-10-10`, [CCLSurfaceSimulation.cpp](../../Source/KSIEnvironment/Private/KSISurfaceSimulation.cpp), `if (!Air.Advance(GameDelta, EffectiveOpenings, Exteriors, Error))`, 612-615줄. 실제 코드의 연속 발췌이며 들여쓰기만 정리했다.
 
 ```cpp
 if (!Air.Advance(GameDelta, EffectiveOpenings, Exteriors, Error))

@@ -2,9 +2,9 @@
 
 #include "CCLWorldSimulationSubsystem.h"
 
-bool ACCLExperimentDirector::VegetationGrid(double WorldSeconds, FCCLSurfaceGrid& Grid, FString& Error)
+bool ACCLExperimentDirector::VegetationGrid(double WorldSeconds, FKSISurfaceGrid& Grid, FString& Error)
 {
-	FCCLSurfaceGrid G;
+	FKSISurfaceGrid G;
 	G.RegionId = VegetationRegionId();
 	G.OriginMeters = UCCLExperimentDefinition::ZoneCenter(7) / 100. + FVector(-6.75, -2.25, 0.);
 	G.Size = FIntPoint(9, 3);
@@ -14,13 +14,13 @@ bool ACCLExperimentDirector::VegetationGrid(double WorldSeconds, FCCLSurfaceGrid
 	G.Forcing.FlowConductance = 0.;
 	G.Forcing.DrainageMetersPerWorldSecond = 0.;
 	G.Forcing.InfiltrationMetersPerWorldSecond = 0.00005;
-	TArray<FCCLVegetationSpecies> Species;
-	TArray<FCCLVegetationSeed> Seeds;
+	TArray<FKSIVegetationSpecies> Species;
+	TArray<FKSIVegetationSeed> Seeds;
 	for (int32 I = 0; I < 9; ++I)
 	{
-		FCCLVegetationSpecies S;
+		FKSIVegetationSpecies S;
 		S.Id = FGuid(7011, 2, 1, I + 1);
-		S.Kind = ECCLVegetationKind(I);
+		S.Kind = EKSIVegetationKind(I);
 		S.MaximumBiomassKg = 1.;
 		S.GrowthKgPerWorldSecond = 0.0005;
 		S.LifespanSeconds = 1800. + I * 90.;
@@ -34,7 +34,7 @@ bool ACCLExperimentDirector::VegetationGrid(double WorldSeconds, FCCLSurfaceGrid
 	{
 		const int32 Kind = I % 9;
 		const int32 Row = I / 9;
-		FCCLVegetationSeed Seed;
+		FKSIVegetationSeed Seed;
 		Seed.Id = FGuid(7011, 3, 1, I + 1);
 		Seed.SpeciesIndex = Kind;
 		Seed.BiomassKg = 0.15;
@@ -52,7 +52,7 @@ bool ACCLExperimentDirector::VegetationGrid(double WorldSeconds, FCCLSurfaceGrid
 	G.Forcing.BoundaryConductance = 0.1;
 	G.Forcing.BoundaryLevelMeters = 0.2;
 	G.Ledger.InitialCubicMeters = G.TotalCubicMeters();
-	if (!CCLSurfaceVegetation::Initialize(G, Species, Seeds, WorldSeconds, Error))
+	if (!KSISurfaceVegetation::Initialize(G, Species, Seeds, WorldSeconds, Error))
 	{
 		return false;
 	}
@@ -89,8 +89,8 @@ bool ACCLExperimentDirector::RunVegetation(FString& Error)
 		Error = TEXT("식생 구역이 없다. 실험 초기화 후 다시 검사해 줘.");
 		return false;
 	}
-	FCCLSurfaceSimulation Candidate;
-	FCCLCelestialSystem Celestial;
+	FKSISurfaceSimulation Candidate;
+	FKSICelestialSystem Celestial;
 	const auto& Inputs = Runtime->GetEnvironmentInputs();
 	if (!Candidate.Initialize(Runtime->GetIdentity().WorldId, Runtime->GetClock().GetGameSeconds(),
 		Runtime->GetClock().GetWorldSeconds(), Runtime->GetSurfaceSimulation().GetStepId(), Error)
@@ -105,7 +105,7 @@ bool ACCLExperimentDirector::RunVegetation(FString& Error)
 	Step.WorldFromSeconds = Candidate.GetWorldSeconds();
 	Step.WorldToSeconds = Step.WorldFromSeconds + 3600.;
 	TArray<uint8> Bytes, Again;
-	FCCLSurfaceSimulation Restored;
+	FKSISurfaceSimulation Restored;
 	return Candidate.Advance(Step, Error, &Celestial, &Inputs.Observer)
 		&& Candidate.Capture(Bytes, Error) && Restored.Restore(Bytes, Error)
 		&& Restored.Capture(Again, Error) && Bytes == Again;

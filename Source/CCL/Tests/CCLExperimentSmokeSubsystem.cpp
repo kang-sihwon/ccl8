@@ -278,7 +278,7 @@ void UCCLExperimentSmokeSubsystem::Tick(float DeltaTime)
 
 	if (Step == 0)
 	{
-		FCCLWorldClockSnapshot BeforeManual, WhileManual, AfterManual;
+		FKSIWorldClockSnapshot BeforeManual, WhileManual, AfterManual;
 		if (!Check(Runtime->GetClock().Capture(BeforeManual, Error) && Runtime->AcquireManualAdvance(this, Error) &&
 			!Runtime->AcquireManualAdvance(Director, Error), TEXT("manual clock control has one world owner")))
 		{
@@ -856,8 +856,8 @@ bool UCCLExperimentSmokeSubsystem::CheckReplicatedEnvironment()
 		}
 
 		FString Error;
-		FCCLCelestialSystem System;
-		FCCLCelestialObservation Observation;
+		FKSICelestialSystem System;
+		FKSICelestialObservation Observation;
 		if (!Check(System.Initialize(Config->CelestialDefinition->Definition, Error)
 			&& System.Observe(Time.WorldSeconds, View.Observer, Observation, Error)
 			&& Observation.Stars.Num() == View.Stars.Num(), TEXT("client rebuilds exact server observation timestamp")))

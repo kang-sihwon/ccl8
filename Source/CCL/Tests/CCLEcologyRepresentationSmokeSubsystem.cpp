@@ -57,7 +57,7 @@ void UCCLEcologyRepresentationSmokeSubsystem::Tick(float DeltaTime)
 				if (It->GetIndividualId() == RepresentationId(90 + I))
 				{
 					const FVector Expected(11. + I * 3., 41., 1.5);
-					if (It->GetMovementMedium() != ECCLEcologyMovement(I) || !It->GetActorLocation().Equals(Expected * 100., .1))
+					if (It->GetMovementMedium() != EKSIEcologyMovement(I) || !It->GetActorLocation().Equals(Expected * 100., .1))
 					{
 						return;
 					}
@@ -70,7 +70,7 @@ void UCCLEcologyRepresentationSmokeSubsystem::Tick(float DeltaTime)
 		if (Step == 0 && Seen == 4)
 		{
 			FString Error;
-			if (Representations->SetRepresentation(RepresentationId(90), ECCLEcologyRepresentation::Mass, Error))
+			if (Representations->SetRepresentation(RepresentationId(90), EKSIEcologyRepresentation::Mass, Error))
 			{
 				Finish(false, TEXT("client changed server ecology representation"));
 				return;
@@ -123,9 +123,9 @@ void UCCLEcologyRepresentationSmokeSubsystem::Tick(float DeltaTime)
 		InitialTime = Runtime->GetClock().GetWorldSeconds();
 		auto Reserve = [&](uint32 Population, uint32 Id, bool bPersistent)
 		{
-			FCCLEcologyEvent E;
+			FKSIEcologyEvent E;
 			E.Id = RepresentationId(Id + 100);
-			E.Kind = ECCLEcologyEventKind::Materialize;
+			E.Kind = EKSIEcologyEventKind::Materialize;
 			E.Source = RepresentationId(Population);
 			E.CohortId = RepresentationId(Population + 10);
 			E.IndividualId = RepresentationId(Id);
@@ -135,17 +135,17 @@ void UCCLEcologyRepresentationSmokeSubsystem::Tick(float DeltaTime)
 		};
 		for (uint32 I = 0; I < 4; ++I)
 		{
-			FCCLEcologySpecies S;
+			FKSIEcologySpecies S;
 			S.Id = RepresentationId(10 + I);
-			S.Movement = ECCLEcologyMovement(I);
+			S.Movement = EKSIEcologyMovement(I);
 			S.MaturitySeconds = 10.;
 			S.LifespanSeconds = 200.;
-			FCCLEcologyHabitat H;
+			FKSIEcologyHabitat H;
 			H.Id = RepresentationId(20 + I);
 			H.MinimumMeters = FVector(10. + I * 3., 40., 0.);
 			H.MaximumMeters = H.MinimumMeters + FVector(2., 2., 3.);
 			H.MovementMask = 1 << I;
-			FCCLEcologyPopulation P;
+			FKSIEcologyPopulation P;
 			P.Id = RepresentationId(30 + I);
 			P.SpeciesId = S.Id;
 			P.HabitatId = H.Id;
@@ -157,7 +157,7 @@ void UCCLEcologyRepresentationSmokeSubsystem::Tick(float DeltaTime)
 			}
 
 			const FGuid Id = RepresentationId(50 + I);
-			if (!Check(Representations->SetRepresentation(Id, ECCLEcologyRepresentation::Actor, Error), TEXT("spawn Actor")))
+			if (!Check(Representations->SetRepresentation(Id, EKSIEcologyRepresentation::Actor, Error), TEXT("spawn Actor")))
 			{
 				return;
 			}
@@ -171,7 +171,7 @@ void UCCLEcologyRepresentationSmokeSubsystem::Tick(float DeltaTime)
 
 			const FVector Position = (H.MinimumMeters + H.MaximumMeters) * .5 + FVector(.25, 0., 0.);
 			ActorEntry.Actor->SetActorLocation(Position * 100.);
-			if (!Check(Representations->SetRepresentation(Id, ECCLEcologyRepresentation::Mass, Error), TEXT("Actor to Mass flushes pending position")))
+			if (!Check(Representations->SetRepresentation(Id, EKSIEcologyRepresentation::Mass, Error), TEXT("Actor to Mass flushes pending position")))
 			{
 				return;
 			}
@@ -188,7 +188,7 @@ void UCCLEcologyRepresentationSmokeSubsystem::Tick(float DeltaTime)
 
 			{
 				auto Processing = Manager.NewProcessingScope();
-				if (!Check(!Representations->SetRepresentation(Id, ECCLEcologyRepresentation::Actor, Error)
+				if (!Check(!Representations->SetRepresentation(Id, EKSIEcologyRepresentation::Actor, Error)
 					&& Ecology.IsLeaseCurrent(MassEntry.Lease), TEXT("processing guard")))
 				{
 					return;
@@ -197,11 +197,11 @@ void UCCLEcologyRepresentationSmokeSubsystem::Tick(float DeltaTime)
 
 			const FVector MassPosition = Position + FVector(0., .1, 0.);
 			Manager.GetFragmentDataChecked<FCCLEcologyMassFragment>(MassEntry.Entity).PositionMeters = MassPosition;
-			if (!Check(Representations->SetRepresentation(Id, ECCLEcologyRepresentation::Actor, Error)
+			if (!Check(Representations->SetRepresentation(Id, EKSIEcologyRepresentation::Actor, Error)
 				&& !Manager.IsEntityValid(MassEntry.Entity)
 				&& Representations->Find(Id)->Actor->GetActorLocation().Equals(MassPosition * 100., .001)
 				&& !Representations->SetPosition(Id, H.MaximumMeters + FVector(1.), Error)
-				&& Representations->SetRepresentation(Id, ECCLEcologyRepresentation::Dormant, Error)
+				&& Representations->SetRepresentation(Id, EKSIEcologyRepresentation::Dormant, Error)
 				&& Ecology.LivingCount(P.Id) == 10 && Ecology.AggregateCount(P.Id) == (I == 0 ? 9 : 10), TEXT("Mass to Actor to aggregate")))
 			{
 				return;
@@ -209,7 +209,7 @@ void UCCLEcologyRepresentationSmokeSubsystem::Tick(float DeltaTime)
 		}
 
 		const FGuid Important = RepresentationId(50);
-		if (!Check(Representations->SetRepresentation(Important, ECCLEcologyRepresentation::Mass, Error), TEXT("prepare saved Mass")))
+		if (!Check(Representations->SetRepresentation(Important, EKSIEcologyRepresentation::Mass, Error), TEXT("prepare saved Mass")))
 		{
 			return;
 		}
@@ -224,14 +224,14 @@ void UCCLEcologyRepresentationSmokeSubsystem::Tick(float DeltaTime)
 			&& Agents->Restore(Saved, Error) && Representations->Count() == 0 && !Manager.IsEntityValid(SavedEntry.Entity)
 			&& Ecology.FindIndividual(Important)->PositionMeters == SavedPosition
 			&& !Runtime->ReleaseEcologyIndividual(SavedEntry.Lease, Error)
-			&& Representations->SetRepresentation(Important, ECCLEcologyRepresentation::Actor, Error), TEXT("save flush and restore invalidation")))
+			&& Representations->SetRepresentation(Important, EKSIEcologyRepresentation::Actor, Error), TEXT("save flush and restore invalidation")))
 		{
 			return;
 		}
 
-		FCCLEcologyEvent Death;
+		FKSIEcologyEvent Death;
 		Death.Id = RepresentationId(250);
-		Death.Kind = ECCLEcologyEventKind::Death;
+		Death.Kind = EKSIEcologyEventKind::Death;
 		Death.Source = RepresentationId(30);
 		Death.CohortId = RepresentationId(40);
 		Death.IndividualId = Important;
@@ -244,7 +244,7 @@ void UCCLEcologyRepresentationSmokeSubsystem::Tick(float DeltaTime)
 			return;
 		}
 
-		if (!Check(Reserve(31, 75, false) && Representations->SetRepresentation(RepresentationId(75), ECCLEcologyRepresentation::Mass, Error), TEXT("external Entity removal fixture")))
+		if (!Check(Reserve(31, 75, false) && Representations->SetRepresentation(RepresentationId(75), EKSIEcologyRepresentation::Mass, Error), TEXT("external Entity removal fixture")))
 		{
 			return;
 		}
@@ -255,7 +255,7 @@ void UCCLEcologyRepresentationSmokeSubsystem::Tick(float DeltaTime)
 			return;
 		}
 
-		if (!Check(Reserve(32, 76, false) && Representations->SetRepresentation(RepresentationId(76), ECCLEcologyRepresentation::Actor, Error), TEXT("external Actor removal fixture")))
+		if (!Check(Reserve(32, 76, false) && Representations->SetRepresentation(RepresentationId(76), EKSIEcologyRepresentation::Actor, Error), TEXT("external Actor removal fixture")))
 		{
 			return;
 		}
@@ -266,8 +266,8 @@ void UCCLEcologyRepresentationSmokeSubsystem::Tick(float DeltaTime)
 			return;
 		}
 
-		FCCLEcologyLease OtherWriter;
-		if (!Check(Reserve(33, 77, false) && Runtime->AcquireEcologyIndividual(RepresentationId(77), ECCLEcologyRepresentation::Actor, RepresentationId(90), OtherWriter, Error), TEXT("conflicting writer fixture")))
+		FKSIEcologyLease OtherWriter;
+		if (!Check(Reserve(33, 77, false) && Runtime->AcquireEcologyIndividual(RepresentationId(77), EKSIEcologyRepresentation::Actor, RepresentationId(90), OtherWriter, Error), TEXT("conflicting writer fixture")))
 		{
 			return;
 		}
@@ -275,7 +275,7 @@ void UCCLEcologyRepresentationSmokeSubsystem::Tick(float DeltaTime)
 #if WITH_MASSENTITY_DEBUG
 		const int32 BeforeEntities = Manager.DebugGetEntityCount();
 #endif
-		if (!Check(!Representations->SetRepresentation(RepresentationId(77), ECCLEcologyRepresentation::Mass, Error)
+		if (!Check(!Representations->SetRepresentation(RepresentationId(77), EKSIEcologyRepresentation::Mass, Error)
 			&& Ecology.IsLeaseCurrent(OtherWriter) && Ecology.AggregateCount(RepresentationId(33)) == 9, TEXT("prepared failure retains old writer")))
 		{
 			return;
@@ -289,16 +289,18 @@ void UCCLEcologyRepresentationSmokeSubsystem::Tick(float DeltaTime)
 #endif
 		if (!Check(Runtime->ReleaseEcologyIndividual(OtherWriter, Error)
 			&& Reserve(31, 80, false) && Reserve(32, 81, true)
-			&& Representations->SetRepresentation(RepresentationId(80), ECCLEcologyRepresentation::Mass, Error)
-			&& Representations->SetRepresentation(RepresentationId(81), ECCLEcologyRepresentation::Actor, Error), TEXT("natural death fixture")))
+			&& Representations->SetRepresentation(RepresentationId(80), EKSIEcologyRepresentation::Mass, Error)
+			&& Representations->SetRepresentation(RepresentationId(81), EKSIEcologyRepresentation::Actor, Error), TEXT("natural death fixture")))
 		{
 			return;
 		}
 
+		MortalityEntity = Representations->Find(RepresentationId(80))->Entity;
+
 		for (uint32 I = 0; I < 4; ++I)
 		{
 			if (!Check(Reserve(30 + I, 90 + I, true)
-				&& Representations->SetRepresentation(RepresentationId(90 + I), ECCLEcologyRepresentation::Actor, Error), TEXT("replicated four-media Actors")))
+				&& Representations->SetRepresentation(RepresentationId(90 + I), EKSIEcologyRepresentation::Actor, Error), TEXT("replicated four-media Actors")))
 			{
 				return;
 			}
@@ -330,14 +332,35 @@ void UCCLEcologyRepresentationSmokeSubsystem::Tick(float DeltaTime)
 
 	if (Step == 3 && Runtime->GetClock().GetWorldSeconds() >= InitialTime + 200.)
 	{
-		if (!Check(Representations->Flush(Error) && Representations->Count() == 0
-			&& Ecology.FindIndividual(RepresentationId(80))->State == ECCLEcologyLifeState::Dead
-			&& Ecology.FindIndividual(RepresentationId(81))->State == ECCLEcologyLifeState::Dead
-			&& Ecology.LivingCount(RepresentationId(31)) == 0 && Ecology.LivingCount(RepresentationId(32)) == 0, TEXT("lifespan removes both representations")))
+		if (!Check(Representations->Flush(Error), TEXT("flush natural death")))
 		{
 			return;
 		}
 
+		// The experiment restores its own Actors after a world restore. Check only our fixture IDs.
+		const uint32 MortalityIds[] = {80, 81, 90, 91, 92, 93};
+		for (uint32 Id : MortalityIds)
+		{
+			const FGuid IndividualId = RepresentationId(Id);
+			const auto* Individual = Ecology.FindIndividual(IndividualId);
+			bool bHasActor = false;
+			for (TActorIterator<ACCLCreatureActor> It(World); It; ++It)
+			{
+				bHasActor |= It->GetIndividualId() == IndividualId && !It->IsActorBeingDestroyed();
+			}
+			if (!Check(Individual && Individual->State == EKSIEcologyLifeState::Dead
+				&& !Representations->Find(IndividualId) && !bHasActor, TEXT("fixture died without a remaining Actor or representation")))
+			{
+				return;
+			}
+		}
+		if (!Check(!Manager.IsEntityValid(MortalityEntity)
+			&& Ecology.LivingCount(RepresentationId(31)) == 0 && Ecology.LivingCount(RepresentationId(32)) == 0, TEXT("lifespan removes Mass and both fixture populations")))
+		{
+			return;
+		}
+
+		UE_LOG(LogTemp, Display, TEXT("CCL_ECOLOGY_REPRESENTATION fixture removed; unrelated representations=%d"), Representations->Count());
 		Finish(true, TEXT("actual four-media Actor/Mass handoff, positions, save/restore, stale callbacks, cleanup and natural death"));
 	}
 }

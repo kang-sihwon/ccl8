@@ -3,9 +3,9 @@
 #include "CCLWorldSimulationSubsystem.h"
 #include "GameFramework/Pawn.h"
 
-FCCLSurfaceGrid ACCLExperimentDirector::SnowGrid()
+FKSISurfaceGrid ACCLExperimentDirector::SnowGrid()
 {
-	FCCLSurfaceGrid G;
+	FKSISurfaceGrid G;
 	G.RegionId = SnowRegionId();
 	G.OriginMeters = UCCLExperimentDefinition::ZoneCenter(3) / 100. + FVector(-4., -4., 0.);
 	G.Size = FIntPoint(64, 64);
@@ -86,7 +86,7 @@ void ACCLExperimentDirector::TickSnowExperiment()
 	if (Compacted >= 12 && SnowStartVolume - Volume > 0.04 && FVector::Dist2D(SnowWalkStart, SnowWalker->GetActorLocation()) >= 300.)
 	{
 		FString Error;
-		const bool bValid = FCCLSurfaceSimulation::ValidateRegion(*Grid, Error);
+		const bool bValid = FKSISurfaceSimulation::ValidateRegion(*Grid, Error);
 		Finish(*R, bValid, bValid ? FString::Printf(TEXT("보행·압축 흔적 %d셀, 물질 수지 오차 %.9f m³. 발 배치 화면도 확인해 줘."), Compacted, Grid->BalanceErrorCubicMeters()) : Error);
 	}
 }

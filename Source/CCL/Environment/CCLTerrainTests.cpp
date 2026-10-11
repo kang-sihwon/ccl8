@@ -1,4 +1,4 @@
-#include "CCLTerrainStore.h"
+#include "KSITerrainStore.h"
 
 #if WITH_DEV_AUTOMATION_TESTS
 #include "Misc/AutomationTest.h"
@@ -7,28 +7,28 @@
 
 namespace
 {
-	FCCLTerrainDefinition Definition()
+	FKSITerrainDefinition Definition()
 	{
-		FCCLTerrainDefinition D;
+		FKSITerrainDefinition D;
 		D.WorldId = FGuid(1, 2, 3, 4);
 		D.RegionId = FGuid(5, 6, 7, 8);
 		D.DefinitionId = FGuid(9, 10, 11, 12);
 		return D;
 	}
 
-	FCCLTerrainAuthority Authority(const FCCLTerrainDefinition& D, uint32 Id = 1)
+	FKSITerrainAuthority Authority(const FKSITerrainDefinition& D, uint32 Id = 1)
 	{
-		FCCLTerrainAuthority A;
+		FKSITerrainAuthority A;
 		A.PrincipalId = FGuid(100, 200, 300, Id);
-		A.AllowedBoundsMeters = FCCLTerrainStore::EditableBoundsMeters(D);
+		A.AllowedBoundsMeters = FKSITerrainStore::EditableBoundsMeters(D);
 		A.bCanExcavate = 1;
 		A.bCanDeposit = 1;
 		return A;
 	}
 
-	FCCLTerrainEdit Edit(const FCCLTerrainStore& Store, const FCCLTerrainAuthority& A, uint64 Sequence = 1)
+	FKSITerrainEdit Edit(const FKSITerrainStore& Store, const FKSITerrainAuthority& A, uint64 Sequence = 1)
 	{
-		FCCLTerrainEdit R;
+		FKSITerrainEdit R;
 		R.PrincipalId = A.PrincipalId;
 		R.Sequence = Sequence;
 		R.Epoch = Store.GetEpoch();
@@ -37,9 +37,9 @@ namespace
 		return R;
 	}
 
-	FCCLTerrainSaveContext Context()
+	FKSITerrainSaveContext Context()
 	{
-		FCCLTerrainSaveContext C;
+		FKSITerrainSaveContext C;
 		C.WorldId = Definition().WorldId;
 		C.WorldGeneration = 7;
 		C.GameSeconds = 10.;
@@ -60,7 +60,7 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(FCCLTerrainBoundaryTest, "CCL.Environment.Terra
 bool FCCLTerrainBoundaryTest::RunTest(const FString& Parameters)
 {
 	FString Error;
-	FCCLTerrainStore Store;
+	FKSITerrainStore Store;
 	const auto D = Definition();
 	const auto A = Authority(D);
 	TestTrue(TEXT("initialize"), Store.Initialize(D, Error));
@@ -68,39 +68,39 @@ bool FCCLTerrainBoundaryTest::RunTest(const FString& Parameters)
 	for (int32 Value : {-65, -64, -33, -32, -31, -1, 0, 1, 31, 32, 33, 64})
 	{
 		const FIntVector Sample(Value, -Value, Value);
-		const int32 Local = FCCLTerrainStore::LocalSampleIndex(Sample);
-		TestTrue(TEXT("local index in canonical owner"), Local >= 0 && Local < FCCLTerrainStore::SamplesPerChunk);
-		TestEqual(TEXT("signed owner roundtrip"), FCCLTerrainStore::GlobalSample(FCCLTerrainStore::OwnerForSample(Sample), Local), Sample);
+		const int32 Local = FKSITerrainStore::LocalSampleIndex(Sample);
+		TestTrue(TEXT("local index in canonical owner"), Local >= 0 && Local < FKSITerrainStore::SamplesPerChunk);
+		TestEqual(TEXT("signed owner roundtrip"), FKSITerrainStore::GlobalSample(FKSITerrainStore::OwnerForSample(Sample), Local), Sample);
 	}
 
-	TestEqual(TEXT("negative one uses the preceding chunk"), FCCLTerrainStore::OwnerForSample(FIntVector(-1, 0, 0)).X, -1);
-	FCCLTerrainCandidate Candidate;
+	TestEqual(TEXT("negative one uses the preceding chunk"), FKSITerrainStore::OwnerForSample(FIntVector(-1, 0, 0)).X, -1);
+	FKSITerrainCandidate Candidate;
 	const auto R = Edit(Store, A);
-	if (!TestTrue(TEXT("prepare boundary excavation"), Store.PrepareEdit(R, A, Candidate, Error) == ECCLTerrainPrepareResult::Prepared))
+	if (!TestTrue(TEXT("prepare boundary excavation"), Store.PrepareEdit(R, A, Candidate, Error) == EKSITerrainPrepareResult::Prepared))
 	{
 		AddError(Error);
 		return false;
 	}
 
 	TestEqual(TEXT("candidate does not publish"), Store.GetRevision(), uint64(1));
-	TestEqual(TEXT("old center still ground"), FCCLTerrainStore::ReadSample(Store.GetSnapshot(), FIntVector::ZeroValue).DistanceMillimeters, int16(0));
-	TestTrue(TEXT("candidate center is excavated"), FCCLTerrainStore::ReadSample(Candidate.GetSnapshot(), FIntVector::ZeroValue).DistanceMillimeters > 0);
+	TestEqual(TEXT("old center still ground"), FKSITerrainStore::ReadSample(Store.GetSnapshot(), FIntVector::ZeroValue).DistanceMillimeters, int16(0));
+	TestTrue(TEXT("candidate center is excavated"), FKSITerrainStore::ReadSample(Candidate.GetSnapshot(), FIntVector::ZeroValue).DistanceMillimeters > 0);
 	TestTrue(TEXT("negative-side mesh included"), Candidate.GetMeshChunks().Contains(FIntVector(-1, -1, -1)));
 	TestTrue(TEXT("positive-side mesh included"), Candidate.GetMeshChunks().Contains(FIntVector(0, 0, 0)));
 	const auto Before = Store.GetSnapshot();
 	TestTrue(TEXT("commit prepared value state"), Store.CommitEdit(Candidate, A, Error));
-	TestEqual(TEXT("immutable previous snapshot retained"), FCCLTerrainStore::ReadSample(Before, FIntVector::ZeroValue).DistanceMillimeters, int16(0));
+	TestEqual(TEXT("immutable previous snapshot retained"), FKSITerrainStore::ReadSample(Before, FIntVector::ZeroValue).DistanceMillimeters, int16(0));
 	double Left = 0.;
 	double Right = 0.;
-	TestTrue(TEXT("sample across chunk boundary"), FCCLTerrainStore::ReadDensityMeters(Store.GetSnapshot(), FVector(-1.e-6, 0., -1.), Left, Error)
-		&& FCCLTerrainStore::ReadDensityMeters(Store.GetSnapshot(), FVector(1.e-6, 0., -1.), Right, Error));
+	TestTrue(TEXT("sample across chunk boundary"), FKSITerrainStore::ReadDensityMeters(Store.GetSnapshot(), FVector(-1.e-6, 0., -1.), Left, Error)
+		&& FKSITerrainStore::ReadDensityMeters(Store.GetSnapshot(), FVector(1.e-6, 0., -1.), Right, Error));
 	TestTrue(TEXT("no density seam across signed owner boundary"), FMath::Abs(Left - Right) < 1.e-6);
 	for (const auto& Entry : Store.GetSnapshot().Chunks)
 	{
 		for (const auto& Sample : Entry.Value->Overrides)
 		{
-			const FIntVector Global = FCCLTerrainStore::GlobalSample(Entry.Key, Sample.Key);
-			TestEqual(TEXT("every override has exactly its canonical owner"), FCCLTerrainStore::OwnerForSample(Global), Entry.Key);
+			const FIntVector Global = FKSITerrainStore::GlobalSample(Entry.Key, Sample.Key);
+			TestEqual(TEXT("every override has exactly its canonical owner"), FKSITerrainStore::OwnerForSample(Global), Entry.Key);
 		}
 	}
 
@@ -113,18 +113,18 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(FCCLTerrainAtomicTest, "CCL.Environment.Terrain
 bool FCCLTerrainAtomicTest::RunTest(const FString& Parameters)
 {
 	FString Error;
-	FCCLTerrainStore Store;
+	FKSITerrainStore Store;
 	const auto D = Definition();
 	auto A = Authority(D);
 	const auto B = Authority(D, 2);
 	Store.Initialize(D, Error);
-	FCCLTerrainCandidate First;
-	FCCLTerrainCandidate Second;
+	FKSITerrainCandidate First;
+	FKSITerrainCandidate Second;
 	auto R = Edit(Store, A);
 	auto Other = Edit(Store, B);
 	Other.CenterMeters.X = 12.;
-	TestTrue(TEXT("prepare first candidate"), Store.PrepareEdit(R, A, First, Error) == ECCLTerrainPrepareResult::Prepared);
-	TestTrue(TEXT("prepare concurrent candidate"), Store.PrepareEdit(Other, B, Second, Error) == ECCLTerrainPrepareResult::Prepared);
+	TestTrue(TEXT("prepare first candidate"), Store.PrepareEdit(R, A, First, Error) == EKSITerrainPrepareResult::Prepared);
+	TestTrue(TEXT("prepare concurrent candidate"), Store.PrepareEdit(Other, B, Second, Error) == EKSITerrainPrepareResult::Prepared);
 	++A.PolicyRevision;
 	TestFalse(TEXT("changed permission policy invalidates prepared work"), Store.CommitEdit(First, A, Error));
 	--A.PolicyRevision;
@@ -136,10 +136,10 @@ bool FCCLTerrainAtomicTest::RunTest(const FString& Parameters)
 	TestFalse(TEXT("stale concurrent work cannot overwrite first edit"), Store.CommitEdit(Second, B, Error));
 	TestFalse(TEXT("same candidate cannot publish twice"), Store.CommitEdit(First, A, Error));
 	TestEqual(TEXT("one revision for one commit"), Store.GetRevision(), uint64(2));
-	TestEqual(TEXT("second candidate remains unpublished"), FCCLTerrainStore::ReadSample(Store.GetSnapshot(), FIntVector(24, 0, 0)).DistanceMillimeters, int16(0));
+	TestEqual(TEXT("second candidate remains unpublished"), FKSITerrainStore::ReadSample(Store.GetSnapshot(), FIntVector(24, 0, 0)).DistanceMillimeters, int16(0));
 	Other = Edit(Store, B);
 	Other.CenterMeters.X = 12.;
-	TestTrue(TEXT("rebase by preparing against current state"), Store.PrepareEdit(Other, B, Second, Error) == ECCLTerrainPrepareResult::Prepared);
+	TestTrue(TEXT("rebase by preparing against current state"), Store.PrepareEdit(Other, B, Second, Error) == EKSITerrainPrepareResult::Prepared);
 	TestTrue(TEXT("sequential second commit succeeds"), Store.CommitEdit(Second, B, Error));
 	return true;
 }
@@ -151,33 +151,33 @@ bool FCCLTerrainAuthorityTest::RunTest(const FString& Parameters)
 {
 	FString Error;
 	auto D = Definition();
-	FCCLTerrainProtection Protection;
+	FKSITerrainProtection Protection;
 	Protection.Id = FGuid(20, 30, 40, 50);
 	Protection.BoundsMeters = FBox(FVector(10., 10., -2.), FVector(12., 12., 2.));
 	D.ProtectedRegions.Add(Protection);
-	FCCLTerrainStore Store;
+	FKSITerrainStore Store;
 	TestTrue(TEXT("protected world initializes"), Store.Initialize(D, Error));
 	auto A = Authority(D);
-	FCCLTerrainCandidate Candidate;
+	FKSITerrainCandidate Candidate;
 	auto R = Edit(Store, A);
 	R.CenterMeters = FVector(8., 10., 0.);
 	R.RadiusMeters = 0.5;
-	TestTrue(TEXT("interpolation margin cannot cross protected border"), Store.PrepareEdit(R, A, Candidate, Error) == ECCLTerrainPrepareResult::Failed);
+	TestTrue(TEXT("interpolation margin cannot cross protected border"), Store.PrepareEdit(R, A, Candidate, Error) == EKSITerrainPrepareResult::Failed);
 	R = Edit(Store, A);
 	A.bCanExcavate = 0;
-	TestTrue(TEXT("unauthorized excavation refused"), Store.PrepareEdit(R, A, Candidate, Error) == ECCLTerrainPrepareResult::Failed);
+	TestTrue(TEXT("unauthorized excavation refused"), Store.PrepareEdit(R, A, Candidate, Error) == EKSITerrainPrepareResult::Failed);
 	A.bCanExcavate = 1;
 	R.PrincipalId = FGuid::NewGuid();
-	TestTrue(TEXT("client cannot choose another principal"), Store.PrepareEdit(R, A, Candidate, Error) == ECCLTerrainPrepareResult::Failed);
+	TestTrue(TEXT("client cannot choose another principal"), Store.PrepareEdit(R, A, Candidate, Error) == EKSITerrainPrepareResult::Failed);
 	R = Edit(Store, A);
 	R.RadiusMeters = 9.;
-	TestTrue(TEXT("radius is bounded by server policy"), Store.PrepareEdit(R, A, Candidate, Error) == ECCLTerrainPrepareResult::Failed);
+	TestTrue(TEXT("radius is bounded by server policy"), Store.PrepareEdit(R, A, Candidate, Error) == EKSITerrainPrepareResult::Failed);
 	R = Edit(Store, A);
 	R.CenterMeters.X = 63.;
-	TestTrue(TEXT("edge edit cannot escape the editable region"), Store.PrepareEdit(R, A, Candidate, Error) == ECCLTerrainPrepareResult::Failed);
+	TestTrue(TEXT("edge edit cannot escape the editable region"), Store.PrepareEdit(R, A, Candidate, Error) == EKSITerrainPrepareResult::Failed);
 	R = Edit(Store, A);
 	R.CenterMeters.Z = 8.;
-	TestTrue(TEXT("excavating air is a no-op failure"), Store.PrepareEdit(R, A, Candidate, Error) == ECCLTerrainPrepareResult::Failed);
+	TestTrue(TEXT("excavating air is a no-op failure"), Store.PrepareEdit(R, A, Candidate, Error) == EKSITerrainPrepareResult::Failed);
 	TestEqual(TEXT("no request sequence consumed by failures"), Store.GetSnapshot().Receipts.Num(), 0);
 	TestEqual(TEXT("no speculative chunks retained"), Store.GetSnapshot().Chunks.Num(), 0);
 	D = Definition();
@@ -188,7 +188,7 @@ bool FCCLTerrainAuthorityTest::RunTest(const FString& Parameters)
 	A = Authority(D);
 	R = Edit(Store, A);
 	R.RadiusMeters = 8.;
-	TestTrue(TEXT("oversized voxel work refused before allocation"), Store.PrepareEdit(R, A, Candidate, Error) == ECCLTerrainPrepareResult::Failed);
+	TestTrue(TEXT("oversized voxel work refused before allocation"), Store.PrepareEdit(R, A, Candidate, Error) == EKSITerrainPrepareResult::Failed);
 	TestTrue(TEXT("work budget is the rejection cause"), Error.Contains(TEXT("sample budget")));
 	return true;
 }
@@ -199,29 +199,29 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(FCCLTerrainVolumeTest, "CCL.Environment.Terrain
 bool FCCLTerrainVolumeTest::RunTest(const FString& Parameters)
 {
 	FString Error;
-	FCCLTerrainStore Store;
+	FKSITerrainStore Store;
 	const auto D = Definition();
 	const auto A = Authority(D);
 	Store.Initialize(D, Error);
 	auto Cave = Edit(Store, A);
 	Cave.CenterMeters.Z = -6.;
 	Cave.RadiusMeters = 1.;
-	FCCLTerrainCandidate Candidate;
-	TestTrue(TEXT("prepare underground cavity"), Store.PrepareEdit(Cave, A, Candidate, Error) == ECCLTerrainPrepareResult::Prepared);
+	FKSITerrainCandidate Candidate;
+	TestTrue(TEXT("prepare underground cavity"), Store.PrepareEdit(Cave, A, Candidate, Error) == EKSITerrainPrepareResult::Prepared);
 	TestTrue(TEXT("commit cavity"), Store.CommitEdit(Candidate, A, Error));
-	TestTrue(TEXT("interior below ground is empty"), FCCLTerrainStore::ReadSample(Store.GetSnapshot(), FIntVector(0, 0, -12)).DistanceMillimeters > 0);
-	TestTrue(TEXT("solid roof remains above cavity"), FCCLTerrainStore::ReadSample(Store.GetSnapshot(), FIntVector(0, 0, -8)).DistanceMillimeters < 0);
-	TestEqual(TEXT("ground surface above cavity is unchanged"), FCCLTerrainStore::ReadSample(Store.GetSnapshot(), FIntVector::ZeroValue).DistanceMillimeters, int16(0));
+	TestTrue(TEXT("interior below ground is empty"), FKSITerrainStore::ReadSample(Store.GetSnapshot(), FIntVector(0, 0, -12)).DistanceMillimeters > 0);
+	TestTrue(TEXT("solid roof remains above cavity"), FKSITerrainStore::ReadSample(Store.GetSnapshot(), FIntVector(0, 0, -8)).DistanceMillimeters < 0);
+	TestEqual(TEXT("ground surface above cavity is unchanged"), FKSITerrainStore::ReadSample(Store.GetSnapshot(), FIntVector::ZeroValue).DistanceMillimeters, int16(0));
 	auto Hill = Edit(Store, A, 2);
-	Hill.Kind = ECCLTerrainEditKind::Deposit;
+	Hill.Kind = EKSITerrainEditKind::Deposit;
 	Hill.CenterMeters.X = 8.;
 	Hill.Material = 2;
-	TestTrue(TEXT("prepare rock deposit"), Store.PrepareEdit(Hill, A, Candidate, Error) == ECCLTerrainPrepareResult::Prepared);
+	TestTrue(TEXT("prepare rock deposit"), Store.PrepareEdit(Hill, A, Candidate, Error) == EKSITerrainPrepareResult::Prepared);
 	TestTrue(TEXT("commit deposit"), Store.CommitEdit(Candidate, A, Error));
-	const auto Raised = FCCLTerrainStore::ReadSample(Store.GetSnapshot(), FIntVector(16, 0, 2));
+	const auto Raised = FKSITerrainStore::ReadSample(Store.GetSnapshot(), FIntVector(16, 0, 2));
 	TestTrue(TEXT("solid raised above original ground"), Raised.DistanceMillimeters < 0);
 	TestEqual(TEXT("deposited material retained"), Raised.Material, uint16(2));
-	TestTrue(TEXT("deposit does not flatten underground cavity"), FCCLTerrainStore::ReadSample(Store.GetSnapshot(), FIntVector(0, 0, -12)).DistanceMillimeters > 0);
+	TestTrue(TEXT("deposit does not flatten underground cavity"), FKSITerrainStore::ReadSample(Store.GetSnapshot(), FIntVector(0, 0, -12)).DistanceMillimeters > 0);
 	return true;
 }
 
@@ -231,21 +231,21 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(FCCLTerrainReplayTest, "CCL.Environment.Terrain
 bool FCCLTerrainReplayTest::RunTest(const FString& Parameters)
 {
 	FString Error;
-	FCCLTerrainStore Store;
+	FKSITerrainStore Store;
 	const auto D = Definition();
 	const auto A = Authority(D);
 	Store.Initialize(D, Error);
 	const auto R = Edit(Store, A);
-	FCCLTerrainCandidate Candidate;
-	TestTrue(TEXT("prepare"), Store.PrepareEdit(R, A, Candidate, Error) == ECCLTerrainPrepareResult::Prepared);
+	FKSITerrainCandidate Candidate;
+	TestTrue(TEXT("prepare"), Store.PrepareEdit(R, A, Candidate, Error) == EKSITerrainPrepareResult::Prepared);
 	TestTrue(TEXT("commit"), Store.CommitEdit(Candidate, A, Error));
-	TestTrue(TEXT("exact retransmission acknowledged without applying again"), Store.PrepareEdit(R, A, Candidate, Error) == ECCLTerrainPrepareResult::AlreadyApplied);
+	TestTrue(TEXT("exact retransmission acknowledged without applying again"), Store.PrepareEdit(R, A, Candidate, Error) == EKSITerrainPrepareResult::AlreadyApplied);
 	auto Changed = R;
 	Changed.CenterMeters.X += 1.;
-	TestTrue(TEXT("same sequence with different payload rejected"), Store.PrepareEdit(Changed, A, Candidate, Error) == ECCLTerrainPrepareResult::Failed);
+	TestTrue(TEXT("same sequence with different payload rejected"), Store.PrepareEdit(Changed, A, Candidate, Error) == EKSITerrainPrepareResult::Failed);
 	auto Next = Edit(Store, A, 2);
 	Next.CenterMeters.X = 8.;
-	TestTrue(TEXT("pending candidate before restore"), Store.PrepareEdit(Next, A, Candidate, Error) == ECCLTerrainPrepareResult::Prepared);
+	TestTrue(TEXT("pending candidate before restore"), Store.PrepareEdit(Next, A, Candidate, Error) == EKSITerrainPrepareResult::Prepared);
 	TArray<uint8> Bytes;
 	const auto C = Context();
 	TestTrue(TEXT("capture committed state only"), Store.Capture(C, Bytes, Error));
@@ -253,13 +253,13 @@ bool FCCLTerrainReplayTest::RunTest(const FString& Parameters)
 	TestTrue(TEXT("restore matching save generation"), Store.Restore(Bytes, C, Error));
 	TestTrue(TEXT("restore invalidates prior execution epoch"), Store.GetEpoch() != Epoch);
 	TestFalse(TEXT("pre-restore prepared work cannot publish"), Store.CommitEdit(Candidate, A, Error));
-	TestTrue(TEXT("persisted receipt survives restart"), Store.PrepareEdit(R, A, Candidate, Error) == ECCLTerrainPrepareResult::AlreadyApplied);
-	TestTrue(TEXT("new request with old epoch rejected"), Store.PrepareEdit(Next, A, Candidate, Error) == ECCLTerrainPrepareResult::Failed);
+	TestTrue(TEXT("persisted receipt survives restart"), Store.PrepareEdit(R, A, Candidate, Error) == EKSITerrainPrepareResult::AlreadyApplied);
+	TestTrue(TEXT("new request with old epoch rejected"), Store.PrepareEdit(Next, A, Candidate, Error) == EKSITerrainPrepareResult::Failed);
 	Next = Edit(Store, A, 2);
 	Next.CenterMeters.X = 8.;
-	TestTrue(TEXT("next sequence against restored epoch works"), Store.PrepareEdit(Next, A, Candidate, Error) == ECCLTerrainPrepareResult::Prepared);
+	TestTrue(TEXT("next sequence against restored epoch works"), Store.PrepareEdit(Next, A, Candidate, Error) == EKSITerrainPrepareResult::Prepared);
 	TestTrue(TEXT("commit new request after restore"), Store.CommitEdit(Candidate, A, Error));
-	TestTrue(TEXT("old acknowledged sequence cannot apply twice"), Store.PrepareEdit(R, A, Candidate, Error) == ECCLTerrainPrepareResult::Failed);
+	TestTrue(TEXT("old acknowledged sequence cannot apply twice"), Store.PrepareEdit(R, A, Candidate, Error) == EKSITerrainPrepareResult::Failed);
 	return true;
 }
 
@@ -269,11 +269,11 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(FCCLTerrainCodecTest, "CCL.Environment.Terrain.
 bool FCCLTerrainCodecTest::RunTest(const FString& Parameters)
 {
 	FString Error;
-	FCCLTerrainStore Store;
+	FKSITerrainStore Store;
 	const auto D = Definition();
 	const auto A = Authority(D);
 	Store.Initialize(D, Error);
-	FCCLTerrainCandidate Candidate;
+	FKSITerrainCandidate Candidate;
 	Store.PrepareEdit(Edit(Store, A), A, Candidate, Error);
 	Store.CommitEdit(Candidate, A, Error);
 	TArray<uint8> Bytes;
@@ -289,7 +289,7 @@ bool FCCLTerrainCodecTest::RunTest(const FString& Parameters)
 	}
 
 	TArray<uint8> Again;
-	TestTrue(TEXT("encode different map insertion order"), FCCLTerrainCodec::Encode(Reordered, C, Again, Error));
+	TestTrue(TEXT("encode different map insertion order"), FKSITerrainCodec::Encode(Reordered, C, Again, Error));
 	TestTrue(TEXT("byte stable canonical encoding"), Again == Bytes);
 	for (int32 Fault = 0; Fault < 5; ++Fault)
 	{
@@ -325,11 +325,11 @@ bool FCCLTerrainCodecTest::RunTest(const FString& Parameters)
 			FixCRC(Bad);
 		}
 
-		FCCLTerrainSnapshot Output;
+		FKSITerrainSnapshot Output;
 		Output.Revision = 999;
-		FCCLTerrainSaveContext OutputContext;
+		FKSITerrainSaveContext OutputContext;
 		OutputContext.WorldGeneration = 999;
-		TestFalse(TEXT("corrupt, truncated, unknown schema, trailing or oversized string rejected"), FCCLTerrainCodec::Decode(Bad, Output, OutputContext, Error));
+		TestFalse(TEXT("corrupt, truncated, unknown schema, trailing or oversized string rejected"), FKSITerrainCodec::Decode(Bad, Output, OutputContext, Error));
 		TestEqual(TEXT("failure preserves snapshot output"), Output.Revision, uint64(999));
 		TestEqual(TEXT("failure preserves context output"), OutputContext.WorldGeneration, uint64(999));
 	}
@@ -345,7 +345,7 @@ bool FCCLTerrainCodecTest::RunTest(const FString& Parameters)
 	WrongContext.WorldSeconds += 1.;
 	TestFalse(TEXT("different completed time refused"), Store.Restore(Bytes, WrongContext, Error));
 	TestEqual(TEXT("rejected restore leaves current epoch"), Store.GetEpoch(), Epoch);
-	FCCLTerrainStore ChangedDefinition;
+	FKSITerrainStore ChangedDefinition;
 	auto Changed = D;
 	Changed.BaseHeightMeters = 1.;
 	ChangedDefinition.Initialize(Changed, Error);
@@ -359,7 +359,7 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(FCCLTerrainMalformedTest, "CCL.Environment.Terr
 bool FCCLTerrainMalformedTest::RunTest(const FString& Parameters)
 {
 	FString Error;
-	FCCLTerrainStore Store;
+	FKSITerrainStore Store;
 	Store.Initialize(Definition(), Error);
 	TArray<uint8> Bytes;
 	TestTrue(TEXT("empty region record"), Store.Capture(Context(), Bytes, Error));
@@ -380,7 +380,7 @@ bool FCCLTerrainMalformedTest::RunTest(const FString& Parameters)
 			{
 				int32 Zero = 0;
 				uint64 Revision = 1;
-				int32 Samples = Fault == 1 ? 0 : FCCLTerrainStore::SamplesPerChunk + 1;
+				int32 Samples = Fault == 1 ? 0 : FKSITerrainStore::SamplesPerChunk + 1;
 				Writer << Zero << Zero << Zero << Revision << Samples;
 			}
 
@@ -390,20 +390,20 @@ bool FCCLTerrainMalformedTest::RunTest(const FString& Parameters)
 		}
 
 		FixCRC(Bad);
-		FCCLTerrainSnapshot Output;
-		FCCLTerrainSaveContext C;
-		TestFalse(TEXT("negative count, duplicate chunk or oversized sample array rejected"), FCCLTerrainCodec::Decode(Bad, Output, C, Error));
+		FKSITerrainSnapshot Output;
+		FKSITerrainSaveContext C;
+		TestFalse(TEXT("negative count, duplicate chunk or oversized sample array rejected"), FKSITerrainCodec::Decode(Bad, Output, C, Error));
 	}
 
 	auto Invalid = Store.GetSnapshot();
-	auto Chunk = MakeShared<FCCLTerrainChunkData, ESPMode::ThreadSafe>();
-	FCCLTerrainVoxel V;
+	auto Chunk = MakeShared<FKSITerrainChunkData, ESPMode::ThreadSafe>();
+	FKSITerrainVoxel V;
 	V.DistanceMillimeters = -100;
 	V.Material = 255;
 	Chunk->Overrides.Add(0, V);
 	Invalid.Chunks.Add(FIntVector::ZeroValue, Chunk);
 	TArray<uint8> Unchanged = {1, 2, 3};
-	TestFalse(TEXT("unknown material cannot be saved"), FCCLTerrainCodec::Encode(Invalid, Context(), Unchanged, Error));
+	TestFalse(TEXT("unknown material cannot be saved"), FKSITerrainCodec::Encode(Invalid, Context(), Unchanged, Error));
 	TestTrue(TEXT("failed encoding leaves caller bytes"), Unchanged == TArray<uint8>({1, 2, 3}));
 	return true;
 }

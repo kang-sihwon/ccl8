@@ -4,7 +4,7 @@
 #include "Subsystems/WorldSubsystem.h"
 #include "MassEntityTypes.h"
 #include "Mass/EntityHandle.h"
-#include "CCLEcologySimulation.h"
+#include "KSIEcologySimulation.h"
 #include "CCLEcologyRepresentationSubsystem.generated.h"
 
 class ACCLCreatureActor;
@@ -15,14 +15,14 @@ struct FCCLEcologyMassFragment : public FMassFragment
 {
 	GENERATED_BODY()
 
-	FCCLEcologyLease Lease;
+	FKSIEcologyLease Lease;
 	FVector PositionMeters = FVector::ZeroVector;
 	uint8 Medium = 0;
 };
 
 struct FCCLEcologyRepresentationEntry
 {
-	FCCLEcologyLease Lease;
+	FKSIEcologyLease Lease;
 	TWeakObjectPtr<ACCLCreatureActor> Actor;
 	FMassEntityHandle Entity;
 };
@@ -40,13 +40,13 @@ public:
 	virtual TStatId GetStatId() const override;
 
 public:
-	bool SetRepresentation(FGuid IndividualId, ECCLEcologyRepresentation Representation, FString& Error);
+	bool SetRepresentation(FGuid IndividualId, EKSIEcologyRepresentation Representation, FString& Error);
 	bool SetPosition(FGuid IndividualId, const FVector& PositionMeters, FString& Error);
-	bool FinishIndividual(FGuid IndividualId, const FCCLEcologyEvent& Event, FString& Error);
+	bool FinishIndividual(FGuid IndividualId, const FKSIEcologyEvent& Event, FString& Error);
 	bool Flush(FString& Error);
 	bool CanModify(FString& Error) const;
 	void DiscardRepresentations();
-	void OnActorEnded(const FCCLEcologyLease& Lease);
+	void OnActorEnded(const FKSIEcologyLease& Lease);
 	const FCCLEcologyRepresentationEntry* Find(FGuid Id) const { return Entries.Find(Id); }
 	int32 Count() const { return Entries.Num(); }
 

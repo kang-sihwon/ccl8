@@ -1,4 +1,4 @@
-#include "CCLSurfaceSimulation.h"
+#include "KSISurfaceSimulation.h"
 
 #include "Misc/AutomationTest.h"
 #include "Misc/Crc.h"
@@ -7,9 +7,9 @@
 #if WITH_DEV_AUTOMATION_TESTS
 namespace
 {
-	FCCLSurfaceGrid SnowTestGrid()
+	FKSISurfaceGrid SnowTestGrid()
 	{
-		FCCLSurfaceGrid G;
+		FKSISurfaceGrid G;
 		G.RegionId = FGuid(5, 5, 5, 5);
 		G.Size = FIntPoint(32, 32);
 		G.SpacingMeters = 0.125;
@@ -27,7 +27,7 @@ namespace
 		return G;
 	}
 
-	FKSIWorldStep SnowStep(const FCCLSurfaceSimulation& S, double Game = 0.25, double World = 15.)
+	FKSIWorldStep SnowStep(const FKSISurfaceSimulation& S, double Game = 0.25, double World = 15.)
 	{
 		FKSIWorldStep Step;
 		Step.Ticket = FGuid::NewGuid();
@@ -45,7 +45,7 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(FCCLSnowConservationTest, "CCL.Environment.Snow
 bool FCCLSnowConservationTest::RunTest(const FString& Parameters)
 {
 	FString Error;
-	FCCLSurfaceSimulation S;
+	FKSISurfaceSimulation S;
 	S.Initialize(FGuid::NewGuid(), 0., 0., 0, Error);
 	auto G = SnowTestGrid();
 	G.Forcing.SnowMetersPerWorldSecond = 0.00001;
@@ -60,7 +60,7 @@ bool FCCLSnowConservationTest::RunTest(const FString& Parameters)
 		TestTrue(TEXT("compact and displace"), S.ApplySnowContact(G.RegionId, Walker, I, At, 0.27, Error));
 	}
 	TestTrue(TEXT("mass survives repeated traversals"), FMath::IsNearlyEqual(S.FindRegion(G.RegionId)->TotalCubicMeters(), Mass, 1.e-10));
-	FCCLSnowSample Sample;
+	FKSISnowSample Sample;
 	TestTrue(TEXT("sample trench"), S.SampleSnow(FVector(2., 2., 0.), Sample));
 	TestTrue(TEXT("knee-depth layer compresses"), Sample.DepthMeters < 0.3 && Sample.DensityRatio > 0.2);
 	auto F = G.Forcing;
@@ -86,7 +86,7 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(FCCLSnowReceiptTest, "CCL.Environment.Snow.Rece
 bool FCCLSnowReceiptTest::RunTest(const FString& Parameters)
 {
 	FString Error;
-	FCCLSurfaceSimulation S;
+	FKSISurfaceSimulation S;
 	S.Initialize(FGuid::NewGuid(), 0., 0., 0, Error);
 	auto G = SnowTestGrid();
 	S.AddRegion(G, Error);
@@ -97,7 +97,7 @@ bool FCCLSnowReceiptTest::RunTest(const FString& Parameters)
 	TestTrue(TEXT("duplicate no-op"), S.ApplySnowContact(G.RegionId, Source, 7, FVector(2., 2., 0.), 0.27, Error));
 	S.Capture(After, Error);
 	TestTrue(TEXT("identical bytes"), Before == After);
-	FCCLSurfaceSimulation Restored;
+	FKSISurfaceSimulation Restored;
 	TestTrue(TEXT("restore"), Restored.Restore(Before, Error));
 	TestTrue(TEXT("old receipt remains no-op after restore"), Restored.ApplySnowContact(G.RegionId, Source, 6, FVector(1., 1., 0.), 0.27, Error));
 	Restored.Capture(After, Error);
@@ -116,7 +116,7 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(FCCLSnowTerrainTest, "CCL.Environment.Snow.Terr
 bool FCCLSnowTerrainTest::RunTest(const FString& Parameters)
 {
 	FString Error;
-	FCCLSurfaceSimulation S;
+	FKSISurfaceSimulation S;
 	S.Initialize(FGuid::NewGuid(), 0., 0., 0, Error);
 	auto G = SnowTestGrid();
 	G.TerrainId = FGuid::NewGuid();
@@ -141,7 +141,7 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(FCCLSnowLegacyTest, "CCL.Environment.Snow.Legac
 bool FCCLSnowLegacyTest::RunTest(const FString& Parameters)
 {
 	FString Error;
-	FCCLSurfaceSimulation S;
+	FKSISurfaceSimulation S;
 	const FGuid Id = FGuid::NewGuid();
 	S.Initialize(Id, 0., 0., 0, Error);
 	auto G = SnowTestGrid();

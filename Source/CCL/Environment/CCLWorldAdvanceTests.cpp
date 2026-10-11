@@ -1,6 +1,6 @@
 #include "CCLWorldAdvance.h"
 
-#include "CCLWorldClock.h"
+#include "KSIWorldClock.h"
 #include "Agents/CCLLifeSimulation.h"
 #include "Agents/CCLAgentTags.h"
 #include "Misc/AutomationTest.h"
@@ -53,7 +53,7 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(FCCLWorldAdvanceClockTest, "CCL.Environment.Adv
 bool FCCLWorldAdvanceClockTest::RunTest(const FString& Parameters)
 {
 	FCCLLifeSimulation Life;
-	FCCLWorldClock Clock;
+	FKSIWorldClock Clock;
 	FString Error;
 	TestTrue(TEXT("initialize life"), Life.Initialize(FCCLLifeSimulation::MerchantScenario(42), Error));
 	TestTrue(TEXT("queue input at sixty times"), Clock.QueueGameTime(120, false, Error));
@@ -81,7 +81,7 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(FCCLWorldAdvanceWriterTest, "CCL.Environment.Ad
 bool FCCLWorldAdvanceWriterTest::RunTest(const FString& Parameters)
 {
 	FCCLLifeSimulation Life;
-	FCCLWorldClock Clock;
+	FKSIWorldClock Clock;
 	FString Error;
 	const auto Initial = FCCLLifeSimulation::MerchantScenario(42);
 	TestTrue(TEXT("initialize"), Life.Initialize(Initial, Error));

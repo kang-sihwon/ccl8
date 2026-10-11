@@ -52,7 +52,7 @@ FCCLPlayerSnapshot Profile()
 bool World(FCCLWorldSnapshot& Snapshot, FString& Error)
 {
 	FCCLLifeSimulation Life;
-	FCCLWorldClock Clock;
+	FKSIWorldClock Clock;
 	FCCLWorldIdentity Identity;
 	Identity.WorldId = PlayerWorld;
 	auto P = Profile();

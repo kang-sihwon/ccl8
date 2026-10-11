@@ -8,7 +8,7 @@
 #include "AbilitySystem/CCLStaminaSet.h"
 #include "Campaign/CCLExpeditionComponent.h"
 #include "Environment/CCLWorldSimulationSubsystem.h"
-#include "Environment/CCLSurfaceSimulation.h"
+#include "KSISurfaceSimulation.h"
 #include "Items/CCLLoadoutComponent.h"
 #include "Items/CCLSkillDefinition.h"
 #include "Items/CCLItemDefinition.h"
@@ -561,7 +561,7 @@ bool UCCLPlayerPersistenceSubsystem::NeedsWorldAdvance() const
 	return false;
 }
 
-bool UCCLPlayerPersistenceSubsystem::PrepareWorldAdvance(const FKSIWorldStep& Step, const FCCLSurfaceSimulation& Surface,
+bool UCCLPlayerPersistenceSubsystem::PrepareWorldAdvance(const FKSIWorldStep& Step, const FKSISurfaceSimulation& Surface,
 														 FString& Error)
 {
 	TArray<FCCLPlayerSnapshot> Values;

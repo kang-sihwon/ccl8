@@ -4,19 +4,19 @@
 #include "GameFramework/Actor.h"
 #include "Async/Future.h"
 #include "HAL/ThreadSafeBool.h"
-#include "CCLTerrainMesher.h"
-#include "CCLTerrainStore.h"
+#include "KSITerrainMesher.h"
+#include "KSITerrainStore.h"
 #include "CCLTerrainRegion.generated.h"
 
-class UCCLTerrainChunkComponent;
-class FCCLTerrainSurface;
-class ICCLSurfaceProvider;
+class UKSITerrainChunkComponent;
+class FKSITerrainSurface;
+class IKSISurfaceProvider;
 class ANavigationData;
 struct FCCLWorldSnapshot;
 
 struct FCCLTerrainMeshJobResult
 {
-	FCCLTerrainMesh Mesh;
+	FKSITerrainMesh Mesh;
 	FString Error;
 	uint8 bSucceeded = 0;
 };
@@ -31,11 +31,11 @@ class CCL_API ICCLTerrainEditParticipant
 {
 public:
 	virtual ~ICCLTerrainEditParticipant() = default;
-	virtual bool Prepare(const FCCLTerrainCandidate& Candidate, FString& Error) = 0;
-	virtual bool ValidateCommit(const FCCLTerrainCandidate& Candidate, FString& Error) const = 0;
-	virtual void Commit(const FCCLTerrainCandidate& Candidate) = 0;
-	virtual void Abort(const FCCLTerrainCandidate& Candidate) = 0;
-	virtual bool ValidateRestore(const FCCLTerrainSnapshot& Terrain, const FCCLWorldSnapshot* World, FString& Error) const
+	virtual bool Prepare(const FKSITerrainCandidate& Candidate, FString& Error) = 0;
+	virtual bool ValidateCommit(const FKSITerrainCandidate& Candidate, FString& Error) const = 0;
+	virtual void Commit(const FKSITerrainCandidate& Candidate) = 0;
+	virtual void Abort(const FKSITerrainCandidate& Candidate) = 0;
+	virtual bool ValidateRestore(const FKSITerrainSnapshot& Terrain, const FCCLWorldSnapshot* World, FString& Error) const
 	{
 		Error = TEXT("Terrain participant does not support coordinated restore.");
 		return false;
@@ -56,21 +56,21 @@ public:
 	virtual void EndPlay(const EEndPlayReason::Type Reason) override;
 
 public:
-	bool InitializeTerrain(const FCCLTerrainDefinition& Definition, FString& Error, const TArray<uint8>& SavedBytes = {});
-	bool SetEditAuthority(const FCCLTerrainAuthority& Authority, FString& Error);
-	ECCLTerrainPrepareResult RequestEdit(const FCCLTerrainEdit& Request, FString& Error);
+	bool InitializeTerrain(const FKSITerrainDefinition& Definition, FString& Error, const TArray<uint8>& SavedBytes = {});
+	bool SetEditAuthority(const FKSITerrainAuthority& Authority, FString& Error);
+	EKSITerrainPrepareResult RequestEdit(const FKSITerrainEdit& Request, FString& Error);
 	bool ApplyReplica(const TArray<uint8>& Bytes, uint64 Serial, FString& Error);
 	bool CaptureReplica(TArray<uint8>& Bytes, FString& Error) const;
 	uint64 GetPublicationSerial() const { return PublicationSerial; }
 	uint64 GetReplicaSerial() const { return ReplicaSerial; }
 	bool IsReplicaReady() const { return bPublished && !bPending && ReplicaSerial >= PublicationSerial && GFrameCounter > NavigationPublicationFrame + 1; }
 
-	bool RequestRestore(const TArray<uint8>& Bytes, const FCCLTerrainSaveContext& Context, FString& Error, TFunction<bool(FString&)> BeforePublish = {},
+	bool RequestRestore(const TArray<uint8>& Bytes, const FKSITerrainSaveContext& Context, FString& Error, TFunction<bool(FString&)> BeforePublish = {},
 		const FCCLWorldSnapshot* WorldState = nullptr);
 	bool AddParticipant(TSharedRef<ICCLTerrainEditParticipant> Participant, FString& Error);
 	void CancelPendingEdit();
 
-	const ICCLSurfaceProvider* GetSurfaceProvider() const;
+	const IKSISurfaceProvider* GetSurfaceProvider() const;
 
 	bool IsNavigationReady() const { return bPublished && NavigationRevision == Store.GetRevision() && NavigationEpoch == Store.GetEpoch(); }
 	FBox GetWorldTerrainBounds() const;
@@ -79,7 +79,7 @@ public:
 	bool IsPreparing() const { return bPending != 0; }
 	bool DidLastRequestSucceed() const { return bLastSucceeded != 0; }
 	const FString& GetLastError() const { return LastError; }
-	const FCCLTerrainStore& GetTerrainStore() const { return Store; }
+	const FKSITerrainStore& GetTerrainStore() const { return Store; }
 	int32 GetActiveChunkCount() const { return ActiveChunks.Num(); }
 	FGuid GetPendingTicket() const { return PendingTicket; }
 
@@ -95,7 +95,7 @@ private:
 	void NavigationFinished(ANavigationData* NavData);
 
 	void UpdateNavigationReadiness();
-	void StartPreparation(const FCCLTerrainSnapshot& Snapshot, TArray<FIntVector> Chunks);
+	void StartPreparation(const FKSITerrainSnapshot& Snapshot, TArray<FIntVector> Chunks);
 	void AdvancePreparation();
 	void PublishPrepared();
 	void FailPending(const FString& Error);
@@ -104,30 +104,30 @@ private:
 
 private:
 	UPROPERTY()
-	TMap<FIntVector, TObjectPtr<UCCLTerrainChunkComponent>> ActiveChunks;
+	TMap<FIntVector, TObjectPtr<UKSITerrainChunkComponent>> ActiveChunks;
 
 	UPROPERTY()
-	TMap<FIntVector, TObjectPtr<UCCLTerrainChunkComponent>> PreparedChunks;
+	TMap<FIntVector, TObjectPtr<UKSITerrainChunkComponent>> PreparedChunks;
 
 	UPROPERTY(ReplicatedUsing = OnRep_Publication)
 	uint64 PublicationSerial = 0;
 
 	uint64 ReplicaSerial = 0;
 	uint64 PendingReplicaSerial = 0;
-	TSharedPtr<const FCCLTerrainSurface> SurfaceProvider;
-	TMap<FIntVector, TSharedRef<const FCCLTerrainMesh>> SurfaceMeshes;
-	FCCLTerrainStore Store;
-	FCCLTerrainStore RestoreStore;
+	TSharedPtr<const FKSITerrainSurface> SurfaceProvider;
+	TMap<FIntVector, TSharedRef<const FKSITerrainMesh>> SurfaceMeshes;
+	FKSITerrainStore Store;
+	FKSITerrainStore RestoreStore;
 	TFunction<bool(FString&)> RestoreBeforePublish;
 	TSharedPtr<const FCCLWorldSnapshot> RestoreWorldState;
 	FGuid PreparationEpoch;
-	TMap<FGuid, FCCLTerrainAuthority> Authorities;
+	TMap<FGuid, FKSITerrainAuthority> Authorities;
 	TArray<TSharedRef<ICCLTerrainEditParticipant>> Participants;
 	TArray<TSharedRef<ICCLTerrainEditParticipant>> PendingParticipants;
-	FCCLTerrainCandidate PendingCandidate;
+	FKSITerrainCandidate PendingCandidate;
 	FGuid PendingPrincipal;
 	FGuid PendingTicket;
-	TSharedPtr<const FCCLTerrainSnapshot, ESPMode::ThreadSafe> PendingSnapshot;
+	TSharedPtr<const FKSITerrainSnapshot, ESPMode::ThreadSafe> PendingSnapshot;
 	TSharedPtr<FThreadSafeBool, ESPMode::ThreadSafe> Cancellation;
 	TArray<FIntVector> PendingChunks;
 	TArray<FCCLTerrainMeshJob> MeshJobs;

@@ -109,7 +109,7 @@ void UCCLAgentBiologySmokeSubsystem::Tick(float DeltaTime)
 		InitialTime = Life.GetTime();
 		for (uint32 N = 1; N <= 2; ++N)
 		{
-			FCCLAgentRecord Record;
+			FKSIAgentRecord Record;
 			Record.Id = BiologySmokeId(N);
 			Record.DefinitionId = FPrimaryAssetId(TEXT("Agent"), TEXT("BiologySmoke"));
 			Record.LastSimulatedTime = InitialTime;

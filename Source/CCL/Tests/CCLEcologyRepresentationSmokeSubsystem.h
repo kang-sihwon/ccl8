@@ -3,6 +3,7 @@
 #include "CoreMinimal.h"
 #include "Subsystems/GameInstanceSubsystem.h"
 #include "Tickable.h"
+#include "Mass/EntityHandle.h"
 #include "CCLEcologyRepresentationSmokeSubsystem.generated.h"
 
 UCLASS()
@@ -24,6 +25,7 @@ private:
 	double Started = 0.;
 	double Next = 0.;
 	double InitialTime = 0.;
+	FMassEntityHandle MortalityEntity;
 	int32 Step = 0;
 	uint8 bComplete = 0;
 };

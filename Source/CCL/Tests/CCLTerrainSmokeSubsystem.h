@@ -7,7 +7,7 @@
 
 class ACCLTerrainRegion;
 class ACharacter;
-class UCCLTerrainChunkComponent;
+class UKSITerrainChunkComponent;
 class FCCLTerrainSmokeParticipant;
 
 UCLASS()
@@ -34,7 +34,7 @@ private:
 	UPROPERTY()
 	TObjectPtr<ACharacter> Occupant;
 
-	TWeakObjectPtr<UCCLTerrainChunkComponent> CancelledChunk;
+	TWeakObjectPtr<UKSITerrainChunkComponent> CancelledChunk;
 	TSharedPtr<FCCLTerrainSmokeParticipant> Participant;
 	TArray<uint8> RestoreBytes;
 	FGuid BeforeRestoreEpoch;

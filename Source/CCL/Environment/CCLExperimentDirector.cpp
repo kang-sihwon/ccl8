@@ -434,7 +434,7 @@ bool ACCLExperimentDirector::ResetExperiment(FString& Error)
 
 	if (TerrainRegion && TerrainRegion->IsTerrainReady())
 	{
-		FCCLTerrainStore Base;
+		FKSITerrainStore Base;
 		auto Definition = TerrainRegion->GetTerrainStore().GetSnapshot().Definition;
 		Definition.WorldId = Initial.Identity.WorldId;
 		const auto Context = FCCLWorldGenerationStore::ContextFor(Initial);
@@ -775,7 +775,7 @@ bool ACCLExperimentDirector::RunClock(FString& Error)
 			return false;
 		}
 
-		FCCLWorldClockSnapshot Queued;
+		FKSIWorldClockSnapshot Queued;
 		if (!Runtime->GetClock().Capture(Queued, Error))
 		{
 			return false;
@@ -796,7 +796,7 @@ bool ACCLExperimentDirector::RunClock(FString& Error)
 	}
 
 	// Automatic input is suspended until this experiment finishes or is cancelled.
-	FCCLWorldClockSnapshot Completed;
+	FKSIWorldClockSnapshot Completed;
 	if (!Runtime->GetClock().Capture(Completed, Error) || !Completed.Pending.IsEmpty() ||
 		Completed.WorldSeconds != ClockExpectedWorldSeconds || Completed.WorldSeconds != Completed.RequestedWorldSeconds ||
 		Completed.GameSeconds != Completed.AcceptedGameSeconds || Completed.WorldSeconds != Agents->GetSimulation().GetTime())
@@ -965,9 +965,9 @@ FString ACCLExperimentDirector::SlotName() const
 bool ACCLExperimentDirector::RunCelestials(FString& Error)
 {
 	const auto* Runtime = GetWorld()->GetSubsystem<UCCLWorldSimulationSubsystem>();
-	FCCLCelestialObservation A;
-	FCCLCelestialObservation B;
-	FCCLCelestialSystem Rebuilt;
+	FKSICelestialObservation A;
+	FKSICelestialObservation B;
+	FKSICelestialSystem Rebuilt;
 	const auto& Inputs = Runtime->GetEnvironmentInputs();
 	if (!Runtime->ObserveCelestials(A, Error) || !Rebuilt.Initialize(Inputs.Celestial, Error)
 		|| !Rebuilt.Observe(Runtime->GetClock().GetWorldSeconds(), Inputs.Observer, B, Error))
@@ -1013,15 +1013,15 @@ bool ACCLExperimentDirector::RunShelter(FString& Error)
 		return false;
 	}
 
-	FCCLSurfaceScene Scene;
-	FCCLShelterQuery Query;
+	FKSISurfaceScene Scene;
+	FKSIShelterQuery Query;
 	Query.BodyId = Inputs.Observer.BodyId;
 	Query.PositionMeters = Inside->PositionMeters;
 	Query.ToWindSource = Inside->ToWindSource;
-	FCCLShelterSample Sample;
+	FKSIShelterSample Sample;
 	Inputs.Openings[0].OpenFraction = 0.;
 	if (!Scene.Replace(Inputs.Surfaces, Inputs.Openings, 1, Error)
-		|| !FCCLShelterEvaluator::Evaluate(Scene, Query, Sample, Error)
+		|| !FKSIShelterEvaluator::Evaluate(Scene, Query, Sample, Error)
 		|| Sample.Transmission.Precipitation != 0. || Sample.Transmission.Wind != 0.)
 	{
 		Error = TEXT("닫힌 문과 지붕의 차폐 결과가 다르다.");
@@ -1030,7 +1030,7 @@ bool ACCLExperimentDirector::RunShelter(FString& Error)
 
 	Inputs.Openings[0].OpenFraction = 1.;
 	if (!Scene.Replace(Inputs.Surfaces, Inputs.Openings, 2, Error)
-		|| !FCCLShelterEvaluator::Evaluate(Scene, Query, Sample, Error)
+		|| !FKSIShelterEvaluator::Evaluate(Scene, Query, Sample, Error)
 		|| Sample.Transmission.Wind != 1. || Sample.Transmission.Precipitation != 0.)
 	{
 		Error = TEXT("문을 열어도 지붕의 강수 차폐는 유지되어야 한다.");
@@ -1038,17 +1038,17 @@ bool ACCLExperimentDirector::RunShelter(FString& Error)
 	}
 
 	Query.PositionMeters = Outside->PositionMeters;
-	if (!FCCLShelterEvaluator::Evaluate(Scene, Query, Sample, Error) || Sample.Transmission.Precipitation != 1.)
+	if (!FKSIShelterEvaluator::Evaluate(Scene, Query, Sample, Error) || Sample.Transmission.Precipitation != 1.)
 	{
 		Error = TEXT("실외 진단 위치의 강수 노출이 다르다.");
 		return false;
 	}
 
-	FCCLSurfaceQuery Ray;
+	FKSISurfaceQuery Ray;
 	Ray.BodyId = Inputs.Observer.BodyId;
 	Ray.OriginMeters = Inside->PositionMeters;
-	TArray<FCCLSurfaceSample> Above;
-	TArray<FCCLSurfaceSample> Below;
+	TArray<FKSISurfaceSample> Above;
+	TArray<FKSISurfaceSample> Below;
 	if (!Scene.QuerySurfaces(Ray, Above, Error))
 	{
 		return false;

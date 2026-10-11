@@ -140,7 +140,7 @@ bool ValidNeeds(const FInstancedStruct& Data)
 }
 }
 
-void CCLAgentFeatures::Register(FCCLFeatureRegistry& Registry)
+void CCLAgentFeatures::Register(FKSIFeatureRegistry& Registry)
 {
 	Registry.Register({CCLAgentTags::Feature_Biology, FCCLAgentBiology::StaticStruct(), 1, {}, {},
 		[](const FInstancedStruct& Data)

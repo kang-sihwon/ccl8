@@ -3,7 +3,7 @@
 #include "CoreMinimal.h"
 #include "Subsystems/GameInstanceSubsystem.h"
 #include "Tickable.h"
-#include "Environment/CCLEcologySimulation.h"
+#include "KSIEcologySimulation.h"
 #include "CCLEcologySmokeSubsystem.generated.h"
 
 UCLASS()
@@ -22,7 +22,7 @@ private:
 	void Finish(bool bSuccess, const FString& Message);
 
 private:
-	FCCLEcologyLease Lease;
+	FKSIEcologyLease Lease;
 	TArray<uint8> Saved;
 	TArray<uint8> EcologyBefore;
 	double Started = 0.;

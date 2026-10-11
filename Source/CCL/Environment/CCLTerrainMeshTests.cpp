@@ -1,36 +1,36 @@
-#include "CCLTerrainMesher.h"
+#include "KSITerrainMesher.h"
 
 #if WITH_DEV_AUTOMATION_TESTS
-#include "CCLTerrainStore.h"
+#include "KSITerrainStore.h"
 #include "Misc/AutomationTest.h"
 #include "VectorUtil.h"
 
 namespace
 {
-	FCCLTerrainDefinition MeshDefinition()
+	FKSITerrainDefinition MeshDefinition()
 	{
-		FCCLTerrainDefinition D;
+		FKSITerrainDefinition D;
 		D.WorldId = FGuid(11, 12, 13, 14);
 		D.RegionId = FGuid(21, 22, 23, 24);
 		D.DefinitionId = FGuid(31, 32, 33, 34);
 		return D;
 	}
 
-	bool Excavate(FCCLTerrainStore& Store, const FVector& Center, double Radius, FString& Error)
+	bool Excavate(FKSITerrainStore& Store, const FVector& Center, double Radius, FString& Error)
 	{
-		FCCLTerrainAuthority Authority;
+		FKSITerrainAuthority Authority;
 		Authority.PrincipalId = FGuid(100, 200, 300, 400);
-		Authority.AllowedBoundsMeters = FCCLTerrainStore::EditableBoundsMeters(Store.GetSnapshot().Definition);
+		Authority.AllowedBoundsMeters = FKSITerrainStore::EditableBoundsMeters(Store.GetSnapshot().Definition);
 		Authority.bCanExcavate = 1;
-		FCCLTerrainEdit Edit;
+		FKSITerrainEdit Edit;
 		Edit.PrincipalId = Authority.PrincipalId;
 		Edit.Sequence = 1;
 		Edit.Epoch = Store.GetEpoch();
 		Edit.ExpectedRevision = Store.GetRevision();
 		Edit.CenterMeters = Center;
 		Edit.RadiusMeters = Radius;
-		FCCLTerrainCandidate Candidate;
-		return Store.PrepareEdit(Edit, Authority, Candidate, Error) == ECCLTerrainPrepareResult::Prepared
+		FKSITerrainCandidate Candidate;
+		return Store.PrepareEdit(Edit, Authority, Candidate, Error) == EKSITerrainPrepareResult::Prepared
 			&& Store.CommitEdit(Candidate, Authority, Error);
 	}
 
@@ -40,7 +40,7 @@ namespace
 			FMath::RoundToInt64(P.Y * 1.e8), FMath::RoundToInt64(P.Z * 1.e8));
 	}
 
-	TMap<FString, int32> SeamEdges(const FCCLTerrainMesh& Mesh)
+	TMap<FString, int32> SeamEdges(const FKSITerrainMesh& Mesh)
 	{
 		TMap<FString, int32> Edges;
 		for (const FIntVector& T : Mesh.Triangles)
@@ -73,10 +73,10 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(FCCLTerrainPlaneMeshTest, "CCL.Environment.Terr
 bool FCCLTerrainPlaneMeshTest::RunTest(const FString& Parameters)
 {
 	FString Error;
-	FCCLTerrainStore Store;
+	FKSITerrainStore Store;
 	Store.Initialize(MeshDefinition(), Error);
-	FCCLTerrainMesh Mesh;
-	if (!TestTrue(TEXT("extract flat ground chunk"), FCCLTerrainMesher::BuildChunk(Store.GetSnapshot(), FIntVector(0, 0, -1), Store.GetEpoch(), Mesh, Error)))
+	FKSITerrainMesh Mesh;
+	if (!TestTrue(TEXT("extract flat ground chunk"), FKSITerrainMesher::BuildChunk(Store.GetSnapshot(), FIntVector(0, 0, -1), Store.GetEpoch(), Mesh, Error)))
 	{
 		AddError(Error);
 		return false;
@@ -100,13 +100,13 @@ bool FCCLTerrainPlaneMeshTest::RunTest(const FString& Parameters)
 		TestTrue(TEXT("ground triangle faces empty space above it"), N.Z > 0.);
 	}
 
-	TestTrue(TEXT("extract above-ground chunk"), FCCLTerrainMesher::BuildChunk(Store.GetSnapshot(), FIntVector::ZeroValue, Store.GetEpoch(), Mesh, Error));
+	TestTrue(TEXT("extract above-ground chunk"), FKSITerrainMesher::BuildChunk(Store.GetSnapshot(), FIntVector::ZeroValue, Store.GetEpoch(), Mesh, Error));
 	TestEqual(TEXT("ground is not duplicated by the upper chunk"), Mesh.Triangles.Num(), 0);
 	auto Partial = MeshDefinition();
 	Partial.MinimumCell = FIntVector(-35, -2, -4);
 	Partial.MaximumCell = FIntVector(2, 4, 4);
 	Store.Initialize(Partial, Error);
-	TestTrue(TEXT("extract partial negative boundary chunk"), FCCLTerrainMesher::BuildChunk(Store.GetSnapshot(), FIntVector(-2, -1, -1), Store.GetEpoch(), Mesh, Error));
+	TestTrue(TEXT("extract partial negative boundary chunk"), FKSITerrainMesher::BuildChunk(Store.GetSnapshot(), FIntVector(-2, -1, -1), Store.GetEpoch(), Mesh, Error));
 	TestEqual(TEXT("partial chunk is three by two ground cells"), Mesh.Triangles.Num(), 12);
 	TestEqual(TEXT("partial minimum preserved"), Mesh.MinimumCell, FIntVector(-35, -2, -4));
 	TestEqual(TEXT("partial maximum preserved"), Mesh.MaximumCell, FIntVector(-32, 0, 0));
@@ -119,13 +119,13 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(FCCLTerrainSeamMeshTest, "CCL.Environment.Terra
 bool FCCLTerrainSeamMeshTest::RunTest(const FString& Parameters)
 {
 	FString Error;
-	FCCLTerrainStore Store;
+	FKSITerrainStore Store;
 	Store.Initialize(MeshDefinition(), Error);
 	TestTrue(TEXT("excavate across signed chunk boundary"), Excavate(Store, FVector(0., 0., -0.3), 2.3, Error));
-	FCCLTerrainMesh Left;
-	FCCLTerrainMesh Right;
-	if (!TestTrue(TEXT("both seam meshes extract"), FCCLTerrainMesher::BuildChunk(Store.GetSnapshot(), FIntVector(-1, 0, -1), Store.GetEpoch(), Left, Error)
-		&& FCCLTerrainMesher::BuildChunk(Store.GetSnapshot(), FIntVector(0, 0, -1), Store.GetEpoch(), Right, Error)))
+	FKSITerrainMesh Left;
+	FKSITerrainMesh Right;
+	if (!TestTrue(TEXT("both seam meshes extract"), FKSITerrainMesher::BuildChunk(Store.GetSnapshot(), FIntVector(-1, 0, -1), Store.GetEpoch(), Left, Error)
+		&& FKSITerrainMesher::BuildChunk(Store.GetSnapshot(), FIntVector(0, 0, -1), Store.GetEpoch(), Right, Error)))
 	{
 		AddError(Error);
 		return false;
@@ -145,8 +145,8 @@ bool FCCLTerrainSeamMeshTest::RunTest(const FString& Parameters)
 	{
 		return (P + Right.OriginMeters).Z < -2.;
 	}));
-	FCCLTerrainMesh Again;
-	TestTrue(TEXT("extract same revision again"), FCCLTerrainMesher::BuildChunk(Store.GetSnapshot(), Right.Chunk, Store.GetEpoch(), Again, Error));
+	FKSITerrainMesh Again;
+	TestTrue(TEXT("extract same revision again"), FKSITerrainMesher::BuildChunk(Store.GetSnapshot(), Right.Chunk, Store.GetEpoch(), Again, Error));
 	TestTrue(TEXT("same input has stable geometry ordering"), Again.VerticesMeters == Right.VerticesMeters && Again.Triangles == Right.Triangles
 		&& Again.TriangleMaterials == Right.TriangleMaterials && Again.TriangleCells == Right.TriangleCells);
 	return true;
@@ -158,12 +158,12 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(FCCLTerrainCaveMeshTest, "CCL.Environment.Terra
 bool FCCLTerrainCaveMeshTest::RunTest(const FString& Parameters)
 {
 	FString Error;
-	FCCLTerrainStore Store;
+	FKSITerrainStore Store;
 	Store.Initialize(MeshDefinition(), Error);
 	const FVector Center(8., 8., -8.);
 	TestTrue(TEXT("create completely underground cavity"), Excavate(Store, Center, 2.3, Error));
-	FCCLTerrainMesh Mesh;
-	if (!TestTrue(TEXT("extract cavity and ground in one volume"), FCCLTerrainMesher::BuildChunk(Store.GetSnapshot(), FIntVector(0, 0, -1), Store.GetEpoch(), Mesh, Error)))
+	FKSITerrainMesh Mesh;
+	if (!TestTrue(TEXT("extract cavity and ground in one volume"), FKSITerrainMesher::BuildChunk(Store.GetSnapshot(), FIntVector(0, 0, -1), Store.GetEpoch(), Mesh, Error)))
 	{
 		AddError(Error);
 		return false;
@@ -209,21 +209,21 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(FCCLTerrainCancelledMeshTest, "CCL.Environment.
 bool FCCLTerrainCancelledMeshTest::RunTest(const FString& Parameters)
 {
 	FString Error;
-	FCCLTerrainStore Store;
+	FKSITerrainStore Store;
 	Store.Initialize(MeshDefinition(), Error);
-	FCCLTerrainMesh Mesh;
+	FKSITerrainMesh Mesh;
 	Mesh.WorldRevision = 1234;
 	Mesh.VerticesMeters.Add(FVector(1., 2., 3.));
 	int32 Calls = 0;
-	TestFalse(TEXT("cancel during generation"), FCCLTerrainMesher::BuildChunk(Store.GetSnapshot(), FIntVector(0, 0, -1), Store.GetEpoch(), Mesh, Error, [&]()
+	TestFalse(TEXT("cancel during generation"), FKSITerrainMesher::BuildChunk(Store.GetSnapshot(), FIntVector(0, 0, -1), Store.GetEpoch(), Mesh, Error, [&]()
 	{
 		return ++Calls >= 12;
 	}));
 	TestTrue(TEXT("cancellation polled during extraction"), Calls >= 12 && Error.Contains(TEXT("cancelled")));
 	TestEqual(TEXT("partial work did not publish revision"), Mesh.WorldRevision, uint64(1234));
 	TestEqual(TEXT("partial work did not replace vertices"), Mesh.VerticesMeters.Num(), 1);
-	TestFalse(TEXT("invalid chunk rejected before grid arithmetic"), FCCLTerrainMesher::BuildChunk(Store.GetSnapshot(), FIntVector(MAX_int32), Store.GetEpoch(), Mesh, Error));
-	TestFalse(TEXT("missing epoch rejected"), FCCLTerrainMesher::BuildChunk(Store.GetSnapshot(), FIntVector::ZeroValue, FGuid(), Mesh, Error));
+	TestFalse(TEXT("invalid chunk rejected before grid arithmetic"), FKSITerrainMesher::BuildChunk(Store.GetSnapshot(), FIntVector(MAX_int32), Store.GetEpoch(), Mesh, Error));
+	TestFalse(TEXT("missing epoch rejected"), FKSITerrainMesher::BuildChunk(Store.GetSnapshot(), FIntVector::ZeroValue, FGuid(), Mesh, Error));
 	TestEqual(TEXT("all errors leave output untouched"), Mesh.VerticesMeters[0], FVector(1., 2., 3.));
 	return true;
 }

@@ -1,4 +1,4 @@
-param([ValidateSet('KSIUI', 'KSIMap', 'KSICore', 'KSIInventory', 'KSICombat')][string]$Module = 'KSIUI')
+param([ValidateSet('KSIUI', 'KSIMap', 'KSICore', 'KSIInventory', 'KSICombat', 'KSIWorldTime', 'KSICelestial', 'KSITerrain', 'KSIAgent', 'KSIEnvironment', 'KSISave')][string]$Module = 'KSIUI')
 $ErrorActionPreference = 'Stop'
 $root = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '../..'))
 $paths = Get-Content (Join-Path $root '.local/agent-paths.json') -Raw | ConvertFrom-Json
@@ -6,11 +6,21 @@ $directory = Join-Path $root ('Saved/Tests/FrameworkIsolation/' + $Module + '-' 
 $source = Join-Path $directory 'Source'
 New-Item -ItemType Directory -Path $source -Force | Out-Null
 Copy-Item -LiteralPath (Join-Path $root ('Source/' + $Module)) -Destination $source -Recurse
-if ($Module -eq 'KSIInventory') { Copy-Item -LiteralPath (Join-Path $root 'Source/KSICore') -Destination $source -Recurse }
+$extraModules = @()
+switch ($Module) {
+    'KSIInventory' { $extraModules = @('KSICore') }
+    'KSIWorldTime' { $extraModules = @('KSICore') }
+    'KSITerrain' { $extraModules = @('KSICore') }
+    'KSIEnvironment' { $extraModules = @('KSICore', 'KSICelestial') }
+}
+foreach ($extra in $extraModules) { Copy-Item -LiteralPath (Join-Path $root ('Source/' + $extra)) -Destination $source -Recurse }
+$worldModules = @('KSIWorldTime', 'KSICelestial', 'KSITerrain', 'KSIAgent', 'KSIEnvironment', 'KSISave')
+$world = [int]($Module -in $worldModules)
 $probe = Join-Path $source 'KSIProbe'
 New-Item -ItemType Directory -Path $probe | Out-Null
 Copy-Item -Path (Join-Path $PSScriptRoot 'FrameworkProbe/*.h'), (Join-Path $PSScriptRoot 'FrameworkProbe/*.cpp') -Destination $probe
 if ($Module -eq 'KSICombat') { Copy-Item -Path (Join-Path $PSScriptRoot 'FrameworkProbe/Combat/*') -Destination $probe }
+if ($world) { Copy-Item -Path (Join-Path $PSScriptRoot 'FrameworkProbe/World/*') -Destination $probe }
 $projectName = $Module + 'Probe'
 $descriptor = [ordered]@{
     FileVersion = 3
@@ -36,11 +46,16 @@ elseif ($Module -eq 'KSICombat') {
     $dependencies += ', "GameplayAbilities", "GameplayTags", "GameplayTasks"'
     $descriptor.Plugins = @(@{Name='GameplayAbilities'; Enabled=$true})
 }
-else {
+elseif ($Module -eq 'KSIInventory') {
     $inventory = 1
-    $dependencies += ', "KSICore"'
-    $descriptor.Modules += @{Name='KSICore'; Type='Runtime'; LoadingPhase='Default'}
 }
+foreach ($extra in $extraModules) {
+    $dependencies += ', "' + $extra + '"'
+    $descriptor.Modules += @{Name=$extra; Type='Runtime'; LoadingPhase='Default'}
+}
+$worldDefinitions = ($worldModules | ForEach-Object {
+    '        PublicDefinitions.Add("WITH_' + $_.ToUpperInvariant() + '=' + [int]($Module -eq $_) + '");'
+}) -join "`n"
 $project = Join-Path $directory ($projectName + '.uproject')
 $descriptor | ConvertTo-Json -Depth 8 | Set-Content -LiteralPath $project -Encoding utf8
 @"
@@ -56,6 +71,8 @@ public class KSIProbe : ModuleRules
         PublicDefinitions.Add("WITH_KSI_CORE=$core");
         PublicDefinitions.Add("WITH_KSI_INVENTORY=$inventory");
         PublicDefinitions.Add("WITH_KSI_COMBAT=$combat");
+        PublicDefinitions.Add("WITH_KSI_WORLD=$world");
+$worldDefinitions
     }
 }
 "@ | Set-Content -LiteralPath (Join-Path $probe 'KSIProbe.Build.cs') -Encoding utf8

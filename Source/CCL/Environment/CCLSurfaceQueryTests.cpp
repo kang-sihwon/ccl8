@@ -1,4 +1,4 @@
-#include "CCLSurfaceQuery.h"
+#include "KSISurfaceQuery.h"
 
 #if WITH_DEV_AUTOMATION_TESTS
 #include "Misc/AutomationTest.h"
@@ -6,9 +6,9 @@
 
 namespace
 {
-	FCCLSurfacePatch Floor(int32 Id, double Height)
+	FKSISurfacePatch Floor(int32 Id, double Height)
 	{
-		FCCLSurfacePatch Patch;
+		FKSISurfacePatch Patch;
 		Patch.SurfaceId = FGuid(1, 0, 0, Id);
 		Patch.BodyId = TEXT("World");
 		Patch.CenterMeters.Z = Height;
@@ -17,9 +17,9 @@ namespace
 		return Patch;
 	}
 
-	FCCLSurfacePatch Wall()
+	FKSISurfacePatch Wall()
 	{
-		FCCLSurfacePatch Patch = Floor(3, 2.);
+		FKSISurfacePatch Patch = Floor(3, 2.);
 		Patch.Normal = FVector3d::XAxisVector;
 		Patch.TangentU = FVector3d::YAxisVector;
 		Patch.TangentV = FVector3d::ZAxisVector;
@@ -27,9 +27,9 @@ namespace
 		return Patch;
 	}
 
-	FCCLSurfaceOpening Door()
+	FKSISurfaceOpening Door()
 	{
-		FCCLSurfaceOpening Opening;
+		FKSISurfaceOpening Opening;
 		Opening.OpeningId = FGuid(2, 0, 0, 1);
 		Opening.SurfaceId = FGuid(1, 0, 0, 3);
 		Opening.HalfExtentsMeters = FVector2d(1., 2.);
@@ -43,23 +43,23 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(FCCLSurfaceLayersTest, "CCL.Environment.Surface
 
 bool FCCLSurfaceLayersTest::RunTest(const FString& Parameters)
 {
-	FCCLSurfacePatch Ground = Floor(1, 0.);
-	Ground.Kind = ECCLSurfaceKind::Terrain;
+	FKSISurfacePatch Ground = Floor(1, 0.);
+	Ground.Kind = EKSISurfaceKind::Terrain;
 	Ground.MaterialId = TEXT("Soil");
-	FCCLSurfacePatch RoofTop = Floor(2, 10.);
-	FCCLSurfacePatch RoofBottom = Floor(3, 9.5);
+	FKSISurfacePatch RoofTop = Floor(2, 10.);
+	FKSISurfacePatch RoofBottom = Floor(3, 9.5);
 	RoofBottom.Normal = -FVector3d::ZAxisVector;
 	RoofBottom.TangentV = -FVector3d::YAxisVector;
-	FCCLSurfacePatch OtherPlanet = Floor(4, 15.);
+	FKSISurfacePatch OtherPlanet = Floor(4, 15.);
 	OtherPlanet.BodyId = TEXT("Other");
-	FCCLSurfaceScene Scene;
+	FKSISurfaceScene Scene;
 	FString Error;
 	TestTrue(TEXT("layered scene"), Scene.Replace({ Ground, RoofBottom, RoofTop, OtherPlanet }, {}, 1, Error));
-	FCCLSurfaceQuery Query;
+	FKSISurfaceQuery Query;
 	Query.BodyId = TEXT("World");
 	Query.OriginMeters.Z = 20.;
 	Query.Direction = -FVector3d::ZAxisVector;
-	TArray<FCCLSurfaceSample> Samples;
+	TArray<FKSISurfaceSample> Samples;
 	TestTrue(TEXT("downward query"), Scene.QuerySurfaces(Query, Samples, Error));
 	if (TestEqual(TEXT("same XY has three independent surfaces"), Samples.Num(), 3))
 	{
@@ -75,7 +75,7 @@ bool FCCLSurfaceLayersTest::RunTest(const FString& Parameters)
 	TestTrue(TEXT("stored normal is not flipped toward ray"), Samples[0].Normal == -FVector3d::ZAxisVector);
 	Query.OriginMeters.Z = 20.;
 	Query.Direction = -FVector3d::ZAxisVector;
-	Query.KindMask = static_cast<uint8>(ECCLSurfaceKind::Terrain);
+	Query.KindMask = static_cast<uint8>(EKSISurfaceKind::Terrain);
 	TestTrue(TEXT("terrain filter"), Scene.QuerySurfaces(Query, Samples, Error));
 	TestEqual(TEXT("filter excludes structures"), Samples.Num(), 1);
 	TestEqual(TEXT("terrain result"), Samples[0].SurfaceId, Ground.SurfaceId);
@@ -92,37 +92,37 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(FCCLShelterDoorTest, "CCL.Environment.Surface.R
 
 bool FCCLShelterDoorTest::RunTest(const FString& Parameters)
 {
-	FCCLSurfaceScene Scene;
-	FCCLSurfacePatch Roof = Floor(1, 4.);
-	FCCLSurfaceOpening Opening = Door();
+	FKSISurfaceScene Scene;
+	FKSISurfacePatch Roof = Floor(1, 4.);
+	FKSISurfaceOpening Opening = Door();
 	FString Error;
 	TestTrue(TEXT("closed room fixture"), Scene.Replace({ Roof, Wall() }, { Opening }, 1, Error));
-	FCCLShelterQuery Query;
+	FKSIShelterQuery Query;
 	Query.BodyId = TEXT("World");
 	Query.PositionMeters = FVector3d(-2., 0., 1.5);
-	FCCLShelterSample Sample;
-	TestTrue(TEXT("closed door shelter"), FCCLShelterEvaluator::Evaluate(Scene, Query, Sample, Error));
+	FKSIShelterSample Sample;
+	TestTrue(TEXT("closed door shelter"), FKSIShelterEvaluator::Evaluate(Scene, Query, Sample, Error));
 	TestEqual(TEXT("roof blocks sunlight"), Sample.Transmission.Sun, 0.);
 	TestEqual(TEXT("roof blocks rain"), Sample.Transmission.Precipitation, 0.);
 	TestEqual(TEXT("wall blocks wind"), Sample.Transmission.Wind, 0.);
 	Opening.OpenFraction = 1.;
 	TestTrue(TEXT("open door publishes new revision"), Scene.Replace({ Roof, Wall() }, { Opening }, 2, Error));
-	TestTrue(TEXT("open door shelter"), FCCLShelterEvaluator::Evaluate(Scene, Query, Sample, Error));
+	TestTrue(TEXT("open door shelter"), FKSIShelterEvaluator::Evaluate(Scene, Query, Sample, Error));
 	TestEqual(TEXT("door admits wind"), Sample.Transmission.Wind, 1.);
 	TestEqual(TEXT("door does not remove roof rain cover"), Sample.Transmission.Precipitation, 0.);
 	TestEqual(TEXT("open area supports later ventilation"), Scene.GetEffectiveOpeningAreaM2(Opening.SpaceA), 8.);
 	Opening.OpenFraction = 0.5;
 	TestTrue(TEXT("partially open door"), Scene.Replace({ Roof, Wall() }, { Opening }, 3, Error));
 	Query.PositionMeters.Y = -0.5;
-	TestTrue(TEXT("open half query"), FCCLShelterEvaluator::Evaluate(Scene, Query, Sample, Error));
+	TestTrue(TEXT("open half query"), FKSIShelterEvaluator::Evaluate(Scene, Query, Sample, Error));
 	TestEqual(TEXT("low U half is open"), Sample.Transmission.Wind, 1.);
 	Query.PositionMeters.Y = 0.5;
-	TestTrue(TEXT("closed half query"), FCCLShelterEvaluator::Evaluate(Scene, Query, Sample, Error));
+	TestTrue(TEXT("closed half query"), FKSIShelterEvaluator::Evaluate(Scene, Query, Sample, Error));
 	TestEqual(TEXT("remaining panel still blocks wind"), Sample.Transmission.Wind, 0.);
 	TestEqual(TEXT("partial opening area"), Scene.GetEffectiveOpeningAreaM2(Opening.SpaceA), 4.);
 	Query.ToPrecipitationSource = FVector3d::XAxisVector;
 	Query.PositionMeters.Y = -0.5;
-	TestTrue(TEXT("wind-driven rain through door"), FCCLShelterEvaluator::Evaluate(Scene, Query, Sample, Error));
+	TestTrue(TEXT("wind-driven rain through door"), FKSIShelterEvaluator::Evaluate(Scene, Query, Sample, Error));
 	TestEqual(TEXT("horizontal rain enters open aperture"), Sample.Transmission.Precipitation, 1.);
 	TestEqual(TEXT("overhead light still blocked"), Sample.Transmission.Sun, 0.);
 	return true;
@@ -133,32 +133,32 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(FCCLShelterMaterialTest, "CCL.Environment.Surfa
 
 bool FCCLShelterMaterialTest::RunTest(const FString& Parameters)
 {
-	FCCLSurfacePatch Glass = Floor(1, 4.);
+	FKSISurfacePatch Glass = Floor(1, 4.);
 	Glass.Transmission.Sun = 0.8;
-	FCCLSurfaceScene Scene;
+	FKSISurfaceScene Scene;
 	FString Error;
 	TestTrue(TEXT("glass roof"), Scene.Replace({ Glass }, {}, 1, Error));
-	FCCLShelterQuery Query;
+	FKSIShelterQuery Query;
 	Query.BodyId = TEXT("World");
 	Query.PositionMeters.Z = 1.;
 	Query.ToWindSource = FVector3d::ZAxisVector;
-	FCCLShelterSample Sample;
-	TestTrue(TEXT("glass query"), FCCLShelterEvaluator::Evaluate(Scene, Query, Sample, Error));
+	FKSIShelterSample Sample;
+	TestTrue(TEXT("glass query"), FKSIShelterEvaluator::Evaluate(Scene, Query, Sample, Error));
 	TestEqual(TEXT("glass admits light"), Sample.Transmission.Sun, 0.8);
 	TestEqual(TEXT("glass blocks water"), Sample.Transmission.Precipitation, 0.);
 	TestEqual(TEXT("glass blocks wind"), Sample.Transmission.Wind, 0.);
-	FCCLSurfacePatch SecondGlass = Glass;
+	FKSISurfacePatch SecondGlass = Glass;
 	SecondGlass.SurfaceId = FGuid(1, 0, 0, 2);
 	SecondGlass.CenterMeters.Z = 5.;
 	TestTrue(TEXT("two glass layers"), Scene.Replace({ Glass, SecondGlass }, {}, 2, Error));
-	TestTrue(TEXT("layered transmission"), FCCLShelterEvaluator::Evaluate(Scene, Query, Sample, Error));
+	TestTrue(TEXT("layered transmission"), FKSIShelterEvaluator::Evaluate(Scene, Query, Sample, Error));
 	TestTrue(TEXT("transmission multiplies through layers"), FMath::IsNearlyEqual(Sample.Transmission.Sun, 0.64, 1.e-12));
 	Glass.Transmission.Sun = 0.;
 	Glass.HalfExtentsMeters = FVector2d(1., 1.);
 	TestTrue(TEXT("small roof"), Scene.Replace({ Glass }, {}, 3, Error));
 	Query.PositionMeters.X = 0.75;
 	Query.ProbeRadiusMeters = 0.5;
-	TestTrue(TEXT("roof edge footprint"), FCCLShelterEvaluator::Evaluate(Scene, Query, Sample, Error));
+	TestTrue(TEXT("roof edge footprint"), FKSIShelterEvaluator::Evaluate(Scene, Query, Sample, Error));
 	TestTrue(TEXT("one of five samples exposed"), FMath::IsNearlyEqual(Sample.Transmission.Precipitation, 0.2, 1.e-12));
 	return true;
 }
@@ -168,9 +168,9 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(FCCLSurfaceAtomicTest, "CCL.Environment.Surface
 
 bool FCCLSurfaceAtomicTest::RunTest(const FString& Parameters)
 {
-	FCCLSurfaceScene Scene;
-	FCCLSurfacePatch Patch = Wall();
-	FCCLSurfaceOpening Opening = Door();
+	FKSISurfaceScene Scene;
+	FKSISurfacePatch Patch = Wall();
+	FKSISurfaceOpening Opening = Door();
 	FString Error;
 	TestTrue(TEXT("initial scene"), Scene.Replace({ Patch }, { Opening }, 1, Error));
 	TestFalse(TEXT("revision must increase"), Scene.Replace({ Patch }, {}, 1, Error));
@@ -181,7 +181,7 @@ bool FCCLSurfaceAtomicTest::RunTest(const FString& Parameters)
 	Opening.CenterUV.X = 4.;
 	TestFalse(TEXT("opening outside wall"), Scene.Replace({ Patch }, { Opening }, 2, Error));
 	Opening = Door();
-	FCCLSurfaceOpening Duplicate = Opening;
+	FKSISurfaceOpening Duplicate = Opening;
 	Duplicate.OpeningId.D = 2;
 	TestFalse(TEXT("overlap cannot double count opening area"), Scene.Replace({ Patch }, { Opening, Duplicate }, 2, Error));
 	Patch.TangentU = Patch.Normal;
@@ -191,11 +191,11 @@ bool FCCLSurfaceAtomicTest::RunTest(const FString& Parameters)
 	TestFalse(TEXT("nonfinite material value"), Scene.Replace({ Patch }, {}, 2, Error));
 	TestEqual(TEXT("failed replacements retain revision"), Scene.GetRevision(), uint64(1));
 	TestEqual(TEXT("failed replacement retains closed door"), Scene.GetOpenings()[0].OpenFraction, 0.);
-	FCCLSurfaceQuery Query;
+	FKSISurfaceQuery Query;
 	Query.BodyId = TEXT("World");
 	Query.OriginMeters = FVector3d(-2., 0., 1.);
 	Query.Direction = FVector3d::XAxisVector;
-	TArray<FCCLSurfaceSample> Samples;
+	TArray<FKSISurfaceSample> Samples;
 	TestTrue(TEXT("original scene still usable"), Scene.QuerySurfaces(Query, Samples, Error));
 	TestEqual(TEXT("original wall exists"), Samples.Num(), 1);
 	Query.RequiredRevision = 2;
@@ -205,12 +205,12 @@ bool FCCLSurfaceAtomicTest::RunTest(const FString& Parameters)
 	TestFalse(TEXT("nonunit direction rejected"), Scene.QuerySurfaces(Query, Samples, Error));
 	TestEqual(TEXT("failed query preserves prior samples"), Samples.Num(), 1);
 	TestEqual(TEXT("failed query preserves prior identity"), Samples[0].SurfaceId, Wall().SurfaceId);
-	FCCLShelterSample Shelter;
+	FKSIShelterSample Shelter;
 	Shelter.Revision = 99;
-	FCCLShelterQuery ShelterQuery;
+	FKSIShelterQuery ShelterQuery;
 	ShelterQuery.BodyId = TEXT("World");
 	ShelterQuery.RequiredRevision = 2;
-	TestFalse(TEXT("stale shelter revision rejected"), FCCLShelterEvaluator::Evaluate(Scene, ShelterQuery, Shelter, Error));
+	TestFalse(TEXT("stale shelter revision rejected"), FKSIShelterEvaluator::Evaluate(Scene, ShelterQuery, Shelter, Error));
 	TestEqual(TEXT("failed shelter query preserves output"), Shelter.Revision, uint64(99));
 	return true;
 }
@@ -220,12 +220,12 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(FCCLSurfaceBudgetTest, "CCL.Environment.Surface
 
 bool FCCLSurfaceBudgetTest::RunTest(const FString& Parameters)
 {
-	FCCLSurfaceScene Scene;
+	FKSISurfaceScene Scene;
 	FString Error;
 	TestTrue(TEXT("coplanar fixture"), Scene.Replace({ Floor(3, 5.), Floor(1, 5.), Floor(2, 5.) }, {}, 1, Error));
-	FCCLSurfaceQuery Query;
+	FKSISurfaceQuery Query;
 	Query.BodyId = TEXT("World");
-	TArray<FCCLSurfaceSample> Samples;
+	TArray<FKSISurfaceSample> Samples;
 	TestTrue(TEXT("complete result"), Scene.QuerySurfaces(Query, Samples, Error));
 	if (TestEqual(TEXT("all contacts retained"), Samples.Num(), 3))
 	{
@@ -239,15 +239,15 @@ bool FCCLSurfaceBudgetTest::RunTest(const FString& Parameters)
 	TestTrue(TEXT("empty scene is a valid newer scene"), Scene.Replace({}, {}, 2, Error));
 	TestTrue(TEXT("empty scene query"), Scene.QuerySurfaces(Query, Samples, Error));
 	TestEqual(TEXT("no obstacles"), Samples.Num(), 0);
-	FCCLShelterQuery ShelterQuery;
+	FKSIShelterQuery ShelterQuery;
 	ShelterQuery.BodyId = TEXT("World");
-	FCCLShelterSample Shelter;
-	TestTrue(TEXT("outdoors query"), FCCLShelterEvaluator::Evaluate(Scene, ShelterQuery, Shelter, Error));
+	FKSIShelterSample Shelter;
+	TestTrue(TEXT("outdoors query"), FKSIShelterEvaluator::Evaluate(Scene, ShelterQuery, Shelter, Error));
 	TestEqual(TEXT("outdoors sunlight"), Shelter.Transmission.Sun, 1.);
 	TestEqual(TEXT("outdoors rain"), Shelter.Transmission.Precipitation, 1.);
 	TestEqual(TEXT("outdoors wind"), Shelter.Transmission.Wind, 1.);
 	const FGuid OldEpoch = Scene.GetEpoch();
-	FCCLSurfaceScene Rebuilt;
+	FKSISurfaceScene Rebuilt;
 	TestTrue(TEXT("rebuild may restore the same saved revision"), Rebuilt.Replace({ Floor(1, 8.) }, {}, 2, Error));
 	Scene = MoveTemp(Rebuilt);
 	Query.RequiredRevision = 2;
@@ -258,7 +258,7 @@ bool FCCLSurfaceBudgetTest::RunTest(const FString& Parameters)
 	TestTrue(TEXT("new execution accepted"), Scene.QuerySurfaces(Query, Samples, Error));
 	TestEqual(TEXT("restored surface has a new execution identity"), Samples[0].Epoch, Scene.GetEpoch());
 	ShelterQuery.RequiredEpoch = OldEpoch;
-	TestFalse(TEXT("old shelter execution rejected"), FCCLShelterEvaluator::Evaluate(Scene, ShelterQuery, Shelter, Error));
+	TestFalse(TEXT("old shelter execution rejected"), FKSIShelterEvaluator::Evaluate(Scene, ShelterQuery, Shelter, Error));
 	return true;
 }
 #endif

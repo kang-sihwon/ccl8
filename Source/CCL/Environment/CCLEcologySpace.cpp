@@ -1,6 +1,6 @@
 #include "CCLEcologySpace.h"
 
-#include "CCLSurfaceSimulation.h"
+#include "KSISurfaceSimulation.h"
 #include "CCLTerrainRegion.h"
 #include "Engine/World.h"
 #include "EngineUtils.h"
@@ -9,7 +9,7 @@
 #include "NavigationData.h"
 #include "Algo/Reverse.h"
 
-bool FCCLEcologyWorldSpace::IsInLiquid(const FCCLSurfaceSimulation& Surface, const FVector& P, double Radius)
+bool FCCLEcologyWorldSpace::IsInLiquid(const FKSISurfaceSimulation& Surface, const FVector& P, double Radius)
 {
 	if (!Surface.IsInitialized() || P.ContainsNaN() || !FMath::IsFinite(Radius) || Radius < .02 || Radius > 10.)
 	{
@@ -61,7 +61,7 @@ bool FCCLEcologyWorldSpace::IsInLiquid(const FCCLSurfaceSimulation& Surface, con
 	return false;
 }
 
-bool FCCLEcologyWorldSpace::FindRoute(const FCCLEcologyRouteRequest& Q, const FCCLSurfaceSimulation* Surface,
+bool FCCLEcologyWorldSpace::FindRoute(const FKSIEcologyRouteRequest& Q, const FKSISurfaceSimulation* Surface,
 	TArray<FVector>& OutRoute, FString& Error) const
 {
 	if (!IsInGameThread() || !World || World->GetNetMode() == NM_Client || !Q.HabitatMeters.IsValid
@@ -71,8 +71,8 @@ bool FCCLEcologyWorldSpace::FindRoute(const FCCLEcologyRouteRequest& Q, const FC
 		Error = TEXT("Ecology spatial query requires a server game thread and bounded geometry.");
 		return false;
 	}
-	const bool bWater = Q.Medium == ECCLEcologyMovement::Water;
-	const bool bGround = Q.Medium == ECCLEcologyMovement::Ground || Q.Medium == ECCLEcologyMovement::Insect;
+	const bool bWater = Q.Medium == EKSIEcologyMovement::Water;
+	const bool bGround = Q.Medium == EKSIEcologyMovement::Ground || Q.Medium == EKSIEcologyMovement::Insect;
 	if (bWater && (!Surface || Surface->GetWorldSeconds() != Q.WorldSeconds))
 	{
 		Error = TEXT("Aquatic movement requires water from the same committed behavior boundary.");

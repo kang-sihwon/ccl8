@@ -32,7 +32,7 @@ void ACCLWorldEnvironmentPresentation::Tick(float DeltaSeconds)
 	}
 	for (TActorIterator<ACCLWorldEnvironmentState> It(GetWorld()); It; ++It)
 	{
-		const FCCLEnvironmentView& View = It->GetTime().Environment;
+		const FKSIEnvironmentView& View = It->GetTime().Environment;
 		if (!View.bValid)
 		{
 			return;
@@ -124,14 +124,14 @@ void ACCLWorldEnvironmentPresentation::RefreshPreview()
 {
 	if (const auto* Config = ACCLWorldEnvironmentConfig::Find(GetWorld()))
 	{
-		FCCLEnvironmentView View;
+		FKSIEnvironmentView View;
 		View.Surfaces = Config->Surfaces;
 		View.Openings = Config->Openings;
 		RebuildSurfaces(View);
 	}
 }
 
-void ACCLWorldEnvironmentPresentation::RebuildSurfaces(const FCCLEnvironmentView& View)
+void ACCLWorldEnvironmentPresentation::RebuildSurfaces(const FKSIEnvironmentView& View)
 {
 	ClearSurfaces();
 	for (const auto& Patch : View.Surfaces)
@@ -196,7 +196,7 @@ void ACCLWorldEnvironmentPresentation::ClearSurfaces()
 	Pieces.Reset();
 }
 
-void ACCLWorldEnvironmentPresentation::AddPiece(const FCCLSurfacePatch& Patch, const FVector2D& Minimum, const FVector2D& Maximum)
+void ACCLWorldEnvironmentPresentation::AddPiece(const FKSISurfacePatch& Patch, const FVector2D& Minimum, const FVector2D& Maximum)
 {
 	const bool bGlass = Patch.Transmission.Sun > 0.;
 	auto* Mesh = bGlass ? GlassMesh.Get() : SolidMesh.Get();

@@ -19,7 +19,7 @@ public:
 	ECCLGoalMetric Metric = ECCLGoalMetric::Balance;
 	UPROPERTY(EditAnywhere)
 	FGameplayTag Skill;
-	virtual float Evaluate(const FCCLAgentRecord& Agent, const FCCLLifeGoalState& Goal,
+	virtual float Evaluate(const FKSIAgentRecord& Agent, const FCCLLifeGoalState& Goal,
 		const FCCLEconomyState& Economy) const;
 };
 
@@ -56,6 +56,6 @@ public:
 
 namespace CCLGoalPolicy
 {
-CCL_API float Evaluate(ECCLGoalMetric Metric, FGameplayTag Skill, const FCCLAgentRecord& Agent,
+CCL_API float Evaluate(ECCLGoalMetric Metric, FGameplayTag Skill, const FKSIAgentRecord& Agent,
 	const FCCLLifeGoalState& Goal, const FCCLEconomyState& Economy);
 }

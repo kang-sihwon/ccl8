@@ -93,7 +93,7 @@ void UCCLVegetationSmokeSubsystem::Tick(float DeltaTime)
 		else
 		{
 			InitialTime = Runtime->GetClock().GetWorldSeconds();
-			FCCLSurfaceGrid G;
+			FKSISurfaceGrid G;
 			G.RegionId = PlantRegion;
 			G.OriginMeters = UCCLExperimentDefinition::ZoneCenter(7) / 100. + FVector(-4.5, 0., 0.);
 			G.Size = FIntPoint(9, 1);
@@ -107,20 +107,20 @@ void UCCLVegetationSmokeSubsystem::Tick(float DeltaTime)
 			G.Fire.SpreadWattsPerKelvin = 0.;
 			G.Fire.Material.CoolingWattsPerKelvin = 0.;
 			G.Fire.Material.SurfaceWattsPerKelvin = 0.;
-			TArray<FCCLVegetationSpecies> Species;
-			TArray<FCCLVegetationSeed> Seeds;
+			TArray<FKSIVegetationSpecies> Species;
+			TArray<FKSIVegetationSeed> Seeds;
 			for (int32 I = 0; I < 9; ++I)
 			{
-				FCCLVegetationSpecies S;
+				FKSIVegetationSpecies S;
 				S.Id = FGuid(968, 2, 1, I + 1);
-				S.Kind = ECCLVegetationKind(I);
+				S.Kind = EKSIVegetationKind(I);
 				S.LifespanSeconds = 180.;
 				S.RegrowthDelaySeconds = 30.;
 				S.GrowthKgPerWorldSecond = 0.001;
 				S.MinimumDaylightHours = 0.;
 				S.DecayPerWorldSecond = 0.001;
 				Species.Add(S);
-				FCCLVegetationSeed Seed;
+				FKSIVegetationSeed Seed;
 				Seed.Id = FGuid(968, 3, 1, I + 1);
 				Seed.SpeciesIndex = I;
 				Seed.BiomassKg = 0.1;
@@ -133,7 +133,7 @@ void UCCLVegetationSmokeSubsystem::Tick(float DeltaTime)
 				G.Cells[I].SunExposure = I == 8 ? 0. : 1.;
 			}
 			G.Ledger.InitialCubicMeters = G.TotalCubicMeters();
-			if (!Check(CCLSurfaceVegetation::Initialize(G, Species, Seeds, InitialTime, Error) && Runtime->AddSurfaceRegion(G, Error)))
+			if (!Check(KSISurfaceVegetation::Initialize(G, Species, Seeds, InitialTime, Error) && Runtime->AddSurfaceRegion(G, Error)))
 			{
 				return;
 			}

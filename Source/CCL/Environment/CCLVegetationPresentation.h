@@ -7,7 +7,7 @@
 class UInstancedStaticMeshComponent;
 class UMaterialInterface;
 class UTextRenderComponent;
-struct FCCLSurfaceGrid;
+struct FKSISurfaceGrid;
 
 UCLASS()
 class CCL_API ACCLVegetationPresentation : public AActor
@@ -27,7 +27,7 @@ public:
 	int32 GetRenderedPatchCount() const { return RenderedPatchCount; }
 
 private:
-	void Append(const FCCLSurfaceGrid& Grid);
+	void Append(const FKSISurfaceGrid& Grid);
 	void Clear();
 
 public:

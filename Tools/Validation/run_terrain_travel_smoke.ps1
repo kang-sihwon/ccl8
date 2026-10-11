@@ -1,9 +1,15 @@
 param(
     [ValidateSet('Standalone','Listen','Dedicated')][string]$Mode = 'Standalone',
     [int]$Port = 19841,
+    [string]$PackagedExecutable,
+    [string]$ServerExecutable,
     [ValidateRange(30,600)][int]$TimeoutSeconds = 240
 )
 $ErrorActionPreference = 'Stop'
+if ($ServerExecutable -and $Mode -ne 'Dedicated') { throw 'ServerExecutable requires Dedicated mode.' }
+if ($Mode -eq 'Dedicated' -and ([bool]$PackagedExecutable -ne [bool]$ServerExecutable)) { throw 'Packaged Dedicated requires both Game and Server executables.' }
+if ($PackagedExecutable) { $PackagedExecutable = (Resolve-Path -LiteralPath $PackagedExecutable).Path }
+if ($ServerExecutable) { $ServerExecutable = (Resolve-Path -LiteralPath $ServerExecutable).Path }
 $root = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '../..'))
 $paths = Get-Content (Join-Path $root '.local/agent-paths.json') -Raw | ConvertFrom-Json
 $directory = Join-Path $root ('Saved/Tests/TerrainTravel/{0}-{1}' -f $Mode,(Get-Date -Format 'yyyyMMdd-HHmmss-fff'))
@@ -11,8 +17,10 @@ New-Item -ItemType Directory -Path $directory -Force | Out-Null
 $processes = [Collections.Generic.List[object]]::new()
 function Start-TerrainTravel([string]$Name, [string[]]$Options) {
     $log = Join-Path $directory ($Name+'.log')
-    $args = @(('"'+$root+'/CCL.uproject"')) + $Options + @('-unattended','-nop4','-nosplash','-nosound','-NullRHI','-NoLiveCoding','-ExecCmds="t.MaxFPS 60"',('-abslog="'+$log+'"'))
-    $process = Start-Process -FilePath (Join-Path $paths.engineRoot 'Binaries/Win64/UnrealEditor-Cmd.exe') -ArgumentList $args -WindowStyle Hidden -PassThru
+    $executable = if ($Name -eq 'server' -and $ServerExecutable) { $ServerExecutable } elseif ($PackagedExecutable) { $PackagedExecutable } else { Join-Path $paths.engineRoot 'Binaries/Win64/UnrealEditor-Cmd.exe' }
+    [string[]]$prefix = if ($PackagedExecutable) { @() } else { @(('"'+$root+'/CCL.uproject"')) }
+    $args = $prefix + $Options + @('-unattended','-nop4','-nosplash','-nosound','-NullRHI','-NoLiveCoding','-ExecCmds="t.MaxFPS 60"',('-abslog="'+$log+'"'))
+    $process = Start-Process -FilePath $executable -ArgumentList $args -WindowStyle Hidden -PassThru
     $entry = [pscustomobject]@{Process=$process;Log=$log}
     $processes.Add($entry)
     return $entry

@@ -2,9 +2,9 @@
 
 #include "CCLWorldSimulationSubsystem.h"
 
-FCCLSurfaceGrid ACCLExperimentDirector::WeatherGrid()
+FKSISurfaceGrid ACCLExperimentDirector::WeatherGrid()
 {
-	FCCLSurfaceGrid G;
+	FKSISurfaceGrid G;
 	G.RegionId = WeatherRegionId();
 	G.OriginMeters = UCCLExperimentDefinition::ZoneCenter(2) / 100. + FVector(-4., -4., 0.);
 	G.Size = FIntPoint(16, 16);
@@ -52,7 +52,7 @@ bool ACCLExperimentDirector::WeatherAction(ECCLExperimentAction Action, FName Ca
 bool ACCLExperimentDirector::RunWeather(FString& Error)
 {
 	const auto* Runtime = GetWorld()->GetSubsystem<UCCLWorldSimulationSubsystem>();
-	FCCLSurfaceSimulation Candidate = Runtime->GetSurfaceSimulation();
+	FKSISurfaceSimulation Candidate = Runtime->GetSurfaceSimulation();
 	const auto* Grid = Candidate.FindRegion(WeatherRegionId());
 	if (!Grid)
 	{
@@ -62,7 +62,7 @@ bool ACCLExperimentDirector::RunWeather(FString& Error)
 
 	auto Climate = Grid->Climate;
 	Climate.bEnabled = 1;
-	FCCLCelestialSystem Celestial;
+	FKSICelestialSystem Celestial;
 	const auto& Inputs = Runtime->GetEnvironmentInputs();
 	if (!Candidate.ChangeClimate(WeatherRegionId(), Climate, Error) || !Celestial.Initialize(Inputs.Celestial, Error))
 	{
@@ -84,7 +84,7 @@ bool ACCLExperimentDirector::RunWeather(FString& Error)
 	}
 
 	TArray<uint8> Bytes, Again;
-	FCCLSurfaceSimulation Restored;
+	FKSISurfaceSimulation Restored;
 	return Candidate.Validate(Error) && Candidate.Capture(Bytes, Error) && Restored.Restore(Bytes, Error)
 		&& Restored.Capture(Again, Error) && Bytes == Again;
 }

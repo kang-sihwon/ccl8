@@ -1,4 +1,4 @@
-#include "CCLEcologySimulation.h"
+#include "KSIEcologySimulation.h"
 #include "Misc/AutomationTest.h"
 #include "HAL/PlatformTime.h"
 #include "Serialization/MemoryWriter.h"
@@ -12,7 +12,7 @@ namespace
 		return FGuid(941, 1, 0, Value);
 	}
 
-	TArray<uint8> SaveNutrition(const FCCLEcologySimulation& S)
+	TArray<uint8> SaveNutrition(const FKSIEcologySimulation& S)
 	{
 		TArray<uint8> Bytes;
 		FString Error;
@@ -20,7 +20,7 @@ namespace
 		return Bytes;
 	}
 
-	bool NutritionFixture(FCCLEcologySimulation& S, FString& Error, int32 Populations = 1, int64 Count = 10, bool bFood = false)
+	bool NutritionFixture(FKSIEcologySimulation& S, FString& Error, int32 Populations = 1, int64 Count = 10, bool bFood = false)
 	{
 		if (!S.Initialize(NId(1), 0., Error))
 		{
@@ -28,18 +28,18 @@ namespace
 		}
 		for (uint32 N = 0; N < uint32(Populations); ++N)
 		{
-			FCCLEcologySpecies Species;
+			FKSIEcologySpecies Species;
 			Species.Id = NId(10 + N);
-			Species.Movement = ECCLEcologyMovement(N % 4);
+			Species.Movement = EKSIEcologyMovement(N % 4);
 			Species.LifespanSeconds = 1.e8;
 			Species.AggregateDietMask = 1;
 			Species.AggregateMetabolism = .25;
 			Species.AggregateEnergyPerUnit = 1.;
 			Species.AggregateStarvationSeconds = 2.;
-			FCCLEcologyHabitat H;
+			FKSIEcologyHabitat H;
 			H.Id = NId(1000 + N);
 			H.Capacity = Count;
-			FCCLEcologyPopulation P;
+			FKSIEcologyPopulation P;
 			P.Id = NId(2000 + N);
 			P.SpeciesId = Species.Id;
 			P.HabitatId = H.Id;
@@ -50,7 +50,7 @@ namespace
 			}
 			if (bFood)
 			{
-				FCCLEcologyForage F;
+				FKSIEcologyForage F;
 				F.Id = NId(4000 + N);
 				F.HabitatId = H.Id;
 				F.InitialUnits = F.AvailableUnits = F.CapacityUnits = double(Count);
@@ -69,7 +69,7 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(FCCLEcologyNutritionTest, "CCL.Environment.Ecol
 	EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
 bool FCCLEcologyNutritionTest::RunTest(const FString& Parameters)
 {
-	FCCLEcologySimulation Whole;
+	FKSIEcologySimulation Whole;
 	FString Error;
 	if (!TestTrue(TEXT("nutrition fixture"), NutritionFixture(Whole, Error)))
 	{
@@ -79,8 +79,8 @@ bool FCCLEcologyNutritionTest::RunTest(const FString& Parameters)
 	TestEqual(TEXT("aggregate energy"), Whole.GetPopulations()[NId(2000)].Cohorts[NId(3000)].Nutrition.Energy, .5);
 	TestTrue(TEXT("reserve from hungry aggregate"), Whole.Materialize(NId(5000), NId(2000), NId(3000), NId(5001), false, Error));
 	TestEqual(TEXT("reservation inherits energy"), Whole.FindIndividual(NId(5001))->Nutrition.Energy, .5);
-	FCCLEcologyLease Lease;
-	TestTrue(TEXT("Mass execution"), Whole.Acquire(NId(5001), ECCLEcologyRepresentation::Mass, NId(9000), Lease, Error));
+	FKSIEcologyLease Lease;
+	TestTrue(TEXT("Mass execution"), Whole.Acquire(NId(5001), EKSIEcologyRepresentation::Mass, NId(9000), Lease, Error));
 	TestTrue(TEXT("unmodeled reservation metabolizes"), Whole.AdvanceTo(3., Error));
 	TestEqual(TEXT("reserved metabolism"), Whole.FindIndividual(NId(5001))->Nutrition.Energy, .25);
 	TestTrue(TEXT("return preserves energy"), Whole.Release(Lease, Error));
@@ -88,7 +88,7 @@ bool FCCLEcologyNutritionTest::RunTest(const FString& Parameters)
 	auto Before = SaveNutrition(Whole);
 	TestFalse(TEXT("budget rejects whole candidate"), Whole.AdvanceTo(100., Error, 1));
 	TestTrue(TEXT("budget failure preserves bytes"), Before == SaveNutrition(Whole));
-	FCCLEcologySimulation Split;
+	FKSIEcologySimulation Split;
 	TestTrue(TEXT("restart"), Split.Restore(Before, Error));
 	TestTrue(TEXT("whole starvation"), Whole.AdvanceTo(6., Error));
 	for (double At : {3.25, 3.75, 4.5, 5.25, 6.})
@@ -99,10 +99,10 @@ bool FCCLEcologyNutritionTest::RunTest(const FString& Parameters)
 	TestEqual(TEXT("all hungry members died once"), Whole.GetPopulations()[NId(2000)].Died, int64(10));
 	TestTrue(TEXT("empty population stays empty"), Whole.AdvanceTo(10., Error) && Whole.LivingCount(NId(2000)) == 0);
 
-	FCCLEcologySimulation Reserved;
+	FKSIEcologySimulation Reserved;
 	TestTrue(TEXT("reserved death fixture"), NutritionFixture(Reserved, Error) &&
 		Reserved.Materialize(NId(5010), NId(2000), NId(3000), NId(5011), false, Error) &&
-		Reserved.Acquire(NId(5011), ECCLEcologyRepresentation::Actor, NId(9000), Lease, Error));
+		Reserved.Acquire(NId(5011), EKSIEcologyRepresentation::Actor, NId(9000), Lease, Error));
 	TestTrue(TEXT("starvation revokes live representation"), Reserved.AdvanceTo(6., Error) && !Reserved.IsLeaseCurrent(Lease));
 	TestEqual(TEXT("aggregate and reservation death counted once"), Reserved.GetPopulations()[NId(2000)].Died, int64(10));
 
@@ -121,11 +121,11 @@ bool FCCLEcologyNutritionTest::RunTest(const FString& Parameters)
 	}
 	uint32 Checksum = FCrc::MemCrc32(Legacy.GetData(), Legacy.Num());
 	Writer << Checksum;
-	FCCLEcologySimulation Migrated;
+	FKSIEcologySimulation Migrated;
 	TestTrue(TEXT("legacy species preserves disabled nutrition"), Migrated.Restore(Legacy, Error) &&
 		Migrated.GetSpecies()[SpeciesId].AggregateDietMask == 0);
 
-	FCCLEcologySimulation Fed;
+	FKSIEcologySimulation Fed;
 	TestTrue(TEXT("four media food fixture"), NutritionFixture(Fed, Error, 4, 10, true));
 	TestTrue(TEXT("food sustains aggregates"), Fed.AdvanceTo(30., Error));
 	for (uint32 N = 0; N < 4; ++N)
@@ -140,15 +140,15 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(FCCLEcologyNutritionTransferTest, "CCL.Environm
 	EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
 bool FCCLEcologyNutritionTransferTest::RunTest(const FString& Parameters)
 {
-	FCCLEcologySimulation S;
+	FKSIEcologySimulation S;
 	FString Error;
 	if (!TestTrue(TEXT("hungry source"), NutritionFixture(S, Error) && S.AdvanceTo(2.5, Error)))
 	{
 		return false;
 	}
-	FCCLEcologyHabitat H;
+	FKSIEcologyHabitat H;
 	H.Id = NId(1010);
-	FCCLEcologyPopulation P;
+	FKSIEcologyPopulation P;
 	P.Id = NId(2010);
 	P.SpeciesId = NId(10);
 	P.HabitatId = H.Id;
@@ -156,9 +156,9 @@ bool FCCLEcologyNutritionTransferTest::RunTest(const FString& Parameters)
 	{
 		return false;
 	}
-	FCCLEcologyEvent Move;
+	FKSIEcologyEvent Move;
 	Move.Id = NId(6010);
-	Move.Kind = ECCLEcologyEventKind::Migration;
+	Move.Kind = EKSIEcologyEventKind::Migration;
 	Move.Source = NId(2000);
 	Move.Target = P.Id;
 	Move.CohortId = NId(3000);
@@ -175,7 +175,7 @@ bool FCCLEcologyNutritionTransferTest::RunTest(const FString& Parameters)
 	{
 		return false;
 	}
-	FCCLEcologyBehavior B;
+	FKSIEcologyBehavior B;
 	B.Id = NId(6012);
 	B.Energy = 1.;
 	B.MetabolismPerSecond = .25;
@@ -199,7 +199,7 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(FCCLEcologyNutritionScaleTest, "CCL.Environment
 	EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
 bool FCCLEcologyNutritionScaleTest::RunTest(const FString& Parameters)
 {
-	FCCLEcologySimulation S;
+	FKSIEcologySimulation S;
 	FString Error;
 	if (!TestTrue(TEXT("one million members in 100 aggregates"), NutritionFixture(S, Error, 100, 10000, true)))
 	{
@@ -215,7 +215,7 @@ bool FCCLEcologyNutritionScaleTest::RunTest(const FString& Parameters)
 		}
 		const auto Bytes = SaveNutrition(S);
 		PeakBytes = FMath::Max(PeakBytes, Bytes.Num());
-		FCCLEcologySimulation Restored;
+		FKSIEcologySimulation Restored;
 		if (!TestTrue(TEXT("repeated restore is exact"), Restored.Restore(Bytes, Error) && SaveNutrition(Restored) == Bytes))
 		{
 			return false;

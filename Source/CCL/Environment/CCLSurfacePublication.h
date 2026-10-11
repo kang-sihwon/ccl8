@@ -2,12 +2,12 @@
 
 #include "CoreMinimal.h"
 #include "Subsystems/WorldSubsystem.h"
-#include "CCLSurfaceSimulation.h"
+#include "KSISurfaceSimulation.h"
 #include "CCLSurfacePublication.generated.h"
 
 struct CCL_API FCCLSurfacePublication
 {
-	FCCLSurfaceSimulation State;
+	FKSISurfaceSimulation State;
 	TArray<uint8> Bytes;
 	TMap<FGuid, uint64> TerrainSerials;
 	FGuid Epoch;
@@ -16,14 +16,14 @@ struct CCL_API FCCLSurfacePublication
 
 namespace CCLSurfacePublication
 {
-	CCL_API bool CollectTerrainSerials(const UWorld* World, const FCCLSurfaceSimulation& Surface, TMap<FGuid, uint64>& Result);
+	CCL_API bool CollectTerrainSerials(const UWorld* World, const FKSISurfaceSimulation& Surface, TMap<FGuid, uint64>& Result);
 }
 
 // Exact-byte deduplication preserves the identity and lifetime of unchanged publications.
 class CCL_API FCCLSurfacePublicationCache
 {
 public:
-	TSharedPtr<const FCCLSurfacePublication> Capture(const FCCLSurfaceSimulation& Surface, FGuid Epoch,
+	TSharedPtr<const FCCLSurfacePublication> Capture(const FKSISurfaceSimulation& Surface, FGuid Epoch,
 		const TMap<FGuid, uint64>& TerrainSerials, FString& Error);
 
 private:

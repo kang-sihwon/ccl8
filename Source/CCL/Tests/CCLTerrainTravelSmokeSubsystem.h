@@ -4,6 +4,7 @@
 #include "Subsystems/GameInstanceSubsystem.h"
 #include "Tickable.h"
 #include "Environment/CCLWorldGenerationStore.h"
+#include "Agents/CCLEconomy.h"
 #include "CCLTerrainTravelSmokeSubsystem.generated.h"
 
 UCLASS()
@@ -26,6 +27,7 @@ private:
 
 private:
 	TMap<ECCLWorldDomain, FCCLWorldGenerationBundle> Expected;
+	TMap<FGuid, FCCLAccountRecord> PlayerOpeningAccounts;
 	TMap<ECCLWorldDomain, FGuid> PreviousEpochs;
 	TWeakObjectPtr<UWorld> DepartedWorld;
 	double Started = 0.;

@@ -13,17 +13,17 @@ namespace
 	{
 		const auto Ticket = Region->GetPendingTicket();
 		const auto Epoch = Region->GetTerrainStore().GetEpoch();
-		FCCLTerrainSnapshot Changed;
-		FCCLTerrainSaveContext Context;
+		FKSITerrainSnapshot Changed;
+		FKSITerrainSaveContext Context;
 		TArray<uint8> ConflictingBytes;
 		if (!Region->ApplyReplica(Bytes, Serial, Error) || Region->GetPendingTicket() != Ticket
-			|| Region->GetTerrainStore().GetEpoch() != Epoch || !FCCLTerrainCodec::Decode(Bytes, Changed, Context, Error))
+			|| Region->GetTerrainStore().GetEpoch() != Epoch || !FKSITerrainCodec::Decode(Bytes, Changed, Context, Error))
 		{
 			return false;
 		}
 
 		++Changed.Revision;
-		return FCCLTerrainCodec::Encode(Changed, Context, ConflictingBytes, Error)
+		return FKSITerrainCodec::Encode(Changed, Context, ConflictingBytes, Error)
 			&& !Region->ApplyReplica(ConflictingBytes, Serial, Error)
 			&& Region->GetPendingTicket() == Ticket && Region->GetTerrainStore().GetEpoch() == Epoch;
 	}
@@ -91,7 +91,7 @@ void UCCLTerrainNetworkSmokeSubsystem::Tick(float DeltaTime)
 		const FVector Origin = Region->GetActorLocation();
 		const bool bHit = World->LineTraceSingleByChannel(Hit, Origin + FVector(0., 0., 500.), Origin - FVector(0., 0., 350.), ECC_Visibility);
 		TArray<uint8> Saved;
-		FCCLTerrainSaveContext Context;
+		FKSITerrainSaveContext Context;
 		Context.WorldId = Region->GetTerrainStore().GetSnapshot().Definition.WorldId;
 		Context.WorldGeneration = 1;
 		FString Error;

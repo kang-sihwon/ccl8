@@ -1,5 +1,7 @@
 # 불과 열: 연소 결과를 물·눈·실내에 연결하기
 
+2026-10-12 공용 모듈 분리 이후의 위치는 [Framework 파일 이동표](../FrameworkPlan.md#코드-위치의-전후-비교)를 따른다. 아래 발췌·이름·줄 번호·해시는 기록 당시 기준을 유지하며 소스 링크는 현재 대응 파일을 연다.
+
 불 시스템은 연료를 소비하고 열·연기·증발량을 계산한 뒤 표면과 공간에 전달한다. Niagara의 불꽃은 이 상태를 표시한다. 이 장은 연소를 참·거짓 표시에서 수지가 있는 지속 상태로 이해하는 과정이다.
 
 ## 비교 기준과 최초 구현
@@ -14,7 +16,7 @@
 
 이전 표면은 강수·증발·융해 같은 Forcing을 소비했다. [물 순환](EnvironmentWater.md)의 발췌가 그 실제 코드다. 현재 `FCCLSurfaceGrid::Fire`는 선택적 연소 셀 배열을 추가한다. 비어 있으면 연소 계산을 건너뛴다. 활성화된 지역은 표면 셀과 연료 셀을 대응시킨다.
 
-출처: `WT-2026-10-10`, [CCLCombustionModel.cpp](../../Source/CCL/Environment/CCLCombustionModel.cpp), `const double Burned = FMath::Min`, 115-122줄. 실제 코드의 연속 발췌이며 들여쓰기만 정리했다.
+출처: `WT-2026-10-10`, [CCLCombustionModel.cpp](../../Source/KSIEnvironment/Private/KSICombustionModel.cpp), `const double Burned = FMath::Min`, 115-122줄. 실제 코드의 연속 발췌이며 들여쓰기만 정리했다.
 
 ```cpp
 const double Burned = FMath::Min(S.FuelKg, M.BurnKgPerGameSecond * Dt
@@ -35,7 +37,7 @@ F.SmokeKg += Burned * M.SmokeKgPerFuelKg;
 
 연소 코어는 현재 사용할 수 있는 물의 kg를 받아 증발량을 반환한다. 실제 물 보유량은 표면이 소유한다. 같은 물을 연료 내부에도 지속 저장하면 표면과 연료가 각각 자기 물로 계산할 수 있다.
 
-출처: `WT-2026-10-10`, [CCLSurfaceFire.cpp](../../Source/CCL/Environment/CCLSurfaceFire.cpp), `const double Vapor = Flux.VaporizedWaterKg`, 117-124줄. 실제 코드의 연속 발췌이며 들여쓰기만 정리했다.
+출처: `WT-2026-10-10`, [CCLSurfaceFire.cpp](../../Source/KSIEnvironment/Private/KSISurfaceFire.cpp), `const double Vapor = Flux.VaporizedWaterKg`, 117-124줄. 실제 코드의 연속 발췌이며 들여쓰기만 정리했다.
 
 ```cpp
 const double Vapor = Flux.VaporizedWaterKg / WaterKgPerCubicMeter;

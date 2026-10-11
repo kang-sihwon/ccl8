@@ -3,8 +3,8 @@
 #include "Session/CCLPlayerSnapshot.h"
 
 #include "CCLWorldAdvance.h"
-#include "CCLSurfaceSimulation.h"
-#include "CCLEcologySimulation.h"
+#include "KSISurfaceSimulation.h"
+#include "KSIEcologySimulation.h"
 #include "Agents/CCLLifeSimulation.h"
 #include "Agents/CCLAgentWorldSubsystem.h"
 #include "Engine/GameInstance.h"
@@ -22,7 +22,7 @@ bool FCCLWorldSaveRoundTripTest::RunTest(const FString& Parameters)
 {
 	FString Error;
 	FCCLLifeSimulation Life;
-	FCCLWorldClock Clock;
+	FKSIWorldClock Clock;
 	TestTrue(TEXT("initial life"), Life.Initialize(FCCLLifeSimulation::MerchantScenario(42), Error));
 	TestTrue(TEXT("old rate input"), Clock.QueueGameTime(120, false, Error));
 	TestTrue(TEXT("partially commit old rate"), CCLWorldAdvance::Advance(Clock, Life, 60, 3600, Error));
@@ -32,7 +32,7 @@ bool FCCLWorldSaveRoundTripTest::RunTest(const FString& Parameters)
 	Identity.WorldId = FGuid::NewGuid();
 	Identity.Generation = 19;
 	FCCLWorldSnapshot Saved;
-	FCCLEnvironmentInputs Inputs = FCCLEnvironmentInputsCodec::MakeDefault(123);
+	FKSIEnvironmentInputs Inputs = FKSIEnvironmentInputsCodec::MakeDefault(123);
 	Inputs.Revision = 9;
 	Inputs.Observer.LatitudeDegrees = -35.;
 	TestTrue(TEXT("capture pending intervals"), FCCLWorldSnapshotCodec::Capture(Identity, Clock, Life, Saved, Error, &Inputs));
@@ -47,7 +47,7 @@ bool FCCLWorldSaveRoundTripTest::RunTest(const FString& Parameters)
 	TestEqual(TEXT("same generation"), Decoded.Identity.Generation, uint64(19));
 	TestEqual(TEXT("pending old and new rate intervals"), Decoded.Clock.Pending.Num(), 2);
 	TestEqual(TEXT("rate history retained"), Decoded.Clock.Rates.Num(), 2);
-	FCCLWorldClock ResumedClock;
+	FKSIWorldClock ResumedClock;
 	FCCLLifeSimulation ResumedLife;
 	TestTrue(TEXT("restore"), FCCLWorldSnapshotCodec::Restore(Decoded, Identity.Domain, ResumedClock, ResumedLife, Error));
 	TestEqual(TEXT("restore does not add offline time"), ResumedLife.GetTime(), 3600.);
@@ -71,7 +71,7 @@ bool FCCLWorldSaveRejectTest::RunTest(const FString& Parameters)
 {
 	FString Error;
 	FCCLLifeSimulation Life;
-	FCCLWorldClock Clock;
+	FKSIWorldClock Clock;
 	const auto Initial = FCCLLifeSimulation::MerchantScenario(42);
 	TestTrue(TEXT("initialize"), Life.Initialize(Initial, Error));
 	FCCLWorldIdentity Identity;
@@ -230,7 +230,7 @@ bool FCCLWorldEnvironmentMigrationTest::RunTest(const FString& Parameters)
 {
 	FString Error;
 	FCCLLifeSimulation Life;
-	FCCLWorldClock Clock;
+	FKSIWorldClock Clock;
 	TestTrue(TEXT("life fixture"), Life.Initialize(FCCLLifeSimulation::MerchantScenario(42), Error));
 	TestTrue(TEXT("nonzero saved time"), Clock.QueueGameTime(1., false, Error)
 		&& CCLWorldAdvance::Advance(Clock, Life, 1., 60., Error));
@@ -306,7 +306,7 @@ bool FCCLWorldEnvironmentMigrationTest::RunTest(const FString& Parameters)
 	FMemory::Memcpy(SchemaThree.GetData() + SchemaThree.Num() - 4, &SchemaThreeCRC, 4);
 	FCCLWorldSnapshot FromThree;
 	TestTrue(TEXT("schema three migrates missing ecology"), FCCLWorldSnapshotCodec::Decode(SchemaThree, FromThree, Error));
-	FCCLEcologySimulation MigratedEcology;
+	FKSIEcologySimulation MigratedEcology;
 	TestTrue(TEXT("migration keeps world and completed time without inventing population"), FromThree.bEcologyMigrated
 		&& MigratedEcology.Restore(FromThree.Ecology, Error) && MigratedEcology.GetWorldId() == Identity.WorldId
 		&& MigratedEcology.GetWorldSeconds() == 60. && MigratedEcology.GetPopulations().IsEmpty());
@@ -320,7 +320,7 @@ bool FCCLWorldEnvironmentMigrationTest::RunTest(const FString& Parameters)
 	FMemory::Memcpy(SchemaTwo.GetData() + SchemaTwo.Num() - 4, &SchemaTwoCRC, 4);
 	FCCLWorldSnapshot FromTwo;
 	TestTrue(TEXT("schema two migrates its missing surface"), FCCLWorldSnapshotCodec::Decode(SchemaTwo, FromTwo, Error));
-	FCCLSurfaceSimulation MigratedWater;
+	FKSISurfaceSimulation MigratedWater;
 	TestTrue(TEXT("migration records the completed clock"), FromTwo.bSurfaceMigrated && MigratedWater.Restore(FromTwo.Surface, Error)
 		&& MigratedWater.GetWorldSeconds() == 60. && MigratedWater.GetRegions().IsEmpty());
 

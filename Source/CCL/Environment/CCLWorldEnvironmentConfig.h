@@ -2,8 +2,8 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Info.h"
-#include "CCLEnvironmentInputs.h"
-#include "CCLEnvironmentView.h"
+#include "KSIEnvironmentInputs.h"
+#include "KSIEnvironmentView.h"
 #include "Agents/CCLAgentEmbodiment.h"
 #include "CCLWorldEnvironmentConfig.generated.h"
 
@@ -30,9 +30,9 @@ public:
 
 	// 내 클래스 함수
 public:
-	bool BuildInputs(FCCLEnvironmentInputs& OutInputs, FString& Error) const;
+	bool BuildInputs(FKSIEnvironmentInputs& OutInputs, FString& Error) const;
 
-	bool ValidateViewInputs(const FCCLEnvironmentInputs& Inputs, FString& Error) const;
+	bool ValidateViewInputs(const FKSIEnvironmentInputs& Inputs, FString& Error) const;
 
 	static const ACCLWorldEnvironmentConfig* Find(const UWorld* World);
 
@@ -53,19 +53,19 @@ public:
 	TSoftClassPtr<ACharacter> ExperimentResidentClass;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	TObjectPtr<UCCLCelestialDefinition> CelestialDefinition;
+	TObjectPtr<UKSICelestialDefinition> CelestialDefinition;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	FCCLCelestialObserver Observer;
+	FKSICelestialObserver Observer;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	TArray<FCCLSurfacePatch> Surfaces;
+	TArray<FKSISurfacePatch> Surfaces;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	TArray<FCCLSurfaceOpening> Openings;
+	TArray<FKSISurfaceOpening> Openings;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	TArray<FCCLEnvironmentProbe> Probes;
+	TArray<FKSIEnvironmentProbe> Probes;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TArray<FGuid> ViewOpeningIds;

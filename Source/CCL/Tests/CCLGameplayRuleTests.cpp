@@ -345,7 +345,7 @@ bool FCCLWorldSectionRuleTest::RunTest(const FString& Parameters)
 	// Validation runs on encode; an unregistered section cannot be validated and is refused.
 	FString Error;
 	FCCLLifeSimulation Life;
-	FCCLWorldClock Clock;
+	FKSIWorldClock Clock;
 	FCCLWorldIdentity Identity;
 	Identity.WorldId = FGuid::NewGuid();
 	FCCLWorldSnapshot Valid;
@@ -595,7 +595,7 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(FCCLSurfacePublicationTest, "CCL.Environment.Su
 
 bool FCCLSurfacePublicationTest::RunTest(const FString& Parameters)
 {
-	FCCLSurfaceSimulation Surface;
+	FKSISurfaceSimulation Surface;
 	FString Error;
 	const FGuid Epoch = FGuid::NewGuid();
 	if (!TestTrue(TEXT("surface fixture"), Surface.Initialize(FGuid::NewGuid(), 0., 0., 0, Error)))
@@ -618,7 +618,7 @@ bool FCCLSurfacePublicationTest::RunTest(const FString& Parameters)
 	Serials.Add(FGuid::NewGuid(), 1);
 	const auto Terrain = Cache.Capture(Surface, NextEpoch->Epoch, Serials, Error);
 	TestTrue(TEXT("terrain completion serial creates a new publication"), Terrain && Terrain != NextEpoch && NextEpoch->TerrainSerials.IsEmpty());
-	FCCLSurfaceSimulation Invalid;
+	FKSISurfaceSimulation Invalid;
 	TestFalse(TEXT("invalid candidate not published"), Cache.Capture(Invalid, Epoch, {}, Error).IsValid());
 	TestTrue(TEXT("failed capture keeps valid publication"), Terrain == Cache.Capture(Surface, Terrain->Epoch, Serials, Error));
 	TestTrue(TEXT("older bytes still decode while consumers retain them"), Invalid.Restore(First->Bytes, Error));

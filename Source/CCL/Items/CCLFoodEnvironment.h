@@ -3,7 +3,7 @@
 #include "CoreMinimal.h"
 #include "CCLFoodState.h"
 
-class FCCLSurfaceSimulation;
+class FKSISurfaceSimulation;
 struct FCCLInventorySnapshot;
 
 enum class ECCLFoodEnvironment : uint8
@@ -25,11 +25,11 @@ struct FCCLFoodEnvironmentBinding
 
 namespace CCLFoodEnvironment
 {
-bool ResolveAt(const FVector& PositionMeters, const FCCLSurfaceSimulation& Surface, FCCLFoodEnvironmentBinding& Binding,
+bool ResolveAt(const FVector& PositionMeters, const FKSISurfaceSimulation& Surface, FCCLFoodEnvironmentBinding& Binding,
 			   FString& Error);
-bool RelocatePickup(FCCLInventorySnapshot& Record, const FCCLSurfaceSimulation& Surface, FString& Error);
+bool RelocatePickup(FCCLInventorySnapshot& Record, const FKSISurfaceSimulation& Surface, FString& Error);
 bool Validate(const FCCLFoodEnvironmentBinding& Binding, double WorldSeconds, FString& Error);
-bool Sample(FCCLFoodEnvironmentBinding& Binding, const FCCLSurfaceSimulation& Surface, FString& Error);
-bool Advance(FCCLInventorySnapshot& Record, const FCCLSurfaceSimulation& SurfaceCandidate, double WorldFromSeconds,
+bool Sample(FCCLFoodEnvironmentBinding& Binding, const FKSISurfaceSimulation& Surface, FString& Error);
+bool Advance(FCCLInventorySnapshot& Record, const FKSISurfaceSimulation& SurfaceCandidate, double WorldFromSeconds,
 			 FString& Error);
 } // namespace CCLFoodEnvironment

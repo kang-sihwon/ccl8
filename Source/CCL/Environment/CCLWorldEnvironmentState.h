@@ -2,7 +2,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "CCLEnvironmentView.h"
+#include "KSIEnvironmentView.h"
 #include "CCLWorldEnvironmentState.generated.h"
 
 USTRUCT()
@@ -38,7 +38,7 @@ struct FCCLReplicatedWorldTime
 	uint8 bAdvanceFailed = 0;
 
 	UPROPERTY()
-	FCCLEnvironmentView Environment;
+	FKSIEnvironmentView Environment;
 };
 
 template<>

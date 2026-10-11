@@ -1,5 +1,6 @@
 param(
     [string]$Filter = 'CCL.Equipment.TagContracts',
+    [string]$LegacyGenerationDirectory,
     [ValidateRange(30, 1800)][int]$TimeoutSeconds = 240
 )
 $ErrorActionPreference = 'Stop'
@@ -17,6 +18,10 @@ $options = @(
     '-TestExit="Automation Test Queue Empty"',
     ('-ReportExportPath="' + $report + '"'), ('-abslog="' + $log + '"')
 )
+if ($LegacyGenerationDirectory) {
+    $legacy = (Resolve-Path -LiteralPath $LegacyGenerationDirectory).Path
+    $options += ('-CCLLegacyGeneration="' + $legacy + '"')
+}
 $process = Start-Process -FilePath $editor -ArgumentList $options -WindowStyle Hidden -PassThru
 try {
     $deadline = [DateTime]::UtcNow.AddSeconds($TimeoutSeconds)

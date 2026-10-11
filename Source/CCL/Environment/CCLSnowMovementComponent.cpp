@@ -152,7 +152,7 @@ void UCCLSnowMovementComponent::GetLifetimeReplicatedProps(TArray<FLifetimePrope
 
 void UCCLSnowMovementComponent::PrepareSnowMove(const FVector& Direction)
 {
-	FCCLSnowSample Sample;
+	FKSISnowSample Sample;
 	if (const auto* Model = UCCLSurfaceReplication::View(GetWorld()))
 	{
 		const FVector Heading = (!Direction.IsNearlyZero() ? Direction : (!Acceleration.IsNearlyZero() ? Acceleration : Velocity)).GetSafeNormal2D();
@@ -220,7 +220,7 @@ void UCCLSnowMovementComponent::MoveAutonomous(float TimeStamp, float DeltaTime,
 		const FVector Heading = (!Accel.IsNearlyZero() ? Accel : Velocity).GetSafeNormal2D();
 		const FVector Front = UpdatedComponent->GetComponentLocation() + Heading * (CharacterOwner->GetCapsuleComponent()->GetScaledCapsuleRadius() + 8.);
 		const FVector At = Feet(CharacterOwner, Front);
-		FCCLSnowSample Live, Historical;
+		FKSISnowSample Live, Historical;
 		if (Runtime)
 		{
 			Runtime->GetSurfaceSimulation().SampleSnow(At, Live);
@@ -276,7 +276,7 @@ void UCCLSnowMovementComponent::OnMovementUpdated(float Dt, const FVector& OldLo
 	for (int32 I = 1; I <= Steps; ++I)
 	{
 		const FVector Position = Feet(CharacterOwner, FMath::Lerp(From, At, double(I) / Steps));
-		FCCLSnowSample Sample;
+		FKSISnowSample Sample;
 		if (!Model->SampleSnow(Position, Sample))
 		{
 			continue;

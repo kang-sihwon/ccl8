@@ -7,15 +7,15 @@ FCCLTerrainWaterParticipant::FCCLTerrainWaterParticipant(UCCLWorldSimulationSubs
 {
 }
 
-bool FCCLTerrainWaterParticipant::ReadBeds(const FCCLTerrainSnapshot& Terrain, const FTransform& Transform,
-	const FCCLSurfaceGrid& Grid, TArray<double>& OutBeds, FString& Error)
+bool FCCLTerrainWaterParticipant::ReadBeds(const FKSITerrainSnapshot& Terrain, const FTransform& Transform,
+	const FKSISurfaceGrid& Grid, TArray<double>& OutBeds, FString& Error)
 {
 	if (!Transform.GetRotation().Equals(FQuat::Identity) || !Transform.GetScale3D().Equals(FVector::OneVector))
 	{
 		Error = TEXT("Surface water requires an unrotated, unit-scale terrain region.");
 		return false;
 	}
-	const FBox Bounds = FCCLTerrainStore::EditableBoundsMeters(Terrain.Definition);
+	const FBox Bounds = FKSITerrainStore::EditableBoundsMeters(Terrain.Definition);
 	const double Interval = Terrain.Definition.SampleSpacingMeters * 0.5;
 	TArray<double> Candidate;
 	Candidate.Reserve(Grid.Cells.Num());
@@ -32,7 +32,7 @@ bool FCCLTerrainWaterParticipant::ReadBeds(const FCCLTerrainSnapshot& Terrain, c
 			}
 			double Previous = 0.;
 			P.Z = Bounds.Max.Z;
-			if (!FCCLTerrainStore::ReadDensityMeters(Terrain, P, Previous, Error))
+			if (!FKSITerrainStore::ReadDensityMeters(Terrain, P, Previous, Error))
 			{
 				return false;
 			}
@@ -41,7 +41,7 @@ bool FCCLTerrainWaterParticipant::ReadBeds(const FCCLTerrainSnapshot& Terrain, c
 			{
 				P.Z = Z;
 				double Density;
-				if (!FCCLTerrainStore::ReadDensityMeters(Terrain, P, Density, Error))
+				if (!FKSITerrainStore::ReadDensityMeters(Terrain, P, Density, Error))
 				{
 					return false;
 				}
@@ -59,7 +59,7 @@ bool FCCLTerrainWaterParticipant::ReadBeds(const FCCLTerrainSnapshot& Terrain, c
 	return true;
 }
 
-bool FCCLTerrainWaterParticipant::Prepare(const FCCLTerrainCandidate& Candidate, FString& Error)
+bool FCCLTerrainWaterParticipant::Prepare(const FKSITerrainCandidate& Candidate, FString& Error)
 {
 	const auto* Runtime = Owner.Get();
 	const auto* Grid = Runtime ? Runtime->GetSurfaceSimulation().FindRegion(RegionId) : nullptr;
@@ -72,7 +72,7 @@ bool FCCLTerrainWaterParticipant::Prepare(const FCCLTerrainCandidate& Candidate,
 	return true;
 }
 
-bool FCCLTerrainWaterParticipant::ValidateCommit(const FCCLTerrainCandidate& Candidate, FString& Error) const
+bool FCCLTerrainWaterParticipant::ValidateCommit(const FKSITerrainCandidate& Candidate, FString& Error) const
 {
 	const auto* Runtime = Owner.Get();
 	if (!Runtime || Ticket != Candidate.GetTicket())
@@ -84,7 +84,7 @@ bool FCCLTerrainWaterParticipant::ValidateCommit(const FCCLTerrainCandidate& Can
 	return Prepared.RebaseTerrain(RegionId, Beds, Candidate.GetSnapshot().Revision, Error);
 }
 
-void FCCLTerrainWaterParticipant::Commit(const FCCLTerrainCandidate& Candidate)
+void FCCLTerrainWaterParticipant::Commit(const FKSITerrainCandidate& Candidate)
 {
 	check(Owner.IsValid() && Ticket == Candidate.GetTicket());
 	Owner->SurfaceSimulation = MoveTemp(Prepared);
@@ -92,14 +92,14 @@ void FCCLTerrainWaterParticipant::Commit(const FCCLTerrainCandidate& Candidate)
 	Beds.Reset();
 }
 
-void FCCLTerrainWaterParticipant::Abort(const FCCLTerrainCandidate& Candidate)
+void FCCLTerrainWaterParticipant::Abort(const FKSITerrainCandidate& Candidate)
 {
 	Ticket.Invalidate();
 	Beds.Reset();
-	Prepared = FCCLSurfaceSimulation();
+	Prepared = FKSISurfaceSimulation();
 }
 
-bool FCCLTerrainWaterParticipant::ValidateRestore(const FCCLTerrainSnapshot& Terrain, const FCCLWorldSnapshot* World, FString& Error) const
+bool FCCLTerrainWaterParticipant::ValidateRestore(const FKSITerrainSnapshot& Terrain, const FCCLWorldSnapshot* World, FString& Error) const
 {
 	const auto* Runtime = Owner.Get();
 	if (!Runtime)
@@ -158,5 +158,5 @@ void FCCLTerrainWaterParticipant::CommitRestore()
 		check(Owner.IsValid());
 		Owner->SurfaceSimulation = MoveTemp(Prepared);
 	}
-	Prepared = FCCLSurfaceSimulation();
+	Prepared = FKSISurfaceSimulation();
 }

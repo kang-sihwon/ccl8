@@ -1,8 +1,8 @@
 #include "CCLEcologyLegacyTest.h"
 #include "CCLEcologySpace.h"
-#include "CCLSurfaceSimulation.h"
+#include "KSISurfaceSimulation.h"
 #include "CCLWorldAdvance.h"
-#include "CCLWorldClock.h"
+#include "KSIWorldClock.h"
 #include "Agents/CCLLifeSimulation.h"
 #include "Misc/AutomationTest.h"
 #include "Misc/Crc.h"
@@ -15,7 +15,7 @@ namespace
 		return FGuid(940, 941, 942, N);
 	}
 
-	TArray<uint8> Capture(const FCCLEcologySimulation& E)
+	TArray<uint8> Capture(const FKSIEcologySimulation& E)
 	{
 		TArray<uint8> Bytes;
 		FString Error;
@@ -23,23 +23,23 @@ namespace
 		return Bytes;
 	}
 
-	bool Setup(FCCLEcologySimulation& E, FString& Error, bool bSpatial = true)
+	bool Setup(FKSIEcologySimulation& E, FString& Error, bool bSpatial = true)
 	{
-		FCCLEcologySpecies S;
+		FKSIEcologySpecies S;
 		S.Id = Id(2);
-		FCCLEcologyHabitat H;
+		FKSIEcologyHabitat H;
 		H.Id = Id(3);
 		H.MaximumMeters = FVector(10., 10., 4.);
-		FCCLEcologyPopulation P;
+		FKSIEcologyPopulation P;
 		P.Id = Id(4);
 		P.SpeciesId = S.Id;
 		P.HabitatId = H.Id;
 		P.Cohorts.Add(Id(5), {Id(5), 0., 2});
-		FCCLEcologyForage F;
+		FKSIEcologyForage F;
 		F.Id = Id(8);
 		F.HabitatId = H.Id;
 		F.PositionMeters = FVector(7., 5., 2.);
-		FCCLEcologyBehavior B;
+		FKSIEcologyBehavior B;
 		B.Id = Id(7);
 		B.Energy = .1;
 		B.MetabolismPerSecond = 0.;
@@ -48,12 +48,12 @@ namespace
 		return E.Initialize(Id(1), 0., Error) && E.AddSpecies(S, Error) && E.AddHabitat(H, Error) && E.AddPopulation(P, Error)
 			&& E.Materialize(Id(6), P.Id, Id(5), B.Id, true, Error) && E.AddForage(F, Error) && E.AddBehavior(B, Error);
 	}
-	struct FDetourSpace : ICCLEcologySpace
+	struct FDetourSpace : IKSIEcologySpace
 	{
 		uint8 bUnavailable = 0;
 		uint8 bBlocked = 0;
 		uint8 bRequireWaterTime = 0;
-		virtual bool FindRoute(const FCCLEcologyRouteRequest& Q, const FCCLSurfaceSimulation* S, TArray<FVector>& Out, FString& Error) const override
+		virtual bool FindRoute(const FKSIEcologyRouteRequest& Q, const FKSISurfaceSimulation* S, TArray<FVector>& Out, FString& Error) const override
 		{
 			if (bUnavailable || (bRequireWaterTime && (!S || S->GetWorldSeconds() != Q.WorldSeconds)))
 			{
@@ -87,7 +87,7 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(FCCLSpaceTravelTest, "CCL.Environment.Ecology.S
 	EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
 bool FCCLSpaceTravelTest::RunTest(const FString& Parameters)
 {
-	FCCLEcologySimulation E;
+	FKSIEcologySimulation E;
 	FString Error;
 	FDetourSpace Space;
 	if (!TestTrue(TEXT("spatial setup"), Setup(E, Error)))
@@ -109,7 +109,7 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(FCCLSpaceFailureTest, "CCL.Environment.Ecology.
 	EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
 bool FCCLSpaceFailureTest::RunTest(const FString& Parameters)
 {
-	FCCLEcologySimulation E;
+	FKSIEcologySimulation E;
 	FString Error;
 	FDetourSpace Space;
 	if (!TestTrue(TEXT("fixture"), Setup(E, Error)))
@@ -126,7 +126,7 @@ bool FCCLSpaceFailureTest::RunTest(const FString& Parameters)
 	Space.bBlocked = 1;
 	TestTrue(TEXT("blocked route is valid no-move state"), E.AdvanceTo(1., Error, 256, &Space));
 	TestTrue(TEXT("no teleport on blocked route"), E.FindIndividual(Id(7))->PositionMeters.Equals(FVector(5.,5.,2.)));
-	TestTrue(TEXT("blocked activity visible"), E.GetBehaviors()[Id(7)].Activity == ECCLEcologyActivity::Blocked);
+	TestTrue(TEXT("blocked activity visible"), E.GetBehaviors()[Id(7)].Activity == EKSIEcologyActivity::Blocked);
 	TestEqual(TEXT("blocked route cannot eat"), E.GetBehaviors()[Id(7)].ConsumedUnits, 0.);
 	return true;
 }
@@ -135,9 +135,9 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(FCCLSpaceTimeTest, "CCL.Environment.Ecology.Spa
 	EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
 bool FCCLSpaceTimeTest::RunTest(const FString& Parameters)
 {
-	FCCLEcologySimulation E, Old, Restored;
-	FCCLSurfaceSimulation Surface;
-	FCCLWorldClock Clock;
+	FKSIEcologySimulation E, Old, Restored;
+	FKSISurfaceSimulation Surface;
+	FKSIWorldClock Clock;
 	FCCLLifeSimulation Life;
 	FString Error;
 	FDetourSpace Space;
@@ -173,9 +173,9 @@ bool FCCLLiquidBodyTest::RunTest(const FString& Parameters)
 	FString Error;
 	auto MakeWater = [&](bool bDry, bool bIce)
 	{
-		FCCLSurfaceSimulation S;
+		FKSISurfaceSimulation S;
 		S.Initialize(Id(1),0.,0.,0,Error);
-		FCCLSurfaceGrid G;
+		FKSISurfaceGrid G;
 		G.RegionId=Id(9);
 		G.Size=FIntPoint(4,4);
 		G.SpacingMeters=1.;

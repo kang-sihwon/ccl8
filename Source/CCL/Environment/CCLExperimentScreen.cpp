@@ -446,9 +446,9 @@ void UCCLExperimentScreen::OnContextBound()
 			double Living = 0., Litter = 0., Burned = 0.;
 			for (const auto& C : G->Vegetation.Cells)
 			{
-				Alive += C.State == ECCLVegetationState::Growing || C.State == ECCLVegetationState::Mature;
-				Dormant += C.State == ECCLVegetationState::Dormant;
-				Dead += C.State == ECCLVegetationState::Dead;
+				Alive += C.State == EKSIVegetationState::Growing || C.State == EKSIVegetationState::Mature;
+				Dormant += C.State == EKSIVegetationState::Dormant;
+				Dead += C.State == EKSIVegetationState::Dead;
 				Regrowth += C.RegrowthCount;
 				Living += C.LivingBiomassKg;
 				Litter += C.DeadBiomassKg;

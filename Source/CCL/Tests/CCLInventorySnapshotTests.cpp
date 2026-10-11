@@ -49,7 +49,7 @@ bool FCCLInventorySnapshotRoundTripTest::RunTest(const FString& Parameters)
 	TestTrue(TEXT("empty is explicit"), Output[1].Items.IsEmpty());
 
 	FCCLLifeSimulation Life;
-	FCCLWorldClock Clock;
+	FKSIWorldClock Clock;
 	FCCLWorldIdentity Identity;
 	Identity.WorldId = InventoryWorld;
 	TestTrue(TEXT("life initialize"), Life.Initialize(FCCLLifeSimulation::MerchantScenario(42), Error));

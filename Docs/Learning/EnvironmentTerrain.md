@@ -1,5 +1,7 @@
 # 영구 지형: 땅의 값과 충돌을 함께 게시하기
 
+2026-10-12 공용 모듈 분리 이후의 위치는 [Framework 파일 이동표](../FrameworkPlan.md#코드-위치의-전후-비교)를 따른다. 아래 발췌·이름·줄 번호·해시는 기록 당시 기준을 유지하며 소스 링크는 현재 대응 파일을 연다.
+
 지형 편집의 성공은 밀도값을 바꾸는 순간보다 늦게 결정된다. 바뀐 메시와 충돌을 준비하고 권한·점유·연결된 물까지 확인해야 플레이어가 새 지형을 사용할 수 있다. 이 장은 데이터 확정에서 실제 월드의 게시로 책임이 확장되는 과정을 설명한다.
 
 ## 비교 기준과 문제
@@ -12,7 +14,7 @@
 
 ## 첫 구현의 데이터 확정
 
-출처: `a28772c`, [CCLTerrainStore.cpp](../../Source/CCL/Environment/CCLTerrainStore.cpp), `bool FCCLTerrainStore::CommitEdit`, 474-491줄. 실제 코드의 연속 발췌이며 들여쓰기만 정리했다.
+출처: `a28772c`, [CCLTerrainStore.cpp](../../Source/KSITerrain/Private/KSITerrainStore.cpp), `bool FCCLTerrainStore::CommitEdit`, 474-491줄. 실제 코드의 연속 발췌이며 들여쓰기만 정리했다.
 
 ```cpp
 bool FCCLTerrainStore::CommitEdit(const FCCLTerrainCandidate& Candidate, const FCCLTerrainAuthority& Authority, FString& Error)

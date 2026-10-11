@@ -13,7 +13,7 @@ bool ACCLWorldEnvironmentConfig::BuildInitialPopulation(FCCLSimulationSnapshot& 
 
 // 내 클래스 함수
 
-bool ACCLWorldEnvironmentConfig::BuildInputs(FCCLEnvironmentInputs& OutInputs, FString& Error) const
+bool ACCLWorldEnvironmentConfig::BuildInputs(FKSIEnvironmentInputs& OutInputs, FString& Error) const
 {
 	if (!CelestialDefinition || Probes.Num() > 8 || ViewOpeningIds.Num() > 64 || ViewSurfaceIds.Num() > 32)
 	{
@@ -21,15 +21,15 @@ bool ACCLWorldEnvironmentConfig::BuildInputs(FCCLEnvironmentInputs& OutInputs, F
 		return false;
 	}
 
-	FCCLEnvironmentInputs Candidate;
+	FKSIEnvironmentInputs Candidate;
 	Candidate.Celestial = CelestialDefinition->Definition;
 	Candidate.Observer = Observer;
 	Candidate.Surfaces = Surfaces;
 	Candidate.Openings = Openings;
-	FCCLCelestialSystem Celestial;
-	FCCLSurfaceScene Scene;
-	FCCLCelestialObservation Observation;
-	if (!FCCLEnvironmentInputsCodec::Prepare(Candidate, 0., Celestial, Scene, Observation, Error))
+	FKSICelestialSystem Celestial;
+	FKSISurfaceScene Scene;
+	FKSICelestialObservation Observation;
+	if (!FKSIEnvironmentInputsCodec::Prepare(Candidate, 0., Celestial, Scene, Observation, Error))
 	{
 		return false;
 	}
@@ -37,14 +37,14 @@ bool ACCLWorldEnvironmentConfig::BuildInputs(FCCLEnvironmentInputs& OutInputs, F
 	TSet<FName> ProbeIds;
 	for (const auto& Probe : Probes)
 	{
-		FCCLShelterQuery Query;
+		FKSIShelterQuery Query;
 		Query.BodyId = Observer.BodyId;
 		Query.PositionMeters = Probe.PositionMeters;
 		Query.ToPrecipitationSource = Probe.ToPrecipitationSource;
 		Query.ToWindSource = Probe.ToWindSource;
-		FCCLShelterSample Sample;
+		FKSIShelterSample Sample;
 		if (Probe.ProbeId.IsNone() || ProbeIds.Contains(Probe.ProbeId)
-			|| !FCCLShelterEvaluator::Evaluate(Scene, Query, Sample, Error))
+			|| !FKSIShelterEvaluator::Evaluate(Scene, Query, Sample, Error))
 		{
 			Error = TEXT("Invalid map diagnostic probe.");
 			return false;
@@ -62,7 +62,7 @@ bool ACCLWorldEnvironmentConfig::BuildInputs(FCCLEnvironmentInputs& OutInputs, F
 	return true;
 }
 
-bool ACCLWorldEnvironmentConfig::ValidateViewInputs(const FCCLEnvironmentInputs& Inputs, FString& Error) const
+bool ACCLWorldEnvironmentConfig::ValidateViewInputs(const FKSIEnvironmentInputs& Inputs, FString& Error) const
 {
 	TSet<FGuid> ViewIds;
 	for (const FGuid& Id : ViewOpeningIds)

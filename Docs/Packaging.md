@@ -228,3 +228,54 @@ Tools/Validation/run_ui_smoke.ps1 -PackagedExecutable $gameBinary -Offscreen
 Game 쿠킹에는 기존 실험장 FText 저장 경고, Game·Server 쿠킹에는 미리보기의 ETonemappingMethod 기본값 경고가 남았다. 이 변경에서 실험장 에셋을 다시 저장하지 않았다. 최종 패키지 실행에서 치명적 오류·어설션·ensure와 CDO 생성자 오류는 발견하지 않았다. 일부 Editor 실행의 Python 도구 초기화 오류는 FrameworkPlan에 별도로 기록했다.
 
 이 검증은 한 PC의 로컬 Windows Development 범위다. Shipping, 다른 PC·외부 인터넷·NAT·Iris와 성능 개선은 검증하지 않았다. 환경 전체의 장시간 계측과 이전 단계 전체 회귀를 다시 수행한 결과로 확대하지 않는다.
+
+## 세계 모듈 분리 후 패키지
+
+2026-10-12 Framework 단계 4의 시간·천체·지형·Agent·환경·저장 모듈을 포함한 Game·실제 Server 타깃의 Windows Development 패키지와 실행을 검증했다. 모듈 경계, 전체 자동 검사 164개, 독립 프로젝트 6개의 37개 항목과 이전 저장 호환은 [Framework 단계 4](FrameworkPlan.md#단계-4-구현과-검증)를 따른다.
+
+| 용도 | 경로 |
+|---|---|
+| 사용자용 Game 실행기 | `Saved/FrameworkStage4GamePackage/Windows/CCL.exe` |
+| 검사에 사용한 Game | `Saved/FrameworkStage4GamePackage/Windows/CCL/Binaries/Win64/CCL.exe` |
+| 실제 Server 타깃 | `Saved/FrameworkStage4ServerPackage/WindowsServer/CCL/Binaries/Win64/CCLServer.exe` |
+
+전달할 때는 Windows 또는 WindowsServer 폴더 전체를 사용한다. 패키지·로그·소스 해시는 Git에서 제외된 Saved에 보존하며 코드·설정·검증 도구·문서를 GitHub에 제출한다. 아래 로그의 공통 루트는 `Saved/Tests/FrameworkStage4/`다. 원본 프로세스 로그 위치는 각 도구 로그에 있고 공유 문서는 저장소 상대 경로로 표기했다.
+
+| 검사 | 결과 | 근거 |
+|---|---|---|
+| Game BuildCookRun | 395.99초, 종료 코드 0 | `Game-Package.log` |
+| Server BuildCookRun | 402.30초, 종료 코드 0. 누락된 PDB 복사는 아래 절차로 보완 | `Server-Package.log`, `archive-pdb-repair.json` |
+| 환경 Dedicated | 실제 Server와 Game, 지연 80ms·손실 2%, 재접속과 환경 순환 성공 | `Packaged-Environment-Dedicated.log` |
+| 지형 맵 왕복 | 저장·Players·인벤토리·지형 복원, 충돌과 원격 준비 확인 성공 | `Packaged-Terrain-Travel.log` |
+| 생태 공간 경로 | Dedicated의 지연 80ms·손실 2%, 이동·섭취·저장 복원 성공 | `Packaged-Ecology-Space.log` |
+| 두 환경 맵 렌더링 | 한글 조작 화면·천체 관측·차폐 화면과 실험장 구역 표시 확인 | `Packaged-Environment-Rendered.log`, `Packaged-Playground-Rendered.log` |
+| 환경 재시작 | 새 Game 프로세스에서 같은 저장 상태와 후속 진행 확인 | `Packaged-Environment-Restart.log` |
+| 사용자 실행기·세션 | 루트 CCL.exe에서 네트워크 방 생성·접속·클라이언트 정상 종료 확인 | `Packaged-Session.log` |
+
+Game·Server 빌드 영수증의 TargetType과 패키지 내부 실행 파일의 SHA-256을 대조했다. 근거는 `CCL.target`, `CCLServer.target`, `package-binaries-final.json`이다. 전체 실행·오류 분류와 소스 대조는 `final-results.json`, 실행 검증본의 소스 식별값은 `verified-source.json`, 끝 빈 줄 정리를 반영한 제출본은 `submitted-source.json`에 있다. 렌더링은 오프스크린 실행과 게임 내부 조작 도구를 사용하며 운영체제 마우스의 수동 검사가 아니다.
+
+### Server 디버그 심볼 복사 보완
+
+최초 Server 아카이브는 디스크 공간 부족으로 CCLServer.pdb를 복사하지 못했는데도 BuildCookRun이 성공으로 종료됐다. 실행 파일·콘텐츠 생성 성공과 디버그 심볼 전달을 구분해 확인했다. 이번 Game 아카이브와 SHA-256이 같은 Game 스테이징 PDB 중복본 하나만 제거해 공간을 확보했다. 원본 Binaries·Game 아카이브의 심볼과 기존 패키지는 보존했다.
+
+누락된 Server PDB를 이번 Server 스테이징에서 아카이브로 복사한 뒤 SHA-256 일치를 확인했다. 결과와 정리한 단일 경로는 `archive-pdb-repair.json`에 기록했다. 따라서 최초 UAT 종료 코드만으로 아카이브 전체 복사가 성공했다고 판정하지 않는다.
+
+### 생성과 실행 명령
+
+```powershell
+Tools/Validation/package_windows.ps1 -ArchiveDirectory Saved/FrameworkStage4GamePackage -SkipZenStore
+Tools/Validation/package_windows.ps1 -Server -ArchiveDirectory Saved/FrameworkStage4ServerPackage -SkipZenStore
+$gameBinary = 'Saved/FrameworkStage4GamePackage/Windows/CCL/Binaries/Win64/CCL.exe'
+$serverBinary = 'Saved/FrameworkStage4ServerPackage/WindowsServer/CCL/Binaries/Win64/CCLServer.exe'
+Tools/Validation/run_environment_smoke.ps1 -Mode Dedicated -Port 20531 -PacketLagMs 80 -PacketLossPercent 2 -Reconnect -PackagedExecutable $gameBinary -ServerExecutable $serverBinary
+Tools/Validation/run_terrain_travel_smoke.ps1 -Mode Dedicated -Port 20533 -PackagedExecutable $gameBinary -ServerExecutable $serverBinary
+Tools/Validation/run_ecology_space.ps1 -Mode Dedicated -Port 20532 -PacketLagMs 80 -PacketLossPercent 2 -PackagedExecutable $gameBinary -ServerExecutable $serverBinary
+Tools/Validation/run_environment_smoke.ps1 -Rendered -PackagedExecutable $gameBinary
+Tools/Validation/run_environment_smoke.ps1 -Map EnvironmentPlayground -Rendered -PackagedExecutable $gameBinary
+Tools/Validation/run_environment_smoke.ps1 -Restart -PackagedExecutable $gameBinary
+Tools/Validation/run_session_smoke.ps1 -Network -PackagedExecutable 'Saved/FrameworkStage4GamePackage/Windows/CCL.exe'
+```
+
+Game 쿠킹에는 기존 실험장의 FString 기반 FText 저장 경고가, Game·Server 쿠킹에는 미리보기 ETonemappingMethod 기본값 경고가 남았다. 원본 에셋은 재저장하지 않았다. 최종 패키지 실행의 치명적 오류·어설션·ensure·CDO 생성자 오류를 별도로 검사했다. 구역 09 중단 검사의 의도한 실패 표시는 취소 확인·입력 복구와 최종 성공을 함께 대조했다.
+
+한 PC의 Windows Development 검증이다. Shipping·다른 PC·외부 인터넷·NAT·Iris·성능 목표 충족과 장시간 안정성은 검증하지 않았다. 자동 검사와 기능 실행 성공을 성능 개선으로 확대하지 않는다.

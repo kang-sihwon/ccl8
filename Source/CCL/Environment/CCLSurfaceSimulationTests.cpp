@@ -1,4 +1,4 @@
-#include "CCLSurfaceSimulation.h"
+#include "KSISurfaceSimulation.h"
 
 #include "CCLWorldAdvance.h"
 #include "CCLWorldSnapshot.h"
@@ -9,9 +9,9 @@
 #if WITH_DEV_AUTOMATION_TESTS
 namespace
 {
-	FCCLSurfaceGrid Grid(int32 X = 3, int32 Y = 3)
+	FKSISurfaceGrid Grid(int32 X = 3, int32 Y = 3)
 	{
-		FCCLSurfaceGrid G;
+		FKSISurfaceGrid G;
 		G.RegionId = FGuid(41, 42, 43, 44);
 		G.Size = FIntPoint(X, Y);
 		G.SpacingMeters = 1.;
@@ -22,7 +22,7 @@ namespace
 		return G;
 	}
 
-	FKSIWorldStep Step(const FCCLSurfaceSimulation& S, double GameDelta, double WorldDelta)
+	FKSIWorldStep Step(const FKSISurfaceSimulation& S, double GameDelta, double WorldDelta)
 	{
 		FKSIWorldStep Result;
 		Result.Ticket = FGuid::NewGuid();
@@ -40,7 +40,7 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(FCCLWaterFlowTest, "CCL.Environment.Water.Froze
 bool FCCLWaterFlowTest::RunTest(const FString& Parameters)
 {
 	FString Error;
-	FCCLSurfaceSimulation S;
+	FKSISurfaceSimulation S;
 	TestTrue(TEXT("initialize"), S.Initialize(FGuid::NewGuid(), 0., 0., 0, Error));
 	auto G = Grid();
 	G.Cells[4].WaterCubicMeters = 4.;
@@ -71,7 +71,7 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(FCCLWaterInputsTest, "CCL.Environment.Water.Wor
 bool FCCLWaterInputsTest::RunTest(const FString& Parameters)
 {
 	FString Error;
-	FCCLSurfaceSimulation S;
+	FKSISurfaceSimulation S;
 	S.Initialize(FGuid::NewGuid(), 0., 0., 0, Error);
 	auto G = Grid(2, 1);
 	G.Forcing.RainMetersPerWorldSecond = 0.001;
@@ -99,7 +99,7 @@ bool FCCLWaterInputsTest::RunTest(const FString& Parameters)
 	TestTrue(TEXT("evaporation"), S.Advance(Step(S, 0.25, 100.), Error));
 	TestTrue(TEXT("phase and evaporation ledger"), FMath::Abs(S.FindRegion(G.RegionId)->BalanceErrorCubicMeters()) < 1.e-9);
 
-	FCCLSurfaceSimulation Boundary;
+	FKSISurfaceSimulation Boundary;
 	Boundary.Initialize(FGuid::NewGuid(), 0., 0., 0, Error);
 	auto Coast = Grid(1, 1);
 	Coast.Cells[0].bOpenBoundary = 1;
@@ -121,7 +121,7 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(FCCLWaterTerrainTest, "CCL.Environment.Water.Te
 bool FCCLWaterTerrainTest::RunTest(const FString& Parameters)
 {
 	FString Error;
-	FCCLSurfaceSimulation S;
+	FKSISurfaceSimulation S;
 	S.Initialize(FGuid::NewGuid(), 0., 0., 0, Error);
 	auto G = Grid(2, 1);
 	for (auto& C : G.Cells)
@@ -152,8 +152,8 @@ bool FCCLWaterAtomicTest::RunTest(const FString& Parameters)
 {
 	FString Error;
 	FCCLLifeSimulation Life;
-	FCCLWorldClock Clock;
-	FCCLSurfaceSimulation S;
+	FKSIWorldClock Clock;
+	FKSISurfaceSimulation S;
 	TestTrue(TEXT("life"), Life.Initialize(FCCLLifeSimulation::MerchantScenario(42), Error));
 	S.Initialize(FGuid::NewGuid(), 0., 0., 0, Error);
 	auto G = Grid(1, 1);
@@ -181,7 +181,7 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(FCCLWaterSnapshotTest, "CCL.Environment.Water.B
 bool FCCLWaterSnapshotTest::RunTest(const FString& Parameters)
 {
 	FString Error;
-	FCCLSurfaceSimulation S;
+	FKSISurfaceSimulation S;
 	const FGuid World = FGuid::NewGuid();
 	S.Initialize(World, 0., 0., 0, Error);
 	auto G = Grid();
@@ -190,7 +190,7 @@ bool FCCLWaterSnapshotTest::RunTest(const FString& Parameters)
 	S.AddRegion(G, Error);
 	TArray<uint8> Bytes, Again;
 	TestTrue(TEXT("capture"), S.Capture(Bytes, Error));
-	FCCLSurfaceSimulation Restored;
+	FKSISurfaceSimulation Restored;
 	TestTrue(TEXT("restore"), Restored.Restore(Bytes, Error));
 	TestTrue(TEXT("recapture"), Restored.Capture(Again, Error));
 	TestTrue(TEXT("canonical roundtrip"), Bytes == Again);
@@ -204,7 +204,7 @@ bool FCCLWaterSnapshotTest::RunTest(const FString& Parameters)
 	FMemory::Memcpy(Bytes.GetData() + Bytes.Num() - 4, &CRC, 4);
 	TestFalse(TEXT("malicious region count with valid CRC"), Restored.Restore(Bytes, Error));
 	FCCLLifeSimulation Life;
-	FCCLWorldClock Clock;
+	FKSIWorldClock Clock;
 	Life.Initialize(FCCLLifeSimulation::MerchantScenario(42), Error);
 	FCCLWorldIdentity Identity;
 	Identity.WorldId = World;
@@ -220,7 +220,7 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(FCCLWaterFrontTest, "CCL.Environment.Water.DryF
 bool FCCLWaterFrontTest::RunTest(const FString& Parameters)
 {
 	FString Error;
-	FCCLSurfaceSimulation S;
+	FKSISurfaceSimulation S;
 	S.Initialize(FGuid::NewGuid(), 0., 0., 0, Error);
 	auto G = Grid(32, 32);
 	G.SpacingMeters = 0.5;

@@ -99,17 +99,17 @@ void UCCLEcologySmokeSubsystem::Tick(float DeltaTime)
 		InitialTime = Runtime->GetClock().GetWorldSeconds();
 		for (uint32 I = 0; I < 4; ++I)
 		{
-			FCCLEcologySpecies Species;
+			FKSIEcologySpecies Species;
 			Species.Id = EcologySmokeId(10 + I);
-			Species.Movement = ECCLEcologyMovement(I);
+			Species.Movement = EKSIEcologyMovement(I);
 			Species.MaturitySeconds = 50.;
 			Species.LifespanSeconds = 400.;
 			Species.BirthIntervalSeconds = 100.;
-			FCCLEcologyHabitat Habitat;
+			FKSIEcologyHabitat Habitat;
 			Habitat.Id = EcologySmokeId(20 + I);
 			Habitat.MovementMask = 1 << I;
 			Habitat.Capacity = 100;
-			FCCLEcologyPopulation Population;
+			FKSIEcologyPopulation Population;
 			Population.Id = EcologySmokeId(30 + I);
 			Population.SpeciesId = Species.Id;
 			Population.HabitatId = Habitat.Id;
@@ -121,16 +121,16 @@ void UCCLEcologySmokeSubsystem::Tick(float DeltaTime)
 			}
 		}
 
-		FCCLEcologyEvent Reservation;
+		FKSIEcologyEvent Reservation;
 		Reservation.Id = EcologySmokeId(60);
-		Reservation.Kind = ECCLEcologyEventKind::Materialize;
+		Reservation.Kind = EKSIEcologyEventKind::Materialize;
 		Reservation.Source = EcologySmokeId(30);
 		Reservation.CohortId = EcologySmokeId(40);
 		Reservation.IndividualId = EcologySmokeId(50);
 		Reservation.BirthWorldSeconds = InitialTime - 100.;
 		Reservation.bPersistent = 1;
 		if (!Check(Runtime->ApplyEcologyEvent(Reservation, Error)
-			&& Runtime->AcquireEcologyIndividual(Reservation.IndividualId, ECCLEcologyRepresentation::Actor, EcologySmokeId(70), Lease, Error)
+			&& Runtime->AcquireEcologyIndividual(Reservation.IndividualId, EKSIEcologyRepresentation::Actor, EcologySmokeId(70), Lease, Error)
 			&& Runtime->ChangeTimeScale(60., Error)))
 		{
 			return;
@@ -184,9 +184,9 @@ void UCCLEcologySmokeSubsystem::Tick(float DeltaTime)
 
 		UE_LOG(LogTemp, Display, TEXT("CCL_ECOLOGY SAVED world=%.6f crc=%u"), Ecology.GetWorldSeconds(),
 			FCrc::MemCrc32(EcologyBefore.GetData(), EcologyBefore.Num() - 4));
-		FCCLEcologyEvent Capture;
+		FKSIEcologyEvent Capture;
 		Capture.Id = EcologySmokeId(61);
-		Capture.Kind = ECCLEcologyEventKind::Capture;
+		Capture.Kind = EKSIEcologyEventKind::Capture;
 		Capture.Source = EcologySmokeId(30);
 		Capture.CohortId = EcologySmokeId(40);
 		Capture.BirthWorldSeconds = InitialTime - 100.;

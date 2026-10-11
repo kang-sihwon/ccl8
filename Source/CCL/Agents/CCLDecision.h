@@ -7,7 +7,7 @@ struct CCL_API FCCLDecisionCandidate
 {
 	FGuid OpportunityId;
 	FGameplayTag Activity;
-	FCCLTargetReference Target;
+	FKSITargetReference Target;
 	FGuid SupportingLifeGoalId;
 	TMap<FGameplayTag, float> TraitSignals;
 	TMap<FGameplayTag, float> NeedRelief;
@@ -36,7 +36,7 @@ struct CCL_API FCCLDecisionInput
 {
 	FCCLAgentTraits Traits;
 	FCCLAgentNeeds Needs;
-	FCCLPersistentIntent CurrentIntent;
+	FKSIPersistentIntent CurrentIntent;
 	TArray<FCCLDecisionCandidate> Candidates;
 	double Time = 0;
 	double MinimumCommitment = 60;
@@ -45,7 +45,7 @@ struct CCL_API FCCLDecisionInput
 
 struct CCL_API FCCLDecisionResult
 {
-	FCCLPersistentIntent Intent;
+	FKSIPersistentIntent Intent;
 	TArray<FCCLDecisionTrace> Traces;
 	uint8 bSelected = 0;
 };

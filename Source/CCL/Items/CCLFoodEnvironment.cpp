@@ -1,7 +1,7 @@
 #include "CCLFoodEnvironment.h"
 
 #include "CCLInventorySnapshot.h"
-#include "Environment/CCLSurfaceSimulation.h"
+#include "KSISurfaceSimulation.h"
 
 bool CCLFoodEnvironment::Validate(const FCCLFoodEnvironmentBinding& B, double Time, FString& Error)
 {
@@ -16,7 +16,7 @@ bool CCLFoodEnvironment::Validate(const FCCLFoodEnvironmentBinding& B, double Ti
 	return true;
 }
 
-bool CCLFoodEnvironment::Sample(FCCLFoodEnvironmentBinding& B, const FCCLSurfaceSimulation& S, FString& Error)
+bool CCLFoodEnvironment::Sample(FCCLFoodEnvironmentBinding& B, const FKSISurfaceSimulation& S, FString& Error)
 {
 	if (!S.IsInitialized() || !Validate(B, S.GetWorldSeconds(), Error))
 	{
@@ -56,7 +56,7 @@ bool CCLFoodEnvironment::Sample(FCCLFoodEnvironmentBinding& B, const FCCLSurface
 	}
 	auto Candidate = B;
 	Candidate.Conditions.TemperatureCelsius = FMath::Clamp(Temperature, -80., 80.);
-	// Same vapor-capacity approximation as FCCLWeatherModel, including its 1000 m mixing-height convention.
+	// Same vapor-capacity approximation as FKSIWeatherModel, including its 1000 m mixing-height convention.
 	const double Capacity = .005 * FMath::Exp(FMath::Clamp(Temperature * .06, -10., 10.));
 	Candidate.Conditions.RelativeHumidity = FMath::Clamp(VaporDensity / Capacity, 0., 1.);
 	Candidate.SampleWorldSeconds = S.GetWorldSeconds();
@@ -68,7 +68,7 @@ bool CCLFoodEnvironment::Sample(FCCLFoodEnvironmentBinding& B, const FCCLSurface
 	return true;
 }
 
-bool CCLFoodEnvironment::Advance(FCCLInventorySnapshot& Record, const FCCLSurfaceSimulation& S, double From,
+bool CCLFoodEnvironment::Advance(FCCLInventorySnapshot& Record, const FKSISurfaceSimulation& S, double From,
 								 FString& Error)
 {
 	const double To = S.GetWorldSeconds();
@@ -118,7 +118,7 @@ bool CCLFoodEnvironment::Advance(FCCLInventorySnapshot& Record, const FCCLSurfac
 	return true;
 }
 
-bool CCLFoodEnvironment::ResolveAt(const FVector& Position, const FCCLSurfaceSimulation& Surface,
+bool CCLFoodEnvironment::ResolveAt(const FVector& Position, const FKSISurfaceSimulation& Surface,
 								   FCCLFoodEnvironmentBinding& Binding, FString& Error)
 {
 	if (Position.ContainsNaN() || !Surface.IsInitialized())
@@ -167,7 +167,7 @@ bool CCLFoodEnvironment::ResolveAt(const FVector& Position, const FCCLSurfaceSim
 	return true;
 }
 
-bool CCLFoodEnvironment::RelocatePickup(FCCLInventorySnapshot& Record, const FCCLSurfaceSimulation& Surface,
+bool CCLFoodEnvironment::RelocatePickup(FCCLInventorySnapshot& Record, const FKSISurfaceSimulation& Surface,
 										FString& Error)
 {
 	if (Record.Owner != ECCLInventoryOwner::FoodPickup || Record.Items.IsEmpty())

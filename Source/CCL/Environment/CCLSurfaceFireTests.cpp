@@ -1,4 +1,4 @@
-#include "CCLSurfaceSimulation.h"
+#include "KSISurfaceSimulation.h"
 
 #include "Misc/AutomationTest.h"
 #include "Misc/Crc.h"
@@ -8,9 +8,9 @@
 #if WITH_DEV_AUTOMATION_TESTS
 namespace
 {
-	FCCLSurfaceGrid FireGrid(int32 X = 1, int32 Y = 1)
+	FKSISurfaceGrid FireGrid(int32 X = 1, int32 Y = 1)
 	{
-		FCCLSurfaceGrid G;
+		FKSISurfaceGrid G;
 		G.RegionId = FGuid(701, 702, 703, 704);
 		G.Size = FIntPoint(X, Y);
 		G.SpacingMeters = 1.;
@@ -25,12 +25,12 @@ namespace
 		FString Error;
 		for (auto& Cell : G.Fire.Cells)
 		{
-			FCCLCombustionModel::Initialize(G.Fire.Material, 2., 20., Cell, Error);
+			FKSICombustionModel::Initialize(G.Fire.Material, 2., 20., Cell, Error);
 		}
 		return G;
 	}
 
-	FKSIWorldStep FireStep(const FCCLSurfaceSimulation& S, double GameDelta, double WorldDelta = 0.)
+	FKSIWorldStep FireStep(const FKSISurfaceSimulation& S, double GameDelta, double WorldDelta = 0.)
 	{
 		FKSIWorldStep Step;
 		Step.StepId = S.GetStepId() + 1;
@@ -47,7 +47,7 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(FCCLSurfaceFirePhaseTest, "CCL.Environment.Fire
 bool FCCLSurfaceFirePhaseTest::RunTest(const FString& Parameters)
 {
 	FString Error;
-	FCCLSurfaceSimulation S;
+	FKSISurfaceSimulation S;
 	TestTrue(TEXT("world"), S.Initialize(FGuid::NewGuid(), 0., 0., 0, Error));
 	auto G = FireGrid(3);
 	G.Fire.SpreadWattsPerKelvin = 0.;
@@ -93,7 +93,7 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(FCCLSurfaceFireSpreadTest, "CCL.Environment.Fir
 bool FCCLSurfaceFireSpreadTest::RunTest(const FString& Parameters)
 {
 	FString Error;
-	FCCLSurfaceSimulation S;
+	FKSISurfaceSimulation S;
 	S.Initialize(FGuid::NewGuid(), 0., 0., 0, Error);
 	auto G = FireGrid(3, 3);
 	G.Fire.Material.CoolingWattsPerKelvin = 0.;
@@ -116,7 +116,7 @@ bool FCCLSurfaceFireSpreadTest::RunTest(const FString& Parameters)
 	auto Spread = FireGrid(2);
 	Spread.Fire.Material.CoolingWattsPerKelvin = 0.;
 	Spread.Fire.Material.SurfaceWattsPerKelvin = 0.;
-	FCCLSurfaceSimulation A, B;
+	FKSISurfaceSimulation A, B;
 	A.Initialize(FGuid::NewGuid(), 0., 0., 0, Error);
 	B.Initialize(FGuid::NewGuid(), 0., 0., 0, Error);
 	TestTrue(TEXT("connected region"), A.AddRegion(Spread, Error));
@@ -137,7 +137,7 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(FCCLSurfaceFireResumeTest, "CCL.Environment.Fir
 bool FCCLSurfaceFireResumeTest::RunTest(const FString& Parameters)
 {
 	FString Error;
-	FCCLSurfaceSimulation S, Restored;
+	FKSISurfaceSimulation S, Restored;
 	S.Initialize(FGuid::NewGuid(), 0., 0., 0, Error);
 	auto G = FireGrid(2);
 	G.Cells[1].SnowCubicMeters = 0.001;
@@ -204,7 +204,7 @@ bool FCCLSurfaceFireLegacyTest::RunTest(const FString& Parameters)
 		}
 		if (Version >= 3)
 		{
-			FCCLWeatherModel::Serialize(Ar, G.Climate, G.Weather);
+			FKSIWeatherModel::Serialize(Ar, G.Climate, G.Weather);
 		}
 		if (Version >= 4)
 		{
@@ -243,13 +243,13 @@ bool FCCLSurfaceFireLegacyTest::RunTest(const FString& Parameters)
 
 		if (Version >= 6)
 		{
-			FCCLAirSimulation Air;
+			FKSIAirSimulation Air;
 			Air.Serialize(Ar);
 		}
 
 		uint32 CRC = FCrc::MemCrc32(Bytes.GetData(), Bytes.Num());
 		Ar << CRC;
-		FCCLSurfaceSimulation Loaded;
+		FKSISurfaceSimulation Loaded;
 		TestTrue(TEXT("legacy payload accepted"), Loaded.Restore(Bytes, Error));
 		const auto* Region = Loaded.FindRegion(G.RegionId);
 		if (!TestNotNull(TEXT("region restored"), Region))

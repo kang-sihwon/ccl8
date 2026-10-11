@@ -1,17 +1,17 @@
 #include "CCLWorldAdvance.h"
 
-#include "CCLWorldClock.h"
-#include "CCLEcologySimulation.h"
-#include "CCLSurfaceSimulation.h"
+#include "KSIWorldClock.h"
+#include "KSIEcologySimulation.h"
+#include "KSISurfaceSimulation.h"
 #include "Agents/CCLLifeSimulation.h"
 #include "Agents/CCLAgentTags.h"
 #include "ProfilingDebugging/CsvProfiler.h"
 
-bool CCLWorldAdvance::Advance(FCCLWorldClock& Clock, FCCLLifeSimulation& Life,
-	double MaxGameSeconds, double MaxWorldSeconds, FString& Error, int32 MaxLifeSlices, FCCLSurfaceSimulation* Surface,
-	const FCCLCelestialSystem* Celestial, const FCCLCelestialObserver* Observer, const ICCLSurfaceProvider* Shelter,
-	const TArray<FCCLSurfaceOpening>* Openings, FCCLEcologySimulation* Ecology, int32 MaxEcologyBoundaries, const ICCLEcologySpace* Space,
-	const TFunction<bool(const FKSIWorldStep&, const FCCLSurfaceSimulation*, FString&)>& Prepare)
+bool CCLWorldAdvance::Advance(FKSIWorldClock& Clock, FCCLLifeSimulation& Life,
+	double MaxGameSeconds, double MaxWorldSeconds, FString& Error, int32 MaxLifeSlices, FKSISurfaceSimulation* Surface,
+	const FKSICelestialSystem* Celestial, const FKSICelestialObserver* Observer, const IKSISurfaceProvider* Shelter,
+	const TArray<FKSISurfaceOpening>* Openings, FKSIEcologySimulation* Ecology, int32 MaxEcologyBoundaries, const IKSIEcologySpace* Space,
+	const TFunction<bool(const FKSIWorldStep&, const FKSISurfaceSimulation*, FString&)>& Prepare)
 {
 	CSV_SCOPED_TIMING_STAT_EXCLUSIVE(CCLWorldAdvance);
 	Error.Reset();
@@ -41,7 +41,7 @@ bool CCLWorldAdvance::Advance(FCCLWorldClock& Clock, FCCLLifeSimulation& Life,
 		MaxWorldSeconds = FMath::Min(MaxWorldSeconds, FMath::FloorToDouble(Clock.GetWorldSeconds()) + 1. - Clock.GetWorldSeconds());
 	}
 
-	FCCLWorldClock CandidateClock = Clock;
+	FKSIWorldClock CandidateClock = Clock;
 	FKSIWorldStep Step;
 	if (!CandidateClock.Prepare(MaxGameSeconds, MaxWorldSeconds, Step, Error) ||
 		!CandidateClock.Commit(Step.Ticket, Error))
@@ -49,7 +49,7 @@ bool CCLWorldAdvance::Advance(FCCLWorldClock& Clock, FCCLLifeSimulation& Life,
 		return false;
 	}
 
-	FCCLSurfaceSimulation CandidateSurface;
+	FKSISurfaceSimulation CandidateSurface;
 	if (Surface)
 	{
 		CSV_SCOPED_TIMING_STAT_EXCLUSIVE(CCLSurfaceAdvance);
@@ -60,7 +60,7 @@ bool CCLWorldAdvance::Advance(FCCLWorldClock& Clock, FCCLLifeSimulation& Life,
 		}
 	}
 
-	FCCLEcologySimulation CandidateEcology;
+	FKSIEcologySimulation CandidateEcology;
 	if (Ecology)
 	{
 		CSV_SCOPED_TIMING_STAT_EXCLUSIVE(CCLEcologyAdvance);

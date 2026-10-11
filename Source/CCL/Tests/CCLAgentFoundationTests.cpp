@@ -10,15 +10,15 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(FCCLAgentLifetimeTest, "CCL.Agent.LifetimeAndMi
 
 bool FCCLAgentLifetimeTest::RunTest(const FString& Parameters)
 {
-	FCCLFeatureRegistry Registry;
+	FKSIFeatureRegistry Registry;
 	CCLAgentFeatures::Register(Registry);
-	FCCLAgentRecord Record;
+	FKSIAgentRecord Record;
 	Record.Id = FGuid(1, 2, 3, 4);
 	Record.DefinitionId = FPrimaryAssetId(TEXT("Agent"), TEXT("Merchant"));
 	FCCLAgentTraits Traits;
 	Traits.Axes.Add(CCLAgentTags::RiskTolerance, 0.8f);
 	Record.Features.Add(CCLAgentTags::Feature_Traits, {1, FInstancedStruct::Make(Traits)});
-	FCCLAgentStore Store;
+	FKSIAgentStore Store;
 	FString Error;
 	const auto Handle = Store.Add(Record, Registry, Error);
 	TestTrue(TEXT("registered optional feature creates record"), Handle.Id.IsValid());
@@ -51,8 +51,8 @@ bool FCCLAgentLifetimeTest::RunTest(const FString& Parameters)
 	TestFalse(TEXT("future feature rejected atomically"), Store.Replace({Record}, Registry, Error));
 	TestNotNull(TEXT("failed migration retains handle"), Store.Find(NewHandle));
 
-	FCCLFeatureRegistry Migrating;
-	FCCLFeatureRegistration Registration;
+	FKSIFeatureRegistry Migrating;
+	FKSIFeatureRegistration Registration;
 	Registration.Tag = CCLAgentTags::Feature_Traits;
 	Registration.Type = FCCLAgentTraits::StaticStruct();
 	Registration.Version = 2;

@@ -155,7 +155,7 @@ void UCCLEcologyZoneSmokeSubsystem::Tick(float DeltaTime)
 				}
 				const FVector Expected(FCString::Atod(*Parts[0]), FCString::Atod(*Parts[1]), FCString::Atod(*Parts[2]));
 				if (It->GetActorLocation().Equals(Expected * 100., 1.) &&
-					It->GetMovementMedium() == ECCLEcologyMovement(N / 3))
+					It->GetMovementMedium() == EKSIEcologyMovement(N / 3))
 				{
 					++Seen;
 				}

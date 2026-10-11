@@ -32,7 +32,7 @@ void SCCLCelestialDebugView::Tick(const FGeometry& Geometry, double CurrentTime,
 		}
 		if (CachedRevision != View.InputRevision || CachedEpoch != Published.Epoch)
 		{
-			FCCLCelestialDefinitionData Definition;
+			FKSICelestialDefinitionData Definition;
 			Definition.DefinitionId = View.DefinitionId;
 			Definition.Version = View.DefinitionVersion;
 			Definition.Seed = View.Seed;
@@ -58,7 +58,7 @@ void SCCLCelestialDebugView::Tick(const FGeometry& Geometry, double CurrentTime,
 				}
 				for (int32 Sample = 0; Sample <= 96; ++Sample)
 				{
-					TArray<FCCLCelestialBodyState> At;
+					TArray<FKSICelestialBodyState> At;
 					if (System.Evaluate(Definition.EpochWorldSeconds + Body.OrbitalPeriodSeconds * Sample / 96., At, Error))
 					{
 						Orbits[I].Add((At[I].PositionKm - At[Parent].PositionKm) / Body.SemiMajorAxisKm);
@@ -152,7 +152,7 @@ int32 SCCLCelestialDebugView::OnPaint(const FPaintArgs& Args, const FGeometry& G
 	double MinimumPlanetOrbit = TNumericLimits<double>::Max();
 	for (const auto& Body : Bodies)
 	{
-		if (Body.Kind == ECCLCelestialKind::Planet && Body.SemiMajorAxisKm > 0.)
+		if (Body.Kind == EKSICelestialKind::Planet && Body.SemiMajorAxisKm > 0.)
 		{
 			MinimumPlanetOrbit = FMath::Min(MinimumPlanetOrbit, Body.SemiMajorAxisKm);
 		}
@@ -171,7 +171,7 @@ int32 SCCLCelestialDebugView::OnPaint(const FPaintArgs& Args, const FGeometry& G
 		const int32 Parent = Bodies.IndexOfByPredicate([&](const auto& B) { return B.BodyId == Bodies[I].ParentBodyId; });
 		if (Parent != INDEX_NONE)
 		{
-			Spans[I] = Bodies[Parent].Kind == ECCLCelestialKind::Star
+			Spans[I] = Bodies[Parent].Kind == EKSICelestialKind::Star
 				? FMath::Clamp(2. * FMath::Sqrt(Bodies[I].SemiMajorAxisKm / MinimumPlanetOrbit), 1.5, 3.7) : 0.65;
 			Positions[I] = Positions[Parent] + (States[I].PositionKm - States[Parent].PositionKm) * (Spans[I] / Bodies[I].SemiMajorAxisKm);
 			for (int32 K = 1; K < Orbits[I].Num(); ++K)
@@ -189,7 +189,7 @@ int32 SCCLCelestialDebugView::OnPaint(const FPaintArgs& Args, const FGeometry& G
 	Order.Sort([&](int32 A, int32 B) { return FVector3d::DotProduct(Positions[A], Forward) < FVector3d::DotProduct(Positions[B], Forward); });
 	for (int32 I : Order)
 	{
-		const bool bStar = Bodies[I].Kind == ECCLCelestialKind::Star;
+		const bool bStar = Bodies[I].Kind == EKSICelestialKind::Star;
 		const FVector3d Light = StarIndex == INDEX_NONE ? Forward : (States[StarIndex].PositionKm - States[I].PositionKm).GetSafeNormal();
 		Sphere(Positions[I], bStar ? 0.38 : (I == ObserverIndex ? 0.21 : 0.13), Light,
 			bStar ? FLinearColor(1.f, 0.6f, 0.08f) : FLinearColor(0.24f, 0.6f, 0.9f), SystemCenter, SystemScale, bStar);

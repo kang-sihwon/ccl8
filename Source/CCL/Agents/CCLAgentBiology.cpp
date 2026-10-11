@@ -2,7 +2,7 @@
 
 #include "CCLAgentTags.h"
 
-const FCCLAgentBiology* CCLAgentBiology::Find(const FCCLAgentRecord& Record)
+const FCCLAgentBiology* CCLAgentBiology::Find(const FKSIAgentRecord& Record)
 {
 	const auto* State = Record.Features.Find(CCLAgentTags::Feature_Biology);
 	return State ? State->Data.GetPtr<FCCLAgentBiology>() : nullptr;
@@ -35,7 +35,7 @@ bool CCLAgentBiology::ValidateFields(const FCCLAgentBiology& B)
 			&& B.DeathWorldSeconds == B.BirthWorldSeconds + B.LifespanSeconds);
 }
 
-bool CCLAgentBiology::ValidateAt(const FCCLAgentRecord& Record, double WorldSeconds, FString& Error)
+bool CCLAgentBiology::ValidateAt(const FKSIAgentRecord& Record, double WorldSeconds, FString& Error)
 {
 	const auto* B = Find(Record);
 	if (!Record.Features.Contains(CCLAgentTags::Feature_Biology))
@@ -55,7 +55,7 @@ bool CCLAgentBiology::ValidateAt(const FCCLAgentRecord& Record, double WorldSeco
 	return true;
 }
 
-bool CCLAgentBiology::IsAlive(const FCCLAgentRecord& Record)
+bool CCLAgentBiology::IsAlive(const FKSIAgentRecord& Record)
 {
 	const auto* B = Find(Record);
 	return !B || B->DeathCause == ECCLAgentDeathCause::None;

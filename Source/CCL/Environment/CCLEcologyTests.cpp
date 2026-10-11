@@ -1,4 +1,4 @@
-#include "CCLEcologySimulation.h"
+#include "KSIEcologySimulation.h"
 
 #include "Misc/AutomationTest.h"
 #include "Misc/Crc.h"
@@ -11,7 +11,7 @@ namespace
 		return FGuid(880, 881, 882, N);
 	}
 
-	bool SetupEcology(FCCLEcologySimulation& S, FString& Error, int64 Capacity = 100)
+	bool SetupEcology(FKSIEcologySimulation& S, FString& Error, int64 Capacity = 100)
 	{
 		if (!S.Initialize(EcologyId(1), 100., Error))
 		{
@@ -20,16 +20,16 @@ namespace
 
 		for (uint32 I = 0; I < 4; ++I)
 		{
-			FCCLEcologySpecies Species;
+			FKSIEcologySpecies Species;
 			Species.Id = EcologyId(10 + I);
-			Species.Movement = ECCLEcologyMovement(I);
+			Species.Movement = EKSIEcologyMovement(I);
 			Species.MaturitySeconds = 10.;
 			Species.LifespanSeconds = 1000.;
-			FCCLEcologyHabitat Habitat;
+			FKSIEcologyHabitat Habitat;
 			Habitat.Id = EcologyId(20 + I);
 			Habitat.MovementMask = 1 << I;
 			Habitat.Capacity = Capacity;
-			FCCLEcologyPopulation Population;
+			FKSIEcologyPopulation Population;
 			Population.Id = EcologyId(30 + I);
 			Population.SpeciesId = Species.Id;
 			Population.HabitatId = Habitat.Id;
@@ -40,14 +40,14 @@ namespace
 			}
 		}
 
-		FCCLEcologyPopulation Destination;
+		FKSIEcologyPopulation Destination;
 		Destination.Id = EcologyId(34);
 		Destination.SpeciesId = EcologyId(10);
 		Destination.HabitatId = EcologyId(20);
 		return S.AddPopulation(Destination, Error);
 	}
 
-	TArray<uint8> EcologyBytes(const FCCLEcologySimulation& S)
+	TArray<uint8> EcologyBytes(const FKSIEcologySimulation& S)
 	{
 		TArray<uint8> Bytes;
 		FString Error;
@@ -55,9 +55,9 @@ namespace
 		return Bytes;
 	}
 
-	FCCLEcologyEvent Transfer(uint32 Id, ECCLEcologyEventKind Kind, int64 Count = 1)
+	FKSIEcologyEvent Transfer(uint32 Id, EKSIEcologyEventKind Kind, int64 Count = 1)
 	{
-		FCCLEcologyEvent E;
+		FKSIEcologyEvent E;
 		E.Id = EcologyId(Id);
 		E.Kind = Kind;
 		E.Source = EcologyId(30);
@@ -66,17 +66,17 @@ namespace
 		return E;
 	}
 
-	bool SetupLifeCycle(FCCLEcologySimulation& S, FString& Error, double Interval = 20.)
+	bool SetupLifeCycle(FKSIEcologySimulation& S, FString& Error, double Interval = 20.)
 	{
-		FCCLEcologySpecies Species;
+		FKSIEcologySpecies Species;
 		Species.Id = EcologyId(10);
 		Species.MaturitySeconds = 10.;
 		Species.LifespanSeconds = 60.;
 		Species.BirthIntervalSeconds = Interval;
-		FCCLEcologyHabitat Habitat;
+		FKSIEcologyHabitat Habitat;
 		Habitat.Id = EcologyId(20);
 		Habitat.Capacity = 100;
-		FCCLEcologyPopulation Population;
+		FKSIEcologyPopulation Population;
 		Population.Id = EcologyId(30);
 		Population.SpeciesId = Species.Id;
 		Population.HabitatId = Habitat.Id;
@@ -96,7 +96,7 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(FCCLEcologyReservationTest, "CCL.Environment.Ec
 	EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
 bool FCCLEcologyReservationTest::RunTest(const FString& Parameters)
 {
-	FCCLEcologySimulation S;
+	FKSIEcologySimulation S;
 	FString Error;
 	if (!TestTrue(TEXT("four species setup"), SetupEcology(S, Error)))
 	{
@@ -109,9 +109,9 @@ bool FCCLEcologyReservationTest::RunTest(const FString& Parameters)
 		TestTrue(TEXT("reserve from aggregate"), S.Materialize(Request, P, C, Id, false, Error));
 		TestEqual(TEXT("aggregate deducted"), S.AggregateCount(P), int64(9));
 		TestEqual(TEXT("living conserved"), S.LivingCount(P), int64(10));
-		FCCLEcologyLease Actor, Mass;
-		TestTrue(TEXT("actor acquires"), S.Acquire(Id, ECCLEcologyRepresentation::Actor, EcologyId(90), Actor, Error));
-		TestFalse(TEXT("Mass cannot also own it"), S.Acquire(Id, ECCLEcologyRepresentation::Mass, EcologyId(91), Mass, Error));
+		FKSIEcologyLease Actor, Mass;
+		TestTrue(TEXT("actor acquires"), S.Acquire(Id, EKSIEcologyRepresentation::Actor, EcologyId(90), Actor, Error));
+		TestFalse(TEXT("Mass cannot also own it"), S.Acquire(Id, EKSIEcologyRepresentation::Mass, EcologyId(91), Mass, Error));
 		TestEqual(TEXT("failed acquire leaves output untouched"), Mass.Sequence, uint64(0));
 		TestTrue(TEXT("release to aggregate"), S.Release(Actor, Error));
 		TestEqual(TEXT("aggregate restored"), S.AggregateCount(P), int64(10));
@@ -131,7 +131,7 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(FCCLEcologyPersistentTest, "CCL.Environment.Eco
 	EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
 bool FCCLEcologyPersistentTest::RunTest(const FString& Parameters)
 {
-	FCCLEcologySimulation S;
+	FKSIEcologySimulation S;
 	FString Error;
 	if (!TestTrue(TEXT("setup"), SetupEcology(S, Error)))
 	{
@@ -140,19 +140,19 @@ bool FCCLEcologyPersistentTest::RunTest(const FString& Parameters)
 
 	const FGuid Id = EcologyId(50);
 	TestTrue(TEXT("persistent reservation"), S.Materialize(EcologyId(60), EcologyId(30), EcologyId(40), Id, true, Error));
-	FCCLEcologyLease Actor, Mass, Restored;
-	TestTrue(TEXT("actor lease"), S.Acquire(Id, ECCLEcologyRepresentation::Actor, EcologyId(90), Actor, Error));
+	FKSIEcologyLease Actor, Mass, Restored;
+	TestTrue(TEXT("actor lease"), S.Acquire(Id, EKSIEcologyRepresentation::Actor, EcologyId(90), Actor, Error));
 	TestTrue(TEXT("actor return"), S.Release(Actor, Error));
 	TestNotNull(TEXT("important identity retained"), S.FindIndividual(Id));
 	TestEqual(TEXT("important individual remains reserved"), S.AggregateCount(EcologyId(30)), int64(9));
-	TestTrue(TEXT("Mass lease"), S.Acquire(Id, ECCLEcologyRepresentation::Mass, EcologyId(91), Mass, Error));
+	TestTrue(TEXT("Mass lease"), S.Acquire(Id, EKSIEcologyRepresentation::Mass, EcologyId(91), Mass, Error));
 	TestFalse(TEXT("old Actor cannot release Mass"), S.Release(Actor, Error));
 	const auto Before = EcologyBytes(S);
 	TestTrue(TEXT("restore active reservation"), S.Restore(Before, Error));
 	TestTrue(TEXT("persistent bytes deterministic"), EcologyBytes(S) == Before);
 	TestEqual(TEXT("reservation survives restore"), S.LivingCount(EcologyId(30)), int64(10));
 	TestFalse(TEXT("pre-restore lease rejected"), S.Release(Mass, Error));
-	TestTrue(TEXT("fresh lease available"), S.Acquire(Id, ECCLEcologyRepresentation::Actor, EcologyId(90), Restored, Error));
+	TestTrue(TEXT("fresh lease available"), S.Acquire(Id, EKSIEcologyRepresentation::Actor, EcologyId(90), Restored, Error));
 	TestTrue(TEXT("restore changes epoch"), Restored.Epoch != Mass.Epoch);
 	TestTrue(TEXT("release fresh lease"), S.Release(Restored, Error));
 	TestTrue(TEXT("valid"), S.Validate(Error));
@@ -163,14 +163,14 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(FCCLEcologyEventsTest, "CCL.Environment.Ecology
 	EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
 bool FCCLEcologyEventsTest::RunTest(const FString& Parameters)
 {
-	FCCLEcologySimulation S;
+	FKSIEcologySimulation S;
 	FString Error;
 	if (!TestTrue(TEXT("setup"), SetupEcology(S, Error)))
 	{
 		return false;
 	}
 
-	auto Birth = Transfer(100, ECCLEcologyEventKind::Birth, 2);
+	auto Birth = Transfer(100, EKSIEcologyEventKind::Birth, 2);
 	Birth.Target = Birth.Source;
 	Birth.CohortId = EcologyId(101);
 	Birth.BirthWorldSeconds = 100.;
@@ -183,16 +183,16 @@ bool FCCLEcologyEventsTest::RunTest(const FString& Parameters)
 	Collision.Count = 3;
 	TestFalse(TEXT("same event ID different payload"), S.Apply(Collision, Error));
 	TestTrue(TEXT("collision atomic"), Born == EcologyBytes(S));
-	TestTrue(TEXT("death"), S.Apply(Transfer(102, ECCLEcologyEventKind::Death, 2), Error));
-	TestTrue(TEXT("capture"), S.Apply(Transfer(103, ECCLEcologyEventKind::Capture, 1), Error));
-	auto Move = Transfer(104, ECCLEcologyEventKind::Migration, 3);
+	TestTrue(TEXT("death"), S.Apply(Transfer(102, EKSIEcologyEventKind::Death, 2), Error));
+	TestTrue(TEXT("capture"), S.Apply(Transfer(103, EKSIEcologyEventKind::Capture, 1), Error));
+	auto Move = Transfer(104, EKSIEcologyEventKind::Migration, 3);
 	Move.Target = EcologyId(34);
 	TestTrue(TEXT("migration"), S.Apply(Move, Error));
 	TestEqual(TEXT("source after transfer"), S.LivingCount(EcologyId(30)), int64(6));
 	TestEqual(TEXT("destination after transfer"), S.LivingCount(EcologyId(34)), int64(3));
 	TestEqual(TEXT("departed ledger"), S.GetPopulations()[EcologyId(30)].Departed, int64(3));
 	TestEqual(TEXT("arrived ledger"), S.GetPopulations()[EcologyId(34)].Arrived, int64(3));
-	auto Arrival = Transfer(105, ECCLEcologyEventKind::Immigration, 4);
+	auto Arrival = Transfer(105, EKSIEcologyEventKind::Immigration, 4);
 	Arrival.Source.Invalidate();
 	Arrival.Target = EcologyId(30);
 	TestTrue(TEXT("recorded outside inflow"), S.Apply(Arrival, Error));
@@ -209,7 +209,7 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(FCCLEcologyFailureTest, "CCL.Environment.Ecolog
 	EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
 bool FCCLEcologyFailureTest::RunTest(const FString& Parameters)
 {
-	FCCLEcologySimulation S;
+	FKSIEcologySimulation S;
 	FString Error;
 	if (!TestTrue(TEXT("setup at habitat capacity"), SetupEcology(S, Error, 10)))
 	{
@@ -217,20 +217,20 @@ bool FCCLEcologyFailureTest::RunTest(const FString& Parameters)
 	}
 
 	const auto Before = EcologyBytes(S);
-	auto Arrival = Transfer(100, ECCLEcologyEventKind::Immigration);
+	auto Arrival = Transfer(100, EKSIEcologyEventKind::Immigration);
 	Arrival.Source.Invalidate();
 	Arrival.Target = EcologyId(30);
 	TestFalse(TEXT("capacity cannot be exceeded"), S.Apply(Arrival, Error));
-	TestFalse(TEXT("cannot remove excess population"), S.Apply(Transfer(101, ECCLEcologyEventKind::Death, 11), Error));
-	auto Move = Transfer(102, ECCLEcologyEventKind::Migration);
+	TestFalse(TEXT("cannot remove excess population"), S.Apply(Transfer(101, EKSIEcologyEventKind::Death, 11), Error));
+	auto Move = Transfer(102, EKSIEcologyEventKind::Migration);
 	Move.Target = EcologyId(31);
 	TestFalse(TEXT("species cannot change by migration"), S.Apply(Move, Error));
-	FCCLEcologyPopulation WrongMedium;
+	FKSIEcologyPopulation WrongMedium;
 	WrongMedium.Id = EcologyId(35);
 	WrongMedium.SpeciesId = EcologyId(10);
 	WrongMedium.HabitatId = EcologyId(21);
 	TestFalse(TEXT("ground species cannot occupy water habitat"), S.AddPopulation(WrongMedium, Error));
-	auto Birth = Transfer(103, ECCLEcologyEventKind::Birth, 6);
+	auto Birth = Transfer(103, EKSIEcologyEventKind::Birth, 6);
 	Birth.Target = Birth.Source;
 	Birth.CohortId = EcologyId(104);
 	Birth.BirthWorldSeconds = 100.;
@@ -247,7 +247,7 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(FCCLEcologyIndividualTransferTest, "CCL.Environ
 	EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
 bool FCCLEcologyIndividualTransferTest::RunTest(const FString& Parameters)
 {
-	FCCLEcologySimulation S;
+	FKSIEcologySimulation S;
 	FString Error;
 	if (!TestTrue(TEXT("setup"), SetupEcology(S, Error)))
 	{
@@ -256,9 +256,9 @@ bool FCCLEcologyIndividualTransferTest::RunTest(const FString& Parameters)
 
 	const FGuid Id = EcologyId(50);
 	TestTrue(TEXT("reserve identity"), S.Materialize(EcologyId(60), EcologyId(30), EcologyId(40), Id, true, Error));
-	FCCLEcologyLease Lease;
-	TestTrue(TEXT("execution lease"), S.Acquire(Id, ECCLEcologyRepresentation::Actor, EcologyId(90), Lease, Error));
-	auto Move = Transfer(100, ECCLEcologyEventKind::Migration);
+	FKSIEcologyLease Lease;
+	TestTrue(TEXT("execution lease"), S.Acquire(Id, EKSIEcologyRepresentation::Actor, EcologyId(90), Lease, Error));
+	auto Move = Transfer(100, EKSIEcologyEventKind::Migration);
 	Move.IndividualId = Id;
 	Move.Target = EcologyId(34);
 	const auto Before = EcologyBytes(S);
@@ -277,17 +277,17 @@ bool FCCLEcologyIndividualTransferTest::RunTest(const FString& Parameters)
 	TestEqual(TEXT("source count"), S.LivingCount(EcologyId(30)), int64(9));
 	TestEqual(TEXT("destination reserved count"), S.LivingCount(EcologyId(34)), int64(1));
 	TestEqual(TEXT("destination has no duplicate aggregate"), S.AggregateCount(EcologyId(34)), int64(0));
-	auto Capture = Transfer(101, ECCLEcologyEventKind::Capture);
+	auto Capture = Transfer(101, EKSIEcologyEventKind::Capture);
 	Capture.Source = EcologyId(34);
 	Capture.IndividualId = Id;
 	TestTrue(TEXT("capture identified individual"), S.Apply(Capture, Error));
 	TestEqual(TEXT("capture removed from live count"), S.LivingCount(EcologyId(34)), int64(0));
-	TestTrue(TEXT("captured identity retained"), S.FindIndividual(Id)->State == ECCLEcologyLifeState::Captured);
-	TestFalse(TEXT("captured individual cannot execute"), S.Acquire(Id, ECCLEcologyRepresentation::Mass, EcologyId(90), Lease, Error));
+	TestTrue(TEXT("captured identity retained"), S.FindIndividual(Id)->State == EKSIEcologyLifeState::Captured);
+	TestFalse(TEXT("captured individual cannot execute"), S.Acquire(Id, EKSIEcologyRepresentation::Mass, EcologyId(90), Lease, Error));
 	TestTrue(TEXT("capture duplicate"), S.Apply(Capture, Error));
 	auto Death = Capture;
 	Death.Id = EcologyId(102);
-	Death.Kind = ECCLEcologyEventKind::Death;
+	Death.Kind = EKSIEcologyEventKind::Death;
 	TestFalse(TEXT("cannot debit terminal individual again"), S.Apply(Death, Error));
 	TestTrue(TEXT("valid"), S.Validate(Error));
 	return true;
@@ -297,7 +297,7 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(FCCLEcologySnapshotTest, "CCL.Environment.Ecolo
 	EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
 bool FCCLEcologySnapshotTest::RunTest(const FString& Parameters)
 {
-	FCCLEcologySimulation S;
+	FKSIEcologySimulation S;
 	FString Error;
 	if (!TestTrue(TEXT("setup"), SetupEcology(S, Error)))
 	{
@@ -327,7 +327,7 @@ bool FCCLEcologySnapshotTest::RunTest(const FString& Parameters)
 	RepairEcologyChecksum(Bad);
 	TestFalse(TEXT("trailing payload rejected"), S.Restore(Bad, Error));
 	TestTrue(TEXT("all bad restores preserve original"), Before == EcologyBytes(S));
-	FCCLEcologySimulation Restored;
+	FKSIEcologySimulation Restored;
 	TestTrue(TEXT("valid snapshot restore"), Restored.Restore(Before, Error));
 	TestTrue(TEXT("stable serialization order"), Before == EcologyBytes(Restored));
 	return true;
@@ -337,7 +337,7 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(FCCLEcologyAgeTest, "CCL.Environment.Ecology.Ch
 	EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
 bool FCCLEcologyAgeTest::RunTest(const FString& Parameters)
 {
-	FCCLEcologySimulation Whole, Split, Saved;
+	FKSIEcologySimulation Whole, Split, Saved;
 	FString Error;
 	if (!TestTrue(TEXT("lifecycle setup"), SetupLifeCycle(Whole, Error)))
 	{
@@ -372,7 +372,7 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(FCCLEcologyMortalityTest, "CCL.Environment.Ecol
 	EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
 bool FCCLEcologyMortalityTest::RunTest(const FString& Parameters)
 {
-	FCCLEcologySimulation S;
+	FKSIEcologySimulation S;
 	FString Error;
 	if (!TestTrue(TEXT("nonbreeding species setup"), SetupLifeCycle(S, Error, 0.)))
 	{
@@ -381,21 +381,21 @@ bool FCCLEcologyMortalityTest::RunTest(const FString& Parameters)
 
 	const FGuid Id = EcologyId(50);
 	TestTrue(TEXT("reserve active individual"), S.Materialize(EcologyId(60), EcologyId(30), EcologyId(40), Id, true, Error));
-	FCCLEcologyLease Lease;
-	TestTrue(TEXT("active Actor writer"), S.Acquire(Id, ECCLEcologyRepresentation::Actor, EcologyId(90), Lease, Error));
+	FKSIEcologyLease Lease;
+	TestTrue(TEXT("active Actor writer"), S.Acquire(Id, EKSIEcologyRepresentation::Actor, EcologyId(90), Lease, Error));
 	TestTrue(TEXT("advance past lifespan"), S.AdvanceTo(65., Error));
 	TestEqual(TEXT("aggregate and identified mortality both counted"), S.GetPopulations()[EcologyId(30)].Died, int64(10));
 	TestEqual(TEXT("extinct population"), S.LivingCount(EcologyId(30)), int64(0));
-	TestTrue(TEXT("terminal identity retained"), S.FindIndividual(Id)->State == ECCLEcologyLifeState::Dead);
+	TestTrue(TEXT("terminal identity retained"), S.FindIndividual(Id)->State == EKSIEcologyLifeState::Dead);
 	TestFalse(TEXT("expired writer cannot return dead individual"), S.Release(Lease, Error));
 	TestTrue(TEXT("restore mortality"), S.Restore(EcologyBytes(S), Error));
 	TestTrue(TEXT("long absence"), S.AdvanceTo(10000., Error));
 	TestEqual(TEXT("absence cannot refill population"), S.LivingCount(EcologyId(30)), int64(0));
-	auto Arrival = Transfer(100, ECCLEcologyEventKind::Immigration, 2);
+	auto Arrival = Transfer(100, EKSIEcologyEventKind::Immigration, 2);
 	Arrival.Source.Invalidate();
 	Arrival.Target = EcologyId(30);
 	TestFalse(TEXT("expired cohort cannot re-enter"), S.Apply(Arrival, Error));
-	FCCLEcologyPopulation Expired;
+	FKSIEcologyPopulation Expired;
 	Expired.Id = EcologyId(35);
 	Expired.SpeciesId = EcologyId(10);
 	Expired.HabitatId = EcologyId(20);
@@ -412,7 +412,7 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(FCCLEcologyAdvanceFailureTest, "CCL.Environment
 	EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
 bool FCCLEcologyAdvanceFailureTest::RunTest(const FString& Parameters)
 {
-	FCCLEcologySimulation S;
+	FKSIEcologySimulation S;
 	FString Error;
 	if (!TestTrue(TEXT("setup"), SetupLifeCycle(S, Error)))
 	{
@@ -421,8 +421,8 @@ bool FCCLEcologyAdvanceFailureTest::RunTest(const FString& Parameters)
 
 	const FGuid Id = EcologyId(50);
 	TestTrue(TEXT("reserve"), S.Materialize(EcologyId(60), EcologyId(30), EcologyId(40), Id, true, Error));
-	FCCLEcologyLease Lease;
-	TestTrue(TEXT("lease"), S.Acquire(Id, ECCLEcologyRepresentation::Mass, EcologyId(90), Lease, Error));
+	FKSIEcologyLease Lease;
+	TestTrue(TEXT("lease"), S.Acquire(Id, EKSIEcologyRepresentation::Mass, EcologyId(90), Lease, Error));
 	const auto Before = EcologyBytes(S);
 	TestFalse(TEXT("bounded work rejects oversized interval"), S.AdvanceTo(200., Error, 1));
 	TestTrue(TEXT("failure discards births, deaths, time and receipts"), Before == EcologyBytes(S));
@@ -437,7 +437,7 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(FCCLEcologyHandoffTest, "CCL.Environment.Ecolog
 	EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
 bool FCCLEcologyHandoffTest::RunTest(const FString& Parameters)
 {
-	FCCLEcologySimulation S;
+	FKSIEcologySimulation S;
 	FString Error;
 	if (!TestTrue(TEXT("setup"), SetupEcology(S, Error)))
 	{
@@ -446,19 +446,19 @@ bool FCCLEcologyHandoffTest::RunTest(const FString& Parameters)
 
 	const FGuid Id = EcologyId(50);
 	TestTrue(TEXT("reserve"), S.Materialize(EcologyId(60), EcologyId(30), EcologyId(40), Id, true, Error));
-	FCCLEcologyLease Actor, Mass;
-	TestTrue(TEXT("actor owns reservation"), S.Acquire(Id, ECCLEcologyRepresentation::Actor, EcologyId(90), Actor, Error));
+	FKSIEcologyLease Actor, Mass;
+	TestTrue(TEXT("actor owns reservation"), S.Acquire(Id, EKSIEcologyRepresentation::Actor, EcologyId(90), Actor, Error));
 	TestTrue(TEXT("actor moves within habitat"), S.UpdatePosition(Actor, FVector(20., 30., 40.), Error));
 	const auto Before = EcologyBytes(S);
 	TestFalse(TEXT("invalid destination rejected"), S.UpdatePosition(Actor, FVector(101., 30., 40.), Error));
 	TestTrue(TEXT("failed position write unchanged"), Before == EcologyBytes(S));
-	TestTrue(TEXT("handoff without returning population"), S.Transfer(Actor, ECCLEcologyRepresentation::Mass, EcologyId(91), Mass, Error));
+	TestTrue(TEXT("handoff without returning population"), S.Transfer(Actor, EKSIEcologyRepresentation::Mass, EcologyId(91), Mass, Error));
 	TestTrue(TEXT("handoff does not alter persistent state"), Before == EcologyBytes(S));
 	TestFalse(TEXT("old Actor may not update"), S.UpdatePosition(Actor, FVector(10.), Error));
 	TestFalse(TEXT("old Actor may not return population"), S.Release(Actor, Error));
 	TestFalse(TEXT("cannot return reservation while Mass owns it"), S.ReturnToAggregate(Id, Error));
 	TestTrue(TEXT("Mass is current"), S.IsLeaseCurrent(Mass));
-	auto Death = Transfer(100, ECCLEcologyEventKind::Death);
+	auto Death = Transfer(100, EKSIEcologyEventKind::Death);
 	Death.IndividualId = Id;
 	Death.Count = 2;
 	TestFalse(TEXT("bad outcome preserves current writer"), S.Finish(Mass, Death, Error));
@@ -476,7 +476,7 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(FCCLEcologySuspendTest, "CCL.Environment.Ecolog
 	EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
 bool FCCLEcologySuspendTest::RunTest(const FString& Parameters)
 {
-	FCCLEcologySimulation S;
+	FKSIEcologySimulation S;
 	FString Error;
 	if (!TestTrue(TEXT("setup"), SetupEcology(S, Error)))
 	{
@@ -485,8 +485,8 @@ bool FCCLEcologySuspendTest::RunTest(const FString& Parameters)
 
 	const FGuid Id = EcologyId(50);
 	TestTrue(TEXT("ordinary reservation"), S.Materialize(EcologyId(60), EcologyId(30), EcologyId(40), Id, false, Error));
-	FCCLEcologyLease Lease;
-	TestTrue(TEXT("Mass lease"), S.Acquire(Id, ECCLEcologyRepresentation::Mass, EcologyId(90), Lease, Error));
+	FKSIEcologyLease Lease;
+	TestTrue(TEXT("Mass lease"), S.Acquire(Id, EKSIEcologyRepresentation::Mass, EcologyId(90), Lease, Error));
 	TestTrue(TEXT("position written"), S.UpdatePosition(Lease, FVector(25., 35., 45.), Error));
 	TestTrue(TEXT("suspend without returning aggregate"), S.Suspend(Lease, Error));
 	TestEqual(TEXT("reservation retained"), S.AggregateCount(EcologyId(30)), int64(9));

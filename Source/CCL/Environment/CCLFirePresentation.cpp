@@ -93,7 +93,7 @@ void ACCLFirePresentation::Tick(float DeltaSeconds)
 		for (int32 I = 0; I < G.Fire.Cells.Num(); ++I)
 		{
 			const auto& C = G.Fire.Cells[I];
-			const FVector Position = FCCLSurfaceThermalContext::CellPosition(G, I) * 100.;
+			const FVector Position = FKSISurfaceThermalContext::CellPosition(G, I) * 100.;
 			const double Initial = C.FuelKg + C.BurnedKg;
 			const float Remain = Initial > 0. ? float(C.FuelKg / Initial) : 0.f;
 			if (Remain > 0. && G.Vegetation.Cells.IsEmpty())

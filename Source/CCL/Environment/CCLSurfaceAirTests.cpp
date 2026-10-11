@@ -1,9 +1,9 @@
-#include "CCLSurfaceSimulation.h"
+#include "KSISurfaceSimulation.h"
 
-#include "CCLCelestialSystem.h"
+#include "KSICelestialSystem.h"
 #include "CCLWorldSnapshot.h"
 #include "Agents/CCLLifeSimulation.h"
-#include "CCLSurfaceQuery.h"
+#include "KSISurfaceQuery.h"
 #include "Misc/AutomationTest.h"
 #include "Serialization/MemoryWriter.h"
 
@@ -13,9 +13,9 @@ namespace
 	const FGuid RegionId(901, 902, 903, 904);
 	const FGuid SpaceId(911, 912, 913, 914);
 
-	FCCLSurfaceGrid CoupledGrid(int32 Count = 1, bool bFuel = true)
+	FKSISurfaceGrid CoupledGrid(int32 Count = 1, bool bFuel = true)
 	{
-		FCCLSurfaceGrid G;
+		FKSISurfaceGrid G;
 		G.RegionId = RegionId;
 		G.Size = FIntPoint(Count, 1);
 		G.SpacingMeters = 1.;
@@ -31,15 +31,15 @@ namespace
 			FString Error;
 			for (auto& C : G.Fire.Cells)
 			{
-				FCCLCombustionModel::Initialize(G.Fire.Material, 2., 20., C, Error);
+				FKSICombustionModel::Initialize(G.Fire.Material, 2., 20., C, Error);
 			}
 		}
 		return G;
 	}
 
-	FCCLAirSpace CoupledRoom(double Temperature = 20., double Volume = 64.)
+	FKSIAirSpace CoupledRoom(double Temperature = 20., double Volume = 64.)
 	{
-		FCCLAirSpace S;
+		FKSIAirSpace S;
 		S.SpaceId = SpaceId;
 		S.MinimumMeters = FVector(0., 0., 0.);
 		S.MaximumMeters = FVector(4., 4., 4.);
@@ -49,7 +49,7 @@ namespace
 		return S;
 	}
 
-	FKSIWorldStep CoupledStep(const FCCLSurfaceSimulation& S, double Game, double World = 0.)
+	FKSIWorldStep CoupledStep(const FKSISurfaceSimulation& S, double Game, double World = 0.)
 	{
 		FKSIWorldStep R;
 		R.StepId = S.GetStepId() + 1;
@@ -60,15 +60,15 @@ namespace
 		return R;
 	}
 
-	bool CoupledAdvance(FCCLSurfaceSimulation& S, double Game, FString& Error,
-		const TArray<FCCLSurfaceOpening>& Openings = {}, double World = 0.)
+	bool CoupledAdvance(FKSISurfaceSimulation& S, double Game, FString& Error,
+		const TArray<FKSISurfaceOpening>& Openings = {}, double World = 0.)
 	{
 		return S.Advance(CoupledStep(S, Game, World), Error, nullptr, nullptr, nullptr, &Openings);
 	}
 
-	FCCLSurfaceOpening CoupledDoor(double Fraction)
+	FKSISurfaceOpening CoupledDoor(double Fraction)
 	{
-		FCCLSurfaceOpening D;
+		FKSISurfaceOpening D;
 		D.OpeningId = FGuid(921, 922, 923, 924);
 		D.SurfaceId = FGuid(931, 932, 933, 934);
 		D.SpaceA = SpaceId;
@@ -82,7 +82,7 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(FCCLFireAirConservationTest, "CCL.Environment.A
 bool FCCLFireAirConservationTest::RunTest(const FString& Parameters)
 {
 	FString Error;
-	FCCLSurfaceSimulation S;
+	FKSISurfaceSimulation S;
 	TestTrue(TEXT("world"), S.Initialize(FGuid::NewGuid(), 0., 0., 0, Error));
 	const auto G = CoupledGrid();
 	const auto Room = CoupledRoom();
@@ -106,7 +106,7 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(FCCLAirSurfacePhaseTest, "CCL.Environment.Air.F
 bool FCCLAirSurfacePhaseTest::RunTest(const FString& Parameters)
 {
 	FString Error;
-	FCCLSurfaceSimulation S;
+	FKSISurfaceSimulation S;
 	S.Initialize(FGuid::NewGuid(), 0., 0., 0, Error);
 	auto G = CoupledGrid(2, false);
 	G.Cells[0].SnowCubicMeters = 0.01;
@@ -126,7 +126,7 @@ bool FCCLAirSurfacePhaseTest::RunTest(const FString& Parameters)
 	TestTrue(TEXT("room paid phase energy"), FMath::IsNearlyEqual(A.Contents.HeatJoules + R.AirHeatToSurfaceJoules, Room.Initial.HeatJoules, 1.e-5));
 	TestTrue(TEXT("water preserved"), FMath::Abs(R.BalanceErrorCubicMeters()) < 1.e-10);
 
-	FCCLSurfaceSimulation Cold;
+	FKSISurfaceSimulation Cold;
 	Cold.Initialize(FGuid::NewGuid(), 0., 0., 0, Error);
 	auto Wet = CoupledGrid(1, false);
 	Wet.Cells[0].WaterCubicMeters = 0.1;
@@ -148,7 +148,7 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(FCCLAirFuelBudgetTest, "CCL.Environment.Air.Col
 bool FCCLAirFuelBudgetTest::RunTest(const FString& Parameters)
 {
 	FString Error;
-	FCCLSurfaceSimulation S;
+	FKSISurfaceSimulation S;
 	S.Initialize(FGuid::NewGuid(), 0., 0., 0, Error);
 	auto G = CoupledGrid(4);
 	G.Fire.Material.CoolingWattsPerKelvin = 1000000.;
@@ -156,7 +156,7 @@ bool FCCLAirFuelBudgetTest::RunTest(const FString& Parameters)
 	G.Fire.Material.BurnKgPerGameSecond = 0.;
 	for (auto& Cell : G.Fire.Cells)
 	{
-		TestTrue(TEXT("very cold fuel"), FCCLCombustionModel::Initialize(G.Fire.Material, 1., -100., Cell, Error));
+		TestTrue(TEXT("very cold fuel"), FKSICombustionModel::Initialize(G.Fire.Material, 1., -100., Cell, Error));
 	}
 	const auto Room = CoupledRoom(0., 0.1);
 	TestTrue(TEXT("region"), S.AddRegion(G, Error));
@@ -179,8 +179,8 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(FCCLAirCommonStepTest, "CCL.Environment.Air.Mul
 bool FCCLAirCommonStepTest::RunTest(const FString& Parameters)
 {
 	FString Error;
-	FCCLSurfaceSimulation S;
-	FCCLAirSimulation Reference;
+	FKSISurfaceSimulation S;
+	FKSIAirSimulation Reference;
 	S.Initialize(FGuid::NewGuid(), 0., 0., 0, Error);
 	TestTrue(TEXT("region one"), S.AddRegion(CoupledGrid(1, false), Error));
 	auto Other = CoupledGrid(1, false);
@@ -191,8 +191,8 @@ bool FCCLAirCommonStepTest::RunTest(const FString& Parameters)
 	Room.Initial.SmokeKg = Room.Contents.SmokeKg = 1.;
 	TestTrue(TEXT("room"), S.AddAirSpace(Room, Error));
 	TestTrue(TEXT("reference room"), Reference.AddSpace(Room, Error));
-	const TArray<FCCLSurfaceOpening> Doors = {CoupledDoor(1.)};
-	TMap<FGuid, FCCLAirExterior> Exteriors;
+	const TArray<FKSISurfaceOpening> Doors = {CoupledDoor(1.)};
+	TMap<FGuid, FKSIAirExterior> Exteriors;
 	Exteriors.Add(SpaceId, {});
 	TestTrue(TEXT("reference once"), Reference.Advance(2., Doors, Exteriors, Error));
 	TestTrue(TEXT("coupled regions"), CoupledAdvance(S, 2., Error, Doors));
@@ -206,7 +206,7 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(FCCLAirWorldResumeTest, "CCL.Environment.Air.Co
 bool FCCLAirWorldResumeTest::RunTest(const FString& Parameters)
 {
 	FString Error;
-	FCCLSurfaceSimulation S, Loaded;
+	FKSISurfaceSimulation S, Loaded;
 	S.Initialize(FGuid::NewGuid(), 0., 0., 0, Error);
 	TestTrue(TEXT("region"), S.AddRegion(CoupledGrid(), Error));
 	TestTrue(TEXT("room"), S.AddAirSpace(CoupledRoom(), Error));
@@ -234,7 +234,7 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(FCCLFireWallTest, "CCL.Environment.Fire.WallAnd
 bool FCCLFireWallTest::RunTest(const FString& Parameters)
 {
 	FString Error;
-	FCCLSurfaceSimulation S;
+	FKSISurfaceSimulation S;
 	S.Initialize(FGuid::NewGuid(), 0., 0., 0, Error);
 	auto G = CoupledGrid(2);
 	G.Fire.Material.CoolingWattsPerKelvin = 0.;
@@ -242,7 +242,7 @@ bool FCCLFireWallTest::RunTest(const FString& Parameters)
 	G.Fire.Material.BurnKgPerGameSecond = 0.;
 	TestTrue(TEXT("region"), S.AddRegion(G, Error));
 	TestTrue(TEXT("heat"), S.Ignite(RegionId, 0, 600000., Error));
-	FCCLSurfacePatch Wall;
+	FKSISurfacePatch Wall;
 	Wall.SurfaceId = CoupledDoor(0.).SurfaceId;
 	Wall.BodyId = TEXT("TestBody");
 	Wall.MaterialId = TEXT("Stone");
@@ -251,10 +251,10 @@ bool FCCLFireWallTest::RunTest(const FString& Parameters)
 	Wall.TangentU = FVector::RightVector;
 	Wall.TangentV = FVector::UpVector;
 	Wall.HalfExtentsMeters = FVector2D(0.5, 1.);
-	FCCLSurfaceScene Scene;
+	FKSISurfaceScene Scene;
 	auto Door = CoupledDoor(0.);
 	TestTrue(TEXT("closed wall"), Scene.Replace({Wall}, {Door}, 1, Error));
-	FCCLCelestialObserver Observer;
+	FKSICelestialObserver Observer;
 	Observer.BodyId = Wall.BodyId;
 	TestTrue(TEXT("closed step"), S.Advance(CoupledStep(S, 0.25), Error, nullptr, &Observer, &Scene));
 	TestEqual(TEXT("opaque wall prevents heat"), S.FindRegion(RegionId)->Fire.Cells[1].AddedHeatJoules, 0.);
@@ -269,16 +269,16 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(FCCLAirWorldGraphTest, "CCL.Environment.Air.Wor
 bool FCCLAirWorldGraphTest::RunTest(const FString& Parameters)
 {
 	FString Error;
-	FCCLWorldClock Clock;
+	FKSIWorldClock Clock;
 	FCCLLifeSimulation Life;
 	TestTrue(TEXT("life"), Life.Initialize(FCCLLifeSimulation::MerchantScenario(42), Error));
 	FCCLWorldIdentity Identity;
 	Identity.WorldId = FGuid::NewGuid();
-	FCCLSurfaceSimulation Surface;
+	FKSISurfaceSimulation Surface;
 	Surface.Initialize(Identity.WorldId, 0., 0., 0, Error);
 	TestTrue(TEXT("room"), Surface.AddAirSpace(CoupledRoom(), Error));
-	auto Inputs = FCCLEnvironmentInputsCodec::MakeDefault(42);
-	FCCLSurfacePatch Wall;
+	auto Inputs = FKSIEnvironmentInputsCodec::MakeDefault(42);
+	FKSISurfacePatch Wall;
 	Wall.SurfaceId = CoupledDoor(0.).SurfaceId;
 	Wall.BodyId = Inputs.Observer.BodyId;
 	Wall.MaterialId = TEXT("Stone");

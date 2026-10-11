@@ -44,7 +44,7 @@ bool FCCLReplicatedWorldTime::NetSerialize(FArchive& Ar, UPackageMap* Map, bool&
 	auto& View = Candidate.Environment;
 	Ar << View.bValid << View.DefinitionId << View.DefinitionVersion << View.Seed;
 	Ar << View.InputRevision << View.SurfaceRevision << View.SurfaceEpoch << View.ObliquityDegrees << View.DominantStarId << View.CelestialEpochSeconds;
-	FCCLCelestialObserver::StaticStruct()->SerializeBin(Ar, &View.Observer);
+	FKSICelestialObserver::StaticStruct()->SerializeBin(Ar, &View.Observer);
 	bOutSuccess = !Ar.IsError() && WireVersion == 2 && FMath::IsFinite(Candidate.GameSeconds)
 		&& FMath::IsFinite(Candidate.WorldSeconds) && FMath::IsFinite(Candidate.TimeScale)
 		&& FMath::IsFinite(Candidate.PendingGameSeconds) && FMath::IsFinite(View.CelestialEpochSeconds)

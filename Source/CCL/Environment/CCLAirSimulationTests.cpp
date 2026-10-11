@@ -1,6 +1,6 @@
-#include "CCLAirSimulation.h"
+#include "KSIAirSimulation.h"
 
-#include "CCLSurfaceQuery.h"
+#include "KSISurfaceQuery.h"
 #include "Misc/AutomationTest.h"
 #include "Serialization/MemoryReader.h"
 #include "Serialization/MemoryWriter.h"
@@ -14,9 +14,9 @@ namespace
 		return FGuid(810, 811, 812, I);
 	}
 
-	FCCLAirSpace Room(int32 Id, double Temperature = 20., double Vapor = 0.008)
+	FKSIAirSpace Room(int32 Id, double Temperature = 20., double Vapor = 0.008)
 	{
-		FCCLAirSpace S;
+		FKSIAirSpace S;
 		S.SpaceId = RoomId(Id);
 		S.MinimumMeters = FVector(Id * 4., 0., 0.);
 		S.MaximumMeters = S.MinimumMeters + FVector(4.);
@@ -26,9 +26,9 @@ namespace
 		return S;
 	}
 
-	FCCLSurfaceOpening Door(int32 Id, FGuid A, FGuid B, double Fraction)
+	FKSISurfaceOpening Door(int32 Id, FGuid A, FGuid B, double Fraction)
 	{
-		FCCLSurfaceOpening O;
+		FKSISurfaceOpening O;
 		O.OpeningId = FGuid(820, 821, 822, Id);
 		O.SurfaceId = FGuid(830, 831, 832, Id);
 		O.SpaceA = A;
@@ -37,7 +37,7 @@ namespace
 		return O;
 	}
 
-	TArray<uint8> CaptureAir(FCCLAirSimulation S)
+	TArray<uint8> CaptureAir(FKSIAirSimulation S)
 	{
 		TArray<uint8> Bytes;
 		FMemoryWriter Ar(Bytes);
@@ -51,12 +51,12 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(FCCLAirDoorTest, "CCL.Environment.Air.ClosedHal
 bool FCCLAirDoorTest::RunTest(const FString& Parameters)
 {
 	FString Error;
-	FCCLAirSimulation Closed, Half, Open, Windy;
+	FKSIAirSimulation Closed, Half, Open, Windy;
 	const auto S = Room(1, 60., 0.04);
 	TestTrue(TEXT("room"), Closed.AddSpace(S, Error));
 	TestTrue(TEXT("smoke and heat source"), Closed.AddSource(S.SpaceId, 10000., 0.2, 1., Error));
 	Half = Open = Windy = Closed;
-	TMap<FGuid, FCCLAirExterior> Boundary;
+	TMap<FGuid, FKSIAirExterior> Boundary;
 	Boundary.Add(S.SpaceId, {});
 	const auto Initial = CaptureAir(Closed);
 	TestTrue(TEXT("closed"), Closed.Advance(30., {Door(1, S.SpaceId, {}, 0.)}, Boundary, Error));
@@ -81,7 +81,7 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(FCCLAirInteriorTest, "CCL.Environment.Air.Inter
 bool FCCLAirInteriorTest::RunTest(const FString& Parameters)
 {
 	FString Error;
-	FCCLAirSimulation S;
+	FKSIAirSimulation S;
 	TestTrue(TEXT("hot room"), S.AddSpace(Room(1, 80., 0.04), Error));
 	auto Cold = Room(2, 0., 0.001);
 	Cold.MaximumMeters.X += 4.;
@@ -107,13 +107,13 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(FCCLAirBudgetTest, "CCL.Environment.Air.Multipl
 bool FCCLAirBudgetTest::RunTest(const FString& Parameters)
 {
 	FString Error;
-	FCCLAirSimulation S;
+	FKSIAirSimulation S;
 	for (int32 I = 1; I <= 6; ++I)
 	{
 		TestTrue(TEXT("room"), S.AddSpace(Room(I), Error));
 	}
 	TestTrue(TEXT("central smoke"), S.AddSource(RoomId(1), 0., 0., 1., Error));
-	TArray<FCCLSurfaceOpening> Doors;
+	TArray<FKSISurfaceOpening> Doors;
 	for (int32 I = 2; I <= 5; ++I)
 	{
 		auto O = Door(I, RoomId(1), RoomId(I), 1.);
@@ -124,7 +124,7 @@ bool FCCLAirBudgetTest::RunTest(const FString& Parameters)
 	Next.HalfExtentsMeters = FVector2D(1000.);
 	Doors.Add(Next);
 	auto Reversed = S;
-	TArray<FCCLSurfaceOpening> Reverse;
+	TArray<FKSISurfaceOpening> Reverse;
 	for (int32 I = Doors.Num() - 1; I >= 0; --I)
 	{
 		Reverse.Add(Doors[I]);
@@ -147,12 +147,12 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(FCCLAirResumeTest, "CCL.Environment.Air.ResumeA
 bool FCCLAirResumeTest::RunTest(const FString& Parameters)
 {
 	FString Error;
-	FCCLAirSimulation S, Loaded;
+	FKSIAirSimulation S, Loaded;
 	TestTrue(TEXT("room"), S.AddSpace(Room(1), Error));
 	TestTrue(TEXT("source"), S.AddSource(RoomId(1), 500000., 0.4, 0.5, Error));
-	TMap<FGuid, FCCLAirExterior> Boundary;
+	TMap<FGuid, FKSIAirExterior> Boundary;
 	Boundary.Add(RoomId(1), {-8., 0.004, 8.});
-	const TArray<FCCLSurfaceOpening> Doors = {Door(1, {}, RoomId(1), 0.5)};
+	const TArray<FKSISurfaceOpening> Doors = {Door(1, {}, RoomId(1), 0.5)};
 	TestTrue(TEXT("advance"), S.Advance(5., Doors, Boundary, Error));
 	const auto Bytes = CaptureAir(S);
 	FMemoryReader Ar(Bytes);
@@ -183,7 +183,7 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(FCCLAirOwnershipTest, "CCL.Environment.Air.Spac
 bool FCCLAirOwnershipTest::RunTest(const FString& Parameters)
 {
 	FString Error;
-	FCCLAirSimulation S;
+	FKSIAirSimulation S;
 	TestTrue(TEXT("first"), S.AddSpace(Room(1), Error));
 	TestTrue(TEXT("adjacent"), S.AddSpace(Room(2), Error));
 	const auto* Found = S.FindSpaceAt(FVector(8., 1., 1.));

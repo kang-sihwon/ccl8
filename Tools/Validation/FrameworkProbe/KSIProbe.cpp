@@ -41,6 +41,10 @@ UE_DEFINE_GAMEPLAY_TAG_STATIC(ProbeView, "UI.View.Tool");
 #include "KSICombatProbe.h"
 #endif
 
+#if WITH_KSI_WORLD
+#include "KSIWorldProbe.h"
+#endif
+
 IMPLEMENT_PRIMARY_GAME_MODULE(FDefaultGameModuleImpl, KSIProbe, "KSIProbe");
 
 bool UKSIProbe::ShouldCreateSubsystem(UObject* Outer) const
@@ -303,6 +307,9 @@ void UKSIProbe::Tick(float DeltaTime)
 #endif
 #if WITH_KSI_COMBAT
     bPassed = RunKSICombatProbe(GetWorld()) && bPassed;
+#endif
+#if WITH_KSI_WORLD
+    bPassed = RunKSIWorldProbe() && bPassed;
 #endif
     bFinished = 1;
     UE_LOG(LogTemp, Display, TEXT("KSI_PROBE %s"), bPassed ? TEXT("PASS") : TEXT("FAIL"));

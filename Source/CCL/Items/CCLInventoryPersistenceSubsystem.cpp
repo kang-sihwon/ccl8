@@ -553,7 +553,7 @@ bool UCCLInventoryPersistenceSubsystem::HasEnvironmentBindings() const
 	return false;
 }
 
-bool UCCLInventoryPersistenceSubsystem::PrepareAdvance(const FKSIWorldStep& Step, const FCCLSurfaceSimulation& Surface,
+bool UCCLInventoryPersistenceSubsystem::PrepareAdvance(const FKSIWorldStep& Step, const FKSISurfaceSimulation& Surface,
 													   FString& Error)
 {
 	if (bPreparing || bCaptureFailed || GetWorld()->GetNetMode() == NM_Client ||

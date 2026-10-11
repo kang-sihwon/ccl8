@@ -42,13 +42,13 @@ namespace
 				}
 				const FName Name = Side == 0 ? TEXT("foot_l") : TEXT("foot_r");
 				FVector At = Mesh->GetSocketLocation(Name);
-				FCCLSnowSample Sample;
+				FKSISnowSample Sample;
 				if (!Model->SampleSnow(At / 100., Sample) || Sample.DepthMeters < 0.02)
 				{
 					continue;
 				}
 				const double Swing = Speed > 8. ? FMath::Max(0., FMath::Sin(GaitPhase + Side * UE_PI)) : 0.;
-				FCCLSnowSample Ahead;
+				FKSISnowSample Ahead;
 				Model->SampleSnow(At / 100. + Character->GetVelocity().GetSafeNormal2D() * 0.6, Ahead);
 				// Stance uses the compacted support; swing clears the next, uncompressed step.
 				const double Clearance = FMath::Max(Sample.DepthMeters, Ahead.DepthMeters) * 100. + 5.;

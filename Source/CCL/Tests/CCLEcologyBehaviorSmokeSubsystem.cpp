@@ -103,7 +103,7 @@ void UCCLEcologyBehaviorSmokeSubsystem::Tick(float DeltaTime)
 					Expected = FVector(FCString::Atod(*Parts[0]), FCString::Atod(*Parts[1]), FCString::Atod(*Parts[2]));
 				}
 
-				if (It->GetMovementMedium() == ECCLEcologyMovement(N) && It->GetActorLocation().Equals(Expected * 100., 1.))
+				if (It->GetMovementMedium() == EKSIEcologyMovement(N) && It->GetActorLocation().Equals(Expected * 100., 1.))
 				{
 					++Seen;
 				}
@@ -125,7 +125,7 @@ void UCCLEcologyBehaviorSmokeSubsystem::Tick(float DeltaTime)
 
 			return;
 		}
-		FCCLEcologyBehavior Forbidden;
+		FKSIEcologyBehavior Forbidden;
 		Forbidden.Id = Id(60);
 		if (!Check(!Runtime->AddEcologyBehavior(Forbidden, Error), TEXT("client behavior mutation refused")))
 		{
@@ -172,38 +172,38 @@ void UCCLEcologyBehaviorSmokeSubsystem::Tick(float DeltaTime)
 		InitialTime = Runtime->GetClock().GetWorldSeconds();
 		for (uint32 N = 0; N < 4; ++N)
 		{
-			FCCLEcologySpecies S;
+			FKSIEcologySpecies S;
 			S.Id = Id(10 + N);
-			S.Movement = ECCLEcologyMovement(N);
-			FCCLEcologyHabitat H;
+			S.Movement = EKSIEcologyMovement(N);
+			FKSIEcologyHabitat H;
 			H.Id = Id(20 + N);
 			H.MinimumMeters = InitialPosition(N) - FVector(2.);
 			H.MaximumMeters = H.MinimumMeters + FVector(4.);
 			H.MovementMask = 1 << N;
-			FCCLEcologyPopulation P;
+			FKSIEcologyPopulation P;
 			P.Id = Id(30 + N);
 			P.SpeciesId = S.Id;
 			P.HabitatId = H.Id;
 			P.Cohorts.Add(Id(40 + N), {Id(40 + N), InitialTime, 10});
-			FCCLEcologyEvent Event;
+			FKSIEcologyEvent Event;
 			Event.Id = Id(50 + N);
-			Event.Kind = ECCLEcologyEventKind::Materialize;
+			Event.Kind = EKSIEcologyEventKind::Materialize;
 			Event.Source = P.Id;
 			Event.CohortId = Id(40 + N);
 			Event.IndividualId = Id(60 + N);
 			Event.BirthWorldSeconds = InitialTime;
 			Event.bPersistent = 1;
-			FCCLEcologyGroup G;
+			FKSIEcologyGroup G;
 			G.Id = Id(70 + N);
 			G.HabitatId = H.Id;
 			G.AnchorMeters = InitialPosition(N) - FVector(1., 1., 0.);
 			G.RadiusMeters = .7;
-			FCCLEcologyForage F;
+			FKSIEcologyForage F;
 			F.Id = Id(80 + N);
 			F.HabitatId = H.Id;
 			F.PositionMeters = InitialPosition(N) + FVector(1., 0., N == 1 || N == 2 ? 1. : 0.);
 			F.FoodMask = 1 << N;
-			FCCLEcologyBehavior B;
+			FKSIEcologyBehavior B;
 			B.Id = Event.IndividualId;
 			B.GroupId = G.Id;
 			B.DietMask = F.FoodMask;
@@ -211,7 +211,7 @@ void UCCLEcologyBehaviorSmokeSubsystem::Tick(float DeltaTime)
 			B.MetabolismPerSecond = .02;
 			if (!Check(Runtime->AddEcologySpecies(S, Error) && Runtime->AddEcologyHabitat(H, Error) && Runtime->AddEcologyPopulation(P, Error)
 				&& Runtime->ApplyEcologyEvent(Event, Error) && Runtime->AddEcologyGroup(G, Error) && Runtime->AddEcologyForage(F, Error)
-				&& Runtime->AddEcologyBehavior(B, Error) && R->SetRepresentation(B.Id, ECCLEcologyRepresentation::Actor, Error), TEXT("behavior fixture")))
+				&& Runtime->AddEcologyBehavior(B, Error) && R->SetRepresentation(B.Id, EKSIEcologyRepresentation::Actor, Error), TEXT("behavior fixture")))
 			{
 				return;
 			}
@@ -266,7 +266,7 @@ void UCCLEcologyBehaviorSmokeSubsystem::Tick(float DeltaTime)
 			if (!Check(E.GetBehaviors()[Individual].ConsumedUnits > 0. && !Position.Equals(InitialPosition(N))
 				&& Previous.Actor.IsValid() && Previous.Actor->GetActorLocation().Equals(Position * 100., .01)
 				&& !R->SetPosition(Individual, InitialPosition(N), Error)
-				&& R->SetRepresentation(Individual, ECCLEcologyRepresentation::Mass, Error), TEXT("actual autonomous Actor and Mass handoff")))
+				&& R->SetRepresentation(Individual, EKSIEcologyRepresentation::Mass, Error), TEXT("actual autonomous Actor and Mass handoff")))
 			{
 				return;
 			}
@@ -275,7 +275,7 @@ void UCCLEcologyBehaviorSmokeSubsystem::Tick(float DeltaTime)
 			const auto Entry = *R->Find(Individual);
 			if (!Check(Manager.GetFragmentDataChecked<FCCLEcologyMassFragment>(Entry.Entity).PositionMeters == Position
 				&& E.IsLeaseCurrent(Entry.Lease) && E.LivingCount(Id(30 + N)) == 10
-				&& R->SetRepresentation(Individual, ECCLEcologyRepresentation::Actor, Error), TEXT("Mass preserves behavior identity and counts")))
+				&& R->SetRepresentation(Individual, EKSIEcologyRepresentation::Actor, Error), TEXT("Mass preserves behavior identity and counts")))
 			{
 				return;
 			}
@@ -319,7 +319,7 @@ void UCCLEcologyBehaviorSmokeSubsystem::Tick(float DeltaTime)
 		for (uint32 N = 0; N < 4; ++N)
 		{
 			const FVector Position = E.FindIndividual(Id(60 + N))->PositionMeters;
-			if (!Check(R->SetRepresentation(Id(60 + N), ECCLEcologyRepresentation::Actor, Error), TEXT("recreate saved behavior Actor")))
+			if (!Check(R->SetRepresentation(Id(60 + N), EKSIEcologyRepresentation::Actor, Error), TEXT("recreate saved behavior Actor")))
 			{
 				return;
 			}

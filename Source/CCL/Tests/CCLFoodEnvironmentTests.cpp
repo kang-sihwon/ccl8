@@ -1,7 +1,7 @@
 #include "Items/CCLFoodEnvironment.h"
 #include "Items/CCLInventorySnapshot.h"
-#include "Environment/CCLSurfaceSimulation.h"
-#include "Environment/CCLSurfaceQuery.h"
+#include "KSISurfaceSimulation.h"
+#include "KSISurfaceQuery.h"
 #include "Misc/AutomationTest.h"
 #include "Environment/CCLWorldSnapshot.h"
 #include "Agents/CCLLifeSimulation.h"
@@ -11,7 +11,7 @@ namespace
 {
 const FGuid FoodWorld(901, 902, 903, 904);
 const FGuid WeatherId(901, 902, 903, 905);
-bool SurfaceAt(FCCLSurfaceSimulation& Surface, double Time, FString& Error)
+bool SurfaceAt(FKSISurfaceSimulation& Surface, double Time, FString& Error)
 {
 	FKSIWorldStep Step;
 	Step.StepId = Surface.GetStepId() + 1;
@@ -19,13 +19,13 @@ bool SurfaceAt(FCCLSurfaceSimulation& Surface, double Time, FString& Error)
 	Step.GameToSeconds = Step.GameFromSeconds + (Time - Surface.GetWorldSeconds()) / 60.;
 	Step.WorldFromSeconds = Surface.GetWorldSeconds();
 	Step.WorldToSeconds = Time;
-	const TArray<FCCLSurfaceOpening> Openings;
+	const TArray<FKSISurfaceOpening> Openings;
 	return Surface.Advance(Step, Error, nullptr, nullptr, nullptr, &Openings);
 }
 
-bool Setup(FCCLSurfaceSimulation& Surface, FCCLInventorySnapshot& Record, FString& Error)
+bool Setup(FKSISurfaceSimulation& Surface, FCCLInventorySnapshot& Record, FString& Error)
 {
-	FCCLSurfaceGrid Grid;
+	FKSISurfaceGrid Grid;
 	Grid.RegionId = WeatherId;
 	Grid.Cells.SetNum(1);
 	Grid.Forcing.TemperatureCelsius = -5.;
@@ -59,7 +59,7 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(FCCLFoodEnvironmentHistoryTest, "CCL.Environmen
 bool FCCLFoodEnvironmentHistoryTest::RunTest(const FString& Parameters)
 {
 	FString Error;
-	FCCLSurfaceSimulation Surface;
+	FKSISurfaceSimulation Surface;
 	FCCLInventorySnapshot Record;
 	if (!TestTrue(TEXT("setup frozen environment"), Setup(Surface, Record, Error)))
 	{
@@ -106,10 +106,10 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(FCCLFoodEnvironmentFailureTest, "CCL.Environmen
 bool FCCLFoodEnvironmentFailureTest::RunTest(const FString& Parameters)
 {
 	FString Error;
-	FCCLSurfaceSimulation Surface;
+	FKSISurfaceSimulation Surface;
 	FCCLInventorySnapshot Record;
 	TestTrue(TEXT("setup"), Setup(Surface, Record, Error));
-	FCCLAirSpace Air;
+	FKSIAirSpace Air;
 	Air.SpaceId = FGuid(1, 2, 3, 4);
 	Air.ClimateRegionId = WeatherId;
 	TestTrue(TEXT("indoor source"), Air.Initialize(30., .008, Error) && Surface.AddAirSpace(Air, Error));
@@ -143,7 +143,7 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(FCCLFoodEnvironmentLegacyTest, "CCL.Environment
 bool FCCLFoodEnvironmentLegacyTest::RunTest(const FString& Parameters)
 {
 	FString Error;
-	FCCLSurfaceSimulation Surface;
+	FKSISurfaceSimulation Surface;
 	FCCLInventorySnapshot Record;
 	TestTrue(TEXT("setup"), Setup(Surface, Record, Error));
 	Record.Environment = {};
@@ -174,10 +174,10 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(FCCLFoodEnvironmentWorldContextTest, "CCL.Envir
 bool FCCLFoodEnvironmentWorldContextTest::RunTest(const FString& Parameters)
 {
 	FString Error;
-	FCCLSurfaceSimulation Surface;
+	FKSISurfaceSimulation Surface;
 	FCCLInventorySnapshot Record;
 	FCCLLifeSimulation Life;
-	FCCLWorldClock Clock;
+	FKSIWorldClock Clock;
 	FCCLWorldIdentity Identity;
 	Identity.WorldId = FoodWorld;
 	if (!TestTrue(TEXT("world setup"), Setup(Surface, Record, Error) &&
@@ -214,7 +214,7 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(FCCLFoodPositionTest, "CCL.Environment.Food.Pos
 bool FCCLFoodPositionTest::RunTest(const FString& Parameters)
 {
 	FString Error;
-	FCCLSurfaceSimulation Surface;
+	FKSISurfaceSimulation Surface;
 	FCCLInventorySnapshot Record;
 	if (!TestTrue(TEXT("setup"), Setup(Surface, Record, Error)))
 	{
@@ -233,7 +233,7 @@ bool FCCLFoodPositionTest::RunTest(const FString& Parameters)
 	TestTrue(TEXT("deterministic equal-area choice"),
 			 CCLFoodEnvironment::ResolveAt(FVector(.1), Surface, Binding, Error) &&
 				 Binding.SourceId == Overlap.RegionId);
-	FCCLAirSpace Room;
+	FKSIAirSpace Room;
 	Room.SpaceId = FGuid(41, 42, 43, 44);
 	Room.ClimateRegionId = WeatherId;
 	Room.MaximumMeters = FVector(.5, .5, 2.);

@@ -188,7 +188,7 @@ void UCCLVegetationZoneSmokeSubsystem::Tick(float DeltaTime)
 		int32 Dormant = 0;
 		for (const auto& C : Grid->Vegetation.Cells)
 		{
-			Dormant += C.State == ECCLVegetationState::Dormant;
+			Dormant += C.State == EKSIVegetationState::Dormant;
 		}
 
 		if (!Check(Dormant == 27 && Execute(ECCLExperimentAction::VegetationRain)))
@@ -303,7 +303,7 @@ void UCCLVegetationZoneSmokeSubsystem::Tick(float DeltaTime)
 		}
 
 		FCCLWorldSnapshot WithoutPlants;
-		FCCLSurfaceSimulation Legacy;
+		FKSISurfaceSimulation Legacy;
 		if (!Check(FCCLWorldSnapshotCodec::Decode(Saved, WithoutPlants, Error)
 			&& Legacy.Initialize(Runtime->GetIdentity().WorldId, Surface->GetGameSeconds(), Surface->GetWorldSeconds(), Surface->GetStepId(), Error)))
 		{

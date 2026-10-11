@@ -69,8 +69,8 @@ void UCCLWeatherSmokeSubsystem::Tick(float DeltaTime)
 		{
 			return;
 		}
-		FCCLClimate Climate = Grid->Climate;
-		if (!Check(Grid->Climate.bEnabled && Grid->bDynamicShelter && Grid->Cells[0].RainExposure == 0. && Grid->Cells.Last().RainExposure == 1. && Grid->Weather.VaporMeters > 0. && FCCLSurfaceSimulation::ValidateRegion(*Grid, Error)
+		FKSIClimate Climate = Grid->Climate;
+		if (!Check(Grid->Climate.bEnabled && Grid->bDynamicShelter && Grid->Cells[0].RainExposure == 0. && Grid->Cells.Last().RainExposure == 1. && Grid->Weather.VaporMeters > 0. && FKSISurfaceSimulation::ValidateRegion(*Grid, Error)
 			&& !Runtime->ChangeClimate(Grid->RegionId, Climate, Error)))
 		{
 			return;
@@ -113,7 +113,7 @@ void UCCLWeatherSmokeSubsystem::Tick(float DeltaTime)
 		}
 		if (!Check(Grid->Ledger.RainCubicMeters + Grid->Ledger.SnowCubicMeters > 0.0001
 			&& Grid->bDynamicShelter && Grid->Cells[0].RainExposure == 0. && Grid->Cells.Last().RainExposure == 1.
-			&& FCCLSurfaceSimulation::ValidateRegion(*Grid, Error)))
+			&& FKSISurfaceSimulation::ValidateRegion(*Grid, Error)))
 		{
 			return;
 		}

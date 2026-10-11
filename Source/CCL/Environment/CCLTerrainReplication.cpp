@@ -146,7 +146,7 @@ void UCCLTerrainReplication::ClientBegin_Implementation(ACCLTerrainRegion* Regio
 {
 	ResetTransfer();
 	const auto* Base = States.Find(Region);
-	if (!Region || !Transfer.IsValid() || Total < 1 || Total > FCCLTerrainCodec::MaximumBytes || Prefix < 0 || Suffix < 0
+	if (!Region || !Transfer.IsValid() || Total < 1 || Total > FKSITerrainCodec::MaximumBytes || Prefix < 0 || Suffix < 0
 		|| int64(Prefix) + Suffix > Total || ((Prefix || Suffix) && (!Base || Base->Serial != BaseSerial || int64(Prefix) + Suffix > Base->Bytes.Num())))
 	{
 		if (FParse::Param(FCommandLine::Get(), TEXT("CCLTerrainNetworkSmoke")))

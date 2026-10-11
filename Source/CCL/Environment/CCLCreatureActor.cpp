@@ -48,7 +48,7 @@ void ACCLCreatureActor::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& Ou
 	DOREPLIFETIME(ACCLCreatureActor, Medium);
 }
 
-void ACCLCreatureActor::Bind(const FCCLEcologyLease& NewLease, ECCLEcologyMovement Movement)
+void ACCLCreatureActor::Bind(const FKSIEcologyLease& NewLease, EKSIEcologyMovement Movement)
 {
 	if (!HasAuthority())
 	{

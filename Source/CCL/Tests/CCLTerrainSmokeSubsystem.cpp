@@ -1,8 +1,8 @@
 #include "CCLTerrainSmokeSubsystem.h"
 
-#include "Environment/CCLTerrainChunkComponent.h"
+#include "KSITerrainChunkComponent.h"
 #include "Environment/CCLTerrainRegion.h"
-#include "Environment/CCLSurfaceQuery.h"
+#include "KSISurfaceQuery.h"
 #include "Environment/CCLTerrainNavigation.h"
 #include "NavigationSystem.h"
 #include "NavigationPath.h"
@@ -22,7 +22,7 @@
 class FCCLTerrainSmokeParticipant final : public ICCLTerrainEditParticipant
 {
 public:
-	virtual bool Prepare(const FCCLTerrainCandidate& Candidate, FString& Error) override
+	virtual bool Prepare(const FKSITerrainCandidate& Candidate, FString& Error) override
 	{
 		Ticket = Candidate.GetTicket();
 		if (!bAllowPrepare)
@@ -34,7 +34,7 @@ public:
 		return true;
 	}
 
-	virtual bool ValidateCommit(const FCCLTerrainCandidate& Candidate, FString& Error) const override
+	virtual bool ValidateCommit(const FKSITerrainCandidate& Candidate, FString& Error) const override
 	{
 		if (!bAllowCommit || Ticket != Candidate.GetTicket())
 		{
@@ -45,13 +45,13 @@ public:
 		return true;
 	}
 
-	virtual void Commit(const FCCLTerrainCandidate& Candidate) override
+	virtual void Commit(const FKSITerrainCandidate& Candidate) override
 	{
 		++Commits;
 		Ticket.Invalidate();
 	}
 
-	virtual void Abort(const FCCLTerrainCandidate& Candidate) override
+	virtual void Abort(const FKSITerrainCandidate& Candidate) override
 	{
 		++Aborts;
 		Ticket.Invalidate();
@@ -104,7 +104,7 @@ void UCCLTerrainSmokeSubsystem::Tick(float DeltaTime)
 		}
 
 		Region->SetActorLocation(FVector(40000., 0., 15000.));
-		FCCLTerrainDefinition Definition;
+		FKSITerrainDefinition Definition;
 		Definition.WorldId = FGuid(1, 2, 3, 4);
 		Definition.RegionId = FGuid(5, 6, 7, 8);
 		Definition.DefinitionId = FGuid(9, 10, 11, 12);
@@ -132,9 +132,9 @@ void UCCLTerrainSmokeSubsystem::Tick(float DeltaTime)
 			return;
 		}
 
-		FCCLTerrainAuthority Authority;
+		FKSITerrainAuthority Authority;
 		Authority.PrincipalId = Principal;
-		Authority.AllowedBoundsMeters = FCCLTerrainStore::EditableBoundsMeters(Region->GetTerrainStore().GetSnapshot().Definition);
+		Authority.AllowedBoundsMeters = FKSITerrainStore::EditableBoundsMeters(Region->GetTerrainStore().GetSnapshot().Definition);
 		Authority.bCanExcavate = 1;
 		Authority.bCanDeposit = 1;
 		Participant = MakeShared<FCCLTerrainSmokeParticipant>();
@@ -209,10 +209,10 @@ void UCCLTerrainSmokeSubsystem::Tick(float DeltaTime)
 			return;
 		}
 
-		FCCLTerrainAuthority Revoked;
+		FKSITerrainAuthority Revoked;
 		Revoked.PrincipalId = Principal;
 		Revoked.PolicyRevision = 2;
-		Revoked.AllowedBoundsMeters = FCCLTerrainStore::EditableBoundsMeters(Region->GetTerrainStore().GetSnapshot().Definition);
+		Revoked.AllowedBoundsMeters = FKSITerrainStore::EditableBoundsMeters(Region->GetTerrainStore().GetSnapshot().Definition);
 		if (!Check(Region->SetEditAuthority(Revoked, Error), TEXT("revoke policy while collision is pending")))
 		{
 			return;
@@ -230,10 +230,10 @@ void UCCLTerrainSmokeSubsystem::Tick(float DeltaTime)
 			return;
 		}
 
-		FCCLTerrainAuthority Allowed;
+		FKSITerrainAuthority Allowed;
 		Allowed.PrincipalId = Principal;
 		Allowed.PolicyRevision = 3;
-		Allowed.AllowedBoundsMeters = FCCLTerrainStore::EditableBoundsMeters(Region->GetTerrainStore().GetSnapshot().Definition);
+		Allowed.AllowedBoundsMeters = FKSITerrainStore::EditableBoundsMeters(Region->GetTerrainStore().GetSnapshot().Definition);
 		Allowed.bCanExcavate = 1;
 		Allowed.bCanDeposit = 1;
 		if (!Check(Region->SetEditAuthority(Allowed, Error), TEXT("restore policy at a newer revision")))
@@ -308,13 +308,13 @@ void UCCLTerrainSmokeSubsystem::Tick(float DeltaTime)
 
 		Participant->bAllowCommit = 1;
 		Participant->bAllowPrepare = 0;
-		FCCLTerrainEdit Request;
+		FKSITerrainEdit Request;
 		Request.PrincipalId = Principal;
 		Request.Sequence = 2;
 		Request.Epoch = Region->GetTerrainStore().GetEpoch();
 		Request.ExpectedRevision = Region->GetTerrainStore().GetRevision();
 		Request.CenterMeters.X = 8.;
-		if (!Check(Region->RequestEdit(Request, Error) == ECCLTerrainPrepareResult::Failed && !Region->IsPreparing(), TEXT("dependent preparation failure keeps terrain idle")))
+		if (!Check(Region->RequestEdit(Request, Error) == EKSITerrainPrepareResult::Failed && !Region->IsPreparing(), TEXT("dependent preparation failure keeps terrain idle")))
 		{
 			return;
 		}
@@ -345,16 +345,16 @@ void UCCLTerrainSmokeSubsystem::Tick(float DeltaTime)
 			return;
 		}
 
-		FCCLTerrainMesh Mesh;
-		if (!Check(FCCLTerrainMesher::BuildChunk(Region->GetTerrainStore().GetSnapshot(), FIntVector(-1, 0, -1), Region->GetTerrainStore().GetEpoch(), Mesh, Error), TEXT("prepare cancellation collision probe")))
+		FKSITerrainMesh Mesh;
+		if (!Check(FKSITerrainMesher::BuildChunk(Region->GetTerrainStore().GetSnapshot(), FIntVector(-1, 0, -1), Region->GetTerrainStore().GetEpoch(), Mesh, Error), TEXT("prepare cancellation collision probe")))
 		{
 			return;
 		}
 
-		auto* Component = NewObject<UCCLTerrainChunkComponent>(Region);
+		auto* Component = NewObject<UKSITerrainChunkComponent>(Region);
 		Component->SetupAttachment(Region->GetRootComponent());
 		CancelledChunk = Component;
-		if (!Check(Component->Prepare(MoveTemp(Mesh), Error) && Component->GetPreparationState() == ECCLTerrainChunkState::Cooking, TEXT("actual async cook is in flight before cancellation")))
+		if (!Check(Component->Prepare(MoveTemp(Mesh), Error) && Component->GetPreparationState() == EKSITerrainChunkState::Cooking, TEXT("actual async cook is in flight before cancellation")))
 		{
 			return;
 		}
@@ -428,7 +428,7 @@ void UCCLTerrainSmokeSubsystem::Tick(float DeltaTime)
 
 	if (Step == 9 || Step == 11)
 	{
-		FCCLTerrainSaveContext Context;
+		FKSITerrainSaveContext Context;
 		Context.WorldId = Region->GetTerrainStore().GetSnapshot().Definition.WorldId;
 		Context.WorldGeneration = 1;
 		if (!Check(Region->GetTerrainStore().Capture(Context, RestoreBytes, Error), TEXT("capture committed terrain for runtime restore")))
@@ -462,7 +462,7 @@ void UCCLTerrainSmokeSubsystem::Tick(float DeltaTime)
 			return;
 		}
 
-		FCCLTerrainSaveContext Context;
+		FKSITerrainSaveContext Context;
 		Context.WorldId = Region->GetTerrainStore().GetSnapshot().Definition.WorldId;
 		Context.WorldGeneration = 1;
 		BeforeRestoreEpoch = Region->GetTerrainStore().GetEpoch();
@@ -502,7 +502,7 @@ void UCCLTerrainSmokeSubsystem::Tick(float DeltaTime)
 			return;
 		}
 
-		FCCLTerrainSaveContext Context;
+		FKSITerrainSaveContext Context;
 		Context.WorldId = Region->GetTerrainStore().GetSnapshot().Definition.WorldId;
 		Context.WorldGeneration = 1;
 		if (!Check(Region->RequestRestore(RestoreBytes, Context, Error), TEXT("prepare valid runtime restore")))
@@ -600,14 +600,14 @@ bool UCCLTerrainSmokeSubsystem::CheckHeight(double X, double Y, double ExpectedM
 		return false;
 	}
 
-	FCCLSurfaceQuery Query;
+	FKSISurfaceQuery Query;
 	Query.BodyId = Region->GetTerrainStore().GetSnapshot().Definition.BodyId;
 	Query.OriginMeters = (Center + FVector(0., 0., 800.)) * 0.01;
 	Query.Direction = -FVector::ZAxisVector;
 	Query.MaximumDistanceMeters = 16.;
 	Query.RequiredRevision = Region->GetTerrainStore().GetRevision();
 	Query.RequiredEpoch = Region->GetTerrainStore().GetEpoch();
-	TArray<FCCLSurfaceSample> Samples;
+	TArray<FKSISurfaceSample> Samples;
 	FString Error;
 	const auto* Provider = Region->GetSurfaceProvider();
 	return Check(Provider && Provider->QuerySurfaces(Query, Samples, Error) && !Samples.IsEmpty()
@@ -617,15 +617,15 @@ bool UCCLTerrainSmokeSubsystem::CheckHeight(double X, double Y, double ExpectedM
 
 bool UCCLTerrainSmokeSubsystem::Queue(bool bDeposit, double X, uint64 Sequence)
 {
-	FCCLTerrainEdit Request;
+	FKSITerrainEdit Request;
 	Request.PrincipalId = Principal;
 	Request.Sequence = Sequence;
 	Request.Epoch = Region->GetTerrainStore().GetEpoch();
 	Request.ExpectedRevision = Region->GetTerrainStore().GetRevision();
 	Request.CenterMeters.X = X;
 	Request.RadiusMeters = bDeposit ? 2. : 2.3;
-	Request.Kind = bDeposit ? ECCLTerrainEditKind::Deposit : ECCLTerrainEditKind::Excavate;
+	Request.Kind = bDeposit ? EKSITerrainEditKind::Deposit : EKSITerrainEditKind::Excavate;
 	Request.Material = bDeposit ? 2 : 1;
 	FString Error;
-	return Check(Region->RequestEdit(Request, Error) == ECCLTerrainPrepareResult::Prepared, *FString::Printf(TEXT("queue terrain edit: %s"), *Error));
+	return Check(Region->RequestEdit(Request, Error) == EKSITerrainPrepareResult::Prepared, *FString::Printf(TEXT("queue terrain edit: %s"), *Error));
 }

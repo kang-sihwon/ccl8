@@ -2,13 +2,13 @@
 
 #include "CoreMinimal.h"
 #include "CCLWorldSnapshot.h"
-#include "CCLTerrainStore.h"
+#include "KSITerrainStore.h"
 
 struct CCL_API FCCLWorldGenerationBundle
 {
 	TArray<uint8> World;
 	TMap<FGuid, TArray<uint8>> Terrain;
-	FCCLTerrainSaveContext Context;
+	FKSITerrainSaveContext Context;
 	FString Directory;
 };
 
@@ -19,8 +19,6 @@ public:
 	static bool Write(const FString& Root, const TArray<uint8>& World, const TMap<FGuid, TArray<uint8>>& Terrain,
 		FString& OutDirectory, FString& Error);
 	static bool Recover(const FString& Root, ECCLWorldDomain Domain, FCCLWorldGenerationBundle& OutBundle, FString& Error);
-	static FCCLTerrainSaveContext ContextFor(const FCCLWorldSnapshot& World);
+	static FKSITerrainSaveContext ContextFor(const FCCLWorldSnapshot& World);
 
-private:
-	static bool ReadDirectory(const FString& Directory, ECCLWorldDomain Domain, FCCLWorldGenerationBundle& OutBundle, FString& Error);
 };

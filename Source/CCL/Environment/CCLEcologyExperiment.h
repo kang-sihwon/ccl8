@@ -2,8 +2,8 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "CCLEcologySimulation.h"
-#include "CCLSurfaceSimulation.h"
+#include "KSIEcologySimulation.h"
+#include "KSISurfaceSimulation.h"
 #include "CCLEcologyExperiment.generated.h"
 
 class UTextRenderComponent;
@@ -90,8 +90,8 @@ public:
 	static FGuid IndividualId(uint32 Medium, uint32 Member) { return Id(100 + Medium * 3 + Member); }
 	static FVector HabitatCenter(int32 Medium);
 	static FString MediumName(int32 Medium);
-	static FCCLSurfaceGrid Pond();
-	static bool MakeInitial(FGuid WorldId, double WorldSeconds, FCCLEcologySimulation& Out, FString& Error);
+	static FKSISurfaceGrid Pond();
+	static bool MakeInitial(FGuid WorldId, double WorldSeconds, FKSIEcologySimulation& Out, FString& Error);
 
 private:
 	void Reconcile();
@@ -110,7 +110,7 @@ private:
 	UPROPERTY(ReplicatedUsing = OnRep_View)
 	FCCLEcologyExperimentView View;
 
-	ECCLEcologyRepresentation Desired = ECCLEcologyRepresentation::Actor;
+	EKSIEcologyRepresentation Desired = EKSIEcologyRepresentation::Actor;
 	FGuid SeenEpoch;
 	uint8 bInitialized = 0;
 };

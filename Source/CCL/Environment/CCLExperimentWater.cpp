@@ -14,9 +14,9 @@
 
 namespace
 {
-	FCCLSurfaceGrid WaterGrid()
+	FKSISurfaceGrid WaterGrid()
 	{
-		FCCLSurfaceGrid G;
+		FKSISurfaceGrid G;
 		G.RegionId = ACCLExperimentDirector::WaterRegionId();
 		G.Size = FIntPoint(24, 16);
 		G.OriginMeters = UCCLExperimentDefinition::ZoneCenter(4) / 100. + FVector(-6., -4., 0.);
@@ -37,7 +37,7 @@ namespace
 		return G;
 	}
 
-	bool TerrainGrid(const FCCLTerrainSnapshot& Terrain, const FTransform& Transform, FCCLSurfaceGrid& G, FString& Error)
+	bool TerrainGrid(const FKSITerrainSnapshot& Terrain, const FTransform& Transform, FKSISurfaceGrid& G, FString& Error)
 	{
 		G.RegionId = ACCLExperimentDirector::TerrainWaterRegionId();
 		G.TerrainId = Terrain.Definition.RegionId;
@@ -60,10 +60,10 @@ namespace
 			C.WaterCubicMeters = X >= 12 && X < 20 && Y >= 12 && Y < 23 ? 0.125 : 0.;
 		}
 		G.Ledger.InitialCubicMeters = G.TotalCubicMeters();
-		return FCCLSurfaceSimulation::ValidateRegion(G, Error);
+		return FKSISurfaceSimulation::ValidateRegion(G, Error);
 	}
 
-	double IceTotal(const FCCLSurfaceGrid& G)
+	double IceTotal(const FKSISurfaceGrid& G)
 	{
 		double Total = 0.;
 		for (const auto& C : G.Cells)
@@ -98,13 +98,13 @@ void ACCLExperimentDirector::InitializeWaterExperiment()
 	}
 	FString Error;
 	const bool bFreshSurface = Runtime->GetSurfaceSimulation().GetRegions().IsEmpty();
-	FCCLSurfaceGrid Plants;
+	FKSISurfaceGrid Plants;
 	if (bFreshSurface && !VegetationGrid(Runtime->GetClock().GetWorldSeconds(), Plants, Error))
 	{
 		UE_LOG(LogTemp, Error, TEXT("CCL_VEGETATION_INIT %s"), *Error);
 		return;
 	}
-	FCCLSurfaceGrid TerrainWater;
+	FKSISurfaceGrid TerrainWater;
 	if (!TerrainGrid(TerrainRegion->GetTerrainStore().GetSnapshot(), TerrainRegion->GetActorTransform(), TerrainWater, Error))
 	{
 		UE_LOG(LogTemp, Error, TEXT("CCL_WATER_INIT terrain: %s"), *Error);
@@ -136,8 +136,8 @@ void ACCLExperimentDirector::InitializeWaterExperiment()
 
 	// The reset baseline keeps its original time and base terrain, even after revisiting an edited map.
 	FCCLWorldSnapshot Initial;
-	FCCLSurfaceSimulation InitialWater;
-	FCCLTerrainStore Base;
+	FKSISurfaceSimulation InitialWater;
+	FKSITerrainStore Base;
 	auto Definition = TerrainRegion->GetTerrainStore().GetSnapshot().Definition;
 	if (!FCCLWorldSnapshotCodec::Decode(InitialSnapshot, Initial, Error))
 	{

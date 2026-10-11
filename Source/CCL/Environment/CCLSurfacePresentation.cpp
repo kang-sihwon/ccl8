@@ -18,7 +18,7 @@ namespace
 
 	// Shared corners remove cell seams; each cell center retains its sampled physical height.
 	// This is presentation only: no smoothing is written back into the conservative model.
-	void AppendSurface(UE::Geometry::FDynamicMesh3& Mesh, const FCCLSurfaceGrid& G, ESurfaceLayer Layer,
+	void AppendSurface(UE::Geometry::FDynamicMesh3& Mesh, const FKSISurfaceGrid& G, ESurfaceLayer Layer,
 		const UCCLSurfaceReplication* Prediction, const FTransform& ActorTransform)
 	{
 		const int32 NX = G.Size.X, NY = G.Size.Y;

@@ -6,13 +6,13 @@
 
 namespace
 {
-template <class T> const T* Feature(const FCCLAgentRecord& Agent, FGameplayTag Tag)
+template <class T> const T* Feature(const FKSIAgentRecord& Agent, FGameplayTag Tag)
 {
 	const auto* State = Agent.Features.Find(Tag);
 	return State ? State->Data.GetPtr<T>() : nullptr;
 }
 
-template <class T> T* MutableFeature(FCCLAgentRecord& Agent, FGameplayTag Tag)
+template <class T> T* MutableFeature(FKSIAgentRecord& Agent, FGameplayTag Tag)
 {
 	auto* State = Agent.Features.Find(Tag);
 	return State ? State->Data.GetMutablePtr<T>() : nullptr;
@@ -423,7 +423,7 @@ FGuid FCCLLifeSimulation::NextId()
 	return FGuid(0xCC180001, static_cast<uint32>(Seed), static_cast<uint32>(Sequence >> 32), static_cast<uint32>(Sequence));
 }
 
-bool FCCLLifeSimulation::BuildTransaction(const FCCLAgentRecord& Agent, const FCCLWorldOpportunity& O,
+bool FCCLLifeSimulation::BuildTransaction(const FKSIAgentRecord& Agent, const FCCLWorldOpportunity& O,
 	FGuid RequestId, FCCLTransactionRequest& Request, FString& Error) const
 {
 	if (!CCLAgentBiology::IsAlive(Agent) || !IsAlive(O.ProviderId))
@@ -665,7 +665,7 @@ FCCLDecisionResult FCCLLifeSimulation::Decide(FGuid AgentId) const
 	return CCLDecision::Evaluate(Input);
 }
 
-void FCCLLifeSimulation::ApplyOutcome(FCCLAgentRecord& Agent, const FCCLWorldOpportunity& O, FGuid RequestId)
+void FCCLLifeSimulation::ApplyOutcome(FKSIAgentRecord& Agent, const FCCLWorldOpportunity& O, FGuid RequestId)
 {
 	if (auto* Needs = MutableFeature<FCCLAgentNeeds>(Agent, CCLAgentTags::Feature_Needs))
 	{
@@ -765,7 +765,7 @@ FCCLLifeExecutionResult FCCLLifeSimulation::Execute(FGuid AgentId, FGuid Opportu
 	{
 		return Finish(TEXT("This activity requires its Actor executor."));
 	}
-	FCCLAgentRecord Updated = *Agent;
+	FKSIAgentRecord Updated = *Agent;
 	ApplyOutcome(Updated, *O, RequestId);
 	if (Processor && Processor->Apply)
 	{
@@ -784,7 +784,7 @@ FCCLLifeExecutionResult FCCLLifeSimulation::Execute(FGuid AgentId, FGuid Opportu
 	const auto Transaction = CCLEconomy::Execute(Candidate, Request);
 	if (!Transaction.bSucceeded)
 	{
-		FCCLAgentRecord Failed = *Agent;
+		FKSIAgentRecord Failed = *Agent;
 		if (auto* Experience = MutableFeature<FCCLAgentExperience>(Failed, CCLAgentTags::Feature_Experience))
 		{
 			FCCLObservation Observation;
@@ -816,15 +816,15 @@ FCCLLifeExecutionResult FCCLLifeSimulation::Execute(FGuid AgentId, FGuid Opportu
 		Candidate.Inventories[Resources->Inventory].Capacity += 10;
 	}
 
-	TArray<TPair<FCCLAgentLease, FCCLAgentRecord>> Updates;
+	TArray<TPair<FKSIAgentLease, FKSIAgentRecord>> Updates;
 	Updates.Emplace(Lease, Updated);
-	FCCLAgentLease OtherLease;
+	FKSIAgentLease OtherLease;
 	if (O->ProviderId != AgentId && (O->Activity == CCLAgentTags::Help || O->Activity == CCLAgentTags::Trade))
 	{
 		const auto* Other = Find(O->ProviderId);
 		if (Other)
 		{
-			FCCLAgentRecord Recipient = *Other;
+			FKSIAgentRecord Recipient = *Other;
 			if (auto* Experience = MutableFeature<FCCLAgentExperience>(Recipient, CCLAgentTags::Feature_Experience))
 			{
 				FCCLObservation Observation;
@@ -859,7 +859,7 @@ FCCLLifeExecutionResult FCCLLifeSimulation::Execute(FGuid AgentId, FGuid Opportu
 	return Finish({});
 }
 
-float FCCLLifeSimulation::GoalProgress(const FCCLAgentRecord& Agent, const FCCLLifeGoalState& Goal) const
+float FCCLLifeSimulation::GoalProgress(const FKSIAgentRecord& Agent, const FCCLLifeGoalState& Goal) const
 {
 	const auto* Definition = GoalDefinitions.Find(Goal.GoalTag);
 	if (!Definition || !Definition->Get() || !Definition->Get()->ProgressEvaluator)
@@ -986,7 +986,7 @@ bool FCCLLifeSimulation::AdvanceCandidate(double TargetTime, int32 MaxSlices, FS
 			}
 		}
 
-		TArray<FCCLAgentRecord> Snapshot;
+		TArray<FKSIAgentRecord> Snapshot;
 		if (!Agents.Snapshot(Snapshot))
 		{
 			Error = TEXT("An Agent writer still owns state; release it before advancing.");
@@ -1100,7 +1100,7 @@ bool FCCLLifeSimulation::AdvanceCandidate(double TargetTime, int32 MaxSlices, FS
 FString FCCLLifeSimulation::DailyReport() const
 {
 	FString Report;
-	TArray<FCCLAgentRecord> Snapshot;
+	TArray<FKSIAgentRecord> Snapshot;
 	if (!Agents.Snapshot(Snapshot))
 	{
 		return Report;
@@ -1199,7 +1199,7 @@ FCCLSimulationSnapshot FCCLLifeSimulation::MerchantScenario(int32 InSeed)
 		CCLAgentTags::Duty, CCLAgentTags::OthersWelfare};
 	for (int32 Index = 0; Index < 8; ++Index)
 	{
-		FCCLAgentRecord Agent;
+		FKSIAgentRecord Agent;
 		Agent.Id = Id(1, Index);
 		Agent.DefinitionId = FPrimaryAssetId(TEXT("Agent"), TEXT("Merchant"));
 		Agent.Location.PlaceId = Id(4, Index);
@@ -1417,7 +1417,7 @@ bool FCCLLifeSimulation::EndLife(FGuid AgentId, ECCLAgentDeathCause Cause, FStri
 		return false;
 	}
 
-	FCCLAgentRecord Updated = *Record;
+	FKSIAgentRecord Updated = *Record;
 	auto* B = MutableFeature<FCCLAgentBiology>(Updated, CCLAgentTags::Feature_Biology);
 	B->DeathCause = Cause;
 	B->DeathWorldSeconds = Time;
@@ -1462,7 +1462,7 @@ void FCCLLifeSimulation::SetActorActive(FGuid Id, bool bActive)
 	}
 }
 
-bool FCCLLifeSimulation::SelectIntent(FGuid Id, const FCCLPersistentIntent& Intent, const TArray<FCCLDecisionTrace>* DecisionTraces)
+bool FCCLLifeSimulation::SelectIntent(FGuid Id, const FKSIPersistentIntent& Intent, const TArray<FCCLDecisionTrace>* DecisionTraces)
 {
 	const auto* Record = Find(Id);
 	if (!Record || !CCLAgentBiology::IsAlive(*Record))
@@ -1470,7 +1470,7 @@ bool FCCLLifeSimulation::SelectIntent(FGuid Id, const FCCLPersistentIntent& Inte
 		return false;
 	}
 
-	FCCLAgentRecord Updated = *Record;
+	FKSIAgentRecord Updated = *Record;
 	Updated.Intent = Intent;
 	const auto Lease = Agents.Acquire(Agents.GetHandle(Id), FGuid(0xCC18, 0, 1, 1));
 	FString Error;
@@ -1491,7 +1491,7 @@ bool FCCLLifeSimulation::UpdateLocation(FGuid Id, FVector Position)
 		return false;
 	}
 
-	FCCLAgentRecord Updated = *Record;
+	FKSIAgentRecord Updated = *Record;
 	Updated.Location.Position = Position;
 	const auto Lease = Agents.Acquire(Agents.GetHandle(Id), FGuid(0xCC18, 0, 1, 2));
 	FString Error;

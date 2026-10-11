@@ -1,8 +1,8 @@
 #include "CCLWorldAdvance.h"
 
-#include "CCLEcologySimulation.h"
+#include "KSIEcologySimulation.h"
 #include "CCLWorldSnapshot.h"
-#include "CCLSurfaceSimulation.h"
+#include "KSISurfaceSimulation.h"
 #include "Agents/CCLLifeSimulation.h"
 #include "Misc/AutomationTest.h"
 
@@ -14,16 +14,16 @@ namespace
 		return FGuid(890, 891, 892, N);
 	}
 
-	bool MakeEcology(FGuid WorldId, FCCLEcologySimulation& E, FString& Error)
+	bool MakeEcology(FGuid WorldId, FKSIEcologySimulation& E, FString& Error)
 	{
-		FCCLEcologySpecies Species;
+		FKSIEcologySpecies Species;
 		Species.Id = WorldEcologyId(1);
 		Species.MaturitySeconds = 100.;
 		Species.LifespanSeconds = 10000.;
 		Species.BirthIntervalSeconds = 3600.;
-		FCCLEcologyHabitat Habitat;
+		FKSIEcologyHabitat Habitat;
 		Habitat.Id = WorldEcologyId(2);
-		FCCLEcologyPopulation Population;
+		FKSIEcologyPopulation Population;
 		Population.Id = WorldEcologyId(3);
 		Population.SpeciesId = Species.Id;
 		Population.HabitatId = Habitat.Id;
@@ -32,7 +32,7 @@ namespace
 			&& E.AddHabitat(Habitat, Error) && E.AddPopulation(Population, Error);
 	}
 
-	TArray<uint8> WorldEcologyBytes(const FCCLEcologySimulation& E)
+	TArray<uint8> WorldEcologyBytes(const FKSIEcologySimulation& E)
 	{
 		FString Error;
 		TArray<uint8> Bytes;
@@ -47,10 +47,10 @@ bool FCCLWorldEcologyAdvanceTest::RunTest(const FString& Parameters)
 {
 	FString Error;
 	const FGuid WorldId = WorldEcologyId(9);
-	FCCLEcologySimulation Ecology;
-	FCCLWorldClock Clock;
+	FKSIEcologySimulation Ecology;
+	FKSIWorldClock Clock;
 	FCCLLifeSimulation Life;
-	FCCLSurfaceSimulation Surface;
+	FKSISurfaceSimulation Surface;
 	if (!TestTrue(TEXT("initialize all owners"), MakeEcology(WorldId, Ecology, Error)
 		&& Life.Initialize(FCCLLifeSimulation::MerchantScenario(42), Error)
 		&& Surface.Initialize(WorldId, 0., 0., 0, Error)))
@@ -82,7 +82,7 @@ bool FCCLWorldEcologyAdvanceTest::RunTest(const FString& Parameters)
 	TestEqual(TEXT("surface time matches clock"), Surface.GetWorldSeconds(), Clock.GetWorldSeconds());
 	TestEqual(TEXT("Agent time matches clock"), Life.GetTime(), Clock.GetWorldSeconds());
 	TestFalse(TEXT("no remaining input"), Clock.HasPendingTime());
-	FCCLEcologySimulation WrongWorld;
+	FKSIEcologySimulation WrongWorld;
 	TestTrue(TEXT("wrong world fixture"), WrongWorld.Initialize(WorldEcologyId(99), Clock.GetWorldSeconds(), Error));
 	TestTrue(TEXT("queue later interval"), Clock.QueueGameTime(1., false, Error));
 	TestFalse(TEXT("foreign ecology rejected before publication"), CCLWorldAdvance::Advance(Clock, Life, 1., 60., Error,
@@ -99,10 +99,10 @@ bool FCCLWorldEcologySaveTest::RunTest(const FString& Parameters)
 	FCCLWorldIdentity Identity;
 	Identity.WorldId = WorldEcologyId(9);
 	Identity.Generation = 77;
-	FCCLEcologySimulation Ecology;
-	FCCLWorldClock Clock;
+	FKSIEcologySimulation Ecology;
+	FKSIWorldClock Clock;
 	FCCLLifeSimulation Life;
-	FCCLSurfaceSimulation Surface;
+	FKSISurfaceSimulation Surface;
 	if (!TestTrue(TEXT("fixture"), MakeEcology(Identity.WorldId, Ecology, Error)
 		&& Life.Initialize(FCCLLifeSimulation::MerchantScenario(42), Error)
 		&& Surface.Initialize(Identity.WorldId, 0., 0., 0, Error)))
@@ -111,8 +111,8 @@ bool FCCLWorldEcologySaveTest::RunTest(const FString& Parameters)
 	}
 
 	TestTrue(TEXT("reserve identified member"), Ecology.Materialize(WorldEcologyId(20), WorldEcologyId(3), WorldEcologyId(4), WorldEcologyId(5), true, Error));
-	FCCLEcologyLease Lease;
-	TestTrue(TEXT("active execution lease"), Ecology.Acquire(WorldEcologyId(5), ECCLEcologyRepresentation::Actor, WorldEcologyId(6), Lease, Error));
+	FKSIEcologyLease Lease;
+	TestTrue(TEXT("active execution lease"), Ecology.Acquire(WorldEcologyId(5), EKSIEcologyRepresentation::Actor, WorldEcologyId(6), Lease, Error));
 	TestTrue(TEXT("queue historical rate"), Clock.QueueGameTime(120., false, Error));
 	TestTrue(TEXT("advance first interval"), CCLWorldAdvance::Advance(Clock, Life, 60., 3600., Error,
 		256, &Surface, nullptr, nullptr, nullptr, nullptr, &Ecology));
@@ -133,7 +133,7 @@ bool FCCLWorldEcologySaveTest::RunTest(const FString& Parameters)
 	TestEqual(TEXT("rejected candidate keeps clock"), Clock.GetWorldSeconds(), 7200.);
 	TestEqual(TEXT("rejected candidate keeps Agent time"), Life.GetTime(), 7200.);
 	TestTrue(TEXT("rejected candidate keeps ecology"), Before == WorldEcologyBytes(Ecology));
-	FCCLEcologySimulation WrongTime;
+	FKSIEcologySimulation WrongTime;
 	TestTrue(TEXT("wrong-time ecology"), WrongTime.Initialize(Identity.WorldId, 1., Error) && WrongTime.Capture(Bad.Ecology, Error));
 	TestFalse(TEXT("valid ecology at wrong time rejected"), FCCLWorldSnapshotCodec::Restore(Bad, Identity.Domain, Clock, Life, Error, &Surface, &Ecology));
 	TestTrue(TEXT("wrong-world ecology"), WrongTime.Initialize(WorldEcologyId(99), 3600., Error) && WrongTime.Capture(Bad.Ecology, Error));

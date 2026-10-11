@@ -3,7 +3,7 @@
 #include "Kismet/GameplayStatics.h"
 #include "Misc/Crc.h"
 
-bool UCCLAgentSnapshot::Encode(const FCCLAgentStore& Store, TArray<uint8>& Bytes)
+bool UCCLAgentSnapshot::Encode(const FKSIAgentStore& Store, TArray<uint8>& Bytes)
 {
 	auto* Snapshot = NewObject<UCCLAgentSnapshot>();
 	if (!Store.Snapshot(Snapshot->Agents))
@@ -23,8 +23,8 @@ bool UCCLAgentSnapshot::Encode(const FCCLAgentStore& Store, TArray<uint8>& Bytes
 	return true;
 }
 
-bool UCCLAgentSnapshot::Decode(const TArray<uint8>& Bytes, FCCLAgentStore& Store,
-	const FCCLFeatureRegistry& Registry, FString& Error)
+bool UCCLAgentSnapshot::Decode(const TArray<uint8>& Bytes, FKSIAgentStore& Store,
+	const FKSIFeatureRegistry& Registry, FString& Error)
 {
 	if (Bytes.Num() < 32 || Bytes.Num() > 16 * 1024 * 1024 + 4)
 	{

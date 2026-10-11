@@ -26,7 +26,7 @@ for name in ('EnvironmentPlayground', 'EnvironmentScenario'):
     loaded = actors.get_all_level_actors()
     config = next(a for a in loaded if isinstance(a, unreal.CCLWorldEnvironmentConfig))
     patches = [p for p in config.get_editor_property('surfaces') if p.surface_id.export_text() != roof_id.export_text()]
-    roof = unreal.CCLSurfacePatch()
+    roof = unreal.KSISurfacePatch()
     roof.surface_id = roof_id
     roof.body_id = config.observer.body_id
     roof.material_id = 'WeatherRoof'

@@ -50,6 +50,9 @@ public:
 	bool Purchase(UCCLInventoryComponent* Inventory, const FCCLShopOffer& Offer);
 	int64 GetBalance() const;
 	FGuid GetAccountId() const { return AccountId; }
+	// Server opening metadata survives a later saved-profile binding; it is not another balance.
+	FGuid GetProvisionalAccountId() const { return ProvisionalAccountId; }
+	int64 GetProvisionalOpeningBalance() const { return ProvisionalOpeningBalance; }
 
 private:
 	FCCLLifeSimulation* Resolve() const;
@@ -58,6 +61,8 @@ private:
 
 private:
 	FGuid InitializedWorldId;
+	FGuid ProvisionalAccountId;
+	int64 ProvisionalOpeningBalance = 0;
 
 	UPROPERTY(Replicated)
 	FGuid AccountId;

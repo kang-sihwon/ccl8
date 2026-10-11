@@ -113,9 +113,9 @@ FString ACCLEcologyExperiment::MediumName(int32 N)
 	return N >= 0 && N < 4 ? Names[N] : TEXT("알 수 없음");
 }
 
-FCCLSurfaceGrid ACCLEcologyExperiment::Pond()
+FKSISurfaceGrid ACCLEcologyExperiment::Pond()
 {
-	FCCLSurfaceGrid G;
+	FKSISurfaceGrid G;
 	G.RegionId = Id(1);
 	G.OriginMeters = HabitatCenter(1) - FVector(2.8, 2.8, 0.);
 	G.Size = FIntPoint(8, 8);
@@ -135,9 +135,9 @@ FCCLSurfaceGrid ACCLEcologyExperiment::Pond()
 	return G;
 }
 
-bool ACCLEcologyExperiment::MakeInitial(FGuid WorldId, double Time, FCCLEcologySimulation& Out, FString& Error)
+bool ACCLEcologyExperiment::MakeInitial(FGuid WorldId, double Time, FKSIEcologySimulation& Out, FString& Error)
 {
-	FCCLEcologySimulation E;
+	FKSIEcologySimulation E;
 	if (!E.Initialize(WorldId, Time, Error))
 	{
 		return false;
@@ -146,27 +146,27 @@ bool ACCLEcologyExperiment::MakeInitial(FGuid WorldId, double Time, FCCLEcologyS
 	{
 		const FVector Center = HabitatCenter(N);
 		const double Height = N == 1 ? 1. : N == 2 ? 2.5 : .35;
-		FCCLEcologySpecies S;
+		FKSIEcologySpecies S;
 		S.Id = Id(10 + N);
-		S.Movement = ECCLEcologyMovement(N);
+		S.Movement = EKSIEcologyMovement(N);
 		S.AggregateDietMask = 1;
-		FCCLEcologyHabitat H;
+		FKSIEcologyHabitat H;
 		H.Id = Id(20 + N);
 		H.MinimumMeters = Center - FVector(2.8, 2.8, 0.);
 		H.MaximumMeters = Center + FVector(2.8, 2.8, 4.);
 		H.MovementMask = 1 << N;
-		FCCLEcologyPopulation P;
+		FKSIEcologyPopulation P;
 		P.Id = Id(30 + N);
 		P.SpeciesId = S.Id;
 		P.HabitatId = H.Id;
 		P.Cohorts.Add(Id(40 + N), {Id(40 + N), Time, 20});
 		P.Cohorts[Id(40 + N)].Nutrition.Energy = .35;
-		FCCLEcologyGroup G;
+		FKSIEcologyGroup G;
 		G.Id = Id(50 + N);
 		G.HabitatId = H.Id;
 		G.AnchorMeters = Center + FVector(0., 0., Height);
 		G.RadiusMeters = 2.;
-		FCCLEcologyForage F;
+		FKSIEcologyForage F;
 		F.Id = Id(60 + N);
 		F.HabitatId = H.Id;
 		F.PositionMeters = Center + FVector(1.6, 0., Height);
@@ -180,15 +180,15 @@ bool ACCLEcologyExperiment::MakeInitial(FGuid WorldId, double Time, FCCLEcologyS
 		for (uint32 Member = 0; Member < 3; ++Member)
 		{
 			const FGuid Individual = IndividualId(N, Member);
-			FCCLEcologyLease Lease;
-			FCCLEcologyBehavior B;
+			FKSIEcologyLease Lease;
+			FKSIEcologyBehavior B;
 			B.Id = Individual;
 			B.GroupId = G.Id;
 			B.bUseWorldSpace = 1;
 			B.Energy = .35;
 			B.MetabolismPerSecond = .002;
 			if (!E.Materialize(Id(200 + N * 3 + Member), P.Id, Id(40 + N), Individual, true, Error) ||
-				!E.Acquire(Individual, ECCLEcologyRepresentation::Actor, Id(900), Lease, Error) ||
+				!E.Acquire(Individual, EKSIEcologyRepresentation::Actor, Id(900), Lease, Error) ||
 				!E.UpdatePosition(Lease, Center + FVector(-1.6, (double(Member) - 1.) * .8, Height), Error) ||
 				!E.Suspend(Lease, Error) || !E.AddBehavior(B, Error))
 			{
@@ -206,7 +206,7 @@ bool ACCLEcologyExperiment::Initialize(bool bSeed, FCCLWorldSnapshot& Baseline, 
 	{
 		return false;
 	}
-	FCCLEcologySimulation Initial;
+	FKSIEcologySimulation Initial;
 	if (!MakeInitial(Baseline.Identity.WorldId, Baseline.Clock.WorldSeconds, Initial, Error) ||
 		!Initial.Capture(Baseline.Ecology, Error))
 	{
@@ -215,7 +215,7 @@ bool ACCLEcologyExperiment::Initialize(bool bSeed, FCCLWorldSnapshot& Baseline, 
 	auto* Runtime = GetWorld()->GetSubsystem<UCCLWorldSimulationSubsystem>();
 	if (!bInitialized && bSeed)
 	{
-		FCCLEcologySimulation Current;
+		FKSIEcologySimulation Current;
 		if (!MakeInitial(Runtime->GetIdentity().WorldId, Runtime->GetClock().GetWorldSeconds(), Current, Error) ||
 			!Runtime->SeedEcology(Current, Error))
 		{
@@ -239,7 +239,7 @@ void ACCLEcologyExperiment::Reconcile()
 	if (SeenEpoch != Runtime->GetEpoch())
 	{
 		SeenEpoch = Runtime->GetEpoch();
-		Desired = ECCLEcologyRepresentation::Actor;
+		Desired = EKSIEcologyRepresentation::Actor;
 	}
 	const auto& E = Runtime->GetEcologySimulation();
 	FString Error;
@@ -249,12 +249,12 @@ void ACCLEcologyExperiment::Reconcile()
 		{
 			const auto IdValue = IndividualId(N, M);
 			const auto* I = E.FindIndividual(IdValue);
-			if (!I || I->State != ECCLEcologyLifeState::Alive)
+			if (!I || I->State != EKSIEcologyLifeState::Alive)
 			{
 				continue;
 			}
 			const auto* Entry = Reps->Find(IdValue);
-			if ((Desired == ECCLEcologyRepresentation::Dormant && !Entry) ||
+			if ((Desired == EKSIEcologyRepresentation::Dormant && !Entry) ||
 				(Entry && E.IsLeaseCurrent(Entry->Lease) && Entry->Lease.Representation == Desired))
 			{
 				continue;
@@ -284,7 +284,7 @@ bool ACCLEcologyExperiment::Execute(ECCLExperimentAction Action, FString& Error)
 			Error = TEXT("이전 저장에 생태 구역이 없다. 실험 초기화로 기본 배치를 만들 수 있다.");
 			return false;
 		}
-		FCCLEcologyForage F;
+		FKSIEcologyForage F;
 		F.Id = FGuid::NewGuid();
 		F.HabitatId = Base->HabitatId;
 		F.PositionMeters = Base->PositionMeters;
@@ -295,15 +295,15 @@ bool ACCLEcologyExperiment::Execute(ECCLExperimentAction Action, FString& Error)
 	}
 	else if (Action == ECCLExperimentAction::EcologyActors)
 	{
-		Desired = ECCLEcologyRepresentation::Actor;
+		Desired = EKSIEcologyRepresentation::Actor;
 	}
 	else if (Action == ECCLExperimentAction::EcologyMass)
 	{
-		Desired = ECCLEcologyRepresentation::Mass;
+		Desired = EKSIEcologyRepresentation::Mass;
 	}
 	else if (Action == ECCLExperimentAction::EcologyHidden)
 	{
-		Desired = ECCLEcologyRepresentation::Dormant;
+		Desired = EKSIEcologyRepresentation::Dormant;
 	}
 	else
 	{
@@ -333,7 +333,7 @@ bool ACCLEcologyExperiment::CheckState(FString& Error) const
 		int64 Reserved = 0;
 		for (const auto& Pair : E.GetIndividuals())
 		{
-			Reserved += Pair.Value.PopulationId == Id(30 + N) && Pair.Value.State == ECCLEcologyLifeState::Alive;
+			Reserved += Pair.Value.PopulationId == Id(30 + N) && Pair.Value.State == EKSIEcologyLifeState::Alive;
 		}
 		if (E.LivingCount(Id(30 + N)) != E.AggregateCount(Id(30 + N)) + Reserved)
 		{
@@ -374,21 +374,21 @@ void ACCLEcologyExperiment::UpdateView()
 		for (const auto& Pair : E.GetIndividuals())
 		{
 			const auto& I = Pair.Value;
-			if (I.PopulationId != Id(30 + N) || I.State != ECCLEcologyLifeState::Alive)
+			if (I.PopulationId != Id(30 + N) || I.State != EKSIEcologyLifeState::Alive)
 			{
 				continue;
 			}
 			++Row.Reserved;
 			if (const auto* Entry = Reps->Find(I.Id))
 			{
-				Row.Actors += Entry->Lease.Representation == ECCLEcologyRepresentation::Actor;
-				Row.Mass += Entry->Lease.Representation == ECCLEcologyRepresentation::Mass;
+				Row.Actors += Entry->Lease.Representation == EKSIEcologyRepresentation::Actor;
+				Row.Mass += Entry->Lease.Representation == EKSIEcologyRepresentation::Mass;
 			}
 			if (const auto* B = E.GetBehaviors().Find(I.Id))
 			{
 				Row.Energy += B->Energy;
 				Row.Consumed += B->ConsumedUnits;
-				Row.Blocked += B->Activity == ECCLEcologyActivity::Blocked;
+				Row.Blocked += B->Activity == EKSIEcologyActivity::Blocked;
 			}
 		}
 		if (Row.Reserved)
