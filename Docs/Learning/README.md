@@ -14,6 +14,8 @@ ccl8의 시스템을 실제 플레이 상황과 Git의 이전·현재 코드로 
 
 기존 게임 시스템 장은 아래 고정 커밋의 비교 학습 기록으로 유지한다. 이후 공통 시간·지형 경로·눈 이동·저장·실험 UI가 바뀐 부분은 해당 장의 연결 안내와 환경 하위 장에서 이어 읽는다. 최초 구현 이전의 코드는 없다고 표시하고, 현재 미커밋 코드는 커밋된 예시와 구분했다.
 
+후속 공통 기반은 [시간 분할 정밀도](EnvironmentTimeAccuracy.md), [세계 저장 참여자](EnvironmentRestoreParticipants.md), [환경 맵 설정](EnvironmentMapConfiguration.md)으로 이어진다. 최초 문서의 미커밋 기준과 구분되는 커밋 비교이며, 근거는 [후속 비교 근거](EnvironmentFollowupEvidence.md)에 있다.
+
 ## 전체 목록
 
 | 문서 | 학습 범위 |

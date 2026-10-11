@@ -1,5 +1,7 @@
 # GAS 전투: 자원 수명과 한 번의 공격을 분리하기
 
+후속 `b888b13`에서 `CCLCombatAbility` 파일이 `AbilitySystem/`에서 `Combat/`으로 이동했다. 아래 코드의 비교 커밋과 당시 줄 번호는 유지하고 파일 링크만 현재 위치로 연결한다.
+
 현재 전투는 PlayerState의 ASC가 능력과 자원을 유지하고, Character의 Fighter와 CombatComponent가 현재 생명의 실행을 연결한다. 이 장의 목표는 `Source/CCL/AbilitySystem/`과 `Combat/`에서 입력, 예측, 적중 검증, 효과 적용, 취소가 이어지는 이유를 설명하는 것이다. 발사체는 [무기 행동](Weapons.md), 적의 선택은 [적 AI](EnemyAI.md)에서 다룬다.
 
 ## 1. 비교 기준
@@ -133,7 +135,7 @@ Fighter의 `Initialize`는 능력·세트·생명 자원을 준비한다. `UCCLA
 
 능력 종료 시 공격 창과 생명 효과의 핸들을 정리한다.
 
-출처: `50e5838`, [CCLCombatAbility.cpp](../../Source/CCL/AbilitySystem/CCLCombatAbility.cpp):154의 `UCCLCombatAbility::EndAbility`. 실제 코드 전체 함수이며 들여쓰기를 공백으로 바꿨다.
+출처: `50e5838`, [CCLCombatAbility.cpp](../../Source/CCL/Combat/CCLCombatAbility.cpp):154의 `UCCLCombatAbility::EndAbility`. 실제 코드 전체 함수이며 들여쓰기를 공백으로 바꿨다.
 
 ```cpp
 void UCCLCombatAbility::EndAbility(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilityActivationInfo ActivationInfo, bool bReplicateEndAbility, bool bWasCancelled)

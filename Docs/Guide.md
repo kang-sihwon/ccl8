@@ -74,6 +74,10 @@
 | [실내 환기 학습](Learning/EnvironmentAir.md) | 여러 표면의 공통 공기·교환 예산·기하 차폐 |
 | [환경 저장·실험장 학습](Learning/EnvironmentPersistence.md) | 완료 세대·맵 전환·서버 요청·검증 구분 |
 | [환경 학습 비교 근거](Learning/EnvironmentEvidence.md) | 브랜치·전체 커밋·작업 트리 해시·기존 보고서 |
+| [시간 분할 정밀도 학습](Learning/EnvironmentTimeAccuracy.md) | 두 시계의 끝점·분할 예산·취소와 저장 재개 |
+| [세계 저장 참여자 학습](Learning/EnvironmentRestoreParticipants.md) | 형식 7 구간·중첩 확정·역순 취소·알림 |
+| [환경 맵 설정 학습](Learning/EnvironmentMapConfiguration.md) | 저장 도메인과 눈 후처리의 데이터 선택 |
+| [환경 후속 비교 근거](Learning/EnvironmentFollowupEvidence.md) | 후속 커밋·브랜치·기존 자동화·패키지 검증 한계 |
 | [환경 착수 전 학습 기록](Learning/EnvironmentPlanningHistory.md) | 구현 이전의 고정 기준 해설 보존 |
 | [학습 문서 엔진 근거](Learning/EngineEvidence.md) | UE 5.8.3의 ASC·Fast Array·구조체·CommonUI·MVVM·Mass 소스 근거 |
 | [VersionControl](VersionControl.md) | Git·LFS·커밋 주체와 동기화 |
