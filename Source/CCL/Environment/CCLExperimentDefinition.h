@@ -92,7 +92,9 @@ enum class ECCLExperimentAction : uint8
 	FoodCollect,
 	BiologyAge,
 	BiologyProtect,
-	BiologyDamage
+	BiologyDamage,
+	ScaleDecrease,
+	ScaleIncrease
 };
 
 USTRUCT()

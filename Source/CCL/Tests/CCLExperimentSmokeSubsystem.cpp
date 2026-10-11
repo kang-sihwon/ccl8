@@ -312,7 +312,8 @@ void UCCLExperimentSmokeSubsystem::Tick(float DeltaTime)
 			return;
 		}
 
-		if (!bScenario && !Check(!Execute(ECCLExperimentAction::ScaleOne) && !Execute(ECCLExperimentAction::NextLatitude, Clock),
+		if (!bScenario && !Check(!Execute(ECCLExperimentAction::ScaleOne) && !Execute(ECCLExperimentAction::ScaleDecrease) &&
+			!Execute(ECCLExperimentAction::ScaleIncrease) && !Execute(ECCLExperimentAction::NextLatitude, Clock),
 			TEXT("global time controls require isolated map")))
 		{
 			return;
@@ -639,6 +640,66 @@ void UCCLExperimentSmokeSubsystem::TickMenuInput(double Now)
 		Capture(TEXT("menu-reopened"));
 	}
 	else if (Step == 12)
+	{
+		auto* Screen = Cast<UCCLExperimentScreen>(UI->FindScreen(PC->GetExperimentView()));
+		if (!Check(Screen != nullptr, TEXT("time scale controls exist after reopening")))
+		{
+			return;
+		}
+		Screen->RevealControl(Screen->GetScaleIncreaseButton());
+	}
+	else if (Step == 13)
+	{
+		auto* Screen = Cast<UCCLExperimentScreen>(UI->FindScreen(PC->GetExperimentView()));
+		auto* Runtime = GetWorld()->GetSubsystem<UCCLWorldSimulationSubsystem>();
+		TActorIterator<ACCLWorldEnvironmentState> StateIt(GetWorld());
+		const auto* State = StateIt ? *StateIt : nullptr;
+		if (!Check(Screen && Runtime && State, TEXT("time scale controls and published clock ready")))
+		{
+			return;
+		}
+		const bool bScenario = UCCLWorldSimulationSubsystem::DomainForWorld(GetWorld()) == ECCLWorldDomain::Scenario;
+		if (bScenario)
+		{
+			const double OriginalScale = Runtime->GetClock().GetTimeScale();
+			auto ClickScale = [this, Runtime, State](TSharedPtr<SWidget> Control, double Expected)
+			{
+				return ClickControl(Control) && Check(Runtime->GetClock().GetTimeScale() == Expected &&
+					State->GetTime().TimeScale == Expected,
+					*FString::Printf(TEXT("Slate time scale click publishes %.0fx"), Expected));
+			};
+			if (!ClickScale(Screen->GetScaleStopButton(), 0.))
+			{
+				return;
+			}
+			for (int32 Index = 1; Index <= 8; ++Index)
+			{
+				if (!ClickScale(Screen->GetScaleIncreaseButton(), Index * 10.))
+				{
+					return;
+				}
+			}
+			for (int32 Index = 7; Index >= -1; --Index)
+			{
+				if (!ClickScale(Screen->GetScaleDecreaseButton(), FMath::Max(0, Index) * 10.))
+				{
+					return;
+				}
+			}
+			FString Error;
+			if (!Check(Runtime->ChangeTimeScale(OriginalScale, Error), TEXT("restore original rate after UI check")))
+			{
+				return;
+			}
+		}
+		else if (!Check(!Screen->GetScaleStopButton()->IsEnabled() && !Screen->GetScaleDecreaseButton()->IsEnabled() &&
+			!Screen->GetScaleIncreaseButton()->IsEnabled(), TEXT("time scale controls disabled outside isolated map")))
+		{
+			return;
+		}
+		Capture(TEXT("time-scale-controls"));
+	}
+	else if (Step == 14)
 	{
 		if (FParse::Param(FCommandLine::Get(), TEXT("CCLExperimentLabSmoke")))
 		{

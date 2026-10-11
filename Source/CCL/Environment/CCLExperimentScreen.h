@@ -39,6 +39,9 @@ public:
 	void SelectCase(FName CaseId);
 	TSharedPtr<SWidget> GetCloseButton() const { return CloseButton; }
 	TSharedPtr<SWidget> GetStartButton() const { return StartButton; }
+	TSharedPtr<SWidget> GetScaleStopButton() const { return ScaleStopButton; }
+	TSharedPtr<SWidget> GetScaleDecreaseButton() const { return ScaleDecreaseButton; }
+	TSharedPtr<SWidget> GetScaleIncreaseButton() const { return ScaleIncreaseButton; }
 	TSharedPtr<SWidget> GetRotationButton() const { return RotationButton; }
 	TSharedPtr<SWidget> GetDoorButton() const { return DoorButton; }
 	TSharedPtr<SWidget> GetFoodAddButton() const { return FoodAddButton; }
@@ -74,6 +77,9 @@ private:
 	TSharedPtr<SWidget> FirstButton;
 	TSharedPtr<SWidget> CloseButton;
 	TSharedPtr<SWidget> StartButton;
+	TSharedPtr<SWidget> ScaleStopButton;
+	TSharedPtr<SWidget> ScaleDecreaseButton;
+	TSharedPtr<SWidget> ScaleIncreaseButton;
 	TSharedPtr<SWidget> RotationButton;
 	TSharedPtr<SWidget> DoorButton;
 	TSharedPtr<SWidget> FoodAddButton;

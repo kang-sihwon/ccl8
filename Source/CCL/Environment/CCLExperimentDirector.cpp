@@ -319,10 +319,18 @@ bool ACCLExperimentDirector::Execute(APlayerController* Requester, ECCLExperimen
 	case ECCLExperimentAction::ScaleZero:
 	case ECCLExperimentAction::ScaleOne:
 	case ECCLExperimentAction::ScaleSixty:
+	case ECCLExperimentAction::ScaleDecrease:
+	case ECCLExperimentAction::ScaleIncrease:
 		if (UCCLWorldSimulationSubsystem::DomainForWorld(GetWorld()) != ECCLWorldDomain::Scenario)
 		{
 			Message = TEXT("전역 시간 배율 변경은 격리 실험 맵에서만 할 수 있다.");
 			return false;
+		}
+
+		if (Runtime && (Action == ECCLExperimentAction::ScaleDecrease || Action == ECCLExperimentAction::ScaleIncrease))
+		{
+			const double Delta = Action == ECCLExperimentAction::ScaleIncrease ? 10. : -10.;
+			return Runtime->ChangeTimeScale(FMath::Max(0., Runtime->GetClock().GetTimeScale() + Delta), Message);
 		}
 
 		return Runtime && Runtime->ChangeTimeScale(Action == ECCLExperimentAction::ScaleZero ? 0 :

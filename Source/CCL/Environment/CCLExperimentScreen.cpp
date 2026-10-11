@@ -186,12 +186,12 @@ void UCCLExperimentScreen::OnContextBound()
 	{
 		return Allowed() && UCCLWorldSimulationSubsystem::DomainForWorld(GetWorld()) == ECCLWorldDomain::Scenario;
 	};
-	const TPair<const TCHAR*, ECCLExperimentAction> Rates[] = {{TEXT("시간 정지"), ECCLExperimentAction::ScaleZero},
-		{TEXT("1배"), ECCLExperimentAction::ScaleOne}, {TEXT("60배"), ECCLExperimentAction::ScaleSixty}};
-	for (const auto& Rate : Rates)
-	{
-		Storage->AddSlot().Padding(0, 0, 6, 0)[Button(Rate.Key, [Action, Command = Rate.Value]() { Action(Command); }, ScaleAllowed)];
-	}
+	ScaleStopButton = Button(TEXT("시간 정지"), [Action]() { Action(ECCLExperimentAction::ScaleZero); }, ScaleAllowed);
+	ScaleDecreaseButton = Button(TEXT("10배 감소"), [Action]() { Action(ECCLExperimentAction::ScaleDecrease); }, ScaleAllowed);
+	ScaleIncreaseButton = Button(TEXT("10배 증가"), [Action]() { Action(ECCLExperimentAction::ScaleIncrease); }, ScaleAllowed);
+	Storage->AddSlot().Padding(0, 0, 6, 0)[ScaleStopButton.ToSharedRef()];
+	Storage->AddSlot().Padding(0, 0, 6, 0)[ScaleDecreaseButton.ToSharedRef()];
+	Storage->AddSlot().Padding(0, 0, 6, 0)[ScaleIncreaseButton.ToSharedRef()];
 
 	auto IsEnvironmentCase = [this]() { return SelectedCase == TEXT("Zone_01") || SelectedCase == TEXT("Zone_11"); };
 	auto EnvironmentControls = SNew(SVerticalBox).Visibility_Lambda([IsEnvironmentCase]()
@@ -768,6 +768,9 @@ void UCCLExperimentScreen::OnContextReleased()
 	FirstButton.Reset();
 	CloseButton.Reset();
 	StartButton.Reset();
+	ScaleStopButton.Reset();
+	ScaleDecreaseButton.Reset();
+	ScaleIncreaseButton.Reset();
 	RotationButton.Reset();
 	DoorButton.Reset();
 	EcologyFeedButton.Reset();
