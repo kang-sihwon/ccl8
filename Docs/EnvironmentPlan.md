@@ -34,6 +34,8 @@ GAS 치명 피해를 Agent의 외부 사망에 연결하고 구역 07에 두 주
 
 2026-10-11에 세계 저장을 형식 7로 바꿨다. 세계 코덱은 시계·환경·생활 같은 코어와 이름 있는 구간의 봉투만 소유한다. 플레이어(`Players`, 참가 순서 0)와 보관함(`Inventories`, 참가 순서 1)은 `ICCLWorldParticipant`로 자기 구간을 수집·준비·확정·취소한다. 구간 검증기는 `FCCLWorldSectionRegistry`에 등록하며, 앞 구간이 청구한 아이템 GUID를 뒤 구간이 다시 청구하면 거부한다. 형식 6 이하의 플레이어·보관함 덩어리는 읽을 때 같은 이름의 구간으로 옮긴다. 원격 플레이어의 자동 신원 연결과 복원 시 접속자 유지는 [원격 플레이어 신원 연결과 복원 시 접속자 유지](SessionFoundation.md#원격-플레이어-신원-연결과-복원-시-접속자-유지)가 소유한다.
 
+현재 저장 참여 계약은 `KSICore`의 `IKSIWorldParticipant`와 `FKSIWorldSectionRegistry`에 있다. 표면·생활 검증 자료는 CCL의 선택 문맥으로 연결하고, 저장 형식 7과 참가 순서는 유지한다. 분리 결정과 검증은 [FrameworkPlan](FrameworkPlan.md#단계-2-구현-설계와-검증-기준)이 소유한다.
+
 맵의 저장 도메인은 맵 이름이 아니라 `ACCLWorldEnvironmentConfig::Domain`으로 정한다. 설정 Actor가 없는 맵은 Campaign 도메인을 사용한다. 같은 설정 Actor가 생활 인구 Seed, 캐릭터의 눈 후처리 AnimBP, 실험 주민 클래스를 제공한다. 이전 구현은 맵 이름에 `Environment`가 있는지로 후처리를 켜고, 두 실험 맵을 뺀 모든 맵을 Campaign으로 취급했다. 날씨·화재 Niagara 시스템의 저작 함수는 런타임 표현 Actor에서 에디터 전용 `UCCLEnvironmentFXLibrary`로 옮겼다. Niagara Internal 헤더 경로는 Editor 빌드에만 추가하므로 게임·서버 타깃은 그 헤더를 사용하지 않는다. 에디터 저작은 여전히 비공개 속성 `FixedBounds`를 이름으로 찾으므로 엔진을 갱신할 때 다시 확인해야 한다.
 
 현재 개인 세션·세계 참가자의 플레이어·보관함 복원은 위의 형식 7 경계를 사용한다. 경비와 보스의 Agent ID 충돌, 정의만 같고 배치·수량이 다른 보급품의 복원은 [배치 식별과 체크포인트 검증](SessionFoundation.md#배치-식별과-체크포인트-검증)에서 수정했다. 집계 생물의 에너지·기아와 공개 관측은 [집계 생물의 영양 상태](EnvironmentNutrition.md)에 연결했다. 같은 문서가 100개 개체군·100만 집계 개체의 반복 저장과 실제 공간의 지연·손실 검사 범위를 구분한다.
