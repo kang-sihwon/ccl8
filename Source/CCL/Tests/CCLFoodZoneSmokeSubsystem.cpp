@@ -537,7 +537,7 @@ void UCCLFoodZoneSmokeSubsystem::Tick(float DeltaTime)
 		for (int32 Index = 0; Index < 3; ++Index)
 		{
 			FString Encoded;
-			if (!Check(CCLFood::Encode(Food->GetInventory(Index)->GetEntries()[0].Food, Encoded, Error),
+			if (!Check(CCLFood::Encode(Food->GetInventory(Index)->GetEntries()[0].GetState<FCCLItemState>().Food, Encoded, Error),
 					   TEXT("capture food before save")))
 			{
 				return;
@@ -564,7 +564,7 @@ void UCCLFoodZoneSmokeSubsystem::Tick(float DeltaTime)
 		for (int32 Index = 0; Index < 3; ++Index)
 		{
 			FString Encoded;
-			if (!Check(CCLFood::Encode(Food->GetInventory(Index)->GetEntries()[0].Food, Encoded, Error) &&
+			if (!Check(CCLFood::Encode(Food->GetInventory(Index)->GetEntries()[0].GetState<FCCLItemState>().Food, Encoded, Error) &&
 						   Encoded == FoodBefore[Index],
 					   TEXT("food history exact after experiment load")))
 			{
@@ -586,7 +586,7 @@ void UCCLFoodZoneSmokeSubsystem::Tick(float DeltaTime)
 			return;
 		}
 		if (!Check(Food->GetInventory(0)->GetEntries()[0].Quantity == 4 &&
-					   Food->GetInventory(1)->GetEntries()[0].Food.Storage.TemperatureCelsius == -5. &&
+					   Food->GetInventory(1)->GetEntries()[0].GetState<FCCLItemState>().Food.Storage.TemperatureCelsius == -5. &&
 					   Runtime->Restore(Agents->GetSimulation(), Saved, Error),
 				   TEXT("reset authored samples then restore saved food")))
 		{

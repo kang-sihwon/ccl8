@@ -71,7 +71,7 @@ bool ACCLExperimentDirector::RunWeather(FString& Error)
 
 	for (int32 I = 0; I < 60; ++I)
 	{
-		FCCLWorldStep Step;
+		FKSIWorldStep Step;
 		Step.StepId = Candidate.GetStepId() + 1;
 		Step.GameFromSeconds = Candidate.GetGameSeconds();
 		Step.GameToSeconds = Step.GameFromSeconds + 0.25;

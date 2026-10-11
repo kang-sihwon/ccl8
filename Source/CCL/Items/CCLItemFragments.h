@@ -1,6 +1,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "KSIItemDefinition.h"
 #include "CCLItemTags.h"
 #include "CCLFoodState.h"
 #include "CCLItemFragments.generated.h"
@@ -38,11 +39,9 @@ enum class ECCLHandAction : uint8
 	Parry
 };
 
-USTRUCT(BlueprintType)
-struct CCL_API FCCLItemFragmentData{GENERATED_BODY()};
 
 USTRUCT(BlueprintType)
-struct CCL_API FCCLItemFragment_Equip : public FCCLItemFragmentData
+struct CCL_API FCCLItemFragment_Equip : public FKSIItemFragmentData
 {
 	GENERATED_BODY()
 
@@ -69,7 +68,7 @@ struct CCL_API FCCLItemFragment_Equip : public FCCLItemFragmentData
 };
 
 USTRUCT(BlueprintType)
-struct CCL_API FCCLItemFragment_ConsumableData : public FCCLItemFragmentData
+struct CCL_API FCCLItemFragment_ConsumableData : public FKSIItemFragmentData
 {
 	GENERATED_BODY()
 
@@ -96,7 +95,7 @@ struct CCL_API FCCLItemAttachment
 };
 
 USTRUCT(BlueprintType)
-struct CCL_API FCCLItemFragment_Visual : public FCCLItemFragmentData
+struct CCL_API FCCLItemFragment_Visual : public FKSIItemFragmentData
 {
 	GENERATED_BODY()
 
@@ -132,7 +131,7 @@ struct CCL_API FCCLItemFragment_SkeletalVisual : public FCCLItemFragment_Visual
 };
 
 USTRUCT(BlueprintType)
-struct CCL_API FCCLItemFragment_Weapon : public FCCLItemFragmentData
+struct CCL_API FCCLItemFragment_Weapon : public FKSIItemFragmentData
 {
 	GENERATED_BODY()
 
@@ -183,7 +182,7 @@ struct CCL_API FCCLItemFragment_ProjectileWeapon : public FCCLItemFragment_Weapo
 };
 
 USTRUCT(BlueprintType)
-struct CCL_API FCCLItemFragment_HarvestTool : public FCCLItemFragmentData
+struct CCL_API FCCLItemFragment_HarvestTool : public FKSIItemFragmentData
 {
 	GENERATED_BODY()
 
@@ -207,7 +206,7 @@ struct CCL_API FCCLEquippedSlot
 };
 
 USTRUCT(BlueprintType)
-struct CCL_API FCCLItemFragment_Perishable : public FCCLItemFragmentData
+struct CCL_API FCCLItemFragment_Perishable : public FKSIItemFragmentData
 {
 	GENERATED_BODY()
 

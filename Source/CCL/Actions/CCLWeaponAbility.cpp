@@ -1,4 +1,5 @@
 #include "CCLWeaponAbility.h"
+#include "Items/CCLInventoryWeapon.h"
 
 #include "CCLActionComponent.h"
 #include "AbilitySystem/CCLGameplayTags.h"
@@ -28,7 +29,7 @@ const UCCLProjectileProfile* Profile(const UObject* Source)
 		return Intrinsic;
 	}
 
-	const auto* Item = Cast<UCCLItemDefinition>(Source);
+	const auto* Item = Cast<UKSIItemDefinition>(Source);
 	const auto* Fragment = Item ? Item->FindFragment<FCCLItemFragment_ProjectileWeapon>() : nullptr;
 	return Fragment ? Fragment->Profile : nullptr;
 }
@@ -60,7 +61,7 @@ void UCCLProjectileAbility::ActivateAbility(FGameplayAbilitySpecHandle Handle, c
 	const FGuid Id = SourceId(Info, Handle);
 	if (!Avatar || !Settings || !Settings->Combat || !FMath::IsFinite(Settings->Speed) || Settings->Speed <= 0 ||
 		!FMath::IsFinite(Settings->Gravity) || !FMath::IsFinite(Settings->FireInterval) || Settings->FireInterval < 0.05f ||
-		(Settings->MagazineSize > 0 && (!Inventory || !Inventory->CanFire(Id))))
+		(Settings->MagazineSize > 0 && (!Inventory || !FCCLInventoryWeapon::CanFire(*Inventory, Id))))
 	{
 		EndAbility(Handle, Info, ActivationInfo, true, true);
 		return;
@@ -88,7 +89,7 @@ void UCCLProjectileAbility::ActivateAbility(FGameplayAbilitySpecHandle Handle, c
 	const TSubclassOf<ACCLProjectile> Class = Settings->ProjectileClass ? Settings->ProjectileClass.Get() : ACCLProjectile::StaticClass();
 	auto* Shot = GetWorld()->SpawnActorDeferred<ACCLProjectile>(Class, Transform, Avatar, Cast<APawn>(Avatar),
 		ESpawnActorCollisionHandlingMethod::AlwaysSpawn);
-	if (!Shot || (Settings->MagazineSize > 0 && !Inventory->ConsumeShot(Id)))
+	if (!Shot || (Settings->MagazineSize > 0 && !FCCLInventoryWeapon::ConsumeShot(*Inventory, Id)))
 	{
 		if (Shot)
 		{
@@ -126,7 +127,7 @@ void UCCLReloadAbility::ActivateAbility(FGameplayAbilitySpecHandle Handle, const
 {
 	const auto* Settings = Profile(GetCurrentSourceObject());
 	auto* Inventory = Info->OwnerActor->FindComponentByClass<UCCLInventoryComponent>();
-	if (!Settings || Settings->MagazineSize <= 0 || !Inventory || !Inventory->CanReload(SourceId(Info, Handle)) ||
+	if (!Settings || Settings->MagazineSize <= 0 || !Inventory || !FCCLInventoryWeapon::CanReload(*Inventory, SourceId(Info, Handle)) ||
 		!FMath::IsFinite(Settings->ReloadSeconds) || Settings->ReloadSeconds < 0.05f)
 	{
 		EndAbility(Handle, Info, ActivationInfo, true, true);
@@ -142,7 +143,7 @@ void UCCLReloadAbility::CompleteReload()
 {
 	auto* Inventory = CurrentActorInfo->OwnerActor.IsValid() ?
 		CurrentActorInfo->OwnerActor->FindComponentByClass<UCCLInventoryComponent>() : nullptr;
-	const bool bSucceeded = Inventory && Inventory->Reload(SourceId(CurrentActorInfo, CurrentSpecHandle));
+	const bool bSucceeded = Inventory && FCCLInventoryWeapon::Reload(*Inventory, SourceId(CurrentActorInfo, CurrentSpecHandle));
 	EndAbility(CurrentSpecHandle, CurrentActorInfo, CurrentActivationInfo, true, !bSucceeded);
 }
 

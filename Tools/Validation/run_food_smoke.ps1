@@ -1,10 +1,18 @@
 param(
+    [string]$PackagedExecutable,
     [ValidateSet('EnvironmentPlayground','EnvironmentScenario','Campaign')][string]$Map = 'EnvironmentScenario',
     [ValidateRange(30,600)][int]$TimeoutSeconds = 240
 )
 $ErrorActionPreference = 'Stop'
 $root = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '../..'))
-$paths = Get-Content (Join-Path $root '.local/agent-paths.json') -Raw | ConvertFrom-Json
+if ($PackagedExecutable) {
+    $binary = (Resolve-Path -LiteralPath $PackagedExecutable).Path
+    [string[]]$prefix = @()
+} else {
+    $paths = Get-Content (Join-Path $root '.local/agent-paths.json') -Raw | ConvertFrom-Json
+    $binary = Join-Path $paths.engineRoot 'Binaries/Win64/UnrealEditor-Cmd.exe'
+    [string[]]$prefix = @(('"'+$root+'/CCL.uproject"'))
+}
 $directory = Join-Path $root ('Saved/Tests/Food/{0}-{1}' -f $Map,(Get-Date -Format 'yyyyMMdd-HHmmss-fff'))
 New-Item -ItemType Directory -Path $directory -Force | Out-Null
 $runId = [Guid]::NewGuid().ToString('N')
@@ -12,11 +20,11 @@ $processes = [Collections.Generic.List[object]]::new()
 try {
     foreach ($phase in @('initial','restart')) {
         $log = Join-Path $directory ($phase+'.log')
-        $options = @(('"'+$root+'/CCL.uproject"'),('/Game/Maps/'+$Map),'-game','-unattended','-nop4','-nosplash','-nosound',
+        $options = $prefix + @(('/Game/Maps/'+$Map),'-game','-unattended','-nop4','-nosplash','-nosound',
             '-NullRHI','-NoLiveCoding','-CCLFoodSmoke',('-CCLFoodSmokeDir="'+$directory+'"'),
             ('-CCLExperimentRun='+$runId),'-ExecCmds="t.MaxFPS 60"',('-abslog="'+$log+'"'))
         if ($phase -eq 'restart') { $options += '-CCLFoodResume' }
-        $process = Start-Process -FilePath (Join-Path $paths.engineRoot 'Binaries/Win64/UnrealEditor-Cmd.exe') -ArgumentList $options -WindowStyle Hidden -PassThru
+        $process = Start-Process -FilePath $binary -ArgumentList $options -WindowStyle Hidden -PassThru
         $processes.Add($process)
         $deadline = [DateTime]::UtcNow.AddSeconds($TimeoutSeconds)
         while (-not $process.HasExited -and [DateTime]::UtcNow -lt $deadline) { Start-Sleep -Milliseconds 500 }

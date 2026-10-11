@@ -25,7 +25,7 @@
 
 namespace
 {
-const FCCLInventoryEntry* InventorySlotEntry(const TWeakObjectPtr<ACCLPlayerController>& PC, int32 Slot)
+const FKSIInventoryEntry* InventorySlotEntry(const TWeakObjectPtr<ACCLPlayerController>& PC, int32 Slot)
 {
 	const auto* State = PC.IsValid() ? PC->GetPlayerState<ACCLPlayerState>() : nullptr;
 	return State ? State->GetInventory()->FindSlot(Slot) : nullptr;
@@ -193,7 +193,7 @@ public:
 	}
 
 private:
-	const FCCLInventoryEntry* GetEntry() const
+	const FKSIInventoryEntry* GetEntry() const
 	{
 		if (!bEquipment)
 		{

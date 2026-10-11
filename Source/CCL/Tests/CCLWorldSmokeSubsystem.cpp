@@ -76,6 +76,20 @@ void UCCLWorldSmokeSubsystem::Tick(float DeltaTime)
 		return;
 	}
 
+	// The coordinator deliberately commits at most 0.25 game seconds per call.
+	// Drain accepted input before asserting a completed interval or saving it.
+	auto DrainTime = [&]()
+	{
+		for (int32 Attempt = 0; Runtime->GetClock().HasPendingTime() && Attempt < 128; ++Attempt)
+		{
+			if (!Runtime->AdvancePending(.25, 15., Error))
+			{
+				return false;
+			}
+		}
+		return !Runtime->GetClock().HasPendingTime();
+	};
+
 	if (Step == 0)
 	{
 		if (!Check(Runtime->GetClock().GetWorldSeconds() == Agents->GetSimulation().GetTime() &&
@@ -94,7 +108,7 @@ void UCCLWorldSmokeSubsystem::Tick(float DeltaTime)
 	{
 		const double Frozen = Runtime->GetClock().GetWorldSeconds();
 		const double GameBefore = Runtime->GetClock().GetGameSeconds();
-		if (!Check(Runtime->QueueGameTime(2, Error) && Runtime->AdvancePending(3, 180, Error), TEXT("game progresses at zero world scale")) ||
+		if (!Check(Runtime->QueueGameTime(2, Error) && DrainTime(), TEXT("game progresses at zero world scale")) ||
 			!Check(Runtime->GetClock().GetGameSeconds() >= GameBefore + 2 && Runtime->GetClock().GetWorldSeconds() == Frozen,
 				TEXT("physics time and life time are separate")))
 		{
@@ -147,7 +161,7 @@ void UCCLWorldSmokeSubsystem::Tick(float DeltaTime)
 		const FGuid SavedId = Runtime->GetIdentity().WorldId;
 		const uint64 Generation = Runtime->GetIdentity().Generation;
 		if (!Check(Runtime->ChangeTimeScale(7, Error) && Runtime->QueueGameTime(3, Error) &&
-			Runtime->AdvancePending(10, 1000, Error), TEXT("advance after checkpoint")) ||
+			DrainTime(), TEXT("advance after checkpoint")) ||
 			!Check(Agents->Restore(Saved, Error), TEXT("restore rebuilds life and clock together")) ||
 			!Check(Runtime->GetClock().GetWorldSeconds() == Frozen && Agents->GetSimulation().GetTime() == Frozen &&
 				Runtime->GetIdentity().WorldId == SavedId && Runtime->GetIdentity().Generation == Generation,

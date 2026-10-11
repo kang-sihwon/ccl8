@@ -6,6 +6,7 @@
 #include "CCLAccountComponent.generated.h"
 
 class UCCLInventoryComponent;
+class UKSIItemDefinition;
 class UCCLItemDefinition;
 class FCCLLifeSimulation;
 
@@ -16,7 +17,7 @@ struct CCL_API FCCLShopOffer
 	GENERATED_BODY()
 
 	UPROPERTY(EditAnywhere, Category = "Shop")
-	TSoftObjectPtr<UCCLItemDefinition> Item;
+	TSoftObjectPtr<UKSIItemDefinition> Item;
 
 	UPROPERTY(EditAnywhere, Category = "Shop", meta = (ClampMin = "1", ClampMax = "1000000"))
 	int32 Price = 10;

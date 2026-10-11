@@ -22,9 +22,9 @@ namespace
 		return G;
 	}
 
-	FCCLWorldStep Step(const FCCLSurfaceSimulation& S, double GameDelta, double WorldDelta)
+	FKSIWorldStep Step(const FCCLSurfaceSimulation& S, double GameDelta, double WorldDelta)
 	{
-		FCCLWorldStep Result;
+		FKSIWorldStep Result;
 		Result.Ticket = FGuid::NewGuid();
 		Result.StepId = S.GetStepId() + 1;
 		Result.GameFromSeconds = S.GetGameSeconds();

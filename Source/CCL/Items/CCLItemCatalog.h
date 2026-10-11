@@ -5,6 +5,7 @@
 #include "Engine/DeveloperSettings.h"
 #include "CCLItemCatalog.generated.h"
 
+class UKSIItemDefinition;
 class UCCLItemDefinition;
 class UCCLSkillDefinition;
 
@@ -17,16 +18,23 @@ class CCL_API UCCLItemCatalog : public UPrimaryDataAsset
 
 	// 내 클래스 함수
 public:
-	UCCLItemDefinition* FindItem(FName Name) const;
+	bool ValidateCatalog(TArray<FText>& Errors) const;
+	UKSIItemDefinition* FindItem(FName Name) const;
 	UCCLSkillDefinition* FindSkill(FName Name) const;
 
 	// The catalog configured in the project settings, or null when it is missing.
 	static const UCCLItemCatalog* Get();
 
+	// 에디터 전용
+#if WITH_EDITOR
+public:
+	virtual EDataValidationResult IsDataValid(FDataValidationContext& Context) const override;
+#endif
+
 	// 프로퍼티
 public:
 	UPROPERTY(EditAnywhere, Category = "Catalog")
-	TArray<TObjectPtr<UCCLItemDefinition>> Items;
+	TArray<TObjectPtr<UKSIItemDefinition>> Items;
 
 	// Training offered to players and accepted in saves.
 	UPROPERTY(EditAnywhere, Category = "Catalog")

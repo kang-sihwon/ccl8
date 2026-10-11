@@ -45,13 +45,13 @@ bool CCLEquipment::IsHand(FGameplayTag Slot)
 	return Slot == CCLItemTags::Slot_LeftHand || Slot == CCLItemTags::Slot_RightHand;
 }
 
-bool CCLEquipment::IsTwoHanded(const UCCLItemDefinition* Item)
+bool CCLEquipment::IsTwoHanded(const UKSIItemDefinition* Item)
 {
 	const auto* Weapon = Item ? Item->FindFragment<FCCLItemFragment_Weapon>() : nullptr;
 	return Weapon && Weapon->HandUsage == CCLItemTags::HandUsage_TwoHanded;
 }
 
-bool CCLEquipment::GetOccupiedSlots(const UCCLItemDefinition* Item, FGameplayTag RequestedSlot, TArray<FGameplayTag>& OutSlots)
+bool CCLEquipment::GetOccupiedSlots(const UKSIItemDefinition* Item, FGameplayTag RequestedSlot, TArray<FGameplayTag>& OutSlots)
 {
 	OutSlots.Reset();
 	const auto* Equip = Item ? Item->FindFragment<FCCLItemFragment_Equip>() : nullptr;

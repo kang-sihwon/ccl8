@@ -3,18 +3,19 @@
 #include "CoreMinimal.h"
 #include "Subsystems/WorldSubsystem.h"
 #include "CCLPlayerSnapshot.h"
-#include "Environment/CCLWorldParticipant.h"
+#include "KSIWorldParticipant.h"
+#include "Environment/CCLWorldAdvanceParticipant.h"
 #include "Items/CCLLoadoutRestore.h"
 #include "CCLPlayerPersistenceSubsystem.generated.h"
 
 class ACCLPlayerState;
 class FCCLSurfaceSimulation;
-struct FCCLWorldStep;
+struct FKSIWorldStep;
 
 // Owns player profiles of a server world and stores them in the "Players" world section.
 // Registered players keep equipment, food, account and quest across world saves, restores and reconnection.
 UCLASS()
-class CCL_API UCCLPlayerPersistenceSubsystem : public UWorldSubsystem, public ICCLWorldParticipant
+class CCL_API UCCLPlayerPersistenceSubsystem : public UWorldSubsystem, public IKSIWorldParticipant, public ICCLWorldAdvanceParticipant
 {
 	GENERATED_BODY()
 
@@ -25,13 +26,14 @@ public:
 	virtual void Deinitialize() override;
 	virtual FName GetWorldSection() const override;
 	virtual int32 GetWorldOrder() const override { return 0; }
-	virtual bool CaptureWorldSection(FCCLWorldCaptureContext& Context, TArray<uint8>& OutBytes, FString& Error) override;
-	virtual bool PrepareWorldRestore(FCCLWorldRestoreContext& Context, const TArray<uint8>* Section, FString& Error) override;
+	virtual bool CaptureWorldSection(FKSIWorldCaptureContext& Context, TArray<uint8>& OutBytes, FString& Error) override;
+	virtual bool PrepareWorldRestore(FKSIWorldRestoreContext& Context, const TArray<uint8>* Section, FString& Error) override;
 	virtual bool CommitWorldRestore(TFunctionRef<bool()> CommitInner) override;
 	virtual void PublishWorldRestore() override;
 	virtual void CancelWorldRestore() override;
+	virtual int32 GetWorldAdvanceOrder() const override { return GetWorldOrder(); }
 	virtual bool NeedsWorldAdvance() const override;
-	virtual bool PrepareWorldAdvance(const FCCLWorldStep& Step, const FCCLSurfaceSimulation& Surface, FString& Error) override;
+	virtual bool PrepareWorldAdvance(const FKSIWorldStep& Step, const FCCLSurfaceSimulation& Surface, FString& Error) override;
 	virtual void CommitWorldAdvance() override;
 	virtual void PublishWorldAdvance() override;
 	virtual void CancelWorldAdvance() override;
@@ -66,7 +68,7 @@ private:
 	TMap<FString, FCCLPlayerSnapshot> Records;
 	TMap<FString, TWeakObjectPtr<ACCLPlayerState>> Live;
 	TMap<FString, FCCLPlayerSnapshot> Prepared;
-	TMap<TWeakObjectPtr<UCCLInventoryComponent>, TArray<FCCLInventoryEntry>> Pending;
+	TMap<TWeakObjectPtr<UCCLInventoryComponent>, TArray<FKSIInventoryEntry>> Pending;
 	TArray<TWeakObjectPtr<UCCLInventoryComponent>> Locked;
 
 	// Staged world restore: profiles to commit, live players to restore and the optional host session.

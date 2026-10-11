@@ -9,6 +9,7 @@ class ACCLWorldPickup;
 class UCCLInventoryComponent;
 class UStaticMeshComponent;
 class UTextRenderComponent;
+class UKSIItemDefinition;
 class UCCLItemDefinition;
 struct FCCLWorldSnapshot;
 enum class ECCLExperimentAction : uint8;
@@ -68,7 +69,7 @@ private:
 	void UpdateView();
 	void UpdatePresentation();
 	UFUNCTION() void OnRep_View();
-	UCCLItemDefinition* SampleDefinition() const;
+	UKSIItemDefinition* SampleDefinition() const;
 private:
 	UPROPERTY() TArray<TObjectPtr<UCCLInventoryComponent>> Inventories;
 	UPROPERTY() TArray<TObjectPtr<UStaticMeshComponent>> Samples;

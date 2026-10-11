@@ -9,9 +9,10 @@
 
 class UCCLInventoryComponent;
 class UCCLAbilitySystemComponent;
+class UKSIItemDefinition;
 class UCCLItemDefinition;
 class UCCLSkillDefinition;
-struct FCCLInventoryEntry;
+struct FKSIInventoryEntry;
 
 UCLASS(ClassGroup = Progression, meta = (BlueprintSpawnableComponent))
 class CCL_API UCCLLoadoutComponent : public UActorComponent
@@ -26,9 +27,9 @@ public:
 
 public:
 	bool Restore(const TArray<FCCLEquippedSlot>& Equipment, const TArray<UCCLSkillDefinition*>& Skills, int32 UnspentPoints);
-	bool CanRestoreState(const TArray<FCCLInventoryEntry>& Entries, const TArray<FCCLEquippedSlot>& Equipment,
+	bool CanRestoreState(const TArray<FKSIInventoryEntry>& Entries, const TArray<FCCLEquippedSlot>& Equipment,
 						 const TArray<UCCLSkillDefinition*>& Skills, int32 UnspentPoints) const;
-	bool RestoreState(const TArray<FCCLInventoryEntry>& Entries, const TArray<FCCLEquippedSlot>& Equipment,
+	bool RestoreState(const TArray<FKSIInventoryEntry>& Entries, const TArray<FCCLEquippedSlot>& Equipment,
 					  const TArray<UCCLSkillDefinition*>& Skills, int32 UnspentPoints, bool bResetHealth = true);
 	bool Equip(FGuid Id, FGameplayTag Slot = FGameplayTag());
 	bool Unequip(FGuid Id, int32 BagSlot = INDEX_NONE);
@@ -40,7 +41,7 @@ public:
 	FGameplayTag PrepareHandAction(FGameplayTag Hand);
 	bool RequestCustomHandAction(FGameplayTag Hand, bool bPressed);
 	void RequestReload();
-	UCCLItemDefinition* GetEquippedItem(FGameplayTag Slot = CCLItemTags::Slot_RightHand) const;
+	UKSIItemDefinition* GetEquippedItem(FGameplayTag Slot = CCLItemTags::Slot_RightHand) const;
 	FGuid GetEquippedId(FGameplayTag Slot = CCLItemTags::Slot_RightHand) const;
 	bool IsEquipped(FGuid Id) const;
 	const TArray<FCCLEquippedSlot>& GetEquipment() const { return EquipmentSlots; }
@@ -90,4 +91,5 @@ private:
 	TArray<FActiveGameplayEffectHandle> SkillEffects;
 	TSet<FGuid> ActionSources;
 	uint8 bRestoring = 0;
+	uint8 bMutating = 0;
 };

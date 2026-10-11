@@ -5,12 +5,13 @@
 #include "CCLSurfaceSimulation.h"
 #include "CCLSurfaceReplication.generated.h"
 
+struct FCCLSurfacePublication;
+
 struct FCCLSurfaceHistoryFrame
 {
 	uint64 Serial = 0;
-	FGuid Epoch;
 	double SentAt = 0.;
-	FCCLSurfaceSimulation State;
+	TSharedPtr<const FCCLSurfacePublication> Publication;
 };
 
 struct FCCLPredictedSnowContact
@@ -58,6 +59,8 @@ private:
 	TMap<FGuid, uint64> AcknowledgedTerrainSerials;
 	TMap<FGuid, uint64> ReplicaTerrainSerials;
 	TArray<uint8> Payload;
+	TSharedPtr<const FCCLSurfacePublication> TransferPublication;
+	FGuid AcknowledgedEpoch;
 	FGuid TransferId;
 	uint64 TransferSerial = 0;
 	uint64 PublishedSerial = 0;

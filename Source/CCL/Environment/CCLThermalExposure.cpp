@@ -142,7 +142,7 @@ void UCCLThermalExposureSubsystem::Cancel()
 	PendingStep = 0;
 }
 
-bool UCCLThermalExposureSubsystem::Prepare(const FCCLWorldStep& Step, const FCCLSurfaceSimulation& Previous,
+bool UCCLThermalExposureSubsystem::Prepare(const FKSIWorldStep& Step, const FCCLSurfaceSimulation& Previous,
 										   FString& Error)
 {
 	Cancel();

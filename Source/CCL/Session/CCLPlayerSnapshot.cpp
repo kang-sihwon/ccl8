@@ -1,7 +1,8 @@
 #include "CCLPlayerSnapshot.h"
 
 #include "Agents/CCLLifeSimulation.h"
-#include "Environment/CCLWorldParticipant.h"
+#include "KSIWorldParticipant.h"
+#include "Environment/CCLWorldSectionFacts.h"
 #include "Environment/CCLWorldSnapshot.h"
 
 #include "Serialization/MemoryReader.h"
@@ -298,9 +299,10 @@ bool CCLPlayerSnapshot::WriteWorld(FCCLWorldSnapshot& World, const TArray<FCCLPl
 namespace
 {
 	// Player profiles validate after world containers; accounts must exist in the saved economy.
-	const FCCLWorldSectionRegistrar PlayerSection(CCLPlayerSnapshot::WorldSection(), 2,
-		[](const FCCLWorldSectionContext& Context, const TArray<uint8>& Bytes, FString& Error)
+	const FKSIWorldSectionRegistrar PlayerSection(CCLPlayerSnapshot::WorldSection(), 2,
+		[](const FKSIWorldSectionContext& Context, const TArray<uint8>& Bytes, FString& Error)
 		{
+            const auto* Facts = Context.FindFacts<FCCLWorldSectionFacts>();
 			TArray<FCCLPlayerSnapshot> Profiles;
 			if (!CCLPlayerSnapshot::Decode(Bytes, Context.WorldId, Context.WorldSeconds, Profiles, Error))
 			{
@@ -310,12 +312,12 @@ namespace
 			for (const auto& Profile : Profiles)
 			{
 				auto Binding = Profile.Environment;
-				if (!Context.Surface || !CCLFoodEnvironment::Sample(Binding, *Context.Surface, Error))
+				if ((!Facts || !Facts->Surface) || !CCLFoodEnvironment::Sample(Binding, *Facts->Surface, Error))
 				{
 					return false;
 				}
 
-				if (!Context.Life || !Context.Life->GetEconomy().Accounts.Contains(Profile.AccountId))
+				if ((!Facts || !Facts->Life) || !Facts->Life->GetEconomy().Accounts.Contains(Profile.AccountId))
 				{
 					Error = TEXT("A player profile refers to an account outside the world economy.");
 					return false;

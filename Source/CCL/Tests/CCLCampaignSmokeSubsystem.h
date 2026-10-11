@@ -27,6 +27,7 @@ private:
 	void PrepareEnemy(ACCLEnemyCharacter* Enemy);
 	void TickProgression();
 	bool TickContent(bool bAfterVictory);
+	bool CheckContentReplication(ACCLPlayerController* Local, const FString& Role);
 	int32 ContentStep = 0;
 	uint8 bContentReady = 0;
 	bool CheckProgressionPersistence();
@@ -41,6 +42,7 @@ private:
 	double Started = 0.;
 	double NextInputAt = 0.;
 	double NextStageAt = 0.;
+	double ContentReplicationStarted = 0.;
 	int32 Stage = 0;
 	uint8 bRegistered = 0;
 	uint8 bAttacking = 0;

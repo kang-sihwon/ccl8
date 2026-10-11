@@ -1,6 +1,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "KSIWorldTime.h"
 
 struct FCCLWorldTimeRate
 {
@@ -30,15 +31,7 @@ struct FCCLWorldClockSnapshot
 	TArray<FCCLWorldTimeRate> Rates;
 };
 
-struct FCCLWorldStep
-{
-	FGuid Ticket;
-	uint64 StepId = 0;
-	double GameFromSeconds = 0;
-	double GameToSeconds = 0;
-	double WorldFromSeconds = 0;
-	double WorldToSeconds = 0;
-};
+
 
 // A single server owner queues game time and publishes a step only after its consumers commit.
 // This value object neither ticks nor advances Agent state on its own.
@@ -51,7 +44,7 @@ public:
 	bool Reset(double InitialWorldSeconds, double InitialScale, FString& Error);
 	bool QueueGameTime(double DeltaSeconds, bool bPaused, FString& Error);
 	bool ChangeTimeScale(double NewScale, FString& Error);
-	bool Prepare(double MaxGameSeconds, double MaxWorldSeconds, FCCLWorldStep& OutStep, FString& Error);
+	bool Prepare(double MaxGameSeconds, double MaxWorldSeconds, FKSIWorldStep& OutStep, FString& Error);
 	bool Commit(const FGuid& Ticket, FString& Error);
 	bool Abort(const FGuid& Ticket, FString& Error);
 	bool Capture(FCCLWorldClockSnapshot& OutSnapshot, FString& Error) const;
@@ -70,5 +63,5 @@ private:
 
 private:
 	FCCLWorldClockSnapshot State;
-	FCCLWorldStep Prepared;
+	FKSIWorldStep Prepared;
 };

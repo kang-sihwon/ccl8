@@ -1,4 +1,5 @@
 #include "CCLFoodPickupSmokeSubsystem.h"
+#include "Items/CCLInventoryFood.h"
 #include "Items/CCLInventorySnapshot.h"
 
 #include "Items/CCLWorldPickup.h"
@@ -157,7 +158,7 @@ void UCCLFoodPickupSmokeSubsystem::Tick(float DeltaTime)
 		Pickup = FindPickup();
 		FString Encoded, Expected;
 		if (!Check(Pickup && Pickup->GetFoodInventory()->FindSlot(0) &&
-					   CCLFood::Encode(Pickup->GetFoodInventory()->FindSlot(0)->Food, Encoded, Error) &&
+					   CCLFood::Encode(Pickup->GetFoodInventory()->FindSlot(0)->GetState<FCCLItemState>().Food, Encoded, Error) &&
 					   FFileHelper::LoadFileToString(Expected, *(Directory / TEXT("ground-food.txt"))) &&
 					   Encoded == Expected,
 				   TEXT("new process pickup exact food history")))
@@ -208,7 +209,7 @@ void UCCLFoodPickupSmokeSubsystem::Tick(float DeltaTime)
 			return;
 		}
 		FCCLFoodQuality Quality;
-		if (!Check(Pickup->GetFoodInventory()->GetFoodQuality(OriginalId, Quality) && Quality.OldestAgeSeconds >= 30. &&
+		if (!Check(FCCLInventoryFood::GetFoodQuality(*Pickup->GetFoodInventory(), OriginalId, Quality) && Quality.OldestAgeSeconds >= 30. &&
 					   R->Restore(Agents->GetSimulation(), CollectedSave, Error) && !FindPickup() &&
 					   Target->Find(OriginalId) && Target->Find(OriginalId)->Quantity == 6,
 				   TEXT("reader continues age then restores collection tombstone")))
@@ -220,7 +221,7 @@ void UCCLFoodPickupSmokeSubsystem::Tick(float DeltaTime)
 		return;
 	}
 	const FVector Position(-5000, -5000, 10000);
-	auto Spawn = [&](UCCLItemDefinition* Item, int32 Count)
+	auto Spawn = [&](UKSIItemDefinition* Item, int32 Count)
 	{
 		const FTransform Transform(FRotator(10, 20, 30), Position, FVector(2, 3, 4));
 		auto* Actor = W->SpawnActorDeferred<ACCLWorldPickup>(ACCLWorldPickup::StaticClass(), Transform, nullptr,
@@ -245,13 +246,13 @@ void UCCLFoodPickupSmokeSubsystem::Tick(float DeltaTime)
 		}
 		Pickup = Spawn(Bread, 4);
 		const auto* Entry = Pickup->GetFoodInventory()->FindSlot(0);
-		if (!Check(Entry && Entry->Food.Lots.Num() == 1, TEXT("food born at spawn")))
+		if (!Check(Entry && Entry->GetState<FCCLItemState>().Food.Lots.Num() == 1, TEXT("food born at spawn")))
 		{
 			return;
 		}
-		Created = Entry->Food.Lots[0].CreatedWorldSeconds;
+		Created = Entry->GetState<FCCLItemState>().Food.Lots[0].CreatedWorldSeconds;
 		OriginalId = Entry->Id;
-		OriginalOrigin = Entry->Food.Lots[0].OriginId;
+		OriginalOrigin = Entry->GetState<FCCLItemState>().Food.Lots[0].OriginId;
 		Target = MakeInventory();
 		SavedPickupId = Pickup->PersistentId;
 		SavedPickupTransform = Pickup->GetActorTransform();
@@ -301,7 +302,7 @@ void UCCLFoodPickupSmokeSubsystem::Tick(float DeltaTime)
 		Full->Capacity = 1;
 		const auto* Before = Pickup->GetFoodInventory()->FindSlot(0);
 		FString BeforeFood, AfterFood;
-		CCLFood::Encode(Before->Food, BeforeFood, Error);
+		CCLFood::Encode(Before->GetState<FCCLItemState>().Food, BeforeFood, Error);
 		if (!Check(Full->Add(FCCLSessionCodec::Item(TEXT("DA_Bullets")), 1).IsValid() &&
 					   !Pickup->TryCollect(Full, Full->GetOwner()),
 				   TEXT("full inventory refused")))
@@ -330,12 +331,12 @@ void UCCLFoodPickupSmokeSubsystem::Tick(float DeltaTime)
 		}
 		Wall->Destroy();
 		Target->GetOwner()->SetActorLocation(Position);
-		if (!Check(!Pickup->InitializeFood(Bread, Before->Food, OriginalId, Error),
+		if (!Check(!Pickup->InitializeFood(Bread, Before->GetState<FCCLItemState>().Food, OriginalId, Error),
 				   TEXT("repeat initialization refused")))
 		{
 			return;
 		}
-		CCLFood::Encode(Pickup->GetFoodInventory()->FindSlot(0)->Food, AfterFood, Error);
+		CCLFood::Encode(Pickup->GetFoodInventory()->FindSlot(0)->GetState<FCCLItemState>().Food, AfterFood, Error);
 		if (!Check(BeforeFood == AfterFood, TEXT("failed collection preserves history")))
 		{
 			return;
@@ -374,15 +375,15 @@ void UCCLFoodPickupSmokeSubsystem::Tick(float DeltaTime)
 		const bool bCollected = Pickup->TryCollect(Target, Target->GetOwner());
 		Target->OnChanged.Remove(Handle);
 		const auto* Entry = Target->Find(OriginalId);
-		if (!Check(bCollected && !bReentered && Entry && Entry->Food.Lots.Num() == 1 &&
-					   Entry->Food.Lots[0].OriginId == OriginalOrigin &&
-					   Entry->Food.Lots[0].CreatedWorldSeconds == Created && Entry->Food.Lots[0].SpoilageSeconds > 0. &&
+		if (!Check(bCollected && !bReentered && Entry && Entry->GetState<FCCLItemState>().Food.Lots.Num() == 1 &&
+					   Entry->GetState<FCCLItemState>().Food.Lots[0].OriginId == OriginalOrigin &&
+					   Entry->GetState<FCCLItemState>().Food.Lots[0].CreatedWorldSeconds == Created && Entry->GetState<FCCLItemState>().Food.Lots[0].SpoilageSeconds > 0. &&
 					   !Pickup->TryCollect(Target, Target->GetOwner()),
 				   TEXT("collect retains item and lot history exactly once")))
 		{
 			return;
 		}
-		auto Future = Entry->Food;
+		auto Future = Entry->GetState<FCCLItemState>().Food;
 		Future.UpdatedWorldSeconds = R->GetClock().GetWorldSeconds() + 1.;
 		const FTransform Transform(Position);
 		auto* Invalid = W->SpawnActorDeferred<ACCLWorldPickup>(ACCLWorldPickup::StaticClass(), Transform);
@@ -395,16 +396,16 @@ void UCCLFoodPickupSmokeSubsystem::Tick(float DeltaTime)
 		{
 			return;
 		}
-		const double OldExposure = Target->Find(OriginalId)->Food.Lots[0].SpoilageSeconds;
+		const double OldExposure = Target->Find(OriginalId)->GetState<FCCLItemState>().Food.Lots[0].SpoilageSeconds;
 		auto* Partial = ACCLWorldPickup::DropFood(Target, OriginalId, 3, Transform, Error);
 		if (!Check(Partial && Target->Find(OriginalId)->Quantity == 3, TEXT("partial drop")))
 		{
 			return;
 		}
 		const auto* Dropped = Partial->GetFoodInventory()->FindSlot(0);
-		if (!Check(Dropped->Id != OriginalId && Dropped->Food.Lots.Num() == 1 &&
-					   Dropped->Food.Lots[0].OriginId == OriginalOrigin &&
-					   Dropped->Food.Lots[0].SpoilageSeconds == OldExposure &&
+		if (!Check(Dropped->Id != OriginalId && Dropped->GetState<FCCLItemState>().Food.Lots.Num() == 1 &&
+					   Dropped->GetState<FCCLItemState>().Food.Lots[0].OriginId == OriginalOrigin &&
+					   Dropped->GetState<FCCLItemState>().Food.Lots[0].SpoilageSeconds == OldExposure &&
 					   !ACCLWorldPickup::DropFood(Target, OriginalId, 0, Transform, Error) &&
 					   Partial->TryCollect(Target, Target->GetOwner()) && Target->Find(OriginalId)->Quantity == 6,
 				   TEXT("split origin and exposure survive drop and merge")))
@@ -413,16 +414,16 @@ void UCCLFoodPickupSmokeSubsystem::Tick(float DeltaTime)
 		}
 		FCCLFoodStorage Cold;
 		Cold.TemperatureCelsius = -5.;
-		if (!Check(Target->ChangeFoodStorage(OriginalId, Cold), TEXT("cold storage before drop")))
+		if (!Check(FCCLInventoryFood::ChangeFoodStorage(*Target, OriginalId, Cold), TEXT("cold storage before drop")))
 		{
 			return;
 		}
 		auto* Whole = ACCLWorldPickup::DropFood(Target, OriginalId, 6, Transform, Error);
 		if (!Check(Whole && Target->GetEntries().IsEmpty() &&
 					   Whole->GetFoodInventory()->FindSlot(0)->Id == OriginalId &&
-					   Whole->GetFoodInventory()->FindSlot(0)->Food.Storage == FCCLFoodStorage() &&
-					   Whole->GetFoodInventory()->FindSlot(0)->Food.Lots[0].SpoilageSeconds == OldExposure &&
-					   Whole->TryCollect(Target, Target->GetOwner()) && Target->Find(OriginalId)->Food.Lots.Num() == 2,
+					   Whole->GetFoodInventory()->FindSlot(0)->GetState<FCCLItemState>().Food.Storage == FCCLFoodStorage() &&
+					   Whole->GetFoodInventory()->FindSlot(0)->GetState<FCCLItemState>().Food.Lots[0].SpoilageSeconds == OldExposure &&
+					   Whole->TryCollect(Target, Target->GetOwner()) && Target->Find(OriginalId)->GetState<FCCLItemState>().Food.Lots.Num() == 2,
 				   TEXT("whole drop retains item identity and mixed lots")))
 		{
 			return;

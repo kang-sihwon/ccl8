@@ -6,14 +6,16 @@
 #include "CCLSurfaceSimulation.h"
 #include "CCLEcologySimulation.h"
 #include "CCLEnvironmentView.h"
+#include "KSIWorldTime.h"
 #include "CCLWorldSimulationSubsystem.generated.h"
 
 class ACCLWorldEnvironmentState;
-class ICCLWorldParticipant;
+class IKSIWorldParticipant;
+class ICCLWorldAdvanceParticipant;
 class FCCLTerrainWaterParticipant;
 
 UCLASS()
-class CCL_API UCCLWorldSimulationSubsystem : public UTickableWorldSubsystem
+class CCL_API UCCLWorldSimulationSubsystem : public UTickableWorldSubsystem, public IKSIWorldTimeSource
 {
 	GENERATED_BODY()
 
@@ -22,6 +24,7 @@ public:
 	virtual void Initialize(FSubsystemCollectionBase& Collection) override;
 	virtual void Tick(float DeltaTime) override;
 	virtual TStatId GetStatId() const override;
+    virtual bool ReadWorldTime(FKSIWorldTimeView& OutTime) const override;
 
 public:
 	bool Start(FCCLLifeSimulation& Life, ECCLWorldDomain Domain, const TArray<uint8>& Saved, FString& Error);
@@ -34,9 +37,11 @@ public:
 	bool Save(const FCCLLifeSimulation& Life, TArray<uint8>& Bytes, FString& Error, const UObject* SessionContainer = nullptr);
 	bool Restore(FCCLLifeSimulation& Life, const TArray<uint8>& Bytes, FString& Error);
 
-	// Game systems that keep a section of the world snapshot register for capture, restore and advance.
-	void RegisterParticipant(ICCLWorldParticipant& Participant);
-	void UnregisterParticipant(ICCLWorldParticipant& Participant);
+	// Game systems that keep a section of the world snapshot register for capture and restore.
+	void RegisterParticipant(IKSIWorldParticipant& Participant);
+	void UnregisterParticipant(IKSIWorldParticipant& Participant);
+	void RegisterAdvanceParticipant(ICCLWorldAdvanceParticipant& Participant);
+	void UnregisterAdvanceParticipant(ICCLWorldAdvanceParticipant& Participant);
 
 	bool SeedEcology(const FCCLEcologySimulation& Candidate, FString& Error);
 	bool AddEcologyGroup(const FCCLEcologyGroup& Group, FString& Error);
@@ -104,7 +109,8 @@ private:
 	TWeakObjectPtr<UObject> ManualAdvanceOwner;
 
 	// Sorted by world order. Participants are world subsystems that unregister while deinitializing.
-	TArray<ICCLWorldParticipant*> Participants;
+	TArray<IKSIWorldParticipant*> Participants;
+	TArray<ICCLWorldAdvanceParticipant*> AdvanceParticipants;
 	double UnqueuedGameSeconds = 0;
 	uint8 bRunning = 0;
 };

@@ -10,7 +10,7 @@ class UCCLSkillDefinition;
 struct FCCLLoadoutRestoreRequest
 {
 	UCCLLoadoutComponent* Loadout = nullptr;
-	TArray<FCCLInventoryEntry> Entries;
+	TArray<FKSIInventoryEntry> Entries;
 	TArray<FCCLEquippedSlot> Equipment;
 	TArray<UCCLSkillDefinition*> Skills;
 	int32 Points = 0;

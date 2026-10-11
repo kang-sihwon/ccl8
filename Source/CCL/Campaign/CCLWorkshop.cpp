@@ -4,6 +4,7 @@
 #include "Components/StaticMeshComponent.h"
 #include "Components/TextRenderComponent.h"
 #include "Engine/Font.h"
+#include "Misc/CoreMisc.h"
 #include "Engine/StaticMesh.h"
 #include "Net/UnrealNetwork.h"
 #include "UObject/ConstructorHelpers.h"
@@ -23,10 +24,13 @@ ACCLWorkshop::ACCLWorkshop()
 	Store->SetStaticMesh(Mesh.Object);
 	Label = CreateDefaultSubobject<UTextRenderComponent>(TEXT("Label"));
 	Label->SetupAttachment(Store);
-	static ConstructorHelpers::FObjectFinder<UFont> KoreanFont(TEXT("/Game/UI/Fonts/F_KoreanLabel.F_KoreanLabel"));
-	if (KoreanFont.Succeeded())
+	if (!IsRunningDedicatedServer())
 	{
-		Label->SetFont(KoreanFont.Object);
+		static ConstructorHelpers::FObjectFinder<UFont> KoreanFont(TEXT("/Game/UI/Fonts/F_KoreanLabel.F_KoreanLabel"));
+		if (KoreanFont.Succeeded())
+		{
+			Label->SetFont(KoreanFont.Object);
+		}
 	}
 
 	Label->SetRelativeLocation(FVector(0, 0, 110));

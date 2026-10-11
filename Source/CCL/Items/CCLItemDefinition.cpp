@@ -127,18 +127,9 @@ bool UCCLItemDefinition::ConfigurePerishable(double ShelfLifeSeconds, double Mol
 	return true;
 }
 
-FText UCCLItemDefinition::GetLabel() const
-{
-	return ItemName.IsEmpty() ? FText::FromString(GetName()) : ItemName;
-}
-
-int32 UCCLItemDefinition::GetMaxStack() const
-{
-	return FMath::Clamp(MaxStackCount, 1, 1000);
-}
-
 bool UCCLItemDefinition::ValidateDefinition(TArray<FText>& Errors) const
 {
+	Super::ValidateDefinition(Errors);
 	auto Fail = [&Errors](const TCHAR* Message) { Errors.Add(FText::FromString(Message)); };
 	const auto* Equip = FindFragment<FCCLItemFragment_Equip>();
 	const auto* Weapon = FindFragment<FCCLItemFragment_Weapon>();
@@ -224,18 +215,3 @@ bool UCCLItemDefinition::ValidateDefinition(TArray<FText>& Errors) const
 
 	return Errors.IsEmpty();
 }
-
-#if WITH_EDITOR
-EDataValidationResult UCCLItemDefinition::IsDataValid(FDataValidationContext& Context) const
-{
-	const EDataValidationResult Parent = Super::IsDataValid(Context);
-	TArray<FText> Errors;
-	ValidateDefinition(Errors);
-	for (const FText& Error : Errors)
-	{
-		Context.AddError(Error);
-	}
-
-	return Errors.IsEmpty() && Parent != EDataValidationResult::Invalid ? EDataValidationResult::Valid : EDataValidationResult::Invalid;
-}
-#endif

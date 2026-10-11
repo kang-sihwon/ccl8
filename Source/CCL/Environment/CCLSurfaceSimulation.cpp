@@ -399,7 +399,7 @@ bool FCCLSurfaceSimulation::ChangeClimate(FGuid RegionId, const FCCLClimate& Cli
 	return true;
 }
 
-bool FCCLSurfaceSimulation::Advance(const FCCLWorldStep& Step, FString& Error,
+bool FCCLSurfaceSimulation::Advance(const FKSIWorldStep& Step, FString& Error,
 	const FCCLCelestialSystem* Celestial, const FCCLCelestialObserver* Observer, const ICCLSurfaceProvider* Shelter,
 	const TArray<FCCLSurfaceOpening>* Openings)
 {

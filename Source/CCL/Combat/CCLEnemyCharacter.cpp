@@ -51,7 +51,7 @@ ACCLEnemyCharacter::ACCLEnemyCharacter()
 	Fighter = CreateDefaultSubobject<UCCLFighterComponent>(TEXT("Fighter"));
 	Fighter->Team = 1;
 	Fighter->InitialHealth = 80.f;
-	Fighter->DefaultItem = TSoftObjectPtr<UCCLItemDefinition>(FSoftObjectPath(TEXT("/Game/Combat/DA_EnemyUnarmed.DA_EnemyUnarmed")));
+	Fighter->DefaultItem = TSoftObjectPtr<UKSIItemDefinition>(FSoftObjectPath(TEXT("/Game/Combat/DA_EnemyUnarmed.DA_EnemyUnarmed")));
 	Fighter->CombatAnimClass = TSoftClassPtr<UAnimInstance>(FSoftObjectPath(TEXT("/Game/Combat/ABP_Combat.ABP_Combat_C")));
 	Fighter->DodgeMontage = TSoftObjectPtr<UAnimMontage>(FSoftObjectPath(TEXT("/Game/Combat/AM_Dodge.AM_Dodge")));
 	Fighter->DefenseMontage = TSoftObjectPtr<UAnimMontage>(FSoftObjectPath(TEXT("/Game/Combat/AM_DefensePose.AM_DefensePose")));

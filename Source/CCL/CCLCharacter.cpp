@@ -36,7 +36,7 @@ ACCLCharacter::ACCLCharacter(const FObjectInitializer& ObjectInitializer)
 	bReplicates = true;
 	Fighter = CreateDefaultSubobject<UCCLFighterComponent>(TEXT("Fighter"));
 	Fighter->AttachmentProfile = TSoftObjectPtr<UCCLAttachmentProfile>(FSoftObjectPath(TEXT("/Game/Progression/DA_HumanoidAttachments.DA_HumanoidAttachments")));
-	Fighter->DefaultItem = TSoftObjectPtr<UCCLItemDefinition>(FSoftObjectPath(TEXT("/Game/Combat/DA_Unarmed.DA_Unarmed")));
+	Fighter->DefaultItem = TSoftObjectPtr<UKSIItemDefinition>(FSoftObjectPath(TEXT("/Game/Combat/DA_Unarmed.DA_Unarmed")));
 	Fighter->CombatAnimClass = TSoftClassPtr<UAnimInstance>(FSoftObjectPath(TEXT("/Game/Combat/ABP_Combat.ABP_Combat_C")));
 	Fighter->DodgeMontage = TSoftObjectPtr<UAnimMontage>(FSoftObjectPath(TEXT("/Game/Combat/AM_Dodge.AM_Dodge")));
 	Fighter->DefenseMontage = TSoftObjectPtr<UAnimMontage>(FSoftObjectPath(TEXT("/Game/Combat/AM_DefensePose.AM_DefensePose")));

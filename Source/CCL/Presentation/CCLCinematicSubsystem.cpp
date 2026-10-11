@@ -1,4 +1,4 @@
-﻿#include "CCLCinematicSubsystem.h"
+#include "CCLCinematicSubsystem.h"
 
 #include "UI/CCLUIInputData.h"
 #include "UI/CCLGameUI.h"

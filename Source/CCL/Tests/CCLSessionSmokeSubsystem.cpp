@@ -437,7 +437,7 @@ void UCCLSessionSmokeSubsystem::Tick(float DeltaTime)
 		const auto* FoodItem = Record.Items.FindByPredicate([](const auto& E) { return E.Definition == TEXT("DA_Bread"); });
 		FString ActualFood, FoodError;
 		if (!Check(FoodItem && Inventory->Find(FoodItem->Id) && Inventory->Find(FoodItem->Id)->Quantity == 2
-			&& CCLFood::Encode(Inventory->Find(FoodItem->Id)->Food, ActualFood, FoodError)
+			&& CCLFood::Encode(Inventory->Find(FoodItem->Id)->GetState<FCCLItemState>().Food, ActualFood, FoodError)
 			&& ActualFood == FoodItem->Food && !ActualFood.IsEmpty(), TEXT("session food history restored with equipped profile")))
 		{
 			return;

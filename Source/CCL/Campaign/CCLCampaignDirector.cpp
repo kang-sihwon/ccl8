@@ -26,7 +26,7 @@ namespace
 		FCCLSupplySpawn Spawn;
 		Spawn.PlacementId = FGuid(0xCC190000, 0, 2, Id);
 		Spawn.Location = Location;
-		Spawn.Item = TSoftObjectPtr<UCCLItemDefinition>(FSoftObjectPath(Item));
+		Spawn.Item = TSoftObjectPtr<UKSIItemDefinition>(FSoftObjectPath(Item));
 		Spawn.Quantity = Quantity;
 		return Spawn;
 	}

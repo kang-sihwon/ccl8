@@ -98,7 +98,7 @@ bool ACCLExperimentDirector::RunVegetation(FString& Error)
 	{
 		return false;
 	}
-	FCCLWorldStep Step;
+	FKSIWorldStep Step;
 	Step.StepId = Candidate.GetStepId() + 1;
 	Step.GameFromSeconds = Candidate.GetGameSeconds();
 	Step.GameToSeconds = Step.GameFromSeconds + 1.;

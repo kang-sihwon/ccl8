@@ -108,7 +108,7 @@ void UCCLFighterComponent::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>&
 	DOREPLIFETIME(UCCLFighterComponent, AttackOverride);
 }
 
-void UCCLFighterComponent::PresentEquipment(UCCLItemDefinition* LeftHand, UCCLItemDefinition* RightHand)
+void UCCLFighterComponent::PresentEquipment(UKSIItemDefinition* LeftHand, UKSIItemDefinition* RightHand)
 {
 	LeftHandItem = LeftHand;
 	RightHandItem = RightHand;
@@ -123,7 +123,7 @@ void UCCLFighterComponent::PresentEquipment(UCCLItemDefinition* LeftHand, UCCLIt
 	GetOwner()->ForceNetUpdate();
 }
 
-void UCCLFighterComponent::SelectActiveItem(UCCLItemDefinition* InItem)
+void UCCLFighterComponent::SelectActiveItem(UKSIItemDefinition* InItem)
 {
 	Item = InItem ? InItem : LoadDefaultItem();
 
@@ -326,7 +326,7 @@ void UCCLFighterComponent::NotifyHit(FGameplayTag Outcome)
 	}
 }
 
-UCCLItemDefinition* UCCLFighterComponent::LoadDefaultItem() const
+UKSIItemDefinition* UCCLFighterComponent::LoadDefaultItem() const
 {
 	return DefaultItem.LoadSynchronous();
 }

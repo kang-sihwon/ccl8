@@ -26,6 +26,17 @@ UE_DEFINE_GAMEPLAY_TAG_STATIC(ProbeView, "UI.View.Tool");
 #include "KSIMapSystem.h"
 #endif
 
+#if WITH_KSI_CORE || WITH_KSI_INVENTORY
+#include "KSIWorldParticipant.h"
+#include "KSIWorldTime.h"
+#endif
+#if WITH_KSI_INVENTORY
+#include "KSIInventoryComponent.h"
+#include "KSIItemDefinition.h"
+#include "Misc/FileHelper.h"
+#include "Misc/Paths.h"
+#endif
+
 IMPLEMENT_PRIMARY_GAME_MODULE(FDefaultGameModuleImpl, KSIProbe, "KSIProbe");
 
 bool UKSIProbe::ShouldCreateSubsystem(UObject* Outer) const
@@ -177,6 +188,114 @@ void UKSIProbe::Tick(float DeltaTime)
         Map->Refresh(nullptr);
         Check(Map->GetMarkers().IsEmpty(), TEXT("observer release clears markers"));
     }
+#endif
+#if WITH_KSI_CORE
+    Check(!FModuleManager::Get().IsModuleLoaded("CCL") && !FModuleManager::Get().IsModuleLoaded("KSIInventory"), TEXT("contracts have no game or inventory module"));
+    FKSIWorldSectionRegistry::Register(TEXT("Probe"), 10,
+        [](const FKSIWorldSectionContext& Context, const TArray<uint8>& Bytes, FString& Error)
+        {
+            return Context.WorldId.IsValid() && Context.WorldSeconds == 42. && Bytes.Num() == 1;
+        });
+    FKSIWorldSectionContext Context;
+    Context.WorldId = FGuid::NewGuid();
+    Context.WorldSeconds = 42.;
+    FString Error;
+    const auto* Section = FKSIWorldSectionRegistry::Find(TEXT("Probe"));
+    Check(Section && Section->Validator(Context, {1}, Error), TEXT("section registration and validation without game facts"));
+    Check(FKSIWorldSectionRegistry::GetOrdered().Num() == 1, TEXT("deterministic section registry"));
+    FKSIWorldSectionRegistry::Unregister(TEXT("Probe"));
+    {
+        const FKSIWorldSectionRegistrar Registration(TEXT("Scoped"), 1,
+            [](const FKSIWorldSectionContext&, const TArray<uint8>&, FString&) { return true; });
+        Check(FKSIWorldSectionRegistry::Find(TEXT("Scoped")) != nullptr, TEXT("validator registration scope"));
+    }
+    Check(FKSIWorldSectionRegistry::GetOrdered().IsEmpty(), TEXT("owner lifetime releases validator callback"));
+    struct FClock final : IKSIWorldTimeSource
+    {
+        virtual bool ReadWorldTime(FKSIWorldTimeView& Out) const override
+        {
+            Out.WorldSeconds = 42.;
+            return true;
+        }
+    } Clock;
+    FKSIWorldTimeView Time;
+    Check(Clock.ReadWorldTime(Time) && Time.WorldSeconds == 42., TEXT("external clock read contract"));
+#endif
+#if WITH_KSI_INVENTORY
+    Check(!FModuleManager::Get().IsModuleLoaded("CCL") && !FModuleManager::Get().IsModuleLoaded("KSIUI"), TEXT("storage without game extensions or UI"));
+    auto MakeBox = [this]()
+    {
+        auto* Actor = GetWorld()->SpawnActor<AActor>();
+        auto* Box = NewObject<UKSIInventoryComponent>(Actor);
+        Actor->AddInstanceComponent(Box);
+        Box->RegisterComponent();
+        Box->Capacity = 2;
+        return Box;
+    };
+    auto* A = MakeBox();
+    auto* B = MakeBox();
+    auto* Definition = NewObject<UKSIItemDefinition>(this, TEXT("PlainMaterial"));
+    Definition->MaxStackCount = 10;
+    TArray<FText> DefinitionErrors;
+    Check(Definition->ValidateDefinition(DefinitionErrors), TEXT("generic item definition without registered features"));
+    const FGuid Id = A->Add(Definition, 3);
+    Check(Id.IsValid() && A->Add(Definition, 2) == Id && A->Find(Id)->Quantity == 5, TEXT("storage and stacking preserve identity"));
+    Check(A->MoveToSlot(Id, 1) && A->FindSlot(1)->Id == Id, TEXT("slot move"));
+    int32 Notifications = 0;
+    bool bAtomic = true;
+    bool bReentryRejected = true;
+    const FDelegateHandle Listener = A->OnChanged.AddLambda([&]()
+    {
+        ++Notifications;
+        bAtomic = bAtomic && A->Find(Id) && A->Find(Id)->Quantity == 3 && B->GetEntries().Num() == 1;
+        bReentryRejected = bReentryRejected && !A->Remove(Id, 1) && !B->Add(Definition, 1).IsValid();
+    });
+    Check(A->TransferTo(Id, 2, *B), TEXT("two-container partial transfer"));
+    A->OnChanged.Remove(Listener);
+    Check(Notifications == 1 && bAtomic && bReentryRejected, TEXT("transfer observers see both commits and cannot reenter"));
+    Check(B->GetEntries().Num() == 1 && B->GetEntries()[0].Id != Id && B->GetEntries()[0].Quantity == 2, TEXT("split creates new identity"));
+    Check(A->TransferTo(Id, 3, *B) && !A->Find(Id) && B->Find(Id), TEXT("whole transfer preserves identity"));
+    const FGuid Extra = A->Add(Definition, 1);
+    Check(!A->TransferTo(Extra, 1, *B) && A->Find(Extra)->Quantity == 1, TEXT("full destination rejects atomically"));
+    TArray<uint8> Saved;
+    Check(B->Capture(Saved), TEXT("capture bounded storage bytes"));
+    const FString Path = FPaths::ProjectSavedDir() / TEXT("plain-inventory.bin");
+    Check(FFileHelper::SaveArrayToFile(Saved, *Path), TEXT("write inventory snapshot"));
+    TArray<uint8> Read;
+    Check(FFileHelper::LoadFileToArray(Read, *Path) && Read == Saved, TEXT("read identical snapshot bytes"));
+    auto Resolve = [Definition](const FString& Name) -> UKSIItemDefinition*
+    {
+        return Name == Definition->GetPrimaryAssetId().ToString() ? Definition : nullptr;
+    };
+    Check(B->Restore({}) && B->RestoreSnapshot(Read, Resolve) && B->Find(Id) && B->Find(Id)->Quantity == 3, TEXT("restore identity and quantity through explicit catalog resolver"));
+    bool bResolverLocked = true;
+    Check(B->RestoreSnapshot(Read, [&](const FString& Name) -> UKSIItemDefinition*
+    {
+        bResolverLocked = bResolverLocked && !B->Remove(Id, 1);
+        return Resolve(Name);
+    }) && bResolverLocked, TEXT("catalog callback cannot mutate storage during restore"));
+    TArray<uint8> Corrupt = Read;
+    Corrupt.Add(99);
+    Check(!B->RestoreSnapshot(Corrupt, Resolve) && B->Find(Id)->Quantity == 3, TEXT("trailing data rejected without mutation"));
+    Check(!B->RestoreSnapshot(Read, [](const FString&) -> UKSIItemDefinition* { return nullptr; }), TEXT("unknown definition rejected"));
+    for (int32 Length = 0; Length < Read.Num(); ++Length)
+    {
+        Corrupt = Read;
+        Corrupt.SetNum(Length);
+        if (B->RestoreSnapshot(Corrupt, Resolve))
+        {
+            Check(false, TEXT("truncated snapshot accepted"));
+            break;
+        }
+    }
+    TArray<uint8> After;
+    Check(B->Capture(After) && After == Saved, TEXT("rejected saves preserve byte-exact state"));
+    auto* FirstDefinition = NewObject<UKSIItemDefinition>(A, TEXT("DuplicateId"));
+    auto* SecondDefinition = NewObject<UKSIItemDefinition>(B, TEXT("DuplicateId"));
+    Check(A->Restore({}) && A->Add(FirstDefinition, 1).IsValid() && A->Add(SecondDefinition, 1).IsValid(), TEXT("distinct definitions can be held in separate slots"));
+    Check(!A->Capture(After), TEXT("ambiguous primary asset identities rejected before save"));
+    A->GetOwner()->Destroy();
+    B->GetOwner()->Destroy();
 #endif
     bFinished = 1;
     UE_LOG(LogTemp, Display, TEXT("KSI_PROBE %s"), bPassed ? TEXT("PASS") : TEXT("FAIL"));

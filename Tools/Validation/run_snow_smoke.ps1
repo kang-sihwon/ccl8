@@ -15,7 +15,7 @@ $runId = [Guid]::NewGuid().ToString('N')
 $processes = [Collections.Generic.List[object]]::new()
 function Start-Snow([string]$Name, [string[]]$Options) {
     $log = Join-Path $directory ($Name+'.log')
-    $args = @(('"'+$root+'/CCL.uproject"')) + $Options + @('-unattended','-nop4','-nosplash','-nosound','-NoLiveCoding','-CCLSnowSmoke',('-CCLSnowRole='+$Name),
+    $args = @(('"'+$root+'/CCL.uproject"')) + $Options + @('-unattended','-nop4','-nosplash','-nosound','-NoLiveCoding','-CCLSnowSmoke',('-CCLSnowRole='+$Name),('-CCLSnowTimeoutSeconds='+$TimeoutSeconds),
         ('-CCLSnowSmokeDir="'+$directory+'"'),('-CCLExperimentRun='+$runId),('-ExecCmds="t.MaxFPS 60' + $(if ($Correction) { ',NetEmulation.PktLag 50,NetEmulation.PktLoss 2' } else { '' }) + '"'),('-abslog="'+$log+'"'))
     if ($Correction) { $args += '-CCLSnowCorrection' }
     if ($Rendered -and $Mode -eq 'Standalone') { $args += @('-CCLSnowCapture','-windowed','-ForceRes','-ResX=1280','-ResY=720') }

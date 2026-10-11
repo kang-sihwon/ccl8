@@ -1,4 +1,5 @@
 #include "CCLFoodEnvironmentSmokeSubsystem.h"
+#include "Items/CCLInventoryFood.h"
 
 #include "Environment/CCLFoodExperiment.h"
 #include "Environment/CCLExperimentDirector.h"
@@ -144,6 +145,16 @@ void UCCLFoodEnvironmentSmokeSubsystem::Tick(float DeltaTime)
 			Next = Now + .25;
 			return false;
 		}
+		// Food holds the last whole-second sample between boundaries; observe that source independently.
+		const double WorldSeconds = R->GetClock().GetWorldSeconds();
+		if (FMath::IsNearlyEqual(WorldSeconds, FMath::RoundToDouble(WorldSeconds), 1.e-9))
+		{
+			if (const auto* Room = R->GetSurfaceSimulation().GetAirSimulation().FindSpace(D->FireSpaceId()))
+			{
+				ExpectedRoomTemperature = FMath::Clamp(Room->TemperatureCelsius(), -80., 80.);
+				ExpectedRoomSampleTime = WorldSeconds;
+			}
+		}
 		return true;
 	};
 	const bool bRendered = FParse::Param(FCommandLine::Get(), TEXT("CCLFoodEnvironmentCapture"));
@@ -284,8 +295,10 @@ void UCCLFoodEnvironmentSmokeSubsystem::Tick(float DeltaTime)
 		{
 			return;
 		}
-		FrozenSpoilage = Open->GetEntries()[0].Food.Lots[0].SpoilageSeconds;
+		FrozenSpoilage = Open->GetEntries()[0].GetState<FCCLItemState>().Food.Lots[0].SpoilageSeconds;
 		InitialRoomTemperature = Sealed->GetFoodEnvironment().Conditions.TemperatureCelsius;
+		ExpectedRoomTemperature = InitialRoomTemperature;
+		ExpectedRoomSampleTime = Sealed->GetFoodEnvironment().SampleWorldSeconds;
 		if (!Check(R->ChangeTimeScale(4., Error), TEXT("frozen world interval")))
 		{
 			return;
@@ -301,7 +314,7 @@ void UCCLFoodEnvironmentSmokeSubsystem::Tick(float DeltaTime)
 			Advance();
 			return;
 		}
-		if (!Check(Open->GetEntries()[0].Food.Lots[0].SpoilageSeconds == FrozenSpoilage,
+		if (!Check(Open->GetEntries()[0].GetState<FCCLItemState>().Food.Lots[0].SpoilageSeconds == FrozenSpoilage,
 				   TEXT("frozen exposure preserves prior history")))
 		{
 			return;
@@ -346,16 +359,20 @@ void UCCLFoodEnvironmentSmokeSubsystem::Tick(float DeltaTime)
 			return;
 		}
 		if (!Check(Open->BindPersistence(ACCLFoodExperiment::ContainerId(0), Error) &&
-					   Open->GetEntries()[0].Food.Lots[0].SpoilageSeconds > FrozenSpoilage &&
+					   Open->GetEntries()[0].GetState<FCCLItemState>().Food.Lots[0].SpoilageSeconds > FrozenSpoilage &&
 					   Open->GetFoodEnvironment().Conditions.TemperatureCelsius == 30.,
 				   TEXT("unloaded container continued in warm environment")))
 		{
 			return;
 		}
 		const auto* Room = R->GetSurfaceSimulation().GetAirSimulation().FindSpace(D->FireSpaceId());
+		UE_LOG(LogTemp, Display, TEXT("CCL_FOOD_ENVIRONMENT room sample time=%.12f initial=%.12f actual=%.12f held=%.12f"),
+			R->GetClock().GetWorldSeconds(), InitialRoomTemperature, Room ? Room->TemperatureCelsius() : -999.,
+			Sealed->GetFoodEnvironment().Conditions.TemperatureCelsius);
 		if (!Check(Room && Room->TemperatureCelsius() > InitialRoomTemperature + .01 && FMath::IsNearlyEqual(Sealed->GetFoodEnvironment().Conditions.TemperatureCelsius,
-												FMath::Clamp(Room->TemperatureCelsius(), -80., 80.), 1.e-8),
-				   TEXT("indoor food follows actual room heat")))
+												ExpectedRoomTemperature, 1.e-8) &&
+			FMath::IsNearlyEqual(Sealed->GetFoodEnvironment().SampleWorldSeconds, ExpectedRoomSampleTime, 1.e-8),
+				   TEXT("indoor food follows actual room heat at the last sampling boundary")))
 		{
 			return;
 		}
@@ -366,10 +383,10 @@ void UCCLFoodEnvironmentSmokeSubsystem::Tick(float DeltaTime)
 		const FGuid OriginalId = Open->GetEntries()[0].Id;
 		const int32 Quantity = Open->GetEntries()[0].Quantity;
 		if (!Check(Empty->BindPersistence(FGuid(940, 941, 942, 943), Error) &&
-					   Empty->ChangeFoodEnvironment(Binding, Error) &&
-					   Open->TransferFood(OriginalId, Quantity, Empty) && Empty->GetEntries()[0].Id == OriginalId &&
-					   Empty->GetEntries()[0].Food.Storage == Empty->GetFoodEnvironment().Conditions &&
-					   Empty->TransferFood(OriginalId, Quantity, Open),
+					   FCCLInventoryFood::ChangeFoodEnvironment(*Empty, Binding, Error) &&
+					   FCCLInventoryFood::TransferFood(*Open, OriginalId, Quantity, Empty) && Empty->GetEntries()[0].Id == OriginalId &&
+					   Empty->GetEntries()[0].GetState<FCCLItemState>().Food.Storage == Empty->GetFoodEnvironment().Conditions &&
+					   FCCLInventoryFood::TransferFood(*Empty, OriginalId, Quantity, Open),
 				   TEXT("empty environment target inherits conditions and preserves identity")))
 		{
 			return;

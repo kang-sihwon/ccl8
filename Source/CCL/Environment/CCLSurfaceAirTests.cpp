@@ -49,9 +49,9 @@ namespace
 		return S;
 	}
 
-	FCCLWorldStep CoupledStep(const FCCLSurfaceSimulation& S, double Game, double World = 0.)
+	FKSIWorldStep CoupledStep(const FCCLSurfaceSimulation& S, double Game, double World = 0.)
 	{
-		FCCLWorldStep R;
+		FKSIWorldStep R;
 		R.StepId = S.GetStepId() + 1;
 		R.GameFromSeconds = S.GetGameSeconds();
 		R.GameToSeconds = R.GameFromSeconds + Game;

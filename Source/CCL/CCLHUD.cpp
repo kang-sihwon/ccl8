@@ -1,4 +1,4 @@
-﻿#include "CCLHUD.h"
+#include "CCLHUD.h"
 
 #include "UI/CCLUIInputData.h"
 #include "Presentation/CCLCinematicSubsystem.h"

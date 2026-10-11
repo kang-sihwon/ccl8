@@ -1,4 +1,5 @@
 #include "CCLLoadoutRestoreSmokeSubsystem.h"
+#include "Items/CCLInventoryFood.h"
 
 #include "CCLPlayerState.h"
 #include "Session/CCLPlayerPersistenceSubsystem.h"
@@ -265,8 +266,8 @@ bool UCCLLoadoutRestoreSmokeSubsystem::CheckProfiles(ACCLPlayerState& First)
 	FCCLFoodEnvironmentBinding Weather;
 	Weather.Source = ECCLFoodEnvironment::WeatherRegion;
 	Weather.SourceId = ACCLExperimentDirector::Find(W)->WeatherRegionId();
-	if (!Check(First.GetInventory()->ChangeFoodEnvironment(Weather, Error) &&
-				   Second->GetInventory()->ChangeFoodEnvironment(Weather, Error),
+	if (!Check(FCCLInventoryFood::ChangeFoodEnvironment(*First.GetInventory(), Weather, Error) &&
+				   FCCLInventoryFood::ChangeFoodEnvironment(*Second->GetInventory(), Weather, Error),
 			   TEXT("dynamic player food binding")))
 	{
 		return false;

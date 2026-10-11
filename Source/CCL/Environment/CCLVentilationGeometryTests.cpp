@@ -190,7 +190,7 @@ bool FCCLVentCoupledTest::RunTest(const FString& Parameters)
 	TestTrue(TEXT("room added"), Original.AddAirSpace(Room, Error));
 	TArray<FCCLSurfaceOpening> Doors = {VentDoor()};
 	FCCLSurfaceScene Scene;
-	FCCLWorldStep Step;
+	FKSIWorldStep Step;
 	Step.StepId = 1;
 	Step.GameToSeconds = 0.25;
 	Scene.Replace({VentWall()}, Doors, 1, Error);

@@ -137,7 +137,7 @@ bool FCCLWorldClock::ChangeTimeScale(double NewScale, FString& Error)
 	return true;
 }
 
-bool FCCLWorldClock::Prepare(double MaxGameSeconds, double MaxWorldSeconds, FCCLWorldStep& OutStep, FString& Error)
+bool FCCLWorldClock::Prepare(double MaxGameSeconds, double MaxWorldSeconds, FKSIWorldStep& OutStep, FString& Error)
 {
 	Error.Reset();
 	OutStep = {};
@@ -159,7 +159,7 @@ bool FCCLWorldClock::Prepare(double MaxGameSeconds, double MaxWorldSeconds, FCCL
 		Delta = FMath::Min(Delta, MaxWorldSeconds / Pending.Scale);
 	}
 
-	FCCLWorldStep Candidate;
+	FKSIWorldStep Candidate;
 	Candidate.StepId = State.CompletedStepId + 1;
 	Candidate.GameFromSeconds = State.GameSeconds;
 	Candidate.GameToSeconds = State.GameSeconds + Delta;

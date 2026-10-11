@@ -41,7 +41,7 @@ bool UCCLAttachmentProfile::Resolve(const USkeletalMesh* Mesh, FGameplayTag Poin
 	return true;
 }
 
-bool UCCLAttachmentProfile::ValidateItem(const UCCLItemDefinition* Item, const USkeletalMesh* Mesh, FString& Error) const
+bool UCCLAttachmentProfile::ValidateItem(const UKSIItemDefinition* Item, const USkeletalMesh* Mesh, FString& Error) const
 {
 	Error.Reset();
 	TArray<FText> Errors;

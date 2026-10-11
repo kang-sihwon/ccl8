@@ -1,4 +1,4 @@
-﻿#include "CCLUIFoundationSmoke.h"
+#include "CCLUIFoundationSmoke.h"
 
 #include "KSIUIContext.h"
 #include "KSIUIRegistry.h"

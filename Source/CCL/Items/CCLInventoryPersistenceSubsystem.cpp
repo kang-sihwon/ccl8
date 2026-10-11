@@ -45,8 +45,8 @@ bool CaptureInventory(const UCCLInventoryComponent& Inventory, FCCLInventorySnap
 		Item.Definition = Entry.Definition->GetPathName();
 		Item.Quantity = Entry.Quantity;
 		Item.Slot = Entry.Slot;
-		Item.LoadedAmmo = Entry.LoadedAmmo;
-		if (!CCLFood::Encode(Entry.Food, Item.Food, Error))
+		Item.LoadedAmmo = Entry.GetState<FCCLItemState>().LoadedAmmo;
+		if (!CCLFood::Encode(Entry.GetState<FCCLItemState>().Food, Item.Food, Error))
 		{
 			return false;
 		}
@@ -54,17 +54,17 @@ bool CaptureInventory(const UCCLInventoryComponent& Inventory, FCCLInventorySnap
 	return true;
 }
 
-bool Resolve(const FCCLInventorySnapshot& Record, TArray<FCCLInventoryEntry>& Entries, FString& Error)
+bool Resolve(const FCCLInventorySnapshot& Record, TArray<FKSIInventoryEntry>& Entries, FString& Error)
 {
 	for (const auto& Item : Record.Items)
 	{
 		auto& Entry = Entries.AddDefaulted_GetRef();
 		Entry.Id = Item.Id;
-		Entry.Definition = LoadObject<UCCLItemDefinition>(nullptr, *Item.Definition);
+		Entry.Definition = LoadObject<UKSIItemDefinition>(nullptr, *Item.Definition);
 		Entry.Quantity = Item.Quantity;
 		Entry.Slot = Item.Slot;
-		Entry.LoadedAmmo = Item.LoadedAmmo;
-		if (Entry.Slot < 0 || !CCLFood::Decode(Item.Food, Entry.Food, Error))
+		Entry.GetState<FCCLItemState>().LoadedAmmo = Item.LoadedAmmo;
+		if (Entry.Slot < 0 || !CCLFood::Decode(Item.Food, Entry.GetState<FCCLItemState>().Food, Error))
 		{
 			return Reject(Error, TEXT("Equipped or invalid stored inventory."));
 		}
@@ -86,6 +86,7 @@ void UCCLInventoryPersistenceSubsystem::Initialize(FSubsystemCollectionBase& Col
 	if (auto* World = Collection.InitializeDependency<UCCLWorldSimulationSubsystem>())
 	{
 		World->RegisterParticipant(*this);
+		World->RegisterAdvanceParticipant(*this);
 	}
 }
 
@@ -93,6 +94,7 @@ void UCCLInventoryPersistenceSubsystem::Deinitialize()
 {
 	if (auto* World = GetWorld()->GetSubsystem<UCCLWorldSimulationSubsystem>())
 	{
+		World->UnregisterAdvanceParticipant(*this);
 		World->UnregisterParticipant(*this);
 	}
 	Super::Deinitialize();
@@ -103,7 +105,7 @@ FName UCCLInventoryPersistenceSubsystem::GetWorldSection() const
 	return CCLInventorySnapshot::WorldSection();
 }
 
-bool UCCLInventoryPersistenceSubsystem::CaptureWorldSection(FCCLWorldCaptureContext& Context, TArray<uint8>& OutBytes,
+bool UCCLInventoryPersistenceSubsystem::CaptureWorldSection(FKSIWorldCaptureContext& Context, TArray<uint8>& OutBytes,
 															FString& Error)
 {
 	TArray<UCCLInventoryComponent*> Claimed;
@@ -121,7 +123,7 @@ bool UCCLInventoryPersistenceSubsystem::CaptureWorldSection(FCCLWorldCaptureCont
 		   CCLInventorySnapshot::Encode(Stored, Context.WorldId, Context.WorldSeconds, OutBytes, Error);
 }
 
-bool UCCLInventoryPersistenceSubsystem::PrepareWorldRestore(FCCLWorldRestoreContext& Context, const TArray<uint8>* Section,
+bool UCCLInventoryPersistenceSubsystem::PrepareWorldRestore(FKSIWorldRestoreContext& Context, const TArray<uint8>* Section,
 															FString& Error)
 {
 	TArray<FCCLInventorySnapshot> Stored;
@@ -178,7 +180,7 @@ bool UCCLInventoryPersistenceSubsystem::Bind(UCCLInventoryComponent& Inventory, 
 	{
 		return Existing->Get() == &Inventory || Reject(Error, TEXT("Persistent container already has a live owner."));
 	}
-	TArray<FCCLInventoryEntry> Entries;
+	TArray<FKSIInventoryEntry> Entries;
 	if (const auto* Stored = Records.Find(Id))
 	{
 		if ((Stored->Owner == ECCLInventoryOwner::FoodPickup) != (PickupOwner(Inventory) != nullptr) ||
@@ -300,7 +302,7 @@ bool UCCLInventoryPersistenceSubsystem::CheckUnboundFood(FString& Error,
 		}
 		for (const auto& Entry : It->GetEntries())
 		{
-			if (*It != SessionInventory && !PlayerInventories.Contains(*It) && Entry.Food.IsPresent() && Live.FindRef(It->GetPersistenceId()).Get() != *It)
+			if (*It != SessionInventory && !PlayerInventories.Contains(*It) && Entry.GetState<FCCLItemState>().Food.IsPresent() && Live.FindRef(It->GetPersistenceId()).Get() != *It)
 			{
 				return Reject(Error, TEXT("Food inventory needs an explicit persistent container identity before world "
 										  "save or restore."));
@@ -357,7 +359,7 @@ bool UCCLInventoryPersistenceSubsystem::PrepareRestore(const TArray<FCCLInventor
 	{
 		return false;
 	}
-	TMap<FGuid, TArray<FCCLInventoryEntry>> Resolved;
+	TMap<FGuid, TArray<FKSIInventoryEntry>> Resolved;
 	for (const auto& Record : Input)
 	{
 		if (!Resolve(Record, Resolved.FindOrAdd(Record.ContainerId), Error))
@@ -551,7 +553,7 @@ bool UCCLInventoryPersistenceSubsystem::HasEnvironmentBindings() const
 	return false;
 }
 
-bool UCCLInventoryPersistenceSubsystem::PrepareAdvance(const FCCLWorldStep& Step, const FCCLSurfaceSimulation& Surface,
+bool UCCLInventoryPersistenceSubsystem::PrepareAdvance(const FKSIWorldStep& Step, const FCCLSurfaceSimulation& Surface,
 													   FString& Error)
 {
 	if (bPreparing || bCaptureFailed || GetWorld()->GetNetMode() == NM_Client ||
@@ -566,7 +568,7 @@ bool UCCLInventoryPersistenceSubsystem::PrepareAdvance(const FCCLWorldStep& Step
 		return true;
 	}
 	auto Candidate = Records;
-	TMap<TWeakObjectPtr<UCCLInventoryComponent>, TArray<FCCLInventoryEntry>> Entries;
+	TMap<TWeakObjectPtr<UCCLInventoryComponent>, TArray<FKSIInventoryEntry>> Entries;
 	for (const auto& Pair : Live)
 	{
 		auto* Inventory = Pair.Value.Get();

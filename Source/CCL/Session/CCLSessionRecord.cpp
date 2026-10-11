@@ -13,7 +13,7 @@
 #include "Items/CCLInventorySnapshot.h"
 #include "CCLPlayerSnapshot.h"
 
-UCCLItemDefinition* FCCLSessionCodec::Item(FName Id)
+UKSIItemDefinition* FCCLSessionCodec::Item(FName Id)
 {
 	const auto* Catalog = UCCLItemCatalog::Get();
 	return Catalog ? Catalog->FindItem(Id) : nullptr;

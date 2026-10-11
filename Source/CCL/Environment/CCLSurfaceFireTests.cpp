@@ -30,9 +30,9 @@ namespace
 		return G;
 	}
 
-	FCCLWorldStep FireStep(const FCCLSurfaceSimulation& S, double GameDelta, double WorldDelta = 0.)
+	FKSIWorldStep FireStep(const FCCLSurfaceSimulation& S, double GameDelta, double WorldDelta = 0.)
 	{
-		FCCLWorldStep Step;
+		FKSIWorldStep Step;
 		Step.StepId = S.GetStepId() + 1;
 		Step.GameFromSeconds = S.GetGameSeconds();
 		Step.GameToSeconds = S.GetGameSeconds() + GameDelta;

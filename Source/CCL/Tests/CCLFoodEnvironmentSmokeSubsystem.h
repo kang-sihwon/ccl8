@@ -26,6 +26,8 @@ private:
 	double TargetWorld = 0.;
 	double FrozenSpoilage = 0.;
 	double InitialRoomTemperature = 0.;
+	double ExpectedRoomTemperature = 0.;
+	double ExpectedRoomSampleTime = 0.;
 	double SavedWorldTime = 0.;
 	TArray<uint8> SavedInventory;
 	int32 Step = 0;

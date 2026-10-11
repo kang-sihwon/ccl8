@@ -7,6 +7,7 @@
 #include "CCLWeaponAbility.generated.h"
 
 class UCCLCombatDefinition;
+class UKSIItemDefinition;
 class UCCLItemDefinition;
 class ACCLProjectile;
 
@@ -47,7 +48,7 @@ public:
 	int32 MagazineSize = 0;
 
 	UPROPERTY(EditAnywhere)
-	TObjectPtr<UCCLItemDefinition> Ammunition;
+	TObjectPtr<UKSIItemDefinition> Ammunition;
 };
 
 UCLASS()

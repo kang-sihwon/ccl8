@@ -1,4 +1,4 @@
-﻿#include "CCLGameUI.h"
+#include "CCLGameUI.h"
 
 #include "CCLInventoryScreen.h"
 #include "CCLSessionMenuScreen.h"

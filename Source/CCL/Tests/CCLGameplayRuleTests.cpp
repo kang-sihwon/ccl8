@@ -18,6 +18,11 @@
 #include "Items/CCLItemCatalog.h"
 #include "Items/CCLItemDefinition.h"
 #include "Items/CCLLoadoutComponent.h"
+#include "Items/CCLSkillDefinition.h"
+#include "AbilitySystem/CCLOffenseSet.h"
+#include "Environment/CCLSurfacePublication.h"
+#include "KSIWorldParticipant.h"
+#include "Misc/ScopeExit.h"
 #include "Session/CCLProfileIdentity.h"
 #include "Session/CCLSessionRecord.h"
 #include "Engine/Engine.h"
@@ -477,4 +482,162 @@ bool FCCLCampaignSupplyTest::RunTest(const FString& Parameters)
 	DefaultDirector->Guards.SetNum(3);
 	TestFalse(TEXT("legacy colliding guards rejected"), DefaultDirector->PrepareSupplyRestore(Legacy, Prepared, Error));
 	return true;
+}
+
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FCCLLoadoutPublicationTest, "CCL.Items.Loadout.AtomicPublication",
+	EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
+
+bool FCCLLoadoutPublicationTest::RunTest(const FString& Parameters)
+{
+	const auto* Catalog = UCCLItemCatalog::Get();
+	auto* Sword = Catalog ? Catalog->FindItem(TEXT("DA_IronGauntlets")) : nullptr;
+	auto* Skill = Catalog ? Catalog->FindSkill(TEXT("DA_PowerTraining")) : nullptr;
+	if (!TestNotNull(TEXT("equipment"), Sword) || !TestNotNull(TEXT("skill"), Skill))
+	{
+		return false;
+	}
+	FCCLRuleWorld Fixture;
+	auto* Player = Fixture.World->SpawnActor<ACCLPlayerState>();
+	auto* ASC = Player->GetCCLAbilitySystem();
+	ASC->InitAbilityActorInfo(Player, Player);
+	auto* Inventory = Player->GetInventory();
+	auto* Loadout = Player->GetLoadout();
+	Loadout->GrantPoints(10);
+	const FGuid Item = Inventory->Add(Sword, 1);
+	const float BaseAttack = ASC->GetNumericAttribute(UCCLOffenseSet::GetAttackBonusAttribute());
+	const int32 BagSlot = Inventory->Find(Item)->Slot;
+	int32 Notifications = 0;
+	bool bExpectEquipped = true;
+	const auto Changed = Inventory->OnChanged.AddLambda([&]()
+	{
+		++Notifications;
+		TestEqual(TEXT("equipment committed before inventory notification"), Loadout->IsEquipped(Item), bExpectEquipped);
+		const auto* Entry = Inventory->Find(Item);
+		TestTrue(TEXT("placement committed before notification"), Entry && (bExpectEquipped ? Entry->Slot == INDEX_NONE : Entry->Slot == BagSlot));
+		TestEqual(TEXT("effect committed before notification"), ASC->GetNumericAttribute(UCCLOffenseSet::GetAttackBonusAttribute()),
+			BaseAttack + (bExpectEquipped ? Sword->FindFragment<FCCLItemFragment_Equip>()->Magnitude : 0.f));
+		TestFalse(TEXT("equip notification cannot reenter unequip"), Loadout->Unequip(Item));
+		TestFalse(TEXT("notification cannot reenter training"), Loadout->Learn(Skill));
+		TestFalse(TEXT("notification cannot mutate inventory directly"), Inventory->Remove(Item, 1));
+	});
+	ON_SCOPE_EXIT
+	{
+		Inventory->OnChanged.Remove(Changed);
+	};
+	TestTrue(TEXT("equip succeeds"), Loadout->Equip(Item));
+	TestEqual(TEXT("equip publishes once"), Notifications, 1);
+	bExpectEquipped = false;
+	TestTrue(TEXT("unequip succeeds"), Loadout->Unequip(Item, BagSlot));
+	TestEqual(TEXT("unequip publishes once"), Notifications, 2);
+	Inventory->OnChanged.Remove(Changed);
+
+	bool bReject = true;
+	int32 QueryCalls = 0;
+	FGameplayEffectApplicationQuery Query = FGameplayEffectApplicationQuery::CreateLambda(
+		[&](const FActiveGameplayEffectsContainer&, const FGameplayEffectSpec&)
+		{
+			++QueryCalls;
+			TestFalse(TEXT("GAS query cannot reenter equip"), Loadout->Equip(Item));
+			TestFalse(TEXT("GAS query cannot remove staged item"), Inventory->Remove(Item, 1));
+			TestFalse(TEXT("GAS query cannot add an item"), Inventory->Add(Sword, 1).IsValid());
+			TestFalse(TEXT("GAS query cannot reenter training"), Loadout->Learn(Skill));
+			return !bReject;
+		});
+	const auto QueryHandle = Query.GetHandle();
+	ASC->GameplayEffectApplicationQueries.Add(Query);
+	ON_SCOPE_EXIT
+	{
+		ASC->GameplayEffectApplicationQueries.RemoveAll([&](const auto& Value) { return Value.GetHandle() == QueryHandle; });
+	};
+	TestFalse(TEXT("GAS rejection refuses equip"), Loadout->Equip(Item));
+	TestTrue(TEXT("rejection preserves bag and effects"), !Loadout->IsEquipped(Item) && Inventory->Find(Item)->Slot == BagSlot
+		&& ASC->GetNumericAttribute(UCCLOffenseSet::GetAttackBonusAttribute()) == BaseAttack && !Inventory->IsTransactionOpen());
+	bReject = false;
+	const int32 Points = Loadout->GetPoints();
+	TestTrue(TEXT("learn once through synchronous callback"), Loadout->Learn(Skill));
+	TestTrue(TEXT("query actually ran for both effects"), QueryCalls == 2);
+	TestEqual(TEXT("single point debit"), Loadout->GetPoints(), Points - Skill->PointCost);
+	TestFalse(TEXT("already learned refused"), Loadout->Learn(Skill));
+	return true;
+}
+
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FCCLCatalogIdentityTest, "CCL.Items.Catalog.UniqueSaveNames",
+	EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
+
+bool FCCLCatalogIdentityTest::RunTest(const FString& Parameters)
+{
+	auto* Catalog = NewObject<UCCLItemCatalog>();
+	auto* OuterA = NewObject<UCCLItemCatalog>();
+	auto* OuterB = NewObject<UCCLItemCatalog>();
+	auto* A = NewObject<UCCLItemDefinition>(OuterA, TEXT("DuplicateName"));
+	auto* B = NewObject<UCCLItemDefinition>(OuterB, TEXT("DuplicateName"));
+	Catalog->Items = {A};
+	TArray<FText> Errors;
+	TestTrue(TEXT("unique item accepted"), Catalog->ValidateCatalog(Errors) && Catalog->FindItem(A->GetFName()) == A);
+	Catalog->Items.Add(B);
+	TestFalse(TEXT("same name in different packages rejected"), Catalog->ValidateCatalog(Errors));
+	TestNull(TEXT("ambiguous lookup never picks first"), Catalog->FindItem(A->GetFName()));
+	Catalog->Items = {A, A};
+	TestFalse(TEXT("duplicate entry also rejected"), Catalog->ValidateCatalog(Errors));
+	Catalog->Items = {A, nullptr};
+	TestFalse(TEXT("empty reference rejected"), Catalog->ValidateCatalog(Errors));
+	Catalog->Items = {A};
+	auto* SkillA = NewObject<UCCLSkillDefinition>(OuterA, TEXT("DuplicateSkill"));
+	auto* SkillB = NewObject<UCCLSkillDefinition>(OuterB, TEXT("DuplicateSkill"));
+	Catalog->TrainingSkills = {SkillA, SkillB};
+	TestFalse(TEXT("duplicate skill rejected"), Catalog->ValidateCatalog(Errors));
+	TestNull(TEXT("ambiguous skill unresolved"), Catalog->FindSkill(SkillA->GetFName()));
+	return true;
+}
+
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FCCLSurfacePublicationTest, "CCL.Environment.Surface.SharedPublication",
+	EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
+
+bool FCCLSurfacePublicationTest::RunTest(const FString& Parameters)
+{
+	FCCLSurfaceSimulation Surface;
+	FString Error;
+	const FGuid Epoch = FGuid::NewGuid();
+	if (!TestTrue(TEXT("surface fixture"), Surface.Initialize(FGuid::NewGuid(), 0., 0., 0, Error)))
+	{
+		return false;
+	}
+	FCCLSurfacePublicationCache Cache;
+	const auto First = Cache.Capture(Surface, Epoch, {}, Error);
+	if (!TestTrue(TEXT("first immutable publication"), First.IsValid()))
+	{
+		return false;
+	}
+	for (int32 Connection = 0; Connection < 8; ++Connection)
+	{
+		TestTrue(TEXT("eight consumers share unchanged state and bytes"), First == Cache.Capture(Surface, Epoch, {}, Error));
+	}
+	const auto NextEpoch = Cache.Capture(Surface, FGuid::NewGuid(), {}, Error);
+	TestTrue(TEXT("restore epoch starts distinct history even with equal bytes"), NextEpoch && NextEpoch != First && First->Epoch == Epoch);
+	TMap<FGuid, uint64> Serials;
+	Serials.Add(FGuid::NewGuid(), 1);
+	const auto Terrain = Cache.Capture(Surface, NextEpoch->Epoch, Serials, Error);
+	TestTrue(TEXT("terrain completion serial creates a new publication"), Terrain && Terrain != NextEpoch && NextEpoch->TerrainSerials.IsEmpty());
+	FCCLSurfaceSimulation Invalid;
+	TestFalse(TEXT("invalid candidate not published"), Cache.Capture(Invalid, Epoch, {}, Error).IsValid());
+	TestTrue(TEXT("failed capture keeps valid publication"), Terrain == Cache.Capture(Surface, Terrain->Epoch, Serials, Error));
+	TestTrue(TEXT("older bytes still decode while consumers retain them"), Invalid.Restore(First->Bytes, Error));
+	return true;
+}
+
+// Compile-time regression: save participation has no mandatory environment-time API.
+namespace
+{
+	class FCCLSaveOnlyParticipant final : public IKSIWorldParticipant
+	{
+	public:
+		virtual FName GetWorldSection() const override { return TEXT("SaveOnly"); }
+		virtual int32 GetWorldOrder() const override { return 0; }
+		virtual bool CaptureWorldSection(FKSIWorldCaptureContext&, TArray<uint8>&, FString&) override { return true; }
+		virtual bool PrepareWorldRestore(FKSIWorldRestoreContext&, const TArray<uint8>*, FString&) override { return true; }
+		virtual bool CommitWorldRestore(TFunctionRef<bool()> CommitInner) override { return CommitInner(); }
+		virtual void PublishWorldRestore() override {}
+		virtual void CancelWorldRestore() override {}
+	};
+	static_assert(!TIsAbstract<FCCLSaveOnlyParticipant>::Value);
 }

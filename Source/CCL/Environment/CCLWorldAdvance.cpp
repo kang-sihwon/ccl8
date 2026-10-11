@@ -11,7 +11,7 @@ bool CCLWorldAdvance::Advance(FCCLWorldClock& Clock, FCCLLifeSimulation& Life,
 	double MaxGameSeconds, double MaxWorldSeconds, FString& Error, int32 MaxLifeSlices, FCCLSurfaceSimulation* Surface,
 	const FCCLCelestialSystem* Celestial, const FCCLCelestialObserver* Observer, const ICCLSurfaceProvider* Shelter,
 	const TArray<FCCLSurfaceOpening>* Openings, FCCLEcologySimulation* Ecology, int32 MaxEcologyBoundaries, const ICCLEcologySpace* Space,
-	const TFunction<bool(const FCCLWorldStep&, const FCCLSurfaceSimulation*, FString&)>& Prepare)
+	const TFunction<bool(const FKSIWorldStep&, const FCCLSurfaceSimulation*, FString&)>& Prepare)
 {
 	CSV_SCOPED_TIMING_STAT_EXCLUSIVE(CCLWorldAdvance);
 	Error.Reset();
@@ -42,7 +42,7 @@ bool CCLWorldAdvance::Advance(FCCLWorldClock& Clock, FCCLLifeSimulation& Life,
 	}
 
 	FCCLWorldClock CandidateClock = Clock;
-	FCCLWorldStep Step;
+	FKSIWorldStep Step;
 	if (!CandidateClock.Prepare(MaxGameSeconds, MaxWorldSeconds, Step, Error) ||
 		!CandidateClock.Commit(Step.Ticket, Error))
 	{

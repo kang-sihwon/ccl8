@@ -73,7 +73,7 @@ bool MakeRestoreSpec(UCCLAbilitySystemComponent& ASC, TSubclassOf<UGameplayEffec
 }
 } // namespace
 
-bool UCCLLoadoutComponent::CanRestoreState(const TArray<FCCLInventoryEntry>& Entries,
+bool UCCLLoadoutComponent::CanRestoreState(const TArray<FKSIInventoryEntry>& Entries,
 										   const TArray<FCCLEquippedSlot>& Equipment,
 										   const TArray<UCCLSkillDefinition*>& Skills, int32 UnspentPoints) const
 {
@@ -140,7 +140,7 @@ bool UCCLLoadoutComponent::CanRestoreState(const TArray<FCCLInventoryEntry>& Ent
 	return true;
 }
 
-bool UCCLLoadoutComponent::RestoreState(const TArray<FCCLInventoryEntry>& Entries,
+bool UCCLLoadoutComponent::RestoreState(const TArray<FKSIInventoryEntry>& Entries,
 										const TArray<FCCLEquippedSlot>& Equipment,
 										const TArray<UCCLSkillDefinition*>& Skills, int32 UnspentPoints,
 										bool bResetHealth)
@@ -235,7 +235,7 @@ bool FCCLLoadoutRestoreBatch::Execute(TConstArrayView<FCCLLoadoutRestoreRequest>
 		{
 			if (Value.bLocked)
 			{
-				Value.Inventory->EndTransaction(bPublish);
+				Value.Inventory->FinishTransaction(bPublish);
 			}
 		}
 		for (auto& Value : Prepared)
@@ -243,6 +243,7 @@ bool FCCLLoadoutRestoreBatch::Execute(TConstArrayView<FCCLLoadoutRestoreRequest>
 			if (Value.bLocked)
 			{
 				Value.Request.Loadout->bRestoring = 0;
+				Value.Inventory->bMutationLocked = 0;
 			}
 		}
 	};
@@ -253,6 +254,7 @@ bool FCCLLoadoutRestoreBatch::Execute(TConstArrayView<FCCLLoadoutRestoreRequest>
 			return false;
 		}
 		Value.Request.Loadout->bRestoring = 1;
+		Value.Inventory->bMutationLocked = 1;
 		Value.bLocked = true;
 	}
 	{

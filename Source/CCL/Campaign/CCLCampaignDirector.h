@@ -10,6 +10,7 @@ class ACCLWorldPickup;
 class ACCLEnemyCharacter;
 class ACCLCampaignState;
 class UCCLEnemyDefinition;
+class UKSIItemDefinition;
 class UCCLItemDefinition;
 
 USTRUCT(BlueprintType)
@@ -36,7 +37,7 @@ struct FCCLSupplySpawn
 	FVector Location = FVector::ZeroVector;
 
 	UPROPERTY(EditAnywhere, Category = "Supply")
-	TSoftObjectPtr<UCCLItemDefinition> Item;
+	TSoftObjectPtr<UKSIItemDefinition> Item;
 
 	UPROPERTY(EditAnywhere, Category = "Supply", meta = (ClampMin = "1"))
 	int32 Quantity = 1;

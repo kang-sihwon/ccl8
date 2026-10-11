@@ -1,4 +1,5 @@
 #include "CCLProjectileSmokeSubsystem.h"
+#include "Items/CCLInventoryWeapon.h"
 
 #include "Actions/CCLActionComponent.h"
 #include "Actions/CCLWeaponAbility.h"
@@ -56,12 +57,12 @@ void UCCLProjectileSmokeSubsystem::Tick(float DeltaTime)
 		auto* Bullets = FCCLSessionCodec::Item(TEXT("DA_Bullets"));
 		const FGuid RifleId = Inventory->Add(Rifle, 1);
 		Inventory->Add(Bullets, 10);
-		Check(RifleId.IsValid() && !Inventory->CanFire(RifleId), TEXT("new weapon begins empty"));
-		Check(Inventory->Reload(RifleId), TEXT("reserve ammo transfers into magazine"));
-		Check(Inventory->Find(RifleId) && Inventory->Find(RifleId)->LoadedAmmo == 1, TEXT("rifle magazine capacity enforced"));
-		Check(!Inventory->Reload(RifleId), TEXT("full magazine does not consume ammunition"));
-		Check(Inventory->ConsumeShot(RifleId) && !Inventory->ConsumeShot(RifleId), TEXT("one round supports exactly one shot"));
-		Check(Inventory->Reload(RifleId), TEXT("second reload uses remaining reserves"));
+		Check(RifleId.IsValid() && !FCCLInventoryWeapon::CanFire(*Inventory, RifleId), TEXT("new weapon begins empty"));
+		Check(FCCLInventoryWeapon::Reload(*Inventory, RifleId), TEXT("reserve ammo transfers into magazine"));
+		Check(Inventory->Find(RifleId) && Inventory->Find(RifleId)->GetState<FCCLItemState>().LoadedAmmo == 1, TEXT("rifle magazine capacity enforced"));
+		Check(!FCCLInventoryWeapon::Reload(*Inventory, RifleId), TEXT("full magazine does not consume ammunition"));
+		Check(FCCLInventoryWeapon::ConsumeShot(*Inventory, RifleId) && !FCCLInventoryWeapon::ConsumeShot(*Inventory, RifleId), TEXT("one round supports exactly one shot"));
+		Check(FCCLInventoryWeapon::Reload(*Inventory, RifleId), TEXT("second reload uses remaining reserves"));
 		FCCLSessionRecord Record;
 		for (const auto& Entry : Inventory->GetEntries())
 		{
@@ -70,7 +71,7 @@ void UCCLProjectileSmokeSubsystem::Tick(float DeltaTime)
 			Saved.Definition = Entry.Definition->GetFName();
 			Saved.Quantity = Entry.Quantity;
 			Saved.Slot = Entry.Slot;
-			Saved.LoadedAmmo = Entry.LoadedAmmo;
+			Saved.LoadedAmmo = Entry.GetState<FCCLItemState>().LoadedAmmo;
 		}
 
 		TArray<uint8> Bytes;

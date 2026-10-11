@@ -1,4 +1,5 @@
 #include "CCLFoodSmokeSubsystem.h"
+#include "Items/CCLInventoryFood.h"
 #include "Items/CCLInventorySnapshot.h"
 
 #include "Items/CCLInventoryComponent.h"
@@ -113,14 +114,14 @@ void UCCLFoodSmokeSubsystem::Tick(float DeltaTime)
 	{
 		TArray<uint8> Saved;
 		TArray<FString> Lines;
-		FCCLInventoryEntry Entry;
+		FKSIInventoryEntry Entry;
 		Entry.Definition = Definition;
 		Entry.Quantity = 4;
 		Entry.Slot = 0;
 		if (!Check(FFileHelper::LoadFileToArray(Saved, *(Directory / TEXT("food-world.bin")))
 			&& Agents->Restore(Saved, Error)
 			&& FFileHelper::LoadFileToStringArray(Lines, *(Directory / TEXT("food-item.txt"))) && Lines.Num() == 2
-			&& FGuid::Parse(Lines[0], Entry.Id) && CCLFood::Decode(Lines[1], Entry.Food, Error)
+			&& FGuid::Parse(Lines[0], Entry.Id) && CCLFood::Decode(Lines[1], Entry.GetState<FCCLItemState>().Food, Error)
 			&& Inventory->BindPersistence(ContainerId, Error) && Inventory->Find(Entry.Id)
 			&& Inventory->Find(Entry.Id)->Quantity == 4, TEXT("restore inventory from world by persistent identity")))
 		{
@@ -129,7 +130,7 @@ void UCCLFoodSmokeSubsystem::Tick(float DeltaTime)
 
 		Id = Entry.Id;
 		FString Actual;
-		if (!Check(CCLFood::Encode(Inventory->Find(Id)->Food, Actual, Error) && Actual == Lines[1], TEXT("exact resumed state")))
+		if (!Check(CCLFood::Encode(Inventory->Find(Id)->GetState<FCCLItemState>().Food, Actual, Error) && Actual == Lines[1], TEXT("exact resumed state")))
 		{
 			return;
 		}
@@ -147,7 +148,7 @@ void UCCLFoodSmokeSubsystem::Tick(float DeltaTime)
 		}
 
 		FCCLFoodQuality Before, After;
-		if (!Check(Inventory->GetFoodQuality(Id, Before) && Advance(10.) && Inventory->GetFoodQuality(Id, After)
+		if (!Check(FCCLInventoryFood::GetFoodQuality(*Inventory, Id, Before) && Advance(10.) && FCCLInventoryFood::GetFoodQuality(*Inventory, Id, After)
 			&& After.Freshness < Before.Freshness && After.OldestAgeSeconds > Before.OldestAgeSeconds,
 			TEXT("continued food aging")))
 		{
@@ -160,16 +161,16 @@ void UCCLFoodSmokeSubsystem::Tick(float DeltaTime)
 		FCCLFoodStorage Humid;
 		Humid.RelativeHumidity = 1.;
 		const double Birth = Runtime->GetClock().GetWorldSeconds();
-		if (!Check(Id.IsValid() && Inventory->ChangeFoodStorage(Id, Humid) && Advance(100.)
-			&& Inventory->Add(Definition, 2) == Id && Inventory->Find(Id)->Food.Lots.Num() == 2,
+		if (!Check(Id.IsValid() && FCCLInventoryFood::ChangeFoodStorage(*Inventory, Id, Humid) && Advance(100.)
+			&& Inventory->Add(Definition, 2) == Id && Inventory->Find(Id)->GetState<FCCLItemState>().Food.Lots.Num() == 2,
 			TEXT("real clock and new lot merge")))
 		{
 			return;
 		}
 
-		const FGuid Split = Inventory->SplitFood(Id, 1, 1);
-		if (!Check(Split.IsValid() && Inventory->Find(Split)->Food.Lots[0].CreatedWorldSeconds == Birth
-			&& Inventory->MergeFood(Split, Id), TEXT("split merge preserves birth")))
+		const FGuid Split = FCCLInventoryFood::SplitFood(*Inventory, Id, 1, 1);
+		if (!Check(Split.IsValid() && Inventory->Find(Split)->GetState<FCCLItemState>().Food.Lots[0].CreatedWorldSeconds == Birth
+			&& FCCLInventoryFood::MergeFood(*Inventory, Split, Id), TEXT("split merge preserves birth")))
 		{
 			return;
 		}
@@ -182,9 +183,9 @@ void UCCLFoodSmokeSubsystem::Tick(float DeltaTime)
 		}
 		const FGuid Full = Target->Add(Definition, 20);
 		FString Before, After;
-		CCLFood::Encode(Inventory->Find(Id)->Food, Before, Error);
-		if (!Check(Full.IsValid() && !Inventory->TransferFood(Id, 2, Target)
-			&& CCLFood::Encode(Inventory->Find(Id)->Food, After, Error) && Before == After
+		CCLFood::Encode(Inventory->Find(Id)->GetState<FCCLItemState>().Food, Before, Error);
+		if (!Check(Full.IsValid() && !FCCLInventoryFood::TransferFood(*Inventory, Id, 2, Target)
+			&& CCLFood::Encode(Inventory->Find(Id)->GetState<FCCLItemState>().Food, After, Error) && Before == After
 			&& Target->Remove(Full, 20), TEXT("full destination preserves source")))
 		{
 			return;
@@ -204,33 +205,33 @@ void UCCLFoodSmokeSubsystem::Tick(float DeltaTime)
 			}
 			bObserversSawFinal &= Total == 5;
 		});
-		const bool bTransferred = Inventory->TransferFood(Id, 2, Target);
+		const bool bTransferred = FCCLInventoryFood::TransferFood(*Inventory, Id, 2, Target);
 		Inventory->OnChanged.Remove(Observer);
 		if (!Check(bTransferred && bObserversSawFinal && Inventory->Find(Id)->Quantity == 3
 			&& Target->GetEntries().Num() == 1 && Target->GetEntries()[0].Quantity == 2
-			&& Target->GetEntries()[0].Food.Lots[0].CreatedWorldSeconds == Birth, TEXT("atomic container transfer")))
+			&& Target->GetEntries()[0].GetState<FCCLItemState>().Food.Lots[0].CreatedWorldSeconds == Birth, TEXT("atomic container transfer")))
 		{
 			return;
 		}
 
 		const FGuid TargetId = Target->GetEntries()[0].Id;
-		if (!Check(Target->Remove(TargetId, 1) && Target->TransferFood(TargetId, 1, Inventory)
+		if (!Check(Target->Remove(TargetId, 1) && FCCLInventoryFood::TransferFood(*Target, TargetId, 1, Inventory)
 			&& Inventory->Find(Id)->Quantity == 4 && Target->GetEntries().IsEmpty()
 			&& Inventory->MoveToSlot(Id, 3) && Inventory->MoveToSlot(Id, 0), TEXT("consume and move preserve remaining lots")))
 		{
 			return;
 		}
 
-		if (!Check(Inventory->TransferFood(Id, 4, Target) && Target->Find(Id)
-			&& Inventory->GetEntries().IsEmpty() && Target->TransferFood(Id, 4, Inventory)
+		if (!Check(FCCLInventoryFood::TransferFood(*Inventory, Id, 4, Target) && Target->Find(Id)
+			&& Inventory->GetEntries().IsEmpty() && FCCLInventoryFood::TransferFood(*Target, Id, 4, Inventory)
 			&& Inventory->Find(Id), TEXT("whole stack transfer preserves item identity")))
 		{
 			return;
 		}
 
 		FCCLFoodQuality Quality;
-		if (!Check(Inventory->GetFoodQuality(Id, Quality) && Quality.OldestAgeSeconds >= 100.
-			&& Quality.Freshness < 1. && Quality.Freshness > 0. && Inventory->Find(Id)->Food.Lots.Num() == 2,
+		if (!Check(FCCLInventoryFood::GetFoodQuality(*Inventory, Id, Quality) && Quality.OldestAgeSeconds >= 100.
+			&& Quality.Freshness < 1. && Quality.Freshness > 0. && Inventory->Find(Id)->GetState<FCCLItemState>().Food.Lots.Num() == 2,
 			TEXT("remaining quality")))
 		{
 			return;
@@ -239,7 +240,7 @@ void UCCLFoodSmokeSubsystem::Tick(float DeltaTime)
 		TArray<uint8> Saved;
 		FString Food;
 		if (!Check(Runtime->Save(Agents->GetSimulation(), Saved, Error)
-			&& CCLFood::Encode(Inventory->Find(Id)->Food, Food, Error)
+			&& CCLFood::Encode(Inventory->Find(Id)->GetState<FCCLItemState>().Food, Food, Error)
 			&& FFileHelper::SaveArrayToFile(Saved, *(Directory / TEXT("food-world.bin")))
 			&& FFileHelper::SaveStringToFile(Id.ToString() + TEXT("\n") + Food, *(Directory / TEXT("food-item.txt"))), TEXT("save generation")))
 		{
@@ -329,7 +330,7 @@ void UCCLFoodSmokeSubsystem::Tick(float DeltaTime)
 		}
 
 		FString RestoredFood;
-		if (!Check(CCLFood::Encode(Inventory->Find(Id)->Food, RestoredFood, Error) && RestoredFood == Food,
+		if (!Check(CCLFood::Encode(Inventory->Find(Id)->GetState<FCCLItemState>().Food, RestoredFood, Error) && RestoredFood == Food,
 			TEXT("world restores exact food history")))
 		{
 			return;
@@ -404,7 +405,7 @@ void UCCLFoodSmokeSubsystem::Tick(float DeltaTime)
 				return;
 			}
 
-			auto Future = Inventory->Find(Id)->Food;
+			auto Future = Inventory->Find(Id)->GetState<FCCLItemState>().Food;
 			CCLFood::Advance(Future, Runtime->GetClock().GetWorldSeconds() + 1., Error);
 			CCLFood::Encode(Future, Record.Items[0].Food, Error);
 			if (!Check(!FCCLSessionCodec::Validate(Record), TEXT("future food rejected by session")))

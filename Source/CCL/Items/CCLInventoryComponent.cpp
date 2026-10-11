@@ -3,23 +3,13 @@
 #include "CCLItemDefinition.h"
 #include "CCLInventoryPersistenceSubsystem.h"
 #include "Engine/World.h"
-#include "Actions/CCLWeaponAbility.h"
+#include "CCLInventoryWeapon.h"
+#include "CCLInventoryFood.h"
 #include "Net/UnrealNetwork.h"
 
-UCCLInventoryComponent::UCCLInventoryComponent()
+FGuid UCCLInventoryComponent::Add(UKSIItemDefinition* Definition, int32 Quantity)
 {
-	SetIsReplicatedByDefault(true);
-}
-
-void UCCLInventoryComponent::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
-{
-	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
-	DOREPLIFETIME_CONDITION(UCCLInventoryComponent, List, COND_OwnerOnly);
-}
-
-FGuid UCCLInventoryComponent::Add(UCCLItemDefinition* Definition, int32 Quantity)
-{
-	if (!GetOwner()->HasAuthority() || !CanAdd(Definition, Quantity))
+	if (!CanMutate() || !CanAdd(Definition, Quantity))
 	{
 		return FGuid();
 	}
@@ -29,64 +19,40 @@ FGuid UCCLInventoryComponent::Add(UCCLItemDefinition* Definition, int32 Quantity
 		double WorldSeconds = 0.;
 		FCCLFoodState Food;
 		FString Error;
-		return FoodContext(WorldId, WorldSeconds)
+		return FCCLInventoryFood::FoodContext(*this, WorldId, WorldSeconds)
 			&& CCLFood::Create(WorldId, FGuid::NewGuid(), Quantity, WorldSeconds, Fragment->Policy, {}, Food, Error)
-			? AddFood(Definition, Food) : FGuid();
+			? FCCLInventoryFood::AddFood(*this, Definition, Food) : FGuid();
 	}
 
-	for (auto& Entry : List.Entries)
-	{
-		if (Entry.Slot >= 0 && Entry.Definition == Definition && !Entry.Food.IsPresent() && Quantity <= Definition->GetMaxStack() - Entry.Quantity)
-		{
-			Entry.Quantity += Quantity;
-			List.MarkItemDirty(Entry);
-			const FGuid Id = Entry.Id;
-			NotifyChanged();
-			return Id;
-		}
-	}
-	int32 FreeSlot = 0;
-	while (FindSlot(FreeSlot))
-	{
-		++FreeSlot;
-	}
-
-	auto& Entry = List.Entries.AddDefaulted_GetRef();
-	Entry.Slot = FreeSlot;
-	Entry.Id = FGuid::NewGuid();
-	Entry.Definition = Definition;
-	Entry.Quantity = Quantity;
-	List.MarkItemDirty(Entry);
-	const FGuid Id = Entry.Id;
-	NotifyChanged();
-	return Id;
+    return Super::Add(Definition, Quantity);
 }
 
 bool UCCLInventoryComponent::Remove(FGuid Id, int32 Quantity)
 {
-	if (!GetOwner()->HasAuthority() || !Id.IsValid() || Quantity <= 0)
+	if (!CanMutate() || !Id.IsValid() || Quantity <= 0)
 	{
 		return false;
 	}
-	const int32 Index = List.Entries.IndexOfByPredicate([Id](const FCCLInventoryEntry& Entry) { return Entry.Id == Id; });
+	const int32 Index = List.Entries.IndexOfByPredicate([Id](const FKSIInventoryEntry& Entry) { return Entry.Id == Id; });
 	if (Index == INDEX_NONE || List.Entries[Index].Quantity < Quantity)
 	{
 		return false;
 	}
-	if (List.Entries[Index].Food.IsPresent())
+	const auto& Current = List.Entries[Index];
+    if (Current.GetState<FCCLItemState>().Food.IsPresent())
 	{
 		FGuid WorldId;
 		double WorldSeconds = 0.;
-		FCCLFoodState Candidate = List.Entries[Index].Food;
+		FCCLFoodState Candidate = Current.GetState<FCCLItemState>().Food;
 		FCCLFoodState Removed;
 		FString Error;
-		if (!FoodContext(WorldId, WorldSeconds) || WorldId != Candidate.WorldId
+		if (!FCCLInventoryFood::FoodContext(*this, WorldId, WorldSeconds) || WorldId != Candidate.WorldId
 			|| !CCLFood::Split(Candidate, Quantity, WorldSeconds, Removed, Error))
 		{
 			return false;
 		}
 
-		List.Entries[Index].Food = MoveTemp(Candidate);
+		List.Entries[Index].GetState<FCCLItemState>().Food = MoveTemp(Candidate);
 	}
 
 	List.Entries[Index].Quantity -= Quantity;
@@ -103,7 +69,7 @@ bool UCCLInventoryComponent::Remove(FGuid Id, int32 Quantity)
 	return true;
 }
 
-bool UCCLInventoryComponent::CanAdd(const UCCLItemDefinition* Definition, int32 Quantity) const
+bool UCCLInventoryComponent::CanAdd(const UKSIItemDefinition* Definition, int32 Quantity) const
 {
 	if (!Definition || Quantity <= 0 || Quantity > Definition->GetMaxStack())
 	{
@@ -112,27 +78,22 @@ bool UCCLInventoryComponent::CanAdd(const UCCLItemDefinition* Definition, int32 
 	for (const auto& Entry : List.Entries)
 	{
 		if (Entry.Slot >= 0 && Entry.Definition == Definition && Quantity <= Definition->GetMaxStack() - Entry.Quantity
-			&& (Definition->FindFragment<FCCLItemFragment_Perishable>() ? Entry.Food.IsPresent()
-				&& Entry.Food.Lots.Num() < CCLFood::MaxLots : !Entry.Food.IsPresent()))
+			&& (Definition->FindFragment<FCCLItemFragment_Perishable>() ? Entry.GetState<FCCLItemState>().Food.IsPresent()
+				&& Entry.GetState<FCCLItemState>().Food.Lots.Num() < CCLFood::MaxLots : CanStackEntry(Entry)))
 		{
 			return true;
 		}
 	}
-	return List.Entries.FilterByPredicate([](const FCCLInventoryEntry& Entry) { return Entry.Slot >= 0; }).Num() <
+	return List.Entries.FilterByPredicate([](const FKSIInventoryEntry& Entry) { return Entry.Slot >= 0; }).Num() <
 	       FMath::Clamp(Capacity, 1, 128);
 }
 
-const FCCLInventoryEntry* UCCLInventoryComponent::Find(FGuid Id) const
-{
-	return List.Entries.FindByPredicate([Id](const FCCLInventoryEntry& Entry) { return Entry.Id == Id; });
-}
-
-bool UCCLInventoryComponent::CanRestore(const TArray<FCCLInventoryEntry>& Entries) const
+bool UCCLInventoryComponent::CanRestore(const TArray<FKSIInventoryEntry>& Entries) const
 {
 	return GetOwner() && GetOwner()->HasAuthority() && ValidateEntries(Entries, Capacity);
 }
 
-bool UCCLInventoryComponent::ValidateEntries(const TArray<FCCLInventoryEntry>& Entries, int32 Capacity)
+bool UCCLInventoryComponent::ValidateEntries(const TArray<FKSIInventoryEntry>& Entries, int32 Capacity)
 {
 	if (Capacity < 1 || Capacity > 128 || Entries.Num() > Capacity + 128)
 	{
@@ -143,7 +104,7 @@ bool UCCLInventoryComponent::ValidateEntries(const TArray<FCCLInventoryEntry>& E
 	TSet<int32> Slots;
 	for (const auto& Entry : Entries)
 	{
-		if (!Entry.Id.IsValid() || Seen.Contains(Entry.Id) || !Entry.Definition || Entry.Quantity <= 0 || Entry.Quantity > Entry.Definition->GetMaxStack())
+		if ((Entry.State.IsValid() && !Entry.State.GetPtr<FCCLItemState>()) || !Entry.Id.IsValid() || Seen.Contains(Entry.Id) || !Entry.Definition || Entry.Quantity <= 0 || Entry.Quantity > Entry.Definition->GetMaxStack())
 		{
 			return false;
 		}
@@ -153,16 +114,14 @@ bool UCCLInventoryComponent::ValidateEntries(const TArray<FCCLInventoryEntry>& E
 			return false;
 		}
 
-		const auto* Weapon = Entry.Definition->FindFragment<FCCLItemFragment_ProjectileWeapon>();
-		const int32 Maximum = Weapon && Weapon->Profile ? Weapon->Profile->MagazineSize : 0;
-		if (Entry.LoadedAmmo < 0 || Entry.LoadedAmmo > Maximum)
+		if (!FCCLInventoryWeapon::Validate(Entry))
 		{
 			return false;
 		}
 
 		FString FoodError;
-		if (!CCLFood::Validate(Entry.Food, Entry.Food.IsPresent() ? Entry.Quantity : 0, FoodError)
-			|| (Entry.Food.IsPresent() && !Entry.Definition->FindFragment<FCCLItemFragment_Perishable>()))
+		if (!CCLFood::Validate(Entry.GetState<FCCLItemState>().Food, Entry.GetState<FCCLItemState>().Food.IsPresent() ? Entry.Quantity : 0, FoodError)
+			|| (Entry.GetState<FCCLItemState>().Food.IsPresent() && !Entry.Definition->FindFragment<FCCLItemFragment_Perishable>()))
 		{
 			return false;
 		}
@@ -171,170 +130,6 @@ bool UCCLInventoryComponent::ValidateEntries(const TArray<FCCLInventoryEntry>& E
 		Seen.Add(Entry.Id);
 	}
 	return true;
-}
-
-bool UCCLInventoryComponent::Restore(const TArray<FCCLInventoryEntry>& Entries)
-{
-	if (!CanRestore(Entries))
-	{
-		return false;
-	}
-	// Restore may receive GetEntries() from this same component.
-	const TArray<FCCLInventoryEntry> Candidate = Entries;
-	RestoreValidated(Candidate);
-	return true;
-}
-
-void UCCLInventoryComponent::RestoreValidated(const TArray<FCCLInventoryEntry>& Entries)
-{
-	List.Entries.Reset();
-	for (const auto& Value : Entries)
-	{
-		auto& Entry = List.Entries.AddDefaulted_GetRef();
-		Entry.Id = Value.Id;
-		Entry.Definition = Value.Definition;
-		Entry.Quantity = Value.Quantity;
-		Entry.Slot = Value.Slot;
-		Entry.LoadedAmmo = Value.LoadedAmmo;
-		Entry.Food = Value.Food;
-		List.MarkItemDirty(Entry);
-	}
-	List.MarkArrayDirty();
-	NotifyChanged();
-}
-
-const FCCLInventoryEntry* UCCLInventoryComponent::FindSlot(int32 Slot) const
-{
-	if (Slot < 0 || Slot >= FMath::Clamp(Capacity, 1, 128))
-	{
-		return nullptr;
-	}
-
-	return List.Entries.FindByPredicate([Slot](const FCCLInventoryEntry& Entry) { return Entry.Slot == Slot; });
-}
-
-bool UCCLInventoryComponent::MoveToSlot(FGuid Id, int32 Slot)
-{
-	if (!GetOwner()->HasAuthority() || Slot < 0 || Slot >= FMath::Clamp(Capacity, 1, 128))
-	{
-		return false;
-	}
-
-	auto* Source = List.Entries.FindByPredicate([Id](const FCCLInventoryEntry& Entry) { return Entry.Id == Id; });
-	if (!Source || Source->Slot < 0)
-	{
-		return false;
-	}
-
-	if (Source->Slot == Slot)
-	{
-		return true;
-	}
-
-	auto* Destination = List.Entries.FindByPredicate([Slot](const FCCLInventoryEntry& Entry) { return Entry.Slot == Slot; });
-	if (Destination)
-	{
-		Destination->Slot = Source->Slot;
-		List.MarkItemDirty(*Destination);
-	}
-
-	Source->Slot = Slot;
-	List.MarkItemDirty(*Source);
-	NotifyChanged();
-	return true;
-}
-
-bool UCCLInventoryComponent::ConsumeShot(FGuid Id)
-{
-	if (!GetOwner()->HasAuthority() || !CanFire(Id))
-	{
-		return false;
-	}
-
-	auto* Entry = List.Entries.FindByPredicate([Id](const FCCLInventoryEntry& E) { return E.Id == Id; });
-	--Entry->LoadedAmmo;
-	List.MarkItemDirty(*Entry);
-	NotifyChanged();
-	return true;
-}
-
-bool UCCLInventoryComponent::Reload(FGuid Id)
-{
-	if (!GetOwner()->HasAuthority() || !CanReload(Id))
-	{
-		return false;
-	}
-
-	TArray<FCCLInventoryEntry> Candidate = List.Entries;
-	auto* Weapon = Candidate.FindByPredicate([Id](const FCCLInventoryEntry& E) { return E.Id == Id; });
-	const auto* Profile = Weapon->Definition->FindFragment<FCCLItemFragment_ProjectileWeapon>()->Profile.Get();
-	int32 Remaining = Profile->MagazineSize - Weapon->LoadedAmmo;
-	for (auto& Entry : Candidate)
-	{
-		if (Entry.Definition == Profile->Ammunition && Entry.Slot >= 0 && Entry.Id != Id)
-		{
-			const int32 Used = FMath::Min(Entry.Quantity, Remaining);
-			Entry.Quantity -= Used;
-			Weapon->LoadedAmmo += Used;
-			Remaining -= Used;
-		}
-	}
-
-	Candidate.RemoveAll([](const FCCLInventoryEntry& E) { return E.Quantity == 0; });
-	return Restore(Candidate);
-}
-
-bool UCCLInventoryComponent::CanFire(FGuid Id) const
-{
-	const auto* Entry = Find(Id);
-	return Entry && Entry->LoadedAmmo > 0;
-}
-
-bool UCCLInventoryComponent::CanReload(FGuid Id) const
-{
-	const auto* Entry = Find(Id);
-	const auto* Weapon = Entry && Entry->Definition ? Entry->Definition->FindFragment<FCCLItemFragment_ProjectileWeapon>() : nullptr;
-	const auto* Profile = Weapon ? Weapon->Profile.Get() : nullptr;
-	return Profile && Profile->MagazineSize > Entry->LoadedAmmo && Profile->Ammunition &&
-		List.Entries.ContainsByPredicate([Profile, Id](const FCCLInventoryEntry& E)
-		{
-			return E.Id != Id && E.Definition == Profile->Ammunition && E.Slot >= 0 && E.Quantity > 0;
-		});
-}
-
-bool UCCLInventoryComponent::BeginTransaction()
-{
-	if (!GetOwner()->HasAuthority() || bTransactionOpen)
-	{
-		return false;
-	}
-
-	bTransactionOpen = 1;
-	bPendingChanged = 0;
-	return true;
-}
-
-void UCCLInventoryComponent::EndTransaction(bool bPublish)
-{
-	const bool bNotify = bTransactionOpen && bPendingChanged && bPublish;
-	bTransactionOpen = 0;
-	bPendingChanged = 0;
-	if (bNotify)
-	{
-		OnChanged.Broadcast();
-	}
-}
-
-void UCCLInventoryComponent::NotifyChanged()
-{
-	if (bTransactionOpen)
-	{
-		bPendingChanged = 1;
-	}
-	else
-	{
-		OnChanged.Broadcast();
-	}
 }
 
 void UCCLInventoryComponent::EndPlay(const EEndPlayReason::Type EndPlayReason)
@@ -350,4 +145,15 @@ bool UCCLInventoryComponent::BindPersistence(FGuid ContainerId, FString& Error)
 {
 	auto* Store = GetWorld() ? GetWorld()->GetSubsystem<UCCLInventoryPersistenceSubsystem>() : nullptr;
 	return Store && Store->Bind(*this, ContainerId, Error);
+}
+
+bool UCCLInventoryComponent::CanUsePlainTransfer(const FKSIInventoryEntry& Entry) const
+{
+    return Entry.Definition && !Entry.GetState<FCCLItemState>().Food.IsPresent() && Entry.GetState<FCCLItemState>().LoadedAmmo == 0
+        && !Entry.Definition->FindFragment<FCCLItemFragment_Perishable>();
+}
+
+bool UCCLInventoryComponent::CanStackEntry(const FKSIInventoryEntry& Entry) const
+{
+    return !Entry.GetState<FCCLItemState>().Food.IsPresent() && Entry.GetState<FCCLItemState>().LoadedAmmo == 0;
 }

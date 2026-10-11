@@ -7,6 +7,7 @@
 #include "CCLFighterComponent.generated.h"
 
 class UCCLAbilitySystemComponent;
+class UKSIItemDefinition;
 class UCCLItemDefinition;
 class UCCLAttachmentProfile;
 class UCCLCombatDefinition;
@@ -37,8 +38,8 @@ public:
 	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
-	virtual void PresentEquipment(UCCLItemDefinition* LeftHand, UCCLItemDefinition* RightHand) override;
-	virtual void SelectActiveItem(UCCLItemDefinition* InItem) override;
+	virtual void PresentEquipment(UKSIItemDefinition* LeftHand, UKSIItemDefinition* RightHand) override;
+	virtual void SelectActiveItem(UKSIItemDefinition* InItem) override;
 
 	// 내 클래스 함수
 public:
@@ -51,7 +52,7 @@ public:
 	void SetAction(ECCLCombatAction NewAction);
 	void LockAttackDirection();
 	void NotifyHit(FGameplayTag Outcome);
-	UCCLItemDefinition* LoadDefaultItem() const;
+	UKSIItemDefinition* LoadDefaultItem() const;
 
 	UCCLAbilitySystemComponent* GetASC() const { return ASC; }
 	const UCCLCombatDefinition* GetAttack() const;
@@ -75,16 +76,16 @@ public:
 
 	// The body's own weapon when no equipped item provides one, such as bare hands.
 	UPROPERTY(EditAnywhere, Category = "Definition")
-	TSoftObjectPtr<UCCLItemDefinition> DefaultItem;
+	TSoftObjectPtr<UKSIItemDefinition> DefaultItem;
 
 	UPROPERTY(EditAnywhere, Replicated, Category = "Definition")
-	TObjectPtr<UCCLItemDefinition> Item;
+	TObjectPtr<UKSIItemDefinition> Item;
 
 	UPROPERTY(ReplicatedUsing = RefreshEquipmentVisuals)
-	TObjectPtr<UCCLItemDefinition> LeftHandItem;
+	TObjectPtr<UKSIItemDefinition> LeftHandItem;
 
 	UPROPERTY(ReplicatedUsing = RefreshEquipmentVisuals)
-	TObjectPtr<UCCLItemDefinition> RightHandItem;
+	TObjectPtr<UKSIItemDefinition> RightHandItem;
 
 	UPROPERTY(Replicated)
 	TObjectPtr<UCCLCombatDefinition> AttackOverride;

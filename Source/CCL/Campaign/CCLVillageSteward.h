@@ -11,11 +11,12 @@ class CCL_API ACCLVillageSteward : public ACharacter
 public:
 	ACCLVillageSteward();
 	virtual void Tick(float DeltaSeconds) override;
+	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
 	bool CanReach(const APawn* Visitor) const;
 
 	UPROPERTY(EditAnywhere, Category = "Dialogue")
 	FText DisplayName = NSLOCTEXT("CCL", "VillageSteward", "마을 관리인");
 
-	UPROPERTY(EditAnywhere, Category = "Shop")
+	UPROPERTY(EditAnywhere, Replicated, Category = "Shop")
 	FCCLShopOffer Offer;
 };

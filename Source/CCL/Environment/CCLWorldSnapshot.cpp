@@ -4,7 +4,8 @@
 #include "Agents/CCLLifeSimulation.h"
 #include "CCLSurfaceSimulation.h"
 #include "CCLEcologySimulation.h"
-#include "CCLWorldParticipant.h"
+#include "KSIWorldParticipant.h"
+#include "CCLWorldSectionFacts.h"
 #include "Misc/Crc.h"
 #include "Serialization/MemoryReader.h"
 #include "Serialization/MemoryWriter.h"
@@ -435,7 +436,7 @@ bool FCCLWorldSnapshotCodec::Validate(const FCCLWorldSnapshot& Snapshot, FString
 	for (int32 Index = 0; Index < Snapshot.Sections.Num(); ++Index)
 	{
 		const auto& Section = Snapshot.Sections[Index];
-		if (Section.Name.IsNone() || Section.Bytes.Num() > MaxSectionBytes || !FCCLWorldSectionRegistry::Find(Section.Name) ||
+		if (Section.Name.IsNone() || Section.Bytes.Num() > MaxSectionBytes || !FKSIWorldSectionRegistry::Find(Section.Name) ||
 			(Index > 0 && !Snapshot.Sections[Index - 1].Name.LexicalLess(Section.Name)))
 		{
 			return Reject(Error, TEXT("World snapshot sections must be unique, ordered and registered."));
@@ -444,13 +445,15 @@ bool FCCLWorldSnapshotCodec::Validate(const FCCLWorldSnapshot& Snapshot, FString
 
 	// Sections validate in registry order and share item claims, so one item cannot live in two owners.
 	TSet<FGuid> ClaimedItems;
-	FCCLWorldSectionContext Context;
+	FKSIWorldSectionContext Context;
 	Context.WorldId = Snapshot.Identity.WorldId;
 	Context.WorldSeconds = Snapshot.Clock.WorldSeconds;
-	Context.Surface = &Surface;
-	Context.Life = &Life;
+	FCCLWorldSectionFacts Facts;
+    Facts.Surface = &Surface;
+    Facts.Life = &Life;
+    Context.Facts = &Facts;
 	Context.ClaimedItems = &ClaimedItems;
-	for (const auto* Entry : FCCLWorldSectionRegistry::GetOrdered())
+	for (const auto* Entry : FKSIWorldSectionRegistry::GetOrdered())
 	{
 		if (const auto* Bytes = Snapshot.FindSection(Entry->Name); Bytes && !Entry->Validator(Context, *Bytes, Error))
 		{

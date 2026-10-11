@@ -1,7 +1,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Engine/DataAsset.h"
+#include "KSIItemDefinition.h"
 #include "StructUtils/InstancedStruct.h"
 #include "CCLItemFragments.h"
 #include "CCLItemDefinition.generated.h"
@@ -77,7 +77,7 @@ public:
 };
 
 UCLASS(BlueprintType)
-class CCL_API UCCLItemDefinition : public UPrimaryDataAsset
+class CCL_API UCCLItemDefinition : public UKSIItemDefinition
 {
 	GENERATED_BODY()
 
@@ -86,44 +86,13 @@ public:
 	virtual void PostLoad() override;
 
 public:
-	template <class T> const T* FindFragment() const
-	{
-		for (const auto& Fragment : ItemFragments)
-		{
-			if (const T* Value = Fragment.GetPtr<T>())
-			{
-				return Value;
-			}
-		}
-		return nullptr;
-	}
 	UFUNCTION(BlueprintCallable, Category = "Item")
 	bool ConfigurePerishable(double ShelfLifeSeconds, double MoldDelaySeconds, double MoldGrowthSeconds);
 
-	FText GetLabel() const;
-	int32 GetMaxStack() const;
-	bool ValidateDefinition(TArray<FText>& Errors) const;
+	virtual bool ValidateDefinition(TArray<FText>& Errors) const override;
 
-#if WITH_EDITOR
-	virtual EDataValidationResult IsDataValid(FDataValidationContext& Context) const override;
-#endif
 
 public:
-	UPROPERTY(EditAnywhere, Category = "Item")
-	FText ItemName;
-
-	UPROPERTY(EditAnywhere, Category = "Item", meta = (MultiLine = true))
-	FText Description;
-
-	UPROPERTY(EditAnywhere, Category = "Item")
-	TObjectPtr<UTexture2D> IconTexture;
-
-	UPROPERTY(EditAnywhere, Category = "Item", meta = (ClampMin = "1", ClampMax = "1000"))
-	int32 MaxStackCount = 1;
-
-	UPROPERTY(EditAnywhere, Category = "Item", meta = (BaseStruct = "/Script/CCL.CCLItemFragmentData", ExcludeBaseStruct))
-	TArray<FInstancedStruct> ItemFragments;
-
 	// Read-only compatibility for assets saved before the struct migration.
 	UPROPERTY(Instanced)
 	TArray<TObjectPtr<UCCLItemFragment>> Fragments;

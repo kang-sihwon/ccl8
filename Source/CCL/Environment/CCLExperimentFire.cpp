@@ -86,7 +86,7 @@ bool ACCLExperimentDirector::RunFire(bool bIndoor, FString& Error)
 		return false;
 	}
 
-	FCCLWorldStep Step;
+	FKSIWorldStep Step;
 	Step.StepId = 1;
 	Step.GameToSeconds = 10.;
 	if (!Candidate.Advance(Step, Error, &Celestial, &Inputs.Observer, &Runtime->GetSurfaceProvider(), &Inputs.Openings)

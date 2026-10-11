@@ -8,7 +8,7 @@
 class FCCLSurfaceSimulation;
 class ICCLSurfaceProvider;
 class UCCLAbilitySystemComponent;
-struct FCCLWorldStep;
+struct FKSIWorldStep;
 
 USTRUCT(BlueprintType)
 struct CCL_API FCCLThermalDamagePolicy
@@ -74,7 +74,7 @@ public:
 public:
 	void Register(UCCLThermalReceiverComponent* Receiver);
 	void Unregister(UCCLThermalReceiverComponent* Receiver);
-	bool Prepare(const FCCLWorldStep& Step, const FCCLSurfaceSimulation& Previous, FString& Error);
+	bool Prepare(const FKSIWorldStep& Step, const FCCLSurfaceSimulation& Previous, FString& Error);
 	void Commit();
 	void Cancel();
 

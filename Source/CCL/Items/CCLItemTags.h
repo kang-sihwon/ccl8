@@ -3,6 +3,7 @@
 #include "CoreMinimal.h"
 #include "NativeGameplayTags.h"
 
+class UKSIItemDefinition;
 class UCCLItemDefinition;
 
 namespace CCLItemTags
@@ -30,6 +31,6 @@ CCL_API const TArray<FGameplayTag>& Slots();
 CCL_API FGameplayTag SlotAt(int32 Index);
 CCL_API bool IsSlot(FGameplayTag Slot);
 CCL_API bool IsHand(FGameplayTag Slot);
-CCL_API bool IsTwoHanded(const UCCLItemDefinition* Item);
-CCL_API bool GetOccupiedSlots(const UCCLItemDefinition* Item, FGameplayTag RequestedSlot, TArray<FGameplayTag>& OutSlots);
+CCL_API bool IsTwoHanded(const UKSIItemDefinition* Item);
+CCL_API bool GetOccupiedSlots(const UKSIItemDefinition* Item, FGameplayTag RequestedSlot, TArray<FGameplayTag>& OutSlots);
 } // namespace CCLEquipment

@@ -1,4 +1,4 @@
-﻿#include "CCLGameInstance.h"
+#include "CCLGameInstance.h"
 #include "Agents/CCLAgentWorldSubsystem.h"
 #include "Agents/CCLAccountComponent.h"
 #include "Misc/Base64.h"
@@ -316,9 +316,9 @@ bool UCCLGameInstance::SaveSession()
 		Value.Definition = Entry.Definition ? Entry.Definition->GetFName() : NAME_None;
 		Value.Quantity = Entry.Quantity;
 		Value.Slot = Entry.Slot;
-		Value.LoadedAmmo = Entry.LoadedAmmo;
+		Value.LoadedAmmo = Entry.GetState<FCCLItemState>().LoadedAmmo;
 		FString FoodError;
-		if (!CCLFood::Encode(Entry.Food, Value.Food, FoodError))
+		if (!CCLFood::Encode(Entry.GetState<FCCLItemState>().Food, Value.Food, FoodError))
 		{
 			Status = TEXT("음식 상태를 수집하지 못해 저장할 수 없다.");
 			return false;
@@ -464,7 +464,7 @@ bool UCCLGameInstance::ApplyRecord(const FCCLSessionRecord& Record)
 								   !Record.AccountId.IsValid()));
 		Player->ForceNetUpdate();
 	};
-	TArray<FCCLInventoryEntry> Entries;
+	TArray<FKSIInventoryEntry> Entries;
 	for (const auto& Value : Record.Items)
 	{
 		auto& Entry = Entries.AddDefaulted_GetRef();
@@ -472,9 +472,9 @@ bool UCCLGameInstance::ApplyRecord(const FCCLSessionRecord& Record)
 		Entry.Definition = FCCLSessionCodec::Item(Value.Definition);
 		Entry.Quantity = Value.Quantity;
 		Entry.Slot = Value.Slot;
-		Entry.LoadedAmmo = Value.LoadedAmmo;
+		Entry.GetState<FCCLItemState>().LoadedAmmo = Value.LoadedAmmo;
 		FString FoodError;
-		if (!CCLFood::Decode(Value.Food, Entry.Food, FoodError))
+		if (!CCLFood::Decode(Value.Food, Entry.GetState<FCCLItemState>().Food, FoodError))
 		{
 			return false;
 		}

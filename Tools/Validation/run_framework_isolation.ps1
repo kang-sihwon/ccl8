@@ -1,4 +1,4 @@
-param([ValidateSet('KSIUI', 'KSIMap')][string]$Module = 'KSIUI')
+param([ValidateSet('KSIUI', 'KSIMap', 'KSICore', 'KSIInventory')][string]$Module = 'KSIUI')
 $ErrorActionPreference = 'Stop'
 $root = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '../..'))
 $paths = Get-Content (Join-Path $root '.local/agent-paths.json') -Raw | ConvertFrom-Json
@@ -6,6 +6,7 @@ $directory = Join-Path $root ('Saved/Tests/FrameworkIsolation/' + $Module + '-' 
 $source = Join-Path $directory 'Source'
 New-Item -ItemType Directory -Path $source -Force | Out-Null
 Copy-Item -LiteralPath (Join-Path $root ('Source/' + $Module)) -Destination $source -Recurse
+if ($Module -eq 'KSIInventory') { Copy-Item -LiteralPath (Join-Path $root 'Source/KSICore') -Destination $source -Recurse }
 $probe = Join-Path $source 'KSIProbe'
 New-Item -ItemType Directory -Path $probe | Out-Null
 Copy-Item -Path (Join-Path $PSScriptRoot 'FrameworkProbe/*.h'), (Join-Path $PSScriptRoot 'FrameworkProbe/*.cpp') -Destination $probe
@@ -20,11 +21,19 @@ $descriptor = [ordered]@{
 $dependencies = '"Core", "CoreUObject", "Engine", "' + $Module + '"'
 $ui = 0
 $map = 0
+$core = 0
+$inventory = 0
 if ($Module -eq 'KSIUI') {
     $ui = 1
     $dependencies += ', "GameplayTags", "EnhancedInput", "InputCore", "CommonUI"'
     $descriptor.Plugins = @(@{Name='CommonUI'; Enabled=$true}, @{Name='EnhancedInput'; Enabled=$true})
-} else { $map = 1 }
+} elseif ($Module -eq 'KSIMap') { $map = 1 }
+elseif ($Module -eq 'KSICore') { $core = 1 }
+else {
+    $inventory = 1
+    $dependencies += ', "KSICore"'
+    $descriptor.Modules += @{Name='KSICore'; Type='Runtime'; LoadingPhase='Default'}
+}
 $project = Join-Path $directory ($projectName + '.uproject')
 $descriptor | ConvertTo-Json -Depth 8 | Set-Content -LiteralPath $project -Encoding utf8
 @"
@@ -37,6 +46,8 @@ public class KSIProbe : ModuleRules
         PublicDependencyModuleNames.AddRange(new[] { $dependencies });
         PublicDefinitions.Add("WITH_KSI_UI=$ui");
         PublicDefinitions.Add("WITH_KSI_MAP=$map");
+        PublicDefinitions.Add("WITH_KSI_CORE=$core");
+        PublicDefinitions.Add("WITH_KSI_INVENTORY=$inventory");
     }
 }
 "@ | Set-Content -LiteralPath (Join-Path $probe 'KSIProbe.Build.cs') -Encoding utf8
@@ -62,7 +73,7 @@ if ($ui) {
     "[/Script/CommonInput.CommonInputSettings]`nbEnableEnhancedInputSupport=True`n" | Set-Content -LiteralPath (Join-Path $config 'DefaultGame.ini') -Encoding utf8
     $inputSettings | Set-Content -LiteralPath (Join-Path $config 'DefaultInput.ini') -Encoding utf8
 }
-$hashes = Get-ChildItem -LiteralPath (Join-Path $source $Module) -Recurse -File | ForEach-Object {
+$hashes = Get-ChildItem -LiteralPath $source -Recurse -File | Where-Object { $_.FullName -notmatch '[\\/]KSIProbe[\\/]' } | ForEach-Object {
     @{path=$_.FullName.Substring($source.Length + 1); sha256=(Get-FileHash -LiteralPath $_.FullName -Algorithm SHA256).Hash}
 }
 $hashes | ConvertTo-Json | Set-Content -LiteralPath (Join-Path $directory 'module-sha256.json') -Encoding utf8

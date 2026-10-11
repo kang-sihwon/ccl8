@@ -6,6 +6,7 @@
 #include "CCLWorldPickup.generated.h"
 
 class UCCLInventoryComponent;
+class UKSIItemDefinition;
 class UCCLItemDefinition;
 class UStaticMeshComponent;
 class UStaticMesh;
@@ -48,7 +49,7 @@ public:
 
 public:
 	bool TryCollect(UCCLInventoryComponent* Inventory, AActor* Collector);
-	bool InitializeFood(UCCLItemDefinition* Item, const FCCLFoodState& Food, FGuid ItemId, FString& Error);
+	bool InitializeFood(UKSIItemDefinition* Item, const FCCLFoodState& Food, FGuid ItemId, FString& Error);
 	static ACCLWorldPickup* DropFood(UCCLInventoryComponent* Source, FGuid ItemId, int32 Count,
 									 const FTransform& Transform, FString& Error);
 	const FCCLPickupFoodView& GetFoodView() const { return FoodView; }
@@ -68,7 +69,7 @@ public:
 	FGuid PersistentId;
 
 	UPROPERTY(EditAnywhere, ReplicatedUsing = RefreshVisual, Category = "Pickup")
-	TObjectPtr<UCCLItemDefinition> Definition;
+	TObjectPtr<UKSIItemDefinition> Definition;
 
 	UPROPERTY(EditAnywhere, Replicated, Category = "Pickup", meta = (ClampMin = "1"))
 	int32 Quantity = 1;

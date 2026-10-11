@@ -94,7 +94,7 @@ void UCCLThermalSmokeSubsystem::Tick(float DeltaTime)
 		{
 			return;
 		}
-		FCCLWorldStep Fake;
+		FKSIWorldStep Fake;
 		if (!Check(!W->GetSubsystem<UCCLThermalExposureSubsystem>()->Prepare(Fake, R->GetSurfaceSimulation(), Error),
 				   TEXT("client cannot apply thermal step")))
 		{
@@ -330,7 +330,7 @@ void UCCLThermalSmokeSubsystem::Tick(float DeltaTime)
 			return;
 		}
 		TargetActor->SetActorLocation(HotPosition, false, nullptr, ETeleportType::TeleportPhysics);
-		FCCLWorldStep Prepared;
+		FKSIWorldStep Prepared;
 		Prepared.Ticket = FGuid::NewGuid();
 		Prepared.WorldFromSeconds = Prepared.WorldToSeconds = R->GetClock().GetWorldSeconds();
 		Prepared.StepId = R->GetSurfaceSimulation().GetStepId() + 1;

@@ -1,4 +1,4 @@
-﻿#include "CCLHUDScreens.h"
+#include "CCLHUDScreens.h"
 
 #include "UI/CCLUIInputData.h"
 #include "CCLCombatViewModel.h"

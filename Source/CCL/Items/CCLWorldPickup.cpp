@@ -1,4 +1,5 @@
 #include "CCLWorldPickup.h"
+#include "Items/CCLInventoryFood.h"
 
 #include "CCLInventoryComponent.h"
 #include "CCLInventoryPersistenceSubsystem.h"
@@ -94,7 +95,7 @@ bool ACCLWorldPickup::TryCollect(UCCLInventoryComponent* Inventory, AActor* Coll
 	}
 	bCollected = 1;
 	const auto* Entry = bFood ? FoodInventory->FindSlot(0) : nullptr;
-	const bool bAdded = bFood ? FoodInventory->TransferFood(Entry->Id, Entry->Quantity, Inventory)
+	const bool bAdded = bFood ? FCCLInventoryFood::TransferFood(*FoodInventory, Entry->Id, Entry->Quantity, Inventory)
 							  : Inventory->Add(Definition, Quantity).IsValid();
 	if (!bAdded)
 	{
@@ -114,7 +115,7 @@ void ACCLWorldPickup::Tick(float DeltaSeconds)
 	}
 }
 
-bool ACCLWorldPickup::InitializeFood(UCCLItemDefinition* Item, const FCCLFoodState& Food, FGuid ItemId, FString& Error)
+bool ACCLWorldPickup::InitializeFood(UKSIItemDefinition* Item, const FCCLFoodState& Food, FGuid ItemId, FString& Error)
 {
 	const auto* Runtime = GetWorld() ? GetWorld()->GetSubsystem<UCCLWorldSimulationSubsystem>() : nullptr;
 	auto* Store = GetWorld() ? GetWorld()->GetSubsystem<UCCLInventoryPersistenceSubsystem>() : nullptr;
@@ -126,12 +127,12 @@ bool ACCLWorldPickup::InitializeFood(UCCLItemDefinition* Item, const FCCLFoodSta
 		Error = TEXT("Pickup food initialization is unavailable or belongs to another world.");
 		return false;
 	}
-	FCCLInventoryEntry Entry;
+	FKSIInventoryEntry Entry;
 	Entry.Id = ItemId;
 	Entry.Definition = Item;
 	Entry.Quantity = CCLFood::Quantity(Food);
 	Entry.Slot = 0;
-	Entry.Food = Food;
+	Entry.GetState<FCCLItemState>().Food = Food;
 	if (!Food.IsPresent() || !FoodInventory->Restore({Entry}))
 	{
 		Error = TEXT("Invalid pickup food history.");
@@ -181,7 +182,7 @@ void ACCLWorldPickup::UpdateFoodView()
 	const auto* Runtime = GetWorld()->GetSubsystem<UCCLWorldSimulationSubsystem>();
 	FCCLFoodQuality Quality;
 	if (!Runtime || !Runtime->IsRunning() || !EnsureFood() ||
-		!FoodInventory->GetFoodQuality(FoodInventory->FindSlot(0)->Id, Quality))
+		!FCCLInventoryFood::GetFoodQuality(*FoodInventory, FoodInventory->FindSlot(0)->Id, Quality))
 	{
 		FoodView = {};
 		return;
@@ -199,7 +200,7 @@ ACCLWorldPickup* ACCLWorldPickup::DropFood(UCCLInventoryComponent* Source, FGuid
 {
 	const auto* Entry = Source ? Source->Find(ItemId) : nullptr;
 	if (!Source || !Source->GetOwner() || !Source->GetOwner()->HasAuthority() || Source->IsTransactionOpen() ||
-		!Entry || !Entry->Food.IsPresent() || Entry->Slot < 0 || Count < 1 || Count > Entry->Quantity ||
+		!Entry || !Entry->GetState<FCCLItemState>().Food.IsPresent() || Entry->Slot < 0 || Count < 1 || Count > Entry->Quantity ||
 		Transform.ContainsNaN())
 	{
 		Error = TEXT("Invalid food drop request.");
@@ -230,13 +231,13 @@ ACCLWorldPickup* ACCLWorldPickup::DropFood(UCCLInventoryComponent* Source, FGuid
 	if (!Runtime ||
 		!CCLFoodEnvironment::ResolveAt(Transform.GetLocation() / 100., Runtime->GetSurfaceSimulation(), Binding,
 									   Error) ||
-		!Pickup->FoodInventory->ChangeFoodEnvironment(Binding, Error))
+		!FCCLInventoryFood::ChangeFoodEnvironment(*Pickup->FoodInventory, Binding, Error))
 	{
 		Store->CancelEmptyPickup(*Pickup);
 		Pickup->Destroy();
 		return nullptr;
 	}
-	if (!Source->TransferFood(ItemId, Count, Pickup->FoodInventory))
+	if (!FCCLInventoryFood::TransferFood(*Source, ItemId, Count, Pickup->FoodInventory))
 	{
 		Store->CancelEmptyPickup(*Pickup);
 		Pickup->Destroy();
@@ -246,7 +247,7 @@ ACCLWorldPickup* ACCLWorldPickup::DropFood(UCCLInventoryComponent* Source, FGuid
 	const auto* Dropped = Pickup->FoodInventory->FindSlot(0);
 	if (!Binding.IsDynamic())
 	{
-		verify(Pickup->FoodInventory->ChangeFoodStorage(Dropped->Id, Binding.Conditions));
+		verify(FCCLInventoryFood::ChangeFoodStorage(*Pickup->FoodInventory, Dropped->Id, Binding.Conditions));
 	}
 	Pickup->Definition = Item;
 	Pickup->Quantity = Count;

@@ -1,4 +1,4 @@
-﻿#include "CCLMapScreen.h"
+#include "CCLMapScreen.h"
 
 #include "UI/CCLUIInputData.h"
 #include "CCLGameUI.h"

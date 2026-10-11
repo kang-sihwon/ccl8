@@ -27,9 +27,9 @@ namespace
 		return G;
 	}
 
-	FCCLWorldStep SnowStep(const FCCLSurfaceSimulation& S, double Game = 0.25, double World = 15.)
+	FKSIWorldStep SnowStep(const FCCLSurfaceSimulation& S, double Game = 0.25, double World = 15.)
 	{
-		FCCLWorldStep Step;
+		FKSIWorldStep Step;
 		Step.Ticket = FGuid::NewGuid();
 		Step.StepId = S.GetStepId() + 1;
 		Step.GameFromSeconds = S.GetGameSeconds();

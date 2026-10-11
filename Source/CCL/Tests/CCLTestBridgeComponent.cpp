@@ -56,7 +56,7 @@ void UCCLTestBridgeComponent::GrantEquipmentSet(APlayerController* Controller)
 	for (const TCHAR* Name : {TEXT("DA_TrainingSword"), TEXT("DA_TrainingShield"), TEXT("DA_TrainingStaff"), TEXT("DA_TrainingArmor"),
 	                          TEXT("DA_TrainingBoots"), TEXT("DA_TrainingCloak"), TEXT("DA_TrainingNecklace"), TEXT("DA_TrainingRing")})
 	{
-		auto* Definition = LoadObject<UCCLItemDefinition>(nullptr, *FString::Printf(TEXT("/Game/Progression/%s.%s"), Name, Name));
+		auto* Definition = LoadObject<UKSIItemDefinition>(nullptr, *FString::Printf(TEXT("/Game/Progression/%s.%s"), Name, Name));
 		State->GetInventory()->Add(Definition, 1);
 	}
 #endif

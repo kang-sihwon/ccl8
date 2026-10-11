@@ -26,7 +26,7 @@ bool Reject(FString& Error, const TCHAR* Message)
 	return false;
 }
 
-bool ResolveEntries(const FCCLPlayerSnapshot& Profile, TArray<FCCLInventoryEntry>& Entries, FString& Error)
+bool ResolveEntries(const FCCLPlayerSnapshot& Profile, TArray<FKSIInventoryEntry>& Entries, FString& Error)
 {
 	for (const auto& Item : Profile.Items)
 	{
@@ -35,8 +35,8 @@ bool ResolveEntries(const FCCLPlayerSnapshot& Profile, TArray<FCCLInventoryEntry
 		Entry.Definition = FCCLSessionCodec::Item(Item.Definition);
 		Entry.Quantity = Item.Quantity;
 		Entry.Slot = Item.Slot;
-		Entry.LoadedAmmo = Item.LoadedAmmo;
-		if (!Entry.Definition || !CCLFood::Decode(Item.Food, Entry.Food, Error))
+		Entry.GetState<FCCLItemState>().LoadedAmmo = Item.LoadedAmmo;
+		if (!Entry.Definition || !CCLFood::Decode(Item.Food, Entry.GetState<FCCLItemState>().Food, Error))
 		{
 			return Reject(Error, TEXT("Player item definition or food could not be resolved."));
 		}
@@ -58,6 +58,7 @@ void UCCLPlayerPersistenceSubsystem::Initialize(FSubsystemCollectionBase& Collec
 	if (auto* World = Collection.InitializeDependency<UCCLWorldSimulationSubsystem>())
 	{
 		World->RegisterParticipant(*this);
+		World->RegisterAdvanceParticipant(*this);
 	}
 }
 
@@ -65,6 +66,7 @@ void UCCLPlayerPersistenceSubsystem::Deinitialize()
 {
 	if (auto* World = GetWorld()->GetSubsystem<UCCLWorldSimulationSubsystem>())
 	{
+		World->UnregisterAdvanceParticipant(*this);
 		World->UnregisterParticipant(*this);
 	}
 	Super::Deinitialize();
@@ -113,8 +115,8 @@ bool UCCLPlayerPersistenceSubsystem::CapturePlayer(const FString& Key, ACCLPlaye
 		Item.Definition = Entry.Definition->GetFName();
 		Item.Quantity = Entry.Quantity;
 		Item.Slot = Entry.Slot;
-		Item.LoadedAmmo = Entry.LoadedAmmo;
-		if (!CCLFood::Encode(Entry.Food, Item.Food, Error))
+		Item.LoadedAmmo = Entry.GetState<FCCLItemState>().LoadedAmmo;
+		if (!CCLFood::Encode(Entry.GetState<FCCLItemState>().Food, Item.Food, Error))
 		{
 			return false;
 		}
@@ -354,7 +356,7 @@ FName UCCLPlayerPersistenceSubsystem::GetWorldSection() const
 	return CCLPlayerSnapshot::WorldSection();
 }
 
-bool UCCLPlayerPersistenceSubsystem::CaptureWorldSection(FCCLWorldCaptureContext& Context, TArray<uint8>& OutBytes,
+bool UCCLPlayerPersistenceSubsystem::CaptureWorldSection(FKSIWorldCaptureContext& Context, TArray<uint8>& OutBytes,
 														 FString& Error)
 {
 	TArray<FCCLPlayerSnapshot> Profiles;
@@ -372,7 +374,7 @@ bool UCCLPlayerPersistenceSubsystem::CaptureWorldSection(FCCLWorldCaptureContext
 	return true;
 }
 
-bool UCCLPlayerPersistenceSubsystem::PrepareWorldRestore(FCCLWorldRestoreContext& Context, const TArray<uint8>* Section,
+bool UCCLPlayerPersistenceSubsystem::PrepareWorldRestore(FKSIWorldRestoreContext& Context, const TArray<uint8>* Section,
 														 FString& Error)
 {
 	TArray<FCCLPlayerSnapshot> Input;
@@ -451,7 +453,7 @@ bool UCCLPlayerPersistenceSubsystem::PrepareWorldRestore(FCCLWorldRestoreContext
 	}
 	if (SessionRequest)
 	{
-		if (SessionRequest->Entries.ContainsByPredicate([&](const FCCLInventoryEntry& Entry) { return Context.KeptItems.Contains(Entry.Id); }))
+		if (SessionRequest->Entries.ContainsByPredicate([&](const FKSIInventoryEntry& Entry) { return Context.KeptItems.Contains(Entry.Id); }))
 		{
 			ResetRestore();
 			return Reject(Error, TEXT("The session restores an item that a kept player holds."));
@@ -559,7 +561,7 @@ bool UCCLPlayerPersistenceSubsystem::NeedsWorldAdvance() const
 	return false;
 }
 
-bool UCCLPlayerPersistenceSubsystem::PrepareWorldAdvance(const FCCLWorldStep& Step, const FCCLSurfaceSimulation& Surface,
+bool UCCLPlayerPersistenceSubsystem::PrepareWorldAdvance(const FKSIWorldStep& Step, const FCCLSurfaceSimulation& Surface,
 														 FString& Error)
 {
 	TArray<FCCLPlayerSnapshot> Values;
@@ -569,7 +571,7 @@ bool UCCLPlayerPersistenceSubsystem::PrepareWorldAdvance(const FCCLWorldStep& St
 		return false;
 	}
 	TMap<FString, FCCLPlayerSnapshot> Candidate;
-	TMap<TWeakObjectPtr<UCCLInventoryComponent>, TArray<FCCLInventoryEntry>> Entries;
+	TMap<TWeakObjectPtr<UCCLInventoryComponent>, TArray<FKSIInventoryEntry>> Entries;
 	for (auto& Profile : Values)
 	{
 		if (Profile.Environment.IsDynamic())

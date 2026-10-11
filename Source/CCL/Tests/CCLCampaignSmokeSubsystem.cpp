@@ -1,6 +1,7 @@
 #include "CCLCampaignSmokeSubsystem.h"
 #include "Campaign/CCLExpeditionComponent.h"
 #include "Campaign/CCLVillageSteward.h"
+#include "Campaign/CCLLifeVillager.h"
 #include "Combat/CCLCombatDefinition.h"
 #include "Combat/CCLEnemyDefinition.h"
 #include "AbilitySystem/CCLEffects.h"
@@ -55,7 +56,7 @@ TStatId UCCLCampaignSmokeSubsystem::GetStatId() const
 void UCCLCampaignSmokeSubsystem::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-	if (bFailed || bComplete)
+	if (bFailed || (bComplete && (GetWorld()->GetNetMode() == NM_DedicatedServer || bClientReported)))
 	{
 		return;
 	}
@@ -123,15 +124,19 @@ void UCCLCampaignSmokeSubsystem::Tick(float DeltaTime)
 				return;
 			}
 		}
-		if (!Check(State->GetRemainingGuards() == 0, TEXT("replicated victory has no remaining guards")))
+		if (State->GetRemainingGuards() != 0)
 		{
+			Check(false, TEXT("replicated victory has no remaining guards"));
 			return;
 		}
-		UE_LOG(LogTemp, Display, TEXT("CCL_CAMPAIGN CLIENT PASS role=%s"), *Role);
-		bClientReported = 1;
+		if (!FParse::Param(FCommandLine::Get(), TEXT("CCLContentSmoke")) || CheckContentReplication(Local, Role))
+		{
+			UE_LOG(LogTemp, Display, TEXT("CCL_CAMPAIGN CLIENT PASS role=%s"), *Role);
+			bClientReported = 1;
+		}
 	}
 
-	if (GetWorld()->GetNetMode() == NM_Client || !Driver.IsValid() || !State || Now < NextStageAt)
+	if (bFailed || bComplete || GetWorld()->GetNetMode() == NM_Client || !Driver.IsValid() || !State || Now < NextStageAt)
 	{
 		return;
 	}
@@ -468,9 +473,10 @@ void UCCLCampaignSmokeSubsystem::TickProgression()
 	auto Bonus = [ASC]() { return ASC->GetNumericAttribute(UCCLOffenseSet::GetAttackBonusAttribute()); };
 	auto Collect = [this, Character](bool bEquipment)
 	{
+		const FName FixtureName = bEquipment ? TEXT("DA_IronGauntlets") : TEXT("DA_RecoveryPotion");
 		for (TActorIterator<ACCLWorldPickup> It(GetWorld()); It; ++It)
 		{
-			if (It->Definition && (It->Definition->FindFragment<FCCLItemFragment_Equip>() != nullptr) == bEquipment)
+			if (It->Definition && It->Definition->GetFName() == FixtureName)
 			{
 				Character->SetActorLocation(It->GetActorLocation() + FVector(0.f, -80.f, 55.f));
 				UCCLTestBridgeComponent::Find(Driver.Get())->ClientProgressionTestStep(0, FGuid());
@@ -505,13 +511,14 @@ void UCCLCampaignSmokeSubsystem::TickProgression()
 		{
 			return;
 		}
-		const auto* Potions = Inventory->GetEntries().FindByPredicate([this](const FCCLInventoryEntry& Entry) { return Entry.Id != EquipmentId; });
-		if (!Check(Potions && Potions->Quantity == 3, TEXT("server pickup quantity retained")))
+		const auto* Potions = Inventory->GetEntries().FindByPredicate([this](const FKSIInventoryEntry& Entry) { return Entry.Id != EquipmentId; });
+		if (!Check(Potions && Potions->Definition && Potions->Definition->GetFName() == TEXT("DA_RecoveryPotion") &&
+			Potions->Quantity == 3, TEXT("server recovery pickup identity and quantity retained")))
 		{
 			return;
 		}
 		PotionId = Potions->Id;
-		UCCLItemDefinition* Definition = Potions->Definition;
+		UKSIItemDefinition* Definition = Potions->Definition;
 		if (!Check(!Inventory->Add(Definition, -1).IsValid() && !Inventory->Remove(PotionId, -1) &&
 			!Inventory->Remove(FGuid::NewGuid(), 1), TEXT("invalid inventory mutations rejected")) ||
 			!Check(!Loadout->Use(PotionId) && Inventory->Find(PotionId)->Quantity == 3, TEXT("full health does not consume recovery item")) ||
@@ -716,8 +723,11 @@ bool UCCLCampaignSmokeSubsystem::TickContent(bool bAfterVictory)
 	ACCLVillageSteward* NPC = nullptr;
 	for (TActorIterator<ACCLVillageSteward> It(GetWorld()); It; ++It)
 	{
-		NPC = *It;
-		break;
+		if (!It->IsA<ACCLLifeVillager>())
+		{
+			NPC = *It;
+			break;
+		}
 	}
 
 	if (!Check(NPC != nullptr, TEXT("village steward exists")))
@@ -738,9 +748,23 @@ bool UCCLCampaignSmokeSubsystem::TickContent(bool bAfterVictory)
 			}
 
 			Pawn->SetActorLocation(NPC->GetActorLocation() + FVector(0.f, -150.f, 0.f));
+			for (const FGameplayTag StateTag : {FGameplayTag(CCLTags::State_Busy), FGameplayTag(CCLTags::State_Stagger)})
+			{
+				auto* PlayerASC = Player->GetAbilitySystemComponent();
+				PlayerASC->AddLooseGameplayTag(StateTag);
+				const bool bRejected = !Content->Talk(NPC) && !Content->Buy(NPC) && Content->GetCoins() == 30 &&
+					Content->GetQuest() == ECCLQuestStatus::Available && Inventory->GetEntries().IsEmpty();
+				PlayerASC->RemoveLooseGameplayTag(StateTag);
+				if (!Check(bRejected, TEXT("busy and staggered NPC requests preserve personal state")))
+				{
+					return false;
+				}
+			}
+
+			NPC->Offer.InitialStock = 3;
 			const int32 Capacity = Inventory->Capacity;
 			Inventory->Capacity = 1;
-			auto* Item = LoadObject<UCCLItemDefinition>(nullptr, TEXT("/Game/Progression/DA_IronGauntlets.DA_IronGauntlets"));
+			auto* Item = LoadObject<UKSIItemDefinition>(nullptr, TEXT("/Game/Progression/DA_IronGauntlets.DA_IronGauntlets"));
 			const FGuid Id = Inventory->Add(Item, 1);
 			if (!Check(Id.IsValid() && !Content->Buy(NPC) && Content->GetCoins() == 30, TEXT("full inventory purchase does not debit")))
 			{
@@ -813,11 +837,72 @@ bool UCCLCampaignSmokeSubsystem::TickContent(bool bAfterVictory)
 				return false;
 			}
 
+			if (!Check(!Content->Buy(NPC) && Content->GetCoins() == 60 && Inventory->GetEntries().Num() == 1 &&
+				Inventory->GetEntries()[0].Quantity == 3, TEXT("sold-out purchase preserves coins and items")))
+			{
+				return false;
+			}
+
+			NPC->Offer.InitialStock = 23;
+			if (!Check(!Content->Buy(NPC) && Content->GetCoins() == 60 && Inventory->GetEntries()[0].Quantity == 3,
+				TEXT("initial stock changes never refill an existing resource")))
+			{
+				return false;
+			}
+
+			// Deliberately differ from class defaults so remote and late clients must receive the offer.
+			NPC->Offer.Item = TSoftObjectPtr<UKSIItemDefinition>(FSoftObjectPath(TEXT("/Game/Progression/DA_IronGauntlets.DA_IronGauntlets")));
+			NPC->Offer.Price = 17;
+			NPC->ForceNetUpdate();
 			UE_LOG(LogTemp, Display, TEXT("CCL_CONTENT REWARD PASS"));
 			return true;
 		}
 	}
 	++ContentStep;
 	NextStageAt = GetWorld()->GetTimeSeconds() + 1.5;
+	return false;
+}
+
+
+bool UCCLCampaignSmokeSubsystem::CheckContentReplication(ACCLPlayerController* Local, const FString& Role)
+{
+	if (!ContentReplicationStarted)
+	{
+		ContentReplicationStarted = FPlatformTime::Seconds();
+	}
+
+	const auto* Player = Local->GetPlayerState<ACCLPlayerState>();
+	const auto* Content = Player ? Player->GetExpedition() : nullptr;
+	const auto* Inventory = Player ? Player->GetInventory() : nullptr;
+	const auto* Loadout = Player ? Player->GetLoadout() : nullptr;
+	const bool bDriver = Role == TEXT("driver");
+	const bool bPersonalReady = Content && Inventory && Loadout &&
+		Content->GetQuest() == (bDriver ? ECCLQuestStatus::Rewarded : ECCLQuestStatus::Available) &&
+		Content->GetCoins() == (bDriver ? 60 : 30) && Loadout->GetPoints() == (bDriver ? 2 : 1) &&
+		(bDriver ? Inventory->GetEntries().Num() == 1 && Inventory->GetEntries()[0].Quantity == 3 : Inventory->GetEntries().IsEmpty());
+	bool bOfferReady = false;
+	for (TActorIterator<ACCLVillageSteward> It(GetWorld()); It; ++It)
+	{
+		if (!It->IsA<ACCLLifeVillager>())
+		{
+			const auto& Offer = It->Offer;
+			bOfferReady = Offer.Price == 17 && Offer.InitialStock == 23 &&
+				Offer.Item.ToSoftObjectPath() == FSoftObjectPath(TEXT("/Game/Progression/DA_IronGauntlets.DA_IronGauntlets")) &&
+				Offer.StockResource.GetTagName() == TEXT("Agent.Resource.RecoveryPotion");
+			break;
+		}
+	}
+
+	if (bPersonalReady && bOfferReady)
+	{
+		UE_LOG(LogTemp, Display, TEXT("CCL_CONTENT CLIENT PASS role=%s offer=17 stockSetting=23 personal=1"), *Role);
+		return true;
+	}
+
+	if (FPlatformTime::Seconds() - ContentReplicationStarted > 20.)
+	{
+		UE_LOG(LogTemp, Display, TEXT("CCL_CONTENT replication personal=%d offer=%d role=%s"), bPersonalReady, bOfferReady, *Role);
+		Check(false, TEXT("content offer and owner state replication timeout"));
+	}
 	return false;
 }

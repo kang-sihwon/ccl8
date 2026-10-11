@@ -1,6 +1,7 @@
 #include "CCLInventorySnapshot.h"
 
-#include "Environment/CCLWorldParticipant.h"
+#include "KSIWorldParticipant.h"
+#include "Environment/CCLWorldSectionFacts.h"
 #include "Environment/CCLWorldSnapshot.h"
 
 #include "CCLFoodState.h"
@@ -234,9 +235,10 @@ bool CCLInventorySnapshot::WriteWorld(FCCLWorldSnapshot& World, const TArray<FCC
 namespace
 {
 	// World containers validate before player profiles so each item has exactly one owner.
-	const FCCLWorldSectionRegistrar InventorySection(CCLInventorySnapshot::WorldSection(), 1,
-		[](const FCCLWorldSectionContext& Context, const TArray<uint8>& Bytes, FString& Error)
+	const FKSIWorldSectionRegistrar InventorySection(CCLInventorySnapshot::WorldSection(), 1,
+		[](const FKSIWorldSectionContext& Context, const TArray<uint8>& Bytes, FString& Error)
 		{
+            const auto* Facts = Context.FindFacts<FCCLWorldSectionFacts>();
 			TArray<FCCLInventorySnapshot> Records;
 			if (!CCLInventorySnapshot::Decode(Bytes, Context.WorldId, Context.WorldSeconds, Records, Error))
 			{
@@ -246,7 +248,7 @@ namespace
 			for (const auto& Record : Records)
 			{
 				auto Binding = Record.Environment;
-				if (!Context.Surface || !CCLFoodEnvironment::Sample(Binding, *Context.Surface, Error))
+				if ((!Facts || !Facts->Surface) || !CCLFoodEnvironment::Sample(Binding, *Facts->Surface, Error))
 				{
 					return false;
 				}

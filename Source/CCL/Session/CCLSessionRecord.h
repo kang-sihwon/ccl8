@@ -2,6 +2,7 @@
 #include "CoreMinimal.h"
 #include "Items/CCLItemFragments.h"
 #include "CCLSessionRecord.generated.h"
+class UKSIItemDefinition;
 class UCCLItemDefinition;
 class UCCLSkillDefinition;
 USTRUCT()
@@ -92,7 +93,7 @@ struct FCCLSessionRecord
 class CCL_API FCCLSessionCodec
 {
 public:
-	static UCCLItemDefinition* Item(FName Id);
+	static UKSIItemDefinition* Item(FName Id);
 	static UCCLSkillDefinition* Skill(FName Id);
 	static bool Validate(const FCCLSessionRecord& Record);
 	static bool ValidateProfile(const FCCLSessionRecord& Record, FGuid WorldId, double WorldSeconds, int32 Capacity);

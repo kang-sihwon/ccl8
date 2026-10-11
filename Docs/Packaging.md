@@ -1,6 +1,6 @@
 # Windows 검토용 패키지
 
-자연 환경의 최신 UE 5.8.3 Game·Server 결과는 [집계 영양 상태를 포함한 패키지](#집계-영양-상태를-포함한-패키지)를 따른다. 아래 최초 전달본과 실패 기록은 당시 상태를 보존한다.
+최신 UE 5.8.3 Game·Server 결과는 [Framework 분리 후 Game·Server 패키지](#framework-분리-후-gameserver-패키지)를 따른다. 아래 최초 전달본과 실패 기록은 당시 상태를 보존한다.
 
 단계 7은 Windows Development 패키지를 생성하고 에디터를 거치지 않는 실행 파일에서 전체 흐름을 검사한다. 이번 산출물은 기능 검토용이며 최종 아트·밸런스와 Shipping 배포본을 대신하지 않는다.
 
@@ -119,3 +119,61 @@ Tools/Validation/run_environment_smoke.ps1 -Mode Dedicated -Map EnvironmentScena
 
 
 프레임 계측은 기능 검사와 별개다. 18,000프레임 실행의 중단과 600프레임 재실행의 행 수 불일치로 최신 패키지의 완료 성능 수치는 아직 없다. 근거와 재검사 항목은 [프레임 계측의 미완료 범위](EnvironmentPlan.md#프레임-계측의-미완료-범위)를 따른다.
+
+
+## Framework 분리 후 Game·Server 패키지
+
+2026-10-12 `KSICore`·`KSIInventory` 분리와 선행 인벤토리·환경 보완을 포함한 Windows Development 패키지를 생성했다. 게임·전용 서버 모두 쿠킹·스테이징·아카이브까지 완료했다. 최초 패키지의 서버 글꼴 로딩 오류를 고친 최종 산출물이며, 아래 실행 기록은 에디터 실행과 구분한다. 제출 범위와 모듈 독립 검증은 [FrameworkPlan](FrameworkPlan.md#패키지-검증과-제출-범위)을 따른다.
+
+| 용도 | 경로 |
+|---|---|
+| 사용자용 Game 실행기 | `Saved/FrameworkStage2GamePackage/Windows/CCL.exe` |
+| 검사에 사용한 Game | `Saved/FrameworkStage2GamePackage/Windows/CCL/Binaries/Win64/CCL.exe` |
+| 실제 Server 타깃 | `Saved/FrameworkStage2ServerPackage/WindowsServer/CCL/Binaries/Win64/CCLServer.exe` |
+
+전달할 때는 실행 파일만 복사하지 않고 해당 `Windows` 또는 `WindowsServer` 폴더 전체를 복사한다. 이 산출물과 원본 로그는 Git에서 제외된 `Saved/`에 보존하며 GitHub에는 코드·설정·검증 도구와 문서를 제출한다.
+
+### 생성과 실행 근거
+
+아래 로그 이름의 공통 루트는 `Saved/Tests/FrameworkStage2/Packaging/`이다. 실행 도구 로그에는 실제 프로세스 로그·결과 폴더가 기록된다. 원본 로그의 기기별 절대 경로는 이 문서에서 저장소 상대 경로로 표기했다.
+
+| 검사 | 결과 | 근거 |
+|---|---|---|
+| 프로젝트 파일 생성 | 성공 | `Generate-Final.log` |
+| 최종 Editor 빌드 | 성공 | `Editor-Verified.log` |
+| CCL 자동 검사 | 163개 성공, 경고·실패·미실행 0 | `Automation-Final.log`, `Saved/Tests/Automation/20261012-005306-157/report/index.json` |
+| Game BuildCookRun | 78.56초, 종료 코드 0 | `Game-Package-Final.log` |
+| Server BuildCookRun | 68.30초, 종료 코드 0 | `Server-Package-Final.log` |
+| 인벤토리 확장 복제 | 실제 Server와 Game 2개. 음식·탄약 상태, 소유자 전용 복제, 변경 알림과 늦은 접속 성공 | `Inventory-Network-Final.log` |
+| 음식 저장 | 새 Game 프로세스의 동일 시각·CRC 복원과 후속 노화 성공 | `Food-Final.log` |
+| 개인·네트워크 세션 | 체크포인트 새 프로세스 복원, 방 생성·접속과 종료 성공 | `Session-Final.log`, `Session-Network-Final.log` |
+| 장비·소비·훈련 | Game Listen의 원격 조작·개별 재스폰·늦은 접속 성공 | `Progression-Final.log` |
+| UI | 1280×720의 장착·이동·소비·세션·대화 조작 성공. 장비 화면의 한글·슬롯·캐릭터 표시 확인 | `UI-Final.log`, `Saved/Tests/UIVisual/1280x720-20261012-005808/equipment-full.png` |
+| 환경 네트워크 | 실제 Server·Game의 지연 80ms·손실 2%, 관측자 재접속과 환경 순환 성공 | `Environment-Network-Final.log` |
+| 사용자용 실행기 | 루트 `CCL.exe`에서 시작·저장·새 프로세스 복원과 정상 종료 성공 | `Bootstrap-Final.log` |
+
+빌드 영수증의 `TargetType`은 각각 Game·Server이며 패키지 내부 실행 파일은 `Binaries/Win64`의 해당 빌드 파일과 SHA-256이 일치한다. 근거는 같은 로그 폴더의 `CCL.target`, `CCLServer.target`, `package-binaries-final.json`이다. 검증한 소스 파일은 `verified-source.json`에 기록했다.
+
+### 서버 생성자의 시각 에셋 로딩
+
+최초 전용 서버의 기능 검사는 통과했지만 CDO 생성 시 화면용 글꼴을 찾지 못했다. `CCLVegetationPresentation`, `CCLWorkshop`, `CCLVillageSteward`의 생성자가 서버 패키지에 없는 `F_VegetationLabel`·`F_KoreanLabel`을 조회한 것이 원인이다. 최초 오류는 `Saved/Tests/InventoryNetwork/20261012-004624/server.log`에 남아 있다.
+
+세 생성자는 `IsRunningDedicatedServer()`일 때 글꼴 조회를 건너뛴다. 게임의 글꼴 설정과 기본 컴포넌트 생성은 유지한다. 이 함수는 서버 전용 플랫폼을 먼저 판정한다 (`<Engine>/Source/Runtime/Core/Public/Misc/CoreMisc.h:152`, 앵커 `FPlatformProperties::IsServerOnly()`). `BeginPlay`의 시각 갱신 분기만으로는 그보다 앞선 생성자 조회를 막을 수 없다.
+
+복제 검사 도구에도 CDO 생성자 오류를 실패 조건으로 추가했다. 수정 전 패키지가 실제로 거부된 기록은 `Inventory-Negative-CDO.log`와 `Saved/Tests/InventoryNetwork/20261012-005313/server.log`다. 최종 패키지에서는 이 오류가 사라지고 같은 복제 검사가 통과했다.
+
+### 재현과 한계
+
+```powershell
+Tools/Validation/package_windows.ps1 -ArchiveDirectory Saved/FrameworkStage2GamePackage -SkipZenStore
+Tools/Validation/package_windows.ps1 -Server -ArchiveDirectory Saved/FrameworkStage2ServerPackage -SkipZenStore
+$gameBinary = 'Saved/FrameworkStage2GamePackage/Windows/CCL/Binaries/Win64/CCL.exe'
+$serverBinary = 'Saved/FrameworkStage2ServerPackage/WindowsServer/CCL/Binaries/Win64/CCLServer.exe'
+Tools/Validation/run_inventory_network.ps1 -PackagedExecutable $gameBinary -ServerExecutable $serverBinary
+Tools/Validation/run_food_smoke.ps1 -PackagedExecutable $gameBinary
+Tools/Validation/run_environment_smoke.ps1 -Mode Dedicated -Map EnvironmentScenario -Port 20433 -PacketLagMs 80 -PacketLossPercent 2 -Reconnect -PackagedExecutable $gameBinary -ServerExecutable $serverBinary
+```
+
+최종 쿠킹에는 에디터 미리보기의 `ETonemappingMethod=Default` 가져오기 경고와 환경 맵의 `FString` 기반 `FText` 저장 경고가 남았다. Game·Server 패키징 로그에서 확인했으며 경고 0인 빌드로 보고하지 않는다. 이번 검증에서 에셋은 재저장하지 않았다.
+
+검증 환경은 Windows 한 대의 UE 5.8.3 Development다. UI 도구는 게임 내부 Slate 이벤트를 사용하며 운영체제 마우스의 수동 검사는 아니다. Shipping, 다른 PC·외부 인터넷, Iris 전환과 성능 목표 충족은 검증하지 않았다. 기능 PASS와 치명적 오류·어설션·생성자 오류를 함께 확인했다. 환경 검사에서 의도한 구역 09 취소 1건은 `CCL_EXPERIMENT FAIL`로 기록되며, 이어지는 취소 확인·원래 입력 복구와 최종 성공을 대조했다. 로그 판정 요약은 `Saved/Tests/FrameworkStage2/Packaging/final-results.json`에 있다.

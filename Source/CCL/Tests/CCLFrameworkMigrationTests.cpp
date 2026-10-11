@@ -15,6 +15,9 @@ bool FCCLFrameworkRedirectTest::RunTest(const FString& Parameters)
 {
     struct FTypePath { const TCHAR* Old; const TCHAR* Current; };
     const FTypePath Types[] = {
+        {TEXT("/Script/CCL.CCLInventoryEntry"), TEXT("/Script/KSIInventory.KSIInventoryEntry")},
+        {TEXT("/Script/CCL.CCLInventoryList"), TEXT("/Script/KSIInventory.KSIInventoryList")},
+        {TEXT("/Script/CCL.CCLItemFragmentData"), TEXT("/Script/KSIInventory.KSIItemFragmentData")},
         {TEXT("/Script/CCL.CCLScreen"), TEXT("/Script/KSIUI.KSIScreen")},
         {TEXT("/Script/CCL.CCLUIActionRouter"), TEXT("/Script/KSIUI.KSIUIActionRouter")},
         {TEXT("/Script/CCL.CCLUIContext"), TEXT("/Script/KSIUI.KSIUIContext")},

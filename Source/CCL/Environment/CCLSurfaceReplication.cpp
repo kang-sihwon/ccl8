@@ -1,6 +1,7 @@
 #include "CCLSurfaceReplication.h"
 
 #include "CCLWorldSimulationSubsystem.h"
+#include "CCLSurfacePublication.h"
 #include "CCLTerrainRegion.h"
 #include "GameFramework/PlayerController.h"
 #include "EngineUtils.h"
@@ -26,32 +27,7 @@ namespace
 		return true;
 	}
 
-	bool CollectTerrainSerials(const UWorld* World, const FCCLSurfaceSimulation& Surface, TMap<FGuid, uint64>& Result)
-	{
-		for (const auto& Pair : Surface.GetRegions())
-		{
-			const auto& G = Pair.Value;
-			if (!G.TerrainId.IsValid())
-			{
-				continue;
-			}
-			for (TActorIterator<ACCLTerrainRegion> It(World); It; ++It)
-			{
-				if (It->IsTerrainReady() && It->GetTerrainStore().GetSnapshot().Definition.RegionId == G.TerrainId
-					&& It->GetTerrainStore().GetSnapshot().Definition.WorldId == Surface.GetWorldId()
-					&& It->GetTerrainStore().GetRevision() == G.TerrainRevision)
-				{
-					Result.Add(G.TerrainId, It->GetPublicationSerial());
-					break;
-				}
-			}
-			if (!Result.Contains(G.TerrainId))
-			{
-				return false;
-			}
-		}
-		return true;
-	}
+
 }
 
 UCCLSurfaceReplication::UCCLSurfaceReplication()
@@ -77,21 +53,16 @@ void UCCLSurfaceReplication::TickComponent(float DeltaTime, ELevelTick TickType,
 	}
 	if (!TransferId.IsValid() && Now >= NextSendAt)
 	{
-		const auto* Runtime = GetWorld()->GetSubsystem<UCCLWorldSimulationSubsystem>();
-		FString Error;
-		TArray<uint8> Bytes;
+		auto* Publications = GetWorld()->GetSubsystem<UCCLSurfacePublicationSubsystem>();
 		NextSendAt = Now + 0.25;
-		if (!Runtime || !Runtime->IsRunning() || !Runtime->GetSurfaceSimulation().Capture(Bytes, Error))
+		const auto Publication = Publications ? Publications->Acquire() : nullptr;
+		if (!Publication)
 		{
 			return;
 		}
-		TMap<FGuid, uint64> TerrainSerials;
-		if (!CollectTerrainSerials(GetWorld(), Runtime->GetSurfaceSimulation(), TerrainSerials))
-		{
-			return;
-		}
-		const uint32 CRC = FCrc::MemCrc32(Bytes.GetData(), Bytes.Num() - 4);
-		if (bHasAcknowledgedSnapshot && CRC == LastCRC && SameSerials(TerrainSerials, AcknowledgedTerrainSerials))
+		const uint32 CRC = Publication->CRC;
+		if (bHasAcknowledgedSnapshot && CRC == LastCRC && Publication->Epoch == AcknowledgedEpoch
+			&& SameSerials(Publication->TerrainSerials, AcknowledgedTerrainSerials))
 		{
 			return;
 		}
@@ -99,13 +70,13 @@ void UCCLSurfaceReplication::TickComponent(float DeltaTime, ELevelTick TickType,
 		{
 			return;
 		}
-		Payload = MoveTemp(Bytes);
+		TransferPublication = Publication;
 		ExpectedCRC = CRC;
-		TotalBytes = Payload.Num();
+		TotalBytes = Publication->Bytes.Num();
 		TransferSerial = ++NextSerial;
 		TransferId = FGuid::NewGuid();
 		StartedAt = Now;
-		TransferTerrainSerials = MoveTemp(TerrainSerials);
+		TransferTerrainSerials = Publication->TerrainSerials;
 		TArray<FGuid> Ids;
 		TArray<uint64> Serials;
 		for (const auto& Pair : TransferTerrainSerials)
@@ -115,9 +86,8 @@ void UCCLSurfaceReplication::TickComponent(float DeltaTime, ELevelTick TickType,
 		}
 		FCCLSurfaceHistoryFrame Frame;
 		Frame.Serial = TransferSerial;
-		Frame.Epoch = Runtime->GetEpoch();
+		Frame.Publication = Publication;
 		Frame.SentAt = Now;
-		Frame.State = Runtime->GetSurfaceSimulation();
 		History.Add(MoveTemp(Frame));
 		if (History.Num() > 4)
 		{
@@ -134,7 +104,7 @@ void UCCLSurfaceReplication::TickComponent(float DeltaTime, ELevelTick TickType,
 		const int32 Count = FMath::Min3(8192, TotalBytes - AcknowledgedOffset, FMath::Max(1, FMath::FloorToInt32(BytesPerSecond * 0.1)));
 		NextChunkAt = FPlatformTime::Seconds() + (Count + 128.) / BytesPerSecond;
 		TArray<uint8> Chunk;
-		Chunk.Append(Payload.GetData() + AcknowledgedOffset, Count);
+		Chunk.Append(TransferPublication->Bytes.GetData() + AcknowledgedOffset, Count);
 		SentOffset = AcknowledgedOffset + Count;
 		bWaiting = 1;
 		ClientChunk(TransferId, AcknowledgedOffset, Chunk);
@@ -238,6 +208,7 @@ void UCCLSurfaceReplication::ServerAck_Implementation(FGuid Transfer, int32 Offs
 	if (AcknowledgedOffset == TotalBytes)
 	{
 		LastCRC = ExpectedCRC;
+		AcknowledgedEpoch = TransferPublication->Epoch;
 		AcknowledgedTerrainSerials = TransferTerrainSerials;
 		bHasAcknowledgedSnapshot = 1;
 		PublishedSerial = TransferSerial;
@@ -249,6 +220,7 @@ void UCCLSurfaceReplication::ClearTransfer()
 {
 	TransferId.Invalidate();
 	Payload.Reset();
+	TransferPublication.Reset();
 	TransferTerrainSerials.Reset();
 	TotalBytes = 0;
 	AcknowledgedOffset = 0;
@@ -306,7 +278,9 @@ bool UCCLSurfaceReplication::HasCurrentState(const FCCLSurfaceSimulation& Surfac
 	TArray<uint8> Bytes;
 	FString Error;
 	TMap<FGuid, uint64> Serials;
-	return bHasAcknowledgedSnapshot && CollectTerrainSerials(GetWorld(), Surface, Serials)
+	const auto* Runtime = GetWorld()->GetSubsystem<UCCLWorldSimulationSubsystem>();
+	return Runtime && AcknowledgedEpoch == Runtime->GetEpoch() && bHasAcknowledgedSnapshot
+		&& CCLSurfacePublication::CollectTerrainSerials(GetWorld(), Surface, Serials)
 		&& SameSerials(Serials, AcknowledgedTerrainSerials) && Surface.Capture(Bytes, Error)
 		&& LastCRC == FCrc::MemCrc32(Bytes.GetData(), Bytes.Num() - 4);
 }
@@ -320,9 +294,9 @@ bool UCCLSurfaceReplication::SampleHistoricalSnow(uint64 Serial, const FVector& 
 	}
 	for (const auto& Frame : History)
 	{
-		if (Frame.Serial == Serial && Frame.Epoch == Runtime->GetEpoch() && FPlatformTime::Seconds() - Frame.SentAt <= 15.)
+		if (Frame.Serial == Serial && Frame.Publication && Frame.Publication->Epoch == Runtime->GetEpoch() && FPlatformTime::Seconds() - Frame.SentAt <= 15.)
 		{
-			Frame.State.SampleSnow(Position, Sample);
+			Frame.Publication->State.SampleSnow(Position, Sample);
 			return true;
 		}
 	}

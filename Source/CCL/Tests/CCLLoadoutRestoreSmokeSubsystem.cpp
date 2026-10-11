@@ -107,8 +107,8 @@ void UCCLLoadoutRestoreSmokeSubsystem::Tick(float DeltaTime)
 		}
 		return Good;
 	};
-	TArray<FCCLInventoryEntry> Original;
-	auto Add = [](TArray<FCCLInventoryEntry>& Entries, const TCHAR* Definition, int32 Slot)
+	TArray<FKSIInventoryEntry> Original;
+	auto Add = [](TArray<FKSIInventoryEntry>& Entries, const TCHAR* Definition, int32 Slot)
 	{
 		auto& Entry = Entries.AddDefaulted_GetRef();
 		Entry.Id = FGuid::NewGuid();
@@ -188,12 +188,12 @@ void UCCLLoadoutRestoreSmokeSubsystem::Tick(float DeltaTime)
 		}
 		return true;
 	};
-	TArray<FCCLInventoryEntry> Candidate = Original;
+	TArray<FKSIInventoryEntry> Candidate = Original;
 	Candidate.Pop();
 	const FGuid Staff = Add(Candidate, TEXT("DA_TrainingStaff"), INDEX_NONE);
 	TArray<FCCLEquippedSlot> Equipment = {EquipmentSlot(Staff, CCLItemTags::Slot_LeftHand),
 										  EquipmentSlot(Staff, CCLItemTags::Slot_RightHand)};
-	auto Reject = [&](const TArray<FCCLInventoryEntry>& Items, const TArray<FCCLEquippedSlot>& Slots,
+	auto Reject = [&](const TArray<FKSIInventoryEntry>& Items, const TArray<FCCLEquippedSlot>& Slots,
 					  const TArray<UCCLSkillDefinition*>& Learned, int32 Points, const TCHAR* Message)
 	{ return Check(!Loadout->RestoreState(Items, Slots, Learned, Points) && Preserved(), Message); };
 	auto BrokenSlots = Equipment;
@@ -303,7 +303,7 @@ void UCCLLoadoutRestoreSmokeSubsystem::Tick(float DeltaTime)
 	{
 		return;
 	}
-	TArray<FCCLInventoryEntry> WeaponItems;
+	TArray<FKSIInventoryEntry> WeaponItems;
 	const auto Pistol = Add(WeaponItems, TEXT("DA_Pistol"), INDEX_NONE);
 	TArray<FCCLEquippedSlot> WeaponSlots = {EquipmentSlot(Pistol, CCLItemTags::Slot_RightHand)};
 	auto* Actions = Player->FindComponentByClass<UCCLActionComponent>();

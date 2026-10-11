@@ -1,9 +1,10 @@
-﻿#include "CCLVillageSteward.h"
+#include "CCLVillageSteward.h"
 
 #include "KSIMapSystem.h"
 #include "Components/SkeletalMeshComponent.h"
 #include "Components/TextRenderComponent.h"
 #include "Engine/Font.h"
+#include "Misc/CoreMisc.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Animation/AnimInstance.h"
 #include "UObject/ConstructorHelpers.h"
@@ -11,6 +12,7 @@
 #include "GameFramework/PlayerController.h"
 #include "Items/CCLItemDefinition.h"
 #include "NativeGameplayTags.h"
+#include "Net/UnrealNetwork.h"
 
 namespace
 {
@@ -25,7 +27,7 @@ ACCLVillageSteward::ACCLVillageSteward()
 	MapMarker->Kind = EKSIMapKind::NPC;
 
 	bReplicates = true;
-	Offer.Item = TSoftObjectPtr<UCCLItemDefinition>(FSoftObjectPath(TEXT("/Game/Progression/DA_RecoveryPotion.DA_RecoveryPotion")));
+	Offer.Item = TSoftObjectPtr<UKSIItemDefinition>(FSoftObjectPath(TEXT("/Game/Progression/DA_RecoveryPotion.DA_RecoveryPotion")));
 	Offer.Price = 10;
 	Offer.StockResource = RecoveryPotionStock;
 	GetCharacterMovement()->SetMovementMode(MOVE_None);
@@ -45,10 +47,13 @@ ACCLVillageSteward::ACCLVillageSteward()
 
 	auto* Label = CreateDefaultSubobject<UTextRenderComponent>(TEXT("Label"));
 	Label->SetupAttachment(GetRootComponent());
-	static ConstructorHelpers::FObjectFinder<UFont> KoreanFont(TEXT("/Game/UI/Fonts/F_KoreanLabel.F_KoreanLabel"));
-	if (KoreanFont.Succeeded())
+	if (!IsRunningDedicatedServer())
 	{
-		Label->SetFont(KoreanFont.Object);
+		static ConstructorHelpers::FObjectFinder<UFont> KoreanFont(TEXT("/Game/UI/Fonts/F_KoreanLabel.F_KoreanLabel"));
+		if (KoreanFont.Succeeded())
+		{
+			Label->SetFont(KoreanFont.Object);
+		}
 	}
 
 	Label->SetRelativeLocation(FVector(0.f, 0.f, 130.f));
@@ -70,6 +75,12 @@ void ACCLVillageSteward::Tick(float DeltaSeconds)
 		Label->SetVisibility(FVector::DistSquared(PC->GetPawn()->GetActorLocation(), GetActorLocation()) < FMath::Square(450.f) &&
 			FVector::DotProduct(ToLabel.GetSafeNormal(), PC->PlayerCameraManager->GetCameraRotation().Vector()) > 0.98f);
 	}
+}
+
+void ACCLVillageSteward::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
+{
+	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
+	DOREPLIFETIME(ACCLVillageSteward, Offer);
 }
 
 bool ACCLVillageSteward::CanReach(const APawn* Visitor) const

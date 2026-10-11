@@ -1,4 +1,4 @@
-﻿#include "CCLPlayerController.h"
+#include "CCLPlayerController.h"
 
 #include "UI/CCLUIInputData.h"
 #include "Session/CCLGameInstance.h"

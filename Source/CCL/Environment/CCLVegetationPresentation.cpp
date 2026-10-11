@@ -5,6 +5,7 @@
 #include "Components/InstancedStaticMeshComponent.h"
 #include "Engine/StaticMesh.h"
 #include "Engine/Font.h"
+#include "Misc/CoreMisc.h"
 #include "Components/TextRenderComponent.h"
 #include "Engine/World.h"
 #include "Materials/MaterialInterface.h"
@@ -35,13 +36,21 @@ ACCLVegetationPresentation::ACCLVegetationPresentation()
 		}
 	}
 
-	static ConstructorHelpers::FObjectFinder<UFont> Font(TEXT("/Game/Environment/Fonts/F_VegetationLabel.F_VegetationLabel"));
+	UFont* LabelFont = nullptr;
+	if (!IsRunningDedicatedServer())
+	{
+		static ConstructorHelpers::FObjectFinder<UFont> Font(TEXT("/Game/Environment/Fonts/F_VegetationLabel.F_VegetationLabel"));
+		LabelFont = Font.Object;
+	}
 	const TCHAR* Names[] = {TEXT("나무"), TEXT("풀"), TEXT("꽃"), TEXT("관목"), TEXT("이끼"), TEXT("양치"), TEXT("조류"), TEXT("수생"), TEXT("버섯")};
 	for (int32 I = 0; I < 9; ++I)
 	{
 		auto* Label = CreateDefaultSubobject<UTextRenderComponent>(*FString::Printf(TEXT("Species%d"), I));
 		Label->SetupAttachment(RootComponent);
-		Label->SetFont(Font.Object);
+		if (LabelFont)
+		{
+			Label->SetFont(LabelFont);
+		}
 		Label->SetWorldSize(36.);
 		Label->SetHorizontalAlignment(EHTA_Center);
 		Label->SetText(FText::FromString(Names[I]));

@@ -6,6 +6,7 @@
 #include "CCLAttachmentProfile.generated.h"
 
 class USkeletalMesh;
+class UKSIItemDefinition;
 class UCCLItemDefinition;
 
 USTRUCT(BlueprintType)
@@ -27,7 +28,7 @@ class CCL_API UCCLAttachmentProfile : public UDataAsset
 
   public:
 	bool Resolve(const USkeletalMesh* Mesh, FGameplayTag Point, FName& OutSocket, FString& Error) const;
-	bool ValidateItem(const UCCLItemDefinition* Item, const USkeletalMesh* Mesh, FString& Error) const;
+	bool ValidateItem(const UKSIItemDefinition* Item, const USkeletalMesh* Mesh, FString& Error) const;
 	bool ValidateProfile(TArray<FText>& Errors) const;
 
 #if WITH_EDITOR
@@ -41,7 +42,7 @@ class CCL_API UCCLAttachmentProfile : public UDataAsset
 #if WITH_EDITORONLY_DATA
   public:
 	UPROPERTY(EditAnywhere, Category = "Preview")
-	TObjectPtr<UCCLItemDefinition> PreviewItem;
+	TObjectPtr<UKSIItemDefinition> PreviewItem;
 
 	UPROPERTY(EditAnywhere, Category = "Preview", meta = (Categories = "Equipment.Slot"))
 	FGameplayTag PreviewSlot = CCLItemTags::Slot_RightHand;

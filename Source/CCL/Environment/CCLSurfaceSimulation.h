@@ -98,7 +98,7 @@ public:
 	bool AddAirSpace(const FCCLAirSpace& Space, FString& Error);
 	bool Ignite(FGuid RegionId, int32 CellIndex, double HeatJoules, FString& Error);
 	bool ChangeClimate(FGuid RegionId, const FCCLClimate& Climate, FString& Error);
-	bool Advance(const FCCLWorldStep& Step, FString& Error, const FCCLCelestialSystem* Celestial = nullptr,
+	bool Advance(const FKSIWorldStep& Step, FString& Error, const FCCLCelestialSystem* Celestial = nullptr,
 		const FCCLCelestialObserver* Observer = nullptr, const ICCLSurfaceProvider* Shelter = nullptr,
 		const TArray<FCCLSurfaceOpening>* Openings = nullptr);
 	bool RebaseTerrain(FGuid RegionId, const TArray<double>& BedsMeters, uint64 TerrainRevision, FString& Error, bool bRestoring = false);

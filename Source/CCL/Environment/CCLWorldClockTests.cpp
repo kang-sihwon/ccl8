@@ -11,19 +11,19 @@ bool FCCLWorldClockCommitTest::RunTest(const FString& Parameters)
 {
 	FCCLWorldClock Clock;
 	FString Error;
-	FCCLWorldStep First;
+	FKSIWorldStep First;
 	TestTrue(TEXT("accept a game second"), Clock.QueueGameTime(1, false, Error));
 	TestTrue(TEXT("prepare bounded world interval"), Clock.Prepare(1, 15, First, Error));
 	TestEqual(TEXT("world budget limits game delta"), First.GameToSeconds, 0.25);
 	TestEqual(TEXT("preparation does not publish time"), Clock.GetWorldSeconds(), 0.);
 	FCCLWorldClockSnapshot Snapshot;
 	TestFalse(TEXT("cannot save an in-flight step"), Clock.Capture(Snapshot, Error));
-	FCCLWorldStep Concurrent;
+	FKSIWorldStep Concurrent;
 	TestFalse(TEXT("only one step can be in flight"), Clock.Prepare(1, 15, Concurrent, Error));
 	TestFalse(TEXT("foreign completion is rejected"), Clock.Commit(FGuid::NewGuid(), Error));
 	TestTrue(TEXT("failed consumer aborts its candidate"), Clock.Abort(First.Ticket, Error));
 	TestEqual(TEXT("failure leaves completed time unchanged"), Clock.GetWorldSeconds(), 0.);
-	FCCLWorldStep Retry;
+	FKSIWorldStep Retry;
 	TestTrue(TEXT("same input can be retried"), Clock.Prepare(1, 15, Retry, Error));
 	TestEqual(TEXT("retry preserves target"), Retry.WorldToSeconds, First.WorldToSeconds);
 	TestTrue(TEXT("retry has a new ticket"), Retry.Ticket != First.Ticket);
@@ -51,7 +51,7 @@ bool FCCLWorldClockRateTest::RunTest(const FString& Parameters)
 	TestTrue(TEXT("new rate does not reinterpret pending input"), Clock.ChangeTimeScale(10, Error));
 	TestTrue(TEXT("new rate input"), Clock.QueueGameTime(2, false, Error));
 	TestTrue(TEXT("world pause ignores elapsed wall time"), Clock.QueueGameTime(100, true, Error));
-	FCCLWorldStep Step;
+	FKSIWorldStep Step;
 	TestTrue(TEXT("old interval prepared"), Clock.Prepare(100, 1000, Step, Error));
 	TestEqual(TEXT("old rate retained"), Step.WorldToSeconds, 60.);
 	TestTrue(TEXT("old interval committed"), Clock.Commit(Step.Ticket, Error));
@@ -91,7 +91,7 @@ bool FCCLWorldClockRestoreTest::RunTest(const FString& Parameters)
 	TestTrue(TEXT("accept old rate time"), Clock.QueueGameTime(1, false, Error));
 	TestTrue(TEXT("change while behind"), Clock.ChangeTimeScale(5, Error));
 	TestTrue(TEXT("accept new rate time"), Clock.QueueGameTime(2, false, Error));
-	FCCLWorldStep Step;
+	FKSIWorldStep Step;
 	TestTrue(TEXT("partial step"), Clock.Prepare(0.5, 100, Step, Error));
 	TestTrue(TEXT("commit partial step"), Clock.Commit(Step.Ticket, Error));
 	FCCLWorldClockSnapshot Saved;
@@ -105,8 +105,8 @@ bool FCCLWorldClockRestoreTest::RunTest(const FString& Parameters)
 	TestTrue(TEXT("restore committed snapshot"), Restored.Restore(Saved, Error));
 	while (Clock.HasPendingTime())
 	{
-		FCCLWorldStep A;
-		FCCLWorldStep B;
+		FKSIWorldStep A;
+		FKSIWorldStep B;
 		if (!TestTrue(TEXT("original prepares"), Clock.Prepare(10, 100, A, Error)) ||
 			!TestTrue(TEXT("restored prepares"), Restored.Prepare(10, 100, B, Error)))
 		{
@@ -164,7 +164,7 @@ bool FCCLWorldClockBoundsTest::RunTest(const FString& Parameters)
 	FCCLWorldClockSnapshot Snapshot;
 	TestTrue(TEXT("queue rejection preserves valid snapshot"), Clock.Capture(Snapshot, Error));
 	TestEqual(TEXT("rejected input not accepted"), Snapshot.AcceptedGameSeconds, 256.);
-	FCCLWorldStep Step;
+	FKSIWorldStep Step;
 	TestFalse(TEXT("zero budget does not consume pending input"), Clock.Prepare(0, 1, Step, Error));
 	TestTrue(TEXT("prepare at huge scale remains bounded"), Clock.Reset(0, 1.e6, Error) && Clock.QueueGameTime(1, false, Error) && Clock.Prepare(1, 1, Step, Error));
 	TestEqual(TEXT("world interval respects budget"), Step.WorldToSeconds, 1.);
@@ -223,7 +223,7 @@ bool FCCLWorldClockSplitBoundaryTest::RunTest(const FString& Parameters)
 			}
 			for (int32 Slice = 0; Slice < 15; ++Slice)
 			{
-				FCCLWorldStep Step, Retry;
+				FKSIWorldStep Step, Retry;
 				FCCLWorldClockSnapshot Saved;
 				if (!Clock.Prepare(.25, 1., Step, Error) || !Clock.Abort(Step.Ticket, Error) ||
 					!Clock.Prepare(.25, 1., Retry, Error))

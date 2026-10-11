@@ -13,7 +13,7 @@ const FGuid FoodWorld(901, 902, 903, 904);
 const FGuid WeatherId(901, 902, 903, 905);
 bool SurfaceAt(FCCLSurfaceSimulation& Surface, double Time, FString& Error)
 {
-	FCCLWorldStep Step;
+	FKSIWorldStep Step;
 	Step.StepId = Surface.GetStepId() + 1;
 	Step.GameFromSeconds = Surface.GetGameSeconds();
 	Step.GameToSeconds = Step.GameFromSeconds + (Time - Surface.GetWorldSeconds()) / 60.;

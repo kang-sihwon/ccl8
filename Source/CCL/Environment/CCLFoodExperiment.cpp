@@ -1,4 +1,5 @@
 #include "CCLFoodExperiment.h"
+#include "Items/CCLInventoryFood.h"
 
 #include "CCLExperimentDefinition.h"
 #include "CCLExperimentDirector.h"
@@ -94,9 +95,9 @@ void ACCLFoodExperiment::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& O
 	DOREPLIFETIME(ACCLFoodExperiment, View);
 }
 
-UCCLItemDefinition* ACCLFoodExperiment::SampleDefinition() const
+UKSIItemDefinition* ACCLFoodExperiment::SampleDefinition() const
 {
-	return LoadObject<UCCLItemDefinition>(nullptr, TEXT("/Game/Environment/Experiments/DA_FoodSample.DA_FoodSample"));
+	return LoadObject<UKSIItemDefinition>(nullptr, TEXT("/Game/Environment/Experiments/DA_FoodSample.DA_FoodSample"));
 }
 
 bool ACCLFoodExperiment::MakeInitial(FGuid WorldId, double WorldSeconds, TArray<FCCLInventorySnapshot>& Records,
@@ -158,12 +159,12 @@ bool ACCLFoodExperiment::Initialize(bool bSeed, FCCLWorldSnapshot& Baseline, FSt
 			}
 			if (bSeed)
 			{
-				FCCLInventoryEntry Entry;
+				FKSIInventoryEntry Entry;
 				Entry.Id = Current[Index].Items[0].Id;
 				Entry.Definition = SampleDefinition();
 				Entry.Quantity = 4;
 				Entry.Slot = 0;
-				if (!CCLFood::Decode(Current[Index].Items[0].Food, Entry.Food, Error) ||
+				if (!CCLFood::Decode(Current[Index].Items[0].Food, Entry.GetState<FCCLItemState>().Food, Error) ||
 					!Inventories[Index]->Restore({Entry}))
 				{
 					return false;
@@ -213,7 +214,7 @@ bool ACCLFoodExperiment::Execute(ECCLExperimentAction Action, FString& Error)
 			Binding.SourceId =
 				Index == 0 ? ACCLExperimentDirector::WeatherRegionId() : ACCLExperimentDirector::FireSpaceId();
 		}
-		if (!Inventory->ChangeFoodEnvironment(Binding, Error))
+		if (!FCCLInventoryFood::ChangeFoodEnvironment(*Inventory, Binding, Error))
 		{
 			return false;
 		}
@@ -241,7 +242,7 @@ bool ACCLFoodExperiment::Execute(ECCLExperimentAction Action, FString& Error)
 	{
 		const FGuid Added = Open->Add(SampleDefinition(), 2);
 		if (!Added.IsValid() ||
-			(!Open->GetFoodEnvironment().IsDynamic() && !Open->ChangeFoodStorage(Added, Storage(0))))
+			(!Open->GetFoodEnvironment().IsDynamic() && !FCCLInventoryFood::ChangeFoodStorage(*Open, Added, Storage(0))))
 		{
 			Error = TEXT("새 음식을 넣을 공간이 없다.");
 			return false;
@@ -249,15 +250,15 @@ bool ACCLFoodExperiment::Execute(ECCLExperimentAction Action, FString& Error)
 	}
 	else if (Action == ECCLExperimentAction::FoodMoveCold)
 	{
-		const auto TargetStorage = Cold->GetEntries().IsEmpty() ? Storage(1) : Cold->GetEntries()[0].Food.Storage;
-		if (Open->GetEntries().IsEmpty() || !Open->TransferFood(Open->GetEntries()[0].Id, 1, Cold))
+		const auto TargetStorage = Cold->GetEntries().IsEmpty() ? Storage(1) : Cold->GetEntries()[0].GetState<FCCLItemState>().Food.Storage;
+		if (Open->GetEntries().IsEmpty() || !FCCLInventoryFood::TransferFood(*Open, Open->GetEntries()[0].Id, 1, Cold))
 		{
 			Error = TEXT("노출 보관함에 음식이 없거나 냉각 보관함이 가득 찼다.");
 			return false;
 		}
-		for (const auto& Entry : TArray<FCCLInventoryEntry>(Cold->GetEntries()))
+		for (const auto& Entry : TArray<FKSIInventoryEntry>(Cold->GetEntries()))
 		{
-			if (!Cold->ChangeFoodStorage(Entry.Id, TargetStorage))
+			if (!FCCLInventoryFood::ChangeFoodStorage(*Cold, Entry.Id, TargetStorage))
 			{
 				return false;
 			}
@@ -270,10 +271,10 @@ bool ACCLFoodExperiment::Execute(ECCLExperimentAction Action, FString& Error)
 			Error = TEXT("냉각 보관함이 비어 있다.");
 			return false;
 		}
-		const bool bThaw = Cold->GetEntries()[0].Food.Storage.TemperatureCelsius <= 0.;
-		for (const auto& Entry : TArray<FCCLInventoryEntry>(Cold->GetEntries()))
+		const bool bThaw = Cold->GetEntries()[0].GetState<FCCLItemState>().Food.Storage.TemperatureCelsius <= 0.;
+		for (const auto& Entry : TArray<FKSIInventoryEntry>(Cold->GetEntries()))
 		{
-			if (!Cold->ChangeFoodStorage(Entry.Id, Storage(bThaw ? 0 : 1)))
+			if (!FCCLInventoryFood::ChangeFoodStorage(*Cold, Entry.Id, Storage(bThaw ? 0 : 1)))
 			{
 				return false;
 			}
@@ -308,7 +309,7 @@ void ACCLFoodExperiment::UpdateView()
 		Row.EnvironmentSource = uint8(Binding.Source);
 		const auto Conditions = Binding.IsDynamic() ? Binding.Conditions
 								: Entries.IsEmpty() ? Storage(Index)
-													: Entries[0].Food.Storage;
+													: Entries[0].GetState<FCCLItemState>().Food.Storage;
 		Row.Temperature = Conditions.TemperatureCelsius;
 		Row.Humidity = Conditions.RelativeHumidity;
 		Row.SpoilageMultiplier = Conditions.SpoilageMultiplier;
@@ -317,12 +318,12 @@ void ACCLFoodExperiment::UpdateView()
 		for (const auto& Entry : Entries)
 		{
 			FCCLFoodQuality Quality;
-			if (!Inventories[Index]->GetFoodQuality(Entry.Id, Quality))
+			if (!FCCLInventoryFood::GetFoodQuality(*Inventories[Index], Entry.Id, Quality))
 			{
 				return;
 			}
 			Row.Quantity += Entry.Quantity;
-			Row.Lots += Entry.Food.Lots.Num();
+			Row.Lots += Entry.GetState<FCCLItemState>().Food.Lots.Num();
 			Row.Spoiled += Quality.SpoiledQuantity;
 			Row.Moldy += Quality.MoldyQuantity;
 			Row.AgeSeconds = FMath::Max(Row.AgeSeconds, Quality.OldestAgeSeconds);

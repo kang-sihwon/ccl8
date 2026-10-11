@@ -1,4 +1,4 @@
-﻿#include "CCLLifeVillager.h"
+#include "CCLLifeVillager.h"
 #include "Environment/CCLThermalExposure.h"
 
 #include "Agents/CCLAgentComponent.h"

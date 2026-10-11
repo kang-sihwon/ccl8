@@ -1,4 +1,4 @@
-﻿#include "CCLUISmokeSubsystem.h"
+#include "CCLUISmokeSubsystem.h"
 
 #include "UI/CCLUIInputData.h"
 #include "CCLCharacter.h"
@@ -448,7 +448,7 @@ void UCCLUISmokeSubsystem::Tick(float DeltaTime)
 		}
 
 		UCCLTestBridgeComponent::GrantEquipmentSet(PC);
-		const TArray<FCCLInventoryEntry> Demo = Inventory->GetEntries();
+		const TArray<FKSIInventoryEntry> Demo = Inventory->GetEntries();
 		for (const auto& Entry : Demo)
 		{
 			const FString Name = Entry.Definition->GetName();

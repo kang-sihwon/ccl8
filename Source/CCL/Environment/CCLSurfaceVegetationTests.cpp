@@ -64,9 +64,9 @@ namespace
 		return Seeds;
 	}
 
-	FCCLWorldStep PlantStep(const FCCLSurfaceSimulation& S, double WorldDelta, double GameDelta = 0.25)
+	FKSIWorldStep PlantStep(const FCCLSurfaceSimulation& S, double WorldDelta, double GameDelta = 0.25)
 	{
-		FCCLWorldStep Step;
+		FKSIWorldStep Step;
 		Step.StepId = S.GetStepId() + 1;
 		Step.GameFromSeconds = S.GetGameSeconds();
 		Step.GameToSeconds = Step.GameFromSeconds + GameDelta;

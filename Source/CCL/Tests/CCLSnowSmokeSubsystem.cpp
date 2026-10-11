@@ -37,7 +37,10 @@ void UCCLSnowSmokeSubsystem::Tick(float Dt)
 	{
 		Started = Now;
 	}
-	if (Now - Started > 200.)
+	double TimeoutSeconds = 200.;
+	FParse::Value(FCommandLine::Get(), TEXT("CCLSnowTimeoutSeconds="), TimeoutSeconds);
+	TimeoutSeconds = FMath::Clamp(TimeoutSeconds, 30., 600.);
+	if (Now - Started > TimeoutSeconds)
 	{
 		Finish(false, FString::Printf(TEXT("watchdog step=%d"), Step));
 		return;
@@ -145,6 +148,7 @@ void UCCLSnowSmokeSubsystem::Tick(float Dt)
 		if (Step != 100)
 		{
 			Step = 100;
+			UE_LOG(LogTemp, Display, TEXT("CCL_SNOW_SMOKE RESTORED_REPLICA role=%s elapsed=%.3f"), *Role, Now - Started);
 			Next = Now + 1.;
 			return;
 		}

@@ -1,7 +1,9 @@
 #include "CCLWorldSimulationSubsystem.h"
 
+#include "CCLWorldAdvanceParticipant.h"
+
 #include "Agents/CCLAgentWorldSubsystem.h"
-#include "CCLWorldParticipant.h"
+#include "KSIWorldParticipant.h"
 #include "CCLWorldAdvance.h"
 #include "CCLThermalExposure.h"
 #include "CCLEcologyRepresentationSubsystem.h"
@@ -227,8 +229,8 @@ bool UCCLWorldSimulationSubsystem::AdvancePending(double MaxGameSeconds, double 
 		return false;
 	}
 
-	TArray<ICCLWorldParticipant*> Advancing;
-	for (auto* Participant : Participants)
+	TArray<ICCLWorldAdvanceParticipant*> Advancing;
+	for (auto* Participant : AdvanceParticipants)
 	{
 		if (Participant->NeedsWorldAdvance())
 		{
@@ -244,8 +246,8 @@ bool UCCLWorldSimulationSubsystem::AdvancePending(double MaxGameSeconds, double 
 
 	auto* Thermal = GetWorld()->GetSubsystem<UCCLThermalExposureSubsystem>();
 	MaxGameSeconds = FMath::Min(MaxGameSeconds, .25);
-	TFunction<bool(const FCCLWorldStep&, const FCCLSurfaceSimulation*, FString&)> Prepare =
-		[this, &Advancing, Thermal](const FCCLWorldStep& Step, const FCCLSurfaceSimulation* Surface, FString& Reason)
+	TFunction<bool(const FKSIWorldStep&, const FCCLSurfaceSimulation*, FString&)> Prepare =
+		[this, &Advancing, Thermal](const FKSIWorldStep& Step, const FCCLSurfaceSimulation* Surface, FString& Reason)
 	{
 		if (!Thermal || !Thermal->Prepare(Step, SurfaceSimulation, Reason))
 		{
@@ -437,19 +439,34 @@ bool UCCLWorldSimulationSubsystem::Restore(FCCLLifeSimulation& Life, const TArra
 	return true;
 }
 
-void UCCLWorldSimulationSubsystem::RegisterParticipant(ICCLWorldParticipant& Participant)
+void UCCLWorldSimulationSubsystem::RegisterParticipant(IKSIWorldParticipant& Participant)
 {
 	check(!bRunning && !Participants.Contains(&Participant));
 	Participants.Add(&Participant);
-	Participants.Sort([](const ICCLWorldParticipant& A, const ICCLWorldParticipant& B)
+	Participants.Sort([](const IKSIWorldParticipant& A, const IKSIWorldParticipant& B)
 	{
 		return A.GetWorldOrder() < B.GetWorldOrder();
 	});
 }
 
-void UCCLWorldSimulationSubsystem::UnregisterParticipant(ICCLWorldParticipant& Participant)
+void UCCLWorldSimulationSubsystem::UnregisterParticipant(IKSIWorldParticipant& Participant)
 {
 	Participants.Remove(&Participant);
+}
+
+void UCCLWorldSimulationSubsystem::RegisterAdvanceParticipant(ICCLWorldAdvanceParticipant& Participant)
+{
+	check(!bRunning && !AdvanceParticipants.Contains(&Participant));
+	AdvanceParticipants.Add(&Participant);
+	AdvanceParticipants.Sort([](const ICCLWorldAdvanceParticipant& A, const ICCLWorldAdvanceParticipant& B)
+	{
+		return A.GetWorldAdvanceOrder() < B.GetWorldAdvanceOrder();
+	});
+}
+
+void UCCLWorldSimulationSubsystem::UnregisterAdvanceParticipant(ICCLWorldAdvanceParticipant& Participant)
+{
+	AdvanceParticipants.Remove(&Participant);
 }
 
 bool UCCLWorldSimulationSubsystem::ReplaceEnvironmentInputs(const FCCLEnvironmentInputs& Candidate, FString& Error)
@@ -637,7 +654,7 @@ bool UCCLWorldSimulationSubsystem::BuildEnvironmentView(FCCLEnvironmentView& Out
 
 bool UCCLWorldSimulationSubsystem::CaptureParticipants(FCCLWorldSnapshot& Snapshot, const UObject* SessionContainer, FString& Error)
 {
-	FCCLWorldCaptureContext Context;
+	FKSIWorldCaptureContext Context;
 	Context.WorldId = Identity.WorldId;
 	Context.WorldSeconds = Clock.GetWorldSeconds();
 	Context.SessionContainer = SessionContainer;
@@ -658,7 +675,7 @@ bool UCCLWorldSimulationSubsystem::CaptureParticipants(FCCLWorldSnapshot& Snapsh
 bool UCCLWorldSimulationSubsystem::PrepareParticipants(const FCCLWorldSnapshot* Snapshot, FGuid WorldId, double WorldSeconds,
 	bool bStarting, int32& OutPrepared, FString& Error)
 {
-	FCCLWorldRestoreContext Context;
+	FKSIWorldRestoreContext Context;
 	Context.WorldId = WorldId;
 	Context.WorldSeconds = WorldSeconds;
 	Context.bStarting = bStarting;
@@ -867,4 +884,17 @@ bool UCCLWorldSimulationSubsystem::SeedEcology(const FCCLEcologySimulation& Cand
 
 	EcologySimulation=MoveTemp(Prepared);
 	return true;
+}
+
+bool UCCLWorldSimulationSubsystem::ReadWorldTime(FKSIWorldTimeView& OutTime) const
+{
+    if (!IsRunning())
+    {
+        return false;
+    }
+    OutTime.WorldId = Identity.WorldId;
+    OutTime.CompletedStepId = Clock.GetCompletedStepId();
+    OutTime.GameSeconds = Clock.GetGameSeconds();
+    OutTime.WorldSeconds = Clock.GetWorldSeconds();
+    return true;
 }

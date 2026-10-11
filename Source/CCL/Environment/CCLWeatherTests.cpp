@@ -24,9 +24,9 @@ namespace
 		return G;
 	}
 
-	FCCLWorldStep WeatherStep(const FCCLSurfaceSimulation& S, double Delta = 15.)
+	FKSIWorldStep WeatherStep(const FCCLSurfaceSimulation& S, double Delta = 15.)
 	{
-		FCCLWorldStep Step;
+		FKSIWorldStep Step;
 		Step.StepId = S.GetStepId() + 1;
 		Step.GameFromSeconds = S.GetGameSeconds();
 		Step.GameToSeconds = Step.GameFromSeconds + 0.25;
