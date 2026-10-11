@@ -28,6 +28,7 @@
 | [UIFoundation](UIFoundation.md) | 장르 독립적인 UI 관리자·화면·문맥·레이어·연출 제어의 계약과 검증 |
 | [EnvironmentPlan](EnvironmentPlan.md) | 천체·날씨·영구 지형·눈·물·불·차폐·생태계와 실험장 구현 계획, 단계별 현재 상태 |
 | [생태계·생애](EnvironmentEcology.md) | 단계 8의 개체군·개체 전환·식생·부패·노화 구현과 검증 |
+| [집계 생물의 영양 상태](EnvironmentNutrition.md) | 단계 8의 집계 에너지·먹이·기아, 예약 상태 이전·저장과 규모 검증 |
 | [불·열·공간 환경](EnvironmentFire.md) | 단계 7의 연소 코어·수지 검증과 표면·환기 통합 계약 |
 | [자연 날씨 계산과 검증](EnvironmentWeather.md) | 지역 기후·천체 일조·대기 수분과 물·눈 연결, 구역 02 조작·검증 |
 | [영구 지형 통합과 검증](EnvironmentTerrain.md) | 단계 3의 다층 표면·완료 세대·경로·클라이언트 준비와 구역 05 조작·검증 |

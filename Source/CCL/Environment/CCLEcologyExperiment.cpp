@@ -149,6 +149,7 @@ bool ACCLEcologyExperiment::MakeInitial(FGuid WorldId, double Time, FCCLEcologyS
 		FCCLEcologySpecies S;
 		S.Id = Id(10 + N);
 		S.Movement = ECCLEcologyMovement(N);
+		S.AggregateDietMask = 1;
 		FCCLEcologyHabitat H;
 		H.Id = Id(20 + N);
 		H.MinimumMeters = Center - FVector(2.8, 2.8, 0.);
@@ -159,6 +160,7 @@ bool ACCLEcologyExperiment::MakeInitial(FGuid WorldId, double Time, FCCLEcologyS
 		P.SpeciesId = S.Id;
 		P.HabitatId = H.Id;
 		P.Cohorts.Add(Id(40 + N), {Id(40 + N), Time, 20});
+		P.Cohorts[Id(40 + N)].Nutrition.Energy = .35;
 		FCCLEcologyGroup G;
 		G.Id = Id(50 + N);
 		G.HabitatId = H.Id;
@@ -168,7 +170,7 @@ bool ACCLEcologyExperiment::MakeInitial(FGuid WorldId, double Time, FCCLEcologyS
 		F.Id = Id(60 + N);
 		F.HabitatId = H.Id;
 		F.PositionMeters = Center + FVector(1.6, 0., Height);
-		F.InitialUnits = F.AvailableUnits = F.CapacityUnits = 30.;
+		F.InitialUnits = F.AvailableUnits = F.CapacityUnits = 100.;
 		F.RegrowthPerSecond = .03;
 		if (!E.AddSpecies(S, Error) || !E.AddHabitat(H, Error) || !E.AddPopulation(P, Error) || !E.AddGroup(G, Error) ||
 			!E.AddForage(F, Error))
@@ -357,6 +359,18 @@ void ACCLEcologyExperiment::UpdateView()
 		Row = {};
 		Row.Living = E.LivingCount(Id(30 + N));
 		Row.Aggregate = E.AggregateCount(Id(30 + N));
+		if (const auto* Population = E.GetPopulations().Find(Id(30 + N)))
+		{
+			Row.AggregateConsumed = Population->AggregateConsumedUnits;
+			for (const auto& Pair : Population->Cohorts)
+			{
+				Row.AggregateEnergy += Pair.Value.Nutrition.Energy * double(Pair.Value.Count);
+			}
+			if (Row.Aggregate > 0)
+			{
+				Row.AggregateEnergy /= double(Row.Aggregate);
+			}
+		}
 		for (const auto& Pair : E.GetIndividuals())
 		{
 			const auto& I = Pair.Value;
@@ -402,9 +416,9 @@ void ACCLEcologyExperiment::UpdatePresentation()
 	for (int32 N = 0; N < 4; ++N)
 	{
 		const auto* Row = View.Rows.IsValidIndex(N) ? &View.Rows[N] : nullptr;
-		Labels[N]->SetText(FText::FromString(FString::Printf(TEXT("%s  %lld마리\n먹이 %.1f · 에너지 %.0f%%"),
+		Labels[N]->SetText(FText::FromString(FString::Printf(TEXT("%s  %lld마리\n먹이 %.1f · 개체 %.0f%% · 집계 %.0f%%"),
 															 *MediumName(N), Row ? Row->Living : 0,
-															 Row ? Row->Food : 0., Row ? Row->Energy * 100. : 0.)));
+															 Row ? Row->Food : 0., Row ? Row->Energy * 100. : 0., Row ? Row->AggregateEnergy * 100. : 0.)));
 		FoodMarkers[N]->SetVisibility(Row && Row->Food > 0.);
 	}
 }

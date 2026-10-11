@@ -1,3 +1,4 @@
+#include "CCLEcologyLegacyTest.h"
 #include "CCLEcologySpace.h"
 #include "CCLSurfaceSimulation.h"
 #include "CCLWorldAdvance.h"
@@ -153,6 +154,7 @@ bool FCCLSpaceTimeTest::RunTest(const FString& Parameters)
 	TestEqual(TEXT("surface time same"), Surface.GetWorldSeconds(), 1.);
 	TestTrue(TEXT("legacy policy fixture"), Setup(Old, Error, false));
 	auto Legacy = Capture(Old);
+	CCLMakeEcologyV5Fixture(Legacy);
 	Legacy.RemoveAt(Legacy.Num() - 13, 9); // Version 5 radius/mode in the single final behavior record.
 	uint32 Version = 4;
 	FMemory::Memcpy(Legacy.GetData() + 4, &Version, 4);

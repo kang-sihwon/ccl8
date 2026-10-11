@@ -43,6 +43,12 @@ struct FCCLEcologyExperimentRow
 	UPROPERTY()
 	double Food = 0.;
 
+	UPROPERTY()
+	double AggregateEnergy = 0.;
+
+	UPROPERTY()
+	double AggregateConsumed = 0.;
+
 };
 
 USTRUCT()

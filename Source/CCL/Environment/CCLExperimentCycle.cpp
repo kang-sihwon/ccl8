@@ -94,6 +94,7 @@ bool ACCLExperimentDirector::SetCyclePhase(int32 Phase, FString& Error)
 
 	CyclePhase = Phase;
 	CyclePhaseTime = Runtime->GetClock().GetWorldSeconds();
+	CyclePhaseGameTime = Runtime->GetClock().GetGameSeconds();
 	static const TCHAR* Labels[] = { TEXT("시작 상태 건조"), TEXT("경사 상단 적설"), TEXT("압축 흔적"),
 		TEXT("융해·유출·진흙"), TEXT("결빙"), TEXT("융해·건조") };
 	if (auto* Result = Results.FindByPredicate([](const auto& Value) { return Value.CaseId == TEXT("Zone_09"); }))
@@ -131,7 +132,10 @@ void ACCLExperimentDirector::TickCycleExperiment()
 
 	auto* Runtime = GetWorld()->GetSubsystem<UCCLWorldSimulationSubsystem>();
 	const double Duration = CyclePhase == 1 || CyclePhase == 2 ? 30. : 60.;
-	if (Runtime->GetClock().GetWorldSeconds() - CyclePhaseTime < Duration)
+	const double WorldElapsed = Runtime->GetClock().GetWorldSeconds() - CyclePhaseTime;
+	const double GameElapsed = Runtime->GetClock().GetGameSeconds() - CyclePhaseGameTime;
+	// Melting uses world time, but downhill transport needs elapsed game time.
+	if (WorldElapsed < Duration || (CyclePhase == 3 && GameElapsed < 10.))
 	{
 		return;
 	}
@@ -188,8 +192,8 @@ void ACCLExperimentDirector::TickCycleExperiment()
 	{
 		bPassed = Totals.Ice > 0.001;
 	}
-	UE_LOG(LogTemp, Display, TEXT("CCL_CYCLE round=%d phase=%d mass=%.9f snow=%.9f downstream=%.9f mud=%.4f ice=%.9f balance=%.12f pass=%d"),
-		CycleCount + 1, CyclePhase, Grid->TotalCubicMeters(), Totals.Snow, Totals.Downstream, Totals.Mud, Totals.Ice, Grid->BalanceErrorCubicMeters(), bPassed);
+	UE_LOG(LogTemp, Display, TEXT("CCL_CYCLE round=%d phase=%d mass=%.9f snow=%.9f downstream=%.9f mud=%.4f ice=%.9f balance=%.12f world_elapsed=%.3f game_elapsed=%.3f pass=%d"),
+		CycleCount + 1, CyclePhase, Grid->TotalCubicMeters(), Totals.Snow, Totals.Downstream, Totals.Mud, Totals.Ice, Grid->BalanceErrorCubicMeters(), WorldElapsed, GameElapsed, bPassed);
 	if (!bPassed)
 	{
 		Finish(*Result, false, FString::Printf(TEXT("순환 %d 단계 %d의 실제 상태가 예상 조건과 다르다. %s"), CycleCount + 1, CyclePhase, *Error));

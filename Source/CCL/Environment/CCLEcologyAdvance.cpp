@@ -47,10 +47,15 @@ bool FCCLEcologySimulation::AdvanceCandidate(double Target, FString& Error, int3
 	Populations.GetKeys(PopulationIds);
 	PopulationIds.Sort();
 	int32 Boundaries = 0;
+	bool bAggregate = false;
+	for (const auto& Pair : Species)
+	{
+		bAggregate |= Pair.Value.AggregateDietMask != 0;
+	}
 	while (WorldSeconds < Target)
 	{
 		double Next = Target;
-		const double BehaviorBoundary = (!Behaviors.IsEmpty() || !ForageSources.IsEmpty())
+		const double BehaviorBoundary = (bAggregate || !Behaviors.IsEmpty() || !ForageSources.IsEmpty())
 			? FMath::FloorToDouble(WorldSeconds) + 1. : TNumericLimits<double>::Max();
 		Next = FMath::Min(Next, BehaviorBoundary);
 		TMap<FGuid, double> BirthTimes;

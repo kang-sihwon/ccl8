@@ -125,13 +125,15 @@ void UCCLEcologyZoneSmokeSubsystem::Tick(float DeltaTime)
 		{
 			TArray<FString> Parts;
 			Lines[1 + N].ParseIntoArray(Parts, TEXT(","));
-			if (!Check(Parts.Num() == 3, TEXT("row oracle")))
+			if (!Check(Parts.Num() == 5, TEXT("row oracle")))
 			{
 				return;
 			}
 			if (!FMath::IsNearlyEqual(View.Rows[N].Food, FCString::Atod(*Parts[0]), 1.e-8) ||
 				!FMath::IsNearlyEqual(View.Rows[N].Energy, FCString::Atod(*Parts[1]), 1.e-8) ||
-				!FMath::IsNearlyEqual(View.Rows[N].Consumed, FCString::Atod(*Parts[2]), 1.e-8))
+				!FMath::IsNearlyEqual(View.Rows[N].Consumed, FCString::Atod(*Parts[2]), 1.e-8) ||
+				!FMath::IsNearlyEqual(View.Rows[N].AggregateEnergy, FCString::Atod(*Parts[3]), 1.e-8) ||
+				!FMath::IsNearlyEqual(View.Rows[N].AggregateConsumed, FCString::Atod(*Parts[4]), 1.e-8))
 			{
 				return;
 			}
@@ -398,7 +400,8 @@ void UCCLEcologyZoneSmokeSubsystem::Tick(float DeltaTime)
 		}
 		for (const auto& Row : View.Rows)
 		{
-			if (!Check(Row.Food == 30. && Row.Consumed == 0. && FMath::IsNearlyEqual(Row.Energy, .35, 1.e-8),
+			if (!Check(Row.Food == 100. && Row.Consumed == 0. && Row.AggregateConsumed == 0. &&
+					   FMath::IsNearlyEqual(Row.AggregateEnergy, .35, 1.e-8) && FMath::IsNearlyEqual(Row.Energy, .35, 1.e-8),
 					   TEXT("reset authored food and behavior")))
 			{
 				return;
@@ -438,7 +441,7 @@ void UCCLEcologyZoneSmokeSubsystem::Tick(float DeltaTime)
 	FString Oracle = FString::Printf(TEXT("%.12f\n"), View.WorldSeconds);
 	for (const auto& Row : View.Rows)
 	{
-		Oracle += FString::Printf(TEXT("%.12f,%.12f,%.12f\n"), Row.Food, Row.Energy, Row.Consumed);
+		Oracle += FString::Printf(TEXT("%.12f,%.12f,%.12f,%.12f,%.12f\n"), Row.Food, Row.Energy, Row.Consumed, Row.AggregateEnergy, Row.AggregateConsumed);
 	}
 	auto* Reps = W->GetSubsystem<UCCLEcologyRepresentationSubsystem>();
 	for (int32 N = 0; N < 12; ++N)

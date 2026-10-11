@@ -2,9 +2,16 @@ param(
     [ValidateSet('EnvironmentPlayground','EnvironmentScenario')][string]$Map = 'EnvironmentScenario',
     [ValidateSet('Standalone','Listen','Dedicated')][string]$Mode = 'Standalone',
     [int]$Port = 20321,
+    [ValidateRange(0,500)][int]$PacketLagMs = 0,
+    [ValidateRange(0,20)][int]$PacketLossPercent = 0,
+    [string]$PackagedExecutable,
+    [string]$ServerExecutable,
     [ValidateRange(30,600)][int]$TimeoutSeconds = 240
 )
 $ErrorActionPreference = 'Stop'
+if ($ServerExecutable -and $Mode -ne 'Dedicated') { throw 'ServerExecutable requires Dedicated mode.' }
+if ($PackagedExecutable) { $PackagedExecutable = (Resolve-Path -LiteralPath $PackagedExecutable).Path }
+if ($ServerExecutable) { $ServerExecutable = (Resolve-Path -LiteralPath $ServerExecutable).Path }
 $root = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '../..'))
 $paths = Get-Content (Join-Path $root '.local/agent-paths.json') -Raw | ConvertFrom-Json
 $directory = Join-Path $root ('Saved/Tests/EcologySpace/{0}-{1}-{2}' -f $Map,$Mode,(Get-Date -Format 'yyyyMMdd-HHmmss-fff'))
@@ -13,10 +20,15 @@ $runId = [Guid]::NewGuid().ToString('N')
 $processes = [Collections.Generic.List[object]]::new()
 function Start-Space([string]$Label, [string[]]$Options) {
     $log = Join-Path $directory ($Label+'.log')
-    $arguments = @(('"'+$root+'/CCL.uproject"')) + $Options + @('-unattended','-nop4','-nosplash','-nosound',
+    $binary = Join-Path $paths.engineRoot 'Binaries/Win64/UnrealEditor-Cmd.exe'
+    $prefix = @(('"'+$root+'/CCL.uproject"'))
+    if ($ServerExecutable -and $Options -contains '-server') { $binary = $ServerExecutable; $prefix = @() }
+    elseif ($PackagedExecutable) { $binary = $PackagedExecutable; $prefix = @() }
+    $arguments = $prefix + $Options + @('-unattended','-nop4','-nosplash','-nosound',
         '-NullRHI','-NoLiveCoding','-CCLEcologySpaceSmoke',('-CCLEcologySpaceDir="'+$directory+'"'),
         ('-CCLExperimentRun='+$runId),'-ExecCmds="t.MaxFPS 60"',('-abslog="'+$log+'"'))
-    $process = Start-Process -FilePath (Join-Path $paths.engineRoot 'Binaries/Win64/UnrealEditor-Cmd.exe') -ArgumentList $arguments -WindowStyle Hidden -PassThru
+    $arguments += @('-PktLag='+$PacketLagMs, '-PktLoss='+$PacketLossPercent)
+    $process = Start-Process -FilePath $binary -ArgumentList $arguments -WindowStyle Hidden -PassThru
     $entry = [pscustomobject]@{Process=$process;Log=$log}
     $processes.Add($entry)
     return $entry
@@ -66,7 +78,14 @@ try {
         Wait-Space $reader 'CCL_ECOLOGY_SPACE PASS'
         Wait-SpaceExit $reader
     }
-    [ordered]@{passed=$true;map=$Map;mode=$Mode;ground_navigation=$true;air_detour=$true;liquid_volume=$true;save_restore=$true;food_history=$true;continuation=($Mode -eq 'Standalone');restart=($Mode -eq 'Standalone');clients=$(if ($Mode -eq 'Standalone') {0} else {2});late_join=($Mode -ne 'Standalone')} |
+    if ($Mode -ne 'Standalone') {
+        foreach ($entry in $processes) {
+            $text = Get-Content -LiteralPath $entry.Log -Raw
+            if ($PacketLagMs -gt 0 -and $text -notmatch ('PktLag set to ' + $PacketLagMs + '\b')) { throw ('Lag setting not applied: ' + $entry.Log) }
+            if ($PacketLossPercent -gt 0 -and $text -notmatch ('PktLoss set to ' + $PacketLossPercent + '\b')) { throw ('Loss setting not applied: ' + $entry.Log) }
+        }
+    }
+    [ordered]@{passed=$true;packaged_executable=$PackagedExecutable;server_executable=$ServerExecutable;packet_lag_ms=$PacketLagMs;packet_loss_percent=$PacketLossPercent;map=$Map;mode=$Mode;ground_navigation=$true;air_detour=$true;liquid_volume=$true;save_restore=$true;food_history=$true;continuation=($Mode -eq 'Standalone');restart=($Mode -eq 'Standalone');clients=$(if ($Mode -eq 'Standalone') {0} else {2});late_join=($Mode -ne 'Standalone')} |
         ConvertTo-Json | Set-Content (Join-Path $directory 'result.json') -Encoding UTF8
     Write-Output ('ECOLOGY_SPACE PASS '+$directory)
 } finally {

@@ -80,6 +80,14 @@ bool FCCLEcologySimulation::AddBehavior(FCCLEcologyBehavior Behavior, FString& E
 	}
 
 	Behavior.LastStepSeconds = WorldSeconds;
+	const auto& Policy = Species[Populations[Individual->PopulationId].SpeciesId];
+	if (Policy.AggregateDietMask)
+	{
+		auto Nutrition = Individual->Nutrition;
+		Nutrition.Charge(WorldSeconds, Policy.AggregateMetabolism);
+		Behavior.Energy = Nutrition.Energy;
+		Behavior.StarvedSeconds = Nutrition.StarvedSeconds;
+	}
 	Behavior.Activity = ECCLEcologyActivity::Roaming;
 	auto Candidate = *this;
 	Candidate.Behaviors.Add(Behavior.Id, Behavior);
@@ -111,8 +119,46 @@ bool FCCLEcologySimulation::ValidateBehavior(FString& Error) const
 		}
 	}
 
+	auto NutritionValid = [&](const FCCLEcologyNutrition& N)
+	{
+		return Bounded(N.Energy, 1.) && Bounded(N.StarvedSeconds) && Bounded(N.LastStepSeconds, WorldSeconds);
+	};
+	for (const auto& Pair : Species)
+	{
+		const auto& S = Pair.Value;
+		if (!Bounded(S.AggregateMetabolism, 1.) || !Bounded(S.AggregateEnergyPerUnit, 1.e6) || S.AggregateEnergyPerUnit <= 0. ||
+			!Bounded(S.AggregateStarvationSeconds, 1.e9) || S.AggregateStarvationSeconds <= 0.)
+		{
+			return Reject(Error, TEXT("Invalid aggregate nutrition policy."));
+		}
+	}
+
+	double AggregateEaten = 0.;
+	for (const auto& Pair : Populations)
+	{
+		if (!Bounded(Pair.Value.AggregateConsumedUnits))
+		{
+			return Reject(Error, TEXT("Invalid aggregate food history."));
+		}
+		AggregateEaten += Pair.Value.AggregateConsumedUnits;
+		for (const auto& Cohort : Pair.Value.Cohorts)
+		{
+			if (!NutritionValid(Cohort.Value.Nutrition))
+			{
+				return Reject(Error, TEXT("Invalid cohort energy or time."));
+			}
+		}
+	}
+	for (const auto& Pair : Individuals)
+	{
+		if (!NutritionValid(Pair.Value.Nutrition))
+		{
+			return Reject(Error, TEXT("Invalid reserved energy or time."));
+		}
+	}
+
 	double TotalConsumed = 0.;
-	double TotalEaten = 0.;
+	double TotalEaten = AggregateEaten;
 	for (const auto& Pair : ForageSources)
 	{
 		const auto& F = Pair.Value;
@@ -175,6 +221,11 @@ bool FCCLEcologySimulation::AdvanceBehavior(double At, FString& Error, const ICC
 		F.LastStepSeconds = At;
 	}
 
+	if (!AdvanceAggregate(At, Error))
+	{
+		return false;
+	}
+
 	TArray<FGuid> Ids, FoodIds;
 	Behaviors.GetKeys(Ids);
 	ForageSources.GetKeys(FoodIds);
@@ -196,8 +247,10 @@ bool FCCLEcologySimulation::AdvanceBehavior(double At, FString& Error, const ICC
 		const auto Medium = Species[P.SpeciesId].Movement;
 		const bool bPlanar = Medium == ECCLEcologyMovement::Ground || Medium == ECCLEcologyMovement::Insect;
 		const double Delta = At - B.LastStepSeconds;
+		FCCLEcologyNutrition Charged{B.Energy, B.StarvedSeconds, B.LastStepSeconds};
+		Charged.Charge(At, B.MetabolismPerSecond);
 		B.LastStepSeconds = At;
-		B.Energy = FMath::Max(0., B.Energy - B.MetabolismPerSecond * Delta);
+		B.Energy = Charged.Energy;
 		B.TargetFoodId.Invalidate();
 		B.Activity = ECCLEcologyActivity::Roaming;
 		FVector Target = (H.MinimumMeters + H.MaximumMeters) * .5;
@@ -356,7 +409,10 @@ bool FCCLEcologySimulation::AdvanceBehavior(double At, FString& Error, const ICC
 			}
 		}
 
-		B.StarvedSeconds = B.Energy <= 0. ? B.StarvedSeconds + Delta : 0.;
+		// Nutrition-enabled populations keep the same empty-energy duration across representations.
+		// Legacy species retain their original whole-step starvation rule.
+		const double Starved = Species[P.SpeciesId].AggregateDietMask ? Charged.StarvedSeconds : B.StarvedSeconds + Delta;
+		B.StarvedSeconds = B.Energy <= 0. ? Starved : 0.;
 		if (B.Energy <= 0.)
 		{
 			B.Activity = ECCLEcologyActivity::Starving;

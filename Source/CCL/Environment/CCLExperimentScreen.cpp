@@ -404,12 +404,13 @@ void UCCLExperimentScreen::OnContextBound()
 			return FText::FromString(TEXT("생태 관측 수신 대기"));
 		}
 
-		FString Text=TEXT("지속 개체는 표현을 숨겨도 이동·섭취한다.\n");
+		FString Text=TEXT("집계도 먹이를 소비한다. 지속 개체는 숨겨도 이동·섭취한다.\n");
 		for (int32 N=0;N<4;++N)
 		{
 			const auto& R=E->GetView().Rows[N];
-			Text+=FString::Printf(TEXT("%s · 전체 %lld / 집계 %lld / 예약 %d\nActor %d · Mass %d · 막힘 %d · 에너지 %.0f%%\n먹이 %.1f · 누적 섭취 %.1f\n"),
-				*ACCLEcologyExperiment::MediumName(N),R.Living,R.Aggregate,R.Reserved,R.Actors,R.Mass,R.Blocked,R.Energy*100.,R.Food,R.Consumed);
+			Text+=FString::Printf(TEXT("%s · 전체 %lld / 집계 %lld / 예약 %d\nActor %d · Mass %d · 막힘 %d\n에너지 개체 %.0f%% · 집계 %.0f%%\n먹이 %.1f · 섭취 개체 %.1f / 집계 %.1f\n"),
+				*ACCLEcologyExperiment::MediumName(N),R.Living,R.Aggregate,R.Reserved,R.Actors,R.Mass,R.Blocked,
+				R.Energy*100.,R.AggregateEnergy*100.,R.Food,R.Consumed,R.AggregateConsumed);
 		}
 		return FText::FromString(Text);
 	})];

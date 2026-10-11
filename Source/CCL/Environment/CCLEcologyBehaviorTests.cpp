@@ -1,3 +1,4 @@
+#include "CCLEcologyLegacyTest.h"
 #include "CCLEcologySimulation.h"
 #include "CCLWorldAdvance.h"
 #include "CCLWorldClock.h"
@@ -276,6 +277,7 @@ bool FCCLBehaviorLegacyTest::RunTest(const FString& Parameters)
 	}
 
 	auto Legacy = Bytes(Old);
+	CCLMakeEcologyV5Fixture(Legacy);
 	Legacy.RemoveAt(Legacy.Num() - 16, 12); // Three empty version-4 maps precede the CRC.
 	uint32 Version = 3;
 	FMemory::Memcpy(Legacy.GetData() + 4, &Version, 4);

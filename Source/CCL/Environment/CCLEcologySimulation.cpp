@@ -161,7 +161,7 @@ bool FCCLEcologySimulation::AddPopulation(FCCLEcologyPopulation Value, FString& 
 	}
 
 	Value.Initial = 0;
-	for (const auto& Pair : Value.Cohorts)
+	for (auto& Pair : Value.Cohorts)
 	{
 		const auto* Definition = Species.Find(Value.SpeciesId);
 		if (!Quantity(Pair.Value.Count) || (Pair.Value.Count > 0 && Definition
@@ -171,6 +171,10 @@ bool FCCLEcologySimulation::AddPopulation(FCCLEcologyPopulation Value, FString& 
 		}
 
 		Value.Initial += Pair.Value.Count;
+		if (Definition && Definition->AggregateDietMask)
+		{
+			Pair.Value.Nutrition.LastStepSeconds = WorldSeconds;
+		}
 	}
 
 	FCCLEcologySimulation Candidate = *this;
@@ -274,8 +278,15 @@ bool FCCLEcologySimulation::ApplyCandidate(const FCCLEcologyEvent& E, FString& E
 		if (!Cohort)
 		{
 			Cohort = &Target->Cohorts.Add(E.CohortId, {E.CohortId, E.BirthWorldSeconds, 0});
+			Cohort->Nutrition.LastStepSeconds = WorldSeconds;
 		}
 
+		if (Species[Target->SpeciesId].AggregateDietMask)
+		{
+			FCCLEcologyNutrition Incoming;
+			Incoming.LastStepSeconds = WorldSeconds;
+			Cohort->Nutrition.Merge(Cohort->Count, Incoming, E.Count, WorldSeconds, Species[Target->SpeciesId].AggregateMetabolism);
+		}
 		Cohort->Count += E.Count;
 		(E.Kind == ECCLEcologyEventKind::Birth ? Target->Born : Target->Arrived) += E.Count;
 		return true;
@@ -304,6 +315,12 @@ bool FCCLEcologySimulation::ApplyCandidate(const FCCLEcologyEvent& E, FString& E
 		FCCLEcologyIndividual IndividualRecord = {E.IndividualId, E.Source, E.CohortId, E.BirthWorldSeconds, ECCLEcologyLifeState::Alive, E.bPersistent};
 		const auto& Habitat = Habitats[Source->HabitatId];
 		IndividualRecord.PositionMeters = (Habitat.MinimumMeters + Habitat.MaximumMeters) * 0.5;
+		const auto& Policy = Species[Source->SpeciesId];
+		if (Policy.AggregateDietMask)
+		{
+			Cohort->Nutrition.Charge(WorldSeconds, Policy.AggregateMetabolism);
+			IndividualRecord.Nutrition = Cohort->Nutrition;
+		}
 		Individuals.Add(E.IndividualId, IndividualRecord);
 		UsedIndividualIds.Add(E.IndividualId);
 		return true;
@@ -353,6 +370,11 @@ bool FCCLEcologySimulation::ApplyCandidate(const FCCLEcologyEvent& E, FString& E
 		}
 		else
 		{
+			const auto& Policy = Species[Source->SpeciesId];
+			if (Policy.AggregateDietMask)
+			{
+				Destination->Nutrition.Merge(Destination->Count, Cohort->Nutrition, E.Count, WorldSeconds, Policy.AggregateMetabolism);
+			}
 			Cohort->Count -= E.Count;
 			Destination->Count += E.Count;
 		}
@@ -424,7 +446,14 @@ bool FCCLEcologySimulation::Release(const FCCLEcologyLease& Lease, FString& Erro
 	auto& I = Candidate.Individuals[Lease.IndividualId];
 	if (!I.bPersistent)
 	{
-		++Candidate.Populations[I.PopulationId].Cohorts[I.CohortId].Count;
+		auto& Population = Candidate.Populations[I.PopulationId];
+		auto& Cohort = Population.Cohorts[I.CohortId];
+		const auto& Policy = Species[Population.SpeciesId];
+		if (Policy.AggregateDietMask)
+		{
+			Cohort.Nutrition.Merge(Cohort.Count, I.Nutrition, 1, WorldSeconds, Policy.AggregateMetabolism);
+		}
+		++Cohort.Count;
 		Candidate.Individuals.Remove(Lease.IndividualId);
 	}
 
@@ -461,7 +490,14 @@ bool FCCLEcologySimulation::ReturnToAggregate(FGuid Id, FString& Error)
 	FCCLEcologySimulation Candidate = *this;
 	if (!I->bPersistent)
 	{
-		++Candidate.Populations[I->PopulationId].Cohorts[I->CohortId].Count;
+		auto& Population = Candidate.Populations[I->PopulationId];
+		auto& Cohort = Population.Cohorts[I->CohortId];
+		const auto& Policy = Species[Population.SpeciesId];
+		if (Policy.AggregateDietMask)
+		{
+			Cohort.Nutrition.Merge(Cohort.Count, I->Nutrition, 1, WorldSeconds, Policy.AggregateMetabolism);
+		}
+		++Cohort.Count;
 		Candidate.Individuals.Remove(Id);
 	}
 
@@ -709,9 +745,9 @@ bool FCCLEcologySimulation::Validate(FString& Error) const
 bool FCCLEcologySimulation::Serialize(FArchive& Ar)
 {
 	uint32 Magic = 0x4F434345;
-	uint32 Version = 5;
+	uint32 Version = 6;
 	Ar << Magic << Version << WorldId << WorldSeconds;
-	if (Magic != 0x4F434345 || (Version < 1 || Version > 5))
+	if (Magic != 0x4F434345 || (Version < 1 || Version > 6))
 	{
 		Ar.SetError();
 		return false;
@@ -726,6 +762,10 @@ bool FCCLEcologySimulation::Serialize(FArchive& Ar)
 		{
 			Ar << S.BirthIntervalSeconds;
 		}
+		if (Version >= 6)
+		{
+			Ar << S.AggregateDietMask << S.AggregateMetabolism << S.AggregateEnergyPerUnit << S.AggregateStarvationSeconds;
+		}
 	}) || !Map(Ar, Habitats, 256, 73, [&](auto& H)
 	{
 		Ar << H.Id;
@@ -738,7 +778,15 @@ bool FCCLEcologySimulation::Serialize(FArchive& Ar)
 		Map(Ar, P.Cohorts, 16384, 32, [&](auto& C)
 		{
 			Ar << C.Id << C.BirthWorldSeconds << C.Count;
+			if (Version >= 6)
+			{
+				Ar << C.Nutrition.Energy << C.Nutrition.StarvedSeconds << C.Nutrition.LastStepSeconds;
+			}
 		});
+		if (Version >= 6)
+		{
+			Ar << P.AggregateConsumedUnits;
+		}
 	}) || !Map(Ar, Individuals, 4096, Version >= 3 ? 82 : 58, [&](auto& I)
 	{
 		Ar << I.Id << I.PopulationId << I.CohortId << I.BirthWorldSeconds;
@@ -753,6 +801,10 @@ bool FCCLEcologySimulation::Serialize(FArchive& Ar)
 			const auto* P = Populations.Find(I.PopulationId);
 			const auto* H = P ? Habitats.Find(P->HabitatId) : nullptr;
 			I.PositionMeters = H ? (H->MinimumMeters + H->MaximumMeters) * 0.5 : FVector::ZeroVector;
+		}
+		if (Version >= 6)
+		{
+			Ar << I.Nutrition.Energy << I.Nutrition.StarvedSeconds << I.Nutrition.LastStepSeconds;
 		}
 	}) || !Map(Ar, Receipts, 65536, 98, [&](auto& E)
 	{

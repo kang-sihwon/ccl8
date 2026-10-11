@@ -10,6 +10,15 @@ enum class ECCLEcologyRepresentation : uint8 { Dormant, Actor, Mass };
 enum class ECCLEcologyEventKind : uint8 { Birth, Immigration, Death, Capture, Migration, Materialize };
 enum class ECCLEcologyLifeState : uint8 { Alive, Dead, Captured };
 
+struct FCCLEcologyNutrition
+{
+	double Energy = 1.;
+	double StarvedSeconds = 0.;
+	double LastStepSeconds = 0.;
+	void Charge(double At, double Metabolism);
+	void Merge(int64 Count, FCCLEcologyNutrition Other, int64 OtherCount, double At, double Metabolism);
+};
+
 struct FCCLEcologySpecies
 {
 	FGuid Id;
@@ -18,6 +27,11 @@ struct FCCLEcologySpecies
 	double LifespanSeconds = 864000.;
 	// Zero disables scheduled reproduction. Nonzero intervals are whole world seconds.
 	double BirthIntervalSeconds = 0.;
+	// Zero preserves legacy populations without aggregate feeding.
+	uint32 AggregateDietMask = 0;
+	double AggregateMetabolism = .002;
+	double AggregateEnergyPerUnit = .2;
+	double AggregateStarvationSeconds = 60.;
 };
 
 struct FCCLEcologyHabitat
@@ -34,6 +48,7 @@ struct FCCLEcologyCohort
 	FGuid Id;
 	double BirthWorldSeconds = 0.;
 	int64 Count = 0;
+	FCCLEcologyNutrition Nutrition;
 };
 
 struct FCCLEcologyPopulation
@@ -48,6 +63,7 @@ struct FCCLEcologyPopulation
 	int64 Died = 0;
 	int64 Captured = 0;
 	int64 Departed = 0;
+	double AggregateConsumedUnits = 0.;
 };
 
 struct FCCLEcologyIndividual
@@ -59,6 +75,7 @@ struct FCCLEcologyIndividual
 	ECCLEcologyLifeState State = ECCLEcologyLifeState::Alive;
 	uint8 bPersistent = 0;
 	FVector PositionMeters = FVector::ZeroVector;
+	FCCLEcologyNutrition Nutrition;
 };
 
 struct FCCLEcologyEvent
@@ -180,6 +197,7 @@ private:
 	bool Serialize(FArchive& Archive);
 	bool AdvanceBehavior(double TargetSeconds, FString& Error, const ICCLEcologySpace* Space, const FCCLSurfaceSimulation* Surface);
 	bool ValidateBehavior(FString& Error) const;
+	bool AdvanceAggregate(double At, FString& Error);
 
 private:
 	FGuid WorldId;

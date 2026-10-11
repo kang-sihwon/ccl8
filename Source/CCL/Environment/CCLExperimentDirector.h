@@ -124,6 +124,7 @@ private:
 	int32 WaterCaseStep = 0;
 	FCCLSurfaceForcing CycleOriginalForcing;
 	double CyclePhaseTime = 0.;
+	double CyclePhaseGameTime = 0.;
 	int32 CyclePhase = -1;
 	int32 CycleCount = 0;
 	uint8 bWaterReady = 0;

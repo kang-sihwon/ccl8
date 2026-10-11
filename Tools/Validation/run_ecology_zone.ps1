@@ -3,9 +3,17 @@ param(
     [switch]$Rendered,
     [ValidateSet('EnvironmentScenario','EnvironmentPlayground')][string]$Map = 'EnvironmentScenario',
     [int]$Port = 20401,
+    [ValidateRange(0,500)][int]$PacketLagMs = 0,
+    [ValidateRange(0,20)][int]$PacketLossPercent = 0,
+    [string]$PackagedExecutable,
+    [string]$ServerExecutable,
     [ValidateRange(30,600)][int]$TimeoutSeconds = 240
 )
 $ErrorActionPreference = 'Stop'
+if ($ServerExecutable -and $Mode -ne 'Dedicated') { throw 'ServerExecutable requires Dedicated mode.' }
+if ($PackagedExecutable) { $PackagedExecutable = (Resolve-Path -LiteralPath $PackagedExecutable).Path }
+if ($ServerExecutable) { $ServerExecutable = (Resolve-Path -LiteralPath $ServerExecutable).Path }
+if ($Rendered -and $Mode -ne 'Standalone') { throw 'Rendered inspection requires Standalone mode.' }
 $root = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '../..'))
 $paths = Get-Content (Join-Path $root '.local/agent-paths.json') -Raw | ConvertFrom-Json
 $directory = Join-Path $root ('Saved/Tests/EcologyZone/{0}-{1}' -f $Mode,(Get-Date -Format 'yyyyMMdd-HHmmss-fff'))
@@ -14,11 +22,16 @@ $runId = [Guid]::NewGuid().ToString('N')
 $processes = [Collections.Generic.List[object]]::new()
 function Start-EcologyZone([string]$Name, [string[]]$Options) {
     $log = Join-Path $directory ($Name+'.log')
-    $args = @(('"'+$root+'/CCL.uproject"')) + $Options + @('-unattended','-nop4','-nosplash','-nosound','-NoLiveCoding','-CCLEcologyZoneSmoke',
+    $binary = Join-Path $paths.engineRoot 'Binaries/Win64/UnrealEditor-Cmd.exe'
+    $prefix = @(('"'+$root+'/CCL.uproject"'))
+    if ($ServerExecutable -and $Options -contains '-server') { $binary = $ServerExecutable; $prefix = @() }
+    elseif ($PackagedExecutable) { $binary = $PackagedExecutable; $prefix = @() }
+    $args = $prefix + $Options + @('-unattended','-nop4','-nosplash','-nosound','-NoLiveCoding','-CCLEcologyZoneSmoke',
         ('-CCLEcologyZoneSmokeDir="'+$directory+'"'),('-CCLExperimentRun='+$runId),'-ExecCmds="t.MaxFPS 60"',('-abslog="'+$log+'"'))
     if ($Rendered -and $Mode -eq 'Standalone') { $args += @('-CCLEcologyZoneCapture','-windowed','-ForceRes','-ResX=1280','-ResY=720') }
     else { $args += '-NullRHI' }
-    $process = Start-Process -FilePath (Join-Path $paths.engineRoot 'Binaries/Win64/UnrealEditor-Cmd.exe') -ArgumentList $args -WindowStyle Hidden -PassThru
+    $args += @('-PktLag='+$PacketLagMs, '-PktLoss='+$PacketLossPercent)
+    $process = Start-Process -FilePath $binary -ArgumentList $args -WindowStyle Hidden -PassThru
     $entry = [pscustomobject]@{Process=$process;Log=$log}
     $processes.Add($entry)
     return $entry
@@ -64,7 +77,14 @@ try {
             if (-not (Test-Path $path) -or (Get-Item $path).Length -lt 1000) { throw ('Missing screenshot '+$path) }
         }
     }
-    [ordered]@{passed=$true;mode=$Mode;map=$Map;rendered=[bool]$Rendered;clients=$(if ($Mode -eq 'Standalone') {0} else {2});late_join=($Mode -ne 'Standalone');run_id=$runId} |
+    if ($Mode -ne 'Standalone') {
+        foreach ($entry in $processes) {
+            $text = Get-Content -LiteralPath $entry.Log -Raw
+            if ($PacketLagMs -gt 0 -and $text -notmatch ('PktLag set to ' + $PacketLagMs + '\b')) { throw ('Lag setting not applied: ' + $entry.Log) }
+            if ($PacketLossPercent -gt 0 -and $text -notmatch ('PktLoss set to ' + $PacketLossPercent + '\b')) { throw ('Loss setting not applied: ' + $entry.Log) }
+        }
+    }
+    [ordered]@{passed=$true;packaged_executable=$PackagedExecutable;server_executable=$ServerExecutable;packet_lag_ms=$PacketLagMs;packet_loss_percent=$PacketLossPercent;mode=$Mode;map=$Map;rendered=[bool]$Rendered;clients=$(if ($Mode -eq 'Standalone') {0} else {2});late_join=($Mode -ne 'Standalone');run_id=$runId} |
         ConvertTo-Json | Set-Content (Join-Path $directory 'result.json') -Encoding UTF8
     Write-Output ('ECOLOGY_ZONE PASS '+$directory)
 } finally {
