@@ -1,5 +1,6 @@
 param(
     [string]$PackagedExecutable,
+    [string]$ServerExecutable,
     [ValidateSet('Standalone', 'Dedicated', 'Listen')]
     [string]$Mode = 'Standalone',
     [int]$Port = 18777,
@@ -11,11 +12,15 @@ param(
 $ErrorActionPreference = 'Stop'
 $repository = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '../..'))
 if ($PackagedExecutable) {
-    if ($Mode -eq 'Dedicated') { throw 'This packaged Game target test supports Standalone and Listen only' }
+    if ($Mode -eq 'Dedicated' -and !$ServerExecutable) { throw 'Dedicated packaged tests require ServerExecutable' }
     $editor = (Resolve-Path -LiteralPath $PackagedExecutable).Path
 } else {
     $paths = Get-Content -LiteralPath (Join-Path $repository '.local/agent-paths.json') -Raw | ConvertFrom-Json
     $editor = Join-Path $paths.engineRoot 'Binaries/Win64/UnrealEditor-Cmd.exe'
+}
+if ($ServerExecutable) {
+    if (!$PackagedExecutable -or $Mode -ne 'Dedicated') { throw 'ServerExecutable requires packaged Game and Dedicated mode' }
+    $ServerExecutable = (Resolve-Path -LiteralPath $ServerExecutable).Path
 }
 $project = Join-Path $repository 'CCL.uproject'
 $map = '/Game/Maps/CombatPlayground'
@@ -32,7 +37,8 @@ function Start-Game([string]$Label, [string[]]$Options) {
         '-DisableAllScreenMessages', '-NoLiveCoding', '-NoAsyncLoadingThread',
         ('-ExecCmds="t.MaxFPS 60' + $(if ($Impaired) { ',NetEmulation.PktLag 50,NetEmulation.PktLoss 2' } else { '' }) + '"'), ('-abslog="{0}"' -f $log)
     )
-    $process = Start-Process -FilePath $editor -ArgumentList $arguments -WindowStyle Hidden -PassThru
+    $binary = if ($Label -eq 'server' -and $ServerExecutable) { $ServerExecutable } else { $editor }
+    $process = Start-Process -FilePath $binary -ArgumentList $arguments -WindowStyle Hidden -PassThru
     $started.Add($process)
     return $log
 }
@@ -67,14 +73,14 @@ try {
     $deadline = [DateTime]::UtcNow.AddSeconds($StartupTimeoutSeconds + 180)
     do {
         Get-ChildItem -LiteralPath $logDirectory -Filter '*.log' | ForEach-Object {
-            if (Select-String -LiteralPath $_.FullName -Pattern 'CCL_COMBAT FAIL|Fatal error:|Assertion failed:' -Quiet) {
+            if (Select-String -LiteralPath $_.FullName -Pattern 'CCL_COMBAT FAIL|Fatal error:|Assertion failed:|LogUObjectGlobals: Error: CDO Constructor' -Quiet) {
                 throw ('Combat failure: ' + $_.FullName)
             }
         }
         $passed = 0
         foreach ($log in $checks) {
             if (!(Test-Path -LiteralPath $log)) { continue }
-            if (Select-String -LiteralPath $log -Pattern 'CCL_COMBAT FAIL|Fatal error:|Assertion failed:' -Quiet) {
+            if (Select-String -LiteralPath $log -Pattern 'CCL_COMBAT FAIL|Fatal error:|Assertion failed:|LogUObjectGlobals: Error: CDO Constructor' -Quiet) {
                 throw ('Smoke failure: ' + $log)
             }
             if (Select-String -LiteralPath $log -Pattern 'CCL_COMBAT PASS' -Quiet) { $passed++ }

@@ -18,7 +18,7 @@
 #include "Session/CCLSessionRecord.h"
 #include "AbilitySystem/CCLOffenseSet.h"
 #include "Combat/CCLHealthTarget.h"
-#include "Combat/CCLCombatComponent.h"
+#include "KSICombatComponent.h"
 #include "Combat/CCLFighterComponent.h"
 #include "Campaign/CCLCampaignDirector.h"
 #include "Campaign/CCLCampaignState.h"
@@ -264,7 +264,7 @@ void UCCLCampaignSmokeSubsystem::Tick(float DeltaTime)
 				auto* PlayerASC = CastChecked<UCCLAbilitySystemComponent>(Character->GetAbilitySystemComponent());
 				PlayerASC->SetNumericAttributeBase(UCCLHealthSet::GetHealthAttribute(), 100.f);
 				const auto Guard = PlayerASC->ApplyEffect(UCCLGuardEffect::StaticClass());
-				auto* Combat = Boss->FindComponentByClass<UCCLCombatComponent>();
+				auto* Combat = Boss->FindComponentByClass<UKSICombatComponent>();
 				const uint32 AttackId = Combat->BeginAttack(Fighter->GetAttack(), -FVector::ForwardVector);
 				FHitResult Hit(Character, nullptr, Character->GetActorLocation(), FVector::UpVector);
 				Hit.ImpactPoint = Character->GetActorLocation();
@@ -689,7 +689,7 @@ bool UCCLCampaignSmokeSubsystem::CheckProgressionPersistence()
 float UCCLCampaignSmokeSubsystem::ProbeDamage()
 {
 	AActor* Source = Driver->GetPawn();
-	auto* Combat = Source->FindComponentByClass<UCCLCombatComponent>();
+	auto* Combat = Source->FindComponentByClass<UKSICombatComponent>();
 	auto* Fighter = Source->FindComponentByClass<UCCLFighterComponent>();
 	FActorSpawnParameters Params;
 	Params.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;

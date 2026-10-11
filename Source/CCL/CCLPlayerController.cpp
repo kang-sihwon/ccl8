@@ -6,7 +6,7 @@
 #include "Engine/NetConnection.h"
 #include "UI/CCLInventoryScreen.h"
 #include "UI/CCLMapScreen.h"
-#include "Actions/CCLActionComponent.h"
+#include "KSIActionComponent.h"
 #include "Actions/CCLWeaponAbility.h"
 #include "Camera/CameraComponent.h"
 #include "Presentation/CCLCinematicSubsystem.h"
@@ -606,7 +606,7 @@ void ACCLPlayerController::CombatPressed(FGameplayTag Tag)
 	{
 		if (auto* ASC = Cast<UCCLAbilitySystemComponent>(ControlledPawn->GetAbilitySystemComponent()))
 		{
-			if (auto* Actions = ASC->GetOwnerActor()->FindComponentByClass<UCCLActionComponent>())
+			if (auto* Actions = ASC->GetOwnerActor()->FindComponentByClass<UKSIActionComponent>())
 			{
 				Actions->RequestInput(Tag, true);
 			}
@@ -620,7 +620,7 @@ void ACCLPlayerController::CombatReleased(FGameplayTag Tag)
 	{
 		if (auto* ASC = Cast<UCCLAbilitySystemComponent>(ControlledPawn->GetAbilitySystemComponent()))
 		{
-			if (auto* Actions = ASC->GetOwnerActor()->FindComponentByClass<UCCLActionComponent>())
+			if (auto* Actions = ASC->GetOwnerActor()->FindComponentByClass<UKSIActionComponent>())
 			{
 				Actions->RequestInput(Tag, false);
 			}
@@ -734,7 +734,7 @@ void ACCLPlayerController::HandInput(FGameplayTag Hand, bool bPressed)
 	{
 		if (Held.IsValid())
 		{
-			State->FindComponentByClass<UCCLActionComponent>()->RequestInput(Held, false);
+			State->FindComponentByClass<UKSIActionComponent>()->RequestInput(Held, false);
 			Held = FGameplayTag();
 		}
 
@@ -753,7 +753,7 @@ void ACCLPlayerController::HandInput(FGameplayTag Hand, bool bPressed)
 	}
 
 	Held = Input;
-	State->FindComponentByClass<UCCLActionComponent>()->RequestInput(Input, true);
+	State->FindComponentByClass<UKSIActionComponent>()->RequestInput(Input, true);
 }
 
 UTextureRenderTarget2D* ACCLPlayerController::GetEquipmentPreview() const

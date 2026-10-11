@@ -7,7 +7,7 @@
 #include "CCLCharacter.generated.h"
 
 class UCCLFighterComponent;
-class UCCLCombatComponent;
+class UKSICombatComponent;
 class UCameraComponent;
 class USpringArmComponent;
 class UStaticMeshComponent;
@@ -51,7 +51,7 @@ private:
 	TObjectPtr<UCCLFighterComponent> Fighter;
 
 	UPROPERTY(VisibleAnywhere)
-	TObjectPtr<UCCLCombatComponent> Combat;
+	TObjectPtr<UKSICombatComponent> Combat;
 
 	UPROPERTY(VisibleAnywhere)
 	TObjectPtr<UCameraComponent> FollowCamera;

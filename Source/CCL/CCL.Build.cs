@@ -8,7 +8,7 @@ public class CCL : ModuleRules
 	{
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 		PublicIncludePaths.Add(ModuleDirectory);
-		PublicDependencyModuleNames.AddRange(new[] { "KSIUI", "KSIMap", "KSICore", "KSIInventory" });
+		PublicDependencyModuleNames.AddRange(new[] { "KSIUI", "KSIMap", "KSICore", "KSIInventory", "KSICombat" });
 
 		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "EnhancedInput", "GameplayAbilities", "GameplayTags", "GameplayTasks", "AIModule", "NavigationSystem", "StateTreeModule", "GameplayStateTreeModule", "MassEntity", "MassCore" });
 

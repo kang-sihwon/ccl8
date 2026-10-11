@@ -1,11 +1,11 @@
-﻿#include "CCLLoadoutComponent.h"
+#include "CCLLoadoutComponent.h"
 #include "Items/CCLInventoryWeapon.h"
 #include "Items/CCLInventoryFood.h"
 
 #include "CCLInventoryComponent.h"
 #include "CCLItemDefinition.h"
 #include "CCLSkillDefinition.h"
-#include "Actions/CCLActionComponent.h"
+#include "KSIActionComponent.h"
 #include "Actions/CCLWeaponAbility.h"
 #include "AbilitySystem/CCLAbilitySystemComponent.h"
 #include "AbilitySystem/CCLGameplayTags.h"
@@ -381,7 +381,7 @@ void UCCLLoadoutComponent::SyncAvatar(bool bResetHealth)
 	{
 		return;
 	}
-	if (auto* Actions = GetOwner()->FindComponentByClass<UCCLActionComponent>())
+	if (auto* Actions = GetOwner()->FindComponentByClass<UKSIActionComponent>())
 	{
 		for (auto It = ActionSources.CreateIterator(); It; ++It)
 		{
@@ -520,7 +520,7 @@ void UCCLLoadoutComponent::OnInventoryChanged()
 		return;
 	}
 
-	if (auto* Actions = GetOwner()->FindComponentByClass<UCCLActionComponent>())
+	if (auto* Actions = GetOwner()->FindComponentByClass<UKSIActionComponent>())
 	{
 		for (auto It = ActionSources.CreateIterator(); It; ++It)
 		{
@@ -654,7 +654,7 @@ bool UCCLLoadoutComponent::ExecuteCustom(FGuid Id, FGameplayTag Action, bool bPr
 {
 	const auto* Entry = GetInventory() ? GetInventory()->Find(Id) : nullptr;
 	const auto* Weapon = Entry && Entry->Definition ? Entry->Definition->FindFragment<FCCLItemFragment_Weapon>() : nullptr;
-	auto* Actions = GetOwner()->FindComponentByClass<UCCLActionComponent>();
+	auto* Actions = GetOwner()->FindComponentByClass<UKSIActionComponent>();
 	if (!Actions || !IsEquipped(Id) || !Weapon || !Weapon->ActionSet)
 	{
 		return false;

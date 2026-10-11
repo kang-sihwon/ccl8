@@ -140,7 +140,7 @@ void UCCLAgentComponent::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& O
 	DOREPLIFETIME(UCCLAgentComponent, AgentId);
 }
 
-void UCCLAgentComponent::ReceiveHit(const FCCLHitContext& Context, FGameplayTag Outcome)
+void UCCLAgentComponent::ReceiveHit(const FKSIHitContext& Context, FGameplayTag Outcome)
 {
 	if (Outcome != CCLTags::Outcome_Damage || !Context.TargetASC)
 	{

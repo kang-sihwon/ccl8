@@ -10,7 +10,7 @@
 class UCCLAgentComponent;
 class UCCLAbilitySystemComponent;
 class UCCLHealthSet;
-class UCCLActionComponent;
+class UKSIActionComponent;
 class UTextRenderComponent;
 
 UCLASS()
@@ -52,7 +52,7 @@ private:
 	TObjectPtr<UCCLAbilitySystemComponent> AbilitySystem;
 
 	UPROPERTY(VisibleAnywhere)
-	TObjectPtr<UCCLActionComponent> Actions;
+	TObjectPtr<UKSIActionComponent> Actions;
 
 	UPROPERTY()
 	TObjectPtr<UCCLHealthSet> Health;

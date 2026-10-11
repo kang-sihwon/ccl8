@@ -37,6 +37,10 @@ UE_DEFINE_GAMEPLAY_TAG_STATIC(ProbeView, "UI.View.Tool");
 #include "Misc/Paths.h"
 #endif
 
+#if WITH_KSI_COMBAT
+#include "KSICombatProbe.h"
+#endif
+
 IMPLEMENT_PRIMARY_GAME_MODULE(FDefaultGameModuleImpl, KSIProbe, "KSIProbe");
 
 bool UKSIProbe::ShouldCreateSubsystem(UObject* Outer) const
@@ -296,6 +300,9 @@ void UKSIProbe::Tick(float DeltaTime)
     Check(!A->Capture(After), TEXT("ambiguous primary asset identities rejected before save"));
     A->GetOwner()->Destroy();
     B->GetOwner()->Destroy();
+#endif
+#if WITH_KSI_COMBAT
+    bPassed = RunKSICombatProbe(GetWorld()) && bPassed;
 #endif
     bFinished = 1;
     UE_LOG(LogTemp, Display, TEXT("KSI_PROBE %s"), bPassed ? TEXT("PASS") : TEXT("FAIL"));

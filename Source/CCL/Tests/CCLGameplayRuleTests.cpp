@@ -81,9 +81,9 @@ namespace
 		return Enemy->GetAbilitySystemComponent()->GetNumericAttribute(UCCLHealthSet::GetHealthAttribute());
 	}
 
-	FCCLHitContext Hit(ACCLEnemyCharacter* Source, ACCLEnemyCharacter* Target, const UCCLCombatDefinition* Definition)
+	FKSIHitContext Hit(ACCLEnemyCharacter* Source, ACCLEnemyCharacter* Target, const UCCLCombatDefinition* Definition)
 	{
-		FCCLHitContext Context;
+		FKSIHitContext Context;
 		Context.Source = Source;
 		Context.Target = Target;
 		Context.SourceASC = Source->GetAbilitySystemComponent();
@@ -110,17 +110,17 @@ bool FCCLHitOutcomeTest::RunTest(const FString& Parameters)
 	}
 
 	const float Full = Health(Target);
-	TestEqual(TEXT("same team is rejected"), CCLHit::Apply(Hit(Source, Target, Attack)), FGameplayTag(CCLTags::Outcome_Rejected));
+	TestEqual(TEXT("same team is rejected"), KSIHit::Apply(Hit(Source, Target, Attack)), FGameplayTag(CCLTags::Outcome_Rejected));
 	TestEqual(TEXT("rejected hit keeps health"), Health(Target), Full);
 
 	TargetFighter->Team = 0;
 	auto* TargetASC = Cast<UCCLAbilitySystemComponent>(Target->GetAbilitySystemComponent());
 	const auto Invulnerable = TargetASC->ApplyEffect(UCCLInvulnerableEffect::StaticClass());
-	TestEqual(TEXT("invulnerable target evades"), CCLHit::Apply(Hit(Source, Target, Attack)), FGameplayTag(CCLTags::Outcome_Evaded));
+	TestEqual(TEXT("invulnerable target evades"), KSIHit::Apply(Hit(Source, Target, Attack)), FGameplayTag(CCLTags::Outcome_Evaded));
 	TestEqual(TEXT("evaded hit keeps health"), Health(Target), Full);
 	TargetASC->RemoveActiveGameplayEffect(Invulnerable);
 
-	TestEqual(TEXT("open target takes damage"), CCLHit::Apply(Hit(Source, Target, Attack)), FGameplayTag(CCLTags::Outcome_Damage));
+	TestEqual(TEXT("open target takes damage"), KSIHit::Apply(Hit(Source, Target, Attack)), FGameplayTag(CCLTags::Outcome_Damage));
 	TestEqual(TEXT("damage equals the attack"), Health(Target), Full - Attack->Damage);
 	TestEqual(TEXT("damage commits its feedback"), TargetFighter->GetFeedback(), FString(TEXT("피격")));
 	return true;
@@ -147,7 +147,7 @@ bool FCCLHitRejectedEffectTest::RunTest(const FString& Parameters)
 
 	// The rule decides Damage, but the damage effect cannot be built. No stagger, cancel or feedback may remain.
 	const float Full = Health(Target);
-	TestFalse(TEXT("unappliable damage has no outcome"), CCLHit::Apply(Hit(Source, Target, Broken)).IsValid());
+	TestFalse(TEXT("unappliable damage has no outcome"), KSIHit::Apply(Hit(Source, Target, Broken)).IsValid());
 	TestEqual(TEXT("health unchanged"), Health(Target), Full);
 	TestTrue(TEXT("no feedback was committed"), TargetFighter->GetFeedback().IsEmpty());
 	return true;

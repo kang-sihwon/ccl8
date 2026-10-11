@@ -58,7 +58,7 @@ WorldEvent의 실제 신원과 Agent가 지각한 Observation은 구분한다. �
 
 플레이어 금화는 `UCCLAccountComponent`가 공통 계정으로 연결한다. 보상은 유한한 금고에서 이전하고, 포션 구매는 실제 상점 재고와 기존 아이템 인벤토리를 잇는 거래 어댑터다. 영수증에는 외부 아이템의 목적지와 정의가 남는다. 계정의 초기 배분은 `OpeningBalance`로 추적한다. 체크포인트 범위와 기존 금화 변환은 [SessionFoundation](SessionFoundation.md#이번-저장-정책)을 따른다.
 
-`UCCLActionComponent`는 소스 ID별 GAS 행동을 등록·해제하고 기존 근접 입력도 같은 진입점으로 전달한다. 무기 Fragment의 ActionSet과 손별 태그가 실행을 선택한다. `ACCLProjectile`은 서버에서 이동·충돌하며 발사 당시 피해·효과·팀을 보존한다. 발사자 Actor가 제거되어도 적중을 처리한다. `CCLHit::Apply`는 근접과 투사체의 정책·효과 적용을 공유한다. 장전은 완료 시 탄약을 옮기며 아이템 GUID별 탄창을 저장한다.
+`UKSIActionComponent`는 소스 ID별 GAS 행동을 등록·해제하고 기존 근접 입력도 같은 진입점으로 전달한다. 무기 Fragment의 ActionSet과 손별 태그가 실행을 선택한다. `ACCLProjectile`은 서버에서 이동·충돌하며 발사 당시 피해·효과·팀을 보존한다. 발사자 Actor가 제거되어도 적중을 처리한다. `KSIHit::Apply`는 근접과 투사체의 정책·효과 적용을 공유한다. 장전은 완료 시 탄약을 옮기며 아이템 GUID별 탄창을 저장한다. 공용 전투·행동과 CCL 정책의 모듈 경계는 [Framework 단계 3](FrameworkPlan.md#단계-3-구현과-검증)을 따른다.
 
 전투 적은 생활·계정 Feature 없이 성격·욕구·기억을 사용하고, 공통 판단 커널로 공격 지속과 후퇴를 평가한다. 생활 NPC의 실제 피격도 부상·공포·기억으로 이어진다. 인지하지 못한 공격자의 ID는 기억에 넣지 않는다. 저장한 부상은 Actor 체력으로 복원한다. 구체적인 동물 행동과 NPC의 무기 전술은 등록할 콘텐츠다.
 

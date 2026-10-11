@@ -139,8 +139,8 @@ void UCCLAgentBiologySmokeSubsystem::Tick(float DeltaTime)
 		auto* TargetASC = UAbilitySystemBlueprintLibrary::GetAbilitySystemComponent(Protected.Get());
 		auto* HitDefinition =
 			LoadObject<UCCLCombatDefinition>(nullptr, TEXT("/Game/Progression/DA_PistolHit.DA_PistolHit"));
-		FCCLHitContext Hit{PC->GetPawn(), Protected.Get(), SourceASC, TargetASC, HitDefinition};
-		if (!Check(SourceASC && TargetASC && HitDefinition && CCLHit::Apply(Hit) == CCLTags::Outcome_Damage &&
+		FKSIHitContext Hit{PC->GetPawn(), Protected.Get(), SourceASC, TargetASC, HitDefinition};
+		if (!Check(SourceASC && TargetASC && HitDefinition && KSIHit::Apply(Hit) == CCLTags::Outcome_Damage &&
 					   TargetASC->GetNumericAttribute(UCCLHealthSet::GetHealthAttribute()) < 100.,
 				   TEXT("aging protection does not prevent actual damage")) ||
 			!Check(Runtime->ChangeTimeScale(60., Error), TEXT("accelerate world time")))

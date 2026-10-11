@@ -1,7 +1,7 @@
 #include "CCLEnemyAIController.h"
 
 #include "Environment/CCLTerrainNavigation.h"
-#include "Actions/CCLActionComponent.h"
+#include "KSIActionComponent.h"
 #include "Agents/CCLAgentComponent.h"
 
 #include "CCLEnemyCharacter.h"
@@ -170,7 +170,7 @@ bool ACCLEnemyAIController::StartAttack()
 	}
 	StopMovement();
 	Enemy->SelectAttackPattern();
-	auto* Actions = Enemy->FindComponentByClass<UCCLActionComponent>();
+	auto* Actions = Enemy->FindComponentByClass<UKSIActionComponent>();
 	if (!Actions)
 	{
 		return false;

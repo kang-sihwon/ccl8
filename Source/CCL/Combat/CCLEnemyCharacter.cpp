@@ -1,6 +1,6 @@
 #include "CCLEnemyCharacter.h"
 
-#include "CCLCombatComponent.h"
+#include "KSICombatComponent.h"
 #include "CCLCombatDefinition.h"
 #include "CCLEnemyAIController.h"
 #include "CCLEnemyDefinition.h"
@@ -8,7 +8,7 @@
 #include "AbilitySystem/CCLAbilitySystemComponent.h"
 #include "AbilitySystem/CCLGameplayTags.h"
 #include "AbilitySystem/CCLHealthSet.h"
-#include "Actions/CCLActionComponent.h"
+#include "KSIActionComponent.h"
 #include "Agents/CCLAgentComponent.h"
 #include "Agents/CCLAgentTags.h"
 #include "Environment/CCLThermalExposure.h"
@@ -32,7 +32,7 @@ ACCLEnemyCharacter::ACCLEnemyCharacter()
 	auto* MapMarker = CreateDefaultSubobject<UKSIMapMarkerComponent>(TEXT("MapMarker"));
 	MapMarker->Kind = EKSIMapKind::Enemy;
 
-	CreateDefaultSubobject<UCCLActionComponent>(TEXT("Actions"));
+	CreateDefaultSubobject<UKSIActionComponent>(TEXT("Actions"));
 	auto* Agent = CreateDefaultSubobject<UCCLAgentComponent>(TEXT("Agent"));
 	Agent->bCreateStandaloneRecord = 1;
 	Agent->DefaultTraits.Axes.Add(CCLAgentTags::Aggressiveness, 0.8f);
@@ -55,7 +55,7 @@ ACCLEnemyCharacter::ACCLEnemyCharacter()
 	Fighter->CombatAnimClass = TSoftClassPtr<UAnimInstance>(FSoftObjectPath(TEXT("/Game/Combat/ABP_Combat.ABP_Combat_C")));
 	Fighter->DodgeMontage = TSoftObjectPtr<UAnimMontage>(FSoftObjectPath(TEXT("/Game/Combat/AM_Dodge.AM_Dodge")));
 	Fighter->DefenseMontage = TSoftObjectPtr<UAnimMontage>(FSoftObjectPath(TEXT("/Game/Combat/AM_DefensePose.AM_DefensePose")));
-	Combat = CreateDefaultSubobject<UCCLCombatComponent>(TEXT("Combat"));
+	Combat = CreateDefaultSubobject<UKSICombatComponent>(TEXT("Combat"));
 	static ConstructorHelpers::FObjectFinder<USkeletalMesh> MannyMesh(TEXT("/Game/Characters/Mannequins/Meshes/SKM_Manny_Simple.SKM_Manny_Simple"));
 
 	if (MannyMesh.Succeeded())

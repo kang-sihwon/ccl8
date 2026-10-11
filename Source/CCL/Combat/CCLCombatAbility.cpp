@@ -4,7 +4,7 @@
 #include "AbilitySystem/CCLEffects.h"
 #include "AbilitySystem/CCLGameplayTags.h"
 #include "AbilitySystem/CCLStaminaSet.h"
-#include "Combat/CCLCombatComponent.h"
+#include "KSICombatComponent.h"
 #include "Combat/CCLCombatDefinition.h"
 #include "Abilities/Tasks/AbilityTask_WaitDelay.h"
 #include "Abilities/Tasks/AbilityTask_WaitInputRelease.h"
@@ -217,7 +217,7 @@ void UCCLCombatAbility::BeginWindow()
 	{
 		Fighter->LockAttackDirection();
 
-		if (auto* Combat = ActivatedAvatar->FindComponentByClass<UCCLCombatComponent>())
+		if (auto* Combat = ActivatedAvatar->FindComponentByClass<UKSICombatComponent>())
 		{
 			Combat->BeginAttack(Fighter->GetAttack(), ActivatedAvatar->GetActorForwardVector());
 		}
@@ -239,7 +239,7 @@ void UCCLCombatAbility::EndWindow()
 		return;
 	}
 
-	if (auto* Combat = ActivatedAvatar->FindComponentByClass<UCCLCombatComponent>(); Combat && Action == ECCLCombatAction::Attack)
+	if (auto* Combat = ActivatedAvatar->FindComponentByClass<UKSICombatComponent>(); Combat && Action == ECCLCombatAction::Attack)
 	{
 		Combat->EndAttack();
 	}

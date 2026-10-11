@@ -4,6 +4,8 @@
 
 현재 전투는 PlayerState의 ASC가 능력과 자원을 유지하고, Character의 Fighter와 CombatComponent가 현재 생명의 실행을 연결한다. 이 장의 목표는 `Source/CCL/AbilitySystem/`과 `Combat/`에서 입력, 예측, 적중 검증, 효과 적용, 취소가 이어지는 이유를 설명하는 것이다. 발사체는 [무기 행동](Weapons.md), 적의 선택은 [적 AI](EnemyAI.md)에서 다룬다.
 
+2026-10-12 공용 전투·행동이 KSICombat으로 옮겨졌다. 이 장의 발췌는 아래 고정 커밋의 학습 기록을 유지한다. 현재 타입·경계·검증은 [Framework 단계 3](../FrameworkPlan.md#단계-3-구현과-검증)을 따른다.
+
 ## 1. 비교 기준
 
 | 구분 | 전체 커밋 |
@@ -102,7 +104,7 @@ Fighter의 `Initialize`는 능력·세트·생명 자원을 준비한다. `UCCLA
 
 서버 CombatComponent는 공격 ID, 현재 Avatar, 거리, 차폐와 중복 대상을 확인한다. 다음은 정책 호출 직전 부분이다. 앞선 권한·거리·차폐 검사는 이 발췌에 생략돼 있다.
 
-출처: `50e5838`, [CCLCombatComponent.cpp](../../Source/CCL/Combat/CCLCombatComponent.cpp):99의 `UCCLCombatComponent::ResolveHit`. 실제 코드 함수 일부이며 들여쓰기를 공백으로 바꿨다.
+출처: `50e5838`, [CCLCombatComponent.cpp](https://github.com/kang-sihwon/ccl8/blob/50e583859c832d6cb325e5e76beb8356e8c13959/Source/CCL/Combat/CCLCombatComponent.cpp):99의 `UCCLCombatComponent::ResolveHit`. 실제 코드 함수 일부이며 들여쓰기를 공백으로 바꿨다.
 
 ```cpp
     const UCCLCombatDefinition* Definition = ActiveDefinition;

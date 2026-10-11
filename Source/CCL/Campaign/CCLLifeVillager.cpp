@@ -5,7 +5,7 @@
 #include "Agents/CCLAgentAIController.h"
 #include "Agents/CCLAgentWorldSubsystem.h"
 #include "Agents/CCLAgentTags.h"
-#include "Actions/CCLActionComponent.h"
+#include "KSIActionComponent.h"
 #include "AbilitySystem/CCLAbilitySystemComponent.h"
 #include "AbilitySystem/CCLHealthSet.h"
 #include "Components/TextRenderComponent.h"
@@ -104,7 +104,7 @@ ACCLLifeVillager::ACCLLifeVillager()
 	AbilitySystem = CreateDefaultSubobject<UCCLAbilitySystemComponent>(TEXT("AbilitySystem"));
 	AbilitySystem->SetReplicationMode(EGameplayEffectReplicationMode::Minimal);
 	Health = CreateDefaultSubobject<UCCLHealthSet>(TEXT("Health"));
-	Actions = CreateDefaultSubobject<UCCLActionComponent>(TEXT("Actions"));
+	Actions = CreateDefaultSubobject<UKSIActionComponent>(TEXT("Actions"));
 	GetCharacterMovement()->SetMovementMode(MOVE_Walking);
 	GetCharacterMovement()->MaxWalkSpeed = 180;
 	bUseControllerRotationYaw = false;

@@ -1,6 +1,6 @@
 # 공용 Framework 분리 계획
 
-여러 개인 UE5 프로젝트가 선택해 쓰는 공용 게임 시스템을 `KSI Framework`라는 이름으로 계획한다. 분리 단위는 프로젝트 안의 C++ 모듈이며, 플러그인은 현재 범위에서 제외한다. 2026-10-11 사용자 지시로 단계 1의 실제 분리와 이름 변경을 완료했다. 단계 2도 구현·독립 실행·패키지 검증을 완료했으며 계약·인벤토리 경계는 [결정 24](DesignLog.md#2026-10-12--결정-24-공용-저장-계약과-인벤토리의-게임-확장-경계)를 따른다. 계획과 이름의 근거는 [결정 20](DesignLog.md#2026-10-09--결정-20-공용-framework-계획과-구현-보류)·[결정 22](DesignLog.md#2026-10-11--결정-22-공용-시스템의-모듈-분리-방향과-ksi-이름), 단계 1 착수와 검증 범위는 [결정 23](DesignLog.md#2026-10-11--결정-23-framework-단계-1-착수와-선택-사용-검증)에 기록했다.
+여러 개인 UE5 프로젝트가 선택해 쓰는 공용 게임 시스템을 `KSI Framework`라는 이름으로 계획한다. 분리 단위는 프로젝트 안의 C++ 모듈이며, 플러그인은 현재 범위에서 제외한다. 2026-10-11 사용자 지시로 단계 1의 실제 분리와 이름 변경을 완료했다. 단계 2와 단계 3의 구현·독립 실행·패키지 검증을 완료했다. 전투·능력·행동 경계는 [결정 25](DesignLog.md#2026-10-12--결정-25-공용-전투와-게임-정책의-분리), 계약·인벤토리 경계는 [결정 24](DesignLog.md#2026-10-12--결정-24-공용-저장-계약과-인벤토리의-게임-확장-경계)를 따른다. 계획과 이름의 근거는 [결정 20](DesignLog.md#2026-10-09--결정-20-공용-framework-계획과-구현-보류)·[결정 22](DesignLog.md#2026-10-11--결정-22-공용-시스템의-모듈-분리-방향과-ksi-이름), 단계 1 착수와 검증 범위는 [결정 23](DesignLog.md#2026-10-11--결정-23-framework-단계-1-착수와-선택-사용-검증)에 기록했다.
 
 ## 목표와 현재 상태
 
@@ -12,8 +12,8 @@ CCL은 공용 시스템을 사용하는 첫 프로젝트로 둔다. 공용 시�
 | 분리 단위 | 프로젝트 안의 C++ 모듈. 플러그인은 현재 범위에서 제외 |
 | 이름 규칙 | 공용 모듈 `KSI{System}`, 공용 타입 접두사 `KSI` |
 | 묶음 이름 | `KSI Framework`. 문서에서 공용 시스템 전체를 부를 때만 사용 |
-| 독립 후보 | KSIUI·KSIMap·KSICore·KSIInventory는 추출·독립 실행 검증 완료. 나머지는 후보 |
-| 실제 분리 | 단계 1-2 구현·검증 완료. 코드·설정·검증 도구 제출 범위는 아래 기록을 따름 |
+| 독립 후보 | KSIUI·KSIMap·KSICore·KSIInventory·KSICombat은 추출·독립 실행 검증 완료. 나머지는 후보 |
+| 실제 분리 | 단계 1-3 구현·검증 완료. 코드·설정·검증 도구 제출 범위는 아래 기록을 따름 |
 | 착수 시점 | 2026-10-11 사용자 지시 |
 | 환경 후속 작업 | [EnvironmentPlan](EnvironmentPlan.md)의 별도 범위. 이 계획으로 착수하지 않음 |
 
@@ -127,14 +127,14 @@ CCL은 공용 시스템을 사용하는 첫 프로젝트로 둔다. 공용 시�
 | 대상 | 정할 항목 |
 |---|---|
 | `KSIUI` | CommonUI·UMG 필수, MVVM은 CCL에 유지. 정확한 목록은 `Source/KSIUI/KSIUI.Build.cs` |
-| `KSICombat` | GAS를 필수 의존으로 둘지 |
+| `KSICombat` | GAS 필수. 입력·능력·효과 수명은 GAS가 소유하며 게임 정책과 분리. 정확한 목록은 `Source/KSICombat/KSICombat.Build.cs` |
 | `KSIAgent` | Mass·StateTree를 필수 의존으로 둘지 |
 | 공통 | 서버 권위와 복제를 기본 전제로 둘지. 싱글 플레이 프로젝트도 그 비용을 지는지 |
 | 공통 | 지원 엔진 버전 범위. 모든 사용 프로젝트가 같은 소스 엔진을 쓰는지 |
 
 ## 재검토 시점
 
-작업량 증가 자체보다 실제 변경 비용과 재사용 수요를 확인한다. 다음 상황은 분리, 특히 아래 단계 3-4를 다시 검토할 계기이며 자동 착수 조건은 아니다.
+작업량 증가 자체보다 실제 변경 비용과 재사용 수요를 확인한다. 다음 상황은 남은 단계 4의 분리를 다시 검토할 계기이며 자동 착수 조건은 아니다.
 
 - 한 시스템을 바꿀 때 관련 없는 시스템의 코드·설정까지 반복해서 수정해야 한다.
 - 공용 책임과 게임 규칙이 섞여 같은 기능을 다른 맥락에 적용하기 어렵다.
@@ -148,16 +148,16 @@ CCL은 공용 시스템을 사용하는 첫 프로젝트로 둔다. 공용 시�
 
 ## 착수 후 진행 순서
 
-단계 1-2의 구현·검증을 완료했다. 단계 3-4는 아래 재검토 조건과 별도 착수 지시를 따른다.
+단계 1-3의 구현·검증을 완료했다. 단계 4는 아래 재검토 조건과 별도 착수 지시를 따른다.
 
 | 단계 | 대상 | 진행 조건 |
 |---|---|---|
 | 1 | `CCLEditor`, `KSIUI`, `KSIMap` | 분리·검증 완료. `Source/`의 각 모듈 폴더에 있다. CCLEditor만 CCL을 참조한다 |
 | 2 | `KSICore`(저장 참여 계약·구간 등록·시간 읽기), `KSIInventory` | 구현·검증 완료. [인벤토리 추출 조건](#인벤토리-추출-조건)의 독립 상자·게임 확장·저장 호환을 아래 실행 기록에서 확인했다 |
-| 3 | `KSICombat`, AbilitySystem·Actions 정리 | 재검토 계기가 생길 때 판단한다. Items·Agents와의 연결 정리가 필요하다 |
+| 3 | `KSICombat`, AbilitySystem·Actions 정리 | 구현·검증 완료. [공용 계약과 게임 연결](#단계-3-구현과-검증), GAS 필수 의존과 독립 함정·표적 실행을 확인했다 |
 | 4 | `KSIWorldTime`, `KSISave`, `KSICelestial`, `KSITerrain`, `KSIAgent`, 환경 계열 | 재검토 계기가 생길 때 판단한다. 남은 폴더 순환을 먼저 풀어야 한다 |
 
-단계 1-2는 공유 수요가 없어도 CCL 안의 의존 방향을 바로잡는 이득이 있어 먼저 진행할 대상으로 둔다. 단계 3-4는 정리 비용이 크고 CCL 완성에 직접 도움이 적어 재검토 시점의 계기가 생길 때 판단한다. 단계 순서는 의존 정리 비용으로 정했으며, "독립 시스템 후보" 표의 순서는 구현 순서가 아니다.
+단계 1-2는 공유 수요가 없어도 CCL 안의 의존 방향을 바로잡는 이득이 있어 먼저 진행했다. 단계 3은 사용자 지시로 착수해 완료했다. 단계 4는 정리 비용과 CCL에서의 필요를 다시 판단한 뒤 진행한다. 단계 순서는 의존 정리 비용으로 정했으며, "독립 시스템 후보" 표의 순서는 구현 순서가 아니다.
 
 각 시스템을 옮길 때는 다음 절차를 따른다.
 
@@ -177,7 +177,7 @@ CCL은 공용 시스템을 사용하는 첫 프로젝트로 둔다. 공용 시�
 | 구분 | 분리 목표 | 추출 전에 확인할 현재 결합 |
 |---|---|---|
 | 기본 계약 | 정의 식별·확장 데이터, 인스턴스 ID·수량·보관 위치, 변경 알림과 저장·복제 | `UCCLItemDefinition`과 `FCCLInventoryEntry`가 기능별 타입을 필수로 요구하는지 |
-| 장착·소비·무기 | 기능별 Fragment와 실행을 선택 확장 또는 CCL에 배치 | `CCLItemDefinition.h`·`CCLItemFragments.h`의 `UCCLCombatDefinition`, `UCCLAbilitySet`, `UCCLActionSet`, `UGameplayEffect` 참조와 `CCLLoadoutComponent`·`CCLInventoryWeapon`의 실행 의존 |
+| 장착·소비·무기 | 기능별 Fragment와 실행을 선택 확장 또는 CCL에 배치 | `CCLItemDefinition.h`·`CCLItemFragments.h`의 `UCCLCombatDefinition`, `UCCLAbilitySet`, `UKSIActionSet`, `UGameplayEffect` 참조와 `CCLLoadoutComponent`·`CCLInventoryWeapon`의 실행 의존 |
 | 음식·환경·픽업 | 환경 관측과 월드 Actor 연결을 선택 확장 또는 CCL에 배치 | `CCLInventoryFood`, `CCLFoodEnvironment`, `CCLWorldPickup`과 저장 참여자의 환경 참조 |
 | 기능별 개별 상태 | 기본 인벤토리가 기능을 몰라도 보관·저장할 계약 정의 | `FCCLInventoryEntry::Food`·`LoadedAmmo`, 해당 상태의 검증·직렬화와 기존 저장 호환 |
 
@@ -477,3 +477,95 @@ UE 5.8.3, Win64 Development에서 아래 최초 로컬 검증 결과를 확인�
 제출 범위는 `KSICore`, `KSIInventory`, CCL 어댑터와 호출부, 모듈·리다이렉트 설정, 독립·복제·음식 검사 도구다. 분리의 기반으로 사용한 [코드 설계 후속 보완](CodeDesignFixes-2026-10-11.md)의 장비 알림·카탈로그·음식/무기 서비스·선택적 시간 진행·표면 공유 발행본과 해당 회귀 도구도 함께 포함한다. 기존 `Guide.md`의 설계 초안 링크와 미추적 `CodeStructurePlan.md`는 이 제출에서 제외한다. 에셋은 수정하거나 재저장하지 않았다.
 
 최종 소스와 패키지 실행 파일의 SHA-256은 `Saved/Tests/FrameworkStage2/Packaging/verified-source.json`과 `package-binaries-final.json`에 보존한다. 독립 검사 뒤 공용 모듈 소스는 바뀌지 않았으며, 최종 패키지 검사에는 서버 생성자 보완까지 포함한다. 단계 3-4는 착수하지 않았다.
+
+## 단계 3 구현과 검증
+
+2026-10-12 `KSICombat` 분리와 AbilitySystem·Actions 정리를 완료했다. [결정 25](DesignLog.md#2026-10-12--결정-25-공용-전투와-게임-정책의-분리)의 경계를 적용했으며 기준 커밋은 `dbdd174dcdae6019918ae2dfb1c4c64c9d732eab`이다. 공용 판정은 특정 캐릭터·인벤토리·Agent를 요구하지 않는다. 피해·팀·스태미나·가드·패링과 무기·탄약은 CCL이 연결한다.
+
+### 책임·수명과 의존
+
+`Source/KSICombat/`의 직접 의존은 Core·CoreUObject·Engine·GameplayAbilities·GameplayTags·GameplayTasks다. 다른 KSI 모듈, CCL, Mass·StateTree와 `/Game/` 에셋 경로를 참조하지 않는다. CCL과 제작 모듈 CCLEditor는 KSICombat을 직접 의존한다. 정의 에셋과 게임 정책의 소유자는 CCL이다.
+
+| 구성 | 책임·소유자 | 권위·종료 |
+|---|---|---|
+| `UKSICombatComponent` | 공격 Actor가 공격 ID·방향·대상별 적중 기록을 보유 | 서버만 판정. EndAttack·EndPlay에서 정리 |
+| `UKSICombatDefinition`·`UKSIHitRule` | 공유 정의의 거리·반경·정책과 상태 없는 CDO의 Resolve·Commit | 정책은 동기 호출. Resolve는 상태를 바꾸지 않음 |
+| `KSIHit::Apply`·`IKSIHitReceiver` | GAS 효과 적용 후 정책 확정·대상 컴포넌트 통지 | 서버에서 현재 Avatar·월드를 검증. 별도 저장·복제 없음 |
+| `UKSIAbilitySystemComponent`·`UKSIAbilitySet` | 태그 입력·해제·효과 적용과 능력·AttributeSet 부여 | ASC 소유자는 게임이 선택. 기본 효과 복제는 Mixed, 게임이 변경 가능 |
+| `UKSIActionComponent`·`UKSIActionSet` | Actor가 GUID별 정의·AbilitySpecHandle을 등록 | 등록·실행·제거는 서버. 제거·EndPlay에서 취소와 ClearAbility |
+
+Action의 Source 목록은 자체 복제하지 않는다. 태그 입력은 UKSIAbilitySystemComponent의 기존 GAS 능력과 예측 경로를 사용한다. 직접 Source 실행은 서버 전용이며 별도 클라이언트 RPC를 추가하지 않았다. CCL의 플레이어 ASC는 계속 PlayerState에, 적 ASC는 적 Actor에 둔다. 재스폰·저장 정책도 CCL이 소유한다.
+
+```mermaid
+classDiagram
+    AActor *-- UKSICombatComponent
+    AActor *-- UKSIActionComponent
+    UKSICombatComponent --> UKSICombatDefinition
+    UKSICombatDefinition --> UKSIHitRule
+    UKSICombatDefinition <|-- UCCLCombatDefinition
+    UKSIHitRule <|-- UCCLDuelHitRule
+    UKSIAbilitySystemComponent <|-- UCCLAbilitySystemComponent
+    UKSIAbilitySet <|-- UCCLAbilitySet
+    UKSIActionComponent --> UAbilitySystemComponent
+    IKSIHitReceiver <|.. UCCLAgentComponent
+```
+
+### 공개 계약과 게임 확장
+
+공용 계약은 다음과 같다. 전체 선언은 `Source/KSICombat/Public/`에 있다.
+
+```cpp
+uint32 BeginAttack(const UKSICombatDefinition* Definition, const FVector& Direction);
+FGameplayTag ResolveHit(AActor* Target, const FHitResult& Hit, uint32 AttackId);
+void EndAttack();
+FGameplayTag KSIHit::Apply(const FKSIHitContext& Context);
+bool RegisterSource(FGuid Id, UObject* Definition, const TArray<FKSIActionGrant>& Grants);
+void UKSIAbilitySet::GrantTo(UAbilitySystemComponent& ASC, UObject* Source) const;
+```
+
+공용 컴포넌트의 질의는 기존 수평 방향 구체 스윕과 ECC_Pawn·ECC_Visibility 채널을 유지한다. 같은 공격의 중복 대상, 끝난 공격, 이전 Avatar, 거리·차폐 오류를 거부한다. 잘못된 반경·방향과 판정 콜백에서 새 공격을 시작하는 재진입도 거부한다. 공격 취소는 허용하므로 패링의 EndAttack 경로를 보존한다. 효과가 거부된 대상도 해당 공격에서는 예약을 소비하며 반복 적용하지 않는다.
+
+정책은 결과 태그와 적용할 효과·Magnitude를 반환한다. 결과 태그가 없거나 GAS가 효과를 거부하면 Commit·ReceiveHit을 실행하지 않는다. 직접 `KSIHit::Apply`를 사용하는 발사체는 중복·거리·충돌 검사를 호출자가 맡는다. 이 함수 자체가 공격별 중복 기록을 갖지는 않는다. 효과 적용 경로의 성공 검사는 다음과 같다.
+
+```cpp
+const auto Applied = Context.SourceASC
+    ? Context.SourceASC->ApplyGameplayEffectSpecToTarget(*Spec.Data, Context.TargetASC)
+    : Context.TargetASC->ApplyGameplayEffectSpecToSelf(*Spec.Data);
+if (!Applied.WasSuccessfullyApplied())
+{
+    return {};
+}
+```
+
+UE 5.8.3의 `FActiveGameplayEffectHandle`은 Instant 효과의 IsValid가 거짓이어도 WasSuccessfullyApplied가 참일 수 있다고 명시한다 (`<Engine>/Plugins/Runtime/GameplayAbilities/Source/GameplayAbilities/Public/ActiveGameplayEffectHandle.h:43-59`). 적용 함수도 Instant 실행 핸들을 기본 성공값으로 만든다 (`Private/AbilitySystemComponent.cpp:1070`, 같은 모듈). 핸들 유효성만으로 피해 성공을 판단하지 않는다.
+
+발사 당시의 팀은 CCL의 `FCCLHitSourceFacts`에 둔다. `FKSIHitContext::SourceFacts`가 FInstancedStruct 값으로 전달하며 공용 모듈은 내용을 해석하지 않는다. 문맥은 동기 호출 범위에서만 사용한다. 분리된 발사체의 캡처 효과·방향과 팀은 CCLProjectile이 채우고, UCCLDuelHitRule이 방어·팀 규칙을 결정한다. CCL ASC 파생형은 사망 입력 차단과 Data.Magnitude 태그를 공급한다. 무기 실행과 인벤토리 연결은 `Source/CCL/Actions/CCLWeaponAbility.cpp`에 남는다.
+
+### 타입·에셋·저장 호환
+
+CCLCombatComponent·CCLActionComponent·CCLActionSet·CCLHitRule·CCLHitReceiver와 ActionGrant·ActionSource·AbilityGrant 구조체를 KSI 이름으로 옮겼다. Config의 CoreRedirects와 `CCL.Framework.MigratedTypes`가 이전 타입 경로를 확인한다. C++ 전용 HitContext·HitResolution에는 리플렉션 리다이렉트가 필요하지 않다.
+
+UCCLCombatDefinition·UCCLAbilitySystemComponent·UCCLAbilitySet은 게임 파생형으로 유지해 기존 네이티브 경로를 보존한다. 원본 에셋을 다시 저장하지 않고 전체 패키지를 로드했으며, `CCL.Framework.CombatAssets`로 부모에 옮긴 공격 거리·반경·정책과 Action 에셋의 발사 능력을 확인했다. ActionSet의 네이티브 클래스 이름은 KSIActionSet으로 바뀐다. 이를 문자열 PrimaryAssetId로 별도 저장하는 외부 사용자는 추가 변환이 필요하며, CCL의 기존 저장은 이 식별자를 기록하지 않는다.
+
+전투 실행 핸들·공격 ID는 디스크 저장 대상이 아니다. CCL의 장비·탄약·세계·세션 저장 형식은 변경하지 않았다. 장비는 새 프로세스 복원으로, 탄약은 기존 codec과 투사체 검사로 확인했다.
+
+### 실행 근거와 한계
+
+UE 5.8.3, Win64 Development에서 아래 항목을 확인했다. 로그 경로는 저장소 기준이다. 실행 검사 시점의 소스·설정·검사 도구·에셋 해시는 `Saved/Tests/FrameworkStage3/verified-source.json`, 제출 파일 해시는 `submitted-source.json`에 있다. 정적 의존 검사와 독립 소스 대조는 `static-validation.json`을 따른다.
+
+| 검사 | 결과 | 근거 |
+|---|---|---|
+| 프로젝트 파일 생성·Editor 빌드 | 성공 | `Saved/Tests/FrameworkStage3/Generate-Submission.log`, `Editor-Submission.log` |
+| KSICombat 독립 빌드·실행 | 함정·표적, GAS 거부·재진입·차폐·캡처 효과·Action 수명 27개 확인 | `Saved/Tests/FrameworkIsolation/KSICombat-20261012-014330/game.log` |
+| CCL 자동 검사·원본 에셋 | 164개 성공, 검사 경고·실패 0. 원본 패키지 454개 로드 | `Saved/Tests/Automation/20261012-014958-637/report/index.json`, 같은 폴더 `editor.log` |
+| 전투 네트워크·재스폰 | Standalone, Dedicated 지연·손실, Listen 원격·호스트 통과 | `Saved/Tests/FrameworkStage3/Combat-Standalone.log`, `Combat-Dedicated.log`, `Combat-Listen.log`, `Combat-Host.log` |
+| 게임 연결 | 투사체·Agent 피격 기억·새 프로세스 장비 복원·Dedicated 성장 통과 | 같은 폴더의 `Projectile.log`, `Agent.log`, `Loadout.log`, `Progression.log` |
+| Game·Server 패키지 | 생성·실행과 UI 검증 통과 | [전투 모듈 패키지 검증](Packaging.md#전투-모듈-분리-후-패키지) |
+
+독립 프로젝트에 복사한 KSICombat 소스는 실행 검사 시점의 CCL 소스와 바이트 단위로 같다. 제출 직전 KSIHitRule.h 끝의 빈 줄 하나만 제거했고 선언·실행 코드는 그대로다. 이 차이는 `post-validation-formatting.json`에 기록했으며 프로젝트 생성·Editor 빌드를 다시 확인했다. 재현은 `Tools/Validation/run_framework_isolation.ps1 -Module KSICombat`이다. 이 프로젝트는 CCL·Inventory·UI 코드·콘텐츠를 복사하지 않고 GameplayAbilities만 활성화한다. 전체 자동 검사는 `Tools/Validation/run_automation.ps1 -Filter 'CCL.'`로 실행한다.
+
+첫 Editor 링크에서 제작 도구의 KSICombat 직접 의존 누락을 고쳤다. Listen 원격 검사에서는 준비 중 적 AI가 호스트를 죽이는 간섭이 있어 검사 대기부터 AI를 정지시켰다. 수정 후 관찰자 생존 조건을 유지한 네 가지 구성을 다시 통과했다. 투사체 도구의 단일 인자 배열 변환도 보완했다. 이 실패들과 모듈 DLL 생성 전 시작해 결과가 없던 자동 검사 시도는 성공 근거에서 제외했다. 최초 분리 전 전체 검사 결과를 새로 확보했다는 뜻은 아니다.
+
+자동 검사 시작 전에는 기존 실행에서도 보인 `Condition failed` 진단이 15줄 남았다. 일부 Editor 게임 프로세스에는 EditorToolset·ToolsetRegistry의 `AgentSkill`·`PythonTestRunner` Python 초기화 오류도 있다. 164개 테스트의 결과 JSON과 이 시작 진단을 구분하며, 전체 Editor 로그가 오류 없이 실행됐다는 뜻은 아니다. 최종 로그 분류는 `Saved/Tests/FrameworkStage3/final-results.json`에 보존했다.
+
+GAS와 모듈·리다이렉트는 UE4에도 있던 개념이다. 이번 API·실행 검증 범위는 UE 5.8.3이다. GAS를 필수로 유지하면 기존 예측과 효과 수명을 재사용하지만, GAS가 없는 프로젝트에도 그대로 사용할 수는 없다. 범용 효과 전달 인터페이스를 추가하는 대안보다 공개 경계가 작고 현재 동작을 보존하기 쉬워 이 구성을 택했다. 성능 개선, Shipping·다른 UE 버전·Iris·다른 PC의 호환은 주장하지 않는다. 단계 4와 공용 저장소 배포는 착수하지 않았다.

@@ -2,7 +2,7 @@
 
 마네킹의 맨손 공격 하나와 일반 몹 한 종류로 공격, 회피, 가드, 패링, 사망과 개별 재스폰을 연결한다. 범위와 초기 수치는 [결정 11](DesignLog.md)을 따른다. 장르에 독립적인 기반과 UE5 현행 시스템 우선 원칙은 [Coding](Coding.md)이 소유한다.
 
-전투 코드는 `Source/CCL/AbilitySystem`의 ASC·AttributeSet·효과, `Combat`의 능력·판정·적, `Items`, `UI`에 있다. 2026-10-11에 `UCCLCombatAbility`를 `AbilitySystem`에서 `Combat`으로 옮겨 두 폴더의 상호 의존을 없앴다. 검증 상태는 아래 "에셋 생성과 검증 상태"와 "2026-10-11 구조 정리와 UE 5.8.3 재검증"을 따른다. UE 5.9.0 노트북의 기록은 당시 이력으로 남긴다.
+공용 판정·입력·능력 부여·행동 수명은 `Source/KSICombat/`에 있다. `Source/CCL/AbilitySystem`은 게임 ASC·AbilitySet 파생형과 AttributeSet·효과를, `Combat`은 능력·판정 정책·적·투사체를 소유한다. 게임별 무기·아이템·UI 연결도 CCL에 남긴다. 현재 모듈 경계와 UE 5.8.3 검증은 [Framework 단계 3](FrameworkPlan.md#단계-3-구현과-검증)을 따른다. 아래 UE 5.9.0 및 이전 재검증 기록은 당시 이력으로 남긴다.
 
 ## 목표와 경계
 
@@ -14,7 +14,7 @@
 
 ## 공통 기반과 콘텐츠
 
-공통 ASC는 능력 부여·입력 Tag 연결·효과 적용을 제공한다. 체력과 스태미나 AttributeSet은 분리한다. 공통 적중 컴포넌트는 서버가 만든 공격 식별자, 대상·거리·차폐·중복 적중과 현재 Avatar를 검증한다. 구체적인 플레이어, HUD 또는 스태미나를 요구하지 않는다.
+공통 ASC·AbilitySet은 입력 Tag 연결·효과 적용·능력 부여를 제공한다. CCL 파생형은 사망 입력 차단과 게임 Magnitude 태그를 공급한다. 체력과 스태미나 AttributeSet은 분리한다. 공통 적중 컴포넌트는 서버가 만든 공격 식별자, 대상·거리·차폐·중복 적중과 현재 Avatar를 검증한다. 구체적인 플레이어, HUD 또는 스태미나를 요구하지 않는다.
 
 판정 정책은 결과 GameplayTag와 적용할 GameplayEffect·Magnitude를 반환한다. 공통 결과에 방어 행동 enum을 고정하지 않는다. 회피 무적, 정면 가드, 패링과 자원 소모는 `UCCLDuelHitRule`, 콘텐츠 Ability와 `UCCLFighterComponent`가 연결한다. 효과의 지속시간과 제거는 GAS가 관리한다.
 
@@ -26,8 +26,8 @@
 | `UCCLHealthSet`, `UCCLStaminaSet` | 현재·최대 자원과 값 범위, 복제 | ASC의 대상별 세트, 스태미나는 선택 구성 |
 | `UCCLAbilitySet` | 능력·세트·초기 효과 부여 정의 | 공유 DataAsset, 서버가 부여 |
 | `UCCLCombatDefinition` | 공격 구간·거리·정책·효과·Montage 정의 | 공유 DataAsset |
-| `UCCLCombatComponent` | 공격 식별·적중 검증·정책 호출·효과 전달 | 공격 Actor, 공격 종료 때 기록 정리 |
-| `UCCLHitRule` | 적중 정책의 결과 계약 | 상태 없는 정책 클래스 기본 객체 |
+| `UKSICombatComponent` | 공격 식별·적중 검증·정책 호출·효과 전달 | 공격 Actor, 공격 종료 때 기록 정리 |
+| `UKSIHitRule` | 적중 정책의 결과 계약 | 상태 없는 정책 클래스 기본 객체 |
 | `UCCLFighterComponent` | ccl8 자원 초기화·전투 행동·방향·표현 연결 | 현재 생명의 Pawn |
 | `UCCLCombatAbility` 파생 타입 | 공격·회피·가드·패링과 Task 수명 | ASC의 InstancedPerActor 능력 |
 | `ACCLEnemyAIController` | StateTree의 탐색·접근·공격·복귀 요청 | 서버의 적 Controller |
@@ -90,21 +90,21 @@ classDiagram
     ACCLEnemyCharacter *-- UCCLAbilitySystemComponent
     ACCLCharacter --> ACCLPlayerState : ASC 조회
     ACCLCharacter *-- UCCLFighterComponent
-    ACCLCharacter *-- UCCLCombatComponent
+    ACCLCharacter *-- UKSICombatComponent
     UCCLAbilitySystemComponent --> UCCLHealthSet : 세트 등록
     UCCLAbilitySystemComponent --> UCCLStaminaSet : 선택 등록
     UCCLAbilitySet --> UGameplayAbility : 서버 부여
     UCCLItemDefinition *-- UCCLItemFragment_Combat
     UCCLItemFragment_Combat --> UCCLAbilitySet
     UCCLItemFragment_Combat --> UCCLCombatDefinition
-    UCCLCombatComponent --> UCCLHitRule : 판정
-    UCCLCombatComponent --> UAbilitySystemComponent : 효과 전달
+    UKSICombatComponent --> UKSIHitRule : 판정
+    UKSICombatComponent --> UAbilitySystemComponent : 효과 전달
     UCCLCombatViewModel --> UAbilitySystemComponent : Attribute 구독
 ```
 
 입력은 `AbilityInputTagPressed`와 `AbilityInputTagReleased`를 거쳐 AbilitySpec을 실행한다. 판정 값을 보내는 입력별 RPC를 만들지 않는다. 자동 검증 전용 RPC는 검증 명령행 옵션으로 생성되는 서브시스템에만 연결한다.
 
-`BeginAttack`은 서버 공격 ID를 발급하고 `ResolveHit`은 현재 공격과 Avatar를 확인한다. 적중 정책은 판단과 부작용을 두 단계로 나눈다. `UCCLHitRule::Resolve`는 현재 상태를 바꾸지 않고 `FCCLHitResolution`을 반환한다. `UCCLHitRule::Commit`은 피해 효과가 실제로 적용된 뒤에만 능력 취소·경직·피격 알림 같은 부작용을 확정한다. 이 분리는 2026-10-11 검토의 결함을 고친 것이다. 이전에는 판단 중에 부작용을 실행해서, 피해 효과가 거부돼도 취소와 피격 표시가 남았다. 공통 적용 경로 `CCLHit::Apply`의 핵심은 다음과 같다.
+`BeginAttack`은 서버 공격 ID를 발급하고 `ResolveHit`은 현재 공격과 Avatar를 확인한다. 적중 정책은 판단과 부작용을 두 단계로 나눈다. `UKSIHitRule::Resolve`는 현재 상태를 바꾸지 않고 `FKSIHitResolution`을 반환한다. `UKSIHitRule::Commit`은 피해 효과가 실제로 적용된 뒤에만 능력 취소·경직·피격 알림 같은 부작용을 확정한다. 이 분리는 2026-10-11 검토의 결함을 고친 것이다. 이전에는 판단 중에 부작용을 실행해서, 피해 효과가 거부돼도 취소와 피격 표시가 남았다. 공통 적용 경로 `KSIHit::Apply`의 핵심은 다음과 같다.
 
 ```cpp
 const auto Resolution = Rule->Resolve(Context);
@@ -118,16 +118,17 @@ if (Resolution.Effect)
 }
 
 Rule->Commit(Context, Resolution);
-for (UActorComponent* Component : Context.Target->GetComponents())
+TInlineComponentArray<UActorComponent*> Receivers(Context.Target);
+for (UActorComponent* Component : Receivers)
 {
-    if (auto* Receiver = Cast<ICCLHitReceiver>(Component))
+    if (auto* Receiver = IsValid(Component) ? Cast<IKSIHitReceiver>(Component) : nullptr)
     {
         Receiver->ReceiveHit(Context, Resolution.Outcome);
     }
 }
 ```
 
-전투는 Agent 기억이나 퀘스트를 직접 호출하지 않는다. 확정된 결과는 대상 Actor 컴포넌트 중 `ICCLHitReceiver`를 구현한 것에 전달된다. `UCCLAgentComponent`가 이 계약으로 피격 기억을 기록한다.
+전투는 Agent 기억이나 퀘스트를 직접 호출하지 않는다. 확정된 결과는 대상 Actor 컴포넌트 중 `IKSIHitReceiver`를 구현한 것에 전달된다. `UCCLAgentComponent`가 이 계약으로 피격 기억을 기록한다.
 
 Instant 효과는 지속 중인 핸들이 없을 수 있으므로 적용 성공은 `WasSuccessfullyApplied()`로 확인한다. 체력 변경 통지가 사망을 연결하고 AttributeSet은 구체적인 캐릭터를 참조하지 않는다. 월드 위험의 `TakeDamage`는 GAS 체력 효과를 한 번 적용하고 관찰한 체력 감소량을 반환한다.
 

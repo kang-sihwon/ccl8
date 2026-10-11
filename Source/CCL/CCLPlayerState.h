@@ -12,7 +12,7 @@ class UCCLOffenseSet;
 class UCCLInventoryComponent;
 class UCCLLoadoutComponent;
 class UCCLExpeditionComponent;
-class UCCLActionComponent;
+class UKSIActionComponent;
 class UCCLAccountComponent;
 
 UCLASS()
@@ -34,7 +34,7 @@ public:
 	UCCLExpeditionComponent* GetExpedition() const { return Expedition; }
 private:
 	UPROPERTY(VisibleAnywhere)
-	TObjectPtr<UCCLActionComponent> Actions;
+	TObjectPtr<UKSIActionComponent> Actions;
 
 	UPROPERTY(VisibleAnywhere)
 	TObjectPtr<UCCLAccountComponent> Account;

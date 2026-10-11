@@ -1,7 +1,7 @@
 #include "CCLCombatSmokeSubsystem.h"
 
 #include "CCLCharacter.h"
-#include "Actions/CCLActionComponent.h"
+#include "KSIActionComponent.h"
 #include "CCLPlayerController.h"
 #include "CCLTestBridgeComponent.h"
 #include "CCLGameModeBase.h"
@@ -12,7 +12,7 @@
 #include "AbilitySystem/CCLEffects.h"
 #include "Combat/CCLEnemyCharacter.h"
 #include "Combat/CCLFighterComponent.h"
-#include "Combat/CCLCombatComponent.h"
+#include "KSICombatComponent.h"
 #include "Combat/CCLHealthTarget.h"
 #include "Combat/CCLCombatDefinition.h"
 #include "AIController.h"
@@ -41,7 +41,7 @@ namespace
 
 	FGameplayTag Hit(AActor* Source, AActor* Target)
 	{
-		auto* Combat = Source->FindComponentByClass<UCCLCombatComponent>();
+		auto* Combat = Source->FindComponentByClass<UKSICombatComponent>();
 		auto* Fighter = Source->FindComponentByClass<UCCLFighterComponent>();
 		const uint32 Id = Combat->BeginAttack(Fighter->GetAttack(), Source->GetActorForwardVector());
 		FHitResult Result(Target, nullptr, Target->GetActorLocation(), FVector::UpVector);
@@ -122,7 +122,7 @@ void UCCLCombatSmokeSubsystem::ExecuteClientStep(int32 InStep)
 
 	if (Input.IsValid())
 	{
-		auto* Actions = Component->GetOwnerActor()->FindComponentByClass<UCCLActionComponent>();
+		auto* Actions = Component->GetOwnerActor()->FindComponentByClass<UKSIActionComponent>();
 		if (!Actions)
 		{
 			return;
@@ -169,6 +169,31 @@ void UCCLCombatSmokeSubsystem::Tick(float DeltaTime)
 
 	if (GetWorld()->GetNetMode() != NM_Client)
 	{
+        // A listen host can wait for a slower remote process before the driver is ready.
+        // Freeze the fixture during that wait so ambient AI cannot kill the witness first.
+        if (!Driver.IsValid() || Step == 0)
+        {
+            for (TActorIterator<ACCLEnemyCharacter> It(GetWorld()); It; ++It)
+            {
+                if (auto* AI = Cast<AAIController>(It->GetController()))
+                {
+                    AI->StopMovement();
+                    if (AI->GetBrainComponent())
+                    {
+                        AI->GetBrainComponent()->StopLogic(TEXT("Combat fixture setup"));
+                    }
+                }
+                if (!Driver.IsValid())
+                {
+                    if (auto* EnemyASC = ASC(*It))
+                    {
+                        EnemyASC->CancelAllAbilities();
+                    }
+                    It->FindComponentByClass<UKSICombatComponent>()->EndAttack();
+                }
+            }
+        }
+
 		for (FConstPlayerControllerIterator It = GetWorld()->GetPlayerControllerIterator(); It; ++It)
 		{
 			UCCLTestBridgeComponent::Ensure(It->Get());
@@ -422,7 +447,7 @@ void UCCLCombatSmokeSubsystem::RunPolicyChecks()
 		return;
 	}
 
-	auto* Combat = Pawn->FindComponentByClass<UCCLCombatComponent>();
+	auto* Combat = Pawn->FindComponentByClass<UKSICombatComponent>();
 	const uint32 Id = Combat->BeginAttack(Pawn->FindComponentByClass<UCCLFighterComponent>()->GetAttack(), FVector::ForwardVector);
 	FHitResult Result(Target, nullptr, Target->GetActorLocation(), FVector::UpVector);
 	Result.ImpactPoint = Target->GetActorLocation();

@@ -90,13 +90,14 @@ void ACCLProjectile::Impact(UPrimitiveComponent* HitComponent, AActor* Other,
 	auto* TargetASC = UAbilitySystemBlueprintLibrary::GetAbilitySystemComponent(Other);
 	if (CapturedEffect.IsValid() && ShotDefinition && TargetASC && IsValid(Other))
 	{
-		FCCLHitContext Context{IsValid(GetOwner()) ? GetOwner() : this, Other,
+		FKSIHitContext Context{IsValid(GetOwner()) ? GetOwner() : this, Other,
 			IsValid(SourceASC) ? SourceASC.Get() : nullptr, TargetASC, ShotDefinition, Hit, 0};
-		Context.bDetachedShot = 1;
+		Context.bDetachedSource = 1;
 		Context.CapturedEffect = CapturedEffect;
-		Context.CapturedTeam = CapturedTeam;
+		Context.SourceFacts.InitializeAs<FCCLHitSourceFacts>();
+		Context.SourceFacts.GetMutable<FCCLHitSourceFacts>().Team = CapturedTeam;
 		Context.IncomingDirection = (Hit.TraceEnd - Hit.TraceStart).GetSafeNormal();
-		CCLHit::Apply(Context);
+		KSIHit::Apply(Context);
 	}
 
 	Destroy();

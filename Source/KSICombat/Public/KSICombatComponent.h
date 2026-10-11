@@ -2,37 +2,38 @@
 
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
-#include "CCLHitRule.h"
-#include "CCLCombatComponent.generated.h"
+#include "KSIHitRule.h"
+#include "KSICombatComponent.generated.h"
 
-class UCCLCombatDefinition;
+class UKSICombatDefinition;
 
-DECLARE_MULTICAST_DELEGATE_TwoParams(FCCLHitResolved, AActor*, FGameplayTag);
+DECLARE_MULTICAST_DELEGATE_TwoParams(FKSIHitResolved, AActor*, FGameplayTag);
 
 UCLASS(ClassGroup = Combat, meta = (BlueprintSpawnableComponent))
-class CCL_API UCCLCombatComponent : public UActorComponent
+class KSICOMBAT_API UKSICombatComponent : public UActorComponent
 {
 	GENERATED_BODY()
 
 public:
-	UCCLCombatComponent();
+	UKSICombatComponent();
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
 
 public:
-	uint32 BeginAttack(const UCCLCombatDefinition* Definition, const FVector& Direction);
+	uint32 BeginAttack(const UKSICombatDefinition* Definition, const FVector& Direction);
 	void EndAttack();
 	FGameplayTag ResolveHit(AActor* Target, const FHitResult& Hit, uint32 AttackId);
 	uint32 GetAttackId() const { return CurrentAttackId; }
 
 public:
-	FCCLHitResolved OnHitResolved;
+	FKSIHitResolved OnHitResolved;
 
 private:
 	UPROPERTY(Transient)
-	TObjectPtr<const UCCLCombatDefinition> ActiveDefinition;
+	TObjectPtr<const UKSICombatDefinition> ActiveDefinition;
 
 	TSet<TWeakObjectPtr<AActor>> HitActors;
 	FVector AttackDirection = FVector::ForwardVector;
 	uint32 CurrentAttackId = 0;
+	uint8 bResolvingHit = 0;
 };

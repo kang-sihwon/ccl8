@@ -1,7 +1,7 @@
 #include "CCLWeaponAbility.h"
 #include "Items/CCLInventoryWeapon.h"
 
-#include "CCLActionComponent.h"
+#include "KSIActionComponent.h"
 #include "AbilitySystem/CCLGameplayTags.h"
 #include "Combat/CCLProjectile.h"
 #include "Combat/CCLCombatDefinition.h"
@@ -36,7 +36,7 @@ const UCCLProjectileProfile* Profile(const UObject* Source)
 
 FGuid SourceId(const FGameplayAbilityActorInfo* Info, FGameplayAbilitySpecHandle Handle)
 {
-	const auto* Actions = Info && Info->OwnerActor.IsValid() ? Info->OwnerActor->FindComponentByClass<UCCLActionComponent>() : nullptr;
+	const auto* Actions = Info && Info->OwnerActor.IsValid() ? Info->OwnerActor->FindComponentByClass<UKSIActionComponent>() : nullptr;
 	const auto* Source = Actions ? Actions->FindSource(Handle) : nullptr;
 	return Source ? Source->Id : FGuid();
 }

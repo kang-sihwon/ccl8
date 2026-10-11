@@ -2,6 +2,8 @@
 
 무기의 행동은 아이템 GUID를 Source ID로 등록하고 GAS 능력을 실행한다. 발사체는 발사 당시의 피해·팀·효과를 보존해 발사자 Actor가 사라져도 적중을 처리한다. `Source/CCL/Actions/`와 `Combat/CCLProjectile.cpp`에서 능력 소유와 날아가는 탄환의 수명을 나누는 이유를 배운다.
 
+2026-10-12 공용 전투·행동이 KSICombat으로 옮겨졌다. 이 장의 발췌는 아래 고정 커밋의 학습 기록을 유지한다. 현재 타입·경계·검증은 [Framework 단계 3](../FrameworkPlan.md#단계-3-구현과-검증)을 따른다.
+
 ## 1. 비교 기준
 
 | 구분 | 전체 커밋 |
@@ -60,7 +62,7 @@
 
 `RegisterSource`는 권한·ID·정의·중복 행동 태그를 검사하고 능력을 부여해 핸들을 기록한다. `Execute`는 해당 Source의 해당 행동 핸들을 찾아 활성화한다.
 
-출처: `50e5838`, [CCLActionComponent.cpp](../../Source/CCL/Actions/CCLActionComponent.cpp):61의 `UCCLActionComponent::RemoveSource`. 실제 코드 전체 함수이며 들여쓰기를 공백으로 바꿨다.
+출처: `50e5838`, [CCLActionComponent.cpp](https://github.com/kang-sihwon/ccl8/blob/50e583859c832d6cb325e5e76beb8356e8c13959/Source/CCL/Actions/CCLActionComponent.cpp):61의 `UCCLActionComponent::RemoveSource`. 실제 코드 전체 함수이며 들여쓰기를 공백으로 바꿨다.
 
 ```cpp
 void UCCLActionComponent::RemoveSource(FGuid Id)

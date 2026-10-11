@@ -5,7 +5,7 @@
 #include "CCLInventoryComponent.h"
 #include "CCLItemDefinition.h"
 #include "CCLSkillDefinition.h"
-#include "Actions/CCLActionComponent.h"
+#include "KSIActionComponent.h"
 #include "AbilitySystem/CCLAbilitySystemComponent.h"
 #include "AbilitySystem/CCLGameplayTags.h"
 #include "AbilitySystem/CCLHealthSet.h"
@@ -333,7 +333,7 @@ bool FCCLLoadoutRestoreBatch::Execute(TConstArrayView<FCCLLoadoutRestoreRequest>
 					Loadout.SkillEffects.Add(Value.Added[Index]);
 				}
 			}
-			if (auto* Actions = Loadout.GetOwner()->FindComponentByClass<UCCLActionComponent>())
+			if (auto* Actions = Loadout.GetOwner()->FindComponentByClass<UKSIActionComponent>())
 			{
 				const auto PreviousSources = MoveTemp(Loadout.ActionSources);
 				Loadout.ActionSources.Reset();

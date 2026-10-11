@@ -1,17 +1,17 @@
-#include "CCLCombatComponent.h"
+#include "KSICombatComponent.h"
 
-#include "CCLCombatDefinition.h"
+#include "KSICombatDefinition.h"
 #include "AbilitySystemBlueprintLibrary.h"
 #include "AbilitySystemComponent.h"
 #include "Engine/World.h"
 
-UCCLCombatComponent::UCCLCombatComponent()
+UKSICombatComponent::UKSICombatComponent()
 {
 	PrimaryComponentTick.bCanEverTick = true;
 	PrimaryComponentTick.bStartWithTickEnabled = false;
 }
 
-void UCCLCombatComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
+void UKSICombatComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
@@ -22,7 +22,7 @@ void UCCLCombatComponent::TickComponent(float DeltaTime, ELevelTick TickType, FA
 
 	const FVector Start = GetOwner()->GetActorLocation();
 	TArray<FHitResult> Hits;
-	FCollisionQueryParams Params(SCENE_QUERY_STAT(CCLAttack), false, GetOwner());
+	FCollisionQueryParams Params(SCENE_QUERY_STAT(KSIAttack), false, GetOwner());
 	GetWorld()->SweepMultiByChannel(Hits, Start, Start + AttackDirection * ActiveDefinition->Reach,
 	    FQuat::Identity, ECC_Pawn, FCollisionShape::MakeSphere(ActiveDefinition->Radius), Params);
 	const uint32 Id = CurrentAttackId;
@@ -38,15 +38,18 @@ void UCCLCombatComponent::TickComponent(float DeltaTime, ELevelTick TickType, FA
 	}
 }
 
-void UCCLCombatComponent::EndPlay(const EEndPlayReason::Type EndPlayReason)
+void UKSICombatComponent::EndPlay(const EEndPlayReason::Type EndPlayReason)
 {
 	EndAttack();
 	Super::EndPlay(EndPlayReason);
 }
 
-uint32 UCCLCombatComponent::BeginAttack(const UCCLCombatDefinition* Definition, const FVector& Direction)
+uint32 UKSICombatComponent::BeginAttack(const UKSICombatDefinition* Definition, const FVector& Direction)
 {
-	if (!GetOwner()->HasAuthority() || !Definition)
+	if (!IsValid(GetOwner()) || !GetOwner()->HasAuthority() || bResolvingHit || !IsValid(Definition) || !Definition->HitRule ||
+		!FMath::IsFinite(Definition->Reach) || Definition->Reach < 0.f ||
+		!FMath::IsFinite(Definition->Radius) || Definition->Radius <= 0.f ||
+		Direction.ContainsNaN() || Direction.GetSafeNormal2D().IsNearlyZero())
 	{
 		return 0;
 	}
@@ -54,23 +57,26 @@ uint32 UCCLCombatComponent::BeginAttack(const UCCLCombatDefinition* Definition, 
 	ActiveDefinition = Definition;
 	AttackDirection = Direction.GetSafeNormal2D();
 	HitActors.Reset();
-	++CurrentAttackId;
+	if (++CurrentAttackId == 0)
+	{
+		++CurrentAttackId;
+	}
 	SetComponentTickEnabled(true);
 	return CurrentAttackId;
 }
 
-void UCCLCombatComponent::EndAttack()
+void UKSICombatComponent::EndAttack()
 {
 	ActiveDefinition = nullptr;
 	HitActors.Reset();
 	SetComponentTickEnabled(false);
 }
 
-FGameplayTag UCCLCombatComponent::ResolveHit(AActor* Target, const FHitResult& Hit, uint32 AttackId)
+FGameplayTag UKSICombatComponent::ResolveHit(AActor* Target, const FHitResult& Hit, uint32 AttackId)
 {
 	AActor* Source = GetOwner();
 
-	if (!Source->HasAuthority() || !ActiveDefinition || AttackId != CurrentAttackId || !IsValid(Target) || Target == Source || HitActors.Contains(Target))
+	if (!IsValid(Source) || !Source->HasAuthority() || bResolvingHit || Hit.ImpactPoint.ContainsNaN() || !ActiveDefinition || AttackId != CurrentAttackId || !IsValid(Target) || Target == Source || HitActors.Contains(Target))
 	{
 		return FGameplayTag();
 	}
@@ -89,24 +95,25 @@ FGameplayTag UCCLCombatComponent::ResolveHit(AActor* Target, const FHitResult& H
 	}
 
 	FHitResult Obstruction;
-	FCollisionQueryParams VisibilityParams(SCENE_QUERY_STAT(CCLHitVisibility), false, Source);
+	FCollisionQueryParams VisibilityParams(SCENE_QUERY_STAT(KSIHitVisibility), false, Source);
 
 	if (GetWorld()->LineTraceSingleByChannel(Obstruction, Source->GetActorLocation(), Target->GetActorLocation(), ECC_Visibility, VisibilityParams) && Obstruction.GetActor() != Target)
 	{
 		return FGameplayTag();
 	}
 
-	const UCCLCombatDefinition* Definition = ActiveDefinition;
+	const UKSICombatDefinition* Definition = ActiveDefinition;
 
 	if (!Definition->HitRule)
 	{
 		return FGameplayTag();
 	}
 
-	FCCLHitContext Context{Source, Target, SourceASC, TargetASC, Definition, Hit, AttackId};
+	TGuardValue<uint8> Resolving(bResolvingHit, 1);
+	FKSIHitContext Context{Source, Target, SourceASC, TargetASC, Definition, Hit, AttackId};
 	// Reserve before policy side effects: cancellation can synchronously re-enter the resolver.
 	HitActors.Add(Target);
-	const FGameplayTag Outcome = CCLHit::Apply(Context);
+	const FGameplayTag Outcome = KSIHit::Apply(Context);
 	OnHitResolved.Broadcast(Target, Outcome);
 	return Outcome;
 }

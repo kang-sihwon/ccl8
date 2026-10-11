@@ -72,8 +72,8 @@ void UCCLAgentWorldSmokeSubsystem::Tick(float DeltaTime)
 			APawn* Source = GetWorld()->GetFirstPlayerController()->GetPawn();
 			auto* SourceASC = UAbilitySystemBlueprintLibrary::GetAbilitySystemComponent(Source);
 			auto* Definition = LoadObject<UCCLCombatDefinition>(nullptr, TEXT("/Game/Progression/DA_PistolHit.DA_PistolHit"));
-			FCCLHitContext Hit{Source, *It, SourceASC, It->GetAbilitySystemComponent(), Definition};
-			Check(CCLHit::Apply(Hit) == CCLTags::Outcome_Damage, TEXT("common damage path hits a life Agent"));
+			FKSIHitContext Hit{Source, *It, SourceASC, It->GetAbilitySystemComponent(), Definition};
+			Check(KSIHit::Apply(Hit) == CCLTags::Outcome_Damage, TEXT("common damage path hits a life Agent"));
 			InjuredId = It->GetAgent()->AgentId;
 			InjuredHealth = It->GetAbilitySystemComponent()->GetNumericAttribute(UCCLHealthSet::GetHealthAttribute());
 			const auto* Record = World->GetSimulation().Find(InjuredId);

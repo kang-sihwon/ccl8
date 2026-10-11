@@ -10,7 +10,7 @@ class ACCLEnemyCharacter;
 class UCCLAbilitySystemComponent;
 class UCCLHealthSet;
 class UCCLFighterComponent;
-class UCCLCombatComponent;
+class UKSICombatComponent;
 class UCCLEnemyDefinition;
 
 DECLARE_MULTICAST_DELEGATE_OneParam(FCCLEnemyDefeated, ACCLEnemyCharacter*);
@@ -80,7 +80,7 @@ private:
 	TObjectPtr<UCCLFighterComponent> Fighter;
 
 	UPROPERTY(VisibleAnywhere)
-	TObjectPtr<UCCLCombatComponent> Combat;
+	TObjectPtr<UKSICombatComponent> Combat;
 
 	UPROPERTY(ReplicatedUsing = OnRep_Dead)
 	uint8 bDead = 0;

@@ -1,6 +1,6 @@
 # Windows 검토용 패키지
 
-최신 UE 5.8.3 Game·Server 결과는 [Framework 분리 후 Game·Server 패키지](#framework-분리-후-gameserver-패키지)를 따른다. 아래 최초 전달본과 실패 기록은 당시 상태를 보존한다.
+최신 UE 5.8.3 Game·Server 결과는 [전투 모듈 분리 후 패키지](#전투-모듈-분리-후-패키지)를 따른다. 아래 최초 전달본과 실패 기록은 당시 상태를 보존한다.
 
 단계 7은 Windows Development 패키지를 생성하고 에디터를 거치지 않는 실행 파일에서 전체 흐름을 검사한다. 이번 산출물은 기능 검토용이며 최종 아트·밸런스와 Shipping 배포본을 대신하지 않는다.
 
@@ -177,3 +177,54 @@ Tools/Validation/run_environment_smoke.ps1 -Mode Dedicated -Map EnvironmentScena
 최종 쿠킹에는 에디터 미리보기의 `ETonemappingMethod=Default` 가져오기 경고와 환경 맵의 `FString` 기반 `FText` 저장 경고가 남았다. Game·Server 패키징 로그에서 확인했으며 경고 0인 빌드로 보고하지 않는다. 이번 검증에서 에셋은 재저장하지 않았다.
 
 검증 환경은 Windows 한 대의 UE 5.8.3 Development다. UI 도구는 게임 내부 Slate 이벤트를 사용하며 운영체제 마우스의 수동 검사는 아니다. Shipping, 다른 PC·외부 인터넷, Iris 전환과 성능 목표 충족은 검증하지 않았다. 기능 PASS와 치명적 오류·어설션·생성자 오류를 함께 확인했다. 환경 검사에서 의도한 구역 09 취소 1건은 `CCL_EXPERIMENT FAIL`로 기록되며, 이어지는 취소 확인·원래 입력 복구와 최종 성공을 대조했다. 로그 판정 요약은 `Saved/Tests/FrameworkStage2/Packaging/final-results.json`에 있다.
+
+
+## 전투 모듈 분리 후 패키지
+
+2026-10-12 KSICombat 분리 후 Game·실제 Server 타깃의 Windows Development 빌드·쿠킹·스테이징·아카이브와 실행 검사를 완료했다. 공용 모듈·게임 정책의 경계, 자동 검사 164개와 독립 실행 27개 항목은 [Framework 단계 3](FrameworkPlan.md#단계-3-구현과-검증)을 따른다.
+
+| 용도 | 경로 |
+|---|---|
+| 사용자용 Game 실행기 | `Saved/FrameworkStage3GamePackage/Windows/CCL.exe` |
+| 검사에 사용한 Game | `Saved/FrameworkStage3GamePackage/Windows/CCL/Binaries/Win64/CCL.exe` |
+| 실제 Server 타깃 | `Saved/FrameworkStage3ServerPackage/WindowsServer/CCL/Binaries/Win64/CCLServer.exe` |
+
+전달할 때는 해당 Windows 또는 WindowsServer 폴더 전체를 복사한다. 패키지·검사 로그는 Git에서 제외된 Saved에 보존하며 GitHub에는 코드·설정·검증 도구·문서를 제출한다.
+
+아래 로그의 공통 루트는 `Saved/Tests/FrameworkStage3/`다. 도구 로그에는 각 프로세스의 원본 로그 폴더가 기록된다. 기기별 절대 경로는 이 문서에서 저장소 상대 경로로 표기했다.
+
+| 검사 | 결과 | 근거 |
+|---|---|---|
+| Game BuildCookRun | 347.48초, 종료 코드 0 | `Game-Package.log` |
+| Server BuildCookRun | 307.31초, 종료 코드 0 | `Server-Package.log` |
+| 전투 Standalone | 공격·가드·패링·회피·개별 재스폰 성공 | `Packaged-Combat-Standalone.log` |
+| 실제 Dedicated | Server와 Game 클라이언트 2개, 지연 50ms·손실 2%, 관찰자 생존과 개별 재스폰 성공 | `Packaged-Combat-Dedicated.log` |
+| Listen 원격·호스트 | 두 조작자 구성의 전투·재스폰 성공 | `Packaged-Combat-Listen.log`, `Packaged-Combat-Host.log` |
+| 투사체·탄약 | 발사자 제거 후 적중, 단일 충돌·탄약 소비·저장 codec 성공 | `Packaged-Projectile.log` |
+| 성장·게임 진행 | Listen에서 장비·소비·훈련·재스폰·보스·승리 성공 | `Packaged-Progression.log` |
+| 사용자용 실행기·세션 | 루트 CCL.exe의 시작·저장·새 프로세스 복원·정상 종료 성공 | `Packaged-Session.log` |
+| UI | 1280×720 실제 렌더링, 장비·이동·소비·세션·대화 조작 성공 | `Packaged-UI.log`, `Saved/Tests/UIVisual/1280x720-20261012-021053/equipment-full.png` |
+
+장비 화면에서 한글·장비 8칸·캐릭터 표시를 확인했다. UI 검사는 게임 내부 Slate 이벤트와 오프스크린 렌더링을 사용하며 수동 마우스 조작 검사와 구분한다. Game·Server 빌드 영수증의 TargetType과 패키지 내부 실행 파일의 SHA-256도 확인했다. `CCL.target`, `CCLServer.target`, `package-binaries-final.json`은 패키지가 각각 최신 빌드와 같은 실행 파일임을 기록한다. 전체 검사·오류 분류는 `final-results.json`에 있다.
+
+### 생성·재현 명령
+
+```powershell
+Tools/Validation/package_windows.ps1 -ArchiveDirectory Saved/FrameworkStage3GamePackage -SkipZenStore
+Tools/Validation/package_windows.ps1 -Server -ArchiveDirectory Saved/FrameworkStage3ServerPackage -SkipZenStore
+$gameBinary = 'Saved/FrameworkStage3GamePackage/Windows/CCL/Binaries/Win64/CCL.exe'
+$serverBinary = 'Saved/FrameworkStage3ServerPackage/WindowsServer/CCL/Binaries/Win64/CCLServer.exe'
+Tools/Validation/run_combat_smoke.ps1 -Mode Dedicated -Impaired -PackagedExecutable $gameBinary -ServerExecutable $serverBinary
+Tools/Validation/run_combat_smoke.ps1 -Mode Listen -PackagedExecutable $gameBinary
+Tools/Validation/run_combat_smoke.ps1 -Mode Listen -DriverIsHost -PackagedExecutable $gameBinary
+Tools/Validation/run_projectile_smoke.ps1 -PackagedExecutable $gameBinary
+Tools/Validation/run_campaign_smoke.ps1 -Mode Listen -Progression -PackagedExecutable $gameBinary
+Tools/Validation/run_session_smoke.ps1 -PackagedExecutable 'Saved/FrameworkStage3GamePackage/Windows/CCL.exe'
+Tools/Validation/run_ui_smoke.ps1 -PackagedExecutable $gameBinary -Offscreen
+```
+
+패키지 Dedicated 전투 검사는 Game과 Server 실행 파일을 모두 지정해야 한다. 한쪽 인자가 빠지면 도구가 실행을 거부한다. 전투·투사체 도구는 CDO 생성자의 누락 에셋 오류도 실패로 판정한다.
+
+Game 쿠킹에는 기존 실험장 FText 저장 경고, Game·Server 쿠킹에는 미리보기의 ETonemappingMethod 기본값 경고가 남았다. 이 변경에서 실험장 에셋을 다시 저장하지 않았다. 최종 패키지 실행에서 치명적 오류·어설션·ensure와 CDO 생성자 오류는 발견하지 않았다. 일부 Editor 실행의 Python 도구 초기화 오류는 FrameworkPlan에 별도로 기록했다.
+
+이 검증은 한 PC의 로컬 Windows Development 범위다. Shipping, 다른 PC·외부 인터넷·NAT·Iris와 성능 개선은 검증하지 않았다. 환경 전체의 장시간 계측과 이전 단계 전체 회귀를 다시 수행한 결과로 확대하지 않는다.

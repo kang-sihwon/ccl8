@@ -1,17 +1,17 @@
-#include "CCLActionComponent.h"
+#include "KSIActionComponent.h"
 
-#include "AbilitySystem/CCLAbilitySystemComponent.h"
+#include "KSIAbilitySystemComponent.h"
 
 #include "AbilitySystemBlueprintLibrary.h"
 #include "AbilitySystemComponent.h"
 #include "Abilities/GameplayAbility.h"
 
-UCCLActionComponent::UCCLActionComponent()
+UKSIActionComponent::UKSIActionComponent()
 {
 	SetIsReplicatedByDefault(true);
 }
 
-void UCCLActionComponent::EndPlay(const EEndPlayReason::Type Reason)
+void UKSIActionComponent::EndPlay(const EEndPlayReason::Type Reason)
 {
 	while (!Sources.IsEmpty())
 	{
@@ -21,7 +21,7 @@ void UCCLActionComponent::EndPlay(const EEndPlayReason::Type Reason)
 	Super::EndPlay(Reason);
 }
 
-bool UCCLActionComponent::RegisterSource(FGuid Id, UObject* Definition, const TArray<FCCLActionGrant>& Grants)
+bool UKSIActionComponent::RegisterSource(FGuid Id, UObject* Definition, const TArray<FKSIActionGrant>& Grants)
 {
 	auto* ASC = GetASC();
 	if (!GetOwner()->HasAuthority() || !ASC || !Id.IsValid() || !Definition || Grants.IsEmpty())
@@ -40,12 +40,12 @@ bool UCCLActionComponent::RegisterSource(FGuid Id, UObject* Definition, const TA
 		Tags.Add(Grant.Action);
 	}
 
-	if (Sources.ContainsByPredicate([Id](const FCCLActionSource& Source) { return Source.Id == Id; }))
+	if (Sources.ContainsByPredicate([Id](const FKSIActionSource& Source) { return Source.Id == Id; }))
 	{
 		return false;
 	}
 
-	FCCLActionSource Source;
+	FKSIActionSource Source;
 	Source.Id = Id;
 	Source.Definition = Definition;
 	for (const auto& Grant : Grants)
@@ -58,9 +58,9 @@ bool UCCLActionComponent::RegisterSource(FGuid Id, UObject* Definition, const TA
 	return true;
 }
 
-void UCCLActionComponent::RemoveSource(FGuid Id)
+void UKSIActionComponent::RemoveSource(FGuid Id)
 {
-	const int32 Index = Sources.IndexOfByPredicate([Id](const FCCLActionSource& Source) { return Source.Id == Id; });
+	const int32 Index = Sources.IndexOfByPredicate([Id](const FKSIActionSource& Source) { return Source.Id == Id; });
 	if (Index == INDEX_NONE)
 	{
 		return;
@@ -78,18 +78,18 @@ void UCCLActionComponent::RemoveSource(FGuid Id)
 	}
 }
 
-bool UCCLActionComponent::Execute(FGuid SourceId, FGameplayTag Action)
+bool UKSIActionComponent::Execute(FGuid SourceId, FGameplayTag Action)
 {
 	auto* ASC = GetASC();
-	const auto* Source = Sources.FindByPredicate([SourceId](const FCCLActionSource& S) { return S.Id == SourceId; });
+	const auto* Source = Sources.FindByPredicate([SourceId](const FKSIActionSource& S) { return S.Id == SourceId; });
 	const auto* Handle = Source ? Source->Handles.Find(Action) : nullptr;
 	return GetOwner()->HasAuthority() && ASC && Handle && ASC->TryActivateAbility(*Handle);
 }
 
-void UCCLActionComponent::Cancel(FGuid SourceId)
+void UKSIActionComponent::Cancel(FGuid SourceId)
 {
 	auto* ASC = GetASC();
-	const auto* Source = Sources.FindByPredicate([SourceId](const FCCLActionSource& S) { return S.Id == SourceId; });
+	const auto* Source = Sources.FindByPredicate([SourceId](const FKSIActionSource& S) { return S.Id == SourceId; });
 	if (ASC && Source && GetOwner()->HasAuthority())
 	{
 		const auto Handles = Source->Handles;
@@ -100,9 +100,9 @@ void UCCLActionComponent::Cancel(FGuid SourceId)
 	}
 }
 
-const FCCLActionSource* UCCLActionComponent::FindSource(FGameplayAbilitySpecHandle Ability) const
+const FKSIActionSource* UKSIActionComponent::FindSource(FGameplayAbilitySpecHandle Ability) const
 {
-	return Sources.FindByPredicate([Ability](const FCCLActionSource& S)
+	return Sources.FindByPredicate([Ability](const FKSIActionSource& S)
 	{
 		for (const auto& Pair : S.Handles)
 		{
@@ -116,9 +116,9 @@ const FCCLActionSource* UCCLActionComponent::FindSource(FGameplayAbilitySpecHand
 	});
 }
 
-void UCCLActionComponent::Release(FGuid SourceId, FGameplayTag Action)
+void UKSIActionComponent::Release(FGuid SourceId, FGameplayTag Action)
 {
-	const auto* Source = Sources.FindByPredicate([SourceId](const FCCLActionSource& S) { return S.Id == SourceId; });
+	const auto* Source = Sources.FindByPredicate([SourceId](const FKSIActionSource& S) { return S.Id == SourceId; });
 	const auto* Handle = Source ? Source->Handles.Find(Action) : nullptr;
 	if (auto* ASC = GetASC(); GetOwner()->HasAuthority() && ASC && Handle)
 	{
@@ -126,20 +126,20 @@ void UCCLActionComponent::Release(FGuid SourceId, FGameplayTag Action)
 	}
 }
 
-bool UCCLActionComponent::HasSource(FGuid Id) const
+bool UKSIActionComponent::HasSource(FGuid Id) const
 {
-	return Sources.ContainsByPredicate([Id](const FCCLActionSource& S) { return S.Id == Id; });
+	return Sources.ContainsByPredicate([Id](const FKSIActionSource& S) { return S.Id == Id; });
 }
 
-UAbilitySystemComponent* UCCLActionComponent::GetASC() const
+UAbilitySystemComponent* UKSIActionComponent::GetASC() const
 {
 	return UAbilitySystemBlueprintLibrary::GetAbilitySystemComponent(GetOwner());
 }
 
-void UCCLActionComponent::RequestInput(FGameplayTag Input, bool bPressed)
+void UKSIActionComponent::RequestInput(FGameplayTag Input, bool bPressed)
 {
 	// Adapter for previously granted/predicted abilities. GAS retains their handles and input release protocol.
-	if (auto* ASC = Cast<UCCLAbilitySystemComponent>(GetASC()))
+	if (auto* ASC = Cast<UKSIAbilitySystemComponent>(GetASC()))
 	{
 		if (bPressed)
 		{

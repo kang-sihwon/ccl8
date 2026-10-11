@@ -2,7 +2,7 @@
 #include "Session/CCLPlayerPersistenceSubsystem.h"
 #include "Engine/World.h"
 #include "Campaign/CCLExpeditionComponent.h"
-#include "Actions/CCLActionComponent.h"
+#include "KSIActionComponent.h"
 #include "Agents/CCLAccountComponent.h"
 
 #include "AbilitySystem/CCLAbilitySystemComponent.h"
@@ -22,7 +22,7 @@ ACCLPlayerState::ACCLPlayerState()
 	Expedition = CreateDefaultSubobject<UCCLExpeditionComponent>(TEXT("Expedition"));
 	Inventory = CreateDefaultSubobject<UCCLInventoryComponent>(TEXT("Inventory"));
 	Loadout = CreateDefaultSubobject<UCCLLoadoutComponent>(TEXT("Loadout"));
-	Actions = CreateDefaultSubobject<UCCLActionComponent>(TEXT("Actions"));
+	Actions = CreateDefaultSubobject<UKSIActionComponent>(TEXT("Actions"));
 	Account = CreateDefaultSubobject<UCCLAccountComponent>(TEXT("Account"));
 }
 

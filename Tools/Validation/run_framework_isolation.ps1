@@ -1,4 +1,4 @@
-param([ValidateSet('KSIUI', 'KSIMap', 'KSICore', 'KSIInventory')][string]$Module = 'KSIUI')
+param([ValidateSet('KSIUI', 'KSIMap', 'KSICore', 'KSIInventory', 'KSICombat')][string]$Module = 'KSIUI')
 $ErrorActionPreference = 'Stop'
 $root = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '../..'))
 $paths = Get-Content (Join-Path $root '.local/agent-paths.json') -Raw | ConvertFrom-Json
@@ -10,6 +10,7 @@ if ($Module -eq 'KSIInventory') { Copy-Item -LiteralPath (Join-Path $root 'Sourc
 $probe = Join-Path $source 'KSIProbe'
 New-Item -ItemType Directory -Path $probe | Out-Null
 Copy-Item -Path (Join-Path $PSScriptRoot 'FrameworkProbe/*.h'), (Join-Path $PSScriptRoot 'FrameworkProbe/*.cpp') -Destination $probe
+if ($Module -eq 'KSICombat') { Copy-Item -Path (Join-Path $PSScriptRoot 'FrameworkProbe/Combat/*') -Destination $probe }
 $projectName = $Module + 'Probe'
 $descriptor = [ordered]@{
     FileVersion = 3
@@ -23,12 +24,18 @@ $ui = 0
 $map = 0
 $core = 0
 $inventory = 0
+$combat = 0
 if ($Module -eq 'KSIUI') {
     $ui = 1
     $dependencies += ', "GameplayTags", "EnhancedInput", "InputCore", "CommonUI"'
     $descriptor.Plugins = @(@{Name='CommonUI'; Enabled=$true}, @{Name='EnhancedInput'; Enabled=$true})
 } elseif ($Module -eq 'KSIMap') { $map = 1 }
 elseif ($Module -eq 'KSICore') { $core = 1 }
+elseif ($Module -eq 'KSICombat') {
+    $combat = 1
+    $dependencies += ', "GameplayAbilities", "GameplayTags", "GameplayTasks"'
+    $descriptor.Plugins = @(@{Name='GameplayAbilities'; Enabled=$true})
+}
 else {
     $inventory = 1
     $dependencies += ', "KSICore"'
@@ -48,6 +55,7 @@ public class KSIProbe : ModuleRules
         PublicDefinitions.Add("WITH_KSI_MAP=$map");
         PublicDefinitions.Add("WITH_KSI_CORE=$core");
         PublicDefinitions.Add("WITH_KSI_INVENTORY=$inventory");
+        PublicDefinitions.Add("WITH_KSI_COMBAT=$combat");
     }
 }
 "@ | Set-Content -LiteralPath (Join-Path $probe 'KSIProbe.Build.cs') -Encoding utf8
@@ -87,7 +95,7 @@ try {
     try {
         if (!$process.WaitForExit(180000)) { throw ('Isolation timeout: ' + $log) }
         $text = Get-Content -LiteralPath $log -Raw
-        if ($process.ExitCode -ne 0 -or $text -notmatch 'KSI_PROBE PASS' -or $text -match 'KSI_PROBE FAIL|Fatal error:|Assertion failed:|LogEnhancedInput: Error:|LogUIActionRouter: Error:') {
+        if ($process.ExitCode -ne 0 -or $text -notmatch 'KSI_PROBE PASS' -or $text -match 'KSI_PROBE FAIL|Fatal error:|Assertion failed:|LogEnhancedInput: Error:|LogUIActionRouter: Error:|LogUObjectGlobals: Error: CDO Constructor') {
             Get-Content $log -Tail 55
             throw ('Isolation runtime failed: ' + $log)
         }

@@ -13,7 +13,7 @@
 #include "AbilitySystem/CCLEffects.h"
 #include "Combat/CCLFighterComponent.h"
 #include "Items/CCLAttachmentProfile.h"
-#include "Combat/CCLCombatComponent.h"
+#include "KSICombatComponent.h"
 #include "Components/SkeletalMeshComponent.h"
 #include "Animation/AnimInstance.h"
 #include "Camera/CameraComponent.h"
@@ -40,7 +40,7 @@ ACCLCharacter::ACCLCharacter(const FObjectInitializer& ObjectInitializer)
 	Fighter->CombatAnimClass = TSoftClassPtr<UAnimInstance>(FSoftObjectPath(TEXT("/Game/Combat/ABP_Combat.ABP_Combat_C")));
 	Fighter->DodgeMontage = TSoftObjectPtr<UAnimMontage>(FSoftObjectPath(TEXT("/Game/Combat/AM_Dodge.AM_Dodge")));
 	Fighter->DefenseMontage = TSoftObjectPtr<UAnimMontage>(FSoftObjectPath(TEXT("/Game/Combat/AM_DefensePose.AM_DefensePose")));
-	Combat = CreateDefaultSubobject<UCCLCombatComponent>(TEXT("Combat"));
+	Combat = CreateDefaultSubobject<UKSICombatComponent>(TEXT("Combat"));
 	SpawnCollisionHandlingMethod = ESpawnActorCollisionHandlingMethod::AdjustIfPossibleButDontSpawnIfColliding;
 	GetCapsuleComponent()->InitCapsuleSize(42.f, 96.f);
 	bUseControllerRotationYaw = false;

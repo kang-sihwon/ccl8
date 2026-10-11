@@ -6,7 +6,7 @@
 #include "CCLFoodState.h"
 #include "CCLItemFragments.generated.h"
 
-class UCCLActionSet;
+class UKSIActionSet;
 class UCCLProjectileProfile;
 
 class UCCLCombatDefinition;
@@ -136,7 +136,7 @@ struct CCL_API FCCLItemFragment_Weapon : public FKSIItemFragmentData
 	GENERATED_BODY()
 
 	UPROPERTY(EditAnywhere)
-	TObjectPtr<UCCLActionSet> ActionSet;
+	TObjectPtr<UKSIActionSet> ActionSet;
 
 	UPROPERTY(EditAnywhere)
 	TMap<FGameplayTag, FGameplayTag> HandActions;

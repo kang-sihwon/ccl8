@@ -2,6 +2,8 @@
 
 적은 StateTree에서 탐색·접근·공격·복귀를 실행하고, 현재 구현에서는 Agent의 성향·상태로 교전 지속 여부도 판단한다. `Source/CCL/Combat/CCLEnemyAIController.cpp`와 `CCLEnemyCharacter.cpp`를 따라 행동 선택이 GAS 공격으로 연결되는 과정을 읽는다. 생활 NPC의 작업 예약은 [Agent 실행](AgentExecution.md)에서 다룬다.
 
+2026-10-12 공용 전투·행동이 KSICombat으로 옮겨졌다. 이 장의 발췌는 아래 고정 커밋의 학습 기록을 유지한다. 현재 타입·경계·검증은 [Framework 단계 3](../FrameworkPlan.md#단계-3-구현과-검증)을 따른다.
+
 ## 1. 비교 기준
 
 | 구분 | 전체 커밋 |

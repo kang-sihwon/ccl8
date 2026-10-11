@@ -10,7 +10,7 @@
 #include "StateTreeCompiler.h"
 #include "StateTreeCompilerLog.h"
 #include "Components/StateTreeAIComponentSchema.h"
-#include "Actions/CCLActionComponent.h"
+#include "KSIActionComponent.h"
 #include "Actions/CCLWeaponAbility.h"
 #include "Combat/CCLProjectile.h"
 #include "Combat/CCLHitRule.h"
@@ -398,17 +398,17 @@ bool UCCLProgressionAssetLibrary::CreateProjectileAssets()
 		return false;
 	}
 
-	auto* Actions = ProgressionAsset<UCCLActionSet>(TEXT("DA_FirearmActions"));
+	auto* Actions = ProgressionAsset<UKSIActionSet>(TEXT("DA_FirearmActions"));
 	Actions->Actions.Reset();
-	FCCLActionGrant Fire;
+	FKSIActionGrant Fire;
 	Fire.Action = CCLActionTags::Fire;
 	Fire.Ability = UCCLProjectileAbility::StaticClass();
 	Actions->Actions.Add(Fire);
-	FCCLActionGrant Reload;
+	FKSIActionGrant Reload;
 	Reload.Action = CCLActionTags::Reload;
 	Reload.Ability = UCCLReloadAbility::StaticClass();
 	Actions->Actions.Add(Reload);
-	FCCLActionGrant Aim;
+	FKSIActionGrant Aim;
 	Aim.Action = CCLActionTags::Aim;
 	Aim.Ability = UCCLAimAbility::StaticClass();
 	Actions->Actions.Add(Aim);

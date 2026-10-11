@@ -2,6 +2,10 @@
 
 #if WITH_DEV_AUTOMATION_TESTS && WITH_EDITOR
 #include "HAL/FileManager.h"
+#include "Combat/CCLCombatDefinition.h"
+#include "Combat/CCLHitRule.h"
+#include "KSIActionComponent.h"
+#include "Actions/CCLWeaponAbility.h"
 #include "Misc/PackageName.h"
 #include "Misc/Paths.h"
 #include "UObject/SoftObjectPath.h"
@@ -15,6 +19,15 @@ bool FCCLFrameworkRedirectTest::RunTest(const FString& Parameters)
 {
     struct FTypePath { const TCHAR* Old; const TCHAR* Current; };
     const FTypePath Types[] = {
+        {TEXT("/Script/CCL.CCLCombatComponent"), TEXT("/Script/KSICombat.KSICombatComponent")},
+        {TEXT("/Script/CCL.CCLActionComponent"), TEXT("/Script/KSICombat.KSIActionComponent")},
+        {TEXT("/Script/CCL.CCLActionSet"), TEXT("/Script/KSICombat.KSIActionSet")},
+        {TEXT("/Script/CCL.CCLHitRule"), TEXT("/Script/KSICombat.KSIHitRule")},
+        {TEXT("/Script/CCL.CCLHitReceiver"), TEXT("/Script/KSICombat.KSIHitReceiver")},
+        {TEXT("/Script/CCL.CCLActionGrant"), TEXT("/Script/KSICombat.KSIActionGrant")},
+        {TEXT("/Script/CCL.CCLActionSource"), TEXT("/Script/KSICombat.KSIActionSource")},
+        {TEXT("/Script/CCL.CCLAbilityGrant"), TEXT("/Script/KSICombat.KSIAbilityGrant")},
+
         {TEXT("/Script/CCL.CCLInventoryEntry"), TEXT("/Script/KSIInventory.KSIInventoryEntry")},
         {TEXT("/Script/CCL.CCLInventoryList"), TEXT("/Script/KSIInventory.KSIInventoryList")},
         {TEXT("/Script/CCL.CCLItemFragmentData"), TEXT("/Script/KSIInventory.KSIItemFragmentData")},
@@ -102,6 +115,31 @@ bool FCCLFrameworkAssetLoadTest::RunTest(const FString& Parameters)
     if (Probe)
     {
         TestEqual(TEXT("Blueprint parent is the moved screen"), Probe->GetSuperClass()->GetPathName(), FString(TEXT("/Script/KSIUI.KSIScreen")));
+    }
+    return true;
+}
+
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FCCLFrameworkCombatAssetsTest, "CCL.Framework.CombatAssets",
+    EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
+
+bool FCCLFrameworkCombatAssetsTest::RunTest(const FString& Parameters)
+{
+    auto* Attack = LoadObject<UCCLCombatDefinition>(nullptr, TEXT("/Game/Combat/DA_PlayerAttack.DA_PlayerAttack"));
+    if (!TestNotNull(TEXT("original concrete attack asset"), Attack))
+    {
+        return false;
+    }
+    TestEqual(TEXT("inherited trace reach"), Attack->Reach, 150.f);
+    TestEqual(TEXT("inherited trace radius"), Attack->Radius, 35.f);
+    TestEqual(TEXT("inherited policy points to game rule"), Attack->HitRule.Get(), UCCLDuelHitRule::StaticClass());
+    TestEqual(TEXT("concrete game class path preserved"), Attack->GetClass()->GetPathName(), FString(TEXT("/Script/CCL.CCLCombatDefinition")));
+    auto* Actions = LoadObject<UKSIActionSet>(nullptr, TEXT("/Game/Progression/DA_FirearmActions.DA_FirearmActions"));
+    if (TestNotNull(TEXT("original action asset redirected"), Actions))
+    {
+        TestTrue(TEXT("redirected action grants preserve fire ability"), Actions->Actions.ContainsByPredicate([](const FKSIActionGrant& Grant)
+        {
+            return Grant.Action.IsValid() && Grant.Ability == UCCLProjectileAbility::StaticClass();
+        }));
     }
     return true;
 }

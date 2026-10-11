@@ -1,7 +1,7 @@
 #include "CCLProjectileSmokeSubsystem.h"
 #include "Items/CCLInventoryWeapon.h"
 
-#include "Actions/CCLActionComponent.h"
+#include "KSIActionComponent.h"
 #include "Actions/CCLWeaponAbility.h"
 #include "AbilitySystem/CCLHealthSet.h"
 #include "AbilitySystem/CCLGameplayTags.h"
@@ -78,7 +78,7 @@ void UCCLProjectileSmokeSubsystem::Tick(float DeltaTime)
 		FCCLSessionRecord Restored;
 		Check(FCCLSessionCodec::Encode(Record, Bytes) && FCCLSessionCodec::Decode(Bytes, Restored) &&
 			Restored.Items[0].LoadedAmmo == 1, TEXT("item-specific ammo survives session codec"));
-		auto* Actions = NewObject<UCCLActionComponent>(Source);
+		auto* Actions = NewObject<UKSIActionComponent>(Source);
 		Source->AddInstanceComponent(Actions);
 		Actions->RegisterComponent();
 		auto* Base = LoadObject<UCCLProjectileProfile>(nullptr, TEXT("/Game/Progression/DA_PistolBallistics.DA_PistolBallistics"));
@@ -92,7 +92,7 @@ void UCCLProjectileSmokeSubsystem::Tick(float DeltaTime)
 		auto* Intrinsic = DuplicateObject<UCCLProjectileProfile>(Base, Actions);
 		Intrinsic->MagazineSize = 0;
 		Intrinsic->Gravity = 0;
-		FCCLActionGrant Grant;
+		FKSIActionGrant Grant;
 		Grant.Action = CCLActionTags::Fire;
 		Grant.Ability = UCCLProjectileAbility::StaticClass();
 		const FGuid IntrinsicId(1, 4, 5, 6);

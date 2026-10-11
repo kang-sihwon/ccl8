@@ -5,13 +5,13 @@
 #include "Engine/DataAsset.h"
 #include "GameplayAbilitySpecHandle.h"
 #include "GameplayTagContainer.h"
-#include "CCLActionComponent.generated.h"
+#include "KSIActionComponent.generated.h"
 
 class UGameplayAbility;
 class UAbilitySystemComponent;
 
 USTRUCT(BlueprintType)
-struct FCCLActionGrant
+struct KSICOMBAT_API FKSIActionGrant
 {
 	GENERATED_BODY()
 
@@ -23,7 +23,7 @@ struct FCCLActionGrant
 };
 
 USTRUCT()
-struct FCCLActionSource
+struct KSICOMBAT_API FKSIActionSource
 {
 	GENERATED_BODY()
 
@@ -38,37 +38,37 @@ struct FCCLActionSource
 };
 
 UCLASS(BlueprintType)
-class CCL_API UCCLActionSet : public UPrimaryDataAsset
+class KSICOMBAT_API UKSIActionSet : public UPrimaryDataAsset
 {
 	GENERATED_BODY()
 
 public:
 	UPROPERTY(EditAnywhere)
-	TArray<FCCLActionGrant> Actions;
+	TArray<FKSIActionGrant> Actions;
 };
 
 // Sources may be items, innate abilities or external interactions. GAS owns execution lifetime.
 UCLASS(ClassGroup = Actions, meta = (BlueprintSpawnableComponent))
-class CCL_API UCCLActionComponent : public UActorComponent
+class KSICOMBAT_API UKSIActionComponent : public UActorComponent
 {
 	GENERATED_BODY()
 
 public:
-	UCCLActionComponent();
+	UKSIActionComponent();
 	virtual void EndPlay(const EEndPlayReason::Type Reason) override;
 
 public:
-	bool RegisterSource(FGuid Id, UObject* Definition, const TArray<FCCLActionGrant>& Grants);
+	bool RegisterSource(FGuid Id, UObject* Definition, const TArray<FKSIActionGrant>& Grants);
 	void RemoveSource(FGuid Id);
 	bool Execute(FGuid Source, FGameplayTag Action);
 	void RequestInput(FGameplayTag Input, bool bPressed);
 	void Cancel(FGuid Source);
 	void Release(FGuid Source, FGameplayTag Action);
 	bool HasSource(FGuid Id) const;
-	const FCCLActionSource* FindSource(FGameplayAbilitySpecHandle Ability) const;
+	const FKSIActionSource* FindSource(FGameplayAbilitySpecHandle Ability) const;
 	UAbilitySystemComponent* GetASC() const;
 
 private:
 	UPROPERTY()
-	TArray<FCCLActionSource> Sources;
+	TArray<FKSIActionSource> Sources;
 };

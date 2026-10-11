@@ -1,7 +1,7 @@
 #include "CCLFighterComponent.h"
 
 #include "CCLCombatDefinition.h"
-#include "CCLCombatComponent.h"
+#include "KSICombatComponent.h"
 #include "CCLHitRule.h"
 #include "AbilitySystem/CCLAbilitySystemComponent.h"
 #include "AbilitySystem/CCLAbilitySet.h"

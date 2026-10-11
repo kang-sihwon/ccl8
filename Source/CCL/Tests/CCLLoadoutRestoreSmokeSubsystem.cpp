@@ -1,7 +1,7 @@
 #include "CCLLoadoutRestoreSmokeSubsystem.h"
 
 #include "CCLPlayerState.h"
-#include "Actions/CCLActionComponent.h"
+#include "KSIActionComponent.h"
 #include "AbilitySystem/CCLAbilitySystemComponent.h"
 #include "AbilitySystem/CCLEffects.h"
 #include "AbilitySystem/CCLHealthSet.h"
@@ -306,7 +306,7 @@ void UCCLLoadoutRestoreSmokeSubsystem::Tick(float DeltaTime)
 	TArray<FKSIInventoryEntry> WeaponItems;
 	const auto Pistol = Add(WeaponItems, TEXT("DA_Pistol"), INDEX_NONE);
 	TArray<FCCLEquippedSlot> WeaponSlots = {EquipmentSlot(Pistol, CCLItemTags::Slot_RightHand)};
-	auto* Actions = Player->FindComponentByClass<UCCLActionComponent>();
+	auto* Actions = Player->FindComponentByClass<UKSIActionComponent>();
 	if (!Check(Actions && Loadout->RestoreState(WeaponItems, WeaponSlots, {}, 0), TEXT("seed empty pistol profile")))
 	{
 		return;
