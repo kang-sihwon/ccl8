@@ -20,7 +20,9 @@ namespace
 	class FSnowAnimProxy : public FAnimInstanceProxy
 	{
 	public:
-		explicit FSnowAnimProxy(UAnimInstance* Instance) : FAnimInstanceProxy(Instance) {}
+		explicit FSnowAnimProxy(UAnimInstance* Instance) : FAnimInstanceProxy(Instance)
+		{
+		}
 
 		virtual void PreUpdate(UAnimInstance* Instance, float Dt) override
 		{
@@ -60,6 +62,7 @@ namespace
 				bWasActive[I] = Feet[I].bActive;
 			}
 		}
+
 		virtual bool Evaluate(FPoseContext& Output) override
 		{
 			if (!Input)

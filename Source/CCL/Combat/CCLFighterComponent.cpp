@@ -1,8 +1,4 @@
-﻿#include "CCLFighterComponent.h"
-#include "Items/CCLAttachmentProfile.h"
-#include "GameFramework/Character.h"
-#include "Components/StaticMeshComponent.h"
-#include "Components/SkeletalMeshComponent.h"
+#include "CCLFighterComponent.h"
 
 #include "CCLCombatDefinition.h"
 #include "CCLCombatComponent.h"
@@ -13,12 +9,18 @@
 #include "AbilitySystem/CCLGameplayTags.h"
 #include "AbilitySystem/CCLHealthSet.h"
 #include "AbilitySystem/CCLStaminaSet.h"
+#include "Items/CCLAttachmentProfile.h"
 #include "Items/CCLItemDefinition.h"
-#include "GameFramework/CharacterMovementComponent.h"
-#include "DrawDebugHelpers.h"
-#include "Animation/AnimMontage.h"
 #include "Animation/AnimInstance.h"
+#include "Animation/AnimMontage.h"
+#include "Components/SkeletalMeshComponent.h"
+#include "Components/StaticMeshComponent.h"
+#include "DrawDebugHelpers.h"
+#include "GameFramework/Character.h"
+#include "GameFramework/CharacterMovementComponent.h"
 #include "Net/UnrealNetwork.h"
+
+// 생성자
 
 UCCLFighterComponent::UCCLFighterComponent()
 {
@@ -26,13 +28,15 @@ UCCLFighterComponent::UCCLFighterComponent()
 	PrimaryComponentTick.bCanEverTick = true;
 }
 
+// 부모 인터페이스 함수
+
 void UCCLFighterComponent::BeginPlay()
 {
 	Super::BeginPlay();
 
 	if (!Item)
 	{
-		Item = LoadObject<UCCLItemDefinition>(nullptr, Team == 0 ? TEXT("/Game/Combat/DA_Unarmed.DA_Unarmed") : TEXT("/Game/Combat/DA_EnemyUnarmed.DA_EnemyUnarmed"));
+		Item = LoadDefaultItem();
 	}
 }
 
@@ -104,6 +108,33 @@ void UCCLFighterComponent::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>&
 	DOREPLIFETIME(UCCLFighterComponent, AttackOverride);
 }
 
+void UCCLFighterComponent::PresentEquipment(UCCLItemDefinition* LeftHand, UCCLItemDefinition* RightHand)
+{
+	LeftHandItem = LeftHand;
+	RightHandItem = RightHand;
+	RefreshEquipmentVisuals();
+	Item = RightHandItem ? RightHandItem : LeftHandItem;
+
+	if (!Item || !Item->FindFragment<FCCLItemFragment_Weapon>())
+	{
+		Item = LoadDefaultItem();
+	}
+
+	GetOwner()->ForceNetUpdate();
+}
+
+void UCCLFighterComponent::SelectActiveItem(UCCLItemDefinition* InItem)
+{
+	Item = InItem ? InItem : LoadDefaultItem();
+
+	if (GetOwner()->HasAuthority())
+	{
+		GetOwner()->ForceNetUpdate();
+	}
+}
+
+// 내 클래스 함수
+
 void UCCLFighterComponent::Initialize(UCCLAbilitySystemComponent* InASC)
 {
 	if (!InASC)
@@ -117,20 +148,12 @@ void UCCLFighterComponent::Initialize(UCCLAbilitySystemComponent* InASC)
 	}
 
 	ASC = InASC;
-
-	if (!DodgeMontage)
-	{
-		DodgeMontage = LoadObject<UAnimMontage>(nullptr, TEXT("/Game/Combat/AM_Dodge.AM_Dodge"));
-	}
-
-	if (!DefenseMontage)
-	{
-		DefenseMontage = LoadObject<UAnimMontage>(nullptr, TEXT("/Game/Combat/AM_DefensePose.AM_DefensePose"));
-	}
+	DodgeMontage.LoadSynchronous();
+	DefenseMontage.LoadSynchronous();
 
 	if (auto* Character = Cast<ACharacter>(GetOwner()))
 	{
-		if (auto* AnimClass = LoadClass<UAnimInstance>(nullptr, TEXT("/Game/Combat/ABP_Combat.ABP_Combat_C")))
+		if (auto* AnimClass = CombatAnimClass.LoadSynchronous())
 		{
 			Character->GetMesh()->SetAnimInstanceClass(AnimClass);
 		}
@@ -138,7 +161,7 @@ void UCCLFighterComponent::Initialize(UCCLAbilitySystemComponent* InASC)
 
 	if (!Item)
 	{
-		Item = LoadObject<UCCLItemDefinition>(nullptr, Team == 0 ? TEXT("/Game/Combat/DA_Unarmed.DA_Unarmed") : TEXT("/Game/Combat/DA_EnemyUnarmed.DA_EnemyUnarmed"));
+		Item = LoadDefaultItem();
 	}
 
 	if (GetOwner()->HasAuthority())
@@ -204,78 +227,6 @@ void UCCLFighterComponent::EndLife()
 	}
 
 	SetAction(ECCLCombatAction::None);
-}
-
-void UCCLFighterComponent::SetAction(ECCLCombatAction NewAction)
-{
-	Action = NewAction;
-	bAttackDirectionLocked = 0;
-	OnRep_Action();
-}
-
-void UCCLFighterComponent::LockAttackDirection()
-{
-	bAttackDirectionLocked = 1;
-}
-
-void UCCLFighterComponent::NotifyHit(FGameplayTag Outcome)
-{
-	if (GetOwner()->HasAuthority())
-	{
-		MulticastFeedback(Outcome);
-	}
-}
-
-const UCCLCombatDefinition* UCCLFighterComponent::GetAttack() const
-{
-	if (AttackOverride) { return AttackOverride; }
-	const auto* Fragment = Item ? Item->FindFragment<FCCLItemFragment_Weapon>() : nullptr;
-	return Fragment ? Fragment->Combat.Get() : nullptr;
-}
-
-bool UCCLFighterComponent::IsDead() const
-{
-	return ASC && ASC->HasMatchingGameplayTag(CCLTags::State_Dead);
-}
-
-void UCCLFighterComponent::OnStaminaChanged(const FOnAttributeChangeData& Data)
-{
-	if (GetOwner()->HasAuthority() && ASC && Data.NewValue < Data.OldValue)
-	{
-		ASC->RemoveActiveEffectsWithGrantedTags(FGameplayTagContainer(CCLTags::State_RecoveryDelay));
-		ASC->ApplyEffect(UCCLRecoveryDelayEffect::StaticClass(), 0.f, RegenDelay);
-	}
-}
-
-void UCCLFighterComponent::OnRep_Action()
-{
-	// Animation is replicated through GAS montage state; this state also drives temporary defense poses.
-}
-
-void UCCLFighterComponent::MulticastFeedback_Implementation(FGameplayTag Outcome)
-{
-	if (Outcome == CCLTags::Outcome_Parried)
-	{
-		Feedback = TEXT("패링 성공");
-	}
-	else if (Outcome == CCLTags::Outcome_Guarded)
-	{
-		Feedback = TEXT("방어");
-	}
-	else if (Outcome == CCLTags::Outcome_GuardBroken)
-	{
-		Feedback = TEXT("방어 붕괴");
-	}
-	else if (Outcome == CCLTags::Outcome_Damage)
-	{
-		Feedback = TEXT("피격");
-	}
-	else
-	{
-		Feedback = TEXT("회피");
-	}
-
-	FeedbackExpires = GetWorld()->GetTimeSeconds() + 0.8;
 }
 
 void UCCLFighterComponent::RefreshEquipmentVisuals()
@@ -353,4 +304,87 @@ void UCCLFighterComponent::RefreshEquipmentVisuals()
 			EquipmentVisuals.Add(Mesh);
 		}
 	}
+}
+
+void UCCLFighterComponent::SetAction(ECCLCombatAction NewAction)
+{
+	Action = NewAction;
+	bAttackDirectionLocked = 0;
+	OnRep_Action();
+}
+
+void UCCLFighterComponent::LockAttackDirection()
+{
+	bAttackDirectionLocked = 1;
+}
+
+void UCCLFighterComponent::NotifyHit(FGameplayTag Outcome)
+{
+	if (GetOwner()->HasAuthority())
+	{
+		MulticastFeedback(Outcome);
+	}
+}
+
+UCCLItemDefinition* UCCLFighterComponent::LoadDefaultItem() const
+{
+	return DefaultItem.LoadSynchronous();
+}
+
+void UCCLFighterComponent::OnStaminaChanged(const FOnAttributeChangeData& Data)
+{
+	if (GetOwner()->HasAuthority() && ASC && Data.NewValue < Data.OldValue)
+	{
+		ASC->RemoveActiveEffectsWithGrantedTags(FGameplayTagContainer(CCLTags::State_RecoveryDelay));
+		ASC->ApplyEffect(UCCLRecoveryDelayEffect::StaticClass(), 0.f, RegenDelay);
+	}
+}
+
+void UCCLFighterComponent::OnRep_Action()
+{
+	// Animation is replicated through GAS montage state; this state also drives temporary defense poses.
+}
+
+void UCCLFighterComponent::MulticastFeedback_Implementation(FGameplayTag Outcome)
+{
+	if (Outcome == CCLTags::Outcome_Parried)
+	{
+		Feedback = TEXT("패링 성공");
+	}
+	else if (Outcome == CCLTags::Outcome_Guarded)
+	{
+		Feedback = TEXT("방어");
+	}
+	else if (Outcome == CCLTags::Outcome_GuardBroken)
+	{
+		Feedback = TEXT("방어 붕괴");
+	}
+	else if (Outcome == CCLTags::Outcome_Damage)
+	{
+		Feedback = TEXT("피격");
+	}
+	else
+	{
+		Feedback = TEXT("회피");
+	}
+
+	FeedbackExpires = GetWorld()->GetTimeSeconds() + 0.8;
+}
+
+// Get·Set·단순 검사 중 헤더에서 정의하지 않은 함수
+
+const UCCLCombatDefinition* UCCLFighterComponent::GetAttack() const
+{
+	if (AttackOverride)
+	{
+		return AttackOverride;
+	}
+
+	const auto* Fragment = Item ? Item->FindFragment<FCCLItemFragment_Weapon>() : nullptr;
+	return Fragment ? Fragment->Combat.Get() : nullptr;
+}
+
+bool UCCLFighterComponent::IsDead() const
+{
+	return ASC && ASC->HasMatchingGameplayTag(CCLTags::State_Dead);
 }

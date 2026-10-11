@@ -143,7 +143,11 @@ bool UCCLInventoryComponent::ValidateEntries(const TArray<FCCLInventoryEntry>& E
 	TSet<int32> Slots;
 	for (const auto& Entry : Entries)
 	{
-		if (!Entry.Id.IsValid() || Seen.Contains(Entry.Id) || !Entry.Definition || Entry.Quantity <= 0 || Entry.Quantity > Entry.Definition->GetMaxStack()) { return false; }
+		if (!Entry.Id.IsValid() || Seen.Contains(Entry.Id) || !Entry.Definition || Entry.Quantity <= 0 || Entry.Quantity > Entry.Definition->GetMaxStack())
+		{
+			return false;
+		}
+
 		if (Entry.Slot < INDEX_NONE || Entry.Slot >= FMath::Clamp(Capacity, 1, 128) || (Entry.Slot >= 0 && Slots.Contains(Entry.Slot)))
 		{
 			return false;
@@ -175,10 +179,10 @@ bool UCCLInventoryComponent::Restore(const TArray<FCCLInventoryEntry>& Entries)
 	{
 		return false;
 	}
-    // Restore may receive GetEntries() from this same component.
-    const TArray<FCCLInventoryEntry> Candidate = Entries;
-    RestoreValidated(Candidate);
-    return true;
+	// Restore may receive GetEntries() from this same component.
+	const TArray<FCCLInventoryEntry> Candidate = Entries;
+	RestoreValidated(Candidate);
+	return true;
 }
 
 void UCCLInventoryComponent::RestoreValidated(const TArray<FCCLInventoryEntry>& Entries)
@@ -335,15 +339,15 @@ void UCCLInventoryComponent::NotifyChanged()
 
 void UCCLInventoryComponent::EndPlay(const EEndPlayReason::Type EndPlayReason)
 {
-    if (auto* Store = GetWorld()->GetSubsystem<UCCLInventoryPersistenceSubsystem>())
-    {
-        Store->Unbind(*this);
-    }
-    Super::EndPlay(EndPlayReason);
+	if (auto* Store = GetWorld()->GetSubsystem<UCCLInventoryPersistenceSubsystem>())
+	{
+		Store->Unbind(*this);
+	}
+	Super::EndPlay(EndPlayReason);
 }
 
 bool UCCLInventoryComponent::BindPersistence(FGuid ContainerId, FString& Error)
 {
-    auto* Store = GetWorld() ? GetWorld()->GetSubsystem<UCCLInventoryPersistenceSubsystem>() : nullptr;
-    return Store && Store->Bind(*this, ContainerId, Error);
+	auto* Store = GetWorld() ? GetWorld()->GetSubsystem<UCCLInventoryPersistenceSubsystem>() : nullptr;
+	return Store && Store->Bind(*this, ContainerId, Error);
 }

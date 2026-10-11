@@ -24,13 +24,18 @@ ACCLWorkshop::ACCLWorkshop()
 	Label = CreateDefaultSubobject<UTextRenderComponent>(TEXT("Label"));
 	Label->SetupAttachment(Store);
 	static ConstructorHelpers::FObjectFinder<UFont> KoreanFont(TEXT("/Game/UI/Fonts/F_KoreanLabel.F_KoreanLabel"));
-	if (KoreanFont.Succeeded()) { Label->SetFont(KoreanFont.Object); }
+	if (KoreanFont.Succeeded())
+	{
+		Label->SetFont(KoreanFont.Object);
+	}
+
 	Label->SetRelativeLocation(FVector(0, 0, 110));
 	Label->SetWorldSize(16);
 	Label->SetAbsolute(false, false, true);
 	Label->SetHorizontalAlignment(EHTA_Center);
 	Refresh();
 }
+
 void ACCLWorkshop::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
@@ -48,11 +53,20 @@ void ACCLWorkshop::Tick(float DeltaTime)
 		ForceNetUpdate();
 	}
 }
+
 void ACCLWorkshop::Refresh()
 {
-	if (Store) { Store->SetRelativeScale3D(FVector(0.55f + Level * 0.18f, 0.55f, 0.4f + Level * 0.15f)); }
-	if (Label) { Label->SetText(FText::FromString(FString::Printf(TEXT("창고 %d단계"), Level))); }
+	if (Store)
+	{
+		Store->SetRelativeScale3D(FVector(0.55f + Level * 0.18f, 0.55f, 0.4f + Level * 0.15f));
+	}
+
+	if (Label)
+	{
+		Label->SetText(FText::FromString(FString::Printf(TEXT("창고 %d단계"), Level)));
+	}
 }
+
 void ACCLWorkshop::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
 {
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);

@@ -64,7 +64,11 @@ void ACCLVegetationPresentation::BeginPlay()
 void ACCLVegetationPresentation::Tick(float DeltaSeconds)
 {
 	Super::Tick(DeltaSeconds);
-	if (GetNetMode() == NM_DedicatedServer) { return; }
+	if (GetNetMode() == NM_DedicatedServer)
+	{
+		return;
+	}
+
 	const auto* Model = UCCLSurfaceReplication::View(GetWorld());
 	if (!Model)
 	{
@@ -146,7 +150,11 @@ void ACCLVegetationPresentation::Append(const FCCLSurfaceGrid& G)
 	{
 		for (int32 I = 0; I < Labels.Num(); ++I)
 		{
-			if (!Labels[I]) { continue; }
+			if (!Labels[I])
+			{
+				continue;
+			}
+
 			Labels[I]->SetWorldLocation(FVector((G.OriginMeters.X + (I + 0.5) * G.SpacingMeters) * 100.,
 				G.OriginMeters.Y * 100. - 35., G.Cells[I].BedMeters * 100. + 55.));
 			Labels[I]->SetWorldRotation(FRotator(35., -90., 0.));
@@ -264,12 +272,18 @@ void ACCLVegetationPresentation::Clear()
 {
 	for (const auto& Batch : Batches)
 	{
-		if (Batch) { Batch->ClearInstances(); }
+		if (Batch)
+		{
+			Batch->ClearInstances();
+		}
 	}
 
 	for (const auto& Label : Labels)
 	{
-		if (Label) { Label->SetVisibility(false); }
+		if (Label)
+		{
+			Label->SetVisibility(false);
+		}
 	}
 
 	RenderedPatchCount = 0;

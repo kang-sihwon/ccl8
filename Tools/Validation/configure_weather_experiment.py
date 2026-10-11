@@ -15,7 +15,7 @@ fx = {}
 for suffix, snow in [('Rain', False), ('Snow', True)]:
     path = '/Game/Environment/FX/NS_Weather' + suffix
     system = unreal.EditorAssetLibrary.load_asset(path) if unreal.EditorAssetLibrary.does_asset_exist(path) else unreal.EditorAssetLibrary.duplicate_asset('/Niagara/DefaultAssets/Templates/Systems/FountainLightweight', path)
-    assert system and unreal.CCLWeatherPresentation.configure_precipitation_system(system, snow), 'Niagara configuration failed'
+    assert system and unreal.CCLEnvironmentFXLibrary.configure_precipitation_system(system, snow), 'Niagara configuration failed'
     assert unreal.EditorAssetLibrary.save_loaded_asset(system, False)
     fx[suffix] = system
 

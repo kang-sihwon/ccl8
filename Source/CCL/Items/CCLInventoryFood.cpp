@@ -2,7 +2,6 @@
 
 #include "CCLItemDefinition.h"
 #include "Environment/CCLWorldSimulationSubsystem.h"
-#include "Session/CCLPlayerPersistenceSubsystem.h"
 #include "Engine/World.h"
 
 bool UCCLInventoryComponent::FoodContext(FGuid& WorldId, double& WorldSeconds) const
@@ -22,11 +21,11 @@ bool UCCLInventoryComponent::BuildFoodAddition(TArray<FCCLInventoryEntry>& Entri
 	const FCCLFoodState& SourceFood, double WorldSeconds, FGuid& AddedId) const
 {
 	FString Error;
-    auto Food = SourceFood;
-    if (FoodEnvironment.IsDynamic() && !CCLFood::ChangeStorage(Food, FoodEnvironment.Conditions, WorldSeconds, Error))
-    {
-        return false;
-    }
+	auto Food = SourceFood;
+	if (FoodEnvironment.IsDynamic() && !CCLFood::ChangeStorage(Food, FoodEnvironment.Conditions, WorldSeconds, Error))
+	{
+		return false;
+	}
 	const int32 Count = CCLFood::Quantity(Food);
 	if (!Definition || !Definition->FindFragment<FCCLItemFragment_Perishable>() || !Food.IsPresent()
 		|| Count < 1 || Count > Definition->GetMaxStack() || !CCLFood::Validate(Food, Count, Error))
@@ -201,10 +200,10 @@ bool UCCLInventoryComponent::TransferFood(FGuid SourceId, int32 Count, UCCLInven
 
 bool UCCLInventoryComponent::ChangeFoodStorage(FGuid Id, const FCCLFoodStorage& Storage)
 {
-    if (FoodEnvironment.IsDynamic())
-    {
-        return false;
-    }
+	if (FoodEnvironment.IsDynamic())
+	{
+		return false;
+	}
 	FGuid WorldId;
 	double WorldSeconds = 0.;
 	if (!GetOwner() || !GetOwner()->HasAuthority() || !FoodContext(WorldId, WorldSeconds))
@@ -232,35 +231,34 @@ bool UCCLInventoryComponent::GetFoodQuality(FGuid Id, FCCLFoodQuality& Quality) 
 
 bool UCCLInventoryComponent::ChangeFoodEnvironment(const FCCLFoodEnvironmentBinding& Binding, FString& Error)
 {
-    auto* Runtime = GetWorld() ? GetWorld()->GetSubsystem<UCCLWorldSimulationSubsystem>() : nullptr;
-    const auto* Players = GetWorld() ? GetWorld()->GetSubsystem<UCCLPlayerPersistenceSubsystem>() : nullptr;
-    const bool bPersistentOwner = PersistenceId.IsValid() || (Players && Players->OwnsInventory(*this));
-    if (!GetOwner() || !GetOwner()->HasAuthority() || !bPersistentOwner || bTransactionOpen
-        || !Runtime || !Runtime->IsRunning())
-    {
-        Error = TEXT("Food environment requires an idle registered server inventory owner.");
-        return false;
-    }
-    auto PreparedBinding = Binding;
-    if (!CCLFoodEnvironment::Sample(PreparedBinding, Runtime->GetSurfaceSimulation(), Error))
-    {
-        return false;
-    }
-    auto Candidate = List.Entries;
-    for (auto& Entry : Candidate)
-    {
-        if (Entry.Food.IsPresent() && (Entry.Food.WorldId != Runtime->GetIdentity().WorldId
-            || !CCLFood::ChangeStorage(Entry.Food, PreparedBinding.Conditions, Runtime->GetClock().GetWorldSeconds(), Error)))
-        {
-            return false;
-        }
-    }
-    if (!CanRestore(Candidate) || !BeginTransaction())
-    {
-        return false;
-    }
-    FoodEnvironment = PreparedBinding;
-    verify(Restore(Candidate));
-    EndTransaction(true);
-    return true;
+	auto* Runtime = GetWorld() ? GetWorld()->GetSubsystem<UCCLWorldSimulationSubsystem>() : nullptr;
+	const bool bPersistentOwner = HasPersistentOwner();
+	if (!GetOwner() || !GetOwner()->HasAuthority() || !bPersistentOwner || bTransactionOpen
+		|| !Runtime || !Runtime->IsRunning())
+	{
+		Error = TEXT("Food environment requires an idle registered server inventory owner.");
+		return false;
+	}
+	auto PreparedBinding = Binding;
+	if (!CCLFoodEnvironment::Sample(PreparedBinding, Runtime->GetSurfaceSimulation(), Error))
+	{
+		return false;
+	}
+	auto Candidate = List.Entries;
+	for (auto& Entry : Candidate)
+	{
+		if (Entry.Food.IsPresent() && (Entry.Food.WorldId != Runtime->GetIdentity().WorldId
+			|| !CCLFood::ChangeStorage(Entry.Food, PreparedBinding.Conditions, Runtime->GetClock().GetWorldSeconds(), Error)))
+		{
+			return false;
+		}
+	}
+	if (!CanRestore(Candidate) || !BeginTransaction())
+	{
+		return false;
+	}
+	FoodEnvironment = PreparedBinding;
+	verify(Restore(Candidate));
+	EndTransaction(true);
+	return true;
 }

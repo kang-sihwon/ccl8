@@ -86,13 +86,13 @@ enum class ECCLExperimentAction : uint8
 	EcologyActors,
 	EcologyMass,
 	EcologyHidden,
-    FoodWeather,
-    FoodIndoor,
-    FoodDrop,
-    FoodCollect,
-    BiologyAge,
-    BiologyProtect,
-    BiologyDamage
+	FoodWeather,
+	FoodIndoor,
+	FoodDrop,
+	FoodCollect,
+	BiologyAge,
+	BiologyProtect,
+	BiologyDamage
 };
 
 USTRUCT()

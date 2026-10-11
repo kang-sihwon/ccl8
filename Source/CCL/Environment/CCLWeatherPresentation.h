@@ -19,9 +19,6 @@ public:
 	virtual void Tick(float DeltaSeconds) override;
 	static float GetCloudFraction(const UWorld* World);
 
-	UFUNCTION(BlueprintCallable, Category="Environment")
-	static bool ConfigurePrecipitationSystem(UNiagaraSystem* System, bool bSnow);
-
 public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TObjectPtr<UNiagaraSystem> RainSystem;

@@ -151,7 +151,7 @@ void ACCLHUD::RefreshContent()
 			It->GetAbilitySystemComponent()->GetNumericAttribute(UCCLHealthSet::GetHealthAttribute()),
 			It->IsDead() ? TEXT(" (처치됨)") : TEXT("")));
 		const auto* Fighter = It->FindComponentByClass<UCCLFighterComponent>();
-		if (!It->IsDead() && Fighter && Fighter->GetAction() == ECCLCombatAction::Attack)
+		if (!It->IsDead() && Fighter && Fighter->GetAction() == ECCLCombatAction::Attack && !It->PatternLabel.IsEmpty())
 		{
 			Overview.Add(It->PatternLabel);
 		}
@@ -166,7 +166,9 @@ void ACCLHUD::RefreshContent()
 		{
 			if (It->CanReach(Character))
 			{
-				Prompts.Add(TEXT("마을 관리인: T 대화 / 의뢰 · B 회복약 구입 (동전 10개)"));
+				const auto* Offer = It->Offer.Item.LoadSynchronous();
+				Prompts.Add(FString::Printf(TEXT("%s: T 대화 / 의뢰 · B %s 구입 (동전 %d개)"), *It->DisplayName.ToString(),
+					Offer ? *Offer->GetLabel().ToString() : TEXT("상품"), It->Offer.Price));
 				break;
 			}
 		}

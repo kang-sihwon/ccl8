@@ -3,8 +3,6 @@
 #include "CoreMinimal.h"
 #include "CCLWorldClock.h"
 #include "CCLEnvironmentInputs.h"
-#include "Items/CCLInventorySnapshot.h"
-#include "Session/CCLPlayerSnapshot.h"
 
 class FCCLLifeSimulation;
 class FCCLSurfaceSimulation;
@@ -25,21 +23,31 @@ struct FCCLWorldIdentity
 	ECCLWorldDomain Domain = ECCLWorldDomain::Campaign;
 };
 
-struct FCCLWorldSnapshot
+// Opaque state of one game system. The system that registered the section owns its format and validation.
+struct FCCLWorldSection
 {
-	uint32 Schema = 6;
+	FName Name;
+	TArray<uint8> Bytes;
+};
+
+struct CCL_API FCCLWorldSnapshot
+{
+	const TArray<uint8>* FindSection(FName Name) const;
+	void SetSection(FName Name, TArray<uint8> Bytes);
+	void RemoveSection(FName Name);
+
+	uint32 Schema = 7;
 	uint8 bEnvironmentMigrated = 0;
 	uint8 bSurfaceMigrated = 0;
 	uint8 bEcologyMigrated = 0;
-	uint8 bInventoriesMigrated = 0;
-    uint8 bPlayersMigrated = 0;
 	FCCLWorldIdentity Identity;
 	FCCLWorldClockSnapshot Clock;
 	TArray<uint8> Life;
 	TArray<uint8> Surface;
 	TArray<uint8> Ecology;
-	TArray<FCCLInventorySnapshot> Inventories;
-    TArray<FCCLPlayerSnapshot> Players;
+
+	// Sorted by name. A section missing from an older schema reads as empty.
+	TArray<FCCLWorldSection> Sections;
 	FCCLEnvironmentInputs Environment = FCCLEnvironmentInputsCodec::MakeDefault(42);
 };
 

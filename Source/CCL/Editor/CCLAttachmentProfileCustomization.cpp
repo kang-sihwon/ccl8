@@ -20,7 +20,9 @@ namespace
 class SCCLAttachmentViewport : public SEditorViewport
 {
   public:
-	SLATE_BEGIN_ARGS(SCCLAttachmentViewport) {}
+	SLATE_BEGIN_ARGS(SCCLAttachmentViewport)
+	{
+	}
 	SLATE_ARGUMENT(UCCLAttachmentProfile*, Profile)
 	SLATE_END_ARGS()
 
@@ -55,7 +57,10 @@ class SCCLAttachmentViewport : public SEditorViewport
 		}
 	}
 
-	FText GetStatus() const { return FText::FromString(Status); }
+	FText GetStatus() const
+	{
+		return FText::FromString(Status);
+	}
 
   protected:
 	virtual TSharedRef<FEditorViewportClient> MakeEditorViewportClient() override

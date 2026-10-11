@@ -9,12 +9,12 @@ class UCCLSkillDefinition;
 
 struct FCCLLoadoutRestoreRequest
 {
-    UCCLLoadoutComponent* Loadout = nullptr;
-    TArray<FCCLInventoryEntry> Entries;
-    TArray<FCCLEquippedSlot> Equipment;
-    TArray<UCCLSkillDefinition*> Skills;
-    int32 Points = 0;
-    uint8 bResetHealth = 1;
+	UCCLLoadoutComponent* Loadout = nullptr;
+	TArray<FCCLInventoryEntry> Entries;
+	TArray<FCCLEquippedSlot> Equipment;
+	TArray<UCCLSkillDefinition*> Skills;
+	int32 Points = 0;
+	uint8 bResetHealth = 1;
 };
 
 // Synchronous game-thread transaction. Callbacks must not destroy participants,
@@ -23,6 +23,6 @@ struct FCCLLoadoutRestoreRequest
 class CCL_API FCCLLoadoutRestoreBatch
 {
 public:
-    static bool Execute(TConstArrayView<FCCLLoadoutRestoreRequest> Requests, TFunctionRef<bool()> CommitWorld,
-                        TFunctionRef<void()> FinalizeProfiles);
+	static bool Execute(TConstArrayView<FCCLLoadoutRestoreRequest> Requests, TFunctionRef<bool()> CommitWorld,
+						TFunctionRef<void()> FinalizeProfiles);
 };

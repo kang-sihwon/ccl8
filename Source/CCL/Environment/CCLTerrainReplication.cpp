@@ -28,7 +28,10 @@ void UCCLTerrainReplication::TickComponent(float DeltaTime, ELevelTick TickType,
 	UpdateMovementHold();
 	for (auto It = States.CreateIterator(); It; ++It)
 	{
-		if (!It.Key().IsValid()) { It.RemoveCurrent(); }
+		if (!It.Key().IsValid())
+		{
+			It.RemoveCurrent();
+		}
 	}
 
 	if (TransferId.IsValid() && (!ActiveRegion.IsValid() || FPlatformTime::Seconds() - LastProgress > 60.))
@@ -55,10 +58,10 @@ void UCCLTerrainReplication::TickComponent(float DeltaTime, ELevelTick TickType,
 			}
 			else if (!ActiveRegion->IsPreparing() && ActiveRegion->GetReplicaSerial() != TargetSerial)
 			{
-                if (FParse::Param(FCommandLine::Get(), TEXT("CCLTerrainNetworkSmoke")))
-                {
-                    UE_LOG(LogTemp,Display,TEXT("CCL_TERRAIN_RECEIVE prepare failed %s"),*ActiveRegion->GetLastError());
-                }
+				if (FParse::Param(FCommandLine::Get(), TEXT("CCLTerrainNetworkSmoke")))
+				{
+					UE_LOG(LogTemp,Display,TEXT("CCL_TERRAIN_RECEIVE prepare failed %s"),*ActiveRegion->GetLastError());
+				}
 				ServerAck(TransferId, -1, false);
 				ResetTransfer();
 			}
@@ -146,10 +149,10 @@ void UCCLTerrainReplication::ClientBegin_Implementation(ACCLTerrainRegion* Regio
 	if (!Region || !Transfer.IsValid() || Total < 1 || Total > FCCLTerrainCodec::MaximumBytes || Prefix < 0 || Suffix < 0
 		|| int64(Prefix) + Suffix > Total || ((Prefix || Suffix) && (!Base || Base->Serial != BaseSerial || int64(Prefix) + Suffix > Base->Bytes.Num())))
 	{
-        if (FParse::Param(FCommandLine::Get(), TEXT("CCLTerrainNetworkSmoke")))
-        {
-            UE_LOG(LogTemp,Display,TEXT("CCL_TERRAIN_RECEIVE begin rejected region=%s serial=%llu total=%d prefix=%d suffix=%d"),*GetNameSafe(Region),Serial,Total,Prefix,Suffix);
-        }
+		if (FParse::Param(FCommandLine::Get(), TEXT("CCLTerrainNetworkSmoke")))
+		{
+			UE_LOG(LogTemp,Display,TEXT("CCL_TERRAIN_RECEIVE begin rejected region=%s serial=%llu total=%d prefix=%d suffix=%d"),*GetNameSafe(Region),Serial,Total,Prefix,Suffix);
+		}
 		ServerAck(Transfer, -1, false);
 		return;
 	}
@@ -204,10 +207,10 @@ void UCCLTerrainReplication::ClientChunk_Implementation(FGuid Transfer, int32 Of
 	if (FullBytes.Num() != TotalBytes || FCrc::MemCrc32(FullBytes.GetData(), FullBytes.Num()) != ExpectedCRC
 		|| !ActiveRegion->ApplyReplica(FullBytes, TargetSerial, Error))
 	{
-        if (FParse::Param(FCommandLine::Get(), TEXT("CCLTerrainNetworkSmoke")))
-        {
-            UE_LOG(LogTemp,Display,TEXT("CCL_TERRAIN_RECEIVE apply rejected serial=%llu published=%llu replica=%llu bytes=%d expected=%d error=%s"),TargetSerial,ActiveRegion->GetPublicationSerial(),ActiveRegion->GetReplicaSerial(),FullBytes.Num(),TotalBytes,*Error);
-        }
+		if (FParse::Param(FCommandLine::Get(), TEXT("CCLTerrainNetworkSmoke")))
+		{
+			UE_LOG(LogTemp,Display,TEXT("CCL_TERRAIN_RECEIVE apply rejected serial=%llu published=%llu replica=%llu bytes=%d expected=%d error=%s"),TargetSerial,ActiveRegion->GetPublicationSerial(),ActiveRegion->GetReplicaSerial(),FullBytes.Num(),TotalBytes,*Error);
+		}
 		ServerAck(Transfer, -1, false);
 		ResetTransfer();
 		return;
@@ -225,9 +228,9 @@ void UCCLTerrainReplication::ServerAck_Implementation(FGuid Transfer, int32 Offs
 
 	if (Offset == -1)
 	{
-        // An RPC reference can arrive before the region actor. Leave replication bandwidth
-        // for actor creation instead of immediately resending the entire snapshot.
-        NextTransferAttempt = FPlatformTime::Seconds() + 0.5;
+		// An RPC reference can arrive before the region actor. Leave replication bandwidth
+		// for actor creation instead of immediately resending the entire snapshot.
+		NextTransferAttempt = FPlatformTime::Seconds() + 0.5;
 		States.Remove(ActiveRegion);
 		ResetTransfer();
 		return;
@@ -295,53 +298,61 @@ void UCCLTerrainReplication::ResetTransfer()
 
 void UCCLTerrainReplication::EndPlay(EEndPlayReason::Type Reason)
 {
-    ReleaseMovementHold();
-    Super::EndPlay(Reason);
+	ReleaseMovementHold();
+	Super::EndPlay(Reason);
 }
 
 void UCCLTerrainReplication::UpdateMovementHold()
 {
-    auto* PC = Cast<APlayerController>(GetOwner());
-    auto* Character = PC ? Cast<ACharacter>(PC->GetPawn()) : nullptr;
-    auto* Movement = Character ? Character->GetCharacterMovement() : nullptr;
-    bool bHold = false;
-    if (Movement)
-    {
-        const FVector Position = Character->GetActorLocation();
-        for (TActorIterator<ACCLTerrainRegion> It(GetWorld()); It; ++It)
-        {
-            const bool bReady = PC->HasAuthority() ? IsClientReady(*It) : It->IsReplicaReady();
-            if (!bReady && It->GetWorldTerrainBounds().IsValid
-                && It->GetWorldTerrainBounds().ExpandBy(200.).IsInsideOrOn(Position))
-            {
-                bHold = true;
-                break;
-            }
-        }
-    }
-    if (bMovementHeld && (!bHold || HeldMovement.Get() != Movement)) { ReleaseMovementHold(); }
-    if (bHold && !bMovementHeld)
-    {
-        HeldMovement = Movement;
-        bMovementHeld = 1;
-        PreviousMovementMode = uint8(Movement->MovementMode);
-        PreviousCustomMode = Movement->CustomMovementMode;
-        Movement->StopMovementImmediately();
-        Movement->DisableMovement();
-        PC->SetIgnoreMoveInput(true);
-    }
+	auto* PC = Cast<APlayerController>(GetOwner());
+	auto* Character = PC ? Cast<ACharacter>(PC->GetPawn()) : nullptr;
+	auto* Movement = Character ? Character->GetCharacterMovement() : nullptr;
+	bool bHold = false;
+	if (Movement)
+	{
+		const FVector Position = Character->GetActorLocation();
+		for (TActorIterator<ACCLTerrainRegion> It(GetWorld()); It; ++It)
+		{
+			const bool bReady = PC->HasAuthority() ? IsClientReady(*It) : It->IsReplicaReady();
+			if (!bReady && It->GetWorldTerrainBounds().IsValid
+				&& It->GetWorldTerrainBounds().ExpandBy(200.).IsInsideOrOn(Position))
+			{
+				bHold = true;
+				break;
+			}
+		}
+	}
+
+	if (bMovementHeld && (!bHold || HeldMovement.Get() != Movement))
+	{
+		ReleaseMovementHold();
+	}
+
+	if (bHold && !bMovementHeld)
+	{
+		HeldMovement = Movement;
+		bMovementHeld = 1;
+		PreviousMovementMode = uint8(Movement->MovementMode);
+		PreviousCustomMode = Movement->CustomMovementMode;
+		Movement->StopMovementImmediately();
+		Movement->DisableMovement();
+		PC->SetIgnoreMoveInput(true);
+	}
 }
 
 void UCCLTerrainReplication::ReleaseMovementHold()
 {
-    if (HeldMovement.IsValid() && HeldMovement->MovementMode == MOVE_None)
-    {
-        HeldMovement->SetMovementMode(EMovementMode(PreviousMovementMode), PreviousCustomMode);
-    }
-    if (bMovementHeld)
-    {
-        if (auto* PC = Cast<APlayerController>(GetOwner())) { PC->SetIgnoreMoveInput(false); }
-    }
-    HeldMovement.Reset();
-    bMovementHeld = 0;
+	if (HeldMovement.IsValid() && HeldMovement->MovementMode == MOVE_None)
+	{
+		HeldMovement->SetMovementMode(EMovementMode(PreviousMovementMode), PreviousCustomMode);
+	}
+	if (bMovementHeld)
+	{
+		if (auto* PC = Cast<APlayerController>(GetOwner()))
+		{
+			PC->SetIgnoreMoveInput(false);
+		}
+	}
+	HeldMovement.Reset();
+	bMovementHeld = 0;
 }

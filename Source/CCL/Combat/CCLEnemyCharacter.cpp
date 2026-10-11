@@ -1,26 +1,30 @@
-﻿#include "CCLEnemyCharacter.h"
-#include "Environment/CCLThermalExposure.h"
+#include "CCLEnemyCharacter.h"
 
-#include "Map/CCLMapSystem.h"
+#include "CCLCombatComponent.h"
+#include "CCLCombatDefinition.h"
+#include "CCLEnemyAIController.h"
+#include "CCLEnemyDefinition.h"
+#include "CCLFighterComponent.h"
+#include "AbilitySystem/CCLAbilitySystemComponent.h"
+#include "AbilitySystem/CCLGameplayTags.h"
+#include "AbilitySystem/CCLHealthSet.h"
 #include "Actions/CCLActionComponent.h"
 #include "Agents/CCLAgentComponent.h"
 #include "Agents/CCLAgentTags.h"
-#include "CCLCombatDefinition.h"
-#include "AbilitySystem/CCLGameplayTags.h"
-
-#include "CCLEnemyAIController.h"
-#include "CCLFighterComponent.h"
-#include "CCLCombatComponent.h"
-#include "AbilitySystem/CCLAbilitySystemComponent.h"
-#include "AbilitySystem/CCLHealthSet.h"
+#include "Environment/CCLThermalExposure.h"
+#include "Items/CCLItemDefinition.h"
+#include "Map/CCLMapSystem.h"
+#include "Animation/AnimInstance.h"
+#include "Animation/AnimMontage.h"
+#include "BrainComponent.h"
 #include "Components/CapsuleComponent.h"
 #include "Components/SkeletalMeshComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
-#include "BrainComponent.h"
 #include "Net/UnrealNetwork.h"
-#include "UObject/ConstructorHelpers.h"
-#include "Animation/AnimInstance.h"
 #include "TimerManager.h"
+#include "UObject/ConstructorHelpers.h"
+
+// 생성자
 
 ACCLEnemyCharacter::ACCLEnemyCharacter()
 {
@@ -47,6 +51,10 @@ ACCLEnemyCharacter::ACCLEnemyCharacter()
 	Fighter = CreateDefaultSubobject<UCCLFighterComponent>(TEXT("Fighter"));
 	Fighter->Team = 1;
 	Fighter->InitialHealth = 80.f;
+	Fighter->DefaultItem = TSoftObjectPtr<UCCLItemDefinition>(FSoftObjectPath(TEXT("/Game/Combat/DA_EnemyUnarmed.DA_EnemyUnarmed")));
+	Fighter->CombatAnimClass = TSoftClassPtr<UAnimInstance>(FSoftObjectPath(TEXT("/Game/Combat/ABP_Combat.ABP_Combat_C")));
+	Fighter->DodgeMontage = TSoftObjectPtr<UAnimMontage>(FSoftObjectPath(TEXT("/Game/Combat/AM_Dodge.AM_Dodge")));
+	Fighter->DefenseMontage = TSoftObjectPtr<UAnimMontage>(FSoftObjectPath(TEXT("/Game/Combat/AM_DefensePose.AM_DefensePose")));
 	Combat = CreateDefaultSubobject<UCCLCombatComponent>(TEXT("Combat"));
 	static ConstructorHelpers::FObjectFinder<USkeletalMesh> MannyMesh(TEXT("/Game/Characters/Mannequins/Meshes/SKM_Manny_Simple.SKM_Manny_Simple"));
 
@@ -65,8 +73,16 @@ ACCLEnemyCharacter::ACCLEnemyCharacter()
 	}
 }
 
+// 부모 인터페이스 함수
+
 void ACCLEnemyCharacter::BeginPlay()
 {
+	// A definition chosen in the editor applies here; a spawner applies it before FinishSpawning.
+	if (Definition && !bDefinitionApplied)
+	{
+		ApplyDefinition(Definition);
+	}
+
 	Super::BeginPlay();
 	SpawnTransform = GetActorTransform();
 	AbilitySystem->InitAbilityActorInfo(this, this);
@@ -93,8 +109,51 @@ void ACCLEnemyCharacter::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& O
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
 	DOREPLIFETIME(ACCLEnemyCharacter, bDead);
 	DOREPLIFETIME(ACCLEnemyCharacter, DisplayName);
-	DOREPLIFETIME(ACCLEnemyCharacter, Archetype);
+	DOREPLIFETIME(ACCLEnemyCharacter, Definition);
 	DOREPLIFETIME(ACCLEnemyCharacter, PatternLabel);
+}
+
+// 내 클래스 함수
+
+void ACCLEnemyCharacter::ApplyDefinition(UCCLEnemyDefinition* InDefinition)
+{
+	Definition = InDefinition;
+	bDefinitionApplied = 1;
+	PatternCursor = INDEX_NONE;
+	if (!Definition)
+	{
+		return;
+	}
+
+	DisplayName = Definition->DisplayName.ToString();
+	DetectionRadius = Definition->DetectionRadius;
+	LeashRadius = Definition->LeashRadius;
+	Fighter->InitialHealth = Definition->InitialHealth;
+	GetCharacterMovement()->MaxWalkSpeed = Definition->WalkSpeed;
+}
+
+void ACCLEnemyCharacter::SelectAttackPattern()
+{
+	if (!HasAuthority() || IsDead() || AbilitySystem->HasMatchingGameplayTag(CCLTags::State_Busy) || !Definition || Definition->Patterns.IsEmpty())
+	{
+		return;
+	}
+
+	// Continue after the last pattern so that unlocked patterns alternate in list order.
+	const auto& Patterns = Definition->Patterns;
+	const float MaxHealth = Health->GetMaxHealth();
+	const float Fraction = MaxHealth > 0.f ? Health->GetHealth() / MaxHealth : 0.f;
+	for (int32 Step = 1; Step <= Patterns.Num(); ++Step)
+	{
+		const int32 Index = (PatternCursor + Step + Patterns.Num()) % Patterns.Num();
+		if (Fraction <= Patterns[Index].MaxHealthFraction)
+		{
+			PatternCursor = Index;
+			Fighter->AttackOverride = Patterns[Index].Attack;
+			PatternLabel = Patterns[Index].Label.ToString();
+			return;
+		}
+	}
 }
 
 void ACCLEnemyCharacter::OnHealthChanged(const FOnAttributeChangeData& Data)
@@ -129,16 +188,52 @@ void ACCLEnemyCharacter::OnHealthChanged(const FOnAttributeChangeData& Data)
 
 void ACCLEnemyCharacter::Respawn()
 {
-	FActorSpawnParameters Params;
-	Params.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AdjustIfPossibleButDontSpawnIfColliding;
-
-	if (GetWorld()->SpawnActor<ACCLEnemyCharacter>(GetClass(), SpawnTransform, Params))
-	{
-		Destroy();
-	}
-	else
+	auto* Replacement = GetWorld()->SpawnActorDeferred<ACCLEnemyCharacter>(GetClass(), SpawnTransform, GetOwner(), nullptr,
+		ESpawnActorCollisionHandlingMethod::AdjustIfPossibleButDontSpawnIfColliding);
+	if (!Replacement)
 	{
 		GetWorldTimerManager().SetTimer(RespawnTimer, this, &ThisClass::Respawn, 0.5f);
+		return;
+	}
+
+	CopyConfigurationTo(*Replacement);
+	Replacement->FinishSpawning(SpawnTransform);
+	if (!IsValid(Replacement))
+	{
+		GetWorldTimerManager().SetTimer(RespawnTimer, this, &ThisClass::Respawn, 0.5f);
+		return;
+	}
+
+	// The record now belongs to the replacement; this body must not mark it inactive while leaving.
+	if (auto* Agent = FindComponentByClass<UCCLAgentComponent>())
+	{
+		Agent->AgentId.Invalidate();
+	}
+
+	Destroy();
+}
+
+void ACCLEnemyCharacter::CopyConfigurationTo(ACCLEnemyCharacter& Replacement) const
+{
+	// The replacement keeps the encounter's type, instance overrides, listeners and Agent identity.
+	Replacement.Definition = Definition;
+	Replacement.bDefinitionApplied = 1;
+	Replacement.bRespawnEnabled = bRespawnEnabled;
+	Replacement.DisplayName = DisplayName;
+	Replacement.DetectionRadius = DetectionRadius;
+	Replacement.LeashRadius = LeashRadius;
+	Replacement.OnDefeated = OnDefeated;
+	Replacement.Fighter->InitialHealth = Fighter->InitialHealth;
+	Replacement.GetCharacterMovement()->MaxWalkSpeed = GetCharacterMovement()->MaxWalkSpeed;
+	Replacement.AIControllerClass = AIControllerClass;
+
+	const auto* Agent = FindComponentByClass<UCCLAgentComponent>();
+	auto* ReplacementAgent = Replacement.FindComponentByClass<UCCLAgentComponent>();
+	if (Agent && ReplacementAgent)
+	{
+		ReplacementAgent->AgentId = Agent->AgentId;
+		ReplacementAgent->DefaultTraits = Agent->DefaultTraits;
+		ReplacementAgent->ClearInjury();
 	}
 }
 
@@ -153,25 +248,4 @@ void ACCLEnemyCharacter::OnRep_Dead()
 	GetCharacterMovement()->DisableMovement();
 	GetCapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 	GetMesh()->SetRelativeRotation(FRotator(0.f, -90.f, 90.f));
-}
-
-void ACCLEnemyCharacter::SelectAttackPattern()
-{
-	if (!HasAuthority() || IsDead() || AbilitySystem->HasMatchingGameplayTag(CCLTags::State_Busy)) { return; }
-	const TCHAR* Path = nullptr;
-	if (Archetype == 1)
-	{
-		Path = TEXT("/Game/Progression/DA_RaiderStrike.DA_RaiderStrike");
-		PatternLabel = TEXT("빠른 공격: 방어 / 패링");
-	}
-	else if (Archetype == 2)
-	{
-		const bool bEnraged = Health->GetHealth() <= Health->GetMaxHealth() * 0.5f;
-		const bool bSweep = bEnraged && !bAlternateAttack;
-		bAlternateAttack = bEnraged ? !bAlternateAttack : 0;
-		Path = bSweep ? TEXT("/Game/Progression/DA_WardenSweep.DA_WardenSweep") : TEXT("/Game/Progression/DA_WardenHeavy.DA_WardenHeavy");
-		PatternLabel = bSweep ? TEXT("격노의 휩쓸기: 회피 (방어 / 패링 불가)") : TEXT("강한 공격 준비: 패링 / 회피");
-	}
-	else { PatternLabel = TEXT("신중한 공격: 방어 / 패링"); }
-	if (Path) { Fighter->AttackOverride = LoadObject<UCCLCombatDefinition>(nullptr, Path); }
 }

@@ -1,8 +1,10 @@
 #include "CCLWorldSnapshot.h"
 
+#include "Agents/CCLAgentBiology.h"
 #include "Agents/CCLLifeSimulation.h"
 #include "CCLSurfaceSimulation.h"
 #include "CCLEcologySimulation.h"
+#include "CCLWorldParticipant.h"
 #include "Misc/Crc.h"
 #include "Serialization/MemoryReader.h"
 #include "Serialization/MemoryWriter.h"
@@ -11,6 +13,10 @@ namespace
 {
 	constexpr uint32 Magic = 0x574C4343; // CCLW
 	constexpr int32 MaxBytes = 40 * 1024 * 1024;
+	constexpr int32 MaxSections = 32;
+	constexpr int32 MaxSectionBytes = 16 * 1024 * 1024;
+	const FName LegacyInventorySection(TEXT("Inventories"));
+	const FName LegacyPlayerSection(TEXT("Players"));
 
 	bool Reject(FString& Error, const TCHAR* Reason)
 	{
@@ -26,7 +32,7 @@ namespace
 		S.Identity.Domain = static_cast<ECCLWorldDomain>(Domain);
 		Ar << S.Clock.Version << S.Clock.CompletedStepId << S.Clock.GameSeconds << S.Clock.WorldSeconds;
 		Ar << S.Clock.AcceptedGameSeconds << S.Clock.RequestedWorldSeconds << S.Clock.TimeScale;
-		if (Ar.IsError() || Tag != Magic || (S.Schema < 1 || S.Schema > 6))
+		if (Ar.IsError() || Tag != Magic || (S.Schema < 1 || S.Schema > 7))
 		{
 			return false;
 		}
@@ -111,53 +117,63 @@ namespace
 			Ar.Serialize(S.Ecology.GetData(), Count);
 		}
 
-        if (S.Schema >= 5)
-        {
-            TArray<uint8> InventoryBytes;
-            FString Error;
-            if (Ar.IsSaving() && !CCLInventorySnapshot::Encode(S.Inventories, S.Identity.WorldId, S.Clock.WorldSeconds, InventoryBytes, Error))
-            {
-                return false;
-            }
-            int32 InventoryCount = InventoryBytes.Num();
-            Ar << InventoryCount;
-            if (Ar.IsError() || InventoryCount < 10 || InventoryCount > CCLInventorySnapshot::MaximumBytes
-                || (Ar.IsLoading() && InventoryCount > Ar.TotalSize() - Ar.Tell()))
-            {
-                return false;
-            }
-            InventoryBytes.SetNumUninitialized(InventoryCount);
-            Ar.Serialize(InventoryBytes.GetData(), InventoryCount);
-            if (Ar.IsError() || (Ar.IsLoading() && !CCLInventorySnapshot::Decode(InventoryBytes,
-                S.Identity.WorldId, S.Clock.WorldSeconds, S.Inventories, Error)))
-            {
-                return false;
-            }
-        }
+		if (S.Schema == 5 || S.Schema == 6)
+		{
+			// Schemas 5 and 6 stored the inventory and player blobs at fixed positions. They become named sections
+			// without being decoded here; their owners validate them like any other section.
+			const FName LegacyNames[] = {LegacyInventorySection, LegacyPlayerSection};
+			if (!Ar.IsLoading())
+			{
+				return false;
+			}
 
-        if (S.Schema >= 6)
-        {
-            TArray<uint8> PlayerBytes;
-            FString Error;
-            if (Ar.IsSaving() && !CCLPlayerSnapshot::Encode(S.Players, S.Identity.WorldId, S.Clock.WorldSeconds, PlayerBytes, Error))
-            {
-                return false;
-            }
-            int32 PlayerCount = PlayerBytes.Num();
-            Ar << PlayerCount;
-            if (Ar.IsError() || PlayerCount < 10 || PlayerCount > CCLPlayerSnapshot::MaximumBytes ||
-                (Ar.IsLoading() && PlayerCount > Ar.TotalSize() - Ar.Tell()))
-            {
-                return false;
-            }
-            PlayerBytes.SetNumUninitialized(PlayerCount);
-            Ar.Serialize(PlayerBytes.GetData(), PlayerCount);
-            if (Ar.IsError() || (Ar.IsLoading() && !CCLPlayerSnapshot::Decode(PlayerBytes,
-                S.Identity.WorldId, S.Clock.WorldSeconds, S.Players, Error)))
-            {
-                return false;
-            }
-        }
+			for (int32 Index = 0; Index < static_cast<int32>(S.Schema) - 4; ++Index)
+			{
+				int32 SectionCount = 0;
+				Ar << SectionCount;
+				if (Ar.IsError() || SectionCount < 10 || SectionCount > MaxSectionBytes || SectionCount > Ar.TotalSize() - Ar.Tell())
+				{
+					return false;
+				}
+
+				auto& Section = S.Sections.AddDefaulted_GetRef();
+				Section.Name = LegacyNames[Index];
+				Section.Bytes.SetNumUninitialized(SectionCount);
+				Ar.Serialize(Section.Bytes.GetData(), SectionCount);
+			}
+		}
+		else if (S.Schema >= 7)
+		{
+			int32 SectionCount = S.Sections.Num();
+			Ar << SectionCount;
+			if (Ar.IsError() || SectionCount < 0 || SectionCount > MaxSections)
+			{
+				return false;
+			}
+
+			S.Sections.SetNum(SectionCount);
+			for (auto& Section : S.Sections)
+			{
+				FString Name = Section.Name.ToString();
+				Ar << Name;
+				int32 Length = Section.Bytes.Num();
+				Ar << Length;
+				if (Ar.IsError() || Name.IsEmpty() || Name.Len() > 64 || Length < 0 || Length > MaxSectionBytes ||
+					(Ar.IsLoading() && Length > Ar.TotalSize() - Ar.Tell()))
+				{
+					return false;
+				}
+
+				Section.Name = FName(*Name);
+				Section.Bytes.SetNumUninitialized(Length);
+				Ar.Serialize(Section.Bytes.GetData(), Length);
+			}
+		}
+
+		if (Ar.IsError())
+		{
+			return false;
+		}
 
 		Count = S.Life.Num();
 		Ar << Count;
@@ -298,9 +314,11 @@ bool FCCLWorldSnapshotCodec::Decode(const TArray<uint8>& Bytes, FCCLWorldSnapsho
 		}
 	}
 
-	Candidate.bInventoriesMigrated = Candidate.Schema < 5;
-	Candidate.bPlayersMigrated = Candidate.Schema < 6;
-	Candidate.Schema = 6;
+	Candidate.Sections.Sort([](const FCCLWorldSection& A, const FCCLWorldSection& B)
+	{
+		return A.Name.LexicalLess(B.Name);
+	});
+	Candidate.Schema = 7;
 	if (!Validate(Candidate, Error))
 	{
 		return false;
@@ -362,41 +380,12 @@ bool FCCLWorldSnapshotCodec::Restore(const FCCLWorldSnapshot& Snapshot, ECCLWorl
 bool FCCLWorldSnapshotCodec::Validate(const FCCLWorldSnapshot& Snapshot, FString& Error)
 {
 	Error.Reset();
-	if (Snapshot.Schema != 6 || Snapshot.Identity.BaseWorldVersion != 1 || !Snapshot.Identity.WorldId.IsValid() ||
+	if (Snapshot.Schema != 7 || Snapshot.Identity.BaseWorldVersion != 1 || !Snapshot.Identity.WorldId.IsValid() ||
 		Snapshot.Identity.Generation == 0 || static_cast<uint8>(Snapshot.Identity.Domain) > static_cast<uint8>(ECCLWorldDomain::Scenario) ||
 		Snapshot.Life.Num() < 32 || Snapshot.Life.Num() > MaxBytes - 128)
 	{
 		return Reject(Error, TEXT("Unsupported world identity, version or life payload."));
 	}
-
-    if (!CCLInventorySnapshot::Validate(Snapshot.Inventories, Snapshot.Identity.WorldId, Snapshot.Clock.WorldSeconds, Error))
-    {
-        return false;
-    }
-
-    if (!CCLPlayerSnapshot::Validate(Snapshot.Players, Snapshot.Identity.WorldId, Snapshot.Clock.WorldSeconds, Error))
-    {
-        return false;
-    }
-    TSet<FGuid> ItemIds;
-    for (const auto& Container : Snapshot.Inventories)
-    {
-        for (const auto& Item : Container.Items)
-        {
-            ItemIds.Add(Item.Id);
-        }
-    }
-    for (const auto& Profile : Snapshot.Players)
-    {
-        for (const auto& Item : Profile.Items)
-        {
-            if (ItemIds.Contains(Item.Id))
-            {
-                return Reject(Error, TEXT("An item cannot belong to both a world container and a player."));
-            }
-            ItemIds.Add(Item.Id);
-        }
-    }
 
 	FCCLSurfaceSimulation Surface;
 	if (!Surface.Restore(Snapshot.Surface, Error) || Surface.GetWorldId() != Snapshot.Identity.WorldId
@@ -405,24 +394,6 @@ bool FCCLWorldSnapshotCodec::Validate(const FCCLWorldSnapshot& Snapshot, FString
 	{
 		return Reject(Error, TEXT("World clock and surface snapshot do not agree."));
 	}
-
-    for (const auto& Record : Snapshot.Inventories)
-    {
-        auto Binding = Record.Environment;
-        if (!CCLFoodEnvironment::Sample(Binding, Surface, Error))
-        {
-            return false;
-        }
-    }
-
-    for (const auto& Profile : Snapshot.Players)
-    {
-        auto Binding = Profile.Environment;
-        if (!CCLFoodEnvironment::Sample(Binding, Surface, Error))
-        {
-            return false;
-        }
-    }
 
 	FCCLEcologySimulation Ecology;
 	if (!Ecology.Restore(Snapshot.Ecology, Error) || Ecology.GetWorldId() != Snapshot.Identity.WorldId
@@ -447,14 +418,6 @@ bool FCCLWorldSnapshotCodec::Validate(const FCCLWorldSnapshot& Snapshot, FString
 		return Reject(Error, TEXT("World clock and life snapshot do not agree."));
 	}
 
-    for (const auto& Profile : Snapshot.Players)
-    {
-        if (!Life.GetEconomy().Accounts.Contains(Profile.AccountId))
-        {
-            return Reject(Error, TEXT("A player profile refers to an account outside the world economy."));
-        }
-    }
-
 	for (const auto& Pair : Ecology.GetIndividuals())
 	{
 		const auto* Agent = Life.Find(Pair.Key);
@@ -464,5 +427,64 @@ bool FCCLWorldSnapshotCodec::Validate(const FCCLWorldSnapshot& Snapshot, FString
 		}
 	}
 
+	if (Snapshot.Sections.Num() > MaxSections)
+	{
+		return Reject(Error, TEXT("World snapshot has too many sections."));
+	}
+
+	for (int32 Index = 0; Index < Snapshot.Sections.Num(); ++Index)
+	{
+		const auto& Section = Snapshot.Sections[Index];
+		if (Section.Name.IsNone() || Section.Bytes.Num() > MaxSectionBytes || !FCCLWorldSectionRegistry::Find(Section.Name) ||
+			(Index > 0 && !Snapshot.Sections[Index - 1].Name.LexicalLess(Section.Name)))
+		{
+			return Reject(Error, TEXT("World snapshot sections must be unique, ordered and registered."));
+		}
+	}
+
+	// Sections validate in registry order and share item claims, so one item cannot live in two owners.
+	TSet<FGuid> ClaimedItems;
+	FCCLWorldSectionContext Context;
+	Context.WorldId = Snapshot.Identity.WorldId;
+	Context.WorldSeconds = Snapshot.Clock.WorldSeconds;
+	Context.Surface = &Surface;
+	Context.Life = &Life;
+	Context.ClaimedItems = &ClaimedItems;
+	for (const auto* Entry : FCCLWorldSectionRegistry::GetOrdered())
+	{
+		if (const auto* Bytes = Snapshot.FindSection(Entry->Name); Bytes && !Entry->Validator(Context, *Bytes, Error))
+		{
+			return Error.IsEmpty() ? Reject(Error, TEXT("Invalid world section.")) : false;
+		}
+	}
+
 	return true;
+}
+
+// FCCLWorldSnapshot
+
+const TArray<uint8>* FCCLWorldSnapshot::FindSection(FName Name) const
+{
+	const auto* Section = Sections.FindByPredicate([Name](const FCCLWorldSection& Value) { return Value.Name == Name; });
+	return Section ? &Section->Bytes : nullptr;
+}
+
+void FCCLWorldSnapshot::SetSection(FName Name, TArray<uint8> Bytes)
+{
+	if (auto* Section = Sections.FindByPredicate([Name](const FCCLWorldSection& Value) { return Value.Name == Name; }))
+	{
+		Section->Bytes = MoveTemp(Bytes);
+		return;
+	}
+
+	Sections.Add({Name, MoveTemp(Bytes)});
+	Sections.Sort([](const FCCLWorldSection& A, const FCCLWorldSection& B)
+	{
+		return A.Name.LexicalLess(B.Name);
+	});
+}
+
+void FCCLWorldSnapshot::RemoveSection(FName Name)
+{
+	Sections.RemoveAll([Name](const FCCLWorldSection& Value) { return Value.Name == Name; });
 }

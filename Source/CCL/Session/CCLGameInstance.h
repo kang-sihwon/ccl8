@@ -32,8 +32,11 @@ public:
 	bool IsRestoring() const { return bPendingRestore != 0; }
 	static bool ValidateAddress(const FString& Address);
 	static FString SaveSlot();
+	// Reconnect secrets that servers issued to this client, keyed by server address.
+	FString FindProfileSecret(const FString& Address) const;
+	void RememberProfileSecret(const FString& Address, const FString& Secret);
 private:
-    friend class UCCLSessionSmokeSubsystem;
+	friend class UCCLSessionSmokeSubsystem;
 	void BeforeMap(const FString& MapName);
 	void AfterMap(UWorld* World);
 	void TryRestore();
@@ -43,6 +46,7 @@ private:
 	TMap<TWeakObjectPtr<ULocalPlayer>, FCCLUIViewHandle> MenuHandles;
 	FString Status = TEXT("게임 방식을 선택해 줘. 직접 접속하려면 접속 가능한 호스트 주소가 필요해.");
 	UPROPERTY() FCCLSessionRecord Pending;
+	mutable TOptional<TMap<FString, FString>> ProfileSecrets;
 	uint8 bPendingRestore = 0;
 	FTimerHandle RestoreTimer;
 	double RestoreStarted = 0.;

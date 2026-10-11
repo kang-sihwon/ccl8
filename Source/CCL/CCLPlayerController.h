@@ -44,12 +44,14 @@ public:
 	UFUNCTION(Exec)
 	void CCLLeave();
 
+	// The server issues a reconnect secret the first time it registers this player.
+	UFUNCTION(Client, Reliable)
+	void ClientReceiveProfileKey(const FString& Secret);
+
 	UFUNCTION(Server, Reliable)
 	void ServerTalkToSteward();
 	UFUNCTION(Server, Reliable)
 	void ServerBuyPotion();
-	UFUNCTION(Client, Reliable)
-	void ClientContentTestStep(int32 Step);
 	void ToggleInventory();
 	void ToggleWorldMap();
 	void CloseInventory();
@@ -70,8 +72,6 @@ public:
 	void HandPressed(FGameplayTag Hand);
 	void HandReleased(FGameplayTag Hand);
 	UTextureRenderTarget2D* GetEquipmentPreview() const;
-	UFUNCTION(Exec)
-	void CCLEquipmentDemo();
 
 	UFUNCTION(Client, Reliable)
 	void ClientShowDialogue(ACCLVillageSteward* Speaker, const FString& Name, const FString& Text);
@@ -94,21 +94,6 @@ public:
 
 	UFUNCTION(Server, Reliable)
 	void ServerLearnSkill(UCCLSkillDefinition* Definition);
-
-	UFUNCTION(Server, Reliable)
-	void ServerCombatTestReady();
-
-	UFUNCTION(Client, Reliable)
-	void ClientCombatTestStep(int32 Step);
-
-	UFUNCTION(Server, Reliable)
-	void ServerCampaignTestReady();
-
-	UFUNCTION(Client, Reliable)
-	void ClientCampaignTestStep(int32 Step);
-
-	UFUNCTION(Client, Reliable)
-	void ClientProgressionTestStep(int32 Step, FGuid EntryId);
 
 	const UInputAction* GetMoveAction() const { return MoveAction; }
 	bool IsInventoryOpen() const;

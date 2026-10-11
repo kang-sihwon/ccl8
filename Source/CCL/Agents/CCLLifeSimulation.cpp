@@ -732,6 +732,7 @@ FCCLLifeExecutionResult FCCLLifeSimulation::Execute(FGuid AgentId, FGuid Opportu
 			break;
 		}
 	}
+
 	auto Finish = [&](const FString& Error)
 	{
 		Result.Failure = Error;
@@ -1251,7 +1252,7 @@ FCCLSimulationSnapshot FCCLLifeSimulation::MerchantScenario(int32 InSeed)
 		Biology.BirthWorldSeconds = -(20. + Index) * YearSeconds;
 		Biology.MaturitySeconds = 18. * YearSeconds;
 		Biology.LifespanSeconds = 80. * YearSeconds;
-		Biology.bProtectNaturalAging = Index == 0;
+		Biology.bProtectNaturalAging = Index == 0 ? 1 : 0;
 		Agent.Features.Add(CCLAgentTags::Feature_Biology, {1, FInstancedStruct::Make(Biology)});
 		FCCLLifeState Life;
 		Life.Occupation = CCLAgentTags::Merchant;
@@ -1532,6 +1533,7 @@ FGuid FCCLLifeSimulation::ReserveOpportunity(FGuid AgentId, FGuid OpportunityId)
 	Reservations.Add(OpportunityId, Reservation);
 	return Reservation.Token;
 }
+
 void FCCLLifeSimulation::ReleaseOpportunity(FGuid Token)
 {
 	for (auto It = Reservations.CreateIterator(); It; ++It)
@@ -1543,6 +1545,7 @@ void FCCLLifeSimulation::ReleaseOpportunity(FGuid Token)
 		}
 	}
 }
+
 bool FCCLLifeSimulation::HasReservation(FGuid AgentId, FGuid OpportunityId, FGuid Token) const
 {
 	const auto* Reservation = Reservations.Find(OpportunityId);

@@ -8,6 +8,18 @@
 #include "Engine/World.h"
 #include "EngineUtils.h"
 #include "GameFramework/PlayerStart.h"
+#include "Agents/CCLAgentWorldSubsystem.h"
+#include "Environment/CCLWorldSimulationSubsystem.h"
+#include "Kismet/GameplayStatics.h"
+#include "Session/CCLPlayerPersistenceSubsystem.h"
+#include "Session/CCLProfileIdentity.h"
+#include "TimerManager.h"
+
+namespace
+{
+	// A player whose profile cannot bind within this many retries keeps playing unregistered.
+	constexpr int32 MaxProfileAttempts = 40;
+}
 
 // 생성자
 
@@ -48,10 +60,40 @@ void ACCLGameModeBase::RestartPlayer(AController* NewPlayer)
 	}
 }
 
+FString ACCLGameModeBase::InitNewPlayer(APlayerController* NewPlayerController, const FUniqueNetIdRepl& UniqueId,
+	const FString& Options, const FString& Portal)
+{
+	const FString Result = Super::InitNewPlayer(NewPlayerController, UniqueId, Options, Portal);
+
+	// The host keeps its personal session record; only remote players get world profiles.
+	if (Result.IsEmpty() && NewPlayerController && !NewPlayerController->IsLocalController())
+	{
+		PendingProfiles.Add(NewPlayerController, UGameplayStatics::ParseOption(Options, CCLProfileIdentity::LoginOption()));
+	}
+
+	return Result;
+}
+
+void ACCLGameModeBase::PostLogin(APlayerController* NewPlayer)
+{
+	Super::PostLogin(NewPlayer);
+	BindPendingProfiles();
+	if (!PendingProfiles.IsEmpty() && !GetWorldTimerManager().IsTimerActive(ProfileTimer))
+	{
+		GetWorldTimerManager().SetTimer(ProfileTimer, this, &ThisClass::BindPendingProfiles, 0.25f, true);
+	}
+}
+
 void ACCLGameModeBase::Logout(AController* Exiting)
 {
 	PendingRespawns.Remove(Exiting);
 	NextRetryTimes.Remove(Exiting);
+	if (auto* Player = Cast<APlayerController>(Exiting))
+	{
+		PendingProfiles.Remove(Player);
+		ProfileAttempts.Remove(Player);
+	}
+
 	Super::Logout(Exiting);
 }
 
@@ -109,4 +151,75 @@ void ACCLGameModeBase::RequestRetry(APlayerController* Player)
 
 	NextRetryTimes.Add(Player, Now + 0.5);
 	RestartPlayer(Player);
+}
+
+void ACCLGameModeBase::BindPendingProfiles()
+{
+	for (auto It = PendingProfiles.CreateIterator(); It; ++It)
+	{
+		auto* Player = It.Key().Get();
+		int32& Attempts = ProfileAttempts.FindOrAdd(It.Key());
+		if (!Player || BindProfile(*Player, It.Value()) || ++Attempts >= MaxProfileAttempts)
+		{
+			if (Player && Attempts >= MaxProfileAttempts)
+			{
+				UE_LOG(LogTemp, Warning, TEXT("CCL_PROFILE %s plays without a world profile."), *GetNameSafe(Player));
+			}
+
+			ProfileAttempts.Remove(It.Key());
+			It.RemoveCurrent();
+		}
+	}
+
+	if (PendingProfiles.IsEmpty())
+	{
+		GetWorldTimerManager().ClearTimer(ProfileTimer);
+	}
+}
+
+bool ACCLGameModeBase::BindProfile(APlayerController& Player, const FString& Secret)
+{
+	auto* State = Player.GetPlayerState<ACCLPlayerState>();
+	auto* Profiles = GetWorld()->GetSubsystem<UCCLPlayerPersistenceSubsystem>();
+	const auto* Runtime = GetWorld()->GetSubsystem<UCCLWorldSimulationSubsystem>();
+	const auto* Agents = GetWorld()->GetSubsystem<UCCLAgentWorldSubsystem>();
+	if (!State || !Profiles || !Runtime || !Runtime->IsRunning() || !Agents || !Agents->IsRunning())
+	{
+		return false;
+	}
+
+	if (Profiles->IsBound(*State))
+	{
+		return true;
+	}
+
+	// A known secret returns to its profile. A missing, malformed or already-connected secret gets a new identity
+	// instead of taking over another connection.
+	FString Error;
+	if (CCLProfileIdentity::IsValidSecret(Secret))
+	{
+		if (Profiles->Bind(*State, CCLProfileIdentity::IdentityKeyFor(Secret), Error))
+		{
+			UE_LOG(LogTemp, Display, TEXT("CCL_PROFILE %s rejoined its world profile."), *GetNameSafe(&Player));
+			return true;
+		}
+
+		UE_LOG(LogTemp, Warning, TEXT("CCL_PROFILE %s presented a profile that cannot bind (%s); issuing a new one."),
+			*GetNameSafe(&Player), *Error);
+	}
+
+	const FString Issued = CCLProfileIdentity::IssueSecret();
+	if (!Profiles->Bind(*State, CCLProfileIdentity::IdentityKeyFor(Issued), Error))
+	{
+		UE_LOG(LogTemp, Verbose, TEXT("CCL_PROFILE %s waits for binding: %s"), *GetNameSafe(&Player), *Error);
+		return false;
+	}
+
+	if (auto* Controller = Cast<ACCLPlayerController>(&Player))
+	{
+		Controller->ClientReceiveProfileKey(Issued);
+	}
+
+	UE_LOG(LogTemp, Display, TEXT("CCL_PROFILE %s registered a new world profile."), *GetNameSafe(&Player));
+	return true;
 }

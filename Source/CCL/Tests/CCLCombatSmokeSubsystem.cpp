@@ -3,6 +3,7 @@
 #include "CCLCharacter.h"
 #include "Actions/CCLActionComponent.h"
 #include "CCLPlayerController.h"
+#include "CCLTestBridgeComponent.h"
 #include "CCLGameModeBase.h"
 #include "AbilitySystem/CCLAbilitySystemComponent.h"
 #include "AbilitySystem/CCLHealthSet.h"
@@ -166,13 +167,22 @@ void UCCLCombatSmokeSubsystem::Tick(float DeltaTime)
 	FParse::Value(FCommandLine::Get(), TEXT("CCLCombatSmoke="), Role);
 	auto* LocalController = Cast<ACCLPlayerController>(GetWorld()->GetFirstPlayerController());
 
+	if (GetWorld()->GetNetMode() != NM_Client)
+	{
+		for (FConstPlayerControllerIterator It = GetWorld()->GetPlayerControllerIterator(); It; ++It)
+		{
+			UCCLTestBridgeComponent::Ensure(It->Get());
+		}
+	}
+
 	if (Role == TEXT("driver") && !bRegistered && LocalController && LocalController->IsLocalController())
 	{
 		auto* LocalASC = ASC(LocalController->GetPawn());
+		auto* Bridge = UCCLTestBridgeComponent::Find(LocalController);
 
-		if (LocalASC && LocalASC->GetActivatableAbilities().Num() >= 4)
+		if (LocalASC && LocalASC->GetActivatableAbilities().Num() >= 4 && Bridge)
 		{
-			LocalController->ServerCombatTestReady();
+			Bridge->ServerCombatTestReady();
 			bRegistered = 1;
 		}
 	}
@@ -223,7 +233,7 @@ void UCCLCombatSmokeSubsystem::Tick(float DeltaTime)
 		if (!Substep && Component->HasMatchingGameplayTag(CCLTags::State_Guard))
 		{
 			Check(Hit(Enemy.Get(), Pawn) == CCLTags::Outcome_Guarded && Health(Pawn) == 100.f && Stamina(Pawn) == 70.f, TEXT("front guard"));
-			Driver->ClientCombatTestStep(-1);
+			UCCLTestBridgeComponent::Find(Driver.Get())->ClientCombatTestStep(-1);
 			Substep = 1;
 		}
 		else if (Substep && !Component->HasMatchingGameplayTag(CCLTags::State_Guard))
@@ -361,7 +371,7 @@ void UCCLCombatSmokeSubsystem::PrepareStep()
 
 	Substep = 0;
 	StepStarted = GetWorld()->GetTimeSeconds();
-	Driver->ClientCombatTestStep(Step);
+	UCCLTestBridgeComponent::Find(Driver.Get())->ClientCombatTestStep(Step);
 	UE_LOG(LogTemp, Display, TEXT("CCL_COMBAT STAGE %d"), Step);
 }
 
@@ -372,7 +382,7 @@ void UCCLCombatSmokeSubsystem::Advance()
 		return;
 	}
 
-	Driver->ClientCombatTestStep(-1);
+	UCCLTestBridgeComponent::Find(Driver.Get())->ClientCombatTestStep(-1);
 	UE_LOG(LogTemp, Display, TEXT("CCL_COMBAT stage %d passed"), Step);
 	++Step;
 	NextStepAt = GetWorld()->GetTimeSeconds() + 1.2;

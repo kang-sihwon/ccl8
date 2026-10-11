@@ -24,8 +24,8 @@ private:
 	double Started = 0.;
 	double Next = 0.;
 	double InitialTime = 0.;
-    TArray<uint8> SavedWorld;
-    TArray<uint8> SavedEcology;
+	TArray<uint8> SavedWorld;
+	TArray<uint8> SavedEcology;
 	int32 Step = 0;
 	uint8 bComplete = 0;
 };

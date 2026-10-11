@@ -3,8 +3,16 @@
 namespace
 {
 	constexpr double VaporizationJoulesPerKg = 2500000.;
-	bool Range(double V, double Low, double High) { return FMath::IsFinite(V) && V >= Low && V <= High; }
-	bool Fail(FString& Error) { Error = TEXT("Invalid combustion state, input or work budget."); return false; }
+	bool Range(double V, double Low, double High)
+	{
+		return FMath::IsFinite(V) && V >= Low && V <= High;
+	}
+
+	bool Fail(FString& Error)
+	{
+		Error = TEXT("Invalid combustion state, input or work budget.");
+		return false;
+	}
 }
 
 double FCCLCombustionCell::TemperatureCelsius(const FCCLCombustionMaterial& M) const
@@ -41,11 +49,19 @@ bool FCCLCombustionModel::Validate(const FCCLCombustionMaterial& M, const FCCLCo
 bool FCCLCombustionModel::Initialize(const FCCLCombustionMaterial& M, double Fuel, double Temperature,
 	FCCLCombustionCell& State, FString& Error)
 {
-	if (!Range(Fuel, 0., 1.e6) || !Range(Temperature, -100., 2000.)) { return Fail(Error); }
+	if (!Range(Fuel, 0., 1.e6) || !Range(Temperature, -100., 2000.))
+	{
+		return Fail(Error);
+	}
+
 	FCCLCombustionCell S;
 	S.InitialFuelKg = S.FuelKg = Fuel;
 	S.InitialHeatJoules = S.HeatJoules = M.HeatCapacityJoulesPerKelvin * (Temperature + 273.15);
-	if (!Validate(M, S, Error)) { return false; }
+	if (!Validate(M, S, Error))
+	{
+		return false;
+	}
+
 	State = S;
 	return true;
 }
@@ -85,11 +101,19 @@ bool FCCLCombustionModel::TransferFuel(const FCCLCombustionMaterial& M, double D
 
 bool FCCLCombustionModel::AddHeat(const FCCLCombustionMaterial& M, double Joules, FCCLCombustionCell& State, FString& Error)
 {
-	if (!Range(Joules, 0., 1.e12) || !Validate(M, State, Error)) { return Fail(Error); }
+	if (!Range(Joules, 0., 1.e12) || !Validate(M, State, Error))
+	{
+		return Fail(Error);
+	}
+
 	auto S = State;
 	S.HeatJoules += Joules;
 	S.AddedHeatJoules += Joules;
-	if (!Validate(M, S, Error)) { return false; }
+	if (!Validate(M, S, Error))
+	{
+		return false;
+	}
+
 	State = S;
 	return true;
 }
@@ -98,7 +122,11 @@ bool FCCLCombustionModel::Advance(const FCCLCombustionMaterial& M, double Second
 	double Wind, double Water, FCCLCombustionCell& State, FCCLCombustionFlux& Flux, FString& Error, double AirBudget)
 {
 	if (!Validate(M, State, Error) || !Range(Seconds, 0., 409.6) || !Range(Ambient, -100., 2000.)
-		|| !Range(Wind, 0., 200.) || !Range(Water, 0., 1.e9) || !Range(AirBudget, 0., 1.e15)) { return Fail(Error); }
+		|| !Range(Wind, 0., 200.) || !Range(Water, 0., 1.e9) || !Range(AirBudget, 0., 1.e15))
+	{
+		return Fail(Error);
+	}
+
 	auto S = State;
 	FCCLCombustionFlux F;
 	const int32 Steps = FMath::Max(1, FMath::CeilToInt32(Seconds / 0.1));
@@ -127,8 +155,15 @@ bool FCCLCombustionModel::Advance(const FCCLCombustionMaterial& M, double Second
 		AirBudget -= FMath::Max(0., -Exchange);
 		F.AirHeatJoules += Exchange;
 		S.HeatJoules -= Exchange;
-		if (Exchange >= 0.) { S.LostHeatJoules += Exchange; }
-		else { S.AddedHeatJoules -= Exchange; }
+		if (Exchange >= 0.)
+		{
+			S.LostHeatJoules += Exchange;
+		}
+		else
+		{
+			S.AddedHeatJoules -= Exchange;
+		}
+
 		const double AboveAmbient = FMath::Max(0., S.HeatJoules - AmbientHeat);
 		const double ToSurface = AboveAmbient * (1. - FMath::Exp(-M.SurfaceWattsPerKelvin * Dt / M.HeatCapacityJoulesPerKelvin));
 		const double VaporHeat = FMath::Min(ToSurface, Water * VaporizationJoulesPerKg);
@@ -138,9 +173,17 @@ bool FCCLCombustionModel::Advance(const FCCLCombustionMaterial& M, double Second
 		F.SurfaceHeatJoules += ToSurface - VaporHeat;
 		S.HeatJoules -= ToSurface;
 		S.TransferredHeatJoules += ToSurface;
-		if (S.FuelKg <= 0. || S.TemperatureCelsius(M) < M.ExtinctionCelsius) { S.bBurning = 0; }
+		if (S.FuelKg <= 0. || S.TemperatureCelsius(M) < M.ExtinctionCelsius)
+		{
+			S.bBurning = 0;
+		}
 	}
-	if (!Validate(M, S, Error)) { return false; }
+
+	if (!Validate(M, S, Error))
+	{
+		return false;
+	}
+
 	State = S;
 	Flux = F;
 	return true;

@@ -71,6 +71,8 @@ public:
 	static bool ValidateEntries(const TArray<FCCLInventoryEntry>& Entries, int32 Capacity);
 	bool BindPersistence(FGuid ContainerId, FString& Error);
 	FGuid GetPersistenceId() const { return PersistenceId; }
+	// True when a world container identity or a registered player profile persists this inventory.
+	bool HasPersistentOwner() const { return PersistenceId.IsValid() || bExternalPersistence != 0; }
 	bool IsTransactionOpen() const { return bTransactionOpen != 0; }
 	FGuid Add(UCCLItemDefinition* Definition, int32 Quantity);
 	bool Remove(FGuid Id, int32 Quantity);
@@ -79,8 +81,8 @@ public:
 	FGuid SplitFood(FGuid SourceId, int32 Quantity, int32 Slot);
 	bool TransferFood(FGuid SourceId, int32 Quantity, UCCLInventoryComponent* Destination);
 	bool ChangeFoodStorage(FGuid Id, const FCCLFoodStorage& Storage);
-    bool ChangeFoodEnvironment(const FCCLFoodEnvironmentBinding& Binding, FString& Error);
-    const FCCLFoodEnvironmentBinding& GetFoodEnvironment() const { return FoodEnvironment; }
+	bool ChangeFoodEnvironment(const FCCLFoodEnvironmentBinding& Binding, FString& Error);
+	const FCCLFoodEnvironmentBinding& GetFoodEnvironment() const { return FoodEnvironment; }
 	bool GetFoodQuality(FGuid Id, FCCLFoodQuality& Quality) const;
 	bool MoveToSlot(FGuid Id, int32 Slot);
 	bool ConsumeShot(FGuid Id);
@@ -91,7 +93,7 @@ public:
 	void EndTransaction(bool bPublish);
 
 private:
-    void RestoreValidated(const TArray<FCCLInventoryEntry>& Entries);
+	void RestoreValidated(const TArray<FCCLInventoryEntry>& Entries);
 	void NotifyChanged();
 	bool FoodContext(FGuid& WorldId, double& WorldSeconds) const;
 	bool BuildFoodAddition(TArray<FCCLInventoryEntry>& Entries, UCCLItemDefinition* Definition,
@@ -111,12 +113,13 @@ public:
 
 private:
 	friend class UCCLInventoryPersistenceSubsystem;
-    friend class FCCLLoadoutRestoreBatch;
-    friend class UCCLPlayerPersistenceSubsystem;
+	friend class FCCLLoadoutRestoreBatch;
+	friend class UCCLPlayerPersistenceSubsystem;
 	FGuid PersistenceId;
-    FCCLFoodEnvironmentBinding FoodEnvironment;
+	FCCLFoodEnvironmentBinding FoodEnvironment;
 	UPROPERTY(Replicated)
 	FCCLInventoryList List;
 	uint8 bTransactionOpen = 0;
+	uint8 bExternalPersistence = 0;
 	uint8 bPendingChanged = 0;
 };

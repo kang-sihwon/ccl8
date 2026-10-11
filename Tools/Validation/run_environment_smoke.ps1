@@ -198,7 +198,8 @@ try {
     $networkMetrics = @($processes | ForEach-Object {
         $entry = $_
         if (Test-Path -LiteralPath $entry.Log) {
-            foreach ($line in [IO.File]::ReadLines($entry.Log)) {
+            # The engine may still hold the log open for writing, so read with a write-sharing handle.
+            foreach ($line in (Get-Content -LiteralPath $entry.Log)) {
                 if ($line -match 'CCL_EXPERIMENT_NET Role=(\w+) Seconds=([0-9.]+) InBytes=(\d+) OutBytes=(\d+) InPackets=(\d+) OutPackets=(\d+)') {
                     $seconds = [double]::Parse($Matches[2], [Globalization.CultureInfo]::InvariantCulture)
                     $received = [long]$Matches[3]; $sent = [long]$Matches[4]

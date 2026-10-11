@@ -4,6 +4,7 @@
 #include "CCLVillageSteward.h"
 #include "AbilitySystemInterface.h"
 #include "GameplayTagContainer.h"
+#include "Agents/CCLAgentEmbodiment.h"
 #include "CCLLifeVillager.generated.h"
 
 class UCCLAgentComponent;
@@ -13,7 +14,7 @@ class UCCLActionComponent;
 class UTextRenderComponent;
 
 UCLASS()
-class CCL_API ACCLLifeVillager : public ACCLVillageSteward, public IAbilitySystemInterface
+class CCL_API ACCLLifeVillager : public ACCLVillageSteward, public IAbilitySystemInterface, public ICCLAgentEmbodiment
 {
 	GENERATED_BODY()
 
@@ -23,6 +24,9 @@ public:
 	virtual void Tick(float DeltaSeconds) override;
 	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& Out) const override;
 	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override;
+	virtual UCCLAgentComponent* GetAgentComponent() const override { return Agent; }
+	virtual void SetAgentActivity(FGameplayTag Activity) override { SetActivity(Activity); }
+	virtual void SetAgentPublicName(const FString& Name) override;
 
 public:
 	void SetActivity(FGameplayTag Activity);

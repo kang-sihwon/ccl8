@@ -10,12 +10,6 @@
 #include "GameFramework/PlayerController.h"
 #include "UObject/ConstructorHelpers.h"
 #include "UObject/UnrealType.h"
-#if WITH_EDITOR
-#include "Stateless/NiagaraStatelessEmitter.h"
-#include "Stateless/Modules/NiagaraStatelessModule_InitializeParticle.h"
-#include "Stateless/Modules/NiagaraStatelessModule_ShapeLocation.h"
-#include "NiagaraSpriteRendererProperties.h"
-#endif
 
 ACCLFirePresentation::ACCLFirePresentation()
 {
@@ -180,47 +174,3 @@ void ACCLFirePresentation::UpdateEmitter(int32 Index, UNiagaraSystem* Asset, con
 	}
 }
 
-bool ACCLFirePresentation::ConfigureFireSystem(UNiagaraSystem* System, bool bSmoke, UMaterialInterface* SpriteMaterial)
-{
-#if WITH_EDITOR
-	if (!SpriteMaterial || !ACCLWeatherPresentation::ConfigurePrecipitationSystem(System, false))
-	{
-		return false;
-	}
-
-	auto* E = System->GetEmitterHandles()[0].GetStatelessEmitter();
-	auto* Init = Cast<UNiagaraStatelessModule_InitializeParticle>(E->GetModule(UNiagaraStatelessModule_InitializeParticle::StaticClass()));
-	auto* Shape = Cast<UNiagaraStatelessModule_ShapeLocation>(E->GetModule(UNiagaraStatelessModule_ShapeLocation::StaticClass()));
-	Init->LifetimeDistribution = FNiagaraDistributionRangeFloat(bSmoke ? 4.f : 0.8f);
-	Init->SpriteSizeDistribution.InitConstant(bSmoke ? FVector2f(90.f, 90.f) : FVector2f(22.f, 45.f));
-	Init->ColorDistribution.InitConstant(bSmoke ? FLinearColor(0.08f, 0.075f, 0.07f, 0.3f) : FLinearColor(6.f, 1.2f, 0.05f, 0.8f));
-	Shape->PlaneSize.InitConstant(bSmoke ? FVector2f(250.f, 250.f) : FVector2f(35.f, 35.f));
-	for (auto* Renderer : E->GetRenderers())
-	{
-		if (auto* Sprite = Cast<UNiagaraSpriteRendererProperties>(Renderer))
-		{
-			Sprite->Material = SpriteMaterial;
-		}
-	}
-
-	if (auto* Property = FindFProperty<FStructProperty>(E->GetClass(), TEXT("FixedBounds")))
-	{
-		*Property->ContainerPtrToValuePtr<FBox>(E) = FBox(FVector(-400., -400., -100.), FVector(400., 400., 600.));
-	}
-
-	if (auto* Property = FindFProperty<FStructProperty>(E->GetClass(), TEXT("EmitterState")))
-	{
-		auto* State = Property->ContainerPtrToValuePtr<FNiagaraEmitterStateData>(E);
-		State->LoopDuration = FNiagaraDistributionRangeFloat(bSmoke ? 2.f : 1.f);
-	}
-
-	E->PostEditChange();
-	System->PostEditChange();
-	System->RequestCompile(true);
-	System->WaitForCompilationComplete(true, false);
-	System->MarkPackageDirty();
-	return true;
-#else
-	return false;
-#endif
-}

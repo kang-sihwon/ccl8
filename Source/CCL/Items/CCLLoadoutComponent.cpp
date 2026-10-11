@@ -9,7 +9,8 @@
 #include "AbilitySystem/CCLGameplayTags.h"
 #include "AbilitySystem/CCLHealthSet.h"
 #include "AbilitySystemInterface.h"
-#include "Combat/CCLFighterComponent.h"
+#include "CCLEquipmentPresenter.h"
+#include "CCLItemCatalog.h"
 #include "Net/UnrealNetwork.h"
 
 UCCLLoadoutComponent::UCCLLoadoutComponent()
@@ -20,13 +21,17 @@ UCCLLoadoutComponent::UCCLLoadoutComponent()
 void UCCLLoadoutComponent::BeginPlay()
 {
 	Super::BeginPlay();
-	for (const TCHAR* Path : {TEXT("/Game/Progression/DA_PowerTraining.DA_PowerTraining"), TEXT("/Game/Progression/DA_VitalityTraining.DA_VitalityTraining")})
+	if (const auto* Catalog = UCCLItemCatalog::Get())
 	{
-		if (auto* Skill = LoadObject<UCCLSkillDefinition>(nullptr, Path))
+		for (UCCLSkillDefinition* Skill : Catalog->TrainingSkills)
 		{
-			AvailableSkills.Add(Skill);
+			if (Skill)
+			{
+				AvailableSkills.Add(Skill);
+			}
 		}
 	}
+
 	if (auto* Inventory = GetInventory())
 	{
 		Inventory->OnChanged.AddUObject(this, &ThisClass::OnInventoryChanged);
@@ -277,11 +282,28 @@ bool UCCLLoadoutComponent::Use(FGuid Id)
 	{
 		return Report(false, TEXT("체력이 이미 가득 차 있다."));
 	}
+
+	// Consume first and restore the exact entries if the effect is rejected, so one item never heals twice.
+	const TArray<FCCLInventoryEntry> Before = Inventory->GetEntries();
+	if (!Inventory->BeginTransaction())
+	{
+		return Report(false, TEXT("지금은 아이템을 사용할 수 없다."));
+	}
+
+	if (!Inventory->Remove(Id, 1))
+	{
+		Inventory->EndTransaction(false);
+		return Report(false, TEXT("아이템을 소모하지 못했다."));
+	}
+
 	if (!ASC->ApplyEffect(Fragment->Effect, Fragment->Magnitude).WasSuccessfullyApplied())
 	{
+		verify(Inventory->Restore(Before));
+		Inventory->EndTransaction(true);
 		return Report(false, TEXT("아이템 효과를 적용하지 못했다."));
 	}
-	Inventory->Remove(Id, 1);
+
+	Inventory->EndTransaction(true);
 	return Report(true, TEXT("회복 아이템을 사용했다."));
 }
 
@@ -323,17 +345,9 @@ void UCCLLoadoutComponent::SyncAvatar(bool bResetHealth)
 		}
 	}
 
-	if (auto* Fighter = ASC->GetAvatarActor()->FindComponentByClass<UCCLFighterComponent>())
+	if (auto* Presenter = FindPresenter(ASC->GetAvatarActor()))
 	{
-		Fighter->LeftHandItem = GetEquippedItem(CCLItemTags::Slot_LeftHand);
-		Fighter->RightHandItem = GetEquippedItem(CCLItemTags::Slot_RightHand);
-		Fighter->RefreshEquipmentVisuals();
-		Fighter->Item = Fighter->RightHandItem ? Fighter->RightHandItem : Fighter->LeftHandItem;
-		if (!Fighter->Item || !Fighter->Item->FindFragment<FCCLItemFragment_Weapon>())
-		{
-			Fighter->Item = LoadObject<UCCLItemDefinition>(nullptr, TEXT("/Game/Combat/DA_Unarmed.DA_Unarmed"));
-		}
-		ASC->GetAvatarActor()->ForceNetUpdate();
+		Presenter->PresentEquipment(GetEquippedItem(CCLItemTags::Slot_LeftHand), GetEquippedItem(CCLItemTags::Slot_RightHand));
 	}
 	if (bResetHealth)
 	{
@@ -426,18 +440,9 @@ FGameplayTag UCCLLoadoutComponent::PrepareHandAction(FGameplayTag Hand)
 		return Input;
 	}
 
-	if (auto* Fighter = ASC->GetAvatarActor()->FindComponentByClass<UCCLFighterComponent>())
+	if (auto* Presenter = FindPresenter(ASC->GetAvatarActor()))
 	{
-		Fighter->Item = GetEquippedItem(Hand);
-		if (!Fighter->Item)
-		{
-			Fighter->Item = LoadObject<UCCLItemDefinition>(nullptr, TEXT("/Game/Combat/DA_Unarmed.DA_Unarmed"));
-		}
-
-		if (GetOwner()->HasAuthority())
-		{
-			ASC->GetAvatarActor()->ForceNetUpdate();
-		}
+		Presenter->SelectActiveItem(GetEquippedItem(Hand));
 	}
 
 	// Loadout and ASC share the PlayerState actor channel. Select the hand before
@@ -533,11 +538,29 @@ UCCLInventoryComponent* UCCLLoadoutComponent::GetInventory() const
 	return GetOwner()->FindComponentByClass<UCCLInventoryComponent>();
 }
 
-bool UCCLLoadoutComponent::Restore(const TArray<FCCLEquippedSlot>& Equipment, const TArray<UCCLSkillDefinition*>& Skills,
-                                  int32 UnspentPoints)
+ICCLEquipmentPresenter* UCCLLoadoutComponent::FindPresenter(AActor* Avatar)
 {
-    const auto* Inventory = GetInventory();
-    return Inventory && RestoreState(Inventory->GetEntries(), Equipment, Skills, UnspentPoints);
+	if (!Avatar)
+	{
+		return nullptr;
+	}
+
+	for (UActorComponent* Component : Avatar->GetComponents())
+	{
+		if (auto* Presenter = Cast<ICCLEquipmentPresenter>(Component))
+		{
+			return Presenter;
+		}
+	}
+
+	return nullptr;
+}
+
+bool UCCLLoadoutComponent::Restore(const TArray<FCCLEquippedSlot>& Equipment, const TArray<UCCLSkillDefinition*>& Skills,
+								  int32 UnspentPoints)
+{
+	const auto* Inventory = GetInventory();
+	return Inventory && RestoreState(Inventory->GetEntries(), Equipment, Skills, UnspentPoints);
 }
 
 bool UCCLLoadoutComponent::RequestCustomHandAction(FGameplayTag Hand, bool bPressed)

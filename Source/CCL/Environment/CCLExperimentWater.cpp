@@ -4,6 +4,8 @@
 #include "CCLEcologyExperiment.h"
 
 #include "CCLWorldSimulationSubsystem.h"
+#include "CCLWorldEnvironmentConfig.h"
+#include "GameFramework/Character.h"
 #include "CCLTerrainWaterParticipant.h"
 #include "CCLSurfacePresentation.h"
 #include "Agents/CCLAgentWorldSubsystem.h"
@@ -142,26 +144,43 @@ void ACCLExperimentDirector::InitializeWaterExperiment()
 		UE_LOG(LogTemp, Error, TEXT("CCL_WATER_INIT baseline: %s"), *Error);
 		return;
 	}
-    auto* Biology = ACCLBiologyExperiment::Find(GetWorld());
-    if (!Biology) { Biology = GetWorld()->SpawnActor<ACCLBiologyExperiment>(); }
-    if (!Biology || !Biology->Initialize(bFreshSurface, Initial, Error))
-    {
-        UE_LOG(LogTemp, Error, TEXT("CCL_BIOLOGY_ZONE_INIT %s"), *Error);
-        return;
-    }
-    auto* Food = ACCLFoodExperiment::Find(GetWorld());
-    if (!Food)
-    {
-        Food = GetWorld()->SpawnActor<ACCLFoodExperiment>(UCCLExperimentDefinition::ZoneCenter(7) + FVector(0, -650, 0), FRotator::ZeroRotator);
-    }
-    if (!Food || !Food->Initialize(bFreshSurface, Initial, Error))
-    {
-        UE_LOG(LogTemp, Error, TEXT("CCL_FOOD_INIT %s"), *Error);
-        return;
-    }
-    auto* Ecology=ACCLEcologyExperiment::Find(GetWorld());
-    if (!Ecology) { Ecology=GetWorld()->SpawnActor<ACCLEcologyExperiment>(UCCLExperimentDefinition::ZoneCenter(6),FRotator::ZeroRotator); }
-    if (!Ecology||!Ecology->Initialize(bFreshSurface,Initial,Error)) { UE_LOG(LogTemp,Error,TEXT("CCL_ECOLOGY_ZONE_INIT %s"),*Error); return; }
+	auto* Biology = ACCLBiologyExperiment::Find(GetWorld());
+	if (!Biology)
+	{
+		Biology = GetWorld()->SpawnActor<ACCLBiologyExperiment>();
+	}
+
+	if (const auto* Config = ACCLWorldEnvironmentConfig::Find(GetWorld()); Biology && Config && !Biology->ResidentClass)
+	{
+		Biology->ResidentClass = Config->ExperimentResidentClass.LoadSynchronous();
+	}
+	if (!Biology || !Biology->Initialize(bFreshSurface, Initial, Error))
+	{
+		UE_LOG(LogTemp, Error, TEXT("CCL_BIOLOGY_ZONE_INIT %s"), *Error);
+		return;
+	}
+	auto* Food = ACCLFoodExperiment::Find(GetWorld());
+	if (!Food)
+	{
+		Food = GetWorld()->SpawnActor<ACCLFoodExperiment>(UCCLExperimentDefinition::ZoneCenter(7) + FVector(0, -650, 0), FRotator::ZeroRotator);
+	}
+	if (!Food || !Food->Initialize(bFreshSurface, Initial, Error))
+	{
+		UE_LOG(LogTemp, Error, TEXT("CCL_FOOD_INIT %s"), *Error);
+		return;
+	}
+	auto* Ecology=ACCLEcologyExperiment::Find(GetWorld());
+	if (!Ecology)
+	{
+		Ecology=GetWorld()->SpawnActor<ACCLEcologyExperiment>(UCCLExperimentDefinition::ZoneCenter(6),FRotator::ZeroRotator);
+	}
+
+	if (!Ecology||!Ecology->Initialize(bFreshSurface,Initial,Error))
+	{
+		UE_LOG(LogTemp,Error,TEXT("CCL_ECOLOGY_ZONE_INIT %s"),*Error);
+		return;
+	}
+
 	Definition.WorldId = Initial.Identity.WorldId;
 	if (!VegetationGrid(Initial.Clock.WorldSeconds, Plants, Error)
 		|| !Base.Initialize(Definition, Error) || !TerrainGrid(Base.GetSnapshot(), TerrainRegion->GetActorTransform(), TerrainWater, Error)
@@ -178,7 +197,11 @@ void ACCLExperimentDirector::InitializeWaterExperiment()
 	GetGameInstance()->GetSubsystem<UCCLAgentSessionStore>()->ExperimentInitialSnapshots.FindOrAdd(Initial.Identity.Domain) = InitialSnapshot;
 	bWaterReady = 1;
 	int32 TotalCells = 0;
-	for (const auto& Pair : Runtime->GetSurfaceSimulation().GetRegions()) { TotalCells += Pair.Value.Cells.Num(); }
+	for (const auto& Pair : Runtime->GetSurfaceSimulation().GetRegions())
+	{
+		TotalCells += Pair.Value.Cells.Num();
+	}
+
 	UE_LOG(LogTemp, Display, TEXT("CCL_WATER_INIT ready cells=%d world=%s"), TotalCells, *Runtime->GetIdentity().WorldId.ToString());
 }
 

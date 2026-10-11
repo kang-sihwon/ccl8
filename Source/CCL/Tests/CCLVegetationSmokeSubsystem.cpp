@@ -24,7 +24,11 @@ bool UCCLVegetationSmokeSubsystem::ShouldCreateSubsystem(UObject* Outer) const
 void UCCLVegetationSmokeSubsystem::Tick(float DeltaTime)
 {
 	const double Now = FPlatformTime::Seconds();
-	if (!Started) Started = Now;
+	if (!Started)
+	{
+		Started = Now;
+	}
+
 	if (Now - Started > 180.)
 	{
 		Finish(false, FString::Printf(TEXT("timeout step=%d"), Step));
@@ -34,18 +38,30 @@ void UCCLVegetationSmokeSubsystem::Tick(float DeltaTime)
 	auto* Runtime = World ? World->GetSubsystem<UCCLWorldSimulationSubsystem>() : nullptr;
 	auto* Agents = World ? World->GetSubsystem<UCCLAgentWorldSubsystem>() : nullptr;
 	auto* Director = World ? ACCLExperimentDirector::Find(World) : nullptr;
-	if (!Runtime || !Runtime->IsRunning() || !Agents || !Agents->IsRunning() || !Director || !Director->IsReady() || Now < Next) return;
+	if (!Runtime || !Runtime->IsRunning() || !Agents || !Agents->IsRunning() || !Director || !Director->IsReady() || Now < Next)
+	{
+		return;
+	}
+
 	FString Error, Directory;
 	FParse::Value(FCommandLine::Get(), TEXT("CCLVegetationSmokeDir="), Directory);
 	const FString SavePath = Directory / TEXT("vegetation-world.bin");
 	auto Check = [&](bool bOK)
 	{
-		if (!bOK) Finish(false, FString::Printf(TEXT("step=%d %s"), Step, *Error));
+		if (!bOK)
+		{
+			Finish(false, FString::Printf(TEXT("step=%d %s"), Step, *Error));
+		}
+
 		return bOK;
 	};
 	if (Step == 0)
 	{
-		if (!Check(Runtime->ChangeTimeScale(0., Error))) return;
+		if (!Check(Runtime->ChangeTimeScale(0., Error)))
+		{
+			return;
+		}
+
 		Step = 1;
 		Next = Now + 2.;
 		return;
@@ -58,9 +74,17 @@ void UCCLVegetationSmokeSubsystem::Tick(float DeltaTime)
 			FCCLWorldSnapshot Decoded;
 			if (!Check(FFileHelper::LoadFileToArray(Saved, *SavePath)
 				&& FCCLWorldSnapshotCodec::Decode(Saved, Decoded, Error) && Agents->Restore(Saved, Error)
-				&& Runtime->GetSurfaceSimulation().Capture(Actual, Error) && Actual == Decoded.Surface)) return;
+				&& Runtime->GetSurfaceSimulation().Capture(Actual, Error) && Actual == Decoded.Surface))
+			{
+				return;
+			}
+
 			const auto* G = Runtime->GetSurfaceSimulation().FindRegion(PlantRegion);
-			if (!Check(G && G->Vegetation.Cells.Num() == 9)) return;
+			if (!Check(G && G->Vegetation.Cells.Num() == 9))
+			{
+				return;
+			}
+
 			CyclesBefore = G->Vegetation.Cells[8].RegrowthCount;
 			InitialTime = Runtime->GetClock().GetWorldSeconds();
 			UE_LOG(LogTemp, Display, TEXT("CCL_VEGETATION RESTART_RESTORED world=%.6f crc=%u"), InitialTime,
@@ -109,16 +133,32 @@ void UCCLVegetationSmokeSubsystem::Tick(float DeltaTime)
 				G.Cells[I].SunExposure = I == 8 ? 0. : 1.;
 			}
 			G.Ledger.InitialCubicMeters = G.TotalCubicMeters();
-			if (!Check(CCLSurfaceVegetation::Initialize(G, Species, Seeds, InitialTime, Error) && Runtime->AddSurfaceRegion(G, Error))) return;
+			if (!Check(CCLSurfaceVegetation::Initialize(G, Species, Seeds, InitialTime, Error) && Runtime->AddSurfaceRegion(G, Error)))
+			{
+				return;
+			}
 		}
-		if (!Check(Runtime->ChangeTimeScale(60., Error))) return;
+
+		if (!Check(Runtime->ChangeTimeScale(60., Error)))
+		{
+			return;
+		}
+
 		Step = 2;
 		return;
 	}
 	if (Step == 2)
 	{
-		if (Runtime->GetClock().GetWorldSeconds() < InitialTime + 240.) return;
-		if (!Check(Runtime->ChangeTimeScale(0., Error))) return;
+		if (Runtime->GetClock().GetWorldSeconds() < InitialTime + 240.)
+		{
+			return;
+		}
+
+		if (!Check(Runtime->ChangeTimeScale(0., Error)))
+		{
+			return;
+		}
+
 		Step = 3;
 		Next = Now + 2.;
 		return;
@@ -129,24 +169,43 @@ void UCCLVegetationSmokeSubsystem::Tick(float DeltaTime)
 		const auto* G = Surface.FindRegion(PlantRegion);
 		if (!Check(G && G->Vegetation.Cells.Num() == 9 && Surface.Validate(Error)
 			&& Surface.GetWorldSeconds() == Runtime->GetClock().GetWorldSeconds()
-			&& Surface.GetWorldSeconds() == Agents->GetSimulation().GetTime())) return;
+			&& Surface.GetWorldSeconds() == Agents->GetSimulation().GetTime()))
+		{
+			return;
+		}
+
 		for (const auto& C : G->Vegetation.Cells)
 		{
-			if (!Check(C.RegrowthCount > CyclesBefore && C.DecayedBiomassKg > 0.)) return;
+			if (!Check(C.RegrowthCount > CyclesBefore && C.DecayedBiomassKg > 0.))
+			{
+				return;
+			}
 		}
 		if (!Check(G->Vegetation.Cells[8].GrownBiomassKg > 0.
-			&& G->Vegetation.Cells[8].FungalConsumptionKg > 0.)) return;
+			&& G->Vegetation.Cells[8].FungalConsumptionKg > 0.))
+		{
+			return;
+		}
+
 		if (FParse::Param(FCommandLine::Get(), TEXT("CCLVegetationResume")))
 		{
 			Finish(true, TEXT("new process restored exact surface state and continued all nine plant life cycles"));
 			return;
 		}
 		TArray<uint8> Saved, Before, After;
-		if (!Check(Surface.Capture(Before, Error) && Agents->Save(Saved) && FFileHelper::SaveArrayToFile(Saved, *SavePath))) return;
+		if (!Check(Surface.Capture(Before, Error) && Agents->Save(Saved) && FFileHelper::SaveArrayToFile(Saved, *SavePath)))
+		{
+			return;
+		}
+
 		UE_LOG(LogTemp, Display, TEXT("CCL_VEGETATION SAVED world=%.6f crc=%u"), Surface.GetWorldSeconds(),
 			FCrc::MemCrc32(Before.GetData(), Before.Num() - 4));
 		if (!Check(Runtime->IgniteSurface(PlantRegion, 0, 800000., Error) && Surface.Capture(After, Error) && Before != After
-			&& Agents->Restore(Saved, Error) && Surface.Capture(After, Error) && Before == After)) return;
+			&& Agents->Restore(Saved, Error) && Surface.Capture(After, Error) && Before == After))
+		{
+			return;
+		}
+
 		Finish(true, TEXT("nine species world-time lifecycle, resources and same-generation save rollback"));
 	}
 }

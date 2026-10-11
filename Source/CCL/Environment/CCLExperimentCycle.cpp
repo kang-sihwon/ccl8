@@ -23,7 +23,11 @@ namespace
 			Result.Snow += Cell.SnowCubicMeters;
 			Result.Volume += Cell.SnowVolumeCubicMeters;
 			Result.Ice += Cell.IceCubicMeters;
-			if (Index % Grid.Size.X >= Grid.Size.X / 2) { Result.Downstream += Cell.WaterCubicMeters; }
+			if (Index % Grid.Size.X >= Grid.Size.X / 2)
+			{
+				Result.Downstream += Cell.WaterCubicMeters;
+			}
+
 			Result.Mud = FMath::Max(Result.Mud, Grid.Mud(Index));
 		}
 		return Result;
@@ -69,7 +73,12 @@ bool ACCLExperimentDirector::SetCyclePhase(int32 Phase, FString& Error)
 {
 	auto* Runtime = GetWorld()->GetSubsystem<UCCLWorldSimulationSubsystem>();
 	const auto* Grid = Runtime->GetSurfaceSimulation().FindRegion(CycleRegionId());
-	if (!Grid || Phase < 0 || Phase > 5) { Error = TEXT("순환 단계의 표면이 없다."); return false; }
+	if (!Grid || Phase < 0 || Phase > 5)
+	{
+		Error = TEXT("순환 단계의 표면이 없다.");
+		return false;
+	}
+
 	auto Forcing = Grid->Forcing;
 	Forcing.RainMetersPerWorldSecond = 0.;
 	Forcing.SnowMetersPerWorldSecond = Phase == 1 ? 0.002 : 0.;
@@ -78,7 +87,11 @@ bool ACCLExperimentDirector::SetCyclePhase(int32 Phase, FString& Error)
 	Forcing.InfiltrationMetersPerWorldSecond = Phase == 3 ? 0.0002 : 0.;
 	Forcing.DrainageMetersPerWorldSecond = 0.;
 	Forcing.EvaporationMetersPerWorldSecond = Phase == 0 || Phase == 5 ? 0.02 : 0.;
-	if (!Runtime->ChangeSurfaceForcing(CycleRegionId(), Forcing, Error)) { return false; }
+	if (!Runtime->ChangeSurfaceForcing(CycleRegionId(), Forcing, Error))
+	{
+		return false;
+	}
+
 	CyclePhase = Phase;
 	CyclePhaseTime = Runtime->GetClock().GetWorldSeconds();
 	static const TCHAR* Labels[] = { TEXT("시작 상태 건조"), TEXT("경사 상단 적설"), TEXT("압축 흔적"),
@@ -93,7 +106,11 @@ bool ACCLExperimentDirector::SetCyclePhase(int32 Phase, FString& Error)
 
 void ACCLExperimentDirector::StopCycleExperiment()
 {
-	if (CyclePhase < 0) { return; }
+	if (CyclePhase < 0)
+	{
+		return;
+	}
+
 	FString Error;
 	if (auto* Runtime = GetWorld()->GetSubsystem<UCCLWorldSimulationSubsystem>())
 	{
@@ -107,13 +124,26 @@ void ACCLExperimentDirector::StopCycleExperiment()
 
 void ACCLExperimentDirector::TickCycleExperiment()
 {
-	if (ActiveCase != TEXT("Zone_09") || CyclePhase < 0) { return; }
+	if (ActiveCase != TEXT("Zone_09") || CyclePhase < 0)
+	{
+		return;
+	}
+
 	auto* Runtime = GetWorld()->GetSubsystem<UCCLWorldSimulationSubsystem>();
 	const double Duration = CyclePhase == 1 || CyclePhase == 2 ? 30. : 60.;
-	if (Runtime->GetClock().GetWorldSeconds() - CyclePhaseTime < Duration) { return; }
+	if (Runtime->GetClock().GetWorldSeconds() - CyclePhaseTime < Duration)
+	{
+		return;
+	}
+
 	auto* Result = Results.FindByPredicate([](const auto& Value) { return Value.CaseId == TEXT("Zone_09"); });
 	const auto* Grid = Runtime->GetSurfaceSimulation().FindRegion(CycleRegionId());
-	if (!Result) { StopCycleExperiment(); return; }
+	if (!Result)
+	{
+		StopCycleExperiment();
+		return;
+	}
+
 	FString Error;
 	if (!Grid || !FCCLSurfaceSimulation::ValidateRegion(*Grid, Error)
 		|| FMath::Abs(Grid->BalanceErrorCubicMeters()) > 1.e-7)
@@ -174,5 +204,9 @@ void ACCLExperimentDirector::TickCycleExperiment()
 		Finish(*Result, bPassed, bPassed ? TEXT("적설·압축·융해·유출·진흙·결빙·건조 두 회차와 표면 저장 복원을 확인했다. 영구 수로는 구역 05에서 별도 검증한다.") : Error);
 		return;
 	}
-	if (!SetCyclePhase(CyclePhase == 5 ? 1 : CyclePhase + 1, Error)) { Finish(*Result, false, Error); }
+
+	if (!SetCyclePhase(CyclePhase == 5 ? 1 : CyclePhase + 1, Error))
+	{
+		Finish(*Result, false, Error);
+	}
 }

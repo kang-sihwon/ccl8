@@ -66,6 +66,7 @@ void UCCLMapSubsystem::Refresh(APlayerController* Observer)
 			Bounds = FBox2D(Region->Min, Region->Max);
 			Terrain = Region->Terrain;
 		}
+
 		Terrain.Sort([](const FCCLMapTerrain& A, const FCCLMapTerrain& B)
 		{
 			const FVector2D AS = A.Max - A.Min;

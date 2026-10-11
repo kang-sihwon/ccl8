@@ -8,6 +8,7 @@
 #include "UI/CCLGameUI.h"
 #include "AbilitySystem/CCLHealthSet.h"
 #include "CCLPlayerController.h"
+#include "CCLTestBridgeComponent.h"
 #include "CCLPlayerState.h"
 #include "Components/MeshComponent.h"
 #include "Components/SkeletalMeshComponent.h"
@@ -47,7 +48,11 @@ void FinishUITest(UWorld* World, uint8 ExitCode)
 		GEditor->RequestEndPlayMap();
 		FTSTicker::GetCoreTicker().AddTicker(FTickerDelegate::CreateLambda([ExitCode](float)
 		{
-			if (GEditor && GEditor->PlayWorld) { return true; }
+			if (GEditor && GEditor->PlayWorld)
+			{
+				return true;
+			}
+
 			FPlatformMisc::RequestExitWithStatus(false, ExitCode);
 			return false;
 		}), 1.f);
@@ -441,7 +446,7 @@ void UCCLUISmokeSubsystem::Tick(float DeltaTime)
 			return;
 		}
 
-		PC->CCLEquipmentDemo();
+		UCCLTestBridgeComponent::GrantEquipmentSet(PC);
 		const TArray<FCCLInventoryEntry> Demo = Inventory->GetEntries();
 		for (const auto& Entry : Demo)
 		{

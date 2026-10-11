@@ -21,20 +21,76 @@ namespace
 {
 const TCHAR* LifeLabel(FGameplayTag Tag)
 {
-	if (Tag == CCLAgentTags::Injury) { return TEXT("다쳐서 쉬는 중이야"); }
-	if (Tag == CCLAgentTags::Work) { return TEXT("일하는 중이야"); }
-	if (Tag == CCLAgentTags::Trade) { return TEXT("거래하는 중이야"); }
-	if (Tag == CCLAgentTags::Eat) { return TEXT("식사하는 중이야"); }
-	if (Tag == CCLAgentTags::Rest) { return TEXT("쉬는 중이야"); }
-	if (Tag == CCLAgentTags::Help) { return TEXT("이웃을 돕는 중이야"); }
-	if (Tag == CCLAgentTags::Repay) { return TEXT("빚을 갚는 중이야"); }
-	if (Tag == CCLAgentTags::Improve) { return TEXT("실력을 기르는 중이야"); }
-	if (Tag == CCLAgentTags::Discover) { return TEXT("새로운 곳을 둘러보는 중이야"); }
-	if (Tag == CCLAgentTags::Goal_Living) { return TEXT("생계 유지"); }
-	if (Tag == CCLAgentTags::Goal_Debt) { return TEXT("빚 갚기"); }
-	if (Tag == CCLAgentTags::Goal_Support) { return TEXT("가족 돕기"); }
-	if (Tag == CCLAgentTags::Goal_Business) { return TEXT("사업 성장"); }
-	if (Tag == CCLAgentTags::Goal_Mastery) { return TEXT("기술 숙련"); }
+	if (Tag == CCLAgentTags::Injury)
+	{
+		return TEXT("다쳐서 쉬는 중이야");
+	}
+
+	if (Tag == CCLAgentTags::Work)
+	{
+		return TEXT("일하는 중이야");
+	}
+
+	if (Tag == CCLAgentTags::Trade)
+	{
+		return TEXT("거래하는 중이야");
+	}
+
+	if (Tag == CCLAgentTags::Eat)
+	{
+		return TEXT("식사하는 중이야");
+	}
+
+	if (Tag == CCLAgentTags::Rest)
+	{
+		return TEXT("쉬는 중이야");
+	}
+
+	if (Tag == CCLAgentTags::Help)
+	{
+		return TEXT("이웃을 돕는 중이야");
+	}
+
+	if (Tag == CCLAgentTags::Repay)
+	{
+		return TEXT("빚을 갚는 중이야");
+	}
+
+	if (Tag == CCLAgentTags::Improve)
+	{
+		return TEXT("실력을 기르는 중이야");
+	}
+
+	if (Tag == CCLAgentTags::Discover)
+	{
+		return TEXT("새로운 곳을 둘러보는 중이야");
+	}
+
+	if (Tag == CCLAgentTags::Goal_Living)
+	{
+		return TEXT("생계 유지");
+	}
+
+	if (Tag == CCLAgentTags::Goal_Debt)
+	{
+		return TEXT("빚 갚기");
+	}
+
+	if (Tag == CCLAgentTags::Goal_Support)
+	{
+		return TEXT("가족 돕기");
+	}
+
+	if (Tag == CCLAgentTags::Goal_Business)
+	{
+		return TEXT("사업 성장");
+	}
+
+	if (Tag == CCLAgentTags::Goal_Mastery)
+	{
+		return TEXT("기술 숙련");
+	}
+
 	return TEXT("잠시 생각하는 중이야");
 }
 }
@@ -63,7 +119,7 @@ void ACCLLifeVillager::BeginPlay()
 	AbilitySystem->InitAbilityActorInfo(this, this);
 	if (HasAuthority())
 	{
-        Agent->RestoreHealthFromRecord();
+		Agent->RestoreHealthFromRecord();
 	}
 	RefreshLabel();
 }
@@ -107,6 +163,12 @@ void ACCLLifeVillager::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& Out
 UAbilitySystemComponent* ACCLLifeVillager::GetAbilitySystemComponent() const
 {
 	return AbilitySystem;
+}
+
+void ACCLLifeVillager::SetAgentPublicName(const FString& Name)
+{
+	PublicName = Name;
+	RefreshLabel();
 }
 
 void ACCLLifeVillager::SetActivity(FGameplayTag Activity)

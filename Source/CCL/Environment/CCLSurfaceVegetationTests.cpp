@@ -99,7 +99,11 @@ bool FCCLVegetationResourcesTest::RunTest(const FString& Parameters)
 	Seeds[3].SoilOrganicKg = 0.;
 	Seeds[4].SoilNutrientsKg = 0.;
 	G.Cells[1].SunExposure = G.Cells[2].SunExposure = G.Cells[3].SunExposure = 0.;
-	if (!TestTrue(TEXT("seed patches"), CCLSurfaceVegetation::Initialize(G, {PlantSpecies(), Fungus}, Seeds, 0., Error))) return false;
+	if (!TestTrue(TEXT("seed patches"), CCLSurfaceVegetation::Initialize(G, {PlantSpecies(), Fungus}, Seeds, 0., Error)))
+	{
+		return false;
+	}
+
 	TestTrue(TEXT("advance biological resources"), CCLSurfaceVegetation::AdvanceCandidate(G, 0., 100., 1000., 12., Error));
 	const auto& C = G.Vegetation.Cells;
 	TestTrue(TEXT("lit plant grows"), C[0].GrownBiomassKg > 0.9);
@@ -192,7 +196,11 @@ bool FCCLVegetationRestoreTest::RunTest(const FString& Parameters)
 		&& Life.Initialize(FCCLLifeSimulation::MerchantScenario(42), Error)
 		&& Surface.Initialize(Identity.WorldId, 0., 0., 0, Error)
 		&& CCLSurfaceVegetation::Initialize(G, {PlantSpecies()}, PlantSeeds(1), 0., Error)
-		&& Surface.AddRegion(G, Error))) return false;
+		&& Surface.AddRegion(G, Error)))
+	{
+		return false;
+	}
+
 	const auto Before = PlantBytes(Surface);
 	TestFalse(TEXT("missing solar input is rejected"), Surface.Advance(PlantStep(Surface, 60.), Error));
 	TestTrue(TEXT("missing context keeps prior state"), Before == PlantBytes(Surface));

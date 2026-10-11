@@ -50,9 +50,9 @@ bool FCCLEcologySimulation::AdvanceCandidate(double Target, FString& Error, int3
 	while (WorldSeconds < Target)
 	{
 		double Next = Target;
-        const double BehaviorBoundary = (!Behaviors.IsEmpty() || !ForageSources.IsEmpty())
-            ? FMath::FloorToDouble(WorldSeconds) + 1. : TNumericLimits<double>::Max();
-        Next = FMath::Min(Next, BehaviorBoundary);
+		const double BehaviorBoundary = (!Behaviors.IsEmpty() || !ForageSources.IsEmpty())
+			? FMath::FloorToDouble(WorldSeconds) + 1. : TNumericLimits<double>::Max();
+		Next = FMath::Min(Next, BehaviorBoundary);
 		TMap<FGuid, double> BirthTimes;
 		for (FGuid Id : PopulationIds)
 		{
@@ -146,10 +146,10 @@ bool FCCLEcologySimulation::AdvanceCandidate(double Target, FString& Error, int3
 			}
 		}
 
-        if (Next == BehaviorBoundary && !AdvanceBehavior(Next, Error, Space, Surface))
-        {
-            return false;
-        }
+		if (Next == BehaviorBoundary && !AdvanceBehavior(Next, Error, Space, Surface))
+		{
+			return false;
+		}
 
 		// Shared habitat capacity is awarded in stable population-ID order after all deaths.
 		for (FGuid Id : PopulationIds)

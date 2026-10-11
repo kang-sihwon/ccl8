@@ -66,7 +66,9 @@ public:
 class SCCLItemSlot : public SCompoundWidget
 {
 public:
-	SLATE_BEGIN_ARGS(SCCLItemSlot) : _Index(0), _Equipment(0) {}
+	SLATE_BEGIN_ARGS(SCCLItemSlot) : _Index(0), _Equipment(0)
+	{
+	}
 	SLATE_ARGUMENT(TWeakObjectPtr<ACCLPlayerController>, Controller)
 	SLATE_ARGUMENT(int32, Index)
 	SLATE_ARGUMENT(uint8, Equipment)
@@ -151,7 +153,11 @@ public:
 		bDropTarget = Op && Op->Owner == PC;
 	}
 
-	virtual void OnDragLeave(const FDragDropEvent& Event) override { bDropTarget = 0; }
+	virtual void OnDragLeave(const FDragDropEvent& Event) override
+	{
+		bDropTarget = 0;
+	}
+
 	virtual FReply OnDrop(const FGeometry& Geometry, const FDragDropEvent& Event) override
 	{
 		bDropTarget = 0;

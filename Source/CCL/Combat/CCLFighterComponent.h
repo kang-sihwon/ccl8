@@ -3,38 +3,56 @@
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
 #include "AbilitySystemComponent.h"
+#include "Items/CCLEquipmentPresenter.h"
 #include "CCLFighterComponent.generated.h"
 
 class UCCLAbilitySystemComponent;
 class UCCLItemDefinition;
 class UCCLAttachmentProfile;
 class UCCLCombatDefinition;
+class UAnimInstance;
 class UAnimMontage;
 class UMeshComponent;
 
 UENUM()
-enum class ECCLCombatAction : uint8 { None, Attack, Dodge, Guard, Parry };
+enum class ECCLCombatAction : uint8
+{
+	None,
+	Attack,
+	Dodge,
+	Guard,
+	Parry
+};
 
 UCLASS(ClassGroup = Combat, meta = (BlueprintSpawnableComponent))
-class CCL_API UCCLFighterComponent : public UActorComponent
+class CCL_API UCCLFighterComponent : public UActorComponent, public ICCLEquipmentPresenter
 {
 	GENERATED_BODY()
 
+	// 부모 인터페이스 함수
 public:
 	UCCLFighterComponent();
+
 	virtual void BeginPlay() override;
 	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
+	virtual void PresentEquipment(UCCLItemDefinition* LeftHand, UCCLItemDefinition* RightHand) override;
+	virtual void SelectActiveItem(UCCLItemDefinition* InItem) override;
 
+	// 내 클래스 함수
 public:
 	void Initialize(UCCLAbilitySystemComponent* InASC);
 	void EndLife();
+
 	UFUNCTION()
 	void RefreshEquipmentVisuals();
+
 	void SetAction(ECCLCombatAction NewAction);
 	void LockAttackDirection();
 	void NotifyHit(FGameplayTag Outcome);
+	UCCLItemDefinition* LoadDefaultItem() const;
+
 	UCCLAbilitySystemComponent* GetASC() const { return ASC; }
 	const UCCLCombatDefinition* GetAttack() const;
 	ECCLCombatAction GetAction() const { return Action; }
@@ -50,12 +68,18 @@ private:
 	UFUNCTION(NetMulticast, Unreliable)
 	void MulticastFeedback(FGameplayTag Outcome);
 
+	// 프로퍼티
 public:
 	UPROPERTY(EditAnywhere, Category = "Presentation")
 	TSoftObjectPtr<UCCLAttachmentProfile> AttachmentProfile;
 
+	// The body's own weapon when no equipped item provides one, such as bare hands.
+	UPROPERTY(EditAnywhere, Category = "Definition")
+	TSoftObjectPtr<UCCLItemDefinition> DefaultItem;
+
 	UPROPERTY(EditAnywhere, Replicated, Category = "Definition")
 	TObjectPtr<UCCLItemDefinition> Item;
+
 	UPROPERTY(ReplicatedUsing = RefreshEquipmentVisuals)
 	TObjectPtr<UCCLItemDefinition> LeftHandItem;
 
@@ -123,17 +147,19 @@ public:
 	float ParryDuration = 0.65f;
 
 	UPROPERTY(EditAnywhere, Category = "Presentation")
-	TObjectPtr<UAnimMontage> DodgeMontage;
+	TSoftClassPtr<UAnimInstance> CombatAnimClass;
 
 	UPROPERTY(EditAnywhere, Category = "Presentation")
-	TObjectPtr<UAnimMontage> DefenseMontage;
+	TSoftObjectPtr<UAnimMontage> DodgeMontage;
+
+	UPROPERTY(EditAnywhere, Category = "Presentation")
+	TSoftObjectPtr<UAnimMontage> DefenseMontage;
 
 private:
 	UPROPERTY(Transient)
 	TObjectPtr<UCCLAbilitySystemComponent> ASC;
 
 	UPROPERTY(Transient)
-
 	TArray<TObjectPtr<UMeshComponent>> EquipmentVisuals;
 
 	UPROPERTY(ReplicatedUsing = OnRep_Action)

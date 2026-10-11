@@ -1,9 +1,7 @@
 #include "CCLWorldSimulationSubsystem.h"
 
 #include "Agents/CCLAgentWorldSubsystem.h"
-#include "Items/CCLInventoryPersistenceSubsystem.h"
-#include "Session/CCLPlayerPersistenceSubsystem.h"
-#include "Items/CCLLoadoutComponent.h"
+#include "CCLWorldParticipant.h"
 #include "CCLWorldAdvance.h"
 #include "CCLThermalExposure.h"
 #include "CCLEcologyRepresentationSubsystem.h"
@@ -34,9 +32,7 @@ void UCCLWorldSimulationSubsystem::Initialize(FSubsystemCollectionBase& Collecti
 {
 	Super::Initialize(Collection);
 	Collection.InitializeDependency<UCCLAgentWorldSubsystem>();
-	Collection.InitializeDependency<UCCLInventoryPersistenceSubsystem>();
-    Collection.InitializeDependency<UCCLPlayerPersistenceSubsystem>();
-    Collection.InitializeDependency<UCCLThermalExposureSubsystem>();
+	Collection.InitializeDependency<UCCLThermalExposureSubsystem>();
 }
 
 void UCCLWorldSimulationSubsystem::Tick(float DeltaTime)
@@ -85,10 +81,6 @@ bool UCCLWorldSimulationSubsystem::Start(FCCLLifeSimulation& Life, ECCLWorldDoma
 		return false;
 	}
 
-	auto* Inventories = GetWorld()->GetSubsystem<UCCLInventoryPersistenceSubsystem>();
-    auto* Players = GetWorld()->GetSubsystem<UCCLPlayerPersistenceSubsystem>();
-    if (!Players->CanInitialize()) { Error = TEXT("Players are already bound to this world."); return false; }
-    TArray<FCCLPlayerSnapshot> InitialProfiles;
 	FCCLWorldIdentity CandidateIdentity;
 	CandidateIdentity.Domain = Domain;
 	CandidateIdentity.WorldId = FGuid::NewGuid();
@@ -109,7 +101,9 @@ bool UCCLWorldSimulationSubsystem::Start(FCCLLifeSimulation& Life, ECCLWorldDoma
 	FCCLCelestialSystem CandidateCelestial;
 	FCCLSurfaceScene CandidateSurfaces;
 	FCCLCelestialObservation Observation;
-	if (Saved.IsEmpty())
+	FCCLWorldSnapshot Snapshot;
+	const bool bSaved = !Saved.IsEmpty();
+	if (!bSaved)
 	{
 		if (!CandidateClock.Reset(Life.GetTime(), 60, Error)
 			|| !CandidateSurfaceSimulation.Initialize(CandidateIdentity.WorldId, CandidateClock.GetGameSeconds(), Life.GetTime(), 0, Error)
@@ -121,13 +115,10 @@ bool UCCLWorldSimulationSubsystem::Start(FCCLLifeSimulation& Life, ECCLWorldDoma
 	}
 	else
 	{
-		FCCLWorldSnapshot Snapshot;
 		if (!FCCLWorldSnapshotCodec::Decode(Saved, Snapshot, Error))
 		{
 			return false;
 		}
-
-        InitialProfiles = Snapshot.Players;
 
 		if (Snapshot.bEnvironmentMigrated)
 		{
@@ -135,37 +126,59 @@ bool UCCLWorldSimulationSubsystem::Start(FCCLLifeSimulation& Life, ECCLWorldDoma
 		}
 
 		if (!CheckMapInterest(GetWorld(), Snapshot.Environment, Error)
-		|| !FCCLEnvironmentInputsCodec::CheckDefinition(Snapshot.Environment, CandidateInputs.Celestial.DefinitionId, CandidateInputs.Celestial.Version, Error)
-			|| !FCCLEnvironmentInputsCodec::Prepare(Snapshot.Environment, Snapshot.Clock.WorldSeconds, CandidateCelestial, CandidateSurfaces, Observation, Error)
-            || !Inventories->PrepareRestore(Snapshot.Inventories, Snapshot.Identity.WorldId, Snapshot.Clock.WorldSeconds, Error))
-        {
-            return false;
-        }
-        if (!FCCLWorldSnapshotCodec::Restore(Snapshot, Domain, CandidateClock, Life, Error, &CandidateSurfaceSimulation, &CandidateEcologySimulation))
-        {
-            Inventories->CancelRestore();
-            return false;
-        }
-
-		CandidateIdentity = Snapshot.Identity;
-		CandidateInputs = MoveTemp(Snapshot.Environment);
+			|| !FCCLEnvironmentInputsCodec::CheckDefinition(Snapshot.Environment, CandidateInputs.Celestial.DefinitionId, CandidateInputs.Celestial.Version, Error)
+			|| !FCCLEnvironmentInputsCodec::Prepare(Snapshot.Environment, Snapshot.Clock.WorldSeconds, CandidateCelestial, CandidateSurfaces, Observation, Error))
+		{
+			return false;
+		}
 	}
 
-	Clock = MoveTemp(CandidateClock);
-	SurfaceSimulation = MoveTemp(CandidateSurfaceSimulation);
-	EcologySimulation = MoveTemp(CandidateEcologySimulation);
-	EnvironmentInputs = MoveTemp(CandidateInputs);
-	CelestialSystem = MoveTemp(CandidateCelestial);
-	CandidateSurfaces.CopyGeometryProviders(SurfaceScene);
-	SurfaceScene = MoveTemp(CandidateSurfaces);
-	Identity = CandidateIdentity;
-	Epoch = FGuid::NewGuid();
-	bRunning = 1;
-    Players->InitializeRecords(InitialProfiles);
-	if (!Saved.IsEmpty())
+	// A new world gives every participant an empty section; a saved world gives each its stored section.
+	int32 Prepared = 0;
+	const FGuid ParticipantWorld = bSaved ? Snapshot.Identity.WorldId : CandidateIdentity.WorldId;
+	const double ParticipantSeconds = bSaved ? Snapshot.Clock.WorldSeconds : Life.GetTime();
+	if (!PrepareParticipants(bSaved ? &Snapshot : nullptr, ParticipantWorld, ParticipantSeconds, true, Prepared, Error))
 	{
-		Inventories->CommitRestore();
+		return false;
 	}
+
+	auto CommitCore = [&]()
+	{
+		if (bSaved)
+		{
+			if (!FCCLWorldSnapshotCodec::Restore(Snapshot, Domain, CandidateClock, Life, Error, &CandidateSurfaceSimulation, &CandidateEcologySimulation))
+			{
+				return false;
+			}
+
+			CandidateIdentity = Snapshot.Identity;
+			CandidateInputs = MoveTemp(Snapshot.Environment);
+		}
+
+		Clock = MoveTemp(CandidateClock);
+		SurfaceSimulation = MoveTemp(CandidateSurfaceSimulation);
+		EcologySimulation = MoveTemp(CandidateEcologySimulation);
+		EnvironmentInputs = MoveTemp(CandidateInputs);
+		CelestialSystem = MoveTemp(CandidateCelestial);
+		CandidateSurfaces.CopyGeometryProviders(SurfaceScene);
+		SurfaceScene = MoveTemp(CandidateSurfaces);
+		Identity = CandidateIdentity;
+		Epoch = FGuid::NewGuid();
+		bRunning = 1;
+		return true;
+	};
+
+	if (!CommitParticipants(0, Prepared, CommitCore))
+	{
+		CancelParticipants(Prepared);
+		return false;
+	}
+
+	for (int32 Index = 0; Index < Prepared; ++Index)
+	{
+		Participants[Index]->PublishWorldRestore();
+	}
+
 	return true;
 }
 
@@ -183,7 +196,10 @@ bool UCCLWorldSimulationSubsystem::AcquireManualAdvance(UObject* Owner, FString&
 
 void UCCLWorldSimulationSubsystem::ReleaseManualAdvance(const UObject* Owner)
 {
-	if (ManualAdvanceOwner.Get() == Owner) { ManualAdvanceOwner.Reset(); }
+	if (ManualAdvanceOwner.Get() == Owner)
+	{
+		ManualAdvanceOwner.Reset();
+	}
 }
 
 bool UCCLWorldSimulationSubsystem::QueueGameTime(double Seconds, FString& Error)
@@ -206,42 +222,72 @@ bool UCCLWorldSimulationSubsystem::AdvancePending(double MaxGameSeconds, double 
 		return false;
 	}
 
-    if (!Agents->FlushExternalDeaths(Error)) { return false; }
-    auto* Inventories = GetWorld()->GetSubsystem<UCCLInventoryPersistenceSubsystem>();
-    auto* Players = GetWorld()->GetSubsystem<UCCLPlayerPersistenceSubsystem>();
-    const bool bPlayerFood = Players && Players->HasEnvironmentBindings();
-    const bool bFoodEnvironment = Inventories && Inventories->HasEnvironmentBindings();
-    TFunction<bool(const FCCLWorldStep&, const FCCLSurfaceSimulation*, FString&)> Prepare;
-    if (bFoodEnvironment || bPlayerFood)
-    {
-        MaxWorldSeconds = FMath::Min(MaxWorldSeconds, FMath::FloorToDouble(Clock.GetWorldSeconds()) + 1. - Clock.GetWorldSeconds());
-    }
-    auto* Thermal = GetWorld()->GetSubsystem<UCCLThermalExposureSubsystem>();
-    MaxGameSeconds = FMath::Min(MaxGameSeconds, .25);
-    Prepare = [this, Inventories, Players, Thermal, bFoodEnvironment, bPlayerFood](const FCCLWorldStep& Step,
-        const FCCLSurfaceSimulation* Surface, FString& Reason)
-    {
-        return Thermal && Thermal->Prepare(Step, SurfaceSimulation, Reason)
-            && (!bFoodEnvironment || (Surface && Inventories->PrepareAdvance(Step, *Surface, Reason)))
-            && (!bPlayerFood || (Surface && Players->PrepareAdvance(Step, *Surface, Reason)));
-    };
-    const FCCLEcologyWorldSpace Space(GetWorld());
+	if (!Agents->FlushExternalDeaths(Error))
+	{
+		return false;
+	}
+
+	TArray<ICCLWorldParticipant*> Advancing;
+	for (auto* Participant : Participants)
+	{
+		if (Participant->NeedsWorldAdvance())
+		{
+			Advancing.Add(Participant);
+		}
+	}
+
+	// Environment-dependent participant state advances one world second at a time.
+	if (!Advancing.IsEmpty())
+	{
+		MaxWorldSeconds = FMath::Min(MaxWorldSeconds, FMath::FloorToDouble(Clock.GetWorldSeconds()) + 1. - Clock.GetWorldSeconds());
+	}
+
+	auto* Thermal = GetWorld()->GetSubsystem<UCCLThermalExposureSubsystem>();
+	MaxGameSeconds = FMath::Min(MaxGameSeconds, .25);
+	TFunction<bool(const FCCLWorldStep&, const FCCLSurfaceSimulation*, FString&)> Prepare =
+		[this, &Advancing, Thermal](const FCCLWorldStep& Step, const FCCLSurfaceSimulation* Surface, FString& Reason)
+	{
+		if (!Thermal || !Thermal->Prepare(Step, SurfaceSimulation, Reason))
+		{
+			return false;
+		}
+
+		for (auto* Participant : Advancing)
+		{
+			if (!Surface || !Participant->PrepareWorldAdvance(Step, *Surface, Reason))
+			{
+				return false;
+			}
+		}
+
+		return true;
+	};
+	const FCCLEcologyWorldSpace Space(GetWorld());
 	if (!CCLWorldAdvance::Advance(Clock, Agents->GetSimulation(), MaxGameSeconds, MaxWorldSeconds, Error, MaxLifeSlices, &SurfaceSimulation, &CelestialSystem, &EnvironmentInputs.Observer, &SurfaceScene, &EnvironmentInputs.Openings, &EcologySimulation, 256, &Space, Prepare))
 	{
-        Thermal->Cancel();
-        if (bPlayerFood) { Players->CancelAdvance(); }
-		if (bFoodEnvironment)
-        {
-            Inventories->CancelRestore();
-        }
-        ReportFailure(Error);
+		Thermal->Cancel();
+		for (auto* Participant : Advancing)
+		{
+			Participant->CancelWorldAdvance();
+		}
+
+		ReportFailure(Error);
 		Publish();
 		return false;
 	}
-    if (bFoodEnvironment) { Inventories->CommitRestore(false); }
-    if (bPlayerFood) { Players->CommitAdvance(); }
-    if (bFoodEnvironment) { Inventories->PublishRestore(); }
-    Thermal->Commit();
+
+	// Every participant commits before any of them notifies listeners.
+	for (auto* Participant : Advancing)
+	{
+		Participant->CommitWorldAdvance();
+	}
+
+	for (auto* Participant : Advancing)
+	{
+		Participant->PublishWorldAdvance();
+	}
+
+	Thermal->Commit();
 
 	if (UnqueuedGameSeconds == 0)
 	{
@@ -274,7 +320,7 @@ bool UCCLWorldSimulationSubsystem::ChangeTimeScale(double Scale, FString& Error)
 	return true;
 }
 
-bool UCCLWorldSimulationSubsystem::Save(const FCCLLifeSimulation& Life, TArray<uint8>& Bytes, FString& Error, const UCCLInventoryComponent* SessionInventory)
+bool UCCLWorldSimulationSubsystem::Save(const FCCLLifeSimulation& Life, TArray<uint8>& Bytes, FString& Error, const UObject* SessionContainer)
 {
 	if (!CheckAuthority(Error) || UnqueuedGameSeconds != 0)
 	{
@@ -282,10 +328,10 @@ bool UCCLWorldSimulationSubsystem::Save(const FCCLLifeSimulation& Life, TArray<u
 		return false;
 	}
 
-    if (auto* Agents = GetWorld()->GetSubsystem<UCCLAgentWorldSubsystem>(); Agents && !Agents->FlushExternalDeaths(Error))
-    {
-        return false;
-    }
+	if (auto* Agents = GetWorld()->GetSubsystem<UCCLAgentWorldSubsystem>(); Agents && !Agents->FlushExternalDeaths(Error))
+	{
+		return false;
+	}
 	if (auto* Representations = GetWorld()->GetSubsystem<UCCLEcologyRepresentationSubsystem>(); Representations && !Representations->Flush(Error))
 	{
 		return false;
@@ -300,11 +346,8 @@ bool UCCLWorldSimulationSubsystem::Save(const FCCLLifeSimulation& Life, TArray<u
 	FCCLWorldIdentity NextIdentity = Identity;
 	++NextIdentity.Generation;
 	FCCLWorldSnapshot Snapshot;
-    TArray<UCCLInventoryComponent*> PlayerInventories;
 	if (!FCCLWorldSnapshotCodec::Capture(NextIdentity, Clock, Life, Snapshot, Error, &EnvironmentInputs, &SurfaceSimulation, &EcologySimulation) ||
-        !GetWorld()->GetSubsystem<UCCLPlayerPersistenceSubsystem>()->Capture(Identity.WorldId, Clock.GetWorldSeconds(), Snapshot.Players, PlayerInventories, Error, SessionInventory) ||
-		!GetWorld()->GetSubsystem<UCCLInventoryPersistenceSubsystem>()->Capture(Identity.WorldId, Clock.GetWorldSeconds(), Snapshot.Inventories, Error, SessionInventory, PlayerInventories) ||
-		!FCCLWorldSnapshotCodec::Encode(Snapshot, Bytes, Error))
+		!CaptureParticipants(Snapshot, SessionContainer, Error) || !FCCLWorldSnapshotCodec::Encode(Snapshot, Bytes, Error))
 	{
 		return false;
 	}
@@ -313,8 +356,7 @@ bool UCCLWorldSimulationSubsystem::Save(const FCCLLifeSimulation& Life, TArray<u
 	return true;
 }
 
-bool UCCLWorldSimulationSubsystem::Restore(FCCLLifeSimulation& Life, const TArray<uint8>& Bytes, FString& Error,
-    const FCCLLoadoutRestoreRequest* SessionRequest, TFunction<void()> FinalizeSession)
+bool UCCLWorldSimulationSubsystem::Restore(FCCLLifeSimulation& Life, const TArray<uint8>& Bytes, FString& Error)
 {
 	if (!CheckAuthority(Error))
 	{
@@ -335,7 +377,6 @@ bool UCCLWorldSimulationSubsystem::Restore(FCCLLifeSimulation& Life, const TArra
 		return false;
 	}
 
-
 	if (Snapshot.bEnvironmentMigrated)
 	{
 		Snapshot.Environment = FCCLEnvironmentInputsCodec::MakeDefault(42);
@@ -345,69 +386,70 @@ bool UCCLWorldSimulationSubsystem::Restore(FCCLLifeSimulation& Life, const TArra
 		}
 	}
 
-    auto* Players = GetWorld()->GetSubsystem<UCCLPlayerPersistenceSubsystem>();
-    TArray<UCCLInventoryComponent*> PlayerInventories;
-    Players->GetParticipants(PlayerInventories);
-    if (FinalizeSession && !SessionRequest)
-    {
-        Error = TEXT("Session finalization requires a session restore participant.");
-        return false;
-    }
-    if (SessionRequest && (!IsValid(SessionRequest->Loadout) || !IsValid(SessionRequest->Loadout->GetOwner()) ||
-        SessionRequest->Loadout->GetWorld() != GetWorld()))
-    {
-        Error = TEXT("Session restore participant must belong to this world.");
-        return false;
-    }
-    if (SessionRequest)
-    {
-        PlayerInventories.Add(SessionRequest->Loadout->GetOwner()->FindComponentByClass<UCCLInventoryComponent>());
-    }
 	if (!CheckMapInterest(GetWorld(), Snapshot.Environment, Error)
 		|| !FCCLEnvironmentInputsCodec::CheckDefinition(Snapshot.Environment, EnvironmentInputs.Celestial.DefinitionId, EnvironmentInputs.Celestial.Version, Error)
-		|| !FCCLEnvironmentInputsCodec::Prepare(Snapshot.Environment, Snapshot.Clock.WorldSeconds, CandidateCelestial, CandidateSurfaces, Observation, Error)
-        || !GetWorld()->GetSubsystem<UCCLInventoryPersistenceSubsystem>()->PrepareRestore(
-            Snapshot.Inventories, Snapshot.Identity.WorldId, Snapshot.Clock.WorldSeconds, Error, PlayerInventories))
-    {
-        return false;
-    }
-    auto* Inventories = GetWorld()->GetSubsystem<UCCLInventoryPersistenceSubsystem>();
-    auto CommitWorld = [&]()
-    {
-        if (!FCCLWorldSnapshotCodec::Restore(Snapshot, Identity.Domain, Clock, Life, Error, &SurfaceSimulation, &EcologySimulation))
-        {
-            return false;
-        }
-
-	EnvironmentInputs = MoveTemp(Snapshot.Environment);
-	CelestialSystem = MoveTemp(CandidateCelestial);
-	CandidateSurfaces.CopyGeometryProviders(SurfaceScene);
-	SurfaceScene = MoveTemp(CandidateSurfaces);
-	Identity = Snapshot.Identity;
-	Epoch = FGuid::NewGuid();
-	if (auto* Representations = GetWorld()->GetSubsystem<UCCLEcologyRepresentationSubsystem>())
+		|| !FCCLEnvironmentInputsCodec::Prepare(Snapshot.Environment, Snapshot.Clock.WorldSeconds, CandidateCelestial, CandidateSurfaces, Observation, Error))
 	{
-		Representations->DiscardRepresentations();
+		return false;
 	}
-	UnqueuedGameSeconds = 0;
-	LastError.Reset();
-        Inventories->CommitRestore(false);
-        return true;
-    };
-    const bool bRestored = Players->Restore(Snapshot.Players, Snapshot.Identity.WorldId, Snapshot.Clock.WorldSeconds,
-        SessionRequest, CommitWorld, [&]
-        {
-            // The caller prevalidates this synchronous, non-failing private-state commit.
-            // All participants are still guarded; no inventory listener has run yet.
-            if (FinalizeSession)
-            {
-                FinalizeSession();
-            }
-            Inventories->PublishRestore();
-            Publish();
-        }, Error);
-    if (!bRestored) { Inventories->CancelRestore(); }
-    return bRestored;
+
+	int32 Prepared = 0;
+	if (!PrepareParticipants(&Snapshot, Snapshot.Identity.WorldId, Snapshot.Clock.WorldSeconds, false, Prepared, Error))
+	{
+		return false;
+	}
+
+	auto CommitCore = [&]()
+	{
+		if (!FCCLWorldSnapshotCodec::Restore(Snapshot, Identity.Domain, Clock, Life, Error, &SurfaceSimulation, &EcologySimulation))
+		{
+			return false;
+		}
+
+		EnvironmentInputs = MoveTemp(Snapshot.Environment);
+		CelestialSystem = MoveTemp(CandidateCelestial);
+		CandidateSurfaces.CopyGeometryProviders(SurfaceScene);
+		SurfaceScene = MoveTemp(CandidateSurfaces);
+		Identity = Snapshot.Identity;
+		Epoch = FGuid::NewGuid();
+		if (auto* Representations = GetWorld()->GetSubsystem<UCCLEcologyRepresentationSubsystem>())
+		{
+			Representations->DiscardRepresentations();
+		}
+
+		UnqueuedGameSeconds = 0;
+		LastError.Reset();
+		return true;
+	};
+
+	if (!CommitParticipants(0, Prepared, CommitCore))
+	{
+		CancelParticipants(Prepared);
+		return false;
+	}
+
+	for (int32 Index = 0; Index < Prepared; ++Index)
+	{
+		Participants[Index]->PublishWorldRestore();
+	}
+
+	Publish();
+	return true;
+}
+
+void UCCLWorldSimulationSubsystem::RegisterParticipant(ICCLWorldParticipant& Participant)
+{
+	check(!bRunning && !Participants.Contains(&Participant));
+	Participants.Add(&Participant);
+	Participants.Sort([](const ICCLWorldParticipant& A, const ICCLWorldParticipant& B)
+	{
+		return A.GetWorldOrder() < B.GetWorldOrder();
+	});
+}
+
+void UCCLWorldSimulationSubsystem::UnregisterParticipant(ICCLWorldParticipant& Participant)
+{
+	Participants.Remove(&Participant);
 }
 
 bool UCCLWorldSimulationSubsystem::ReplaceEnvironmentInputs(const FCCLEnvironmentInputs& Candidate, FString& Error)
@@ -455,13 +497,13 @@ bool UCCLWorldSimulationSubsystem::ObserveCelestials(FCCLCelestialObservation& O
 
 ECCLWorldDomain UCCLWorldSimulationSubsystem::DomainForWorld(const UWorld* World)
 {
-	const FString Name = UGameplayStatics::GetCurrentLevelName(World, true);
-	if (Name == TEXT("EnvironmentPlayground"))
-	{
-		return ECCLWorldDomain::Playground;
-	}
+	static_assert(static_cast<uint8>(ECCLWorldContentDomain::Campaign) == static_cast<uint8>(ECCLWorldDomain::Campaign));
+	static_assert(static_cast<uint8>(ECCLWorldContentDomain::Playground) == static_cast<uint8>(ECCLWorldDomain::Playground));
+	static_assert(static_cast<uint8>(ECCLWorldContentDomain::Scenario) == static_cast<uint8>(ECCLWorldDomain::Scenario));
 
-	return Name == TEXT("EnvironmentScenario") ? ECCLWorldDomain::Scenario : ECCLWorldDomain::Campaign;
+	// Maps declare their store in data. A map without environment config uses the campaign store.
+	const auto* Config = ACCLWorldEnvironmentConfig::Find(World);
+	return Config ? static_cast<ECCLWorldDomain>(Config->Domain) : ECCLWorldDomain::Campaign;
 }
 
 void UCCLWorldSimulationSubsystem::Publish()
@@ -591,6 +633,71 @@ bool UCCLWorldSimulationSubsystem::BuildEnvironmentView(FCCLEnvironmentView& Out
 	View.bValid = 1;
 	OutView = MoveTemp(View);
 	return true;
+}
+
+bool UCCLWorldSimulationSubsystem::CaptureParticipants(FCCLWorldSnapshot& Snapshot, const UObject* SessionContainer, FString& Error)
+{
+	FCCLWorldCaptureContext Context;
+	Context.WorldId = Identity.WorldId;
+	Context.WorldSeconds = Clock.GetWorldSeconds();
+	Context.SessionContainer = SessionContainer;
+	for (auto* Participant : Participants)
+	{
+		TArray<uint8> Section;
+		if (!Participant->CaptureWorldSection(Context, Section, Error))
+		{
+			return false;
+		}
+
+		Snapshot.SetSection(Participant->GetWorldSection(), MoveTemp(Section));
+	}
+
+	return true;
+}
+
+bool UCCLWorldSimulationSubsystem::PrepareParticipants(const FCCLWorldSnapshot* Snapshot, FGuid WorldId, double WorldSeconds,
+	bool bStarting, int32& OutPrepared, FString& Error)
+{
+	FCCLWorldRestoreContext Context;
+	Context.WorldId = WorldId;
+	Context.WorldSeconds = WorldSeconds;
+	Context.bStarting = bStarting;
+	OutPrepared = 0;
+	for (auto* Participant : Participants)
+	{
+		const TArray<uint8>* Section = Snapshot ? Snapshot->FindSection(Participant->GetWorldSection()) : nullptr;
+		if (!Participant->PrepareWorldRestore(Context, Section, Error))
+		{
+			CancelParticipants(OutPrepared);
+			return false;
+		}
+
+		++OutPrepared;
+	}
+
+	return true;
+}
+
+bool UCCLWorldSimulationSubsystem::CommitParticipants(int32 Index, int32 Prepared, TFunctionRef<bool()> CommitCore)
+{
+	// The lowest participant wraps every later commit and the core world in its own commit.
+	if (Index >= Prepared)
+	{
+		return CommitCore();
+	}
+
+	return Participants[Index]->CommitWorldRestore([this, Index, Prepared, CommitCore]()
+	{
+		return CommitParticipants(Index + 1, Prepared, CommitCore);
+	});
+}
+
+void UCCLWorldSimulationSubsystem::CancelParticipants(int32 Prepared)
+{
+	for (int32 Index = Prepared - 1; Index >= 0; --Index)
+	{
+		Participants[Index]->CancelWorldRestore();
+	}
 }
 
 bool UCCLWorldSimulationSubsystem::CheckAuthority(FString& Error) const
@@ -726,31 +833,38 @@ bool UCCLWorldSimulationSubsystem::ApplySnowContact(FGuid RegionId, FGuid Source
 
 bool UCCLWorldSimulationSubsystem::AddEcologyGroup(const FCCLEcologyGroup& Group, FString& Error)
 {
-    return CheckAuthority(Error) && EcologySimulation.AddGroup(Group, Error);
+	return CheckAuthority(Error) && EcologySimulation.AddGroup(Group, Error);
 }
 
 bool UCCLWorldSimulationSubsystem::AddEcologyForage(FCCLEcologyForage Forage, FString& Error)
 {
-    return CheckAuthority(Error) && EcologySimulation.AddForage(Forage, Error);
+	return CheckAuthority(Error) && EcologySimulation.AddForage(Forage, Error);
 }
 
 bool UCCLWorldSimulationSubsystem::AddEcologyBehavior(FCCLEcologyBehavior Behavior, FString& Error)
 {
-    return CheckAuthority(Error) && EcologySimulation.AddBehavior(Behavior, Error);
+	return CheckAuthority(Error) && EcologySimulation.AddBehavior(Behavior, Error);
 }
 
 
 bool UCCLWorldSimulationSubsystem::SeedEcology(const FCCLEcologySimulation& Candidate,FString& Error)
 {
-    if (!CheckAuthority(Error)||!EcologySimulation.GetSpecies().IsEmpty()||!EcologySimulation.GetIndividuals().IsEmpty()
-        ||!EcologySimulation.GetHabitats().IsEmpty()||!EcologySimulation.GetPopulations().IsEmpty()
-        ||!EcologySimulation.GetGroups().IsEmpty()||!EcologySimulation.GetForage().IsEmpty()
-        ||!EcologySimulation.GetBehaviors().IsEmpty()||EcologySimulation.ReceiptCount()!=0
-        ||Candidate.GetWorldId()!=Identity.WorldId||Candidate.GetWorldSeconds()!=Clock.GetWorldSeconds()||!Candidate.Validate(Error))
-    {
-        Error=TEXT("Ecology seeding requires an empty server model and matching world/time."); return false;
-    }
-    TArray<uint8> Bytes; FCCLEcologySimulation Prepared;
-    if (!Candidate.Capture(Bytes,Error)||!Prepared.Restore(Bytes,Error)) { return false; }
-    EcologySimulation=MoveTemp(Prepared); return true;
+	if (!CheckAuthority(Error)||!EcologySimulation.GetSpecies().IsEmpty()||!EcologySimulation.GetIndividuals().IsEmpty()
+		||!EcologySimulation.GetHabitats().IsEmpty()||!EcologySimulation.GetPopulations().IsEmpty()
+		||!EcologySimulation.GetGroups().IsEmpty()||!EcologySimulation.GetForage().IsEmpty()
+		||!EcologySimulation.GetBehaviors().IsEmpty()||EcologySimulation.ReceiptCount()!=0
+		||Candidate.GetWorldId()!=Identity.WorldId||Candidate.GetWorldSeconds()!=Clock.GetWorldSeconds()||!Candidate.Validate(Error))
+	{
+		Error=TEXT("Ecology seeding requires an empty server model and matching world/time.");
+		return false;
+	}
+	TArray<uint8> Bytes;
+	FCCLEcologySimulation Prepared;
+	if (!Candidate.Capture(Bytes,Error)||!Prepared.Restore(Bytes,Error))
+	{
+		return false;
+	}
+
+	EcologySimulation=MoveTemp(Prepared);
+	return true;
 }

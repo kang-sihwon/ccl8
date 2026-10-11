@@ -13,79 +13,79 @@ class UStaticMesh;
 USTRUCT()
 struct FCCLPickupFoodView
 {
-    GENERATED_BODY()
+	GENERATED_BODY()
 
-    UPROPERTY()
-    FGuid Epoch;
+	UPROPERTY()
+	FGuid Epoch;
 
-    UPROPERTY()
-    double WorldSeconds = 0.;
+	UPROPERTY()
+	double WorldSeconds = 0.;
 
-    UPROPERTY()
-    double AgeSeconds = 0.;
+	UPROPERTY()
+	double AgeSeconds = 0.;
 
-    UPROPERTY()
-    double Freshness = 1.;
+	UPROPERTY()
+	double Freshness = 1.;
 
-    UPROPERTY()
-    double Mold = 0.;
+	UPROPERTY()
+	double Mold = 0.;
 
-    UPROPERTY()
-    bool bReady = false;
+	UPROPERTY()
+	uint8 bReady = 0;
 };
 
 UCLASS()
 class CCL_API ACCLWorldPickup : public AActor
 {
-    GENERATED_BODY()
+	GENERATED_BODY()
 
 public:
-    ACCLWorldPickup();
-    virtual void BeginPlay() override;
-    virtual void Tick(float DeltaSeconds) override;
-    virtual void OnConstruction(const FTransform& Transform) override;
-    virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
+	ACCLWorldPickup();
+	virtual void BeginPlay() override;
+	virtual void Tick(float DeltaSeconds) override;
+	virtual void OnConstruction(const FTransform& Transform) override;
+	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
 
 public:
-    bool TryCollect(UCCLInventoryComponent* Inventory, AActor* Collector);
-    bool InitializeFood(UCCLItemDefinition* Item, const FCCLFoodState& Food, FGuid ItemId, FString& Error);
-    static ACCLWorldPickup* DropFood(UCCLInventoryComponent* Source, FGuid ItemId, int32 Count,
-                                     const FTransform& Transform, FString& Error);
-    const FCCLPickupFoodView& GetFoodView() const { return FoodView; }
-    const UCCLInventoryComponent* GetFoodInventory() const { return FoodInventory; }
+	bool TryCollect(UCCLInventoryComponent* Inventory, AActor* Collector);
+	bool InitializeFood(UCCLItemDefinition* Item, const FCCLFoodState& Food, FGuid ItemId, FString& Error);
+	static ACCLWorldPickup* DropFood(UCCLInventoryComponent* Source, FGuid ItemId, int32 Count,
+									 const FTransform& Transform, FString& Error);
+	const FCCLPickupFoodView& GetFoodView() const { return FoodView; }
+	const UCCLInventoryComponent* GetFoodInventory() const { return FoodInventory; }
 
 private:
-    friend class UCCLInventoryPersistenceSubsystem;
+	friend class UCCLInventoryPersistenceSubsystem;
 
-    UFUNCTION()
-    void RefreshVisual();
+	UFUNCTION()
+	void RefreshVisual();
 
-    bool EnsureFood();
-    void UpdateFoodView();
+	bool EnsureFood();
+	void UpdateFoodView();
 
 public:
-    UPROPERTY(EditInstanceOnly, Replicated, Category = "Pickup")
-    FGuid PersistentId;
+	UPROPERTY(EditInstanceOnly, Replicated, Category = "Pickup")
+	FGuid PersistentId;
 
-    UPROPERTY(EditAnywhere, ReplicatedUsing = RefreshVisual, Category = "Pickup")
-    TObjectPtr<UCCLItemDefinition> Definition;
+	UPROPERTY(EditAnywhere, ReplicatedUsing = RefreshVisual, Category = "Pickup")
+	TObjectPtr<UCCLItemDefinition> Definition;
 
-    UPROPERTY(EditAnywhere, Replicated, Category = "Pickup", meta = (ClampMin = "1"))
-    int32 Quantity = 1;
+	UPROPERTY(EditAnywhere, Replicated, Category = "Pickup", meta = (ClampMin = "1"))
+	int32 Quantity = 1;
 
 private:
-    UPROPERTY(Transient)
-    TObjectPtr<UStaticMesh> FallbackMesh;
+	UPROPERTY(Transient)
+	TObjectPtr<UStaticMesh> FallbackMesh;
 
-    UPROPERTY(VisibleAnywhere)
-    TObjectPtr<UStaticMeshComponent> Mesh;
+	UPROPERTY(VisibleAnywhere)
+	TObjectPtr<UStaticMeshComponent> Mesh;
 
-    UPROPERTY(VisibleAnywhere)
-    TObjectPtr<UCCLInventoryComponent> FoodInventory;
+	UPROPERTY(VisibleAnywhere)
+	TObjectPtr<UCCLInventoryComponent> FoodInventory;
 
-    UPROPERTY(Replicated)
-    FCCLPickupFoodView FoodView;
+	UPROPERTY(Replicated)
+	FCCLPickupFoodView FoodView;
 
-    uint8 bFoodInitialized = 0;
-    uint8 bCollected = 0;
+	uint8 bFoodInitialized = 0;
+	uint8 bCollected = 0;
 };

@@ -7,6 +7,10 @@
 #include "Environment/CCLWorldGenerationStore.h"
 #include "CCLAgentWorldSubsystem.generated.h"
 
+class UCCLAgentWorldSubsystem;
+
+DECLARE_MULTICAST_DELEGATE_OneParam(FCCLAgentPopulationEvent, UCCLAgentWorldSubsystem&);
+
 UCLASS()
 class CCL_API UCCLAgentSessionStore : public UGameInstanceSubsystem
 {
@@ -38,25 +42,36 @@ public:
 	virtual void Deinitialize() override;
 
 public:
-	bool Save(TArray<uint8>& Bytes, const class UCCLInventoryComponent* SessionInventory = nullptr);
+	// SessionContainer is saved by its personal session record and is excluded from the world capture.
+	bool Save(TArray<uint8>& Bytes, FString& Error, const UObject* SessionContainer = nullptr);
+
+	// Convenience form for callers that only branch on success. The rejection reason is logged.
+	bool Save(TArray<uint8>& Bytes);
 	bool SaveSessionForTravel(FString& Error);
 	void CancelPreparedTravel() { bTravelPrepared = 0; }
-    // FinalizeSession requires SessionRequest and must synchronously succeed without reentry or destruction.
-	bool Restore(const TArray<uint8>& Bytes, FString& Error,
-        const struct FCCLLoadoutRestoreRequest* SessionRequest = nullptr, TFunction<void()> FinalizeSession = {});
+	// Replaces the running world with a snapshot. Participants such as a staged host session join the same commit.
+	bool Restore(const TArray<uint8>& Bytes, FString& Error);
 	FCCLLifeSimulation& GetSimulation() { return Simulation; }
 	const FCCLLifeSimulation& GetSimulation() const { return Simulation; }
 	bool IsRunning() const { return bRunning != 0; }
-    bool RequestExternalDeath(FGuid AgentId, FString& Error);
-    bool FlushExternalDeaths(FString& Error);
+	ECCLWorldDomain GetDomain() const { return Domain; }
+	bool RequestExternalDeath(FGuid AgentId, FString& Error);
+	bool FlushExternalDeaths(FString& Error);
 
 private:
-	void SpawnVillage();
 	void OnWorldBeginTearDown(UWorld* World);
+
+public:
+	// Broadcast before a restore replaces the population. Representations are removed without writing back.
+	FCCLAgentPopulationEvent OnPopulationRetired;
+
+	// Broadcast after a world starts or restores. Content layers create their representations here.
+	FCCLAgentPopulationEvent OnPopulationReady;
 
 private:
 	FCCLLifeSimulation Simulation;
-    TMap<FGuid, FGuid> PendingExternalDeaths;
+	ECCLWorldDomain Domain = ECCLWorldDomain::Campaign;
+	TMap<FGuid, FGuid> PendingExternalDeaths;
 	uint64 Session = 0;
 	uint8 bRunning = 0;
 	uint8 bTravelPrepared = 0;

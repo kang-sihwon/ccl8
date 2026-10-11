@@ -20,16 +20,19 @@ bool UCCLIntegrationSmokeSubsystem::ShouldCreateSubsystem(UObject* Outer) const
 	return World && World->IsGameWorld() && FParse::Param(FCommandLine::Get(), TEXT("CCLIntegrationSmoke"));
 #endif
 }
+
 TStatId UCCLIntegrationSmokeSubsystem::GetStatId() const
 {
 	RETURN_QUICK_DECLARE_CYCLE_STAT(UCCLIntegrationSmokeSubsystem, STATGROUP_Tickables);
 }
+
 bool UCCLIntegrationSmokeSubsystem::Check(bool Condition, const TCHAR* Message)
 {
 	bPassed = bPassed && Condition;
 	UE_LOG(LogTemp, Display, TEXT("CCL_INTEGRATION %s %s"), Condition ? TEXT("CHECK") : TEXT("FAIL"), Message);
 	return Condition;
 }
+
 void UCCLIntegrationSmokeSubsystem::Capture(const FString& Name)
 {
 	int32 Width = 0;
@@ -39,6 +42,7 @@ void UCCLIntegrationSmokeSubsystem::Capture(const FString& Name)
 	IFileManager::Get().MakeDirectory(*Directory, true);
 	FScreenshotRequest::RequestScreenshot(Directory / FString::Printf(TEXT("%dx%d-%s.png"), Width, Height, *Name), true, false);
 }
+
 void UCCLIntegrationSmokeSubsystem::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);

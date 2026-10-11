@@ -8,28 +8,28 @@ struct FCCLInventorySnapshot;
 
 enum class ECCLFoodEnvironment : uint8
 {
-    Fixed,
-    WeatherRegion,
-    AirSpace
+	Fixed,
+	WeatherRegion,
+	AirSpace
 };
 
 struct FCCLFoodEnvironmentBinding
 {
-    ECCLFoodEnvironment Source = ECCLFoodEnvironment::Fixed;
-    FGuid SourceId;
-    FCCLFoodStorage Conditions;
-    double SampleWorldSeconds = 0.;
+	ECCLFoodEnvironment Source = ECCLFoodEnvironment::Fixed;
+	FGuid SourceId;
+	FCCLFoodStorage Conditions;
+	double SampleWorldSeconds = 0.;
 
-    bool IsDynamic() const { return Source != ECCLFoodEnvironment::Fixed; }
+	bool IsDynamic() const { return Source != ECCLFoodEnvironment::Fixed; }
 };
 
 namespace CCLFoodEnvironment
 {
 bool ResolveAt(const FVector& PositionMeters, const FCCLSurfaceSimulation& Surface, FCCLFoodEnvironmentBinding& Binding,
-               FString& Error);
+			   FString& Error);
 bool RelocatePickup(FCCLInventorySnapshot& Record, const FCCLSurfaceSimulation& Surface, FString& Error);
 bool Validate(const FCCLFoodEnvironmentBinding& Binding, double WorldSeconds, FString& Error);
 bool Sample(FCCLFoodEnvironmentBinding& Binding, const FCCLSurfaceSimulation& Surface, FString& Error);
 bool Advance(FCCLInventorySnapshot& Record, const FCCLSurfaceSimulation& SurfaceCandidate, double WorldFromSeconds,
-             FString& Error);
+			 FString& Error);
 } // namespace CCLFoodEnvironment

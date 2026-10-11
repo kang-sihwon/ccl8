@@ -25,10 +25,10 @@ private:
 	double Next = 0.;
 	double TargetWorld = 0.;
 	TArray<uint8> Saved;
-    TArray<uint8> GroundSaved;
-    TArray<uint8> IndoorSaved;
-    FGuid GroundId;
-    TWeakObjectPtr<class ACCLWorldPickup> GroundPickup;
+	TArray<uint8> GroundSaved;
+	TArray<uint8> IndoorSaved;
+	FGuid GroundId;
+	TWeakObjectPtr<class ACCLWorldPickup> GroundPickup;
 	TArray<FString> FoodBefore;
 	int32 Step = 0;
 	uint8 bComplete = 0;

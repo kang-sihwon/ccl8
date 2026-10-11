@@ -187,6 +187,7 @@ namespace
 			{
 				Value = 0.;
 			}
+
 			auto Propose = [&](int32 A, int32 B)
 			{
 				const double Difference = G.WaterLevelMeters(A) - G.WaterLevelMeters(B);

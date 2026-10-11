@@ -21,7 +21,6 @@ class CCL_API ACCLCharacter : public ACharacter, public IAbilitySystemInterface
 public:
 	ACCLCharacter(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get());
 
-	virtual void BeginPlay() override;
 	virtual void PossessedBy(AController* NewController) override;
 	virtual void OnRep_PlayerState() override;
 	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;

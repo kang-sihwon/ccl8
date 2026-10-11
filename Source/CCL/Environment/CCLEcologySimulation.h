@@ -88,46 +88,46 @@ enum class ECCLEcologyActivity : uint8 { Roaming, SeekingFood, Feeding, Starving
 
 struct FCCLEcologyGroup
 {
-    FGuid Id;
-    FGuid HabitatId;
-    FVector AnchorMeters = FVector::ZeroVector;
-    double RadiusMeters = 2.;
+	FGuid Id;
+	FGuid HabitatId;
+	FVector AnchorMeters = FVector::ZeroVector;
+	double RadiusMeters = 2.;
 };
 
 struct FCCLEcologyForage
 {
-    FGuid Id;
-    FGuid HabitatId;
-    FVector PositionMeters = FVector::ZeroVector;
-    uint32 FoodMask = 1;
-    double InitialUnits = 10.;
-    double AvailableUnits = 10.;
-    double CapacityUnits = 10.;
-    double RegrowthPerSecond = 0.;
-    double GrownUnits = 0.;
-    double ConsumedUnits = 0.;
-    double LastStepSeconds = 0.;
+	FGuid Id;
+	FGuid HabitatId;
+	FVector PositionMeters = FVector::ZeroVector;
+	uint32 FoodMask = 1;
+	double InitialUnits = 10.;
+	double AvailableUnits = 10.;
+	double CapacityUnits = 10.;
+	double RegrowthPerSecond = 0.;
+	double GrownUnits = 0.;
+	double ConsumedUnits = 0.;
+	double LastStepSeconds = 0.;
 };
 
 struct FCCLEcologyBehavior
 {
-    FGuid Id;
-    FGuid GroupId;
-    FGuid TargetFoodId;
-    double SpeedMetersPerSecond = 1.;
-    uint32 DietMask = 1;
-    double Energy = 1.;
-    double MetabolismPerSecond = 0.01;
-    double BiteUnitsPerSecond = 1.;
-    double EnergyPerUnit = 0.2;
-    double HungerThreshold = 0.7;
-    double StarvationLimitSeconds = 60.;
-    double StarvedSeconds = 0.;
-    double ConsumedUnits = 0.;
-    double LastStepSeconds = 0.;
-    ECCLEcologyActivity Activity = ECCLEcologyActivity::Roaming;
-    uint8 bUseWorldSpace = 0;
-    double RadiusMeters = .2;
+	FGuid Id;
+	FGuid GroupId;
+	FGuid TargetFoodId;
+	double SpeedMetersPerSecond = 1.;
+	uint32 DietMask = 1;
+	double Energy = 1.;
+	double MetabolismPerSecond = 0.01;
+	double BiteUnitsPerSecond = 1.;
+	double EnergyPerUnit = 0.2;
+	double HungerThreshold = 0.7;
+	double StarvationLimitSeconds = 60.;
+	double StarvedSeconds = 0.;
+	double ConsumedUnits = 0.;
+	double LastStepSeconds = 0.;
+	ECCLEcologyActivity Activity = ECCLEcologyActivity::Roaming;
+	uint8 bUseWorldSpace = 0;
+	double RadiusMeters = .2;
 };
 
 class CCL_API FCCLEcologySimulation
@@ -137,13 +137,13 @@ public:
 	bool AddSpecies(const FCCLEcologySpecies& Species, FString& Error);
 	bool AddHabitat(const FCCLEcologyHabitat& Habitat, FString& Error);
 	bool AddPopulation(FCCLEcologyPopulation Population, FString& Error);
-    bool AddGroup(const FCCLEcologyGroup& Group, FString& Error);
-    bool AddForage(FCCLEcologyForage Forage, FString& Error);
-    bool AddBehavior(FCCLEcologyBehavior Behavior, FString& Error);
-    const TMap<FGuid, FCCLEcologyGroup>& GetGroups() const { return Groups; }
-    const TMap<FGuid, FCCLEcologyForage>& GetForage() const { return ForageSources; }
-    const TMap<FGuid, FCCLEcologyBehavior>& GetBehaviors() const { return Behaviors; }
-    bool HasBehavior(FGuid Id) const { return Behaviors.Contains(Id); }
+	bool AddGroup(const FCCLEcologyGroup& Group, FString& Error);
+	bool AddForage(FCCLEcologyForage Forage, FString& Error);
+	bool AddBehavior(FCCLEcologyBehavior Behavior, FString& Error);
+	const TMap<FGuid, FCCLEcologyGroup>& GetGroups() const { return Groups; }
+	const TMap<FGuid, FCCLEcologyForage>& GetForage() const { return ForageSources; }
+	const TMap<FGuid, FCCLEcologyBehavior>& GetBehaviors() const { return Behaviors; }
+	bool HasBehavior(FGuid Id) const { return Behaviors.Contains(Id); }
 	bool Apply(const FCCLEcologyEvent& Event, FString& Error);
 	bool Materialize(FGuid RequestId, FGuid PopulationId, FGuid CohortId, FGuid IndividualId, bool bPersistent, FString& Error);
 	bool Acquire(FGuid IndividualId, ECCLEcologyRepresentation Representation, FGuid Writer, FCCLEcologyLease& OutLease, FString& Error);
@@ -156,8 +156,8 @@ public:
 	bool Finish(const FCCLEcologyLease& Lease, const FCCLEcologyEvent& Event, FString& Error);
 	bool IsLeaseCurrent(const FCCLEcologyLease& Lease) const;
 	bool AdvanceTo(double TargetWorldSeconds, FString& Error, int32 MaxBoundaries = 256,
-        const ICCLEcologySpace* Space = nullptr, const FCCLSurfaceSimulation* Surface = nullptr);
-    bool HasSpatialBehavior() const;
+		const ICCLEcologySpace* Space = nullptr, const FCCLSurfaceSimulation* Surface = nullptr);
+	bool HasSpatialBehavior() const;
 	bool Capture(TArray<uint8>& Bytes, FString& Error) const;
 	bool Restore(const TArray<uint8>& Bytes, FString& Error);
 	bool Validate(FString& Error) const;
@@ -176,10 +176,10 @@ public:
 private:
 	bool ApplyCandidate(const FCCLEcologyEvent& Event, FString& Error);
 	bool AdvanceCandidate(double TargetWorldSeconds, FString& Error, int32 MaxBoundaries,
-        const ICCLEcologySpace* Space, const FCCLSurfaceSimulation* Surface);
+		const ICCLEcologySpace* Space, const FCCLSurfaceSimulation* Surface);
 	bool Serialize(FArchive& Archive);
-    bool AdvanceBehavior(double TargetSeconds, FString& Error, const ICCLEcologySpace* Space, const FCCLSurfaceSimulation* Surface);
-    bool ValidateBehavior(FString& Error) const;
+	bool AdvanceBehavior(double TargetSeconds, FString& Error, const ICCLEcologySpace* Space, const FCCLSurfaceSimulation* Surface);
+	bool ValidateBehavior(FString& Error) const;
 
 private:
 	FGuid WorldId;
@@ -193,7 +193,7 @@ private:
 	FGuid Epoch = FGuid::NewGuid();
 	uint64 NextLease = 1;
 	TMap<FGuid, FCCLEcologyLease> Leases;
-    TMap<FGuid, FCCLEcologyGroup> Groups;
-    TMap<FGuid, FCCLEcologyForage> ForageSources;
-    TMap<FGuid, FCCLEcologyBehavior> Behaviors;
+	TMap<FGuid, FCCLEcologyGroup> Groups;
+	TMap<FGuid, FCCLEcologyForage> ForageSources;
+	TMap<FGuid, FCCLEcologyBehavior> Behaviors;
 };

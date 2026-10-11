@@ -1,5 +1,6 @@
 #include "CCLSessionRecord.h"
 
+#include "Items/CCLItemCatalog.h"
 #include "Items/CCLItemDefinition.h"
 #include "Items/CCLSkillDefinition.h"
 #include "Actions/CCLWeaponAbility.h"
@@ -9,48 +10,39 @@
 #include "Misc/Base64.h"
 #include "Agents/CCLLifeSimulation.h"
 #include "Environment/CCLWorldSnapshot.h"
+#include "Items/CCLInventorySnapshot.h"
+#include "CCLPlayerSnapshot.h"
 
 UCCLItemDefinition* FCCLSessionCodec::Item(FName Id)
 {
-    if (Id == TEXT("DA_FoodSample"))
-    {
-        return LoadObject<UCCLItemDefinition>(nullptr, TEXT("/Game/Environment/Experiments/DA_FoodSample.DA_FoodSample"));
-    }
-	static const TSet<FName> Known = {TEXT("DA_IronGauntlets"),	 TEXT("DA_RecoveryPotion"), TEXT("DA_TrainingSword"),
-									  TEXT("DA_TrainingShield"), TEXT("DA_TrainingStaff"),	TEXT("DA_TrainingArmor"),
-									  TEXT("DA_TrainingBoots"),	 TEXT("DA_TrainingCloak"),	TEXT("DA_TrainingNecklace"),
-									  TEXT("DA_TrainingRing"), TEXT("DA_Pistol"), TEXT("DA_Rifle"), TEXT("DA_Bullets"), TEXT("DA_Bread")};
-	if (!Known.Contains(Id))
-	{
-		return nullptr;
-	}
-
-	return LoadObject<UCCLItemDefinition>(nullptr, *FString::Printf(TEXT("/Game/Progression/%s.%s"), *Id.ToString(), *Id.ToString()));
+	const auto* Catalog = UCCLItemCatalog::Get();
+	return Catalog ? Catalog->FindItem(Id) : nullptr;
 }
 
 UCCLSkillDefinition* FCCLSessionCodec::Skill(FName Id)
 {
-	if (Id != TEXT("DA_PowerTraining") && Id != TEXT("DA_VitalityTraining"))
-	{
-		return nullptr;
-	}
-
-	return LoadObject<UCCLSkillDefinition>(nullptr, *FString::Printf(TEXT("/Game/Progression/%s.%s"), *Id.ToString(), *Id.ToString()));
+	const auto* Catalog = UCCLItemCatalog::Get();
+	return Catalog ? Catalog->FindSkill(Id) : nullptr;
 }
 
 namespace
 {
+// Format budgets, not content rules. The campaign director validates the guard mask against its road.
+constexpr int32 MaxRemainingSupplies = 64;
+constexpr int32 MaxSkills = 16;
+
 bool ValidateRecord(const FCCLSessionRecord& R, bool bProfile, FGuid ProfileWorld, double ProfileTime, int32 Capacity)
 {
-    if (bProfile && (R.Version != 7 || !R.AccountId.IsValid() || !R.AgentSimulation.IsEmpty() || R.Coins != 0 ||
-        R.Equipped.IsValid() || R.Victory || R.DefeatedGuards || !R.RemainingSupplies.IsEmpty() ||
-        !ProfileWorld.IsValid() || !FMath::IsFinite(ProfileTime) || ProfileTime < 0. || Capacity < 1 || Capacity > 128))
-    {
-        return false;
-    }
-	if (R.Version < 1 || R.Version > 7 || R.Items.Num() > (bProfile ? Capacity + 8 : (R.Version >= 3 ? 24 : 16)) || R.Skills.Num() > 2 || R.Points < 0 ||
-		R.Points > 1000 || R.Coins < 0 || R.Coins > 1000000 || R.Quest > 2 || R.DefeatedGuards > 3 || R.Victory > 1 ||
-		(R.Victory && R.DefeatedGuards != 3) || (!bProfile && R.Quest == 2 && !R.Victory) || R.RemainingSupplies.Num() > (R.Version >= 5 ? 5 : 2))
+	if (bProfile && (R.Version != 7 || !R.AccountId.IsValid() || !R.AgentSimulation.IsEmpty() || R.Coins != 0 ||
+		R.Equipped.IsValid() || R.Victory || R.DefeatedGuards || !R.RemainingSupplies.IsEmpty() ||
+		!ProfileWorld.IsValid() || !FMath::IsFinite(ProfileTime) || ProfileTime < 0. || Capacity < 1 || Capacity > 128))
+	{
+		return false;
+	}
+	if (R.Version < 1 || R.Version > 7 || R.Items.Num() > (bProfile ? Capacity + 8 : (R.Version >= 3 ? 24 : 16)) || R.Skills.Num() > MaxSkills || R.Points < 0 ||
+		R.Points > 1000 || R.Coins < 0 || R.Coins > 1000000 || R.Quest > 2 || R.Victory > 1 ||
+		(R.Victory && R.DefeatedGuards == 0) || (!bProfile && R.Quest == 2 && !R.Victory) ||
+		R.RemainingSupplies.Num() > (R.Version >= 5 ? MaxRemainingSupplies : 2))
 	{
 		return false;
 	}
@@ -81,24 +73,31 @@ bool ValidateRecord(const FCCLSessionRecord& R, bool bProfile, FGuid ProfileWorl
 				return false;
 			}
 
-            for (const auto& Container : World.Inventories)
-            {
-                for (const auto& Stored : Container.Items)
-                {
-                    WorldItemIds.Add(Stored.Id);
-                }
-            }
-            for (const auto& Profile : World.Players)
-            {
-                if (Profile.AccountId == R.AccountId)
-                {
-                    return false;
-                }
-                for (const auto& Stored : Profile.Items)
-                {
-                    WorldItemIds.Add(Stored.Id);
-                }
-            }
+			TArray<FCCLInventorySnapshot> Containers;
+			TArray<FCCLPlayerSnapshot> Profiles;
+			if (!CCLInventorySnapshot::ReadWorld(World, Containers, Error) || !CCLPlayerSnapshot::ReadWorld(World, Profiles, Error))
+			{
+				return false;
+			}
+
+			for (const auto& Container : Containers)
+			{
+				for (const auto& Stored : Container.Items)
+				{
+					WorldItemIds.Add(Stored.Id);
+				}
+			}
+			for (const auto& Profile : Profiles)
+			{
+				if (Profile.AccountId == R.AccountId)
+				{
+					return false;
+				}
+				for (const auto& Stored : Profile.Items)
+				{
+					WorldItemIds.Add(Stored.Id);
+				}
+			}
 			FoodWorldId = World.Identity.WorldId;
 			FoodWorldSeconds = World.Clock.WorldSeconds;
 			State = MoveTemp(World.Life);
@@ -228,15 +227,13 @@ bool ValidateRecord(const FCCLSessionRecord& R, bool bProfile, FGuid ProfileWorl
 		Skills.Add(Id);
 	}
 
-	TSet<FName> Supplies;
+	// Repeated names are separate pickups of the same definition.
 	for (FName Id : R.RemainingSupplies)
 	{
-		if (!FCCLSessionCodec::Item(Id) || Supplies.Contains(Id))
+		if (!FCCLSessionCodec::Item(Id))
 		{
 			return false;
 		}
-
-		Supplies.Add(Id);
 	}
 
 	return true;
@@ -246,12 +243,12 @@ bool ValidateRecord(const FCCLSessionRecord& R, bool bProfile, FGuid ProfileWorl
 
 bool FCCLSessionCodec::Validate(const FCCLSessionRecord& Record)
 {
-    return ValidateRecord(Record, false, {}, 0., 16);
+	return ValidateRecord(Record, false, {}, 0., 16);
 }
 
 bool FCCLSessionCodec::ValidateProfile(const FCCLSessionRecord& Record, FGuid WorldId, double WorldSeconds, int32 Capacity)
 {
-    return ValidateRecord(Record, true, WorldId, WorldSeconds, Capacity);
+	return ValidateRecord(Record, true, WorldId, WorldSeconds, Capacity);
 }
 
 bool FCCLSessionCodec::Encode(const FCCLSessionRecord& Record, TArray<uint8>& Bytes)
@@ -334,7 +331,7 @@ bool FCCLSessionCodec::Decode(const TArray<uint8>& Bytes, FCCLSessionRecord& Rec
 			   FMath::FloorToDouble(Value) == Value;
 	};
 	if (!Number(Json, TEXT("version"), 1, 7) || !Number(Json, TEXT("points"), 0, 1000) || !Number(Json, TEXT("coins"), 0, 1000000) ||
-		!Number(Json, TEXT("quest"), 0, 2) || !Number(Json, TEXT("defeatedGuards"), 0, 3) || !Number(Json, TEXT("victory"), 0, 1))
+		!Number(Json, TEXT("quest"), 0, 2) || !Number(Json, TEXT("defeatedGuards"), 0, 255) || !Number(Json, TEXT("victory"), 0, 1))
 	{
 		return false;
 	}

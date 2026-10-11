@@ -51,6 +51,7 @@ int32 UCCLMapScreen::NativePaint(const FPaintArgs& Args, const FGeometry& Geomet
 		const FVector2D Center(PC->GetPawn()->GetActorLocation());
 		Bounds = FBox2D(Center - FVector2D(1400, 1140), Center + FVector2D(1400, 1140));
 	}
+
 	auto Box = [&](FVector2D Position, FVector2D Extent, FLinearColor Color)
 	{
 		FSlateDrawElement::MakeBox(Elements, ++Layer, Geometry.ToPaintGeometry(Extent, FSlateLayoutTransform(Position)),
@@ -105,6 +106,7 @@ void UCCLMapScreen::OnContextBound()
 		}
 	}
 }
+
 void UCCLMapScreen::OnContextReleased()
 {
 	if (auto* Local = GetOwningLocalPlayer())

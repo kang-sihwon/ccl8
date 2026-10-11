@@ -2,6 +2,8 @@
 
 #include "UI/CCLUIInputData.h"
 #include "Session/CCLGameInstance.h"
+#include "Session/CCLProfileIdentity.h"
+#include "Engine/NetConnection.h"
 #include "UI/CCLInventoryScreen.h"
 #include "UI/CCLMapScreen.h"
 #include "Actions/CCLActionComponent.h"
@@ -27,8 +29,6 @@
 #include "AbilitySystem/CCLAbilitySystemComponent.h"
 #include "AbilitySystem/CCLGameplayTags.h"
 #include "CCLGameModeBase.h"
-#include "Tests/CCLCombatSmokeSubsystem.h"
-#include "Tests/CCLCampaignSmokeSubsystem.h"
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
 #include "Engine/LocalPlayer.h"
@@ -252,7 +252,10 @@ void ACCLPlayerController::CCLLeave()
 		return;
 	}
 
-	if (auto* Session = GetGameInstance<UCCLGameInstance>()) { Session->ToggleMenuForPlayer(this); }
+	if (auto* Session = GetGameInstance<UCCLGameInstance>())
+	{
+		Session->ToggleMenuForPlayer(this);
+	}
 }
 
 void ACCLPlayerController::ToggleInventory()
@@ -625,64 +628,32 @@ void ACCLPlayerController::CombatReleased(FGameplayTag Tag)
 	}
 }
 
-void ACCLPlayerController::ServerCombatTestReady_Implementation()
-{
-#if !UE_BUILD_SHIPPING && !UE_BUILD_TEST
-	if (auto* Test = GetWorld()->GetSubsystem<UCCLCombatSmokeSubsystem>())
-	{
-		Test->RegisterDriver(this);
-	}
-#endif
-}
-
-void ACCLPlayerController::ClientCombatTestStep_Implementation(int32 Step)
-{
-#if !UE_BUILD_SHIPPING && !UE_BUILD_TEST
-	if (auto* Test = GetWorld()->GetSubsystem<UCCLCombatSmokeSubsystem>())
-	{
-		Test->ExecuteClientStep(Step);
-	}
-#endif
-}
-
-void ACCLPlayerController::ServerCampaignTestReady_Implementation()
-{
-#if !UE_BUILD_SHIPPING && !UE_BUILD_TEST
-	if (auto* Test = GetWorld()->GetSubsystem<UCCLCampaignSmokeSubsystem>())
-	{
-		Test->RegisterDriver(this);
-	}
-#endif
-}
-
-void ACCLPlayerController::ClientCampaignTestStep_Implementation(int32 Step)
-{
-#if !UE_BUILD_SHIPPING && !UE_BUILD_TEST
-	if (auto* Test = GetWorld()->GetSubsystem<UCCLCampaignSmokeSubsystem>())
-	{
-		Test->ExecuteClientStep(Step);
-	}
-#endif
-}
-
-void ACCLPlayerController::ClientProgressionTestStep_Implementation(int32 Step, FGuid EntryId)
-{
-#if !UE_BUILD_SHIPPING && !UE_BUILD_TEST
-	if (auto* Test = GetWorld()->GetSubsystem<UCCLCampaignSmokeSubsystem>())
-	{
-		Test->ExecuteProgressionStep(Step, EntryId);
-	}
-#endif
-}
-
 namespace
 {
 ACCLVillageSteward* NearbySteward(UWorld* World, const APawn* Pawn)
 {
-	for (TActorIterator<ACCLVillageSteward> It(World); It; ++It) { if (It->CanReach(Pawn)) { return *It; } }
+	for (TActorIterator<ACCLVillageSteward> It(World); It; ++It)
+	{
+		if (It->CanReach(Pawn))
+		{
+			return *It;
+		}
+	}
+
 	return nullptr;
 }
 }
+
+void ACCLPlayerController::ClientReceiveProfileKey_Implementation(const FString& Secret)
+{
+	const auto* Connection = GetNetConnection();
+	auto* Session = GetGameInstance<UCCLGameInstance>();
+	if (Connection && Session)
+	{
+		Session->RememberProfileSecret(CCLProfileIdentity::ServerAddress(Connection->URL), Secret);
+	}
+}
+
 void ACCLPlayerController::ServerTalkToSteward_Implementation()
 {
 	if (auto* State = GetPlayerState<ACCLPlayerState>())
@@ -695,6 +666,7 @@ void ACCLPlayerController::ServerTalkToSteward_Implementation()
 		}
 	}
 }
+
 void ACCLPlayerController::ServerBuyPotion_Implementation()
 {
 	if (auto* State = GetPlayerState<ACCLPlayerState>())
@@ -706,16 +678,6 @@ void ACCLPlayerController::ServerBuyPotion_Implementation()
 			ClientShowDialogue(Speaker, Speaker->DisplayName.ToString(), State->GetExpedition()->GetNotice());
 		}
 	}
-}
-void ACCLPlayerController::ClientContentTestStep_Implementation(int32 Step)
-{
-#if !UE_BUILD_SHIPPING && !UE_BUILD_TEST
-	if (GetWorld()->GetSubsystem<UCCLCampaignSmokeSubsystem>() && FParse::Param(FCommandLine::Get(), TEXT("CCLContentSmoke")))
-	{
-		if (Step == 0) { ServerTalkToSteward(); }
-		else { ServerBuyPotion(); }
-	}
-#endif
 }
 
 void ACCLPlayerController::ServerEquipToSlot_Implementation(FGuid Id, FGameplayTag Slot)
@@ -797,26 +759,6 @@ void ACCLPlayerController::HandInput(FGameplayTag Hand, bool bPressed)
 UTextureRenderTarget2D* ACCLPlayerController::GetEquipmentPreview() const
 {
 	return InventoryContext ? InventoryContext->GetPreview() : nullptr;
-}
-
-void ACCLPlayerController::CCLEquipmentDemo()
-{
-#if !UE_BUILD_SHIPPING && !UE_BUILD_TEST
-	if (!HasAuthority())
-	{
-		return;
-	}
-
-	if (auto* State = GetPlayerState<ACCLPlayerState>())
-	{
-		for (const TCHAR* Name : {TEXT("DA_TrainingSword"), TEXT("DA_TrainingShield"), TEXT("DA_TrainingStaff"), TEXT("DA_TrainingArmor"),
-		                          TEXT("DA_TrainingBoots"), TEXT("DA_TrainingCloak"), TEXT("DA_TrainingNecklace"), TEXT("DA_TrainingRing")})
-		{
-			auto* Definition = LoadObject<UCCLItemDefinition>(nullptr, *FString::Printf(TEXT("/Game/Progression/%s.%s"), Name, Name));
-			State->GetInventory()->Add(Definition, 1);
-		}
-	}
-#endif
 }
 
 void ACCLPlayerController::SelectEquipmentSlot(FGameplayTag Slot)

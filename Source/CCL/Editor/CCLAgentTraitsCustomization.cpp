@@ -14,11 +14,13 @@ TSharedRef<IPropertyTypeCustomization> FCCLAgentTraitsCustomization::MakeInstanc
 {
 	return MakeShared<FCCLAgentTraitsCustomization>();
 }
+
 void FCCLAgentTraitsCustomization::CustomizeHeader(TSharedRef<IPropertyHandle> Handle, FDetailWidgetRow& Row, IPropertyTypeCustomizationUtils& Utils)
 {
 	Row.NameContent()[Handle->CreatePropertyNameWidget()];
 	Row.ValueContent()[SNew(STextBlock).Text(FText::FromString(TEXT("6 personality axes / 3 values (0-100)")))];
 }
+
 void FCCLAgentTraitsCustomization::CustomizeChildren(TSharedRef<IPropertyHandle> Handle, IDetailChildrenBuilder& Builder, IPropertyTypeCustomizationUtils& Utils)
 {
 	const TArray<FGameplayTag> Axes = {CCLAgentTags::RiskTolerance, CCLAgentTags::Aggressiveness, CCLAgentTags::Curiosity,

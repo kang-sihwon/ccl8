@@ -2,6 +2,8 @@
 
 #include "CCLSurfaceReplication.h"
 #include "CCLWorldSimulationSubsystem.h"
+#include "CCLWorldEnvironmentConfig.h"
+#include "Animation/AnimInstance.h"
 #include "Components/CapsuleComponent.h"
 #include "Components/InstancedStaticMeshComponent.h"
 #include "Engine/StaticMesh.h"
@@ -29,6 +31,7 @@ namespace
 			Serial = Sequence = 0;
 			Depth = 0.f;
 		}
+
 		virtual void SetMoveFor(ACharacter* C, float Dt, const FVector& Accel, FNetworkPredictionData_Client_Character& Data) override
 		{
 			auto* M = CastChecked<UCCLSnowMovementComponent>(C->GetCharacterMovement());
@@ -38,11 +41,13 @@ namespace
 			Depth = M->GetSnowDepth();
 			FSavedMove_Character::SetMoveFor(C, Dt, Accel, Data);
 		}
+
 		virtual void PrepMoveFor(ACharacter* C) override
 		{
 			FSavedMove_Character::PrepMoveFor(C);
 			CastChecked<UCCLSnowMovementComponent>(C->GetCharacterMovement())->RestoreSnowMove(Serial, Sequence, Depth);
 		}
+
 		virtual bool CanCombineWith(const FSavedMovePtr& Other, ACharacter* C, float MaxDelta) const override
 		{
 			const auto* Snow = static_cast<const FSnowSavedMove*>(Other.Get());
@@ -53,8 +58,14 @@ namespace
 	class FSnowPredictionData : public FNetworkPredictionData_Client_Character
 	{
 	public:
-		explicit FSnowPredictionData(const UCharacterMovementComponent& M) : FNetworkPredictionData_Client_Character(M) {}
-		virtual FSavedMovePtr AllocateNewMove() override { return FSavedMovePtr(new FSnowSavedMove()); }
+		explicit FSnowPredictionData(const UCharacterMovementComponent& M) : FNetworkPredictionData_Client_Character(M)
+		{
+		}
+
+		virtual FSavedMovePtr AllocateNewMove() override
+		{
+			return FSavedMovePtr(new FSnowSavedMove());
+		}
 	};
 }
 
@@ -88,6 +99,14 @@ UCCLSnowMovementComponent::UCCLSnowMovementComponent()
 void UCCLSnowMovementComponent::BeginPlay()
 {
 	Super::BeginPlay();
+
+	if (const auto* Config = ACCLWorldEnvironmentConfig::Find(GetWorld()); Config && CharacterOwner && CharacterOwner->GetMesh())
+	{
+		if (auto* PostProcess = Config->CharacterPostProcessAnim.LoadSynchronous())
+		{
+			CharacterOwner->GetMesh()->SetOverridePostProcessAnimBP(PostProcess);
+		}
+	}
 	if (GetOwner()->HasAuthority())
 	{
 		ContactSource = FGuid::NewGuid();

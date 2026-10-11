@@ -48,7 +48,7 @@ fx = {}
 for name,smoke in [('Flame',False),('RoomSmoke',True)]:
     path = '/Game/Environment/FX/NS_' + name
     system = assets.load_asset(path) if assets.does_asset_exist(path) else assets.duplicate_asset('/Niagara/DefaultAssets/Templates/Systems/FountainLightweight',path)
-    assert unreal.CCLFirePresentation.configure_fire_system(system,smoke,sprite)
+    assert unreal.CCLEnvironmentFXLibrary.configure_fire_system(system,smoke,sprite)
     assert assets.save_loaded_asset(system,False)
     fx[name] = system
 for name in ('EnvironmentPlayground','EnvironmentScenario'):

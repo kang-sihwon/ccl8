@@ -248,21 +248,25 @@ bool UCCLEcologyRepresentationSubsystem::Flush(FString& Error)
 			continue;
 		}
 
-        if (Ecology.HasBehavior(Id))
-        {
-            const FVector Committed = Ecology.FindIndividual(Id)->PositionMeters;
-            if (bActor)
-            {
-                const FVector Direction = Committed * 100. - Actor->GetActorLocation();
-                if (!Direction.IsNearlyZero()) { Actor->SetActorRotation(Direction.Rotation()); }
-                Actor->SetActorLocation(Committed * 100.);
-            }
-            else
-            {
-                Manager()->GetFragmentDataChecked<FCCLEcologyMassFragment>(E.Entity).PositionMeters = Committed;
-            }
-            continue;
-        }
+		if (Ecology.HasBehavior(Id))
+		{
+			const FVector Committed = Ecology.FindIndividual(Id)->PositionMeters;
+			if (bActor)
+			{
+				const FVector Direction = Committed * 100. - Actor->GetActorLocation();
+				if (!Direction.IsNearlyZero())
+				{
+					Actor->SetActorRotation(Direction.Rotation());
+				}
+
+				Actor->SetActorLocation(Committed * 100.);
+			}
+			else
+			{
+				Manager()->GetFragmentDataChecked<FCCLEcologyMassFragment>(E.Entity).PositionMeters = Committed;
+			}
+			continue;
+		}
 
 		const FVector Position = bActor ? Actor->GetActorLocation() / 100. : Manager()->GetFragmentDataChecked<FCCLEcologyMassFragment>(E.Entity).PositionMeters;
 		if (!Runtime->UpdateEcologyPosition(E.Lease, Position, Error))

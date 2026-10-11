@@ -11,7 +11,6 @@
 
 namespace
 {
-UE_DEFINE_GAMEPLAY_TAG_STATIC(PotionResource, "Agent.Resource.RecoveryPotion");
 const FGuid Treasury(0xCC1800FF, 0, 1, 1);
 const FGuid ShopInventory(0xCC1800FF, 0, 1, 2);
 }
@@ -59,9 +58,16 @@ bool UCCLAccountComponent::ImportLegacy(int64 Coins)
 	auto* World = GetWorld()->GetSubsystem<UCCLAgentWorldSubsystem>();
 	if (World && World->IsRunning())
 	{
-		if (!InitializeAccount()) { return false; }
+		if (!InitializeAccount())
+		{
+			return false;
+		}
+
 		auto* Simulation = Resolve();
-		if (!Simulation || !Simulation->ImportAccountBalance(AccountId, Coins)) { return false; }
+		if (!Simulation || !Simulation->ImportAccountBalance(AccountId, Coins))
+		{
+			return false;
+		}
 	}
 
 	BalanceView = Coins;
@@ -85,7 +91,11 @@ bool UCCLAccountComponent::BindAccount(FGuid Id)
 
 bool UCCLAccountComponent::Reward(int64 Amount)
 {
-	if (!InitializeAccount()) { return false; }
+	if (!InitializeAccount())
+	{
+		return false;
+	}
+
 	auto* Simulation = Resolve();
 	if (!Simulation || Amount <= 0 || Amount > 1000000 - GetBalance())
 	{
@@ -105,12 +115,19 @@ bool UCCLAccountComponent::Reward(int64 Amount)
 	return bSucceeded;
 }
 
-bool UCCLAccountComponent::Purchase(UCCLInventoryComponent* Inventory, UCCLItemDefinition* Item, int64 Price)
+bool UCCLAccountComponent::Purchase(UCCLInventoryComponent* Inventory, const FCCLShopOffer& Offer)
 {
-	if (!InitializeAccount()) { return false; }
+	if (!InitializeAccount())
+	{
+		return false;
+	}
+
 	auto* Simulation = Resolve();
-	if (!Simulation || !Inventory || Inventory->GetOwner() != GetOwner() || !Item || Item->GetFName() != TEXT("DA_RecoveryPotion") || Price != 10 ||
-		GetBalance() < Price || !Inventory->CanAdd(Item, 1))
+	auto* Item = Offer.Item.LoadSynchronous();
+	const int64 Price = Offer.Price;
+	if (!Simulation || !Inventory || Inventory->GetOwner() != GetOwner() || !Item || Price < 1 || Price > 1000000 ||
+		!Offer.StockResource.IsValid() || Offer.InitialStock < 1 || Offer.InitialStock > 1000 || GetBalance() < Price ||
+		!Inventory->CanAdd(Item, 1))
 	{
 		return false;
 	}
@@ -122,19 +139,25 @@ bool UCCLAccountComponent::Purchase(UCCLInventoryComponent* Inventory, UCCLItemD
 		FCCLResourceInventory Stock;
 		Stock.Id = ShopInventory;
 		Stock.OwnerId = Treasury;
-		Stock.Capacity = 100;
-		Stock.Resources.Add(PotionResource, 100);
+		Stock.Capacity = 1000;
 		Economy.Inventories.Add(Stock.Id, Stock);
 	}
 
-	if (CCLEconomy::Quantity(Economy, ShopInventory, PotionResource) < 1 || !Inventory->BeginTransaction())
+	// Each offered resource is stocked once, the first time a buyer asks for it.
+	auto& Stock = Economy.Inventories[ShopInventory];
+	if (!Stock.Resources.Contains(Offer.StockResource))
+	{
+		Stock.Resources.Add(Offer.StockResource, Offer.InitialStock);
+	}
+
+	if (CCLEconomy::Quantity(Economy, ShopInventory, Offer.StockResource) < 1 || !Inventory->BeginTransaction())
 	{
 		return false;
 	}
 
 	const auto Before = Inventory->GetEntries();
 	const FGuid DeliveredItem = Inventory->Add(Item, 1);
-    if (!DeliveredItem.IsValid())
+	if (!DeliveredItem.IsValid())
 	{
 		Inventory->EndTransaction(false);
 		return false;
@@ -149,9 +172,9 @@ bool UCCLAccountComponent::Purchase(UCCLInventoryComponent* Inventory, UCCLItemD
 	Request.Time = Simulation->GetTime();
 	FCCLItemTransfer Transfer;
 	Transfer.Source = ShopInventory;
-    Transfer.ExternalInventoryOwner = AccountId;
-    Transfer.ExternalItem = DeliveredItem;
-	Transfer.Resource = PotionResource;
+	Transfer.ExternalInventoryOwner = AccountId;
+	Transfer.ExternalItem = DeliveredItem;
+	Transfer.Resource = Offer.StockResource;
 	Transfer.Quantity = 1;
 	Request.Items.Add(Transfer);
 	const bool bSucceeded = CCLEconomy::Execute(Economy, Request).bSucceeded != 0;
@@ -192,17 +215,45 @@ FCCLLifeSimulation* UCCLAccountComponent::Resolve() const
 	return &World->GetSimulation();
 }
 
+bool UCCLAccountComponent::EnsureOpen()
+{
+	auto* Simulation = Resolve();
+	auto* World = GetWorld()->GetSubsystem<UCCLWorldSimulationSubsystem>();
+	if (!GetOwner()->HasAuthority() || !Simulation || !World || !World->IsRunning())
+	{
+		return false;
+	}
+
+	// Only a restore that kept this player may reopen a missing account; reads and writes never do.
+	if (!Simulation->GetEconomy().Accounts.Contains(AccountId) && !Simulation->OpenAccount(AccountId, BalanceView))
+	{
+		return false;
+	}
+
+	InitializedWorldId = World->GetIdentity().WorldId;
+	return true;
+}
+
 bool UCCLAccountComponent::InitializeAccount()
 {
 	auto* Simulation = Resolve();
 	auto* World = GetWorld()->GetSubsystem<UCCLWorldSimulationSubsystem>();
-	if (!Simulation || !World || !World->IsRunning()) { return false; }
+	if (!Simulation || !World || !World->IsRunning())
+	{
+		return false;
+	}
+
 	const FGuid WorldId = World->GetIdentity().WorldId;
 	if (InitializedWorldId == WorldId)
 	{
 		return Simulation->GetEconomy().Accounts.Contains(AccountId);
 	}
-	if (!Simulation->OpenAccount(AccountId, BalanceView)) { return false; }
+
+	if (!Simulation->OpenAccount(AccountId, BalanceView))
+	{
+		return false;
+	}
+
 	InitializedWorldId = WorldId;
 	return true;
 }

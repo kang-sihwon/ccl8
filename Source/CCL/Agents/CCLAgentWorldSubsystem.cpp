@@ -1,17 +1,12 @@
 ﻿#include "CCLAgentWorldSubsystem.h"
 
 #include "CCLAgentComponent.h"
-#include "CCLAgentAIController.h"
-#include "Campaign/CCLWorkshop.h"
-#include "GameFramework/CharacterMovementComponent.h"
-#include "CCLAgentTags.h"
-#include "Campaign/CCLLifeVillager.h"
-#include "Campaign/CCLCampaignState.h"
+#include "CCLAgentEmbodiment.h"
 #include "Engine/GameInstance.h"
 #include "Engine/World.h"
 #include "EngineUtils.h"
+#include "GameFramework/GameStateBase.h"
 #include "Environment/CCLWorldSimulationSubsystem.h"
-#include "Environment/CCLExperimentDefinition.h"
 #include "Environment/CCLTerrainRegion.h"
 
 void UCCLAgentSessionStore::ResetSession()
@@ -59,25 +54,32 @@ bool UCCLAgentWorldSubsystem::ShouldCreateSubsystem(UObject* Outer) const
 void UCCLAgentWorldSubsystem::OnWorldBeginPlay(UWorld& World)
 {
 	Super::OnWorldBeginPlay(World);
-	if (World.GetNetMode() == NM_Client || (!World.GetGameState<ACCLCampaignState>() &&
-		UCCLWorldSimulationSubsystem::DomainForWorld(&World) == ECCLWorldDomain::Campaign))
+	if (World.GetNetMode() == NM_Client)
+	{
+		return;
+	}
+
+	// The GameState or one map Actor opts the world into the life simulation and owns its initial population.
+	const ICCLAgentWorldHost* Host = Cast<ICCLAgentWorldHost>(World.GetGameState());
+	for (TActorIterator<AActor> It(&World); !Host && It; ++It)
+	{
+		Host = Cast<ICCLAgentWorldHost>(*It);
+	}
+
+	if (!Host)
 	{
 		return;
 	}
 
 	auto* Store = World.GetGameInstance()->GetSubsystem<UCCLAgentSessionStore>();
-	FString Error;
-	const auto* Scenario = LoadObject<UCCLPopulationScenario>(nullptr,
-		TEXT("/Game/Progression/DA_MerchantLifeScenario.DA_MerchantLifeScenario"));
 	auto* WorldSimulation = World.GetSubsystem<UCCLWorldSimulationSubsystem>();
-	const ECCLWorldDomain Domain = UCCLWorldSimulationSubsystem::DomainForWorld(&World);
+	Domain = UCCLWorldSimulationSubsystem::DomainForWorld(&World);
 	Session = Store->SessionFor(Domain);
 	const auto& Saved = Store->SnapshotFor(Domain);
-	const auto* Experiment = Domain != ECCLWorldDomain::Campaign ? LoadObject<UCCLExperimentDefinition>(nullptr,
-		TEXT("/Game/Environment/Experiments/DA_Environment_00.DA_Environment_00")) : nullptr;
-	const auto Initial = Domain == ECCLWorldDomain::Campaign && Scenario ? Scenario->InitialState :
-		FCCLLifeSimulation::MerchantScenario(Experiment ? Experiment->Seed : 42);
-	const bool bReady = WorldSimulation && (!Saved.IsEmpty() || Simulation.Initialize(Initial, Error)) &&
+	FString Error;
+	FCCLSimulationSnapshot Initial;
+	const bool bReady = WorldSimulation &&
+		(!Saved.IsEmpty() || (Host->BuildInitialPopulation(Initial, Error) && Simulation.Initialize(Initial, Error))) &&
 		WorldSimulation->Start(Simulation, Domain, Saved, Error);
 	if (!bReady)
 	{
@@ -86,7 +88,7 @@ void UCCLAgentWorldSubsystem::OnWorldBeginPlay(UWorld& World)
 	}
 
 	bRunning = 1;
-	SpawnVillage();
+	OnPopulationReady.Broadcast(*this);
 	FWorldDelegates::OnWorldBeginTearDown.AddUObject(this, &UCCLAgentWorldSubsystem::OnWorldBeginTearDown);
 }
 
@@ -96,10 +98,19 @@ void UCCLAgentWorldSubsystem::Deinitialize()
 	if (bRunning && GetWorld()->GetGameInstance())
 	{
 		auto* Store = GetWorld()->GetGameInstance()->GetSubsystem<UCCLAgentSessionStore>();
-		const ECCLWorldDomain Domain = UCCLWorldSimulationSubsystem::DomainForWorld(GetWorld());
 		if (Store && Store->SessionFor(Domain) == Session && !bTravelPrepared && !Store->TravelSnapshots.Contains(Domain))
 		{
-			Save(Store->SnapshotFor(Domain));
+			// Replace the stored world only with a complete capture; a rejected capture keeps the previous state.
+			TArray<uint8> Bytes;
+			FString Error;
+			if (Save(Bytes, Error))
+			{
+				Store->SnapshotFor(Domain) = MoveTemp(Bytes);
+			}
+			else
+			{
+				UE_LOG(LogTemp, Error, TEXT("CCL_AGENT unload save rejected; the previous world state is kept: %s"), *Error);
+			}
 		}
 	}
 
@@ -107,10 +118,11 @@ void UCCLAgentWorldSubsystem::Deinitialize()
 	Super::Deinitialize();
 }
 
-bool UCCLAgentWorldSubsystem::Save(TArray<uint8>& Bytes, const UCCLInventoryComponent* SessionInventory)
+bool UCCLAgentWorldSubsystem::Save(TArray<uint8>& Bytes, FString& Error, const UObject* SessionContainer)
 {
 	if (!bRunning || GetWorld()->GetNetMode() == NM_Client)
 	{
+		Error = TEXT("Only a running server world can be saved.");
 		return false;
 	}
 
@@ -122,16 +134,26 @@ bool UCCLAgentWorldSubsystem::Save(TArray<uint8>& Bytes, const UCCLInventoryComp
 		}
 	}
 
-	FString Error;
 	auto* WorldSimulation = GetWorld()->GetSubsystem<UCCLWorldSimulationSubsystem>();
-	return WorldSimulation && WorldSimulation->Save(Simulation, Bytes, Error, SessionInventory);
+	return WorldSimulation && WorldSimulation->Save(Simulation, Bytes, Error, SessionContainer);
+}
+
+bool UCCLAgentWorldSubsystem::Save(TArray<uint8>& Bytes)
+{
+	FString Error;
+	if (Save(Bytes, Error))
+	{
+		return true;
+	}
+
+	UE_LOG(LogTemp, Warning, TEXT("CCL_AGENT world save rejected: %s"), *Error);
+	return false;
 }
 
 bool UCCLAgentWorldSubsystem::SaveSessionForTravel(FString& Error)
 {
 	Error.Reset();
 	auto* SessionStore = GetWorld()->GetGameInstance()->GetSubsystem<UCCLAgentSessionStore>();
-	const auto Domain = UCCLWorldSimulationSubsystem::DomainForWorld(GetWorld());
 	if (!bRunning || GetWorld()->GetNetMode() == NM_Client || !SessionStore || SessionStore->SessionFor(Domain) != Session)
 	{
 		Error = TEXT("현재 서버 세션을 저장할 수 없다.");
@@ -152,7 +174,7 @@ bool UCCLAgentWorldSubsystem::SaveSessionForTravel(FString& Error)
 
 	FCCLWorldGenerationBundle Bundle;
 	FCCLWorldSnapshot WorldState;
-	if (!Save(Bundle.World) || !FCCLWorldSnapshotCodec::Decode(Bundle.World, WorldState, Error))
+	if (!Save(Bundle.World, Error) || !FCCLWorldSnapshotCodec::Decode(Bundle.World, WorldState, Error))
 	{
 		return false;
 	}
@@ -174,24 +196,20 @@ bool UCCLAgentWorldSubsystem::SaveSessionForTravel(FString& Error)
 	return true;
 }
 
-bool UCCLAgentWorldSubsystem::Restore(const TArray<uint8>& Bytes, FString& Error,
-    const FCCLLoadoutRestoreRequest* SessionRequest, TFunction<void()> FinalizeSession)
+bool UCCLAgentWorldSubsystem::Restore(const TArray<uint8>& Bytes, FString& Error)
 {
 	auto* WorldSimulation = GetWorld()->GetSubsystem<UCCLWorldSimulationSubsystem>();
 	if (!bRunning || GetWorld()->GetNetMode() == NM_Client || !WorldSimulation ||
-		!WorldSimulation->Restore(Simulation, Bytes, Error, SessionRequest, MoveTemp(FinalizeSession)))
+		!WorldSimulation->Restore(Simulation, Bytes, Error))
 	{
 		return false;
 	}
 
+	// Representations leave without writing their old positions into the restored records.
 	bRunning = 0;
-	for (TActorIterator<ACCLLifeVillager> It(GetWorld()); It; ++It)
-	{
-		It->Destroy();
-	}
-
+	OnPopulationRetired.Broadcast(*this);
 	bRunning = 1;
-	SpawnVillage();
+	OnPopulationReady.Broadcast(*this);
 	for (TActorIterator<APawn> It(GetWorld()); It; ++It)
 	{
 		if (auto* Agent = It->FindComponentByClass<UCCLAgentComponent>())
@@ -200,107 +218,6 @@ bool UCCLAgentWorldSubsystem::Restore(const TArray<uint8>& Bytes, FString& Error
 		}
 	}
 	return true;
-}
-
-void UCCLAgentWorldSubsystem::SpawnVillage()
-{
-	// Experiment population stays in reduced execution until its Actor/Mass cases are implemented.
-	if (UCCLWorldSimulationSubsystem::DomainForWorld(GetWorld()) != ECCLWorldDomain::Campaign)
-	{
-		return;
-	}
-
-	FCCLSimulationSnapshot Snapshot;
-	if (!Simulation.Capture(Snapshot))
-	{
-		return;
-	}
-
-	for (TActorIterator<ACCLWorkshop> It(GetWorld()); It; ++It)
-	{
-		It->Destroy();
-	}
-	for (const auto& Pair : Snapshot.Economy.Ownerships)
-	{
-		const auto* Owner = Simulation.Find(Pair.Value.OwnerId);
-		const auto* Life = Owner ? Owner->Features.Find(CCLAgentTags::Feature_Life) : nullptr;
-		if (Life)
-		{
-			const FVector Position = Life->Data.Get<FCCLLifeState>().Workplace.Position + FVector(0, 100, -65);
-			auto* Workshop = GetWorld()->SpawnActor<ACCLWorkshop>(Position, FRotator::ZeroRotator);
-			if (Workshop)
-			{
-				Workshop->OwnershipId = Pair.Key;
-			}
-		}
-	}
-	int32 Index = 0;
-	for (const auto& Record : Snapshot.Agents)
-	{
-		if (Record.DefinitionId != FPrimaryAssetId(TEXT("Agent"), TEXT("Merchant")))
-		{
-			continue;
-		}
-
-		const int32 MerchantIndex = Index++;
-		if (!CCLAgentBiology::IsAlive(Record))
-		{
-			if (MerchantIndex == 0)
-			{
-				for (TActorIterator<ACCLVillageSteward> It(GetWorld()); It; ++It)
-				{
-					if (!Cast<ACCLLifeVillager>(*It))
-					{
-						It->Destroy();
-					}
-				}
-			}
-
-			continue;
-		}
-
-		if (MerchantIndex == 0)
-		{
-			for (TActorIterator<ACCLVillageSteward> It(GetWorld()); It; ++It)
-			{
-				if (!Cast<ACCLLifeVillager>(*It))
-				{
-					auto* Component = It->FindComponentByClass<UCCLAgentComponent>();
-					if (!Component)
-					{
-						Component = NewObject<UCCLAgentComponent>(*It);
-						It->AddInstanceComponent(Component);
-						Component->AgentId = Record.Id;
-						Component->RegisterComponent();
-					}
-					if (auto* Controller = It->GetController())
-					{
-						Controller->UnPossess();
-						Controller->Destroy();
-					}
-					It->SetActorLocation(Record.Location.Position);
-					It->GetCharacterMovement()->SetMovementMode(MOVE_Walking);
-					It->GetCharacterMovement()->MaxWalkSpeed = 150;
-					It->AIControllerClass = ACCLAgentAIController::StaticClass();
-					It->SpawnDefaultController();
-					Simulation.SetActorActive(Record.Id, true);
-					break;
-				}
-			}
-
-			continue;
-		}
-
-		const FTransform Transform(FRotator::ZeroRotator, Record.Location.Position);
-		auto* Villager = GetWorld()->SpawnActorDeferred<ACCLLifeVillager>(ACCLLifeVillager::StaticClass(), Transform,
-			nullptr, nullptr, ESpawnActorCollisionHandlingMethod::AdjustIfPossibleButAlwaysSpawn);
-		if (Villager)
-		{
-			Villager->GetAgent()->AgentId = Record.Id;
-			Villager->PublicName = FString::Printf(TEXT("주민 %d"), Index);
-			Villager->FinishSpawning(Transform);
-		}
-	}
 }
 
 void UCCLAgentWorldSubsystem::OnWorldBeginTearDown(UWorld* World)
@@ -326,50 +243,54 @@ void UCCLAgentWorldSubsystem::OnWorldBeginTearDown(UWorld* World)
 
 bool UCCLAgentWorldSubsystem::RequestExternalDeath(FGuid Id, FString& Error)
 {
-    auto* Runtime = GetWorld()->GetSubsystem<UCCLWorldSimulationSubsystem>();
-    const auto* Record = Simulation.Find(Id);
-    if (!bRunning || GetWorld()->GetNetMode() == NM_Client || !Runtime || !Runtime->IsRunning() ||
-        !Record || !CCLAgentBiology::Find(*Record))
-    {
-        Error = TEXT("External death requires an authoritative biological Agent.");
-        return false;
-    }
-    if (!CCLAgentBiology::IsAlive(*Record))
-    {
-        PendingExternalDeaths.Remove(Id);
-        return true;
-    }
-    PendingExternalDeaths.Add(Id, Runtime->GetEpoch());
-    if (!Simulation.EndLife(Id, ECCLAgentDeathCause::External, Error))
-    {
-        return false;
-    }
-    PendingExternalDeaths.Remove(Id);
-    return true;
+	auto* Runtime = GetWorld()->GetSubsystem<UCCLWorldSimulationSubsystem>();
+	const auto* Record = Simulation.Find(Id);
+	if (!bRunning || GetWorld()->GetNetMode() == NM_Client || !Runtime || !Runtime->IsRunning() ||
+		!Record || !CCLAgentBiology::Find(*Record))
+	{
+		Error = TEXT("External death requires an authoritative biological Agent.");
+		return false;
+	}
+	if (!CCLAgentBiology::IsAlive(*Record))
+	{
+		PendingExternalDeaths.Remove(Id);
+		return true;
+	}
+	PendingExternalDeaths.Add(Id, Runtime->GetEpoch());
+	if (!Simulation.EndLife(Id, ECCLAgentDeathCause::External, Error))
+	{
+		return false;
+	}
+	PendingExternalDeaths.Remove(Id);
+	return true;
 }
 
 bool UCCLAgentWorldSubsystem::FlushExternalDeaths(FString& Error)
 {
-    if (PendingExternalDeaths.IsEmpty()) { return true; }
-    auto* Runtime = GetWorld()->GetSubsystem<UCCLWorldSimulationSubsystem>();
-    if (!bRunning || !Runtime || !Runtime->IsRunning() || GetWorld()->GetNetMode() == NM_Client)
-    {
-        Error = TEXT("World awaits the Agent death owner.");
-        return false;
-    }
-    for (auto It = PendingExternalDeaths.CreateIterator(); It; ++It)
-    {
-        if (It.Value() != Runtime->GetEpoch())
-        {
-            It.RemoveCurrent();
-            continue;
-        }
-        if (Simulation.IsAlive(It.Key()) && !Simulation.EndLife(It.Key(), ECCLAgentDeathCause::External, Error))
-        {
-            Error = TEXT("World awaits a pending Agent death: ") + Error;
-            return false;
-        }
-        It.RemoveCurrent();
-    }
-    return true;
+	if (PendingExternalDeaths.IsEmpty())
+	{
+		return true;
+	}
+
+	auto* Runtime = GetWorld()->GetSubsystem<UCCLWorldSimulationSubsystem>();
+	if (!bRunning || !Runtime || !Runtime->IsRunning() || GetWorld()->GetNetMode() == NM_Client)
+	{
+		Error = TEXT("World awaits the Agent death owner.");
+		return false;
+	}
+	for (auto It = PendingExternalDeaths.CreateIterator(); It; ++It)
+	{
+		if (It.Value() != Runtime->GetEpoch())
+		{
+			It.RemoveCurrent();
+			continue;
+		}
+		if (Simulation.IsAlive(It.Key()) && !Simulation.EndLife(It.Key(), ECCLAgentDeathCause::External, Error))
+		{
+			Error = TEXT("World awaits a pending Agent death: ") + Error;
+			return false;
+		}
+		It.RemoveCurrent();
+	}
+	return true;
 }

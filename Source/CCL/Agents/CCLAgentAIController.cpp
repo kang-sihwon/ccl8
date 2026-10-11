@@ -4,7 +4,7 @@
 #include "CCLAgentComponent.h"
 #include "CCLAgentWorldSubsystem.h"
 #include "CCLAgentTags.h"
-#include "Campaign/CCLLifeVillager.h"
+#include "CCLAgentEmbodiment.h"
 #include "Components/StateTreeAIComponent.h"
 #include "Navigation/PathFollowingComponent.h"
 #include "StateTree.h"
@@ -68,9 +68,9 @@ EStateTreeRunStatus ACCLAgentAIController::SelectIntent()
 	OpportunityId = Opportunity->OpportunityId;
 	Revision = Opportunity->Revision;
 	Destination = Opportunity->Location.Position;
-	if (auto* Villager = Cast<ACCLLifeVillager>(GetPawn()))
+	if (auto* Embodiment = Cast<ICCLAgentEmbodiment>(GetPawn()))
 	{
-		Villager->SetActivity(Decision.Intent.Activity);
+		Embodiment->SetAgentActivity(Decision.Intent.Activity);
 	}
 
 	return EStateTreeRunStatus::Succeeded;

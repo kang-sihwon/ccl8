@@ -1,9 +1,9 @@
 #include "CCLCombatAbility.h"
 
-#include "CCLAbilitySystemComponent.h"
-#include "CCLEffects.h"
-#include "CCLGameplayTags.h"
-#include "CCLStaminaSet.h"
+#include "AbilitySystem/CCLAbilitySystemComponent.h"
+#include "AbilitySystem/CCLEffects.h"
+#include "AbilitySystem/CCLGameplayTags.h"
+#include "AbilitySystem/CCLStaminaSet.h"
 #include "Combat/CCLCombatComponent.h"
 #include "Combat/CCLCombatDefinition.h"
 #include "Abilities/Tasks/AbilityTask_WaitDelay.h"
@@ -94,7 +94,7 @@ void UCCLCombatAbility::ActivateAbility(const FGameplayAbilitySpecHandle Handle,
 		Start = Fighter->InvulnerableStart;
 		End = Fighter->InvulnerableEnd;
 		Duration = Fighter->DodgeDuration;
-		Montage = Fighter->DodgeMontage;
+		Montage = Fighter->DodgeMontage.Get();
 
 		if (auto* Character = Cast<ACharacter>(ActivatedAvatar.Get()))
 		{
@@ -113,7 +113,7 @@ void UCCLCombatAbility::ActivateAbility(const FGameplayAbilitySpecHandle Handle,
 	}
 	else if (Action == ECCLCombatAction::Parry)
 	{
-		Montage = Fighter->DefenseMontage;
+		Montage = Fighter->DefenseMontage.Get();
 		Start = Fighter->ParryStart;
 		End = Fighter->ParryEnd;
 		Duration = Fighter->ParryDuration;
@@ -122,9 +122,9 @@ void UCCLCombatAbility::ActivateAbility(const FGameplayAbilitySpecHandle Handle,
 	{
 		WindowEffect = ASC->ApplyEffect(UCCLGuardEffect::StaticClass());
 
-		if (Fighter->DefenseMontage)
+		if (Fighter->DefenseMontage.Get())
 		{
-			auto* Pose = UAbilityTask_PlayMontageAndWait::CreatePlayMontageAndWaitProxy(this, NAME_None, Fighter->DefenseMontage);
+			auto* Pose = UAbilityTask_PlayMontageAndWait::CreatePlayMontageAndWaitProxy(this, NAME_None, Fighter->DefenseMontage.Get());
 			Pose->ReadyForActivation();
 		}
 

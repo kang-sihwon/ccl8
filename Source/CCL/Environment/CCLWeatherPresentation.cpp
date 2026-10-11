@@ -6,15 +6,6 @@
 #include "Components/VolumetricCloudComponent.h"
 #include "Materials/MaterialInstanceDynamic.h"
 #include "GameFramework/PlayerController.h"
-#if WITH_EDITOR
-#include "UObject/UnrealType.h"
-#include "Stateless/NiagaraStatelessEmitter.h"
-#include "Stateless/Modules/NiagaraStatelessModule_InitializeParticle.h"
-#include "Stateless/Modules/NiagaraStatelessModule_ShapeLocation.h"
-#include "Stateless/Modules/NiagaraStatelessModule_AddVelocity.h"
-#include "Stateless/Modules/NiagaraStatelessModule_GravityForce.h"
-#include "Stateless/Modules/NiagaraStatelessModule_Drag.h"
-#endif
 
 ACCLWeatherPresentation::ACCLWeatherPresentation()
 {
@@ -30,7 +21,11 @@ float ACCLWeatherPresentation::GetCloudFraction(const UWorld* World)
 {
 	const auto* Surface = UCCLSurfaceReplication::View(World);
 	const auto* PC = World ? World->GetFirstPlayerController() : nullptr;
-	if (!Surface || !PC) { return 0.f; }
+	if (!Surface || !PC)
+	{
+		return 0.f;
+	}
+
 	FVector Camera;
 	FRotator Rotation;
 	PC->GetPlayerViewPoint(Camera, Rotation);
@@ -113,8 +108,15 @@ void ACCLWeatherPresentation::Tick(float DeltaSeconds)
 					C->SetWorldLocation(Position);
 					C->SetVariableFloat(TEXT("User.SpawnRate"), Spawn);
 					C->SetVariableVec3(TEXT("User.Velocity"), FVector(0., 0., bSnow ? -100. : -800.));
-					if (Spawn > 0.01f && !C->IsActive()) { C->Activate(true); }
-					if (Spawn <= 0.01f && C->IsActive()) { C->DeactivateImmediate(); }
+					if (Spawn > 0.01f && !C->IsActive())
+					{
+						C->Activate(true);
+					}
+
+					if (Spawn <= 0.01f && C->IsActive())
+					{
+						C->DeactivateImmediate();
+					}
 				};
 				Update(Rain[At], G.Forcing.RainMetersPerWorldSecond, false);
 				Update(Snow[At], G.Forcing.SnowMetersPerWorldSecond, true);
@@ -129,61 +131,3 @@ void ACCLWeatherPresentation::Tick(float DeltaSeconds)
 	}
 }
 
-bool ACCLWeatherPresentation::ConfigurePrecipitationSystem(UNiagaraSystem* System, bool bSnow)
-{
-#if WITH_EDITOR
-	if (!System || System->GetEmitterHandles().Num() != 1) { return false; }
-	auto* E = System->GetEmitterHandles()[0].GetStatelessEmitter();
-	if (!E) { return false; }
-	auto* Init = Cast<UNiagaraStatelessModule_InitializeParticle>(E->GetModule(UNiagaraStatelessModule_InitializeParticle::StaticClass()));
-	auto* Shape = Cast<UNiagaraStatelessModule_ShapeLocation>(E->GetModule(UNiagaraStatelessModule_ShapeLocation::StaticClass()));
-	auto* Velocity = Cast<UNiagaraStatelessModule_AddVelocity>(E->GetModule(UNiagaraStatelessModule_AddVelocity::StaticClass()));
-	if (!Init || !Shape || !Velocity || E->GetNumSpawnInfos() < 1) { return false; }
-	Init->LifetimeDistribution = FNiagaraDistributionRangeFloat(bSnow ? 2.7f : 0.3375f);
-	Init->SpriteSizeDistribution.InitConstant(bSnow ? FVector2f(3.f, 3.f) : FVector2f(0.8f, 12.f));
-	Shape->SetIsModuleEnabled(true);
-	Shape->ShapePrimitive = ENSM_ShapePrimitive::Plane;
-	Shape->PlaneSize.InitConstant(FVector2f(190.f, 190.f));
-	Velocity->SetIsModuleEnabled(true);
-	Velocity->VelocityType = ENSM_VelocityType::Linear;
-	Velocity->LinearVelocityDistribution.Mode = ENiagaraDistributionMode::Binding;
-	Velocity->LinearVelocityDistribution.ParameterBinding = FNiagaraVariableBase(FNiagaraTypeDefinition::GetVec3Def(), TEXT("User.Velocity"));
-	for (const auto& Module : E->GetModules())
-	{
-		if (Module->IsA<UNiagaraStatelessModule_GravityForce>() || Module->IsA<UNiagaraStatelessModule_Drag>())
-		{
-			Module->SetIsModuleEnabled(false);
-		}
-	}
-	for (int32 I = 0; I < E->GetNumSpawnInfos(); ++I)
-	{
-		auto* Spawn = E->GetSpawnInfoByIndex(I);
-		Spawn->bEnabled = I == 0;
-		Spawn->Type = ENiagaraStatelessSpawnInfoType::Rate;
-		Spawn->Rate.Mode = ENiagaraDistributionMode::Binding;
-		Spawn->Rate.ParameterBinding = FNiagaraVariableBase(FNiagaraTypeDefinition::GetFloatDef(), TEXT("User.SpawnRate"));
-	}
-	System->GetExposedParameters().SetParameterValue<float>(60.f, FNiagaraVariable(FNiagaraTypeDefinition::GetFloatDef(), TEXT("User.SpawnRate")), true);
-	System->GetExposedParameters().SetParameterValue<FVector3f>(FVector3f(0, 0, bSnow ? -100.f : -800.f), FNiagaraVariable(FNiagaraTypeDefinition::GetVec3Def(), TEXT("User.Velocity")), true);
-	if (auto* Property = FindFProperty<FStructProperty>(E->GetClass(), TEXT("FixedBounds")))
-	{
-		*Property->ContainerPtrToValuePtr<FBox>(E) = FBox(FVector(-150., -150., -300.), FVector(150., 150., 50.));
-	}
-	if (auto* Property = FindFProperty<FStructProperty>(E->GetClass(), TEXT("EmitterState")))
-	{
-		auto* State = Property->ContainerPtrToValuePtr<FNiagaraEmitterStateData>(E);
-		State->LoopBehavior = ENiagaraLoopBehavior::Infinite;
-		// Spawn rates are sampled per loop; 2.7s snow lifetime must fit the 8 live spawn records.
-		State->LoopDuration = FNiagaraDistributionRangeFloat(bSnow ? 1.f : 0.25f);
-		State->bLoopDelayEnabled = false;
-	}
-	E->PostEditChange();
-	System->PostEditChange();
-	System->RequestCompile(true);
-	System->WaitForCompilationComplete(true, false);
-	System->MarkPackageDirty();
-	return true;
-#else
-	return false;
-#endif
-}

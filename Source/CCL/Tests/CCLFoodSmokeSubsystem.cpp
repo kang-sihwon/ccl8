@@ -1,4 +1,5 @@
 #include "CCLFoodSmokeSubsystem.h"
+#include "Items/CCLInventorySnapshot.h"
 
 #include "Items/CCLInventoryComponent.h"
 #include "Items/CCLItemDefinition.h"
@@ -83,11 +84,12 @@ void UCCLFoodSmokeSubsystem::Tick(float DeltaTime)
 	auto* Inventory = MakeInventory();
 	FGuid Id;
 	const bool bResume = FParse::Param(FCommandLine::Get(), TEXT("CCLFoodResume"));
-    const FGuid ContainerId(851, 852, 853, 854);
-    if (!bResume && !Check(Inventory->BindPersistence(ContainerId, Error), TEXT("bind persistent container")))
-    {
-        return;
-    }
+	const FGuid ContainerId(851, 852, 853, 854);
+	if (!bResume && !Check(Inventory->BindPersistence(ContainerId, Error), TEXT("bind persistent container")))
+	{
+		return;
+	}
+
 	auto Advance = [&](double Seconds)
 	{
 		const double Before = Runtime->GetClock().GetWorldSeconds();
@@ -120,7 +122,7 @@ void UCCLFoodSmokeSubsystem::Tick(float DeltaTime)
 			&& FFileHelper::LoadFileToStringArray(Lines, *(Directory / TEXT("food-item.txt"))) && Lines.Num() == 2
 			&& FGuid::Parse(Lines[0], Entry.Id) && CCLFood::Decode(Lines[1], Entry.Food, Error)
 			&& Inventory->BindPersistence(ContainerId, Error) && Inventory->Find(Entry.Id)
-            && Inventory->Find(Entry.Id)->Quantity == 4, TEXT("restore inventory from world by persistent identity")))
+			&& Inventory->Find(Entry.Id)->Quantity == 4, TEXT("restore inventory from world by persistent identity")))
 		{
 			return;
 		}
@@ -174,10 +176,10 @@ void UCCLFoodSmokeSubsystem::Tick(float DeltaTime)
 
 		auto* Target = MakeInventory();
 		Target->Capacity = 1;
-        if (!Check(Target->BindPersistence(FGuid(861, 862, 863, 864), Error), TEXT("bind transfer destination")))
-        {
-            return;
-        }
+		if (!Check(Target->BindPersistence(FGuid(861, 862, 863, 864), Error), TEXT("bind transfer destination")))
+		{
+			return;
+		}
 		const FGuid Full = Target->Add(Definition, 20);
 		FString Before, After;
 		CCLFood::Encode(Inventory->Find(Id)->Food, Before, Error);
@@ -244,70 +246,119 @@ void UCCLFoodSmokeSubsystem::Tick(float DeltaTime)
 			return;
 		}
 
-        FCCLWorldSnapshot CapturedWorld;
-        if (!Check(FCCLWorldSnapshotCodec::Decode(Saved, CapturedWorld, Error) && CapturedWorld.Inventories.FilterByPredicate([&](const auto& R) { return R.ContainerId == ContainerId || R.ContainerId == FGuid(861, 862, 863, 864); }).Num() == 2,
-            TEXT("both containers captured in world envelope"))) { return; }
-        const TArray<uint8> WorldSaved = Saved;
-        const double SavedTime = Runtime->GetClock().GetWorldSeconds();
-        if (!Check(Advance(10.) && Inventory->Remove(Id, 1) && Target->Add(Definition, 1).IsValid(), TEXT("mutate after checkpoint")))
-        {
-            return;
-        }
-        const double FutureTime = Runtime->GetClock().GetWorldSeconds();
-        if (!Check(Inventory->BeginTransaction(), TEXT("open inventory transaction"))) { return; }
-        const bool bRejectedBusy = !Agents->Restore(WorldSaved, Error);
-        Inventory->EndTransaction(false);
-        if (!Check(bRejectedBusy && Runtime->GetClock().GetWorldSeconds() == FutureTime
-            && Inventory->Find(Id)->Quantity == 3 && Target->GetEntries().Num() == 1, TEXT("busy restore preserves all owners")))
-        {
-            return;
-        }
-        FCCLSimulationSnapshot Life;
-        if (!Check(Agents->GetSimulation().Capture(Life) && !Life.Agents.IsEmpty(), TEXT("life snapshot for lock"))) { return; }
-        auto& AgentStore = Agents->GetSimulation().GetAgents();
-        const auto Lease = AgentStore.Acquire(AgentStore.GetHandle(Life.Agents[0].Id), FGuid::NewGuid());
-        const bool bRejectedLife = Lease.Writer.IsValid() && !Agents->Restore(WorldSaved, Error);
-        const bool bReleasedLife = AgentStore.Release(Lease);
-        if (!Check(bRejectedLife && bReleasedLife && !Inventory->IsTransactionOpen() && !Target->IsTransactionOpen()
-            && Inventory->Find(Id)->Quantity == 3 && Runtime->GetClock().GetWorldSeconds() == FutureTime,
-            TEXT("life failure cancels prepared inventory restore"))) { return; }
-        auto Corrupt = WorldSaved;
-        Corrupt.Last() ^= 1;
-        if (!Check(!Agents->Restore(Corrupt, Error) && Inventory->Find(Id)->Quantity == 3
-            && Runtime->GetClock().GetWorldSeconds() == FutureTime, TEXT("corrupt world preserves current state"))) { return; }
-        auto* Unbound = MakeInventory();
-        const FGuid UnboundFood = Unbound->Add(Definition, 1);
-        TArray<uint8> Unchanged = {1, 2, 3};
-        if (!Check(UnboundFood.IsValid() && !Runtime->Save(Agents->GetSimulation(), Unchanged, Error)
-            && Unchanged == TArray<uint8>({1, 2, 3}) && !Agents->Restore(WorldSaved, Error), TEXT("unbound food cannot escape checkpoint"))) { return; }
-        Unbound->GetOwner()->Destroy();
-        auto* Duplicate = MakeInventory();
-        if (!Check(!Duplicate->BindPersistence(ContainerId, Error), TEXT("duplicate container owner rejected"))) { return; }
-        Duplicate->GetOwner()->Destroy();
-        bool bObservedFinal = false;
-        const auto RestoreObserver = Inventory->OnChanged.AddLambda([&]()
-        {
-            bObservedFinal = Runtime->GetClock().GetWorldSeconds() == SavedTime
-                && Inventory->Find(Id) && Inventory->Find(Id)->Quantity == 4 && Target->GetEntries().IsEmpty();
-        });
-        const bool bRestored = Agents->Restore(WorldSaved, Error);
-        Inventory->OnChanged.Remove(RestoreObserver);
-        if (!Check(bRestored && bObservedFinal, TEXT("clock and both containers published together"))) { return; }
-        FString RestoredFood;
-        if (!Check(CCLFood::Encode(Inventory->Find(Id)->Food, RestoredFood, Error) && RestoredFood == Food,
-            TEXT("world restores exact food history"))) { return; }
-        Inventory->GetOwner()->Destroy();
-        TArray<uint8> UnloadedWorld;
-        if (!Check(Runtime->Save(Agents->GetSimulation(), UnloadedWorld, Error)
-            && FFileHelper::SaveArrayToFile(UnloadedWorld, *(Directory / TEXT("food-world.bin"))), TEXT("save unloaded container"))) { return; }
-        auto* WrongCapacity = MakeInventory();
-        WrongCapacity->Capacity = 1;
-        if (!Check(!WrongCapacity->BindPersistence(ContainerId, Error), TEXT("capacity mismatch rejected"))) { return; }
-        WrongCapacity->GetOwner()->Destroy();
-        Inventory = MakeInventory();
-        if (!Check(Inventory->BindPersistence(ContainerId, Error) && Inventory->Find(Id)
-            && Inventory->Find(Id)->Quantity == 4, TEXT("unload rebind preserves contents"))) { return; }
-        Saved = UnloadedWorld;
+		FCCLWorldSnapshot CapturedWorld;
+		TArray<FCCLInventorySnapshot> CapturedRecords;
+		if (!Check(FCCLWorldSnapshotCodec::Decode(Saved, CapturedWorld, Error) && CCLInventorySnapshot::ReadWorld(CapturedWorld, CapturedRecords, Error) && CapturedRecords.FilterByPredicate([&](const auto& R) { return R.ContainerId == ContainerId || R.ContainerId == FGuid(861, 862, 863, 864); }).Num() == 2,
+			TEXT("both containers captured in world envelope")))
+		{
+			return;
+		}
+
+		const TArray<uint8> WorldSaved = Saved;
+		const double SavedTime = Runtime->GetClock().GetWorldSeconds();
+		if (!Check(Advance(10.) && Inventory->Remove(Id, 1) && Target->Add(Definition, 1).IsValid(), TEXT("mutate after checkpoint")))
+		{
+			return;
+		}
+		const double FutureTime = Runtime->GetClock().GetWorldSeconds();
+		if (!Check(Inventory->BeginTransaction(), TEXT("open inventory transaction")))
+		{
+			return;
+		}
+
+		const bool bRejectedBusy = !Agents->Restore(WorldSaved, Error);
+		Inventory->EndTransaction(false);
+		if (!Check(bRejectedBusy && Runtime->GetClock().GetWorldSeconds() == FutureTime
+			&& Inventory->Find(Id)->Quantity == 3 && Target->GetEntries().Num() == 1, TEXT("busy restore preserves all owners")))
+		{
+			return;
+		}
+		FCCLSimulationSnapshot Life;
+		if (!Check(Agents->GetSimulation().Capture(Life) && !Life.Agents.IsEmpty(), TEXT("life snapshot for lock")))
+		{
+			return;
+		}
+
+		auto& AgentStore = Agents->GetSimulation().GetAgents();
+		const auto Lease = AgentStore.Acquire(AgentStore.GetHandle(Life.Agents[0].Id), FGuid::NewGuid());
+		const bool bRejectedLife = Lease.Writer.IsValid() && !Agents->Restore(WorldSaved, Error);
+		const bool bReleasedLife = AgentStore.Release(Lease);
+		if (!Check(bRejectedLife && bReleasedLife && !Inventory->IsTransactionOpen() && !Target->IsTransactionOpen()
+			&& Inventory->Find(Id)->Quantity == 3 && Runtime->GetClock().GetWorldSeconds() == FutureTime,
+			TEXT("life failure cancels prepared inventory restore")))
+		{
+			return;
+		}
+
+		auto Corrupt = WorldSaved;
+		Corrupt.Last() ^= 1;
+		if (!Check(!Agents->Restore(Corrupt, Error) && Inventory->Find(Id)->Quantity == 3
+			&& Runtime->GetClock().GetWorldSeconds() == FutureTime, TEXT("corrupt world preserves current state")))
+		{
+			return;
+		}
+
+		auto* Unbound = MakeInventory();
+		const FGuid UnboundFood = Unbound->Add(Definition, 1);
+		TArray<uint8> Unchanged = {1, 2, 3};
+		if (!Check(UnboundFood.IsValid() && !Runtime->Save(Agents->GetSimulation(), Unchanged, Error)
+			&& Unchanged == TArray<uint8>({1, 2, 3}) && !Agents->Restore(WorldSaved, Error), TEXT("unbound food cannot escape checkpoint")))
+		{
+			return;
+		}
+
+		Unbound->GetOwner()->Destroy();
+		auto* Duplicate = MakeInventory();
+		if (!Check(!Duplicate->BindPersistence(ContainerId, Error), TEXT("duplicate container owner rejected")))
+		{
+			return;
+		}
+
+		Duplicate->GetOwner()->Destroy();
+		bool bObservedFinal = false;
+		const auto RestoreObserver = Inventory->OnChanged.AddLambda([&]()
+		{
+			bObservedFinal = Runtime->GetClock().GetWorldSeconds() == SavedTime
+				&& Inventory->Find(Id) && Inventory->Find(Id)->Quantity == 4 && Target->GetEntries().IsEmpty();
+		});
+		const bool bRestored = Agents->Restore(WorldSaved, Error);
+		Inventory->OnChanged.Remove(RestoreObserver);
+		if (!Check(bRestored && bObservedFinal, TEXT("clock and both containers published together")))
+		{
+			return;
+		}
+
+		FString RestoredFood;
+		if (!Check(CCLFood::Encode(Inventory->Find(Id)->Food, RestoredFood, Error) && RestoredFood == Food,
+			TEXT("world restores exact food history")))
+		{
+			return;
+		}
+
+		Inventory->GetOwner()->Destroy();
+		TArray<uint8> UnloadedWorld;
+		if (!Check(Runtime->Save(Agents->GetSimulation(), UnloadedWorld, Error)
+			&& FFileHelper::SaveArrayToFile(UnloadedWorld, *(Directory / TEXT("food-world.bin"))), TEXT("save unloaded container")))
+		{
+			return;
+		}
+
+		auto* WrongCapacity = MakeInventory();
+		WrongCapacity->Capacity = 1;
+		if (!Check(!WrongCapacity->BindPersistence(ContainerId, Error), TEXT("capacity mismatch rejected")))
+		{
+			return;
+		}
+
+		WrongCapacity->GetOwner()->Destroy();
+		Inventory = MakeInventory();
+		if (!Check(Inventory->BindPersistence(ContainerId, Error) && Inventory->Find(Id)
+			&& Inventory->Find(Id)->Quantity == 4, TEXT("unload rebind preserves contents")))
+		{
+			return;
+		}
+
+		Saved = UnloadedWorld;
 
 		if (Runtime->GetIdentity().Domain == ECCLWorldDomain::Campaign)
 		{
@@ -319,15 +370,34 @@ void UCCLFoodSmokeSubsystem::Tick(float DeltaTime)
 			Item.Quantity = 4;
 			Item.Slot = 0;
 			Item.Food = Food;
-            Record.Items.Add(Item);
-            if (!Check(!FCCLSessionCodec::Validate(Record), TEXT("session and world reject duplicate item ownership"))) { return; }
-            FCCLWorldSnapshot SessionWorld;
-            TArray<uint8> SessionWorldBytes;
-            if (!Check(FCCLWorldSnapshotCodec::Decode(Saved, SessionWorld, Error), TEXT("session owner separation"))) { return; }
-            SessionWorld.Inventories.RemoveAll([&](const auto& R) { return R.ContainerId == ContainerId; });
-            if (!Check(FCCLWorldSnapshotCodec::Encode(SessionWorld, SessionWorldBytes, Error), TEXT("legacy session-owned food envelope"))) { return; }
-            Record.AgentSimulation = FBase64::Encode(SessionWorldBytes);
-            FCCLSessionRecord Decoded;
+			Record.Items.Add(Item);
+			if (!Check(!FCCLSessionCodec::Validate(Record), TEXT("session and world reject duplicate item ownership")))
+			{
+				return;
+			}
+
+			FCCLWorldSnapshot SessionWorld;
+			TArray<uint8> SessionWorldBytes;
+			TArray<FCCLInventorySnapshot> SessionRecords;
+			if (!Check(FCCLWorldSnapshotCodec::Decode(Saved, SessionWorld, Error) && CCLInventorySnapshot::ReadWorld(SessionWorld, SessionRecords, Error),
+				TEXT("session owner separation")))
+			{
+				return;
+			}
+
+			SessionRecords.RemoveAll([&](const auto& R) { return R.ContainerId == ContainerId; });
+			if (!Check(CCLInventorySnapshot::WriteWorld(SessionWorld, SessionRecords, Error), TEXT("session owner section")))
+			{
+				return;
+			}
+
+			if (!Check(FCCLWorldSnapshotCodec::Encode(SessionWorld, SessionWorldBytes, Error), TEXT("legacy session-owned food envelope")))
+			{
+				return;
+			}
+
+			Record.AgentSimulation = FBase64::Encode(SessionWorldBytes);
+			FCCLSessionRecord Decoded;
 			if (!Check(FCCLSessionCodec::Encode(Record, Saved) && FCCLSessionCodec::Decode(Saved, Decoded)
 				&& Decoded.Items[0].Food == Food && FFileHelper::SaveArrayToFile(Saved, *(Directory / TEXT("food-session.bin"))), TEXT("session food persistence")))
 			{

@@ -11,7 +11,7 @@ bool CCLWorldAdvance::Advance(FCCLWorldClock& Clock, FCCLLifeSimulation& Life,
 	double MaxGameSeconds, double MaxWorldSeconds, FString& Error, int32 MaxLifeSlices, FCCLSurfaceSimulation* Surface,
 	const FCCLCelestialSystem* Celestial, const FCCLCelestialObserver* Observer, const ICCLSurfaceProvider* Shelter,
 	const TArray<FCCLSurfaceOpening>* Openings, FCCLEcologySimulation* Ecology, int32 MaxEcologyBoundaries, const ICCLEcologySpace* Space,
-    const TFunction<bool(const FCCLWorldStep&, const FCCLSurfaceSimulation*, FString&)>& Prepare)
+	const TFunction<bool(const FCCLWorldStep&, const FCCLSurfaceSimulation*, FString&)>& Prepare)
 {
 	CSV_SCOPED_TIMING_STAT_EXCLUSIVE(CCLWorldAdvance);
 	Error.Reset();
@@ -37,9 +37,9 @@ bool CCLWorldAdvance::Advance(FCCLWorldClock& Clock, FCCLLifeSimulation& Life,
 	}
 
 	if (Ecology && Ecology->HasSpatialBehavior())
-    {
-        MaxWorldSeconds = FMath::Min(MaxWorldSeconds, FMath::FloorToDouble(Clock.GetWorldSeconds()) + 1. - Clock.GetWorldSeconds());
-    }
+	{
+		MaxWorldSeconds = FMath::Min(MaxWorldSeconds, FMath::FloorToDouble(Clock.GetWorldSeconds()) + 1. - Clock.GetWorldSeconds());
+	}
 
 	FCCLWorldClock CandidateClock = Clock;
 	FCCLWorldStep Step;
@@ -71,10 +71,10 @@ bool CCLWorldAdvance::Advance(FCCLWorldClock& Clock, FCCLLifeSimulation& Life,
 		}
 	}
 
-    if (Prepare && !Prepare(Step, Surface ? &CandidateSurface : nullptr, Error))
-    {
-        return false;
-    }
+	if (Prepare && !Prepare(Step, Surface ? &CandidateSurface : nullptr, Error))
+	{
+		return false;
+	}
 
 	if (!Life.TryAdvanceTo(Step.WorldToSeconds, Error, MaxLifeSlices))
 	{

@@ -1,12 +1,37 @@
 ﻿#include "CCLCampaignState.h"
 
+#include "Agents/CCLLifeSimulation.h"
 #include "Net/UnrealNetwork.h"
+
+// 생성자
+
+ACCLCampaignState::ACCLCampaignState()
+{
+	PopulationScenario = TSoftObjectPtr<UCCLPopulationScenario>(FSoftObjectPath(TEXT("/Game/Progression/DA_MerchantLifeScenario.DA_MerchantLifeScenario")));
+}
+
+// 부모 인터페이스 함수
 
 void ACCLCampaignState::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
 {
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
 	DOREPLIFETIME(ACCLCampaignState, Progress);
 }
+
+bool ACCLCampaignState::BuildInitialPopulation(FCCLSimulationSnapshot& OutInitial, FString& Error) const
+{
+	const auto* Scenario = PopulationScenario.LoadSynchronous();
+	if (!Scenario)
+	{
+		Error = TEXT("Campaign population scenario is missing.");
+		return false;
+	}
+
+	OutInitial = Scenario->InitialState;
+	return true;
+}
+
+// 내 클래스 함수
 
 void ACCLCampaignState::SetProgress(ECCLCampaignPhase Phase, int32 RemainingGuards)
 {

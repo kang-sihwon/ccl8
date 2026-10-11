@@ -2,7 +2,7 @@
 
 #if WITH_EDITOR
 #include "AbilitySystem/CCLAbilitySet.h"
-#include "AbilitySystem/CCLCombatAbility.h"
+#include "Combat/CCLCombatAbility.h"
 #include "AbilitySystem/CCLGameplayTags.h"
 #include "Combat/CCLCombatDefinition.h"
 #include "Combat/CCLHitRule.h"

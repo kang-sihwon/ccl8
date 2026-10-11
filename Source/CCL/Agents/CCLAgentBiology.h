@@ -28,7 +28,7 @@ struct CCL_API FCCLAgentBiology
 	double LifespanSeconds = 0.;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Life")
-	bool bProtectNaturalAging = false;
+	uint8 bProtectNaturalAging = 0;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Life")
 	ECCLAgentDeathCause DeathCause = ECCLAgentDeathCause::None;

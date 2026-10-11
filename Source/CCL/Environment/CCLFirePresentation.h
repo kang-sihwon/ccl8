@@ -19,10 +19,6 @@ public:
 	ACCLFirePresentation();
 	virtual void Tick(float DeltaSeconds) override;
 
-public:
-	UFUNCTION(BlueprintCallable, Category="Environment")
-	static bool ConfigureFireSystem(UNiagaraSystem* System, bool bSmoke, UMaterialInterface* SpriteMaterial);
-
 private:
 	void UpdateEmitter(int32 Index, UNiagaraSystem* Asset, const FVector& Position, float Rate, const FVector& Velocity);
 

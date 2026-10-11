@@ -7,8 +7,6 @@ public class CCL : ModuleRules
 	public CCL(ReadOnlyTargetRules Target) : base(Target)
 	{
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
-		// The runtime module references opt-in validation subsystems from Tests.
-		//bForceIncludeTestsFolder = true;
 		PublicIncludePaths.Add(ModuleDirectory);
 
 		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "EnhancedInput", "GameplayAbilities", "GameplayTags", "GameplayTasks", "AIModule", "NavigationSystem", "StateTreeModule", "GameplayStateTreeModule", "MassEntity", "MassCore" });
@@ -17,8 +15,10 @@ public class CCL : ModuleRules
 		PrivateDependencyModuleNames.Add("GeometryCore");
 		PrivateDependencyModuleNames.Add("AnimationCore");
 		PrivateDependencyModuleNames.Add("Niagara");
+		PrivateDependencyModuleNames.Add("DeveloperSettings");
 		if (Target.bBuildEditor)
 		{
+			// Stateless Niagara emitter authoring in Editor/CCLEnvironmentFXLibrary uses these internal headers.
 			PrivateIncludePaths.Add(System.IO.Path.Combine(EngineDirectory, "Plugins/FX/Niagara/Source/Niagara/Internal"));
 			PrivateIncludePaths.Add(System.IO.Path.Combine(EngineDirectory, "Plugins/FX/Niagara/Source/NiagaraShader/Internal"));
 		}

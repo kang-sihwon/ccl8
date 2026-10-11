@@ -127,7 +127,11 @@ bool FCCLTerrainSurfaceBoundsTest::RunTest(const FString& Parameters)
 	Definition.DefinitionId = FGuid(9, 10, 11, 12);
 	FCCLTerrainStore Store;
 	FString Error;
-	if (!TestTrue(TEXT("initialize layered query fixture"), Store.Initialize(Definition, Error))) { return false; }
+	if (!TestTrue(TEXT("initialize layered query fixture"), Store.Initialize(Definition, Error)))
+	{
+		return false;
+	}
+
 	TArray<TSharedRef<const FCCLTerrainMesh>> Meshes;
 	for (int32 Layer = 0; Layer < 2; ++Layer)
 	{
@@ -156,7 +160,11 @@ bool FCCLTerrainSurfaceBoundsTest::RunTest(const FString& Parameters)
 		{
 			Query.OriginMeters = Transform.TransformPosition(FVector(XY.X, XY.Y, 2.) * 100.) / 100.;
 			if (!TestTrue(TEXT("axis, vertex and tolerant edge rays query"), Surface.QuerySurfaces(Query, Hits, Error))
-				|| !TestEqual(TEXT("both layers survive chunk bounds"), Hits.Num(), 2)) { return false; }
+				|| !TestEqual(TEXT("both layers survive chunk bounds"), Hits.Num(), 2))
+			{
+				return false;
+			}
+
 			TestTrue(TEXT("top distance unchanged"), FMath::IsNearlyEqual(Hits[0].DistanceMeters, 2., 1.e-7));
 			TestTrue(TEXT("bottom distance unchanged"), FMath::IsNearlyEqual(Hits[1].DistanceMeters, 6., 1.e-7));
 		}

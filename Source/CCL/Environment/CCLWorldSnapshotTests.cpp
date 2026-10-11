@@ -1,4 +1,6 @@
 #include "CCLWorldSnapshot.h"
+#include "Items/CCLInventorySnapshot.h"
+#include "Session/CCLPlayerSnapshot.h"
 
 #include "CCLWorldAdvance.h"
 #include "CCLSurfaceSimulation.h"
@@ -245,26 +247,56 @@ bool FCCLWorldEnvironmentMigrationTest::RunTest(const FString& Parameters)
 	const int32 EnvironmentOffset = 89 + 4 + Snapshot.Clock.Pending.Num() * 32 + 4 + Snapshot.Clock.Rates.Num() * 24;
 	int32 EnvironmentCount = 0;
 	FMemory::Memcpy(&EnvironmentCount, Bytes.GetData() + EnvironmentOffset, 4);
-    const int32 PlayerOffset = EnvironmentOffset + 4 + EnvironmentCount + 4 + Snapshot.Surface.Num() + 4 + Snapshot.Ecology.Num() + 14;
-    TArray<uint8> SchemaFive = Bytes;
-    SchemaFive.RemoveAt(PlayerOffset, 14);
-    const uint32 Five = 5;
-    FMemory::Memcpy(SchemaFive.GetData() + 4, &Five, 4);
-    uint32 FiveCRC = FCrc::MemCrc32(SchemaFive.GetData(), SchemaFive.Num() - 4);
-    FMemory::Memcpy(SchemaFive.GetData() + SchemaFive.Num() - 4, &FiveCRC, 4);
-    FCCLWorldSnapshot FromFive;
-    TestTrue(TEXT("schema five migrates missing players"), FCCLWorldSnapshotCodec::Decode(SchemaFive, FromFive, Error));
-    TestTrue(TEXT("legacy world does not invent player profiles"), FromFive.bPlayersMigrated && FromFive.Players.IsEmpty());
-    Bytes = SchemaFive;
-    TArray<uint8> SchemaFour = Bytes;
-    SchemaFour.RemoveAt(EnvironmentOffset + 4 + EnvironmentCount + 4 + Snapshot.Surface.Num() + 4 + Snapshot.Ecology.Num(), 14);
-    const uint32 Four = 4;
-    FMemory::Memcpy(SchemaFour.GetData() + 4, &Four, 4);
-    uint32 FourCRC = FCrc::MemCrc32(SchemaFour.GetData(), SchemaFour.Num() - 4);
-    FMemory::Memcpy(SchemaFour.GetData() + SchemaFour.Num() - 4, &FourCRC, 4);
-    FCCLWorldSnapshot FromFour;
-    TestTrue(TEXT("schema four migrates missing inventories"), FCCLWorldSnapshotCodec::Decode(SchemaFour, FromFour, Error));
-    TestTrue(TEXT("legacy has no fabricated food"), FromFour.bInventoriesMigrated && FromFour.Inventories.IsEmpty());
+
+	// Rebuild the schema-6 layout: fixed inventory and player blobs instead of the schema-7 section list.
+	const int32 SectionOffset = EnvironmentOffset + 4 + EnvironmentCount + 4 + Snapshot.Surface.Num() + 4 + Snapshot.Ecology.Num();
+	int32 SectionCount = -1;
+	FMemory::Memcpy(&SectionCount, Bytes.GetData() + SectionOffset, 4);
+	TestEqual(TEXT("captured world without participants has no sections"), SectionCount, 0);
+	TArray<uint8> EmptyInventories;
+	TArray<uint8> EmptyPlayers;
+	TestTrue(TEXT("empty legacy blobs"), CCLInventorySnapshot::Encode({}, Identity.WorldId, Snapshot.Clock.WorldSeconds, EmptyInventories, Error)
+		&& CCLPlayerSnapshot::Encode({}, Identity.WorldId, Snapshot.Clock.WorldSeconds, EmptyPlayers, Error)
+		&& EmptyInventories.Num() == 10 && EmptyPlayers.Num() == 10);
+	TArray<uint8> LegacyBlobs;
+	for (const auto* Blob : {&EmptyInventories, &EmptyPlayers})
+	{
+		const int32 Count = Blob->Num();
+		LegacyBlobs.Append(reinterpret_cast<const uint8*>(&Count), 4);
+		LegacyBlobs.Append(*Blob);
+	}
+	Bytes.RemoveAt(SectionOffset, 4);
+	Bytes.Insert(LegacyBlobs, SectionOffset);
+	const uint32 Six = 6;
+	FMemory::Memcpy(Bytes.GetData() + 4, &Six, 4);
+	uint32 SixCRC = FCrc::MemCrc32(Bytes.GetData(), Bytes.Num() - 4);
+	FMemory::Memcpy(Bytes.GetData() + Bytes.Num() - 4, &SixCRC, 4);
+	FCCLWorldSnapshot FromSix;
+	TestTrue(TEXT("schema six lifts both blobs into sections"), FCCLWorldSnapshotCodec::Decode(Bytes, FromSix, Error)
+		&& FromSix.Schema == 7 && FromSix.FindSection(CCLInventorySnapshot::WorldSection())
+		&& FromSix.FindSection(CCLPlayerSnapshot::WorldSection()));
+
+	const int32 PlayerOffset = EnvironmentOffset + 4 + EnvironmentCount + 4 + Snapshot.Surface.Num() + 4 + Snapshot.Ecology.Num() + 14;
+	TArray<uint8> SchemaFive = Bytes;
+	SchemaFive.RemoveAt(PlayerOffset, 14);
+	const uint32 Five = 5;
+	FMemory::Memcpy(SchemaFive.GetData() + 4, &Five, 4);
+	uint32 FiveCRC = FCrc::MemCrc32(SchemaFive.GetData(), SchemaFive.Num() - 4);
+	FMemory::Memcpy(SchemaFive.GetData() + SchemaFive.Num() - 4, &FiveCRC, 4);
+	FCCLWorldSnapshot FromFive;
+	TestTrue(TEXT("schema five migrates missing players"), FCCLWorldSnapshotCodec::Decode(SchemaFive, FromFive, Error));
+	TestTrue(TEXT("legacy world does not invent player profiles"), !FromFive.FindSection(CCLPlayerSnapshot::WorldSection())
+		&& FromFive.FindSection(CCLInventorySnapshot::WorldSection()));
+	Bytes = SchemaFive;
+	TArray<uint8> SchemaFour = Bytes;
+	SchemaFour.RemoveAt(EnvironmentOffset + 4 + EnvironmentCount + 4 + Snapshot.Surface.Num() + 4 + Snapshot.Ecology.Num(), 14);
+	const uint32 Four = 4;
+	FMemory::Memcpy(SchemaFour.GetData() + 4, &Four, 4);
+	uint32 FourCRC = FCrc::MemCrc32(SchemaFour.GetData(), SchemaFour.Num() - 4);
+	FMemory::Memcpy(SchemaFour.GetData() + SchemaFour.Num() - 4, &FourCRC, 4);
+	FCCLWorldSnapshot FromFour;
+	TestTrue(TEXT("schema four migrates missing inventories"), FCCLWorldSnapshotCodec::Decode(SchemaFour, FromFour, Error));
+	TestTrue(TEXT("legacy has no fabricated food"), FromFour.Sections.IsEmpty());
 
 	TArray<uint8> SchemaThree = Bytes;
 	SchemaThree.RemoveAt(EnvironmentOffset + 4 + EnvironmentCount + 4 + Snapshot.Surface.Num(), 4 + Snapshot.Ecology.Num() + 14);
@@ -300,7 +332,7 @@ bool FCCLWorldEnvironmentMigrationTest::RunTest(const FString& Parameters)
 	FMemory::Memcpy(Bytes.GetData() + Bytes.Num() - 4, &CRC, 4);
 	FCCLWorldSnapshot Migrated;
 	TestTrue(TEXT("old world envelope migrates"), FCCLWorldSnapshotCodec::Decode(Bytes, Migrated, Error));
-	TestEqual(TEXT("upgraded world schema"), Migrated.Schema, uint32(6));
+	TestEqual(TEXT("upgraded world schema"), Migrated.Schema, uint32(7));
 	TestEqual(TEXT("old identity retained"), Migrated.Identity.WorldId, Identity.WorldId);
 	TestEqual(TEXT("old time retained without offline advance"), Migrated.Clock.WorldSeconds, 60.);
 	TestEqual(TEXT("explicit default environment seed"), Migrated.Environment.Celestial.Seed, 42);

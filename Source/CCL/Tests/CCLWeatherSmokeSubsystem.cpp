@@ -162,7 +162,11 @@ void UCCLWeatherSmokeSubsystem::Tick(float DeltaTime)
 		FParse::Value(FCommandLine::Get(), TEXT("CCLWeatherSmokeDir="), Directory);
 		if (Step == 4 || Step == 6)
 		{
-			if (!Check(Execute(Step == 4 ? ECCLExperimentAction::WeatherRain : ECCLExperimentAction::WeatherSnow))) { return; }
+			if (!Check(Execute(Step == 4 ? ECCLExperimentAction::WeatherRain : ECCLExperimentAction::WeatherSnow)))
+			{
+				return;
+			}
+
 			Next = Now + 4.;
 		}
 		else
@@ -178,15 +182,27 @@ void UCCLWeatherSmokeSubsystem::Tick(float DeltaTime)
 		auto Climate = Grid->Climate;
 		Climate.bEnabled = 1;
 		Climate.MoistureSupplyMetersPerSecond = 0.00003;
-		if (!Check(Runtime->ChangeClimate(Grid->RegionId, Climate, Error) && Runtime->ChangeTimeScale(60., Error))) { return; }
+		if (!Check(Runtime->ChangeClimate(Grid->RegionId, Climate, Error) && Runtime->ChangeTimeScale(60., Error)))
+		{
+			return;
+		}
+
 		WorldStarted = Runtime->GetClock().GetWorldSeconds();
 		Step = 9;
 		return;
 	}
 	if (bRendered && Step == 9)
 	{
-		if (Runtime->GetClock().GetWorldSeconds() - WorldStarted < 900.) { return; }
-		if (!Check(Runtime->ChangeTimeScale(0., Error) && ACCLWeatherPresentation::GetCloudFraction(World) > 0.2f)) { return; }
+		if (Runtime->GetClock().GetWorldSeconds() - WorldStarted < 900.)
+		{
+			return;
+		}
+
+		if (!Check(Runtime->ChangeTimeScale(0., Error) && ACCLWeatherPresentation::GetCloudFraction(World) > 0.2f))
+		{
+			return;
+		}
+
 		PC->SetControlRotation(FRotator(35., PC->GetControlRotation().Yaw, 0.));
 		Step = 10;
 		Next = Now + 4.;

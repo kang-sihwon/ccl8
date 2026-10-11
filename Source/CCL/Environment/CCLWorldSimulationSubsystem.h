@@ -9,6 +9,7 @@
 #include "CCLWorldSimulationSubsystem.generated.h"
 
 class ACCLWorldEnvironmentState;
+class ICCLWorldParticipant;
 class FCCLTerrainWaterParticipant;
 
 UCLASS()
@@ -29,17 +30,18 @@ public:
 	bool QueueGameTime(double Seconds, FString& Error);
 	bool AdvancePending(double MaxGameSeconds, double MaxWorldSeconds, FString& Error, int32 MaxLifeSlices = 256);
 	bool ChangeTimeScale(double Scale, FString& Error);
-	// SessionInventory is excluded only when its caller stores it in the same session envelope.
-	bool Save(const FCCLLifeSimulation& Life, TArray<uint8>& Bytes, FString& Error,
-		const class UCCLInventoryComponent* SessionInventory = nullptr);
-    // FinalizeSession requires SessionRequest and must synchronously succeed without reentry or destruction.
-	bool Restore(FCCLLifeSimulation& Life, const TArray<uint8>& Bytes, FString& Error,
-        const struct FCCLLoadoutRestoreRequest* SessionRequest = nullptr, TFunction<void()> FinalizeSession = {});
+	// SessionContainer is excluded only when its caller stores it in the same session envelope.
+	bool Save(const FCCLLifeSimulation& Life, TArray<uint8>& Bytes, FString& Error, const UObject* SessionContainer = nullptr);
+	bool Restore(FCCLLifeSimulation& Life, const TArray<uint8>& Bytes, FString& Error);
 
-    bool SeedEcology(const FCCLEcologySimulation& Candidate, FString& Error);
-    bool AddEcologyGroup(const FCCLEcologyGroup& Group, FString& Error);
-    bool AddEcologyForage(FCCLEcologyForage Forage, FString& Error);
-    bool AddEcologyBehavior(FCCLEcologyBehavior Behavior, FString& Error);
+	// Game systems that keep a section of the world snapshot register for capture, restore and advance.
+	void RegisterParticipant(ICCLWorldParticipant& Participant);
+	void UnregisterParticipant(ICCLWorldParticipant& Participant);
+
+	bool SeedEcology(const FCCLEcologySimulation& Candidate, FString& Error);
+	bool AddEcologyGroup(const FCCLEcologyGroup& Group, FString& Error);
+	bool AddEcologyForage(FCCLEcologyForage Forage, FString& Error);
+	bool AddEcologyBehavior(FCCLEcologyBehavior Behavior, FString& Error);
 	bool AddEcologySpecies(const FCCLEcologySpecies& Species, FString& Error);
 	bool AddEcologyHabitat(const FCCLEcologyHabitat& Habitat, FString& Error);
 	bool AddEcologyPopulation(FCCLEcologyPopulation Population, FString& Error);
@@ -80,6 +82,11 @@ private:
 	bool BuildEnvironmentView(FCCLEnvironmentView& OutView, FString& Error) const;
 	bool CheckAuthority(FString& Error) const;
 	void ReportFailure(const FString& Error);
+	bool CaptureParticipants(FCCLWorldSnapshot& Snapshot, const UObject* SessionContainer, FString& Error);
+	bool PrepareParticipants(const FCCLWorldSnapshot* Snapshot, FGuid WorldId, double WorldSeconds, bool bStarting,
+		int32& OutPrepared, FString& Error);
+	bool CommitParticipants(int32 Index, int32 Prepared, TFunctionRef<bool()> CommitCore);
+	void CancelParticipants(int32 Prepared);
 
 private:
 	UPROPERTY(Transient)
@@ -95,6 +102,9 @@ private:
 	FGuid Epoch;
 	FString LastError;
 	TWeakObjectPtr<UObject> ManualAdvanceOwner;
+
+	// Sorted by world order. Participants are world subsystems that unregister while deinitializing.
+	TArray<ICCLWorldParticipant*> Participants;
 	double UnqueuedGameSeconds = 0;
 	uint8 bRunning = 0;
 };

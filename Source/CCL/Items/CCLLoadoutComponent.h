@@ -26,10 +26,10 @@ public:
 
 public:
 	bool Restore(const TArray<FCCLEquippedSlot>& Equipment, const TArray<UCCLSkillDefinition*>& Skills, int32 UnspentPoints);
-    bool CanRestoreState(const TArray<FCCLInventoryEntry>& Entries, const TArray<FCCLEquippedSlot>& Equipment,
-                         const TArray<UCCLSkillDefinition*>& Skills, int32 UnspentPoints) const;
-    bool RestoreState(const TArray<FCCLInventoryEntry>& Entries, const TArray<FCCLEquippedSlot>& Equipment,
-                      const TArray<UCCLSkillDefinition*>& Skills, int32 UnspentPoints, bool bResetHealth = true);
+	bool CanRestoreState(const TArray<FCCLInventoryEntry>& Entries, const TArray<FCCLEquippedSlot>& Equipment,
+						 const TArray<UCCLSkillDefinition*>& Skills, int32 UnspentPoints) const;
+	bool RestoreState(const TArray<FCCLInventoryEntry>& Entries, const TArray<FCCLEquippedSlot>& Equipment,
+					  const TArray<UCCLSkillDefinition*>& Skills, int32 UnspentPoints, bool bResetHealth = true);
 	bool Equip(FGuid Id, FGameplayTag Slot = FGameplayTag());
 	bool Unequip(FGuid Id, int32 BagSlot = INDEX_NONE);
 	bool Use(FGuid Id);
@@ -66,9 +66,10 @@ private:
 	bool CanAct() const;
 	UCCLAbilitySystemComponent* GetASC() const;
 	UCCLInventoryComponent* GetInventory() const;
+	static class ICCLEquipmentPresenter* FindPresenter(AActor* Avatar);
 
 private:
-    friend class FCCLLoadoutRestoreBatch;
+	friend class FCCLLoadoutRestoreBatch;
 
 	UPROPERTY(Replicated)
 	TArray<FCCLEquippedSlot> EquipmentSlots;
@@ -88,5 +89,5 @@ private:
 	TMap<FGuid, FActiveGameplayEffectHandle> EquipmentEffects;
 	TArray<FActiveGameplayEffectHandle> SkillEffects;
 	TSet<FGuid> ActionSources;
-    uint8 bRestoring = 0;
+	uint8 bRestoring = 0;
 };

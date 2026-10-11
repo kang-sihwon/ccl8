@@ -140,11 +140,13 @@ void UCCLTerrainTravelSmokeSubsystem::Tick(float DeltaTime)
 			return false;
 		}
 
-        if (!World->GetSubsystem<UCCLInventoryPersistenceSubsystem>()->Capture(
-            Actual.Identity.WorldId, Actual.Clock.WorldSeconds, Actual.Inventories, Error))
-        {
-            return false;
-        }
+		TArray<FCCLInventorySnapshot> ActualRecords;
+		if (!World->GetSubsystem<UCCLInventoryPersistenceSubsystem>()->Capture(
+			Actual.Identity.WorldId, Actual.Clock.WorldSeconds, ActualRecords, Error) ||
+			!CCLInventorySnapshot::WriteWorld(Actual, ActualRecords, Error))
+		{
+			return false;
+		}
 
 		// A new PlayerState opens a new account after world restoration. All saved accounts
 		// must still match; allow only the current players' untouched opening balances.
@@ -183,10 +185,10 @@ void UCCLTerrainTravelSmokeSubsystem::Tick(float DeltaTime)
 		if (!FCCLWorldSnapshotCodec::Encode(Saved, SavedWorld, Error)
 			|| !FCCLWorldSnapshotCodec::Encode(Actual, ActualWorld, Error) || SavedWorld != ActualWorld)
 		{
-            Error = FString::Printf(TEXT("world differs after travel: schema=%u/%u containers=%d/%d players=%d/%d surface=%d ecology=%d game=%.17g/%.17g world=%.17g/%.17g"),
-                Saved.Schema, Actual.Schema, Saved.Inventories.Num(), Actual.Inventories.Num(), Saved.Players.Num(), Actual.Players.Num(),
-                Saved.Surface == Actual.Surface, Saved.Ecology == Actual.Ecology,
-                Saved.Clock.GameSeconds, Actual.Clock.GameSeconds, Saved.Clock.WorldSeconds, Actual.Clock.WorldSeconds);
+			Error = FString::Printf(TEXT("world differs after travel: schema=%u/%u sections=%d/%d surface=%d ecology=%d game=%.17g/%.17g world=%.17g/%.17g"),
+				Saved.Schema, Actual.Schema, Saved.Sections.Num(), Actual.Sections.Num(),
+				Saved.Surface == Actual.Surface, Saved.Ecology == Actual.Ecology,
+				Saved.Clock.GameSeconds, Actual.Clock.GameSeconds, Saved.Clock.WorldSeconds, Actual.Clock.WorldSeconds);
 			return false;
 		}
 

@@ -342,11 +342,11 @@ bool FCCLEcologySimulation::ApplyCandidate(const FCCLEcologyEvent& E, FString& E
 
 		if (Individual)
 		{
-            if (auto* B = Behaviors.Find(Individual->Id))
-            {
-                B->GroupId.Invalidate();
-                B->TargetFoodId.Invalidate();
-            }
+			if (auto* B = Behaviors.Find(Individual->Id))
+			{
+				B->GroupId.Invalidate();
+				B->TargetFoodId.Invalidate();
+			}
 			Individual->PopulationId = E.Target;
 			const auto& Habitat = Habitats[Target->HabitatId];
 			Individual->PositionMeters = Individual->PositionMeters.ComponentMax(Habitat.MinimumMeters).ComponentMin(Habitat.MaximumMeters);
@@ -504,10 +504,10 @@ bool FCCLEcologySimulation::UpdatePosition(const FCCLEcologyLease& Lease, const 
 		return Fail(Error, TEXT("Individual position is outside its habitat."));
 	}
 
-    if (Behaviors.Contains(I.Id))
-    {
-        return Fail(Error, TEXT("Autonomous ecology position is owned by the committed behavior model."));
-    }
+	if (Behaviors.Contains(I.Id))
+	{
+		return Fail(Error, TEXT("Autonomous ecology position is owned by the committed behavior model."));
+	}
 
 	I.PositionMeters = PositionMeters;
 	Error.Reset();
@@ -697,7 +697,11 @@ bool FCCLEcologySimulation::Validate(FString& Error) const
 		}
 	}
 
-    if (!ValidateBehavior(Error)) { return false; }
+	if (!ValidateBehavior(Error))
+	{
+		return false;
+	}
+
 	Error.Reset();
 	return true;
 }
@@ -792,28 +796,34 @@ bool FCCLEcologySimulation::Serialize(FArchive& Ar)
 		}
 	}
 
-    if (Version >= 4)
-    {
-        if (!Map(Ar, Groups, 256, 64, [&](auto& G)
-        {
-            Ar << G.Id << G.HabitatId;
-            Vector(Ar, G.AnchorMeters);
-            Ar << G.RadiusMeters;
-        }) || !Map(Ar, ForageSources, 4096, 116, [&](auto& F)
-        {
-            Ar << F.Id << F.HabitatId;
-            Vector(Ar, F.PositionMeters);
-            Ar << F.FoodMask << F.InitialUnits << F.AvailableUnits << F.CapacityUnits << F.RegrowthPerSecond
-                << F.GrownUnits << F.ConsumedUnits << F.LastStepSeconds;
-        }) || !Map(Ar, Behaviors, 4096, Version >= 5 ? 142 : 133, [&](auto& B)
-        {
-            Ar << B.Id << B.GroupId << B.TargetFoodId << B.SpeedMetersPerSecond << B.DietMask << B.Energy
-                << B.MetabolismPerSecond << B.BiteUnitsPerSecond << B.EnergyPerUnit << B.HungerThreshold
-                << B.StarvationLimitSeconds << B.StarvedSeconds << B.ConsumedUnits << B.LastStepSeconds;
-            Enum(Ar, B.Activity);
-            if (Version >= 5) { Ar << B.bUseWorldSpace << B.RadiusMeters; }
-        })) { return false; }
-    }
+	if (Version >= 4)
+	{
+		if (!Map(Ar, Groups, 256, 64, [&](auto& G)
+		{
+			Ar << G.Id << G.HabitatId;
+			Vector(Ar, G.AnchorMeters);
+			Ar << G.RadiusMeters;
+		}) || !Map(Ar, ForageSources, 4096, 116, [&](auto& F)
+		{
+			Ar << F.Id << F.HabitatId;
+			Vector(Ar, F.PositionMeters);
+			Ar << F.FoodMask << F.InitialUnits << F.AvailableUnits << F.CapacityUnits << F.RegrowthPerSecond
+				<< F.GrownUnits << F.ConsumedUnits << F.LastStepSeconds;
+		}) || !Map(Ar, Behaviors, 4096, Version >= 5 ? 142 : 133, [&](auto& B)
+		{
+			Ar << B.Id << B.GroupId << B.TargetFoodId << B.SpeedMetersPerSecond << B.DietMask << B.Energy
+				<< B.MetabolismPerSecond << B.BiteUnitsPerSecond << B.EnergyPerUnit << B.HungerThreshold
+				<< B.StarvationLimitSeconds << B.StarvedSeconds << B.ConsumedUnits << B.LastStepSeconds;
+			Enum(Ar, B.Activity);
+			if (Version >= 5)
+			{
+				Ar << B.bUseWorldSpace << B.RadiusMeters;
+			}
+		}))
+		{
+			return false;
+		}
+	}
 
 	return !Ar.IsError();
 }

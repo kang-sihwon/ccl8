@@ -394,32 +394,39 @@ void UCCLExperimentScreen::OnContextBound()
 	}
 	WeatherControls->AddSlot().AutoHeight()[WeatherButtons];
 
-    auto EcologyControls=SNew(SVerticalBox).Visibility_Lambda([this]() { return SelectedCase==TEXT("Zone_06")?EVisibility::Visible:EVisibility::Collapsed; });
-    EcologyPanel=EcologyControls;
-    EcologyControls->AddSlot().AutoHeight().Padding(0,8)[SNew(STextBlock).Font(FCoreStyle::GetDefaultFontStyle("Regular",15)).AutoWrapText(true).Text_Lambda([this]()
-    {
-        const auto* E=ACCLEcologyExperiment::Find(GetWorld());
-        if (!E||E->GetView().Rows.Num()!=4) { return FText::FromString(TEXT("생태 관측 수신 대기")); }
-        FString Text=TEXT("지속 개체는 표현을 숨겨도 이동·섭취한다.\n");
-        for (int32 N=0;N<4;++N)
-        {
-            const auto& R=E->GetView().Rows[N];
-            Text+=FString::Printf(TEXT("%s · 전체 %lld / 집계 %lld / 예약 %d\nActor %d · Mass %d · 막힘 %d · 에너지 %.0f%%\n먹이 %.1f · 누적 섭취 %.1f\n"),
-                *ACCLEcologyExperiment::MediumName(N),R.Living,R.Aggregate,R.Reserved,R.Actors,R.Mass,R.Blocked,R.Energy*100.,R.Food,R.Consumed);
-        }
-        return FText::FromString(Text);
-    })];
-    auto EcologyButtons=SNew(SWrapBox).UseAllottedSize(true).InnerSlotPadding(FVector2D(4,4));
-    for (const auto& Entry:TArray<TPair<FString,ECCLExperimentAction>>{
-        {TEXT("지상 먹이 +10"),ECCLExperimentAction::EcologyFeedGround},{TEXT("물고기 먹이 +10"),ECCLExperimentAction::EcologyFeedWater},
-        {TEXT("새 먹이 +10"),ECCLExperimentAction::EcologyFeedAir},{TEXT("곤충 먹이 +10"),ECCLExperimentAction::EcologyFeedInsect},
-        {TEXT("Actor 표현"),ECCLExperimentAction::EcologyActors},{TEXT("Mass 표현"),ECCLExperimentAction::EcologyMass},{TEXT("표현 숨김"),ECCLExperimentAction::EcologyHidden}})
-    {
-        auto Control=Button(*Entry.Key,[Action,Value=Entry.Value]() { Action(Value); },WaterAllowed);
-        EcologyButtons->AddSlot()[Control];
-        if (Entry.Value==ECCLExperimentAction::EcologyFeedGround) { EcologyFeedButton=Control; }
-    }
-    EcologyControls->AddSlot().AutoHeight()[EcologyButtons];
+	auto EcologyControls=SNew(SVerticalBox).Visibility_Lambda([this]() { return SelectedCase==TEXT("Zone_06")?EVisibility::Visible:EVisibility::Collapsed; });
+	EcologyPanel=EcologyControls;
+	EcologyControls->AddSlot().AutoHeight().Padding(0,8)[SNew(STextBlock).Font(FCoreStyle::GetDefaultFontStyle("Regular",15)).AutoWrapText(true).Text_Lambda([this]()
+	{
+		const auto* E=ACCLEcologyExperiment::Find(GetWorld());
+		if (!E||E->GetView().Rows.Num()!=4)
+		{
+			return FText::FromString(TEXT("생태 관측 수신 대기"));
+		}
+
+		FString Text=TEXT("지속 개체는 표현을 숨겨도 이동·섭취한다.\n");
+		for (int32 N=0;N<4;++N)
+		{
+			const auto& R=E->GetView().Rows[N];
+			Text+=FString::Printf(TEXT("%s · 전체 %lld / 집계 %lld / 예약 %d\nActor %d · Mass %d · 막힘 %d · 에너지 %.0f%%\n먹이 %.1f · 누적 섭취 %.1f\n"),
+				*ACCLEcologyExperiment::MediumName(N),R.Living,R.Aggregate,R.Reserved,R.Actors,R.Mass,R.Blocked,R.Energy*100.,R.Food,R.Consumed);
+		}
+		return FText::FromString(Text);
+	})];
+	auto EcologyButtons=SNew(SWrapBox).UseAllottedSize(true).InnerSlotPadding(FVector2D(4,4));
+	for (const auto& Entry:TArray<TPair<FString,ECCLExperimentAction>>{
+		{TEXT("지상 먹이 +10"),ECCLExperimentAction::EcologyFeedGround},{TEXT("물고기 먹이 +10"),ECCLExperimentAction::EcologyFeedWater},
+		{TEXT("새 먹이 +10"),ECCLExperimentAction::EcologyFeedAir},{TEXT("곤충 먹이 +10"),ECCLExperimentAction::EcologyFeedInsect},
+		{TEXT("Actor 표현"),ECCLExperimentAction::EcologyActors},{TEXT("Mass 표현"),ECCLExperimentAction::EcologyMass},{TEXT("표현 숨김"),ECCLExperimentAction::EcologyHidden}})
+	{
+		auto Control=Button(*Entry.Key,[Action,Value=Entry.Value]() { Action(Value); },WaterAllowed);
+		EcologyButtons->AddSlot()[Control];
+		if (Entry.Value==ECCLExperimentAction::EcologyFeedGround)
+		{
+			EcologyFeedButton=Control;
+		}
+	}
+	EcologyControls->AddSlot().AutoHeight()[EcologyButtons];
 	auto VegetationControls = SNew(SVerticalBox).Visibility_Lambda([this]()
 	{
 		return SelectedCase == TEXT("Zone_07") ? EVisibility::Visible : EVisibility::Collapsed;
@@ -459,86 +466,117 @@ void UCCLExperimentScreen::OnContextBound()
 		VegetationButtons->AddSlot()[Button(*Entry.Key, [Action, Value = Entry.Value]() { Action(Value); }, WaterAllowed)];
 	}
 	VegetationControls->AddSlot().AutoHeight()[VegetationButtons];
-    auto BiologyControls = SNew(SVerticalBox).Visibility_Lambda([this]()
-    {
-        return SelectedCase == TEXT("Zone_07") ? EVisibility::Visible : EVisibility::Collapsed;
-    });
-    BiologyPanel = BiologyControls;
-    auto BiologyButtons = SNew(SWrapBox).UseAllottedSize(true).InnerSlotPadding(FVector2D(4, 4));
-    for (const auto& Entry : TArray<TPair<FString, ECCLExperimentAction>>{
-        {TEXT("일반 주민: 남은 수명 10초"), ECCLExperimentAction::BiologyAge},
-        {TEXT("보호 주민: 노화 보호 전환"), ECCLExperimentAction::BiologyProtect},
-        {TEXT("보호 주민: 치명 피해"), ECCLExperimentAction::BiologyDamage}})
-    {
-        auto Control = Button(*Entry.Key, [Action, Value = Entry.Value]() { Action(Value); }, WaterAllowed);
-        BiologyButtons->AddSlot()[Control];
-        if (Entry.Value == ECCLExperimentAction::BiologyAge) { BiologyAgeButton = Control; }
-        if (Entry.Value == ECCLExperimentAction::BiologyDamage) { BiologyDamageButton = Control; }
-    }
-    BiologyControls->AddSlot().AutoHeight()[BiologyButtons];
-    BiologyControls->AddSlot().AutoHeight().Padding(0, 4)[SNew(STextBlock).AutoWrapText(true).Text_Lambda([this]()
-    {
-        const auto* Biology = ACCLBiologyExperiment::Find(GetWorld());
-        if (!Biology || Biology->GetView().Rows.Num() != 2) { return FText::FromString(TEXT("생애 관측 수신 대기")); }
-        FString Text = TEXT("Agent 생애 비교 · 시험 수명 300초\n");
-        for (int32 Index = 0; Index < 2; ++Index)
-        {
-            const auto& Row = Biology->GetView().Rows[Index];
-            if (!Row.bRecorded) { Text += TEXT("표본 없음 · 전체 초기화 필요\n"); continue; }
-            Text += FString::Printf(TEXT("%s · %s · 체력 %.0f\n나이 %.1f초 / 수명 %.1f초 · 노화 보호 %s\n"),
-                Index ? TEXT("보호 주민") : TEXT("일반 주민"), Row.DeathCause == 1 ? TEXT("수명 종료") : Row.DeathCause == 2 ? TEXT("외부 사망") : TEXT("생존"),
-                Row.Health, Row.Age, Row.Lifespan, Row.bProtected ? TEXT("켜짐") : TEXT("꺼짐"));
-        }
-        return FText::FromString(Text + TEXT("사망 뒤 나이는 멈춘다. 자연 노화 보호는 피해를 막지 않는다."));
-    })];
-    auto FoodControls = SNew(SVerticalBox).Visibility_Lambda([this]()
-    {
-        return SelectedCase == TEXT("Zone_07") ? EVisibility::Visible : EVisibility::Collapsed;
-    });
-    FoodPanel = FoodControls;
-    FoodControls->AddSlot().AutoHeight().Padding(0, 4)
-        [SNew(STextBlock).Font(FCoreStyle::GetDefaultFontStyle("Regular", 15)).AutoWrapText(true).Text_Lambda([this]()
-        {
-            const auto* Food = ACCLFoodExperiment::Find(GetWorld());
-            if (!Food || Food->GetView().Rows.Num() != 3)
-            {
-                return FText::FromString(TEXT("음식 관측 수신 대기"));
-            }
-            FString Text = TEXT("음식 보관 비교 · 실험용 부패 기준 300초\n");
-            for (int32 Index = 0; Index < 3; ++Index)
-            {
-                const auto& Row = Food->GetView().Rows[Index];
-                Text += FString::Printf(TEXT("%s · %s %.1f°C / 습도 %.0f%%\n%d개/%d묶음 · 나이 %.0f초 · 신선 %.0f%%\n곰팡이 %.0f%% · 부패 %d개\n"),
-                    *ACCLFoodExperiment::StorageName(Index), Row.EnvironmentSource == 1 ? TEXT("외기") : Row.EnvironmentSource == 2 ? TEXT("실내") : TEXT("고정"), Row.Temperature, Row.Humidity * 100., Row.Quantity, Row.Lots,
-                    Row.AgeSeconds, Row.Freshness * 100., Row.Mold * 100., Row.Spoiled);
-            }
-            Text += TEXT("밀폐 부패 계수 0.2 / 곰팡이 노출 0. 외기는 구역 02 날씨, 실내는 구역 11 공간을 관측한다.");
-            return FText::FromString(Text);
-        })];
-    auto FoodButtons = SNew(SWrapBox).UseAllottedSize(true).InnerSlotPadding(FVector2D(4, 4));
-    for (const auto& Entry : TArray<TPair<FString, ECCLExperimentAction>>{
-        {TEXT("새 음식 2개 추가"), ECCLExperimentAction::FoodAdd},
-        {TEXT("노출 → 냉각 1개 이동"), ECCLExperimentAction::FoodMoveCold},
-        {TEXT("냉각 음식 해동 / 재냉각"), ECCLExperimentAction::FoodThaw},
-        {TEXT("노출: 외기 / 고정"), ECCLExperimentAction::FoodWeather},
-        {TEXT("밀폐: 실내 / 고정"), ECCLExperimentAction::FoodIndoor},
-        {TEXT("노출 → 바닥 1개 꺼내기"), ECCLExperimentAction::FoodDrop},
-        {TEXT("바닥 → 노출 회수"), ECCLExperimentAction::FoodCollect}})
-    {
-        auto Control = Button(*Entry.Key, [Action, Value = Entry.Value]() { Action(Value); }, WaterAllowed);
-        FoodButtons->AddSlot()[Control];
-        if (Entry.Value == ECCLExperimentAction::FoodAdd) { FoodAddButton = Control; }
-        if (Entry.Value == ECCLExperimentAction::FoodWeather) { FoodWeatherButton = Control; }
-        if (Entry.Value == ECCLExperimentAction::FoodDrop) { FoodDropButton = Control; }
-        if (Entry.Value == ECCLExperimentAction::FoodCollect) { FoodCollectButton = Control; }
-    }
-    FoodControls->InsertSlot(0).AutoHeight()[FoodButtons];
-    FoodControls->InsertSlot(0).AutoHeight().Padding(0, 4)
-        [SNew(STextBlock).AutoWrapText(true).Text_Lambda([this]()
-        {
-            const auto* Food = ACCLFoodExperiment::Find(GetWorld());
-            return FText::FromString(FString::Printf(TEXT("바닥 음식 %d개 · 위치의 온습도 적용\n지역 밖: 20°C / 습도 50%%"), Food ? Food->GetView().GroundQuantity : 0));
-        })];
+	auto BiologyControls = SNew(SVerticalBox).Visibility_Lambda([this]()
+	{
+		return SelectedCase == TEXT("Zone_07") ? EVisibility::Visible : EVisibility::Collapsed;
+	});
+	BiologyPanel = BiologyControls;
+	auto BiologyButtons = SNew(SWrapBox).UseAllottedSize(true).InnerSlotPadding(FVector2D(4, 4));
+	for (const auto& Entry : TArray<TPair<FString, ECCLExperimentAction>>{
+		{TEXT("일반 주민: 남은 수명 10초"), ECCLExperimentAction::BiologyAge},
+		{TEXT("보호 주민: 노화 보호 전환"), ECCLExperimentAction::BiologyProtect},
+		{TEXT("보호 주민: 치명 피해"), ECCLExperimentAction::BiologyDamage}})
+	{
+		auto Control = Button(*Entry.Key, [Action, Value = Entry.Value]() { Action(Value); }, WaterAllowed);
+		BiologyButtons->AddSlot()[Control];
+		if (Entry.Value == ECCLExperimentAction::BiologyAge)
+		{
+			BiologyAgeButton = Control;
+		}
+
+		if (Entry.Value == ECCLExperimentAction::BiologyDamage)
+		{
+			BiologyDamageButton = Control;
+		}
+	}
+	BiologyControls->AddSlot().AutoHeight()[BiologyButtons];
+	BiologyControls->AddSlot().AutoHeight().Padding(0, 4)[SNew(STextBlock).AutoWrapText(true).Text_Lambda([this]()
+	{
+		const auto* Biology = ACCLBiologyExperiment::Find(GetWorld());
+		if (!Biology || Biology->GetView().Rows.Num() != 2)
+		{
+			return FText::FromString(TEXT("생애 관측 수신 대기"));
+		}
+
+		FString Text = TEXT("Agent 생애 비교 · 시험 수명 300초\n");
+		for (int32 Index = 0; Index < 2; ++Index)
+		{
+			const auto& Row = Biology->GetView().Rows[Index];
+			if (!Row.bRecorded)
+			{
+				Text += TEXT("표본 없음 · 전체 초기화 필요\n");
+				continue;
+			}
+
+			Text += FString::Printf(TEXT("%s · %s · 체력 %.0f\n나이 %.1f초 / 수명 %.1f초 · 노화 보호 %s\n"),
+				Index ? TEXT("보호 주민") : TEXT("일반 주민"), Row.DeathCause == 1 ? TEXT("수명 종료") : Row.DeathCause == 2 ? TEXT("외부 사망") : TEXT("생존"),
+				Row.Health, Row.Age, Row.Lifespan, Row.bProtected ? TEXT("켜짐") : TEXT("꺼짐"));
+		}
+		return FText::FromString(Text + TEXT("사망 뒤 나이는 멈춘다. 자연 노화 보호는 피해를 막지 않는다."));
+	})];
+	auto FoodControls = SNew(SVerticalBox).Visibility_Lambda([this]()
+	{
+		return SelectedCase == TEXT("Zone_07") ? EVisibility::Visible : EVisibility::Collapsed;
+	});
+	FoodPanel = FoodControls;
+	FoodControls->AddSlot().AutoHeight().Padding(0, 4)
+		[SNew(STextBlock).Font(FCoreStyle::GetDefaultFontStyle("Regular", 15)).AutoWrapText(true).Text_Lambda([this]()
+		{
+			const auto* Food = ACCLFoodExperiment::Find(GetWorld());
+			if (!Food || Food->GetView().Rows.Num() != 3)
+			{
+				return FText::FromString(TEXT("음식 관측 수신 대기"));
+			}
+			FString Text = TEXT("음식 보관 비교 · 실험용 부패 기준 300초\n");
+			for (int32 Index = 0; Index < 3; ++Index)
+			{
+				const auto& Row = Food->GetView().Rows[Index];
+				Text += FString::Printf(TEXT("%s · %s %.1f°C / 습도 %.0f%%\n%d개/%d묶음 · 나이 %.0f초 · 신선 %.0f%%\n곰팡이 %.0f%% · 부패 %d개\n"),
+					*ACCLFoodExperiment::StorageName(Index), Row.EnvironmentSource == 1 ? TEXT("외기") : Row.EnvironmentSource == 2 ? TEXT("실내") : TEXT("고정"), Row.Temperature, Row.Humidity * 100., Row.Quantity, Row.Lots,
+					Row.AgeSeconds, Row.Freshness * 100., Row.Mold * 100., Row.Spoiled);
+			}
+			Text += TEXT("밀폐 부패 계수 0.2 / 곰팡이 노출 0. 외기는 구역 02 날씨, 실내는 구역 11 공간을 관측한다.");
+			return FText::FromString(Text);
+		})];
+	auto FoodButtons = SNew(SWrapBox).UseAllottedSize(true).InnerSlotPadding(FVector2D(4, 4));
+	for (const auto& Entry : TArray<TPair<FString, ECCLExperimentAction>>{
+		{TEXT("새 음식 2개 추가"), ECCLExperimentAction::FoodAdd},
+		{TEXT("노출 → 냉각 1개 이동"), ECCLExperimentAction::FoodMoveCold},
+		{TEXT("냉각 음식 해동 / 재냉각"), ECCLExperimentAction::FoodThaw},
+		{TEXT("노출: 외기 / 고정"), ECCLExperimentAction::FoodWeather},
+		{TEXT("밀폐: 실내 / 고정"), ECCLExperimentAction::FoodIndoor},
+		{TEXT("노출 → 바닥 1개 꺼내기"), ECCLExperimentAction::FoodDrop},
+		{TEXT("바닥 → 노출 회수"), ECCLExperimentAction::FoodCollect}})
+	{
+		auto Control = Button(*Entry.Key, [Action, Value = Entry.Value]() { Action(Value); }, WaterAllowed);
+		FoodButtons->AddSlot()[Control];
+		if (Entry.Value == ECCLExperimentAction::FoodAdd)
+		{
+			FoodAddButton = Control;
+		}
+
+		if (Entry.Value == ECCLExperimentAction::FoodWeather)
+		{
+			FoodWeatherButton = Control;
+		}
+
+		if (Entry.Value == ECCLExperimentAction::FoodDrop)
+		{
+			FoodDropButton = Control;
+		}
+
+		if (Entry.Value == ECCLExperimentAction::FoodCollect)
+		{
+			FoodCollectButton = Control;
+		}
+	}
+	FoodControls->InsertSlot(0).AutoHeight()[FoodButtons];
+	FoodControls->InsertSlot(0).AutoHeight().Padding(0, 4)
+		[SNew(STextBlock).AutoWrapText(true).Text_Lambda([this]()
+		{
+			const auto* Food = ACCLFoodExperiment::Find(GetWorld());
+			return FText::FromString(FString::Printf(TEXT("바닥 음식 %d개 · 위치의 온습도 적용\n지역 밖: 20°C / 습도 50%%"), Food ? Food->GetView().GroundQuantity : 0));
+		})];
 
 
 	auto FireControls = SNew(SVerticalBox).Visibility_Lambda([this]()
@@ -731,14 +769,15 @@ void UCCLExperimentScreen::OnContextReleased()
 	StartButton.Reset();
 	RotationButton.Reset();
 	DoorButton.Reset();
-	EcologyFeedButton.Reset(); EcologyPanel.Reset();
+	EcologyFeedButton.Reset();
+	EcologyPanel.Reset();
 	FoodAddButton.Reset();
-    FoodWeatherButton.Reset();
-    BiologyPanel.Reset();
-    BiologyAgeButton.Reset();
-    BiologyDamageButton.Reset();
-    FoodDropButton.Reset();
-    FoodCollectButton.Reset();
+	FoodWeatherButton.Reset();
+	BiologyPanel.Reset();
+	BiologyAgeButton.Reset();
+	BiologyDamageButton.Reset();
+	FoodDropButton.Reset();
+	FoodCollectButton.Reset();
 	FoodPanel.Reset();
 }
 
@@ -776,19 +815,25 @@ void UCCLExperimentScreen::RevealControl(const TSharedPtr<SWidget>& Widget)
 
 void UCCLExperimentScreen::RevealFoodControls()
 {
-    if (DetailScroll && FoodPanel)
-    {
-        DetailScroll->ScrollDescendantIntoView(FoodPanel, false, EDescendantScrollDestination::TopOrLeft);
-    }
+	if (DetailScroll && FoodPanel)
+	{
+		DetailScroll->ScrollDescendantIntoView(FoodPanel, false, EDescendantScrollDestination::TopOrLeft);
+	}
 }
 
 void UCCLExperimentScreen::RevealEcologyControls()
 {
-    if (DetailScroll&&EcologyPanel) { DetailScroll->ScrollDescendantIntoView(EcologyPanel,false,EDescendantScrollDestination::TopOrLeft); }
+	if (DetailScroll&&EcologyPanel)
+	{
+		DetailScroll->ScrollDescendantIntoView(EcologyPanel,false,EDescendantScrollDestination::TopOrLeft);
+	}
 }
 
 
 void UCCLExperimentScreen::RevealBiologyControls()
 {
-    if (DetailScroll && BiologyPanel) { DetailScroll->ScrollDescendantIntoView(BiologyPanel, false, EDescendantScrollDestination::TopOrLeft); }
+	if (DetailScroll && BiologyPanel)
+	{
+		DetailScroll->ScrollDescendantIntoView(BiologyPanel, false, EDescendantScrollDestination::TopOrLeft);
+	}
 }

@@ -118,7 +118,7 @@ bool FCCLWorldEcologySaveTest::RunTest(const FString& Parameters)
 		256, &Surface, nullptr, nullptr, nullptr, nullptr, &Ecology));
 	FCCLWorldSnapshot Snapshot;
 	TestTrue(TEXT("capture same generation"), FCCLWorldSnapshotCodec::Capture(Identity, Clock, Life, Snapshot, Error, nullptr, &Surface, &Ecology));
-	TestEqual(TEXT("current world schema"), Snapshot.Schema, uint32(6));
+	TestEqual(TEXT("current world schema"), Snapshot.Schema, uint32(7));
 	TArray<uint8> Saved;
 	TestTrue(TEXT("encode all owners"), FCCLWorldSnapshotCodec::Encode(Snapshot, Saved, Error));
 	FCCLWorldSnapshot Decoded;

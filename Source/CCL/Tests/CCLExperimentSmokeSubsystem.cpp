@@ -201,15 +201,15 @@ void UCCLExperimentSmokeSubsystem::Tick(float DeltaTime)
 
 	auto* Runtime = World->GetSubsystem<UCCLWorldSimulationSubsystem>();
 	auto* Agents = World->GetSubsystem<UCCLAgentWorldSubsystem>();
-    if (Runtime->GetEcologySimulation().HasSpatialBehavior())
-    {
-        auto* Nav = FNavigationSystem::GetCurrent<UNavigationSystemV1>(World);
-        if (!Nav || !Nav->GetDefaultNavDataInstance(FNavigationSystem::DontCreate)
-            || Nav->GetNumRemainingBuildTasks() != 0 || UNavigationSystemV1::IsNavigationBeingBuiltOrLocked(World))
-        {
-            return;
-        }
-    }
+	if (Runtime->GetEcologySimulation().HasSpatialBehavior())
+	{
+		auto* Nav = FNavigationSystem::GetCurrent<UNavigationSystemV1>(World);
+		if (!Nav || !Nav->GetDefaultNavDataInstance(FNavigationSystem::DontCreate)
+			|| Nav->GetNumRemainingBuildTasks() != 0 || UNavigationSystemV1::IsNavigationBeingBuiltOrLocked(World))
+		{
+			return;
+		}
+	}
 	const bool bScenario = UCCLWorldSimulationSubsystem::DomainForWorld(World) == ECCLWorldDomain::Scenario;
 	const bool bRendered = FParse::Param(FCommandLine::Get(), TEXT("CCLExperimentCapture"));
 	FString CheckpointMode;
@@ -280,7 +280,11 @@ void UCCLExperimentSmokeSubsystem::Tick(float DeltaTime)
 	{
 		FCCLWorldClockSnapshot BeforeManual, WhileManual, AfterManual;
 		if (!Check(Runtime->GetClock().Capture(BeforeManual, Error) && Runtime->AcquireManualAdvance(this, Error) &&
-			!Runtime->AcquireManualAdvance(Director, Error), TEXT("manual clock control has one world owner"))) { return; }
+			!Runtime->AcquireManualAdvance(Director, Error), TEXT("manual clock control has one world owner")))
+		{
+			return;
+		}
+
 		Runtime->ReleaseManualAdvance(Director);
 		Runtime->Tick(.25f);
 		const bool bHeld = Runtime->GetClock().Capture(WhileManual, Error) &&
@@ -289,7 +293,11 @@ void UCCLExperimentSmokeSubsystem::Tick(float DeltaTime)
 		Runtime->Tick(.25f);
 		if (!Check(bHeld && Runtime->GetClock().Capture(AfterManual, Error) &&
 			AfterManual.AcceptedGameSeconds == BeforeManual.AcceptedGameSeconds + .25,
-			TEXT("foreign release cannot resume automatic input; owner release resumes it"))) { return; }
+			TEXT("foreign release cannot resume automatic input; owner release resumes it")))
+		{
+			return;
+		}
+
 		int32 Stations = 0;
 		for (TActorIterator<ACCLExperimentStation> It(World); It; ++It)
 		{
@@ -408,7 +416,11 @@ void UCCLExperimentSmokeSubsystem::Tick(float DeltaTime)
 		if (PC && PC->PlayerState)
 		{
 			auto* Account = PC->PlayerState->FindComponentByClass<UCCLAccountComponent>();
-			if (!Check(Account && Account->ImportLegacy(83), TEXT("set player currency before environment reset"))) { return; }
+			if (!Check(Account && Account->ImportLegacy(83), TEXT("set player currency before environment reset")))
+			{
+				return;
+			}
+
 			ResetAccountId = Account->GetAccountId();
 		}
 		if (!Check(Execute(ECCLExperimentAction::Start, Guide), TEXT("start a case before reset")))
@@ -445,7 +457,10 @@ void UCCLExperimentSmokeSubsystem::Tick(float DeltaTime)
 		if (ResetAccountId.IsValid())
 		{
 			const auto* Account = Agents->GetSimulation().GetEconomy().Accounts.Find(ResetAccountId);
-			if (!Check(Account && Account->Balance == 83, TEXT("environment reset preserves explicit player account and currency"))) { return; }
+			if (!Check(Account && Account->Balance == 83, TEXT("environment reset preserves explicit player account and currency")))
+			{
+				return;
+			}
 		}
 		const double SavedTime = Runtime->GetClock().GetWorldSeconds();
 		const FGuid SavedWorld = Runtime->GetIdentity().WorldId;
@@ -664,11 +679,19 @@ void UCCLExperimentSmokeSubsystem::TickTravel(double Now)
 		HubWorldId = Runtime->GetIdentity().WorldId;
 		if (!bTravelTimeQueued)
 		{
-			if (!Check(Runtime->QueueGameTime(5, Error), TEXT("queue hub time once before map travel"))) { return; }
+			if (!Check(Runtime->QueueGameTime(5, Error), TEXT("queue hub time once before map travel")))
+			{
+				return;
+			}
+
 			bTravelTimeQueued = 1;
 		}
 		const bool bAdvanced = Runtime->AdvancePending(6, 360, Error);
-		if (!bAdvanced && Error == TEXT("Ground ecology route awaits ready navigation data.")) { return; }
+		if (!bAdvanced && Error == TEXT("Ground ecology route awaits ready navigation data."))
+		{
+			return;
+		}
+
 		if (!Check(bAdvanced, TEXT("advance hub before map travel")))
 		{
 			return;
@@ -766,13 +789,20 @@ void UCCLExperimentSmokeSubsystem::Finish(const TCHAR* Role)
 	{
 		auto Record = [&](const UNetConnection* Connection)
 		{
-			if (!Connection) { return; }
+			if (!Connection)
+			{
+				return;
+			}
+
 			const double Seconds = FMath::Max(0., Driver->GetElapsedTime() - Connection->GetConnectTime());
 			UE_LOG(LogTemp, Display, TEXT("CCL_EXPERIMENT_NET Role=%s Seconds=%.6f InBytes=%d OutBytes=%d InPackets=%d OutPackets=%d"),
 				Role, Seconds, Connection->InTotalBytes, Connection->OutTotalBytes, Connection->InTotalPackets, Connection->OutTotalPackets);
 		};
 		Record(Driver->ServerConnection);
-		for (const auto& Connection : Driver->ClientConnections) { Record(Connection.Get()); }
+		for (const auto& Connection : Driver->ClientConnections)
+		{
+			Record(Connection.Get());
+		}
 	}
 	UE_LOG(LogTemp, Display, TEXT("CCL_EXPERIMENT_SMOKE PASS Role=%s Map=%s"), Role, *GetWorld()->GetMapName());
 	bComplete = 1;
@@ -819,7 +849,10 @@ bool UCCLExperimentSmokeSubsystem::CheckReplicatedEnvironment()
 
 		for (const auto& Id : Config->ViewSurfaceIds)
 		{
-			if (!View.Surfaces.ContainsByPredicate([&](const auto& Patch) { return Patch.SurfaceId == Id; })) { return false; }
+			if (!View.Surfaces.ContainsByPredicate([&](const auto& Patch) { return Patch.SurfaceId == Id; }))
+			{
+				return false;
+			}
 		}
 
 		FString Error;
@@ -1133,27 +1166,55 @@ void UCCLExperimentSmokeSubsystem::TickEnvironment(double Now)
 	if (Step == 20)
 	{
 		const auto* CycleGrid = Runtime->GetSurfaceSimulation().FindRegion(ACCLExperimentDirector::CycleRegionId());
-		if (!Check(CycleGrid != nullptr, TEXT("integrated cycle surface registered"))) { return; }
+		if (!Check(CycleGrid != nullptr, TEXT("integrated cycle surface registered")))
+		{
+			return;
+		}
+
 		const auto Original = CycleGrid->Forcing;
-		if (!Check(Execute(ECCLExperimentAction::Start, TEXT("Zone_09")), TEXT("integrated cycle starts for cancellation"))) { return; }
+		if (!Check(Execute(ECCLExperimentAction::Start, TEXT("Zone_09")), TEXT("integrated cycle starts for cancellation")))
+		{
+			return;
+		}
+
 		const FGuid CancelledRun = Director->FindResult(TEXT("Zone_09"))->RunId;
 		if (!Check(!Director->Execute(PC, ECCLExperimentAction::Stop, TEXT("Zone_09"), Director->GetGeneration(), FGuid::NewGuid(), Error)
 			&& Director->Execute(PC, ECCLExperimentAction::Stop, TEXT("Zone_09"), Director->GetGeneration(), CancelledRun, Error),
-			TEXT("cycle stop requires the current run identity"))) { return; }
+			TEXT("cycle stop requires the current run identity")))
+		{
+			return;
+		}
+
 		const auto* Restored = Runtime->GetSurfaceSimulation().FindRegion(ACCLExperimentDirector::CycleRegionId());
 		if (!Check(Restored && Restored->Forcing.TemperatureCelsius == Original.TemperatureCelsius
 			&& Restored->Forcing.SnowMetersPerWorldSecond == Original.SnowMetersPerWorldSecond
 			&& Restored->Forcing.EvaporationMetersPerWorldSecond == Original.EvaporationMetersPerWorldSecond,
-			TEXT("cancelled cycle restores original forcing"))) { return; }
-		if (!Check(Execute(ECCLExperimentAction::Start, TEXT("Zone_09")), TEXT("integrated cycle starts"))) { return; }
+			TEXT("cancelled cycle restores original forcing")))
+		{
+			return;
+		}
+
+		if (!Check(Execute(ECCLExperimentAction::Start, TEXT("Zone_09")), TEXT("integrated cycle starts")))
+		{
+			return;
+		}
+
 		if (!Check(!Director->Execute(PC, ECCLExperimentAction::Stop, TEXT("Zone_09"), Director->GetGeneration(), CancelledRun, Error),
-			TEXT("old cycle run cannot cancel its replacement"))) { return; }
+			TEXT("old cycle run cannot cancel its replacement")))
+		{
+			return;
+		}
+
 		Step = 201;
 		return;
 	}
 	if (Step == 201 && Passed(TEXT("Zone_09")))
 	{
-		if (!Check(Execute(ECCLExperimentAction::Start, TEXT("Zone_09")), TEXT("integrated cycle restarts"))) { return; }
+		if (!Check(Execute(ECCLExperimentAction::Start, TEXT("Zone_09")), TEXT("integrated cycle restarts")))
+		{
+			return;
+		}
+
 		Step = 202;
 		return;
 	}
@@ -1244,7 +1305,11 @@ void UCCLExperimentSmokeSubsystem::TickLab(double Now)
 		FHitResult Hit;
 		const FVector Target = Region->GetActorLocation() + FVector(200., 0., 0.);
 		if (!Check(World->LineTraceSingleByChannel(Hit, Target + FVector(0, 0, 1000), Target - FVector(0, 0, 1000), ECC_Visibility)
-			&& Hit.GetActor() == Region, TEXT("editable surface cursor target exists"))) { return; }
+			&& Hit.GetActor() == Region, TEXT("editable surface cursor target exists")))
+		{
+			return;
+		}
+
 		FVector2D Pixel;
 		if (!Check(PC->ProjectWorldLocationToScreen(Hit.ImpactPoint, Pixel), TEXT("terrain cursor projects to viewport")))
 		{
@@ -1259,7 +1324,11 @@ void UCCLExperimentSmokeSubsystem::TickLab(double Now)
 		LabTarget = Hit.ImpactPoint;
 		FVector2D RoundTrip, WidgetPosition;
 		USlateBlueprintLibrary::AbsoluteToViewport(World, LabCursor, RoundTrip, WidgetPosition);
-		if (!Check(RoundTrip.Equals(Pixel, 0.1), TEXT("viewport pixel and Slate absolute coordinates round trip"))) { return; }
+		if (!Check(RoundTrip.Equals(Pixel, 0.1), TEXT("viewport pixel and Slate absolute coordinates round trip")))
+		{
+			return;
+		}
+
 		FHitResult DirectHit;
 		FCollisionQueryParams Query(SCENE_QUERY_STAT(ExperimentLabPointer), true);
 		Query.AddIgnoredActor(PC->GetPawn());
@@ -1268,7 +1337,11 @@ void UCCLExperimentSmokeSubsystem::TickLab(double Now)
 		// UE deprojection truncates subpixels. Bound error in pixels, not world centimeters.
 		if (!Check(bDirectHit && DirectHit.GetActor() == Region
 			&& PC->ProjectWorldLocationToScreen(DirectHit.ImpactPoint, HitPixel) && HitPixel.Equals(Pixel, 1.1),
-			TEXT("projected target deprojects within one viewport pixel"))) { return; }
+			TEXT("projected target deprojects within one viewport pixel")))
+		{
+			return;
+		}
+
 		LabTarget = DirectHit.ImpactPoint;
 		App.SetCursorPos(LabCursor);
 		App.ProcessMouseMoveEvent(FPointerEvent(0, LabCursor, LabCursor, TSet<FKey>(), EKeys::Invalid, 0, FModifierKeysState()));
@@ -1284,7 +1357,10 @@ void UCCLExperimentSmokeSubsystem::TickLab(double Now)
 		const bool bHit = PC->TraceTerrainCursor(CursorHit);
 		if (!Check(bHit && CursorHit.GetActor() == Region && CursorHit.ImpactPoint.Equals(LabTarget, 2.),
 			*FString::Printf(TEXT("Slate click maps to world target: expected=%s actual=%s actor=%s"),
-				*LabTarget.ToString(), *CursorHit.ImpactPoint.ToString(), *GetNameSafe(CursorHit.GetActor())))) { return; }
+				*LabTarget.ToString(), *CursorHit.ImpactPoint.ToString(), *GetNameSafe(CursorHit.GetActor()))))
+		{
+			return;
+		}
 	}
 	else if (Step == 28)
 	{
@@ -1296,7 +1372,11 @@ void UCCLExperimentSmokeSubsystem::TickLab(double Now)
 		const uint64 Revision = Region->GetTerrainStore().GetRevision();
 		const FVector Invalid(1.e9, 1.e9, 1.e9);
 		if (!Check(!Director->Execute(PC, ECCLExperimentAction::TerrainDeposit, TEXT("Zone_05"), Director->GetGeneration(), FGuid(), Error,
-			Region->GetPublicationSerial(), &Invalid) && Region->GetTerrainStore().GetRevision() == Revision, TEXT("out of bounds terrain request rejected atomically"))) { return; }
+			Region->GetPublicationSerial(), &Invalid) && Region->GetTerrainStore().GetRevision() == Revision, TEXT("out of bounds terrain request rejected atomically")))
+		{
+			return;
+		}
+
 		PC->CancelTerrainTool();
 		PC->Submit(ECCLExperimentAction::Save, TEXT("Zone_08"));
 	}

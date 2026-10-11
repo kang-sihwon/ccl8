@@ -731,19 +731,27 @@ bool ACCLTerrainRegion::ApplyReplica(const TArray<uint8>& Bytes, uint64 Serial, 
 	FCCLTerrainSnapshot Snapshot;
 	FCCLTerrainSaveContext Context;
 	FCCLTerrainStore Candidate;
-	if (!FCCLTerrainCodec::Decode(Bytes, Snapshot, Context, Error)) { return false; }
-    if (Store.IsInitialized())
-    {
-        auto ExpectedDefinition = Store.GetSnapshot().Definition;
-        // A newer server publication may restore a different saved world identity.
-        ExpectedDefinition.WorldId = Snapshot.Definition.WorldId;
-        if (!FCCLTerrainCodec::SameDefinition(ExpectedDefinition, Snapshot.Definition))
-        {
-            Error = TEXT("Replica region definition does not match the loaded region.");
-            return false;
-        }
-    }
-    if (!Candidate.Initialize(Snapshot.Definition, Error) || !Candidate.Restore(Bytes, Context, Error)) { return false; }
+	if (!FCCLTerrainCodec::Decode(Bytes, Snapshot, Context, Error))
+	{
+		return false;
+	}
+
+	if (Store.IsInitialized())
+	{
+		auto ExpectedDefinition = Store.GetSnapshot().Definition;
+		// A newer server publication may restore a different saved world identity.
+		ExpectedDefinition.WorldId = Snapshot.Definition.WorldId;
+		if (!FCCLTerrainCodec::SameDefinition(ExpectedDefinition, Snapshot.Definition))
+		{
+			Error = TEXT("Replica region definition does not match the loaded region.");
+			return false;
+		}
+	}
+
+	if (!Candidate.Initialize(Snapshot.Definition, Error) || !Candidate.Restore(Bytes, Context, Error))
+	{
+		return false;
+	}
 
 	const auto& D = Snapshot.Definition;
 	const FIntVector First = FCCLTerrainStore::OwnerForSample(D.MinimumCell);

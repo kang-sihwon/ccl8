@@ -33,9 +33,9 @@ UAbilitySystemComponent* ACCLPlayerState::GetAbilitySystemComponent() const
 
 void ACCLPlayerState::EndPlay(const EEndPlayReason::Type EndPlayReason)
 {
-    if (auto* Store = GetWorld()->GetSubsystem<UCCLPlayerPersistenceSubsystem>())
-    {
-        Store->Unbind(*this);
-    }
-    Super::EndPlay(EndPlayReason);
+	if (auto* Store = GetWorld()->GetSubsystem<UCCLPlayerPersistenceSubsystem>())
+	{
+		Store->Unbind(*this);
+	}
+	Super::EndPlay(EndPlayReason);
 }

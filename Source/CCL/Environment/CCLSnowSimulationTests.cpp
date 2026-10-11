@@ -26,6 +26,7 @@ namespace
 		G.Ledger.InitialCubicMeters = G.TotalCubicMeters();
 		return G;
 	}
+
 	FCCLWorldStep SnowStep(const FCCLSurfaceSimulation& S, double Game = 0.25, double World = 15.)
 	{
 		FCCLWorldStep Step;

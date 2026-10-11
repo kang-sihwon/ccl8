@@ -81,6 +81,7 @@ void UCCLSnowSmokeSubsystem::Tick(float Dt)
 			Character->AddMovementInput(FVector::ForwardVector, 1.);
 		}
 	}
+
 	auto ShowSnow = [&](bool bVisible)
 	{
 		for (TActorIterator<ACCLSurfacePresentation> It(World); It; ++It)
@@ -177,6 +178,7 @@ void UCCLSnowSmokeSubsystem::Tick(float Dt)
 	{
 		return;
 	}
+
 	auto Check = [&](bool Good)
 	{
 		if (!Good)
@@ -358,6 +360,7 @@ void UCCLSnowSmokeSubsystem::Finish(bool Success, const FString& Message)
 		FPlatformMisc::RequestExitWithStatus(false, Success ? 0 : 1, TEXT("CCLSnowSmoke"));
 	}
 }
+
 TStatId UCCLSnowSmokeSubsystem::GetStatId() const
 {
 	RETURN_QUICK_DECLARE_CYCLE_STAT(UCCLSnowSmokeSubsystem, STATGROUP_Tickables);

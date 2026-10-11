@@ -38,17 +38,23 @@ bool FCCLTerrainNavigation::IsRouteReady(const UWorld* World, const FVector& Sta
 			{
 				return false;
 			}
-            if (!CandidatePath)
-            {
-                CandidatePath = UNavigationSystemV1::FindPathToLocationSynchronously(const_cast<UWorld*>(World), Start, End);
-                if (!CandidatePath || !CandidatePath->IsValid()) { return false; }
-            }
-            for (int32 Index = 1; Index < CandidatePath->PathPoints.Num(); ++Index)
-            {
-                const FVector& A = CandidatePath->PathPoints[Index - 1];
-                const FVector& B = CandidatePath->PathPoints[Index];
-                if (Bounds.IsInsideOrOn(A) || Bounds.IsInsideOrOn(B) || FMath::LineBoxIntersection(Bounds,A,B,B-A)) { return false; }
-            }
+			if (!CandidatePath)
+			{
+				CandidatePath = UNavigationSystemV1::FindPathToLocationSynchronously(const_cast<UWorld*>(World), Start, End);
+				if (!CandidatePath || !CandidatePath->IsValid())
+				{
+					return false;
+				}
+			}
+			for (int32 Index = 1; Index < CandidatePath->PathPoints.Num(); ++Index)
+			{
+				const FVector& A = CandidatePath->PathPoints[Index - 1];
+				const FVector& B = CandidatePath->PathPoints[Index];
+				if (Bounds.IsInsideOrOn(A) || Bounds.IsInsideOrOn(B) || FMath::LineBoxIntersection(Bounds,A,B,B-A))
+				{
+					return false;
+				}
+			}
 		}
 	}
 

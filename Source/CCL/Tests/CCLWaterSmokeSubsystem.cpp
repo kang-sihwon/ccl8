@@ -77,6 +77,7 @@ void UCCLWaterSmokeSubsystem::Tick(float DeltaTime)
 	{
 		return;
 	}
+
 	auto Check = [&](bool bSuccess)
 	{
 		if (!bSuccess)

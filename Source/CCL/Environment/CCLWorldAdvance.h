@@ -22,5 +22,5 @@ namespace CCLWorldAdvance
 		const FCCLCelestialObserver* Observer = nullptr, const ICCLSurfaceProvider* Shelter = nullptr,
 		const TArray<FCCLSurfaceOpening>* Openings = nullptr, FCCLEcologySimulation* Ecology = nullptr,
 		int32 MaxEcologyBoundaries = 256, const ICCLEcologySpace* Space = nullptr,
-        const TFunction<bool(const FCCLWorldStep&, const FCCLSurfaceSimulation*, FString&)>& Prepare = {});
+		const TFunction<bool(const FCCLWorldStep&, const FCCLSurfaceSimulation*, FString&)>& Prepare = {});
 }

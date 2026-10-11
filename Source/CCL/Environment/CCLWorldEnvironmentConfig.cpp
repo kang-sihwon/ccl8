@@ -1,6 +1,17 @@
 #include "CCLWorldEnvironmentConfig.h"
 
+#include "Agents/CCLLifeSimulation.h"
 #include "EngineUtils.h"
+
+// 부모 인터페이스 함수
+
+bool ACCLWorldEnvironmentConfig::BuildInitialPopulation(FCCLSimulationSnapshot& OutInitial, FString& Error) const
+{
+	OutInitial = FCCLLifeSimulation::MerchantScenario(PopulationSeed);
+	return true;
+}
+
+// 내 클래스 함수
 
 bool ACCLWorldEnvironmentConfig::BuildInputs(FCCLEnvironmentInputs& OutInputs, FString& Error) const
 {
