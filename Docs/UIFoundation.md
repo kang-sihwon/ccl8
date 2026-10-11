@@ -1,12 +1,12 @@
 # 공용 UI 기반
 
-공용 UI는 로컬 플레이어마다 화면의 수명·배치·입력을 관리한다. 인벤토리, NPC 대화, 퀘스트, 지도와 능력치의 규칙은 기능별 문맥과 표시 모델이 담당한다. 관리자·루트·레이어·등록·문맥·화면 풀을 구현하고 인벤토리·장비·시작·일시정지 메뉴를 연결했다. HUD·대화창도 독립 위젯으로 이전했다. 그룹별 숨김·입력·갱신 정지·페이드를 구현하고 중첩 요청, 맵 이동과 실제 입력 검사를 통과했다.
+`KSIUI` 모듈의 공용 UI는 로컬 플레이어마다 화면의 수명·배치·입력을 관리한다. 인벤토리, NPC 대화, 퀘스트, 지도와 능력치의 규칙은 기능별 문맥과 표시 모델이 담당한다. 관리자·루트·레이어·등록·문맥·화면 풀을 구현하고 인벤토리·장비·시작·일시정지 메뉴를 연결했다. HUD·대화창도 독립 위젯으로 이전했다. 그룹별 숨김·입력·갱신 정지·페이드를 구현하고 중첩 요청, 맵 이동과 실제 입력 검사를 통과했다.
 
-`Source/CCL/UI/Core/`는 등록 데이터·플레이어별 관리자·문맥·화면 베이스·루트를 제공한다. 검증 범위와 실행 근거는 아래 검사 절에 기록한다. 공용 기반의 검사 통과가 대화 선택지·퀘스트 목록 등 개별 콘텐츠 화면의 구현 완료를 뜻하지는 않는다.
+`Source/KSIUI/`는 등록 데이터·플레이어별 관리자·문맥·화면 베이스·루트를 제공한다. 검증 범위와 실행 근거는 아래 검사 절에 기록한다. 모듈 이동·호환 검증은 [FrameworkPlan](FrameworkPlan.md#단계-1-구현-범위와-검증-기준)을 따른다. 공용 기반의 검사 통과가 대화 선택지·퀘스트 목록 등 개별 콘텐츠 화면의 구현 완료를 뜻하지는 않는다.
 
 ## 목표와 경계
 
-`Source/CCL/UI/Core/`는 Character, Inventory, GAS, 퀘스트 상태를 직접 참조하지 않는다. 화면 태그는 종류를 식별하고 핸들은 열린 창 하나를 식별한다. 같은 종류의 창도 비교 대상이나 퀘스트 문맥이 다르면 별도로 열 수 있다. 콘텐츠는 등록 데이터를 바꾸거나 기능을 등록해 공용 코드를 수정하지 않고 화면을 추가한다.
+`Source/KSIUI/`는 Character, Inventory, GAS, 퀘스트 상태를 직접 참조하지 않는다. 화면 태그는 종류를 식별하고 핸들은 열린 창 하나를 식별한다. 같은 종류의 창도 비교 대상이나 퀘스트 문맥이 다르면 별도로 열 수 있다. 콘텐츠는 등록 데이터를 바꾸거나 기능을 등록해 공용 코드를 수정하지 않고 화면을 추가한다.
 
 기본 구현은 UMG와 CommonUI를 사용한다. 스택은 메뉴와 확인 창, 겹침 패널은 HUD·동시 표시 도구, 큐는 순서대로 표시하는 알림에 사용한다. 특정 장르의 화면 목록과 레이어 수를 공용 관리자에 고정하지 않는다. 지도 표시 데이터는 미니맵·전체맵이 공유할 수 있지만 확대·이동 같은 화면 상태는 각 창이 소유한다. MP·버프·월드 상호작용 아이콘의 데이터 제공자를 연결할 수 있어야 하며 이번 작업에서 새 마나·버프 게임 규칙을 만들지는 않는다.
 
@@ -14,11 +14,11 @@
 
 | 구성 | 소유자·수명 | 책임 |
 |---|---|---|
-| `UCCLUISubsystem` | `ULocalPlayer` | 화면 등록, 인스턴스·비동기 요청 핸들, 루트 연결과 정리 |
-| `UCCLUIRegistry` | 공유 DataAsset | 화면 클래스·문맥 타입·레이어·그룹·인스턴스 정책 정의 |
-| `UCCLUIRoot` | 플레이어 관리자 | 데이터로 구성한 레이어와 태그 확장 지점, 실제 위젯 배치 |
-| `UCCLScreen` | 루트/위젯 풀 | 활성화·문맥 연결·연결 해제와 닫기 요청의 공통 계약 |
-| `UCCLUIContext` 파생형 | 요청 또는 열린 화면 | 기능별 표시 문맥; 게임 상태의 소유권을 넘겨받지 않음 |
+| `UKSIUISubsystem` | `ULocalPlayer` | 화면 등록, 인스턴스·비동기 요청 핸들, 루트 연결과 정리 |
+| `UKSIUIRegistry` | 공유 DataAsset | 화면 클래스·문맥 타입·레이어·그룹·인스턴스 정책 정의 |
+| `UKSIUIRoot` | 플레이어 관리자 | 데이터로 구성한 레이어와 태그 확장 지점, 실제 위젯 배치 |
+| `UKSIScreen` | 루트/위젯 풀 | 활성화·문맥 연결·연결 해제와 닫기 요청의 공통 계약 |
+| `UKSIUIContext` 파생형 | 요청 또는 열린 화면 | 기능별 표시 문맥; 게임 상태의 소유권을 넘겨받지 않음 |
 | 기능별 표시 모델 | 해당 기능 | 데이터 변경 구독과 표시 값 통지; GAS 등은 기능별 어댑터로 연결 |
 | 표시 제어 요청 | 요청 소유자와 지정 범위 | 그룹 숨김·입력 억제·페이드·갱신 정지 정책 |
 
@@ -26,15 +26,15 @@
 
 ```mermaid
 classDiagram
-    ULocalPlayer *-- UCCLUISubsystem
-    UCCLUISubsystem --> UCCLUIRegistry
-    UCCLUISubsystem *-- UCCLUIRoot
-    UCCLUIRoot *-- UCCLScreen
-    UCommonActivatableWidget <|-- UCCLScreen
-    UCCLScreen --> UCCLUIContext
-    UCCLUIContext <|-- InventoryContext
-    UCCLUIContext <|-- DialogueContext
-    UCCLUIContext <|-- QuestContext
+    ULocalPlayer *-- UKSIUISubsystem
+    UKSIUISubsystem --> UKSIUIRegistry
+    UKSIUISubsystem *-- UKSIUIRoot
+    UKSIUIRoot *-- UKSIScreen
+    UCommonActivatableWidget <|-- UKSIScreen
+    UKSIScreen --> UKSIUIContext
+    UKSIUIContext <|-- InventoryContext
+    UKSIUIContext <|-- DialogueContext
+    UKSIUIContext <|-- QuestContext
     InventoryContext --> InventoryViewModel
     InventoryViewModel --> InventoryComponent
 ```
@@ -44,15 +44,15 @@ classDiagram
 화면·등록·비동기 요청·표시 제어 핸들은 서로 다른 타입으로 둔다. 유효하지 않거나 이미 해제한 핸들의 닫기·취소·해제는 안전하게 실패한다. 잘못된 문맥 타입, 중복 화면 태그, 없는 레이어·확장 지점은 화면을 생성하기 전에 거부한다. 인스턴스 정책은 플레이어별 단일 창, 문맥별 단일 창, 여러 창을 구분한다.
 
 ```cpp
-FCCLUIRegistrationHandle RegisterView(const FCCLUIViewDefinition& Definition, UObject* Owner);
-void UnregisterView(FCCLUIRegistrationHandle Registration);
-FCCLUIViewHandle OpenView(FGameplayTag View, UCCLUIContext* Context, UObject* Owner);
-FCCLUIRequestHandle RequestOpenView(FGameplayTag View, UCCLUIContext* Context, UObject* Owner);
-void CancelRequest(FCCLUIRequestHandle Request);
-void CloseView(FCCLUIViewHandle View);
-FCCLUIPresentationHandle PushPresentation(const FCCLUIPresentationDefinition& Definition, UObject* Owner);
-void ReleasePresentation(FCCLUIPresentationHandle Request);
-bool SetBasePresentation(FCCLUIViewHandle View, const FCCLUIViewPresentation& State);
+FKSIUIRegistrationHandle RegisterView(const FKSIUIViewDefinition& Definition, UObject* Owner);
+void UnregisterView(FKSIUIRegistrationHandle Registration);
+FKSIUIViewHandle OpenView(FGameplayTag View, UKSIUIContext* Context, UObject* Owner);
+FKSIUIRequestHandle RequestOpenView(FGameplayTag View, UKSIUIContext* Context, UObject* Owner);
+void CancelRequest(FKSIUIRequestHandle Request);
+void CloseView(FKSIUIViewHandle View);
+FKSIUIPresentationHandle PushPresentation(const FKSIUIPresentationDefinition& Definition, UObject* Owner);
+void ReleasePresentation(FKSIUIPresentationHandle Request);
+bool SetBasePresentation(FKSIUIViewHandle View, const FKSIUIViewPresentation& State);
 ```
 
 `OpenView`는 이미 로드된 클래스에만 사용한다. Soft Class가 아직 로드되지 않았으면 비동기 요청을 사용한다. 완료 콜백은 요청이 아직 유효한지, 등록·소유자·월드가 같은지 확인한 뒤 화면을 만든다. 취소한 요청이나 이전 월드의 콜백이 새 화면을 열어서는 안 된다. 화면 풀에서 재사용할 때에는 이전 문맥과 델리게이트·포커스 참조를 먼저 해제한다. Construct/Destruct만으로 연결 수명을 처리하지 않는다.
@@ -62,7 +62,7 @@ bool SetBasePresentation(FCCLUIViewHandle View, const FCCLUIViewPresentation& St
 기능 연결의 형태는 다음과 같다. 구현 시 실제 공개 인터페이스에 맞춰 검증한다.
 
 ```cpp
-const FCCLUIViewHandle View = UI->OpenView(ViewTag, InventoryContext, FeatureOwner);
+const FKSIUIViewHandle View = UI->OpenView(ViewTag, InventoryContext, FeatureOwner);
 // 기능 종료는 화면 핸들만 닫으며 다른 문맥의 같은 종류 화면에는 영향을 주지 않는다.
 UI->CloseView(View);
 ```

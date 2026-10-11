@@ -1,6 +1,6 @@
 # 공용 Framework 분리 계획
 
-여러 개인 UE5 프로젝트가 선택해 쓰는 공용 게임 시스템을 `KSI Framework`라는 이름으로 계획한다. 분리 단위는 프로젝트 안의 C++ 모듈이며, 플러그인은 현재 범위에서 제외한다. 실제 분리와 이름 변경은 아직 보류하고 사용자가 착수 시점을 정한다. 근거는 [결정 20](DesignLog.md#2026-10-09--결정-20-공용-framework-계획과-구현-보류)과 [결정 22](DesignLog.md#2026-10-11--결정-22-공용-시스템의-모듈-분리-방향과-ksi-이름)이다.
+여러 개인 UE5 프로젝트가 선택해 쓰는 공용 게임 시스템을 `KSI Framework`라는 이름으로 계획한다. 분리 단위는 프로젝트 안의 C++ 모듈이며, 플러그인은 현재 범위에서 제외한다. 2026-10-11 사용자 지시로 단계 1의 실제 분리와 이름 변경을 완료했다. 단계 2는 단계 1 결과를 검토한 뒤 진행한다. 계획과 이름의 근거는 [결정 20](DesignLog.md#2026-10-09--결정-20-공용-framework-계획과-구현-보류)·[결정 22](DesignLog.md#2026-10-11--결정-22-공용-시스템의-모듈-분리-방향과-ksi-이름), 단계 1 착수와 검증 범위는 [결정 23](DesignLog.md#2026-10-11--결정-23-framework-단계-1-착수와-선택-사용-검증)에 기록했다.
 
 ## 목표와 현재 상태
 
@@ -12,9 +12,9 @@ CCL은 공용 시스템을 사용하는 첫 프로젝트로 둔다. 공용 시�
 | 분리 단위 | 프로젝트 안의 C++ 모듈. 플러그인은 현재 범위에서 제외 |
 | 이름 규칙 | 공용 모듈 `KSI{System}`, 공용 타입 접두사 `KSI` |
 | 묶음 이름 | `KSI Framework`. 문서에서 공용 시스템 전체를 부를 때만 사용 |
-| 독립 후보 | 아래 목록으로 검토 범위 기록. 추출·독립 실행 검증 전 |
-| 실제 분리 | 보류 |
-| 착수 시점 | 사용자 지정. 착수하면 단계 1부터 진행 |
+| 독립 후보 | KSIUI·KSIMap은 추출·독립 실행 검증 완료. 나머지는 후보 |
+| 실제 분리 | 단계 1 완료. 단계 2는 사용자 검토 후 착수 |
+| 착수 시점 | 2026-10-11 사용자 지시 |
 | 환경 후속 작업 | [EnvironmentPlan](EnvironmentPlan.md)의 별도 범위. 이 계획으로 착수하지 않음 |
 
 장르 독립적인 계약과 콘텐츠 분리는 [Coding](Coding.md#장르에-독립적인-베이스-시스템-설계)을 따른다. UE의 기능 선택 기준도 유지한다. 이 계획은 엔진 소스를 수정하거나 UE의 UObject·GAS·Subsystem 등을 자체 구현으로 교체하는 계획이 아니다.
@@ -48,7 +48,7 @@ CCL은 공용 시스템을 사용하는 첫 프로젝트로 둔다. 공용 시�
 
 접두사 자리에는 일반 단어를 쓰지 않는다. 접두사는 엔진·외부 플러그인과 이름이 겹치지 않게 하고 공용 코드의 출처를 드러내야 한다. `GameFramework`는 엔진 헤더 폴더(`#include "GameFramework/Character.h"`)와 ModularGameplay의 `UGameFrameworkComponent`와 섞인다. `GameModule`은 프로젝트의 주 게임 모듈을 뜻하는 엔진 용어이고, `Public`은 모듈 폴더와 `Build.cs`의 용어다. `Game`과 `Common`으로 시작하는 엔진 모듈도 많다. 예를 들어 `Common`을 접두사로 쓰면 `UCCLUIActionRouter`가 CommonUI의 `UCommonUIActionRouterBase`와 거의 같은 `UCommonUIActionRouter`가 된다. 접두사 뒤의 시스템 부분에는 일반 단어를 써도 된다.
 
-2026-10-11 UE 5.8.3 소스에서 `KSI`의 이름 충돌을 확인했다. 엔진의 모듈 규칙 파일 이름 2,549개와 플러그인 이름 895개 중 `KSI`로 시작하는 이름은 없었다. 엔진의 C++·C# 소스에도 `KSI`로 시작하는 식별자가 없었고, CCL 저장소에도 아직 쓰는 곳이 없다.
+2026-10-11 UE 5.8.3 소스에서 `KSI`의 이름 충돌을 확인했다. 엔진의 모듈 규칙 파일 이름 2,549개와 플러그인 이름 895개 중 `KSI`로 시작하는 이름은 없었다. 엔진의 C++·C# 소스에도 `KSI`로 시작하는 식별자가 없었고, 착수 전 CCL 저장소에도 쓰는 곳이 없었다.
 
 모듈 이름은 첫 분리 뒤 바꾸지 않는다. 네이티브 타입의 경로 `/Script/<Module>`을 모듈 이름이 정하기 때문이다 (`<Engine>/Source/Runtime/CoreUObject/Private/Misc/PackageName.cpp:2324`). 모듈 이름을 바꾸면 그 모듈의 모든 타입에 리다이렉트가 다시 필요하다.
 
@@ -105,28 +105,28 @@ CCL은 공용 시스템을 사용하는 첫 프로젝트로 둔다. 공용 시�
 
 - 모듈에는 Content 폴더가 없다. 공용 모듈은 에셋을 직접 참조하지 않고 설정이나 데이터로 받는다. 지형·눈·환경처럼 머티리얼과 FX가 시스템과 묶인 경우, 그 에셋은 사용하는 프로젝트마다 둔다.
 - 플러그인의 활성화 설정이 없다. 각 프로젝트는 `.uproject`의 `Modules`, 타깃의 `ExtraModuleNames`와 `Build.cs` 의존으로 사용할 모듈을 고른다.
-- 다른 프로젝트와 공유하는 단위가 정해져 있지 않다. 사용 방법은 아래 "다른 프로젝트에서의 사용"에 미정으로 남긴다.
+- 다른 프로젝트와 장기적으로 공유·동기화하는 방식은 정하지 않았다. 단계 1의 독립 검사에는 모듈 소스 복사를 사용했다.
 
 다른 프로젝트와의 공유가 실제로 필요해지면 플러그인을 다시 검토한다. 모듈을 플러그인으로 감싸도 모듈 이름이 같으면 타입 경로 `/Script/<Module>`은 바뀌지 않는다. 따라서 모듈 분리 때 처리한 리다이렉트를 다시 하지 않는다. Game Features는 플러그인 기반이므로 이 계획의 범위 밖이다.
 
-특정 시스템만 사용할 때 나머지 시스템을 필수로 불러오지 않는 구성을 우선한다. 런타임 기능과 에디터 도구는 모듈 종류로 나눈다. 현재 에디터 도구는 런타임 `CCL` 모듈 안에서 `Target.bBuildEditor` 조건으로 컴파일된다 (`Source/CCL/CCL.Build.cs:19-32`). 이 도구는 Combat·Items·Agents를 참조하는 게임 전용 도구이므로 공용 모듈이 아니라 Editor 종류의 `CCLEditor` 모듈로 옮긴다.
+특정 시스템만 사용할 때 나머지 시스템을 필수로 불러오지 않는 구성을 우선한다. 런타임 기능과 에디터 도구는 모듈 종류로 나눈다. `Source/CCLEditor/`는 Combat·Items·Agents를 참조하는 게임 전용 제작 도구와 Details 등록을 소유한다. `CCL`에는 눈 Animation Blueprint 제작 코드와 PIE 검사 때문에 조건부 `UnrealEd`·`AnimGraph` 등의 의존이 남는다. 이 의존은 Game·Server 빌드에서는 추가하지 않는다. 에디터 의존 목록의 정본은 각 모듈의 `Build.cs`다.
 
 ### 다른 프로젝트에서의 사용
 
-다른 프로젝트에서 공용 모듈을 사용하는 방법은 정하지 않았다. 현재 후보는 두 가지다.
+단계 1은 모듈 소스를 최소 프로젝트에 복사해 사용했다. 실제 개인 프로젝트의 장기 배포·동기화 방식은 정하지 않았으며 후보는 두 가지다.
 
 1. 공용 모듈을 별도 저장소에 두고, 각 프로젝트의 `Source/` 아래에 git submodule이나 복사로 넣는다.
 2. 각 `.uproject`의 `AdditionalRootDirectories`로 공용 루트를 지정한다. UBT는 그 루트의 `Source/`에서도 모듈 규칙을 찾는다 (`<Engine>/Source/Programs/UnrealBuildTool/Configuration/Rules/RulesCompiler.cs:324-328`, `:365-368`). 이 방법의 바이너리 출력 위치, 에디터 로드와 패키징은 확인하지 않았다.
 
-공용 저장소 생성과 다른 개인 프로젝트 수정은 아직 정하지 않았다. 사용 방법은 추출한 모듈을 별도 최소 프로젝트에서 검증할 때 비교한다.
+공용 저장소 생성과 다른 개인 프로젝트 수정은 아직 정하지 않았다. 최소 프로젝트의 복사 검증 결과는 아래에 기록했고, 공용 루트 방식과의 비교는 후속 작업으로 남긴다.
 
 ## 시스템별 엔진 의존과 네트워크 전제
 
-선택 사용을 판정하려면 모듈마다 필수 엔진 기능과 네트워크 전제를 정해야 한다. 현재는 `CCL` 모듈 하나가 GAS, StateTree, Mass, Niagara, CommonUI와 MVVM을 함께 의존한다 (`Source/CCL/CCL.Build.cs:12`, `:17`, `:28`). 다음 항목은 미정이며 해당 모듈을 추출할 때 정한다.
+선택 사용을 판정하려면 모듈마다 필수 엔진 기능과 네트워크 전제를 정해야 한다. `CCL`은 GAS, StateTree, Mass, Niagara와 게임 UI의 MVVM을 의존한다. 단계 1에서 분리한 모듈의 의존은 아래 구현 범위에 기록하며, 나머지는 추출할 때 정한다.
 
 | 대상 | 정할 항목 |
 |---|---|
-| `KSIUI` | CommonUI·MVVM을 필수 의존으로 둘지 |
+| `KSIUI` | CommonUI·UMG 필수, MVVM은 CCL에 유지. 정확한 목록은 `Source/KSIUI/KSIUI.Build.cs` |
 | `KSICombat` | GAS를 필수 의존으로 둘지 |
 | `KSIAgent` | Mass·StateTree를 필수 의존으로 둘지 |
 | 공통 | 서버 권위와 복제를 기본 전제로 둘지. 싱글 플레이 프로젝트도 그 비용을 지는지 |
@@ -148,11 +148,11 @@ CCL은 공용 시스템을 사용하는 첫 프로젝트로 둔다. 공용 시�
 
 ## 착수 후 진행 순서
 
-다음은 실행 전 계획이며 수행 완료 기록이 아니다. 착수하면 아래 단계 순서로 진행한다.
+단계 1을 완료했으며 다음 단계는 사용자 검토 뒤 시작한다. 단계별 범위는 다음과 같다.
 
 | 단계 | 대상 | 진행 조건 |
 |---|---|---|
-| 1 | `CCLEditor`(`Editor` 폴더), `KSIUI`(`UI/Core`), `KSIMap`(`Map`) | 착수 지시. `UI/Core`와 `Map`은 다른 게임 폴더를 include하지 않는다. `CCLEditor`는 `CCL`에 의존하는 게임 모듈이다 |
+| 1 | `CCLEditor`, `KSIUI`, `KSIMap` | 분리·검증 완료. `Source/`의 각 모듈 폴더에 있다. CCLEditor만 CCL을 참조한다 |
 | 2 | `KSICore`(저장 참여 계약·구간 등록·시간 읽기), 이어서 `KSIInventory` | 저장 참여 계약을 Environment 폴더에서 분리한다. 공개 정의·상태와 실행 코드의 게임 의존을 정리하고 [인벤토리 추출 조건](#인벤토리-추출-조건)을 충족한 뒤 추출한다 |
 | 3 | `KSICombat`, AbilitySystem·Actions 정리 | 재검토 계기가 생길 때 판단한다. Items·Agents와의 연결 정리가 필요하다 |
 | 4 | `KSIWorldTime`, `KSISave`, `KSICelestial`, `KSITerrain`, `KSIAgent`, 환경 계열 | 재검토 계기가 생길 때 판단한다. 남은 폴더 순환을 먼저 풀어야 한다 |
@@ -254,8 +254,105 @@ $FrameworkRevision = 'ef44376d21811df02b5cf28b2c50105047921e2c'
 
 ## 미정 사항과 비용
 
-최초 착수 날짜, 다른 프로젝트에서의 사용 방법, 시스템별 엔진 의존과 네트워크 전제, 개별 타입 이름의 정리는 미정이다. 분리를 미루는 동안 폴더 사이의 include 방향을 검증 도구로 검사할지도 정하지 않았다. 이 문서는 새 인터페이스나 다른 프로젝트의 지원을 완료했다고 선언하지 않는다.
+착수일은 2026-10-11이다. 장기적인 공용 저장소 배포 방식과 단계 2 이후의 엔진 의존·타입 정리는 미정이다. 아직 분리하지 않은 시스템의 폴더 사이 include 방향을 검증 도구로 검사할지도 정하지 않았다. 단계 1은 기존 공개 API를 옮기고 최소 프로젝트에서 확인한 범위이며, 실제 개인 프로젝트의 배포·동기화 지원은 미정이다.
 
 공용화는 다음 게임에서 구현·검증을 다시 하는 비용을 줄일 수 있다. 대신 공개 API, 저장·에셋 호환, 버전 관리와 별도 프로젝트 검증 비용이 추가된다. 현재는 기능을 실제로 사용하며 경계를 확인하고, 분리 비용을 감당할 근거가 생기면 필요한 시스템부터 진행한다.
 
 분리를 미루는 비용은 시간이 지나며 늘어난다. `/Script/CCL`을 참조하는 에셋이 늘면 옮길 때 넣을 리다이렉트와 로드로 확인할 에셋도 함께 늘어난다.
+
+## 단계 1 구현 범위와 검증 기준
+
+2026-10-11 사용자의 착수 지시에 따라 `CCLEditor`, `KSIUI`, `KSIMap`을 분리하고 검증했다. 단계 2는 이 결과를 검토한 뒤 진행한다. 이번 변경의 기준은 `2930929aca25f32415b0e961f8f2d90172f4ce44`와 기존 미커밋 코드 보완을 포함한 작업 트리다. 모듈별 파일 해시는 `Saved/Tests/FrameworkStage1-20261011/module-source-manifest.json`에 보관했다.
+
+UI는 LocalPlayer가 관리자와 화면 수명을 소유하며 CommonUI·UMG·Enhanced Input을 사용한다. MVVM은 CCL의 기능별 표시 모델에 남긴다. 지도도 LocalPlayer 범위의 관찰자 표시 데이터를 제공하며 KSIUI를 참조하지 않는다. 서버 권위·복제와 게임 화면 구성은 CCL이 소유한다. Editor 폴더의 제작 도구와 Details 등록은 CCL을 참조하는 Editor 모듈로 이동했다.
+
+공개 함수의 동작을 유지하면서 타입과 헤더 접두사를 KSI로 바꾸고 모듈별 export와 CoreRedirects를 추가했다. 기존 에셋을 다시 저장하지 않은 상태에서 로드를 검증했다. UI·지도 각각의 최소 프로젝트에서는 CCL 코드·설정·콘텐츠 없이 공개 API를 실행했다. CommonUI 의존을 유지하면 기존 입력·풀 동작을 보존할 수 있지만 UI만 사용하는 프로젝트도 해당 플러그인을 활성화해야 한다.
+
+검증은 프로젝트 파일 생성, Editor·Game·Server 대상 빌드, 자동 검사, UI 수명·입력·지도 통합 실행, 에셋 로드와 패키징을 포함한다. 실행 결과는 아래 표에 기록한다.
+
+### 책임·의존과 공개 계약
+
+| 모듈 | 책임·수명 | 직접 엔진 의존 |
+|---|---|---|
+| KSIUI | LocalPlayer 관리자, 화면·문맥·요청의 생성과 해제. 클라이언트 표현이며 자체 저장·복제 없음 | Public: Core, CoreUObject, Engine, GameplayTags, UMG, CommonUI, SlateCore. Private: Slate, InputCore, CommonInput, EnhancedInput |
+| KSIMap | LocalPlayer별 공개 표식·지형 표시 데이터. ActorComponent가 거리·시야 공개 조건 제공. 자체 저장·복제 없음 | Core, CoreUObject, Engine |
+| CCLEditor | 에디터 모듈 시작·종료에 Details 등록·해제. 제작 Library는 명시 호출로 실행 | CCL과 제작용 엔진 모듈. `Source/CCLEditor/CCLEditor.Build.cs` 참조 |
+
+KSIUI와 KSIMap은 서로를 참조하지 않는다. 게임별 표시 모델, 지도 화면과 서버 권위는 CCL에 남는다. 지역 설정과 Registry는 호출자가 주입하고 공용 모듈은 `/Game/` 에셋 경로를 갖지 않는다. 지도 종류 enum의 Player·NPC·Enemy·Objective 항목은 기존 공개 계약으로 유지한다. 임의의 표식 종류를 추가하는 계약 변경은 이번 이동에 포함하지 않는다.
+
+```mermaid
+classDiagram
+    ULocalPlayer *-- UKSIUISubsystem
+    ULocalPlayer *-- UKSIMapSubsystem
+    UKSIUISubsystem --> UKSIUIRegistry
+    UKSIUISubsystem *-- UKSIUIRoot
+    UKSIUIRoot *-- UKSIScreen
+    UKSIScreen --> UKSIUIContext
+    UKSIScreen <|-- UCCLMapScreen
+    UCCLMapScreen --> UKSIMapSubsystem
+    UKSIMapSubsystem --> UKSIMapMarkerComponent
+```
+
+공개 계약의 타입 이름만 변경했다. UI 세부 동작은 [UIFoundation](UIFoundation.md)이 소유한다.
+
+```cpp
+FKSIUIViewHandle OpenView(FGameplayTag View, UKSIUIContext* Context, UObject* Owner);
+void CloseView(FKSIUIViewHandle View);
+void SetRegion(UKSIMapRegionDefinition* Definition);
+void Refresh(APlayerController* Observer);
+```
+
+게임은 화면·지역 정의를 제공하고 요청한 화면 핸들을 해제한다. 독립 검사도 같은 계약을 사용한다 (`Tools/Validation/FrameworkProbe/KSIProbe.cpp`).
+
+```cpp
+const FKSIUIViewHandle Handle = UI->OpenView(ViewTag, Context, Owner);
+if (Handle.IsValid())
+{
+    UI->CloseView(Handle);
+}
+```
+
+### 타입 이동과 호환
+
+기존 파일 26개를 이동했다. KSIUI에 14개, KSIMap에 2개, CCLEditor에 10개다. 모듈 초기화 파일과 `Build.cs`는 별도로 추가했다. 이전 이름은 `Config/DefaultEngine.ini`의 클래스·구조체·enum 리다이렉트 32개로 받는다. enum은 한정 이름의 값도 변환한다. `UEnum::GetIndexByNameString`의 ValueChanges 적용은 UE 5.8.3 `<Engine>/Source/Runtime/CoreUObject/Private/UObject/Enum.cpp:970`에서 확인했다.
+
+게임 전용 제작 Library는 CCL 접두사를 유지하고 `/Script/CCLEditor`로 이동했다. Editor 모듈이 사용하는 CCL 태그와 StateTree 작업의 export를 추가하고 직접 호출하는 엔진 모듈 의존을 선언했다. CCL은 CCLEditor를 참조하지 않는다.
+
+모듈 종류·export·CoreRedirects는 UE4에도 있던 개념이다. 이번 구현의 기반인 CommonUI와 Enhanced Input의 현재 API·로드 동작은 UE 5.8.3에서 검증한다. 다른 UE 버전의 컴파일·동작 호환은 지원 범위로 확정하지 않았다.
+
+### 단계 1 검증 결과
+
+UE 5.8.3에서 아래 항목을 확인했다. 로그의 원본 경로는 저장소 상대 경로로 적었다. 검사에 복사한 KSIUI·KSIMap 소스는 현재 소스와 SHA-256이 일치한다. 에셋 파일은 수정하지 않았다.
+
+| 검사 | 결과 | 근거 |
+|---|---|---|
+| 이동 전 UI 수명 기준 | 통과 | `Saved/Tests/UIFoundation/20261011-215040/game.log` |
+| 최종 프로젝트 파일 생성 | 성공 | `Saved/Tests/FrameworkStage1-20261011/GenerateProjectFiles-Final2.log` |
+| Editor·Game·Server Win64 Development | 모두 성공 | 같은 폴더의 `CCLEditor-Final.log`, `CCL-Final.log`, `CCLServer-Final.log` |
+| KSIUI 단독 프로젝트 | 화면 생성·해제와 입력 복구 통과. KSIMap·CCL 미로드 | `Saved/Tests/FrameworkIsolation/KSIUI-20261011-215834/`의 `build.log`, `game.log`, `module-sha256.json` |
+| KSIMap 단독 프로젝트 | 표식 공개 조건·지역 지형·좌표 투영 통과. KSIUI·CCL 미로드 | `Saved/Tests/FrameworkIsolation/KSIMap-20261011-220124/`의 같은 파일 |
+| 전체 자동 검사 | 163개 성공, 경고·실패·미실행 0개 | `Saved/Tests/Automation/20261011-221435-352/report/index.json` |
+| 타입·에셋 호환 | 32개 타입 경로·enum 값, 기존 패키지 454개와 구형 UI Blueprint 부모 로드 통과 | 위 보고서의 `CCL.Framework.MigratedTypes`, `CCL.Framework.ExistingAssets` |
+| UI 수명·맵 이동·플레이어 격리 | 통과 | `Saved/Tests/UIFoundation/20261011-220909/game.log` |
+| 지도·연출 통합 | 지도 지형·표식·투영, 카메라·UI 복구 통과 | `Saved/Tests/Integration/20261011-220937/editor.log` |
+| 장비 UI·입력·중첩 연출·사망 정리 | 1280×720 통과 | `Saved/Tests/UIVisual/1280x720-20261011-221435/game.log` |
+| Dedicated 콘텐츠 회귀 | 서버, driver·witness·late의 상품·개인 상태 검사 통과 | `Saved/Tests/CampaignSmoke/Dedicated-20261011-221602/` |
+| Windows Development 패키지 | Cook·Stage·Archive 성공 | `Saved/Tests/FrameworkStage1-20261011/Package-Windows.log` |
+| 패키지 UI 실행 | 1280×720 장비·입력·연출 검사 통과 | `Saved/Tests/UIVisual/1280x720-20261011-221935/game.log` |
+| 패키지 Listen 콘텐츠 회귀 | 호스트 driver·원격 witness·late의 상품·개인 상태 검사 통과 | `Saved/Tests/CampaignSmoke/Listen-20261011-221934/` |
+
+Windows 패키지는 `Saved/Packages/FrameworkStage1/Windows/CCL.exe`다. Server 타깃은 빌드와 Editor의 Dedicated 실행으로 확인했으며 별도 WindowsServer 패키지는 만들지 않았다.
+
+`Saved/Tests/Presentation/1280x720-world-map.png`와 `Saved/Tests/UIVisual/1280x720-20261011-221435/inventory-equipped.png`를 열어 지도 표식·지역 경계와 장비 화면의 글자·슬롯·미리보기를 확인했다. 화면의 최종 아트 품질이나 성능 개선을 판정한 검사는 아니다.
+
+첫 빌드에서는 남아 있던 상대 include, DLL export와 제작 모듈의 직접 엔진 의존 누락을 수정했다. UI 검사에 남아 있던 "구형 저장은 즉시 최신 버전이 된다"는 기대값도 현재 코덱 계약에 맞췄다. 코덱은 슬롯 변환 후 버전 7을 유지하며 버전 8의 보급품 배치 변환은 캠페인 맵 정보가 필요하다. 저장 로직은 바꾸지 않았다. 신규 에셋 검사에서 두 번째 파일 검색이 첫 목록을 덮어쓰는 문제도 고친 뒤 454개 로드를 다시 확인했다.
+
+독립 프로젝트 빌드 뒤 공유 엔진의 BuildId가 바뀌어 CCL 실행이 처음에는 플러그인 로드 전에 종료됐다. CCL Editor 빌드를 다시 실행해 메타데이터를 맞췄고, 검사 도구에도 ID가 달라지면 원래 Editor 타깃으로 복구하는 처리를 추가했다. 빌드와 동시에 시작한 UI 검사는 엔진 초기화 중 제한 시간을 초과했다. 빌드 종료 후 단독 실행은 통과했으며 초기화 대기를 UI 기능 실패와 구분했다.
+
+### 사용·갱신 범위
+
+검증한 엔진 범위는 UE 5.8.3 Windows다. 현재 공용 코드의 검증 식별자는 위 소스 manifest이며 코드 제출 전 작업 트리 기준이다. KSIUI의 소스 집계 SHA-256은 `56da02d9bf6e4677e039607cdb4815c4477921c6628285a611ef1e798db8bb93`, KSIMap은 `9ac28fb51c9fc6dec81190d9e5eba9fd84649e451a716cf8146509e76c51f1b2`다. 집계 입력은 manifest의 정렬된 상대 경로·파일 해시 쌍을 공백 없는 JSON으로 직렬화한 UTF-8 바이트다.
+
+다른 프로젝트에서의 검증에는 모듈 소스를 해당 프로젝트의 Source 아래로 복사했다. 재현 도구는 `Tools/Validation/run_framework_isolation.ps1 -Module KSIUI` 또는 `-Module KSIMap`이다. 도구는 선택한 모듈, 최소 시험 모듈과 엔진 설정만 만든다. 실제 개인 프로젝트의 장기 배포·동기화는 아직 시작하지 않았다.
+
+공용 모듈을 갱신할 때에는 선택 모듈의 단독 실행, 사용하는 게임의 회귀와 원본 에셋 로드를 함께 확인한다. 네이티브 타입을 옮기거나 이름을 바꾸면 기존 CoreRedirects를 유지하고 새 변환을 추가한다. 코드·설정·도구의 제출과 문서 제출은 별도이며, 현재 코드의 원격 공개 여부는 완료 보고에서 구분한다. 단계 2는 이번 결과를 검토한 뒤 착수한다.
