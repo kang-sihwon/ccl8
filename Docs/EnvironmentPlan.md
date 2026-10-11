@@ -62,6 +62,10 @@ GAS 치명 피해를 Agent의 외부 사망에 연결하고 구역 07에 두 주
 
 메뉴의 게임 시간, 세계 시간과 완료 세계 시각은 `01시 23분 45초` 형식으로 표시한다. 초 미만은 버리고, 누적 시간이 하루를 넘으면 `25시 00분 00초`처럼 계속 표시한다. 시간 배율과 미처리 대기량은 별도 항목이며 대기량은 소수 초를 유지한다. 표시 문자열만 변환하므로 계산·저장·복제는 기존 초 단위를 사용한다. 구현은 `Source/CCL/Environment/CCLExperimentScreen.cpp`의 `FormatElapsedTime`과 화면 텍스트 바인딩에 있다.
 
+로컬 수정본의 격리 실험 맵은 시간 조작으로 **시간 정지**, **10배 감소**, **10배 증가**를 제공한다. 기본 배율은 60배이며 증가·감소는 서버의 현재 배율에 각각 10을 더하거나 뺀다. 감소의 최솟값은 0배다. 정지 뒤 증가를 누르면 10·20·30배 순서로 진행한다. 조작 담당자만 변경할 수 있고, 자동 검사 실행 중에는 요청을 거부한다. 기존 저장의 배율·이력 형식은 유지한다.
+
+2026-10-12 로컬 수정본은 UE 5.8.3 프로젝트 생성과 Editor Development 빌드를 통과했다. 기존 메뉴 검사에서 Scenario Standalone·PIE의 실제 Slate 클릭으로 0·10·20·30·40·50·60·70·80배와 역순 감소, 0배 추가 감소를 확인했다. Playground Standalone에서는 세 버튼의 비활성화를 확인했다. 결과는 `Saved/Tests/TimeScaleStep/results.json`과 해당 폴더의 빌드·메뉴 로그에 있다. 이 배속 UI 변경의 패키지 재생성·네트워크 실행 검사는 수행하지 않았다.
+
 `CCLExperimentPlayerController`는 게임 입력의 열기를, `CCLExperimentScreen`은 메뉴가 입력을 소유할 때의 닫기를 처리한다. CommonUI의 메뉴 정책과 닫힌 뒤 게임 입력 복구는 유지한다. UE 5.8.3의 F8은 에디터의 `PossessEjectPlayer`에 배정돼 있으므로 실험 메뉴에는 사용하지 않는다. 근거는 `<Engine>/Source/Editor/UnrealEd/Private/Kismet2/DebuggerCommands.cpp:365`와 `<Engine>/Source/Runtime/Engine/Private/GameViewportClient.cpp:776`이다. 아래 과거 검증 기록의 F8은 당시 단축키다.
 
 회귀 검사 `Tools/Validation/run_experiment_menu_smoke.ps1`은 실제 Slate 클릭과 키 입력으로 닫기 버튼, F7 재열기, F7 닫기와 두 번째 재열기를 실행한다. 키를 누른 채 발생하는 반복 입력이 메뉴를 다시 닫지 않는지도 검사한다. 메뉴 상태, 이동·시점 입력 정책과 플레이어 소유권을 확인한다. `-Map EnvironmentScenario` 또는 `-Map EnvironmentPlayground`를 지정하며, `-PIE`를 추가하면 실제 에디터 뷰포트에서 검사한다. 기본은 Standalone이다.
