@@ -6,7 +6,7 @@
 #include "CCLHUDScreens.h"
 #include "CCLMapScreen.h"
 #include "Presentation/CCLCinematicSubsystem.h"
-#include "Core/CCLUISubsystem.h"
+#include "KSIUISubsystem.h"
 #include "Engine/LocalPlayer.h"
 #include "GameFramework/PlayerController.h"
 
@@ -29,10 +29,10 @@ UE_DEFINE_GAMEPLAY_TAG(Group_Dialogue, "UI.Group.Dialogue");
 UE_DEFINE_GAMEPLAY_TAG(Group_Menus, "UI.Group.Menus");
 }
 
-UCCLUISubsystem* CCLGameUI::Get(APlayerController* Controller)
+UKSIUISubsystem* CCLGameUI::Get(APlayerController* Controller)
 {
 	auto* Local = IsValid(Controller) ? Controller->GetLocalPlayer() : nullptr;
-	auto* UI = Local ? Local->GetSubsystem<UCCLUISubsystem>() : nullptr;
+	auto* UI = Local ? Local->GetSubsystem<UKSIUISubsystem>() : nullptr;
 	if (!UI)
 	{
 		return nullptr;
@@ -40,34 +40,34 @@ UCCLUISubsystem* CCLGameUI::Get(APlayerController* Controller)
 
 	if (!UI->GetRegistry())
 	{
-		auto* Registry = NewObject<UCCLUIRegistry>(UI);
+		auto* Registry = NewObject<UKSIUIRegistry>(UI);
 		Registry->InputMapping = GetDefault<UCCLUIInputData>()->GetMapping(Controller);
-		auto AddLayer = [Registry](FGameplayTag Tag, ECCLUILayerLayout Layout, int32 Order)
+		auto AddLayer = [Registry](FGameplayTag Tag, EKSIUILayerLayout Layout, int32 Order)
 		{
-			FCCLUILayerDefinition Layer;
+			FKSIUILayerDefinition Layer;
 			Layer.Tag = Tag;
 			Layer.Layout = Layout;
 			Layer.ZOrder = Order;
 			Registry->Layers.Add(Layer);
 		};
-		AddLayer(CCLUITags::Layer_HUD, ECCLUILayerLayout::Overlay, 0);
-		AddLayer(CCLUITags::Layer_Panels, ECCLUILayerLayout::Stack, 10);
-		AddLayer(CCLUITags::Layer_Menu, ECCLUILayerLayout::Stack, 20);
-		AddLayer(CCLUITags::Layer_Notifications, ECCLUILayerLayout::Queue, 30);
-		FCCLUIViewDefinition View;
+		AddLayer(CCLUITags::Layer_HUD, EKSIUILayerLayout::Overlay, 0);
+		AddLayer(CCLUITags::Layer_Panels, EKSIUILayerLayout::Stack, 10);
+		AddLayer(CCLUITags::Layer_Menu, EKSIUILayerLayout::Stack, 20);
+		AddLayer(CCLUITags::Layer_Notifications, EKSIUILayerLayout::Queue, 30);
+		FKSIUIViewDefinition View;
 		View.Tag = CCLUITags::View_Inventory;
 		View.WidgetClass = UCCLInventoryScreen::StaticClass();
 		View.RequiredContextClass = UCCLInventoryContext::StaticClass();
 		View.Layer = CCLUITags::Layer_Panels;
 		View.Groups.AddTag(CCLUITags::Group_Menus);
-		View.InputPolicy = ECCLUIInputPolicy::Menu;
+		View.InputPolicy = EKSIUIInputPolicy::Menu;
 		Registry->Views.Add(View);
 		View.Tag = CCLUITags::View_SessionMenu;
 		View.WidgetClass = UCCLSessionMenuScreen::StaticClass();
 		View.RequiredContextClass = UCCLSessionMenuContext::StaticClass();
 		View.Layer = CCLUITags::Layer_Menu;
 		Registry->Views.Add(View);
-		View = FCCLUIViewDefinition();
+		View = FKSIUIViewDefinition();
 		View.Tag = CCLUITags::View_Vitals;
 		View.WidgetClass = UCCLVitalsScreen::StaticClass();
 		View.RequiredContextClass = UCCLHUDContext::StaticClass();
@@ -83,7 +83,7 @@ UCCLUISubsystem* CCLGameUI::Get(APlayerController* Controller)
 		View.Groups.Reset();
 		View.Groups.AddTag(CCLUITags::Group_Dialogue);
 		Registry->Views.Add(View);
-		View = FCCLUIViewDefinition();
+		View = FKSIUIViewDefinition();
 		View.Tag = CCLUITags::View_Minimap;
 		View.WidgetClass = UCCLMapScreen::StaticClass();
 		View.RequiredContextClass = UCCLMapContext::StaticClass();
@@ -94,9 +94,9 @@ UCCLUISubsystem* CCLGameUI::Get(APlayerController* Controller)
 		View.Layer = CCLUITags::Layer_Panels;
 		View.Groups.Reset();
 		View.Groups.AddTag(CCLUITags::Group_Menus);
-		View.InputPolicy = ECCLUIInputPolicy::Menu;
+		View.InputPolicy = EKSIUIInputPolicy::Menu;
 		Registry->Views.Add(View);
-		View = FCCLUIViewDefinition();
+		View = FKSIUIViewDefinition();
 		View.Tag = CCLUITags::View_Cinematic;
 		View.WidgetClass = UCCLCinematicScreen::StaticClass();
 		View.RequiredContextClass = UCCLCinematicContext::StaticClass();

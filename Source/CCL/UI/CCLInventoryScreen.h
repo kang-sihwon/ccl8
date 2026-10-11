@@ -1,8 +1,8 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Core/CCLScreen.h"
-#include "Core/CCLUIContext.h"
+#include "KSIScreen.h"
+#include "KSIUIContext.h"
 #include "CCLInventoryScreen.generated.h"
 
 class ACCLPlayerController;
@@ -13,7 +13,7 @@ class USceneCaptureComponent2D;
 class UTextureRenderTarget2D;
 
 UCLASS()
-class CCL_API UCCLInventoryContext : public UCCLUIContext
+class CCL_API UCCLInventoryContext : public UKSIUIContext
 {
 	GENERATED_BODY()
 
@@ -47,7 +47,7 @@ private:
 };
 
 UCLASS()
-class CCL_API UCCLInventoryScreen : public UCCLScreen
+class CCL_API UCCLInventoryScreen : public UKSIScreen
 {
 	GENERATED_BODY()
 

@@ -12,7 +12,7 @@
 #include "Presentation/CCLCinematicSubsystem.h"
 #include "UI/CCLGameUI.h"
 #include "UI/CCLHUDScreens.h"
-#include "UI/Core/CCLUISubsystem.h"
+#include "KSIUISubsystem.h"
 #include "Combat/CCLFighterComponent.h"
 #include "Components/SkeletalMeshComponent.h"
 #include "Items/CCLItemDefinition.h"
@@ -196,7 +196,7 @@ void ACCLPlayerController::EndPlay(const EEndPlayReason::Type EndPlayReason)
 	CloseDialogue();
 	if (ULocalPlayer* LocalPlayer = GetLocalPlayer())
 	{
-		if (auto* UI = LocalPlayer->GetSubsystem<UCCLUISubsystem>())
+		if (auto* UI = LocalPlayer->GetSubsystem<UKSIUISubsystem>())
 		{
 			UI->OnViewClosed.RemoveAll(this);
 		}
@@ -294,7 +294,7 @@ void ACCLPlayerController::CloseInventory()
 {
 	if (const auto* Local = GetLocalPlayer())
 	{
-		if (auto* UI = Local->GetSubsystem<UCCLUISubsystem>())
+		if (auto* UI = Local->GetSubsystem<UKSIUISubsystem>())
 		{
 			UI->CloseView(InventoryHandle);
 		}
@@ -364,7 +364,7 @@ void ACCLPlayerController::CloseDialogue()
 {
 	if (const auto* Local = GetLocalPlayer())
 	{
-		if (auto* UI = Local->GetSubsystem<UCCLUISubsystem>())
+		if (auto* UI = Local->GetSubsystem<UKSIUISubsystem>())
 		{
 			UI->CloseView(DialogueHandle);
 		}
@@ -381,7 +381,7 @@ bool ACCLPlayerController::IsDialogueVisible() const
 {
 	const auto* UIPawn = Cast<ACCLCharacter>(GetPawn());
 	const auto* Local = GetLocalPlayer();
-	const auto* UI = Local ? Local->GetSubsystem<UCCLUISubsystem>() : nullptr;
+	const auto* UI = Local ? Local->GetSubsystem<UKSIUISubsystem>() : nullptr;
 	return UI && UI->IsViewOpen(DialogueHandle) && UIPawn && !UIPawn->IsDead() &&
 		DialogueSpeaker.IsValid() && DialogueSpeaker->CanReach(UIPawn);
 }
@@ -770,7 +770,7 @@ void ACCLPlayerController::SelectEquipmentSlot(FGameplayTag Slot)
 	}
 }
 
-void ACCLPlayerController::HandleUIViewClosed(FCCLUIViewHandle View)
+void ACCLPlayerController::HandleUIViewClosed(FKSIUIViewHandle View)
 {
 	if (View == DialogueHandle)
 	{
@@ -791,14 +791,14 @@ void ACCLPlayerController::HandleUIViewClosed(FCCLUIViewHandle View)
 bool ACCLPlayerController::IsInventoryOpen() const
 {
 	const auto* Local = GetLocalPlayer();
-	const auto* UI = Local ? Local->GetSubsystem<UCCLUISubsystem>() : nullptr;
+	const auto* UI = Local ? Local->GetSubsystem<UKSIUISubsystem>() : nullptr;
 	return UI && UI->IsViewOpen(InventoryHandle);
 }
 
 TSharedPtr<SCCLInventoryWidget> ACCLPlayerController::GetInventoryWidget() const
 {
 	const auto* Local = GetLocalPlayer();
-	const auto* UI = Local ? Local->GetSubsystem<UCCLUISubsystem>() : nullptr;
+	const auto* UI = Local ? Local->GetSubsystem<UKSIUISubsystem>() : nullptr;
 	const auto* Screen = UI ? Cast<UCCLInventoryScreen>(UI->FindScreen(InventoryHandle)) : nullptr;
 	return Screen ? Screen->GetBody() : nullptr;
 }

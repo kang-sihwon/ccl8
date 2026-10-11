@@ -3,16 +3,16 @@
 #include "CoreMinimal.h"
 #include "Subsystems/GameInstanceSubsystem.h"
 #include "Tickable.h"
-#include "UI/Core/CCLUITypes.h"
-#include "UI/Core/CCLUIPresentation.h"
-#include "UI/Core/CCLScreen.h"
+#include "KSIUITypes.h"
+#include "KSIUIPresentation.h"
+#include "KSIScreen.h"
 #include "CCLUIFoundationSmoke.generated.h"
 
-class UCCLUIContext;
-class UCCLUIRegistry;
+class UKSIUIContext;
+class UKSIUIRegistry;
 
 UCLASS()
-class UCCLUICloseOnHideProbe : public UCCLScreen
+class UCCLUICloseOnHideProbe : public UKSIScreen
 {
 	GENERATED_BODY()
 
@@ -35,41 +35,41 @@ public:
 
 private:
 	bool Check(bool bCondition, const TCHAR* Message);
-	void RequestFinished(FCCLUIRequestHandle Request, FCCLUIViewHandle View, bool bSuccess);
+	void RequestFinished(FKSIUIRequestHandle Request, FKSIUIViewHandle View, bool bSuccess);
 	bool ConfigureExample(bool bStrategy);
 
 private:
 	UPROPERTY()
-	TObjectPtr<UCCLUIRegistry> Registry;
+	TObjectPtr<UKSIUIRegistry> Registry;
 
 	UPROPERTY()
-	TObjectPtr<UCCLUIContext> ContextA;
+	TObjectPtr<UKSIUIContext> ContextA;
 
 	UPROPERTY()
-	TObjectPtr<UCCLUIContext> ContextB;
+	TObjectPtr<UKSIUIContext> ContextB;
 
 	UPROPERTY()
-	TObjectPtr<UCCLUIContext> ContextC;
+	TObjectPtr<UKSIUIContext> ContextC;
 
-	TWeakObjectPtr<UCCLScreen> RecycledScreen;
+	TWeakObjectPtr<UKSIScreen> RecycledScreen;
 	TWeakObjectPtr<UWorld> PreviousWorld;
 	TWeakObjectPtr<AActor> FeatureOwner;
-	FCCLUIViewHandle PanelA;
-	FCCLUIViewHandle PanelB;
-	FCCLUIViewHandle StackA;
-	FCCLUIViewHandle StackB;
-	FCCLUIViewHandle QueueA;
-	FCCLUIViewHandle QueueB;
-	FCCLUIViewHandle OwnedView;
-	FCCLUIViewHandle PersistentView;
-	FCCLUIViewHandle PersistentStackA;
-	FCCLUIViewHandle PersistentStackB;
-	FCCLUIViewHandle WorldView;
-	FCCLUIViewHandle LoadedView;
-	FCCLUIRegistrationHandle OwnedRegistration;
-	FCCLUIRequestHandle CancelledRequest;
-	FCCLUIRequestHandle LoadingRequest;
-	FCCLUIPresentationHandle PersistentPresentation;
+	FKSIUIViewHandle PanelA;
+	FKSIUIViewHandle PanelB;
+	FKSIUIViewHandle StackA;
+	FKSIUIViewHandle StackB;
+	FKSIUIViewHandle QueueA;
+	FKSIUIViewHandle QueueB;
+	FKSIUIViewHandle OwnedView;
+	FKSIUIViewHandle PersistentView;
+	FKSIUIViewHandle PersistentStackA;
+	FKSIUIViewHandle PersistentStackB;
+	FKSIUIViewHandle WorldView;
+	FKSIUIViewHandle LoadedView;
+	FKSIUIRegistrationHandle OwnedRegistration;
+	FKSIUIRequestHandle CancelledRequest;
+	FKSIUIRequestHandle LoadingRequest;
+	FKSIUIPresentationHandle PersistentPresentation;
 	int32 CompletedRequests = 0;
 	int32 CancelledRequests = 0;
 	int32 Step = 0;

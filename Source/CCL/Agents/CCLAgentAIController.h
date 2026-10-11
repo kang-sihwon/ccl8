@@ -18,7 +18,7 @@ struct FCCLAgentTaskData
 };
 
 USTRUCT(meta = (DisplayName = "CCL Agent execution"))
-struct FCCLAgentTask : public FStateTreeTaskBase
+struct CCL_API FCCLAgentTask : public FStateTreeTaskBase
 {
 	GENERATED_BODY()
 

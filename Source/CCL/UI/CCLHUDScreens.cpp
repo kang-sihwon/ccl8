@@ -36,7 +36,7 @@ void Position(UCanvasPanel* Canvas, UWidget* Widget, FVector2D Anchor, FVector2D
 	Slot->SetAutoSize(true);
 }
 
-UCanvasPanel* MakeCanvas(UCCLScreen* Screen, UWidgetTree* Tree)
+UCanvasPanel* MakeCanvas(UKSIScreen* Screen, UWidgetTree* Tree)
 {
 	auto* Canvas = Tree->ConstructWidget<UCanvasPanel>();
 	Tree->RootWidget = Canvas;

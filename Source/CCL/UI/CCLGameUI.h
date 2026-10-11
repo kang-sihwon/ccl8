@@ -4,7 +4,7 @@
 #include "NativeGameplayTags.h"
 
 class APlayerController;
-class UCCLUISubsystem;
+class UKSIUISubsystem;
 
 namespace CCLUITags
 {
@@ -28,5 +28,5 @@ UE_DECLARE_GAMEPLAY_TAG_EXTERN(Group_Menus);
 // Content composition belongs outside the reusable UI Core.
 namespace CCLGameUI
 {
-CCL_API UCCLUISubsystem* Get(APlayerController* Controller);
+CCL_API UKSIUISubsystem* Get(APlayerController* Controller);
 }

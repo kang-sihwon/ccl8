@@ -10,6 +10,6 @@ public class CCLEditorTarget : TargetRules
 		Type = TargetType.Editor;
 		DefaultBuildSettings = BuildSettingsVersion.Latest;
 
-		ExtraModuleNames.AddRange( new string[] { "CCL" } );
+		ExtraModuleNames.AddRange( new string[] { "CCL", "CCLEditor" } );
 	}
 }

@@ -322,14 +322,14 @@ if (Handle.IsValid())
 
 ### 단계 1 검증 결과
 
-UE 5.8.3에서 아래 항목을 확인했다. 로그의 원본 경로는 저장소 상대 경로로 적었다. 검사에 복사한 KSIUI·KSIMap 소스는 현재 소스와 SHA-256이 일치한다. 에셋 파일은 수정하지 않았다.
+UE 5.8.3의 초기 작업 트리에서 아래 항목을 확인했다. 이 작업 트리는 기존 미커밋 코드 보완도 포함한다. 이번 제출본만 분리한 검증은 아래에 구분한다. 로그의 원본 경로는 저장소 상대 경로로 적었다. 검사에 복사한 KSIUI·KSIMap 소스는 현재 소스와 SHA-256이 일치한다. 에셋 파일은 수정하지 않았다.
 
 | 검사 | 결과 | 근거 |
 |---|---|---|
 | 이동 전 UI 수명 기준 | 통과 | `Saved/Tests/UIFoundation/20261011-215040/game.log` |
 | 최종 프로젝트 파일 생성 | 성공 | `Saved/Tests/FrameworkStage1-20261011/GenerateProjectFiles-Final2.log` |
 | Editor·Game·Server Win64 Development | 모두 성공 | 같은 폴더의 `CCLEditor-Final.log`, `CCL-Final.log`, `CCLServer-Final.log` |
-| KSIUI 단독 프로젝트 | 화면 생성·해제와 입력 복구 통과. KSIMap·CCL 미로드 | `Saved/Tests/FrameworkIsolation/KSIUI-20261011-215834/`의 `build.log`, `game.log`, `module-sha256.json` |
+| 초기 KSIUI 단독 프로젝트 | 화면 생성·해제와 내부 상태 검사 통과. 실제 입력 검증은 아래 보완 결과로 대체 | `Saved/Tests/FrameworkIsolation/KSIUI-20261011-215834/`의 `build.log`, `game.log`, `module-sha256.json` |
 | KSIMap 단독 프로젝트 | 표식 공개 조건·지역 지형·좌표 투영 통과. KSIUI·CCL 미로드 | `Saved/Tests/FrameworkIsolation/KSIMap-20261011-220124/`의 같은 파일 |
 | 전체 자동 검사 | 163개 성공, 경고·실패·미실행 0개 | `Saved/Tests/Automation/20261011-221435-352/report/index.json` |
 | 타입·에셋 호환 | 32개 타입 경로·enum 값, 기존 패키지 454개와 구형 UI Blueprint 부모 로드 통과 | 위 보고서의 `CCL.Framework.MigratedTypes`, `CCL.Framework.ExistingAssets` |
@@ -349,9 +349,29 @@ Windows 패키지는 `Saved/Packages/FrameworkStage1/Windows/CCL.exe`다. Server
 
 독립 프로젝트 빌드 뒤 공유 엔진의 BuildId가 바뀌어 CCL 실행이 처음에는 플러그인 로드 전에 종료됐다. CCL Editor 빌드를 다시 실행해 메타데이터를 맞췄고, 검사 도구에도 ID가 달라지면 원래 Editor 타깃으로 복구하는 처리를 추가했다. 빌드와 동시에 시작한 UI 검사는 엔진 초기화 중 제한 시간을 초과했다. 빌드 종료 후 단독 실행은 통과했으며 초기화 대기를 UI 기능 실패와 구분했다.
 
+### 독립 입력 검증 보완과 제출본 확인
+
+재검토에서 초기 KSIUI 검사가 실제 입력 모드 적용 전에 내부 상태만 확인하고 PASS를 출력한 결함을 찾았다. 검사 프로젝트의 Enhanced Input 기본 클래스 설정도 빠져 `Null player input` 오류가 발생했다. 이 오류를 실패로 처리하지 않아 초기 입력 복구 완료 판정을 취소하고 검사를 보완했다.
+
+검사 도구는 `DefaultInput.ini`에 EnhancedPlayerInput·EnhancedInputComponent를 지정하고 `DefaultGame.ini`에서 CommonUI의 Enhanced Input 연동을 활성화한다. CommonUI 연동을 끄면 Registry의 입력 매핑이 등록되지 않는다. 근거는 UE 5.8.3 `<Engine>/Plugins/Runtime/CommonUI/Source/CommonUI/Private/CommonActivatableWidget.cpp:319`의 `ActivateMappingContext`다.
+
+UI 검사는 여러 프레임에 걸쳐 Registry의 매핑 활성화, 실제 라우터의 차단·복구와 Enhanced Input 액션 값을 확인한다. CommonGameViewportClient로 전달한 K 키의 액션 값이 차단 전 1, 차단 중 0, 해제 뒤 1이어야 한다. 컨트롤러 콜백 호출 횟수나 운영체제 키보드 입력 주입까지 검증하는 검사는 아니다. Enhanced Input·UIActionRouter 오류도 실행 실패로 처리한다.
+
+| 검사 | 결과 | 근거 |
+|---|---|---|
+| 보완한 KSIUI 단독 실행 | 매핑 등록, 라우터·액션 값 차단과 복구, 화면 해제 통과 | `Saved/Tests/FrameworkIsolation/KSIUI-20261011-231912/game.log` |
+| KSIMap 단독 회귀 | 통과 | `Saved/Tests/FrameworkIsolation/KSIMap-20261011-232006/game.log` |
+| 입력 클래스 누락 재현 | 명시적 FAIL 출력, PASS 없음. 임시 설정은 검사 뒤 복원 | KSIUI 검사 폴더의 `negative-missing-input.log` |
+| 과거 오류 로그 판정 | 초기 거짓 성공 로그는 실패, 설정 보완 로그는 오류 없음으로 판정 | `Tools/Validation/run_framework_isolation.ps1`의 실제 오류 패턴으로 비교 |
+| 제출본 프로젝트 파일 생성·Editor 빌드 | 성공 | `Saved/Tests/FrameworkStage1Fix/Submitted-Generate.log`, `Submitted-Editor.log` |
+| 제출본 전체 자동 검사 | 160개 성공, 경고·실패·미실행 0개. 기존 에셋 454개 로드 포함 | 같은 폴더의 `Submitted-Automation.json` |
+| 제출본 UI 수명·맵 이동 | 통과 | 같은 폴더의 `Submitted-UIFoundation.log` |
+
+제출본은 기존 작업 트리를 덮어쓰지 않고 Git index에서 별도 검증 프로젝트로 내보냈다. Framework 1단계 코드·설정·검사 도구만 포함하며, 기존 콘텐츠·인벤토리·환경 보완과 다른 문서 작업은 포함하지 않는다. 검증 사본은 같은 이름의 원본 바이너리를 읽지 않도록 uproject 파일명만 고유하게 지정했다. 소스·모듈 이름과 descriptor 내용은 제출본을 유지했고, 실제 DLL 로드 경로를 확인했다. 초기 작업 트리의 자동 검사 163개와 달리 제출본에는 기존 로컬 보완의 검사 3개가 들어 있지 않아 160개를 실행했다. 제출 소스의 Git blob 목록은 `Saved/Tests/FrameworkStage1Fix/submitted-blobs.json`이다.
+
 ### 사용·갱신 범위
 
-검증한 엔진 범위는 UE 5.8.3 Windows다. 현재 공용 코드의 검증 식별자는 위 소스 manifest이며 코드 제출 전 작업 트리 기준이다. KSIUI의 소스 집계 SHA-256은 `56da02d9bf6e4677e039607cdb4815c4477921c6628285a611ef1e798db8bb93`, KSIMap은 `9ac28fb51c9fc6dec81190d9e5eba9fd84649e451a716cf8146509e76c51f1b2`다. 집계 입력은 manifest의 정렬된 상대 경로·파일 해시 쌍을 공백 없는 JSON으로 직렬화한 UTF-8 바이트다.
+검증한 엔진 범위는 UE 5.8.3 Windows다. 초기 공용 코드의 검증 식별자는 위 소스 manifest다. 이번 제출본은 별도 Git blob 목록으로 식별하며 두 공용 모듈의 소스 해시는 초기 검증과 같다. KSIUI의 소스 집계 SHA-256은 `56da02d9bf6e4677e039607cdb4815c4477921c6628285a611ef1e798db8bb93`, KSIMap은 `9ac28fb51c9fc6dec81190d9e5eba9fd84649e451a716cf8146509e76c51f1b2`다. 집계 입력은 manifest의 정렬된 상대 경로·파일 해시 쌍을 공백 없는 JSON으로 직렬화한 UTF-8 바이트다.
 
 다른 프로젝트에서의 검증에는 모듈 소스를 해당 프로젝트의 Source 아래로 복사했다. 재현 도구는 `Tools/Validation/run_framework_isolation.ps1 -Module KSIUI` 또는 `-Module KSIMap`이다. 도구는 선택한 모듈, 최소 시험 모듈과 엔진 설정만 만든다. 실제 개인 프로젝트의 장기 배포·동기화는 아직 시작하지 않았다.
 

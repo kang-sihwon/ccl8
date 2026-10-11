@@ -5,7 +5,7 @@
 #include "CCLProgressionAssetLibrary.generated.h"
 
 UCLASS()
-class CCL_API UCCLProgressionAssetLibrary : public UBlueprintFunctionLibrary
+class CCLEDITOR_API UCCLProgressionAssetLibrary : public UBlueprintFunctionLibrary
 {
 	GENERATED_BODY()
 

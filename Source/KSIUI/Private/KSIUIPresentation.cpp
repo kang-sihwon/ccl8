@@ -1,6 +1,6 @@
-#include "CCLUIPresentation.h"
+#include "KSIUIPresentation.h"
 
-bool FCCLUIPresentationDefinition::IsValid() const
+bool FKSIUIPresentationDefinition::IsValid() const
 {
 	if ((!bAllViews && Groups.IsEmpty() && !bBlockGameplay) || !FMath::IsFinite(Opacity) || Opacity < 0.f || Opacity > 1.f ||
 		!FMath::IsFinite(FadeSeconds) || FadeSeconds < 0.f)
@@ -19,7 +19,7 @@ bool FCCLUIPresentationDefinition::IsValid() const
 	return true;
 }
 
-bool FCCLUIPresentationDefinition::Matches(const FGameplayTagContainer& ViewGroups) const
+bool FKSIUIPresentationDefinition::Matches(const FGameplayTagContainer& ViewGroups) const
 {
 	return bAllViews || ViewGroups.HasAny(Groups);
 }

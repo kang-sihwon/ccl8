@@ -5,7 +5,7 @@
 #include "CCLCombatAssetLibrary.generated.h"
 
 UCLASS()
-class CCL_API UCCLCombatAssetLibrary : public UBlueprintFunctionLibrary
+class CCLEDITOR_API UCCLCombatAssetLibrary : public UBlueprintFunctionLibrary
 {
 	GENERATED_BODY()
 

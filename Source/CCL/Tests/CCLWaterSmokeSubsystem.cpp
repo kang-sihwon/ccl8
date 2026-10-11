@@ -8,7 +8,7 @@
 #include "Environment/CCLTerrainRegion.h"
 #include "Environment/CCLTerrainReplication.h"
 #include "UI/CCLGameUI.h"
-#include "UI/Core/CCLUISubsystem.h"
+#include "KSIUISubsystem.h"
 #include "Camera/CameraActor.h"
 #include "Framework/Application/SlateApplication.h"
 #include "Widgets/SWindow.h"

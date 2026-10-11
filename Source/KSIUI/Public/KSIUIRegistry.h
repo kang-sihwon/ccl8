@@ -2,28 +2,28 @@
 
 #include "CoreMinimal.h"
 #include "Engine/DataAsset.h"
-#include "CCLUITypes.h"
-#include "CCLUIRegistry.generated.h"
+#include "KSIUITypes.h"
+#include "KSIUIRegistry.generated.h"
 
-class UCCLScreen;
-class UCCLUIContext;
+class UKSIScreen;
+class UKSIUIContext;
 class UInputMappingContext;
 
 USTRUCT(BlueprintType)
-struct CCL_API FCCLUIViewDefinition
+struct KSIUI_API FKSIUIViewDefinition
 {
 	GENERATED_BODY()
 
-	bool AcceptsContext(const UCCLUIContext* Context) const;
+	bool AcceptsContext(const UKSIUIContext* Context) const;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, meta = (Categories = "UI.View"))
 	FGameplayTag Tag;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	TSoftClassPtr<UCCLScreen> WidgetClass;
+	TSoftClassPtr<UKSIScreen> WidgetClass;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	TSubclassOf<UCCLUIContext> RequiredContextClass;
+	TSubclassOf<UKSIUIContext> RequiredContextClass;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, meta = (Categories = "UI.Layer"))
 	FGameplayTag Layer;
@@ -35,26 +35,26 @@ struct CCL_API FCCLUIViewDefinition
 	FGameplayTagContainer Groups;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	ECCLUIInstancePolicy InstancePolicy = ECCLUIInstancePolicy::Single;
+	EKSIUIInstancePolicy InstancePolicy = EKSIUIInstancePolicy::Single;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	ECCLUIScope Scope = ECCLUIScope::World;
+	EKSIUIScope Scope = EKSIUIScope::World;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	ECCLUIInputPolicy InputPolicy = ECCLUIInputPolicy::Inherit;
+	EKSIUIInputPolicy InputPolicy = EKSIUIInputPolicy::Inherit;
 };
 
 UCLASS(BlueprintType)
-class CCL_API UCCLUIRegistry : public UDataAsset
+class KSIUI_API UKSIUIRegistry : public UDataAsset
 {
 	GENERATED_BODY()
 
 public:
 	bool ValidateRegistry(TArray<FText>& Errors) const;
-	bool ValidateView(const FCCLUIViewDefinition& View, TArray<FText>& Errors) const;
-	const FCCLUIViewDefinition* FindView(FGameplayTag Tag) const;
-	const FCCLUILayerDefinition* FindLayer(FGameplayTag Tag) const;
-	const FCCLUIExtensionDefinition* FindExtension(FGameplayTag Tag) const;
+	bool ValidateView(const FKSIUIViewDefinition& View, TArray<FText>& Errors) const;
+	const FKSIUIViewDefinition* FindView(FGameplayTag Tag) const;
+	const FKSIUILayerDefinition* FindLayer(FGameplayTag Tag) const;
+	const FKSIUIExtensionDefinition* FindExtension(FGameplayTag Tag) const;
 
 #if WITH_EDITOR
 public:
@@ -69,11 +69,11 @@ public:
 	int32 InputMappingPriority = 100;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, meta = (TitleProperty = "Tag"))
-	TArray<FCCLUILayerDefinition> Layers;
+	TArray<FKSIUILayerDefinition> Layers;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, meta = (TitleProperty = "Tag"))
-	TArray<FCCLUIExtensionDefinition> Extensions;
+	TArray<FKSIUIExtensionDefinition> Extensions;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, meta = (TitleProperty = "Tag"))
-	TArray<FCCLUIViewDefinition> Views;
+	TArray<FKSIUIViewDefinition> Views;
 };

@@ -1,8 +1,8 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Core/CCLScreen.h"
-#include "Core/CCLUIContext.h"
+#include "KSIScreen.h"
+#include "KSIUIContext.h"
 #include "CCLSessionMenuScreen.generated.h"
 
 class UCCLGameInstance;
@@ -10,7 +10,7 @@ class UNativeWidgetHost;
 class SEditableTextBox;
 
 UCLASS()
-class CCL_API UCCLSessionMenuContext : public UCCLUIContext
+class CCL_API UCCLSessionMenuContext : public UKSIUIContext
 {
 	GENERATED_BODY()
 
@@ -21,7 +21,7 @@ public:
 };
 
 UCLASS()
-class CCL_API UCCLSessionMenuScreen : public UCCLScreen
+class CCL_API UCCLSessionMenuScreen : public UKSIScreen
 {
 	GENERATED_BODY()
 

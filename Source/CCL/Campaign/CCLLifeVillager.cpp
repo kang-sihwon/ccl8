@@ -15,7 +15,7 @@
 #include "BrainComponent.h"
 #include "Camera/PlayerCameraManager.h"
 #include "GameFramework/PlayerController.h"
-#include "Map/CCLMapSystem.h"
+#include "KSIMapSystem.h"
 
 namespace
 {
@@ -214,7 +214,7 @@ FString ACCLLifeVillager::DescribeLife() const
 void ACCLLifeVillager::RefreshLabel()
 {
 	DisplayName = FText::FromString(PublicName);
-	if (auto* Marker = FindComponentByClass<UCCLMapMarkerComponent>())
+	if (auto* Marker = FindComponentByClass<UKSIMapMarkerComponent>())
 	{
 		Marker->Label = DisplayName;
 	}

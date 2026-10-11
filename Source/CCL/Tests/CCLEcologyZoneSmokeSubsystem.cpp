@@ -9,7 +9,7 @@
 #include "Environment/CCLWorldSimulationSubsystem.h"
 #include "Agents/CCLAgentWorldSubsystem.h"
 #include "UI/CCLGameUI.h"
-#include "UI/Core/CCLUISubsystem.h"
+#include "KSIUISubsystem.h"
 #include "Camera/CameraActor.h"
 #include "Engine/World.h"
 #include "EngineUtils.h"

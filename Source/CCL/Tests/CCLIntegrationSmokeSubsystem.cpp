@@ -1,10 +1,10 @@
 #include "CCLIntegrationSmokeSubsystem.h"
 
 #include "CCLPlayerController.h"
-#include "Map/CCLMapSystem.h"
+#include "KSIMapSystem.h"
 #include "Presentation/CCLCinematicSubsystem.h"
 #include "UI/CCLGameUI.h"
-#include "UI/Core/CCLUISubsystem.h"
+#include "KSIUISubsystem.h"
 #include "Engine/LocalPlayer.h"
 #include "Engine/GameViewportClient.h"
 #include "Engine/World.h"
@@ -52,7 +52,7 @@ void UCCLIntegrationSmokeSubsystem::Tick(float DeltaTime)
 		return;
 	}
 	Elapsed += DeltaTime;
-	auto* Map = PC->GetLocalPlayer()->GetSubsystem<UCCLMapSubsystem>();
+	auto* Map = PC->GetLocalPlayer()->GetSubsystem<UKSIMapSubsystem>();
 	auto* Scene = PC->GetLocalPlayer()->GetSubsystem<UCCLCinematicSubsystem>();
 	auto* UI = CCLGameUI::Get(PC);
 	if (Step == 0 && Elapsed > 2)
@@ -75,9 +75,9 @@ void UCCLIntegrationSmokeSubsystem::Tick(float DeltaTime)
 		Check(PC->GetViewTarget() == PC->GetPawn(), TEXT("gameplay camera restored"));
 		Map->Refresh(PC);
 		Check(!Map->GetTerrain().IsEmpty(), TEXT("both maps have actual level terrain"));
-		Check(Map->GetMarkers().ContainsByPredicate([](const FCCLMapMarkerView& M) { return M.Kind == ECCLMapKind::Player; }), TEXT("player appears on map"));
+		Check(Map->GetMarkers().ContainsByPredicate([](const FKSIMapMarkerView& M) { return M.Kind == EKSIMapKind::Player; }), TEXT("player appears on map"));
 		const FBox2D Bounds(FVector2D(-100, -100), FVector2D(100, 100));
-		Check(UCCLMapSubsystem::Project(FVector::ZeroVector, Bounds, FVector2D(200, 100)).Equals(FVector2D(100, 50)), TEXT("map coordinate conversion"));
+		Check(UKSIMapSubsystem::Project(FVector::ZeroVector, Bounds, FVector2D(200, 100)).Equals(FVector2D(100, 50)), TEXT("map coordinate conversion"));
 		Capture(TEXT("minimap"));
 		++Step;
 	}

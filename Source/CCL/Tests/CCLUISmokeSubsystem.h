@@ -2,7 +2,7 @@
 
 #include "CoreMinimal.h"
 #include "Subsystems/WorldSubsystem.h"
-#include "UI/Core/CCLUIPresentation.h"
+#include "KSIUIPresentation.h"
 #include "CCLUISmokeSubsystem.generated.h"
 
 class ACCLPlayerController;
@@ -34,8 +34,8 @@ private:
 	TWeakObjectPtr<ACCLCharacter> PreviousPawn;
 	TWeakObjectPtr<ULocalPlayer> OtherLocal;
 	TWeakObjectPtr<AActor> PresentationOwner;
-	FCCLUIPresentationHandle PresentationA;
-	FCCLUIPresentationHandle PresentationB;
+	FKSIUIPresentationHandle PresentationA;
+	FKSIUIPresentationHandle PresentationB;
 	float FadeSample = 0.f;
 	int32 Step = 0;
 	FGuid Equipment;

@@ -2,10 +2,10 @@
 
 #include "CoreMinimal.h"
 #include "Input/CommonUIActionRouterBase.h"
-#include "CCLUIActionRouter.generated.h"
+#include "KSIUIActionRouter.generated.h"
 
 UCLASS()
-class CCL_API UCCLUIActionRouter : public UCommonUIActionRouterBase
+class KSIUI_API UKSIUIActionRouter : public UCommonUIActionRouterBase
 {
 	GENERATED_BODY()
 

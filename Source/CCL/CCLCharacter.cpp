@@ -4,7 +4,7 @@
 #include "Items/CCLItemDefinition.h"
 #include "Animation/AnimMontage.h"
 
-#include "Map/CCLMapSystem.h"
+#include "KSIMapSystem.h"
 
 #include "CCLPlayerState.h"
 #include "Items/CCLLoadoutComponent.h"
@@ -30,8 +30,8 @@ ACCLCharacter::ACCLCharacter(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer.SetDefaultSubobjectClass<UCCLSnowMovementComponent>(ACharacter::CharacterMovementComponentName))
 {
 	CreateDefaultSubobject<UCCLThermalReceiverComponent>(TEXT("ThermalReceiver"));
-	auto* MapMarker = CreateDefaultSubobject<UCCLMapMarkerComponent>(TEXT("MapMarker"));
-	MapMarker->Kind = ECCLMapKind::Player;
+	auto* MapMarker = CreateDefaultSubobject<UKSIMapMarkerComponent>(TEXT("MapMarker"));
+	MapMarker->Kind = EKSIMapKind::Player;
 
 	bReplicates = true;
 	Fighter = CreateDefaultSubobject<UCCLFighterComponent>(TEXT("Fighter"));

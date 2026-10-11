@@ -2,7 +2,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/HUD.h"
-#include "UI/Core/CCLUITypes.h"
+#include "KSIUITypes.h"
 #include "CCLHUD.generated.h"
 
 class UCCLHUDContext;
@@ -21,7 +21,7 @@ public:
 
 public:
 	UCCLHUDContext* GetHUDContext() const { return Context; }
-	FCCLUIViewHandle GetVitalsHandle() const { return VitalsHandle; }
+	FKSIUIViewHandle GetVitalsHandle() const { return VitalsHandle; }
 
 private:
 	void RefreshContent();
@@ -30,11 +30,11 @@ private:
 	UPROPERTY(Transient)
 	TObjectPtr<UCCLHUDContext> Context;
 
-	FCCLUIViewHandle VitalsHandle;
-	FCCLUIViewHandle FieldHandle;
+	FKSIUIViewHandle VitalsHandle;
+	FKSIUIViewHandle FieldHandle;
 	uint8 bArrivalShown = 0;
 	uint8 bVictoryShown = 0;
-	FCCLUIViewHandle MapHandle;
+	FKSIUIViewHandle MapHandle;
 	UPROPERTY()
 	TObjectPtr<UCCLMapContext> MapContext;
 };

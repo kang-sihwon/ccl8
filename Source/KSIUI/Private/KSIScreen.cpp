@@ -1,36 +1,36 @@
-#include "CCLScreen.h"
+#include "KSIScreen.h"
 
-#include "CCLUIContext.h"
-#include "CCLUISubsystem.h"
+#include "KSIUIContext.h"
+#include "KSIUISubsystem.h"
 #include "Engine/LocalPlayer.h"
 #include "CommonInputSettings.h"
 #include "ICommonInputModule.h"
 #include "Input/CommonUIInputTypes.h"
 #include "Input/UIActionBindingHandle.h"
 
-UCCLScreen::UCCLScreen(const FObjectInitializer& Initializer) : Super(Initializer)
+UKSIScreen::UKSIScreen(const FObjectInitializer& Initializer) : Super(Initializer)
 {
 	bAutoRestoreFocus = true;
 	bIsBackHandler = false;
 	SetIsFocusable(true);
 }
 
-TOptional<FUIInputConfig> UCCLScreen::GetDesiredInputConfig() const
+TOptional<FUIInputConfig> UKSIScreen::GetDesiredInputConfig() const
 {
-	if (InputPolicy == ECCLUIInputPolicy::Inherit)
+	if (InputPolicy == EKSIUIInputPolicy::Inherit)
 	{
 		return TOptional<FUIInputConfig>();
 	}
 
 	const auto* Local = GetOwningLocalPlayer();
-	const auto* UI = Local ? Local->GetSubsystem<UCCLUISubsystem>() : nullptr;
+	const auto* UI = Local ? Local->GetSubsystem<UKSIUISubsystem>() : nullptr;
 	const bool bBlockGameplay = UI && UI->IsGameplayInputBlocked();
-	if (InputPolicy == ECCLUIInputPolicy::Game && !bBlockGameplay)
+	if (InputPolicy == EKSIUIInputPolicy::Game && !bBlockGameplay)
 	{
 		return FUIInputConfig(ECommonInputMode::Game, EMouseCaptureMode::CapturePermanently_IncludingInitialMouseDown);
 	}
 
-	const bool bMenuInput = InputPolicy == ECCLUIInputPolicy::Menu || bBlockGameplay;
+	const bool bMenuInput = InputPolicy == EKSIUIInputPolicy::Menu || bBlockGameplay;
 	FUIInputConfig Config(bMenuInput ? ECommonInputMode::Menu : ECommonInputMode::All,
 		EMouseCaptureMode::NoCapture, EMouseLockMode::DoNotLock, false);
 	Config.bIgnoreMoveInput = bMenuInput;
@@ -38,7 +38,7 @@ TOptional<FUIInputConfig> UCCLScreen::GetDesiredInputConfig() const
 	return Config;
 }
 
-void UCCLScreen::NativeConstruct()
+void UKSIScreen::NativeConstruct()
 {
 	// Context can be assigned after a pool has constructed the Slate widget.
 	// Own this binding so a passive HUD never consumes a menu's Back action.
@@ -47,29 +47,29 @@ void UCCLScreen::NativeConstruct()
 	RefreshBackBinding();
 }
 
-void UCCLScreen::NativeDestruct()
+void UKSIScreen::NativeDestruct()
 {
 	Super::NativeDestruct();
 	ReleaseContext();
 }
 
-UWidget* UCCLScreen::NativeGetDesiredFocusTarget() const
+UWidget* UKSIScreen::NativeGetDesiredFocusTarget() const
 {
 	if (UWidget* Target = Super::NativeGetDesiredFocusTarget())
 	{
 		return Target;
 	}
 
-	return const_cast<UCCLScreen*>(this);
+	return const_cast<UKSIScreen*>(this);
 }
 
-bool UCCLScreen::NativeOnHandleBackAction()
+bool UKSIScreen::NativeOnHandleBackAction()
 {
 	RequestClose();
 	return true;
 }
 
-void UCCLScreen::BindContext(UCCLUIContext* Context, FCCLUIViewHandle Handle, ECCLUIInputPolicy Policy)
+void UKSIScreen::BindContext(UKSIUIContext* Context, FKSIUIViewHandle Handle, EKSIUIInputPolicy Policy)
 {
 	ReleaseContext();
 	OriginalVisibility = GetVisibility();
@@ -78,12 +78,12 @@ void UCCLScreen::BindContext(UCCLUIContext* Context, FCCLUIViewHandle Handle, EC
 	ViewContext = Context;
 	ViewHandle = Handle;
 	InputPolicy = Policy;
-	bSupportsActivationFocus = Policy != ECCLUIInputPolicy::Inherit;
+	bSupportsActivationFocus = Policy != EKSIUIInputPolicy::Inherit;
 	RefreshBackBinding();
 	OnContextBound();
 }
 
-void UCCLScreen::ReleaseContext()
+void UKSIScreen::ReleaseContext()
 {
 	BackBinding.Unregister();
 	if (ViewHandle.IsValid())
@@ -96,7 +96,7 @@ void UCCLScreen::ReleaseContext()
 
 	ViewContext = nullptr;
 	ViewHandle = {};
-	InputPolicy = ECCLUIInputPolicy::Inherit;
+	InputPolicy = EKSIUIInputPolicy::Inherit;
 	OnCloseRequested.Clear();
 	ClearFocusRestorationTarget();
 	Presentation = {};
@@ -105,28 +105,28 @@ void UCCLScreen::ReleaseContext()
 	bPresentationInteractive = 1;
 }
 
-void UCCLScreen::RequestClose()
+void UKSIScreen::RequestClose()
 {
 	OnCloseRequested.Broadcast(ViewHandle);
 }
 
-void UCCLScreen::OnContextBound()
+void UKSIScreen::OnContextBound()
 {
 }
 
-void UCCLScreen::OnContextReleased()
+void UKSIScreen::OnContextReleased()
 {
 }
 
-void UCCLScreen::OnPresentationChanged()
+void UKSIScreen::OnPresentationChanged()
 {
 }
 
-void UCCLScreen::OnManagedTick(float DeltaTime)
+void UKSIScreen::OnManagedTick(float DeltaTime)
 {
 }
 
-void UCCLScreen::ApplyPresentation(const FCCLUIViewPresentation& State, float FadeSeconds)
+void UKSIScreen::ApplyPresentation(const FKSIUIViewPresentation& State, float FadeSeconds)
 {
 	const bool bChanged = Presentation.bVisible != State.bVisible || Presentation.bInputEnabled != State.bInputEnabled ||
 		Presentation.bUpdatesEnabled != State.bUpdatesEnabled || Presentation.Opacity != State.Opacity;
@@ -151,7 +151,7 @@ void UCCLScreen::ApplyPresentation(const FCCLUIViewPresentation& State, float Fa
 	}
 }
 
-void UCCLScreen::TickManagedPresentation(float DeltaTime)
+void UKSIScreen::TickManagedPresentation(float DeltaTime)
 {
 	if (FadeDuration > 0.f && FadeElapsed < FadeDuration)
 	{
@@ -166,21 +166,21 @@ void UCCLScreen::TickManagedPresentation(float DeltaTime)
 	}
 }
 
-void UCCLScreen::UpdatePresentationVisuals()
+void UKSIScreen::UpdatePresentationVisuals()
 {
 	SetRenderOpacity(OriginalOpacity * CurrentOpacity);
 	SetVisibility(CurrentOpacity <= 0.f && TargetOpacity <= 0.f ? ESlateVisibility::Hidden : OriginalVisibility);
 	const bool bInteractive = Presentation.bVisible && Presentation.bInputEnabled && Presentation.Opacity > 0.f &&
 		(FadeDuration <= 0.f || FadeElapsed >= FadeDuration);
 	SetIsEnabled(bOriginalEnabled && bInteractive);
-	bSupportsActivationFocus = bInteractive && InputPolicy != ECCLUIInputPolicy::Inherit;
+	bSupportsActivationFocus = bInteractive && InputPolicy != EKSIUIInputPolicy::Inherit;
 	if ((bPresentationInteractive != 0) != bInteractive)
 	{
 		bPresentationInteractive = bInteractive;
 		RefreshBackBinding();
 		if (auto* Local = GetOwningLocalPlayer())
 		{
-			if (auto* UI = Local->GetSubsystem<UCCLUISubsystem>())
+			if (auto* UI = Local->GetSubsystem<UKSIUISubsystem>())
 			{
 				UI->InvalidatePresentationRouting();
 			}
@@ -188,11 +188,11 @@ void UCCLScreen::UpdatePresentationVisuals()
 	}
 }
 
-void UCCLScreen::RefreshBackBinding()
+void UKSIScreen::RefreshBackBinding()
 {
 	BackBinding.Unregister();
 	if (!GetCachedWidget().IsValid() || !ViewHandle.IsValid() || !bPresentationInteractive ||
-		(InputPolicy != ECCLUIInputPolicy::Menu && InputPolicy != ECCLUIInputPolicy::GameAndUI))
+		(InputPolicy != EKSIUIInputPolicy::Menu && InputPolicy != EKSIUIInputPolicy::GameAndUI))
 	{
 		return;
 	}

@@ -4,36 +4,36 @@
 #include "CommonActivatableWidget.h"
 #include "Blueprint/UserWidgetPool.h"
 #include "GameplayTagContainer.h"
-#include "CCLUIRoot.generated.h"
+#include "KSIUIRoot.generated.h"
 
-struct FCCLUIViewDefinition;
-class UCCLScreen;
-class UCCLUIRegistry;
+struct FKSIUIViewDefinition;
+class UKSIScreen;
+class UKSIUIRegistry;
 class UCanvasPanel;
 class UOverlay;
 class UCommonActivatableWidgetContainerBase;
 
 UCLASS()
-class CCL_API UCCLUIRoot : public UCommonActivatableWidget
+class KSIUI_API UKSIUIRoot : public UCommonActivatableWidget
 {
 	GENERATED_BODY()
 
 public:
-	UCCLUIRoot(const FObjectInitializer& Initializer);
+	UKSIUIRoot(const FObjectInitializer& Initializer);
 	virtual TOptional<FUIInputConfig> GetDesiredInputConfig() const override;
 	virtual void ReleaseSlateResources(bool bReleaseChildren) override;
 
 public:
-	bool Configure(UCCLUIRegistry* Registry);
-	UCCLScreen* AddScreen(const FCCLUIViewDefinition& Definition, TFunctionRef<void(UCCLScreen&)> InitializeScreen);
-	void RemoveScreen(UCCLScreen* Screen);
+	bool Configure(UKSIUIRegistry* Registry);
+	UKSIScreen* AddScreen(const FKSIUIViewDefinition& Definition, TFunctionRef<void(UKSIScreen&)> InitializeScreen);
+	void RemoveScreen(UKSIScreen* Screen);
 	void ClearScreens();
-	bool ContainsScreen(const UCCLScreen* Screen) const;
+	bool ContainsScreen(const UKSIScreen* Screen) const;
 	const UCommonActivatableWidgetContainerBase* GetContainer(FGameplayTag Layer) const;
 
 private:
 	UPROPERTY(Transient)
-	TObjectPtr<UCCLUIRegistry> Layout;
+	TObjectPtr<UKSIUIRegistry> Layout;
 
 	UPROPERTY(Transient)
 	TMap<FGameplayTag, TObjectPtr<UCanvasPanel>> Overlays;

@@ -1,4 +1,4 @@
-﻿#include "CCLProgressionAssetLibrary.h"
+#include "CCLProgressionAssetLibrary.h"
 
 #if WITH_EDITOR
 #include "Agents/CCLAgentAIController.h"

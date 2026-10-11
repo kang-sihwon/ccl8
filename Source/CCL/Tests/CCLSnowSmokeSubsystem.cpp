@@ -9,7 +9,7 @@
 #include "Environment/CCLWorldSimulationSubsystem.h"
 #include "Environment/CCLTerrainRegion.h"
 #include "UI/CCLGameUI.h"
-#include "UI/Core/CCLUISubsystem.h"
+#include "KSIUISubsystem.h"
 #include "Camera/CameraActor.h"
 #include "Components/SkeletalMeshComponent.h"
 #include "Components/InstancedStaticMeshComponent.h"

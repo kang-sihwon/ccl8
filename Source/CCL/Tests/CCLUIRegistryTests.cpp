@@ -1,9 +1,9 @@
-#include "UI/Core/CCLUIRegistry.h"
+#include "KSIUIRegistry.h"
 
 #if WITH_DEV_AUTOMATION_TESTS
-#include "UI/Core/CCLScreen.h"
-#include "UI/Core/CCLUIContext.h"
-#include "UI/Core/CCLUIPresentation.h"
+#include "KSIScreen.h"
+#include "KSIUIContext.h"
+#include "KSIUIPresentation.h"
 #include "Misc/AutomationTest.h"
 #include "NativeGameplayTags.h"
 
@@ -22,41 +22,41 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(FCCLUIRegistryTest, "CCL.UI.RegistryContracts",
 
 bool FCCLUIRegistryTest::RunTest(const FString& Parameters)
 {
-	auto* Registry = NewObject<UCCLUIRegistry>();
-	FCCLUILayerDefinition Overlay;
+	auto* Registry = NewObject<UKSIUIRegistry>();
+	FKSIUILayerDefinition Overlay;
 	Overlay.Tag = TestOverlay;
 	Registry->Layers.Add(Overlay);
-	FCCLUILayerDefinition Stack;
+	FKSIUILayerDefinition Stack;
 	Stack.Tag = TestStack;
-	Stack.Layout = ECCLUILayerLayout::Stack;
+	Stack.Layout = EKSIUILayerLayout::Stack;
 	Stack.ZOrder = 10;
 	Registry->Layers.Add(Stack);
-	FCCLUIExtensionDefinition Extension;
+	FKSIUIExtensionDefinition Extension;
 	Extension.Tag = TestExtension;
 	Extension.Layer = TestOverlay;
 	Extension.Alignment = FVector2D(1., 0.);
 	Registry->Extensions.Add(Extension);
-	FCCLUIViewDefinition View;
+	FKSIUIViewDefinition View;
 	View.Tag = TestView;
 	View.Layer = TestOverlay;
 	View.Extension = TestExtension;
 	View.Groups.AddTag(TestGroup);
-	View.WidgetClass = UCCLScreen::StaticClass();
-	View.RequiredContextClass = UCCLUIContext::StaticClass();
-	View.InstancePolicy = ECCLUIInstancePolicy::PerContext;
+	View.WidgetClass = UKSIScreen::StaticClass();
+	View.RequiredContextClass = UKSIUIContext::StaticClass();
+	View.InstancePolicy = EKSIUIInstancePolicy::PerContext;
 	Registry->Views.Add(View);
-	FCCLUIViewDefinition Second = View;
+	FKSIUIViewDefinition Second = View;
 	Second.Tag = TestSecondView;
 	Second.Layer = TestStack;
 	Second.Extension = {};
-	Second.InstancePolicy = ECCLUIInstancePolicy::Multiple;
+	Second.InstancePolicy = EKSIUIInstancePolicy::Multiple;
 	Registry->Views.Add(Second);
 
 	TArray<FText> Errors;
 	TestTrue(TEXT("overlay extensions and stack views share the registry contract"), Registry->ValidateRegistry(Errors));
 	TestNull(TEXT("exact view lookup does not match a group"), Registry->FindView(TestGroup));
 	TestNotNull(TEXT("view registration is addressable by tag"), Registry->FindView(TestView));
-	auto* Context = NewObject<UCCLUIContext>();
+	auto* Context = NewObject<UKSIUIContext>();
 	TestTrue(TEXT("required context accepted"), View.AcceptsContext(Context));
 	TestFalse(TEXT("required context cannot be omitted"), View.AcceptsContext(nullptr));
 
@@ -85,16 +85,16 @@ bool FCCLUIRegistryTest::RunTest(const FString& Parameters)
 	Errors.Reset();
 	TestFalse(TEXT("layer tag is not a presentation group"), Registry->ValidateRegistry(Errors));
 
-	auto* Screen = NewObject<UCCLScreen>();
-	FCCLUIViewHandle FirstHandle;
+	auto* Screen = NewObject<UKSIScreen>();
+	FKSIUIViewHandle FirstHandle;
 	FirstHandle.Id = FGuid::NewGuid();
-	Screen->BindContext(Context, FirstHandle, ECCLUIInputPolicy::Menu);
+	Screen->BindContext(Context, FirstHandle, EKSIUIInputPolicy::Menu);
 	int32 OldCloseCalls = 0;
-	Screen->OnCloseRequested.AddLambda([&OldCloseCalls](FCCLUIViewHandle) { ++OldCloseCalls; });
-	auto* NextContext = NewObject<UCCLUIContext>();
-	FCCLUIViewHandle NextHandle;
+	Screen->OnCloseRequested.AddLambda([&OldCloseCalls](FKSIUIViewHandle) { ++OldCloseCalls; });
+	auto* NextContext = NewObject<UKSIUIContext>();
+	FKSIUIViewHandle NextHandle;
 	NextHandle.Id = FGuid::NewGuid();
-	Screen->BindContext(NextContext, NextHandle, ECCLUIInputPolicy::GameAndUI);
+	Screen->BindContext(NextContext, NextHandle, EKSIUIInputPolicy::GameAndUI);
 	Screen->RequestClose();
 	TestEqual(TEXT("rebind removes callbacks from the previous use"), OldCloseCalls, 0);
 	TestTrue(TEXT("rebind replaces context and instance identity"), Screen->GetContext() == NextContext && Screen->GetViewHandle() == NextHandle);
@@ -102,7 +102,7 @@ bool FCCLUIRegistryTest::RunTest(const FString& Parameters)
 	Screen->ReleaseContext();
 	TestTrue(TEXT("release is idempotent and clears all retained context"), !Screen->GetViewHandle().IsValid() && !Screen->GetContext());
 	TestFalse(TEXT("released screen does not retain an input override"), Screen->GetDesiredInputConfig().IsSet());
-	FCCLUIPresentationDefinition Presentation;
+	FKSIUIPresentationDefinition Presentation;
 	TestFalse(TEXT("empty selector cannot accidentally affect every screen"), Presentation.IsValid());
 	Presentation.Groups.AddTag(TestGroup);
 	TestTrue(TEXT("valid presentation group accepted"), Presentation.IsValid());

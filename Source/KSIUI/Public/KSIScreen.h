@@ -2,21 +2,21 @@
 
 #include "CoreMinimal.h"
 #include "CommonActivatableWidget.h"
-#include "CCLUITypes.h"
-#include "CCLUIPresentation.h"
-#include "CCLScreen.generated.h"
+#include "KSIUITypes.h"
+#include "KSIUIPresentation.h"
+#include "KSIScreen.generated.h"
 
-DECLARE_MULTICAST_DELEGATE_OneParam(FCCLScreenCloseRequested, FCCLUIViewHandle);
+DECLARE_MULTICAST_DELEGATE_OneParam(FKSIScreenCloseRequested, FKSIUIViewHandle);
 
-class UCCLUIContext;
+class UKSIUIContext;
 
 UCLASS(Blueprintable)
-class CCL_API UCCLScreen : public UCommonActivatableWidget
+class KSIUI_API UKSIScreen : public UCommonActivatableWidget
 {
 	GENERATED_BODY()
 
 public:
-	UCCLScreen(const FObjectInitializer& Initializer);
+	UKSIScreen(const FObjectInitializer& Initializer);
 	virtual TOptional<FUIInputConfig> GetDesiredInputConfig() const override;
 
 protected:
@@ -26,17 +26,17 @@ protected:
 	virtual bool NativeOnHandleBackAction() override;
 
 public:
-	void BindContext(UCCLUIContext* Context, FCCLUIViewHandle Handle, ECCLUIInputPolicy Policy);
+	void BindContext(UKSIUIContext* Context, FKSIUIViewHandle Handle, EKSIUIInputPolicy Policy);
 	void ReleaseContext();
 	void RequestClose();
-	void ApplyPresentation(const FCCLUIViewPresentation& State, float FadeSeconds);
+	void ApplyPresentation(const FKSIUIViewPresentation& State, float FadeSeconds);
 	void TickManagedPresentation(float DeltaTime);
-	const FCCLUIViewPresentation& GetPresentation() const { return Presentation; }
+	const FKSIUIViewPresentation& GetPresentation() const { return Presentation; }
 	bool IsPresentationUpdating() const { return Presentation.bUpdatesEnabled != 0; }
 	bool IsPresentationInteractive() const { return bPresentationInteractive != 0; }
-	UCCLUIContext* GetContext() const { return ViewContext; }
-	FCCLUIViewHandle GetViewHandle() const { return ViewHandle; }
-	ECCLUIInputPolicy GetInputPolicy() const { return InputPolicy; }
+	UKSIUIContext* GetContext() const { return ViewContext; }
+	FKSIUIViewHandle GetViewHandle() const { return ViewHandle; }
+	EKSIUIInputPolicy GetInputPolicy() const { return InputPolicy; }
 
 protected:
 	virtual void OnContextBound();
@@ -49,16 +49,16 @@ private:
 	void UpdatePresentationVisuals();
 
 public:
-	FCCLScreenCloseRequested OnCloseRequested;
+	FKSIScreenCloseRequested OnCloseRequested;
 
 private:
 	UPROPERTY(Transient)
-	TObjectPtr<UCCLUIContext> ViewContext;
+	TObjectPtr<UKSIUIContext> ViewContext;
 
-	FCCLUIViewHandle ViewHandle;
+	FKSIUIViewHandle ViewHandle;
 	FUIActionBindingHandle BackBinding;
-	ECCLUIInputPolicy InputPolicy = ECCLUIInputPolicy::Inherit;
-	FCCLUIViewPresentation Presentation;
+	EKSIUIInputPolicy InputPolicy = EKSIUIInputPolicy::Inherit;
+	FKSIUIViewPresentation Presentation;
 	ESlateVisibility OriginalVisibility = ESlateVisibility::SelfHitTestInvisible;
 	float OriginalOpacity = 1.f;
 	float CurrentOpacity = 1.f;

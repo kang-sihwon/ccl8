@@ -1,8 +1,8 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "UI/Core/CCLScreen.h"
-#include "UI/Core/CCLUIContext.h"
+#include "KSIScreen.h"
+#include "KSIUIContext.h"
 #include "CCLExperimentScreen.generated.h"
 
 class ACCLExperimentPlayerController;
@@ -13,7 +13,7 @@ class SComboButton;
 class SScrollBox;
 
 UCLASS()
-class CCL_API UCCLExperimentContext : public UCCLUIContext
+class CCL_API UCCLExperimentContext : public UKSIUIContext
 {
 	GENERATED_BODY()
 
@@ -22,7 +22,7 @@ public:
 };
 
 UCLASS()
-class CCL_API UCCLExperimentScreen : public UCCLScreen
+class CCL_API UCCLExperimentScreen : public UKSIScreen
 {
 	GENERATED_BODY()
 

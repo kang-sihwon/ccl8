@@ -2,7 +2,7 @@
 
 #include "UI/CCLUIInputData.h"
 #include "UI/CCLGameUI.h"
-#include "UI/Core/CCLUISubsystem.h"
+#include "KSIUISubsystem.h"
 #include "Blueprint/WidgetTree.h"
 #include "Components/CanvasPanel.h"
 #include "Components/AudioComponent.h"
@@ -80,7 +80,7 @@ FGuid UCCLCinematicSubsystem::Play(APlayerController* Controller, FVector Focus,
 	Camera->SetActorLocation(FocusPoint + FVector(-650, -550, 500));
 	Camera->SetActorRotation((FocusPoint - Camera->GetActorLocation()).Rotation());
 	Controller->SetViewTargetWithBlend(Camera, 0.4f);
-	FCCLUIPresentationDefinition Request;
+	FKSIUIPresentationDefinition Request;
 	Request.Groups.AddTag(CCLUITags::Group_HUD);
 	Request.Groups.AddTag(CCLUITags::Group_Menus);
 	Request.Groups.AddTag(CCLUITags::Group_Dialogue);
@@ -128,7 +128,7 @@ bool UCCLCinematicSubsystem::Cancel(FGuid Handle)
 	}
 	if (auto* Controller = Observer.Get())
 	{
-		if (auto* UI = Controller->GetLocalPlayer() ? Controller->GetLocalPlayer()->GetSubsystem<UCCLUISubsystem>() : nullptr)
+		if (auto* UI = Controller->GetLocalPlayer() ? Controller->GetLocalPlayer()->GetSubsystem<UKSIUISubsystem>() : nullptr)
 		{
 			UI->ReleasePresentation(UIHandle);
 			UI->CloseView(Overlay);

@@ -22,7 +22,7 @@
 #include "UI/CCLCombatViewModel.h"
 #include "UI/CCLGameUI.h"
 #include "UI/CCLHUDScreens.h"
-#include "UI/Core/CCLUISubsystem.h"
+#include "KSIUISubsystem.h"
 
 ACCLHUD::ACCLHUD()
 {
@@ -92,7 +92,7 @@ void ACCLHUD::EndPlay(const EEndPlayReason::Type EndPlayReason)
 {
 	if (const auto* Local = PlayerOwner ? PlayerOwner->GetLocalPlayer() : nullptr)
 	{
-		if (auto* UI = Local->GetSubsystem<UCCLUISubsystem>())
+		if (auto* UI = Local->GetSubsystem<UKSIUISubsystem>())
 		{
 			UI->CloseView(VitalsHandle);
 			UI->CloseView(FieldHandle);

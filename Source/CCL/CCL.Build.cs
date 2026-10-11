@@ -8,6 +8,7 @@ public class CCL : ModuleRules
 	{
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 		PublicIncludePaths.Add(ModuleDirectory);
+		PublicDependencyModuleNames.AddRange(new[] { "KSIUI", "KSIMap" });
 
 		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "EnhancedInput", "GameplayAbilities", "GameplayTags", "GameplayTasks", "AIModule", "NavigationSystem", "StateTreeModule", "GameplayStateTreeModule", "MassEntity", "MassCore" });
 
@@ -16,19 +17,13 @@ public class CCL : ModuleRules
 		PrivateDependencyModuleNames.Add("AnimationCore");
 		PrivateDependencyModuleNames.Add("Niagara");
 		PrivateDependencyModuleNames.Add("DeveloperSettings");
-		if (Target.bBuildEditor)
-		{
-			// Stateless Niagara emitter authoring in Editor/CCLEnvironmentFXLibrary uses these internal headers.
-			PrivateIncludePaths.Add(System.IO.Path.Combine(EngineDirectory, "Plugins/FX/Niagara/Source/Niagara/Internal"));
-			PrivateIncludePaths.Add(System.IO.Path.Combine(EngineDirectory, "Plugins/FX/Niagara/Source/NiagaraShader/Internal"));
-		}
 		PrivateDependencyModuleNames.AddRange(new string[] { "PhysicsCore", "Chaos", "ChaosCore" });
 		PublicDependencyModuleNames.Add("GeometryFramework");
 		PublicDependencyModuleNames.Add("NetCore");
 		PublicDependencyModuleNames.AddRange(new string[] { "UMG", "CommonUI", "CommonInput", "ModelViewViewModel", "FieldNotification" });
 		if (Target.bBuildEditor)
 		{
-			PrivateDependencyModuleNames.AddRange(new string[] { "UnrealEd", "AnimGraph", "BlueprintGraph", "KismetCompiler", "AssetRegistry", "StateTreeEditorModule", "PropertyBindingUtils", "PropertyEditor" });
+			PrivateDependencyModuleNames.AddRange(new string[] { "UnrealEd", "AnimGraph", "BlueprintGraph", "KismetCompiler", "AssetRegistry" });
 		}
 
 		// Uncomment if you are using Slate UI

@@ -8,7 +8,7 @@
 #include "Environment/CCLFirePresentation.h"
 #include "Agents/CCLAgentWorldSubsystem.h"
 #include "UI/CCLGameUI.h"
-#include "UI/Core/CCLUISubsystem.h"
+#include "KSIUISubsystem.h"
 #include "Camera/CameraActor.h"
 #include "EngineUtils.h"
 #include "Engine/World.h"

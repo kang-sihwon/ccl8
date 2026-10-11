@@ -1,7 +1,7 @@
-#include "CCLUIRegistry.h"
+#include "KSIUIRegistry.h"
 
-#include "CCLScreen.h"
-#include "CCLUIContext.h"
+#include "KSIScreen.h"
+#include "KSIUIContext.h"
 #include "Misc/DataValidation.h"
 
 namespace
@@ -13,12 +13,12 @@ bool IsBelow(FGameplayTag Tag, const TCHAR* Root)
 }
 }
 
-bool FCCLUIViewDefinition::AcceptsContext(const UCCLUIContext* Context) const
+bool FKSIUIViewDefinition::AcceptsContext(const UKSIUIContext* Context) const
 {
 	return RequiredContextClass ? IsValid(Context) && Context->IsA(RequiredContextClass) : Context == nullptr;
 }
 
-bool UCCLUIRegistry::ValidateRegistry(TArray<FText>& Errors) const
+bool UKSIUIRegistry::ValidateRegistry(TArray<FText>& Errors) const
 {
 	TSet<FGameplayTag> LayerTags;
 	TSet<int32> LayerOrders;
@@ -38,7 +38,7 @@ bool UCCLUIRegistry::ValidateRegistry(TArray<FText>& Errors) const
 	{
 		const auto* Layer = FindLayer(Extension.Layer);
 		if (!IsBelow(Extension.Tag, TEXT("UI.Extension")) || ExtensionTags.Contains(Extension.Tag) || !Layer ||
-			Layer->Layout != ECCLUILayerLayout::Overlay)
+			Layer->Layout != EKSIUILayerLayout::Overlay)
 		{
 			Errors.Add(FText::FromString(TEXT("Extension points require unique tags below UI.Extension and an overlay layer.")));
 		}
@@ -69,7 +69,7 @@ bool UCCLUIRegistry::ValidateRegistry(TArray<FText>& Errors) const
 	return Errors.IsEmpty();
 }
 
-bool UCCLUIRegistry::ValidateView(const FCCLUIViewDefinition& View, TArray<FText>& Errors) const
+bool UKSIUIRegistry::ValidateView(const FKSIUIViewDefinition& View, TArray<FText>& Errors) const
 {
 	if (!IsBelow(View.Tag, TEXT("UI.View")) || View.WidgetClass.IsNull() || !FindLayer(View.Layer))
 	{
@@ -85,15 +85,15 @@ bool UCCLUIRegistry::ValidateView(const FCCLUIViewDefinition& View, TArray<FText
 		}
 	}
 
-	if (View.InstancePolicy == ECCLUIInstancePolicy::PerContext && !View.RequiredContextClass)
+	if (View.InstancePolicy == EKSIUIInstancePolicy::PerContext && !View.RequiredContextClass)
 	{
 		Errors.Add(FText::FromString(TEXT("PerContext views require a context class.")));
 	}
 
 	if (UClass* Loaded = View.WidgetClass.Get(); Loaded &&
-		(!Loaded->IsChildOf(UCCLScreen::StaticClass()) || Loaded->HasAnyClassFlags(CLASS_Abstract | CLASS_Deprecated | CLASS_NewerVersionExists)))
+		(!Loaded->IsChildOf(UKSIScreen::StaticClass()) || Loaded->HasAnyClassFlags(CLASS_Abstract | CLASS_Deprecated | CLASS_NewerVersionExists)))
 	{
-		Errors.Add(FText::FromString(TEXT("View widget class must be a concrete current CCLScreen.")));
+		Errors.Add(FText::FromString(TEXT("View widget class must be a concrete current KSIScreen.")));
 	}
 
 	for (FGameplayTag Group : View.Groups)
@@ -107,23 +107,23 @@ bool UCCLUIRegistry::ValidateView(const FCCLUIViewDefinition& View, TArray<FText
 	return Errors.IsEmpty();
 }
 
-const FCCLUIViewDefinition* UCCLUIRegistry::FindView(FGameplayTag Tag) const
+const FKSIUIViewDefinition* UKSIUIRegistry::FindView(FGameplayTag Tag) const
 {
 	return Views.FindByPredicate([Tag](const auto& View) { return View.Tag == Tag; });
 }
 
-const FCCLUILayerDefinition* UCCLUIRegistry::FindLayer(FGameplayTag Tag) const
+const FKSIUILayerDefinition* UKSIUIRegistry::FindLayer(FGameplayTag Tag) const
 {
 	return Layers.FindByPredicate([Tag](const auto& Layer) { return Layer.Tag == Tag; });
 }
 
-const FCCLUIExtensionDefinition* UCCLUIRegistry::FindExtension(FGameplayTag Tag) const
+const FKSIUIExtensionDefinition* UKSIUIRegistry::FindExtension(FGameplayTag Tag) const
 {
 	return Extensions.FindByPredicate([Tag](const auto& Extension) { return Extension.Tag == Tag; });
 }
 
 #if WITH_EDITOR
-EDataValidationResult UCCLUIRegistry::IsDataValid(FDataValidationContext& Context) const
+EDataValidationResult UKSIUIRegistry::IsDataValid(FDataValidationContext& Context) const
 {
 	const EDataValidationResult Parent = Super::IsDataValid(Context);
 	TArray<FText> Errors;

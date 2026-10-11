@@ -13,7 +13,7 @@
 #include "Agents/CCLAgentTags.h"
 #include "Environment/CCLThermalExposure.h"
 #include "Items/CCLItemDefinition.h"
-#include "Map/CCLMapSystem.h"
+#include "KSIMapSystem.h"
 #include "Animation/AnimInstance.h"
 #include "Animation/AnimMontage.h"
 #include "BrainComponent.h"
@@ -29,8 +29,8 @@
 ACCLEnemyCharacter::ACCLEnemyCharacter()
 {
 	CreateDefaultSubobject<UCCLThermalReceiverComponent>(TEXT("ThermalReceiver"));
-	auto* MapMarker = CreateDefaultSubobject<UCCLMapMarkerComponent>(TEXT("MapMarker"));
-	MapMarker->Kind = ECCLMapKind::Enemy;
+	auto* MapMarker = CreateDefaultSubobject<UKSIMapMarkerComponent>(TEXT("MapMarker"));
+	MapMarker->Kind = EKSIMapKind::Enemy;
 
 	CreateDefaultSubobject<UCCLActionComponent>(TEXT("Actions"));
 	auto* Agent = CreateDefaultSubobject<UCCLAgentComponent>(TEXT("Agent"));

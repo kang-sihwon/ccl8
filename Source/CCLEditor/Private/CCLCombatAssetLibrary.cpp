@@ -1,4 +1,4 @@
-﻿#include "CCLCombatAssetLibrary.h"
+#include "CCLCombatAssetLibrary.h"
 
 #if WITH_EDITOR
 #include "AbilitySystem/CCLAbilitySet.h"

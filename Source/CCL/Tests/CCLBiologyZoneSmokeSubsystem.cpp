@@ -8,7 +8,7 @@
 #include "Agents/CCLAgentWorldSubsystem.h"
 #include "Campaign/CCLLifeVillager.h"
 #include "UI/CCLGameUI.h"
-#include "UI/Core/CCLUISubsystem.h"
+#include "KSIUISubsystem.h"
 #include "Camera/CameraActor.h"
 #include "Engine/World.h"
 #include "UnrealClient.h"

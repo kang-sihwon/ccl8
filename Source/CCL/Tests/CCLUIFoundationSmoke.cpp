@@ -1,10 +1,10 @@
 ﻿#include "CCLUIFoundationSmoke.h"
 
-#include "UI/Core/CCLUIContext.h"
-#include "UI/Core/CCLUIRegistry.h"
-#include "UI/Core/CCLUIRoot.h"
-#include "UI/Core/CCLScreen.h"
-#include "UI/Core/CCLUISubsystem.h"
+#include "KSIUIContext.h"
+#include "KSIUIRegistry.h"
+#include "KSIUIRoot.h"
+#include "KSIScreen.h"
+#include "KSIUISubsystem.h"
 #include "UI/CCLUIInputData.h"
 #include "Engine/GameInstance.h"
 #include "Engine/LocalPlayer.h"
@@ -74,7 +74,7 @@ void UCCLUIFoundationSmoke::Tick(float DeltaTime)
 	auto* World = GetWorld();
 	auto* PC = World ? World->GetFirstPlayerController() : nullptr;
 	auto* Local = PC ? PC->GetLocalPlayer() : nullptr;
-	auto* UI = Local ? Local->GetSubsystem<UCCLUISubsystem>() : nullptr;
+	auto* UI = Local ? Local->GetSubsystem<UKSIUISubsystem>() : nullptr;
 	if (!World || !World->HasBegunPlay() || !PC || !PC->GetPawn() || !UI)
 	{
 		return;
@@ -83,56 +83,56 @@ void UCCLUIFoundationSmoke::Tick(float DeltaTime)
 	if (Step == 0)
 	{
 		UI->CloseAllViews();
-		Registry = NewObject<UCCLUIRegistry>(this);
+		Registry = NewObject<UKSIUIRegistry>(this);
 		Registry->InputMapping = GetDefault<UCCLUIInputData>()->GetMapping(this);
-		for (const auto& Pair : {TPair<FGameplayTag, ECCLUILayerLayout>(OverlayLayer, ECCLUILayerLayout::Overlay),
-			TPair<FGameplayTag, ECCLUILayerLayout>(StackLayer, ECCLUILayerLayout::Stack),
-			TPair<FGameplayTag, ECCLUILayerLayout>(QueueLayer, ECCLUILayerLayout::Queue)})
+		for (const auto& Pair : {TPair<FGameplayTag, EKSIUILayerLayout>(OverlayLayer, EKSIUILayerLayout::Overlay),
+			TPair<FGameplayTag, EKSIUILayerLayout>(StackLayer, EKSIUILayerLayout::Stack),
+			TPair<FGameplayTag, EKSIUILayerLayout>(QueueLayer, EKSIUILayerLayout::Queue)})
 		{
-			FCCLUILayerDefinition Layer;
+			FKSIUILayerDefinition Layer;
 			Layer.Tag = Pair.Key;
 			Layer.Layout = Pair.Value;
 			Layer.ZOrder = Registry->Layers.Num();
 			Registry->Layers.Add(Layer);
 		}
 
-		FCCLUIExtensionDefinition Extension;
+		FKSIUIExtensionDefinition Extension;
 		Extension.Tag = CornerExtension;
 		Extension.Layer = OverlayLayer;
 		Registry->Extensions.Add(Extension);
-		FCCLUIViewDefinition Definition;
+		FKSIUIViewDefinition Definition;
 		Definition.Tag = PanelView;
 		Definition.Layer = OverlayLayer;
 		Definition.Extension = CornerExtension;
-		Definition.WidgetClass = UCCLScreen::StaticClass();
-		Definition.RequiredContextClass = UCCLUIContext::StaticClass();
-		Definition.InstancePolicy = ECCLUIInstancePolicy::PerContext;
+		Definition.WidgetClass = UKSIScreen::StaticClass();
+		Definition.RequiredContextClass = UKSIUIContext::StaticClass();
+		Definition.InstancePolicy = EKSIUIInstancePolicy::PerContext;
 		Registry->Views.Add(Definition);
 		Definition.Tag = PersistentViewTag;
-		Definition.Scope = ECCLUIScope::LocalPlayer;
+		Definition.Scope = EKSIUIScope::LocalPlayer;
 		Registry->Views.Add(Definition);
-		Definition.Scope = ECCLUIScope::World;
+		Definition.Scope = EKSIUIScope::World;
 		Definition.Extension = {};
-		Definition.InstancePolicy = ECCLUIInstancePolicy::Multiple;
+		Definition.InstancePolicy = EKSIUIInstancePolicy::Multiple;
 		Definition.Tag = StackView;
 		Definition.Layer = StackLayer;
-		Definition.InputPolicy = ECCLUIInputPolicy::Menu;
+		Definition.InputPolicy = EKSIUIInputPolicy::Menu;
 		Registry->Views.Add(Definition);
 		Definition.Tag = PersistentStackTag;
-		Definition.Scope = ECCLUIScope::LocalPlayer;
+		Definition.Scope = EKSIUIScope::LocalPlayer;
 		Registry->Views.Add(Definition);
-		Definition.Scope = ECCLUIScope::World;
+		Definition.Scope = EKSIUIScope::World;
 		Definition.Tag = QueueView;
 		Definition.Layer = QueueLayer;
-		Definition.InputPolicy = ECCLUIInputPolicy::Inherit;
+		Definition.InputPolicy = EKSIUIInputPolicy::Inherit;
 		Registry->Views.Add(Definition);
 		Definition.Tag = AsyncView;
 		Definition.Layer = OverlayLayer;
-		Definition.WidgetClass = TSoftClassPtr<UCCLScreen>(FSoftObjectPath(TEXT("/Game/Tests/UI/BP_UIAsyncProbe.BP_UIAsyncProbe_C")));
+		Definition.WidgetClass = TSoftClassPtr<UKSIScreen>(FSoftObjectPath(TEXT("/Game/Tests/UI/BP_UIAsyncProbe.BP_UIAsyncProbe_C")));
 		Registry->Views.Add(Definition);
-		ContextA = NewObject<UCCLUIContext>(this);
-		ContextB = NewObject<UCCLUIContext>(this);
-		ContextC = NewObject<UCCLUIContext>(this);
+		ContextA = NewObject<UKSIUIContext>(this);
+		ContextB = NewObject<UKSIUIContext>(this);
+		ContextC = NewObject<UKSIUIContext>(this);
 		if (!Check(UI->ConfigureRegistry(Registry), TEXT("configure data-driven layers and views")))
 		{
 			return;
@@ -227,9 +227,9 @@ void UCCLUIFoundationSmoke::Tick(float DeltaTime)
 
 		UI->CloseAllViews();
 		FeatureOwner = World->SpawnActor<AActor>();
-		FCCLUIViewDefinition Owned = *Registry->FindView(PanelView);
+		FKSIUIViewDefinition Owned = *Registry->FindView(PanelView);
 		Owned.Tag = OwnedViewTag;
-		Owned.InstancePolicy = ECCLUIInstancePolicy::Single;
+		Owned.InstancePolicy = EKSIUIInstancePolicy::Single;
 		OwnedRegistration = UI->RegisterView(Owned, FeatureOwner.Get());
 		OwnedView = UI->OpenView(OwnedViewTag, ContextA, this);
 		if (!Check(OwnedRegistration.IsValid() && OwnedView.IsValid() &&
@@ -239,7 +239,7 @@ void UCCLUIFoundationSmoke::Tick(float DeltaTime)
 		}
 
 		bool bReentrantOpenRejected = false;
-		const auto ClosedBinding = UI->OnViewClosed.AddLambda([&](FCCLUIViewHandle Closed)
+		const auto ClosedBinding = UI->OnViewClosed.AddLambda([&](FKSIUIViewHandle Closed)
 		{
 			bReentrantOpenRejected = !UI->OpenView(OwnedViewTag, ContextC, this).IsValid();
 		});
@@ -266,17 +266,17 @@ void UCCLUIFoundationSmoke::Tick(float DeltaTime)
 		PersistentView = UI->OpenView(PersistentViewTag, ContextB, this);
 		PersistentStackA = UI->OpenView(PersistentStackTag, ContextA, this);
 		PersistentStackB = UI->OpenView(PersistentStackTag, ContextB, this);
-		FCCLUIPresentationDefinition WorldRestriction;
+		FKSIUIPresentationDefinition WorldRestriction;
 		WorldRestriction.bBlockGameplay = 1;
 		UI->PushPresentation(WorldRestriction, this);
-		FCCLUIPresentationDefinition PersistentRestriction;
+		FKSIUIPresentationDefinition PersistentRestriction;
 		PersistentRestriction.bAllViews = 1;
 		PersistentRestriction.bHide = 1;
-		PersistentRestriction.Scope = ECCLUIScope::LocalPlayer;
+		PersistentRestriction.Scope = EKSIUIScope::LocalPlayer;
 		PersistentPresentation = UI->PushPresentation(PersistentRestriction, this);
 		FString Error;
 		auto* OtherLocal = GetGameInstance()->CreateLocalPlayer(1, Error, true);
-		auto* OtherUI = OtherLocal ? OtherLocal->GetSubsystem<UCCLUISubsystem>() : nullptr;
+		auto* OtherUI = OtherLocal ? OtherLocal->GetSubsystem<UKSIUISubsystem>() : nullptr;
 		if (!Check(OtherUI && OtherUI != UI && OtherUI->ConfigureRegistry(Registry), TEXT("second local player has an independent manager")))
 		{
 			return;
@@ -333,7 +333,7 @@ void UCCLUIFoundationSmoke::Tick(float DeltaTime)
 		}
 
 		bool bCloseAllReopenRejected = false;
-		const auto ClosingBinding = UI->OnViewClosed.AddLambda([&](FCCLUIViewHandle Closed)
+		const auto ClosingBinding = UI->OnViewClosed.AddLambda([&](FKSIUIViewHandle Closed)
 		{
 			bCloseAllReopenRejected = !UI->OpenView(PanelView, ContextA, this).IsValid();
 		});
@@ -368,7 +368,7 @@ void UCCLUIFoundationSmoke::Tick(float DeltaTime)
 			return;
 		}
 
-		FCCLUIPresentationDefinition HideMap;
+		FKSIUIPresentationDefinition HideMap;
 		HideMap.Groups.AddTag(StrategyMapGroup);
 		HideMap.bHide = 1;
 		HideMap.FadeSeconds = 0.2f;
@@ -407,7 +407,7 @@ void UCCLUIFoundationSmoke::Tick(float DeltaTime)
 
 		PanelA = UI->OpenView(NarrativeBody, ContextA, this);
 		StackA = UI->OpenView(NarrativeChoices, ContextB, this);
-		FCCLUIPresentationDefinition Conversation;
+		FKSIUIPresentationDefinition Conversation;
 		Conversation.bBlockGameplay = 1;
 		PersistentPresentation = UI->PushPresentation(Conversation, this);
 	}
@@ -445,12 +445,12 @@ void UCCLUIFoundationSmoke::Tick(float DeltaTime)
 			return;
 		}
 
-		FCCLUIViewDefinition ClosingView;
+		FKSIUIViewDefinition ClosingView;
 		ClosingView.Tag = OwnedViewTag;
 		ClosingView.Layer = OverlayLayer;
 		ClosingView.WidgetClass = UCCLUICloseOnHideProbe::StaticClass();
 		const auto Registration = UI->RegisterView(ClosingView, this);
-		FCCLUIPresentationDefinition Hide;
+		FKSIUIPresentationDefinition Hide;
 		Hide.bAllViews = 1;
 		Hide.bHide = 1;
 		const auto Request = UI->PushPresentation(Hide, this);
@@ -473,35 +473,35 @@ void UCCLUIFoundationSmoke::Tick(float DeltaTime)
 
 bool UCCLUIFoundationSmoke::ConfigureExample(bool bStrategy)
 {
-	Registry = NewObject<UCCLUIRegistry>(this);
+	Registry = NewObject<UKSIUIRegistry>(this);
 	Registry->InputMapping = GetDefault<UCCLUIInputData>()->GetMapping(this);
-	FCCLUILayerDefinition Layer;
+	FKSIUILayerDefinition Layer;
 	Layer.Tag = OverlayLayer;
-	Layer.Layout = ECCLUILayerLayout::Overlay;
+	Layer.Layout = EKSIUILayerLayout::Overlay;
 	Registry->Layers.Add(Layer);
 	Layer.Tag = StackLayer;
-	Layer.Layout = ECCLUILayerLayout::Stack;
+	Layer.Layout = EKSIUILayerLayout::Stack;
 	Layer.ZOrder = 1;
 	Registry->Layers.Add(Layer);
-	FCCLUIViewDefinition View;
+	FKSIUIViewDefinition View;
 	View.Layer = OverlayLayer;
-	View.WidgetClass = UCCLScreen::StaticClass();
-	View.RequiredContextClass = UCCLUIContext::StaticClass();
+	View.WidgetClass = UKSIScreen::StaticClass();
+	View.RequiredContextClass = UKSIUIContext::StaticClass();
 	View.Tag = bStrategy ? StrategyResources : NarrativeBody;
 	Registry->Views.Add(View);
 	View.Tag = bStrategy ? StrategySelection : NarrativeChoices;
 	View.Layer = bStrategy ? OverlayLayer : StackLayer;
-	View.InputPolicy = bStrategy ? ECCLUIInputPolicy::GameAndUI : ECCLUIInputPolicy::Menu;
+	View.InputPolicy = bStrategy ? EKSIUIInputPolicy::GameAndUI : EKSIUIInputPolicy::Menu;
 	Registry->Views.Add(View);
 	if (bStrategy)
 	{
 		View.Tag = StrategyMap;
-		View.InputPolicy = ECCLUIInputPolicy::Inherit;
+		View.InputPolicy = EKSIUIInputPolicy::Inherit;
 		View.Groups.AddTag(StrategyMapGroup);
 		Registry->Views.Add(View);
 	}
 
-	auto* UI = GetWorld()->GetFirstPlayerController()->GetLocalPlayer()->GetSubsystem<UCCLUISubsystem>();
+	auto* UI = GetWorld()->GetFirstPlayerController()->GetLocalPlayer()->GetSubsystem<UKSIUISubsystem>();
 	return Check(UI->ConfigureRegistry(Registry), bStrategy ? TEXT("configure independent strategy profile") : TEXT("configure independent narrative profile"));
 }
 
@@ -521,7 +521,7 @@ bool UCCLUIFoundationSmoke::Check(bool bCondition, const TCHAR* Message)
 	return bCondition;
 }
 
-void UCCLUIFoundationSmoke::RequestFinished(FCCLUIRequestHandle Request, FCCLUIViewHandle View, bool bSuccess)
+void UCCLUIFoundationSmoke::RequestFinished(FKSIUIRequestHandle Request, FKSIUIViewHandle View, bool bSuccess)
 {
 	if (Request == CancelledRequest && !bSuccess)
 	{

@@ -47,7 +47,7 @@ struct FCCLEnemyTaskData
 };
 
 USTRUCT(meta = (DisplayName = "CCL Enemy Action"))
-struct FCCLEnemyTask : public FStateTreeTaskBase
+struct CCL_API FCCLEnemyTask : public FStateTreeTaskBase
 {
 	GENERATED_BODY()
 

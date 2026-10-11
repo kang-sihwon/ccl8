@@ -3,7 +3,7 @@
 #include "Engine/GameInstance.h"
 #include "Engine/EngineBaseTypes.h"
 #include "CCLSessionRecord.h"
-#include "UI/Core/CCLUITypes.h"
+#include "KSIUITypes.h"
 #include "CCLGameInstance.generated.h"
 UCLASS()
 class CCL_API UCCLGameInstance : public UGameInstance
@@ -43,7 +43,7 @@ private:
 	void NetworkFailed(UWorld* World, UNetDriver* Driver, ENetworkFailure::Type Type, const FString& Error);
 	void TravelFailed(UWorld* World, ETravelFailure::Type Type, const FString& Error);
 	bool ApplyRecord(const FCCLSessionRecord& Record);
-	TMap<TWeakObjectPtr<ULocalPlayer>, FCCLUIViewHandle> MenuHandles;
+	TMap<TWeakObjectPtr<ULocalPlayer>, FKSIUIViewHandle> MenuHandles;
 	FString Status = TEXT("게임 방식을 선택해 줘. 직접 접속하려면 접속 가능한 호스트 주소가 필요해.");
 	UPROPERTY() FCCLSessionRecord Pending;
 	mutable TOptional<TMap<FString, FString>> ProfileSecrets;

@@ -4,7 +4,7 @@
 #include "GameFramework/PlayerController.h"
 #include "GameplayTagContainer.h"
 #include "Items/CCLItemFragments.h"
-#include "UI/Core/CCLUITypes.h"
+#include "KSIUITypes.h"
 #include "CCLPlayerController.generated.h"
 
 struct FInputActionValue;
@@ -100,8 +100,8 @@ public:
 	TSharedPtr<SCCLInventoryWidget> GetInventoryWidget() const;
 	int32 GetSelectedItem() const;
 	FGuid GetSelectedEquipment() const;
-	FCCLUIViewHandle GetInventoryHandle() const { return InventoryHandle; }
-	FCCLUIViewHandle GetDialogueHandle() const { return DialogueHandle; }
+	FKSIUIViewHandle GetInventoryHandle() const { return InventoryHandle; }
+	FKSIUIViewHandle GetDialogueHandle() const { return DialogueHandle; }
 
 private:
 	void Move(const FInputActionValue& Value);
@@ -111,7 +111,7 @@ private:
 	void CombatPressed(FGameplayTag Tag);
 	void CombatReleased(FGameplayTag Tag);
 	FGuid GetSelectedEntryId() const;
-	void HandleUIViewClosed(FCCLUIViewHandle View);
+	void HandleUIViewClosed(FKSIUIViewHandle View);
 
 	UFUNCTION(Server, Reliable)
 	void ServerRequestRetry();
@@ -150,9 +150,9 @@ private:
 
 	FGameplayTag HeldLeftAction;
 	FGameplayTag HeldRightAction;
-	FCCLUIViewHandle InventoryHandle;
-	FCCLUIViewHandle WorldMapHandle;
-	FCCLUIViewHandle DialogueHandle;
+	FKSIUIViewHandle InventoryHandle;
+	FKSIUIViewHandle WorldMapHandle;
+	FKSIUIViewHandle DialogueHandle;
 	TWeakObjectPtr<ACCLVillageSteward> DialogueSpeaker;
 	FString DialogueName;
 	FString DialogueText;

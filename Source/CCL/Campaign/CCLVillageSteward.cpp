@@ -1,6 +1,6 @@
 ﻿#include "CCLVillageSteward.h"
 
-#include "Map/CCLMapSystem.h"
+#include "KSIMapSystem.h"
 #include "Components/SkeletalMeshComponent.h"
 #include "Components/TextRenderComponent.h"
 #include "Engine/Font.h"
@@ -21,8 +21,8 @@ ACCLVillageSteward::ACCLVillageSteward()
 {
 	PrimaryActorTick.bCanEverTick = true;
 	PrimaryActorTick.TickInterval = 0.1f;
-	auto* MapMarker = CreateDefaultSubobject<UCCLMapMarkerComponent>(TEXT("MapMarker"));
-	MapMarker->Kind = ECCLMapKind::NPC;
+	auto* MapMarker = CreateDefaultSubobject<UKSIMapMarkerComponent>(TEXT("MapMarker"));
+	MapMarker->Kind = EKSIMapKind::NPC;
 
 	bReplicates = true;
 	Offer.Item = TSoftObjectPtr<UCCLItemDefinition>(FSoftObjectPath(TEXT("/Game/Progression/DA_RecoveryPotion.DA_RecoveryPotion")));

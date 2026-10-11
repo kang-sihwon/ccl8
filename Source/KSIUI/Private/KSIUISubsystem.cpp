@@ -1,9 +1,9 @@
-#include "CCLUISubsystem.h"
+#include "KSIUISubsystem.h"
 
-#include "CCLScreen.h"
-#include "CCLUIContext.h"
-#include "CCLUIRoot.h"
-#include "CCLUIActionRouter.h"
+#include "KSIScreen.h"
+#include "KSIUIContext.h"
+#include "KSIUIRoot.h"
+#include "KSIUIActionRouter.h"
 #include "Engine/AssetManager.h"
 #include "Engine/LocalPlayer.h"
 #include "Engine/StreamableManager.h"
@@ -11,13 +11,13 @@
 #include "GameFramework/PlayerController.h"
 #include "Misc/ScopeExit.h"
 
-void UCCLUISubsystem::Initialize(FSubsystemCollectionBase& Collection)
+void UKSIUISubsystem::Initialize(FSubsystemCollectionBase& Collection)
 {
 	Super::Initialize(Collection);
 	WorldCleanupHandle = FWorldDelegates::OnWorldCleanup.AddUObject(this, &ThisClass::OnWorldCleanup);
 }
 
-void UCCLUISubsystem::Deinitialize()
+void UKSIUISubsystem::Deinitialize()
 {
 	bShuttingDown = 1;
 	FWorldDelegates::OnWorldCleanup.Remove(WorldCleanupHandle);
@@ -38,7 +38,7 @@ void UCCLUISubsystem::Deinitialize()
 	Super::Deinitialize();
 }
 
-void UCCLUISubsystem::PlayerControllerChanged(APlayerController* NewPlayerController)
+void UKSIUISubsystem::PlayerControllerChanged(APlayerController* NewPlayerController)
 {
 	Super::PlayerControllerChanged(NewPlayerController);
 	if (Root && Root->GetOwningPlayer() != NewPlayerController)
@@ -47,13 +47,13 @@ void UCCLUISubsystem::PlayerControllerChanged(APlayerController* NewPlayerContro
 	}
 }
 
-void UCCLUISubsystem::Tick(float DeltaTime)
+void UKSIUISubsystem::Tick(float DeltaTime)
 {
 	TArray<FGuid> ExpiredPresentation;
 	float ExitFade = 0.f;
 	for (const auto& Pair : Presentations)
 	{
-		if (!Pair.Value.Owner.IsValid() || (Pair.Value.Definition.Scope == ECCLUIScope::World && Pair.Value.World != GetWorld()))
+		if (!Pair.Value.Owner.IsValid() || (Pair.Value.Definition.Scope == EKSIUIScope::World && Pair.Value.World != GetWorld()))
 		{
 			ExpiredPresentation.Add(Pair.Key);
 			ExitFade = FMath::Max(ExitFade, Pair.Value.Definition.FadeSeconds);
@@ -98,7 +98,7 @@ void UCCLUISubsystem::Tick(float DeltaTime)
 			continue;
 		}
 
-		if (!View->Owner.IsValid() || (View->Definition.Scope == ECCLUIScope::World && View->World != GetWorld()) ||
+		if (!View->Owner.IsValid() || (View->Definition.Scope == EKSIUIScope::World && View->World != GetWorld()) ||
 			(View->Screen && (!Root || !Root->ContainsScreen(View->Screen) || !View->Screen->GetViewHandle().IsValid())))
 		{
 			CloseView({Id});
@@ -126,7 +126,7 @@ void UCCLUISubsystem::Tick(float DeltaTime)
 		}
 
 		if (!Registration || !Request->Owner.IsValid() || !Registration->Owner.IsValid() ||
-			(Registration->Definition.Scope == ECCLUIScope::World && Request->World != GetWorld()))
+			(Registration->Definition.Scope == EKSIUIScope::World && Request->World != GetWorld()))
 		{
 			CancelRequest({Id});
 		}
@@ -139,30 +139,30 @@ void UCCLUISubsystem::Tick(float DeltaTime)
 	if (bPresentationRoutingDirty)
 	{
 		bPresentationRoutingDirty = 0;
-		if (auto* Router = GetLocalPlayer()->GetSubsystem<UCCLUIActionRouter>())
+		if (auto* Router = GetLocalPlayer()->GetSubsystem<UKSIUIActionRouter>())
 		{
 			Router->RefreshPresentationRouting();
 		}
 	}
 }
 
-TStatId UCCLUISubsystem::GetStatId() const
+TStatId UKSIUISubsystem::GetStatId() const
 {
-	RETURN_QUICK_DECLARE_CYCLE_STAT(UCCLUISubsystem, STATGROUP_Tickables);
+	RETURN_QUICK_DECLARE_CYCLE_STAT(UKSIUISubsystem, STATGROUP_Tickables);
 }
 
-UWorld* UCCLUISubsystem::GetTickableGameObjectWorld() const
+UWorld* UKSIUISubsystem::GetTickableGameObjectWorld() const
 {
 	return GetWorld();
 }
 
-bool UCCLUISubsystem::IsTickable() const
+bool UKSIUISubsystem::IsTickable() const
 {
 	return !HasAnyFlags(RF_ClassDefaultObject) && !bShuttingDown &&
 		(!Registrations.IsEmpty() || !Views.IsEmpty() || !Pending.IsEmpty() || !Presentations.IsEmpty());
 }
 
-bool UCCLUISubsystem::ConfigureRegistry(UCCLUIRegistry* InRegistry)
+bool UKSIUISubsystem::ConfigureRegistry(UKSIUIRegistry* InRegistry)
 {
 	TArray<FText> Errors;
 	if (bShuttingDown || bCleaningWorld || bClosingAll || bRemovingScreen || !OpeningRegistrations.IsEmpty() ||
@@ -174,7 +174,7 @@ bool UCCLUISubsystem::ConfigureRegistry(UCCLUIRegistry* InRegistry)
 
 	ResetRoot();
 	Registrations.Reset();
-	Registry = DuplicateObject<UCCLUIRegistry>(InRegistry, this);
+	Registry = DuplicateObject<UKSIUIRegistry>(InRegistry, this);
 	for (const auto& Definition : Registry->Views)
 	{
 		RegisterView(Definition, this);
@@ -183,7 +183,7 @@ bool UCCLUISubsystem::ConfigureRegistry(UCCLUIRegistry* InRegistry)
 	return true;
 }
 
-FCCLUIRegistrationHandle UCCLUISubsystem::RegisterView(const FCCLUIViewDefinition& Definition, UObject* Owner)
+FKSIUIRegistrationHandle UKSIUISubsystem::RegisterView(const FKSIUIViewDefinition& Definition, UObject* Owner)
 {
 	TArray<FText> Errors;
 	if (bShuttingDown || bCleaningWorld || !Registry || !IsValid(Owner) || FindRegistration(Definition.Tag).IsValid() ||
@@ -192,14 +192,14 @@ FCCLUIRegistrationHandle UCCLUISubsystem::RegisterView(const FCCLUIViewDefinitio
 		return {};
 	}
 
-	FCCLUIRegistrationHandle Handle{FGuid::NewGuid()};
+	FKSIUIRegistrationHandle Handle{FGuid::NewGuid()};
 	auto& Registration = Registrations.Add(Handle.Id);
 	Registration.Definition = Definition;
 	Registration.Owner = Owner;
 	return Handle;
 }
 
-void UCCLUISubsystem::UnregisterView(FCCLUIRegistrationHandle Registration)
+void UKSIUISubsystem::UnregisterView(FKSIUIRegistrationHandle Registration)
 {
 	if (!Registrations.Remove(Registration.Id))
 	{
@@ -235,9 +235,9 @@ void UCCLUISubsystem::UnregisterView(FCCLUIRegistrationHandle Registration)
 	}
 }
 
-FCCLUIViewHandle UCCLUISubsystem::OpenView(FGameplayTag ViewTag, UCCLUIContext* Context, UObject* Owner)
+FKSIUIViewHandle UKSIUISubsystem::OpenView(FGameplayTag ViewTag, UKSIUIContext* Context, UObject* Owner)
 {
-	const FCCLUIRegistrationHandle Registration = FindRegistration(ViewTag);
+	const FKSIUIRegistrationHandle Registration = FindRegistration(ViewTag);
 	const auto* Entry = Registrations.Find(Registration.Id);
 	if (!CanOpen(Entry, Context, Owner) || !Entry->Definition.WidgetClass.Get() || OpeningRegistrations.Contains(Registration.Id))
 	{
@@ -245,7 +245,7 @@ FCCLUIViewHandle UCCLUISubsystem::OpenView(FGameplayTag ViewTag, UCCLUIContext* 
 	}
 
 	// Retain a copy across close callbacks, which may modify registrations.
-	const FCCLUIViewDefinition Definition = Entry->Definition;
+	const FKSIUIViewDefinition Definition = Entry->Definition;
 	OpeningRegistrations.Add(Registration.Id);
 	ON_SCOPE_EXIT { OpeningRegistrations.Remove(Registration.Id); };
 	if (!EnsureRoot())
@@ -256,8 +256,8 @@ FCCLUIViewHandle UCCLUISubsystem::OpenView(FGameplayTag ViewTag, UCCLUIContext* 
 	TArray<FGuid> Replaced;
 	for (const auto& Pair : Views)
 	{
-		if (Pair.Value.Registration == Registration && Definition.InstancePolicy != ECCLUIInstancePolicy::Multiple &&
-			(Definition.InstancePolicy == ECCLUIInstancePolicy::Single || Pair.Value.Context == Context))
+		if (Pair.Value.Registration == Registration && Definition.InstancePolicy != EKSIUIInstancePolicy::Multiple &&
+			(Definition.InstancePolicy == EKSIUIInstancePolicy::Single || Pair.Value.Context == Context))
 		{
 			if (Pair.Value.Owner == Owner && Pair.Value.Context == Context)
 			{
@@ -278,7 +278,7 @@ FCCLUIViewHandle UCCLUISubsystem::OpenView(FGameplayTag ViewTag, UCCLUIContext* 
 		return {};
 	}
 
-	FCCLUIViewHandle Handle{FGuid::NewGuid()};
+	FKSIUIViewHandle Handle{FGuid::NewGuid()};
 	auto& View = Views.Add(Handle.Id);
 	View.Definition = Definition;
 	View.Registration = Registration;
@@ -295,9 +295,9 @@ FCCLUIViewHandle UCCLUISubsystem::OpenView(FGameplayTag ViewTag, UCCLUIContext* 
 	return Handle;
 }
 
-FCCLUIRequestHandle UCCLUISubsystem::RequestOpenView(FGameplayTag ViewTag, UCCLUIContext* Context, UObject* Owner)
+FKSIUIRequestHandle UKSIUISubsystem::RequestOpenView(FGameplayTag ViewTag, UKSIUIContext* Context, UObject* Owner)
 {
-	const FCCLUIRegistrationHandle Registration = FindRegistration(ViewTag);
+	const FKSIUIRegistrationHandle Registration = FindRegistration(ViewTag);
 	const auto* Entry = Registrations.Find(Registration.Id);
 	if (!CanOpen(Entry, Context, Owner))
 	{
@@ -305,7 +305,7 @@ FCCLUIRequestHandle UCCLUISubsystem::RequestOpenView(FGameplayTag ViewTag, UCCLU
 	}
 
 	const FSoftObjectPath Path = Entry->Definition.WidgetClass.ToSoftObjectPath();
-	FCCLUIRequestHandle Handle{FGuid::NewGuid()};
+	FKSIUIRequestHandle Handle{FGuid::NewGuid()};
 	auto& Request = Pending.Add(Handle.Id);
 	Request.Registration = Registration;
 	Request.Context = Context;
@@ -329,7 +329,7 @@ FCCLUIRequestHandle UCCLUISubsystem::RequestOpenView(FGameplayTag ViewTag, UCCLU
 	return Handle;
 }
 
-void UCCLUISubsystem::CancelRequest(FCCLUIRequestHandle Request)
+void UKSIUISubsystem::CancelRequest(FKSIUIRequestHandle Request)
 {
 	if (!Pending.Remove(Request.Id))
 	{
@@ -345,9 +345,9 @@ void UCCLUISubsystem::CancelRequest(FCCLUIRequestHandle Request)
 	OnRequestFinished.Broadcast(Request, {}, false);
 }
 
-void UCCLUISubsystem::CloseView(FCCLUIViewHandle Handle)
+void UKSIUISubsystem::CloseView(FKSIUIViewHandle Handle)
 {
-	FCCLUIOpenView View;
+	FKSIUIOpenView View;
 	if (!Views.RemoveAndCopyValue(Handle.Id, View))
 	{
 		return;
@@ -362,7 +362,7 @@ void UCCLUISubsystem::CloseView(FCCLUIViewHandle Handle)
 	OnViewClosed.Broadcast(Handle);
 }
 
-void UCCLUISubsystem::CloseAllViews()
+void UKSIUISubsystem::CloseAllViews()
 {
 	TGuardValue<uint8> ClosingGuard(bClosingAll, 1);
 	TArray<FGuid> ViewIds;
@@ -373,13 +373,13 @@ void UCCLUISubsystem::CloseAllViews()
 	}
 }
 
-UCCLScreen* UCCLUISubsystem::FindScreen(FCCLUIViewHandle View) const
+UKSIScreen* UKSIUISubsystem::FindScreen(FKSIUIViewHandle View) const
 {
 	const auto* Entry = Views.Find(View.Id);
 	return Entry ? Entry->Screen.Get() : nullptr;
 }
 
-FCCLUIRegistrationHandle UCCLUISubsystem::FindRegistration(FGameplayTag View) const
+FKSIUIRegistrationHandle UKSIUISubsystem::FindRegistration(FGameplayTag View) const
 {
 	for (const auto& Pair : Registrations)
 	{
@@ -392,7 +392,7 @@ FCCLUIRegistrationHandle UCCLUISubsystem::FindRegistration(FGameplayTag View) co
 	return {};
 }
 
-bool UCCLUISubsystem::EnsureRoot()
+bool UKSIUISubsystem::EnsureRoot()
 {
 	if (Root)
 	{
@@ -405,7 +405,7 @@ bool UCCLUISubsystem::EnsureRoot()
 		return false;
 	}
 
-	Root = CreateWidget<UCCLUIRoot>(PC);
+	Root = CreateWidget<UKSIUIRoot>(PC);
 	if (!Root || !Root->Configure(Registry) || !Root->AddToPlayerScreen())
 	{
 		Root = nullptr;
@@ -417,7 +417,7 @@ bool UCCLUISubsystem::EnsureRoot()
 	return true;
 }
 
-bool UCCLUISubsystem::AttachScreen(FCCLUIViewHandle Handle)
+bool UKSIUISubsystem::AttachScreen(FKSIUIViewHandle Handle)
 {
 	const auto* Entry = Views.Find(Handle.Id);
 	if (!Entry || !Root)
@@ -425,8 +425,8 @@ bool UCCLUISubsystem::AttachScreen(FCCLUIViewHandle Handle)
 		return false;
 	}
 
-	const FCCLUIOpenView Snapshot = *Entry;
-	auto* Screen = Root->AddScreen(Snapshot.Definition, [this, Snapshot, Handle](UCCLScreen& Instance)
+	const FKSIUIOpenView Snapshot = *Entry;
+	auto* Screen = Root->AddScreen(Snapshot.Definition, [this, Snapshot, Handle](UKSIScreen& Instance)
 	{
 		Instance.BindContext(Snapshot.Context, Handle, Snapshot.Definition.InputPolicy);
 		Instance.OnCloseRequested.AddUObject(this, &ThisClass::CloseView);
@@ -449,7 +449,7 @@ bool UCCLUISubsystem::AttachScreen(FCCLUIViewHandle Handle)
 	return false;
 }
 
-void UCCLUISubsystem::ResetRoot()
+void UKSIUISubsystem::ResetRoot()
 {
 	TGuardValue<uint8> CleanupGuard(bCleaningWorld, 1);
 	if (Root)
@@ -466,12 +466,12 @@ void UCCLUISubsystem::ResetRoot()
 	}
 }
 
-void UCCLUISubsystem::OnWorldCleanup(UWorld* World, bool bSessionEnded, bool bCleanupResources)
+void UKSIUISubsystem::OnWorldCleanup(UWorld* World, bool bSessionEnded, bool bCleanupResources)
 {
 	TGuardValue<uint8> CleanupGuard(bCleaningWorld, 1);
 	for (auto It = Presentations.CreateIterator(); It; ++It)
 	{
-		if (It.Value().World == World && It.Value().Definition.Scope == ECCLUIScope::World)
+		if (It.Value().World == World && It.Value().Definition.Scope == EKSIUIScope::World)
 		{
 			It.RemoveCurrent();
 		}
@@ -481,7 +481,7 @@ void UCCLUISubsystem::OnWorldCleanup(UWorld* World, bool bSessionEnded, bool bCl
 	TArray<FGuid> ViewIds;
 	for (const auto& Pair : Views)
 	{
-		if (Pair.Value.World == World && Pair.Value.Definition.Scope == ECCLUIScope::World)
+		if (Pair.Value.World == World && Pair.Value.Definition.Scope == EKSIUIScope::World)
 		{
 			ViewIds.Add(Pair.Key);
 		}
@@ -496,7 +496,7 @@ void UCCLUISubsystem::OnWorldCleanup(UWorld* World, bool bSessionEnded, bool bCl
 	for (const auto& Pair : Pending)
 	{
 		const auto* Registration = Registrations.Find(Pair.Value.Registration.Id);
-		if (Pair.Value.World == World && (!Registration || Registration->Definition.Scope == ECCLUIScope::World))
+		if (Pair.Value.World == World && (!Registration || Registration->Definition.Scope == EKSIUIScope::World))
 		{
 			RequestIds.Add(Pair.Key);
 		}
@@ -513,21 +513,21 @@ void UCCLUISubsystem::OnWorldCleanup(UWorld* World, bool bSessionEnded, bool bCl
 	}
 }
 
-void UCCLUISubsystem::FinishRequest(FCCLUIRequestHandle Request)
+void UKSIUISubsystem::FinishRequest(FKSIUIRequestHandle Request)
 {
-	FCCLUIPendingView PendingView;
+	FKSIUIPendingView PendingView;
 	if (!Pending.RemoveAndCopyValue(Request.Id, PendingView))
 	{
 		return;
 	}
 
 	const auto* Entry = Registrations.Find(PendingView.Registration.Id);
-	const FCCLUIViewHandle View = Entry ? OpenView(Entry->Definition.Tag, PendingView.Context, PendingView.Owner.Get()) : FCCLUIViewHandle();
+	const FKSIUIViewHandle View = Entry ? OpenView(Entry->Definition.Tag, PendingView.Context, PendingView.Owner.Get()) : FKSIUIViewHandle();
 	Loads.Remove(Request.Id);
 	OnRequestFinished.Broadcast(Request, View, View.IsValid());
 }
 
-void UCCLUISubsystem::MarkRequestReady(FGuid Id)
+void UKSIUISubsystem::MarkRequestReady(FGuid Id)
 {
 	if (auto* Request = Pending.Find(Id))
 	{
@@ -535,7 +535,7 @@ void UCCLUISubsystem::MarkRequestReady(FGuid Id)
 	}
 }
 
-FCCLUIPresentationHandle UCCLUISubsystem::PushPresentation(const FCCLUIPresentationDefinition& Definition, UObject* Owner)
+FKSIUIPresentationHandle UKSIUISubsystem::PushPresentation(const FKSIUIPresentationDefinition& Definition, UObject* Owner)
 {
 	if (bShuttingDown || bCleaningWorld || !IsValid(Owner) || !GetWorld() ||
 		(Owner->GetWorld() && Owner->GetWorld() != GetWorld()) || !Definition.IsValid())
@@ -543,7 +543,7 @@ FCCLUIPresentationHandle UCCLUISubsystem::PushPresentation(const FCCLUIPresentat
 		return {};
 	}
 
-	FCCLUIPresentationHandle Handle{FGuid::NewGuid()};
+	FKSIUIPresentationHandle Handle{FGuid::NewGuid()};
 	auto& Request = Presentations.Add(Handle.Id);
 	Request.Definition = Definition;
 	Request.Owner = Owner;
@@ -560,16 +560,16 @@ FCCLUIPresentationHandle UCCLUISubsystem::PushPresentation(const FCCLUIPresentat
 	return Handle;
 }
 
-void UCCLUISubsystem::ReleasePresentation(FCCLUIPresentationHandle Handle)
+void UKSIUISubsystem::ReleasePresentation(FKSIUIPresentationHandle Handle)
 {
-	FCCLUIPresentationRequest Removed;
+	FKSIUIPresentationRequest Removed;
 	if (Presentations.RemoveAndCopyValue(Handle.Id, Removed))
 	{
 		RefreshPresentation(Removed.Definition.FadeSeconds);
 	}
 }
 
-bool UCCLUISubsystem::SetBasePresentation(FCCLUIViewHandle Handle, const FCCLUIViewPresentation& State)
+bool UKSIUISubsystem::SetBasePresentation(FKSIUIViewHandle Handle, const FKSIUIViewPresentation& State)
 {
 	auto* View = Views.Find(Handle.Id);
 	if (!View || !State.IsValid())
@@ -582,12 +582,12 @@ bool UCCLUISubsystem::SetBasePresentation(FCCLUIViewHandle Handle, const FCCLUIV
 	return true;
 }
 
-bool UCCLUISubsystem::IsGameplayInputBlocked() const
+bool UKSIUISubsystem::IsGameplayInputBlocked() const
 {
 	for (const auto& Pair : Presentations)
 	{
 		if (Pair.Value.Owner.IsValid() && Pair.Value.Definition.bBlockGameplay &&
-			(Pair.Value.Definition.Scope != ECCLUIScope::World || Pair.Value.World == GetWorld()))
+			(Pair.Value.Definition.Scope != EKSIUIScope::World || Pair.Value.World == GetWorld()))
 		{
 			return true;
 		}
@@ -596,7 +596,7 @@ bool UCCLUISubsystem::IsGameplayInputBlocked() const
 	return false;
 }
 
-void UCCLUISubsystem::RefreshPresentation(float FadeSeconds)
+void UKSIUISubsystem::RefreshPresentation(float FadeSeconds)
 {
 	bPresentationDirty = 1;
 	if (bRefreshingPresentation || bShuttingDown)
@@ -616,7 +616,7 @@ void UCCLUISubsystem::RefreshPresentation(float FadeSeconds)
 	InvalidatePresentationRouting();
 }
 
-void UCCLUISubsystem::ApplyPresentation(FCCLUIViewHandle Handle, float FadeSeconds)
+void UKSIUISubsystem::ApplyPresentation(FKSIUIViewHandle Handle, float FadeSeconds)
 {
 	const auto* View = Views.Find(Handle.Id);
 	if (!View || !View->Screen)
@@ -624,11 +624,11 @@ void UCCLUISubsystem::ApplyPresentation(FCCLUIViewHandle Handle, float FadeSecon
 		return;
 	}
 
-	FCCLUIViewPresentation State = View->BasePresentation;
+	FKSIUIViewPresentation State = View->BasePresentation;
 	for (const auto& Pair : Presentations)
 	{
 		const auto& Request = Pair.Value.Definition;
-		if (Pair.Value.Owner.IsValid() && (Request.Scope != ECCLUIScope::World || Pair.Value.World == GetWorld()) &&
+		if (Pair.Value.Owner.IsValid() && (Request.Scope != EKSIUIScope::World || Pair.Value.World == GetWorld()) &&
 			Request.Matches(View->Definition.Groups))
 		{
 			State.bVisible = State.bVisible && !Request.bHide;
@@ -642,7 +642,7 @@ void UCCLUISubsystem::ApplyPresentation(FCCLUIViewHandle Handle, float FadeSecon
 	View->Screen->ApplyPresentation(State, FadeSeconds);
 }
 
-bool UCCLUISubsystem::CanOpen(const FCCLUIRegistration* Registration, UCCLUIContext* Context, UObject* Owner) const
+bool UKSIUISubsystem::CanOpen(const FKSIUIRegistration* Registration, UKSIUIContext* Context, UObject* Owner) const
 {
 	TArray<FText> Errors;
 	return !bShuttingDown && !bCleaningWorld && !bClosingAll && !bRemovingScreen && Registry && Registration &&

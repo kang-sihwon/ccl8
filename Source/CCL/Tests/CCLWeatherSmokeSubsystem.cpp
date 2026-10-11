@@ -10,7 +10,7 @@
 #include "Environment/CCLWeatherPresentation.h"
 #include "Agents/CCLAgentWorldSubsystem.h"
 #include "UI/CCLGameUI.h"
-#include "UI/Core/CCLUISubsystem.h"
+#include "KSIUISubsystem.h"
 #include "Engine/World.h"
 #include "UnrealClient.h"
 

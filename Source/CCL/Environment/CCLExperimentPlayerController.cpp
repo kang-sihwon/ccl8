@@ -10,7 +10,7 @@
 #include "InputAction.h"
 #include "InputMappingContext.h"
 #include "UI/CCLGameUI.h"
-#include "UI/Core/CCLUISubsystem.h"
+#include "KSIUISubsystem.h"
 #include "Engine/LocalPlayer.h"
 #include "NativeGameplayTags.h"
 #include "DrawDebugHelpers.h"
@@ -88,7 +88,7 @@ void ACCLExperimentPlayerController::SetupInputComponent()
 void ACCLExperimentPlayerController::EndPlay(EEndPlayReason::Type Reason)
 {
 	const auto* LocalPlayer = GetLocalPlayer();
-	if (auto* UI = LocalPlayer ? LocalPlayer->GetSubsystem<UCCLUISubsystem>() : nullptr)
+	if (auto* UI = LocalPlayer ? LocalPlayer->GetSubsystem<UKSIUISubsystem>() : nullptr)
 	{
 		UI->CloseView(ExperimentView);
 		UI->UnregisterView(Registration);
@@ -121,12 +121,12 @@ void ACCLExperimentPlayerController::CCLExperiment()
 
 	if (!Registration.IsValid())
 	{
-		FCCLUIViewDefinition Definition;
+		FKSIUIViewDefinition Definition;
 		Definition.Tag = TAG_ExperimentScreen;
 		Definition.WidgetClass = UCCLExperimentScreen::StaticClass();
 		Definition.RequiredContextClass = UCCLExperimentContext::StaticClass();
 		Definition.Layer = CCLUITags::Layer_Menu;
-		Definition.InputPolicy = ECCLUIInputPolicy::Menu;
+		Definition.InputPolicy = EKSIUIInputPolicy::Menu;
 		Definition.Groups.AddTag(CCLUITags::Group_Menus);
 		Registration = UI->RegisterView(Definition, this);
 	}

@@ -1,4 +1,4 @@
-﻿#include "CCLMapSystem.h"
+#include "KSIMapSystem.h"
 
 #include "GameFramework/PlayerController.h"
 #include "GameFramework/Pawn.h"
@@ -6,7 +6,7 @@
 #include "Components/StaticMeshComponent.h"
 #include "EngineUtils.h"
 
-bool UCCLMapMarkerComponent::IsRevealedTo(const APlayerController* Observer) const
+bool UKSIMapMarkerComponent::IsRevealedTo(const APlayerController* Observer) const
 {
 	if (!Observer || !Observer->GetPawn() || !IsValid(GetOwner()) || GetOwner()->IsHidden())
 	{
@@ -20,13 +20,13 @@ bool UCCLMapMarkerComponent::IsRevealedTo(const APlayerController* Observer) con
 		(!bRequireLineOfSight || Observer->LineOfSightTo(GetOwner()));
 }
 
-void UCCLMapSubsystem::SetRegion(UCCLMapRegionDefinition* Definition)
+void UKSIMapSubsystem::SetRegion(UKSIMapRegionDefinition* Definition)
 {
 	Region = Definition;
 	CachedWorld.Reset();
 }
 
-void UCCLMapSubsystem::Refresh(APlayerController* Observer)
+void UKSIMapSubsystem::Refresh(APlayerController* Observer)
 {
 	if (!Observer || !Observer->GetPawn())
 	{
@@ -53,7 +53,7 @@ void UCCLMapSubsystem::Refresh(APlayerController* Observer)
 			{
 				continue;
 			}
-			FCCLMapTerrain Tile;
+			FKSIMapTerrain Tile;
 			Tile.Min = FVector2D(Box.Min);
 			Tile.Max = FVector2D(Box.Max);
 			Tile.Color = Extent.Z < 100 ? FLinearColor(0.12f, 0.19f, 0.19f) : FLinearColor(0.3f, 0.34f, 0.32f);
@@ -67,7 +67,7 @@ void UCCLMapSubsystem::Refresh(APlayerController* Observer)
 			Terrain = Region->Terrain;
 		}
 
-		Terrain.Sort([](const FCCLMapTerrain& A, const FCCLMapTerrain& B)
+		Terrain.Sort([](const FKSIMapTerrain& A, const FKSIMapTerrain& B)
 		{
 			const FVector2D AS = A.Max - A.Min;
 			const FVector2D BS = B.Max - B.Min;
@@ -81,7 +81,7 @@ void UCCLMapSubsystem::Refresh(APlayerController* Observer)
 	Markers.Reset();
 	for (TActorIterator<AActor> It(World); It; ++It)
 	{
-		const auto* Marker = It->FindComponentByClass<UCCLMapMarkerComponent>();
+		const auto* Marker = It->FindComponentByClass<UKSIMapMarkerComponent>();
 		if (!Marker || !Marker->IsRevealedTo(Observer))
 		{
 			continue;
@@ -94,7 +94,7 @@ void UCCLMapSubsystem::Refresh(APlayerController* Observer)
 	}
 }
 
-FVector2D UCCLMapSubsystem::Project(FVector World, const FBox2D& InBounds, FVector2D Size)
+FVector2D UKSIMapSubsystem::Project(FVector World, const FBox2D& InBounds, FVector2D Size)
 {
 	const FVector2D Extent = InBounds.GetSize();
 	return FVector2D((World.X - InBounds.Min.X) / FMath::Max(1., Extent.X) * Size.X,

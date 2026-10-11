@@ -2,10 +2,10 @@
 
 #include "CoreMinimal.h"
 #include "GameplayTagContainer.h"
-#include "CCLUITypes.generated.h"
+#include "KSIUITypes.generated.h"
 
 UENUM(BlueprintType)
-enum class ECCLUIInstancePolicy : uint8
+enum class EKSIUIInstancePolicy : uint8
 {
 	Single,
 	PerContext,
@@ -13,7 +13,7 @@ enum class ECCLUIInstancePolicy : uint8
 };
 
 UENUM(BlueprintType)
-enum class ECCLUILayerLayout : uint8
+enum class EKSIUILayerLayout : uint8
 {
 	Overlay,
 	Stack,
@@ -21,14 +21,14 @@ enum class ECCLUILayerLayout : uint8
 };
 
 UENUM(BlueprintType)
-enum class ECCLUIScope : uint8
+enum class EKSIUIScope : uint8
 {
 	World,
 	LocalPlayer
 };
 
 UENUM(BlueprintType)
-enum class ECCLUIInputPolicy : uint8
+enum class EKSIUIInputPolicy : uint8
 {
 	Inherit,
 	Game,
@@ -37,44 +37,44 @@ enum class ECCLUIInputPolicy : uint8
 };
 
 USTRUCT(BlueprintType)
-struct CCL_API FCCLUIViewHandle
+struct KSIUI_API FKSIUIViewHandle
 {
 	GENERATED_BODY()
 
 	bool IsValid() const { return Id.IsValid(); }
-	bool operator==(const FCCLUIViewHandle& Other) const { return Id == Other.Id; }
-	friend uint32 GetTypeHash(const FCCLUIViewHandle& Value) { return GetTypeHash(Value.Id); }
+	bool operator==(const FKSIUIViewHandle& Other) const { return Id == Other.Id; }
+	friend uint32 GetTypeHash(const FKSIUIViewHandle& Value) { return GetTypeHash(Value.Id); }
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	FGuid Id;
 };
 
 USTRUCT(BlueprintType)
-struct CCL_API FCCLUIRegistrationHandle
+struct KSIUI_API FKSIUIRegistrationHandle
 {
 	GENERATED_BODY()
 
 	bool IsValid() const { return Id.IsValid(); }
-	bool operator==(const FCCLUIRegistrationHandle& Other) const { return Id == Other.Id; }
+	bool operator==(const FKSIUIRegistrationHandle& Other) const { return Id == Other.Id; }
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	FGuid Id;
 };
 
 USTRUCT(BlueprintType)
-struct CCL_API FCCLUIRequestHandle
+struct KSIUI_API FKSIUIRequestHandle
 {
 	GENERATED_BODY()
 
 	bool IsValid() const { return Id.IsValid(); }
-	bool operator==(const FCCLUIRequestHandle& Other) const { return Id == Other.Id; }
+	bool operator==(const FKSIUIRequestHandle& Other) const { return Id == Other.Id; }
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	FGuid Id;
 };
 
 USTRUCT(BlueprintType)
-struct CCL_API FCCLUILayerDefinition
+struct KSIUI_API FKSIUILayerDefinition
 {
 	GENERATED_BODY()
 
@@ -82,14 +82,14 @@ struct CCL_API FCCLUILayerDefinition
 	FGameplayTag Tag;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	ECCLUILayerLayout Layout = ECCLUILayerLayout::Overlay;
+	EKSIUILayerLayout Layout = EKSIUILayerLayout::Overlay;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	int32 ZOrder = 0;
 };
 
 USTRUCT(BlueprintType)
-struct CCL_API FCCLUIExtensionDefinition
+struct KSIUI_API FKSIUIExtensionDefinition
 {
 	GENERATED_BODY()
 

@@ -2,9 +2,9 @@
 
 #include "CoreMinimal.h"
 #include "Subsystems/LocalPlayerSubsystem.h"
-#include "UI/Core/CCLUIPresentation.h"
-#include "UI/Core/CCLScreen.h"
-#include "UI/Core/CCLUIContext.h"
+#include "KSIUIPresentation.h"
+#include "KSIScreen.h"
+#include "KSIUIContext.h"
 #include "CCLCinematicSubsystem.generated.h"
 
 class ACameraActor;
@@ -13,7 +13,7 @@ class USoundWaveProcedural;
 class APointLight;
 
 UCLASS()
-class CCL_API UCCLCinematicContext : public UCCLUIContext
+class CCL_API UCCLCinematicContext : public UKSIUIContext
 {
 	GENERATED_BODY()
 
@@ -22,7 +22,7 @@ public:
 };
 
 UCLASS()
-class CCL_API UCCLCinematicScreen : public UCCLScreen
+class CCL_API UCCLCinematicScreen : public UKSIScreen
 {
 	GENERATED_BODY()
 
@@ -60,8 +60,8 @@ private:
 	UPROPERTY()
 	TObjectPtr<APointLight> Light;
 	FGuid Active;
-	FCCLUIPresentationHandle UIHandle;
-	FCCLUIViewHandle Overlay;
+	FKSIUIPresentationHandle UIHandle;
+	FKSIUIViewHandle Overlay;
 	FVector FocusPoint = FVector::ZeroVector;
 	float Elapsed = 0;
 	float Seconds = 4;

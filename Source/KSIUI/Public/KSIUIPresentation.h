@@ -1,23 +1,23 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "CCLUITypes.h"
-#include "CCLUIPresentation.generated.h"
+#include "KSIUITypes.h"
+#include "KSIUIPresentation.generated.h"
 
 USTRUCT(BlueprintType)
-struct CCL_API FCCLUIPresentationHandle
+struct KSIUI_API FKSIUIPresentationHandle
 {
 	GENERATED_BODY()
 
 	bool IsValid() const { return Id.IsValid(); }
-	bool operator==(const FCCLUIPresentationHandle& Other) const { return Id == Other.Id; }
+	bool operator==(const FKSIUIPresentationHandle& Other) const { return Id == Other.Id; }
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	FGuid Id;
 };
 
 USTRUCT(BlueprintType)
-struct CCL_API FCCLUIViewPresentation
+struct KSIUI_API FKSIUIViewPresentation
 {
 	GENERATED_BODY()
 
@@ -37,7 +37,7 @@ struct CCL_API FCCLUIViewPresentation
 };
 
 USTRUCT(BlueprintType)
-struct CCL_API FCCLUIPresentationDefinition
+struct KSIUI_API FKSIUIPresentationDefinition
 {
 	GENERATED_BODY()
 
@@ -70,16 +70,16 @@ struct CCL_API FCCLUIPresentationDefinition
 	float FadeSeconds = 0.f;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	ECCLUIScope Scope = ECCLUIScope::World;
+	EKSIUIScope Scope = EKSIUIScope::World;
 };
 
 USTRUCT()
-struct FCCLUIPresentationRequest
+struct KSIUI_API FKSIUIPresentationRequest
 {
 	GENERATED_BODY()
 
 	UPROPERTY()
-	FCCLUIPresentationDefinition Definition;
+	FKSIUIPresentationDefinition Definition;
 
 	UPROPERTY()
 	TWeakObjectPtr<UObject> Owner;

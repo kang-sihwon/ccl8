@@ -1,8 +1,8 @@
-#include "CCLUIRoot.h"
+#include "KSIUIRoot.h"
 
-#include "CCLScreen.h"
-#include "CCLUIRegistry.h"
-#include "CCLUISubsystem.h"
+#include "KSIScreen.h"
+#include "KSIUIRegistry.h"
+#include "KSIUISubsystem.h"
 #include "Engine/LocalPlayer.h"
 #include "Blueprint/WidgetTree.h"
 #include "Components/Border.h"
@@ -14,17 +14,17 @@
 #include "Input/UIActionBindingHandle.h"
 #include "Widgets/CommonActivatableWidgetContainer.h"
 
-UCCLUIRoot::UCCLUIRoot(const FObjectInitializer& Initializer) : Super(Initializer), OverlayPool(*this)
+UKSIUIRoot::UKSIUIRoot(const FObjectInitializer& Initializer) : Super(Initializer), OverlayPool(*this)
 {
 	bAutoActivate = true;
 	bSupportsActivationFocus = true;
 	SetVisibility(ESlateVisibility::SelfHitTestInvisible);
 }
 
-TOptional<FUIInputConfig> UCCLUIRoot::GetDesiredInputConfig() const
+TOptional<FUIInputConfig> UKSIUIRoot::GetDesiredInputConfig() const
 {
 	const auto* Local = GetOwningLocalPlayer();
-	const auto* UI = Local ? Local->GetSubsystem<UCCLUISubsystem>() : nullptr;
+	const auto* UI = Local ? Local->GetSubsystem<UKSIUISubsystem>() : nullptr;
 	if (UI && UI->IsGameplayInputBlocked())
 	{
 		FUIInputConfig Config(ECommonInputMode::Menu, EMouseCaptureMode::CapturePermanently_IncludingInitialMouseDown);
@@ -36,13 +36,13 @@ TOptional<FUIInputConfig> UCCLUIRoot::GetDesiredInputConfig() const
 	return FUIInputConfig(ECommonInputMode::Game, EMouseCaptureMode::CapturePermanently_IncludingInitialMouseDown);
 }
 
-void UCCLUIRoot::ReleaseSlateResources(bool bReleaseChildren)
+void UKSIUIRoot::ReleaseSlateResources(bool bReleaseChildren)
 {
 	Super::ReleaseSlateResources(bReleaseChildren);
 	OverlayPool.ReleaseAllSlateResources();
 }
 
-bool UCCLUIRoot::Configure(UCCLUIRegistry* Registry)
+bool UKSIUIRoot::Configure(UKSIUIRegistry* Registry)
 {
 	TArray<FText> Errors;
 	if (Layout || !Registry || !Registry->ValidateRegistry(Errors) || !WidgetTree)
@@ -59,12 +59,12 @@ bool UCCLUIRoot::Configure(UCCLUIRegistry* Registry)
 	WidgetTree->RootWidget = SafeZone;
 	SafeZone->SetVisibility(ESlateVisibility::SelfHitTestInvisible);
 	LayerPanel->SetVisibility(ESlateVisibility::SelfHitTestInvisible);
-	TArray<FCCLUILayerDefinition> OrderedLayers = Registry->Layers;
+	TArray<FKSIUILayerDefinition> OrderedLayers = Registry->Layers;
 	OrderedLayers.Sort([](const auto& A, const auto& B) { return A.ZOrder < B.ZOrder; });
 	for (const auto& Layer : OrderedLayers)
 	{
 		UWidget* Host = nullptr;
-		if (Layer.Layout == ECCLUILayerLayout::Overlay)
+		if (Layer.Layout == EKSIUILayerLayout::Overlay)
 		{
 			auto* Panel = WidgetTree->ConstructWidget<UCanvasPanel>();
 			Panel->SetVisibility(ESlateVisibility::SelfHitTestInvisible);
@@ -73,7 +73,7 @@ bool UCCLUIRoot::Configure(UCCLUIRegistry* Registry)
 		}
 		else
 		{
-			UCommonActivatableWidgetContainerBase* Container = Layer.Layout == ECCLUILayerLayout::Stack
+			UCommonActivatableWidgetContainerBase* Container = Layer.Layout == EKSIUILayerLayout::Stack
 				? static_cast<UCommonActivatableWidgetContainerBase*>(WidgetTree->ConstructWidget<UCommonActivatableWidgetStack>())
 				: static_cast<UCommonActivatableWidgetContainerBase*>(WidgetTree->ConstructWidget<UCommonActivatableWidgetQueue>());
 			Container->SetTransitionDuration(0.f);
@@ -107,7 +107,7 @@ bool UCCLUIRoot::Configure(UCCLUIRegistry* Registry)
 	return true;
 }
 
-UCCLScreen* UCCLUIRoot::AddScreen(const FCCLUIViewDefinition& Definition, TFunctionRef<void(UCCLScreen&)> InitializeScreen)
+UKSIScreen* UKSIUIRoot::AddScreen(const FKSIUIViewDefinition& Definition, TFunctionRef<void(UKSIScreen&)> InitializeScreen)
 {
 	if (!Layout || !Definition.WidgetClass.Get())
 	{
@@ -116,7 +116,7 @@ UCCLScreen* UCCLUIRoot::AddScreen(const FCCLUIViewDefinition& Definition, TFunct
 
 	if (auto* Container = Containers.Find(Definition.Layer))
 	{
-		return (*Container)->AddWidget<UCCLScreen>(Definition.WidgetClass.Get(), InitializeScreen);
+		return (*Container)->AddWidget<UKSIScreen>(Definition.WidgetClass.Get(), InitializeScreen);
 	}
 
 	auto* Layer = Overlays.Find(Definition.Layer);
@@ -125,7 +125,7 @@ UCCLScreen* UCCLUIRoot::AddScreen(const FCCLUIViewDefinition& Definition, TFunct
 		return nullptr;
 	}
 
-	auto* Screen = OverlayPool.GetOrCreateInstance<UCCLScreen>(Definition.WidgetClass.Get());
+	auto* Screen = OverlayPool.GetOrCreateInstance<UKSIScreen>(Definition.WidgetClass.Get());
 	if (!Screen)
 	{
 		return nullptr;
@@ -147,7 +147,7 @@ UCCLScreen* UCCLUIRoot::AddScreen(const FCCLUIViewDefinition& Definition, TFunct
 	return Screen;
 }
 
-void UCCLUIRoot::RemoveScreen(UCCLScreen* Screen)
+void UKSIUIRoot::RemoveScreen(UKSIScreen* Screen)
 {
 	if (!Screen)
 	{
@@ -169,14 +169,14 @@ void UCCLUIRoot::RemoveScreen(UCCLScreen* Screen)
 	OverlayPool.Release(Screen, true);
 }
 
-void UCCLUIRoot::ClearScreens()
+void UKSIUIRoot::ClearScreens()
 {
 	for (const auto& Pair : Containers)
 	{
 		const TArray<UCommonActivatableWidget*> Active = Pair.Value->GetWidgetList();
 		for (auto* Widget : Active)
 		{
-			if (auto* Screen = Cast<UCCLScreen>(Widget))
+			if (auto* Screen = Cast<UKSIScreen>(Widget))
 			{
 				Screen->ReleaseContext();
 			}
@@ -188,13 +188,13 @@ void UCCLUIRoot::ClearScreens()
 	const TArray<UUserWidget*> Active = OverlayPool.GetActiveWidgets();
 	for (auto* Widget : Active)
 	{
-		RemoveScreen(Cast<UCCLScreen>(Widget));
+		RemoveScreen(Cast<UKSIScreen>(Widget));
 	}
 
 	OverlayPool.ResetPool();
 }
 
-bool UCCLUIRoot::ContainsScreen(const UCCLScreen* Screen) const
+bool UKSIUIRoot::ContainsScreen(const UKSIScreen* Screen) const
 {
 	if (!Screen)
 	{
@@ -212,7 +212,7 @@ bool UCCLUIRoot::ContainsScreen(const UCCLScreen* Screen) const
 	return OverlayPool.GetActiveWidgets().Contains(Screen);
 }
 
-const UCommonActivatableWidgetContainerBase* UCCLUIRoot::GetContainer(FGameplayTag Layer) const
+const UCommonActivatableWidgetContainerBase* UKSIUIRoot::GetContainer(FGameplayTag Layer) const
 {
 	const auto* Container = Containers.Find(Layer);
 	return Container ? Container->Get() : nullptr;

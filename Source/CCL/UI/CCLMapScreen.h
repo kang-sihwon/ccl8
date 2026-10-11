@@ -1,11 +1,11 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "Core/CCLScreen.h"
-#include "Core/CCLUIContext.h"
+#include "KSIScreen.h"
+#include "KSIUIContext.h"
 #include "CCLMapScreen.generated.h"
 
 UCLASS()
-class CCL_API UCCLMapContext : public UCCLUIContext
+class CCL_API UCCLMapContext : public UKSIUIContext
 {
 	GENERATED_BODY()
 
@@ -14,7 +14,7 @@ public:
 };
 
 UCLASS()
-class CCL_API UCCLMapScreen : public UCCLScreen
+class CCL_API UCCLMapScreen : public UKSIScreen
 {
 	GENERATED_BODY()
 
@@ -27,5 +27,5 @@ protected:
 		FSlateWindowElementList& Elements, int32 Layer, const FWidgetStyle& Style, bool bParentEnabled) const override;
 private:
 	float RefreshTime = 0;
-	FCCLUIPresentationHandle HUDHidden;
+	FKSIUIPresentationHandle HUDHidden;
 };

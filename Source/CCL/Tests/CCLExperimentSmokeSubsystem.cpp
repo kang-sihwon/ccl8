@@ -14,7 +14,7 @@
 #include "Agents/CCLAccountComponent.h"
 #include "GameFramework/PlayerState.h"
 #include "UI/CCLGameUI.h"
-#include "UI/Core/CCLUISubsystem.h"
+#include "KSIUISubsystem.h"
 #include "Input/CommonUIActionRouterBase.h"
 #include "Engine/World.h"
 #include "Engine/NetDriver.h"

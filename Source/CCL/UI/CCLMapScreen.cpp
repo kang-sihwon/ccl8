@@ -2,8 +2,8 @@
 
 #include "UI/CCLUIInputData.h"
 #include "CCLGameUI.h"
-#include "Core/CCLUISubsystem.h"
-#include "Map/CCLMapSystem.h"
+#include "KSIUISubsystem.h"
+#include "KSIMapSystem.h"
 #include "Blueprint/WidgetTree.h"
 #include "Components/CanvasPanel.h"
 #include "Engine/LocalPlayer.h"
@@ -25,7 +25,7 @@ void UCCLMapScreen::OnManagedTick(float DeltaTime)
 	RefreshTime += DeltaTime;
 	if (RefreshTime >= 0.2f && GetOwningLocalPlayer())
 	{
-		GetOwningLocalPlayer()->GetSubsystem<UCCLMapSubsystem>()->Refresh(GetOwningPlayer());
+		GetOwningLocalPlayer()->GetSubsystem<UKSIMapSubsystem>()->Refresh(GetOwningPlayer());
 		RefreshTime = 0;
 	}
 }
@@ -36,7 +36,7 @@ int32 UCCLMapScreen::NativePaint(const FPaintArgs& Args, const FGeometry& Geomet
 	Layer = Super::NativePaint(Args, Geometry, CullingRect, Elements, Layer, Style, bParentEnabled);
 	const auto* Context = Cast<UCCLMapContext>(GetContext());
 	const auto* PC = GetOwningPlayer();
-	const auto* Map = GetOwningLocalPlayer() ? GetOwningLocalPlayer()->GetSubsystem<UCCLMapSubsystem>() : nullptr;
+	const auto* Map = GetOwningLocalPlayer() ? GetOwningLocalPlayer()->GetSubsystem<UKSIMapSubsystem>() : nullptr;
 	if (!Context || !Map || !PC || !PC->GetPawn())
 	{
 		return Layer;
@@ -68,16 +68,16 @@ int32 UCCLMapScreen::NativePaint(const FPaintArgs& Args, const FGeometry& Geomet
 	Elements.PushClip(FSlateClippingZone(Geometry.ToPaintGeometry(Size, FSlateLayoutTransform(Origin))));
 	for (const auto& Terrain : Map->GetTerrain())
 	{
-		const FVector2D A = UCCLMapSubsystem::Project(FVector(Terrain.Min.X, Terrain.Max.Y, 0), Bounds, Size);
-		const FVector2D B = UCCLMapSubsystem::Project(FVector(Terrain.Max.X, Terrain.Min.Y, 0), Bounds, Size);
+		const FVector2D A = UKSIMapSubsystem::Project(FVector(Terrain.Min.X, Terrain.Max.Y, 0), Bounds, Size);
+		const FVector2D B = UKSIMapSubsystem::Project(FVector(Terrain.Max.X, Terrain.Min.Y, 0), Bounds, Size);
 		Box(Origin + A, B - A, Terrain.Color);
 	}
 	TArray<FVector2D> Labels;
 	for (const auto& Marker : Map->GetMarkers())
 	{
-		const FVector2D Position = Origin + UCCLMapSubsystem::Project(Marker.Position, Bounds, Size);
-		const FLinearColor Color = Marker.Kind == ECCLMapKind::Player ? FLinearColor(0.15f, 0.8f, 1) :
-			Marker.Kind == ECCLMapKind::Enemy ? FLinearColor(1, 0.25f, 0.2f) : FLinearColor(0.9f, 0.75f, 0.2f);
+		const FVector2D Position = Origin + UKSIMapSubsystem::Project(Marker.Position, Bounds, Size);
+		const FLinearColor Color = Marker.Kind == EKSIMapKind::Player ? FLinearColor(0.15f, 0.8f, 1) :
+			Marker.Kind == EKSIMapKind::Enemy ? FLinearColor(1, 0.25f, 0.2f) : FLinearColor(0.9f, 0.75f, 0.2f);
 		Box(Position - FVector2D(4, 4) * Scale, FVector2D(8, 8) * Scale, Color);
 		if (Context->bFullMap && !Marker.Label.IsEmpty() && !Labels.ContainsByPredicate([&](FVector2D Prior)
 			{ return FMath::Abs(Prior.X - Position.X) < 130 * Scale && FMath::Abs(Prior.Y - Position.Y) < 25 * Scale; }))
@@ -99,7 +99,7 @@ void UCCLMapScreen::OnContextBound()
 	{
 		if (auto* UI = CCLGameUI::Get(GetOwningPlayer()))
 		{
-			FCCLUIPresentationDefinition Request;
+			FKSIUIPresentationDefinition Request;
 			Request.Groups.AddTag(CCLUITags::Group_HUD);
 			Request.bHide = 1;
 			HUDHidden = UI->PushPresentation(Request, this);
@@ -111,7 +111,7 @@ void UCCLMapScreen::OnContextReleased()
 {
 	if (auto* Local = GetOwningLocalPlayer())
 	{
-		Local->GetSubsystem<UCCLUISubsystem>()->ReleasePresentation(HUDHidden);
+		Local->GetSubsystem<UKSIUISubsystem>()->ReleasePresentation(HUDHidden);
 	}
 	HUDHidden = {};
 	Super::OnContextReleased();

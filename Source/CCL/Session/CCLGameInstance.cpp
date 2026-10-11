@@ -4,7 +4,7 @@
 #include "Misc/Base64.h"
 #include "UI/CCLGameUI.h"
 #include "UI/CCLSessionMenuScreen.h"
-#include "UI/Core/CCLUISubsystem.h"
+#include "KSIUISubsystem.h"
 #include "Engine/LocalPlayer.h"
 #include "CCLCharacter.h"
 #include "CCLPlayerController.h"
@@ -121,7 +121,7 @@ void UCCLGameInstance::HideMenu()
 	MenuHandles.Reset();
 	for (const auto& Pair : Closing)
 	{
-		if (auto* UI = Pair.Key.IsValid() ? Pair.Key->GetSubsystem<UCCLUISubsystem>() : nullptr)
+		if (auto* UI = Pair.Key.IsValid() ? Pair.Key->GetSubsystem<UKSIUISubsystem>() : nullptr)
 		{
 			UI->CloseView(Pair.Value);
 		}
@@ -131,9 +131,9 @@ void UCCLGameInstance::HideMenu()
 void UCCLGameInstance::HideMenuForPlayer(APlayerController* PC)
 {
 	const auto* Local = PC ? PC->GetLocalPlayer() : nullptr;
-	if (auto* UI = Local ? Local->GetSubsystem<UCCLUISubsystem>() : nullptr)
+	if (auto* UI = Local ? Local->GetSubsystem<UKSIUISubsystem>() : nullptr)
 	{
-		FCCLUIViewHandle Handle;
+		FKSIUIViewHandle Handle;
 		if (MenuHandles.RemoveAndCopyValue(PC->GetLocalPlayer(), Handle))
 		{
 			UI->CloseView(Handle);
@@ -166,7 +166,7 @@ bool UCCLGameInstance::IsMenuVisible() const
 bool UCCLGameInstance::IsMenuVisibleForPlayer(const APlayerController* PC) const
 {
 	const auto* Local = PC ? PC->GetLocalPlayer() : nullptr;
-	const auto* UI = Local ? Local->GetSubsystem<UCCLUISubsystem>() : nullptr;
+	const auto* UI = Local ? Local->GetSubsystem<UKSIUISubsystem>() : nullptr;
 	const auto* Handle = Local ? MenuHandles.Find(PC->GetLocalPlayer()) : nullptr;
 	return UI && Handle && UI->IsViewOpen(*Handle);
 }

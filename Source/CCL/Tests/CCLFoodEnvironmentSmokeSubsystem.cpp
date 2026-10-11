@@ -12,7 +12,7 @@
 #include "Misc/Paths.h"
 #include "Environment/CCLExperimentScreen.h"
 #include "UI/CCLGameUI.h"
-#include "UI/Core/CCLUISubsystem.h"
+#include "KSIUISubsystem.h"
 #include "Camera/CameraActor.h"
 #include "UnrealClient.h"
 #include "Framework/Application/SlateApplication.h"

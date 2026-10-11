@@ -10,7 +10,7 @@ class UNiagaraSystem;
 // Editor authoring for the stateless Niagara systems used by weather and fire presentation.
 // Validation scripts call these through Python; game builds return false.
 UCLASS()
-class CCL_API UCCLEnvironmentFXLibrary : public UBlueprintFunctionLibrary
+class CCLEDITOR_API UCCLEnvironmentFXLibrary : public UBlueprintFunctionLibrary
 {
 	GENERATED_BODY()
 

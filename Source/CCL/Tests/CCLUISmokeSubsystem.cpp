@@ -26,8 +26,8 @@
 #include "Session/CCLSessionRecord.h"
 #include "UI/SCCLInventoryWidget.h"
 #include "UI/CCLInventoryScreen.h"
-#include "UI/Core/CCLUISubsystem.h"
-#include "UI/Core/CCLUIRoot.h"
+#include "KSIUISubsystem.h"
+#include "KSIUIRoot.h"
 #include "Session/CCLGameInstance.h"
 #include "Engine/LocalPlayer.h"
 #include "Input/CommonUIActionRouterBase.h"
@@ -296,7 +296,7 @@ void UCCLUISmokeSubsystem::Tick(float DeltaTime)
 	}
 
 	auto* Inventory = Player->GetInventory();
-	auto* UIManager = PC->GetLocalPlayer()->GetSubsystem<UCCLUISubsystem>();
+	auto* UIManager = PC->GetLocalPlayer()->GetSubsystem<UKSIUISubsystem>();
 	auto* Router = PC->GetLocalPlayer()->GetSubsystem<UCommonUIActionRouterBase>();
 	auto* Session = GetWorld()->GetGameInstance<UCCLGameInstance>();
 
@@ -351,6 +351,7 @@ void UCCLUISmokeSubsystem::Tick(float DeltaTime)
 			return;
 		}
 
+		// The codec upgrades slots to version 7; version 8 supply placement migration needs the campaign map.
 		FCCLSessionRecord Legacy, Decoded;
 		Legacy.Version = 1;
 		FCCLSavedItem Item;
@@ -359,8 +360,8 @@ void UCCLUISmokeSubsystem::Tick(float DeltaTime)
 		Item.Quantity = 1;
 		Legacy.Items.Add(Item);
 		TArray<uint8> Bytes;
-		if (!Check(FCCLSessionCodec::Encode(Legacy, Bytes) && FCCLSessionCodec::Decode(Bytes, Decoded) && Decoded.Version == FCCLSessionRecord().Version &&
-		               Decoded.Items[0].Slot == 0,
+		if (!Check(FCCLSessionCodec::Encode(Legacy, Bytes) && FCCLSessionCodec::Decode(Bytes, Decoded) && Decoded.Version == 7 &&
+		               Decoded.Items.Num() == 1 && Decoded.Items[0].Slot == 0,
 		           TEXT("legacy save upgrades to slots")))
 		{
 			return;
@@ -762,7 +763,7 @@ void UCCLUISmokeSubsystem::Tick(float DeltaTime)
 	{
 		auto* HUD = CastChecked<ACCLHUD>(PC->GetHUD());
 		auto* Vitals = CastChecked<UCCLVitalsScreen>(UIManager->FindScreen(HUD->GetVitalsHandle()));
-		FCCLUIPresentationDefinition Cutscene;
+		FKSIUIPresentationDefinition Cutscene;
 		Cutscene.Groups.AddTag(CCLUITags::Group_HUD);
 		Cutscene.bHide = 1;
 		Cutscene.bSuspendUpdates = 1;
@@ -796,7 +797,7 @@ void UCCLUISmokeSubsystem::Tick(float DeltaTime)
 		}
 
 		Capture(TEXT("presentation-dialogue-only"));
-		FCCLUIPresentationDefinition Nested;
+		FKSIUIPresentationDefinition Nested;
 		Nested.Groups.AddTag(CCLUITags::Group_HUD);
 		Nested.bHide = 1;
 		Nested.bSuspendUpdates = 1;
@@ -815,7 +816,7 @@ void UCCLUISmokeSubsystem::Tick(float DeltaTime)
 			return;
 		}
 
-		FCCLUIViewPresentation Base;
+		FKSIUIViewPresentation Base;
 		Base.Opacity = 0.4f;
 		UIManager->SetBasePresentation(HUD->GetVitalsHandle(), Base);
 		UIManager->ReleasePresentation(PresentationB);
@@ -831,7 +832,7 @@ void UCCLUISmokeSubsystem::Tick(float DeltaTime)
 			return;
 		}
 
-		FCCLUIPresentationDefinition Hide;
+		FKSIUIPresentationDefinition Hide;
 		Hide.Groups.AddTag(CCLUITags::Group_HUD);
 		Hide.bHide = 1;
 		Hide.FadeSeconds = 1.f;
@@ -865,7 +866,7 @@ void UCCLUISmokeSubsystem::Tick(float DeltaTime)
 		PC->ToggleInventory();
 		auto* Screen = CastChecked<UCCLInventoryScreen>(UIManager->FindScreen(PC->GetInventoryHandle()));
 		RetainedContext = CastChecked<UCCLInventoryContext>(Screen->GetContext());
-		FCCLUIPresentationDefinition HiddenInventory;
+		FKSIUIPresentationDefinition HiddenInventory;
 		HiddenInventory.Groups.AddTag(CCLUITags::Group_Menus);
 		HiddenInventory.bHide = 1;
 		HiddenInventory.bSuspendUpdates = 1;
@@ -897,7 +898,7 @@ void UCCLUISmokeSubsystem::Tick(float DeltaTime)
 			return;
 		}
 
-		FCCLUIPresentationDefinition Disable;
+		FKSIUIPresentationDefinition Disable;
 		Disable.Groups.AddTag(CCLUITags::Group_Menus);
 		Disable.bDisableInput = 1;
 		Disable.bBlockGameplay = 1;
@@ -933,7 +934,7 @@ void UCCLUISmokeSubsystem::Tick(float DeltaTime)
 
 		PC->CloseInventory();
 		PresentationOwner = GetWorld()->SpawnActor<AActor>();
-		FCCLUIPresentationDefinition Owned;
+		FKSIUIPresentationDefinition Owned;
 		Owned.bAllViews = 1;
 		Owned.bHide = 1;
 		Owned.bBlockGameplay = 1;
@@ -949,7 +950,7 @@ void UCCLUISmokeSubsystem::Tick(float DeltaTime)
 		}
 
 		RetainedContext = nullptr;
-		FCCLUIPresentationDefinition Overlap;
+		FKSIUIPresentationDefinition Overlap;
 		Overlap.bAllViews = 1;
 		Overlap.bHide = 1;
 		Overlap.bBlockGameplay = 1;

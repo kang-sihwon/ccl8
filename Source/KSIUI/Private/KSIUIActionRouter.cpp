@@ -1,15 +1,15 @@
-#include "CCLUIActionRouter.h"
+#include "KSIUIActionRouter.h"
 
-#include "CCLUISubsystem.h"
+#include "KSIUISubsystem.h"
 #include "Engine/LocalPlayer.h"
 
-bool UCCLUIActionRouter::CanProcessNormalGameInput() const
+bool UKSIUIActionRouter::CanProcessNormalGameInput() const
 {
-	const auto* UI = GetLocalPlayer()->GetSubsystem<UCCLUISubsystem>();
+	const auto* UI = GetLocalPlayer()->GetSubsystem<UKSIUISubsystem>();
 	return (!UI || !UI->IsGameplayInputBlocked()) && Super::CanProcessNormalGameInput();
 }
 
-void UCCLUIActionRouter::RefreshPresentationRouting()
+void UKSIUIActionRouter::RefreshPresentationRouting()
 {
 	if (auto ActiveRoot = GetActiveRoot().Pin())
 	{

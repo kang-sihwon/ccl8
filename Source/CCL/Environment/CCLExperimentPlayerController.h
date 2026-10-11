@@ -47,7 +47,7 @@ public:
 	void ClientExperimentResponse(const FString& Message);
 
 	const FString& GetExperimentMessage() const { return LastMessage; }
-	FCCLUIViewHandle GetExperimentView() const { return ExperimentView; }
+	FKSIUIViewHandle GetExperimentView() const { return ExperimentView; }
 
 private:
 	UPROPERTY()
@@ -62,8 +62,8 @@ private:
 	UPROPERTY(Transient)
 	TObjectPtr<UInputMappingContext> ExperimentInput;
 
-	FCCLUIRegistrationHandle Registration;
-	FCCLUIViewHandle ExperimentView;
+	FKSIUIRegistrationHandle Registration;
+	FKSIUIViewHandle ExperimentView;
 	FString LastMessage;
 	uint8 bOpenedOnce = 0;
 	uint8 bTerrainToolActive = 0;

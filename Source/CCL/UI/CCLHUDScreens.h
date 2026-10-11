@@ -1,8 +1,8 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Core/CCLScreen.h"
-#include "Core/CCLUIContext.h"
+#include "KSIScreen.h"
+#include "KSIUIContext.h"
 #include "CCLHUDScreens.generated.h"
 
 DECLARE_MULTICAST_DELEGATE(FCCLHUDContentChanged);
@@ -13,7 +13,7 @@ class UBorder;
 class UProgressBar;
 
 UCLASS()
-class CCL_API UCCLHUDContext : public UCCLUIContext
+class CCL_API UCCLHUDContext : public UKSIUIContext
 {
 	GENERATED_BODY()
 
@@ -30,7 +30,7 @@ public:
 };
 
 UCLASS()
-class CCL_API UCCLDialogueContext : public UCCLUIContext
+class CCL_API UCCLDialogueContext : public UKSIUIContext
 {
 	GENERATED_BODY()
 
@@ -44,7 +44,7 @@ public:
 };
 
 UCLASS()
-class CCL_API UCCLVitalsScreen : public UCCLScreen
+class CCL_API UCCLVitalsScreen : public UKSIScreen
 {
 	GENERATED_BODY()
 
@@ -75,7 +75,7 @@ private:
 };
 
 UCLASS()
-class CCL_API UCCLFieldHUDScreen : public UCCLScreen
+class CCL_API UCCLFieldHUDScreen : public UKSIScreen
 {
 	GENERATED_BODY()
 
@@ -100,7 +100,7 @@ private:
 };
 
 UCLASS()
-class CCL_API UCCLDialogueScreen : public UCCLScreen
+class CCL_API UCCLDialogueScreen : public UKSIScreen
 {
 	GENERATED_BODY()
 
