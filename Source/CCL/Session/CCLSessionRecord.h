@@ -28,12 +28,27 @@ struct FCCLSavedItem
 	FString Food;
 };
 USTRUCT()
+struct FCCLSavedSupply
+{
+	GENERATED_BODY()
+
+	UPROPERTY()
+	FGuid PlacementId;
+
+	UPROPERTY()
+	FName Definition;
+
+	UPROPERTY()
+	int32 Quantity = 0;
+};
+
+USTRUCT()
 struct FCCLSessionRecord
 {
 	GENERATED_BODY()
 
 	UPROPERTY()
-	int32 Version = 7;
+	int32 Version = 8;
 
 	UPROPERTY()
 	FString AgentSimulation;
@@ -70,6 +85,9 @@ struct FCCLSessionRecord
 
 	UPROPERTY()
 	TArray<FName> RemainingSupplies;
+
+	UPROPERTY()
+	TArray<FCCLSavedSupply> SupplyPlacements;
 };
 class CCL_API FCCLSessionCodec
 {

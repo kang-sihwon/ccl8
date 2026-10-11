@@ -340,14 +340,12 @@ bool UCCLGameInstance::SaveSession()
 	Record.Quest = static_cast<uint8>(Player->GetExpedition()->GetQuest());
 	Record.DefeatedGuards = Director->GetDefeatedMask();
 	Record.Victory = Campaign->GetPhase() == ECCLCampaignPhase::Victory;
-	// One entry per remaining campaign supply keeps duplicate definitions countable.
-	// Pickups with a persistent identity belong to the world inventory snapshot instead.
-	for (TActorIterator<ACCLWorldPickup> It(GetWorld()); It; ++It)
+	FString SupplyError;
+	if (!Director->CaptureSupplies(Record.SupplyPlacements, SupplyError))
 	{
-		if (It->Definition && !It->PersistentId.IsValid())
-		{
-			Record.RemainingSupplies.Add(It->Definition->GetFName());
-		}
+		UE_LOG(LogTemp, Warning, TEXT("CCL_SESSION supply capture rejected: %s"), *SupplyError);
+		Status = TEXT("보급품 상태를 수집하지 못해 저장할 수 없다.");
+		return false;
 	}
 
 	if (auto* Agents = GetWorld()->GetSubsystem<UCCLAgentWorldSubsystem>(); Agents && Agents->IsRunning())
@@ -433,6 +431,21 @@ bool UCCLGameInstance::ApplyRecord(const FCCLSessionRecord& Record)
 		return false;
 	}
 
+	ACCLCampaignDirector* Director = nullptr;
+	for (TActorIterator<ACCLCampaignDirector> It(GetWorld()); It; ++It)
+	{
+		Director = *It;
+		break;
+	}
+
+	TArray<FCCLSavedSupply> Supplies;
+	FString SupplyError;
+	if (!Director || !Director->PrepareSupplyRestore(Record, Supplies, SupplyError))
+	{
+		UE_LOG(LogTemp, Warning, TEXT("CCL_SESSION supply restore rejected: %s"), *SupplyError);
+		return false;
+	}
+
 	auto* Account = Player->FindComponentByClass<UCCLAccountComponent>();
 	auto* Expedition = Player->GetExpedition();
 	if (!Account || !Expedition)
@@ -507,36 +520,8 @@ bool UCCLGameInstance::ApplyRecord(const FCCLSessionRecord& Record)
 		return false;
 	}
 
-	TMap<FName, int32> Remaining;
-	for (FName Supply : Record.RemainingSupplies)
-	{
-		++Remaining.FindOrAdd(Supply);
-	}
-
-	for (TActorIterator<ACCLWorldPickup> It(GetWorld()); It; ++It)
-	{
-		if (!It->Definition || It->PersistentId.IsValid())
-		{
-			continue;
-		}
-
-		int32* Count = Remaining.Find(It->Definition->GetFName());
-		if (Count && *Count > 0)
-		{
-			--*Count;
-		}
-		else
-		{
-			It->Destroy();
-		}
-	}
-
-	for (TActorIterator<ACCLCampaignDirector> It(GetWorld()); It; ++It)
-	{
-		return It->RestoreCheckpoint(Record.DefeatedGuards, Record.Victory != 0);
-	}
-
-	return false;
+	Director->ApplySupplies(Supplies);
+	return Director->RestoreCheckpoint(Record.DefeatedGuards, Record.Victory != 0);
 }
 
 void UCCLGameInstance::ReturnToMenu()

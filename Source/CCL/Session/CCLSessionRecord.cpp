@@ -33,13 +33,13 @@ constexpr int32 MaxSkills = 16;
 
 bool ValidateRecord(const FCCLSessionRecord& R, bool bProfile, FGuid ProfileWorld, double ProfileTime, int32 Capacity)
 {
-	if (bProfile && (R.Version != 7 || !R.AccountId.IsValid() || !R.AgentSimulation.IsEmpty() || R.Coins != 0 ||
-		R.Equipped.IsValid() || R.Victory || R.DefeatedGuards || !R.RemainingSupplies.IsEmpty() ||
+	if (bProfile && ((R.Version != 7 && R.Version != 8) || !R.AccountId.IsValid() || !R.AgentSimulation.IsEmpty() || R.Coins != 0 ||
+		R.Equipped.IsValid() || R.Victory || R.DefeatedGuards || !R.RemainingSupplies.IsEmpty() || !R.SupplyPlacements.IsEmpty() ||
 		!ProfileWorld.IsValid() || !FMath::IsFinite(ProfileTime) || ProfileTime < 0. || Capacity < 1 || Capacity > 128))
 	{
 		return false;
 	}
-	if (R.Version < 1 || R.Version > 7 || R.Items.Num() > (bProfile ? Capacity + 8 : (R.Version >= 3 ? 24 : 16)) || R.Skills.Num() > MaxSkills || R.Points < 0 ||
+	if (R.Version < 1 || R.Version > 8 || R.Items.Num() > (bProfile ? Capacity + 8 : (R.Version >= 3 ? 24 : 16)) || R.Skills.Num() > MaxSkills || R.Points < 0 ||
 		R.Points > 1000 || R.Coins < 0 || R.Coins > 1000000 || R.Quest > 2 || R.Victory > 1 ||
 		(R.Victory && R.DefeatedGuards == 0) || (!bProfile && R.Quest == 2 && !R.Victory) ||
 		R.RemainingSupplies.Num() > (R.Version >= 5 ? MaxRemainingSupplies : 2))
@@ -227,7 +227,26 @@ bool ValidateRecord(const FCCLSessionRecord& R, bool bProfile, FGuid ProfileWorl
 		Skills.Add(Id);
 	}
 
-	// Repeated names are separate pickups of the same definition.
+	if ((R.Version < 8 && !R.SupplyPlacements.IsEmpty()) ||
+		(R.Version >= 8 && !R.RemainingSupplies.IsEmpty()) || R.SupplyPlacements.Num() > MaxRemainingSupplies)
+	{
+		return false;
+	}
+
+	TSet<FGuid> Placements;
+	for (const auto& Supply : R.SupplyPlacements)
+	{
+		const auto* Definition = FCCLSessionCodec::Item(Supply.Definition);
+		if (!Supply.PlacementId.IsValid() || Placements.Contains(Supply.PlacementId) || !Definition ||
+			Supply.Quantity < 1 || Supply.Quantity > 1000000 || Definition->FindFragment<FCCLItemFragment_Perishable>())
+		{
+			return false;
+		}
+
+		Placements.Add(Supply.PlacementId);
+	}
+
+	// Legacy records preserve names until the campaign can resolve their placements.
 	for (FName Id : R.RemainingSupplies)
 	{
 		if (!FCCLSessionCodec::Item(Id))
@@ -330,10 +349,27 @@ bool FCCLSessionCodec::Decode(const TArray<uint8>& Bytes, FCCLSessionRecord& Rec
 		return Object && Object->TryGetNumberField(Key, Value) && FMath::IsFinite(Value) && Value >= Min && Value <= Max &&
 			   FMath::FloorToDouble(Value) == Value;
 	};
-	if (!Number(Json, TEXT("version"), 1, 7) || !Number(Json, TEXT("points"), 0, 1000) || !Number(Json, TEXT("coins"), 0, 1000000) ||
+	if (!Number(Json, TEXT("version"), 1, 8) || !Number(Json, TEXT("points"), 0, 1000) || !Number(Json, TEXT("coins"), 0, 1000000) ||
 		!Number(Json, TEXT("quest"), 0, 2) || !Number(Json, TEXT("defeatedGuards"), 0, 255) || !Number(Json, TEXT("victory"), 0, 1))
 	{
 		return false;
+	}
+
+	if (Json->GetNumberField(TEXT("version")) >= 8)
+	{
+		const TArray<TSharedPtr<FJsonValue>>* Supplies;
+		if (!Json->TryGetArrayField(TEXT("supplyPlacements"), Supplies) || Supplies->Num() > MaxRemainingSupplies)
+		{
+			return false;
+		}
+
+		for (const auto& Value : *Supplies)
+		{
+			if (!Value || Value->Type != EJson::Object || !Number(Value->AsObject(), TEXT("quantity"), 1, 1000000))
+			{
+				return false;
+			}
+		}
 	}
 
 	const bool bHasSlots = Json->GetNumberField(TEXT("version")) >= 2;
@@ -443,6 +479,11 @@ bool FCCLSessionCodec::Decode(const TArray<uint8>& Bytes, FCCLSessionRecord& Rec
 		Json->SetStringField(TEXT("accountId"), FGuid().ToString());
 	}
 
+	if (Version < 8 && !Json->HasField(TEXT("supplyPlacements")))
+	{
+		Json->SetArrayField(TEXT("supplyPlacements"), {});
+	}
+
 	Json->SetArrayField(TEXT("equipmentSlots"), {});
 	if (!FJsonObjectConverter::JsonObjectToUStruct(Json.ToSharedRef(), &Candidate, 0, 0, true))
 	{
@@ -510,7 +551,7 @@ bool FCCLSessionCodec::Decode(const TArray<uint8>& Bytes, FCCLSessionRecord& Rec
 		Candidate.AgentSimulation = FBase64::Encode(Upgraded);
 	}
 
-	Candidate.Version = 7;
+	Candidate.Version = FMath::Max(Candidate.Version, 7);
 	if (!Validate(Candidate))
 	{
 		return false;

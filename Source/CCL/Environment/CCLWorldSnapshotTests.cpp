@@ -162,7 +162,7 @@ bool FCCLWorldSaveMigrationTest::RunTest(const FString& Parameters)
 		FCCLSessionRecord Upgraded;
 		TestTrue(TEXT("encode legacy session"), FCCLSessionCodec::Encode(Record, Bytes));
 		TestTrue(TEXT("migrate session"), FCCLSessionCodec::Decode(Bytes, Upgraded));
-		TestEqual(TEXT("current schema"), Upgraded.Version, FCCLSessionRecord().Version);
+		TestEqual(TEXT("legacy session remains v7 until campaign placement migration"), Upgraded.Version, 7);
 		if (Version >= 5)
 		{
 			TArray<uint8> WorldBytes;

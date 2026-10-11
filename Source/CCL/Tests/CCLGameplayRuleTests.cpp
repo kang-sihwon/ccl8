@@ -1,4 +1,8 @@
 #include "CCLPlayerState.h"
+#include "Campaign/CCLCampaignDirector.h"
+#include "Campaign/CCLCampaignState.h"
+#include "Items/CCLWorldPickup.h"
+#include "EngineUtils.h"
 #include "AbilitySystem/CCLAbilitySystemComponent.h"
 #include "AbilitySystem/CCLEffects.h"
 #include "AbilitySystem/CCLGameplayTags.h"
@@ -254,7 +258,9 @@ bool FCCLSessionCodecRuleTest::RunTest(const FString& Parameters)
 	Potion.Quantity = 1;
 	Potion.Slot = 0;
 	Record.Items.Add(Potion);
-	Record.RemainingSupplies = {TEXT("DA_Bullets"), TEXT("DA_Bullets")};
+	Record.SupplyPlacements = {
+		{FGuid(1, 0, 0, 1), TEXT("DA_Bullets"), 10},
+		{FGuid(1, 0, 0, 2), TEXT("DA_Bullets"), 60}};
 	TestTrue(TEXT("repeated supplies are separate pickups"), FCCLSessionCodec::Validate(Record));
 
 	TArray<uint8> Bytes;
@@ -264,7 +270,22 @@ bool FCCLSessionCodecRuleTest::RunTest(const FString& Parameters)
 		return false;
 	}
 
-	TestEqual(TEXT("supply multiset survives"), Decoded.RemainingSupplies.Num(), 2);
+	TestEqual(TEXT("supply multiset survives"), Decoded.SupplyPlacements.Num(), 2);
+	TestEqual(TEXT("placement quantity survives"), Decoded.SupplyPlacements[1].Quantity, 60);
+	TestEqual(TEXT("placement identity survives"), Decoded.SupplyPlacements[0].PlacementId, Record.SupplyPlacements[0].PlacementId);
+	auto Duplicate = Record;
+	Duplicate.SupplyPlacements[1].PlacementId = Duplicate.SupplyPlacements[0].PlacementId;
+	TestFalse(TEXT("duplicate placements rejected"), FCCLSessionCodec::Validate(Duplicate));
+	Duplicate = Record;
+	Duplicate.SupplyPlacements[0].Quantity = 0;
+	TestFalse(TEXT("empty quantity rejected"), FCCLSessionCodec::Validate(Duplicate));
+	auto Legacy = Record;
+	Legacy.Version = 7;
+	Legacy.SupplyPlacements.Reset();
+	Legacy.RemainingSupplies = {TEXT("DA_Bullets")};
+	TArray<uint8> LegacyBytes;
+	TestTrue(TEXT("legacy names kept for map-aware migration"), FCCLSessionCodec::Encode(Legacy, LegacyBytes) &&
+		FCCLSessionCodec::Decode(LegacyBytes, Decoded) && Decoded.Version == 7 && Decoded.RemainingSupplies.Num() == 1);
 	auto Tampered = Bytes;
 	Tampered.Last() ^= 0x5A;
 	TestFalse(TEXT("checksum rejects tampering"), FCCLSessionCodec::Decode(Tampered, Decoded));
@@ -337,5 +358,123 @@ bool FCCLWorldSectionRuleTest::RunTest(const FString& Parameters)
 	auto Corrupt = Valid;
 	Corrupt.SetSection(TEXT("Players"), {1, 2, 3});
 	TestFalse(TEXT("registered section validates its own format"), FCCLWorldSnapshotCodec::Encode(Corrupt, Bytes, Error));
+	return true;
+}
+
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FCCLCampaignIdentityTest, "CCL.Campaign.StableIdentities",
+	EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
+
+bool FCCLCampaignIdentityTest::RunTest(const FString& Parameters)
+{
+	for (int32 Count : {1, 2, 3, 8})
+	{
+		TSet<FGuid> Ids{ACCLCampaignDirector::BossAgentId()};
+		for (int32 Index = 0; Index < Count; ++Index)
+		{
+			const FGuid Id = ACCLCampaignDirector::MakeGuardAgentId(Index);
+			TestTrue(TEXT("guard identity valid and distinct from boss"), Id.IsValid() && !Ids.Contains(Id));
+			Ids.Add(Id);
+		}
+	}
+
+	TestEqual(TEXT("first legacy identity"), ACCLCampaignDirector::MakeGuardAgentId(0), FGuid(0xCC190000, 0, 1, 1));
+	TestEqual(TEXT("second legacy identity"), ACCLCampaignDirector::MakeGuardAgentId(1), FGuid(0xCC190000, 0, 1, 2));
+	TestFalse(TEXT("invalid guard index"), ACCLCampaignDirector::MakeGuardAgentId(8).IsValid());
+	TestFalse(TEXT("negative guard index"), ACCLCampaignDirector::MakeGuardAgentId(-1).IsValid());
+	return true;
+}
+
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FCCLCampaignSupplyTest, "CCL.Campaign.SupplyPlacementRestore",
+	EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
+
+bool FCCLCampaignSupplyTest::RunTest(const FString& Parameters)
+{
+	FCCLRuleWorld TestWorld;
+	TestWorld.World->SetGameState(TestWorld.World->SpawnActor<ACCLCampaignState>());
+	const auto* Defaults = GetDefault<ACCLCampaignDirector>();
+	TArray<FCCLSupplySpawn> Layout = {Defaults->Supplies[2], Defaults->Supplies[2]};
+	Layout[0].PlacementId = FGuid(19, 2, 0, 1);
+	Layout[0].Quantity = 10;
+	Layout[0].Location = FVector(10000., 0., 0.);
+	Layout[1].PlacementId = FGuid(19, 2, 0, 2);
+	Layout[1].Quantity = 60;
+	Layout[1].Location = FVector(10200., 0., 0.);
+	int32 Run = 0;
+	auto SpawnDirector = [&](const TArray<FCCLSupplySpawn>& Supplies)
+	{
+		auto* Director = TestWorld.World->SpawnActorDeferred<ACCLCampaignDirector>(ACCLCampaignDirector::StaticClass(), FTransform::Identity);
+		Director->Supplies = Supplies;
+		Director->Guards.SetNum(1);
+		Director->Guards[0].Location = FVector(20000. + 1000. * ++Run, 0., 96.);
+		Director->FinishSpawning(FTransform::Identity);
+		return Director;
+	};
+
+	for (int32 Collected = 0; Collected < 2; ++Collected)
+	{
+		auto* Original = SpawnDirector(Layout);
+		for (TActorIterator<ACCLWorldPickup> It(TestWorld.World); It; ++It)
+		{
+			if (It->GetOwner() == Original && It->GetActorLocation() == Layout[Collected].Location)
+			{
+				It->Destroy();
+			}
+		}
+
+		FString Error;
+		FCCLSessionRecord Record;
+		if (!TestTrue(TEXT("capture remaining placement"), Original->CaptureSupplies(Record.SupplyPlacements, Error)))
+		{
+			return false;
+		}
+
+		TestEqual(TEXT("only one placement remains"), Record.SupplyPlacements.Num(), 1);
+		TArray<uint8> Bytes;
+		FCCLSessionRecord Decoded;
+		if (!TestTrue(TEXT("placement checkpoint round trip"), FCCLSessionCodec::Encode(Record, Bytes) && FCCLSessionCodec::Decode(Bytes, Decoded)))
+		{
+			return false;
+		}
+
+		TArray<FCCLSupplySpawn> Reordered = {Layout[1], Layout[0]};
+		auto* Restored = SpawnDirector(Reordered);
+		TArray<FCCLSavedSupply> Prepared;
+		auto Invalid = Decoded;
+		Invalid.SupplyPlacements[0].PlacementId = FGuid::NewGuid();
+		TestFalse(TEXT("unknown placement rejected before mutation"), Restored->PrepareSupplyRestore(Invalid, Prepared, Error));
+		if (!TestTrue(TEXT("reordered layout prepares"), Restored->PrepareSupplyRestore(Decoded, Prepared, Error)))
+		{
+			return false;
+		}
+
+		Restored->ApplySupplies(Prepared);
+		int32 Remaining = 0;
+		for (TActorIterator<ACCLWorldPickup> It(TestWorld.World); It; ++It)
+		{
+			if (It->GetOwner() == Restored && !It->IsActorBeingDestroyed())
+			{
+				++Remaining;
+				TestEqual(TEXT("correct position"), It->GetActorLocation(), Layout[1 - Collected].Location);
+				TestEqual(TEXT("correct quantity"), It->Quantity, Layout[1 - Collected].Quantity);
+			}
+		}
+
+		TestEqual(TEXT("one restored pickup"), Remaining, 1);
+		FCCLSessionRecord Legacy;
+		Legacy.Version = 7;
+		Legacy.RemainingSupplies = {TEXT("DA_Bullets")};
+		TestFalse(TEXT("ambiguous legacy layout rejected"), Restored->PrepareSupplyRestore(Legacy, Prepared, Error));
+	}
+
+	auto* DefaultDirector = SpawnDirector(Defaults->Supplies);
+	FCCLSessionRecord Legacy;
+	Legacy.Version = 7;
+	Legacy.RemainingSupplies = {TEXT("DA_Bullets")};
+	FString Error;
+	TArray<FCCLSavedSupply> Prepared;
+	TestTrue(TEXT("known legacy layout migrates"), DefaultDirector->PrepareSupplyRestore(Legacy, Prepared, Error));
+	TestTrue(TEXT("legacy quantity and placement"), Prepared.Num() == 1 && Prepared[0].Quantity == 60 && Prepared[0].PlacementId == Defaults->Supplies[2].PlacementId);
+	DefaultDirector->Guards.SetNum(3);
+	TestFalse(TEXT("legacy colliding guards rejected"), DefaultDirector->PrepareSupplyRestore(Legacy, Prepared, Error));
 	return true;
 }

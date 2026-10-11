@@ -247,3 +247,12 @@ static bool Execute(TConstArrayView<FCCLLoadoutRestoreRequest> Requests,
 2026-10-11부터 저장 기록의 아이템·스킬 이름은 코드 목록이 아니라 콘텐츠 카탈로그로 해석한다. `UCCLItemCatalogSettings`가 `DefaultGame.ini`에서 `/Game/Progression/DA_ItemCatalog`를 지정한다. `UCCLItemCatalog`의 `Items`와 `TrainingSkills`에 없는 이름은 null로 해석되어 저장 검증에서 거부된다. 임의 경로를 불러오지 않는다는 기존 계약은 유지한다. 카탈로그는 `/Game/Progression`의 항상 쿠킹 목록에 포함된다.
 
 남은 마을 보급품은 정의 이름의 집합이 아니라 남은 픽업마다 한 번씩 기록한다. 같은 정의의 픽업이 둘 있고 하나를 주웠다면 이름이 한 번만 남는다. 복원은 이름별 개수만큼 픽업을 남기고 나머지를 제거한다. 이전 방식은 같은 정의의 픽업 하나를 주운 뒤 저장하면 둘 다 되살렸다. 형식 5부터 보급품 기록은 최대 64개이고 그 전 형식은 기존 상한 2개를 따른다. 승리 기록은 처치한 경비병 비트가 하나 이상 있어야 하며, 비트 값은 0-255 범위다. 구현은 `Source/CCL/Session/CCLSessionRecord.cpp`와 `Source/CCL/Session/CCLGameInstance.cpp`의 `ApplyRecord`다.
+
+
+## 배치 식별과 체크포인트 검증
+
+경비 1·2와 보스 3의 Agent ID를 유지하고 세 번째 이후 경비는 4부터 배정한다. 경비 배열 순서 변경은 기존 처치 마스크와 함께 별도 호환성 판단이 필요하다. 구형 저장에서 세 명 이상의 경비가 사용한 충돌 상태는 자동 분리하지 않는다.
+
+보급품은 맵에 저장한 `PlacementId`와 정의·남은 수량으로 저장한다. Director가 자신이 생성한 픽업만 추적하며 음식의 세계 저장용 `PersistentId`는 재사용하지 않는다. 외부 세션 형식은 8로 확장하고 구형 세션은 배치가 확실한 기본 구성만 변환한다. 모호한 구형 저장은 원본을 보존하고 적용 전에 거부한다. 배치 ID·정의·수량과 처치 마스크는 세계·플레이어 복원보다 먼저 검증한다.
+
+검증 대상은 경비 1·2·3·8명과 보스의 ID 고유성, 같은 정의의 서로 다른 두 배치·수량 복원, 설정 순서 변경, 잘못된 배치 거부, 구형 저장과 프로필 회귀다. 최종 프로젝트 파일 생성·Editor 빌드 뒤 자동화와 별도 프로세스 세션 재개를 실행한다. UE 5.8.3에서 프로젝트 파일 생성과 Editor 빌드를 통과했다. `Saved/EnvironmentStages/Identity-GPF.log`, `Identity-Build.log`가 근거다. 전체 자동화는 `Saved/Tests/Automation/20261011-155853-103/report/index.json`의 155개가 통과했고 실패·미실행은 없다. 실제 저장·별도 프로세스 재개·승리 복원은 `Saved/Tests/SessionSmoke/20261011-155839`에서 통과했다. 맵에 직접 배치됐던 장갑·포션은 `create_progression.py`로 Director의 배치에 이전했다. `Identity-Assets.log`에서 5개 배치를 확인했다. 앞의 정의별 개수 복원 설명은 형식 7까지의 이력이며 형식 8은 이 절의 배치 식별을 사용한다.
