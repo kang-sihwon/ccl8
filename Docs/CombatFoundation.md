@@ -2,7 +2,7 @@
 
 마네킹의 맨손 공격 하나와 일반 몹 한 종류로 공격, 회피, 가드, 패링, 사망과 개별 재스폰을 연결한다. 범위와 초기 수치는 [결정 11](DesignLog.md)을 따른다. 장르에 독립적인 기반과 UE5 현행 시스템 우선 원칙은 [Coding](Coding.md)이 소유한다.
 
-전투 코드는 `Source/CCL/AbilitySystem`, `Combat`, `Items`, `UI`에 있다. UE 5.8.1의 프로젝트 파일 생성, `CCLEditor Win64 Development` 전체 타깃 빌드와 비대화형 에디터의 클래스 로드 검사는 통과했다. 에셋 생성과 전투 실행 검증은 완료하지 않았다.
+전투 코드는 `Source/CCL/AbilitySystem`의 ASC·AttributeSet·효과, `Combat`의 능력·판정·적, `Items`, `UI`에 있다. 2026-10-11에 `UCCLCombatAbility`를 `AbilitySystem`에서 `Combat`으로 옮겨 두 폴더의 상호 의존을 없앴다. 검증 상태는 아래 "에셋 생성과 검증 상태"와 "2026-10-11 구조 정리와 UE 5.8.3 재검증"을 따른다. UE 5.9.0 노트북의 기록은 당시 이력으로 남긴다.
 
 ## 목표와 경계
 
@@ -104,22 +104,30 @@ classDiagram
 
 입력은 `AbilityInputTagPressed`와 `AbilityInputTagReleased`를 거쳐 AbilitySpec을 실행한다. 판정 값을 보내는 입력별 RPC를 만들지 않는다. 자동 검증 전용 RPC는 검증 명령행 옵션으로 생성되는 서브시스템에만 연결한다.
 
-`BeginAttack`은 서버 공격 ID를 발급하고 `ResolveHit`은 현재 공격과 Avatar를 확인한다. `UCCLHitRule::Resolve`는 `FCCLHitResolution`을 반환한다. 공통 효과 적용 경로의 핵심은 다음과 같다.
+`BeginAttack`은 서버 공격 ID를 발급하고 `ResolveHit`은 현재 공격과 Avatar를 확인한다. 적중 정책은 판단과 부작용을 두 단계로 나눈다. `UCCLHitRule::Resolve`는 현재 상태를 바꾸지 않고 `FCCLHitResolution`을 반환한다. `UCCLHitRule::Commit`은 피해 효과가 실제로 적용된 뒤에만 능력 취소·경직·피격 알림 같은 부작용을 확정한다. 이 분리는 2026-10-11 검토의 결함을 고친 것이다. 이전에는 판단 중에 부작용을 실행해서, 피해 효과가 거부돼도 취소와 피격 표시가 남았다. 공통 적용 경로 `CCLHit::Apply`의 핵심은 다음과 같다.
 
 ```cpp
-FGameplayEffectSpecHandle Spec = SourceASC->MakeOutgoingSpec(
-    Resolution.Effect, 1.f, EffectContext);
-if (Spec.IsValid())
+const auto Resolution = Rule->Resolve(Context);
+if (Resolution.Effect)
 {
-    Spec.Data->SetSetByCallerMagnitude(
-        Resolution.MagnitudeTag, Resolution.Magnitude);
-    if (!SourceASC->ApplyGameplayEffectSpecToTarget(
-        *Spec.Data.Get(), TargetASC).WasSuccessfullyApplied())
+    // Build the spec, set the SetByCaller magnitude and apply it.
+    if (!Applied.WasSuccessfullyApplied())
     {
-        return FGameplayTag();
+        return {};
+    }
+}
+
+Rule->Commit(Context, Resolution);
+for (UActorComponent* Component : Context.Target->GetComponents())
+{
+    if (auto* Receiver = Cast<ICCLHitReceiver>(Component))
+    {
+        Receiver->ReceiveHit(Context, Resolution.Outcome);
     }
 }
 ```
+
+전투는 Agent 기억이나 퀘스트를 직접 호출하지 않는다. 확정된 결과는 대상 Actor 컴포넌트 중 `ICCLHitReceiver`를 구현한 것에 전달된다. `UCCLAgentComponent`가 이 계약으로 피격 기억을 기록한다.
 
 Instant 효과는 지속 중인 핸들이 없을 수 있으므로 적용 성공은 `WasSuccessfullyApplied()`로 확인한다. 체력 변경 통지가 사망을 연결하고 AttributeSet은 구체적인 캐릭터를 참조하지 않는다. 월드 위험의 `TakeDamage`는 GAS 체력 효과를 한 번 적용하고 관찰한 체력 감소량을 반환한다.
 
@@ -193,3 +201,20 @@ GAS는 UE5에서 처음 도입된 기능은 아니다. UE5.8의 Attribute 복제
 | `<GAS>/Private/GameplayEffect.cpp:5195`, `:5226` | Mixed·Minimal의 활성 효과 복제 범위와 소유 연결 검사 |
 | `<GAS>/Public/Abilities/GameplayAbilityTypes.h:46`, `:65` | InstancedPerActor 권장과 LocalPredicted 선언 |
 | `<GAS>/Public/Abilities/Tasks/AbilityTask_ApplyRootMotionConstantForce.h:33` | Root Motion 기반 이동 Task 진입점 |
+
+## 2026-10-11 구조 정리와 UE 5.8.3 재검증
+
+2026-10-11 전체 소스 검토의 지적을 반영해 전투 기반과 콘텐츠의 경계를 정리했다. 원칙은 [결정 9](DesignLog.md)의 공통 계약·콘텐츠 분리다.
+
+| 변경 | 이전 문제 | 현재 계약 |
+|---|---|---|
+| 적 정의 | 적 종류를 Archetype 번호 0·1·2로 코드에서 분기했다 | `UCCLEnemyDefinition` DataAsset이 이름·체력·이동 속도·탐지·추적 반경과 공격 패턴을 소유한다. 현재 콘텐츠는 `/Game/Progression`의 `DA_GateGuard`, `DA_RoadRaider`, `DA_GateWarden`이다 |
+| 공격 패턴 | 보스 패턴을 코드가 체력 구간으로 골랐다 | 각 패턴의 `MaxHealthFraction` 이하 체력에서 선택 가능하며, 가능한 패턴을 목록 순서로 돌아가며 사용한다 |
+| 적 재스폰 | 클래스 기본값으로 생성해 배치에서 바꾼 값·구독자·Agent ID를 잃었다 | `CopyConfigurationTo`가 정의, 인스턴스 값, `OnDefeated` 구독자, Agent ID와 특성을 교체 Actor에 복사한다 |
+| 기본 장비 경로 | 공통 `UCCLFighterComponent`가 `DA_Unarmed`·`ABP_Combat` 경로를 가졌다 | Fighter는 `DefaultItem`, `CombatAnimClass`와 몽타주를 소프트 참조 속성으로 받는다. 플레이어 콘텐츠인 `ACCLCharacter`가 값을 지정한다 |
+| 장비 표현 | Items의 Loadout이 Combat의 Fighter를 직접 호출했다 | Loadout은 `ICCLEquipmentPresenter`를 찾아 호출하고 Fighter가 구현한다 |
+| 테스트 RPC | 실제 PlayerController에 테스트 RPC 6개와 Tests 헤더 include가 있었다 | 스모크 서브시스템이 명령줄 옵션이 있을 때만 서버 PlayerController에 `UCCLTestBridgeComponent`를 붙인다 |
+
+`Source/CCL/Tests/CCLGameplayRuleTests.cpp`는 멀티프로세스 스모크로만 확인하던 규칙을 에디터 자동 검사로 옮겼다. 전투 판정 결과, 피해 효과 거부 시 부작용 없음, 적 패턴 순환, 인벤토리 추가·이동·제거, 장착과 사용, 저장 기록 거부 경로, 재접속 신원 키, 세계 저장 구간 규칙의 8개다. 테스트 월드는 `CreateWorld` 뒤 `InitializeActorsForPlay`, `BeginPlay`와 `WorldSettings->NotifyBeginPlay`를 호출해야 Actor의 `BeginPlay`가 실행된다. GameMode가 없는 월드에서 마지막 호출을 빠뜨리면 Fighter의 공격 정의가 비어 있다.
+
+UE 5.8.3의 전투 Standalone·Dedicated, 자동 검사 154개와 기존 기능 회귀 결과는 [DeliveryPlan의 2026-10-11 재검증](DeliveryPlan.md#2026-10-11-전체-검토-수정과-ue-583-재검증)을 따른다. 위의 UE 5.9 실행 호환성 검사는 노트북 이력이다.

@@ -99,3 +99,7 @@ GameState를 사용하면 서버가 계산한 진행을 새 접속자에게도 �
 복구 후 최종 실행에서 내비게이션 투영 성공과 적의 300cm 이상 이동·공격 피해를 관찰했다. Standalone, Dedicated, Listen 원격·호스트, Dedicated 지연·손실 구성에서 진행·승리·개별 재스폰을 통과했고 네트워크 구성마다 늦은 접속을 확인했다. 화면 캡처의 순간 이동 잔상은 검사 실행에서 Motion Blur를 끄고 확인했다. Python Rotator의 위치 인자로 뒤집혔던 표지판은 이름 있는 pitch·yaw·roll 인자로 수정했다.
 
 World Partition 외부 Actor의 기존 회전을 수정할 때는 `Modify`로 저장 대상을 표시해야 했다. 첫 회전 수정은 재로드 후 유지되지 않아 보정했고, `Saved/StageValidation/Stage3-Presentation-Saved.log`에서 재로드한 표지판의 pitch 0·yaw 180·roll 0을 확인했다.
+
+## 2026-10-11 콘텐츠 정의와 재검증
+
+원정의 적 배치와 보급품은 `ACCLCampaignDirector`의 `Guards`·`Boss`·`Supplies` 데이터로 지정한다. 적 유형은 `UCCLEnemyDefinition` 에셋이 소유한다. 세부 표는 [ContentFoundation](ContentFoundation.md)의 "2026-10-11 콘텐츠 데이터 분리"를 따른다. 위 실행 근거의 UE 5.9.0 결과는 노트북 이력이다. UE 5.8.3의 캠페인 기본·콘텐츠·성장·Dedicated 결과는 [DeliveryPlan의 2026-10-11 재검증](DeliveryPlan.md#2026-10-11-전체-검토-수정과-ue-583-재검증)을 따른다.

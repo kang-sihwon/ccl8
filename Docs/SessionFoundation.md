@@ -221,3 +221,29 @@ static bool Execute(TConstArrayView<FCCLLoadoutRestoreRequest> Requests,
 환경 실험의 전체 초기화는 살아 있는 플레이어의 계정 ID와 원장 잔액을 초기 세계 후보에 명시적으로 넣는다. 누락된 현재 계좌는 초기화를 거부한다. 따라서 초기화를 성공시킨 뒤 화면 조회나 다음 Tick에 계좌를 만드는 순서에 의존하지 않는다. 이는 미등록 플레이어의 금화 보존이며, 등록된 전체 프로필의 초기화 정책은 별도 작업으로 남아 있다.
 
 2026-10-10 UE 5.8.3에서 `Tools/Validation/run_session_smoke.ps1`의 실제 저장·별도 프로세스 재개·메뉴 복귀·승리 재개와 새 계좌 누락 검사를 통과했다. 근거는 `Saved/Tests/SessionSmoke/20261010-230750`이다. 계정 분리 후 실제 두 플레이어·세계 재개는 `Saved/Tests/LoadoutRestore/20261010-230751-715`에서 통과했다. 환경 초기화의 금화 83 보존은 `Saved/Tests/Environment/EnvironmentPlayground-Standalone-20261010-232808-742/standalone.log`에서 확인했다. 계정 생성 경계는 `Source/CCL/Agents/CCLAccountComponent.cpp:195`, 명시적 초기화는 `Source/CCL/Environment/CCLExperimentDirector.cpp`의 `ResetLife.ImportAccountBalance`가 소유한다.
+
+## 원격 플레이어 신원 연결과 복원 시 접속자 유지
+
+2026-10-11에 일반 접속에서 세계 프로필을 자동으로 연결했다. 정책과 이유는 [결정 21](DesignLog.md)을 따른다. 이 절은 앞의 "세계 플레이어 참가자 구현·검증"에서 남은 작업으로 적은 접속 키 발급과 재접속 연결을 구현한다. 그 절의 "프로필이 없는 등록 플레이어가 살아 있으면 세계 복원을 거부한다"는 계약은 이 절의 유지 정책으로 바뀌었다.
+
+| 단계 | 소유자와 동작 |
+|---|---|
+| 접속 옵션 | `UCCLLocalPlayer::GetGameLoginOptions`가 접속 중인 `PendingNetGame`의 주소로 저장된 비밀 키를 찾아 `CCLProfile` 옵션에 붙인다. 설정은 `DefaultEngine.ini`의 `LocalPlayerClassName`이다 |
+| 접속 기록 | `ACCLGameModeBase::InitNewPlayer`가 원격 PlayerController의 옵션 값을 보류 목록에 넣는다. 로컬 호스트는 넣지 않는다 |
+| 연결 | `BindPendingProfiles`가 세계 시뮬레이션과 Agent 세계가 준비될 때까지 0.25초 간격으로 최대 40회 시도한다. 유효한 키는 기존 프로필에 연결하고, 없거나 연결할 수 없는 키에는 새 키를 발급한다 |
+| 키 전달·보관 | 서버는 새 키를 `ClientReceiveProfileKey`로 그 플레이어에게만 보낸다. 클라이언트 GameInstance는 접속 주소 `host:port`별로 `CCL_ProfileKeys` 슬롯에 저장한다 |
+| 저장 식별 | 세계 프로필의 식별 키는 `profile:`과 비밀 키 SHA-1 해시의 소문자 16진수다. 구현은 `Source/CCL/Session/CCLProfileIdentity.cpp`다 |
+
+연결된 플레이어의 인벤토리는 `bExternalPersistence`로 지속 소유자 표시를 받는다. 그래서 음식 보관 조건 변경처럼 등록 소유자를 요구하는 조작을 사용할 수 있다. 세계 저장에서는 플레이어 참가자가 그 항목을 수집하므로 미등록 음식 검사에 걸리지 않는다. 이전에는 미등록 플레이어가 음식을 들고 있으면 세계 저장이 거부됐다. 이제 원격 플레이어는 접속 직후 등록되므로 그 거부는 등록 전의 짧은 구간과 연결 시도가 끝난 플레이어에만 남는다. 맵 전환의 자동 저장은 실패를 경고로 남기고 이전 상태를 유지한다.
+
+세계 복원은 저장 본문에 프로필이 없는 등록 플레이어를 현재 상태로 유지한다. `PrepareWorldRestore`는 그 플레이어의 현재 프로필을 수집해 복원 후보에 넣는다. 그 아이템 GUID는 `KeptItems`로 보관함 참가자에 전달한다. 저장 보관함이 같은 GUID를 복원하거나 개인 세션이 유지 플레이어의 항목을 복원하면 세계 변경 전에 거부한다. 병합한 전체 프로필은 `CCLPlayerSnapshot::Validate`로 세계 ID와 저장 시각에 대해 다시 검사한다. 그래서 저장 시각보다 미래인 음식 이력을 가진 유지 플레이어도 거부한다.
+
+확정 단계는 모든 연결 플레이어에 `UCCLAccountComponent::EnsureOpen`을 호출한다. 복원된 원장에 계좌가 없으면 마지막 잔액 표시값으로 다시 연다. 이 호출만이 같은 세계의 사라진 계좌를 다시 연다. 앞 절의 "조회·Tick·보상·이전 금화 가져오기는 사라진 계좌를 재생성하지 않는다"는 계약은 유지한다.
+
+한계는 결정 21의 트레이드오프와 같다. 키는 암호화되지 않은 엔진 기본 채널로 전달되므로 인증이 아니다. 한 PC에서 같은 서버에 여러 클라이언트로 접속하면 두 번째 클라이언트가 새 키를 받아 저장 슬롯을 덮어쓴다. 키 파일을 잃은 클라이언트의 이전 프로필은 세계 기록에 남지만 다시 연결할 수 없다.
+
+## 정의 카탈로그와 보급품 개수
+
+2026-10-11부터 저장 기록의 아이템·스킬 이름은 코드 목록이 아니라 콘텐츠 카탈로그로 해석한다. `UCCLItemCatalogSettings`가 `DefaultGame.ini`에서 `/Game/Progression/DA_ItemCatalog`를 지정한다. `UCCLItemCatalog`의 `Items`와 `TrainingSkills`에 없는 이름은 null로 해석되어 저장 검증에서 거부된다. 임의 경로를 불러오지 않는다는 기존 계약은 유지한다. 카탈로그는 `/Game/Progression`의 항상 쿠킹 목록에 포함된다.
+
+남은 마을 보급품은 정의 이름의 집합이 아니라 남은 픽업마다 한 번씩 기록한다. 같은 정의의 픽업이 둘 있고 하나를 주웠다면 이름이 한 번만 남는다. 복원은 이름별 개수만큼 픽업을 남기고 나머지를 제거한다. 이전 방식은 같은 정의의 픽업 하나를 주운 뒤 저장하면 둘 다 되살렸다. 형식 5부터 보급품 기록은 최대 64개이고 그 전 형식은 기존 상한 2개를 따른다. 승리 기록은 처치한 경비병 비트가 하나 이상 있어야 하며, 비트 값은 0-255 범위다. 구현은 `Source/CCL/Session/CCLSessionRecord.cpp`와 `Source/CCL/Session/CCLGameInstance.cpp`의 `ApplyRecord`다.

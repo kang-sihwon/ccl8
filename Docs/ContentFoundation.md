@@ -54,3 +54,20 @@ NPC 렌더링 화면에서 안내인·이름·구매 가격·거부 결과·다�
 | NPC 화면 | `Saved/Tests/CampaignVisual/steward.png` |
 
 근거 경로는 저장소 기준이다. 엔진의 몽타주 재생은 GAS AbilityTask를 사용하고 공격 정의의 총 시간에 맞춰 재생 속도를 조정한다. 기존 공통 전투 정책이 각 정의의 방어·패링 가능 여부를 판정한다.
+
+## 2026-10-11 콘텐츠 데이터 분리
+
+2026-10-11에 적 유형과 상점 상품을 코드에서 데이터로 옮겼다. 원칙은 [결정 9](DesignLog.md)의 공통 계약·콘텐츠 분리다. 위의 플레이 규칙과 수치는 바뀌지 않았다.
+
+| 콘텐츠 | 현재 위치 | 이전 위치 |
+|---|---|---|
+| 경비병·척후병·보스 | `UCCLEnemyDefinition` 에셋 `DA_GateGuard`, `DA_RoadRaider`, `DA_GateWarden` | `ACCLEnemyCharacter`의 Archetype 0·1·2 분기 |
+| 보스의 체력별 패턴 | 정의의 `Patterns` 목록과 패턴별 `MaxHealthFraction` | 적 클래스의 체력 절반 분기 |
+| 원정 적 배치 | `ACCLCampaignDirector`의 `Guards`·`Boss`(`FCCLEncounterSpawn`: 위치와 정의) | 위치 배열과 고정 유형 |
+| 마을 보급품 | Director의 `Supplies`(`FCCLSupplySpawn`: 위치·아이템·수량) | Director 코드의 정의 이름 3개와 수량 분기 |
+| 상점 상품 | `ACCLVillageSteward::Offer`(`FCCLShopOffer`: 아이템·가격·재고 자원 태그·초기 재고) | `UCCLAccountComponent`의 `DA_RecoveryPotion`·가격 10 고정 검사 |
+| 마을 Actor 생성 | `UCCLVillagePopulationSubsystem`이 Agent 인구 변경 알림을 받아 작업장·안내인·주민 Actor를 만든다 | Agent 세계 서브시스템이 Campaign Actor를 직접 생성 |
+
+공통 계정 코드는 상품의 가격·재고 범위와 보관 공간만 검사한다. 특정 아이템 이름은 검사하지 않는다. 재고 자원은 처음 구매 요청이 올 때 `InitialStock`으로 한 번 채운다. 경비병 처치 기록은 비트 마스크이므로 `Guards`는 최대 8명이다.
+
+에셋은 `Tools/Validation/create_content_definitions.py`로 생성하고 저장 결과를 검사한다. 2026-10-11 실행은 `PASS`였다. 캠페인 스모크는 약탈자를 Archetype 번호가 아닌 정의 이름으로 찾는다. UE 5.8.3 재검증 결과는 [DeliveryPlan의 2026-10-11 재검증](DeliveryPlan.md#2026-10-11-전체-검토-수정과-ue-583-재검증)을 따른다.

@@ -67,3 +67,7 @@ Dedicated Server에서는 시각 요소 갱신 전에 서버 모드를 확인하
 표현 컴포넌트가 없는 서버 경로를 수정하고 프로젝트 생성·Editor 빌드를 통과했다. 로그는 `Saved/EnvironmentStages/ServerPresentation-GPF.log`, `ServerPresentation-ActualCompile.log`, `ServerPresentation-EditorBuild.log`다. 재패키징은 `ServerPresentation-ServerPackage.log`에서 93.71초·종료 코드 0으로 통과했다. 다음 실행은 서버가 기동됐지만 경로로 로딩하는 `DA_FoodSample`이 쿠킹에서 빠져 실험 준비를 끝내지 못했다. 이 실패는 `EnvironmentScenario-Dedicated-20261011-004014-729`에 보존했다.
 
 `Config/DefaultGame.ini`의 패키징 목록에 두 환경 맵과 `/Game/Environment`를 추가했다. 음식 정의와 경로로 선택하는 표면 재질 등 환경 에셋을 포함한다. 맵에서 직접 참조하는 것만 쿠킹하는 방식보다 패키지 크기가 늘지만, 현재 실험장이 경로로 선택하는 에셋을 함께 전달한다. `Saved/EnvironmentStages/EnvironmentCook-ServerPackage.log`의 재쿠킹·아카이브 후 실제 `CCLServer.exe`에서 80ms 지연·2% 손실·조작자·관측자·관측자 재접속 검사를 통과했다. 결과는 `Saved/Tests/Environment/EnvironmentScenario-Dedicated-20261011-004432-782/result.json`이다. 서버는 실제 Server 타깃이고 클라이언트는 Editor 게임 모드다. 일반 Game 타깃 패키지는 아직 최초 컴파일 중이며 이 결과로 완료 처리하지 않는다. 구역 09의 후속 변경 전 검증 결과다.
+
+## 2026-10-11 이후 변경의 패키지 미검증
+
+2026-10-11 전체 검토 수정은 에디터에서 다시 검증했지만 Windows 게임 패키지는 다시 만들지 않았다. `LocalPlayerClassName` 설정, `DA_ItemCatalog` 카탈로그와 적 정의 에셋, 재접속 신원 연결은 패키지에서 확인하지 않았다. 카탈로그와 적 정의는 `/Game/Progression`에 있어 기존 항상 쿠킹 목록에 들어간다. 에디터 재검증 결과는 [DeliveryPlan의 2026-10-11 재검증](DeliveryPlan.md#2026-10-11-전체-검토-수정과-ue-583-재검증)을 따른다.

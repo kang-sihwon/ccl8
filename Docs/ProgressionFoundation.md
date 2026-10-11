@@ -139,3 +139,11 @@ Fast Array의 변경 표시 계약은 `<Engine>/Source/Runtime/Net/Core/Classes/
 | 기존 전투·이동 회귀 | `Saved/StageValidation/Stage4-Combat-Standalone.log`, `Stage4-Combat-Dedicated.log`, `Stage4-Movement.log` |
 
 근거 경로는 저장소 기준이다. 검사의 추가 훈련 포인트 1은 테스트 서버가 지급한 값이며 일반 게임의 보상 연결은 단계 5 작업이다. 저장 파일과 게임 재실행 후 복원은 단계 6에서 검사한다.
+
+## 2026-10-11 사용 순서·카탈로그·표현 계약
+
+`UCCLLoadoutComponent::Use`는 아이템을 먼저 소모하고 회복 효과를 적용한다. 효과가 거부되면 사용 전 항목 배열로 되돌린다. 인벤토리 트랜잭션 안에서 실행하므로 중간 상태의 알림은 나가지 않는다. 이전 구현은 효과를 먼저 적용하고 `Remove`의 결과를 무시했다. 그래서 음식 묶음 분할처럼 제거가 실패하면 회복만 되고 아이템이 남았다. 자동 검사 `CCL.Items.Loadout.EquipAndUse`가 이 순서를 확인한다.
+
+훈련 목록과 저장 가능한 정의는 `UCCLItemCatalog`(`DA_ItemCatalog`)가 소유한다. Loadout의 훈련 요청과 세션 저장은 같은 카탈로그를 조회하므로, 새 아이템이나 훈련을 추가할 때 코드의 이름 목록을 고치지 않는다. 설정과 저장 거부 규칙은 [SessionFoundation](SessionFoundation.md)의 "정의 카탈로그와 보급품 개수"를 따른다.
+
+Loadout은 장비 표현과 손 행동을 `ICCLEquipmentPresenter`로 요청한다. `UCCLFighterComponent`가 이 계약을 구현한다. 그래서 Items 폴더는 Combat의 구체 컴포넌트를 include하지 않는다. 장착 규칙과 손 점유는 위 계약과 같다.

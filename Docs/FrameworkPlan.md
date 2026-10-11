@@ -116,6 +116,20 @@ Game Features 채택, 별도 공용 저장소 생성, 다른 개인 프로젝트
 
 성능 개선은 분리의 자동 효과로 주장하지 않는다. 빌드 시간, CPU 시간, 메모리와 전송량을 개선 대상으로 삼으면 동일한 조건에서 전후를 측정한다.
 
+## 2026-10-11 의존 정리 현황
+
+2026-10-11 전체 소스 검토에서 지적한 역방향 의존 다섯 개를 `CCL` 모듈 안에서 정리했다. 이는 "착수 후 진행 순서" 3단계의 일부를 미리 수행한 것이며, 모듈·플러그인 분리 착수가 아니다.
+
+| 이전 의존 | 정리 방식 |
+|---|---|
+| 전투 판정이 Agent 컴포넌트를 직접 호출 | Combat이 `ICCLHitReceiver`를 정의하고 Agent가 구현한다 |
+| Agents가 Campaign Actor를 생성 | Agent 세계는 인구 변경만 알리고, Campaign의 `UCCLVillagePopulationSubsystem`이 Actor를 만든다. Agent 쪽은 `ICCLAgentEmbodiment`와 `ICCLAgentWorldHost`로 표현·세계 설정을 받는다 |
+| 환경 세계 스냅샷 헤더가 Session을 include | 세계 스냅샷은 이름 있는 구간만 소유하고, 플레이어·보관함은 `ICCLWorldParticipant`로 자기 구간을 수집·검증·복원한다 |
+| Items가 Combat의 Fighter를 호출 | Items가 `ICCLEquipmentPresenter`를 정의하고 Fighter가 구현한다 |
+| AbilitySystem과 Combat의 상호 의존 | `UCCLCombatAbility`를 Combat으로 옮겨 AbilitySystem이 다른 게임 폴더를 include하지 않는다 |
+
+폴더 단위의 순환은 아직 남아 있다. 적 캐릭터는 Combat 폴더에 있지만 Agent 컴포넌트를 조합하므로 Combat과 Agents가 서로 include한다. 환경 세계 시뮬레이션은 생활 시뮬레이션과 음식 인벤토리를 함께 확정하므로 Environment와 Agents, Environment와 Items도 서로 include한다. 분리를 착수하면 적 캐릭터를 콘텐츠 계층으로 옮기고 환경·생활·인벤토리의 공통 시간 계약을 먼저 나눠야 한다. 측정 기준은 하위 폴더 사이의 `#include` 방향이며 2026-10-11 작업 트리에서 확인했다.
+
 ## 미정 사항과 비용
 
 공통 접두사, 최초 추출 대상, 정확한 의존 그래프, 플러그인 구성, 공용 저장소, 배포 방법과 착수 날짜는 미정이다. 이 문서는 새 인터페이스나 다른 프로젝트의 지원을 완료했다고 선언하지 않는다.
