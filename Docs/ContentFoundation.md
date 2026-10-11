@@ -4,31 +4,47 @@
 
 ## 책임과 수명
 
-| 구성 | 책임 | 수명 |
+| 구성 | 책임 | 소유자와 수명 |
 |---|---|---|
-| EnemyCharacter | 서버에서 적 유형과 체력에 맞는 공격 정의 선택 | 적 Actor |
+| EnemyCharacter·EnemyDefinition | 서버가 적 정의의 체력 조건에서 공격 패턴 선택 | 적 Actor와 공유 정의 에셋 |
 | CombatDefinition | 공격 시간·범위·피해·방어 가능 여부 | 공유 에셋 |
-| VillageSteward | 마을 NPC 표현과 상호작용 거리·시야 확인 | 월드 Actor |
-| ExpeditionComponent | 개인 금화·퀘스트 수락·보상 수령, 서버 거래 | PlayerState |
-| HUD | 가까운 NPC 입력, 퀘스트·튜토리얼·패턴 안내 | 로컬 플레이어 |
+| VillageSteward | NPC 표현, 상품 정의 제공, 상호작용 거리·시야 확인 | 월드 Actor |
+| PlayerController | 상호작용 입력과 서버 RPC, 요청한 플레이어에게 대화 결과 전달 | 플레이어 접속 |
+| ExpeditionComponent | 상호작용 가능 여부, 개인 퀘스트 수락·수령 상태와 보상 조건 판단 | PlayerState |
+| AccountComponent | 계정 연결, 구매·금화 보상의 거래 실행, 소유자 전용 잔액 표시 값 복제 | PlayerState |
+| LifeSimulation의 Economy | 계정 잔액·상점 재고·거래 원장 보관 | AgentWorldSubsystem이 소유하는 월드 상태 |
+| DialogueContext·DialogueScreen | 서버가 보낸 NPC 이름·본문을 로컬 대화 화면에 표시 | 로컬 UI 문맥과 화면 |
+| HUD 화면 | 퀘스트·튜토리얼·현재 공격 패턴 안내 | 로컬 플레이어 |
 
 ```mermaid
 classDiagram
     PlayerState *-- ExpeditionComponent
-    VillageSteward --> ExpeditionComponent : talk and buy
-    ExpeditionComponent --> InventoryComponent : add validated purchase
+    PlayerState *-- AccountComponent
+    PlayerController --> ExpeditionComponent : server interaction request
+    ExpeditionComponent --> VillageSteward : validate reach and read offer
+    ExpeditionComponent --> AccountComponent : purchase and currency reward
     ExpeditionComponent --> LoadoutComponent : training reward
     ExpeditionComponent --> CampaignState : victory condition
-    EnemyCharacter --> CombatDefinition : select immutable pattern
+    AccountComponent --> InventoryComponent : validated delivery
+    AccountComponent --> LifeSimulation : ledger transaction
+    AgentWorldSubsystem *-- LifeSimulation
+    PlayerController --> DialogueContext : owning client response
+    DialogueScreen --> DialogueContext : observe local text
+    EnemyCharacter --> EnemyDefinition : select eligible pattern
+    EnemyDefinition --> CombatDefinition : immutable attack data
 ```
 
-보관·성장 공통 컴포넌트에 상점·퀘스트 조건을 넣지 않는다. 이번 콘텐츠의 ExpeditionComponent가 규칙을 소유한다. 범용 퀘스트 그래프보다 단일 원정 상태가 구현·저장 검증 범위를 줄인다. 여러 퀘스트를 제작할 때 정의 에셋과 개별 상태로 분리한다.
+콘텐츠 규칙은 `UCCLExpeditionComponent`가 판단하고, 금화·구매 실행은 `UCCLAccountComponent`에 위임한다. `Talk`는 원정 승리와 수령 상태를 확인한 뒤 계정에 금화 보상을 요청하고, 성공하면 수령 상태와 훈련 포인트를 갱신한다. `Buy`는 상호작용과 상품을 확인한 뒤 계정의 `Purchase`를 호출한다. 서버의 잔액 원본은 `FCCLLifeSimulation::Economy`에 있고, AccountComponent의 `BalanceView`는 소유자에게 복제하는 표시 값이다. 근거는 `Source/CCL/Campaign/CCLExpeditionComponent.cpp`의 `Talk`·`Buy`·`GetCoins`, `Source/CCL/Agents/CCLAccountComponent.cpp`의 `Purchase`·`Resolve`·`GetBalance`다.
+
+계정의 구매 경로는 인벤토리 알림을 묶고 물건을 추가한 뒤 경제 거래를 실행한다. 거래가 실패하면 추가 전 인벤토리를 복원하고 성공 알림을 내보내지 않는다. 금화·재고·거래 원장의 검증과 확정은 경제 실행이 맡는다. 이 연결을 통해 인벤토리는 마을의 가격이나 퀘스트 조건을 알지 않고 물건을 보관한다.
+
+보관·성장 공통 컴포넌트에 상점·퀘스트 조건을 넣지 않는다. 범용 퀘스트 그래프보다 단일 원정 상태가 구현·저장 검증 범위를 줄인다. 여러 퀘스트를 제작할 때 정의 에셋과 개별 상태로 분리한다.
 
 ## 기능 계약
 
 현재 NPC 표시는 공용 UI에 등록한 `UCCLDialogueScreen`이 담당한다. 컨트롤러가 서버 응답을 `UCCLDialogueContext`에 전달하고 변경 알림으로 이름·본문을 갱신한다. 일반 안내와 능력치도 별도 화면으로 분리했다. 구현·입력·재스폰 검증은 [UIFoundation](UIFoundation.md)에 기록한다.
 
-2026-10-07 사용자의 요청으로 NPC 대사는 화면 하단 중앙의 사각형 상자에 표시한다. 왼쪽 위에 NPC 이름을 두고 다음 줄부터 대화 내용을 줄바꿈한다. 상호작용 결과는 서버가 해당 플레이어에게만 전달하고 HUD가 로컬에서 표시한다. T 대화·B 구매의 기존 규칙을 유지하며, Esc·인벤토리 열기·거리 이탈·사망으로 상자를 닫는다. 일반 퀘스트 안내와 NPC 대사는 별도 영역으로 구분한다. 별도 패키지의 1280×720·1920×1080 캡처에서 이름·대사·조작 안내를 확인했고 인벤토리 전환과 거리 이탈로 닫히는 검사도 통과했다. 근거는 `Saved/StageValidation/Equipment-Packaged-UI-1280.log`, `Equipment-Packaged-UI-1920.log`와 `Saved/Tests/UIVisual/`의 해당 실행 캡처다.
+2026-10-07 사용자의 요청으로 NPC 대사는 화면 하단 중앙의 사각형 상자에 표시한다. 왼쪽 위에 NPC 이름을 두고 다음 줄부터 대화 내용을 줄바꿈한다. 상호작용 결과는 서버가 해당 플레이어에게만 전달한다. T 대화·B 구매의 기존 규칙을 유지하며, Esc·인벤토리 열기·거리 이탈·사망으로 상자를 닫는다. 일반 퀘스트 안내와 NPC 대사는 별도 영역으로 구분한다. 별도 패키지의 1280×720·1920×1080 캡처에서 이름·대사·조작 안내를 확인했고 인벤토리 전환과 거리 이탈로 닫히는 검사도 통과했다. 근거는 `Saved/StageValidation/Equipment-Packaged-UI-1280.log`, `Equipment-Packaged-UI-1920.log`와 `Saved/Tests/UIVisual/`의 해당 실행 캡처다.
 
 같은 날 옮겨온 커서 4개, 레벨 프로토타입 29개, 무기 27개와 애니메이션 관련 2개를 저장 없이 로드했다. 62개 모두 객체 로드에는 성공했으나 `BP_WobbleTarget`은 `/Game/DemoTemplate/_Core/MI_Intro_Colorway`가 없고, `ABP_FP_Copy`와 `CtrlRig_FPWarp`에는 `/Game/FirstPerson/Anims/` 참조가 남아 있다. `ABP_FP_Copy`는 유효한 Control Rig 클래스가 없어 Blueprint 컴파일 오류도 발생했다. 원본 에셋은 변경하지 않았으며 이번 UI는 해당 리소스에 의존하지 않는다. 원본 결과는 로컬 `Saved/StageValidation/ImportedResources-Report.json`과 `ImportedResources.log`에 보존한다.
 
@@ -41,6 +57,8 @@ classDiagram
 프로젝트 생성 BAT·빌드·에셋 생성 후 실제 클라이언트 요청으로 수락·구매·귀환 보상을 검사한다. 원거리 요청, 잔액 부족, 중복 보상과 보관 공간 부족을 거부하는지 확인한다. 기존 원정의 AI·전투·재스폰·늦은 접속 검사와 함께 Standalone·Dedicated·Listen 및 지연 구성을 실행한다. 보스 패턴 정의와 체력 전환, 재스폰 후 개인 상태, 렌더링 화면을 확인한 뒤 결과를 기록한다.
 
 ## 현재 상태
+
+현재 설치본은 UE 5.8.3이며, 콘텐츠 재검증의 구성과 결과는 [DeliveryPlan](DeliveryPlan.md#2026-10-11-전체-검토-수정과-ue-583-재검증)이 소유한다. 아래 2026-10-07 결과와 `Saved/StageValidation/` 경로는 UE 5.9.0 노트북에서 확인한 과거 기록이다. 해당 원본 로그는 현재 작업 공간에 없으므로 이번 문서 검토에서 다시 확인한 결과로 취급하지 않는다.
 
 2026-10-07 UE 5.9에서 생성 BAT·CCLEditor 빌드·공격 정의 3개와 NPC 저장을 통과했다. Standalone·Dedicated·Listen 원격·호스트·왕복 지연 100ms와 손실 2% 구성에서 실제 클라이언트 요청으로 수락·구매·귀환 보상을 검사했다. 각 네트워크 구성에서 늦은 접속도 통과했다. 원거리 거래, 잔액 부족, 보관 공간 부족과 중복 보상을 거부했고 재스폰 후 개인 상태를 유지했다. 보스는 절반 체력에서 휩쓸기와 강공격을 교대하며, 정면 방어 중인 대상에게 휩쓸기 피해 24가 적용됐다. 기존 성장·전투 회귀도 통과했다.
 
