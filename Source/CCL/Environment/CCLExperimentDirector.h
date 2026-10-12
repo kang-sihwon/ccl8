@@ -27,7 +27,7 @@ public:
 	void AssignOperator(APlayerController* Controller);
 	void ReleaseOperator(APlayerController* Controller);
 	bool Execute(APlayerController* Requester, ECCLExperimentAction Action, FName CaseId,
-		FGuid ExpectedGeneration, FGuid ExpectedRun, FString& Message, uint64 ExpectedTerrainSerial = 0, const FVector* TerrainTarget = nullptr);
+		FGuid ExpectedGeneration, FGuid ExpectedRun, FString& Message, uint64 ExpectedTerrainSerial = 0, const FVector* TerrainTarget = nullptr, double TimeScale = 0.);
 	ACCLTerrainRegion* GetTerrainRegion() const { return TerrainRegion; }
 	bool ResetExperiment(FString& Error);
 	bool CanOperate(const APlayerController* Requester) const;

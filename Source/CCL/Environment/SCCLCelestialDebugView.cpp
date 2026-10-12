@@ -12,6 +12,29 @@ void SCCLCelestialDebugView::Construct(const FArguments& Args)
 	SetClipping(EWidgetClipping::ClipToBounds);
 }
 
+bool SCCLCelestialDebugView::SetObservationScale(double Scale)
+{
+	if (!bReady || !FMath::IsFinite(Scale) || Scale < 0.)
+	{
+		return false;
+	}
+	bFollowWorldTime = false;
+	ObservationScale = Scale;
+	ObservationError.Reset();
+	return true;
+}
+
+void SCCLCelestialDebugView::FollowWorldTime()
+{
+	bFollowWorldTime = true;
+	ObservationSeconds = Published.WorldSeconds;
+	ObservationError.Reset();
+	if (bReady)
+	{
+		bReady = System.Evaluate(ObservationSeconds, States, ObservationError);
+	}
+}
+
 void SCCLCelestialDebugView::Tick(const FGeometry& Geometry, double CurrentTime, float DeltaTime)
 {
 	SLeafWidget::Tick(Geometry, CurrentTime, DeltaTime);
@@ -32,6 +55,11 @@ void SCCLCelestialDebugView::Tick(const FGeometry& Geometry, double CurrentTime,
 		}
 		if (CachedRevision != View.InputRevision || CachedEpoch != Published.Epoch)
 		{
+			if (CachedEpoch != Published.Epoch)
+			{
+				bFollowWorldTime = true;
+				ObservationError.Reset();
+			}
 			FKSICelestialDefinitionData Definition;
 			Definition.DefinitionId = View.DefinitionId;
 			Definition.Version = View.DefinitionVersion;
@@ -66,7 +94,25 @@ void SCCLCelestialDebugView::Tick(const FGeometry& Geometry, double CurrentTime,
 				}
 			}
 		}
-		bReady = System.Evaluate(Published.WorldSeconds, States, Error);
+		const double NextSeconds = bFollowWorldTime ? Published.WorldSeconds :
+			ObservationSeconds + FMath::Max(0.f, DeltaTime) * ObservationScale;
+		if (!FMath::IsFinite(NextSeconds) || NextSeconds > 1.e12 ||
+			(!bFollowWorldTime && ObservationScale > 0. && DeltaTime > 0.f && NextSeconds == ObservationSeconds))
+		{
+			ObservationScale = 0.;
+			ObservationError = TEXT("관측 시간 범위(최대 1e12초)를 넘어서 정지했다. 세계 시각으로 복귀해 줘.");
+			return;
+		}
+		bReady = System.Evaluate(NextSeconds, States, Error);
+		if (bReady)
+		{
+			ObservationSeconds = NextSeconds;
+		}
+		else
+		{
+			ObservationScale = 0.;
+			ObservationError = Error;
+		}
 		return;
 	}
 	bReady = false;
@@ -85,6 +131,9 @@ int32 SCCLCelestialDebugView::OnPaint(const FPaintArgs& Args, const FGeometry& G
 	};
 	Text({16, 12}, TEXT("천체 관측 · 드래그 회전 / 휠 확대"), FLinearColor::White, 18);
 	Text({16, 40}, TEXT("거리·반경은 보기 위한 확대 축척 · 각도와 위상은 실제 계산값"), FLinearColor(0.6f, 0.7f, 0.85f), 12);
+	Text({16, 60}, ObservationError.IsEmpty() ? (bFollowWorldTime ? FString(TEXT("세계 시각 따라가기")) :
+		FString::Printf(TEXT("독립 관측 · %g배 · 세계 상태에 영향 없음"), ObservationScale)) : ObservationError,
+		FLinearColor(0.4f, 0.9f, 1.f), 12);
 	if (!bReady)
 	{
 		Text({16, 76}, TEXT("서버 천체 정의와 확정 시각 수신 대기"), FLinearColor::Yellow);
@@ -235,14 +284,15 @@ int32 SCCLCelestialDebugView::OnPaint(const FPaintArgs& Args, const FGeometry& G
 		Text({16, Size.Y * 0.5}, FString::Printf(TEXT("위도 %.1f° · 축 기울기 %.1f° · 자전 %.1f°"), View.Observer.LatitudeDegrees,
 			View.ObliquityDegrees, FMath::RadiansToDegrees(S.SpinRadians)), FLinearColor::White, 13);
 		Text({16, Size.Y - 26}, FString::Printf(TEXT("입력 %llu · %02.0f시 %02d분 %02d초 · 밝은 면 / 어두운 면 = 낮 / 밤"),
-			View.InputRevision, FMath::FloorToDouble(Published.WorldSeconds / 3600.), int32(FMath::Fmod(Published.WorldSeconds, 3600.) / 60.), int32(FMath::Fmod(Published.WorldSeconds, 60.))), FLinearColor(0.6f, 0.75f, 0.9f), 12);
+			View.InputRevision, FMath::FloorToDouble(ObservationSeconds / 3600.), int32(FMath::Fmod(ObservationSeconds, 3600.) / 60.), int32(FMath::Fmod(ObservationSeconds, 60.))), FLinearColor(0.6f, 0.75f, 0.9f), 12);
 	}
 	return Layer + 4;
 }
 
 FReply SCCLCelestialDebugView::OnMouseButtonDown(const FGeometry& Geometry, const FPointerEvent& Event)
 {
-	return Event.GetEffectingButton() == EKeys::LeftMouseButton ? FReply::Handled().CaptureMouse(SharedThis(this)) : FReply::Unhandled();
+	return Event.GetEffectingButton() == EKeys::LeftMouseButton ?
+		FReply::Handled().SetUserFocus(SharedThis(this), EFocusCause::Mouse).CaptureMouse(SharedThis(this)) : FReply::Unhandled();
 }
 
 FReply SCCLCelestialDebugView::OnMouseButtonUp(const FGeometry& Geometry, const FPointerEvent& Event)

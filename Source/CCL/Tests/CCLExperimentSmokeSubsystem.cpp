@@ -5,6 +5,7 @@
 #include "Environment/CCLTerrainRegion.h"
 #include "Environment/CCLExperimentPlayerController.h"
 #include "Environment/CCLExperimentScreen.h"
+#include "Environment/SCCLCelestialDebugView.h"
 #include "Environment/CCLExperimentStation.h"
 #include "Environment/CCLWorldSimulationSubsystem.h"
 #include "Environment/CCLWorldEnvironmentConfig.h"
@@ -30,6 +31,7 @@
 #include "Camera/CameraActor.h"
 #include "Engine/GameViewportClient.h"
 #include "Widgets/SViewport.h"
+#include "Widgets/Input/SEditableTextBox.h"
 #include "Blueprint/SlateBlueprintLibrary.h"
 #include "Kismet/KismetMathLibrary.h"
 #include "Kismet/GameplayStatics.h"
@@ -582,12 +584,39 @@ void UCCLExperimentSmokeSubsystem::TickMenuInput(double Now)
 		{
 			return;
 		}
+		const auto* Screen = Cast<UCCLExperimentScreen>(UI->FindScreen(PC->GetExperimentView()));
+		if (!Screen || !Screen->GetCloseButton() || Screen->GetCloseButton()->GetCachedGeometry().GetAbsoluteSize().IsNearlyZero())
+		{
+			return;
+		}
 
 		Capture(TEXT("menu-initial"));
 	}
 	else if (Step == 1)
 	{
 		auto* Screen = Cast<UCCLExperimentScreen>(UI->FindScreen(PC->GetExperimentView()));
+		// Offscreen PIE can still have editor chrome focused until the first viewport click.
+		if (!Check(Screen && (GetWorld()->WorldType == EWorldType::PIE || Screen->GetCloseButton()->HasKeyboardFocus()),
+			TEXT("standalone menu opens with focus on visible close button")))
+		{
+			return;
+		}
+		const auto Root = Screen->TakeWidget();
+		const auto Window = App.FindWidgetWindow(Root);
+		const FVector2D Point = Screen->GetCachedGeometry().LocalToAbsolute(Screen->GetCachedGeometry().GetLocalSize() * .95f);
+		App.ProcessMouseButtonDownEvent(Window ? Window->GetNativeWindow() : nullptr,
+			FPointerEvent(0, Point, Point, TSet<FKey>{EKeys::LeftMouseButton}, EKeys::LeftMouseButton, 0, FModifierKeysState()));
+		App.ProcessMouseButtonUpEvent(FPointerEvent(0, Point, Point, TSet<FKey>(), EKeys::LeftMouseButton, 0, FModifierKeysState()));
+		App.ProcessKeyDownEvent(FKeyEvent(EKeys::W, FModifierKeysState(), 0, false, 0, 0));
+		App.ProcessKeyUpEvent(FKeyEvent(EKeys::W, FModifierKeysState(), 0, false, 0, 0));
+		if (!Check((Root->HasKeyboardFocus() || Root->HasFocusedDescendants()) && !Router->CanProcessNormalGameInput()
+			&& PC->IsMoveInputIgnored() && PC->IsLookInputIgnored(),
+			*FString::Printf(TEXT("background click retains menu focus: focus=%d game=%d move=%d look=%d size=%s"),
+				Root->HasKeyboardFocus() || Root->HasFocusedDescendants(), Router->CanProcessNormalGameInput(),
+				PC->IsMoveInputIgnored(), PC->IsLookInputIgnored(), *Screen->GetCachedGeometry().GetAbsoluteSize().ToString())))
+		{
+			return;
+		}
 		if (!ClickControl(Screen ? Screen->GetCloseButton() : nullptr))
 		{
 			return;
@@ -646,7 +675,7 @@ void UCCLExperimentSmokeSubsystem::TickMenuInput(double Now)
 		{
 			return;
 		}
-		Screen->RevealControl(Screen->GetScaleIncreaseButton());
+		Screen->RevealControl(Screen->GetScaleApplyButton());
 	}
 	else if (Step == 13)
 	{
@@ -666,7 +695,7 @@ void UCCLExperimentSmokeSubsystem::TickMenuInput(double Now)
 			{
 				return ClickControl(Control) && Check(Runtime->GetClock().GetTimeScale() == Expected &&
 					State->GetTime().TimeScale == Expected,
-					*FString::Printf(TEXT("Slate time scale click publishes %.0fx"), Expected));
+					*FString::Printf(TEXT("Slate time scale click publishes %gx"), Expected));
 			};
 			if (!ClickScale(Screen->GetScaleStopButton(), 0.))
 			{
@@ -674,26 +703,62 @@ void UCCLExperimentSmokeSubsystem::TickMenuInput(double Now)
 			}
 			for (int32 Index = 1; Index <= 8; ++Index)
 			{
-				if (!ClickScale(Screen->GetScaleIncreaseButton(), Index * 10.))
+				if (!ClickScale(Screen->GetScaleIncreaseButton(), Index * 60.))
 				{
 					return;
 				}
 			}
 			for (int32 Index = 7; Index >= -1; --Index)
 			{
-				if (!ClickScale(Screen->GetScaleDecreaseButton(), FMath::Max(0, Index) * 10.))
+				if (!ClickScale(Screen->GetScaleDecreaseButton(), FMath::Max(0, Index) * 60.))
 				{
 					return;
 				}
 			}
+			for (double Scale : {0.5, 6000., 60000., 600000., 0.})
+			{
+				Screen->GetScaleInput()->SetText(FText::FromString(FString::SanitizeFloat(Scale)));
+				if (!ClickScale(Screen->GetScaleApplyButton(), Scale))
+				{
+					return;
+				}
+			}
+			for (const TCHAR* Invalid : {TEXT(""), TEXT("-1"), TEXT("6000abc"), TEXT("."), TEXT("NaN")})
+			{
+				Screen->GetScaleInput()->SetText(FText::FromString(Invalid));
+				if (!ClickScale(Screen->GetScaleApplyButton(), 0.))
+				{
+					return;
+				}
+			}
+			Screen->GetScaleInput()->SetText(FText::FromString(TEXT("3600")));
+			if (!ClickControl(Screen->GetScaleInput()))
+			{
+				return;
+			}
+			App.ProcessKeyDownEvent(FKeyEvent(EKeys::Enter, FModifierKeysState(), 0, false, 0, 0));
+			App.ProcessKeyUpEvent(FKeyEvent(EKeys::Enter, FModifierKeysState(), 0, false, 0, 0));
+			if (!Check(Runtime->GetClock().GetTimeScale() == 3600. && State->GetTime().TimeScale == 3600.,
+				TEXT("Enter applies custom scale and publishes it")))
+			{
+				return;
+			}
 			FString Error;
-			if (!Check(Runtime->ChangeTimeScale(OriginalScale, Error), TEXT("restore original rate after UI check")))
+			auto* Director = ACCLExperimentDirector::Find(GetWorld());
+			if (!Check(!Director->Execute(PC, ECCLExperimentAction::ScaleCustom, NAME_None,
+				Director->GetGeneration(), FGuid(), Error, 0, nullptr, -1.), TEXT("server rejects negative custom scale")))
+			{
+				return;
+			}
+			Screen->GetScaleInput()->SetText(FText::FromString(FString::SanitizeFloat(OriginalScale)));
+			if (!ClickScale(Screen->GetScaleApplyButton(), OriginalScale))
 			{
 				return;
 			}
 		}
 		else if (!Check(!Screen->GetScaleStopButton()->IsEnabled() && !Screen->GetScaleDecreaseButton()->IsEnabled() &&
-			!Screen->GetScaleIncreaseButton()->IsEnabled(), TEXT("time scale controls disabled outside isolated map")))
+			!Screen->GetScaleIncreaseButton()->IsEnabled() && !Screen->GetScaleInput()->IsEnabled() &&
+			!Screen->GetScaleApplyButton()->IsEnabled(), TEXT("time scale controls disabled outside isolated map")))
 		{
 			return;
 		}
@@ -1324,6 +1389,7 @@ void UCCLExperimentSmokeSubsystem::TickLab(double Now)
 		{
 			return;
 		}
+		Capture(TEXT("celestial-debug"));
 	}
 	else if (Step == 23)
 	{
@@ -1331,16 +1397,118 @@ void UCCLExperimentSmokeSubsystem::TickLab(double Now)
 		{
 			return;
 		}
-		Capture(TEXT("celestial-debug"));
+		const auto Preview = StaticCastSharedPtr<SCCLCelestialDebugView>(Screen->GetCelestialView());
+		const double WorldBefore = Runtime->GetClock().GetWorldSeconds();
+		const double ScaleBefore = Runtime->GetClock().GetTimeScale();
+		const double PendingBefore = Runtime->GetClock().GetPendingGameSeconds();
+		const double ObservationBefore = Preview->GetObservationSeconds();
+		const auto StatesBefore = Preview->GetObservedStates();
+		Screen->GetObservationScaleInput()->SetText(FText::FromString(TEXT("1e10")));
+		if (!ClickControl(Screen->GetObservationApplyButton()) ||
+			!Check(!Preview->IsFollowingWorldTime() && Preview->GetObservationScale() == 1.e10, TEXT("scientific notation selects local observation scale")))
+		{
+			return;
+		}
+		Preview->Tick(Preview->GetCachedGeometry(), Now, .25f);
+		bool bOrbitMoved = false;
+		const auto& StatesAfter = Preview->GetObservedStates();
+		for (int32 I = 0; I < FMath::Min(StatesBefore.Num(), StatesAfter.Num()); ++I)
+		{
+			bOrbitMoved |= !StatesBefore[I].PositionKm.Equals(StatesAfter[I].PositionKm, 1.);
+		}
+		if (!Check(FMath::IsNearlyEqual(Preview->GetObservationSeconds(), ObservationBefore + 2.5e9, 1.e-5) && bOrbitMoved &&
+			Runtime->GetClock().GetWorldSeconds() == WorldBefore && Runtime->GetClock().GetTimeScale() == ScaleBefore &&
+			Runtime->GetClock().GetPendingGameSeconds() == PendingBefore, TEXT("preview advances billions of seconds and orbit without changing world clock or backlog")))
+		{
+			return;
+		}
+		Screen->GetObservationScaleInput()->SetText(FText::FromString(TEXT("0")));
+		if (!ClickControl(Screen->GetObservationScaleInput()))
+		{
+			return;
+		}
+		App.ProcessKeyDownEvent(FKeyEvent(EKeys::Enter, FModifierKeysState(), 0, false, 0, 0));
+		App.ProcessKeyUpEvent(FKeyEvent(EKeys::Enter, FModifierKeysState(), 0, false, 0, 0));
+		const double PausedTime = Preview->GetObservationSeconds();
+		Preview->Tick(Preview->GetCachedGeometry(), Now, 1.f);
+		if (!Check(Preview->GetObservationScale() == 0. && Preview->GetObservationSeconds() == PausedTime,
+			TEXT("Enter and zero pause observation")))
+		{
+			return;
+		}
+		for (const TCHAR* Invalid : {TEXT("-1"), TEXT("1e999"), TEXT("1e10x"), TEXT("NaN")})
+		{
+			Screen->GetObservationScaleInput()->SetText(FText::FromString(Invalid));
+			if (!ClickControl(Screen->GetObservationApplyButton()) ||
+				!Check(Preview->GetObservationScale() == 0., TEXT("invalid preview scale leaves observation paused")))
+			{
+				return;
+			}
+		}
+		if (!ClickControl(Screen->GetObservationFollowButton()) ||
+			!Check(Preview->IsFollowingWorldTime() && Preview->GetObservationSeconds() == WorldBefore, TEXT("return to published world time")))
+		{
+			return;
+		}
+		Screen->GetObservationScaleInput()->SetText(FText::FromString(TEXT("600000")));
+		if (!ClickControl(Screen->GetObservationApplyButton()))
+		{
+			return;
+		}
+		Capture(TEXT("celestial-preview"));
 		PreviousTerrainRevision = Runtime->GetEnvironmentInputs().Revision;
-		Screen->RevealControl(Screen->GetRotationButton());
+		Screen->RevealControl(Screen->GetScaleApplyButton());
 	}
 	else if (Step == 24)
+	{
+		const auto Preview = StaticCastSharedPtr<SCCLCelestialDebugView>(Screen->GetCelestialView());
+		if (!Check(!Preview->IsFollowingWorldTime() &&
+			Preview->GetObservationSeconds() > Runtime->GetClock().GetWorldSeconds() + 1000.,
+			TEXT("visible preview advances across rendered frames while world time is stopped")))
+		{
+			return;
+		}
+		if (!ClickControl(Screen->GetObservationFollowButton()))
+		{
+			return;
+		}
+		auto CheckScale = [this, Screen, Preview, Runtime](double Expected)
+		{
+			return Check(Preview->GetObservationScale() == Expected &&
+				FCString::Atod(*Screen->GetScaleInput()->GetText().ToString()) == Expected &&
+				FCString::Atod(*Screen->GetObservationScaleInput()->GetText().ToString()) == Expected &&
+				Runtime->GetClock().GetTimeScale() == 0., TEXT("both inputs and observation buttons agree without changing world rate"));
+		};
+		Screen->GetScaleInput()->SetText(FText::FromString(TEXT("144")));
+		if (!ClickControl(Screen->GetScaleApplyButton()) || !CheckScale(144.) ||
+			!ClickControl(Screen->GetScaleIncreaseButton()) || !CheckScale(204.) ||
+			!ClickControl(Screen->GetScaleDecreaseButton()) || !CheckScale(144.) ||
+			!ClickControl(Screen->GetScaleStopButton()) || !CheckScale(0.))
+		{
+			return;
+		}
+		Screen->GetObservationScaleInput()->SetText(FText::FromString(TEXT("288")));
+		if (!ClickControl(Screen->GetObservationApplyButton()) || !CheckScale(288.) ||
+			!ClickControl(Screen->GetObservationFollowButton()) ||
+			!Check(Preview->IsFollowingWorldTime() && Screen->GetScaleInput()->GetText().ToString() == TEXT("0") &&
+				Screen->GetObservationScaleInput()->GetText().ToString() == TEXT("0"), TEXT("follow world resets both scale fields")))
+		{
+			return;
+		}
+		Screen->RevealControl(Screen->GetRotationButton());
+		Step = 240;
+		Next = Now + 1.;
+		return;
+	}
+	else if (Step == 240)
 	{
 		if (!ClickControl(Screen->GetRotationButton()))
 		{
 			return;
 		}
+		Step = 25;
+		Next = Now + 1.;
+		return;
 	}
 	else if (Step == 25)
 	{
