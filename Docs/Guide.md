@@ -27,6 +27,7 @@
 | [ProgressionFoundation](ProgressionFoundation.md) | 인벤토리·장비·성장·스킬 UI의 설계와 검증 |
 | [UIFoundation](UIFoundation.md) | 장르 독립적인 UI 관리자·화면·문맥·레이어·연출 제어의 계약과 검증 |
 | [EnvironmentPlan](EnvironmentPlan.md) | 천체·날씨·영구 지형·눈·물·불·차폐·생태계와 실험장 구현 계획, 단계별 현재 상태 |
+| [환경 실험장 PIE QA](EnvironmentPIEQA-2026-10-12.md) | 시간·천체 배율 조작의 MCP 실행 검사, 최초 메뉴 입력 정책 누락과 종료 오류 분석 |
 | [생태계·생애](EnvironmentEcology.md) | 단계 8의 개체군·개체 전환·식생·부패·노화 구현과 검증 |
 | [집계 생물의 영양 상태](EnvironmentNutrition.md) | 단계 8의 집계 에너지·먹이·기아, 예약 상태 이전·저장과 규모 검증 |
 | [불·열·공간 환경](EnvironmentFire.md) | 단계 7의 연소 코어·수지 검증과 표면·환기 통합 계약 |
