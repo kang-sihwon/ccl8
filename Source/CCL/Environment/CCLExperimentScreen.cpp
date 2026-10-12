@@ -21,13 +21,27 @@
 #include "Widgets/Layout/SScrollBox.h"
 #include "Widgets/Input/SButton.h"
 #include "Widgets/Input/SComboButton.h"
+#include "Widgets/Input/SEditableTextBox.h"
 #include "Widgets/Layout/SWrapBox.h"
 #include "Widgets/Text/STextBlock.h"
 #include "Widgets/SBoxPanel.h"
 #include "Widgets/SNullWidget.h"
+#include "Widgets/SViewport.h"
+#include "Framework/Application/SlateApplication.h"
+#include <charconv>
 
 namespace
 {
+	bool ParseTimeScale(const FText& Text, double& Scale)
+	{
+		const FString Value = Text.ToString().TrimStartAndEnd();
+		const FTCHARToUTF8 Utf8(*Value);
+		const char* Begin = Utf8.Get();
+		const char* End = Begin + Utf8.Length();
+		const auto Result = std::from_chars(Begin, End, Scale);
+		return Result.ec == std::errc() && Result.ptr == End && FMath::IsFinite(Scale) && Scale >= 0.;
+	}
+
 	FString FormatElapsedTime(double Seconds)
 	{
 		if (!FMath::IsFinite(Seconds) || Seconds < 0.)
@@ -52,7 +66,7 @@ void UCCLExperimentScreen::NativeOnInitialized()
 
 FReply UCCLExperimentScreen::NativeOnFocusReceived(const FGeometry& Geometry, const FFocusEvent& Event)
 {
-	return FirstButton ? FReply::Handled().SetUserFocus(FirstButton.ToSharedRef(), Event.GetCause()) :
+	return CloseButton ? FReply::Handled().SetUserFocus(CloseButton.ToSharedRef(), Event.GetCause()) :
 		Super::NativeOnFocusReceived(Geometry, Event);
 }
 
@@ -68,7 +82,25 @@ FReply UCCLExperimentScreen::NativeOnKeyDown(const FGeometry& Geometry, const FK
 		return FReply::Handled();
 	}
 
-	return Super::NativeOnKeyDown(Geometry, Event);
+	Super::NativeOnKeyDown(Geometry, Event);
+	return FReply::Handled();
+}
+
+FReply UCCLExperimentScreen::NativeOnKeyUp(const FGeometry& Geometry, const FKeyEvent& Event)
+{
+	Super::NativeOnKeyUp(Geometry, Event);
+	return FReply::Handled();
+}
+
+void UCCLExperimentScreen::OnManagedTick(float DeltaTime)
+{
+	Super::OnManagedTick(DeltaTime);
+	RefreshScaleInputs();
+	const auto Viewport = FSlateApplication::Get().GetGameViewport();
+	if (IsActivated() && GetIsEnabled() && Viewport && Viewport->HasKeyboardFocus())
+	{
+		RequestRefreshFocus();
+	}
 }
 
 FReply UCCLExperimentScreen::NativeOnMouseMove(const FGeometry& Geometry, const FPointerEvent& Event)
@@ -86,6 +118,7 @@ FReply UCCLExperimentScreen::NativeOnMouseButtonDown(const FGeometry& Geometry, 
 {
 	NativeOnMouseMove(Geometry, Event);
 	if (auto* PC = Controller(); PC && PC->HasTerrainTool() && MenuPanel
+		&& !IsObserving()
 		&& !MenuPanel->GetCachedGeometry().IsUnderLocation(Event.GetScreenSpacePosition()))
 	{
 		if (Event.GetEffectingButton() == EKeys::LeftMouseButton)
@@ -100,11 +133,119 @@ FReply UCCLExperimentScreen::NativeOnMouseButtonDown(const FGeometry& Geometry, 
 		}
 	}
 
-	return Super::NativeOnMouseButtonDown(Geometry, Event);
+	return FReply::Handled().SetUserFocus(TakeWidget(), EFocusCause::Mouse);
+}
+
+bool UCCLExperimentScreen::IsObserving() const
+{
+	return bShowCelestialView && SelectedCase == TEXT("Zone_01") && CelestialView.IsValid();
+}
+
+double UCCLExperimentScreen::CurrentScale() const
+{
+	if (IsObserving())
+	{
+		const auto Preview = StaticCastSharedPtr<SCCLCelestialDebugView>(CelestialView);
+		if (!Preview->IsFollowingWorldTime())
+		{
+			return Preview->GetObservationScale();
+		}
+	}
+	for (TActorIterator<ACCLWorldEnvironmentState> It(GetWorld()); It; ++It)
+	{
+		return It->GetTime().TimeScale;
+	}
+	return 0.;
+}
+
+void UCCLExperimentScreen::RefreshScaleInputs(bool bForce)
+{
+	const double Scale = CurrentScale();
+	const bool bObservation = IsObserving();
+	if (!bForce && DisplayedScale == Scale && bDisplayedObservation == bObservation)
+	{
+		return;
+	}
+	DisplayedScale = Scale;
+	bDisplayedObservation = bObservation;
+	const FText Text = FText::FromString(FString::Printf(TEXT("%.17g"), Scale));
+	for (const auto& Input : {ScaleInput, ObservationScaleInput})
+	{
+		if (Input)
+		{
+			Input->SetText(Text);
+			Input->SetError(FText::GetEmpty());
+		}
+	}
+}
+
+void UCCLExperimentScreen::ApplyScale(double Scale)
+{
+	if (IsObserving())
+	{
+		if (!StaticCastSharedPtr<SCCLCelestialDebugView>(CelestialView)->SetObservationScale(Scale))
+		{
+			const FText Error = FText::FromString(TEXT("천체 정의 수신을 기다려 줘."));
+			ScaleInput->SetError(Error);
+			ObservationScaleInput->SetError(Error);
+			return;
+		}
+	}
+	else if (auto* PC = Controller())
+	{
+		PC->Submit(ECCLExperimentAction::ScaleCustom, SelectedCase, Scale);
+	}
+	RefreshScaleInputs(true);
+}
+
+void UCCLExperimentScreen::AdjustScale(double Delta, bool bStop)
+{
+	if (IsObserving())
+	{
+		ApplyScale(bStop ? 0. : FMath::Max(0., CurrentScale() + Delta));
+	}
+	else if (auto* PC = Controller())
+	{
+		PC->Submit(bStop ? ECCLExperimentAction::ScaleZero :
+			(Delta > 0. ? ECCLExperimentAction::ScaleIncrease : ECCLExperimentAction::ScaleDecrease), SelectedCase);
+		RefreshScaleInputs(true);
+	}
+}
+
+void UCCLExperimentScreen::ApplyTimeScale()
+{
+	if (!ScaleInput || !ScaleInput->IsEnabled())
+	{
+		return;
+	}
+	double Scale = 0.;
+	if (!ParseTimeScale(ScaleInput->GetText(), Scale))
+	{
+		ScaleInput->SetError(FText::FromString(TEXT("0 이상의 숫자를 입력해 줘. 예: 60, 6000, 600000")));
+		return;
+	}
+	ScaleInput->SetError(FText::GetEmpty());
+	ApplyScale(Scale);
+}
+
+void UCCLExperimentScreen::ApplyObservationScale()
+{
+	if (!ObservationScaleInput || !IsObserving())
+	{
+		return;
+	}
+	double Scale = 0.;
+	if (!ParseTimeScale(ObservationScaleInput->GetText(), Scale))
+	{
+		ObservationScaleInput->SetError(FText::FromString(TEXT("0 이상의 숫자를 입력해 줘. 예: 600000, 1e10")));
+		return;
+	}
+	ApplyScale(Scale);
 }
 
 void UCCLExperimentScreen::OnContextBound()
 {
+	SetVisibility(ESlateVisibility::Visible);
 	auto Button = [](const TCHAR* Label, TFunction<void()> Action, TFunction<bool()> Enabled)
 	{
 		return SNew(SButton).ContentPadding(FMargin(10, 7))
@@ -186,12 +327,39 @@ void UCCLExperimentScreen::OnContextBound()
 	{
 		return Allowed() && UCCLWorldSimulationSubsystem::DomainForWorld(GetWorld()) == ECCLWorldDomain::Scenario;
 	};
-	ScaleStopButton = Button(TEXT("시간 정지"), [Action]() { Action(ECCLExperimentAction::ScaleZero); }, ScaleAllowed);
-	ScaleDecreaseButton = Button(TEXT("10배 감소"), [Action]() { Action(ECCLExperimentAction::ScaleDecrease); }, ScaleAllowed);
-	ScaleIncreaseButton = Button(TEXT("10배 증가"), [Action]() { Action(ECCLExperimentAction::ScaleIncrease); }, ScaleAllowed);
+	auto TimeControlAllowed = [this, ScaleAllowed]() { return IsObserving() || ScaleAllowed(); };
+	ScaleStopButton = Button(TEXT("시간 정지"), [this]() { AdjustScale(0., true); }, TimeControlAllowed);
+	ScaleDecreaseButton = Button(TEXT("60배 감소"), [this]() { AdjustScale(-60.); }, TimeControlAllowed);
+	ScaleIncreaseButton = Button(TEXT("60배 증가"), [this]() { AdjustScale(60.); }, TimeControlAllowed);
 	Storage->AddSlot().Padding(0, 0, 6, 0)[ScaleStopButton.ToSharedRef()];
 	Storage->AddSlot().Padding(0, 0, 6, 0)[ScaleDecreaseButton.ToSharedRef()];
 	Storage->AddSlot().Padding(0, 0, 6, 0)[ScaleIncreaseButton.ToSharedRef()];
+	double InitialScale = 60.;
+	for (TActorIterator<ACCLWorldEnvironmentState> It(GetWorld()); It; ++It)
+	{
+		InitialScale = It->GetTime().TimeScale;
+		break;
+	}
+	ScaleInput = SNew(SEditableTextBox)
+		.ClearKeyboardFocusOnCommit(false)
+		.MinDesiredWidth(140.f)
+		.Font(FCoreStyle::GetDefaultFontStyle("Regular", 17))
+		.Text(FText::FromString(FString::SanitizeFloat(InitialScale)))
+		.HintText(FText::FromString(TEXT("시간 배율")))
+		.ToolTipText(FText::FromString(TEXT("천체창이 열려 있으면 관측 배율, 닫혀 있으면 세계 배율. 0은 정지.")))
+		.IsEnabled_Lambda(TimeControlAllowed)
+		.OnTextCommitted_Lambda([this](const FText&, ETextCommit::Type Commit)
+		{
+			if (Commit == ETextCommit::OnEnter)
+			{
+				ApplyTimeScale();
+			}
+		});
+	ScaleApplyButton = Button(TEXT("배율 적용"), [this]() { ApplyTimeScale(); }, TimeControlAllowed);
+	Storage->AddSlot().VAlign(VAlign_Center).Padding(0, 0, 6, 0)
+		[SNew(STextBlock).Text_Lambda([this]() { return FText::FromString(IsObserving() ? TEXT("조작 대상: 천체 관측") : TEXT("조작 대상: 세계 시간")); })];
+	Storage->AddSlot().Padding(0, 0, 6, 0)[ScaleInput.ToSharedRef()];
+	Storage->AddSlot()[ScaleApplyButton.ToSharedRef()];
 
 	auto IsEnvironmentCase = [this]() { return SelectedCase == TEXT("Zone_01") || SelectedCase == TEXT("Zone_11"); };
 	auto EnvironmentControls = SNew(SVerticalBox).Visibility_Lambda([IsEnvironmentCase]()
@@ -252,7 +420,12 @@ void UCCLExperimentScreen::OnContextBound()
 		})];
 	auto CelestialButtons = SNew(SWrapBox).UseAllottedSize(true).InnerSlotPadding(FVector2D(4, 4))
 		.Visibility_Lambda([this]() { return SelectedCase == TEXT("Zone_01") ? EVisibility::Visible : EVisibility::Collapsed; });
-	CelestialViewButton = Button(TEXT("천체 3D 관측 열기 / 닫기"), [this]() { bShowCelestialView = !bShowCelestialView; }, []() { return true; });
+	CelestialViewButton = Button(TEXT("천체 3D 관측 열기 / 닫기"), [this]()
+	{
+		bShowCelestialView = !bShowCelestialView;
+		StaticCastSharedPtr<SCCLCelestialDebugView>(CelestialView)->FollowWorldTime();
+		RefreshScaleInputs(true);
+	}, []() { return true; });
 	CelestialButtons->AddSlot()[CelestialViewButton.ToSharedRef()];
 	const TPair<const TCHAR*, ECCLExperimentAction> CelestialActions[] = {
 		{TEXT("위도 +45°"), ECCLExperimentAction::NextLatitude}, {TEXT("기울기 변경"), ECCLExperimentAction::NextObliquity},
@@ -665,6 +838,9 @@ void UCCLExperimentScreen::OnContextBound()
 				*FormatElapsedTime(Result->CompletedWorldSeconds), Result->RunId.IsValid() ? *Result->RunId.ToString().Left(8) : TEXT("미실행")));
 		})]
 		+ SVerticalBox::Slot().AutoHeight()[Storage]
+		+ SVerticalBox::Slot().AutoHeight().Padding(0, 4)
+		[SNew(STextBlock).AutoWrapText(true).Text(FText::FromString(
+			TEXT("천체창 열림: 모든 배율 조작은 관측에 적용. 천체창 닫힘: 세계 시간에 적용. Enter로 적용, 0은 정지.")))]
 		+ SVerticalBox::Slot().AutoHeight().Padding(0, 8)
 		[SNew(STextBlock).Font(FCoreStyle::GetDefaultFontStyle("Regular", 15)).AutoWrapText(true).Text_Lambda([this]()
 		{
@@ -715,7 +891,7 @@ void UCCLExperimentScreen::OnContextBound()
 				for (TActorIterator<ACCLWorldEnvironmentState> It(GetWorld()); It; ++It)
 				{
 					const auto& Time = It->GetTime();
-					return FText::FromString(FString::Printf(TEXT("게임 %s\n세계 %s  ·  %.0f배  ·  대기 %.2f초"),
+					return FText::FromString(FString::Printf(TEXT("게임 %s\n세계 %s  ·  %g배  ·  대기 %.2f초"),
 						*FormatElapsedTime(Time.GameSeconds), *FormatElapsedTime(Time.WorldSeconds), Time.TimeScale, Time.PendingGameSeconds));
 				}
 				return FText::FromString(TEXT("공통 시계 수신 대기"));
@@ -737,14 +913,40 @@ void UCCLExperimentScreen::OnContextBound()
 			[SNew(STextBlock).Font(FCoreStyle::GetDefaultFontStyle("Regular", 13)).AutoWrapText(true)
 				.Text(FText::FromString(TEXT("F7 열기/닫기 · 닫은 뒤 WASD 이동\n관찰 참가자는 조작 담당자의 변경을 함께 본다.")))]]];
 	CelestialView = SNew(SCCLCelestialDebugView).World(GetWorld());
+	ObservationScaleInput = SNew(SEditableTextBox).MinDesiredWidth(120.f)
+		.ClearKeyboardFocusOnCommit(false)
+		.Text(FText::FromString(TEXT("600000")))
+		.ToolTipText(FText::FromString(TEXT("관측 시간만 진행한다. 0은 관측 정지. 지수 표기 예: 1e10")))
+		.OnTextCommitted_Lambda([this](const FText&, ETextCommit::Type Commit)
+		{
+			if (Commit == ETextCommit::OnEnter)
+			{
+				ApplyObservationScale();
+			}
+		});
+	ObservationApplyButton = Button(TEXT("관측 배율 적용"), [this]() { ApplyObservationScale(); }, []() { return true; });
+	ObservationFollowButton = Button(TEXT("세계 시각으로 복귀"), [this]()
+	{
+		StaticCastSharedPtr<SCCLCelestialDebugView>(CelestialView)->FollowWorldTime();
+		RefreshScaleInputs(true);
+	}, []() { return true; });
+	auto ObservationControls = SNew(SWrapBox).UseAllottedSize(true).InnerSlotPadding(FVector2D(6, 4))
+		+ SWrapBox::Slot().VAlign(VAlign_Center)[SNew(STextBlock).Text(FText::FromString(TEXT("관측 배율")))]
+		+ SWrapBox::Slot().VAlign(VAlign_Center)[ObservationScaleInput.ToSharedRef()]
+		+ SWrapBox::Slot()[ObservationApplyButton.ToSharedRef()]
+		+ SWrapBox::Slot()[ObservationFollowButton.ToSharedRef()];
 	Host->SetContent(SNew(SOverlay)
+		+ SOverlay::Slot()[SNew(SBorder).BorderImage(FCoreStyle::Get().GetBrush("WhiteBrush"))
+			.BorderBackgroundColor(FLinearColor::Transparent)]
 		+ SOverlay::Slot().HAlign(HAlign_Left).VAlign(VAlign_Center)[MenuPanel.ToSharedRef()]
 		+ SOverlay::Slot().HAlign(HAlign_Right).VAlign(VAlign_Center).Padding(8)
 		[SNew(SBox).Visibility_Lambda([this]() { return bShowCelestialView && SelectedCase == TEXT("Zone_01") ? EVisibility::Visible : EVisibility::Collapsed; })
 			.WidthOverride_Lambda([this]() { return FOptionalSize(FMath::Clamp(float(GetCachedGeometry().GetLocalSize().X) * 0.6f - 16.f, 360.f, 900.f)); })
 			.HeightOverride_Lambda([this]() { return FOptionalSize(FMath::Clamp(float(GetCachedGeometry().GetLocalSize().Y) - 72.f, 360.f, 760.f)); })
-			[CelestialView.ToSharedRef()]]);
-
+			[SNew(SVerticalBox)
+				+ SVerticalBox::Slot().AutoHeight()[SNew(SBorder).Padding(8)[ObservationControls]]
+				+ SVerticalBox::Slot().FillHeight(1)[CelestialView.ToSharedRef()]]]);
+	RefreshScaleInputs(true);
 }
 
 void UCCLExperimentScreen::OnContextReleased()
@@ -763,6 +965,9 @@ void UCCLExperimentScreen::OnContextReleased()
 	DetailScroll.Reset();
 	CelestialViewButton.Reset();
 	CelestialView.Reset();
+	ObservationScaleInput.Reset();
+	ObservationApplyButton.Reset();
+	ObservationFollowButton.Reset();
 	ZoneSelector.Reset();
 	MenuPanel.Reset();
 	FirstButton.Reset();
@@ -771,6 +976,8 @@ void UCCLExperimentScreen::OnContextReleased()
 	ScaleStopButton.Reset();
 	ScaleDecreaseButton.Reset();
 	ScaleIncreaseButton.Reset();
+	ScaleInput.Reset();
+	ScaleApplyButton.Reset();
 	RotationButton.Reset();
 	DoorButton.Reset();
 	EcologyFeedButton.Reset();
@@ -799,6 +1006,11 @@ ACCLExperimentDirector* UCCLExperimentScreen::Director() const
 void UCCLExperimentScreen::SelectCase(FName CaseId)
 {
 	SelectedCase = CaseId;
+	if (CelestialView)
+	{
+		StaticCastSharedPtr<SCCLCelestialDebugView>(CelestialView)->FollowWorldTime();
+	}
+	RefreshScaleInputs(true);
 	if (DetailScroll)
 	{
 		DetailScroll->ScrollToStart();

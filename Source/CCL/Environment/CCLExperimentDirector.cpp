@@ -159,7 +159,7 @@ void ACCLExperimentDirector::ReleaseOperator(APlayerController* Controller)
 }
 
 bool ACCLExperimentDirector::Execute(APlayerController* Requester, ECCLExperimentAction Action, FName CaseId,
-	FGuid ExpectedGeneration, FGuid ExpectedRun, FString& Message, uint64 ExpectedTerrainSerial, const FVector* TerrainTarget)
+	FGuid ExpectedGeneration, FGuid ExpectedRun, FString& Message, uint64 ExpectedTerrainSerial, const FVector* TerrainTarget, double TimeScale)
 {
 	Message.Reset();
 	if (!HasAuthority() || !IsReady() || ExpectedGeneration != Generation ||
@@ -321,15 +321,26 @@ bool ACCLExperimentDirector::Execute(APlayerController* Requester, ECCLExperimen
 	case ECCLExperimentAction::ScaleSixty:
 	case ECCLExperimentAction::ScaleDecrease:
 	case ECCLExperimentAction::ScaleIncrease:
+	case ECCLExperimentAction::ScaleCustom:
 		if (UCCLWorldSimulationSubsystem::DomainForWorld(GetWorld()) != ECCLWorldDomain::Scenario)
 		{
 			Message = TEXT("전역 시간 배율 변경은 격리 실험 맵에서만 할 수 있다.");
 			return false;
 		}
 
+		if (Action == ECCLExperimentAction::ScaleCustom)
+		{
+			if (!FMath::IsFinite(TimeScale) || TimeScale < 0.)
+			{
+				Message = TEXT("시간 배율은 0 이상의 유한한 숫자여야 한다.");
+				return false;
+			}
+			return Runtime && Runtime->ChangeTimeScale(TimeScale, Message);
+		}
+
 		if (Runtime && (Action == ECCLExperimentAction::ScaleDecrease || Action == ECCLExperimentAction::ScaleIncrease))
 		{
-			const double Delta = Action == ECCLExperimentAction::ScaleIncrease ? 10. : -10.;
+			const double Delta = Action == ECCLExperimentAction::ScaleIncrease ? 60. : -60.;
 			return Runtime->ChangeTimeScale(FMath::Max(0., Runtime->GetClock().GetTimeScale() + Delta), Message);
 		}
 

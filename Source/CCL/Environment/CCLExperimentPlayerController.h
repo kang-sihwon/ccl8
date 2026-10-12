@@ -27,10 +27,10 @@ public:
 	UFUNCTION(Exec)
 	void CCLExperiment();
 
-	void Submit(ECCLExperimentAction Action, FName CaseId = NAME_None);
+	void Submit(ECCLExperimentAction Action, FName CaseId = NAME_None, double TimeScale = 0.);
 
 	UFUNCTION(Server, Reliable)
-	void ServerExperiment(ECCLExperimentAction Action, FName CaseId, FGuid Generation, FGuid RunId, uint64 TerrainSerial = 0);
+	void ServerExperiment(ECCLExperimentAction Action, FName CaseId, FGuid Generation, FGuid RunId, uint64 TerrainSerial = 0, double TimeScale = 0.);
 
 	void SelectTerrainTool(ECCLExperimentAction Action);
 	void CancelTerrainTool();

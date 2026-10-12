@@ -136,21 +136,21 @@ void ACCLExperimentPlayerController::CCLExperiment()
 	ExperimentView = UI->OpenView(TAG_ExperimentScreen, Context, this);
 }
 
-void ACCLExperimentPlayerController::Submit(ECCLExperimentAction Action, FName CaseId)
+void ACCLExperimentPlayerController::Submit(ECCLExperimentAction Action, FName CaseId, double TimeScale)
 {
 	if (const auto* Director = ACCLExperimentDirector::Find(GetWorld()))
 	{
 		const auto* Result = Director->FindResult(CaseId);
-		ServerExperiment(Action, CaseId, Director->GetGeneration(), Result ? Result->RunId : FGuid(), Director->GetTerrainRegion() ? Director->GetTerrainRegion()->GetPublicationSerial() : 0);
+		ServerExperiment(Action, CaseId, Director->GetGeneration(), Result ? Result->RunId : FGuid(), Director->GetTerrainRegion() ? Director->GetTerrainRegion()->GetPublicationSerial() : 0, TimeScale);
 	}
 }
 
 void ACCLExperimentPlayerController::ServerExperiment_Implementation(ECCLExperimentAction Action, FName CaseId,
-	FGuid Generation, FGuid RunId, uint64 TerrainSerial)
+	FGuid Generation, FGuid RunId, uint64 TerrainSerial, double TimeScale)
 {
 	FString Message;
 	auto* Director = ACCLExperimentDirector::Find(GetWorld());
-	const bool bAccepted = Director && Director->Execute(this, Action, CaseId, Generation, RunId, Message, TerrainSerial);
+	const bool bAccepted = Director && Director->Execute(this, Action, CaseId, Generation, RunId, Message, TerrainSerial, nullptr, TimeScale);
 	ClientExperimentResponse(Message.IsEmpty() ? (bAccepted ? TEXT("조작 요청을 처리했다.") : TEXT("조작 요청을 거부했다.")) : Message);
 }
 
