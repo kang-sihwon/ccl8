@@ -41,6 +41,7 @@
 | [코드 설계 후속 수정](CodeDesignFixes-2026-10-11.md) | 장비 일관성·카탈로그 식별·기능과 시간 진행 분리·표면 공유 발행본 검증 |
 | [Coding](Coding.md) | 코드 설계·리뷰·빌드와 파일 수정 경계 |
 | [FrameworkPlan](FrameworkPlan.md) | 공용 시스템 후보·Framework 명명·독립성 검증과 분리 보류·재검토 기준 |
+| [CodeStructurePlan](CodeStructurePlan.md) | 2026-10-11 전체 설계 검토의 결함·설계 위험과 세계 소유권·저장·진입점 구조의 개선 순서 |
 | [WritingGuide](WritingGuide.md) | 문서 작성·검토·결정 기록 |
 | [시스템 학습 문서 작성 규칙](SystemExplanationGuide.md) | 교사식 설명, Git 전후 코드 비교, 변경 이유와 검증의 작성 기준 |
 | [인벤토리 UI 학습](Learning/InventoryUI.md) | Slate 문법부터 공용 화면 관리로의 변경 이유까지 설명하는 전체 예시 |
