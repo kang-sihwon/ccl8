@@ -1,6 +1,8 @@
 #include "CCLPlayerState.h"
 #include "Campaign/CCLCampaignDirector.h"
 #include "Campaign/CCLCampaignState.h"
+#include "Campaign/CCLVillageSteward.h"
+#include "Components/BoxComponent.h"
 #include "Items/CCLWorldPickup.h"
 #include "EngineUtils.h"
 #include "AbilitySystem/CCLAbilitySystemComponent.h"
@@ -640,4 +642,86 @@ namespace
 		virtual void CancelWorldRestore() override {}
 	};
 	static_assert(!TIsAbstract<FCCLSaveOnlyParticipant>::Value);
+}
+
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FCCLVillageSelectionTest, "CCL.Campaign.NearestReachableNPC",
+	EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
+
+bool FCCLVillageSelectionTest::RunTest(const FString& Parameters)
+{
+	FCCLRuleWorld Test;
+	FActorSpawnParameters Spawn;
+	Spawn.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
+	auto* Visitor = Test.World->SpawnActor<ACharacter>(FVector(0., 0., 100.), FRotator::ZeroRotator, Spawn);
+	auto* Far = Test.World->SpawnActor<ACCLVillageSteward>(FVector(180., -60., 100.), FRotator::ZeroRotator, Spawn);
+	auto* Near = Test.World->SpawnActor<ACCLVillageSteward>(FVector(100., 100., 100.), FRotator::ZeroRotator, Spawn);
+	if (!TestNotNull(TEXT("visitor"), Visitor) || !TestNotNull(TEXT("far NPC"), Far) || !TestNotNull(TEXT("near NPC"), Near))
+	{
+		return false;
+	}
+
+	TestNull(TEXT("missing visitor"), ACCLVillageSteward::FindNearestReachable(nullptr));
+	TestTrue(TEXT("nearest wins even when spawned later"), ACCLVillageSteward::FindNearestReachable(Visitor) == Near);
+
+	auto* Wall = Test.World->SpawnActor<AActor>();
+	auto* Box = NewObject<UBoxComponent>(Wall);
+	Wall->SetRootComponent(Box);
+	Box->SetBoxExtent(FVector(10., 20., 100.));
+	Box->SetCollisionEnabled(ECollisionEnabled::QueryOnly);
+	Box->SetCollisionResponseToAllChannels(ECR_Ignore);
+	Box->SetCollisionResponseToChannel(ECC_Visibility, ECR_Block);
+	Box->RegisterComponent();
+	Wall->SetActorLocation(FVector(50., 50., 100.));
+	TestFalse(TEXT("wall blocks nearer NPC"), Near->CanReach(Visitor));
+	TestTrue(TEXT("reachable farther NPC wins"), ACCLVillageSteward::FindNearestReachable(Visitor) == Far);
+
+	Wall->Destroy();
+	Near->SetActorLocation(FVector(500., 500., 100.));
+	TestTrue(TEXT("moving out of reach changes selection"), ACCLVillageSteward::FindNearestReachable(Visitor) == Far);
+	Far->SetActorLocation(FVector(500., -500., 100.));
+	TestNull(TEXT("no reachable NPC"), ACCLVillageSteward::FindNearestReachable(Visitor));
+	return true;
+}
+
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FCCLGuardPickupTest, "CCL.Combat.ShieldPickupHandAction",
+	EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
+
+bool FCCLGuardPickupTest::RunTest(const FString& Parameters)
+{
+	const auto* Catalog = UCCLItemCatalog::Get();
+	auto* Shield = Catalog ? Catalog->FindItem(TEXT("DA_TrainingShield")) : nullptr;
+	if (!TestNotNull(TEXT("training shield asset"), Shield))
+	{
+		return false;
+	}
+
+	FCCLRuleWorld Fixture;
+	auto* Player = Fixture.World->SpawnActor<ACCLPlayerState>();
+	auto* Visitor = Fixture.World->SpawnActor<ACharacter>();
+	auto* Pickup = Fixture.World->SpawnActor<ACCLWorldPickup>();
+	auto* ASC = Player->GetCCLAbilitySystem();
+	ASC->InitAbilityActorInfo(Player, Visitor);
+	Pickup->Definition = Shield;
+	Pickup->SetActorLocation(Visitor->GetActorLocation() + FVector(100., 0., 0.));
+	auto* Inventory = Player->GetInventory();
+	auto* Loadout = Player->GetLoadout();
+	TestTrue(TEXT("bare right hand attacks"), Loadout->GetHandAction(CCLItemTags::Slot_RightHand) == ECCLHandAction::Attack);
+	if (!TestTrue(TEXT("nearby shield pickup is collectible"), Pickup->TryCollect(Inventory, Visitor)))
+	{
+		return false;
+	}
+
+	const auto* Item = Inventory->FindSlot(0);
+	if (!TestNotNull(TEXT("collected shield in bag"), Item))
+	{
+		return false;
+	}
+
+	const FGuid Id = Item->Id;
+	TestTrue(TEXT("pickup kept the shield definition"), Item->Definition == Shield);
+	TestTrue(TEXT("equip shield to right hand"), Loadout->Equip(Id, CCLItemTags::Slot_RightHand));
+	TestTrue(TEXT("right hand routes to guard"), Loadout->GetHandAction(CCLItemTags::Slot_RightHand) == ECCLHandAction::Guard);
+	TestTrue(TEXT("shield returns to bag"), Loadout->Unequip(Id));
+	TestTrue(TEXT("unequipped right hand attacks again"), Loadout->GetHandAction(CCLItemTags::Slot_RightHand) == ECCLHandAction::Attack);
+	return true;
 }

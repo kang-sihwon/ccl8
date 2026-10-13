@@ -627,7 +627,7 @@ void UCCLExperimentScreen::OnContextBound()
 				Litter += C.DeadBiomassKg;
 				Burned += C.BurnedBiomassKg;
 			}
-			return FText::FromString(FString::Printf(TEXT("성장 %d · 휴면 %d · 고사 %d · 재생 %llu회\n생체 %.2f · 고사체 %.2f · 탄 양 %.2f kg\n기온 %.0f°C · 비 %.0f mm/h\n9종: 나무·풀·꽃·관목·이끼·양치·조류·수생·버섯\n세 줄: 채광 / 그늘 / 양분 부족\n식생 자동 검사 연결됨. Agent 조작은 후속."),
+			return FText::FromString(FString::Printf(TEXT("성장 %d · 휴면 %d · 고사 %d · 재생 %llu회\n생체 %.2f · 고사체 %.2f · 탄 양 %.2f kg\n기온 %.0f°C · 비 %.0f mm/h\n9종: 나무·풀·꽃·관목·이끼·양치·조류·수생·버섯\n세 줄: 채광 / 그늘 / 양분 부족\n자동 검사: 식생·저장. 음식·Agent 생애는 아래 버튼으로 수동 조작."),
 				Alive, Dormant, Dead, Regrowth, Living, Litter, Burned, G->Forcing.TemperatureCelsius,
 				G->Forcing.RainMetersPerWorldSecond * 3600000.));
 		})];

@@ -1,4 +1,4 @@
-﻿param(
+param(
     [ValidateSet('EnvironmentPlayground', 'EnvironmentScenario')][string]$Map = 'EnvironmentScenario',
     [switch]$PIE,
     [switch]$Lab,
@@ -35,7 +35,7 @@ try {
         Start-Sleep -Milliseconds 500
     }
     if ($process.ExitCode -ne 0 -or !(Select-String -LiteralPath $log -Pattern 'CCL_EXPERIMENT_SMOKE PASS Role=MenuInput' -Quiet) -or
-        (Select-String -LiteralPath $log -Pattern 'CCL_EXPERIMENT_SMOKE FAIL|Fatal error:|Assertion failed:' -Quiet)) {
+        (Select-String -LiteralPath $log -Pattern 'CCL_EXPERIMENT_SMOKE FAIL|Fatal error:|Assertion failed:|Failed to commit change!|Null player input' -Quiet)) {
         Get-Content -LiteralPath $log -Tail 35
         throw ('Menu input test failed: ' + $log)
     }

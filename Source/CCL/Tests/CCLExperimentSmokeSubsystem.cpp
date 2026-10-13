@@ -590,10 +590,17 @@ void UCCLExperimentSmokeSubsystem::TickMenuInput(double Now)
 			return;
 		}
 
+		// Offscreen PIE has no OS activation. Simulate viewport focus without clicking or reopening.
+		App.SetUserFocusToGameViewport(PC->GetLocalPlayer()->GetControllerId());
 		Capture(TEXT("menu-initial"));
 	}
 	else if (Step == 1)
 	{
+		if (!Check(!Router->CanProcessNormalGameInput() && PC->IsMoveInputIgnored() && PC->IsLookInputIgnored(),
+			TEXT("initial menu applies input policy after viewport focus without a click")))
+		{
+			return;
+		}
 		auto* Screen = Cast<UCCLExperimentScreen>(UI->FindScreen(PC->GetExperimentView()));
 		// Offscreen PIE can still have editor chrome focused until the first viewport click.
 		if (!Check(Screen && (GetWorld()->WorldType == EWorldType::PIE || Screen->GetCloseButton()->HasKeyboardFocus()),

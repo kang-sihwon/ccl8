@@ -162,15 +162,11 @@ void ACCLHUD::RefreshContent()
 		const auto* Expedition = State->GetExpedition();
 		Prompts.Add(Expedition->GetTutorial());
 		Prompts.Add(FString::Printf(TEXT("보유 동전: %d"), Expedition->GetCoins()));
-		for (TActorIterator<ACCLVillageSteward> It(GetWorld()); It; ++It)
+		if (const auto* Speaker = ACCLVillageSteward::FindNearestReachable(Character))
 		{
-			if (It->CanReach(Character))
-			{
-				const auto* Offer = It->Offer.Item.LoadSynchronous();
-				Prompts.Add(FString::Printf(TEXT("%s: T 대화 / 의뢰 · B %s 구입 (동전 %d개)"), *It->DisplayName.ToString(),
-					Offer ? *Offer->GetLabel().ToString() : TEXT("상품"), It->Offer.Price));
-				break;
-			}
+			const auto* Offer = Speaker->Offer.Item.LoadSynchronous();
+			Prompts.Add(FString::Printf(TEXT("%s: T 대화 / 의뢰 · B %s 구입 (동전 %d개)"), *Speaker->DisplayName.ToString(),
+				Offer ? *Offer->GetLabel().ToString() : TEXT("상품"), Speaker->Offer.Price));
 		}
 	}
 

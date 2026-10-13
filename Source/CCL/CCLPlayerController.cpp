@@ -628,22 +628,6 @@ void ACCLPlayerController::CombatReleased(FGameplayTag Tag)
 	}
 }
 
-namespace
-{
-ACCLVillageSteward* NearbySteward(UWorld* World, const APawn* Pawn)
-{
-	for (TActorIterator<ACCLVillageSteward> It(World); It; ++It)
-	{
-		if (It->CanReach(Pawn))
-		{
-			return *It;
-		}
-	}
-
-	return nullptr;
-}
-}
-
 void ACCLPlayerController::ClientReceiveProfileKey_Implementation(const FString& Secret)
 {
 	const auto* Connection = GetNetConnection();
@@ -658,7 +642,7 @@ void ACCLPlayerController::ServerTalkToSteward_Implementation()
 {
 	if (auto* State = GetPlayerState<ACCLPlayerState>())
 	{
-		auto* Speaker = NearbySteward(GetWorld(), GetPawn());
+		auto* Speaker = ACCLVillageSteward::FindNearestReachable(GetPawn());
 		State->GetExpedition()->Talk(Speaker);
 		if (Speaker)
 		{
@@ -671,7 +655,7 @@ void ACCLPlayerController::ServerBuyPotion_Implementation()
 {
 	if (auto* State = GetPlayerState<ACCLPlayerState>())
 	{
-		auto* Speaker = NearbySteward(GetWorld(), GetPawn());
+		auto* Speaker = ACCLVillageSteward::FindNearestReachable(GetPawn());
 		State->GetExpedition()->Buy(Speaker);
 		if (Speaker)
 		{

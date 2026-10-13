@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "Agents/CCLAccountComponent.h"
@@ -12,6 +12,8 @@ public:
 	ACCLVillageSteward();
 	virtual void Tick(float DeltaSeconds) override;
 	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
+
+	static ACCLVillageSteward* FindNearestReachable(const APawn* Visitor);
 	bool CanReach(const APawn* Visitor) const;
 
 	UPROPERTY(EditAnywhere, Category = "Dialogue")

@@ -1,4 +1,4 @@
-﻿param(
+param(
     [string]$PackagedExecutable,
     [switch]$Offscreen,
     [switch]$PIE,
@@ -35,7 +35,7 @@ try {
         if ([DateTime]::UtcNow -gt $deadline) { throw ('UI test timeout: ' + $log) }
         Start-Sleep -Milliseconds 500
     }
-    if ($process.ExitCode -ne 0 -or !(Select-String -LiteralPath $log -Pattern 'CCL_UI PASS' -Quiet) -or (Select-String -LiteralPath $log -Pattern 'CCL_UI FAIL|Fatal error:|Assertion failed:' -Quiet)) {
+    if ($process.ExitCode -ne 0 -or !(Select-String -LiteralPath $log -Pattern 'CCL_UI PASS' -Quiet) -or (Select-String -LiteralPath $log -Pattern 'CCL_UI FAIL|Fatal error:|Assertion failed:|Failed to commit change!|Null player input' -Quiet)) {
         Get-Content -LiteralPath $log -Tail 30
         throw ('UI test failed: ' + $log)
     }

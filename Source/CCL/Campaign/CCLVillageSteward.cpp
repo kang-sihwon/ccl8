@@ -4,6 +4,7 @@
 #include "Components/SkeletalMeshComponent.h"
 #include "Components/TextRenderComponent.h"
 #include "Engine/Font.h"
+#include "EngineUtils.h"
 #include "Misc/CoreMisc.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Animation/AnimInstance.h"
@@ -81,6 +82,28 @@ void ACCLVillageSteward::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& O
 {
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
 	DOREPLIFETIME(ACCLVillageSteward, Offer);
+}
+
+ACCLVillageSteward* ACCLVillageSteward::FindNearestReachable(const APawn* Visitor)
+{
+	if (!IsValid(Visitor) || !Visitor->GetWorld())
+	{
+		return nullptr;
+	}
+
+	ACCLVillageSteward* Nearest = nullptr;
+	double NearestDistance = TNumericLimits<double>::Max();
+	for (TActorIterator<ACCLVillageSteward> It(Visitor->GetWorld()); It; ++It)
+	{
+		const double Distance = FVector::DistSquared(Visitor->GetActorLocation(), It->GetActorLocation());
+		if (Distance < NearestDistance && It->CanReach(Visitor))
+		{
+			Nearest = *It;
+			NearestDistance = Distance;
+		}
+	}
+
+	return Nearest;
 }
 
 bool ACCLVillageSteward::CanReach(const APawn* Visitor) const
