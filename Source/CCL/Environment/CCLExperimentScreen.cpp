@@ -6,6 +6,7 @@
 #include "Widgets/SOverlay.h"
 
 #include "CCLExperimentDirector.h"
+#include "CCLWorldEnvironmentConfig.h"
 #include "CCLTerrainRegion.h"
 #include "CCLSurfaceReplication.h"
 #include "CCLExperimentPlayerController.h"
@@ -19,6 +20,7 @@
 #include "Widgets/Layout/SBorder.h"
 #include "Widgets/Layout/SBox.h"
 #include "Widgets/Layout/SScrollBox.h"
+#include "Widgets/Layout/SExpandableArea.h"
 #include "Widgets/Input/SButton.h"
 #include "Widgets/Input/SComboButton.h"
 #include "Widgets/Input/SEditableTextBox.h"
@@ -246,6 +248,11 @@ void UCCLExperimentScreen::ApplyObservationScale()
 void UCCLExperimentScreen::OnContextBound()
 {
 	SetVisibility(ESlateVisibility::Visible);
+	const bool bLaboratory = ACCLWorldEnvironmentConfig::IsLaboratory(GetWorld());
+	if (const auto* C = ACCLWorldEnvironmentConfig::Find(GetWorld()); C && C->LaboratoryZone >= 0)
+	{
+		SelectedCase = FName(*FString::Printf(TEXT("Zone_%02d"), C->LaboratoryZone));
+	}
 	auto Button = [](const TCHAR* Label, TFunction<void()> Action, TFunction<bool()> Enabled)
 	{
 		return SNew(SButton).ContentPadding(FMargin(10, 7))
@@ -286,7 +293,7 @@ void UCCLExperimentScreen::OnContextBound()
 	{
 		for (const UCCLExperimentDefinition* Definition : Current->Definitions)
 		{
-			if (!Definition)
+			if (!Definition || !ACCLWorldEnvironmentConfig::AllowsLaboratory(GetWorld(), Definition->Zone))
 			{
 				continue;
 			}
@@ -305,33 +312,36 @@ void UCCLExperimentScreen::OnContextBound()
 	}
 
 	auto Controls = SNew(SWrapBox).UseAllottedSize(true).InnerSlotPadding(FVector2D(4, 4));
+	auto Diagnostics = SNew(SWrapBox).UseAllottedSize(true).InnerSlotPadding(FVector2D(4, 4));
 	auto Start = Button(TEXT("자동 검사"), [Action]() { Action(ECCLExperimentAction::Start); }, [this, Allowed]()
 	{
 		FString Reason;
 		return Allowed() && Director()->CanStart(SelectedCase, Reason);
 	});
 	StartButton = Start;
-	Controls->AddSlot().Padding(0, 0, 6, 0)[Start];
-	Controls->AddSlot().Padding(0, 0, 6, 0)[Button(TEXT("중지"), [Action]() { Action(ECCLExperimentAction::Stop); }, [this, Allowed]()
+	Diagnostics->AddSlot().Padding(0, 0, 6, 0)[Start];
+	Diagnostics->AddSlot().Padding(0, 0, 6, 0)[Button(TEXT("검사 중지"), [Action]() { Action(ECCLExperimentAction::Stop); }, [this, Allowed]()
 	{
 		const auto* Result = Director() ? Director()->FindResult(SelectedCase) : nullptr;
 		return Allowed() && Result && Result->Status == ECCLExperimentStatus::Running;
 	})];
-	Controls->AddSlot().Padding(0, 0, 6, 0)[Button(TEXT("전체 초기화"), [Action]() { Action(ECCLExperimentAction::Reset); }, Allowed)];
-	Controls->AddSlot()[Button(TEXT("선택 구역으로 이동"), [Action]() { Action(ECCLExperimentAction::Teleport); }, [this]() { return Controller() != nullptr; })];
+	Controls->AddSlot().Padding(0, 0, 6, 0)[Button(TEXT("현재 실험 초기화"), [Action]() { Action(ECCLExperimentAction::Reset); }, Allowed)];
+	Controls->AddSlot()[Button(bLaboratory ? TEXT("관찰 위치로 이동") : TEXT("선택 구역으로 이동"), [Action]() { Action(ECCLExperimentAction::Teleport); }, [this]() { return Controller() != nullptr; })];
 
 	auto Storage = SNew(SWrapBox).UseAllottedSize(true).InnerSlotPadding(FVector2D(4, 4));
-	Storage->AddSlot().Padding(0, 0, 6, 0)[Button(TEXT("실험 저장"), [Action]() { Action(ECCLExperimentAction::Save); }, Allowed)];
-	Storage->AddSlot().Padding(0, 0, 16, 0)[Button(TEXT("저장 불러오기"), [Action]() { Action(ECCLExperimentAction::Load); }, Allowed)];
+	auto SaveControls = SNew(SWrapBox).UseAllottedSize(true).InnerSlotPadding(FVector2D(4, 4));
+	SaveControls->AddSlot()[Button(TEXT("실험 저장"), [Action]() { Action(ECCLExperimentAction::Save); }, Allowed)];
+	SaveControls->AddSlot()[Button(TEXT("저장 불러오기"), [Action]() { Action(ECCLExperimentAction::Load); }, Allowed)];
 	auto ScaleAllowed = [this, Allowed]()
 	{
 		return Allowed() && UCCLWorldSimulationSubsystem::DomainForWorld(GetWorld()) == ECCLWorldDomain::Scenario;
 	};
 	auto TimeControlAllowed = [this, ScaleAllowed]() { return IsObserving() || ScaleAllowed(); };
-	ScaleStopButton = Button(TEXT("시간 정지"), [this]() { AdjustScale(0., true); }, TimeControlAllowed);
-	ScaleDecreaseButton = Button(TEXT("60배 감소"), [this]() { AdjustScale(-60.); }, TimeControlAllowed);
-	ScaleIncreaseButton = Button(TEXT("60배 증가"), [this]() { AdjustScale(60.); }, TimeControlAllowed);
+	ScaleStopButton = Button(TEXT("정지"), [this]() { AdjustScale(0., true); }, TimeControlAllowed);
+	ScaleDecreaseButton = Button(TEXT("−60배"), [this]() { AdjustScale(-60.); }, TimeControlAllowed);
+	ScaleIncreaseButton = Button(TEXT("+60배"), [this]() { AdjustScale(60.); }, TimeControlAllowed);
 	Storage->AddSlot().Padding(0, 0, 6, 0)[ScaleStopButton.ToSharedRef()];
+	Storage->AddSlot().Padding(0, 0, 6, 0)[Button(TEXT("1배"), [this]() { ApplyScale(1.); }, TimeControlAllowed)];
 	Storage->AddSlot().Padding(0, 0, 6, 0)[ScaleDecreaseButton.ToSharedRef()];
 	Storage->AddSlot().Padding(0, 0, 6, 0)[ScaleIncreaseButton.ToSharedRef()];
 	double InitialScale = 60.;
@@ -342,7 +352,7 @@ void UCCLExperimentScreen::OnContextBound()
 	}
 	ScaleInput = SNew(SEditableTextBox)
 		.ClearKeyboardFocusOnCommit(false)
-		.MinDesiredWidth(140.f)
+		.MinDesiredWidth(80.f)
 		.Font(FCoreStyle::GetDefaultFontStyle("Regular", 17))
 		.Text(FText::FromString(FString::SanitizeFloat(InitialScale)))
 		.HintText(FText::FromString(TEXT("시간 배율")))
@@ -356,10 +366,11 @@ void UCCLExperimentScreen::OnContextBound()
 			}
 		});
 	ScaleApplyButton = Button(TEXT("배율 적용"), [this]() { ApplyTimeScale(); }, TimeControlAllowed);
-	Storage->AddSlot().VAlign(VAlign_Center).Padding(0, 0, 6, 0)
-		[SNew(STextBlock).Text_Lambda([this]() { return FText::FromString(IsObserving() ? TEXT("조작 대상: 천체 관측") : TEXT("조작 대상: 세계 시간")); })];
-	Storage->AddSlot().Padding(0, 0, 6, 0)[ScaleInput.ToSharedRef()];
-	Storage->AddSlot()[ScaleApplyButton.ToSharedRef()];
+	Storage->AddSlot()[SNew(SHorizontalBox)
+		+ SHorizontalBox::Slot().AutoWidth().VAlign(VAlign_Center).Padding(0, 0, 8, 0)
+		[SNew(STextBlock).Text_Lambda([this]() { return FText::FromString(IsObserving() ? TEXT("관측 배율") : TEXT("시간 배율")); })]
+		+ SHorizontalBox::Slot().AutoWidth().Padding(0, 0, 6, 0)[ScaleInput.ToSharedRef()]
+		+ SHorizontalBox::Slot().AutoWidth()[ScaleApplyButton.ToSharedRef()]];
 
 	auto IsEnvironmentCase = [this]() { return SelectedCase == TEXT("Zone_01") || SelectedCase == TEXT("Zone_11"); };
 	auto EnvironmentControls = SNew(SVerticalBox).Visibility_Lambda([IsEnvironmentCase]()
@@ -577,9 +588,11 @@ void UCCLExperimentScreen::OnContextBound()
 			return FText::FromString(TEXT("생태 관측 수신 대기"));
 		}
 
-		FString Text=TEXT("집계도 먹이를 소비한다. 지속 개체는 숨겨도 이동·섭취한다.\n");
+		FString Text;
 		for (int32 N=0;N<4;++N)
 		{
+			const auto* Config = ACCLWorldEnvironmentConfig::Find(GetWorld());
+			if (Config && Config->LaboratoryZone == 6 && Config->LaboratoryVariant != N) { continue; }
 			const auto& R=E->GetView().Rows[N];
 			Text+=FString::Printf(TEXT("%s · 전체 %lld / 집계 %lld / 예약 %d\nActor %d · Mass %d · 막힘 %d\n에너지 개체 %.0f%% · 집계 %.0f%%\n먹이 %.1f · 섭취 개체 %.1f / 집계 %.1f\n"),
 				*ACCLEcologyExperiment::MediumName(N),R.Living,R.Aggregate,R.Reserved,R.Actors,R.Mass,R.Blocked,
@@ -593,6 +606,8 @@ void UCCLExperimentScreen::OnContextBound()
 		{TEXT("새 먹이 +10"),ECCLExperimentAction::EcologyFeedAir},{TEXT("곤충 먹이 +10"),ECCLExperimentAction::EcologyFeedInsect},
 		{TEXT("Actor 표현"),ECCLExperimentAction::EcologyActors},{TEXT("Mass 표현"),ECCLExperimentAction::EcologyMass},{TEXT("표현 숨김"),ECCLExperimentAction::EcologyHidden}})
 	{
+		const auto* C = ACCLWorldEnvironmentConfig::Find(GetWorld());
+		if (C && C->LaboratoryZone == 6 && Entry.Value >= ECCLExperimentAction::EcologyFeedGround && Entry.Value <= ECCLExperimentAction::EcologyFeedInsect && int32(Entry.Value) - int32(ECCLExperimentAction::EcologyFeedGround) != C->LaboratoryVariant) { continue; }
 		auto Control=Button(*Entry.Key,[Action,Value=Entry.Value]() { Action(Value); },WaterAllowed);
 		EcologyButtons->AddSlot()[Control];
 		if (Entry.Value==ECCLExperimentAction::EcologyFeedGround)
@@ -603,7 +618,7 @@ void UCCLExperimentScreen::OnContextBound()
 	EcologyControls->AddSlot().AutoHeight()[EcologyButtons];
 	auto VegetationControls = SNew(SVerticalBox).Visibility_Lambda([this]()
 	{
-		return SelectedCase == TEXT("Zone_07") ? EVisibility::Visible : EVisibility::Collapsed;
+		return ACCLWorldEnvironmentConfig::AllowsLaboratory(GetWorld(), 7, 0) && SelectedCase == TEXT("Zone_07") ? EVisibility::Visible : EVisibility::Collapsed;
 	});
 	VegetationControls->AddSlot().AutoHeight().Padding(0, 8)
 		[SNew(STextBlock).Font(FCoreStyle::GetDefaultFontStyle("Regular", 15)).AutoWrapText(true).Text_Lambda([this]()
@@ -627,7 +642,7 @@ void UCCLExperimentScreen::OnContextBound()
 				Litter += C.DeadBiomassKg;
 				Burned += C.BurnedBiomassKg;
 			}
-			return FText::FromString(FString::Printf(TEXT("성장 %d · 휴면 %d · 고사 %d · 재생 %llu회\n생체 %.2f · 고사체 %.2f · 탄 양 %.2f kg\n기온 %.0f°C · 비 %.0f mm/h\n9종: 나무·풀·꽃·관목·이끼·양치·조류·수생·버섯\n세 줄: 채광 / 그늘 / 양분 부족\n자동 검사: 식생·저장. 음식·Agent 생애는 아래 버튼으로 수동 조작."),
+			return FText::FromString(FString::Printf(TEXT("성장 %d · 휴면 %d · 고사 %d · 재생 %llu회\n생체 %.2f · 고사체 %.2f · 탄 양 %.2f kg\n기온 %.0f°C · 비 %.0f mm/h\n배율 적용 뒤 성장·휴면·고사 개수와 화면의 크기·색 변화를 관찰한다.\n자동 검사 범위: 식생·저장. 음식·Agent 생애는 수동 조작으로 확인한다."),
 				Alive, Dormant, Dead, Regrowth, Living, Litter, Burned, G->Forcing.TemperatureCelsius,
 				G->Forcing.RainMetersPerWorldSecond * 3600000.));
 		})];
@@ -635,21 +650,21 @@ void UCCLExperimentScreen::OnContextBound()
 	for (const auto& Entry : TArray<TPair<FString, ECCLExperimentAction>>{
 		{TEXT("식생에 비"), ECCLExperimentAction::VegetationRain}, {TEXT("가뭄"), ECCLExperimentAction::VegetationDry},
 		{TEXT("겨울 휴면"), ECCLExperimentAction::VegetationWinter}, {TEXT("생장 기온"), ECCLExperimentAction::VegetationGrow},
-		{TEXT("첫 나무 발화"), ECCLExperimentAction::VegetationIgnite}})
+		{TEXT("첫 식생 발화"), ECCLExperimentAction::VegetationIgnite}})
 	{
 		VegetationButtons->AddSlot()[Button(*Entry.Key, [Action, Value = Entry.Value]() { Action(Value); }, WaterAllowed)];
 	}
 	VegetationControls->AddSlot().AutoHeight()[VegetationButtons];
 	auto BiologyControls = SNew(SVerticalBox).Visibility_Lambda([this]()
 	{
-		return SelectedCase == TEXT("Zone_07") ? EVisibility::Visible : EVisibility::Collapsed;
+		return ACCLWorldEnvironmentConfig::AllowsLaboratory(GetWorld(), 7, 1) && SelectedCase == TEXT("Zone_07") ? EVisibility::Visible : EVisibility::Collapsed;
 	});
 	BiologyPanel = BiologyControls;
 	auto BiologyButtons = SNew(SWrapBox).UseAllottedSize(true).InnerSlotPadding(FVector2D(4, 4));
 	for (const auto& Entry : TArray<TPair<FString, ECCLExperimentAction>>{
-		{TEXT("일반 주민: 남은 수명 10초"), ECCLExperimentAction::BiologyAge},
-		{TEXT("보호 주민: 노화 보호 전환"), ECCLExperimentAction::BiologyProtect},
-		{TEXT("보호 주민: 치명 피해"), ECCLExperimentAction::BiologyDamage}})
+		{TEXT("첫 표본: 남은 수명 10초"), ECCLExperimentAction::BiologyAge},
+		{TEXT("표본: 노화 보호 전환"), ECCLExperimentAction::BiologyProtect},
+		{TEXT("표본: 치명 피해"), ECCLExperimentAction::BiologyDamage}})
 	{
 		auto Control = Button(*Entry.Key, [Action, Value = Entry.Value]() { Action(Value); }, WaterAllowed);
 		BiologyButtons->AddSlot()[Control];
@@ -667,30 +682,30 @@ void UCCLExperimentScreen::OnContextBound()
 	BiologyControls->AddSlot().AutoHeight().Padding(0, 4)[SNew(STextBlock).AutoWrapText(true).Text_Lambda([this]()
 	{
 		const auto* Biology = ACCLBiologyExperiment::Find(GetWorld());
-		if (!Biology || Biology->GetView().Rows.Num() != 2)
+		if (!Biology || Biology->GetView().Rows.IsEmpty())
 		{
 			return FText::FromString(TEXT("생애 관측 수신 대기"));
 		}
 
 		FString Text = TEXT("Agent 생애 비교 · 시험 수명 300초\n");
-		for (int32 Index = 0; Index < 2; ++Index)
+		for (int32 Index = 0; Index < Biology->GetView().Rows.Num(); ++Index)
 		{
 			const auto& Row = Biology->GetView().Rows[Index];
 			if (!Row.bRecorded)
 			{
-				Text += TEXT("표본 없음 · 전체 초기화 필요\n");
+				Text += TEXT("표본 없음 · 현재 실험 초기화 필요\n");
 				continue;
 			}
 
 			Text += FString::Printf(TEXT("%s · %s · 체력 %.0f\n나이 %.1f초 / 수명 %.1f초 · 노화 보호 %s\n"),
-				Index ? TEXT("보호 주민") : TEXT("일반 주민"), Row.DeathCause == 1 ? TEXT("수명 종료") : Row.DeathCause == 2 ? TEXT("외부 사망") : TEXT("생존"),
+				*FString::Printf(TEXT("표본 %d"), Index + 1), Row.DeathCause == 1 ? TEXT("수명 종료") : Row.DeathCause == 2 ? TEXT("외부 사망") : TEXT("생존"),
 				Row.Health, Row.Age, Row.Lifespan, Row.bProtected ? TEXT("켜짐") : TEXT("꺼짐"));
 		}
 		return FText::FromString(Text + TEXT("사망 뒤 나이는 멈춘다. 자연 노화 보호는 피해를 막지 않는다."));
 	})];
 	auto FoodControls = SNew(SVerticalBox).Visibility_Lambda([this]()
 	{
-		return SelectedCase == TEXT("Zone_07") ? EVisibility::Visible : EVisibility::Collapsed;
+		return ACCLWorldEnvironmentConfig::AllowsLaboratory(GetWorld(), 7, 2) && SelectedCase == TEXT("Zone_07") ? EVisibility::Visible : EVisibility::Collapsed;
 	});
 	FoodPanel = FoodControls;
 	FoodControls->AddSlot().AutoHeight().Padding(0, 4)
@@ -704,12 +719,14 @@ void UCCLExperimentScreen::OnContextBound()
 			FString Text = TEXT("음식 보관 비교 · 실험용 부패 기준 300초\n");
 			for (int32 Index = 0; Index < 3; ++Index)
 			{
+				const auto* Config = ACCLWorldEnvironmentConfig::Find(GetWorld());
+				if (Config && Config->LaboratoryZone == 7 && Config->LaboratoryVariant != Index && Food->GetView().Rows[Index].Quantity == 0) { continue; }
 				const auto& Row = Food->GetView().Rows[Index];
 				Text += FString::Printf(TEXT("%s · %s %.1f°C / 습도 %.0f%%\n%d개/%d묶음 · 나이 %.0f초 · 신선 %.0f%%\n곰팡이 %.0f%% · 부패 %d개\n"),
 					*ACCLFoodExperiment::StorageName(Index), Row.EnvironmentSource == 1 ? TEXT("외기") : Row.EnvironmentSource == 2 ? TEXT("실내") : TEXT("고정"), Row.Temperature, Row.Humidity * 100., Row.Quantity, Row.Lots,
 					Row.AgeSeconds, Row.Freshness * 100., Row.Mold * 100., Row.Spoiled);
 			}
-			Text += TEXT("밀폐 부패 계수 0.2 / 곰팡이 노출 0. 외기는 구역 02 날씨, 실내는 구역 11 공간을 관측한다.");
+			if (!ACCLWorldEnvironmentConfig::IsLaboratory(GetWorld())) { Text += TEXT("밀폐 부패 계수 0.2 / 곰팡이 노출 0. 외기는 구역 02 날씨, 실내는 구역 11 공간을 관측한다."); }
 			return FText::FromString(Text);
 		})];
 	auto FoodButtons = SNew(SWrapBox).UseAllottedSize(true).InnerSlotPadding(FVector2D(4, 4));
@@ -719,10 +736,15 @@ void UCCLExperimentScreen::OnContextBound()
 		{TEXT("냉각 음식 해동 / 재냉각"), ECCLExperimentAction::FoodThaw},
 		{TEXT("노출: 외기 / 고정"), ECCLExperimentAction::FoodWeather},
 		{TEXT("밀폐: 실내 / 고정"), ECCLExperimentAction::FoodIndoor},
-		{TEXT("노출 → 바닥 1개 꺼내기"), ECCLExperimentAction::FoodDrop},
-		{TEXT("바닥 → 노출 회수"), ECCLExperimentAction::FoodCollect}})
+		{TEXT("보관함 → 바닥 1개 꺼내기"), ECCLExperimentAction::FoodDrop},
+		{TEXT("바닥 → 보관함 회수"), ECCLExperimentAction::FoodCollect}})
 	{
 		auto Control = Button(*Entry.Key, [Action, Value = Entry.Value]() { Action(Value); }, WaterAllowed);
+		if (const auto* C = ACCLWorldEnvironmentConfig::Find(GetWorld()); C && C->LaboratoryZone == 7)
+		{
+			const bool bUnsupported = Entry.Value == ECCLExperimentAction::FoodMoveCold || Entry.Value == ECCLExperimentAction::FoodWeather || Entry.Value == ECCLExperimentAction::FoodIndoor || (Entry.Value == ECCLExperimentAction::FoodThaw && C->LaboratoryVariant != 1);
+			if (bUnsupported) { Control->SetVisibility(EVisibility::Collapsed); }
+		}
 		FoodButtons->AddSlot()[Control];
 		if (Entry.Value == ECCLExperimentAction::FoodAdd)
 		{
@@ -796,8 +818,14 @@ void UCCLExperimentScreen::OnContextBound()
 		[Button(TEXT("소화용 비 켜기 / 끄기"), [Action]() { Action(ECCLExperimentAction::FireRain); }, WaterAllowed)]];
 
 	auto Detail = SNew(SVerticalBox)
+		+ SVerticalBox::Slot().AutoHeight().Padding(0, 0, 0, 10)[Storage]
+		+ SVerticalBox::Slot().AutoHeight()[SNew(SBox).Visibility_Lambda([this]() { return SelectedCase == TEXT("Zone_08") ? EVisibility::Visible : EVisibility::Collapsed; })[SaveControls]]
 		+ SVerticalBox::Slot().AutoHeight().Padding(0, 0, 0, 10)
-		[SNew(STextBlock).Font(FCoreStyle::GetDefaultFontStyle("Bold", 19)).ColorAndOpacity(FLinearColor(0.45f, 0.8f, 1))
+		[SNew(STextBlock).Visibility_Lambda([this]()
+		{
+			const auto* R = Director() ? Director()->FindResult(SelectedCase) : nullptr;
+			return R && R->Status == ECCLExperimentStatus::Ready ? EVisibility::Collapsed : EVisibility::Visible;
+		}).Font(FCoreStyle::GetDefaultFontStyle("Bold", 19)).ColorAndOpacity(FLinearColor(0.45f, 0.8f, 1))
 		.Text_Lambda([this]()
 		{
 			const auto* Result = Director() ? Director()->FindResult(SelectedCase) : nullptr;
@@ -814,10 +842,11 @@ void UCCLExperimentScreen::OnContextBound()
 		+ SVerticalBox::Slot().AutoHeight()[FoodControls]
 		+ SVerticalBox::Slot().AutoHeight()[VegetationControls]
 		+ SVerticalBox::Slot().AutoHeight().Padding(0, 0, 0, 12)
-		[SNew(STextBlock)
+		[SNew(STextBlock).Visibility(bLaboratory ? EVisibility::Collapsed : EVisibility::Visible)
 		.Font(FCoreStyle::GetDefaultFontStyle("Regular", 16)).AutoWrapText(true).Text_Lambda([this]()
 		{
 			const auto* Definition = Director() ? Director()->FindDefinition(SelectedCase) : nullptr;
+			if (ACCLWorldEnvironmentConfig::IsLaboratory(GetWorld())) { return FText::GetEmpty(); }
 			return FText::FromString(Definition ? TEXT("조작: ") + Definition->Instructions.ToString() + TEXT("\n\n예상 결과: ") + Definition->Expected.ToString() : FString());
 		})]
 		+ SVerticalBox::Slot().AutoHeight().Padding(0, 0, 0, 12)
@@ -837,12 +866,23 @@ void UCCLExperimentScreen::OnContextBound()
 			return FText::FromString(FString::Printf(TEXT("결과: %s\n완료 세계 시각: %s\n실행 ID: %s"), *Result->Detail,
 				*FormatElapsedTime(Result->CompletedWorldSeconds), Result->RunId.IsValid() ? *Result->RunId.ToString().Left(8) : TEXT("미실행")));
 		})]
-		+ SVerticalBox::Slot().AutoHeight()[Storage]
-		+ SVerticalBox::Slot().AutoHeight().Padding(0, 4)
-		[SNew(STextBlock).AutoWrapText(true).Text(FText::FromString(
-			TEXT("천체창 열림: 모든 배율 조작은 관측에 적용. 천체창 닫힘: 세계 시간에 적용. Enter로 적용, 0은 정지.")))]
 		+ SVerticalBox::Slot().AutoHeight().Padding(0, 8)
-		[SNew(STextBlock).Font(FCoreStyle::GetDefaultFontStyle("Regular", 15)).AutoWrapText(true).Text_Lambda([this]()
+		[SNew(SExpandableArea).InitiallyCollapsed(true)
+			.HeaderContent()[SNew(STextBlock).Text(FText::FromString(TEXT("자동 검사")))]
+			.BodyContent()[Diagnostics]]
+		+ SVerticalBox::Slot().AutoHeight().Padding(0, 8)
+		[SNew(SExpandableArea).InitiallyCollapsed(true)
+			.Visibility_Lambda([this]() { return SelectedCase == TEXT("Zone_08") ? EVisibility::Collapsed : EVisibility::Visible; })
+			.HeaderContent()[SNew(STextBlock).Text(FText::FromString(TEXT("저장 / 불러오기")))]
+			.BodyContent()[SNew(SWrapBox).UseAllottedSize(true).InnerSlotPadding(FVector2D(4, 4))
+				+ SWrapBox::Slot()[Button(TEXT("실험 저장"), [Action]() { Action(ECCLExperimentAction::Save); }, Allowed)]
+				+ SWrapBox::Slot()[Button(TEXT("저장 불러오기"), [Action]() { Action(ECCLExperimentAction::Load); }, Allowed)]]]
+		+ SVerticalBox::Slot().AutoHeight().Padding(0, 8)
+		[SNew(STextBlock).Visibility_Lambda([this]()
+		{
+			const auto* D = Director();
+			return D && (SelectedCase == TEXT("Zone_08") || D->IsRestoring() || D->GetSavedGameSeconds() >= 0.) ? EVisibility::Visible : EVisibility::Collapsed;
+		}).Font(FCoreStyle::GetDefaultFontStyle("Regular", 15)).AutoWrapText(true).Text_Lambda([this]()
 		{
 			const auto* D = Director();
 			if (!D)
@@ -865,6 +905,7 @@ void UCCLExperimentScreen::OnContextBound()
 		[SNew(STextBlock).Font(FCoreStyle::GetDefaultFontStyle("Bold", 18)).Text_Lambda([this]()
 		{
 			const auto* Definition = Director() ? Director()->FindDefinition(SelectedCase) : nullptr;
+			if (const auto* C = ACCLWorldEnvironmentConfig::Find(GetWorld()); C && C->LaboratoryZone >= 0) { return FText::FromString(ACCLWorldEnvironmentConfig::LaboratoryTitle(C->LaboratoryZone, C->LaboratorySubject)); }
 			return Definition ? Definition->Title : FText::FromString(TEXT("실험 선택"));
 		})]
 		.MenuContent()[SNew(SBox).WidthOverride(390).MaxDesiredHeight(340)
@@ -891,15 +932,15 @@ void UCCLExperimentScreen::OnContextBound()
 				for (TActorIterator<ACCLWorldEnvironmentState> It(GetWorld()); It; ++It)
 				{
 					const auto& Time = It->GetTime();
-					return FText::FromString(FString::Printf(TEXT("게임 %s\n세계 %s  ·  %g배  ·  대기 %.2f초"),
-						*FormatElapsedTime(Time.GameSeconds), *FormatElapsedTime(Time.WorldSeconds), Time.TimeScale, Time.PendingGameSeconds));
+					return FText::FromString(FString::Printf(TEXT("경과 %s  ·  %g배"), *FormatElapsedTime(Time.WorldSeconds), Time.TimeScale));
 				}
 				return FText::FromString(TEXT("공통 시계 수신 대기"));
 			})]
-			+ SVerticalBox::Slot().AutoHeight().Padding(0, 0, 0, 8)[ZoneSelector.ToSharedRef()]
+			+ SVerticalBox::Slot().AutoHeight().Padding(0, 0, 0, 8)[SNew(SBox).Visibility(bLaboratory ? EVisibility::Collapsed : EVisibility::Visible)[ZoneSelector.ToSharedRef()]]
 			+ SVerticalBox::Slot().AutoHeight().Padding(0, 0, 0, 8)
-			[SNew(SComboButton).ButtonContent()[SNew(STextBlock).Text(FText::FromString(TEXT("맵 이동")))]
+			[SNew(SComboButton).Visibility(bLaboratory ? EVisibility::Collapsed : EVisibility::Visible).ButtonContent()[SNew(STextBlock).Text(FText::FromString(TEXT("맵 이동")))]
 				.MenuContent()[SNew(SBox).WidthOverride(460)[MapButtons]]]
+			+ SVerticalBox::Slot().AutoHeight().Padding(0, 0, 0, 8)[BuildLaboratoryControls()]
 			+ SVerticalBox::Slot().FillHeight(1)
 			[SAssignNew(DetailScroll, SScrollBox) + SScrollBox::Slot()[Detail]]
 			+ SVerticalBox::Slot().AutoHeight().Padding(0, 8)[Controls]
@@ -911,7 +952,7 @@ void UCCLExperimentScreen::OnContextBound()
 			})]
 			+ SVerticalBox::Slot().AutoHeight()
 			[SNew(STextBlock).Font(FCoreStyle::GetDefaultFontStyle("Regular", 13)).AutoWrapText(true)
-				.Text(FText::FromString(TEXT("F7 열기/닫기 · 닫은 뒤 WASD 이동\n관찰 참가자는 조작 담당자의 변경을 함께 본다.")))]]];
+				.Text(FText::FromString(TEXT("F7 메뉴 · WASD 이동")))]]];
 	CelestialView = SNew(SCCLCelestialDebugView).World(GetWorld());
 	ObservationScaleInput = SNew(SEditableTextBox).MinDesiredWidth(120.f)
 		.ClearKeyboardFocusOnCommit(false)

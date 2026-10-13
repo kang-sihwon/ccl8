@@ -107,7 +107,7 @@ bool UCCLWorldSimulationSubsystem::Start(FCCLLifeSimulation& Life, ECCLWorldDoma
 	const bool bSaved = !Saved.IsEmpty();
 	if (!bSaved)
 	{
-		if (!CandidateClock.Reset(Life.GetTime(), 60, Error)
+		if (!CandidateClock.Reset(Life.GetTime(), ACCLWorldEnvironmentConfig::IsLaboratory(GetWorld()) ? 0. : 60., Error)
 			|| !CandidateSurfaceSimulation.Initialize(CandidateIdentity.WorldId, CandidateClock.GetGameSeconds(), Life.GetTime(), 0, Error)
 			|| !CandidateEcologySimulation.Initialize(CandidateIdentity.WorldId, Life.GetTime(), Error)
 			|| !FKSIEnvironmentInputsCodec::Prepare(CandidateInputs, Life.GetTime(), CandidateCelestial, CandidateSurfaces, Observation, Error))

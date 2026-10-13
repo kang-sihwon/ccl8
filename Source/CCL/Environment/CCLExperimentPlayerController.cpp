@@ -1,6 +1,7 @@
 #include "CCLExperimentPlayerController.h"
 
 #include "CCLExperimentDirector.h"
+#include "CCLWorldEnvironmentConfig.h"
 #include "CCLTerrainReplication.h"
 #include "CCLSurfaceReplication.h"
 #include "CCLTerrainRegion.h"
@@ -31,6 +32,11 @@ void ACCLExperimentPlayerController::PlayerTick(float DeltaTime)
 	{
 		if (const auto* Director = ACCLExperimentDirector::Find(GetWorld()); Director && Director->IsReady())
 		{
+			if (const auto* C = ACCLWorldEnvironmentConfig::Find(GetWorld()); C && C->LaboratoryZone >= 0)
+			{
+				Submit(ECCLExperimentAction::Teleport, FName(*FString::Printf(TEXT("Zone_%02d"), C->LaboratoryZone)));
+				SetControlRotation(FRotator(-15., 90., 0.));
+			}
 			CCLExperiment();
 			bOpenedOnce = ExperimentView.IsValid();
 		}

@@ -76,14 +76,15 @@ void ACCLExperimentDirector::BeginPlay()
 
 	auto* Agents = GetWorld()->GetSubsystem<UCCLAgentWorldSubsystem>();
 	auto* Store = GetGameInstance()->GetSubsystem<UCCLAgentSessionStore>();
-	auto& Baseline = Store->ExperimentInitialSnapshots.FindOrAdd(UCCLWorldSimulationSubsystem::DomainForWorld(GetWorld()));
+	TArray<uint8> LaboratoryBaseline;
+	auto& Baseline = ACCLWorldEnvironmentConfig::IsLaboratory(GetWorld()) ? LaboratoryBaseline : Store->ExperimentInitialSnapshots.FindOrAdd(UCCLWorldSimulationSubsystem::DomainForWorld(GetWorld()));
 	if (Baseline.IsEmpty() && (!Agents || !Agents->Save(Baseline)))
 	{
 		UE_LOG(LogTemp, Error, TEXT("CCL_EXPERIMENT could not capture initial clock/life state."));
 	}
 
 	InitialSnapshot = Baseline;
-	if (!InitialSnapshot.IsEmpty())
+	if (!InitialSnapshot.IsEmpty() && (ACCLWorldEnvironmentConfig::AllowsLaboratory(GetWorld(), 5) || ACCLWorldEnvironmentConfig::AllowsLaboratory(GetWorld(), 8)))
 	{
 		InitializeTerrainExperiment();
 	}
@@ -174,6 +175,8 @@ bool ACCLExperimentDirector::Execute(APlayerController* Requester, ECCLExperimen
 		Message = TEXT("저장된 지형과 세계 상태를 함께 복원하고 있다.");
 		return false;
 	}
+
+	if (const auto* D = FindDefinition(CaseId); D && !ACCLWorldEnvironmentConfig::AllowsLaboratory(GetWorld(), D->Zone)) { Message = TEXT("해당 전용 레벨로 이동한 뒤 조작해 줘."); return false; }
 
 	if (Action == ECCLExperimentAction::Teleport)
 	{
@@ -371,7 +374,7 @@ bool ACCLExperimentDirector::Execute(APlayerController* Requester, ECCLExperimen
 	}
 
 	auto* Agents = GetWorld()->GetSubsystem<UCCLAgentWorldSubsystem>();
-	if (!Agents || !Agents->SaveSessionForTravel(Message))
+	if (!Agents || (!ACCLWorldEnvironmentConfig::IsLaboratory(GetWorld()) && !Agents->SaveSessionForTravel(Message)))
 	{
 		return false;
 	}
@@ -483,8 +486,11 @@ bool ACCLExperimentDirector::ResetExperiment(FString& Error)
 	}
 
 	auto* SessionStore = GetGameInstance()->GetSubsystem<UCCLAgentSessionStore>();
-	SessionStore->TravelSnapshots.Remove(Initial.Identity.Domain);
-	SessionStore->SnapshotFor(Initial.Identity.Domain) = ResetBytes;
+	if (!ACCLWorldEnvironmentConfig::IsLaboratory(GetWorld()))
+	{
+		SessionStore->TravelSnapshots.Remove(Initial.Identity.Domain);
+		SessionStore->SnapshotFor(Initial.Identity.Domain) = ResetBytes;
+	}
 	for (auto& Result : Results)
 	{
 		Result.RunId.Invalidate();
@@ -518,7 +524,7 @@ bool ACCLExperimentDirector::CanOperate(const APlayerController* Requester) cons
 bool ACCLExperimentDirector::CanStart(FName CaseId, FString& Error) const
 {
 	const auto* Definition = FindDefinition(CaseId);
-	if (!Definition || !Definition->IsImplemented())
+	if (!Definition || !Definition->IsImplemented() || !ACCLWorldEnvironmentConfig::AllowsLaboratory(GetWorld(), Definition->Zone))
 	{
 		Error = TEXT("아직 구현되지 않은 시험이다.");
 		return false;
@@ -683,7 +689,21 @@ void ACCLExperimentDirector::CompleteCase(FName CaseId, FGuid RunId, FGuid Token
 
 		break;
 	case ECCLExperimentKind::Vegetation:
-		bPassed = RunVegetation(Error);
+		if (const auto* C = ACCLWorldEnvironmentConfig::Find(GetWorld()); C && C->LaboratoryZone == 7 && C->LaboratorySubject > 0)
+		{
+			if (C->LaboratorySubject == 1)
+			{
+				const auto* B = ACCLBiologyExperiment::Find(GetWorld());
+				bPassed = B && B->GetView().Rows.Num() == C->SampleCount();
+			}
+			else
+			{
+				const auto* F = ACCLFoodExperiment::Find(GetWorld());
+				bPassed = F && F->GetView().Rows.IsValidIndex(C->LaboratoryVariant) && F->GetView().Rows[C->LaboratoryVariant].Quantity > 0;
+			}
+			Error = TEXT("선택 표본 존재 검사. 시간 변화는 아래 관측값으로 확인한다.");
+		}
+		else { bPassed = RunVegetation(Error); }
 		break;
 	case ECCLExperimentKind::Weather:
 		bPassed = RunWeather(Error);
@@ -937,6 +957,7 @@ bool ACCLExperimentDirector::MoveToSafety(APlayerController* OnlyPlayer, int32 Z
 				Character->GetCharacterMovement()->StopMovementImmediately();
 			}
 
+			if (const auto* C = ACCLWorldEnvironmentConfig::Find(GetWorld()); C && C->LaboratoryZone >= 0) { Zone = C->LaboratoryZone; }
 			if (Zone == 5 && TerrainRegion)
 			{
 				const auto* Replication = PC->FindComponentByClass<UCCLTerrainReplication>();
@@ -947,7 +968,14 @@ bool ACCLExperimentDirector::MoveToSafety(APlayerController* OnlyPlayer, int32 Z
 				}
 			}
 
-			const FVector Destination = UCCLExperimentDefinition::ZoneCenter(Zone) + FVector(-550, -450 + 180 * Index++, Zone == 5 ? 530 : 130);
+			FVector Destination = UCCLExperimentDefinition::ZoneCenter(Zone) + FVector(-550, -450 + 180 * Index++, Zone == 5 ? 530 : 130);
+			if (const auto* C = ACCLWorldEnvironmentConfig::Find(GetWorld()); C && C->LaboratoryZone >= 0 && Zone != 5)
+			{
+				FVector Focus = Zone == 6 ? ACCLEcologyExperiment::HabitatCenter(C->LaboratoryVariant) * 100. : UCCLExperimentDefinition::ZoneCenter(Zone);
+				if (Zone == 7 && C->LaboratorySubject == 2) { Focus += FVector((1 - C->LaboratoryVariant) * 260., -650., 0.); }
+				Destination = Focus + FVector(0., C->SampleCount() <= 4 ? -550. : -800., 130.);
+				PC->SetControlRotation(FRotator(-12., 90., 0.));
+			}
 			if (!Pawn->TeleportTo(Destination, FRotator::ZeroRotator))
 			{
 				Error = TEXT("안전 지점으로 이동할 수 없어 초기화를 중단했다.");
@@ -970,6 +998,10 @@ FString ACCLExperimentDirector::SlotName() const
 		|| FParse::Param(FCommandLine::Get(), TEXT("CCLFireZoneSmoke"));
 	FString Slot = FString(bTest ? TEXT("CCL_Experiment_Validation_") : TEXT("CCL_Experiment_")) +
 		(bScenario ? TEXT("Scenario") : TEXT("Playground"));
+	if (const auto* C = ACCLWorldEnvironmentConfig::Find(GetWorld()); C && C->LaboratoryZone >= 0)
+	{
+		Slot += FString::Printf(TEXT("_Lab_%d_%d_%d_%d"), C->LaboratoryZone, C->LaboratorySubject, C->LaboratoryVariant, C->SampleCount());
+	}
 #if !UE_BUILD_SHIPPING && !UE_BUILD_TEST
 	FString Run;
 	FGuid RunId;

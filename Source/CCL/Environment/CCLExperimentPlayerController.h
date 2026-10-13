@@ -28,6 +28,10 @@ public:
 	void CCLExperiment();
 
 	void Submit(ECCLExperimentAction Action, FName CaseId = NAME_None, double TimeScale = 0.);
+	void ConfigureLaboratory(int32 Zone, int32 Subject, int32 Variant, int32 Count);
+
+	UFUNCTION(Server, Reliable)
+	void ServerConfigureLaboratory(FGuid Generation, int32 Zone, int32 Subject, int32 Variant, int32 Count);
 
 	UFUNCTION(Server, Reliable)
 	void ServerExperiment(ECCLExperimentAction Action, FName CaseId, FGuid Generation, FGuid RunId, uint64 TerrainSerial = 0, double TimeScale = 0.);

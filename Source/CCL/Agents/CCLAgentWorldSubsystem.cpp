@@ -1,4 +1,4 @@
-﻿#include "CCLAgentWorldSubsystem.h"
+#include "CCLAgentWorldSubsystem.h"
 
 #include "CCLAgentComponent.h"
 #include "CCLAgentEmbodiment.h"
@@ -8,6 +8,9 @@
 #include "GameFramework/GameStateBase.h"
 #include "Environment/CCLWorldSimulationSubsystem.h"
 #include "Environment/CCLTerrainRegion.h"
+#include "Environment/CCLWorldEnvironmentConfig.h"
+#include "Kismet/GameplayStatics.h"
+#include "GameFramework/GameModeBase.h"
 
 void UCCLAgentSessionStore::ResetSession()
 {
@@ -75,7 +78,21 @@ void UCCLAgentWorldSubsystem::OnWorldBeginPlay(UWorld& World)
 	auto* WorldSimulation = World.GetSubsystem<UCCLWorldSimulationSubsystem>();
 	Domain = UCCLWorldSimulationSubsystem::DomainForWorld(&World);
 	Session = Store->SessionFor(Domain);
-	const auto& Saved = Store->SnapshotFor(Domain);
+	const bool bLaboratory = ACCLWorldEnvironmentConfig::IsLaboratory(&World);
+	if (bLaboratory)
+	{
+		auto* Config = const_cast<ACCLWorldEnvironmentConfig*>(ACCLWorldEnvironmentConfig::Find(&World));
+		const auto* Mode = World.GetAuthGameMode();
+		if (Mode)
+		{
+			const FString Variant = UGameplayStatics::ParseOption(Mode->OptionsString, TEXT("LabVariant"));
+			const FString Count = UGameplayStatics::ParseOption(Mode->OptionsString, TEXT("LabCount"));
+			if (!Variant.IsEmpty()) { Config->LaboratoryVariant = FMath::Clamp(FCString::Atoi(*Variant), 0, ACCLWorldEnvironmentConfig::LaboratoryVariants(Config->LaboratoryZone, Config->LaboratorySubject).Num() - 1); }
+			if (!Count.IsEmpty()) { Config->LaboratoryCount = FMath::Clamp(FCString::Atoi(*Count), 1, 16); }
+		}
+	}
+	const TArray<uint8> Empty;
+	const auto& Saved = bLaboratory ? Empty : Store->SnapshotFor(Domain);
 	FString Error;
 	FCCLSimulationSnapshot Initial;
 	const bool bReady = WorldSimulation &&
@@ -95,7 +112,7 @@ void UCCLAgentWorldSubsystem::OnWorldBeginPlay(UWorld& World)
 void UCCLAgentWorldSubsystem::Deinitialize()
 {
 	FWorldDelegates::OnWorldBeginTearDown.RemoveAll(this);
-	if (bRunning && GetWorld()->GetGameInstance())
+	if (bRunning && GetWorld()->GetGameInstance() && !ACCLWorldEnvironmentConfig::IsLaboratory(GetWorld()))
 	{
 		auto* Store = GetWorld()->GetGameInstance()->GetSubsystem<UCCLAgentSessionStore>();
 		if (Store && Store->SessionFor(Domain) == Session && !bTravelPrepared && !Store->TravelSnapshots.Contains(Domain))

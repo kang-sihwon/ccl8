@@ -8,6 +8,7 @@
 
 class UTextRenderComponent;
 class UStaticMeshComponent;
+class UInstancedStaticMeshComponent;
 struct FCCLWorldSnapshot;
 enum class ECCLExperimentAction : uint8;
 
@@ -30,6 +31,9 @@ struct FCCLEcologyExperimentRow
 
 	UPROPERTY()
 	int32 Mass = 0;
+
+	UPROPERTY()
+	TArray<FVector> MassLocations;
 
 	UPROPERTY()
 	int32 Blocked = 0;
@@ -87,11 +91,11 @@ public:
 	const FCCLEcologyExperimentView& GetView() const { return View; }
 	static ACCLEcologyExperiment* Find(const UWorld* World);
 	static FGuid Id(uint32 N) { return FGuid(6011, 6012, 6013, N); }
-	static FGuid IndividualId(uint32 Medium, uint32 Member) { return Id(100 + Medium * 3 + Member); }
+	static FGuid IndividualId(uint32 Medium, uint32 Member) { return Id(Member < 3 ? 100 + Medium * 3 + Member : 10000 + Medium * 100 + Member); }
 	static FVector HabitatCenter(int32 Medium);
 	static FString MediumName(int32 Medium);
 	static FKSISurfaceGrid Pond();
-	static bool MakeInitial(FGuid WorldId, double WorldSeconds, FKSIEcologySimulation& Out, FString& Error);
+	static bool MakeInitial(FGuid WorldId, double WorldSeconds, FKSIEcologySimulation& Out, FString& Error, int32 Medium = -1, int32 Count = 3);
 
 private:
 	void Reconcile();
@@ -103,6 +107,9 @@ private:
 private:
 	UPROPERTY()
 	TArray<TObjectPtr<UTextRenderComponent>> Labels;
+
+	UPROPERTY()
+	TArray<TObjectPtr<UInstancedStaticMeshComponent>> MassMarkers;
 
 	UPROPERTY()
 	TArray<TObjectPtr<UStaticMeshComponent>> FoodMarkers;
