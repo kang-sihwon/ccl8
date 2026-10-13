@@ -1,11 +1,13 @@
 #include "CCLEcologyExperiment.h"
 
 #include "CCLExperimentDefinition.h"
+#include "CCLWorldEnvironmentConfig.h"
 #include "CCLEcologyRepresentationSubsystem.h"
 #include "CCLWorldSimulationSubsystem.h"
 #include "CCLWorldSnapshot.h"
 #include "CCLTerrainNavigation.h"
 #include "Components/StaticMeshComponent.h"
+#include "Components/InstancedStaticMeshComponent.h"
 #include "Components/TextRenderComponent.h"
 #include "Engine/StaticMesh.h"
 #include "Engine/Font.h"
@@ -48,6 +50,12 @@ ACCLEcologyExperiment::ACCLEcologyExperiment()
 		Food->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 		Food->SetCanEverAffectNavigation(false);
 		FoodMarkers.Add(Food);
+		auto* Instances = CreateDefaultSubobject<UInstancedStaticMeshComponent>(*FString::Printf(TEXT("Mass%d"), N));
+		Instances->SetupAttachment(RootComponent);
+		Instances->SetStaticMesh(Sphere.Object);
+		Instances->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+		Instances->SetCanEverAffectNavigation(false);
+		MassMarkers.Add(Instances);
 		auto* Label = CreateDefaultSubobject<UTextRenderComponent>(*FString::Printf(TEXT("Label%d"), N));
 		Label->SetupAttachment(RootComponent);
 		Label->SetRelativeLocation(Center + FVector(0., -305., 45.));
@@ -135,7 +143,7 @@ FKSISurfaceGrid ACCLEcologyExperiment::Pond()
 	return G;
 }
 
-bool ACCLEcologyExperiment::MakeInitial(FGuid WorldId, double Time, FKSIEcologySimulation& Out, FString& Error)
+bool ACCLEcologyExperiment::MakeInitial(FGuid WorldId, double Time, FKSIEcologySimulation& Out, FString& Error, int32 SelectedMedium, int32 Count)
 {
 	FKSIEcologySimulation E;
 	if (!E.Initialize(WorldId, Time, Error))
@@ -144,6 +152,7 @@ bool ACCLEcologyExperiment::MakeInitial(FGuid WorldId, double Time, FKSIEcologyS
 	}
 	for (uint32 N = 0; N < 4; ++N)
 	{
+		if (SelectedMedium >= 0 && int32(N) != SelectedMedium) { continue; }
 		const FVector Center = HabitatCenter(N);
 		const double Height = N == 1 ? 1. : N == 2 ? 2.5 : .35;
 		FKSIEcologySpecies S;
@@ -159,7 +168,7 @@ bool ACCLEcologyExperiment::MakeInitial(FGuid WorldId, double Time, FKSIEcologyS
 		P.Id = Id(30 + N);
 		P.SpeciesId = S.Id;
 		P.HabitatId = H.Id;
-		P.Cohorts.Add(Id(40 + N), {Id(40 + N), Time, 20});
+		P.Cohorts.Add(Id(40 + N), {Id(40 + N), Time, SelectedMedium >= 0 ? FMath::Clamp(Count, 1, 16) : 20});
 		P.Cohorts[Id(40 + N)].Nutrition.Energy = .35;
 		FKSIEcologyGroup G;
 		G.Id = Id(50 + N);
@@ -177,7 +186,7 @@ bool ACCLEcologyExperiment::MakeInitial(FGuid WorldId, double Time, FKSIEcologyS
 		{
 			return false;
 		}
-		for (uint32 Member = 0; Member < 3; ++Member)
+		for (uint32 Member = 0; Member < uint32(SelectedMedium >= 0 ? FMath::Clamp(Count, 1, 16) : 3); ++Member)
 		{
 			const FGuid Individual = IndividualId(N, Member);
 			FKSIEcologyLease Lease;
@@ -187,9 +196,9 @@ bool ACCLEcologyExperiment::MakeInitial(FGuid WorldId, double Time, FKSIEcologyS
 			B.bUseWorldSpace = 1;
 			B.Energy = .35;
 			B.MetabolismPerSecond = .002;
-			if (!E.Materialize(Id(200 + N * 3 + Member), P.Id, Id(40 + N), Individual, true, Error) ||
+			if (!E.Materialize(Id(Member < 3 ? 200 + N * 3 + Member : 20000 + N * 100 + Member), P.Id, Id(40 + N), Individual, true, Error) ||
 				!E.Acquire(Individual, EKSIEcologyRepresentation::Actor, Id(900), Lease, Error) ||
-				!E.UpdatePosition(Lease, Center + FVector(-1.6, (double(Member) - 1.) * .8, Height), Error) ||
+				!E.UpdatePosition(Lease, Center + FVector((double(Member % 4) - 1.5) * .9, -1.8 + double(Member / 4) * .9, Height), Error) ||
 				!E.Suspend(Lease, Error) || !E.AddBehavior(B, Error))
 			{
 				return false;
@@ -206,8 +215,11 @@ bool ACCLEcologyExperiment::Initialize(bool bSeed, FCCLWorldSnapshot& Baseline, 
 	{
 		return false;
 	}
+	const auto* C = ACCLWorldEnvironmentConfig::Find(GetWorld());
+	const int32 Medium = C && C->LaboratoryZone == 6 ? C->LaboratoryVariant : -1;
+	const int32 Count = Medium >= 0 ? C->SampleCount() : 3;
 	FKSIEcologySimulation Initial;
-	if (!MakeInitial(Baseline.Identity.WorldId, Baseline.Clock.WorldSeconds, Initial, Error) ||
+	if (!MakeInitial(Baseline.Identity.WorldId, Baseline.Clock.WorldSeconds, Initial, Error, Medium, Count) ||
 		!Initial.Capture(Baseline.Ecology, Error))
 	{
 		return false;
@@ -216,7 +228,7 @@ bool ACCLEcologyExperiment::Initialize(bool bSeed, FCCLWorldSnapshot& Baseline, 
 	if (!bInitialized && bSeed)
 	{
 		FKSIEcologySimulation Current;
-		if (!MakeInitial(Runtime->GetIdentity().WorldId, Runtime->GetClock().GetWorldSeconds(), Current, Error) ||
+		if (!MakeInitial(Runtime->GetIdentity().WorldId, Runtime->GetClock().GetWorldSeconds(), Current, Error, Medium, Count) ||
 			!Runtime->SeedEcology(Current, Error))
 		{
 			return false;
@@ -245,7 +257,7 @@ void ACCLEcologyExperiment::Reconcile()
 	FString Error;
 	for (uint32 N = 0; N < 4; ++N)
 	{
-		for (uint32 M = 0; M < 3; ++M)
+		for (uint32 M = 0; M < 16; ++M)
 		{
 			const auto IdValue = IndividualId(N, M);
 			const auto* I = E.FindIndividual(IdValue);
@@ -325,6 +337,7 @@ bool ACCLEcologyExperiment::CheckState(FString& Error) const
 	}
 	for (uint32 N = 0; N < 4; ++N)
 	{
+		if (const auto* C = ACCLWorldEnvironmentConfig::Find(GetWorld()); C && C->LaboratoryZone == 6 && int32(N) != C->LaboratoryVariant) { continue; }
 		if (!E.GetPopulations().Contains(Id(30 + N)))
 		{
 			Error = TEXT("생태 개체군이 없다. 실험 초기화 후 다시 확인해 줘.");
@@ -383,6 +396,7 @@ void ACCLEcologyExperiment::UpdateView()
 			{
 				Row.Actors += Entry->Lease.Representation == EKSIEcologyRepresentation::Actor;
 				Row.Mass += Entry->Lease.Representation == EKSIEcologyRepresentation::Mass;
+				if (Entry->Lease.Representation == EKSIEcologyRepresentation::Mass) { Row.MassLocations.Add(I.PositionMeters * 100.); }
 			}
 			if (const auto* B = E.GetBehaviors().Find(I.Id))
 			{
@@ -416,10 +430,23 @@ void ACCLEcologyExperiment::UpdatePresentation()
 	for (int32 N = 0; N < 4; ++N)
 	{
 		const auto* Row = View.Rows.IsValidIndex(N) ? &View.Rows[N] : nullptr;
+		const auto* C = ACCLWorldEnvironmentConfig::Find(GetWorld());
+		const bool bVisible = !C || C->LaboratoryZone < 0 || C->LaboratoryVariant == N;
+		Labels[N]->SetVisibility(bVisible);
+		MassMarkers[N]->ClearInstances();
+		if (auto* Material = LoadObject<UMaterialInterface>(nullptr, *FString::Printf(TEXT("/Game/TestResources/Diagnostics/M_Creature%d.M_Creature%d"), N, N))) { MassMarkers[N]->SetMaterial(0, Material); }
+		if (Row && bVisible)
+		{
+			for (const auto& Location : Row->MassLocations) { MassMarkers[N]->AddInstance(FTransform(FRotator::ZeroRotator, Location, FVector(.45)), true); }
+		}
+		for (auto* Shape : TInlineComponentArray<UStaticMeshComponent*>(this))
+		{
+			if (Shape->GetName().StartsWith(FString::Printf(TEXT("Pen%dEdge"), N))) { Shape->SetVisibility(bVisible); }
+		}
 		Labels[N]->SetText(FText::FromString(FString::Printf(TEXT("%s  %lld마리\n먹이 %.1f · 개체 %.0f%% · 집계 %.0f%%"),
 															 *MediumName(N), Row ? Row->Living : 0,
 															 Row ? Row->Food : 0., Row ? Row->Energy * 100. : 0., Row ? Row->AggregateEnergy * 100. : 0.)));
-		FoodMarkers[N]->SetVisibility(Row && Row->Food > 0.);
+		FoodMarkers[N]->SetVisibility(bVisible && Row && Row->Food > 0.);
 	}
 }
 

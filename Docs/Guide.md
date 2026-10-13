@@ -30,6 +30,7 @@
 | [환경 실험장 PIE QA](EnvironmentPIEQA-2026-10-12.md) | 시간·천체 배율 조작의 MCP 실행 검사, 최초 메뉴 입력 정책 누락과 종료 오류 분석 |
 | [환경·전투·멀티플레이·Campaign 종합 QA](FullGameplayMCPQA-2026-10-12.md) | 두 환경 맵 1-11번, 전투·2인 네트워크·원정 완료·저장 복원의 직접 PIE 검사와 결함·미확인 범위 |
 | [생태계·생애](EnvironmentEcology.md) | 단계 8의 개체군·개체 전환·식생·부패·노화 구현과 검증 |
+| [기능별 환경 실험장](EnvironmentLaboratories.md) | 전용 레벨·단일 시험과 표본 수 선택, 표시·시간 조작·리소스 제출 범위 |
 | [집계 생물의 영양 상태](EnvironmentNutrition.md) | 단계 8의 집계 에너지·먹이·기아, 예약 상태 이전·저장과 규모 검증 |
 | [불·열·공간 환경](EnvironmentFire.md) | 단계 7의 연소 코어·수지 검증과 표면·환기 통합 계약 |
 | [자연 날씨 계산과 검증](EnvironmentWeather.md) | 지역 기후·천체 일조·대기 수분과 물·눈 연결, 구역 02 조작·검증 |

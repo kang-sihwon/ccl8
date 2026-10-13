@@ -7,7 +7,7 @@
 
 bool ACCLWorldEnvironmentConfig::BuildInitialPopulation(FCCLSimulationSnapshot& OutInitial, FString& Error) const
 {
-	OutInitial = FCCLLifeSimulation::MerchantScenario(PopulationSeed);
+	OutInitial = LaboratoryZone >= 0 ? FCCLSimulationSnapshot() : FCCLLifeSimulation::MerchantScenario(PopulationSeed);
 	return true;
 }
 

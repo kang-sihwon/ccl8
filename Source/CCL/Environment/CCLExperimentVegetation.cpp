@@ -2,14 +2,15 @@
 
 #include "CCLWorldSimulationSubsystem.h"
 
-bool ACCLExperimentDirector::VegetationGrid(double WorldSeconds, FKSISurfaceGrid& Grid, FString& Error)
+bool ACCLExperimentDirector::VegetationGrid(double WorldSeconds, FKSISurfaceGrid& Grid, FString& Error, int32 SelectedKind, int32 Count)
 {
 	FKSISurfaceGrid G;
 	G.RegionId = VegetationRegionId();
 	G.OriginMeters = UCCLExperimentDefinition::ZoneCenter(7) / 100. + FVector(-6.75, -2.25, 0.);
-	G.Size = FIntPoint(9, 3);
+	G.Size = SelectedKind >= 0 ? FIntPoint(FMath::Clamp(Count, 1, 16), 1) : FIntPoint(9, 3);
 	G.SpacingMeters = 1.5;
-	G.Cells.SetNum(27);
+	G.Cells.SetNum(G.Size.X * G.Size.Y);
+	if (SelectedKind >= 0) { G.OriginMeters = UCCLExperimentDefinition::ZoneCenter(7) / 100. + FVector(-G.Size.X * .75, -.75, 0.); }
 	G.Forcing.TemperatureCelsius = 20.;
 	G.Forcing.FlowConductance = 0.;
 	G.Forcing.DrainageMetersPerWorldSecond = 0.;
@@ -30,10 +31,10 @@ bool ACCLExperimentDirector::VegetationGrid(double WorldSeconds, FKSISurfaceGrid
 		S.MinimumDaylightHours = I == 8 ? 0. : 6.;
 		Species.Add(S);
 	}
-	for (int32 I = 0; I < 27; ++I)
+	for (int32 I = 0; I < G.Cells.Num(); ++I)
 	{
-		const int32 Kind = I % 9;
-		const int32 Row = I / 9;
+		const int32 Kind = SelectedKind >= 0 ? FMath::Clamp(SelectedKind, 0, 8) : I % 9;
+		const int32 Row = SelectedKind >= 0 ? 0 : I / 9;
 		FKSIVegetationSeed Seed;
 		Seed.Id = FGuid(7011, 3, 1, I + 1);
 		Seed.SpeciesIndex = Kind;

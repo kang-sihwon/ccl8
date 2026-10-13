@@ -2,6 +2,7 @@
 #include "Items/CCLInventoryFood.h"
 
 #include "CCLExperimentDefinition.h"
+#include "CCLWorldEnvironmentConfig.h"
 #include "CCLExperimentDirector.h"
 #include "CCLWorldSimulationSubsystem.h"
 #include "Items/CCLInventoryComponent.h"
@@ -115,10 +116,12 @@ bool ACCLFoodExperiment::MakeInitial(FGuid WorldId, double WorldSeconds, TArray<
 		auto& Record = Records.AddDefaulted_GetRef();
 		Record.ContainerId = ContainerId(Index);
 		Record.Capacity = 4;
+		const auto* Config = ACCLWorldEnvironmentConfig::Find(GetWorld());
+		if (Config && Config->LaboratoryZone == 7 && Index != Config->LaboratoryVariant) { continue; }
 		auto& Item = Record.Items.AddDefaulted_GetRef();
 		Item.Id = FGuid(7071, 7074, 1, Index + 1);
 		Item.Definition = Definition->GetPathName();
-		Item.Quantity = 4;
+		Item.Quantity = Config && Config->LaboratoryZone == 7 ? Config->SampleCount() : 4;
 		Item.Slot = 0;
 		FCCLFoodState Food;
 		if (!CCLFood::Create(WorldId, FGuid(7071, 7075, 1, Index + 1), Item.Quantity, WorldSeconds, Perishable->Policy,
@@ -157,12 +160,12 @@ bool ACCLFoodExperiment::Initialize(bool bSeed, FCCLWorldSnapshot& Baseline, FSt
 			{
 				return false;
 			}
-			if (bSeed)
+			if (bSeed && !Current[Index].Items.IsEmpty())
 			{
 				FKSIInventoryEntry Entry;
 				Entry.Id = Current[Index].Items[0].Id;
 				Entry.Definition = SampleDefinition();
-				Entry.Quantity = 4;
+				Entry.Quantity = Current[Index].Items[0].Quantity;
 				Entry.Slot = 0;
 				if (!CCLFood::Decode(Current[Index].Items[0].Food, Entry.GetState<FCCLItemState>().Food, Error) ||
 					!Inventories[Index]->Restore({Entry}))
@@ -200,7 +203,9 @@ bool ACCLFoodExperiment::Execute(ECCLExperimentAction Action, FString& Error)
 		Error = TEXT("서버의 음식 실험 준비를 기다려 줘.");
 		return false;
 	}
-	auto* Open = Inventories[0].Get();
+	const auto* Config = ACCLWorldEnvironmentConfig::Find(GetWorld());
+	const int32 SelectedStorage = Config && Config->LaboratoryZone == 7 ? Config->LaboratoryVariant : 0;
+	auto* Open = Inventories[SelectedStorage].Get();
 	auto* Cold = Inventories[1].Get();
 	if (Action == ECCLExperimentAction::FoodWeather || Action == ECCLExperimentAction::FoodIndoor)
 	{
@@ -242,7 +247,7 @@ bool ACCLFoodExperiment::Execute(ECCLExperimentAction Action, FString& Error)
 	{
 		const FGuid Added = Open->Add(SampleDefinition(), 2);
 		if (!Added.IsValid() ||
-			(!Open->GetFoodEnvironment().IsDynamic() && !FCCLInventoryFood::ChangeFoodStorage(*Open, Added, Storage(0))))
+			(!Open->GetFoodEnvironment().IsDynamic() && !FCCLInventoryFood::ChangeFoodStorage(*Open, Added, Storage(SelectedStorage))))
 		{
 			Error = TEXT("새 음식을 넣을 공간이 없다.");
 			return false;
@@ -350,7 +355,13 @@ void ACCLFoodExperiment::UpdatePresentation()
 	{
 		const bool bReady = View.Rows.IsValidIndex(Index);
 		Samples[Index]->SetVisibility(bReady && View.Rows[Index].Quantity > 0);
-		Labels[Index]->SetVisibility(bReady);
+		const auto* Config = ACCLWorldEnvironmentConfig::Find(GetWorld());
+		const bool bVisible = !Config || Config->LaboratoryZone < 0 || Config->LaboratoryVariant == Index || (bReady && View.Rows[Index].Quantity > 0);
+		Labels[Index]->SetVisibility(bReady && bVisible);
+		for (auto* Shape : TInlineComponentArray<UStaticMeshComponent*>(this))
+		{
+			if (Shape->GetName() == FString::Printf(TEXT("Shelf%d"), Index)) { Shape->SetVisibility(bVisible); }
+		}
 		if (!bReady)
 		{
 			continue;

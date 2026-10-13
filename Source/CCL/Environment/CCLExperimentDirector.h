@@ -25,6 +25,7 @@ public:
 
 public:
 	void AssignOperator(APlayerController* Controller);
+	bool ConfigureLaboratory(APlayerController* Requester, FGuid ExpectedGeneration, int32 Zone, int32 Subject, int32 Variant, int32 Count, FString& Error);
 	void ReleaseOperator(APlayerController* Controller);
 	bool Execute(APlayerController* Requester, ECCLExperimentAction Action, FName CaseId,
 		FGuid ExpectedGeneration, FGuid ExpectedRun, FString& Message, uint64 ExpectedTerrainSerial = 0, const FVector* TerrainTarget = nullptr, double TimeScale = 0.);
@@ -43,7 +44,7 @@ public:
 	bool IsReady() const { return HasAuthority() ? !InitialSnapshot.IsEmpty() && bWaterReady : Generation.IsValid() && Results.Num() == 12; }
 	const TArray<FCCLExperimentResult>& GetResults() const { return Results; }
 	static FGuid VegetationRegionId() { return FGuid(7011, 7012, 7013, 7014); }
-	static bool VegetationGrid(double WorldSeconds, FKSISurfaceGrid& Grid, FString& Error);
+	static bool VegetationGrid(double WorldSeconds, FKSISurfaceGrid& Grid, FString& Error, int32 Kind = -1, int32 Count = 3);
 	static FGuid WeatherRegionId() { return FGuid(201, 202, 203, 204); }
 	static FKSISurfaceGrid WeatherGrid();
 	static FGuid FireRegionId(bool bIndoor = false) { return bIndoor ? FGuid(1101, 1102, 1103, 1104) : FGuid(1001, 1002, 1003, 1004); }

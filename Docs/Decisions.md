@@ -14,6 +14,7 @@
 | 공용 UI | LocalPlayer별 관리자와 UMG·CommonUI를 사용한다. 화면 등록·문맥·핸들·수명과 중첩 표시 요청을 공용화하고 장르별 데이터는 기능 계층이 연결한다 | 유효, 구현 중 | 결정 17 | [UIFoundation](UIFoundation.md) |
 | 자연 환경·실험장 | 공통 시간·천체·날씨, 영구 지형과 눈·물·불·차폐, 생태·생애 주기와 기능별 실험장을 단계적으로 구현한다. 60배속은 변경 가능한 실험 기본 후보이며 최종 게임 배율은 미정이다 | 유효, 단계 0-7 검증 완료·단계 8 진행 | 결정 19 | [EnvironmentPlan](EnvironmentPlan.md), [영구 지형 통합과 검증](EnvironmentTerrain.md) |
 | Agent의 삶 | 성격 6개·가치관 3개에서 시작하고 목표·경험·관계·실제 자원의 상호작용으로 개인의 삶을 누적한다. 선택적 Feature와 공통 실행 계약을 유지한다 | 유효, 구현 중 | 결정 18 | [AgentFoundation](AgentFoundation.md) |
+| 기능별 환경 실험 | 전용 레벨에서 시험 종류 하나와 표본 수를 선택한다. 새 실험은 정지한 독립 세계에서 시작한다. 사용한 Fab 리소스와 의존성은 TestResources에 모은다 | 유효, 구현·일부 PIE 검증 완료 | 결정 27 | [환경 실험장 사용법](EnvironmentLaboratories.md) |
 | 아이템·장비 | 공통 정보는 ItemDefinition, 선택 기능은 FInstancedStruct로 구성한다. 슬롯과 부착 지점은 태그로 지정하고 양손 여부는 Weapon이 소유한다. 캐릭터별 AttachmentProfile과 장비 창은 ProgressionFoundation을 따른다 | 유효, 태그 개편 실행 검증 완료 | 결정 15, 결정 16 | [ProgressionFoundation](ProgressionFoundation.md) |
 | 엔진 시스템 선택 | 명확히 불합리한 근거가 없으면 UE5 신규·현행 시스템을 기본 선택으로 사용한다. Nanite, World Partition, GAS와 Attribute·AttributeSet을 포함한다 | 유효 | 결정 10 | [Coding](Coding.md) |
 | 방어 행동 | 최소 전투에 회피, 가드와 패링을 모두 포함한다. ASC 수명·조작·방어 결과와 초기 수치는 결정 11을 따른다 | 유효 | 결정 8, 결정 11 | [CombatFoundation](CombatFoundation.md) |

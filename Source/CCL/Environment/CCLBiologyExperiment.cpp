@@ -1,6 +1,7 @@
 #include "CCLBiologyExperiment.h"
 
 #include "CCLExperimentDefinition.h"
+#include "CCLWorldEnvironmentConfig.h"
 #include "CCLWorldSnapshot.h"
 #include "CCLWorldSimulationSubsystem.h"
 #include "Agents/CCLAgentWorldSubsystem.h"
@@ -19,18 +20,18 @@
 
 namespace
 {
-FKSIAgentRecord MakeRecord(int32 Index, double Time)
+FKSIAgentRecord MakeRecord(int32 Index, double Time, const ACCLWorldEnvironmentConfig* Config)
 {
 	FKSIAgentRecord R;
 	R.Id = ACCLBiologyExperiment::AgentId(Index);
 	R.DefinitionId = FPrimaryAssetId(TEXT("Agent"), TEXT("BiologyExperiment"));
 	R.LastSimulatedTime = Time;
-	R.Location.Position = UCCLExperimentDefinition::ZoneCenter(7) + FVector(Index ? 260. : -260., 700., 90.);
+	R.Location.Position = UCCLExperimentDefinition::ZoneCenter(7) + (Config && Config->LaboratoryZone == 7 ? FVector((Index % 4 - 1.5) * 180., (Index / 4) * 180., 98.) : FVector(Index ? 260. : -260., 700., 90.));
 	FCCLAgentBiology B;
 	B.BirthWorldSeconds = Time - 20.;
 	B.MaturitySeconds = 10.;
 	B.LifespanSeconds = 300.;
-	B.bProtectNaturalAging = Index == 1 ? 1 : 0;
+	B.bProtectNaturalAging = Config && Config->LaboratoryZone == 7 ? uint8(Config->LaboratoryVariant != 0) : uint8(Index == 1);
 	R.Features.Add(CCLAgentTags::Feature_Biology, {1, FInstancedStruct::Make(B)});
 	R.Features.Add(CCLAgentTags::Feature_Needs, {1, FInstancedStruct::Make(FCCLAgentNeeds())});
 	return R;
@@ -65,15 +66,15 @@ bool ACCLBiologyExperiment::Initialize(bool bSeed, FCCLWorldSnapshot& Baseline, 
 	{
 		return false;
 	}
-	for (int32 Index = 0; Index < 2; ++Index)
+	for (int32 Index = 0; Index < (ACCLWorldEnvironmentConfig::IsLaboratory(GetWorld()) ? ACCLWorldEnvironmentConfig::Find(GetWorld())->SampleCount() : 2); ++Index)
 	{
 		if (!Initial.Find(AgentId(Index)) &&
-			!Initial.GetAgents().Add(MakeRecord(Index, Initial.GetTime()), Initial.GetRegistry(), Error).Id.IsValid())
+			!Initial.GetAgents().Add(MakeRecord(Index, Initial.GetTime(), ACCLWorldEnvironmentConfig::Find(GetWorld())), Initial.GetRegistry(), Error).Id.IsValid())
 		{
 			return false;
 		}
 		if (bSeed && !Live.Find(AgentId(Index)) &&
-			!Live.GetAgents().Add(MakeRecord(Index, Live.GetTime()), Live.GetRegistry(), Error).Id.IsValid())
+			!Live.GetAgents().Add(MakeRecord(Index, Live.GetTime(), ACCLWorldEnvironmentConfig::Find(GetWorld())), Live.GetRegistry(), Error).Id.IsValid())
 		{
 			return false;
 		}
@@ -112,7 +113,7 @@ void ACCLBiologyExperiment::Reconcile()
 		return;
 	}
 	const bool bNewEpoch = ActorEpoch != Runtime->GetEpoch();
-	for (int32 Index = 0; Index < 2; ++Index)
+	for (int32 Index = 0; Index < (ACCLWorldEnvironmentConfig::IsLaboratory(GetWorld()) ? ACCLWorldEnvironmentConfig::Find(GetWorld())->SampleCount() : 2); ++Index)
 	{
 		auto* Actor = FindActor(Index);
 		const auto* Record = Agents->GetSimulation().Find(AgentId(Index));
@@ -136,7 +137,7 @@ void ACCLBiologyExperiment::Reconcile()
 			Actor->bAlwaysRelevant = true;
 			auto* Embodiment = Cast<ICCLAgentEmbodiment>(Actor);
 			Embodiment->GetAgentComponent()->AgentId = AgentId(Index);
-			Embodiment->SetAgentPublicName(Index ? TEXT("AGING PROTECTED") : TEXT("NATURAL AGE"));
+			Embodiment->SetAgentPublicName(ACCLWorldEnvironmentConfig::IsLaboratory(GetWorld()) ? FString::Printf(TEXT("SAMPLE %02d"), Index + 1) : (Index ? TEXT("AGING PROTECTED") : TEXT("NATURAL AGE")));
 			Actor->FinishSpawning(Transform);
 			Actor->GetCharacterMovement()->SetMovementMode(MOVE_None);
 		}
@@ -155,7 +156,7 @@ void ACCLBiologyExperiment::UpdateView()
 	FCCLBiologyExperimentView Next;
 	Next.Epoch = Runtime->GetEpoch();
 	Next.WorldSeconds = Runtime->GetClock().GetWorldSeconds();
-	for (int32 Index = 0; Index < 2; ++Index)
+	for (int32 Index = 0; Index < (ACCLWorldEnvironmentConfig::IsLaboratory(GetWorld()) ? ACCLWorldEnvironmentConfig::Find(GetWorld())->SampleCount() : 2); ++Index)
 	{
 		auto& Row = Next.Rows.AddDefaulted_GetRef();
 		const auto* Record = Agents->GetSimulation().Find(AgentId(Index));
@@ -186,7 +187,7 @@ bool ACCLBiologyExperiment::Execute(ECCLExperimentAction Action, FString& Error)
 		return false;
 	}
 	auto& Life = Agents->GetSimulation();
-	const int32 Index = Action == ECCLExperimentAction::BiologyAge ? 0 : 1;
+	const int32 Index = ACCLWorldEnvironmentConfig::IsLaboratory(GetWorld()) ? 0 : (Action == ECCLExperimentAction::BiologyAge ? 0 : 1);
 	const auto* Current = Life.Find(AgentId(Index));
 	if (!Current || !CCLAgentBiology::IsAlive(*Current))
 	{
@@ -195,7 +196,7 @@ bool ACCLBiologyExperiment::Execute(ECCLExperimentAction Action, FString& Error)
 	}
 	if (Action == ECCLExperimentAction::BiologyDamage)
 	{
-		auto* Actor = FindActor(1);
+		auto* Actor = FindActor(Index);
 		auto* ASC = Actor ? Cast<UCCLAbilitySystemComponent>(UAbilitySystemBlueprintLibrary::GetAbilitySystemComponent(Actor)) : nullptr;
 		if (!ASC)
 		{

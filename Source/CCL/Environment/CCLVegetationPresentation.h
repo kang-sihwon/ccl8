@@ -5,6 +5,7 @@
 #include "CCLVegetationPresentation.generated.h"
 
 class UInstancedStaticMeshComponent;
+class UStaticMesh;
 class UMaterialInterface;
 class UTextRenderComponent;
 struct FKSISurfaceGrid;
@@ -32,9 +33,15 @@ private:
 
 public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TObjectPtr<UStaticMesh> LivingTreeMesh;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TArray<TObjectPtr<UMaterialInterface>> StateMaterials;
 
 private:
+	UPROPERTY()
+	TObjectPtr<UInstancedStaticMeshComponent> TreeInstances;
+
 	UPROPERTY()
 	TArray<TObjectPtr<UInstancedStaticMeshComponent>> Batches;
 

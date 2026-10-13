@@ -1,6 +1,8 @@
 #include "CCLCreatureActor.h"
 
 #include "CCLEcologyRepresentationSubsystem.h"
+#include "CCLWorldEnvironmentConfig.h"
+#include "Materials/MaterialInstanceDynamic.h"
 #include "Components/StaticMeshComponent.h"
 #include "Engine/World.h"
 #include "Net/UnrealNetwork.h"
@@ -72,11 +74,17 @@ void ACCLCreatureActor::OnRep_Medium()
 	const FVector BodyScale[] = {FVector(.8, .35, .5), FVector(.7, .18, .3), FVector(.45, .2, .25), FVector(.12, .08, .06)};
 	const FVector AppendageScale[] = {FVector(.12, .2, .5), FVector(.25, .03, .25), FVector(.25, .65, .035), FVector(.02, .15, .02)};
 	const uint8 Index = FMath::Min<uint8>(Medium, 3);
-	Shapes[0]->SetRelativeScale3D(BodyScale[Index]);
+	auto* DisplayMaterial = LoadObject<UMaterialInterface>(nullptr, *FString::Printf(TEXT("/Game/TestResources/Diagnostics/M_Creature%d.M_Creature%d"), Index, Index));
+	for (const auto& Shape : Shapes)
+	{
+		if (DisplayMaterial) { Shape->SetMaterial(0, DisplayMaterial); }
+	}
+	const double Magnification = Index == 3 ? 3. : 1.;
+	Shapes[0]->SetRelativeScale3D(BodyScale[Index] * Magnification);
 	for (int32 ShapeIndex = 1; ShapeIndex < 3; ++ShapeIndex)
 	{
 		const double Side = ShapeIndex == 1 ? -1. : 1.;
-		Shapes[ShapeIndex]->SetRelativeScale3D(AppendageScale[Index]);
-		Shapes[ShapeIndex]->SetRelativeLocation(FVector(Index == 1 ? -35. : 0., Side * (Index == 2 ? 35. : 12.), Index == 0 ? -30. : 0.));
+		Shapes[ShapeIndex]->SetRelativeScale3D(AppendageScale[Index] * Magnification);
+		Shapes[ShapeIndex]->SetRelativeLocation(FVector(Index == 1 ? -35. : 0., Side * (Index == 2 ? 35. : 12.), Index == 0 ? -10. : 0.));
 	}
 }

@@ -69,6 +69,7 @@ public:
 
 private:
 	void ApplyTimeScale();
+	TSharedRef<SWidget> BuildLaboratoryControls();
 	void ApplyObservationScale();
 	void ApplyScale(double Scale);
 	void AdjustScale(double Delta, bool bStop = false);

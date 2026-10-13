@@ -5,6 +5,7 @@
 #include "CCLTerrainReplication.h"
 #include "CCLWorldGenerationStore.h"
 #include "CCLWorldSimulationSubsystem.h"
+#include "CCLWorldEnvironmentConfig.h"
 #include "Agents/CCLAgentWorldSubsystem.h"
 #include "Engine/World.h"
 #include "Engine/GameInstance.h"
@@ -33,7 +34,7 @@ void ACCLExperimentDirector::InitializeTerrainExperiment()
 	FString Error;
 	TArray<uint8> SavedTerrain;
 	const auto* SessionStore = GetGameInstance()->GetSubsystem<UCCLAgentSessionStore>();
-	if (const auto* Bundle = SessionStore->TravelSnapshots.Find(Runtime->GetIdentity().Domain))
+	if (const auto* Bundle = SessionStore->TravelSnapshots.Find(Runtime->GetIdentity().Domain); Bundle && !ACCLWorldEnvironmentConfig::IsLaboratory(GetWorld()))
 	{
 		const auto* Bytes = Bundle->Terrain.Find(Definition.RegionId);
 		FCCLWorldSnapshot SavedWorld;

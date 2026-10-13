@@ -1,6 +1,7 @@
 #include "CCLSurfacePresentation.h"
 
 #include "CCLSurfaceReplication.h"
+#include "CCLWorldEnvironmentConfig.h"
 #include "Components/InstancedStaticMeshComponent.h"
 #include "Components/DynamicMeshComponent.h"
 #include "DynamicMesh/DynamicMeshAttributeSet.h"
@@ -164,6 +165,12 @@ ACCLSurfacePresentation::ACCLSurfacePresentation()
 void ACCLSurfacePresentation::Tick(float DeltaSeconds)
 {
 	Super::Tick(DeltaSeconds);
+	// The observation tank is drawn open so opaque water cannot hide its test subjects.
+	if (const auto* C = ACCLWorldEnvironmentConfig::Find(GetWorld()); C && C->LaboratoryZone == 6)
+	{
+		SetActorHiddenInGame(true);
+		return;
+	}
 	const auto* Model = UCCLSurfaceReplication::View(GetWorld());
 	if (!Model)
 	{

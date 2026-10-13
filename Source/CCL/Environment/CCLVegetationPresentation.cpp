@@ -1,6 +1,7 @@
 #include "CCLVegetationPresentation.h"
 
 #include "CCLExperimentDirector.h"
+#include "CCLWorldEnvironmentConfig.h"
 #include "CCLSurfaceReplication.h"
 #include "Components/InstancedStaticMeshComponent.h"
 #include "Engine/StaticMesh.h"
@@ -18,6 +19,10 @@ ACCLVegetationPresentation::ACCLVegetationPresentation()
 	PrimaryActorTick.bAllowTickOnDedicatedServer = false;
 	PrimaryActorTick.TickInterval = 0.25f;
 	RootComponent = CreateDefaultSubobject<USceneComponent>(TEXT("Root"));
+	TreeInstances = CreateDefaultSubobject<UInstancedStaticMeshComponent>(TEXT("LivingTrees"));
+	TreeInstances->SetupAttachment(RootComponent);
+	TreeInstances->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+	TreeInstances->SetCanEverAffectNavigation(false);
 	static ConstructorHelpers::FObjectFinder<UStaticMesh> Sphere(TEXT("/Engine/BasicShapes/Sphere.Sphere"));
 	static ConstructorHelpers::FObjectFinder<UStaticMesh> Cone(TEXT("/Engine/BasicShapes/Cone.Cone"));
 	static ConstructorHelpers::FObjectFinder<UStaticMesh> Cylinder(TEXT("/Engine/BasicShapes/Cylinder.Cylinder"));
@@ -147,7 +152,8 @@ void ACCLVegetationPresentation::RefreshPreview()
 	FKSISurfaceGrid Grid;
 	FString Error;
 	Clear();
-	if (ACCLExperimentDirector::VegetationGrid(0., Grid, Error))
+	const auto* Config = ACCLWorldEnvironmentConfig::Find(GetWorld());
+	if (ACCLExperimentDirector::VegetationGrid(0., Grid, Error, Config && Config->LaboratoryZone == 7 ? Config->LaboratoryVariant : -1, Config ? Config->SampleCount() : 3))
 	{
 		Append(Grid);
 	}
@@ -155,7 +161,7 @@ void ACCLVegetationPresentation::RefreshPreview()
 
 void ACCLVegetationPresentation::Append(const FKSISurfaceGrid& G)
 {
-	if (G.RegionId == ACCLExperimentDirector::VegetationRegionId() && G.Size.X == 9)
+	if (G.RegionId == ACCLExperimentDirector::VegetationRegionId() && G.Size.X == 9 && G.Size.Y == 3)
 	{
 		for (int32 I = 0; I < Labels.Num(); ++I)
 		{
@@ -219,6 +225,14 @@ void ACCLVegetationPresentation::Append(const FKSISurfaceGrid& G)
 		switch (Species.Kind)
 		{
 		case EKSIVegetationKind::Tree:
+			if (LivingTreeMesh && !bDead && C.State != EKSIVegetationState::Dormant)
+			{
+				TreeInstances->SetStaticMesh(LivingTreeMesh);
+				const auto Bounds = LivingTreeMesh->GetBounds();
+				const double Scale = 240. * Size / FMath::Max(1., double(Bounds.BoxExtent.Z) * 2.);
+				TreeInstances->AddInstance(FTransform(FRotator::ZeroRotator, Base - FVector(0., 0., (Bounds.Origin.Z - Bounds.BoxExtent.Z) * Scale), FVector(Scale)), true);
+				break;
+			}
 			Add(2, FVector(0., 0., 65.), FVector(.16, .16, 1.3));
 			for (int32 K = 0; K < 3; ++K)
 			{
@@ -279,6 +293,7 @@ void ACCLVegetationPresentation::Append(const FKSISurfaceGrid& G)
 
 void ACCLVegetationPresentation::Clear()
 {
+	TreeInstances->ClearInstances();
 	for (const auto& Batch : Batches)
 	{
 		if (Batch)

@@ -45,4 +45,5 @@ Thumbs.db
 /graft/
 /.graphify-local/
 /graphify-out/
+/Content/Fab/
 graph.json

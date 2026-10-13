@@ -37,6 +37,29 @@ public:
 	static const ACCLWorldEnvironmentConfig* Find(const UWorld* World);
 
 public:
+	ACCLWorldEnvironmentConfig();
+	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& Out) const override;
+	static bool IsLaboratory(const UWorld* World);
+	static bool AllowsLaboratory(const UWorld* World, int32 Zone, int32 Subject = -1);
+	static FString LaboratoryMap(int32 Zone, int32 Subject = 0);
+	static FString LaboratoryTitle(int32 Zone, int32 Subject = 0);
+	static TArray<FString> LaboratoryVariants(int32 Zone, int32 Subject);
+	int32 SampleCount() const { return FMath::Clamp(LaboratoryCount, 1, 16); }
+
+	// -1 retains the combined experiment maps. Dedicated laboratories seed only this zone.
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Replicated, Category = "Laboratory", meta = (ClampMin = "-1", ClampMax = "11"))
+	int32 LaboratoryZone = -1;
+
+	// Zone 7: 0 vegetation, 1 life, 2 food decay.
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Replicated, Category = "Laboratory", meta = (ClampMin = "0", ClampMax = "2"))
+	int32 LaboratorySubject = 0;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Replicated, Category = "Laboratory", meta = (ClampMin = "0", ClampMax = "8"))
+	int32 LaboratoryVariant = 0;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Replicated, Category = "Laboratory", meta = (ClampMin = "1", ClampMax = "16"))
+	int32 LaboratoryCount = 3;
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	ECCLWorldContentDomain Domain = ECCLWorldContentDomain::Campaign;
 
