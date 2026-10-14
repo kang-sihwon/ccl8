@@ -99,7 +99,7 @@ world_view = next(a for a in loaded if isinstance(a, unreal.CCLWorldEnvironmentP
 world_values = {k: world_view.get_editor_property(k) for k in ['solid_mesh', 'glass_mesh', 'solid_material', 'glass_material']}
 definitions = [A.load_asset(f'/Game/Environment/Experiments/DA_Environment_{n:02d}') for n in range(12)]
 names = ['Clock', 'Celestial', 'Weather', 'Snow', 'Water', 'Terrain', 'Ecology', 'Vegetation', 'Persistence', 'Cycle', 'Fire', 'Shelter']
-specs = [(n, z, 0) for z, n in enumerate(names)] + [('Life', 7, 1), ('Decay', 7, 2)]
+specs = [(n, z, 0) for z, n in enumerate(names) if z != 0] + [('Life', 7, 1), ('Decay', 7, 2)]
 created = []
 for name, zone, subject in specs:
     path = '/Game/Maps/Tests/' + name
@@ -143,7 +143,7 @@ for name, zone, subject in specs:
             view.set_editor_property(k, v)
         view.set_editor_property('sun', sun)
         view.refresh_preview()
-    if zone == 2:
+    if zone in (2, 3, 4, 5, 9, 10, 11) or (zone == 7 and subject == 0):
         w = E.spawn_actor_from_class(unreal.CCLWeatherPresentation, center)
         for k, v in weather_values.items():
             w.set_editor_property(k, v)

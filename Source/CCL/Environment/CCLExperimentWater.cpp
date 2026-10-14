@@ -92,7 +92,20 @@ void ACCLExperimentDirector::InitializeWaterExperiment()
 	{
 		if (Allows(2)) { Grids.Add(WeatherGrid()); }
 		if (Allows(3)) { Grids.Add(SnowGrid()); }
-		if (Allows(4)) { Grids.Add(WaterGrid()); }
+		if (Allows(4))
+		{
+			auto G = WaterGrid();
+			if (bLab)
+			{
+				G.Forcing.BoundaryLevelMeters = 0.2;
+				for (auto& Cell : G.Cells)
+				{
+					Cell.WaterCubicMeters = 0.;
+				}
+				G.Ledger.InitialCubicMeters = G.TotalCubicMeters();
+			}
+			Grids.Add(MoveTemp(G));
+		}
 		if (Allows(6) && (!bLab || Config->LaboratoryVariant == 1)) { Grids.Add(ACCLEcologyExperiment::Pond()); }
 		if (Allows(7, 0))
 		{
@@ -111,6 +124,14 @@ void ACCLExperimentDirector::InitializeWaterExperiment()
 			if (bBaseline && !Base.Initialize(Definition, Error)) { return false; }
 			FKSISurfaceGrid G;
 			if (!TerrainGrid(bBaseline ? Base.GetSnapshot() : TerrainRegion->GetTerrainStore().GetSnapshot(), TerrainRegion->GetActorTransform(), G, Error)) { return false; }
+			if (bLab && Config->LaboratoryZone == 5)
+			{
+				for (auto& Cell : G.Cells)
+				{
+					Cell.WaterCubicMeters = 0.;
+				}
+				G.Ledger.InitialCubicMeters = G.TotalCubicMeters();
+			}
 			Grids.Add(MoveTemp(G));
 		}
 		return true;
@@ -170,7 +191,7 @@ bool ACCLExperimentDirector::WaterAction(ECCLExperimentAction Action, FName Case
 	auto F = G->Forcing;
 	if (Action == ECCLExperimentAction::WaterRain)
 	{
-		F.RainMetersPerWorldSecond = F.RainMetersPerWorldSecond > 0. ? 0. : 0.00005;
+		F.RainMetersPerWorldSecond = F.RainMetersPerWorldSecond > 0. ? 0. : 0.000005;
 	}
 	else if (Action == ECCLExperimentAction::WaterFreeze)
 	{
@@ -190,7 +211,7 @@ bool ACCLExperimentDirector::WaterAction(ECCLExperimentAction Action, FName Case
 	{
 		return false;
 	}
-	Error = TEXT("선택 구역의 강수·기온 시험 입력을 적용했다. 자연 날씨는 6단계에서 연결한다.");
+	Error = TEXT("환경 조건을 적용했다. 물의 변화는 세계 시간에 따라 진행된다. 비는 18 mm/h이며 높은 배율에서는 수위도 빠르게 오른다.");
 	return true;
 }
 

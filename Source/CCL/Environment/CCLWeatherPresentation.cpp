@@ -75,14 +75,25 @@ void ACCLWeatherPresentation::Tick(float DeltaSeconds)
 	for (const auto& Pair : Surface->GetRegions())
 	{
 		const auto& G = Pair.Value;
-		if (!G.bDynamicShelter || FVector::DistSquared2D(Camera / 100., G.OriginMeters) > FMath::Square(40.))
+		if (FVector::DistSquared2D(Camera / 100., G.OriginMeters) > FMath::Square(40.))
 		{
 			continue;
 		}
-		// One bounded emitter per 2m tile: exposed tiles stop at the authoritative bed.
-		for (int32 Y = 0; Y < G.Size.Y; Y += 4)
+		const FKSIAirSpace* Indoor = nullptr;
+		for (const auto& PairRoom : Surface->GetAirSimulation().GetSpaces())
 		{
-			for (int32 X = 0; X < G.Size.X; X += 4)
+			if (PairRoom.Value.ClimateRegionId == G.RegionId)
+			{
+				Indoor = &PairRoom.Value;
+				break;
+			}
+		}
+		const int32 Tile = FMath::Max(1, FMath::FloorToInt(2. / G.SpacingMeters));
+		const int32 Margin = Indoor ? FMath::CeilToInt(6. / G.SpacingMeters) : 0;
+		// Exterior tiles make roof shelter visible; they do not add simulated water.
+		for (int32 Y = -Margin; Y < G.Size.Y + Margin; Y += Tile)
+		{
+			for (int32 X = -Margin; X < G.Size.X + Margin; X += Tile)
 			{
 				while (Rain.Num() <= At)
 				{
@@ -98,16 +109,17 @@ void ACCLWeatherPresentation::Tick(float DeltaSeconds)
 					Rain.Add(Make(RainSystem));
 					Snow.Add(Make(SnowSystem));
 				}
-				const int32 Index = X + Y * G.Size.X;
+				const int32 Index = FMath::Clamp(X, 0, G.Size.X - 1) + FMath::Clamp(Y, 0, G.Size.Y - 1) * G.Size.X;
 				const auto& Cell = G.Cells[Index];
-				const FVector Position((G.OriginMeters.X + (X + 2.) * G.SpacingMeters) * 100.,
-					(G.OriginMeters.Y + (Y + 2.) * G.SpacingMeters) * 100., (Cell.BedMeters + 2.8) * 100.);
+				const FVector Position((G.OriginMeters.X + (X + Tile * .5) * G.SpacingMeters) * 100.,
+					(G.OriginMeters.Y + (Y + Tile * .5) * G.SpacingMeters) * 100., (Cell.BedMeters + 2.8) * 100.);
+				const double Exposure = Indoor ? (Indoor->Contains(Position / 100.) ? 0. : 1.) : Cell.RainExposure;
 				auto Update = [&](UNiagaraComponent* C, double Rate, bool bSnow)
 				{
-					const float Spawn = float(FMath::Clamp(Rate * 3600000. * 3. * Cell.RainExposure, 0., 240.));
+					const float Spawn = float(FMath::Clamp(Rate * 3600000. * 3. * Exposure, 0., 240.));
 					C->SetWorldLocation(Position);
 					C->SetVariableFloat(TEXT("User.SpawnRate"), Spawn);
-					C->SetVariableVec3(TEXT("User.Velocity"), FVector(0., 0., bSnow ? -100. : -800.));
+					C->SetVariableVec3(TEXT("User.Velocity"), FVector(G.Weather.WindMetersPerSecond * 25., 0., bSnow ? -100. : -800.));
 					if (Spawn > 0.01f && !C->IsActive())
 					{
 						C->Activate(true);

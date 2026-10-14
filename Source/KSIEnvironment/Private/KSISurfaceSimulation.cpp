@@ -399,6 +399,20 @@ bool FKSISurfaceSimulation::ChangeClimate(FGuid RegionId, const FKSIClimate& Cli
 	return true;
 }
 
+bool FKSISurfaceSimulation::ChangeWind(FGuid RegionId, double MetersPerSecond, FString& Error)
+{
+	auto* Region = Regions.Find(RegionId);
+	if (!Region || Region->Revision == MAX_uint64 || !FMath::IsFinite(MetersPerSecond) || MetersPerSecond < 0. || MetersPerSecond > 100.)
+	{
+		return Fail(Error, TEXT("Wind requires an existing region and a speed between 0 and 100 m/s."));
+	}
+
+	Region->Weather.WindMetersPerSecond = MetersPerSecond;
+	Region->Climate.PrevailingWindMetersPerSecond = MetersPerSecond;
+	++Region->Revision;
+	return true;
+}
+
 bool FKSISurfaceSimulation::Advance(const FKSIWorldStep& Step, FString& Error,
 	const FKSICelestialSystem* Celestial, const FKSICelestialObserver* Observer, const IKSISurfaceProvider* Shelter,
 	const TArray<FKSISurfaceOpening>* Openings)

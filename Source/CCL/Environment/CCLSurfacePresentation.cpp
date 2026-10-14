@@ -165,12 +165,6 @@ ACCLSurfacePresentation::ACCLSurfacePresentation()
 void ACCLSurfacePresentation::Tick(float DeltaSeconds)
 {
 	Super::Tick(DeltaSeconds);
-	// The observation tank is drawn open so opaque water cannot hide its test subjects.
-	if (const auto* C = ACCLWorldEnvironmentConfig::Find(GetWorld()); C && C->LaboratoryZone == 6)
-	{
-		SetActorHiddenInGame(true);
-		return;
-	}
 	const auto* Model = UCCLSurfaceReplication::View(GetWorld());
 	if (!Model)
 	{
@@ -211,6 +205,13 @@ void ACCLSurfacePresentation::Tick(float DeltaSeconds)
 			if (auto* Material = LoadObject<UMaterialInterface>(nullptr, Pair.Value))
 			{
 				Pair.Key->SetMaterial(0, Material);
+			}
+		}
+		if (const auto* C = ACCLWorldEnvironmentConfig::Find(GetWorld()); C && C->LaboratoryZone == 6)
+		{
+			if (auto* Pond = LoadObject<UMaterialInterface>(nullptr, TEXT("/Game/TestResources/Diagnostics/M_SurfaceWaterPond.M_SurfaceWaterPond")))
+			{
+				Water->SetMaterial(0, Pond);
 			}
 		}
 	}

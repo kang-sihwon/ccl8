@@ -9,6 +9,7 @@ class ACCLWorldPickup;
 class UCCLInventoryComponent;
 class UStaticMeshComponent;
 class UTextRenderComponent;
+class UMaterialInstanceDynamic;
 class UKSIItemDefinition;
 class UCCLItemDefinition;
 struct FCCLWorldSnapshot;
@@ -74,6 +75,7 @@ private:
 	UPROPERTY() TArray<TObjectPtr<UCCLInventoryComponent>> Inventories;
 	UPROPERTY() TArray<TObjectPtr<UStaticMeshComponent>> Samples;
 	UPROPERTY() TArray<TObjectPtr<UTextRenderComponent>> Labels;
+	UPROPERTY() TArray<TObjectPtr<UMaterialInstanceDynamic>> SampleMaterials;
 	UPROPERTY(ReplicatedUsing = OnRep_View) FCCLFoodExperimentView View;
 	uint8 bInitialized = 0;
 };

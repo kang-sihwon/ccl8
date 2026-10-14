@@ -2,6 +2,8 @@
 
 #include "CCLSurfaceReplication.h"
 #include "CCLWeatherPresentation.h"
+#include "CCLWorldEnvironmentState.h"
+#include "EngineUtils.h"
 #include "NiagaraComponent.h"
 #include "NiagaraSystem.h"
 #include "Components/InstancedStaticMeshComponent.h"
@@ -135,6 +137,30 @@ void ACCLFirePresentation::Tick(float DeltaSeconds)
 
 		const float Rate = float(FMath::Clamp(Room.Contents.SmokeKg / Room.VolumeCubicMeters * 500000., 0., 100.));
 		UpdateEmitter(Emitter++, SmokeSystem, Center, Rate, FVector(0., 0., 12.));
+		for (TActorIterator<ACCLWorldEnvironmentState> State(GetWorld()); State; ++State)
+		{
+			const auto& View = State->GetTime().Environment;
+			for (const auto& Opening : View.Openings)
+			{
+				if (Emitter >= 128 || Opening.OpenFraction <= 0. ||
+					!((Opening.SpaceA == Id && !Opening.SpaceB.IsValid()) || (Opening.SpaceB == Id && !Opening.SpaceA.IsValid())))
+				{
+					continue;
+				}
+				const auto* Patch = View.Surfaces.FindByPredicate([&](const auto& P) { return P.SurfaceId == Opening.SurfaceId; });
+				if (!Patch)
+				{
+					continue;
+				}
+				const auto* Region = Model->FindRegion(Room.ClimateRegionId);
+				const double Wind = Region ? Region->Weather.WindMetersPerSecond : 0.;
+				const FVector Mouth = Patch->CenterMeters + Patch->TangentU * Opening.CenterUV.X + Patch->TangentV * Opening.CenterUV.Y;
+				const FVector Outward = FVector::DotProduct(Patch->Normal, Mouth * 100. - Center) >= 0. ? Patch->Normal : -Patch->Normal;
+				UpdateEmitter(Emitter++, SmokeSystem, Mouth * 100. + Outward * 20.,
+					Rate * Opening.OpenFraction, Outward * (25. + Wind * 15.) + FVector(0., 0., 20.));
+			}
+			break;
+		}
 	}
 
 	for (int32 I = Emitter; I < Emitters.Num(); ++I)

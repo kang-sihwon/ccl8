@@ -280,6 +280,9 @@ bool ACCLExperimentDirector::Execute(APlayerController* Requester, ECCLExperimen
 	case ECCLExperimentAction::FoodAdd:
 	case ECCLExperimentAction::FoodMoveCold:
 	case ECCLExperimentAction::FoodThaw:
+	case ECCLExperimentAction::FoodDry:
+	case ECCLExperimentAction::FoodWarmHumid:
+	case ECCLExperimentAction::FoodCool:
 		if (auto* Food = ACCLFoodExperiment::Find(GetWorld()); Food && CaseId == TEXT("Zone_07"))
 		{
 			return Food->Execute(Action, Message);
@@ -294,6 +297,7 @@ bool ACCLExperimentDirector::Execute(APlayerController* Requester, ECCLExperimen
 		return VegetationAction(Action, CaseId, Message);
 	case ECCLExperimentAction::FireIgnite:
 	case ECCLExperimentAction::FireRain:
+	case ECCLExperimentAction::ShelterWind:
 		return FireAction(Action, CaseId, Message);
 	case ECCLExperimentAction::WeatherNatural:
 	case ECCLExperimentAction::WeatherRain:
@@ -974,7 +978,10 @@ bool ACCLExperimentDirector::MoveToSafety(APlayerController* OnlyPlayer, int32 Z
 				FVector Focus = Zone == 6 ? ACCLEcologyExperiment::HabitatCenter(C->LaboratoryVariant) * 100. : UCCLExperimentDefinition::ZoneCenter(Zone);
 				if (Zone == 7 && C->LaboratorySubject == 2) { Focus += FVector((1 - C->LaboratoryVariant) * 260., -650., 0.); }
 				Destination = Focus + FVector(0., C->SampleCount() <= 4 ? -550. : -800., 130.);
-				PC->SetControlRotation(FRotator(-12., 90., 0.));
+				if (Zone == 11) { Destination = Focus + FVector(700., 0., 130.); }
+				const FRotator ViewRotation(-12., Zone == 11 ? 180. : 90., 0.);
+				PC->SetControlRotation(ViewRotation);
+				PC->ClientSetRotation(ViewRotation);
 			}
 			if (!Pawn->TeleportTo(Destination, FRotator::ZeroRotator))
 			{

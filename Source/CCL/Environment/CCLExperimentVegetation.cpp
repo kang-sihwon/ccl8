@@ -24,7 +24,8 @@ bool ACCLExperimentDirector::VegetationGrid(double WorldSeconds, FKSISurfaceGrid
 		S.Kind = EKSIVegetationKind(I);
 		S.MaximumBiomassKg = 1.;
 		S.GrowthKgPerWorldSecond = 0.0005;
-		S.LifespanSeconds = 1800. + I * 90.;
+		// Dedicated growth observations must not complete a life cycle in 30 real seconds at 60x.
+		S.LifespanSeconds = SelectedKind >= 0 ? 604800. : 1800. + I * 90.;
 		S.StressDeathSeconds = 600.;
 		S.RegrowthDelaySeconds = 300.;
 		S.DecayPerWorldSecond = 0.0001;
@@ -72,11 +73,23 @@ bool ACCLExperimentDirector::VegetationAction(ECCLExperimentAction Action, FName
 	}
 	if (Action == ECCLExperimentAction::VegetationIgnite)
 	{
+		if (G->Fire.Cells.IsEmpty() || G->Fire.Cells[0].FuelKg <= 0.)
+		{
+			Error = TEXT("첫 표본에 남은 연료가 없다. 초기화하거나 재생을 기다려 줘.");
+			return false;
+		}
+		const double WaterKg = (G->Cells[0].WaterCubicMeters + G->Cells[0].SoilCubicMeters) * 1000.;
+		if (WaterKg / FMath::Max(G->Fire.Cells[0].FuelKg, 0.001) >= G->Fire.Material.MaximumWaterFuelRatio)
+		{
+			Error = TEXT("첫 표본이 젖어 불이 붙지 않는다. 가뭄을 선택하고 60배로 진행해 수분이 줄어든 뒤 발화해 줘.");
+			return false;
+		}
 		return Runtime->IgniteSurface(G->RegionId, 0, 1200000., Error);
 	}
 	auto F = G->Forcing;
 	F.RainMetersPerWorldSecond = Action == ECCLExperimentAction::VegetationRain ? 0.00002 : 0.;
 	F.EvaporationMetersPerWorldSecond = Action == ECCLExperimentAction::VegetationDry ? 0.0001 : 0.;
+	F.SnowMetersPerWorldSecond = Action == ECCLExperimentAction::VegetationWinter ? 0.00002 : 0.;
 	F.TemperatureCelsius = Action == ECCLExperimentAction::VegetationWinter ? -5. : 20.;
 	return Runtime->ChangeSurfaceForcing(G->RegionId, F, Error);
 }

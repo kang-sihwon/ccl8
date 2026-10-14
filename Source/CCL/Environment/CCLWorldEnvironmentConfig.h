@@ -5,6 +5,7 @@
 #include "KSIEnvironmentInputs.h"
 #include "KSIEnvironmentView.h"
 #include "Agents/CCLAgentEmbodiment.h"
+#include "CCLCreatureActor.h"
 #include "CCLWorldEnvironmentConfig.generated.h"
 
 class ACharacter;
@@ -59,6 +60,10 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Replicated, Category = "Laboratory", meta = (ClampMin = "1", ClampMax = "16"))
 	int32 LaboratoryCount = 3;
+
+	// Ground, water, air and insect presentation; authoritative behavior stays in the simulation.
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TArray<FCCLCreatureVisual> CreatureVisuals;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	ECCLWorldContentDomain Domain = ECCLWorldContentDomain::Campaign;

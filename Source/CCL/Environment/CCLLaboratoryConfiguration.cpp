@@ -31,7 +31,7 @@ bool ACCLWorldEnvironmentConfig::AllowsLaboratory(const UWorld* World, int32 Zon
 
 FString ACCLWorldEnvironmentConfig::LaboratoryMap(int32 Zone, int32 Subject)
 {
-	const TCHAR* Names[] = {TEXT("Clock"), TEXT("Celestial"), TEXT("Weather"), TEXT("Snow"), TEXT("Water"), TEXT("Terrain"), TEXT("Ecology"), TEXT("Vegetation"), TEXT("Persistence"), TEXT("Cycle"), TEXT("Fire"), TEXT("Shelter")};
+	const TCHAR* Names[] = {TEXT("Celestial"), TEXT("Celestial"), TEXT("Weather"), TEXT("Snow"), TEXT("Water"), TEXT("Terrain"), TEXT("Ecology"), TEXT("Vegetation"), TEXT("Persistence"), TEXT("Cycle"), TEXT("Fire"), TEXT("Shelter")};
 	if (Zone < 0 || Zone > 11 || Subject < 0 || Subject > 2) { return {}; }
 	const TCHAR* Name = Zone == 7 && Subject > 0 ? (Subject == 1 ? TEXT("Life") : TEXT("Decay")) : Names[Zone];
 	return FString(TEXT("/Game/Maps/Tests/")) + Name;
@@ -39,7 +39,7 @@ FString ACCLWorldEnvironmentConfig::LaboratoryMap(int32 Zone, int32 Subject)
 
 FString ACCLWorldEnvironmentConfig::LaboratoryTitle(int32 Zone, int32 Subject)
 {
-	const TCHAR* Names[] = {TEXT("시간"), TEXT("천체"), TEXT("날씨"), TEXT("눈"), TEXT("물"), TEXT("지형"), TEXT("생태계·개체군"), TEXT("식생"), TEXT("저장·복원"), TEXT("환경 순환"), TEXT("화재"), TEXT("차폐·환기")};
+	const TCHAR* Names[] = {TEXT("시간·천체"), TEXT("시간·천체"), TEXT("날씨"), TEXT("눈"), TEXT("물"), TEXT("지형"), TEXT("생태계·개체군"), TEXT("식생"), TEXT("저장·복원"), TEXT("환경 순환"), TEXT("화재"), TEXT("차폐·환기")};
 	return Zone >= 0 && Zone <= 11 ? (Zone == 7 && Subject > 0 ? (Subject == 1 ? TEXT("생애") : TEXT("부패")) : Names[Zone]) : TEXT("종합 실험");
 }
 

@@ -196,6 +196,8 @@ bool ACCLEcologyExperiment::MakeInitial(FGuid WorldId, double Time, FKSIEcologyS
 			B.bUseWorldSpace = 1;
 			B.Energy = .35;
 			B.MetabolismPerSecond = .002;
+			const double Speeds[] = {.5, .5, .8, .25};
+			B.SpeedMetersPerSecond = Speeds[N];
 			if (!E.Materialize(Id(Member < 3 ? 200 + N * 3 + Member : 20000 + N * 100 + Member), P.Id, Id(40 + N), Individual, true, Error) ||
 				!E.Acquire(Individual, EKSIEcologyRepresentation::Actor, Id(900), Lease, Error) ||
 				!E.UpdatePosition(Lease, Center + FVector((double(Member % 4) - 1.5) * .9, -1.8 + double(Member / 4) * .9, Height), Error) ||

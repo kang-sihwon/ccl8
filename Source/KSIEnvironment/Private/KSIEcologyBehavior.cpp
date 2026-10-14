@@ -231,6 +231,21 @@ bool FKSIEcologySimulation::AdvanceBehavior(double At, FString& Error, const IKS
 	ForageSources.GetKeys(FoodIds);
 	Ids.Sort();
 	FoodIds.Sort();
+	// Read neighbors from the same pre-step snapshot, independent of update order.
+	double NeighborhoodSize = 1.;
+	for (FGuid Id : Ids) { NeighborhoodSize = FMath::Max(NeighborhoodSize, Behaviors[Id].RadiusMeters * 4.); }
+	TMap<FIntVector, TArray<FGuid>> Neighborhoods;
+	TMap<FGuid, FVector> PreviousPositions;
+	auto CellAt = [NeighborhoodSize](const FVector& Position)
+	{
+		return FIntVector(FMath::FloorToInt(Position.X / NeighborhoodSize), FMath::FloorToInt(Position.Y / NeighborhoodSize), FMath::FloorToInt(Position.Z / NeighborhoodSize));
+	};
+	for (FGuid Id : Ids)
+	{
+		if (Individuals[Id].State != EKSIEcologyLifeState::Alive) { continue; }
+		PreviousPositions.Add(Id, Individuals[Id].PositionMeters);
+		Neighborhoods.FindOrAdd(CellAt(Individuals[Id].PositionMeters)).Add(Id);
+	}
 	TArray<FKSIEcologyEvent> Deaths;
 	for (FGuid Id : Ids)
 	{
@@ -251,23 +266,53 @@ bool FKSIEcologySimulation::AdvanceBehavior(double At, FString& Error, const IKS
 		Charged.Charge(At, B.MetabolismPerSecond);
 		B.LastStepSeconds = At;
 		B.Energy = Charged.Energy;
+		const bool bContinueFeeding = B.Activity == EKSIEcologyActivity::Feeding && B.Energy < .95;
 		B.TargetFoodId.Invalidate();
 		B.Activity = EKSIEcologyActivity::Roaming;
 		FVector Target = (H.MinimumMeters + H.MaximumMeters) * .5;
 		double Radius = FMath::Min(H.MaximumMeters.X - H.MinimumMeters.X, H.MaximumMeters.Y - H.MinimumMeters.Y) * .2;
-		FGuid MotionId = I.PopulationId;
 		if (const auto* G = Groups.Find(B.GroupId))
 		{
 			Target = G->AnchorMeters;
 			Radius = G->RadiusMeters;
-			MotionId = G->Id;
 		}
 
-		// Shared route plus stable per-individual offsets gives a bounded moving formation.
-		const double Phase = At * .12 + double(GetTypeHash(MotionId) % 360) * PI / 180.;
+		// Independent, continuous search paths are reproducible after save/restore.
+		// The group anchor bounds the home range, rather than forcing a shared orbit.
+		const FVector Home = Target;
 		const double Offset = double(GetTypeHash(Id) % 360) * PI / 180.;
-		Target += FVector(FMath::Cos(Phase), FMath::Sin(Phase), bPlanar ? 0. : FMath::Sin(Phase * .5) * .4) * Radius * .6;
-		Target += FVector(FMath::Cos(Offset), FMath::Sin(Offset), 0.) * Radius * .25;
+		const double Pace = .10 + double(GetTypeHash(Id) % 13) * .004;
+		const double Phase = At * Pace + Offset;
+		Target += FVector(FMath::Sin(Phase) * .65 + FMath::Sin(Phase * .43 + Offset) * .2,
+			FMath::Sin(Phase * .71 + Offset) * .7, bPlanar ? 0. : FMath::Sin(Phase * .53 + Offset) * .25) * Radius;
+		// Ground animals pause to inspect/forage. Hunger interrupts the pause below.
+		const double RestPhase = FMath::Fmod(At + double(GetTypeHash(Id) % 23), 23.);
+		const bool bResting = bPlanar && RestPhase < 5.;
+		if (bResting) { Target = I.PositionMeters; }
+		FVector Separation = FVector::ZeroVector;
+		const FIntVector Cell = CellAt(I.PositionMeters);
+		for (int32 X = -1; X <= 1; ++X)
+		for (int32 Y = -1; Y <= 1; ++Y)
+		for (int32 Z = -1; Z <= 1; ++Z)
+		{
+			const auto* Neighbors = Neighborhoods.Find(Cell + FIntVector(X, Y, Z));
+			if (!Neighbors) { continue; }
+			for (FGuid Other : *Neighbors)
+			{
+				if (Other == Id || Individuals[Other].PopulationId != I.PopulationId) { continue; }
+				FVector Away = I.PositionMeters - PreviousPositions[Other];
+				if (bPlanar) { Away.Z = 0.; }
+				const double Distance = Away.Size();
+				const double SpaceWanted = (B.RadiusMeters + Behaviors[Other].RadiusMeters) * 2.;
+				if (Distance < SpaceWanted)
+				{
+					const FVector Direction = Distance > .001 ? Away / Distance : FVector(FMath::Cos(Offset), FMath::Sin(Offset), 0.);
+					Separation += Direction * (SpaceWanted - Distance);
+				}
+			}
+		}
+		Target += Separation.GetClampedToMaxSize(Radius * .5);
+		Target = Home + (Target - Home).GetClampedToMaxSize(Radius);
 		Target = Target.ComponentMax(H.MinimumMeters).ComponentMin(H.MaximumMeters);
 		if (bPlanar && !B.bUseWorldSpace)
 		{
@@ -323,7 +368,8 @@ bool FKSIEcologySimulation::AdvanceBehavior(double At, FString& Error, const IKS
 			}
 			return true;
 		};
-		if (B.Energy < B.HungerThreshold)
+		// Keep eating until satiated instead of toggling search/feed around one threshold.
+		if (B.Energy < B.HungerThreshold || bContinueFeeding)
 		{
 			double Nearest = TNumericLimits<double>::Max();
 			for (FGuid FoodId : FoodIds)

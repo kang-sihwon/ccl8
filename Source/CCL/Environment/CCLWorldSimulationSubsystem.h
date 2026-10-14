@@ -64,6 +64,7 @@ public:
 	bool AddAirSpace(const FKSIAirSpace& Space, FString& Error);
 	bool IgniteSurface(FGuid RegionId, int32 CellIndex, double HeatJoules, FString& Error);
 	bool ChangeClimate(FGuid RegionId, const FKSIClimate& Climate, FString& Error);
+	bool ChangeSurfaceWind(FGuid RegionId, double MetersPerSecond, FString& Error);
 	bool ChangeSurfaceForcing(FGuid RegionId, const FKSISurfaceForcing& Forcing, FString& Error);
 	bool ApplySnowContact(FGuid RegionId, FGuid SourceId, uint64 Sequence, const FVector& PositionMeters, double RadiusMeters, FString& Error);
 	FGuid GetEpoch() const { return Epoch; }

@@ -23,6 +23,15 @@ ACCLVegetationPresentation::ACCLVegetationPresentation()
 	TreeInstances->SetupAttachment(RootComponent);
 	TreeInstances->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 	TreeInstances->SetCanEverAffectNavigation(false);
+	SpeciesMeshes.SetNum(9);
+	for (int32 Kind = 0; Kind < 9; ++Kind)
+	{
+		auto* Instances = CreateDefaultSubobject<UInstancedStaticMeshComponent>(*FString::Printf(TEXT("SpeciesMesh%d"), Kind));
+		Instances->SetupAttachment(RootComponent);
+		Instances->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+		Instances->SetCanEverAffectNavigation(false);
+		SpeciesInstances.Add(Instances);
+	}
 	static ConstructorHelpers::FObjectFinder<UStaticMesh> Sphere(TEXT("/Engine/BasicShapes/Sphere.Sphere"));
 	static ConstructorHelpers::FObjectFinder<UStaticMesh> Cone(TEXT("/Engine/BasicShapes/Cone.Cone"));
 	static ConstructorHelpers::FObjectFinder<UStaticMesh> Cylinder(TEXT("/Engine/BasicShapes/Cylinder.Cylinder"));
@@ -211,6 +220,22 @@ void ACCLVegetationPresentation::Append(const FKSISurfaceGrid& G)
 		const bool bDead = C.State == EKSIVegetationState::Dead;
 		const int32 Palette = bDead ? (C.BurnedBiomassKg > 0.001 ? 2 : 1) : C.State == EKSIVegetationState::Dormant ? 1 : 0;
 		const double Size = FMath::Clamp(FMath::Sqrt(Biomass / Species.MaximumBiomassKg), 0.12, 1.);
+		const int32 Kind = int32(Species.Kind);
+		UStaticMesh* Mesh = SpeciesMeshes.IsValidIndex(Kind) ? SpeciesMeshes[Kind].Get() : nullptr;
+		if (!Mesh && Kind == 0) { Mesh = LivingTreeMesh; }
+		if (Mesh)
+		{
+			// Keep the same geometry through dormancy. A cold plant is not a new seed.
+			auto* Instances = SpeciesInstances[Kind].Get();
+			Instances->SetStaticMesh(Mesh);
+			const double Heights[] = {240., 55., 65., 110., 12., 65., 5., 70., 35.};
+			const auto Bounds = Mesh->GetBounds();
+			const double Scale = Heights[Kind] * Size / FMath::Max(1., double(Bounds.BoxExtent.Z) * 2.);
+			const FRotator Rotation = bDead ? FRotator(75., I * 137., 0.) : FRotator(0., I * 137., 0.);
+			const FVector Pivot = Rotation.RotateVector(FVector(0., 0., (Bounds.Origin.Z - Bounds.BoxExtent.Z) * Scale));
+			Instances->AddInstance(FTransform(Rotation, Base - Pivot, FVector(Scale)), true);
+			continue;
+		}
 		auto Add = [&](int32 Shape, FVector Offset, FVector Scale, FRotator Rotation = FRotator::ZeroRotator, int32 Color = INDEX_NONE)
 		{
 			if (bDead)
@@ -294,6 +319,7 @@ void ACCLVegetationPresentation::Append(const FKSISurfaceGrid& G)
 void ACCLVegetationPresentation::Clear()
 {
 	TreeInstances->ClearInstances();
+	for (const auto& Instances : SpeciesInstances) { Instances->ClearInstances(); }
 	for (const auto& Batch : Batches)
 	{
 		if (Batch)

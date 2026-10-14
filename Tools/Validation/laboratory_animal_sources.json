@@ -1,0 +1,10 @@
+{
+  "license": "CC0-1.0",
+  "purpose": "Skeletal animation prototypes for environment laboratories; not final art.",
+  "assets": [
+    {"folder": "/Game/TestResources/Animals/SheepRig", "author": "Quaternius", "source": "https://opengameart.org/content/lowpoly-animated-farm-animal-pack", "selected": "Sheep; Idle and Walk", "changes": "Preserved SheepRig root; Walk and Idle exported separately from Blender source."},
+    {"folder": "/Game/TestResources/Animals/FishRig", "author": "Quaternius", "source": "https://quaternius.com/packs/animatedfish.html", "download_page": "https://opengameart.org/content/animated-fish", "selected": "Fish1 and swimming animation"},
+    {"folder": "/Game/TestResources/Animals/Pigeon", "author": "mujtaba-io", "source": "https://opengameart.org/content/low-poly-3d-pigeon-model-rigged-animated-untextured", "selected": "pigeon-model and pigeon-armature only; wing flap and idle", "changes": "Exported selected mesh and armature from Blender to FBX; reference planes and other objects excluded."},
+    {"folder": "/Game/TestResources/Animals/AntRig", "author": "mujtaba-io", "source": "https://opengameart.org/content/ant-3d-model-rigging-animated-low-poly-ish", "selected": "Ant; walk and bite", "changes": "Preserved AntRig as the single FBX root for Unreal import."}
+  ]
+}

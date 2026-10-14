@@ -98,6 +98,7 @@ public:
 	bool AddAirSpace(const FKSIAirSpace& Space, FString& Error);
 	bool Ignite(FGuid RegionId, int32 CellIndex, double HeatJoules, FString& Error);
 	bool ChangeClimate(FGuid RegionId, const FKSIClimate& Climate, FString& Error);
+	bool ChangeWind(FGuid RegionId, double MetersPerSecond, FString& Error);
 	bool Advance(const FKSIWorldStep& Step, FString& Error, const FKSICelestialSystem* Celestial = nullptr,
 		const FKSICelestialObserver* Observer = nullptr, const IKSISurfaceProvider* Shelter = nullptr,
 		const TArray<FKSISurfaceOpening>* Openings = nullptr);

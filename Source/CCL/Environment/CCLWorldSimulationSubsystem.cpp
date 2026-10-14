@@ -835,6 +835,11 @@ bool UCCLWorldSimulationSubsystem::ChangeClimate(FGuid RegionId, const FKSIClima
 	return CheckAuthority(Error) && SurfaceSimulation.ChangeClimate(RegionId, Climate, Error);
 }
 
+bool UCCLWorldSimulationSubsystem::ChangeSurfaceWind(FGuid RegionId, double MetersPerSecond, FString& Error)
+{
+	return CheckAuthority(Error) && SurfaceSimulation.ChangeWind(RegionId, MetersPerSecond, Error);
+}
+
 bool UCCLWorldSimulationSubsystem::ChangeSurfaceForcing(FGuid RegionId, const FKSISurfaceForcing& Forcing, FString& Error)
 {
 	return CheckAuthority(Error) && SurfaceSimulation.ChangeForcing(RegionId, Forcing, Error);

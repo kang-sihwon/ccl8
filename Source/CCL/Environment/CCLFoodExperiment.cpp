@@ -16,6 +16,7 @@
 #include "Engine/World.h"
 #include "EngineUtils.h"
 #include "Materials/MaterialInterface.h"
+#include "Materials/MaterialInstanceDynamic.h"
 #include "Net/UnrealNetwork.h"
 #include "UObject/ConstructorHelpers.h"
 
@@ -42,6 +43,7 @@ ACCLFoodExperiment::ACCLFoodExperiment()
 	RootComponent = CreateDefaultSubobject<USceneComponent>(TEXT("Root"));
 	static ConstructorHelpers::FObjectFinder<UStaticMesh> Cube(TEXT("/Engine/BasicShapes/Cube.Cube"));
 	static ConstructorHelpers::FObjectFinder<UStaticMesh> Sphere(TEXT("/Engine/BasicShapes/Sphere.Sphere"));
+	static ConstructorHelpers::FObjectFinder<UStaticMesh> Bread(TEXT("/Game/TestResources/Fishermans_Cabin/Meshes/Bread/SM_Bread_01.SM_Bread_01"));
 	for (int32 Index = 0; Index < 3; ++Index)
 	{
 		auto* Inventory = CreateDefaultSubobject<UCCLInventoryComponent>(*FString::Printf(TEXT("Storage%d"), Index));
@@ -60,6 +62,14 @@ ACCLFoodExperiment::ACCLFoodExperiment()
 		Sample->SetStaticMesh(Sphere.Object);
 		Sample->SetRelativeLocation(FVector(X, 0, 65));
 		Sample->SetRelativeScale3D(FVector(0.8, 0.6, 0.4));
+		if (Bread.Succeeded())
+		{
+			const auto Bounds = Bread.Object->GetBounds();
+			const FVector Scale(40. / FMath::Max(Bounds.BoxExtent.X, 1.), 30. / FMath::Max(Bounds.BoxExtent.Y, 1.), 20. / FMath::Max(Bounds.BoxExtent.Z, 1.));
+			Sample->SetStaticMesh(Bread.Object);
+			Sample->SetRelativeLocation(FVector(X, 0, 65) - Bounds.Origin * Scale);
+			Sample->SetRelativeScale3D(Scale);
+		}
 		Sample->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 		Sample->SetCanEverAffectNavigation(false);
 		Samples.Add(Sample);
@@ -79,6 +89,13 @@ void ACCLFoodExperiment::BeginPlay()
 	if (GetNetMode() != NM_DedicatedServer)
 	{
 		auto* Font = LoadObject<UFont>(nullptr, TEXT("/Game/Environment/Fonts/F_FoodLabel.F_FoodLabel"));
+		auto* FoodMaterial = LoadObject<UMaterialInterface>(nullptr, TEXT("/Game/TestResources/Diagnostics/M_FoodProgress.M_FoodProgress"));
+		for (auto& Sample : Samples)
+		{
+			auto* Material = UMaterialInstanceDynamic::Create(FoodMaterial, this);
+			SampleMaterials.Add(Material);
+			if (Material) { Sample->SetMaterial(0, Material); }
+		}
 		for (auto& Label : Labels)
 		{
 			Label->SetFont(Font);
@@ -116,6 +133,7 @@ bool ACCLFoodExperiment::MakeInitial(FGuid WorldId, double WorldSeconds, TArray<
 		auto& Record = Records.AddDefaulted_GetRef();
 		Record.ContainerId = ContainerId(Index);
 		Record.Capacity = 4;
+		Record.Environment.Conditions = Storage(Index);
 		const auto* Config = ACCLWorldEnvironmentConfig::Find(GetWorld());
 		if (Config && Config->LaboratoryZone == 7 && Index != Config->LaboratoryVariant) { continue; }
 		auto& Item = Record.Items.AddDefaulted_GetRef();
@@ -160,6 +178,7 @@ bool ACCLFoodExperiment::Initialize(bool bSeed, FCCLWorldSnapshot& Baseline, FSt
 			{
 				return false;
 			}
+			if (bSeed && !FCCLInventoryFood::ChangeFoodEnvironment(*Inventories[Index], Current[Index].Environment, Error)) { return false; }
 			if (bSeed && !Current[Index].Items.IsEmpty())
 			{
 				FKSIInventoryEntry Entry;
@@ -207,7 +226,15 @@ bool ACCLFoodExperiment::Execute(ECCLExperimentAction Action, FString& Error)
 	const int32 SelectedStorage = Config && Config->LaboratoryZone == 7 ? Config->LaboratoryVariant : 0;
 	auto* Open = Inventories[SelectedStorage].Get();
 	auto* Cold = Inventories[1].Get();
-	if (Action == ECCLExperimentAction::FoodWeather || Action == ECCLExperimentAction::FoodIndoor)
+	if (Action == ECCLExperimentAction::FoodDry || Action == ECCLExperimentAction::FoodWarmHumid || Action == ECCLExperimentAction::FoodCool)
+	{
+		FCCLFoodEnvironmentBinding Binding;
+		Binding.Conditions = Storage(SelectedStorage);
+		Binding.Conditions.TemperatureCelsius = Action == ECCLExperimentAction::FoodCool ? -5. : Action == ECCLExperimentAction::FoodWarmHumid ? 35. : 20.;
+		Binding.Conditions.RelativeHumidity = Action == ECCLExperimentAction::FoodDry ? 0.2 : 1.;
+		if (!FCCLInventoryFood::ChangeFoodEnvironment(*Open, Binding, Error)) { return false; }
+	}
+	else if (Action == ECCLExperimentAction::FoodWeather || Action == ECCLExperimentAction::FoodIndoor)
 	{
 		const int32 Index = Action == ECCLExperimentAction::FoodWeather ? 0 : 2;
 		auto* Inventory = Inventories[Index].Get();
@@ -245,9 +272,10 @@ bool ACCLFoodExperiment::Execute(ECCLExperimentAction Action, FString& Error)
 	}
 	else if (Action == ECCLExperimentAction::FoodAdd)
 	{
+		const auto Conditions = Open->GetEntries().IsEmpty() ? Open->GetFoodEnvironment().Conditions : Open->GetEntries()[0].GetState<FCCLItemState>().Food.Storage;
 		const FGuid Added = Open->Add(SampleDefinition(), 2);
 		if (!Added.IsValid() ||
-			(!Open->GetFoodEnvironment().IsDynamic() && !FCCLInventoryFood::ChangeFoodStorage(*Open, Added, Storage(SelectedStorage))))
+			(!Open->GetFoodEnvironment().IsDynamic() && !FCCLInventoryFood::ChangeFoodStorage(*Open, Added, Conditions)))
 		{
 			Error = TEXT("새 음식을 넣을 공간이 없다.");
 			return false;
@@ -277,13 +305,9 @@ bool ACCLFoodExperiment::Execute(ECCLExperimentAction Action, FString& Error)
 			return false;
 		}
 		const bool bThaw = Cold->GetEntries()[0].GetState<FCCLItemState>().Food.Storage.TemperatureCelsius <= 0.;
-		for (const auto& Entry : TArray<FKSIInventoryEntry>(Cold->GetEntries()))
-		{
-			if (!FCCLInventoryFood::ChangeFoodStorage(*Cold, Entry.Id, Storage(bThaw ? 0 : 1)))
-			{
-				return false;
-			}
-		}
+		auto Binding = Cold->GetFoodEnvironment();
+		Binding.Conditions.TemperatureCelsius = bThaw ? 20. : -5.;
+		if (!FCCLInventoryFood::ChangeFoodEnvironment(*Cold, Binding, Error)) { return false; }
 	}
 	else
 	{
@@ -313,7 +337,7 @@ void ACCLFoodExperiment::UpdateView()
 		const auto& Binding = Inventories[Index]->GetFoodEnvironment();
 		Row.EnvironmentSource = uint8(Binding.Source);
 		const auto Conditions = Binding.IsDynamic() ? Binding.Conditions
-								: Entries.IsEmpty() ? Storage(Index)
+								: Entries.IsEmpty() ? Binding.Conditions
 													: Entries[0].GetState<FCCLItemState>().Food.Storage;
 		Row.Temperature = Conditions.TemperatureCelsius;
 		Row.Humidity = Conditions.RelativeHumidity;
@@ -367,15 +391,15 @@ void ACCLFoodExperiment::UpdatePresentation()
 			continue;
 		}
 		const auto& Row = View.Rows[Index];
-		const TCHAR* Material = Row.Mold > 0.     ? TEXT("M_FoodMold")
-								: Row.Spoiled > 0 ? TEXT("M_FoodRotten")
-												  : TEXT("M_FoodFresh");
-		Samples[Index]->SetMaterial(
-			0, LoadObject<UMaterialInterface>(
-				   nullptr, *FString::Printf(TEXT("/Game/Environment/Materials/%s.%s"), Material, Material)));
+		if (SampleMaterials.IsValidIndex(Index) && SampleMaterials[Index])
+		{
+			const auto Color = FMath::Lerp(FLinearColor(0.25f, 0.2f, 0.13f), FLinearColor::White, float(Row.Freshness));
+			SampleMaterials[Index]->SetVectorParameterValue(TEXT("FoodColor"), Color);
+			SampleMaterials[Index]->SetScalarParameterValue(TEXT("Mold"), float(Row.Mold));
+		}
 		Labels[Index]->SetText(
-			FText::FromString(FString::Printf(TEXT("%s · %d개\n신선 %.0f%%\n곰팡이 %.0f%%"), *StorageName(Index),
-											  Row.Quantity, Row.Freshness * 100., Row.Mold * 100.)));
+			FText::FromString(FString::Printf(TEXT("%s · %d개 · %.0f초\n%.0f°C / 습도 %.0f%%\n신선 %.0f%% · 곰팡이 %.0f%%"), *StorageName(Index),
+				Row.Quantity, Row.AgeSeconds, Row.Temperature, Row.Humidity * 100., Row.Freshness * 100., Row.Mold * 100.)));
 	}
 }
 

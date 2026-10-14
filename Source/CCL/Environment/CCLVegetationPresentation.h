@@ -36,11 +36,17 @@ public:
 	TObjectPtr<UStaticMesh> LivingTreeMesh;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TArray<TObjectPtr<UStaticMesh>> SpeciesMeshes;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TArray<TObjectPtr<UMaterialInterface>> StateMaterials;
 
 private:
 	UPROPERTY()
 	TObjectPtr<UInstancedStaticMeshComponent> TreeInstances;
+
+	UPROPERTY()
+	TArray<TObjectPtr<UInstancedStaticMeshComponent>> SpeciesInstances;
 
 	UPROPERTY()
 	TArray<TObjectPtr<UInstancedStaticMeshComponent>> Batches;

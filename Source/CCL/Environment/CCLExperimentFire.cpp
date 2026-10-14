@@ -62,14 +62,19 @@ bool ACCLExperimentDirector::FireAction(ECCLExperimentAction Action, FName CaseI
 		return Runtime->IgniteSurface(G->RegionId, 5, 600000., Error);
 	}
 
-	if (Action != ECCLExperimentAction::FireRain || bIndoor)
+	if (Action == ECCLExperimentAction::ShelterWind && bIndoor)
+	{
+		return Runtime->ChangeSurfaceWind(G->RegionId, G->Weather.WindMetersPerSecond > 0. ? 0. : 8., Error);
+	}
+
+	if (Action != ECCLExperimentAction::FireRain)
 	{
 		Error = TEXT("실내는 지붕이 비를 막는다. 실외 불 구역에서 비를 조작해 줘.");
 		return false;
 	}
 
 	auto Forcing = G->Forcing;
-	Forcing.RainMetersPerWorldSecond = Forcing.RainMetersPerWorldSecond > 0. ? 0. : 0.001;
+	Forcing.RainMetersPerWorldSecond = Forcing.RainMetersPerWorldSecond > 0. ? 0. : (bIndoor ? 0.00002 : 0.001);
 	return Runtime->ChangeSurfaceForcing(G->RegionId, Forcing, Error);
 }
 

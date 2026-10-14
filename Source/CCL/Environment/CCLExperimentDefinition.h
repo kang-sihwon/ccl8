@@ -95,7 +95,11 @@ enum class ECCLExperimentAction : uint8
 	BiologyDamage,
 	ScaleDecrease,
 	ScaleIncrease,
-	ScaleCustom
+	ScaleCustom,
+	ShelterWind,
+	FoodDry,
+	FoodWarmHumid,
+	FoodCool
 };
 
 USTRUCT()
