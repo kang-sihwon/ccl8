@@ -58,11 +58,11 @@
 | `Fire` | 연소·강수·소화 |
 | `Shelter` | 문·차폐·실내 공기 |
 
-생태계 수량은 개체군의 전체 개체 수이며 초기에는 모두 Actor로 표시한다. Actor는 개체마다 별도 몸체가 있고, Mass는 같은 개체 상태를 데이터로 처리하며 구체로 위치를 표시한다. 전환 시 개체의 위치·에너지·섭취 기록을 유지하며 숨김 상태에서도 계산은 계속된다. 이동은 세계 시간을 따르므로 동작 관찰에는 1배를 사용한다. 전용 레벨은 무료 실험용 동물 리그를 사용하며 최종 아트가 아니다. 리소스 프로필이 없는 기존 통합 맵은 도형 표시를 유지한다.
+생태계 수량은 개체군의 전체 개체 수이며 초기에는 모두 Actor로 표시한다. Actor는 개체마다 별도 몸체가 있고, Mass는 같은 개체 상태를 데이터로 처리하며 구체로 위치를 표시한다. 전환 시 개체의 위치·에너지·섭취 기록을 유지하며 숨김 상태에서도 계산은 계속된다. 이동은 세계 시간을 따르므로 동작 관찰에는 1배를 사용한다. 전용 레벨은 실험용 동물 리그를 사용하며 최종 아트가 아니다. 리소스 프로필이 없는 기존 통합 맵은 도형 표시를 유지한다.
 
 개체별로 다른 탐색 경로를 사용하며 지상 생물과 개미는 주기적으로 멈춘다. 가까운 이웃에서 벗어나는 방향을 탐색 목표에 더하고, 배고프면 먹이 탐색이 우선한다. 섭취를 시작한 개체는 에너지 95%까지 먹으려 하므로 경계값에서 이동·섭취를 반복하는 현상을 줄인다. Actor는 서버 위치 사이를 보간하고 방향을 부드럽게 바꾸며 이동 속도에 맞춰 애니메이션 속도를 조절한다. 0배에서는 애니메이션을 멈춘다. 먹이 지점에서의 개체 간 겹침 방지, 새의 착지·이륙, 발의 지형 맞춤과 동작 간 블렌딩은 아직 구현하지 않았다.
 
-식생 수량은 패치 수다. 나무는 Norway Maple, 풀·꽃·관목은 보유한 Fishermans_Cabin 메시를 사용한다. 성장량에 따라 크기가 바뀌고 휴면 때도 같은 메시를 유지한다. 고사는 기울어진 메시로 표시하며 전용 시듦·고사 재질은 없다. 이끼·양치·조류·수생 식물·버섯은 아직 진단 도형이다. **20°C · 강수 중지**는 강수·가뭄을 끄고 기존 식물의 성장을 이어 가는 조건 입력이다. 식물 초기화 버튼이 아니다. 전용 표본의 수명은 7세계일이며, 기존 통합 맵의 단축 수명은 유지한다. 생애 수량은 마네킹 주민 수이며 수명 단축·보호·피해 버튼은 첫 표본에 적용한다.
+식생 수량은 패치 수다. 나무는 Norway Maple, 풀·꽃·관목은 보유한 Fishermans_Cabin, 양치는 PN_Fern의 `fern_01_01` 메시를 사용한다. 성장량에 따라 크기가 바뀌고 휴면 때도 같은 메시를 유지한다. 고사는 기울어진 메시로 표시하며 전용 시듦·고사 재질은 없다. 이끼·조류·수생 식물·버섯은 아직 진단 도형이다. **20°C · 강수 중지**는 강수·가뭄을 끄고 기존 식물의 성장을 이어 가는 조건 입력이다. 식물 초기화 버튼이 아니다. 전용 표본의 수명은 7세계일이며, 기존 통합 맵의 단축 수명은 유지한다. 생애 수량은 마네킹 주민 수이며 수명 단축·보호·피해 버튼은 첫 표본에 적용한다.
 
 부패 수량은 선택한 보관함 안의 음식 개수다. 음식 메시 하나가 해당 묶음을 나타내므로 수량만큼 메시를 늘어놓지 않는다. **건조·고온다습·냉각**은 선택한 보관함의 앞으로의 온습도를 바꾼다. 1배로 천천히, 60배로 빠르게 진행하면 신선도에 따라 빵 표면이 어두워지고 곰팡이 무늬가 퍼진다. 0배에서는 조건만 바꾸며 품질은 진행하지 않는다. 냉각은 이후 부패와 곰팡이 성장을 멈추지만 기존 손상을 복구하지 않는다. 밀폐의 부패 계수 0.2·곰팡이 노출 0은 유지한다. 바닥으로 꺼낸 음식은 위치의 환경을 사용한다.
 
@@ -74,25 +74,27 @@
 
 나무 외에 `SM_Grass_01`, `SM_Flower_01`, `SM_Bush_01`과 실제 의존성을 보유 Fab 폴더에서 공유 폴더로 복사했다. `copy_laboratory_foliage.py`가 복사를, `configure_laboratory_life.py`가 전용 레벨 연결을 수행한다.
 
-동물은 [Quaternius의 양](https://opengameart.org/content/lowpoly-animated-farm-animal-pack)과 [물고기](https://quaternius.com/packs/animatedfish.html), mujtaba-io의 [비둘기](https://opengameart.org/content/low-poly-3d-pigeon-model-rigged-animated-untextured)와 [개미](https://opengameart.org/content/ant-3d-model-rigging-animated-low-poly-ish)를 사용한다. 네 출처의 라이선스는 CC0다. 사용 파일과 변환 내역은 `Tools/Validation/laboratory_animal_sources.json`에 기록했다. 유료 Fab 후보는 구매하지 않았다.
+동물은 [Quaternius의 양](https://opengameart.org/content/lowpoly-animated-farm-animal-pack), mujtaba-io의 [비둘기](https://opengameart.org/content/low-poly-3d-pigeon-model-rigged-animated-untextured)와 [개미](https://opengameart.org/content/ant-3d-model-rigging-animated-low-poly-ish)를 사용한다. 이 세 출처는 CC0다. 초기 [Quaternius 물고기](https://quaternius.com/packs/animatedfish.html)는 보유 Fab AnimatedPondFish의 `SKM_Fish`와 `SKM_Fish_Animation`으로 교체했다. CC0 원본의 사용 파일과 변환 내역은 `Tools/Validation/laboratory_animal_sources.json`에 남아 있다.
+
+`copy_laboratory_fern_pond.py`는 선택한 양치·물고기 메시, 수영 애니메이션과 의존성을 포함한 에셋 20개를 `/Game/TestResources/PN_Fern`, `/Game/TestResources/AnimatedPondFish`로 복사한다. `configure_laboratory_fern_pond.py`는 기존 다른 종류의 설정을 유지하면서 물고기 프로필과 양치 메시를 교체한다. 물고기는 14본, 수영 루프 1.25초이며 +Y인 머리 방향을 -90° 회전해 이동 방향 +X에 맞췄다. 크기는 1.25배다. 원본 Fab 폴더는 보존하고 데모 맵·캐릭터·이동 Blueprint는 공유 폴더에 포함하지 않는다.
 
 Blender 원본의 리그 이름을 보존한 FBX를 사용한다. 초기 양·물고기 임포트는 Unreal의 `Armature` 제거 처리 후 애니메이션 배율이 맞지 않아 화면에 정상 표시되지 않았다. `export_laboratory_animal.py`와 `import_laboratory_animals.py`는 명시적 리그 루트를 유지하며, 양의 걷기·대기는 별도 베이크 후 `import_laboratory_gaits.py`로 연결한다. 동물의 표시 프로필은 레벨의 `CreatureVisuals` 배열에 메시·이동·대기·좌표 보정·기준 속도를 저장한다.
 
 ### 보유 Fab 라이브러리에서 확인한 후보
 
-2026-10-14 로그인된 Fab 라이브러리에서 다음 제품의 보유 상태를 확인했다. 로컬 프로젝트의 에셋 목록과 계정의 보유 목록은 다르다. 이 제품들의 다운로드·임포트·교체는 아직 수행하지 않았다.
+2026-10-14 로그인된 Fab 라이브러리에서 다음 제품의 보유 상태를 확인했다. 로컬 프로젝트의 에셋 목록과 계정의 보유 목록은 다르다. 이후 PN_Fern과 AnimatedPondFish는 사용자가 다운로드했으며 위의 선택 에셋을 연결했다. Advanced Flock System은 도입하지 않았다.
 
 | 용도 | 보유 제품과 제품 페이지에서 확인한 구성 | 적용 판단 |
 |---|---|---|
-| 지상 동물·새·곤충 | [Stylized Fantasy Creatures Bundle](https://www.fab.com/listings/8e208ab4-667d-4a86-870a-f0c3e9b0e080): 21종, Skeletal Mesh 26개, 리그·애니메이션 포함. 양 24개·독수리 15개·말벌 12개 애니메이션 | 기존 실험용 외형을 교체할 우선 후보. 실제 이동·대기·섭취 클립과 좌표 보정은 임포트 후 확인 |
-| 물고기·수생 식물 | [Animated Pond Fish](https://www.fab.com/listings/91c3a100-3ca3-49c3-bd40-73152ee1f35e): 리그·애니메이션이 있는 물고기 5개, 수련 3개, 연못·수면 포함 | 물고기 외형과 수생 식물 표본의 우선 후보. 패키지 자체 이동 로직과 기존 생태 시뮬레이션의 중복 실행을 피해야 함 |
+| 지상 동물·새·곤충 | [Stylized Fantasy Creatures Bundle](https://www.fab.com/listings/8e208ab4-667d-4a86-870a-f0c3e9b0e080): 21종, Skeletal Mesh 26개, 리그·애니메이션 포함. 양 24개·독수리 15개·말벌 12개 애니메이션 | 사용자가 보유 버전 문제를 알려 적용 후보에서 제외함 |
+| 물고기·수생 식물 | [Animated Pond Fish](https://www.fab.com/listings/91c3a100-3ca3-49c3-bd40-73152ee1f35e): 리그·애니메이션이 있는 물고기 5개, 수련 3개, 연못·수면 포함 | 선택한 물고기 메시와 수영 루프를 연결함. 수생 식물은 미적용이며 팩의 이동 Blueprint는 사용하지 않음 |
 | 군집 이동 | [Advanced Flock System](https://www.fab.com/listings/70626312-656b-4037-8e69-4cba921d04d4): 영역 제한, 장애물 회피, 추종과 군집 매개변수를 제공하는 플러그인 | 물고기 군집 이동의 검토 후보. 세계 시간 배율·결정론·저장·Actor/Mass 전환과의 호환성은 미검증 |
 
-위 세 제품 페이지는 UE 5.8 지원을 표시한다. 이는 CCL의 UE 5.8.3에서 실행 검증을 마쳤다는 뜻은 아니다. 식생 라이브러리에서도 기존 후보인 optimized Grass Library, Meadow Flowers, Fern Collection과 Norway Maple의 보유 상태를 확인했다. 양치는 [Fern Collection](https://www.fab.com/listings/b778bd8f-524c-42b6-b60c-4caac59029c1)을 우선 검토할 수 있다.
+위 세 제품 페이지는 UE 5.8 지원을 표시한다. 실제 도입 여부와 검증 범위는 위 표와 아래 검증 기록을 따른다. 식생 라이브러리에서도 기존 후보인 optimized Grass Library, Meadow Flowers, Fern Collection과 Norway Maple의 보유 상태를 확인했다. 양치는 다운로드한 PN_Fern에서 선정했다.
 
 ### 생물과 식생의 공개 Fab 후보
 
-2026-10-14 제품 페이지의 형식과 설명을 확인했다. 아래 항목은 후보이며 구매·다운로드·프로젝트 도입은 수행하지 않았다. UE 5.8.3에서의 임포트와 애니메이션 재생은 미검증이다. 생물은 현재 생태 계산의 위치·활동 상태에 메시와 애니메이션을 연결해야 한다. 제품에 포함된 별도 AI를 그대로 실행하면 프로젝트의 이동·먹이 계산과 중복될 수 있다.
+2026-10-14 제품 페이지의 형식과 설명을 확인한 후보 목록이다. 이후 실제 연결한 리소스는 위의 연결 기록을 따른다. 나머지 후보의 UE 5.8.3 임포트와 애니메이션 재생은 미검증이다. 생물은 현재 생태 계산의 위치·활동 상태에 메시와 애니메이션을 연결해야 한다. 제품에 포함된 별도 AI를 그대로 실행하면 프로젝트의 이동·먹이 계산과 중복될 수 있다.
 
 | 용도 | 후보와 확인한 구성 | 연결할 내용 |
 |---|---|---|
@@ -126,6 +128,10 @@ Blender 원본의 리그 이름을 보존한 FBX를 사용한다. 초기 양·�
 
 ## 식생·생태계 후속 구현 범위
 
+PN_Fern과 AnimatedPondFish 다운로드 후의 적용 범위는 양치 표본 메시와 물고기 Skeletal Mesh·수영 애니메이션이다. Unreal MCP로 리소스를 검사하고 필요한 의존성만 `TestResources`로 복사해 Vegetation·Ecology 전용 레벨에 연결한다. 원본 Fab 폴더와 기존 생태 계산은 보존한다. 검증은 복사본의 원본 Fab 참조 부재, 저장 후 재로딩, PIE의 양치 표시와 물고기 수중 이동·애니메이션으로 수행한다.
+
+적용 중 확인한 0배 수영 애니메이션 진행도 수정한다. 생물 생성 이후 월드 시간 액터가 준비되면 시간 참조를 다시 얻도록 하고, 1배 이동과 0배 정지에서 애니메이션 시각을 비교한다.
+
 생장 기온 전환 때 생체량과 생애 이력을 유지하고, 전용 식생 표본이 60배속에서 수십 초 만에 자연사하는 설정을 수정한다. 휴면과 생장을 오갈 때 같은 메시를 유지하며 보유한 나무·풀·꽃·관목 리소스를 연결한다. 단축 수명의 통합 실험 표본은 유지한다. 조건 전환 전후 생체량·재생 횟수와 60배 시간 진행을 검사한다.
 
 생태계의 서버 시뮬레이션은 개체별 탐색·휴식·먹이 접근을 결정하고 Actor와 Mass가 같은 결과를 사용한다. 표시 Actor는 위치·방향을 보간하고 Skeletal Mesh의 이동·정지 애니메이션을 재생한다. 별도 AI Controller나 StateTree가 같은 위치를 다시 쓰게 하지 않는다. 기존 결정론적 시간 진행·저장 복원 계약을 유지하기 위한 선택이며, 추후 전투 AI와의 전환은 별도 과제다. 모델은 보유 리소스를 우선 확인하고 부족하면 출처·라이선스를 확인한 무료 실험용 리소스를 사용한다. 최종 아트 선정과 유료 구매를 포함하지 않는다.
@@ -133,6 +139,14 @@ Blender 원본의 리그 이름을 보존한 FBX를 사용한다. 초기 양·�
 검증은 환경 자동화, 개체별 경로 차이·서식지 경계·섭취 보존 검사, 에디터 임포트 결과 및 PIE의 실제 메시·애니메이션 관찰로 수행한다. 리소스가 없는 종류와 미검증 범위는 결과에 따로 기록한다.
 
 ## 검증 범위
+
+### PN_Fern·AnimatedPondFish 적용 검증
+
+2026-10-14 UE 5.8.3에서 Unreal MCP로 두 팩을 검사하고 선택 에셋을 복사했다. Ecology와 Vegetation을 저장·다시 로드한 뒤, 물고기 3마리의 새 Skeletal Mesh·14본·수영 재생과 수중 위치 변화를 PIE에서 확인했다. 양치는 같은 메시 3개를 유지하며 60배 성장에서 첫 표본 배율이 약 0.378에서 0.638로 증가했다. 근거는 `Saved/Laboratories/fern-pond-copy.json`, `pond-live.json`, `fern-live.json`, `fish_moving.png`, `fern_grown.png`다.
+
+첫 검사에서는 0배에도 수영 애니메이션 시각이 진행됐다. `BeginPlay` 이후 준비된 월드 시간 액터를 다시 찾도록 수정하고 에디터를 종료한 상태에서 `CCLEditor Win64 Development` 빌드를 통과했다. 재시작 후 PIE에서 1배의 위치·애니메이션 진행과 0배의 동일 Actor 위치·동일 애니메이션 시각을 확인했다. 정지 직후 표시 위치가 서버 위치에 도달하는 보간은 유지한다. 수정 전 기록은 `pond-before-pause-fix.json`, 빌드 근거는 `FernPond-Build.log`다.
+
+추가한 에셋은 의존성 포함 20개, 약 99 MiB다. 최종 `resource-audit.json`의 공유 리소스는 188개이며 원본 Fab 참조와 리소스 의존성 누락은 없다. 기존 전투의 `LS_Attack_01` 누락은 별도 항목이다. 원본 팩의 미사용 데모 캐릭터에서 발생한 Blueprint 컴파일 오류는 이번 공유 에셋의 의존성이 아니며, 해당 데모는 수정하지 않았다. 새 폴더의 `.uasset`에 Git LFS 규칙이 적용되는 것을 확인했다. 멀티플레이·패키지 실행과 Advanced Flock System 연결은 이번 검증에 포함하지 않았다.
 
 ### 식생 연속 성장·동물 리그 검증
 
