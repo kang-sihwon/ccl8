@@ -26,8 +26,10 @@
   - 결과: `Tools/Agent/guard-commands.cjs`를 `.claude/settings.json`의 Bash·PowerShell PreToolUse에 등록했다. 차단 대신 `ask`로 답해 사용자 확인 뒤에만 실행되게 했다. 공통 지침의 "삭제·덮어쓰기 전 확인"과 같은 동작이다. 완료 조건은 훅 프로세스 시험으로 확인했고, 실제 세션에서 걸리는지는 설정을 다시 읽은 새 세션에서 확인한다. Codex에는 적용되지 않는다.
 - [x] 5. 바닥선 검사 (1). diff에서 새 억제 주석, 비활성화된 자동화 테스트, 스모크 검사 삭제·시간 제한 증가, `checkNoEntry`·TODO 스텁을 찾는다. 완료 조건은 각 항목을 하나씩 넣은 시험 diff가 모두 걸리는 것이다.
   - 결과: `node Tools/Agent/floor-guard.cjs [--base <rev>]`. 추적하지 않는 새 파일도 포함하고 문서는 제외한다. 종료 코드는 0 통과, 1 발견, 2 실행 불가다. 다른 곳으로 옮긴 테스트·검사와 줄인 시간 제한은 발견으로 치지 않는다. 첫 실행에서 이 작업의 clang-format 시험에 들어 있던 조건부 `t.skip`을 찾아내 도구가 없으면 실패하도록 고쳤다.
-- [ ] 6. 진입점 (2). `AGENTS.md`를 정본으로 새로 쓰고 `CLAUDE.md`는 `@AGENTS.md`로 둔다. `Docs/README.md` 문서 지도와 `GLOSSARY.md` 초안을 만든다.
+- [x] 6. 진입점 (2). `AGENTS.md`를 정본으로 새로 쓰고 `CLAUDE.md`는 `@AGENTS.md`로 둔다. `Docs/README.md` 문서 지도와 `GLOSSARY.md` 초안을 만든다.
+  - 결과: 매 턴 읽는 진입점이 `Docs/Guide.md` 13.7KB에서 `AGENTS.md` 약 4.1KB로 줄었다. 스킬 설명이 이미 맡는 스킬 라우팅 행은 뺐다. 문서 지도는 Guide의 83행을 문구 그대로 묶음별로 옮겼다. `GLOSSARY.md`에는 시스템·제작 용어 15개를 두고 서사 용어는 `Docs/Narrative/Glossary.md`에 남겼다. 규칙 문서, `README.md`, `ccl8-docs`·`ccl8-design` 스킬의 Guide 참조를 새 위치로 바꿨다. Guide에는 이행 중이라는 안내를 붙였다.
 - [ ] 7. 규칙 문서 (3, 6). `Coding.md`(검사기로 옮긴 규칙 제외), `WritingGuide.md`, `VersionControl.md`, `AgentContextTools.md`, `Mentoring.md`, `SystemExplanationGuide.md`를 새로 쓰고 옛 `Docs/Guide.md`를 없앤다.
+  - 남은 Guide 링크: `Docs/Learning/README.md:91`, `Docs/Learning/EnvironmentEvidence.md:7`. 학습 문서는 재작성 범위 밖이므로 Guide를 없앨 때 링크만 `Docs/README.md`로 바꾼다. `FrameworkPlan.md:477`은 과거 제출 범위의 기록이라 고치지 않는다.
 - [ ] 8. 스킬 재구성 (2, 6, 7). 통합 구조의 모델 호출·사용자 호출 목록대로 스킬을 쓰고 기존 스킬을 교체한다. QA 보고서에서 절차로 쓰이던 실행 조건 표를 `ccl8-verify`로 옮긴다. 완료 조건은 스킬 검사 통과다.
 - [ ] 9. 결정 파일 전환 (7). 변환 스크립트로 결정 1-28을 옮기고 Decisions 생성기를 만든 뒤 링크를 바꾼다. 본문은 원문 그대로다. 완료 조건은 목적지의 결정 항목이다.
 - [ ] 10. 보존 검사 스크립트 (9). 옛 문서의 수치, `결정 N`, 경로, 링크가 새 문서에 모두 있는지 비교하고 빠진 항목을 출력한다.

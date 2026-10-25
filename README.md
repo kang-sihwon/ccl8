@@ -20,7 +20,7 @@ Orbis의 방향과 그래픽 스타일을 공유하는 소규모 소울라이크
 
 ## 시작
 
-1. [개발 안내](Docs/Guide.md)를 읽는다.
+1. [작업 규칙](AGENTS.md)과 [문서 지도](Docs/README.md)를 읽는다.
 2. 새 PC에서는 [도구 설치·복구](Docs/AgentContextTools.md)를 따라 로컬 경로와 런타임을 준비한다.
 3. [버전 관리](Docs/VersionControl.md)에 따라 Git LFS를 사용하고 연결된 원격과 작업 트리 상태를 확인한다.
 

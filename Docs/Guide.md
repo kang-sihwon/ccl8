@@ -1,5 +1,7 @@
 # ccl8 안내
 
+이 문서는 이행 중인 옛 안내다. 진입점과 협업 규칙은 [AGENTS.md](../AGENTS.md), 문서 지도는 [README](README.md)가 소유하며 새 문서는 그쪽에 등록한다. 이 문서는 [재구성 지도](Work/agent-setup-v2.md)의 조각 7에서 없앤다.
+
 새 세션은 저장소 루트에서 시작한다. ccl8은 Orbis의 방향과 그래픽 스타일을 공유하는 단기 소울라이크 RPG다. 제작 범위와 역할은 [Direction](Direction.md), 세부 기획과 아트 초안은 문서 지도에서 확인한다. 멀티플레이 기본 흐름과 테스트 맵을 구현했으며 검증 상태는 [MultiplayerFoundation](MultiplayerFoundation.md)에 있다. 프로젝트 위치와 도구 경로는 [AgentContextTools](AgentContextTools.md)를 따른다. 기본 엔진 기준은 UE 5.8.1이며 실제 검증에 사용한 설치본은 작업 문서에 기록한다.
 
 ## 협업 규칙
