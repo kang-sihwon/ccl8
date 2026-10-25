@@ -5,7 +5,7 @@ description: ccl8의 시나리오, 세계관, 배경 설정, 판타지 레퍼런
 
 # ccl8 서사 작업
 
-작업 전에 `../../../Docs/Guide.md`, `../../../Docs/WritingGuide.md`, `../../../Docs/Decisions.md`, `../../../Docs/NarrativeConcept.md`, [공통 작업 절차](../../../Docs/Narrative/Workflow.md), `../../../Docs/Narrative/CurrentWork.md`를 순서대로 읽는다. 결정의 배경이 필요하면 `../../../Docs/DesignLog.md`의 해당 번호를 연다. 파일이 없거나 읽을 수 없으면 절차를 추측하지 말고 중단 사유를 보고한다.
+작업 전에 `../../../AGENTS.md`, `../../../Docs/WritingGuide.md`, `../../../Docs/Decisions.md`, `../../../Docs/NarrativeConcept.md`, [공통 작업 절차](../../../Docs/Narrative/Workflow.md), `../../../Docs/Narrative/CurrentWork.md`를 순서대로 읽는다. 결정의 배경이 필요하면 `../../../Docs/DesignLog.md`의 해당 번호를 연다. 파일이 없거나 읽을 수 없으면 절차를 추측하지 말고 중단 사유를 보고한다.
 
 공통 작업 절차는 작업 방식 선택, 상태 전이, 출처와 저작권, 문서 소유권, 사용자 승인, 작성자와 검토자의 분리 및 인계 방법을 정의하는 유일한 절차 정본이다. 이 연결 문서에서 해당 규칙을 복제하거나 변경하지 않는다.
 

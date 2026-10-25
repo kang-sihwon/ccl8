@@ -89,7 +89,7 @@
 
 | 문서 | 소유 내용과 읽는 시점 |
 |---|---|
-| [AgentContextTools](AgentContextTools.md) | 도구 설치·설정·복구·진단 |
+| [AgentContextTools](AgentContextTools.md) | 도구 설치·설정·복구·진단, 검사 도구와 확인 훅의 명령 |
 | [AgentToolingResearch](AgentToolingResearch.md) | AI 주도 제작용 도구 후보·근거·도입 제안, 외부 스킬 묶음 세 개의 통합 검토 |
 
 ## 학습

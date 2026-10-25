@@ -23,13 +23,18 @@
 - [x] 3. C++ 규칙 검사 (1). clang-format 설정과 헤더 배치 검사 스크립트를 만들고 현재 소스의 위반 목록만 출력한다. 소스는 고치지 않는다. 완료 조건은 일부러 어긴 예제 파일에서 검사가 실패하고 고친 예제에서 통과하는 것이다.
   - 결과: `node Tools/Agent/cpp-rules.cjs check [--summary]`가 Coding의 기계 규칙 16개를 전체 소스에 적용한다. 2026-10-25 기준 60개 파일에서 183건이다(한 줄 블록 110, 연속 빈 줄 27, `GENERATED_BODY()` 뒤 빈 줄 26, 닫는 중괄호 앞 빈 줄 15, 중괄호 없는 본문 4, 헤더 `bool` 멤버 1). `.clang-format`은 바뀐 줄에만 `cpp-rules.cjs format [--base <rev>]`로 적용한다. 기존 파일은 namespace 들여쓰기와 이어진 줄 정렬이 섞여 있어 파일 전체에 적용하면 규칙과 무관한 차이가 7,800건을 넘기 때문이다. 영역 순서와 선언 묶음 분류는 검사하지 않고 리뷰에 남긴다.
 - [x] 4. 안전 장치 훅 (1). 파괴적 Git·삭제 명령을 실행 전에 막는 PreToolUse 훅을 추가한다. 완료 조건은 시험 입력 `git reset --hard`가 막히고 `git status`가 통과하는 것이다.
-  - 결과: `Tools/Agent/guard-commands.cjs`를 `.claude/settings.json`의 Bash·PowerShell PreToolUse에 등록했다. 차단 대신 `ask`로 답해 사용자 확인 뒤에만 실행되게 했다. 공통 지침의 "삭제·덮어쓰기 전 확인"과 같은 동작이다. 완료 조건은 훅 프로세스 시험으로 확인했고, 실제 세션에서 걸리는지는 설정을 다시 읽은 새 세션에서 확인한다. Codex에는 적용되지 않는다.
+  - 결과: `Tools/Agent/guard-commands.cjs`를 `.claude/settings.json`의 Bash·PowerShell PreToolUse에 등록했다. 차단 대신 `ask`로 답해 사용자 확인 뒤에만 실행되게 했다. 공통 지침의 "삭제·덮어쓰기 전 확인"과 같은 동작이다. 완료 조건은 훅 프로세스 시험으로 확인했다. Codex에는 적용되지 않는다.
+  - 실제 세션 확인(2026-10-25, Claude 데스크톱 앱, auto 모드): `git tag -d no-such-tag`를 실행하려 하자 세션 기록에 `PreToolUse:Bash` 훅의 `ask` 응답이 남았고, 사용자 승인 뒤에 실행돼 `tag 'no-such-tag' not found`로 끝났다. 훅은 명령 문자열 전체를 보므로 시험용 JSON처럼 문자열 안에 패턴만 들어 있어도 확인을 요청한다. 안전한 쪽의 오탐이라 그대로 둔다.
 - [x] 5. 바닥선 검사 (1). diff에서 새 억제 주석, 비활성화된 자동화 테스트, 스모크 검사 삭제·시간 제한 증가, `checkNoEntry`·TODO 스텁을 찾는다. 완료 조건은 각 항목을 하나씩 넣은 시험 diff가 모두 걸리는 것이다.
   - 결과: `node Tools/Agent/floor-guard.cjs [--base <rev>]`. 추적하지 않는 새 파일도 포함하고 문서는 제외한다. 종료 코드는 0 통과, 1 발견, 2 실행 불가다. 다른 곳으로 옮긴 테스트·검사와 줄인 시간 제한은 발견으로 치지 않는다. 첫 실행에서 이 작업의 clang-format 시험에 들어 있던 조건부 `t.skip`을 찾아내 도구가 없으면 실패하도록 고쳤다.
 - [x] 6. 진입점 (2). `AGENTS.md`를 정본으로 새로 쓰고 `CLAUDE.md`는 `@AGENTS.md`로 둔다. `Docs/README.md` 문서 지도와 `GLOSSARY.md` 초안을 만든다.
   - 결과: 매 턴 읽는 진입점이 `Docs/Guide.md` 13.7KB에서 `AGENTS.md` 약 4.1KB로 줄었다. 스킬 설명이 이미 맡는 스킬 라우팅 행은 뺐다. 문서 지도는 Guide의 83행을 문구 그대로 묶음별로 옮겼다. `GLOSSARY.md`에는 시스템·제작 용어 15개를 두고 서사 용어는 `Docs/Narrative/Glossary.md`에 남겼다. 규칙 문서, `README.md`, `ccl8-docs`·`ccl8-design` 스킬의 Guide 참조를 새 위치로 바꿨다. Guide에는 이행 중이라는 안내를 붙였다.
-- [ ] 7. 규칙 문서 (3, 6). `Coding.md`(검사기로 옮긴 규칙 제외), `WritingGuide.md`, `VersionControl.md`, `AgentContextTools.md`, `Mentoring.md`, `SystemExplanationGuide.md`를 새로 쓰고 옛 `Docs/Guide.md`를 없앤다.
-  - 남은 Guide 링크: `Docs/Learning/README.md:91`, `Docs/Learning/EnvironmentEvidence.md:7`. 학습 문서는 재작성 범위 밖이므로 Guide를 없앨 때 링크만 `Docs/README.md`로 바꾼다. `FrameworkPlan.md:477`은 과거 제출 범위의 기록이라 고치지 않는다.
+  - 진입점 확인(2026-10-25, 새 세션): 시작 맥락에 `CLAUDE.md`(`@AGENTS.md`)와 `AGENTS.md` 본문만 들어왔고 `Docs/Guide.md`는 들어오지 않았다. 저장소와 사용자 전역 `CLAUDE.md`에 Guide를 `@`로 가져오는 줄이 없다. `AGENTS.md`의 Guide 언급은 코드 표기라 가져오기가 아니다.
+- [x] 7. 규칙 문서 (3, 6). `Coding.md`(검사기로 옮긴 규칙 제외), `WritingGuide.md`, `VersionControl.md`, `AgentContextTools.md`, `Mentoring.md`, `SystemExplanationGuide.md`를 새로 쓰고 옛 `Docs/Guide.md`를 없앤다.
+  - 결과: Coding은 검사기의 16개 규칙을 규칙 이름·근거 결정 표 하나로 줄이고, 리뷰로 남는 영역 순서·선언 묶음·단계 구분만 문장으로 뒀다. 완료 검증에 `cpp-rules.cjs format`과 `floor-guard.cjs`, `ccl8-verify`를 넣었다. 다른 문서가 링크하는 앵커 7개(Coding 5, AgentContextTools 1, VersionControl 1)는 제목을 유지했고, 스킬이 인용하는 WritingGuide의 절 이름과 단계 수도 유지했다.
+  - 고친 낡은 내용: Mentoring의 "어느 모드에서든 코드는 사용자가 쓴다"(결정 2와 충돌, 훈련 과제에서만 사용자 구현으로 바꿈), VersionControl의 "원격 연결과 push를 하지 않는다"와 최초 구성 문장(지금은 `origin`이 있음), AgentContextTools의 "프로젝트 그래프와 Graphify 그래프가 없다"와 손으로 맞추던 스킬 목록(`skills.cjs`로 대체). AgentContextTools에 검사 도구와 확인 훅 절을 더해 크기가 12.8KB에서 13.5KB로 늘었고, 나머지 다섯 문서는 줄었다.
+  - Guide는 사용자 확인 뒤 `git rm`으로 지웠다. 링크는 `Docs/Learning/README.md`, `Docs/Learning/EnvironmentEvidence.md`를 문서 지도로, 지도에 빠져 있던 `ccl8-narrative` 스킬의 읽기 목록을 `AGENTS.md`로 바꿨다. DesignLog, AgentToolingResearch, `FrameworkPlan.md:477`, 훅 시험 문자열의 Guide 언급은 과거 기록이거나 시험 입력이라 두었다.
+  - 검증: 바꾼 문서와 링크하는 문서 15개의 상대 링크·앵커가 모두 해석된다. `skills.cjs check`는 조각 2에서 기록한 오류 4건만 내고 새 오류는 없다.
 - [ ] 8. 스킬 재구성 (2, 6, 7). 통합 구조의 모델 호출·사용자 호출 목록대로 스킬을 쓰고 기존 스킬을 교체한다. QA 보고서에서 절차로 쓰이던 실행 조건 표를 `ccl8-verify`로 옮긴다. 완료 조건은 스킬 검사 통과다.
 - [ ] 9. 결정 파일 전환 (7). 변환 스크립트로 결정 1-28을 옮기고 Decisions 생성기를 만든 뒤 링크를 바꾼다. 본문은 원문 그대로다. 완료 조건은 목적지의 결정 항목이다.
 - [ ] 10. 보존 검사 스크립트 (9). 옛 문서의 수치, `결정 N`, 경로, 링크가 새 문서에 모두 있는지 비교하고 빠진 항목을 출력한다.
