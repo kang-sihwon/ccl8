@@ -89,7 +89,7 @@
 | [학습 문서 엔진 근거](Learning/EngineEvidence.md) | UE 5.8.3의 ASC·Fast Array·구조체·CommonUI·MVVM·Mass 소스 근거 |
 | [VersionControl](VersionControl.md) | Git·LFS·커밋 주체와 동기화 |
 | [AgentContextTools](AgentContextTools.md) | 도구 설치·설정·복구·진단 |
-| [AgentToolingResearch](AgentToolingResearch.md) | AI 주도 제작용 도구 후보·근거·도입 제안 |
+| [AgentToolingResearch](AgentToolingResearch.md) | AI 주도 제작용 도구 후보·근거·도입 제안, 외부 스킬 묶음 세 개의 통합 검토 |
 | [Setup](Setup.md) | 초기 구성 범위와 검증 결과 |
 | [Decisions](Decisions.md) | 현재 유효한 제작·게임 설계 결정 |
 | [DesignLog](DesignLog.md) | 게임 설계 결정의 이유와 번복 이력 |
@@ -97,6 +97,7 @@
 | [LearningLog](LearningLog.md) | 현재 학습 과제와 수행 증거 |
 | [StudyRoadmap](StudyRoadmap.md) | 제작 일정 초안·완료 증거·다음 작업 |
 | [DeliveryPlan](DeliveryPlan.md) | 단계별 구현 범위와 생성·빌드·검토·제출 절차 |
+| [진행 중인 작업](Work/README.md) | 여러 세션에 걸친 작업의 재개 지점과 작업별 지도. 결정 28의 에이전트 작업 체계 재구성이 첫 작업 |
 | [NarrativeConcept](NarrativeConcept.md) | 서사 작업 범위와 문서 지도 |
 
 새 문서는 담당 지도에 등록한다. 일반 지식은 연결된 개인 볼트, ccl8 고유 결정은 이 저장소에 기록한다. 설계·구현·기술 조사·문제 해결에서는 [Obsidian 활용 절차](AgentContextTools.md#obsidian-활용-절차)에 따라 시작할 때 기존 노트를 참고하고 마무리할 때 검증한 재사용 지식을 반영한다.

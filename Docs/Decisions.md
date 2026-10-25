@@ -22,5 +22,6 @@
 | 코드 작업 완료 검증 | 최종 코드 변경 후 GenerateProjectFiles.bat 실행에 성공하면 프로젝트를 빌드하고 두 결과를 각각 확인한다 | 유효 | 결정 12 | [Coding](Coding.md) |
 | 원격 플레이어 신원·복원 | 서버가 첫 접속에서 비밀 키를 발급하고 그 해시를 세계 프로필 키로 쓴다. 세계 복원은 저장 뒤에 접속한 등록 플레이어를 현재 상태로 유지한다. LAN·직접 접속용 재접속 구분이며 인증이 아니다 | 유효 | 결정 21 | [SessionFoundation](SessionFoundation.md) |
 | C++ 배치 | 헤더·CPP를 역할별 영역으로 정리한다. 헤더 영역은 빈 줄 하나로 구분하고 접근 지정자 다음 선언 묶음은 붙인다. CPP 제어문은 중괄호로 펼치고 독립된 처리 단계 사이를 빈 줄로 구분한다. 세부 배치는 Coding을 따른다 | 유효(부분 보완) | 결정 6, 결정 7, 결정 13, 결정 14 | [Coding](Coding.md) |
+| 에이전트 작업 체계 | 규칙 문서를 태그 `agent-setup-v1`로 백업하고 새로 쓴 뒤 게임 문서를 내용 보존 검사와 함께 새 형식으로 옮긴다. 결정은 1건당 파일로 나누고 Decisions는 생성한다. 스킬에 명시된 읽기 전용 위임만 요청 없이 허용한다. 재개 지점은 `Docs/Work/`에 둔다. 새 규칙이 완성되기 전까지 기존 규칙이 유효하다 | 유효, 이행 전 | 결정 28 | [AgentToolingResearch](AgentToolingResearch.md#스킬-묶음-통합-검토-2026-10-25), [이행 지도](Work/agent-setup-v2.md) |
 
 위 결정으로 확정한 범위 밖의 [GameDesign](GameDesign.md), [ArtDirection](ArtDirection.md) 세부 제안과 [StudyRoadmap](StudyRoadmap.md)의 월별 배분은 후보로 유지한다. 결정 이력은 [DesignLog](DesignLog.md)에 기록한다.
