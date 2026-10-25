@@ -97,7 +97,7 @@ Graft 0.18.0은 캐시의 초기화 기록이 없으면 세션 시작·CLI·MCP 
 
 Claude 사용자 설정에는 `enabledPlugins` 항목이 없고 동기화된 로컬 매니페스트에서 `engineering` 1.2.0이 확인됐다. 새 PC에서 사용 가능 여부는 Claude 플러그인 화면에서 확인한다. Codex 사용자 스킬 `grill-me`, `pdf`와 앱 번들 스킬 역시 사용자·앱 범위를 유지한다.
 
-프로젝트 공통 스킬은 `ccl8-design`, `ccl8-docs`, `ccl8-narrative`, `roadmap-review`, `grilling`, `writing-for-agents`, `technical-writing`, `humanizer`, `grammar-checker`, `style-guide`, `reviewing-technical-prose`, `obsidian-markdown`이다. `graft` 스킬은 Claude에, Graphify는 각 도구의 배포 형식에 맞춰 둔다. 공통 스킬은 두 위치를 함께 갱신하고 상류 라이선스를 보존한다.
+프로젝트 공통 스킬은 `ccl8-design`, `ccl8-docs`, `ccl8-verify`, `ccl8-narrative`, `roadmap-review`, `grilling`, `writing-for-agents`, `technical-writing`, `humanizer`, `grammar-checker`, `style-guide`, `reviewing-technical-prose`, `obsidian-markdown`이다. `graft` 스킬은 Claude에, Graphify는 각 도구의 배포 형식에 맞춰 둔다. 공통 스킬은 두 위치를 함께 갱신하고 상류 라이선스를 보존한다.
 
 ## 볼트와 검증
 
