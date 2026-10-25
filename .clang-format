@@ -1,0 +1,66 @@
+# Mechanical C++ layout from Docs/Coding.md (decisions 6, 7, 13, 14).
+# ColumnLimit 0 keeps the existing line breaks, so the check reports braces and blank lines, not reflow.
+# Region order and declaration grouping are checked by Tools/Agent/cpp-rules.cjs and in review.
+---
+Language: Cpp
+Standard: c++20
+BasedOnStyle: LLVM
+ColumnLimit: 0
+IndentWidth: 4
+TabWidth: 4
+UseTab: ForIndentation
+AccessModifierOffset: -4
+NamespaceIndentation: All
+
+# Decision 14: control statement bodies always braced, braces on their own lines, one statement per line.
+BreakBeforeBraces: Custom
+BraceWrapping:
+  AfterCaseLabel: true
+  AfterClass: true
+  AfterControlStatement: Always
+  AfterEnum: true
+  AfterFunction: true
+  AfterNamespace: true
+  AfterStruct: true
+  AfterUnion: true
+  AfterExternBlock: true
+  BeforeCatch: true
+  BeforeElse: true
+  BeforeLambdaBody: false
+  BeforeWhile: false
+  SplitEmptyFunction: false
+  SplitEmptyRecord: false
+  SplitEmptyNamespace: false
+InsertBraces: true
+AllowShortBlocksOnASingleLine: Never
+AllowShortIfStatementsOnASingleLine: Never
+AllowShortLoopsOnASingleLine: false
+AllowShortCaseLabelsOnASingleLine: false
+AllowShortEnumsOnASingleLine: false
+AllowShortLambdasOnASingleLine: All
+# Header inline getters stay on one line; .cpp definitions are expanded by the layout script.
+AllowShortFunctionsOnASingleLine: InlineOnly
+
+# Decisions 7 and 13: one blank line at most, none after an access specifier or at the start of a block.
+MaxEmptyLinesToKeep: 1
+EmptyLineAfterAccessModifier: Never
+EmptyLineBeforeAccessModifier: Leave
+KeepEmptyLines:
+  AtStartOfBlock: false
+  AtStartOfFile: false
+  AtEndOfFile: false
+
+# Include order is a layout rule of its own; clang-format must not reorder it.
+SortIncludes: Never
+IncludeBlocks: Preserve
+
+PointerAlignment: Left
+ReferenceAlignment: Left
+FixNamespaceComments: false
+ReflowComments: false
+InsertNewlineAtEOF: true
+StatementMacros: ['UPROPERTY', 'UFUNCTION', 'UCLASS', 'USTRUCT', 'UENUM', 'UINTERFACE', 'UMETA', 'GENERATED_BODY', 'GENERATED_USTRUCT_BODY', 'GENERATED_UCLASS_BODY']
+WhitespaceSensitiveMacros: ['UE_LOG', 'UE_CLOG', 'TEXT']
+---
+Language: CSharp
+DisableFormat: true
