@@ -1,0 +1,5 @@
+interface:
+  display_name: "ccl8 Handoff"
+  short_description: "Pause work into the work map or resume from it"
+policy:
+  allow_implicit_invocation: false

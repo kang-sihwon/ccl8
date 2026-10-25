@@ -70,7 +70,9 @@ function Remove-GeneratedGraphifySection {
 }
 
 function Set-GraphifySkillScope {
-    $scopedDescription = 'description: "Use when the user explicitly invokes /graphify, or when ccl8 work requires relationships, omissions, or impact analysis across multiple project documents. Do not use for code lookup, symbols, call flow, or build errors; use Graft for those."'
+    # ccl8 runs Graphify only on request: the skill is user-invoked in Claude (frontmatter) and Codex (agents/openai.yaml).
+    $scopedDescription = 'description: "Use when the user invokes /graphify to build or query the ccl8 document graph. Code lookup, symbols, call flow and build errors go to Graft."'
+    $codexPolicy = "interface:`n  display_name: `"Graphify`"`n  short_description: `"Build or query the ccl8 document graph`"`npolicy:`n  allow_implicit_invocation: false`n"
     $skillPaths = @(
         (Join-Path $ProjectRoot ".claude\skills\graphify\SKILL.md"),
         (Join-Path $ProjectRoot ".codex\skills\graphify\SKILL.md")
@@ -92,6 +94,21 @@ function Set-GraphifySkillScope {
             $scopedDescription,
             1
         )
+        if ($updated -notmatch '(?m)^disable-model-invocation:') {
+            $updated = [Text.RegularExpressions.Regex]::Replace(
+                $updated,
+                '(?m)^(description:[^\r\n]*)(\r?\n)',
+                '$1$2disable-model-invocation: true$2',
+                1
+            )
+        }
+
+        $policyPath = Join-Path (Split-Path -Parent $skillPath) "agents\openai.yaml"
+        if (-not (Test-Path -LiteralPath $policyPath) -or [IO.File]::ReadAllText($policyPath) -ne $codexPolicy) {
+            New-Item -ItemType Directory -Force -Path (Split-Path -Parent $policyPath) | Out-Null
+            Write-Utf8NoBom -Path $policyPath -Content $codexPolicy
+        }
+
         if ($updated -ne $content) {
             Write-Utf8NoBom -Path $skillPath -Content $updated
             Write-Host "Scoped Graphify skill routing for ccl8: $skillPath"

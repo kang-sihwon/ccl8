@@ -1,0 +1,5 @@
+interface:
+  display_name: "Graphify"
+  short_description: "Build or query the ccl8 document graph"
+policy:
+  allow_implicit_invocation: false

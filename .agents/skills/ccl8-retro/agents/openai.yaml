@@ -1,0 +1,5 @@
+interface:
+  display_name: "ccl8 Retro"
+  short_description: "Turn repeated mistakes into enforced rules"
+policy:
+  allow_implicit_invocation: false

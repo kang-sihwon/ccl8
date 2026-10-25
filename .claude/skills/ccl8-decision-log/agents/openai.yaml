@@ -1,0 +1,5 @@
+interface:
+  display_name: "ccl8 Decision Log"
+  short_description: "Append evidence-backed decisions to the work map"
+policy:
+  allow_implicit_invocation: false

@@ -1,6 +1,7 @@
 ---
 name: graphify
-description: "Use when the user explicitly invokes /graphify, or when ccl8 work requires relationships, omissions, or impact analysis across multiple project documents. Do not use for code lookup, symbols, call flow, or build errors; use Graft for those."
+description: "Use when the user invokes /graphify to build or query the ccl8 document graph. Code lookup, symbols, call flow and build errors go to Graft."
+disable-model-invocation: true
 ---
 
 # /graphify

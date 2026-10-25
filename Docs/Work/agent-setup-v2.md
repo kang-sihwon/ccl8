@@ -35,7 +35,13 @@
   - 고친 낡은 내용: Mentoring의 "어느 모드에서든 코드는 사용자가 쓴다"(결정 2와 충돌, 훈련 과제에서만 사용자 구현으로 바꿈), VersionControl의 "원격 연결과 push를 하지 않는다"와 최초 구성 문장(지금은 `origin`이 있음), AgentContextTools의 "프로젝트 그래프와 Graphify 그래프가 없다"와 손으로 맞추던 스킬 목록(`skills.cjs`로 대체). AgentContextTools에 검사 도구와 확인 훅 절을 더해 크기가 12.8KB에서 13.5KB로 늘었고, 나머지 다섯 문서는 줄었다.
   - Guide는 사용자 확인 뒤 `git rm`으로 지웠다. 링크는 `Docs/Learning/README.md`, `Docs/Learning/EnvironmentEvidence.md`를 문서 지도로, 지도에 빠져 있던 `ccl8-narrative` 스킬의 읽기 목록을 `AGENTS.md`로 바꿨다. DesignLog, AgentToolingResearch, `FrameworkPlan.md:477`, 훅 시험 문자열의 Guide 언급은 과거 기록이거나 시험 입력이라 두었다.
   - 검증: 바꾼 문서와 링크하는 문서 15개의 상대 링크·앵커가 모두 해석된다. `skills.cjs check`는 조각 2에서 기록한 오류 4건만 내고 새 오류는 없다.
-- [ ] 8. 스킬 재구성 (2, 6, 7). 통합 구조의 모델 호출·사용자 호출 목록대로 스킬을 쓰고 기존 스킬을 교체한다. QA 보고서에서 절차로 쓰이던 실행 조건 표를 `ccl8-verify`로 옮긴다. 완료 조건은 스킬 검사 통과다.
+- [x] 8. 스킬 재구성 (2, 6, 7). 통합 구조의 모델 호출·사용자 호출 목록대로 스킬을 쓰고 기존 스킬을 교체한다. QA 보고서에서 절차로 쓰이던 실행 조건 표를 `ccl8-verify`로 옮긴다. 완료 조건은 스킬 검사 통과다.
+  - 결과: `node Tools/Agent/skills.cjs check`가 오류 0, 경고 0으로 통과한다. 모델 호출 스킬은 10개(`graft`, `ccl8-design`, `ccl8-verify`, `ccl8-debug`, `ccl8-review`, `ccl8-docs`, `ccl8-writing`, `ccl8-narrative`, `grilling`, `writing-for-agents`)이고 매 턴 불러오는 설명은 15개 5,214바이트에서 3,260바이트로 줄었다. 사용자 호출 스킬은 10개(`ccl8-help`, `ccl8-work`, `ccl8-handoff`, `ccl8-decision-log`, `ccl8-retro`, `ccl8-teach`, `ccl8-benchmark`, `ccl8-blast-radius`, `roadmap-review`, `graphify`)다.
+  - 문장 스킬 다섯 개와 `obsidian-markdown`은 사용자 확인 뒤 독립 스킬에서 빼고 `ccl8-writing/references/`, `ccl8-docs/references/`로 옮겼다. 원래 `SKILL.md`는 `GUIDE.md`로 바꾸고 머리말만 뺐으며, 서로를 가리키는 경로 다섯 곳만 새 위치로 고쳤다. MIT 라이선스 파일은 폴더마다 그대로 있다.
+  - 사용자 호출은 Claude의 `disable-model-invocation: true`와 Codex의 `agents/openai.yaml`(`allow_implicit_invocation: false`)로 표시하고, `skills.cjs`가 둘이 맞는지 검사한다. Codex 형식은 사용자 Codex 설치의 플러그인 스킬 예시에서 확인했다. 이 세션에서 새 스킬을 만든 뒤 Claude가 보여 준 스킬 목록에는 모델 호출 스킬만 나타났다. Codex에서 숨겨지는지는 실행해 보지 않았다.
+  - `graft`는 정본 폴더로 옮기고 설명에 사용 조건을 넣었다. `graphify`는 setup이 다시 쓰는 도구 관리 스킬이라 `skills.cjs`의 `TOOL_MANAGED`로 동기화·길이 검사에서 빼고, `graphify_ccl8.ps1`의 `Set-GraphifySkillScope`가 사용자 호출 표시와 Codex 정책 파일을 쓰게 했다. 그 함수만 떼어 두 번 실행해 두 사본에 적용되고 두 번째 실행은 아무것도 바꾸지 않음을 확인했다.
+  - MCP PIE 절차는 `ccl8-verify/references/mcp-pie.md`로 옮겼다. 기능 파일 두 곳의 판정 기준 링크도 그쪽으로 바꿨다. `features/combat.md`의 F-03 언급은 과거 결함 기록이라 QA 보고서 경로로 남겼고, 조각 11에서 경로를 바꾼다.
+  - 시험: `node --test Tools/Agent/Tests/*.test.cjs` 21개 통과(사용자 호출 일치, 도구 관리 스킬 시험 2개 추가). `floor-guard.cjs` 발견 0.
 - [ ] 9. 결정 파일 전환 (7). 변환 스크립트로 결정 1-28을 옮기고 Decisions 생성기를 만든 뒤 링크를 바꾼다. 본문은 원문 그대로다. 완료 조건은 목적지의 결정 항목이다.
 - [ ] 10. 보존 검사 스크립트 (9). 옛 문서의 수치, `결정 N`, 경로, 링크가 새 문서에 모두 있는지 비교하고 빠진 항목을 출력한다.
 - [ ] 11. QA 보고서 이동 (8). QA 보고서를 내용 변경 없이 `Docs/QA/`로 옮기고 폴더 README에 시점 기록임을 적는다.

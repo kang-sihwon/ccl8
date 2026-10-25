@@ -21,6 +21,8 @@
 | `.local/agent-paths.json` | 엔진·인덱스·런타임·선택적 볼트 경로. 형식은 `Tools/Agent/agent-paths.example.json` | 제외 |
 | `.local/graft-runtime/` | 이 저장소 전용 Graft 런타임 | 제외 |
 
+에이전트가 스스로 부르지 않는 사용자 호출 스킬은 `SKILL.md` 머리말에 `disable-model-invocation: true`(Claude)를 두고, 같은 폴더의 `agents/openai.yaml`에 `allow_implicit_invocation: false`(Codex)를 둔다. 목록은 `ccl8-help` 스킬에 있다. `graphify`는 `graphify_ccl8.cmd setup`이 `.claude/skills/`와 `.codex/skills/`에 설치하고 다시 쓰는 도구 관리 스킬이라 정본 폴더 밖에 둔다.
+
 저장소 루트는 `CCL.uproject`와 `.git`이 함께 있는 폴더다. 위치와 폴더명은 기기마다 달라도 되고, `ccl8-*` 스킬과 `graphify_ccl8.cmd`의 이름은 폴더명과 무관하다. 공유 도구는 실행 파일 위치로 프로젝트 경로를 계산한다. 엔진 경로는 `Engine/Build/Build.version`이 있는 `Engine` 폴더다. 엔진 인덱스는 기존 외부 디렉터리를 참조하고 자동 생성하지 않는다.
 
 폴더를 옮겼으면 `.codex/config.toml`의 두 Graft 서버에서 `args`와 `cwd`를 새 저장소 루트로 고치고 에이전트를 재시작한다. Unreal MCP 항목은 그대로 둔다. 실제 경로의 제출 기준은 [VersionControl의 기기별 경로와 로컬 설정](VersionControl.md#기기별-경로와-로컬-설정)을 따른다.
@@ -90,7 +92,7 @@ Claude 훅과 상태 표시는 같은 런타임 탐색기를 쓰고, 패키지�
 
 | 명령 | 하는 일 |
 |---|---|
-| `node Tools/Agent/skills.cjs check` | 스킬 머리말, 참조 파일, 스킬 간 링크, 설명의 사용 조건, 두 스킬 폴더의 일치를 검사한다 |
+| `node Tools/Agent/skills.cjs check` | 스킬 머리말, 참조 파일, 스킬 간 링크, 설명의 사용 조건, 사용자 호출 표시와 Codex 정책 파일의 일치, 두 스킬 폴더의 일치를 검사한다 |
 | `node Tools/Agent/skills.cjs sync [--write]` | `.agents/skills`에서 `.claude/skills`로 복사할 파일을 출력하고 `--write`일 때만 복사한다. 삭제하지 않는다 |
 | `node Tools/Agent/cpp-rules.cjs check [--summary] [paths...]` | Coding의 기계 검사 규칙 위반을 보고한다 |
 | `node Tools/Agent/cpp-rules.cjs format [--base <rev>]` | `<rev>`(기본 `HEAD`) 이후 바뀐 줄에 `.clang-format`을 적용했을 때의 차이를 검사한다 |

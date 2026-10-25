@@ -1,0 +1,5 @@
+interface:
+  display_name: "ccl8 Benchmark"
+  short_description: "Check performance numbers before reporting them"
+policy:
+  allow_implicit_invocation: false

@@ -9,6 +9,8 @@ const path = require('node:path');
 
 const CANONICAL_TREE = '.agents/skills';
 const MIRROR_TREES = ['.claude/skills'];
+// Installed and rewritten by their own tool's setup (see Tools/Graphify), so they live outside the canonical tree.
+const TOOL_MANAGED = new Set(['graphify']);
 const MAX_DESCRIPTION_LENGTH = 1024;
 const MAX_SKILL_LINES = 500;
 const KEBAB_CASE = /^[a-z0-9]+(-[a-z0-9]+)*$/;
@@ -100,8 +102,17 @@ function lintSkill(skillDir, knownSkills) {
     if (!KNOWN_KEYS.has(key)) report('warn', `unknown frontmatter key "${key}"`);
   }
 
+  // A user-invoked skill must be hidden from both agents: Claude reads the frontmatter flag, Codex reads agents/openai.yaml.
+  if (!TOOL_MANAGED.has(name)) {
+    const userInvoked = fields['disable-model-invocation'] === 'true';
+    const policyFile = path.join(skillDir, 'agents', 'openai.yaml');
+    const codexHidden = fs.existsSync(policyFile) && /^\s*allow_implicit_invocation:\s*false\s*$/m.test(fs.readFileSync(policyFile, 'utf8'));
+    if (userInvoked && !codexHidden) report('error', 'disable-model-invocation is true but agents/openai.yaml does not set allow_implicit_invocation: false');
+    if (!userInvoked && codexHidden) report('error', 'agents/openai.yaml hides the skill from Codex but disable-model-invocation is not true');
+  }
+
   const lines = stripFences(text);
-  if (lines.length > MAX_SKILL_LINES) report('warn', `SKILL.md has ${lines.length} lines, budget ${MAX_SKILL_LINES}`);
+  if (lines.length > MAX_SKILL_LINES && !TOOL_MANAGED.has(name)) report('warn', `SKILL.md has ${lines.length} lines, budget ${MAX_SKILL_LINES}`);
   const docs = [file, ...listFiles(skillDir).filter(rel => rel.endsWith('.md') && rel !== 'SKILL.md').map(rel => path.join(skillDir, rel))];
   for (const doc of docs) {
     const docLines = doc === file ? lines : stripFences(fs.readFileSync(doc, 'utf8'));
@@ -145,7 +156,7 @@ function compareTrees(root, canonicalTree, mirrorTree) {
     if (!right.has(rel)) add(path.join(mirror, rel), `missing, present in ${canonicalTree}`, 'copy');
     else if (normalized(path.join(canonical, rel)) !== normalized(path.join(mirror, rel))) add(path.join(mirror, rel), `differs from ${canonicalTree}`, 'copy');
   }
-  for (const skill of listSkills(mirror).filter(skill => !canonicalSkills.has(skill))) {
+  for (const skill of listSkills(mirror).filter(skill => !canonicalSkills.has(skill) && !TOOL_MANAGED.has(skill))) {
     add(path.join(mirror, skill), `skill exists only here, not in ${canonicalTree}`, 'orphan');
   }
   for (const rel of right) {

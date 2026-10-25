@@ -1,0 +1,5 @@
+interface:
+  display_name: "ccl8 Blast Radius"
+  short_description: "Prove one safety claim of a risky change by running it"
+policy:
+  allow_implicit_invocation: false

@@ -1,9 +1,9 @@
 ---
 name: graft
-description: This repo is indexed by graft/. For ANY task here, whether
-  understanding how something works, finding where code lives, tracing what
-  calls a symbol or what a change breaks, or scoping an edit, get your context
-  from graft before grepping or reading source files.
+description: This repo is indexed by graft/. Use before grepping or reading
+  source whenever a task needs ccl8 code context, whether understanding how
+  something works, finding where code lives, tracing what calls a symbol or
+  what a change breaks, or scoping an edit.
 ---
 
 # graft

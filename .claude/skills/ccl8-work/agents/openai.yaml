@@ -1,0 +1,5 @@
+interface:
+  display_name: "ccl8 Work Map"
+  short_description: "Create, update or close a multi-session work map"
+policy:
+  allow_implicit_invocation: false

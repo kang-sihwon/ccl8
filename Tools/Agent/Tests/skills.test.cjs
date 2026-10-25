@@ -54,3 +54,33 @@ test('a changed mirror file is reported against the canonical tree', t => {
   assert.equal(findings.length, 1);
   assert.match(findings[0].message, /differs from \.agents\/skills/);
 });
+
+test('a user-invoked skill needs the Codex policy file and the reverse', t => {
+  const hidden = 'interface:\n  display_name: "Alpha"\npolicy:\n  allow_implicit_invocation: false\n';
+  const flagged = '---\nname: alpha\ndescription: Use when testing.\ndisable-model-invocation: true\n---\n';
+  const plain = '---\nname: beta\ndescription: Use when testing.\n---\n';
+  const root = repository(t, {
+    '.agents/skills/alpha/SKILL.md': flagged,
+    '.agents/skills/beta/SKILL.md': plain,
+    '.agents/skills/beta/agents/openai.yaml': hidden,
+    '.claude/skills/alpha/SKILL.md': flagged,
+    '.claude/skills/beta/SKILL.md': plain,
+    '.claude/skills/beta/agents/openai.yaml': hidden,
+  });
+  const messages = checkRepository(root).map(finding => finding.message);
+  assert.ok(messages.some(message => /does not set allow_implicit_invocation/.test(message)));
+  assert.ok(messages.some(message => /disable-model-invocation is not true/.test(message)));
+
+  fs.mkdirSync(path.join(root, '.agents/skills/alpha/agents'), { recursive: true });
+  fs.writeFileSync(path.join(root, '.agents/skills/alpha/agents/openai.yaml'), hidden);
+  fs.mkdirSync(path.join(root, '.claude/skills/alpha/agents'), { recursive: true });
+  fs.writeFileSync(path.join(root, '.claude/skills/alpha/agents/openai.yaml'), hidden);
+  fs.writeFileSync(path.join(root, '.agents/skills/beta/SKILL.md'), flagged.replace('alpha', 'beta'));
+  assert.ok(!checkRepository(root).some(finding => /invocation/.test(finding.message)));
+});
+
+test('a tool-managed skill may live only in the mirror and exceed the line budget', t => {
+  const long = `---\nname: graphify\ndescription: Use when testing.\n---\n${'line\n'.repeat(600)}`;
+  const root = repository(t, { '.claude/skills/graphify/SKILL.md': long });
+  assert.deepEqual(checkRepository(root), []);
+});

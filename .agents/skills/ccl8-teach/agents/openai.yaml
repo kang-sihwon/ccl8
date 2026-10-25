@@ -1,0 +1,5 @@
+interface:
+  display_name: "ccl8 Teach"
+  short_description: "Learn a ccl8 system step by step and record it"
+policy:
+  allow_implicit_invocation: false

@@ -23,7 +23,7 @@
 - 도입·지도 스모크(`internal`): `.\Tools\Validation\run_integration_smoke.ps1`.
 - 기대 결과: 서버 로그 `CCL_CAMPAIGN SERVER PASS`, 클라이언트마다 `CCL_CAMPAIGN CLIENT PASS`, 늦은 접속자 `CCL_CAMPAIGN CLIENT PASS role=late`. 옵션을 쓰면 `CCL_CONTENT REWARD PASS`, `CCL_PROGRESSION PERSISTENCE PASS`도 확인한다. 통합 스모크는 `CCL_INTEGRATION PASS`와 CHECK 9개다.
 - 증거: `Saved/Tests/CampaignSmoke/`, `Saved/Tests/Integration/<시각>/editor.log`, 캡처 `Saved/Tests/Presentation/1280x720-{arrival,minimap,world-map}.png`.
-- MCP 경로: 보급품 습득, 마을 복귀, 주민 대화 접근처럼 이동이 필요한 경로에 쓴다. 판정 기준은 `Docs/FullGameplayMCPQA-2026-10-12.md`의 Campaign 절을 따른다.
+- MCP 경로: 보급품 습득, 마을 복귀, 주민 대화 접근처럼 이동이 필요한 경로에 쓴다. 절차와 판정은 [MCP PIE 실행 검증](../references/mcp-pie.md)의 Campaign·저장 행을 따른다.
 
 ## Gotchas
 

@@ -24,7 +24,7 @@
 - 기대 결과: `CCL_EXPERIMENT_SMOKE PASS`, 지형은 `CCL_TERRAIN_SMOKE PASS`, `CCL_TERRAIN_SCENARIO PASS`.
 - 증거: `Saved/Tests/Environment/`, `Saved/Tests/ExperimentMenu/<Map>-<Standalone|PIE>-<시각>/`의 로그와 캡처. 전용 레벨의 MCP 기록은 `Saved/Laboratories/`에 둔다.
 - 계산 규칙만 바꿨으면 `run_automation.ps1 -Filter CCL.Environment`로 자동화 테스트를 함께 돌린다.
-- MCP 경로: 배율 조작, 관측창, 표본 배치처럼 화면을 보며 판정하는 변경에 쓴다. 판정 기준은 `Docs/EnvironmentPIEQA-2026-10-12.md`와 `Docs/FullGameplayMCPQA-2026-10-12.md`의 환경 절을 따른다.
+- MCP 경로: 배율 조작, 관측창, 표본 배치처럼 화면을 보며 판정하는 변경에 쓴다. 절차와 판정은 [MCP PIE 실행 검증](../references/mcp-pie.md)의 환경 실험장·메뉴 행을 따른다.
 
 ## Gotchas
 

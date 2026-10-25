@@ -17,7 +17,7 @@ description: ccl8 게임 동작의 실행 검증에 쓴다. 게임 동작을 바
    - MCP 경로를 쓸 때만: `http://127.0.0.1:8000/mcp` 연결과 에디터의 Unreal MCP 서버 상태.
 3. **Drive**: 기능별로 하나를 고른다.
    - **(A) 스모크**: `Tools/Validation/run_<name>.ps1`을 백그라운드로 실행한다. `-Mode`, `-Port`, 시간 제한 같은 인자는 스크립트 첫머리의 `param` 블록에서 확인한다. 시간 제한 인자의 이름은 스크립트마다 `-TimeoutSeconds` 또는 `-StartupTimeoutSeconds`로 다르다. 네트워크 모드가 있는 스크립트는 변경이 닿는 모드를 모두 실행한다(Standalone, Listen, Dedicated). 스크립트마다 기본 포트가 고정돼 있으므로(예: 세션 18791) 스모크를 동시에 돌리지 않는다.
-   - **(B) MCP PIE**: 실제 키·마우스·Slate 조작이 필요할 때 쓴다. 실행 조건, 입력 주입 방식과 판정 근거는 `../../../Docs/FullGameplayMCPQA-2026-10-12.md`의 "실행 조건" 표를 따른다. 도구의 클릭 성공 응답이 아니라 Pawn·GAS·HUD·저장 레코드의 실제 변화로 판정한다.
+   - **(B) MCP PIE**: 실제 키·마우스·Slate 조작이 필요할 때 쓴다. 준비, 실행 구성, 입력 주입, 판정, 정리는 [references/mcp-pie.md](references/mcp-pie.md)를 따른다. 도구의 클릭 성공 응답이 아니라 Pawn·GAS·HUD·저장 레코드의 실제 변화로 판정한다.
 4. **Evidence**: 기능마다 다음을 남긴다.
    - 스모크: 스크립트 출력의 `PASS ...: <log>` 줄, 로그의 `CCL_<SUITE> PASS`와 `CHECK` 줄, `FAIL`·`Assertion failed:`·`Fatal error:`가 없다는 확인, 결과 폴더 `Saved/Tests/<Suite>/<시각>/`.
    - MCP: `Saved/Tests/MCP-<주제>-<날짜>/`에 상태 JSON·입력 기록·캡처·로그 사본.

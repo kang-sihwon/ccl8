@@ -1,6 +1,7 @@
 ---
 name: roadmap-review
 description: StudyRoadmap 문서를 비판적으로 검토하고 지적 사항을 review_log 파일로 남긴다. 로드맵 초안을 검토할 때 사용한다.
+disable-model-invocation: true
 ---
 
 사용자가 지정한 로드맵 파일을 검토한다. 경로를 지정하지 않았으면 `../../../Docs/StudyRoadmap.md`를 검토한다. 먼저 `../../../Docs/WritingGuide.md`를 읽고, 지적과 수정 방향도 그 기준에 맞는 자연스러운 문장으로 작성한다.

@@ -1,0 +1,5 @@
+interface:
+  display_name: "Roadmap Review"
+  short_description: "Review a StudyRoadmap draft and log findings"
+policy:
+  allow_implicit_invocation: false
