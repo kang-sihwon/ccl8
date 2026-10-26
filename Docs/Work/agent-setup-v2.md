@@ -79,6 +79,11 @@
   - 진행: 코드 구조 묶음 완료. 두 문서 모두 보존 검사 빠짐 0.
     - FrameworkPlan: 보류된 계획으로 시작해 단계 1-4 기록이 붙은 문서라 단계 기록과 링크된 제목은 두었다. 첫 문단을 결과(KSI 모듈 11개, `Source/`로 확인)와 소유 범위로 바꾸고, 착수 전처럼 읽히던 계획 문장 다섯 곳을 지금 상태로 고쳤다.
     - CodeStructurePlan: 2026-10-11 검토 결과와 미착수 계획이라 지적은 그대로 두었다. 첫 문단에 검토 결론을 쓰고, 2026-10-26 코드 대조 결과(D1의 대체 저장은 아직 `Deinitialize`, D2의 역참조는 `CCLWorldSimulationSubsystem.cpp:270`·`:292`)와, 기준 커밋 뒤 FrameworkPlan 단계 2-4가 끝나 "단계 2 이전" 순서 제안이 반영되지 않았다는 사실을 덧붙였다.
+  - 진행: 자연 환경 묶음 완료. 9개 문서 모두 보존 검사 빠짐 0.
+    - 하위 문서 7개(Water, Nutrition, Weather, Terrain, Snow, Laboratories, Fire): 첫 문단을 결과와 소유 범위로 시작하고 KSI 이동 안내를 그 뒤로 옮겼다. 작업 전달 이력 문장을 뺐다. 지금 없는 소스 경로 4곳(`CCLEcologyNutrition.cpp`, `CCLWeatherModel`, `CCLSurfaceSimulation`, `CCLCombustionModel`)에 `git ls-files`로 확인한 KSIEnvironment 위치를 덧붙였다. "단계 5에서 멈춘다"(Snow), "단계 8에서 이어간다"(Fire), "자연 날씨·불·Server 타깃은 후속"(Water)은 각 소유 문서를 가리키게 고쳤다. Laboratories는 사용법을 앞에 두고 후속 작업 기준 두 절을 한 절로 모았다.
+    - EnvironmentEcology·EnvironmentPlan: 날짜순 기록이고 링크된 제목이 각각 9개, 17개라 절 순서를 두었다. Ecology는 성과 목록 문단을 영역별 "구현 현황" 표로, Plan은 단계 0-9의 "단계별 현황" 표로 바꿔 각 영역·단계의 정본 절이나 문서를 가리키게 했다. 상태는 결정 19의 진행 기록(단계 0-7 완료, 8 진행)과 단계 9 관련 절을 따른다. Plan의 "다음 작업자는 Guide…"는 AGENTS.md로 바꿨다.
+    - 이번 변경 전부터 깨져 있던 학습 문서 링크를 더 찾았다: `Docs/Learning/GASCombat.md:205`의 `EnvironmentFire.md#현재-코드의-후속-열-피해-연결`(제목 없음), `Docs/Learning/EnvironmentMapConfiguration.md`의 `Source/CCL/Editor/CCLEnvironmentFXLibrary.cpp`, `Docs/Learning/UIFramework.md`의 `Source/CCL/UI/Core/CCLUISubsystem.cpp` 두 곳. 학습 문서는 범위 밖이라 고치지 않았다.
+    - 남은 묶음: 도구(AgentToolingResearch), 현황(LearningLog).
 - [ ] 13. 서사 정본 (10). `World.md`, `Scenario.md`의 확정 영역은 글자를 바꾸지 않고 구조만 바꾼다. 독립 검토의 수정 제안 목록을 사용자에게 제출한다.
 - [ ] 14. 날짜 붙은 검토 보고서 정리 (12). 결과를 소유 사양서로 옮긴다. 삭제는 대상 목록을 사용자에게 확인받은 뒤 한다.
   - 대상: `AgentReview-2026-10-08.md`, `UIReview-2026-10-08.md`, `CodeDesignFixes-2026-10-11.md`.
