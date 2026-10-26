@@ -65,6 +65,12 @@
     - GameDesign: 결정 3·5·8을 "확정한 것" 표로 모으고 나머지 절을 제안으로 표시했다. "남은 사양"은 미정 목록으로 바꾸고, 그 뒤 프로토타입 수치와 성장·저장 구현을 맡은 CombatFoundation, ProgressionFoundation, SessionFoundation 링크를 붙였다.
     - ArtDirection: 확정은 결정 1의 스타일 공유뿐임을 첫 문단에 적고, 시각 기준과 제작 방식을 제안으로, 착수하지 않은 시안·미정 디자인·미측정 성능 목표를 미정 목록으로 모았다.
     - Setup: 2026-10-04 초기 구성의 이력 문서라 WritingGuide의 이력 규칙대로 본문을 두고, 시점 기록이라는 안내와 현재 소유 문서(AgentContextTools, VersionControl) 링크만 붙였다.
+  - 진행: 시스템 사양 묶음 9개 중 4개 완료. 공통으로 날짜 붙은 실행 기록은 "검증 상태" 아래 날짜별 절로 모으고, 현재 검증 방법은 별도 절로 나누고, 스모크 실행은 `ccl8-verify`를 가리키게 했다.
+    - MultiplayerFoundation: 코드와 어긋난 문장 세 개를 고쳤다. 기본 시작 맵은 지금 FrontEnd(게임)와 Campaign(에디터·서버)이고, `ACCLPlayerState`가 ASC와 게임 컴포넌트를 소유하며(결정 11), 체력은 CombatFoundation이 소유한다. 빠짐 0.
+    - CampaignFoundation: 보스 체력 240이 ContentFoundation의 적 정의 에셋에 있다고 적었다. "단계 3의 종료 입력을 단계 6에서 교체" 문장은 전달 이력이라 빼고 허용 목록에 넣었다.
+    - CombatFoundation: 아이템 설명을 코드에 맞췄다. `UCCLItemDefinition`은 `UKSIItemDefinition` 파생형이고 `FInstancedStruct` Fragment를 쓰며(결정 15), 전투 데이터는 `FCCLItemFragment_Weapon`에 있고 `UCCLItemFragment_Combat`은 옛 에셋 호환용이다. "맵 생성 완료를 뜻하지 않는다" 문장을 지웠다. 빠짐 0.
+    - ContentFoundation: 기능 계약을 대화·상점과 퀘스트·적으로 나눴다. `5.9`가 `UE 5.9.0` 제목으로 합쳐진 것만 허용 목록에 넣었다.
+    - 남은 것: ProgressionFoundation, SessionFoundation, UIFoundation, AgentFoundation, Packaging.
 - [ ] 13. 서사 정본 (10). `World.md`, `Scenario.md`의 확정 영역은 글자를 바꾸지 않고 구조만 바꾼다. 독립 검토의 수정 제안 목록을 사용자에게 제출한다.
 - [ ] 14. 날짜 붙은 검토 보고서 정리 (12). 결과를 소유 사양서로 옮긴다. 삭제는 대상 목록을 사용자에게 확인받은 뒤 한다.
   - 대상: `AgentReview-2026-10-08.md`, `UIReview-2026-10-08.md`, `CodeDesignFixes-2026-10-11.md`.
