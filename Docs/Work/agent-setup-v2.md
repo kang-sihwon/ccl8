@@ -58,6 +58,9 @@
   - `Docs/QA/README.md`에 시점 기록이라는 점, 내용을 고치지 않고 정정은 새 보고서로 쓴다는 규칙, 이름 형식과 목록을 적었다. 문서 지도의 "날짜 붙은 QA·검토 보고서" 절은 "QA 보고서"와 "날짜 붙은 검토 보고서"로 나눴다. 들어오는 링크는 `EnvironmentPlan.md`, `ContentFoundation.md`, 문서 지도, `ccl8-verify`의 `references/mcp-pie.md`를 고쳤고, `features/combat.md`의 경로 표기도 `Docs/QA/`로 바꿨다.
   - 일회성 링크 변환기가 디렉터리 링크 끝의 `/`를 지우는 결함이 있어, 관계없는 문서 다섯 곳(사본 포함 8곳)의 `examples/`, `decisions/` 링크가 잠시 바뀌었다. 커밋 전에 되돌렸고 최종 diff에는 없다.
 - [ ] 12. 게임 문서 재작성 (10, 11). 문서나 소유 묶음 하나씩 새로 쓰고 보존 검사를 통과시킨 뒤 커밋한다. `Docs/Learning/`은 제외한다.
+  - 문서마다 하는 일: (1) WritingGuide 표로 종류를 정하고, 첫 문단에 결론과 이 문서가 소유하는 것을 쓴다. (2) 확정 내용에는 근거 결정 링크를 붙이고, 제안은 "(제안)"으로, 미기록·미확인은 "미확인" 절로 모은다. (3) 다른 문서가 소유하는 내용은 요약과 링크만 남긴다. (4) 다른 문서가 링크하는 제목은 유지하거나 링크를 함께 고친다. (5) `preserve.cjs --old <옛> --new <새>`가 통과하고, 일부러 뺀 항목은 허용 파일에 넣어 커밋 본문에 이유를 적는다. (6) `decisions.cjs check`와 상대 링크 검사가 통과한다. (7) 문서나 소유 묶음 하나를 커밋 하나로 남긴다.
+  - 묶음 순서: 방향(Direction, GameDesign, ArtDirection, Setup), 시스템 사양(MultiplayerFoundation, CombatFoundation, CampaignFoundation, ContentFoundation, ProgressionFoundation, SessionFoundation, UIFoundation, AgentFoundation, Packaging), 코드 구조(FrameworkPlan, CodeStructurePlan), 자연 환경(EnvironmentPlan과 하위 문서 8개), 도구(AgentToolingResearch), 현황(LearningLog). `NarrativeConcept`는 서사 문서이므로 조각 13에서 다룬다.
+  - 진행: Direction 완료(보존 검사 빠짐 0). 확정 범위 표에 근거 결정을 붙이고, 결정 19 링크를 넣고, 제안과 미확인을 각각 절로 모았다. 사용자가 이 형식을 검토한 뒤 나머지 문서로 넓힌다.
 - [ ] 13. 서사 정본 (10). `World.md`, `Scenario.md`의 확정 영역은 글자를 바꾸지 않고 구조만 바꾼다. 독립 검토의 수정 제안 목록을 사용자에게 제출한다.
 - [ ] 14. 날짜 붙은 검토 보고서 정리 (12). 결과를 소유 사양서로 옮긴다. 삭제는 대상 목록을 사용자에게 확인받은 뒤 한다.
   - 대상: `AgentReview-2026-10-08.md`, `UIReview-2026-10-08.md`, `CodeDesignFixes-2026-10-11.md`.
