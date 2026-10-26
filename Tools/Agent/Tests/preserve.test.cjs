@@ -50,6 +50,8 @@ test('a relative path survives as a link to the file it resolves to', () => {
   const wrong = [doc('Docs/Narrative/Workflow.md', '제출은 [VersionControl](VersionControl.md)을 따른다.')];
   assert.deepEqual(missing(old, kept), []);
   assert.deepEqual(missing(old, wrong), ['path ../VersionControl.md']);
+  const moved = [doc('.agents/skills/a/SKILL.md', '배경은 `../../../Docs/decisions/`에 있다.')];
+  assert.deepEqual(missing(moved, [doc('Docs/Narrative/Workflow.md', '배경은 `Docs/decisions/`에 있다.')]), []);
 });
 
 test('allowed removals are not reported', () => {
