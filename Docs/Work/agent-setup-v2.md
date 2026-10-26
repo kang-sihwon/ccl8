@@ -53,10 +53,14 @@
   - 비교 규칙: 수치는 날짜, `1280x720`, 지수, `%`와 영문 단위를 포함한 문자열 그대로, `결정 8·10·11` 같은 묶음 표기는 결정 하나씩, 공백 없는 경로형 코드 표기는 문자열로, 링크는 문서 위치로 푼 저장소 경로와 앵커로 비교한다. 옛 링크에 앵커가 없으면 같은 파일로 가는 아무 링크나, 경로는 그 파일로 가는 링크나 그 경로로 끝나는 더 긴 경로(`helpers/` 대신 `.claude/helpers/`)를, 링크 대상이 새 묶음 안의 문서이면 링크가 없어도 보존으로 친다. 코드 블록 안에서는 수치만 본다.
   - 실제 문서 확인: DesignLog와 옛 Decisions(`bcf4dfd`)를 새 Decisions와 결정 파일 28개에 비교하면 `--rename Docs/DesignLog.md=Docs/Decisions.md`로 빠짐 0이다. 처음 실행에서 DesignLog 머리말의 WritingGuide 링크가 빠진 것을 찾아 생성되는 Decisions.md 머리말에 되살렸다. 조각 7의 규칙 문서 6개를 재작성 전 `e33868e`와 비교하면 VersionControl·SystemExplanationGuide는 0이다. 나머지 8건은 모두 의도한 변경이다: Coding의 `Engine/Build/Build.version`(`<Engine>/` 자리표시자로 씀)·`Source/CCL/`(AGENTS.md가 소유)·DesignLog 링크, WritingGuide의 `Docs/DesignLog.md`, AgentContextTools의 `5.8`·`2026-10-05`·`5.8.1`(조사 기록은 AgentToolingResearch가 소유), Mentoring의 `AGENTS.md`(결정 2 링크로 바꿈).
   - 시험: `node --test Tools/Agent/Tests/*.test.cjs` 29개 통과(`preserve.test.cjs` 5개 추가). 시험을 쓰다가 `120ms`처럼 영문 단위가 붙은 수치를 놓치는 결함을 찾아 고쳤다.
-- [ ] 11. QA 보고서 이동 (8). QA 보고서를 내용 변경 없이 `Docs/QA/`로 옮기고 폴더 README에 시점 기록임을 적는다.
+- [x] 11. QA 보고서 이동 (8). QA 보고서를 내용 변경 없이 `Docs/QA/`로 옮기고 폴더 README에 시점 기록임을 적는다.
+  - 결과: `EnvironmentPIEQA-2026-10-12.md`, `FullGameplayMCPQA-2026-10-12.md`, `GameplayQAFixes-2026-10-12.md`를 `git mv`로 `Docs/QA/`에 옮겼다. 본문은 상대 링크의 대상만 새 위치에 맞췄다. 세 보고서에서 바뀐 줄은 7·8·3줄씩 18줄이고, 링크 대상을 가리고 비교하면 지운 줄과 넣은 줄이 모두 짝을 이룬다. 보존 검사는 세 보고서와 문서 지도 모두 빠짐 0이다(`--rename`으로 세 경로 대응).
+  - `Docs/QA/README.md`에 시점 기록이라는 점, 내용을 고치지 않고 정정은 새 보고서로 쓴다는 규칙, 이름 형식과 목록을 적었다. 문서 지도의 "날짜 붙은 QA·검토 보고서" 절은 "QA 보고서"와 "날짜 붙은 검토 보고서"로 나눴다. 들어오는 링크는 `EnvironmentPlan.md`, `ContentFoundation.md`, 문서 지도, `ccl8-verify`의 `references/mcp-pie.md`를 고쳤고, `features/combat.md`의 경로 표기도 `Docs/QA/`로 바꿨다.
+  - 일회성 링크 변환기가 디렉터리 링크 끝의 `/`를 지우는 결함이 있어, 관계없는 문서 다섯 곳(사본 포함 8곳)의 `examples/`, `decisions/` 링크가 잠시 바뀌었다. 커밋 전에 되돌렸고 최종 diff에는 없다.
 - [ ] 12. 게임 문서 재작성 (10, 11). 문서나 소유 묶음 하나씩 새로 쓰고 보존 검사를 통과시킨 뒤 커밋한다. `Docs/Learning/`은 제외한다.
 - [ ] 13. 서사 정본 (10). `World.md`, `Scenario.md`의 확정 영역은 글자를 바꾸지 않고 구조만 바꾼다. 독립 검토의 수정 제안 목록을 사용자에게 제출한다.
 - [ ] 14. 날짜 붙은 검토 보고서 정리 (12). 결과를 소유 사양서로 옮긴다. 삭제는 대상 목록을 사용자에게 확인받은 뒤 한다.
+  - 대상: `AgentReview-2026-10-08.md`, `UIReview-2026-10-08.md`, `CodeDesignFixes-2026-10-11.md`.
 - [ ] 15. 계획 문서 정리 (12). StudyRoadmap은 방향과 일정, DeliveryPlan은 제출 절차만 남기고 다음 작업은 `Docs/Work/`로 옮긴다.
 
 ## 정한 것
@@ -68,10 +72,10 @@
 - 결정 파일 이름은 `NNNN-<english-kebab>.md`다. 2026-10-26 사용자가 영어 kebab-case를 골랐다. 근거: 사용자 지시 "slug는 영어 kebab-case로 해 줘(예: 0028-agent-workflow-restructure.md)".
 - 결정 파일 머리말에는 결정 28이 적은 상태(`status`, 진행이 있으면 `progress`)와 관계(`refines`, `amends`, `supersedes_part`, `supersedes`, `lifts_hold`)에 더해 `topic`, `summary`, `owners`를 둔다. 옛 Decisions 표의 주제·현재 내용·소유 문서를 생성 결과에 남기려면 이 세 칸이 필요했다. 결정 28의 "상태·번복 관계만"을 넓게 읽은 것이므로 사용자가 다르게 정하면 머리말과 생성기를 고친다. 근거: `Tools/Agent/decisions.cjs`의 `REQUIRED`.
 - 결정 사이의 관계는 나중 결정의 머리말에만 적고, 반대 방향("결정 7에서 보완")은 생성기가 계산한다. 근거: `Tools/Agent/decisions.cjs`의 `relationText`.
+- 날짜 붙은 문서 여섯 개 가운데 `EnvironmentPIEQA-2026-10-12.md`, `FullGameplayMCPQA-2026-10-12.md`, `GameplayQAFixes-2026-10-12.md`는 QA 보고서, `AgentReview-2026-10-08.md`, `UIReview-2026-10-08.md`, `CodeDesignFixes-2026-10-11.md`는 검토 보고서다. 근거: 2026-10-26 사용자 지시 "세 개를 QA 보고서로 Docs/QA/에 옮기고, AgentReview, UIReview, CodeDesignFixes는 검토 보고서로 둬".
 
 ## 아직 모르는 것
 
-- 날짜 붙은 문서 여섯 개 중 어느 것이 QA 보고서인지. 후보는 `EnvironmentPIEQA-2026-10-12.md`, `FullGameplayMCPQA-2026-10-12.md`, `GameplayQAFixes-2026-10-12.md`다. `AgentReview-2026-10-08.md`, `UIReview-2026-10-08.md`, `CodeDesignFixes-2026-10-11.md`는 검토 보고서 후보다. 조각 11 전에 사용자와 정한다.
 - 개인 볼트에 재사용 지식을 반영할 범위. 이번 기록 때 Obsidian MCP가 연결되지 않아 볼트를 참고하지 못했다.
 
 ## 범위 밖

@@ -85,10 +85,10 @@
 
 확인된 프로젝트 경로는 다음과 같다.
 
-- [CCLExperimentPlayerController.cpp:27](../Source/CCL/Environment/CCLExperimentPlayerController.cpp#L27)의 `PlayerTick`은 Director와 Pawn 준비 후 메뉴를 자동으로 연다. 에디터의 게임 창 포커스 준비를 기다리지 않는다.
-- [KSIUISubsystem.cpp:395](../Source/KSIUI/Private/KSIUISubsystem.cpp#L395)의 `EnsureRoot`는 Root를 뷰포트에 추가하고 활성화한다.
-- [KSIScreen.cpp:18](../Source/KSIUI/Private/KSIScreen.cpp#L18)의 메뉴 입력 설정은 이동·시점 차단을 요구한다. 설정 정의가 없는 문제가 아니다.
-- [CCLExperimentScreen.cpp:95](../Source/CCL/Environment/CCLExperimentScreen.cpp#L95)의 `OnManagedTick`은 게임 뷰포트가 키보드 포커스를 가졌을 때 `RequestRefreshFocus()`만 요청한다. 입력 정책 재적용은 하지 않는다.
+- [CCLExperimentPlayerController.cpp:27](../../Source/CCL/Environment/CCLExperimentPlayerController.cpp#L27)의 `PlayerTick`은 Director와 Pawn 준비 후 메뉴를 자동으로 연다. 에디터의 게임 창 포커스 준비를 기다리지 않는다.
+- [KSIUISubsystem.cpp:395](../../Source/KSIUI/Private/KSIUISubsystem.cpp#L395)의 `EnsureRoot`는 Root를 뷰포트에 추가하고 활성화한다.
+- [KSIScreen.cpp:18](../../Source/KSIUI/Private/KSIScreen.cpp#L18)의 메뉴 입력 설정은 이동·시점 차단을 요구한다. 설정 정의가 없는 문제가 아니다.
+- [CCLExperimentScreen.cpp:95](../../Source/CCL/Environment/CCLExperimentScreen.cpp#L95)의 `OnManagedTick`은 게임 뷰포트가 키보드 포커스를 가졌을 때 `RequestRefreshFocus()`만 요청한다. 입력 정책 재적용은 하지 않는다.
 
 UE 5.8.3의 `<Engine>/Plugins/Runtime/CommonUI/Source/CommonUI/Private/`에서 확인한 동작은 다음과 같다.
 
@@ -103,7 +103,7 @@ UE 5.8.3의 `<Engine>/Plugins/Runtime/CommonUI/Source/CommonUI/Private/`에서 �
 
 #### 수정 방법 제안
 
-프로젝트의 CommonUI 라우터에서 게임 창 포커스가 준비됐을 때 현재 활성 화면의 입력 설정을 다시 평가하도록 한다. 기존 [KSIUIActionRouter.cpp:12](../Source/KSIUI/Private/KSIUIActionRouter.cpp#L12)의 `RefreshPresentationRouting()`은 현재 Root를 다시 설정하는 경로가 있으므로 재사용 후보가 된다.
+프로젝트의 CommonUI 라우터에서 게임 창 포커스가 준비됐을 때 현재 활성 화면의 입력 설정을 다시 평가하도록 한다. 기존 [KSIUIActionRouter.cpp:12](../../Source/KSIUI/Private/KSIUIActionRouter.cpp#L12)의 `RefreshPresentationRouting()`은 현재 Root를 다시 설정하는 경로가 있으므로 재사용 후보가 된다.
 
 포커스 변경 콜백 안에서 즉시 재진입시키기보다 다음 틱으로 예약하고, 해당 LocalPlayer의 현재 활성 Root와 최하위 화면을 기준으로 적용한다. 최초 설정 누락이나 게임 창 포커스 복귀를 계기로 실행하며 매 프레임 `SetIgnoreMoveInput`을 반복 호출하지 않는다. `RequestRefreshFocus()` 추가 호출이나 설정이 없는 상태의 `RefreshUIInputConfig()` 호출만으로 끝내면 원인이 남는다.
 
@@ -123,7 +123,7 @@ Failed to commit change! ViewportWidget was null.
 
 #### 코드 원인
 
-[CCLExperimentPlayerController.cpp:88](../Source/CCL/Environment/CCLExperimentPlayerController.cpp#L88)의 `EndPlay`는 실험 화면을 닫고 등록을 해제한다. [KSIUISubsystem.cpp:348](../Source/KSIUI/Private/KSIUISubsystem.cpp#L348)의 `CloseView`와 [KSIUIRoot.cpp:150](../Source/KSIUI/Private/KSIUIRoot.cpp#L150)의 `RemoveScreen`이 화면을 제거하면 활성 입력 트리가 바뀐다. Root의 기본 설정은 [KSIUIRoot.cpp:24](../Source/KSIUI/Private/KSIUIRoot.cpp#L24)의 Game 정책이다.
+[CCLExperimentPlayerController.cpp:88](../../Source/CCL/Environment/CCLExperimentPlayerController.cpp#L88)의 `EndPlay`는 실험 화면을 닫고 등록을 해제한다. [KSIUISubsystem.cpp:348](../../Source/KSIUI/Private/KSIUISubsystem.cpp#L348)의 `CloseView`와 [KSIUIRoot.cpp:150](../../Source/KSIUI/Private/KSIUIRoot.cpp#L150)의 `RemoveScreen`이 화면을 제거하면 활성 입력 트리가 바뀐다. Root의 기본 설정은 [KSIUIRoot.cpp:24](../../Source/KSIUI/Private/KSIUIRoot.cpp#L24)의 Game 정책이다.
 
 엔진 `<Engine>/Plugins/Runtime/CommonUI/Source/CommonUI/Private/Input/CommonUIActionRouterBase.cpp:1866`의 `ApplyUIInputConfig`는 뷰포트와 입력 모드에 변경을 적용한다. `:1997`에서 뷰포트 위젯이 없다는 경고를 출력하고, `:2009`와 `:2010`에서는 Enhanced Input의 입력 모드 태그를 갱신한다. 이 태그 호출은 뷰포트 위젯이 유효한 경우에만 실행되는 구조가 아니다.
 
@@ -137,7 +137,7 @@ Failed to commit change! ViewportWidget was null.
 
 ## 판정 범위와 남은 검사
 
-세계 배율 0은 이미 접수된 고배율 계산 대기를 없애는 명령이 아니다. 탐색 중 높은 세계 배율을 입력한 뒤 0으로 바꿨을 때 대기 처리가 이어지는 것을 관측했고, 새 PIE에서 대기가 없는 상태로 버튼 검사를 다시 수행했다. 이는 [기존 계산 대기 설명](EnvironmentPlan.md#실험-메뉴-조작과-검증)과 일치한다. [KSIWorldClock.cpp:101](../Source/KSIWorldTime/Private/KSIWorldClock.cpp#L101)의 `FKSIWorldClock::ChangeTimeScale`은 배율을 바꾸고, 같은 파일 `:155`의 `Prepare`는 접수된 구간의 배율을 사용한다. 이번 보고서의 정지 정상 판정을 대기 작업 취소로 해석하면 안 된다.
+세계 배율 0은 이미 접수된 고배율 계산 대기를 없애는 명령이 아니다. 탐색 중 높은 세계 배율을 입력한 뒤 0으로 바꿨을 때 대기 처리가 이어지는 것을 관측했고, 새 PIE에서 대기가 없는 상태로 버튼 검사를 다시 수행했다. 이는 [기존 계산 대기 설명](../EnvironmentPlan.md#실험-메뉴-조작과-검증)과 일치한다. [KSIWorldClock.cpp:101](../../Source/KSIWorldTime/Private/KSIWorldClock.cpp#L101)의 `FKSIWorldClock::ChangeTimeScale`은 배율을 바꾸고, 같은 파일 `:155`의 `Prepare`는 접수된 구간의 배율을 사용한다. 이번 보고서의 정지 정상 판정을 대기 작업 취소로 해석하면 안 된다.
 
 144배와 288배 입력은 검증했지만 실제 10분·5분을 기다려 게임 하루가 지나는 장시간 검사는 하지 않았다. `1e10`에서도 관측 시각과 공전 변화만 확인했으며, 고배율의 실시간 처리율을 계측하지 않았다. 키를 계속 누른 상태, 게임패드, 네트워크, 패키지, 저장 복원과 날씨·지형·눈·물·불·생태계 전체 회귀도 이번 검사에 포함하지 않았다. Graft 설치·빌드는 PIE 기능 검사 대상이 아니다.
 

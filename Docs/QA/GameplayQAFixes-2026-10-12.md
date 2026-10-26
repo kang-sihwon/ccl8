@@ -36,10 +36,10 @@ UE 5.8.3에서 프로젝트 파일 생성과 `CCLEditor Win64 Development` 빌�
 
 ## 구현 근거와 남은 확인
 
-공용 입력 수명은 [KSIUIActionRouter](../Source/KSIUI/Private/KSIUIActionRouter.cpp)가 처리한다. `IsInputTargetReady`는 World 종료 상태, 뷰포트 위젯, Controller와 PlayerInput을 확인하며 적용하지 못한 정책을 엔진 캐시에 기록하지 않는다. UE의 `CommonUIActionRouterBase.cpp:1866`은 기반 적용 함수에서 입력 설정 캐시와 이동·시점 차단을 함께 관리한다. `UIActionRouterTypes.cpp:1685`는 에디터 창 포커스 조건을 검사한다. 엔진 경로는 `<Engine>/Plugins/Runtime/CommonUI/Source/CommonUI/Private/Input/` 기준이다.
+공용 입력 수명은 [KSIUIActionRouter](../../Source/KSIUI/Private/KSIUIActionRouter.cpp)가 처리한다. `IsInputTargetReady`는 World 종료 상태, 뷰포트 위젯, Controller와 PlayerInput을 확인하며 적용하지 못한 정책을 엔진 캐시에 기록하지 않는다. UE의 `CommonUIActionRouterBase.cpp:1866`은 기반 적용 함수에서 입력 설정 캐시와 이동·시점 차단을 함께 관리한다. `UIActionRouterTypes.cpp:1685`는 에디터 창 포커스 조건을 검사한다. 엔진 경로는 `<Engine>/Plugins/Runtime/CommonUI/Source/CommonUI/Private/Input/` 기준이다.
 
-NPC 선택은 [FindNearestReachable](../Source/CCL/Campaign/CCLVillageSteward.cpp)를 HUD, 대화 RPC와 구매 RPC가 함께 사용한다. 서버가 요청을 처리할 때의 거리와 차폐로 다시 선택한다. 지연이 있는 원격 클라이언트에서 이동 중인 NPC의 표시와 서버 선택이 같은 프레임에 일치하는지는 이번에 검증하지 않았다.
+NPC 선택은 [FindNearestReachable](../../Source/CCL/Campaign/CCLVillageSteward.cpp)를 HUD, 대화 RPC와 구매 RPC가 함께 사용한다. 서버가 요청을 처리할 때의 거리와 차폐로 다시 선택한다. 지연이 있는 원격 클라이언트에서 이동 중인 NPC의 표시와 서버 선택이 같은 프레임에 일치하는지는 이번에 검증하지 않았다.
 
-방패 배치와 설명 에셋은 [configure_gameplay_qa.py](../Tools/Validation/configure_gameplay_qa.py)로 갱신했다. 기존 CombatPlayground를 다시 만들지 않고 도구가 소유한 이름의 Actor를 재사용한다. 획득·장착 자동 검사와 전투 스모크는 분리된 검사이며, 새 PIE에서 E·I·우클릭을 연속 조작한 전체 수동 검사를 대신한다고 주장하지 않는다. 가드 조작 안내는 [CombatFoundation](CombatFoundation.md#입력과-방향)을 따른다.
+방패 배치와 설명 에셋은 [configure_gameplay_qa.py](../../Tools/Validation/configure_gameplay_qa.py)로 갱신했다. 기존 CombatPlayground를 다시 만들지 않고 도구가 소유한 이름의 Actor를 재사용한다. 획득·장착 자동 검사와 전투 스모크는 분리된 검사이며, 새 PIE에서 E·I·우클릭을 연속 조작한 전체 수동 검사를 대신한다고 주장하지 않는다. 가드 조작 안내는 [CombatFoundation](../CombatFoundation.md#입력과-방향)을 따른다.
 
 실제 OS 창 전환에서 이미 누른 이동키·마우스 축 입력의 경계, 외부 네트워크, 패키지와 게임패드는 이번 수정에서 재검증하지 않았다. 종합 QA 원문에 적힌 장시간 환경 실행과 그 밖의 미확인 범위도 유지한다. 재사용할 CommonUI 포커스·캐시·입력 대상 수명 지식은 개인 볼트의 `LocalPlayer-UI-Contexts`에 반영했다.

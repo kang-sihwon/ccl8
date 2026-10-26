@@ -20,7 +20,7 @@
 | 임시 시험 배치 | 전투 PIE 월드에 장비 8종과 두 번째 반지를 픽업으로 배치. 실제 E 획득·장착 후 검사. 에디터 맵에 저장하지 않음 |
 | 판정 근거 | 실제 체력·위치·태그·아이템·저장 레코드 변화, 화면 상태, 환경 검사 결과 JSON. 도구의 클릭 성공 응답만으로 판정하지 않음 |
 
-환경 구역의 의도는 [EnvironmentPlan](EnvironmentPlan.md), 전투는 [CombatFoundation](CombatFoundation.md), 네트워크는 [MultiplayerFoundation](MultiplayerFoundation.md), 원정·아이템·저장은 [CampaignFoundation](CampaignFoundation.md), [ContentFoundation](ContentFoundation.md), [ProgressionFoundation](ProgressionFoundation.md), [SessionFoundation](SessionFoundation.md)을 기준으로 읽었다. 시간 배율·천체 관측창의 상세 입력 검사는 같은 날 앞서 수행한 [환경 실험장 PIE QA](EnvironmentPIEQA-2026-10-12.md)에 있다.
+환경 구역의 의도는 [EnvironmentPlan](../EnvironmentPlan.md), 전투는 [CombatFoundation](../CombatFoundation.md), 네트워크는 [MultiplayerFoundation](../MultiplayerFoundation.md), 원정·아이템·저장은 [CampaignFoundation](../CampaignFoundation.md), [ContentFoundation](../ContentFoundation.md), [ProgressionFoundation](../ProgressionFoundation.md), [SessionFoundation](../SessionFoundation.md)을 기준으로 읽었다. 시간 배율·천체 관측창의 상세 입력 검사는 같은 날 앞서 수행한 [환경 실험장 PIE QA](EnvironmentPIEQA-2026-10-12.md)에 있다.
 
 ## 환경 종합실험장·격리실험장
 
@@ -115,9 +115,9 @@ Listen Server와 Dedicated Server 구성에서 소유 플레이어의 이동·�
 
 **재현:** 환경 맵을 뷰포트 PIE로 시작한다. 자동 메뉴를 닫기 전에 `CommonUI.DumpInputConfig`와 Controller 차단 값을 조회한다. 닫기·F7 후 같은 값을 비교한다.
 
-**코드 원인:** [CCLExperimentPlayerController.cpp:27](../Source/CCL/Environment/CCLExperimentPlayerController.cpp#L27)의 자동 열기는 뷰포트 포커스 준비를 기다리지 않는다. [CCLExperimentScreen.cpp:95](../Source/CCL/Environment/CCLExperimentScreen.cpp#L95)의 후속 처리는 포커스 복원이다. 엔진 `<Engine>/Plugins/Runtime/CommonUI/Source/CommonUI/Private/Input/UIActionRouterTypes.cpp:97`·`:1685`는 에디터 포커스 조건에 따라 최하위 화면의 입력 설정 적용을 건너뛴다. 포커스만 복원하면 누락된 설정을 다시 평가하지 않을 수 있다. **원인 추론의 신뢰도는 높음**이며 최초 호출 스택을 중단점으로 수집하지는 않았다.
+**코드 원인:** [CCLExperimentPlayerController.cpp:27](../../Source/CCL/Environment/CCLExperimentPlayerController.cpp#L27)의 자동 열기는 뷰포트 포커스 준비를 기다리지 않는다. [CCLExperimentScreen.cpp:95](../../Source/CCL/Environment/CCLExperimentScreen.cpp#L95)의 후속 처리는 포커스 복원이다. 엔진 `<Engine>/Plugins/Runtime/CommonUI/Source/CommonUI/Private/Input/UIActionRouterTypes.cpp:97`·`:1685`는 에디터 포커스 조건에 따라 최하위 화면의 입력 설정 적용을 건너뛴다. 포커스만 복원하면 누락된 설정을 다시 평가하지 않을 수 있다. **원인 추론의 신뢰도는 높음**이며 최초 호출 스택을 중단점으로 수집하지는 않았다.
 
-**수정 방법:** [KSIUIActionRouter.cpp:12](../Source/KSIUI/Private/KSIUIActionRouter.cpp#L12)의 Root 재평가 경로를 검토해 게임 창 포커스 준비 후 활성 화면의 입력 설정을 다시 적용한다. 포커스 콜백에서 다음 틱으로 예약하면 재진입을 피할 수 있다. 단순 `RequestRefreshFocus()` 반복이나 매 틱 이동 차단 호출은 누락 원인을 해결하지 못하거나 차단 카운트를 누적시킨다. 최초 열기를 지연하는 방법도 가능하지만 다른 메뉴의 포커스 복귀까지 다루려면 공용 라우터에서 수명을 처리하는 편이 낫다.
+**수정 방법:** [KSIUIActionRouter.cpp:12](../../Source/KSIUI/Private/KSIUIActionRouter.cpp#L12)의 Root 재평가 경로를 검토해 게임 창 포커스 준비 후 활성 화면의 입력 설정을 다시 적용한다. 포커스 콜백에서 다음 틱으로 예약하면 재진입을 피할 수 있다. 단순 `RequestRefreshFocus()` 반복이나 매 틱 이동 차단 호출은 누락 원인을 해결하지 못하거나 차단 카운트를 누적시킨다. 최초 열기를 지연하는 방법도 가능하지만 다른 메뉴의 포커스 복귀까지 다루려면 공용 라우터에서 수명을 처리하는 편이 낫다.
 
 **재검사:** 두 맵의 첫 PIE에서 메뉴를 닫지 않아도 Menu·이동 차단·시점 차단이 적용돼야 한다. 이미 누른 이동키, 시점 입력, 메뉴 전환, 재시작도 검사한다. 현재 우회는 닫기 후 F7 재열기다.
 
@@ -133,7 +133,7 @@ Failed to commit change! ViewportWidget was null.
 
 **재현:** 메뉴가 활성화된 PIE를 종료하고 해당 시각의 에디터 로그를 확인한다. 이번 증거 사본은 `editor.log:7636`부터다.
 
-**코드 원인:** [KSIUISubsystem.cpp:348](../Source/KSIUI/Private/KSIUISubsystem.cpp#L348)의 화면 닫기와 [KSIUIRoot.cpp:150](../Source/KSIUI/Private/KSIUIRoot.cpp#L150)의 화면 제거가 활성 입력 트리를 바꾼다. Root 기본 정책은 Game이다. 엔진 `<Engine>/Plugins/Runtime/CommonUI/Source/CommonUI/Private/Input/CommonUIActionRouterBase.cpp:1866`의 설정 적용은 `:1997`에서 무효한 뷰포트를 경고한 뒤에도 `:2009`·`:2010`의 입력 태그 갱신을 시도한다. **종료 중 트리 정리와 입력 대상 소멸 순서가 맞지 않는다는 원인 추론의 신뢰도는 높음**이다. Campaign 종료 당시 정확한 호출 스택은 미수집이다.
+**코드 원인:** [KSIUISubsystem.cpp:348](../../Source/KSIUI/Private/KSIUISubsystem.cpp#L348)의 화면 닫기와 [KSIUIRoot.cpp:150](../../Source/KSIUI/Private/KSIUIRoot.cpp#L150)의 화면 제거가 활성 입력 트리를 바꾼다. Root 기본 정책은 Game이다. 엔진 `<Engine>/Plugins/Runtime/CommonUI/Source/CommonUI/Private/Input/CommonUIActionRouterBase.cpp:1866`의 설정 적용은 `:1997`에서 무효한 뷰포트를 경고한 뒤에도 `:2009`·`:2010`의 입력 태그 갱신을 시도한다. **종료 중 트리 정리와 입력 대상 소멸 순서가 맞지 않는다는 원인 추론의 신뢰도는 높음**이다. Campaign 종료 당시 정확한 호출 스택은 미수집이다.
 
 **수정 방법:** 일반 메뉴 닫기와 World·LocalPlayer 종료를 구분한다. 종료 시 화면 트리를 입력 대상보다 먼저 해제하거나, 프로젝트 라우터가 종료 상태에서 무효한 뷰포트·PlayerInput 적용을 생략하도록 보완한다. 로그만 숨기는 방법은 일반 메뉴의 입력 복구 실패를 감출 수 있다. 실제 종료 훅과 순서는 구현 때 확인해야 한다.
 
@@ -141,11 +141,11 @@ Failed to commit change! ViewportWidget was null.
 
 ### F-03 · WARNING: 기본 전투실험장에 가드 시험용 장비가 없음
 
-**현상:** 기본 CombatPlayground는 양손이 비어 있고 방패 픽업이 없어 우클릭이 공격으로 처리된다. [CombatFoundation의 조작 안내](CombatFoundation.md)는 우클릭 유지 가드를 제시하므로 이 맵을 처음 실행한 사용자는 안내대로 가드를 확인할 수 없다. PIE 월드에 방패를 임시 배치해 획득·장착하면 가드와 가드 붕괴는 정상이다.
+**현상:** 기본 CombatPlayground는 양손이 비어 있고 방패 픽업이 없어 우클릭이 공격으로 처리된다. [CombatFoundation의 조작 안내](../CombatFoundation.md)는 우클릭 유지 가드를 제시하므로 이 맵을 처음 실행한 사용자는 안내대로 가드를 확인할 수 없다. PIE 월드에 방패를 임시 배치해 획득·장착하면 가드와 가드 붕괴는 정상이다.
 
 **재현:** CombatPlayground의 새 PIE에서 인벤토리와 맵 픽업을 확인한다. 빈손으로 우클릭을 유지한다. 방패를 획득해 오른손에 장착한 뒤 같은 입력으로 비교한다.
 
-**코드 원인:** [CCLLoadoutComponent.cpp:440](../Source/CCL/Items/CCLLoadoutComponent.cpp#L440)의 `GetHandAction`은 장비가 없는 손에 `Attack`을 반환한다. 장비가 있으면 무기 정의의 손별 동작을 반환한다. 따라서 가드 능력 자체의 고장보다 **현재 손별 동작 설계와 테스트 맵·안내의 불일치**다. 신뢰도 높음이다.
+**코드 원인:** [CCLLoadoutComponent.cpp:440](../../Source/CCL/Items/CCLLoadoutComponent.cpp#L440)의 `GetHandAction`은 장비가 없는 손에 `Attack`을 반환한다. 장비가 있으면 무기 정의의 손별 동작을 반환한다. 따라서 가드 능력 자체의 고장보다 **현재 손별 동작 설계와 테스트 맵·안내의 불일치**다. 신뢰도 높음이다.
 
 **수정 방법:** CombatPlayground에 방패 픽업을 배치하고 획득·오른손 장착 안내를 추가한다. 처음부터 방패를 장착시키는 대안은 바로 가드를 시험할 수 있지만 빈손과 장비 교체 시험을 건너뛴다. 양손 동작 설계를 되돌려 모든 빈손 우클릭을 가드로 바꾸는 수정은 다른 무기의 입력 계약까지 바꾸므로 이 문제의 우선 수정안으로 삼지 않는다.
 
@@ -157,7 +157,7 @@ Failed to commit change! ViewportWidget was null.
 
 **재현:** 환경 구역 07을 열어 설명과 식생 상태 문구를 읽는다. Agent 생애 버튼으로 보호 개체의 노화 생존과 외부 피해 사망을 비교한다.
 
-**코드 원인:** [CCLExperimentScreen.cpp:630](../Source/CCL/Environment/CCLExperimentScreen.cpp#L630), [CCLExperimentDefinition.cpp:17](../Source/CCL/Environment/CCLExperimentDefinition.cpp#L17)·[:58](../Source/CCL/Environment/CCLExperimentDefinition.cpp#L58)의 고정 문구가 현재 구현 범위를 반영하지 않는다. 신뢰도 높음이다.
+**코드 원인:** [CCLExperimentScreen.cpp:630](../../Source/CCL/Environment/CCLExperimentScreen.cpp#L630), [CCLExperimentDefinition.cpp:17](../../Source/CCL/Environment/CCLExperimentDefinition.cpp#L17)·[:58](../../Source/CCL/Environment/CCLExperimentDefinition.cpp#L58)의 고정 문구가 현재 구현 범위를 반영하지 않는다. 신뢰도 높음이다.
 
 **수정 방법:** 현재 가능한 음식·생애 수동 조작을 명시하고 자동 검사가 식생·저장 범위라는 제한은 유지한다. “모두 자동 검증됨”으로 바꾸면 실제 검사 범위를 과장한다.
 
@@ -169,7 +169,7 @@ Failed to commit change! ViewportWidget was null.
 
 **재현:** 관리인과 주민이 모두 상호작용 범위에 들어오는 위치에서 가까운 주민을 향해 T를 누른다. 열린 대화 대상과 양쪽 거리를 비교한다.
 
-**코드 원인:** [CCLPlayerController.cpp:633](../Source/CCL/CCLPlayerController.cpp#L633)의 `NearbySteward`는 Actor 순회 중 `CanReach`가 참인 첫 대상을 반환한다. [CCLVillageSteward.cpp:86](../Source/CCL/Campaign/CCLVillageSteward.cpp#L86)은 거리 275와 가시선만 검사하고 여러 후보의 거리·시선 우선순위를 비교하지 않는다. 관측과 코드 원인의 신뢰도는 높음이며 원하는 선택 정책은 미확정이다.
+**코드 원인:** [CCLPlayerController.cpp:633](../../Source/CCL/CCLPlayerController.cpp#L633)의 `NearbySteward`는 Actor 순회 중 `CanReach`가 참인 첫 대상을 반환한다. [CCLVillageSteward.cpp:86](../../Source/CCL/Campaign/CCLVillageSteward.cpp#L86)은 거리 275와 가시선만 검사하고 여러 후보의 거리·시선 우선순위를 비교하지 않는다. 관측과 코드 원인의 신뢰도는 높음이며 원하는 선택 정책은 미확정이다.
 
 **수정 방법 제안:** 접근 가능한 후보 중 거리 또는 화면 조준 방향으로 우선순위를 정하고 HUD 안내와 서버 상호작용이 같은 대상을 사용하게 한다. 거리 우선은 예측하기 쉽지만 NPC가 교차하면 선택이 자주 바뀔 수 있다. 조준 우선은 대상을 고르기 쉽지만 카메라와 캐릭터 방향 차이를 고려해야 한다. 정책을 정한 뒤 선택 유지 조건도 함께 구현한다.
 
