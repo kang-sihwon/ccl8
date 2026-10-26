@@ -60,7 +60,11 @@
 - [ ] 12. 게임 문서 재작성 (10, 11). 문서나 소유 묶음 하나씩 새로 쓰고 보존 검사를 통과시킨 뒤 커밋한다. `Docs/Learning/`은 제외한다.
   - 문서마다 하는 일: (1) WritingGuide 표로 종류를 정하고, 첫 문단에 결론과 이 문서가 소유하는 것을 쓴다. (2) 확정 내용에는 근거 결정 링크를 붙이고, 제안은 "(제안)"으로, 미기록·미확인은 "미확인" 절로 모은다. (3) 다른 문서가 소유하는 내용은 요약과 링크만 남긴다. (4) 다른 문서가 링크하는 제목은 유지하거나 링크를 함께 고친다. (5) `preserve.cjs --old <옛> --new <새>`가 통과하고, 일부러 뺀 항목은 허용 파일에 넣어 커밋 본문에 이유를 적는다. (6) `decisions.cjs check`와 상대 링크 검사가 통과한다. (7) 문서나 소유 묶음 하나를 커밋 하나로 남긴다.
   - 묶음 순서: 방향(Direction, GameDesign, ArtDirection, Setup), 시스템 사양(MultiplayerFoundation, CombatFoundation, CampaignFoundation, ContentFoundation, ProgressionFoundation, SessionFoundation, UIFoundation, AgentFoundation, Packaging), 코드 구조(FrameworkPlan, CodeStructurePlan), 자연 환경(EnvironmentPlan과 하위 문서 8개), 도구(AgentToolingResearch), 현황(LearningLog). `NarrativeConcept`는 서사 문서이므로 조각 13에서 다룬다.
-  - 진행: Direction 완료(보존 검사 빠짐 0). 확정 범위 표에 근거 결정을 붙이고, 결정 19 링크를 넣고, 제안과 미확인을 각각 절로 모았다. 사용자가 이 형식을 검토한 뒤 나머지 문서로 넓힌다.
+  - 진행: 방향 묶음 완료. 네 문서 모두 보존 검사 빠짐 0이다.
+    - Direction: 확정 범위 표에 근거 결정을 붙이고, 결정 19 링크를 넣고, 제안과 미확인을 각각 절로 모았다. 2026-10-26 사용자가 이 형식을 승인했다.
+    - GameDesign: 결정 3·5·8을 "확정한 것" 표로 모으고 나머지 절을 제안으로 표시했다. "남은 사양"은 미정 목록으로 바꾸고, 그 뒤 프로토타입 수치와 성장·저장 구현을 맡은 CombatFoundation, ProgressionFoundation, SessionFoundation 링크를 붙였다.
+    - ArtDirection: 확정은 결정 1의 스타일 공유뿐임을 첫 문단에 적고, 시각 기준과 제작 방식을 제안으로, 착수하지 않은 시안·미정 디자인·미측정 성능 목표를 미정 목록으로 모았다.
+    - Setup: 2026-10-04 초기 구성의 이력 문서라 WritingGuide의 이력 규칙대로 본문을 두고, 시점 기록이라는 안내와 현재 소유 문서(AgentContextTools, VersionControl) 링크만 붙였다.
 - [ ] 13. 서사 정본 (10). `World.md`, `Scenario.md`의 확정 영역은 글자를 바꾸지 않고 구조만 바꾼다. 독립 검토의 수정 제안 목록을 사용자에게 제출한다.
 - [ ] 14. 날짜 붙은 검토 보고서 정리 (12). 결과를 소유 사양서로 옮긴다. 삭제는 대상 목록을 사용자에게 확인받은 뒤 한다.
   - 대상: `AgentReview-2026-10-08.md`, `UIReview-2026-10-08.md`, `CodeDesignFixes-2026-10-11.md`.

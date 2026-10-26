@@ -1,5 +1,7 @@
 # 초기 구성 기록
 
+2026-10-04 초기 구성을 기록한 이력 문서이며 작성 뒤 내용을 고치지 않는다. 원격 연결, 그래프, 도구 상태는 그 뒤 바뀌었다. 지금의 도구와 설정은 [AgentContextTools](AgentContextTools.md), 저장소와 원격은 [VersionControl](VersionControl.md)이 소유한다.
+
 ## 범위
 
 2026-10-04 승인한 계획에 따라 ccl8을 독립 Git 저장소로 구성했다. 기본 브랜치는 `main`이고 GitHub 원격은 미연결이다. `Config/`, `Content/`, `Docs/`, `Source/`, `Tools/`와 프로젝트 AI 설정을 관리한다.
