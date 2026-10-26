@@ -85,7 +85,19 @@
     - 이번 변경 전부터 깨져 있던 학습 문서 링크를 더 찾았다: `Docs/Learning/GASCombat.md:205`의 `EnvironmentFire.md#현재-코드의-후속-열-피해-연결`(제목 없음), `Docs/Learning/EnvironmentMapConfiguration.md`의 `Source/CCL/Editor/CCLEnvironmentFXLibrary.cpp`, `Docs/Learning/UIFramework.md`의 `Source/CCL/UI/Core/CCLUISubsystem.cpp` 두 곳. 학습 문서는 범위 밖이라 고치지 않았다.
   - 진행: 도구·현황 묶음 완료. AgentToolingResearch는 2026-10-05 조사 문장에 날짜를 붙이고, 제안이 어디까지 반영됐는지 2026-10-26 "반영 상태" 표를 넣었다(Unreal MCP·Toolset 활성화는 `CCL.uproject`로 확인, `ccl8-ue-editor`·`ccl8-asset-pipeline`은 만들지 않음). LearningLog는 Mentoring 양식의 사본을 링크로 바꿨다. 두 문서 모두 빠짐 0.
   - 결과: 조각 12의 대상 게임 문서 26개(방향 4, 시스템 사양 9, 코드 구조 2, 자연 환경 9, 도구·현황 2)를 모두 다뤘다. 문서마다 `preserve.cjs` 보존 검사가 빠짐 0으로 통과했고, 의도한 제거 3건(Campaign·Progression의 전달 이력, Content의 합쳐진 표기)은 커밋 본문에 이유와 함께 적었다. 날짜순 기록이고 링크된 제목이 많은 문서(SessionFoundation, EnvironmentEcology, EnvironmentPlan, FrameworkPlan, CodeStructurePlan)는 절을 다시 나누지 않고 첫머리 결론, 현재 상태 표, 낡은 문장 주석으로 정리했다. 재작성 중 코드와 대조해 낡은 사실을 고친 곳은 각 문서의 커밋 본문에 있다. `NarrativeConcept`는 조각 13에서 다룬다.
-- [ ] 13. 서사 정본 (10). `World.md`, `Scenario.md`의 확정 영역은 글자를 바꾸지 않고 구조만 바꾼다. 독립 검토의 수정 제안 목록을 사용자에게 제출한다.
+- [x] 13. 서사 정본 (10). `World.md`, `Scenario.md`의 확정 영역은 글자를 바꾸지 않고 구조만 바꾼다. 독립 검토의 수정 제안 목록을 사용자에게 제출한다.
+  - 결과: `World.md`, `Scenario.md`에는 확정 내용이 없었다. 기존 문장은 그대로 두고 소유 문단과 빈 "확정한" 절만 더했다. Workflow, CurrentWork, NarrativeConcept는 결론을 앞에 두고 지운 Guide를 AGENTS.md로 바꾸고 결정 1·2와 VersionControl 링크를 붙였다. Glossary는 그대로 뒀다. 다섯 문서 모두 보존 검사 빠짐 0이다. 상대 경로를 링크로 바꾼 경우를 보존으로 인정하도록 `preserve.cjs`를 고쳤다.
+  - 2026-10-26 읽기 전용 독립 검토(세션 모델)가 수정 제안 10건을 냈고 사용자에게 제출했다. 정본 확정 영역을 건드리는 제안은 없다. 반영은 사용자 승인 뒤에 한다.
+    1. (높음) 스킬에 독립 검토의 읽기 전용 위임이 적혀 있지 않아 AGENTS.md 경계상 요청 없이 실행할 수 없다. CurrentWork의 검토자와 승인자도 섞여 있다.
+    2. (높음) Research·Drafts·Reviews의 경로, 파일 이름, 종료 뒤 보존 규칙이 없고 NarrativeConcept의 "필요해지면"과 Workflow의 기록 의무가 어긋난다.
+    3. (높음) 정본화 승인을 누가 어디에 남기는지 없다. 정본화마다 결정 파일을 만들고 정본 항목에 `결정 N`을 붙이는 안이다.
+    4. (중간) 상태 어휘 세 벌(Glossary 항목 상태, Workflow 단계, 검토 판정)의 대응이 없고 판정 `APPROVED`가 사용자 승인과 헷갈린다.
+    5. (중간) 단계에 초안 작성 단계가 없고 `CANON_CONFLICT` 뒤의 다음 단계가 없다.
+    6. (중간) 스킬이 Workflow가 소유한다고 적은 항목(작업 방식 선택, 저작권, 문서 소유권)이 Workflow에 없고, 시작 때 읽을 목록이 스킬과 Workflow에 따로 있다.
+    7. (중간) NarrativeConcept의 "다음 문서는 설정을 확정하지 않는다"가 바로 아래 World·Scenario 정본과 어긋난다.
+    8. (중간) WritingGuide의 문서 종류 표에 서사 정본 종류가 없다.
+    9. (중간) Workflow의 "이전 프로젝트의 설정, 작품 수 할당량과 일회성 예외"가 무엇인지 설명이 없다.
+    10. (낮음) "한 도구"의 뜻, 시작 전 상태값, 필드 이름의 영어·한국어 혼용.
 - [ ] 14. 날짜 붙은 검토 보고서 정리 (12). 결과를 소유 사양서로 옮긴다. 삭제는 대상 목록을 사용자에게 확인받은 뒤 한다.
   - 대상: `AgentReview-2026-10-08.md`, `UIReview-2026-10-08.md`, `CodeDesignFixes-2026-10-11.md`.
 - [ ] 15. 계획 문서 정리 (12). StudyRoadmap은 방향과 일정, DeliveryPlan은 제출 절차만 남기고 다음 작업은 `Docs/Work/`로 옮긴다.
