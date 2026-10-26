@@ -16,6 +16,15 @@
 
 계정만 돈을, 인벤토리만 물품을 소유한다. Agent는 그 식별자를 참조한다. 부채 잔액은 채무자·채권자가 공유하는 단일 의무 레코드에 둔다. 공간의 소유권과 사용 권한은 구분한다. 플레이어도 동일한 자원 계약을 사용하며 기존 저장 금화는 계정으로 변환한다.
 
+| 계층 | 실제 데이터 | 확인 위치 |
+|---|---|---|
+| 개인 특성 | 위험 감수·공격성·호기심·사회성·자기 통제·공감성, 물질적 이익·의무·타인 복지 | `FCCLAgentTraits::Axes` |
+| 개인의 삶 | 직업·역할·집·일터·사회 연결·숙련·장기 목표 | `FCCLLifeState` |
+| 실제 자원 | 계정·인벤토리·소유권·의무 ID, 정수 잔액과 부채 | `FCCLAgentResourceLinks`, `FCCLEconomyState` |
+| 경험과 관계 | 관측한 사건·상대, 기억·믿음·증거, 신뢰·호감·원한 | `FCCLAgentExperience` |
+| 현재 상태 | 욕구 긴급도·감정 강도와 감쇠, 부상, 단기 의도 | `FCCLAgentNeeds`, `FKSIPersistentIntent` |
+| 결과 설명 | 요청 ID·기회·실행 시각·성공 여부·실패 이유·선택 점수 기여 | `FCCLLifeExecutionReceipt` |
+
 ## 판단과 실행
 
 판단 커널은 UObject·Actor·Mass에 의존하지 않는 입력 스냅샷을 읽는다. 알고 있는 기회와 실제 능력으로 후보를 만들고 성향·욕구·관계·목표의 점수 기여를 기록한다. StateTree는 선택된 의도를 수행하고 실패를 복구한다. 별도의 인생 목표를 선택하지 않는다.
@@ -50,6 +59,40 @@ WorldEvent의 실제 신원과 Agent가 지각한 Observation은 구분한다. �
 
 ## 구현과 확장 경계
 
+아래는 주요 클래스의 책임 관계다. 이름은 현재 코드 기준이다.
+
+```mermaid
+classDiagram
+    class FKSIAgentRecord {
+        Id
+        DefinitionId
+        Features
+    }
+    class FKSIAgentStore {
+        Acquire()
+        Commit()
+        CommitBatch()
+        Release()
+    }
+    class FCCLLifeSimulation {
+        Decide()
+        Execute()
+        AdvanceTo()
+        Save()
+        Load()
+    }
+    FKSIAgentStore *-- FKSIAgentRecord : 세대와 쓰기 주체
+    FCCLLifeSimulation *-- FKSIAgentStore : Agent 기록
+    FCCLLifeSimulation *-- FCCLEconomyState : 계정·재고·의무·소유권
+    FCCLLifeSimulation ..> CCLDecision : Evaluate
+    UCCLAgentWorldSubsystem *-- FCCLLifeSimulation
+    UCCLAgentComponent ..> FKSIAgentRecord : AgentId로 참조
+    ACCLAgentAIController ..> UCCLAgentComponent : StateTree와 예약
+    UCCLLifeGoalDefinition ..> FCCLLifeSimulation : 진행 계산과 완료 정책
+```
+
+Agent Record는 Actor를 참조하지 않는다. `UCCLAgentComponent`는 지속 기록의 Actor 표현이며 `AgentId`만 가진다. 생활·사회 기능이 필요 없는 적은 성격·욕구·경험만 조합할 수 있다. Mass 실험은 같은 판단 함수를 호출하고 의도·실행권만 Fragment로 옮기며, 인벤토리·생활 기록을 Mass Fragment에 복제하지 않는다.
+
 `Source/CCL/Agents/`의 `CCLAgentTypes`는 선택적 Feature, 타입·버전·의존성·Migration과 ID·세대·실행권을 구현한다. `CCLAgentFeatures`는 성격·생활·욕구·기억을, `CCLAgentSnapshot`은 실행권 수집 이후 저장을 담당한다. 구조체 인스턴스는 `FInstancedStruct`다. `CCLAgentTraitsCustomization`은 기본 성격과 가치관을 0-100으로 편집하고 내부에는 0-1을 쓴다. 에디터 Details의 수동 조작은 미확인이다.
 
 `FCCLLifeSimulation`이 기회 조회·판단 입력 생성·결과 확정·시간·목표 평가를 묶는다. 독립 `CCLDecision::Evaluate`는 값 입력만 읽는다. `ACCLAgentAIController`의 StateTree는 선택, 이동, 예약, 수행과 실패 복구를 실행한다. `UCCLLifeGoalDefinition`은 진행 계산기와 완료 정책을 교체한다. 새 활동은 `RegisterActivity`에 Build·Apply 처리기를 등록하며, 간략 실행 지원 여부를 별도로 선언한다. 미지원 간략 실행은 실패한다.
@@ -64,9 +107,24 @@ WorldEvent의 실제 신원과 Agent가 지각한 Observation은 구분한다. �
 
 전투 적은 생활·계정 Feature 없이 성격·욕구·기억을 사용하고, 공통 판단 커널로 공격 지속과 후퇴를 평가한다. 생활 NPC의 실제 피격도 부상·공포·기억으로 이어진다. 인지하지 못한 공격자의 ID는 기억에 넣지 않는다. 저장한 부상은 Actor 체력으로 복원한다. 구체적인 동물 행동과 NPC의 무기 전술은 등록할 콘텐츠다.
 
-`UCCLMapSubsystem`과 `UCCLMapMarkerComponent`는 미니맵·전체맵에 지역과 관찰자별 표식을 공급한다. 기본 지형은 레벨의 충돌 StaticMesh 경계 투영이며, `SetRegion`으로 작성한 지역 정의를 쓸 수 있다. 표식 공개는 거리·시야를 확인한다. `UCCLCinematicSubsystem`은 마을 진입·승리의 카메라 이동, UI 숨김, 제목·레터박스, 음향과 광원 연출을 소유 핸들로 정리한다. 취소·완료·소유 Pawn 교체 시 복구한다.
+`UKSIMapSubsystem`과 `UKSIMapMarkerComponent`는 미니맵·전체맵에 지역과 관찰자별 표식을 공급한다. 기본 지형은 레벨의 충돌 StaticMesh 경계 투영이며, `SetRegion`으로 작성한 지역 정의를 쓸 수 있다. 표식 공개는 거리·시야를 확인한다. `UCCLCinematicSubsystem`은 마을 진입·승리의 카메라 이동, UI 숨김, 제목·레터박스, 음향과 광원 연출을 소유 핸들로 정리한다. 취소·완료·소유 Pawn 교체 시 복구한다.
 
 `CCLMassAgentBridge`는 실제 `FMassEntityManager`의 Entity를 만든다. Fragment에는 의도와 실행권만 두고 동적 Feature는 공통 Store가 유지한다. 이동 전에는 미반영 의도를 Commit하고 실행권을 반환한다. 실패하면 Entity를 남겨 복구할 수 있다. UE 5.9 소스의 `<Engine>/Source/Runtime/MassEntity/Public/MassEntityManager.h`에 있는 Fragment의 복사 가능 타입 검사에 맞춘 구성이다. Mass 이동·전투·GAS 자동 호환은 제공하지 않는다.
+
+## 직접 확인
+
+생활 시뮬레이션, 총기 투사체, 미니맵·전체맵, 마을 진입·승리 연출을 같은 Campaign에서 확인한다. 아래 조작은 2026-10-08 통합 당시 기준이다.
+
+1. `CCL.uproject`의 `/Game/Maps/Campaign`을 실행한다. 마을 진입 연출이 끝나면 카메라와 HUD가 돌아온다. `Esc`로 연출을 건너뛸 수 있다.
+2. 주민 가까이에서 `T`로 대화한다. 생활 NPC는 현재 활동·목표·진행과 자신의 잔액을 대사로 알린다. 퀘스트 담당자는 기존 퀘스트·상점 기능을 유지하며 생활 행동도 수행한다.
+3. 오른쪽 위 미니맵을 확인하고 `M`으로 전체맵을 연다. 파란색은 나, 노란색은 NPC, 빨간색은 보이는 적이다. `Esc`로 닫는다.
+4. 마을 시작 지점 주변의 Pistol·Rifle·탄약을 `E`로 수집한다. `I`에서 무기를 장착한다.
+5. `R`로 장전한다. Rifle은 왼쪽 클릭으로 발사하고 오른쪽 클릭을 유지하면 조준한다. 한손 장비는 장착한 손의 입력을 사용한다. 탄환은 서버에서 이동·충돌한다.
+6. 살아 있고 행동 중이 아닐 때 `Esc` 메뉴에서 저장한다. 재개 후 주민의 목표·재산·부채·기억·관계와 탄창 상태를 확인한다. 호스트 개인 체크포인트 정책은 [SessionFoundation](SessionFoundation.md#이번-저장-정책)을 따른다.
+
+주민의 작업은 이동 후 일정 시간 수행하므로 시작 직후에는 실행 중인 모습이 먼저 보인다. 보관 시설의 개선은 실제 비용을 지불할 수 있고 개선 행동을 선택했을 때만 일어난다. 30일 시험은 별도의 간략 실행 검증이며 실제 마을을 즉시 30일 돌리는 단축키는 없다. 30일 결과 파일은 날짜별 자원과 관계를 기록하고, `execution=` 줄의 점수 기여를 보면 선택과 결과를 이어서 확인할 수 있다.
+
+같은 상인 Definition을 사용하는 초기 조건은 `/Game/Progression/DA_MerchantLifeScenario`에 있다. 최종 마을 아트, 총기 애니메이션·총성, 동물별 행동, 탐험 안개와 손님의 개인 저장은 이 확인 범위에 없다. 세부 제한은 [현재 제한](#현재-제한)을 따른다.
 
 ## 검증
 

@@ -12,7 +12,7 @@ Agent의 영구 기록과 화면 속 Actor는 수명이 다르다. 이 장은 �
 
 조사 시작 때 확인한 `main`과 로컬 원격 추적 `origin/main`의 `50e5838`을 게임 코드 기준으로 고정한 학습 기록이다. 원격 서버를 새로 조회한 결과는 아니며 이후 추가된 커밋과 구분한다. 작업 트리의 설정·빌드 파일 변경은 이 장의 코드 기준에서 제외했다. 아래 발췌의 경로·줄 번호는 표시한 커밋 기준이고 상대 링크는 현재 체크아웃을 연다.
 
-`aea2deb`의 생활 Actor 실행과 `0931fbf`에서 추가한 Mass 연결을 비교한다. Mass 이전에 별도의 가상 Mass 코드를 두지 않는다. 계약과 기록은 [AgentFoundation](../AgentFoundation.md)과 [직접 확인 안내](../AgentReview-2026-10-08.md)에 있다.
+`aea2deb`의 생활 Actor 실행과 `0931fbf`에서 추가한 Mass 연결을 비교한다. Mass 이전에 별도의 가상 Mass 코드를 두지 않는다. 계약과 기록은 [AgentFoundation](../AgentFoundation.md)과 [직접 확인 안내](../AgentFoundation.md#직접-확인)에 있다.
 
 ## 2. 해결할 문제
 
