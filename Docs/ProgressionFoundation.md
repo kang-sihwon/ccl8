@@ -65,7 +65,45 @@ ItemDefinition이 이름·설명·아이콘·최대 중첩 수를 소유하고, 
 
 기본 마네킹에는 별도의 명명된 장착 소켓을 추가하고 기존 본과 소켓을 보존한다. 양손 슬롯 점유와 보조 손 IK는 다른 것이며, 양손 무기는 두 손 슬롯을 점유하되 오른손에 메시 하나를 표시한다. 기존 구조체 에셋은 로드할 때 변환하고 저장 형식 1-3은 태그 형식 4로 읽는다.
 
-`Loadout`은 장비 표현과 손 행동을 `ICCLEquipmentPresenter`로 요청하고 `UCCLFighterComponent`가 이 계약을 구현한다. 그래서 Items 폴더는 Combat의 구체 컴포넌트를 include하지 않는다. 장비 변경 알림은 슬롯과 효과를 확정한 뒤 전달하며, 콜백이 돌아올 때까지 Loadout 명령과 인벤토리 쓰기를 막는다. 이 계약과 검증 근거는 [코드 설계 후속 수정](CodeDesignFixes-2026-10-11.md)에 있다.
+`Loadout`은 장비 표현과 손 행동을 `ICCLEquipmentPresenter`로 요청하고 `UCCLFighterComponent`가 이 계약을 구현한다. 그래서 Items 폴더는 Combat의 구체 컴포넌트를 include하지 않는다. 장비 변경 알림은 슬롯과 효과를 확정한 뒤 전달하며, 콜백이 돌아올 때까지 Loadout 명령과 인벤토리 쓰기를 막는다. 확정 순서는 아래 [장비 변경의 확정 순서](#장비-변경의-확정-순서), 검증 근거는 [2026-10-11 설계 후속 수정](#2026-10-11-설계-후속-수정)이 소유한다.
+
+### 장비 변경의 확정 순서
+
+2026-10-11 전체 코드 검토의 후속 수정으로 정한 계약이다. 서버 PlayerState의 Loadout이 장착·훈련 상태를 소유한다.
+
+`Equip`, `Unequip`, `Use`, `Learn`은 변경 중 재진입을 거절한다. 장비 배치를 미리 검증한 다음 `BeginTransaction`으로 알림을 묶고 인벤토리 쓰기를 잠근다. 슬롯과 효과 핸들을 확정하고 GAS 속성 배치를 끝낸 뒤 외형을 동기화한다. 마지막으로 `Inventory.OnChanged`를 한 번 보낸다. 이 알림이 끝날 때까지 잠금을 유지한다. 저장 복원도 같은 쓰기 보호를 적용한다. 효과 적용이 거절되면 이전 장착과 인벤토리를 유지한다.
+
+GAS의 효과 추가 콜백 자체를 숨기지는 않는다. 해당 콜백에서 들어온 Loadout 명령과 인벤토리의 공개 변경 API를 거절한다. 콜백이 ASC를 직접 변경하거나 Actor를 파괴하는 임의 동작까지 되돌리는 범용 트랜잭션은 아니다. 알림 지연과 명령 가드는 동기 콜백의 중간 상태 접근을 제한하는 대가가 있다.
+
+엔진 근거는 UE 5.8.3의 `<Engine>/Plugins/Runtime/GameplayAbilities/Source/GameplayAbilities/Private/AbilitySystemComponent.cpp:1037`의 동기 적용 질의와 `GameplayEffect.cpp:4740`의 효과 추가 알림이다. `FScopedAggregatorOnDirtyBatch`는 속성 계산 알림의 배치이며 모든 GAS 콜백을 지연하는 도구가 아니다. GAS는 UE4에도 존재하던 시스템이며, 이 계약은 UE 5.8.3의 동기 효과 콜백과 속성 배치 동작에 맞춘 것이다. Build.cs 의존은 늘리지 않았다.
+
+인벤토리 쓰기 가능 여부는 `CanMutate`가 소유자의 권위와 Loadout 쓰기 잠금으로 판단한다. 2026-10-12 인벤토리 본체가 `KSIInventory`로 옮겨진 뒤 이 함수는 `UKSIInventoryComponent`에 있다.
+
+```cpp
+bool UKSIInventoryComponent::CanMutate() const
+{
+    return GetOwner() && GetOwner()->HasAuthority() && !bMutationLocked;
+}
+```
+
+음식 명령은 `FCCLInventoryFood`, 탄약 명령은 `FCCLInventoryWeapon` 기능 서비스가 맡는다. 호출자는 인벤토리를 명시적으로 전달한다. 저장 항목과 검증은 호환성 때문에 기존 `Food`, `LoadedAmmo` 필드를 유지한다. 기본 추가·소비의 음식 처리와 기능 상태 검증 연결도 남아 있으므로 완전한 장르 독립 상태 스키마로 분리한 것은 아니다.
+
+```cpp
+class FCCLInventoryWeapon
+{
+public:
+    static bool Reload(UCCLInventoryComponent& Inventory, FGuid Id);
+};
+
+class FCCLInventoryFood
+{
+public:
+    static bool TransferFood(UCCLInventoryComponent& Inventory,
+        FGuid SourceId, int32 Count, UCCLInventoryComponent* Destination);
+};
+```
+
+위 선언은 각 기능 헤더의 발췌다.
 
 ### 에셋 도구
 
@@ -131,7 +169,7 @@ Fast Array의 항목별 복제를 쓴다. 전체 배열 복제도 가능하지�
 
 ## 검증 상태
 
-아래는 모두 2026-10-07 UE 5.9 노트북의 기록이다. 그 뒤의 UE 5.8.3 재검증은 [DeliveryPlan](DeliveryPlan.md#2026-10-11-전체-검토-수정과-ue-583-재검증)이 소유한다. 경로는 저장소 기준이고, 파일명만 적은 로그는 `Saved/StageValidation/` 아래에 있다.
+아래는 2026-10-07 UE 5.9 노트북의 기록이고, [2026-10-11 설계 후속 수정](#2026-10-11-설계-후속-수정)만 UE 5.8.3 기록이다. 그 뒤의 UE 5.8.3 재검증은 [DeliveryPlan](DeliveryPlan.md#2026-10-11-전체-검토-수정과-ue-583-재검증)이 소유한다. 경로는 저장소 기준이고, 파일명만 적은 로그는 `Saved/StageValidation/` 아래에 있다.
 
 ### 태그 개편
 
@@ -183,6 +221,56 @@ Fast Array의 항목별 복제를 쓴다. 전체 배열 복제도 가능하지�
 | Standalone 기능 | `Saved/StageValidation/Stage4-Standalone.log` |
 | Dedicated·Listen 원격·호스트·지연과 손실 | `Saved/StageValidation/Stage4-Dedicated-Final.log`, `Stage4-Listen-Final.log`, `Stage4-Host-Final.log`, `Stage4-Impaired-Final.log` |
 | 기존 전투·이동 회귀 | `Saved/StageValidation/Stage4-Combat-Standalone.log`, `Stage4-Combat-Dedicated.log`, `Stage4-Movement.log` |
+
+### 2026-10-11 설계 후속 수정
+
+2026-10-11 전체 코드 검토의 후속 구현을 UE 5.8.3에서 검증했다. 당시 로컬 작업 트리 기준이며, 코드 제출 범위는 [FrameworkPlan](FrameworkPlan.md#패키지-검증과-제출-범위), 2026-10-12 패키지 검증은 [Packaging](Packaging.md#framework-분리-후-gameserver-패키지)이 소유한다. 아래 이름은 2026-10-11 당시 이름이다. `ICCLWorldParticipant`는 지금 `KSICore`의 `IKSIWorldParticipant`다.
+
+| 대상 | 책임과 수명 | 변경 | 계약 소유 |
+|---|---|---|---|
+| Loadout | 서버 PlayerState의 장착·훈련 상태 | 명령 재진입 거절, 효과와 슬롯 확정 후 인벤토리 알림 | [장비 변경의 확정 순서](#장비-변경의-확정-순서) |
+| ItemCatalog | 콘텐츠 에셋의 저장 이름 해석 | 중복 이름과 빈 항목 검증, 모호한 해석 거절 | [SessionFoundation](SessionFoundation.md#정의-카탈로그와-보급품-개수) |
+| Inventory 기능 | 인벤토리가 소유하는 개별 상태의 실행 | 무기·음식 실행을 기능 서비스로 분리, 저장·복제 필드 유지 | [장비 변경의 확정 순서](#장비-변경의-확정-순서) |
+| WorldParticipant | 월드 서브시스템의 저장 참여자 | 환경 시간 진행을 선택 인터페이스로 분리 | [EnvironmentPlan](EnvironmentPlan.md#다음-작업의-시작점) |
+| Surface publication | 서버 월드의 불변 전송 데이터 | 연결 간 발행본 공유, 연결별 확인·전송 위치·과거 참조 유지 | [EnvironmentSnow](EnvironmentSnow.md#저장복제와-비용) |
+
+KSI 모듈 분리, 타입 전면 개명, 저장 형식 마이그레이션은 이 수정에 포함하지 않았다. 저장 필드를 유지하므로 에셋 변환은 수행하지 않았다.
+
+검증 기준은 다음과 같았다.
+
+- 장착·해제 알림에서 슬롯·소지품·속성이 최종 상태이며 재진입 명령은 실패해야 한다.
+- 효과 적용 거절 시 이전 장착과 인벤토리를 유지해야 한다.
+- 이름이 같은 두 에셋을 넣으면 조회와 검증이 실패하며 정상 카탈로그는 유지해야 한다.
+- 저장 전용 참여자는 환경 진행 함수를 구현하지 않아도 컴파일할 수 있어야 한다. 등록은 기존 저장 참여 API를 사용한다.
+- 같은 발행본의 여러 소비자는 동일 객체를 참조하고, 이전 발행본은 참조가 있는 동안 유지돼야 한다.
+- 프로젝트 파일 생성, CCLEditor Development 빌드, CCL 자동화 전체와 장비·음식·월드·눈 네트워크 실행 검사를 수행한다.
+
+수정 전 UE 5.8.3에서 CCL 자동화 158개가 성공했다. 새 회귀 검사 3개를 추가했다. 저장 전용 참여자의 환경 메서드 생략은 구체 클래스의 컴파일 단언으로 검증한다.
+
+| 검사 | 결과 | 로컬 근거 |
+|---|---|---|
+| 프로젝트 파일 생성 | 성공 | `Saved/Tests/DesignFixes-20261011/GenerateProjectFiles.log` |
+| CCLEditor Win64 Development 전체 링크 | 성공 | `Saved/Tests/DesignFixes-20261011/EditorBuild.log` |
+| CCL 자동화 전체 | 161개 성공, 실패·경고·미실행 0개 | `Saved/Tests/Automation/20261011-194350-765/report/index.json` |
+| 장비 복원·새 프로세스 플레이어 복원 | 성공 | `Saved/Tests/LoadoutRestore/20261011-192650-634/result.json` |
+| 발사·탄약·재장전 | 성공 | `Saved/Tests/Projectile/20261011-192743/editor.log` |
+| 음식 환경·오프라인 보관·새 프로세스 재개 | 성공 | `Saved/Tests/FoodEnvironment/Standalone-20261011-193251-165/result.json` |
+| 세계 시간·저장·복원 | 성공 | `Saved/Tests/WorldSmoke/Standalone-20261011-193952-054/result.json` |
+| 캠페인 장비·훈련·전투·재스폰 | 성공 | `Saved/Tests/CampaignSmoke/Standalone-20261011-194008/driver.log` |
+| 눈 Listen·첫 접속·지연 접속 | 성공 | `Saved/Tests/Snow/Listen-20261011-193254-227/result.json` |
+| 눈 Dedicated·첫 접속·지연 접속 | 성공 | `Saved/Tests/Snow/Dedicated-20261011-193938-237/result.json` |
+| 눈 Dedicated 지연 50ms·손실 2%·보정 | 성공 | `Saved/Tests/Snow/Dedicated-20261011-194350-463/result.json` |
+
+새 자동화는 `CCL.Items.Loadout.AtomicPublication`, `CCL.Items.Catalog.UniqueSaveNames`, `CCL.Environment.Surface.SharedPublication`이다. 장비 알림에서 최종 슬롯·속성과 직접 인벤토리 쓰기 거절을 확인했고, GAS 적용 질의의 재진입·적용 거절·훈련 포인트 단일 차감도 확인했다. 공유 발행본은 8개 소비자의 동일 객체 참조, Epoch·지형 완료 번호 변경, 실패 후보와 이전 객체 수명을 검사한다.
+
+이 검증 중 검사 도구 네 개를 고쳤다.
+
+- 음식 환경 실행 검사는 순간 실내 온도를 유지 중인 음식 온도 샘플과 직접 비교하던 조건을 보완했다. 성공한 세계 진행마다 정수 세계 시각의 실내 온도를 독립적으로 기록하고 그 값·시각과 보관 상태를 비교한다. 이 검사는 생산 코드의 1초 샘플 주기를 바꾸지 않는다. 초기 실패 로그는 `Saved/Tests/FoodEnvironment/Standalone-20261011-192744-762/server.log`, 계측한 재실행은 `Standalone-20261011-193016-999/server.log`에 남았다.
+- 세계 실행 검사는 기존 호출당 0.25게임초 한도를 무시하고 2초 입력을 한 번에 처리했다고 가정했다. 제한된 반복으로 대기 입력을 모두 처리한 뒤 완료 시각과 저장을 확인하도록 고쳤다.
+- 캠페인 성장 검사는 비장비 중 첫 보급품을 회복품으로 골라 탄약을 수집하던 조건을 고쳤다. 원래 수치 기대값에 맞는 장갑과 회복품의 정의 이름을 명시한다.
+- 눈 검사 도구의 `TimeoutSeconds`를 실행 프로세스에도 전달하도록 연결했다. 기존 C++ 검사는 이 옵션과 무관하게 200초에 종료했다. 지연 50ms·손실 2%의 초기 실행은 `Saved/Tests/Snow/Dedicated-20261011-193353-252`에서 서버 6단계 제한 시간을 넘겼고, 이 실패를 정상 통과로 집계하지 않는다. 제한 시간을 420초로 일치시킨 재검사에서 서버·첫 클라이언트·지연 접속 클라이언트가 모두 통과했다. 서버는 6,189회의 이동 보정을 기록했고, 첫 클라이언트는 자신의 시작 후 186.388초에 복원 발행본을 확인했다. 이 결과는 제한된 시간 안의 기능 검증이며 전송 지연의 성능 목표를 충족했다는 판정은 아니다.
+
+검증 로그의 기기별 절대 경로는 저장소 상대 경로 또는 `<Engine>`으로 표기했다. 에디터 기반 실행 검사이며 새 패키지 생성과 렌더링 화면 검사는 포함하지 않는다.
 
 ### 미검증
 
