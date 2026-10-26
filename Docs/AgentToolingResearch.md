@@ -1,8 +1,22 @@
 # AI 주도 제작을 위한 도구 조사
 
-2026-10-05 기준 권고는 UE 내장 Unreal MCP를 먼저 검증하고, ccl8의 빌드·플레이·에셋 검증 절차를 프로젝트 스킬로 보강하는 것이다. 범용 스킬 대량 설치보다 에디터에서 수정하고 실제 결과를 확인하는 연결이 우선이다.
+AI 주도 제작에 쓸 도구는 UE 내장 Unreal MCP를 먼저 검증하고, ccl8의 빌드·플레이·에셋 검증 절차를 프로젝트 스킬로 보강하는 방향으로 정했다. 범용 스킬 대량 설치보다 에디터에서 수정하고 실제 결과를 확인하는 연결이 우선이다. 이 문서는 도구 후보의 조사, 채택·제외 근거, 도입 제안을 소유한다. 2026-10-05 조사와 2026-10-25 스킬 묶음 검토는 각 날짜의 기록이다.
 
-이 문서는 조사 결과와 도입 제안이다. 새 스킬·MCP·플러그인을 설치하거나 활성화하지 않았다. 검색 CLI는 임시 npm 캐시에서 실행했다. 실제 게임 제작 능력이나 새 MCP 연결 성공을 검증한 기록은 아니다.
+2026-10-05 조사 당시에는 새 스킬·MCP·플러그인을 설치하거나 활성화하지 않았다. 검색 CLI는 임시 npm 캐시에서 실행했다. 그 조사는 실제 게임 제작 능력이나 새 MCP 연결 성공을 검증한 기록이 아니다.
+
+## 반영 상태
+
+2026-10-26 저장소에서 확인한 상태다. 도구 설치·설정의 정본은 [AgentContextTools](AgentContextTools.md)다.
+
+| 제안 | 상태 | 근거 |
+|---|---|---|
+| 내장 Unreal MCP와 최소 Toolset 활성화 | 활성화됨. `ModelContextProtocol`, `EditorToolset`, `AutomationTestToolset`을 Editor 타깃에 켰다. 연결에는 에디터 실행이 필요하다 | `CCL.uproject`, [AgentContextTools의 Unreal MCP](AgentContextTools.md#unreal-mcp) |
+| MCP로 PIE 시작·조작·캡처 검증 | 2026-10-12 QA에서 사용 | [QA 보고서](QA/README.md) |
+| `ccl8-verify` | 작성. MCP PIE 절차는 스킬의 `references/mcp-pie.md`로 옮겼다 | `.agents/skills/ccl8-verify/` |
+| `ccl8-ue-editor`, `ccl8-asset-pipeline` | 만들지 않음 | `.agents/skills/`에 없음 |
+| Blender 설치·MCP | 확인한 기록 없음 | |
+| 스킬 묶음 통합 | 결정 28로 확정하고 재구성 지도에서 진행 | [결정 28](decisions/0028-agent-workflow-restructure.md), [재구성 지도](Work/agent-setup-v2.md) |
+| GitHub CI | 도입하지 않음 | 재구성 지도의 범위 밖 |
 
 ## 현재 상태
 
@@ -222,4 +236,4 @@ Blender MCP는 소품 제작, 메시 수정과 반입 준비를 AI가 직접 처
 4. 아트 제작 방식이 정해지면 Blender 설치·MCP·내보내기 스킬을 소품 하나로 검증한다.
 5. PCG, 추가 AI·애니메이션 Toolset, GitHub CI는 사용하는 기능에 맞춰 도입한다.
 
-이 순서는 도입 제안이며 설치 승인이나 구현 완료 기록이 아니다. 이번 조사에서는 전역 설정, 엔진 파일, MCP 설정과 기존 스킬을 변경하지 않았다.
+이 순서는 2026-10-05의 도입 제안이며 설치 승인이나 구현 완료 기록이 아니다. 그 조사에서는 전역 설정, 엔진 파일, MCP 설정과 기존 스킬을 변경하지 않았다. 이후 반영된 항목은 위 "반영 상태"를 따른다.
