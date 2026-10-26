@@ -33,7 +33,7 @@
 - 여러 문서에 걸친 시스템·제작 용어는 [GLOSSARY](../GLOSSARY.md), 서사 용어는 [서사 용어](Narrative/Glossary.md)가 소유한다. 그 밖의 프로젝트 용어는 처음 등장할 때 뜻을 설명하고 문서 안에서 같은 표기를 쓴다.
 - ID를 처음 쓸 때는 `세계의 공간 구성을 정하는 항목(AX-05)`처럼 뜻을 함께 쓴다.
 - 일반 문장의 영어는 한국어로 쓴다. `claim`은 주장, `coverage`는 확인 범위, `mechanism`은 작동 방식이나 구조, `cutoff`는 확인 기준일, `batch`는 작업 묶음이나 차수, `downstream`은 후속 항목이다. `gameplay`는 조작과 규칙이면 게임플레이, 진행 과정이면 게임 진행이다.
-- 절차의 상태값이나 필드 이름인 영어(`canon`, `writer`, `reviewer`, `APPROVED` 등)는 그대로 둔다.
+- 절차의 상태값이나 필드 이름인 영어(`canon`, `writer`, `reviewer`, `PASS` 등)는 그대로 둔다.
 - 범위는 `1-3`, `단계 4-13`처럼 하이픈, 근사값은 `약 5MB`, 이름 접미사는 `...Rad`로 쓴다. 물결표(`~`)는 GitHub가 취소선으로 해석해 문단이 깨지므로 쓰지 않는다. VS Code 미리보기는 정상으로 보이므로 판정 기준은 GitHub 렌더링이다.
 - 문장 부호는 쉼표, 마침표, 괄호를 쓴다. em dash는 결정 파일의 제목 형식(`# 날짜 — 결정 N: 제목`)에만 쓴다.
 
@@ -51,10 +51,11 @@
 |---|---|---|
 | 규범 | `AGENTS.md`, `Docs/Coding.md`, 이 문서 | 코드나 작업이 규칙을 어기면 규칙을 낮추지 않고 위반을 기록한다 |
 | 사양 | `*Foundation.md`, `Environment*.md`의 시스템 문서 | 확정 수치와 인터페이스 계약에 근거 결정 번호를 붙인다. 구현과 다르면 구현을 확인해 고친다 |
-| 이력 | `Docs/decisions/`의 결정 파일 본문, 날짜 붙은 QA·검토 보고서 | 다시 쓰지 않는다. 정정은 새 항목으로 붙인다 |
+| 정본 | `Docs/Narrative/World.md`, `Docs/Narrative/Scenario.md` | 사용자가 승인한 내용만 적고 항목마다 근거 결정을 붙인다. 바꾸려면 사용자 승인과 새 결정이 필요하다 |
+| 이력 | `Docs/decisions/`의 결정 파일 본문, 날짜 붙은 QA·검토 보고서, `Docs/Narrative/Research/`의 조사 기록 | 다시 쓰지 않는다. 정정은 새 항목으로 붙인다 |
 | 절차 | `Docs/Mentoring.md`, `Docs/AgentContextTools.md`, `Docs/Narrative/Workflow.md` | 실제로 실행한 단계만 적고 단계마다 누가 무엇을 하는지 쓴다 |
 | 현황 | `Docs/Work/`의 작업 지도, `Docs/LearningLog.md`, `Docs/Narrative/CurrentWork.md` | 지금 상태와 다음 행동만 적는다. 지난 상태는 이력 문서나 Git이 맡는다 |
-| 참조 | `Docs/Decisions.md`, `GLOSSARY.md`, 로드맵 | 빠짐없이 적는다. 원본과 다르면 원본이 맞다 |
+| 참조 | `Docs/Decisions.md`, `GLOSSARY.md`, `Docs/NarrativeConcept.md`, `Docs/Narrative/Glossary.md`, 로드맵 | 빠짐없이 적는다. 원본과 다르면 원본이 맞다 |
 
 한 주제는 한 문서가 소유한다. 소유는 [문서 지도](README.md)가 정하고 새 문서는 그 지도에 한 줄로 등록한다. 서사 문서의 소유는 [NarrativeConcept](NarrativeConcept.md)가 정한다. 시스템 학습 문서는 [시스템 학습 문서 작성 규칙](SystemExplanationGuide.md)을 함께 따른다.
 
