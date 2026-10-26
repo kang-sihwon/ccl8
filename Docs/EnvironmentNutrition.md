@@ -1,8 +1,8 @@
 # 집계 생물의 에너지·먹이·기아
 
-2026-10-12 공용 계산의 소유 모듈과 현재 코드 위치는 [Framework 단계 4](FrameworkPlan.md#단계-4-구현과-검증)를 따른다. 아래 기존 구현·검증 기록의 CCL 이름은 당시 이름이며 이동 대상만 KSI로 바뀌었다. 게임 연결과 과거 검증 범위는 유지한다.
+집계 생물도 세계 시간이 흐르면 에너지를 소비하고, 같은 서식지의 먹이를 먹거나 기아로 죽는다. 계산은 `Source/KSIEnvironment/Private/KSIEcologyNutrition.cpp`가 맡는다. 이 문서를 쓸 때의 위치는 `Source/CCL/Environment/CCLEcologyNutrition.cpp`였다. [생태계·생애](EnvironmentEcology.md)의 하위 사양이며 범위는 [결정 19](decisions/0019-natural-environment-and-labs.md)의 단계 8을 따른다. 이 문서의 에너지와 먹이 계수는 게임 실험용 값이다. 이 문서는 집계 생물의 에너지·먹이·기아 계산, 예약·반환 때의 상태 이전, 저장 형식과 검증 기록을 소유한다.
 
-집계 생물도 세계 시간이 흐르면 에너지를 소비하고, 같은 서식지의 먹이를 먹거나 기아로 죽는다. `Source/CCL/Environment/CCLEcologyNutrition.cpp`가 계산을 맡는다. [생태계·생애](EnvironmentEcology.md)의 하위 사양이며 범위는 [결정 19](decisions/0019-natural-environment-and-labs.md)의 단계 8을 따른다. 이 문서의 에너지와 먹이 계수는 게임 실험용 값이다.
+2026-10-12에 공용 계산을 KSI 모듈로 옮겼다. 소유 모듈과 현재 코드 위치는 [Framework 단계 4](FrameworkPlan.md#단계-4-구현과-검증)가 소유한다. 아래 구현·검증 기록의 CCL 이름은 당시 이름이며 이동 대상만 KSI로 바뀌었다. 게임 연결과 당시 검증 범위는 그대로다.
 
 ## 개체 수만 저장하던 집계의 한계
 
