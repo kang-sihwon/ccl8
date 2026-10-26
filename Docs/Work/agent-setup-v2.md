@@ -57,7 +57,7 @@
   - 결과: `EnvironmentPIEQA-2026-10-12.md`, `FullGameplayMCPQA-2026-10-12.md`, `GameplayQAFixes-2026-10-12.md`를 `git mv`로 `Docs/QA/`에 옮겼다. 본문은 상대 링크의 대상만 새 위치에 맞췄다. 세 보고서에서 바뀐 줄은 7·8·3줄씩 18줄이고, 링크 대상을 가리고 비교하면 지운 줄과 넣은 줄이 모두 짝을 이룬다. 보존 검사는 세 보고서와 문서 지도 모두 빠짐 0이다(`--rename`으로 세 경로 대응).
   - `Docs/QA/README.md`에 시점 기록이라는 점, 내용을 고치지 않고 정정은 새 보고서로 쓴다는 규칙, 이름 형식과 목록을 적었다. 문서 지도의 "날짜 붙은 QA·검토 보고서" 절은 "QA 보고서"와 "날짜 붙은 검토 보고서"로 나눴다. 들어오는 링크는 `EnvironmentPlan.md`, `ContentFoundation.md`, 문서 지도, `ccl8-verify`의 `references/mcp-pie.md`를 고쳤고, `features/combat.md`의 경로 표기도 `Docs/QA/`로 바꿨다.
   - 일회성 링크 변환기가 디렉터리 링크 끝의 `/`를 지우는 결함이 있어, 관계없는 문서 다섯 곳(사본 포함 8곳)의 `examples/`, `decisions/` 링크가 잠시 바뀌었다. 커밋 전에 되돌렸고 최종 diff에는 없다.
-- [ ] 12. 게임 문서 재작성 (10, 11). 문서나 소유 묶음 하나씩 새로 쓰고 보존 검사를 통과시킨 뒤 커밋한다. `Docs/Learning/`은 제외한다.
+- [x] 12. 게임 문서 재작성 (10, 11). 문서나 소유 묶음 하나씩 새로 쓰고 보존 검사를 통과시킨 뒤 커밋한다. `Docs/Learning/`은 제외한다.
   - 문서마다 하는 일: (1) WritingGuide 표로 종류를 정하고, 첫 문단에 결론과 이 문서가 소유하는 것을 쓴다. (2) 확정 내용에는 근거 결정 링크를 붙이고, 제안은 "(제안)"으로, 미기록·미확인은 "미확인" 절로 모은다. (3) 다른 문서가 소유하는 내용은 요약과 링크만 남긴다. (4) 다른 문서가 링크하는 제목은 유지하거나 링크를 함께 고친다. (5) `preserve.cjs --old <옛> --new <새>`가 통과하고, 일부러 뺀 항목은 허용 파일에 넣어 커밋 본문에 이유를 적는다. (6) `decisions.cjs check`와 상대 링크 검사가 통과한다. (7) 문서나 소유 묶음 하나를 커밋 하나로 남긴다.
   - 묶음 순서: 방향(Direction, GameDesign, ArtDirection, Setup), 시스템 사양(MultiplayerFoundation, CombatFoundation, CampaignFoundation, ContentFoundation, ProgressionFoundation, SessionFoundation, UIFoundation, AgentFoundation, Packaging), 코드 구조(FrameworkPlan, CodeStructurePlan), 자연 환경(EnvironmentPlan과 하위 문서 8개), 도구(AgentToolingResearch), 현황(LearningLog). `NarrativeConcept`는 서사 문서이므로 조각 13에서 다룬다.
   - 진행: 방향 묶음 완료. 네 문서 모두 보존 검사 빠짐 0이다.
@@ -83,7 +83,8 @@
     - 하위 문서 7개(Water, Nutrition, Weather, Terrain, Snow, Laboratories, Fire): 첫 문단을 결과와 소유 범위로 시작하고 KSI 이동 안내를 그 뒤로 옮겼다. 작업 전달 이력 문장을 뺐다. 지금 없는 소스 경로 4곳(`CCLEcologyNutrition.cpp`, `CCLWeatherModel`, `CCLSurfaceSimulation`, `CCLCombustionModel`)에 `git ls-files`로 확인한 KSIEnvironment 위치를 덧붙였다. "단계 5에서 멈춘다"(Snow), "단계 8에서 이어간다"(Fire), "자연 날씨·불·Server 타깃은 후속"(Water)은 각 소유 문서를 가리키게 고쳤다. Laboratories는 사용법을 앞에 두고 후속 작업 기준 두 절을 한 절로 모았다.
     - EnvironmentEcology·EnvironmentPlan: 날짜순 기록이고 링크된 제목이 각각 9개, 17개라 절 순서를 두었다. Ecology는 성과 목록 문단을 영역별 "구현 현황" 표로, Plan은 단계 0-9의 "단계별 현황" 표로 바꿔 각 영역·단계의 정본 절이나 문서를 가리키게 했다. 상태는 결정 19의 진행 기록(단계 0-7 완료, 8 진행)과 단계 9 관련 절을 따른다. Plan의 "다음 작업자는 Guide…"는 AGENTS.md로 바꿨다.
     - 이번 변경 전부터 깨져 있던 학습 문서 링크를 더 찾았다: `Docs/Learning/GASCombat.md:205`의 `EnvironmentFire.md#현재-코드의-후속-열-피해-연결`(제목 없음), `Docs/Learning/EnvironmentMapConfiguration.md`의 `Source/CCL/Editor/CCLEnvironmentFXLibrary.cpp`, `Docs/Learning/UIFramework.md`의 `Source/CCL/UI/Core/CCLUISubsystem.cpp` 두 곳. 학습 문서는 범위 밖이라 고치지 않았다.
-    - 남은 묶음: 도구(AgentToolingResearch), 현황(LearningLog).
+  - 진행: 도구·현황 묶음 완료. AgentToolingResearch는 2026-10-05 조사 문장에 날짜를 붙이고, 제안이 어디까지 반영됐는지 2026-10-26 "반영 상태" 표를 넣었다(Unreal MCP·Toolset 활성화는 `CCL.uproject`로 확인, `ccl8-ue-editor`·`ccl8-asset-pipeline`은 만들지 않음). LearningLog는 Mentoring 양식의 사본을 링크로 바꿨다. 두 문서 모두 빠짐 0.
+  - 결과: 조각 12의 대상 게임 문서 25개를 모두 다뤘다. 문서마다 `preserve.cjs` 보존 검사가 빠짐 0으로 통과했고, 의도한 제거 4건(Campaign·Content·Progression의 전달 이력과 합쳐진 표기)은 커밋 본문에 이유와 함께 적었다. 날짜순 기록이고 링크된 제목이 많은 문서(SessionFoundation, EnvironmentEcology, EnvironmentPlan, FrameworkPlan, CodeStructurePlan)는 절을 다시 나누지 않고 첫머리 결론, 현재 상태 표, 낡은 문장 주석으로 정리했다. 재작성 중 코드와 대조해 낡은 사실을 고친 곳은 각 문서의 커밋 본문에 있다. `NarrativeConcept`는 조각 13에서 다룬다.
 - [ ] 13. 서사 정본 (10). `World.md`, `Scenario.md`의 확정 영역은 글자를 바꾸지 않고 구조만 바꾼다. 독립 검토의 수정 제안 목록을 사용자에게 제출한다.
 - [ ] 14. 날짜 붙은 검토 보고서 정리 (12). 결과를 소유 사양서로 옮긴다. 삭제는 대상 목록을 사용자에게 확인받은 뒤 한다.
   - 대상: `AgentReview-2026-10-08.md`, `UIReview-2026-10-08.md`, `CodeDesignFixes-2026-10-11.md`.
