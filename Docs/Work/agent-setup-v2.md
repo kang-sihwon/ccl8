@@ -65,13 +65,17 @@
     - GameDesign: 결정 3·5·8을 "확정한 것" 표로 모으고 나머지 절을 제안으로 표시했다. "남은 사양"은 미정 목록으로 바꾸고, 그 뒤 프로토타입 수치와 성장·저장 구현을 맡은 CombatFoundation, ProgressionFoundation, SessionFoundation 링크를 붙였다.
     - ArtDirection: 확정은 결정 1의 스타일 공유뿐임을 첫 문단에 적고, 시각 기준과 제작 방식을 제안으로, 착수하지 않은 시안·미정 디자인·미측정 성능 목표를 미정 목록으로 모았다.
     - Setup: 2026-10-04 초기 구성의 이력 문서라 WritingGuide의 이력 규칙대로 본문을 두고, 시점 기록이라는 안내와 현재 소유 문서(AgentContextTools, VersionControl) 링크만 붙였다.
-  - 진행: 시스템 사양 묶음 9개 중 5개 완료. 공통으로 날짜 붙은 실행 기록은 "검증 상태" 아래 날짜별 절로 모으고, 현재 검증 방법은 별도 절로 나누고, 스모크 실행은 `ccl8-verify`를 가리키게 했다.
+  - 진행: 시스템 사양 묶음 9개 완료. 공통으로 날짜 붙은 실행 기록은 "검증 상태" 아래 날짜별 절로 모으고, 현재 검증 방법은 별도 절로 나누고, 스모크 실행은 `ccl8-verify`를 가리키게 했다.
     - MultiplayerFoundation: 코드와 어긋난 문장 세 개를 고쳤다. 기본 시작 맵은 지금 FrontEnd(게임)와 Campaign(에디터·서버)이고, `ACCLPlayerState`가 ASC와 게임 컴포넌트를 소유하며(결정 11), 체력은 CombatFoundation이 소유한다. 빠짐 0.
     - CampaignFoundation: 보스 체력 240이 ContentFoundation의 적 정의 에셋에 있다고 적었다. "단계 3의 종료 입력을 단계 6에서 교체" 문장은 전달 이력이라 빼고 허용 목록에 넣었다.
     - CombatFoundation: 아이템 설명을 코드에 맞췄다. `UCCLItemDefinition`은 `UKSIItemDefinition` 파생형이고 `FInstancedStruct` Fragment를 쓰며(결정 15), 전투 데이터는 `FCCLItemFragment_Weapon`에 있고 `UCCLItemFragment_Combat`은 옛 에셋 호환용이다. "맵 생성 완료를 뜻하지 않는다" 문장을 지웠다. 빠짐 0.
     - ContentFoundation: 기능 계약을 대화·상점과 퀘스트·적으로 나눴다. `5.9`가 `UE 5.9.0` 제목으로 합쳐진 것만 허용 목록에 넣었다.
     - AgentFoundation: 결정 18·26 링크와 검증 날짜(2026-10-08)를 붙였다. "손님의 재접속 신원은 지원하지 않는다"는 2026-10-08 상태로 적고, 2026-10-11에 서버 발급 신원과 세계 플레이어 프로필이 추가됐다는 사실과 SessionFoundation 링크를 붙였다(결정 21). 빠짐 0.
-    - 남은 것: ProgressionFoundation, UIFoundation, Packaging, SessionFoundation.
+    - ProgressionFoundation: 현재 계약(아이템 정의, 장비와 태그 설정, 화면과 입력, 콘텐츠 초안, 일관성)과 2026-10-07 기록을 나눴다. Fragment 루트를 `FKSIItemFragmentData`로 고치고, "단계 5 보상"·"단계 6 저장"은 ContentFoundation·SessionFoundation 링크로 바꿨다. 입력 키와 가방 16칸은 코드로 확인했다. "단계 6" 미래형 문장의 `6`만 허용 목록에 넣었다.
+    - UIFoundation: 계약 절(경계, 수명, 공개 API, 입력, 표시 제어, 배치, 기능 연결, 검증 방법)과 2026-10-07-08 기록을 나눴다. 기록은 기존 "이전과 검증" 제목 아래 주제별 절이다. 빠짐 0.
+    - Packaging: 첫 문장이 최신으로 가리킨 전투 모듈 패키지 뒤에 세계 모듈 패키지가 있어 둘 다 가리키게 고쳤다. 패키지 구성, `package_windows.ps1` 옵션(기본 출력 `Saved/Packages/` 포함), 실행 방법을 앞에 모으고 기록은 날짜순으로 "패키지 기록" 아래에 뒀다. 다른 문서가 링크하는 제목 6개를 유지했다. 빠짐 0.
+    - SessionFoundation: 다른 문서가 링크하는 절이 8개이고 뒤 절이 앞 절의 계약을 바꾸는 날짜순 기록이라 절 순서를 두었다. 첫머리에 "현재 계약" 표를 넣어 주제마다 지금 계약과 정한 절을 가리키게 하고, 낡은 문장 세 곳에 바뀐 절을 가리키는 주석을 붙였다. 형식 번호는 코드로 확인했다(개인 세션 8, 세계 스냅샷 7). 빠짐 0.
+    - 이 묶음에서 남은 개선: SessionFoundation의 절 안에 남은 "아직 구현하지 않았다" 문장들은 현재 계약 표로만 정정했다. 절 본문을 계약별로 다시 나누려면 링크하는 8곳을 함께 옮겨야 한다.
 - [ ] 13. 서사 정본 (10). `World.md`, `Scenario.md`의 확정 영역은 글자를 바꾸지 않고 구조만 바꾼다. 독립 검토의 수정 제안 목록을 사용자에게 제출한다.
 - [ ] 14. 날짜 붙은 검토 보고서 정리 (12). 결과를 소유 사양서로 옮긴다. 삭제는 대상 목록을 사용자에게 확인받은 뒤 한다.
   - 대상: `AgentReview-2026-10-08.md`, `UIReview-2026-10-08.md`, `CodeDesignFixes-2026-10-11.md`.
