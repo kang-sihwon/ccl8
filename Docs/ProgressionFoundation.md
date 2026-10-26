@@ -1,71 +1,8 @@
 # 인벤토리·장비·성장 설계
 
-단계 4는 마을의 보급품 획득, 장비 장착, 회복품 사용과 스킬 포인트 소비를 전투에 연결한다. 아래 값과 콘텐츠 명칭은 구현용 초안이며 최종 밸런스와 세계관은 아니다. 보관·장착·회복·훈련과 UI를 구현했고 실행 결과는 아래에 구분한다.
-
-장비 변경 알림은 슬롯과 효과를 확정한 뒤 전달하며, 콜백이 돌아올 때까지 Loadout 명령과 인벤토리 쓰기를 막는다. 음식과 탄약 실행은 `FCCLInventoryFood`, `FCCLInventoryWeapon`이 맡는다. 카탈로그의 중복 저장 이름과 빈 항목은 거절한다. 계약과 검증 근거는 [코드 설계 후속 수정](CodeDesignFixes-2026-10-11.md)에 있다.
+마을의 보급품 획득, 장비 장착, 회복품 사용, 스킬 포인트 소비를 전투에 연결했고 Standalone, Dedicated, Listen, 저장 복원, 패키지 화면에서 검증했다. 이 문서는 아이템 정의, 인벤토리 보관, 태그 기반 장비 슬롯과 부착, 회복과 훈련의 계약과 검증 기록을 소유한다. [StudyRoadmap](StudyRoadmap.md)의 단계 4 사양이며 근거는 [결정 15](decisions/0015-struct-fragments-and-two-handed-gear.md)와 [결정 16](decisions/0016-tagged-slots-and-attachments.md)이다. 값과 콘텐츠 명칭은 구현용 초안이며 최종 밸런스와 세계관이 아니다.
 
 ## 목표와 책임
-
-인벤토리·장비 화면은 공용 UI의 `UCCLInventoryScreen`으로 이전했다. `UCCLInventoryContext`가 선택 상태와 캐릭터 캡처를 소유하고, 컨트롤러는 화면 핸들과 기존 서버 RPC를 사용한다. 공용 관리자가 화면을 닫으면 드래그와 캡처도 해제한다. 본문은 기존 Slate 슬롯을 `UNativeWidgetHost`에 넣어 유지했다. 실제 포인터 드래그·교환·장착·해제, 메뉴 전환, 화면 재사용, 사망·재스폰과 로컬 플레이어 분리를 통과했다. 생성 BAT·전체 빌드와 실행 근거는 [UIFoundation](UIFoundation.md)의 인벤토리·메뉴 이전 검사 표를 따른다.
-
-2026-10-07 사용자는 장비·무기 설정을 Gameplay Tag로 지정하고, 부착 지점 태그를 캐릭터별 실제 소켓에 연결하는 개편을 승인했다. 이번 변경에서는 Equip의 허용·기본 슬롯을 태그로, Weapon의 한손·양손 정보를 단일 태그로 옮긴다. 슬롯 점유는 장착 처리와 저장 검증이 같은 규칙으로 계산한다. Visual은 슬롯별 부착 지점 태그를 보관하고 캐릭터가 참조하는 AttachmentProfile이 메시 소켓으로 해석한다. 프로필에는 대상 메시, 소켓 선택 목록, 아이템 미리보기와 데이터 검증을 제공한다. 기존 구조체 에셋은 로드 시 변환하고 저장 형식 1-3은 새 태그 형식 4로 읽는다. 설계 근거는 [결정 16](decisions/0016-tagged-slots-and-attachments.md)이다. UE 5.9에서 생성 BAT·전체 에디터 빌드, 에셋 백업·변환, 태그 계약 자동 검사와 단독·Listen·저장·화면 검사를 통과했다.
-
-검증은 잘못된 슬롯·무기 사용 방식·소켓 매핑 거부, 기존 양손 교체·반환·원격 입력, 저장 호환, 실제 메시 부착과 장비 창을 포함한다. 기존 소켓을 자동 추정하지 않고 프로필에 등록한 실제 소켓만 사용한다. 기본 마네킹에는 별도의 명명된 장착 소켓을 추가하고 기존 본과 소켓을 보존한다. 양손 슬롯 점유와 보조 손 IK는 구분하며 새 IK·수납 동작은 이번 범위에 포함하지 않는다.
-
-태그 관련 구현과 편집 위치는 다음과 같다. 프로필 에셋과 기본 마네킹의 장착 소켓을 생성하고 다시 로드해 검증했다.
-
-| 설정 | 편집 위치와 계약 |
-|---|---|
-| 장착 부위 | Equip의 `AllowedSlots`, `DefaultSlotTag`: `Equipment.Slot.*`의 구체적인 슬롯 |
-| 한손·양손 | Weapon의 `HandUsage`: `Weapon.HandUsage.OneHanded` 또는 `TwoHanded` 중 하나 |
-| 부착 위치 | Visual의 `Attachments`: 슬롯 태그, `Attachment.*` 지점 태그, 아이템별 오프셋 |
-| 메시 소켓 | `UCCLAttachmentProfile`의 `ReferenceMesh`, `Bindings`: 지점 태그를 실제 소켓 이름에 연결 |
-| 에디터 미리보기 | 프로필의 `PreviewItem`, `PreviewSlot`: 기준 포즈의 캐릭터와 선택 장비 표시 |
-
-`CCLEquipment::GetOccupiedSlots`를 장착과 저장 검증에서 함께 사용한다. 복제된 장비 목록은 태그와 GUID로 구성한다. 실제 메시 부착은 Fighter가 프로필을 해석하며 누락된 매핑·소켓이면 경고를 남기고 표시를 생략한다. 본 이름을 소켓으로 간주하거나 루트에 대신 붙이지 않는다. 프로필 데이터 검증과 미리보기는 중복 매핑·부적합한 스켈레톤·잘못된 아이템 설정도 확인한다. 이전 Equip의 양손 플래그와 Visual의 소켓 이름은 로드 변환에만 남기고 새 편집 화면에서는 숨겼다.
-
-`Tools/Validation/migrate_equipment_tags.py`는 기존 정의 12개와 기본 마네킹을 `Saved/EquipmentTagBackup/`에 백업한 뒤 변환을 요청한다. 도구는 기본 마네킹에 `CCL_Grip_L/R`, `CCL_Shield_L/R`, `CCL_Stow_Back` 소켓을 추가하고 `Content/Progression/DA_HumanoidAttachments.uasset`을 생성한다. 기존 소켓과 이미 있는 프로필 설정은 덮어쓰지 않는다. 재시작한 새 에디터 모듈에서 실행해야 하며, 구버전 모듈에서는 에셋 저장 전에 실패하도록 했다. 2026-10-07 실행에서 정의 12개 변환 성공과 오류·경고 0개를 확인했다. 원본 백업은 로컬 `Saved/EquipmentTagBackup/20261007-225914-285642/`에 있다.
-
-최종 생성·빌드 근거는 `Saved/StageValidation/Tags-Generate.log`, `Tags-Build.log`다. `CCL.Equipment.TagContracts`는 명시 소켓·중복 매핑·잘못된 태그·형식 1-3 변환·형식 4 왕복을 검사했다. 검사 중 숫자 슬롯을 enum 이름으로 잘못 해석하는 저장 호환 결함을 수정했다. UE JSON의 숫자도 문자열 조회에 응답하므로 슬롯 값의 실제 자료형을 먼저 구분한다. 테스트용 중복 배열 요소도 복사본을 추가하도록 수정했다.
-
-| 태그 개편 검사 | 로컬 근거 |
-|---|---|
-| 기존 에셋 백업·소켓·프로필·정의 변환 | `Saved/StageValidation/Tags-Migrate.log` |
-| 태그·소켓·저장 버전 계약 | `Saved/Tests/Automation/20261007-230548-043/report/index.json`, 성공 1·실패 0 |
-| 단독·Listen 원격 입력·복제·재스폰 | `Saved/StageValidation/Tags-Standalone.log`, `Tags-Listen.log` |
-| 별도 프로세스 저장·복원 | `Saved/StageValidation/Tags-Session.log` |
-| 720p·1080p 드래그·장착·해제·대화 전환 | `Saved/StageValidation/Tags-UI-1280.log`, `Tags-UI-1920.log` |
-| 실제 오른손 소켓과 양손 장비 메시 하나 | `Saved/Tests/UIVisual/1280x720-20261007-230543/game.log` |
-
-`Tools/Validation/run_automation.ps1`는 프로세스 종료 코드와 결과 JSON을 함께 검사한다. 테스트 실패를 종료 코드 0만으로 통과시키지 않으며 결과가 없거나 실행되지 않은 검사가 있으면 실패한다. 화면 캡처는 `Saved/Tests/UIVisual/1280x720-20261007-230543/`와 `1920x1080-20261007-230642/`에 있다. 캐릭터·슬롯·대화창 배치를 확인했다. 프로필 편집기의 수동 드롭다운 조작과 미리보기 화면은 미확인이다. 아래 실행 결과는 태그 변경 이전 검사 근거다.
-
-장비 체계 개편은 [결정 15](decisions/0015-struct-fragments-and-two-handed-gear.md)를 따른다. 구조체 Fragment와 장착·저장 코드를 구현했고 단독 실행·Listen 원격 입력·저장 복원 검사를 통과했다. 화면 수정의 최종 검증 상태는 아래에 구분한다.
-
-ItemDefinition이 이름·설명·아이콘·최대 중첩 수를 소유하고, 선택 기능은 `FInstancedStruct` 배열로 보관한다. 새 구조체의 루트는 `FCCLItemFragmentData`다. 기존 UObject Fragment 클래스는 저장된 에셋을 `PostLoad`에서 읽는 호환 경로로 남긴다. 새 정의에는 Equip, ConsumableData, Visual, SkeletalVisual, HarvestTool, MeleeWeapon, ProjectileWeapon을 조합한다. SkeletalVisual은 Visual의 바닥 표시용 StaticMesh를 상속하고 장착용 SkeletalMesh를 추가한다. 무기 속성은 Weapon 계층 안에 둔다. ProjectileWeapon·HarvestTool은 정의 형식만 추가했으며 발사·채집 실행은 이번 장비 UI 구현에 포함하지 않는다.
-
-장착 부위는 왼손·오른손·갑옷·신발·망토·목걸이·반지 두 칸이다. 한손 장비와 방패는 어느 손에나 장착하며 기본 손은 오른손이다. 양손 장비는 같은 GUID로 두 손을 점유하고 효과는 한 번 적용한다. 장착 항목은 소유 목록에 남고 가방 슬롯만 `INDEX_NONE`으로 바뀐다. 교체 시 새 장비가 비우는 칸을 포함해 이전 장비의 반환 공간을 확인한다. 부족하면 장착 상태와 효과를 바꾸지 않는다. 장비를 가방으로 드래그해 해제할 때는 빈 칸이 필요하다.
-
-좌클릭·우클릭은 왼손·오른손 장비에 정의된 액션을 실행한다. Loadout과 ASC는 같은 PlayerState에 속한다. 손 선택 RPC를 먼저 보내고 기존 GAS 예측 입력을 실행해 서버가 현재 보유 장비로 전투 정의를 선택한다. 인벤토리 화면의 장비 패널은 캐릭터 캡처를 중앙에, 장착 슬롯을 양옆에 표시한다. 가방은 오른쪽 4×4 격자이며 슬롯 간 드래그로 장착·해제한다. 검·방패·양손 지팡이의 검증용 장착 메시는 임시 도형이고, 방어구 외형은 아직 제작하지 않았다.
-
-구현 위치는 `Source/CCL/Items/CCLItemFragments.h`, `CCLLoadoutComponent.cpp`, `Source/CCL/UI/SCCLInventoryWidget.cpp`다. `Tools/Validation/create_equipment.py`로 기존 정의를 덮어쓰지 않고 시험용 장비 8종을 생성했다. `migrate_item_fragments.py`는 기존 정의 네 개의 별도 변환 도구다. 이번 `migrate_equipment_tags.py` 실행이 해당 네 개를 포함해 백업·로드 변환·저장을 완료했으므로 별도로 실행할 필요가 없다.
-
-2026-10-07 UE 5.9에서 생성 BAT와 CCLEditor 전체 빌드를 통과했다. 단독·Listen 원격 검사에서 왼손 방패와 양손 장비의 보조 액션, 입력 해제, 장착 후 재스폰을 확인했다. 별도 프로세스 저장·복원과 양손 점유 형식 검사도 통과했다. 오프스크린 UI 검사에서는 가방 슬롯의 장비 여부 인자가 초기화되지 않아 드래그가 실패하는 결함을 발견했다. 인자 초기값을 지정하고 슬롯 제목·아이템 이름의 줄바꿈과 캐릭터 캡처 비율을 수정했다.
-
-수정 후 생성 BAT·에디터 `-NoLink` 컴파일·게임 타깃 빌드와 별도 패키징을 통과했다. 패키지의 1280×720·1920×1080에서 Slate 드래그 이동·교환·취소·장착·해제, 장비 8칸 표시, 인벤토리 닫기와 NPC 대화 전환을 확인했다. 해당 시점에는 실행 중인 에디터 때문에 최종 DLL 링크가 보류됐다. 이후 에디터 종료와 태그 개편 전체 빌드·실행 검사를 완료했으며 현재 근거는 위 태그 개편 검사 표를 따른다.
-
-| 장비 개편 검사 | 로컬 근거 |
-|---|---|
-| 생성 BAT·화면 수정 전 전체 에디터 빌드 | `Saved/StageValidation/Equipment-Generate.log`, `Equipment-Build.log` |
-| 시험용 장비 8종 생성 | `Equipment-Assets.log` |
-| 단독·Listen 원격 기능 | `Equipment-Standalone.log`, `Equipment-Listen.log` |
-| 별도 프로세스 저장·복원 | `Equipment-Session.log` |
-| 가방 부족·양손 교체·반지·저장 무결성, 수정 전 UI 실패 재현 | `Equipment-Offscreen.log`, `Saved/Tests/UIVisual/1280x720-20261007-170902/game.log` |
-| 화면 수정 후 컴파일, 링크 제외 | `Equipment-UIFix-Compile.log` |
-| 최종 생성 BAT·에디터 컴파일, 링크 제외 | `Equipment-Final-Generate.log`, `Equipment-Final-Compile.log` |
-| 게임 타깃 빌드·패키지 | `Equipment-Package.log`의 게임 빌드 성공, `Equipment-Package-Final.log`의 UAT 성공 |
-| 패키지 720p·1080p UI | `Equipment-Packaged-UI-1280.log`, `Equipment-Packaged-UI-1920.log` |
-
-파일명만 적은 로그는 `Saved/StageValidation/` 기준이다. 오프스크린 검사는 게임 내부의 Slate 포인터 이벤트를 사용하며 Windows 바탕화면의 수동 조작 검사는 아니다.
 
 | 구성 | 책임과 수명 | 변경 권위 |
 |---|---|---|
@@ -76,7 +13,7 @@ ItemDefinition이 이름·설명·아이콘·최대 중첩 수를 소유하고, 
 | PlayerController | 실제 소유 플레이어의 획득·장착·사용 요청 | 요청만 전달 |
 | 인벤토리 화면·문맥 | 복제된 아이템·장비·스킬 표시, 선택과 캐릭터 미리보기 | 로컬 플레이어의 공용 UI 관리자 |
 
-공용 `UKSIInventoryComponent`는 Character, 무기, 스태미나나 UI를 참조하지 않는다. `UCCLInventoryComponent`가 게임별 음식·탄약 규칙과 저장 참여를 연결한다. 공용 정의와 저장 계약의 경계·검증은 [FrameworkPlan](FrameworkPlan.md#단계-2-구현-설계와-검증-기준)을 따른다. 수량과 GUID는 런타임 상태이며 공유 정의를 수정하지 않는다. 장비와 소비는 Fragment를 조회하는 LoadoutComponent가 실행한다. 소유 Actor의 AbilitySystemInterface로 GAS를 조회하고 현재 Avatar에 장비를 연결한다. 상자에 같은 인벤토리를 붙여도 GAS가 필요하지 않다.
+공용 `UKSIInventoryComponent`는 Character, 무기, 스태미나, UI를 참조하지 않는다. `UCCLInventoryComponent`가 게임별 음식·탄약 규칙과 저장 참여를 연결한다. 공용 정의와 저장 계약의 경계·검증은 [FrameworkPlan](FrameworkPlan.md#단계-2-구현-설계와-검증-기준)이 소유한다. 수량과 GUID는 런타임 상태이며 공유 정의를 수정하지 않는다. 장비와 소비는 Fragment를 조회하는 LoadoutComponent가 실행한다. 소유 Actor의 AbilitySystemInterface로 GAS를 조회하고 현재 Avatar에 장비를 연결하므로, 상자에 같은 인벤토리를 붙여도 GAS가 필요하지 않다([결정 9](decisions/0009-genre-independent-base-systems.md)).
 
 ```mermaid
 classDiagram
@@ -98,15 +35,74 @@ classDiagram
     ACCLHUD --> UCCLInventoryComponent
 ```
 
-## 이번 콘텐츠와 입력
+## 아이템 정의
 
-2026-10-07 사용자의 게임 내 글자 확대 요청에 따라 HUD의 기본 글자 배율을 기존의 2배로 바꿨다. ACCLHUD가 로컬 화면 크기에 맞춘 배치·줄바꿈을 담당하며 인벤토리 슬롯은 Slate 위젯으로 표시한다. 긴 문구는 영역 안에서 줄바꿈한다. 별도 패키지의 1280×720과 1920×1080 캡처에서 안내·체력·인벤토리의 표시를 확인했다. 훈련 영역은 스크롤로 나머지 항목을 볼 수 있다.
+ItemDefinition이 이름·설명·아이콘·최대 중첩 수를 소유하고, 선택 기능은 `FInstancedStruct` 배열로 보관한다. Fragment 구조체의 루트는 공용 `FKSIItemFragmentData`다. 정의에는 Equip, ConsumableData, Visual, SkeletalVisual, HarvestTool, MeleeWeapon, ProjectileWeapon을 조합한다. SkeletalVisual은 Visual의 바닥 표시용 StaticMesh를 상속하고 장착용 SkeletalMesh를 더한다. 무기 속성은 Weapon 계층 안에 둔다. 기존 UObject Fragment 클래스는 저장된 에셋을 `PostLoad`에서 읽는 호환 경로로만 남아 있다.
 
-추가 UI 요청에 따라 인벤토리는 아이템 이름·수량을 표시하는 4×4 Slate 슬롯으로 교체한다. 빈 슬롯으로 드래그하면 이동하고 점유 슬롯이면 교환하며 창 밖 드롭은 취소한다. GUID와 슬롯 번호를 서버에서 검증하고 Fast Array로 소유자에게 복제한다. 슬롯 배치와 장착 상태의 저장 형식은 [SessionFoundation](SessionFoundation.md)의 저장 정책을 따른다. 선택·장착·사용·훈련은 기존 요청 경로를 사용한다. 마우스 조작 중 게임 입력을 차단하고 닫을 때 돌려준다. NPC 대화와 인벤토리는 동시에 열지 않아 하단 영역이 겹치지 않게 한다. 서버 이동·교환·잘못된 요청, 실제 Slate 드래그·취소, 저장 복원과 화면 배치를 검증한다. 검증 상태는 위 목표와 책임 절을 따른다. 기존 배포 폴더의 실행 파일은 이번 UI 변경을 포함하지 않는다.
+훈련 목록과 저장 가능한 정의는 `UCCLItemCatalog`(`DA_ItemCatalog`)가 소유한다. Loadout의 훈련 요청과 세션 저장이 같은 카탈로그를 조회하므로, 새 아이템이나 훈련을 추가할 때 코드의 이름 목록을 고치지 않는다. 카탈로그는 중복 저장 이름과 빈 항목을 거절한다. 설정과 저장 거부 규칙은 [SessionFoundation](SessionFoundation.md)의 "정의 카탈로그와 보급품 개수"가 소유한다.
 
-마을에서 E로 가까운 보급품을 얻는다. 월드 보급품은 세션 공유이며 먼저 수령한 플레이어에게 한 번 지급한다. 이 임시 정책은 최종 협동·대전의 보상 규칙을 확정하지 않는다. 철제 건틀릿은 기존 맨손 공격 애니메이션을 사용하고 공격 보너스 10을 부여한다. 회복약은 체력 50을 회복하며 최대 중첩은 20개다. 기본 공격 수치는 20이다. 훈련 스킬은 공격 숙련과 생명력 훈련이며 각각 포인트 1을 써서 공격 보너스 5 또는 최대 체력 25를 얻는다. 같은 스킬을 중복 습득할 수 없다. 시작 포인트는 1이며 이후 콘텐츠의 보상은 단계 5에서 연결한다.
+음식과 탄약 실행은 `FCCLInventoryFood`, `FCCLInventoryWeapon`이 맡는다. 발사·채집 실행은 ProjectileWeapon·HarvestTool의 정의 형식과 별개다.
 
-I로 인벤토리 패널을 열고 위·아래로 선택한다. F는 장착, G는 장비 해제, H는 선택한 회복품 사용, 1·2는 각 훈련 습득 요청이다. 성공·거부 결과와 남은 포인트를 표시한다. 이 단계의 UI는 기능 검증용이며 최종 시각 디자인은 아니다.
+## 장비
+
+장착 부위는 왼손·오른손·갑옷·신발·망토·목걸이·반지 두 칸이다. 한손 장비와 방패는 어느 손에나 장착하며 기본 손은 오른손이다. 양손 장비는 같은 GUID로 두 손을 점유하고 효과는 한 번 적용한다. 장착 항목은 소유 목록에 남고 가방 슬롯만 `INDEX_NONE`으로 바뀐다. 교체할 때는 새 장비가 비우는 칸을 포함해 이전 장비의 반환 공간을 확인하고, 부족하면 장착 상태와 효과를 바꾸지 않는다. 장비를 가방으로 드래그해 해제할 때는 빈 칸이 필요하다.
+
+좌클릭·우클릭은 왼손·오른손 장비에 정의된 액션을 실행한다. Loadout과 ASC는 같은 PlayerState에 속한다. 손 선택 RPC를 먼저 보내고 GAS 예측 입력을 실행해 서버가 현재 보유 장비로 전투 정의를 고른다. 장비가 전투 Fragment를 갖지 않으면 맨손 공격 정의를 쓴다.
+
+### 태그 설정
+
+2026-10-07 사용자가 장비·무기 설정을 Gameplay Tag로 지정하고 부착 지점 태그를 캐릭터별 실제 소켓에 연결하는 개편을 승인했다. 슬롯 점유는 장착 처리와 저장 검증이 같은 규칙으로 계산한다.
+
+| 설정 | 편집 위치와 계약 |
+|---|---|
+| 장착 부위 | Equip의 `AllowedSlots`, `DefaultSlotTag`: `Equipment.Slot.*`의 구체적인 슬롯 |
+| 한손·양손 | Weapon의 `HandUsage`: `Weapon.HandUsage.OneHanded` 또는 `TwoHanded` 중 하나 |
+| 부착 위치 | Visual의 `Attachments`: 슬롯 태그, `Attachment.*` 지점 태그, 아이템별 오프셋 |
+| 메시 소켓 | `UCCLAttachmentProfile`의 `ReferenceMesh`, `Bindings`: 지점 태그를 실제 소켓 이름에 연결 |
+| 에디터 미리보기 | 프로필의 `PreviewItem`, `PreviewSlot`: 기준 포즈의 캐릭터와 선택 장비 표시 |
+
+`CCLEquipment::GetOccupiedSlots`를 장착과 저장 검증이 함께 쓴다. 복제된 장비 목록은 태그와 GUID로 구성한다. 실제 메시 부착은 Fighter가 프로필을 해석하며, 매핑이나 소켓이 없으면 경고를 남기고 표시를 생략한다. 본 이름을 소켓으로 간주하거나 루트에 대신 붙이지 않고, 프로필에 등록한 실제 소켓만 쓴다. 프로필 데이터 검증과 미리보기는 중복 매핑·부적합한 스켈레톤·잘못된 아이템 설정도 확인한다. 이전 Equip의 양손 플래그와 Visual의 소켓 이름은 로드 변환에만 남기고 편집 화면에서는 숨겼다.
+
+기본 마네킹에는 별도의 명명된 장착 소켓을 추가하고 기존 본과 소켓을 보존한다. 양손 슬롯 점유와 보조 손 IK는 다른 것이며, 양손 무기는 두 손 슬롯을 점유하되 오른손에 메시 하나를 표시한다. 기존 구조체 에셋은 로드할 때 변환하고 저장 형식 1-3은 태그 형식 4로 읽는다.
+
+`Loadout`은 장비 표현과 손 행동을 `ICCLEquipmentPresenter`로 요청하고 `UCCLFighterComponent`가 이 계약을 구현한다. 그래서 Items 폴더는 Combat의 구체 컴포넌트를 include하지 않는다. 장비 변경 알림은 슬롯과 효과를 확정한 뒤 전달하며, 콜백이 돌아올 때까지 Loadout 명령과 인벤토리 쓰기를 막는다. 이 계약과 검증 근거는 [코드 설계 후속 수정](CodeDesignFixes-2026-10-11.md)에 있다.
+
+### 에셋 도구
+
+- `Tools/Validation/migrate_equipment_tags.py`는 기존 정의 12개와 기본 마네킹을 `Saved/EquipmentTagBackup/`에 백업한 뒤 변환을 요청한다. 기본 마네킹에 `CCL_Grip_L/R`, `CCL_Shield_L/R`, `CCL_Stow_Back` 소켓을 추가하고 `Content/Progression/DA_HumanoidAttachments.uasset`을 만든다. 기존 소켓과 이미 있는 프로필 설정은 덮어쓰지 않는다. 재시작한 새 에디터 모듈에서 실행해야 하며, 구버전 모듈에서는 에셋 저장 전에 실패한다.
+- `Tools/Validation/create_equipment.py`는 기존 정의를 덮어쓰지 않고 시험용 장비 8종을 만든다.
+- `migrate_item_fragments.py`는 기존 정의 네 개의 별도 변환 도구다. `migrate_equipment_tags.py` 실행이 그 네 개를 포함해 백업·로드 변환·저장을 마쳤으므로 따로 실행할 필요가 없다.
+
+구현 위치는 `Source/CCL/Items/CCLItemFragments.h`, `CCLLoadoutComponent.cpp`, `Source/CCL/UI/SCCLInventoryWidget.cpp`다.
+
+## 인벤토리 화면과 입력
+
+인벤토리·장비 화면은 공용 UI의 `UCCLInventoryScreen`이다. `UCCLInventoryContext`가 선택 상태와 캐릭터 캡처를 소유하고, 컨트롤러는 화면 핸들과 서버 RPC를 쓴다. 공용 관리자가 화면을 닫으면 드래그와 캡처도 해제한다. 본문은 Slate 슬롯을 `UNativeWidgetHost`에 넣었다. 구현과 실행 근거는 [UIFoundation](UIFoundation.md)의 인벤토리·메뉴 이전 검사 표가 소유한다.
+
+장비 패널은 캐릭터 캡처를 중앙에, 장착 슬롯을 양옆에 둔다. 가방은 오른쪽 4×4 격자이며 아이템 이름·수량을 표시한다. 빈 슬롯으로 드래그하면 이동하고 점유 슬롯이면 교환하며 창 밖 드롭은 취소한다. 슬롯 간 드래그로 장착·해제한다. GUID와 슬롯 번호는 서버가 검증하고 Fast Array로 소유자에게 복제한다. 마우스 조작 중 게임 입력을 막고 닫을 때 돌려준다. NPC 대화와 인벤토리는 동시에 열지 않아 하단 영역이 겹치지 않는다.
+
+HUD의 기본 글자 배율은 2026-10-07 사용자 요청으로 기존의 2배다. ACCLHUD가 로컬 화면 크기에 맞춘 배치·줄바꿈을 맡고, 긴 문구는 영역 안에서 줄바꿈한다. 훈련 영역은 스크롤로 나머지 항목을 볼 수 있다.
+
+| 입력 | 동작 |
+|---|---|
+| E | 가까운 보급품 획득 |
+| I | 인벤토리 열기·닫기 |
+| 위·아래 | 선택 이동 |
+| F | 선택 항목 장착 |
+| G | 장비 해제 |
+| H | 선택한 회복품 사용 |
+| 1, 2 | 각 훈련 습득 요청 |
+
+성공·거부 결과와 남은 포인트를 표시한다. 화면은 기능 검증용이며 최종 시각 디자인이 아니다. 검·방패·양손 지팡이의 장착 메시는 임시 도형이다.
+
+## 콘텐츠 초안
+
+- 월드 보급품은 세션 공유이며 먼저 받은 플레이어에게 한 번 지급한다. 이 임시 정책은 최종 협동·대전의 보상 규칙을 정하지 않는다.
+- 철제 건틀릿은 맨손 공격 애니메이션을 쓰고 공격 보너스 10을 준다.
+- 회복약은 체력 50을 회복하며 최대 중첩은 20개다.
+- 기본 공격 수치는 20이다.
+- 훈련 스킬은 공격 숙련과 생명력 훈련이며 각각 포인트 1을 써서 공격 보너스 5 또는 최대 체력 25를 얻는다. 같은 스킬을 중복 습득할 수 없다.
+- 시작 포인트는 1이다. 원정 보상의 훈련 포인트는 [ContentFoundation](ContentFoundation.md)이 소유한다.
 
 ## 계약과 일관성
 
@@ -119,21 +115,66 @@ bool Use(FGuid EntryId);
 bool Learn(UCCLSkillDefinition* Definition);
 ```
 
-서버는 실제 보유 GUID, 수량, 중첩 한도와 슬롯 수를 확인한다. 획득 요청에는 원하는 수량이나 가격을 받지 않는다. 월드 픽업의 서버 데이터를 사용하고 거리·시야·생존 상태를 검증한다. 클라이언트가 보낸 효과 수치나 스킬 비용을 신뢰하지 않는다. 공격 중·사망 상태에서는 장착과 사용을 거부한다. 가득 찬 체력에서 회복품을 소비하지 않는다. 장착 효과는 중복 적용하지 않고 이전 핸들을 제거한다.
+서버는 실제 보유 GUID, 수량, 중첩 한도, 슬롯 수를 확인한다. 획득 요청은 원하는 수량이나 가격을 받지 않고, 월드 픽업의 서버 데이터를 쓰며 거리·시야·생존 상태를 검증한다. 클라이언트가 보낸 효과 수치나 스킬 비용은 믿지 않는다. 공격 중·사망 상태에서는 장착과 사용을 거부한다. 가득 찬 체력에서는 회복품을 소비하지 않는다. 장착 효과는 중복 적용하지 않고 이전 핸들을 제거한다.
 
-능력치는 GAS AttributeSet에 두고 전투 정책은 공격 보너스 세트가 없는 공격자도 처리한다. 장비·학습 효과에는 생명 단위 제거 태그를 붙이지 않아 개별 재스폰 뒤에도 유지한다. Avatar 교체 때 장비 정의를 다시 연결하고 회복된 최대 체력까지 초기화한다. 아이템 삭제와 장비 참조가 어긋나지 않도록 보관 변경을 구독한다.
+`UCCLLoadoutComponent::Use`는 아이템을 먼저 소모하고 회복 효과를 적용한다. 효과가 거부되면 사용 전 항목 배열로 되돌린다. 인벤토리 트랜잭션 안에서 실행하므로 중간 상태의 알림은 나가지 않는다. 2026-10-11 이전 구현은 효과를 먼저 적용하고 `Remove`의 결과를 무시해, 음식 묶음 분할처럼 제거가 실패하면 회복만 되고 아이템이 남았다. 자동 검사 `CCL.Items.Loadout.EquipAndUse`가 이 순서를 확인한다.
 
-Fast Array의 항목별 복제를 사용한다. 전체 배열 복제도 가능하지만 수량·항목의 변경을 명시적으로 표시하는 엔진 계약을 재사용한다. 가방은 16칸이고 장착 항목은 별도로 유지한다. 무게·내구도·정렬·거래 기능은 이번 범위에 추가하지 않는다. UI와 Actor 참조를 저장하지 않으며 저장 계약은 단계 6에서 정의 ID·GUID·수량·장비·학습 상태를 대상으로 확정한다.
+능력치는 GAS AttributeSet에 두고, 전투 정책은 공격 보너스 세트가 없는 공격자도 처리한다. 장비·학습 효과에는 생명 단위 제거 태그를 붙이지 않아 개별 재스폰 뒤에도 유지된다. Avatar가 바뀌면 장비 정의를 다시 연결하고 회복된 최대 체력까지 초기화한다. 아이템 삭제와 장비 참조가 어긋나지 않도록 보관 변경을 구독한다. 컴포넌트가 종료되면 소유 효과를 정리한다.
 
-## 검증
+Fast Array의 항목별 복제를 쓴다. 전체 배열 복제도 가능하지만 수량·항목의 변경을 명시적으로 표시하는 엔진 계약을 재사용한다. 이 계약은 `<Engine>/Source/Runtime/Net/Core/Classes/Net/Serialization/FastArraySerializer.h`의 `MarkItemDirty`·`MarkArrayDirty` 설명에서 확인했다. 가방은 16칸이고 장착 항목은 별도로 유지한다. 무게·내구도·정렬·거래 기능은 없다. 저장은 정의 ID·GUID·수량·장비·학습 상태를 대상으로 하며 UI와 Actor 참조를 담지 않는다. 슬롯 배치와 장착 상태의 저장 형식은 [SessionFoundation](SessionFoundation.md)의 저장 정책이 소유한다.
 
-프로젝트 생성 BAT와 CCLEditor 빌드 후 Standalone·Dedicated·Listen에서 획득·장착·회복·습득 요청을 확인한다. 음수 수량, 없는 GUID, 슬롯 부족, 비용 부족과 중복 습득을 거부하는지 검사한다. 장착 전후 실제 공격 피해와 재스폰 뒤 인벤토리·장비·학습 상태를 비교한다. 기존 전투 회귀와 UI 캡처도 확인한다. 원본 로그는 `Saved/StageValidation/`, 화면은 `Saved/Tests/`에 보존한다.
+## 검증 방법
 
-## 기존 구현 검증
+프로젝트 파일 생성과 CCLEditor 빌드 뒤 Standalone·Dedicated·Listen에서 획득·장착·회복·습득 요청을 확인한다. 음수 수량, 없는 GUID, 슬롯 부족, 비용 부족, 중복 습득을 거부하는지 본다. 장착 전후 실제 공격 피해와 재스폰 뒤 인벤토리·장비·학습 상태를 비교한다. 전투 회귀와 UI 캡처도 확인한다.
 
-2026-10-07 UE 5.9에서 프로젝트 생성·CCLEditor 빌드와 `create_progression.py` 에셋 저장이 통과했다. Standalone에서는 클라이언트 요청으로 획득·장착·회복·두 훈련 습득, 중복·비용 부족 거부, 공격 피해 20에서 35로 증가, 개별 재스폰 후 수량·장비·훈련·체력 125 유지를 확인했다. 실행 검사는 `run_campaign_smoke.ps1 -Progression`으로 기존 진행 검사와 함께 수행한다. 일반 Actor의 인벤토리로 중첩·슬롯 한도도 확인했다. Dedicated·Listen 원격·호스트·Dedicated 왕복 지연 100ms와 손실 2% 구성도 통과했다. 네트워크 구성마다 늦은 접속과 인벤토리 소유자 구분을 확인했다. 렌더링 실행과 승리 화면에서 장비·회복약·훈련·능력치 표시를 확인했다.
+실행 검사는 `run_campaign_smoke.ps1 -Progression`으로 진행 검사와 함께 한다. 장비 태그 계약은 `Tools/Validation/run_automation.ps1`로 `CCL.Equipment.TagContracts`를 실행한다. 이 도구는 프로세스 종료 코드와 결과 JSON을 함께 검사하고, 결과가 없거나 실행되지 않은 검사가 있으면 실패한다. 실행 순서와 증거 기록은 `ccl8-verify` 스킬을 따른다. 원본 로그는 `Saved/StageValidation/`, 화면은 `Saved/Tests/`에 남긴다.
 
-Fast Array의 변경 표시 계약은 `<Engine>/Source/Runtime/Net/Core/Classes/Net/Serialization/FastArraySerializer.h`의 `MarkItemDirty`·`MarkArrayDirty` 설명을 확인했다. 보관은 이 엔진 복제 경로를 쓰고 장비 효과는 GAS 핸들로 추적한다. 컴포넌트 종료 때 소유 효과를 정리한다. 장비가 전투 Fragment를 갖지 않으면 기존 맨손 공격 정의를 사용한다.
+## 검증 상태
+
+아래는 모두 2026-10-07 UE 5.9 노트북의 기록이다. 그 뒤의 UE 5.8.3 재검증은 [DeliveryPlan](DeliveryPlan.md#2026-10-11-전체-검토-수정과-ue-583-재검증)이 소유한다. 경로는 저장소 기준이고, 파일명만 적은 로그는 `Saved/StageValidation/` 아래에 있다.
+
+### 태그 개편
+
+생성 BAT·전체 에디터 빌드, 에셋 백업·변환, 태그 계약 자동 검사, 단독·Listen·저장·화면 검사를 통과했다. 최종 생성·빌드 근거는 `Saved/StageValidation/Tags-Generate.log`, `Tags-Build.log`다. `migrate_equipment_tags.py` 실행에서 정의 12개 변환 성공과 오류·경고 0개를 확인했고, 원본 백업은 로컬 `Saved/EquipmentTagBackup/20261007-225914-285642/`에 있다. 프로필 에셋과 기본 마네킹의 장착 소켓을 만들고 다시 불러와 검증했다.
+
+`CCL.Equipment.TagContracts`는 명시 소켓·중복 매핑·잘못된 태그·형식 1-3 변환·형식 4 왕복을 검사했다. 검사 중 숫자 슬롯을 enum 이름으로 잘못 해석하는 저장 호환 결함을 고쳤다. UE JSON의 숫자도 문자열 조회에 응답하므로 슬롯 값의 실제 자료형을 먼저 구분한다. 테스트용 중복 배열 요소가 복사본을 추가하도록 한 수정도 함께 했다.
+
+검증 범위는 잘못된 슬롯·무기 사용 방식·소켓 매핑 거부, 양손 교체·반환·원격 입력, 저장 호환, 실제 메시 부착과 장비 창이다.
+
+| 태그 개편 검사 | 로컬 근거 |
+|---|---|
+| 기존 에셋 백업·소켓·프로필·정의 변환 | `Saved/StageValidation/Tags-Migrate.log` |
+| 태그·소켓·저장 버전 계약 | `Saved/Tests/Automation/20261007-230548-043/report/index.json`, 성공 1·실패 0 |
+| 단독·Listen 원격 입력·복제·재스폰 | `Saved/StageValidation/Tags-Standalone.log`, `Tags-Listen.log` |
+| 별도 프로세스 저장·복원 | `Saved/StageValidation/Tags-Session.log` |
+| 720p·1080p 드래그·장착·해제·대화 전환 | `Saved/StageValidation/Tags-UI-1280.log`, `Tags-UI-1920.log` |
+| 실제 오른손 소켓과 양손 장비 메시 하나 | `Saved/Tests/UIVisual/1280x720-20261007-230543/game.log` |
+
+화면 캡처는 `Saved/Tests/UIVisual/1280x720-20261007-230543/`와 `1920x1080-20261007-230642/`에 있고 캐릭터·슬롯·대화창 배치를 확인했다.
+
+### 구조체 Fragment와 장비 개편
+
+태그 개편 이전의 검사다. 구조체 Fragment와 장착·저장 코드를 구현했고 생성 BAT와 CCLEditor 전체 빌드를 통과했다. 단독·Listen 원격 검사에서 왼손 방패와 양손 장비의 보조 액션, 입력 해제, 장착 후 재스폰을 확인했고, 별도 프로세스 저장·복원과 양손 점유 형식 검사도 통과했다.
+
+오프스크린 UI 검사에서 가방 슬롯의 장비 여부 인자가 초기화되지 않아 드래그가 실패하는 결함을 찾았다. 인자 초기값을 지정하고 슬롯 제목·아이템 이름의 줄바꿈과 캐릭터 캡처 비율을 고쳤다. 수정 후 생성 BAT·에디터 `-NoLink` 컴파일·게임 타깃 빌드와 별도 패키징을 통과했다. 패키지의 1280×720·1920×1080에서 Slate 드래그 이동·교환·취소·장착·해제, 장비 8칸 표시, 인벤토리 닫기와 NPC 대화 전환을 확인했다. 그 시점에는 실행 중인 에디터 때문에 최종 DLL 링크가 보류됐고, 이후 에디터를 종료한 뒤 태그 개편 전체 빌드·실행 검사로 마쳤다.
+
+| 장비 개편 검사 | 로컬 근거 |
+|---|---|
+| 생성 BAT·화면 수정 전 전체 에디터 빌드 | `Saved/StageValidation/Equipment-Generate.log`, `Equipment-Build.log` |
+| 시험용 장비 8종 생성 | `Equipment-Assets.log` |
+| 단독·Listen 원격 기능 | `Equipment-Standalone.log`, `Equipment-Listen.log` |
+| 별도 프로세스 저장·복원 | `Equipment-Session.log` |
+| 가방 부족·양손 교체·반지·저장 무결성, 수정 전 UI 실패 재현 | `Equipment-Offscreen.log`, `Saved/Tests/UIVisual/1280x720-20261007-170902/game.log` |
+| 화면 수정 후 컴파일, 링크 제외 | `Equipment-UIFix-Compile.log` |
+| 최종 생성 BAT·에디터 컴파일, 링크 제외 | `Equipment-Final-Generate.log`, `Equipment-Final-Compile.log` |
+| 게임 타깃 빌드·패키지 | `Equipment-Package.log`의 게임 빌드 성공, `Equipment-Package-Final.log`의 UAT 성공 |
+| 패키지 720p·1080p UI | `Equipment-Packaged-UI-1280.log`, `Equipment-Packaged-UI-1920.log` |
+
+오프스크린 검사는 게임 내부의 Slate 포인터 이벤트를 쓰며 Windows 바탕화면의 수동 조작 검사가 아니다. 글자 배율 변경은 별도 패키지의 1280×720과 1920×1080 캡처에서 안내·체력·인벤토리 표시로 확인했다.
+
+### 단계 4 기본 구현
+
+프로젝트 생성·CCLEditor 빌드와 `create_progression.py` 에셋 저장이 통과했다. Standalone에서 클라이언트 요청으로 획득·장착·회복·두 훈련 습득, 중복·비용 부족 거부, 공격 피해 20에서 35로 증가, 개별 재스폰 후 수량·장비·훈련·체력 125 유지를 확인했다. 일반 Actor의 인벤토리로 중첩·슬롯 한도도 확인했다. Dedicated·Listen 원격·호스트·Dedicated 왕복 지연 100ms와 손실 2% 구성도 통과했고, 네트워크 구성마다 늦은 접속과 인벤토리 소유자 구분을 확인했다. 렌더링 실행과 승리 화면에서 장비·회복약·훈련·능력치 표시를 확인했다. 검사의 추가 훈련 포인트 1은 테스트 서버가 지급한 값이다.
 
 | 검사 | 로컬 근거 |
 |---|---|
@@ -143,12 +184,8 @@ Fast Array의 변경 표시 계약은 `<Engine>/Source/Runtime/Net/Core/Classes/
 | Dedicated·Listen 원격·호스트·지연과 손실 | `Saved/StageValidation/Stage4-Dedicated-Final.log`, `Stage4-Listen-Final.log`, `Stage4-Host-Final.log`, `Stage4-Impaired-Final.log` |
 | 기존 전투·이동 회귀 | `Saved/StageValidation/Stage4-Combat-Standalone.log`, `Stage4-Combat-Dedicated.log`, `Stage4-Movement.log` |
 
-근거 경로는 저장소 기준이다. 검사의 추가 훈련 포인트 1은 테스트 서버가 지급한 값이며 일반 게임의 보상 연결은 단계 5 작업이다. 저장 파일과 게임 재실행 후 복원은 단계 6에서 검사한다.
+### 미검증
 
-## 2026-10-11 사용 순서·카탈로그·표현 계약
-
-`UCCLLoadoutComponent::Use`는 아이템을 먼저 소모하고 회복 효과를 적용한다. 효과가 거부되면 사용 전 항목 배열로 되돌린다. 인벤토리 트랜잭션 안에서 실행하므로 중간 상태의 알림은 나가지 않는다. 이전 구현은 효과를 먼저 적용하고 `Remove`의 결과를 무시했다. 그래서 음식 묶음 분할처럼 제거가 실패하면 회복만 되고 아이템이 남았다. 자동 검사 `CCL.Items.Loadout.EquipAndUse`가 이 순서를 확인한다.
-
-훈련 목록과 저장 가능한 정의는 `UCCLItemCatalog`(`DA_ItemCatalog`)가 소유한다. Loadout의 훈련 요청과 세션 저장은 같은 카탈로그를 조회하므로, 새 아이템이나 훈련을 추가할 때 코드의 이름 목록을 고치지 않는다. 설정과 저장 거부 규칙은 [SessionFoundation](SessionFoundation.md)의 "정의 카탈로그와 보급품 개수"를 따른다.
-
-Loadout은 장비 표현과 손 행동을 `ICCLEquipmentPresenter`로 요청한다. `UCCLFighterComponent`가 이 계약을 구현한다. 그래서 Items 폴더는 Combat의 구체 컴포넌트를 include하지 않는다. 장착 규칙과 손 점유는 위 계약과 같다.
+- 프로필 편집기의 수동 드롭다운 조작과 미리보기 화면.
+- 방어구 외형은 만들지 않았다. 보조 손 IK와 새 수납 동작은 범위에 없다.
+- 기존 배포 폴더의 실행 파일은 인벤토리 UI 변경을 포함하지 않는다.
