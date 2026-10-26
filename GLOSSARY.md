@@ -6,7 +6,7 @@
 
 | 용어 | 뜻 | 소유 |
 |---|---|---|
-| 결정 N | DesignLog에 번호를 붙여 기록한 확정 결정. 현재 상태는 Decisions에서 본다 | [DesignLog](Docs/DesignLog.md), [Decisions](Docs/Decisions.md) |
+| 결정 N | `Docs/decisions/NNNN-*.md` 파일 하나로 기록한 확정 결정. 현재 상태는 Decisions에서 본다 | [결정 파일](Docs/decisions/), [Decisions](Docs/Decisions.md) |
 | 작업 지도 | 여러 세션에 걸친 작업 하나의 목적지, 진행, 정한 것, 아직 모르는 것, 범위 밖을 적은 파일 | [진행 중인 작업](Docs/Work/README.md) |
 | 조각 | 작업 지도의 진행 단위. 먼저 끝나야 하는 조각과 완료 조건을 함께 적는다 | [진행 중인 작업](Docs/Work/README.md) |
 | 정본 | 한 주제를 소유해 다른 사본이 따라야 하는 문서나 폴더. 스킬 정본은 `.agents/skills/`다 | [AGENTS.md](AGENTS.md) |

@@ -35,7 +35,7 @@
 - 일반 문장의 영어는 한국어로 쓴다. `claim`은 주장, `coverage`는 확인 범위, `mechanism`은 작동 방식이나 구조, `cutoff`는 확인 기준일, `batch`는 작업 묶음이나 차수, `downstream`은 후속 항목이다. `gameplay`는 조작과 규칙이면 게임플레이, 진행 과정이면 게임 진행이다.
 - 절차의 상태값이나 필드 이름인 영어(`canon`, `writer`, `reviewer`, `APPROVED` 등)는 그대로 둔다.
 - 범위는 `1-3`, `단계 4-13`처럼 하이픈, 근사값은 `약 5MB`, 이름 접미사는 `...Rad`로 쓴다. 물결표(`~`)는 GitHub가 취소선으로 해석해 문단이 깨지므로 쓰지 않는다. VS Code 미리보기는 정상으로 보이므로 판정 기준은 GitHub 렌더링이다.
-- 문장 부호는 쉼표, 마침표, 괄호를 쓴다. em dash는 `Docs/DesignLog.md`의 제목 형식(`날짜 — 결정 N`)에만 쓴다.
+- 문장 부호는 쉼표, 마침표, 괄호를 쓴다. em dash는 결정 파일의 제목 형식(`# 날짜 — 결정 N: 제목`)에만 쓴다.
 
 ## 보존해야 하는 기록
 
@@ -51,7 +51,7 @@
 |---|---|---|
 | 규범 | `AGENTS.md`, `Docs/Coding.md`, 이 문서 | 코드나 작업이 규칙을 어기면 규칙을 낮추지 않고 위반을 기록한다 |
 | 사양 | `*Foundation.md`, `Environment*.md`의 시스템 문서 | 확정 수치와 인터페이스 계약에 근거 결정 번호를 붙인다. 구현과 다르면 구현을 확인해 고친다 |
-| 이력 | `Docs/DesignLog.md`, 날짜 붙은 QA·검토 보고서 | 다시 쓰지 않는다. 정정은 새 항목으로 붙인다 |
+| 이력 | `Docs/decisions/`의 결정 파일 본문, 날짜 붙은 QA·검토 보고서 | 다시 쓰지 않는다. 정정은 새 항목으로 붙인다 |
 | 절차 | `Docs/Mentoring.md`, `Docs/AgentContextTools.md`, `Docs/Narrative/Workflow.md` | 실제로 실행한 단계만 적고 단계마다 누가 무엇을 하는지 쓴다 |
 | 현황 | `Docs/Work/`의 작업 지도, `Docs/LearningLog.md`, `Docs/Narrative/CurrentWork.md` | 지금 상태와 다음 행동만 적는다. 지난 상태는 이력 문서나 Git이 맡는다 |
 | 참조 | `Docs/Decisions.md`, `GLOSSARY.md`, 로드맵 | 빠짐없이 적는다. 원본과 다르면 원본이 맞다 |
@@ -60,12 +60,12 @@
 
 ## 결정을 기록하는 방법
 
-1. `Docs/DesignLog.md` 끝에 `## 날짜 — 결정 N: 제목` 절을 붙인다. 번호는 마지막 번호 다음이다. 배경, 결정, 트레이드오프 세 절에 이유를 적는다.
-2. 과거 항목은 고치지 않는다. 번복은 새 항목에 "결정 M을 무엇으로 대체한다"와 이유를 적는다.
-3. `Docs/Decisions.md`의 해당 주제 표에서 유효 여부, 번복 연쇄, 소유 문서를 갱신한다.
-4. 확정 수치나 인터페이스가 생겼으면 사양서에 옮기고 결정 번호를 붙인다.
+결정 1건은 `Docs/decisions/NNNN-<english-kebab>.md` 파일 하나다. 근거는 [결정 28](decisions/0028-agent-workflow-restructure.md)이다. `Docs/Decisions.md`는 결정 파일의 머리말에서 생성하므로 손으로 고치지 않는다.
 
-이 절차는 [재구성 지도](Work/agent-setup-v2.md)의 결정 파일 전환(조각 9)에서 결정 1건당 파일 1개 방식으로 바뀐다. 근거는 [결정 28](DesignLog.md)이다.
+1. `node Tools/Agent/decisions.cjs next`로 다음 번호를 확인하고 파일을 만든다. 머리말에는 `number`, `date`, `title`, `topic`, `status`, `summary`, `owners`를 쓰고, 진행 상태가 있으면 `progress`를 쓴다. 본문은 `# 날짜 — 결정 N: 제목` 아래에 배경, 결정, 트레이드오프 세 절로 이유를 적는다. 기존 파일의 머리말 형식을 따른다.
+2. 과거 결정의 본문은 고치지 않는다. 앞선 결정을 바꾸면 새 결정의 머리말에 관계(`refines` 구체화, `amends` 보완, `supersedes_part` 일부 대체, `supersedes` 대체, `lifts_hold` 보류 해제)와 대상 번호를 적고, 본문에 "결정 M을 무엇으로 대체한다"와 이유를 쓴다. 앞선 결정은 머리말의 `status`와 `summary`만 현재 상태에 맞게 고친다. `status`는 `유효`, `유효(부분)`, `번복`, `완료`, `미확인` 중 하나다.
+3. `node Tools/Agent/decisions.cjs generate --write`로 `Docs/Decisions.md`를 다시 만들고 `node Tools/Agent/decisions.cjs check`가 통과하는지 확인한다. 검사는 머리말, 번호 순서, 관계 대상, 생성 결과의 일치, 저장소의 모든 `결정 N` 링크를 본다.
+4. 확정 수치나 인터페이스가 생겼으면 사양서에 옮기고 결정 번호를 붙인다.
 
 ## 검토 순서
 
@@ -75,4 +75,4 @@
 4. 코드 블록, 직접 인용, 식별자가 원문대로인지 대조한다.
 5. 소리 내어 읽었을 때 한 번에 이해되지 않는 문장을 나눈다.
 6. `ccl8-writing` 스킬의 참조로 AI 문체, 맞춤법, 표기 일관성을 본다. 표기 일관성은 이 문서를 스타일 가이드로 삼고, 이 문서와 어긋나는 제안은 적용하지 않는다.
-7. 마지막에 `ccl8-writing`의 납품 점검을 한다. 참조의 em dash 금지와 전달 이력 금지에는 DesignLog 제목, `결정 N`과 커밋 해시 인용의 예외를 둔다.
+7. 마지막에 `ccl8-writing`의 납품 점검을 한다. 참조의 em dash 금지와 전달 이력 금지에는 결정 파일 제목, `결정 N`과 커밋 해시 인용의 예외를 둔다.

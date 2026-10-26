@@ -1,10 +1,10 @@
 # 멀티플레이 기본 흐름
 
-`Source/CCL/`에 스폰, 이동과 카메라, 사망 후 개별 재스폰을 구현했다. [결정 5](DesignLog.md)에 따라 평소에는 Standalone에서 작업하고 Dedicated Server와 Listen Server에서 검증한다. 테스트 맵은 `Content/Maps/MultiplayerPlayground.umap`이며 기본 시작 맵으로 설정했다.
+`Source/CCL/`에 스폰, 이동과 카메라, 사망 후 개별 재스폰을 구현했다. [결정 5](decisions/0005-run-modes-and-respawn.md)에 따라 평소에는 Standalone에서 작업하고 Dedicated Server와 Listen Server에서 검증한다. 테스트 맵은 `Content/Maps/MultiplayerPlayground.umap`이며 기본 시작 맵으로 설정했다.
 
 ## 목표와 제약
 
-서버가 캐릭터의 생성과 사망을 결정하고 각 클라이언트는 자신이 소유한 캐릭터를 조작한다. Standalone도 같은 권위 경로를 사용한다. 사망한 플레이어만 재도전하며 생존자의 캐릭터와 진행은 유지한다. 근거는 [결정 5](DesignLog.md)다.
+서버가 캐릭터의 생성과 사망을 결정하고 각 클라이언트는 자신이 소유한 캐릭터를 조작한다. Standalone도 같은 권위 경로를 사용한다. 사망한 플레이어만 재도전하며 생존자의 캐릭터와 진행은 유지한다. 근거는 [결정 5](decisions/0005-run-modes-and-respawn.md)다.
 
 접속 인원과 협동·대전 여부는 미정이다. 서버 검증에는 플레이어 2명을 사용했으며 이는 출시 인원 제한이 아니다. 테스트 맵에 배치한 PlayerStart 4개도 콘텐츠 사양이 아닌 검증용 배치다. 공격과 체력, 동료 부활, 월드 진행·성장 저장, 호스트 이탈 복구와 방 검색 UI는 포함하지 않는다.
 

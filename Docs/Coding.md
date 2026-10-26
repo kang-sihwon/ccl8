@@ -4,7 +4,7 @@
 
 ## 파일 경계와 실행 범위
 
-AI는 [Direction](Direction.md)의 합의된 제작 범위에서 `Source/`, `Config/`, `Build.cs`, `Target.cs`, `.uproject`와 에셋을 작성·수정하고 검증한다. 매 파일의 재승인은 받지 않는다. 근거는 [결정 2](DesignLog.md)다. 리뷰만 요청한 작업은 리뷰로 끝낸다.
+AI는 [Direction](Direction.md)의 합의된 제작 범위에서 `Source/`, `Config/`, `Build.cs`, `Target.cs`, `.uproject`와 에셋을 작성·수정하고 검증한다. 매 파일의 재승인은 받지 않는다. 근거는 [결정 2](decisions/0002-ai-led-production.md)다. 리뷰만 요청한 작업은 리뷰로 끝낸다.
 
 구현 전에 관련 기획·아트·사양 문서를 읽고 목표, 변경 범위, 검증 기준을 해당 문서에 적는다. 통상적인 구현 선택은 AI가 판단하고 기록한다. 장르·핵심 경험·콘텐츠 범위의 변경, Orbis 원본 수정, 유료 구매, 외부 공개는 사용자의 별도 지시를 따른다.
 
@@ -14,7 +14,7 @@ AI는 [Direction](Direction.md)의 합의된 제작 범위에서 `Source/`, `Con
 
 ## 장르에 독립적인 베이스 시스템 설계
 
-HUD, Inventory, Item, Drop, Save/Load, 일반 전투 판정처럼 여러 장르가 쓰는 베이스 시스템은 특정 장르나 콘텐츠를 전제하지 않는다. 근거는 [결정 9](DesignLog.md)다. 공통 도메인의 책임과 데이터 흐름을 먼저 정하고, 장르 규칙과 콘텐츠는 데이터·정책·기능 조합으로 연결한다.
+HUD, Inventory, Item, Drop, Save/Load, 일반 전투 판정처럼 여러 장르가 쓰는 베이스 시스템은 특정 장르나 콘텐츠를 전제하지 않는다. 근거는 [결정 9](decisions/0009-genre-independent-base-systems.md)다. 공통 도메인의 책임과 데이터 흐름을 먼저 정하고, 장르 규칙과 콘텐츠는 데이터·정책·기능 조합으로 연결한다.
 
 정의 데이터, 개별 런타임 상태, 기능 실행, 표현을 나눈다. 공통 기반은 구체적인 무기, 몬스터, 플레이어 클래스, 화면 구성을 참조하지 않고, 콘텐츠 계층이 공통 계약을 사용한다. 소유자와 수명, 서버 권위, 복제 범위, 저장 경계는 공통 계약에 적는다.
 
@@ -45,7 +45,7 @@ Item을 예로 들면 `ItemDefinition`이 필요한 `ItemFragment`를 조합한�
 
 ## UE5 신규·현행 시스템 우선
 
-적용 대상에 맞는 UE5의 신규·현행 시스템을 기본으로 쓴다. 근거는 [결정 10](DesignLog.md)이다. 대표 대상은 지오메트리의 Nanite, 월드 구성·스트리밍의 World Partition, 능력·효과·능력치의 Gameplay Ability System(GAS)과 AttributeSet이다. GAS처럼 UE4부터 있었고 UE5에서도 현행인 시스템도 포함한다.
+적용 대상에 맞는 UE5의 신규·현행 시스템을 기본으로 쓴다. 근거는 [결정 10](decisions/0010-prefer-current-ue5-systems.md)이다. 대표 대상은 지오메트리의 Nanite, 월드 구성·스트리밍의 World Partition, 능력·효과·능력치의 Gameplay Ability System(GAS)과 AttributeSet이다. GAS처럼 UE4부터 있었고 UE5에서도 현행인 시스템도 포함한다.
 
 기존 방식이나 자체 구현은 현행 시스템이 명확히 불합리하다는 근거가 있을 때만 택한다. 근거는 대상 플랫폼·하드웨어의 지원 제약, 필수 요구와의 충돌, 재현된 결함, 측정한 성능·메모리·제작 비용이다. 어떤 조건에서 왜 불합리한지, 대안과 트레이드오프를 함께 기록한다. 익숙하지 않음, 초기 설정 비용, 작은 프로젝트라는 이유, 검증하지 않은 성능 우려는 근거가 아니다.
 
@@ -54,7 +54,7 @@ Item을 예로 들면 `ItemDefinition`이 필요한 `ItemFragment`를 조합한�
 ## 코드 관례
 
 - Epic C++ Coding Standard의 `A`, `U`, `F`, `E`, `I` 타입 접두사와 불리언 변수의 `b` 접두사를 쓴다.
-- 헤더의 클래스·구조체 불리언 멤버는 `uint8 bDead = 0;`처럼 `uint8`로 선언하고 0 또는 1만 저장한다. 근거는 [결정 4](DesignLog.md)다. 함수 반환값·매개변수와 `.cpp` 지역 변수는 `bool`을 쓸 수 있고, 엔진 오버라이드와 외부 인터페이스의 시그니처는 원래 타입을 유지한다.
+- 헤더의 클래스·구조체 불리언 멤버는 `uint8 bDead = 0;`처럼 `uint8`로 선언하고 0 또는 1만 저장한다. 근거는 [결정 4](decisions/0004-header-bool-members.md)다. 함수 반환값·매개변수와 `.cpp` 지역 변수는 `bool`을 쓸 수 있고, 엔진 오버라이드와 외부 인터페이스의 시그니처는 원래 타입을 유지한다.
 - UE의 문자열·컨테이너·오브젝트 참조 타입을 쓴다. 리플렉션과 에디터 노출은 필요한 범위에만 붙인다.
 - 전방 선언과 직접 필요한 헤더만 include한다. 모듈 의존은 해당 `Build.cs`에 적는다.
 - 책임, 수명, 상태 소유자, 네트워크 권위를 설계에서 설명한다. 멀티플레이 범위와 미정 요구는 [GameDesign](GameDesign.md)을 따른다.
@@ -86,7 +86,7 @@ Item을 예로 들면 `ItemDefinition`이 필요한 `ItemFragment`를 조합한�
 
 ## 헤더 배치
 
-[결정 6](DesignLog.md)의 순서로 쓴다. 검사기가 보지 않는 영역 순서와 선언 묶음은 리뷰에서 확인한다. 내용이 없는 선언 종류, 접근 지정자, 전처리 블록은 생략한다.
+[결정 6](decisions/0006-cpp-declaration-layout.md)의 순서로 쓴다. 검사기가 보지 않는 영역 순서와 선언 묶음은 리뷰에서 확인한다. 내용이 없는 선언 종류, 접근 지정자, 전처리 블록은 생략한다.
 
 1. include는 `CoreMinimal.h`, 부모 클래스 헤더, 그 밖의 필요한 헤더, `.generated.h` 순이다.
 2. 파일 범위 선언은 매크로(`#define`), 델리게이트, `extern`, enum, struct, class 순이다. 정의와 전방 선언 중 필요한 형태를 쓴다.
@@ -97,7 +97,7 @@ Item을 예로 들면 `ItemDefinition`이 필요한 `ItemFragment`를 조합한�
 
 각 영역 안의 접근 지정자는 `public`, `protected`, `private` 순이다. 영역이 바뀌면 같은 접근 지정자를 다시 쓴다. 같은 영역·접근 수준의 static 함수는 연속해서 묶는다. 단순 반환·설정·검사 함수는 헤더에 인라인으로 정의하고, 추가 의존성이나 복잡한 처리가 필요하면 CPP에 정의하되 그룹 순서를 유지한다.
 
-빈 줄은 [결정 7과 결정 13](DesignLog.md)을 따른다. 검사기 규칙 밖에서 리뷰할 항목은 다음과 같다.
+빈 줄은 [결정 7](decisions/0007-member-blank-lines.md)과 [결정 13](decisions/0013-header-region-blank-lines.md)을 따른다. 검사기 규칙 밖에서 리뷰할 항목은 다음과 같다.
 
 - 역할이 다른 함수 영역과 멤버 변수 영역은 빈 줄 하나로 나누고 필요한 접근 지정자를 다시 쓴다. 영역 주석이 있으면 빈 줄은 그 주석 앞에 둔다.
 - `UFUNCTION`, 함수 선언, 바로 앞의 설명 주석은 내부 빈 줄 없이 한 묶음이다. 묶음과 이웃 선언 사이에는 빈 줄 하나를 둔다.
@@ -212,7 +212,7 @@ void ACCLCharacter::PostEditChangeProperty(FPropertyChangedEvent& PropertyChange
 
 ## CPP 함수 본문
 
-함수 본문은 제어 흐름과 처리 단계가 보이게 쓴다. 근거는 [결정 14](DesignLog.md)다. 중괄호와 줄바꿈은 검사기가 보고, 리뷰는 단계 구분을 본다.
+함수 본문은 제어 흐름과 처리 단계가 보이게 쓴다. 근거는 [결정 14](decisions/0014-cpp-control-flow-readability.md)다. 중괄호와 줄바꿈은 검사기가 보고, 리뷰는 단계 구분을 본다.
 
 - 한 줄에는 실행문 하나만 둔다. `for`의 초기화·조건·증감 절은 예외다.
 - 독립된 검증·분기 블록 사이와 블록이 끝난 뒤 다음 처리 단계 사이에 빈 줄 하나를 둔다. 같은 작업을 하는 연속 선언·호출은 한 묶음으로 둔다.
@@ -242,7 +242,7 @@ return Result;
 
 ## 코드 작업 완료 검증
 
-코드 작업을 마칠 때 최종 변경 상태에서 다음을 순서대로 실행한다. 근거는 [결정 12](DesignLog.md)다. 문서만 바꾼 작업에는 적용하지 않는다.
+코드 작업을 마칠 때 최종 변경 상태에서 다음을 순서대로 실행한다. 근거는 [결정 12](decisions/0012-generate-and-build-after-code.md)다. 문서만 바꾼 작업에는 적용하지 않는다.
 
 1. 사용 중인 엔진의 `GenerateProjectFiles.bat`을 `CCL.uproject` 대상으로 실행한다. 새 파일이 없어도 실행한다.
 2. 생성에 성공하면 `CCLEditor Win64 Development`를 빌드한다. 다른 타깃·플랫폼이 작업 대상이면 그 구성도 빌드한다.

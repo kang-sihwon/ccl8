@@ -1,6 +1,6 @@
 # 에이전트 작업 체계 재구성
 
-규칙 문서를 백업하고 새로 쓴 뒤 게임 문서를 새 형식으로 옮기는 작업의 지도다. 결정은 [결정 28](../DesignLog.md), 채택·제외 근거는 [스킬 묶음 통합 검토](../AgentToolingResearch.md#스킬-묶음-통합-검토-2026-10-25)가 소유한다. 이 작업이 끝나기 전까지 기존 규칙 문서가 유효하다.
+규칙 문서를 백업하고 새로 쓴 뒤 게임 문서를 새 형식으로 옮기는 작업의 지도다. 결정은 [결정 28](../decisions/0028-agent-workflow-restructure.md), 채택·제외 근거는 [스킬 묶음 통합 검토](../AgentToolingResearch.md#스킬-묶음-통합-검토-2026-10-25)가 소유한다. 이 작업이 끝나기 전까지 기존 규칙 문서가 유효하다.
 
 ## 목적지
 
@@ -42,7 +42,12 @@
   - `graft`는 정본 폴더로 옮기고 설명에 사용 조건을 넣었다. `graphify`는 setup이 다시 쓰는 도구 관리 스킬이라 `skills.cjs`의 `TOOL_MANAGED`로 동기화·길이 검사에서 빼고, `graphify_ccl8.ps1`의 `Set-GraphifySkillScope`가 사용자 호출 표시와 Codex 정책 파일을 쓰게 했다. 그 함수만 떼어 두 번 실행해 두 사본에 적용되고 두 번째 실행은 아무것도 바꾸지 않음을 확인했다.
   - MCP PIE 절차는 `ccl8-verify/references/mcp-pie.md`로 옮겼다. 기능 파일 두 곳의 판정 기준 링크도 그쪽으로 바꿨다. `features/combat.md`의 F-03 언급은 과거 결함 기록이라 QA 보고서 경로로 남겼고, 조각 11에서 경로를 바꾼다.
   - 시험: `node --test Tools/Agent/Tests/*.test.cjs` 21개 통과(사용자 호출 일치, 도구 관리 스킬 시험 2개 추가). `floor-guard.cjs` 발견 0.
-- [ ] 9. 결정 파일 전환 (7). 변환 스크립트로 결정 1-28을 옮기고 Decisions 생성기를 만든 뒤 링크를 바꾼다. 본문은 원문 그대로다. 완료 조건은 목적지의 결정 항목이다.
+- [x] 9. 결정 파일 전환 (7). 변환 스크립트로 결정 1-28을 옮기고 Decisions 생성기를 만든 뒤 링크를 바꾼다. 본문은 원문 그대로다. 완료 조건은 목적지의 결정 항목이다.
+  - 결과: `Docs/decisions/0001-production-scope.md`부터 `0028-agent-workflow-restructure.md`까지 28개 파일이 있다. 본문은 DesignLog의 각 절과 대조해 28건 모두 같다. 차이는 제목이 `##`에서 `#`이 된 것과 상대 링크 앞에 `../`가 붙은 것뿐이다. `node Tools/Agent/decisions.cjs check`가 "28 decision(s), 0 error(s)"를 낸다. 이 검사는 머리말, 번호 순서, 관계 대상, `Docs/Decisions.md`와 생성 결과의 일치, 저장소의 모든 `결정 N` 링크, 없어진 DesignLog로 가는 링크를 본다.
+  - 링크: 일회성 변환기로 34개 문서의 DesignLog 링크를 바꿨다. `[결정 N]`은 해당 결정 파일로, `[결정 7과 결정 13]`은 링크 두 개로 나눴고, 문서 이름 링크 `[DesignLog]`는 표기를 둔 채 `Decisions.md`로 바꿨다. 변환기는 저장소에 두지 않았다. DesignLog는 사용자 확인 뒤 `git rm`으로 지웠다.
+  - 규칙: WritingGuide의 결정 기록 절차를 결정 파일과 생성기 기준으로 다시 썼고, em dash 예외를 결정 파일 제목으로 옮겼다. `AGENTS.md`의 "끝내기 전"에 `decisions.cjs check`를 넣었다. 문서 지도, 용어집, SystemExplanationGuide, AgentContextTools와 `ccl8-docs`, `ccl8-writing`, `ccl8-decision-log`, `ccl8-work`, `ccl8-narrative` 스킬의 DesignLog 참조도 바꿨다. `AgentToolingResearch.md`의 DesignLog 언급은 과거 상태를 서술한 기록이라 두었다.
+  - 시험: `node --test Tools/Agent/Tests/*.test.cjs` 24개 통과(`decisions.test.cjs` 3개 추가). `skills.cjs check` 오류 0, `floor-guard.cjs` 발견 0.
+  - 바꾼 문서의 링크를 검사하다 이번 변경 전부터 깨져 있던 링크 5개를 찾았다. `Docs/Learning/InventoryUI.md`의 `Source/CCL/UI/Core/` 경로 4개는 모듈 분리로 옮겨진 파일이고, `Docs/Learning/EnvironmentFollowupEvidence.md`의 `Packaging.md#2026-10-11-이후-변경의-패키지-미검증` 앵커는 지금 없다. 학습 문서는 범위 밖이라 고치지 않았다.
 - [ ] 10. 보존 검사 스크립트 (9). 옛 문서의 수치, `결정 N`, 경로, 링크가 새 문서에 모두 있는지 비교하고 빠진 항목을 출력한다.
 - [ ] 11. QA 보고서 이동 (8). QA 보고서를 내용 변경 없이 `Docs/QA/`로 옮기고 폴더 README에 시점 기록임을 적는다.
 - [ ] 12. 게임 문서 재작성 (10, 11). 문서나 소유 묶음 하나씩 새로 쓰고 보존 검사를 통과시킨 뒤 커밋한다. `Docs/Learning/`은 제외한다.
@@ -52,15 +57,17 @@
 
 ## 정한 것
 
-- [결정 28](../DesignLog.md): 백업 방식, 재작성 범위와 순서, 결정 파일 전환, 읽기 전용 위임, 작업 지도, QA·학습·서사 문서의 처리.
+- [결정 28](../decisions/0028-agent-workflow-restructure.md): 백업 방식, 재작성 범위와 순서, 결정 파일 전환, 읽기 전용 위임, 작업 지도, QA·학습·서사 문서의 처리.
 - 두 스킬 폴더는 복사로 맞춘다. 정본은 `.agents/skills`다. Git은 Windows 디렉터리 연결을 추적하지 않고, 심볼릭 링크는 개발자 모드와 `core.symlinks` 설정이 있어야 해서 다른 환경에서 깨진다.
 - clang-format은 Visual Studio 2022의 LLVM 도구(19.1.5)를 `vswhere`로 찾는다. 다른 실행 파일은 `CLANG_FORMAT` 환경 변수로 지정한다. 엔진 `Extras/clang-format`에는 실행 파일이 없고 실험용 설정만 있다.
 - 검사 도구의 시험은 `node --test Tools/Agent/Tests/*.test.cjs`로 실행한다. 이 Node 24 환경에서는 폴더 경로를 넘기면 시험을 찾지 못한다.
+- 결정 파일 이름은 `NNNN-<english-kebab>.md`다. 2026-10-26 사용자가 영어 kebab-case를 골랐다. 근거: 사용자 지시 "slug는 영어 kebab-case로 해 줘(예: 0028-agent-workflow-restructure.md)".
+- 결정 파일 머리말에는 결정 28이 적은 상태(`status`, 진행이 있으면 `progress`)와 관계(`refines`, `amends`, `supersedes_part`, `supersedes`, `lifts_hold`)에 더해 `topic`, `summary`, `owners`를 둔다. 옛 Decisions 표의 주제·현재 내용·소유 문서를 생성 결과에 남기려면 이 세 칸이 필요했다. 결정 28의 "상태·번복 관계만"을 넓게 읽은 것이므로 사용자가 다르게 정하면 머리말과 생성기를 고친다. 근거: `Tools/Agent/decisions.cjs`의 `REQUIRED`.
+- 결정 사이의 관계는 나중 결정의 머리말에만 적고, 반대 방향("결정 7에서 보완")은 생성기가 계산한다. 근거: `Tools/Agent/decisions.cjs`의 `relationText`.
 
 ## 아직 모르는 것
 
 - 날짜 붙은 문서 여섯 개 중 어느 것이 QA 보고서인지. 후보는 `EnvironmentPIEQA-2026-10-12.md`, `FullGameplayMCPQA-2026-10-12.md`, `GameplayQAFixes-2026-10-12.md`다. `AgentReview-2026-10-08.md`, `UIReview-2026-10-08.md`, `CodeDesignFixes-2026-10-11.md`는 검토 보고서 후보다. 조각 11 전에 사용자와 정한다.
-- 결정 파일 이름의 slug를 영어로 쓸지 한국어로 쓸지.
 - 개인 볼트에 재사용 지식을 반영할 범위. 이번 기록 때 Obsidian MCP가 연결되지 않아 볼트를 참고하지 못했다.
 
 ## 범위 밖

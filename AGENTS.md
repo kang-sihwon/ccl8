@@ -22,7 +22,7 @@ ccl8은 Orbis의 방향과 그래픽 스타일을 공유하는 단기 소울라�
 - 파일을 삭제하거나 덮어쓰기 전에 사용자에게 확인한다. Claude Code에서는 `Tools/Agent/guard-commands.cjs` 훅이 파괴적 Git·삭제 명령에 확인을 요청한다. Codex에는 이 훅이 없다.
 - 엔진 폴더는 읽기만 한다.
 - 서사 정본(`Docs/Narrative/World.md`, `Docs/Narrative/Scenario.md`)의 확정 영역은 사용자 승인 뒤에 바꾼다.
-- 스킬에 적힌 읽기 전용 위임(대량 탐색, 독립 리뷰, 검증 병렬 실행)은 시작할 때 한 줄로 알리고 진행한다. 탐색은 Explore 에이전트, 리뷰와 검증은 세션 모델로 한다. 파일을 쓰는 위임, 다른 세션 시작, 예약 작업, Codex CLI 교차 리뷰는 사용자가 요청할 때 한다. 근거는 [결정 28](Docs/DesignLog.md)이다.
+- 스킬에 적힌 읽기 전용 위임(대량 탐색, 독립 리뷰, 검증 병렬 실행)은 시작할 때 한 줄로 알리고 진행한다. 탐색은 Explore 에이전트, 리뷰와 검증은 세션 모델로 한다. 파일을 쓰는 위임, 다른 세션 시작, 예약 작업, Codex CLI 교차 리뷰는 사용자가 요청할 때 한다. 근거는 [결정 28](Docs/decisions/0028-agent-workflow-restructure.md)이다.
 
 ## 길잡이
 
@@ -41,8 +41,9 @@ ccl8은 Orbis의 방향과 그래픽 스타일을 공유하는 단기 소울라�
 - 코드: [Coding](Docs/Coding.md)의 프로젝트 파일 생성과 빌드 결과를 각각 확인한다. `node Tools/Agent/cpp-rules.cjs format`과 `node Tools/Agent/floor-guard.cjs`가 통과해야 한다.
 - 게임 동작: `ccl8-verify`로 실행 검증하고 증거 강도를 적는다.
 - 스킬·지침: `node Tools/Agent/skills.cjs check`가 통과해야 한다.
+- 결정: `node Tools/Agent/decisions.cjs check`가 통과해야 한다.
 - 여러 세션에 걸친 작업: 지도의 진행과 아직 모르는 것을 갱신한다.
 
 ## 이행 중
 
-[재구성 지도](Docs/Work/agent-setup-v2.md)가 끝날 때까지 결정 기록은 DesignLog 형식이 유효하다. 결정 파일은 조각 9에서 바뀐다.
+[재구성 지도](Docs/Work/agent-setup-v2.md)가 끝날 때까지 게임 문서와 QA 보고서는 옛 형식과 위치에 있다. 새 형식 전환은 지도의 조각 10-15가 맡는다.

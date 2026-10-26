@@ -58,7 +58,7 @@ float ACCLCharacter::TakeDamage(float DamageAmount, const FDamageEvent& DamageEv
 
 결정 11은 체력과 스태미나를 GAS로 관리하고 플레이어 ASC를 PlayerState에 두도록 정했다. 현재 `TakeDamage`는 체력 변경 효과를 적용하며, 체력 알림이 0 이하를 확인하면 `Die`로 들어간다. 재스폰의 주체는 계속 GameMode다.
 
-이 분리는 체력 시스템이 늘어나도 스폰 위치 검사와 재시도 정책을 바꾸지 않게 한다는 장점이 있다. 이는 코드 구조에 대한 분석이다. 기록된 요구의 근거는 [DesignLog](../DesignLog.md)의 결정 5와 결정 11이다.
+이 분리는 체력 시스템이 늘어나도 스폰 위치 검사와 재시도 정책을 바꾸지 않게 한다는 장점이 있다. 이는 코드 구조에 대한 분석이다. 기록된 요구의 근거는 [DesignLog](../Decisions.md)의 결정 5와 결정 11이다.
 
 ## 6. 현재의 재도전
 

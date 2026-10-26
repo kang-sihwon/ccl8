@@ -94,6 +94,9 @@ Claude 훅과 상태 표시는 같은 런타임 탐색기를 쓰고, 패키지�
 |---|---|
 | `node Tools/Agent/skills.cjs check` | 스킬 머리말, 참조 파일, 스킬 간 링크, 설명의 사용 조건, 사용자 호출 표시와 Codex 정책 파일의 일치, 두 스킬 폴더의 일치를 검사한다 |
 | `node Tools/Agent/skills.cjs sync [--write]` | `.agents/skills`에서 `.claude/skills`로 복사할 파일을 출력하고 `--write`일 때만 복사한다. 삭제하지 않는다 |
+| `node Tools/Agent/decisions.cjs check` | 결정 파일의 머리말·번호·관계, `Docs/Decisions.md`와 생성 결과의 일치, 저장소의 모든 `결정 N` 링크를 검사한다 |
+| `node Tools/Agent/decisions.cjs generate [--write]` | 결정 파일의 머리말로 `Docs/Decisions.md`를 만든다. `--write`가 없으면 출력만 한다 |
+| `node Tools/Agent/decisions.cjs next` | 새 결정의 번호와 파일 이름 형식을 출력한다 |
 | `node Tools/Agent/cpp-rules.cjs check [--summary] [paths...]` | Coding의 기계 검사 규칙 위반을 보고한다 |
 | `node Tools/Agent/cpp-rules.cjs format [--base <rev>]` | `<rev>`(기본 `HEAD`) 이후 바뀐 줄에 `.clang-format`을 적용했을 때의 차이를 검사한다 |
 | `node Tools/Agent/floor-guard.cjs [--base <rev>]` | diff의 새 억제 주석, 비활성화된 테스트, 삭제된 스모크 검사, 늘어난 시간 제한, 미구현 스텁을 찾는다. 추적하지 않는 새 파일을 포함하고 문서는 제외한다 |

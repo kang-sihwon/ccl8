@@ -103,7 +103,7 @@ pstack의 증거 기준은 내부 setter나 테스트 전용 경로를 사용자
 
 ## 스킬 묶음 통합 검토: 2026-10-25
 
-세 묶음 중 하나를 그대로 설치하지 않는다. mattpocock의 호출 구분·글쓰기·진단 체계를 뼈대로 쓰고, pstack의 검증·자기개선 스킬과 addy의 품질 바닥선을 ccl8 조건에 맞춰 옮긴다. 세 묶음 모두 웹·TypeScript·GitHub 흐름의 비중이 커서 UE·Windows·1인 개발에 옮길 수 있는 범위는 일부다. 이 판단으로 정한 이행 방식은 [결정 28](DesignLog.md)이고 진행은 [이행 지도](Work/agent-setup-v2.md)가 소유한다.
+세 묶음 중 하나를 그대로 설치하지 않는다. mattpocock의 호출 구분·글쓰기·진단 체계를 뼈대로 쓰고, pstack의 검증·자기개선 스킬과 addy의 품질 바닥선을 ccl8 조건에 맞춰 옮긴다. 세 묶음 모두 웹·TypeScript·GitHub 흐름의 비중이 커서 UE·Windows·1인 개발에 옮길 수 있는 범위는 일부다. 이 판단으로 정한 이행 방식은 [결정 28](decisions/0028-agent-workflow-restructure.md)이고 진행은 [이행 지도](Work/agent-setup-v2.md)가 소유한다.
 
 ### 조회 범위
 

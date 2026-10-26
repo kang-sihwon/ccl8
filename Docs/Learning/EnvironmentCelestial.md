@@ -14,7 +14,7 @@
 
 ## 이전 고정 조명에서 시간 기반 관측으로
 
-고정 조명은 실험 메뉴를 읽기에는 충분했다. 그러나 낮·밤과 날씨를 연결하려면 저장을 복원한 같은 시각에서 같은 태양 방향이 나와야 한다. [결정 19](../DesignLog.md)와 [천체·표면 질의 설계](../EnvironmentPlan.md#천체표면-질의의-구현-설계)가 이 요구의 근거다.
+고정 조명은 실험 메뉴를 읽기에는 충분했다. 그러나 낮·밤과 날씨를 연결하려면 저장을 복원한 같은 시각에서 같은 태양 방향이 나와야 한다. [결정 19](../decisions/0019-natural-environment-and-labs.md)와 [천체·표면 질의 설계](../EnvironmentPlan.md#천체표면-질의의-구현-설계)가 이 요구의 근거다.
 
 출처: `4458dea`, [CCLCelestialSystem.cpp](../../Source/KSICelestial/Private/KSICelestialSystem.cpp), `const double E = EccentricAnomaly`, 205-209줄. 실제 코드의 연속 발췌이며 들여쓰기만 정리했다.
 

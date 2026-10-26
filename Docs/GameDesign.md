@@ -1,10 +1,10 @@
 # 게임 기획 초안
 
-마을에서 보스에게 갈 이유를 얻고, 길목의 일반 몹과 싸우며 대응법을 익힌 뒤, 보스 전투와 짧은 결말로 이어지는 흐름을 제안한다. 확정된 장르·기간·콘텐츠 범위는 [Direction](Direction.md), 근거는 [결정 1](DesignLog.md)이 소유한다. 멀티플레이 구현과 작업 순서는 [결정 3](DesignLog.md)으로 확정했다. 아래 플레이 흐름·전투·NPC의 세부 규칙은 AI 초안이다.
+마을에서 보스에게 갈 이유를 얻고, 길목의 일반 몹과 싸우며 대응법을 익힌 뒤, 보스 전투와 짧은 결말로 이어지는 흐름을 제안한다. 확정된 장르·기간·콘텐츠 범위는 [Direction](Direction.md), 근거는 [결정 1](decisions/0001-production-scope.md)이 소유한다. 멀티플레이 구현과 작업 순서는 [결정 3](decisions/0003-multiplayer-first-order.md)으로 확정했다. 아래 플레이 흐름·전투·NPC의 세부 규칙은 AI 초안이다.
 
 ## 멀티플레이 범위
 
-이번 CCL에서 멀티플레이를 구현한다. 평소 작업은 Standalone, 서버 검증은 Dedicated Server와 Listen Server에서 수행하고 사망한 플레이어만 개별 재스폰한다. 근거는 [결정 5](DesignLog.md), 상세 설계는 [MultiplayerFoundation](MultiplayerFoundation.md)에 있다. 인원, 협동·대전 여부, 월드 진행의 소유자와 게스트 성장 저장 규칙은 아직 미정이다. 구현 순서는 [StudyRoadmap](StudyRoadmap.md)이 소유한다.
+이번 CCL에서 멀티플레이를 구현한다. 평소 작업은 Standalone, 서버 검증은 Dedicated Server와 Listen Server에서 수행하고 사망한 플레이어만 개별 재스폰한다. 근거는 [결정 5](decisions/0005-run-modes-and-respawn.md), 상세 설계는 [MultiplayerFoundation](MultiplayerFoundation.md)에 있다. 인원, 협동·대전 여부, 월드 진행의 소유자와 게스트 성장 저장 규칙은 아직 미정이다. 구현 순서는 [StudyRoadmap](StudyRoadmap.md)이 소유한다.
 
 ## 플레이 흐름
 
@@ -18,7 +18,7 @@
 
 ## 전투 제안
 
-최소 전투에는 회피, 가드와 패링을 모두 포함한다. 근거는 [결정 8](DesignLog.md)이며 세 행동의 역할과 구현 초안은 [CombatFoundation](CombatFoundation.md)이 소유한다. 첫 검증은 하나의 무기 동작 세트로 시작하는 안을 제안한다. Orbis의 체간 중심 전투는 참고 후보이며 ccl8의 확정 사양은 아니다.
+최소 전투에는 회피, 가드와 패링을 모두 포함한다. 근거는 [결정 8](decisions/0008-dodge-guard-parry.md)이며 세 행동의 역할과 구현 초안은 [CombatFoundation](CombatFoundation.md)이 소유한다. 첫 검증은 하나의 무기 동작 세트로 시작하는 안을 제안한다. Orbis의 체간 중심 전투는 참고 후보이며 ccl8의 확정 사양은 아니다.
 
 일반 몹은 빠른 근접 압박, 느리지만 강한 공격, 거리 유지와 견제 같은 역할로 비교한다. 이 역할 예시는 확정된 종류나 수량을 뜻하지 않는다. 공통 리그·동작·AI를 재사용하면 제작량을 줄일 수 있지만, 타이밍과 대응이 같아지면 다른 적으로 느껴지지 않을 수 있다.
 

@@ -58,7 +58,7 @@ float ACCLCharacter::TakeDamage(float DamageAmount, const FDamageEvent& DamageEv
 
 ## 5. 변경 이유
 
-[DesignLog](../DesignLog.md)의 결정 8·10·11은 회피·가드·패링, 현행 엔진 시스템 사용, PlayerState 소유 ASC를 요구한다. 장르 공통 적중 검증과 소울라이크 방어 정책을 분리한다는 방향은 결정 9와 CombatFoundation에 기록돼 있다.
+[DesignLog](../Decisions.md)의 결정 8·10·11은 회피·가드·패링, 현행 엔진 시스템 사용, PlayerState 소유 ASC를 요구한다. 장르 공통 적중 검증과 소울라이크 방어 정책을 분리한다는 방향은 결정 9와 CombatFoundation에 기록돼 있다.
 
 코드에 대한 분석으로 보면 공통 CombatComponent가 가드 각도나 패링 비용까지 알면 다른 피해 대상에 재사용하기 어려워진다. 현재는 검증한 적중 문맥을 정책에 전달하고, 정책이 적용할 효과와 결과 태그를 정한다.
 
