@@ -97,6 +97,7 @@ Claude 훅과 상태 표시는 같은 런타임 탐색기를 쓰고, 패키지�
 | `node Tools/Agent/decisions.cjs check` | 결정 파일의 머리말·번호·관계, `Docs/Decisions.md`와 생성 결과의 일치, 저장소의 모든 `결정 N` 링크를 검사한다 |
 | `node Tools/Agent/decisions.cjs generate [--write]` | 결정 파일의 머리말로 `Docs/Decisions.md`를 만든다. `--write`가 없으면 출력만 한다 |
 | `node Tools/Agent/decisions.cjs next` | 새 결정의 번호와 파일 이름 형식을 출력한다 |
+| `node Tools/Agent/preserve.cjs --old <path>... --new <path>... [--base <rev>] [--rename <old>=<new>]... [--allow <file>]` | `<rev>`(기본 `HEAD`)의 옛 문서에 있던 수치, `결정 N`, 코드 경로, 링크 대상 가운데 작업 트리의 새 문서 묶음에 없는 것을 처음 나온 위치와 함께 출력한다. 링크는 문서 위치를 기준으로 풀어 비교하므로 옮긴 문서도 비교할 수 있고, 옮긴 대상은 `--rename`으로 맞춘다. 허용 파일의 줄은 `<category> <token>  # 이유`다. 종료 코드는 0 보존, 1 빠짐, 2 실행 불가다 |
 | `node Tools/Agent/cpp-rules.cjs check [--summary] [paths...]` | Coding의 기계 검사 규칙 위반을 보고한다 |
 | `node Tools/Agent/cpp-rules.cjs format [--base <rev>]` | `<rev>`(기본 `HEAD`) 이후 바뀐 줄에 `.clang-format`을 적용했을 때의 차이를 검사한다 |
 | `node Tools/Agent/floor-guard.cjs [--base <rev>]` | diff의 새 억제 주석, 비활성화된 테스트, 삭제된 스모크 검사, 늘어난 시간 제한, 미구현 스텁을 찾는다. 추적하지 않는 새 파일을 포함하고 문서는 제외한다 |

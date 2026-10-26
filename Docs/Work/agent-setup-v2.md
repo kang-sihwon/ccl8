@@ -48,7 +48,11 @@
   - 규칙: WritingGuide의 결정 기록 절차를 결정 파일과 생성기 기준으로 다시 썼고, em dash 예외를 결정 파일 제목으로 옮겼다. `AGENTS.md`의 "끝내기 전"에 `decisions.cjs check`를 넣었다. 문서 지도, 용어집, SystemExplanationGuide, AgentContextTools와 `ccl8-docs`, `ccl8-writing`, `ccl8-decision-log`, `ccl8-work`, `ccl8-narrative` 스킬의 DesignLog 참조도 바꿨다. `AgentToolingResearch.md`의 DesignLog 언급은 과거 상태를 서술한 기록이라 두었다.
   - 시험: `node --test Tools/Agent/Tests/*.test.cjs` 24개 통과(`decisions.test.cjs` 3개 추가). `skills.cjs check` 오류 0, `floor-guard.cjs` 발견 0.
   - 바꾼 문서의 링크를 검사하다 이번 변경 전부터 깨져 있던 링크 5개를 찾았다. `Docs/Learning/InventoryUI.md`의 `Source/CCL/UI/Core/` 경로 4개는 모듈 분리로 옮겨진 파일이고, `Docs/Learning/EnvironmentFollowupEvidence.md`의 `Packaging.md#2026-10-11-이후-변경의-패키지-미검증` 앵커는 지금 없다. 학습 문서는 범위 밖이라 고치지 않았다.
-- [ ] 10. 보존 검사 스크립트 (9). 옛 문서의 수치, `결정 N`, 경로, 링크가 새 문서에 모두 있는지 비교하고 빠진 항목을 출력한다.
+- [x] 10. 보존 검사 스크립트 (9). 옛 문서의 수치, `결정 N`, 경로, 링크가 새 문서에 모두 있는지 비교하고 빠진 항목을 출력한다.
+  - 결과: `node Tools/Agent/preserve.cjs --old <path>... --new <path>... [--base <rev>] [--rename <old>=<new>]... [--allow <file>]`. 옛 문서는 `<rev>`(기본 `HEAD`)에서, 새 문서는 작업 트리에서 읽는다. 여러 문서를 합치거나 나눈 경우도 묶음끼리 비교한다. 종료 코드는 0 보존, 1 빠짐, 2 실행 불가다. 사용법은 AgentContextTools의 검사 도구 표에, 재작성 때 통과해야 한다는 규칙은 `ccl8-docs`의 작성·개정 모드에 넣었다.
+  - 비교 규칙: 수치는 날짜, `1280x720`, 지수, `%`와 영문 단위를 포함한 문자열 그대로, `결정 8·10·11` 같은 묶음 표기는 결정 하나씩, 공백 없는 경로형 코드 표기는 문자열로, 링크는 문서 위치로 푼 저장소 경로와 앵커로 비교한다. 옛 링크에 앵커가 없으면 같은 파일로 가는 아무 링크나, 경로는 그 파일로 가는 링크나 그 경로로 끝나는 더 긴 경로(`helpers/` 대신 `.claude/helpers/`)를, 링크 대상이 새 묶음 안의 문서이면 링크가 없어도 보존으로 친다. 코드 블록 안에서는 수치만 본다.
+  - 실제 문서 확인: DesignLog와 옛 Decisions(`bcf4dfd`)를 새 Decisions와 결정 파일 28개에 비교하면 `--rename Docs/DesignLog.md=Docs/Decisions.md`로 빠짐 0이다. 처음 실행에서 DesignLog 머리말의 WritingGuide 링크가 빠진 것을 찾아 생성되는 Decisions.md 머리말에 되살렸다. 조각 7의 규칙 문서 6개를 재작성 전 `e33868e`와 비교하면 VersionControl·SystemExplanationGuide는 0이다. 나머지 8건은 모두 의도한 변경이다: Coding의 `Engine/Build/Build.version`(`<Engine>/` 자리표시자로 씀)·`Source/CCL/`(AGENTS.md가 소유)·DesignLog 링크, WritingGuide의 `Docs/DesignLog.md`, AgentContextTools의 `5.8`·`2026-10-05`·`5.8.1`(조사 기록은 AgentToolingResearch가 소유), Mentoring의 `AGENTS.md`(결정 2 링크로 바꿈).
+  - 시험: `node --test Tools/Agent/Tests/*.test.cjs` 29개 통과(`preserve.test.cjs` 5개 추가). 시험을 쓰다가 `120ms`처럼 영문 단위가 붙은 수치를 놓치는 결함을 찾아 고쳤다.
 - [ ] 11. QA 보고서 이동 (8). QA 보고서를 내용 변경 없이 `Docs/QA/`로 옮기고 폴더 README에 시점 기록임을 적는다.
 - [ ] 12. 게임 문서 재작성 (10, 11). 문서나 소유 묶음 하나씩 새로 쓰고 보존 검사를 통과시킨 뒤 커밋한다. `Docs/Learning/`은 제외한다.
 - [ ] 13. 서사 정본 (10). `World.md`, `Scenario.md`의 확정 영역은 글자를 바꾸지 않고 구조만 바꾼다. 독립 검토의 수정 제안 목록을 사용자에게 제출한다.
