@@ -1,32 +1,42 @@
 # Windows 검토용 패키지
 
-최신 UE 5.8.3 Game·Server 결과는 [전투 모듈 분리 후 패키지](#전투-모듈-분리-후-패키지)를 따른다. 아래 최초 전달본과 실패 기록은 당시 상태를 보존한다.
+Windows Development의 Game·실제 Server 패키지를 만들고 에디터를 거치지 않는 실행 파일에서 기능을 검사한다. 가장 최근 결과는 2026-10-12 UE 5.8.3의 [세계 모듈 분리 후 패키지](#세계-모듈-분리-후-패키지)이고, 전투·투사체·UI 검사는 같은 날의 [전투 모듈 분리 후 패키지](#전투-모듈-분리-후-패키지)가 마지막이다. 이 문서는 패키지 구성, 생성·실행 방법, 패키지별 검증 기록을 소유한다. [StudyRoadmap](StudyRoadmap.md)의 단계 7 사양이며, 산출물은 기능 검토용이라 최종 아트·밸런스와 Shipping 배포본을 대신하지 않는다.
 
-단계 7은 Windows Development 패키지를 생성하고 에디터를 거치지 않는 실행 파일에서 전체 흐름을 검사한다. 이번 산출물은 기능 검토용이며 최종 아트·밸런스와 Shipping 배포본을 대신하지 않는다.
+## 패키지 구성
 
-시작·원정·전투·이동 검사 맵을 쿠킹 목록에 지정하고 런타임 문자열로 불러오는 Combat·Progression 정의를 항상 포함한다. 에디터 MCP·도구 플러그인은 Editor 타깃으로 제한한다. 게임에는 편집·자동화 서버가 필요하지 않다.
+- 시작·원정·전투·이동 검사 맵, 두 환경 맵과 실험장 레벨을 `Config/DefaultGame.ini`의 쿠킹 목록(`MapsToCook`)에 지정한다.
+- 런타임 문자열로 불러오는 `/Game/Combat`·`/Game/Progression` 정의와, 실험장이 경로로 고르는 `/Game/Environment` 에셋을 항상 포함한다(`DirectoriesToAlwaysCook`). 맵에서 직접 참조하는 것만 쿠킹하는 방식보다 패키지가 커지지만 경로로 고르는 에셋을 함께 전달한다.
+- 에디터 MCP·도구 플러그인은 Editor 타깃으로 제한한다. 게임에는 편집·자동화 서버가 필요하지 않다.
+- Development의 검사 서브시스템은 명시적인 테스트 인자에서만 실행되고, 일반 실행은 시작 화면으로 들어간다. Development에는 디버그 사망 입력도 남아 있다.
 
 ## 생성과 검사
 
-`Tools/Validation/package_windows.ps1`은 로컬 엔진 경로 설정을 읽어 UAT BuildCookRun을 실행한다. 생성 결과는 Git에서 제외한 `Saved/Packages/`에 둔다. 소스 엔진에서 첫 게임 타깃과 패키징 도구를 빌드해야 하므로 CCLEditor의 증분 빌드보다 오래 걸릴 수 있다. 컴파일 병렬 수는 4로 제한한다.
+`Tools/Validation/package_windows.ps1`은 로컬 엔진 경로 설정을 읽어 UAT BuildCookRun을 실행한다. 생성 결과는 Git에서 제외한 `Saved/` 아래에 둔다. 소스 엔진에서 첫 게임 타깃과 패키징 도구를 빌드해야 하므로 CCLEditor의 증분 빌드보다 오래 걸릴 수 있다. 컴파일 병렬 수는 4로 제한한다.
 
-`-ArchiveDirectory`로 별도 출력 폴더를 지정할 수 있다. 장비 UI 검증본은 기존 전달본을 덮지 않고 `Saved/EquipmentValidationPackage/`에 생성했다. 첫 쿠킹에서는 Zen 저장소의 `Missing chunk references` 오류가 발생했다. `-SkipZenStore` 옵션으로 쿠킹 결과를 파일로 저장한 재시도는 UAT 종료 코드 0으로 통과했다. 이 옵션은 엔진 `CookCommandlet.cpp`의 `SkipZenStore` 분기를 사용하며 프로젝트의 기본 설정을 바꾸지 않는다. 게임 빌드 로그는 `Saved/StageValidation/Equipment-Package.log`, 재시도 결과는 `Equipment-Package-Final.log`다.
+| 옵션 | 동작 |
+|---|---|
+| `-ArchiveDirectory <path>` | 출력 폴더를 지정한다. 기본값은 `Saved/Packages/`다. 기존 전달본을 덮지 않도록 패키지마다 다른 폴더를 쓴다 |
+| `-Server` | UAT의 `-server -noclient -serverconfig=Development -serverplatform=Win64`로 `CCLServer`(`TargetType.Server`)를 만든다 |
+| `-SkipZenStore` | 쿠킹 결과를 Zen 저장소 대신 파일로 저장한다. 엔진 `CookCommandlet.cpp`의 `SkipZenStore` 분기를 쓰며 프로젝트 기본 설정은 바꾸지 않는다 |
+| `-SkipBuild` | 빌드를 건너뛰고 쿠킹부터 실행한다 |
 
-장비 UI 검증본의 실제 게임 실행 파일을 `run_ui_smoke.ps1 -PackagedExecutable`에 전달하고 `-Offscreen`으로 렌더링했다. 1280×720과 1920×1080에서 가방 이동·교환·취소, 장착·해제, 장비 8칸 표시와 NPC 대화를 확인했다. 화면은 `Saved/Tests/UIVisual/1280x720-20261007-172525/`, `1920x1080-20261007-172622/`에 있다. 이 검사는 게임 내부 Slate 이벤트를 사용하며 Windows의 수동 마우스 조작과 구분한다.
+기능 검사는 `run_session_smoke.ps1`, `run_campaign_smoke.ps1`, `run_combat_smoke.ps1`, `run_network_smoke.ps1`, `run_ui_smoke.ps1`, 환경·투사체·인벤토리 스모크에 `-PackagedExecutable`로 실제 게임 실행 파일을, 실제 Server 검사에는 `-ServerExecutable`로 서버 실행 파일을 함께 넘긴다. 패키지 Dedicated 검사는 두 실행 파일을 모두 지정해야 하며 한쪽이 빠지면 도구가 실행을 거부한다. 전투·투사체·인벤토리 복제 도구는 CDO 생성자의 누락 에셋 오류도 실패로 판정한다. 실행 순서와 증거 기록은 `ccl8-verify` 스킬을 따른다.
 
-기존 `run_session_smoke.ps1`, `run_campaign_smoke.ps1`, `run_combat_smoke.ps1`, `run_network_smoke.ps1`에 `-PackagedExecutable`로 실제 게임 실행 파일을 전달해 같은 기능 계약을 검사한다. 게임 타깃의 검사 범위는 Standalone·Listen이며 Dedicated 전용 타깃 빌드와 구분한다. Development의 검사 서브시스템은 명시적인 테스트 인자에서만 실행된다. 일반 실행은 시작 화면으로 진입한다.
-
-검사는 시작·저장·불러오기·접속·실패 표시, 전투·성장·콘텐츠·승리·개별 재스폰과 종료를 포함한다. 렌더링한 시작 화면과 실제 플레이 화면에서 누락된 메시·머티리얼·글꼴을 확인한다. 패키징 실행 전에 단계 6에서 통과한 결과를 패키징 성공으로 계산하지 않는다.
+검사는 시작·저장·불러오기·접속·실패 표시, 전투·성장·콘텐츠·승리·개별 재스폰과 종료를 포함한다. 렌더링한 시작 화면과 실제 플레이 화면에서 누락된 메시·머티리얼·글꼴을 확인한다. 에디터에서 통과한 결과를 패키징 성공으로 세지 않고, 패키지 생성 성공을 실행 통과로 기록하지 않는다. UAT 종료 코드만으로 아카이브 전체 복사가 성공했다고 판정하지 않는다.
 
 ## 실행 방법
 
-`Saved/Packages/Windows/CCL.exe`를 실행하면 시작 화면이 열린다. 다른 위치로 옮길 때는 실행 파일만 복사하지 않고 `Windows` 폴더 전체를 복사한다. 디버그 심볼을 포함한 폴더 크기는 약 3.16 GiB다.
+사용자는 패키지 루트의 `Windows/CCL.exe`를 실행하면 시작 화면이 열린다. 검사 도구는 `Windows/CCL/Binaries/Win64/CCL.exe`를 직접 쓴다. 다른 위치로 옮기거나 다른 PC에 전달할 때는 실행 파일만 복사하지 않고 해당 `Windows` 또는 `WindowsServer` 폴더 전체를 복사한다. 패키지와 로그는 Git에서 제외된 `Saved/`에 두고 GitHub에는 코드·설정·검증 도구·문서를 제출한다.
 
-검사에서 생성한 저장 파일·설정·로그·화면 캡처는 배포 폴더 밖의 `Saved/Tests/PackagedRuntime/`에 보존했다. 전달용 폴더에는 테스트 저장 상태가 없다. 일반 플레이는 `CCL_Checkpoint` 슬롯을 사용하며 자동 검사의 별도 슬롯과 구분한다.
+일반 플레이는 `CCL_Checkpoint` 슬롯을 쓰며 자동 검사의 별도 슬롯과 구분한다. 검사에서 생성한 저장 파일·설정·로그·화면 캡처는 배포 폴더 밖에 둔다.
 
-## 검증 결과
+## 패키지 기록
 
-2026-10-07 현재 노트북의 UE 5.9.0 소스 엔진에서 생성 BAT, CCLEditor, 게임·패키징 도구 빌드와 쿠킹·스테이징·아카이브가 성공했다. UAT는 종료 코드 0을 반환했다. 첫 게임·도구 빌드의 UBA 실행 시간은 약 27분, 전체 UAT 실행 시간은 약 38분이다.
+아래는 패키지별 시점 기록이다. 최근 기록이 마지막에 있다.
+
+### 2026-10-07 단계 7 최초 전달본
+
+노트북의 UE 5.9.0 소스 엔진에서 생성 BAT, CCLEditor, 게임·패키징 도구 빌드와 쿠킹·스테이징·아카이브가 성공했다. UAT는 종료 코드 0을 반환했다. 첫 게임·도구 빌드의 UBA 실행 시간은 약 27분, 전체 UAT 실행 시간은 약 38분이다.
 
 아래 로그는 `Saved/StageValidation/`에 보존한다. 모두 패키징한 실행 파일에서 통과했다. 생성·에디터 빌드 로그는 각각 `Stage7-Generate.log`, `Stage7-EditorBuild.log`이고 패키징 로그는 `Stage7-Package.log`다.
 
@@ -44,18 +54,25 @@
 
 로그 검토에서는 의도한 접속 실패의 타임아웃과 검사 종료 후 서버를 닫을 때의 연결 종료 메시지를 구분했다. 게임플레이의 치명적 오류·어설션과 빌드·쿠킹 실패는 발견하지 않았다.
 
-## 검증 범위와 남은 작업
+#### 검증 범위
 
-이번 결과는 Windows 노트북 한 대에서 실행한 Development 패키지다. 패키지의 Standalone·Listen을 검증했고 Dedicated Server는 이전 단계의 에디터 실행 결과만 있다. Shipping 게임 타깃, 다른 PC, 외부 인터넷·NAT 환경은 검증하지 않았다. UE 5.8 호환성을 확인한 결과도 아니다.
+이 결과는 Windows 노트북 한 대에서 실행한 Development 패키지다. 패키지의 Standalone·Listen을 검증했고 Dedicated Server는 이전 단계의 에디터 실행 결과만 있다. Shipping 게임 타깃, 다른 PC, 외부 인터넷·NAT 환경은 검증하지 않았다. UE 5.8 호환성을 확인한 결과도 아니다.
 
-Development에는 명시적인 인자로 동작하는 검사 서브시스템과 디버그 사망 입력이 남아 있다. 아트·애니메이션·밸런스는 프로토타입 수준이며 최종 조작감은 사용자 검토가 필요하다. 메뉴의 모든 마우스 조작과 창 모드 전환에 대한 수동 검사는 [SessionFoundation](SessionFoundation.md)의 미확인 항목을 따른다.
+아트·애니메이션·밸런스는 프로토타입 수준이며 최종 조작감은 사용자 검토가 필요하다. 메뉴의 모든 마우스 조작과 창 모드 전환에 대한 수동 검사는 [SessionFoundation](SessionFoundation.md)의 미확인 항목을 따른다.
 
-## 자연 환경의 Server 타깃 검증 계획
+최초 전달본은 `Saved/Packages/Windows/CCL.exe`다. 디버그 심볼을 포함한 폴더 크기는 약 3.16 GiB다. 검사에서 생성한 상태는 `Saved/Tests/PackagedRuntime/`에 보존했고 전달용 폴더에는 테스트 저장 상태가 없다.
 
-환경 통합은 `CCLServer`의 `TargetType.Server`와 Windows Development 게임 패키지에서 각각 확인한다. `package_windows.ps1 -Server`는 UAT의 `-server -noclient -serverconfig=Development -serverplatform=Win64`를 사용한다. 서버 패키지와 게임 패키지는 별도 아카이브 경로에 생성하고 여섯 검사 맵을 쿠킹 대상으로 명시한다. 실제 서버 실행 파일에 게임 클라이언트 두 개를 연결해 환경 상태와 조작을 검사한다. 타깃 선언과 빌드·쿠킹·실행 성공은 구분하며, 아직 이 계획은 패키지 성공을 뜻하지 않는다.
+#### 장비 UI 검증본
 
+`-ArchiveDirectory`로 별도 출력 폴더를 지정할 수 있다. 장비 UI 검증본은 기존 전달본을 덮지 않고 `Saved/EquipmentValidationPackage/`에 생성했다. 첫 쿠킹에서는 Zen 저장소의 `Missing chunk references` 오류가 발생했다. `-SkipZenStore` 옵션으로 쿠킹 결과를 파일로 저장한 재시도는 UAT 종료 코드 0으로 통과했다. 이 옵션은 엔진 `CookCommandlet.cpp`의 `SkipZenStore` 분기를 사용하며 프로젝트의 기본 설정을 바꾸지 않는다. 게임 빌드 로그는 `Saved/StageValidation/Equipment-Package.log`, 재시도 결과는 `Equipment-Package-Final.log`다.
 
-### 최초 Server 패키지와 시작 실패
+장비 UI 검증본의 실제 게임 실행 파일을 `run_ui_smoke.ps1 -PackagedExecutable`에 전달하고 `-Offscreen`으로 렌더링했다. 1280×720과 1920×1080에서 가방 이동·교환·취소, 장착·해제, 장비 8칸 표시와 NPC 대화를 확인했다. 화면은 `Saved/Tests/UIVisual/1280x720-20261007-172525/`, `1920x1080-20261007-172622/`에 있다. 이 검사는 게임 내부 Slate 이벤트를 사용하며 Windows의 수동 마우스 조작과 구분한다.
+
+### 2026-10-11 자연 환경의 Server 타깃
+
+환경 통합은 `CCLServer`의 `TargetType.Server`와 Windows Development 게임 패키지에서 각각 확인한다. 서버 패키지와 게임 패키지는 별도 아카이브 경로에 만들고 여섯 검사 맵을 쿠킹 대상으로 명시한다. 실제 서버 실행 파일에 게임 클라이언트 두 개를 연결해 환경 상태와 조작을 검사한다. 타깃 선언과 빌드·쿠킹·실행 성공은 구분한다.
+
+#### 최초 Server 패키지와 시작 실패
 
 2026-10-11 UE 5.8.3에서 `CCLServer Win64 Development`의 컴파일·링크와 여섯 맵의 WindowsServer 쿠킹·스테이징·아카이브가 성공했다. 빌드 영수증의 `TargetType`은 `Server`다. UAT는 `BUILD SUCCESSFUL`, 종료 코드 0과 총 3236.68초를 기록했다. 근거는 `Saved/EnvironmentStages/ServerTarget-VerifiedSource-Package.log`이며 산출물은 `Saved/EnvironmentServerPackage/WindowsServer/`다. 이 첫 바이너리에는 이후 작성한 지형 경계 최적화가 들어 있지 않다.
 
@@ -64,18 +81,17 @@ Development에는 명시적인 인자로 동작하는 검사 서브시스템과 
 Dedicated Server에서는 시각 요소 갱신 전에 서버 모드를 확인하도록 식생·생태 표현 경로를 수정한다. 작업장은 레이블이 없어도 권위 단계 갱신과 복제를 계속해야 하므로 표현 포인터만 선택적으로 사용한다. 표면의 서버 충돌과 내비게이션·생태 상태 계산은 유지한다. 엔진의 `UPrimitiveComponent::NeedsLoadForServer`는 충돌이 없고 `AlwaysLoadOnServer`도 꺼진 컴포넌트를 제외한다. 근거는 `<Engine>/Source/Runtime/Engine/Private/Components/PrimitiveComponent.cpp:2076`이다. 최종 생성·Editor 빌드와 재패키징 뒤 실제 Server의 기동·첫 접속·관측·재접속을 다시 검사한다.
 
 
-### Server 실행 수정과 실제 네트워크 통과
+#### Server 실행 수정과 실제 네트워크 통과
 
 표현 컴포넌트가 없는 서버 경로를 수정하고 프로젝트 생성·Editor 빌드를 통과했다. 로그는 `Saved/EnvironmentStages/ServerPresentation-GPF.log`, `ServerPresentation-ActualCompile.log`, `ServerPresentation-EditorBuild.log`다. 재패키징은 `ServerPresentation-ServerPackage.log`에서 93.71초·종료 코드 0으로 통과했다. 다음 실행은 서버가 기동됐지만 경로로 로딩하는 `DA_FoodSample`이 쿠킹에서 빠져 실험 준비를 끝내지 못했다. 이 실패는 `EnvironmentScenario-Dedicated-20261011-004014-729`에 보존했다.
 
 `Config/DefaultGame.ini`의 패키징 목록에 두 환경 맵과 `/Game/Environment`를 추가했다. 음식 정의와 경로로 선택하는 표면 재질 등 환경 에셋을 포함한다. 맵에서 직접 참조하는 것만 쿠킹하는 방식보다 패키지 크기가 늘지만, 현재 실험장이 경로로 선택하는 에셋을 함께 전달한다. `Saved/EnvironmentStages/EnvironmentCook-ServerPackage.log`의 재쿠킹·아카이브 후 실제 `CCLServer.exe`에서 80ms 지연·2% 손실·조작자·관측자·관측자 재접속 검사를 통과했다. 결과는 `Saved/Tests/Environment/EnvironmentScenario-Dedicated-20261011-004432-782/result.json`이다. 서버는 실제 Server 타깃이고 클라이언트는 Editor 게임 모드다. 일반 Game 타깃 패키지는 아직 최초 컴파일 중이며 이 결과로 완료 처리하지 않는다. 구역 09의 후속 변경 전 검증 결과다.
 
-## 전체 검토 직후의 패키지 미검증 기록
+### 전체 검토 직후의 패키지 미검증 기록
 
 2026-10-11 전체 검토 직후에는 에디터에서 다시 검증했지만 Windows 게임 패키지를 다시 만들지 않았다. 이 절은 아래 집계 영양 상태 패키지 생성 전의 기록이다. `LocalPlayerClassName` 설정, `DA_ItemCatalog` 카탈로그와 적 정의 에셋, 재접속 신원 연결은 패키지에서 확인하지 않았다. 카탈로그와 적 정의는 `/Game/Progression`에 있어 기존 항상 쿠킹 목록에 들어간다. 에디터 재검증 결과는 [DeliveryPlan의 2026-10-11 재검증](DeliveryPlan.md#2026-10-11-전체-검토-수정과-ue-583-재검증)을 따른다.
 
-
-## 집계 영양 상태를 포함한 패키지
+### 집계 영양 상태를 포함한 패키지
 
 2026-10-11 UE 5.8.3에서 캠페인 배치 식별 수정과 집계 영양 상태를 포함한 Windows Development Game·Server 패키지를 생성했다. Game의 첫 빌드는 엔진 게임 타깃과 셰이더의 최초 생성 비용을 포함해 BuildCookRun 3126.37초였으며 `Saved/EnvironmentStages/Nutrition-GamePackage.log`에 보존한다. 영양 상태의 후속 수정을 반영한 Game은 `Nutrition-FinalGamePackage.log`의 80.39초, Server는 `Nutrition-ServerPackage.log`의 275.19초로 성공했다. 두 최종 UAT 모두 `BUILD SUCCESSFUL`과 종료 코드 0을 기록했다. 빌드·실행 결과의 원본은 로컬 `Saved/`에 있으며 기기별 절대 경로는 생략했다.
 
@@ -120,8 +136,7 @@ Tools/Validation/run_environment_smoke.ps1 -Mode Dedicated -Map EnvironmentScena
 
 프레임 계측은 기능 검사와 별개다. 18,000프레임 실행의 중단과 600프레임 재실행의 행 수 불일치로 최신 패키지의 완료 성능 수치는 아직 없다. 근거와 재검사 항목은 [프레임 계측의 미완료 범위](EnvironmentPlan.md#프레임-계측의-미완료-범위)를 따른다.
 
-
-## Framework 분리 후 Game·Server 패키지
+### Framework 분리 후 Game·Server 패키지
 
 2026-10-12 `KSICore`·`KSIInventory` 분리와 선행 인벤토리·환경 보완을 포함한 Windows Development 패키지를 생성했다. 게임·전용 서버 모두 쿠킹·스테이징·아카이브까지 완료했다. 최초 패키지의 서버 글꼴 로딩 오류를 고친 최종 산출물이며, 아래 실행 기록은 에디터 실행과 구분한다. 제출 범위와 모듈 독립 검증은 [FrameworkPlan](FrameworkPlan.md#패키지-검증과-제출-범위)을 따른다.
 
@@ -133,7 +148,7 @@ Tools/Validation/run_environment_smoke.ps1 -Mode Dedicated -Map EnvironmentScena
 
 전달할 때는 실행 파일만 복사하지 않고 해당 `Windows` 또는 `WindowsServer` 폴더 전체를 복사한다. 이 산출물과 원본 로그는 Git에서 제외된 `Saved/`에 보존하며 GitHub에는 코드·설정·검증 도구와 문서를 제출한다.
 
-### 생성과 실행 근거
+#### 생성과 실행 근거
 
 아래 로그 이름의 공통 루트는 `Saved/Tests/FrameworkStage2/Packaging/`이다. 실행 도구 로그에는 실제 프로세스 로그·결과 폴더가 기록된다. 원본 로그의 기기별 절대 경로는 이 문서에서 저장소 상대 경로로 표기했다.
 
@@ -154,7 +169,7 @@ Tools/Validation/run_environment_smoke.ps1 -Mode Dedicated -Map EnvironmentScena
 
 빌드 영수증의 `TargetType`은 각각 Game·Server이며 패키지 내부 실행 파일은 `Binaries/Win64`의 해당 빌드 파일과 SHA-256이 일치한다. 근거는 같은 로그 폴더의 `CCL.target`, `CCLServer.target`, `package-binaries-final.json`이다. 검증한 소스 파일은 `verified-source.json`에 기록했다.
 
-### 서버 생성자의 시각 에셋 로딩
+#### 서버 생성자의 시각 에셋 로딩
 
 최초 전용 서버의 기능 검사는 통과했지만 CDO 생성 시 화면용 글꼴을 찾지 못했다. `CCLVegetationPresentation`, `CCLWorkshop`, `CCLVillageSteward`의 생성자가 서버 패키지에 없는 `F_VegetationLabel`·`F_KoreanLabel`을 조회한 것이 원인이다. 최초 오류는 `Saved/Tests/InventoryNetwork/20261012-004624/server.log`에 남아 있다.
 
@@ -162,7 +177,7 @@ Tools/Validation/run_environment_smoke.ps1 -Mode Dedicated -Map EnvironmentScena
 
 복제 검사 도구에도 CDO 생성자 오류를 실패 조건으로 추가했다. 수정 전 패키지가 실제로 거부된 기록은 `Inventory-Negative-CDO.log`와 `Saved/Tests/InventoryNetwork/20261012-005313/server.log`다. 최종 패키지에서는 이 오류가 사라지고 같은 복제 검사가 통과했다.
 
-### 재현과 한계
+#### 재현과 한계
 
 ```powershell
 Tools/Validation/package_windows.ps1 -ArchiveDirectory Saved/FrameworkStage2GamePackage -SkipZenStore
@@ -178,8 +193,7 @@ Tools/Validation/run_environment_smoke.ps1 -Mode Dedicated -Map EnvironmentScena
 
 검증 환경은 Windows 한 대의 UE 5.8.3 Development다. UI 도구는 게임 내부 Slate 이벤트를 사용하며 운영체제 마우스의 수동 검사는 아니다. Shipping, 다른 PC·외부 인터넷, Iris 전환과 성능 목표 충족은 검증하지 않았다. 기능 PASS와 치명적 오류·어설션·생성자 오류를 함께 확인했다. 환경 검사에서 의도한 구역 09 취소 1건은 `CCL_EXPERIMENT FAIL`로 기록되며, 이어지는 취소 확인·원래 입력 복구와 최종 성공을 대조했다. 로그 판정 요약은 `Saved/Tests/FrameworkStage2/Packaging/final-results.json`에 있다.
 
-
-## 전투 모듈 분리 후 패키지
+### 전투 모듈 분리 후 패키지
 
 2026-10-12 KSICombat 분리 후 Game·실제 Server 타깃의 Windows Development 빌드·쿠킹·스테이징·아카이브와 실행 검사를 완료했다. 공용 모듈·게임 정책의 경계, 자동 검사 164개와 독립 실행 27개 항목은 [Framework 단계 3](FrameworkPlan.md#단계-3-구현과-검증)을 따른다.
 
@@ -207,7 +221,7 @@ Tools/Validation/run_environment_smoke.ps1 -Mode Dedicated -Map EnvironmentScena
 
 장비 화면에서 한글·장비 8칸·캐릭터 표시를 확인했다. UI 검사는 게임 내부 Slate 이벤트와 오프스크린 렌더링을 사용하며 수동 마우스 조작 검사와 구분한다. Game·Server 빌드 영수증의 TargetType과 패키지 내부 실행 파일의 SHA-256도 확인했다. `CCL.target`, `CCLServer.target`, `package-binaries-final.json`은 패키지가 각각 최신 빌드와 같은 실행 파일임을 기록한다. 전체 검사·오류 분류는 `final-results.json`에 있다.
 
-### 생성·재현 명령
+#### 생성·재현 명령
 
 ```powershell
 Tools/Validation/package_windows.ps1 -ArchiveDirectory Saved/FrameworkStage3GamePackage -SkipZenStore
@@ -229,7 +243,7 @@ Game 쿠킹에는 기존 실험장 FText 저장 경고, Game·Server 쿠킹에�
 
 이 검증은 한 PC의 로컬 Windows Development 범위다. Shipping, 다른 PC·외부 인터넷·NAT·Iris와 성능 개선은 검증하지 않았다. 환경 전체의 장시간 계측과 이전 단계 전체 회귀를 다시 수행한 결과로 확대하지 않는다.
 
-## 세계 모듈 분리 후 패키지
+### 세계 모듈 분리 후 패키지
 
 2026-10-12 Framework 단계 4의 시간·천체·지형·Agent·환경·저장 모듈을 포함한 Game·실제 Server 타깃의 Windows Development 패키지와 실행을 검증했다. 모듈 경계, 전체 자동 검사 164개, 독립 프로젝트 6개의 37개 항목과 이전 저장 호환은 [Framework 단계 4](FrameworkPlan.md#단계-4-구현과-검증)를 따른다.
 
@@ -254,13 +268,13 @@ Game 쿠킹에는 기존 실험장 FText 저장 경고, Game·Server 쿠킹에�
 
 Game·Server 빌드 영수증의 TargetType과 패키지 내부 실행 파일의 SHA-256을 대조했다. 근거는 `CCL.target`, `CCLServer.target`, `package-binaries-final.json`이다. 전체 실행·오류 분류와 소스 대조는 `final-results.json`, 실행 검증본의 소스 식별값은 `verified-source.json`, 끝 빈 줄 정리를 반영한 제출본은 `submitted-source.json`에 있다. 렌더링은 오프스크린 실행과 게임 내부 조작 도구를 사용하며 운영체제 마우스의 수동 검사가 아니다.
 
-### Server 디버그 심볼 복사 보완
+#### Server 디버그 심볼 복사 보완
 
 최초 Server 아카이브는 디스크 공간 부족으로 CCLServer.pdb를 복사하지 못했는데도 BuildCookRun이 성공으로 종료됐다. 실행 파일·콘텐츠 생성 성공과 디버그 심볼 전달을 구분해 확인했다. 이번 Game 아카이브와 SHA-256이 같은 Game 스테이징 PDB 중복본 하나만 제거해 공간을 확보했다. 원본 Binaries·Game 아카이브의 심볼과 기존 패키지는 보존했다.
 
 누락된 Server PDB를 이번 Server 스테이징에서 아카이브로 복사한 뒤 SHA-256 일치를 확인했다. 결과와 정리한 단일 경로는 `archive-pdb-repair.json`에 기록했다. 따라서 최초 UAT 종료 코드만으로 아카이브 전체 복사가 성공했다고 판정하지 않는다.
 
-### 생성과 실행 명령
+#### 생성과 실행 명령
 
 ```powershell
 Tools/Validation/package_windows.ps1 -ArchiveDirectory Saved/FrameworkStage4GamePackage -SkipZenStore
