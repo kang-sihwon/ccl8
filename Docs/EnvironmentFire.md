@@ -1,8 +1,8 @@
 # 불·열·공간 환경
 
-2026-10-12 공용 계산의 소유 모듈과 현재 코드 위치는 [Framework 단계 4](FrameworkPlan.md#단계-4-구현과-검증)를 따른다. 아래 기존 구현·검증 기록의 CCL 이름은 당시 이름이며 이동 대상만 KSI로 바뀌었다. 게임 연결과 과거 검증 범위는 유지한다.
+단계 7은 연소·소화·확산과 공간별 온습도·연기를 공통 환경 상태에 연결한다. 범위는 [결정 19](decisions/0019-natural-environment-and-labs.md)와 [환경 계획](EnvironmentPlan.md#불열공간-차폐)을 따른다. 연소·표면·공기를 공통 진행·저장·복제에 연결하고 자동 검사와 실제 월드 실행을 검증했다. 구역 10·11의 상시 조작과 Niagara 불꽃·연기 표현까지 실제 실행했다. 식생의 탄 상태 연결은 단계 8에서 이어 갔고, 식생 생체량과 연료 원장의 연결은 [생태계·생애](EnvironmentEcology.md)가 소유한다. 표현 조정과 규모 검증은 단계 9의 범위다. 이 문서는 연소 코어, 표면의 융해·건조와 열 확산, 공간 환기, 구역 10·11의 조작과 표현, 열 노출의 GAS 피해와 검증 기록을 소유한다.
 
-단계 7은 연소·소화·확산과 공간별 온습도·연기를 공통 환경 상태에 연결한다. 범위는 결정 19와 [환경 계획](EnvironmentPlan.md#불열공간-차폐)을 따른다. 연소·표면·공기를 공통 진행·저장·복제에 연결하고 자동 검사와 실제 월드 실행을 검증했다. 구역 10·11의 상시 조작과 Niagara 불꽃·연기 표현까지 실제 실행했다. 식생의 탄 상태 연결은 단계 8, 표현 조정과 규모 검증은 단계 9에서 이어간다.
+2026-10-12에 공용 계산을 KSI 모듈로 옮겼다. 소유 모듈과 현재 코드 위치는 [Framework 단계 4](FrameworkPlan.md#단계-4-구현과-검증)가 소유한다. 아래 구현·검증 기록의 CCL 이름은 당시 이름이며 이동 대상만 KSI로 바뀌었다. 게임 연결과 당시 검증 범위는 그대로다.
 
 ## 목표와 단위
 
@@ -24,9 +24,9 @@ classDiagram
     ACCLFirePresentation ..> FCCLSurfaceSimulation
 ```
 
-## 예정 인터페이스
+## 착수 전 인터페이스 초안
 
-아래 이름은 구현 시 기존 API와 맞춰 확정한다.
+착수 전에 정한 초안이다. 아래 이름은 구현할 때 기존 API와 맞춰 확정했고, 실제 계약은 "연소 코어의 현재 구현" 이후의 절이 소유한다.
 
 ```cpp
 bool Ignite(FGuid RegionId, int32 CellIndex, double HeatJoules, FString& Error);
@@ -51,7 +51,7 @@ bool Advance(const FCCLWorldStep& Step, FString& Error);
 
 ## 연소 코어의 현재 구현
 
-`CCLCombustionModel.h/.cpp`가 연료·열 상태와 전달량을 계산한다. `FCCLCombustionCell`은 남은 연료·연소 누계와 초기·추가·연소·손실·전달 열량을 저장한다. 열은 절대온도 기준의 열용량 곱으로 저장하며 표시 기온은 섭씨로 환산한다. `FCCLCombustionFlux`는 증발시킨 물 kg, 표면·공기에 넘길 열 J와 발생 연기 kg를 반환한다. 공기 전달 열이 음수이면 공기에서 연료로 열을 옮긴다. `CCLSurfaceFire`가 실제 표면의 물과 눈·얼음에 전달량을 반영한다. 연기 발생 누계를 보관하며 셀이 속한 공간에 같은 발생량을 넣는다.
+`CCLCombustionModel.h/.cpp`가 연료·열 상태와 전달량을 계산한다. 2026-10-12 이후 위치는 `Source/KSIEnvironment/`의 `KSICombustionModel.h`·`KSICombustionModel.cpp`이고, 표면 연소는 `KSISurfaceFire.h`·`KSISurfaceFire.cpp`다. `FCCLCombustionCell`은 남은 연료·연소 누계와 초기·추가·연소·손실·전달 열량을 저장한다. 열은 절대온도 기준의 열용량 곱으로 저장하며 표시 기온은 섭씨로 환산한다. `FCCLCombustionFlux`는 증발시킨 물 kg, 표면·공기에 넘길 열 J와 발생 연기 kg를 반환한다. 공기 전달 열이 음수이면 공기에서 연료로 열을 옮긴다. `CCLSurfaceFire`가 실제 표면의 물과 눈·얼음에 전달량을 반영한다. 연기 발생 누계를 보관하며 셀이 속한 공간에 같은 발생량을 넣는다.
 
 ```cpp
 static bool Advance(const FCCLCombustionMaterial& Material,
@@ -241,7 +241,7 @@ bool Advance(double GameSeconds, const TArray<FCCLSurfaceOpening>& Openings,
 
 첫 빌드의 `TObjectPtr` 포인터 추론 오류를 수정했다. 첫 렌더링에서는 재질의 `InstancedStaticMeshes`·`NiagaraSprites` 사용 플래그 누락으로 체크무늬가 나타났고, 연기 수명 4초와 반복 주기 0.25초의 조합에서 생성 구간 예산 경고가 났다. 사용 플래그를 저장하고 연기 반복 주기를 2초로 바꿨다. 최종 별도 프로세스에서 해당 경고가 없고 불꽃·실내 연기·연료·탄 흔적이 표시되는 것을 캡처로 확인했다.
 
-후속 작업은 단계 8의 식생 상태와 연소 결과 연결이다. 단계 9에서 연기 모양·밝기·차폐 진단 화살표와의 겹침을 조정하고 장시간·넓은 범위의 표현 비용을 측정한다. 실제 굴착으로 환기를 바꾸는 멀티플레이 통합 장면도 전체 통합 검증에 포함한다.
+이 절을 쓸 때의 후속 작업은 단계 8의 식생 상태와 연소 결과 연결이었고, 그 결과는 [생태계·생애](EnvironmentEcology.md)에 있다. 단계 9에서 연기 모양·밝기·차폐 진단 화살표와의 겹침을 조정하고 장시간·넓은 범위의 표현 비용을 측정한다. 실제 굴착으로 환기를 바꾸는 멀티플레이 통합 장면도 전체 통합 검증에 포함한다.
 
 
 ## 열 노출의 GAS 피해 연결 설계
