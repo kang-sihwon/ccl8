@@ -1,8 +1,8 @@
 # 자연 날씨의 계산과 연결
 
-2026-10-12 공용 계산의 소유 모듈과 현재 코드 위치는 [Framework 단계 4](FrameworkPlan.md#단계-4-구현과-검증)를 따른다. 아래 기존 구현·검증 기록의 CCL 이름은 당시 이름이며 이동 대상만 KSI로 바뀌었다. 게임 연결과 과거 검증 범위는 유지한다.
+지역 날씨를 천체 일조, 기후 정의와 이전 수분·기온 상태에서 진행한다. 구역 02에서 자연 진행과 강제 비·눈을 선택하고 기온, 대기 수분, 바람과 표면 수지를 확인한다. 범위 근거는 결정 19와 [환경 계획](EnvironmentPlan.md#단계별-구현과-통과-기준)이다. 이 문서는 지역 날씨의 값 모델, 공통 시간과의 확정 순서, 구역 02 조작, 저장·복제와 검증 기록을 소유한다.
 
-지역 날씨를 천체 일조, 기후 정의와 이전 수분·기온 상태에서 진행한다. 구역 02에서 자연 진행과 강제 비·눈을 선택하고 기온, 대기 수분, 바람과 표면 수지를 확인한다. 범위 근거는 결정 19와 [환경 계획](EnvironmentPlan.md#단계별-구현과-통과-기준)이다.
+2026-10-12에 공용 계산을 KSI 모듈로 옮겼다. 소유 모듈과 현재 코드 위치는 [Framework 단계 4](FrameworkPlan.md#단계-4-구현과-검증)가 소유한다. 아래 구현·검증 기록의 CCL 이름은 당시 이름이며 이동 대상만 KSI로 바뀌었다. 게임 연결과 당시 검증 범위는 그대로다.
 
 ## 목표와 책임
 
@@ -58,6 +58,8 @@ classDiagram
 | `Source/CCL/Environment/CCLExperimentWeather.cpp` | 구역 02 초기값·자연/강제 조작·격리 자동 검사 |
 | `Source/CCL/Tests/CCLWeatherSmokeSubsystem.cpp` | 실제 월드 진행·복원, 참가자 수신과 권한 거부 |
 | `Tools/Validation/run_weather_smoke.ps1` | Standalone·Listen·Dedicated 프로세스와 결과 비교 |
+
+표의 경로는 이 문서를 쓸 때의 위치다. 2026-10-12 이후 날씨 모델과 표면 계산은 `Source/KSIEnvironment/`의 `KSIWeatherModel.h`·`KSIWeatherModel.cpp`, `KSISurfaceSimulation.h`·`KSISurfaceSimulation.cpp`에 있다.
 
 초기 기후 수치는 `FCCLClimate`에 있는 실험용 값이다. 자연 날씨는 구역 02에서 켜져 있고 기존 물·눈 구역은 별도의 수동 입력을 유지한다. 활성 지역은 같은 천체 관찰 지점을 쓰되 기후 값과 대기 상태는 지역마다 보관한다.
 
