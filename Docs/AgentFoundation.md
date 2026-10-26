@@ -1,10 +1,10 @@
 # 개인의 삶이 누적되는 Agent
 
-2026-10-12 공용 계산의 소유 모듈과 현재 코드 위치는 [Framework 단계 4](FrameworkPlan.md#단계-4-구현과-검증)를 따른다. 아래 기존 구현·검증 기록의 CCL 이름은 당시 이름이며 이동 대상만 KSI로 바뀌었다. 게임 연결과 과거 검증 범위는 유지한다.
+같은 직업의 Agent도 다른 목표·생활 기반·경험·관계를 가지고 시작하고, 실행 결과가 실제 자원과 세계를 바꿔 다음 선택의 원인이 된다. 상인 8명의 30일 시험과 실제 마을 실행으로 이 계약을 검증했다. 이 문서는 [결정 18](decisions/0018-agent-lives-from-resources.md)의 구현 계약, 구현 경계, 검증 기록, 현재 제한을 소유한다.
 
-같은 직업의 Agent도 다른 목표·생활 기반·경험·관계를 가지고 시작한다. 실행 결과가 실제 자원과 세계를 바꾸고, 그 변화가 다음 선택의 원인이 되어야 한다. 이 문서는 결정 18의 구현 계약이다. 구현·검증 상태는 뒷부분에서 별도로 관리한다.
+2026-10-12에 공용 계산을 KSI 모듈로 옮겼다. 소유 모듈과 현재 코드 위치는 [Framework 단계 4](FrameworkPlan.md#단계-4-구현과-검증)가 소유한다([결정 26](decisions/0026-shared-world-computation-split.md)). 아래 구현·검증 기록의 CCL 이름은 2026-10-08 당시 이름이며, 이후 이동한 대상만 KSI 이름으로 바뀌었다. 게임 연결과 당시 검증 범위는 그대로다.
 
-공통 세계 시간, 생물 개체군과 노화·성장으로 확장할 계획은 [EnvironmentPlan](EnvironmentPlan.md)이 소유한다. 선택 생애 Feature의 나이·수명·자연 노화 보호와 검증 결과는 [생태계·생애 구현](EnvironmentEcology.md#agent-생애-연결과-실행-근거)이 소유한다. 아래 초기 구현 범위와 확장 계획의 완료 상태를 구분한다.
+공통 세계 시간, 생물 개체군과 노화·성장으로 확장하는 계획은 [EnvironmentPlan](EnvironmentPlan.md)이 소유한다. 선택 생애 Feature의 나이·수명·자연 노화 보호와 검증 결과는 [생태계·생애 구현](EnvironmentEcology.md#agent-생애-연결과-실행-근거)이 소유한다. 이 문서의 초기 구현 범위와 확장 계획의 완료 상태는 구분한다.
 
 ## 데이터와 소유권
 
@@ -70,7 +70,7 @@ WorldEvent의 실제 신원과 Agent가 지각한 Observation은 구분한다. �
 
 ## 검증
 
-검증 설치본은 UE 5.9.0 소스 엔진이다. 생성 BAT와 `CCLEditor Win64 Development` 빌드 근거는 로컬 `Saved/StageValidation/AgentIntegration-Generate.log`, `AgentIntegration-Build.log`다. 아래 경로는 저장소 기준이며 로그·캡처는 Git에 넣지 않는다.
+아래는 2026-10-08 기록이다. 검증 설치본은 UE 5.9.0 소스 엔진이었다. 실행 순서와 증거 기록은 `ccl8-verify` 스킬을 따른다. 생성 BAT와 `CCLEditor Win64 Development` 빌드 근거는 로컬 `Saved/StageValidation/AgentIntegration-Generate.log`, `AgentIntegration-Build.log`다. 아래 경로는 저장소 기준이며 로그·캡처는 Git에 넣지 않는다.
 
 | 검사 | 확인한 계약 | 로컬 근거 |
 |---|---|---|
@@ -90,4 +90,4 @@ WorldEvent의 실제 신원과 Agent가 지각한 Observation은 구분한다. �
 
 마을·시설·탄환·연출은 작동 확인용 표현이다. 총구 소켓에 맞춘 발사 애니메이션·총성·궤적 효과와 최종 아트는 별도 콘텐츠 작업이다. 지도에는 탐험 안개 저장이나 지형 텍스처 베이크가 없다. 기억·믿음에는 크기 제한이 있고, 장기 운영용 사건 압축·원장 보관 정책은 확정하지 않았다.
 
-플레이어와 NPC는 거래 계약을 공유하지만 아이템 인벤토리의 표현은 각각 어댑터와 자원 재고다. 모든 종류의 NPC 장비·아이템 거래 UI를 만든 상태는 아니다. 로컬 체크포인트는 호스트 개인 상태만 복원하며, 손님의 재접속 신원·개인 인벤토리 영속성은 지원하지 않는다. 새 Windows 배포 패키지는 이번 검사에 포함하지 않았다.
+플레이어와 NPC는 거래 계약을 공유하지만 아이템 인벤토리의 표현은 각각 어댑터와 자원 재고다. 모든 종류의 NPC 장비·아이템 거래 UI가 있는 것은 아니다. 2026-10-08 검사의 로컬 체크포인트는 호스트 개인 상태만 복원했고 손님의 재접속 신원·개인 인벤토리 영속성은 없었다. 원격 플레이어의 서버 발급 신원과 세계 저장의 플레이어 프로필은 2026-10-11에 추가됐고 [SessionFoundation](SessionFoundation.md)이 소유한다([결정 21](decisions/0021-server-issued-player-identity.md)). 새 Windows 배포 패키지는 2026-10-08 검사에 포함하지 않았다.
