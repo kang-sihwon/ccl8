@@ -44,6 +44,14 @@ test('a link into the new set itself counts as kept after a merge', () => {
   assert.deepEqual(missing(old, fresh, { renames: [['Docs/Log.md', 'Docs/Index.md']] }), []);
 });
 
+test('a relative path survives as a link to the file it resolves to', () => {
+  const old = [doc('Docs/Narrative/Workflow.md', '제출은 `../VersionControl.md`를 따른다.')];
+  const kept = [doc('Docs/Narrative/Workflow.md', '제출은 [VersionControl](../VersionControl.md)을 따른다.')];
+  const wrong = [doc('Docs/Narrative/Workflow.md', '제출은 [VersionControl](VersionControl.md)을 따른다.')];
+  assert.deepEqual(missing(old, kept), []);
+  assert.deepEqual(missing(old, wrong), ['path ../VersionControl.md']);
+});
+
 test('allowed removals are not reported', () => {
   const old = [doc('Docs/Plan.md', '결정 5와 60배.')];
   const fresh = [doc('Docs/Plan.md', '없음.')];

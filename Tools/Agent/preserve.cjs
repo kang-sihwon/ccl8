@@ -97,12 +97,16 @@ function compare(old, fresh, { renames = [], allowed = new Set() } = {}) {
   // A link without an anchor survives as any link to the same file, and a path survives as a link to it or
   // as a longer path ending in it (`helpers/` kept as `.claude/helpers/`).
   // A link to one of the new documents themselves needs no link: its target is part of the set.
+  // A relative path (`../VersionControl.md`) also survives as a link to the file it resolves to.
   const linkedFiles = new Set([...have.get('link')].map(token => token.split('#')[0]).concat(fresh.map(doc => doc.path)));
   const paths = [...have.get('path'), ...linkedFiles];
-  const kept = (category, token) => {
+  const kept = (category, token, docPath) => {
     if (have.get(category).has(token)) return true;
     if (category === 'link') return !token.includes('#') && linkedFiles.has(token);
-    if (category === 'path') return paths.some(candidate => candidate === token || candidate.endsWith(`/${token}`));
+    if (category === 'path') {
+      if (/^\.\.?\//.test(token) && linkedFiles.has(linkKey(docPath, token, renames))) return true;
+      return paths.some(candidate => candidate === token || candidate.endsWith(`/${token}`));
+    }
     return false;
   };
   const missing = [];
@@ -111,7 +115,7 @@ function compare(old, fresh, { renames = [], allowed = new Set() } = {}) {
     for (const [category, tokens] of extract(doc.path, doc.text, renames)) {
       for (const [token, line] of tokens) {
         const key = `${category}\t${token}`;
-        if (kept(category, token) || allowed.has(key) || seen.has(key)) continue;
+        if (kept(category, token, doc.path) || allowed.has(key) || seen.has(key)) continue;
         seen.add(key);
         missing.push({ category, token, where: `${doc.path}:${line}` });
       }
