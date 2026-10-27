@@ -52,6 +52,7 @@
 
 | 문서 | 소유 내용과 읽는 시점 |
 |---|---|
+| [전체 검토 수정과 UE 5.8.3 재검증](QA/FullReviewReverification-2026-10-11.md) | 전체 소스 검토 지적 15개 수정 뒤 자동 검사와 스모크 재실행, 첫 실행의 실패 3건 |
 | [환경 실험장 PIE QA](QA/EnvironmentPIEQA-2026-10-12.md) | 시간·천체 배율 조작의 MCP 실행 검사, 최초 메뉴 입력 정책 누락과 종료 오류 분석 |
 | [환경·전투·멀티플레이·Campaign 종합 QA](QA/FullGameplayMCPQA-2026-10-12.md) | 두 환경 맵 1-11번, 전투·2인 네트워크·원정 완료·저장 복원의 직접 PIE 검사와 결함·미확인 범위 |
 | [종합 QA 수정과 검증](QA/GameplayQAFixes-2026-10-12.md) | 최초 메뉴 입력·종료 수명·방패 배치·실험 안내·NPC 선택 수정과 검증 |
@@ -68,8 +69,8 @@
 | 문서 | 소유 내용과 읽는 시점 |
 |---|---|
 | [진행 중인 작업](Work/README.md) | 여러 세션에 걸친 작업의 재개 지점과 작업별 지도. 결정 28의 에이전트 작업 체계 재구성이 첫 작업 |
-| [StudyRoadmap](StudyRoadmap.md) | 제작 일정 초안·완료 증거·다음 작업 |
-| [DeliveryPlan](DeliveryPlan.md) | 단계별 구현 범위와 생성·빌드·검토·제출 절차 |
+| [StudyRoadmap](StudyRoadmap.md) | 작업 순서·단계별 범위·일정 초안 |
+| [DeliveryPlan](DeliveryPlan.md) | 단계 하나의 생성·빌드·검토·제출 절차 |
 | [Setup](Setup.md) | 초기 구성 범위와 검증 결과 |
 
 ## 작업 규칙
