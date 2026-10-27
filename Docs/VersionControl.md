@@ -9,6 +9,7 @@ ccl8은 독립 Git 저장소이고 기본 브랜치는 `main`, 원격은 GitHub�
 - 브랜치 전환, reset, stash 삭제, 강제 push는 사용자가 명시적으로 요청할 때 한다. Claude Code에서는 `Tools/Agent/guard-commands.cjs` 훅이 파괴적 Git·삭제 명령에 확인을 요청한다. Codex에는 이 훅이 없으므로 같은 확인을 직접 한다.
 - 의도한 파일만 stage하고 `git diff --cached`로 검토한다.
 - 커밋 제목은 영어 명령형 한 줄로 쓰고, 필요하면 본문에 이유와 검증을 적는다.
+- 2026-10-25 에이전트 작업 체계를 재구성하기 전의 규칙 문서는 태그와 브랜치 `agent-setup-v1`(`1d125d5`)에 있다([결정 28](decisions/0028-agent-workflow-restructure.md)). 2026-10-27 기준 둘 다 `origin`에도 있다. 이름이 같아 Git이 `refname is ambiguous` 경고를 내므로 명령에는 `refs/tags/agent-setup-v1`이나 `refs/heads/agent-setup-v1`을 쓴다.
 
 ## 커밋 주체
 

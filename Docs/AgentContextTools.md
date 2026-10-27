@@ -21,7 +21,9 @@
 | `.local/agent-paths.json` | 엔진·인덱스·런타임·선택적 볼트 경로. 형식은 `Tools/Agent/agent-paths.example.json` | 제외 |
 | `.local/graft-runtime/` | 이 저장소 전용 Graft 런타임 | 제외 |
 
-에이전트가 스스로 부르지 않는 사용자 호출 스킬은 `SKILL.md` 머리말에 `disable-model-invocation: true`(Claude)를 두고, 같은 폴더의 `agents/openai.yaml`에 `allow_implicit_invocation: false`(Codex)를 둔다. 목록은 `ccl8-help` 스킬에 있다. `graphify`는 `graphify_ccl8.cmd setup`이 `.claude/skills/`와 `.codex/skills/`에 설치하고 다시 쓰는 도구 관리 스킬이라 정본 폴더 밖에 둔다.
+에이전트가 스스로 부르지 않는 사용자 호출 스킬은 `SKILL.md` 머리말에 `disable-model-invocation: true`(Claude)를 두고, 같은 폴더의 `agents/openai.yaml`에 `allow_implicit_invocation: false`(Codex)를 둔다. 목록은 `ccl8-help` 스킬에 있다. `graphify`는 `graphify_ccl8.cmd setup`이 `.claude/skills/`와 `.codex/skills/`에 설치하고 다시 쓰는 도구 관리 스킬이라 정본 폴더 밖에 둔다. Claude에서는 사용자 호출 스킬이 모델의 스킬 목록에 나타나지 않는 것을 2026-10-25에 확인했다. Codex에서 숨겨지는지는 실행해 보지 않았다.
+
+스킬 정본은 `.agents/skills`이고 `.claude/skills`는 `skills.cjs sync`로 복사해 맞춘다. 링크로 공유하지 않는 이유는 Git이 Windows 디렉터리 연결을 추적하지 않고, 심볼릭 링크는 개발자 모드와 `core.symlinks` 설정이 있어야 해서 다른 환경에서 깨지기 때문이다.
 
 저장소 루트는 `CCL.uproject`와 `.git`이 함께 있는 폴더다. 위치와 폴더명은 기기마다 달라도 되고, `ccl8-*` 스킬과 `graphify_ccl8.cmd`의 이름은 폴더명과 무관하다. 공유 도구는 실행 파일 위치로 프로젝트 경로를 계산한다. 엔진 경로는 `Engine/Build/Build.version`이 있는 `Engine` 폴더다. 엔진 인덱스는 기존 외부 디렉터리를 참조하고 자동 생성하지 않는다.
 
@@ -105,7 +107,7 @@ Claude 훅과 상태 표시는 같은 런타임 탐색기를 쓰고, 패키지�
 
 `cpp-rules.cjs`는 clang-format을 `CLANG_FORMAT` 환경 변수, `PATH`, `vswhere`로 찾은 Visual Studio의 LLVM 도구(19.1.5) 순으로 찾는다. 엔진 `Extras/clang-format`에는 실행 파일이 없고 실험용 설정만 있다.
 
-확인 훅은 명령 문자열 전체를 패턴으로 보므로, 따옴표 안의 시험 문자열에 패턴이 들어 있어도 확인을 요청한다. Codex에는 이 훅이 없다.
+확인 훅은 `.claude/settings.json`의 Bash·PowerShell PreToolUse에 등록돼 있다. 2026-10-25 Claude 데스크톱 앱의 실제 세션에서 `git tag -d no-such-tag`에 `ask` 응답이 나오고 사용자 승인 뒤에만 실행되는 것을 확인했다. 훅은 명령 문자열 전체를 패턴으로 보므로, 따옴표 안의 시험 문자열에 패턴이 들어 있어도 확인을 요청한다. 안전한 쪽의 오탐이라 그대로 둔다. Codex에는 이 훅이 없다.
 
 ## 플러그인 복구 목록
 
