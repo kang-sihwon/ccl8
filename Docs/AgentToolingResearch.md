@@ -15,7 +15,7 @@ AI 주도 제작에 쓸 도구는 UE 내장 Unreal MCP를 먼저 검증하고, c
 | `ccl8-verify` | 작성. MCP PIE 절차는 스킬의 `references/mcp-pie.md`로 옮겼다 | `.agents/skills/ccl8-verify/` |
 | `ccl8-ue-editor`, `ccl8-asset-pipeline` | 만들지 않음 | `.agents/skills/`에 없음 |
 | Blender 설치·MCP | 확인한 기록 없음 | |
-| 스킬 묶음 통합 | 결정 28로 확정하고 재구성 지도에서 진행 | [결정 28](decisions/0028-agent-workflow-restructure.md), [재구성 지도](Work/agent-setup-v2.md) |
+| 스킬 묶음 통합 | 결정 28로 확정했고 2026-10-27 재구성을 마쳤다. 도구와 스킬 구성은 AgentContextTools가 소유한다 | [결정 28](decisions/0028-agent-workflow-restructure.md), [AgentContextTools](AgentContextTools.md) |
 | GitHub CI | 도입하지 않음 | 재구성 지도의 범위 밖 |
 
 ## 현재 상태

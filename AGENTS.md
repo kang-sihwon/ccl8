@@ -43,7 +43,3 @@ ccl8은 Orbis의 방향과 그래픽 스타일을 공유하는 단기 소울라�
 - 스킬·지침: `node Tools/Agent/skills.cjs check`가 통과해야 한다.
 - 결정: `node Tools/Agent/decisions.cjs check`가 통과해야 한다.
 - 여러 세션에 걸친 작업: 지도의 진행과 아직 모르는 것을 갱신한다.
-
-## 이행 중
-
-[재구성 지도](Docs/Work/agent-setup-v2.md)가 끝날 때까지 게임 문서와 QA 보고서는 옛 형식과 위치에 있다. 새 형식 전환은 지도의 조각 10-15가 맡는다.
