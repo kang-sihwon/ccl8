@@ -111,7 +111,11 @@
     - UIReview: 구현 커밋 표, 최종 생성·빌드 로그, 직접 확인 절차, 2026-10-08 당시 한계를 UIFoundation으로 옮겼다.
     - CodeStructurePlan, FrameworkPlan, `Docs/Learning/AgentExecution.md`, `Docs/Learning/Map.md`의 링크를 새 위치로 바꿨다. `Docs/Learning/Map.md`의 `Source/CCL/Map/CCLMapSystem.cpp` 링크 두 곳은 이전부터 깨져 있었다.
   - 결과: 2026-10-27 사용자 확인("세 보고서 파일과 Docs/README.md의 \"날짜 붙은 검토 보고서\" 절을 삭제하고 조각 14를 닫아 줘") 뒤 세 파일과 문서 지도의 해당 절을 지웠다. 저장소에 세 파일을 가리키는 링크가 남지 않았다. 원문은 Git 기록과 태그 `agent-setup-v1`에 있다.
-- [ ] 15. 계획 문서 정리 (12). StudyRoadmap은 방향과 일정, DeliveryPlan은 제출 절차만 남기고 다음 작업은 `Docs/Work/`로 옮긴다.
+- [x] 15. 계획 문서 정리 (12). StudyRoadmap은 방향과 일정, DeliveryPlan은 제출 절차만 남기고 다음 작업은 `Docs/Work/`로 옮긴다.
+  - 결과: DeliveryPlan에는 제출 절차만 남겼다. 단계 3-7 결과 요약과 선행 검증은 각 단계 사양서에 이미 있어(함께 검사하면 빠짐 0) 지웠고, 단계별 구현 범위 표와 공통 시스템 원칙은 StudyRoadmap으로 옮겼다. 2026-10-11 UE 5.8.3 재검증 절은 시점 기록이라 본문을 그대로 `Docs/QA/FullReviewReverification-2026-10-11.md`로 옮기고, 그 절을 가리키던 7개 문서의 링크를 바꿨다.
+  - StudyRoadmap은 프로토타입 결과로 시작하고 단계마다 근거 사양서를 붙였다. 월별 배분 표의 "미착수" 상태 열은 실제 진행과 어긋나 빼고, 진행은 확정 순서 표가 소유한다고 적었다. "현재 작업과 다음 행동" 절은 `Docs/Work/README.md`의 "다음 작업 후보" 표로 옮겼다.
+  - `Docs/Learning/EnvironmentFollowupEvidence.md`의 Packaging 앵커는 이전부터 깨져 있던 링크다.
+- 목적지 확인(2026-10-27): 태그, 스킬 검사, 결정 검사와 링크, 문서별 보존 검사, QA 이동과 검토 보고서 삭제가 모두 참이다. 남은 일은 지도 닫기다. 결정 28에 따라 "정한 것"을 소유 문서로 옮기고, AGENTS.md의 "이행 중" 절과 결정 28의 `progress`를 고치고, 사용자 확인 뒤 이 지도를 지운다.
 
 ## 정한 것
 
