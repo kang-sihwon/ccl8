@@ -26,7 +26,7 @@
 | 시간 분할 수정과 당시 회귀 | 144 | `Saved/Tests/Automation/20261010-232809-465/report/index.json` |
 | 전체 검토 수정 뒤 최종 자동화 | 154 | `Saved/Tests/Automation/20261011-132651-391/report/index.json` |
 
-[DeliveryPlan의 재검증 기록](../DeliveryPlan.md#2026-10-11-전체-검토-수정과-ue-583-재검증)은 다중 플레이어 복원, 환경 Scenario Dedicated와 Playground Standalone을 포함한 기존 실행을 설명한다. 스모크 실행 뒤 형식 정리·GameplayCue 경로 설정이 추가됐고, 최종 코드에서는 생성·빌드·자동 검사를 다시 수행했다는 기록이다. 이 문서 작성에서 각 스모크를 다시 실행한 것은 아니다.
+[2026-10-11 재검증 기록](../QA/FullReviewReverification-2026-10-11.md)은 다중 플레이어 복원, 환경 Scenario Dedicated와 Playground Standalone을 포함한 기존 실행을 설명한다. 스모크 실행 뒤 형식 정리·GameplayCue 경로 설정이 추가됐고, 최종 코드에서는 생성·빌드·자동 검사를 다시 수행했다는 기록이다. 이 문서 작성에서 각 스모크를 다시 실행한 것은 아니다.
 
 같은 기록에는 이동 Dedicated가 한 번 실패한 뒤 같은 코드의 재실행에서 통과한 사실과 원인 미확인이 남아 있다. 또한 최신 변경을 포함한 Windows 패키지는 다시 만들지 않았다. [Packaging](../Packaging.md#2026-10-11-이후-변경의-패키지-미검증)의 한계를 유지한다. 자동 검사 성공을 모든 네트워크 조건·렌더링·패키지의 성공으로 확대하지 않는다.
 

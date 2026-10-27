@@ -165,7 +165,7 @@ Instant 효과는 지속 중인 핸들이 없을 수 있으므로 적용 성공�
 
 ## 검증 상태
 
-UE 5.8.3의 전투 Standalone·Dedicated, 자동 검사 154개와 기존 기능 회귀 결과는 [DeliveryPlan의 2026-10-11 재검증](DeliveryPlan.md#2026-10-11-전체-검토-수정과-ue-583-재검증)이 소유한다. 아래는 그 이전의 시점 기록이다.
+UE 5.8.3의 전투 Standalone·Dedicated, 자동 검사 154개와 기존 기능 회귀 결과는 [2026-10-11 재검증 기록](QA/FullReviewReverification-2026-10-11.md)이 소유한다. 아래는 그 이전의 시점 기록이다.
 
 ### 2026-10-07 UE 5.9 실행 호환성 검사
 

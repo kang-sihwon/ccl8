@@ -142,7 +142,7 @@ void UCCLWorldSimulationSubsystem::CancelParticipants(int32 Prepared)
 
 구체 시스템을 직접 호출하면 처리 순서가 한눈에 드러나고 등록 누락을 걱정할 필요가 적다. 참여자 방식은 코어의 구체 의존성을 줄이는 대신 이름 등록, 처리 순서, 준비·취소 계약을 추가한다. 새 참여자를 붙일 때 정상 복원만 검사하면 부족하다. 뒤 참여자의 실패, 코어 거부, 중복 GUID, 알림 콜백이 읽는 최종 상태를 함께 확인해야 한다.
 
-코드 진입점은 [세계 스냅샷](../../Source/CCL/Environment/CCLWorldSnapshot.cpp), [플레이어 참여자](../../Source/CCL/Session/CCLPlayerPersistenceSubsystem.cpp), [보관함 참여자](../../Source/CCL/Items/CCLInventoryPersistenceSubsystem.cpp)다. 기존 실행 근거는 [재검증 기록](../DeliveryPlan.md#2026-10-11-전체-검토-수정과-ue-583-재검증)과 [다중 복원 검사](../../Source/CCL/Tests/CCLLoadoutRestoreSmokeSubsystem.cpp)에 있다. 이번 문서 작업에서 빌드나 실행을 다시 하지는 않았다.
+코드 진입점은 [세계 스냅샷](../../Source/CCL/Environment/CCLWorldSnapshot.cpp), [플레이어 참여자](../../Source/CCL/Session/CCLPlayerPersistenceSubsystem.cpp), [보관함 참여자](../../Source/CCL/Items/CCLInventoryPersistenceSubsystem.cpp)다. 기존 실행 근거는 [재검증 기록](../QA/FullReviewReverification-2026-10-11.md)과 [다중 복원 검사](../../Source/CCL/Tests/CCLLoadoutRestoreSmokeSubsystem.cpp)에 있다. 이번 문서 작업에서 빌드나 실행을 다시 하지는 않았다.
 
 **Commit 함수를 순서대로 한 번씩 호출하면 같은 결과일까?** 플레이어의 효과 배치가 보관함·코어 실행을 감싸야 한다. 순차 호출로 앞 참여자의 처리 범위를 닫으면 뒤 실패와 함께 취소할 수 있는 경계가 달라진다.
 
