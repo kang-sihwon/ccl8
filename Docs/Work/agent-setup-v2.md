@@ -103,14 +103,14 @@
     - Workflow에 역할, 기록 위치, 단계와 판정, 승인과 정본 반영 절을 두었다. `DRAFTING` 단계 추가, 판정 `APPROVED`를 `PASS`로 변경, 판정별 다음 단계, 단계와 항목 상태의 대응, 폴더별 파일 이름(`YYYY-MM-DD-<english-kebab>.md`)과 종료 뒤 처리, 정본화마다 결정 파일을 만들고 정본 항목에 근거 결정을 붙이는 규칙이다(2-5).
     - "이전 프로젝트" 문장은 Orbis로 밝히고, 할당량과 예외의 원래 내용은 저장소에 기록이 없다고 적었다(9). 근거는 Setup의 Orbis 이전 기록이다.
     - CurrentWork는 검토자와 승인자를 나누고 필드 이름을 한국어로 맞췄다(1, 10). NarrativeConcept는 "확정하지 않는다"의 대상을 절차 문서로 좁혔다(7). WritingGuide 문서 종류 표에 정본 종류를 더했다(8).
-- [ ] 14. 날짜 붙은 검토 보고서 정리 (12). 결과를 소유 사양서로 옮긴다. 삭제는 대상 목록을 사용자에게 확인받은 뒤 한다.
+- [x] 14. 날짜 붙은 검토 보고서 정리 (12). 결과를 소유 사양서로 옮긴다. 삭제는 대상 목록을 사용자에게 확인받은 뒤 한다.
   - 대상: `AgentReview-2026-10-08.md`, `UIReview-2026-10-08.md`, `CodeDesignFixes-2026-10-11.md`.
   - 진행: 결과 이동 완료. 세 보고서 모두 보존 검사에서 보고서 자신을 가리키던 링크만 빠졌다.
     - CodeDesignFixes: 장비 확정 순서·GAS 근거·기능 서비스와 2026-10-11 검증 기록은 ProgressionFoundation, 카탈로그 이름 유일성은 SessionFoundation, 선택적 시간 진행 인터페이스는 EnvironmentPlan, 표면 발행본 수명과 비용은 EnvironmentSnow로 옮겼다. 클래스 다이어그램은 관계를 각 소유 문서의 문장으로 옮기고 뺐다.
     - AgentReview: 데이터 위치 표, 현재 이름의 클래스 다이어그램, 직접 확인 절차를 AgentFoundation으로 옮겼다. 지도 서브시스템 이름을 KSI 이름으로 고쳤다.
     - UIReview: 구현 커밋 표, 최종 생성·빌드 로그, 직접 확인 절차, 2026-10-08 당시 한계를 UIFoundation으로 옮겼다.
     - CodeStructurePlan, FrameworkPlan, `Docs/Learning/AgentExecution.md`, `Docs/Learning/Map.md`의 링크를 새 위치로 바꿨다. `Docs/Learning/Map.md`의 `Source/CCL/Map/CCLMapSystem.cpp` 링크 두 곳은 이전부터 깨져 있었다.
-    - 남은 일: 사용자 확인 뒤 세 파일 삭제와 Docs/README.md의 "날짜 붙은 검토 보고서" 절 삭제.
+  - 결과: 2026-10-27 사용자 확인("세 보고서 파일과 Docs/README.md의 \"날짜 붙은 검토 보고서\" 절을 삭제하고 조각 14를 닫아 줘") 뒤 세 파일과 문서 지도의 해당 절을 지웠다. 저장소에 세 파일을 가리키는 링크가 남지 않았다. 원문은 Git 기록과 태그 `agent-setup-v1`에 있다.
 - [ ] 15. 계획 문서 정리 (12). StudyRoadmap은 방향과 일정, DeliveryPlan은 제출 절차만 남기고 다음 작업은 `Docs/Work/`로 옮긴다.
 
 ## 정한 것
