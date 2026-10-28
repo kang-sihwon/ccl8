@@ -2,9 +2,10 @@
 
 새 세션은 이 목록에서 이어서 할 작업을 고른다. 한 줄에 작업 하나를 적고, 세부와 다음 조각은 작업별 지도가 소유한다. 끝난 작업은 결과를 소유 사양서로 옮긴 뒤 이 목록과 지도에서 지운다. 근거는 [결정 28](../decisions/0028-agent-workflow-restructure.md)이다.
 
+지금 진행 중인 작업은 없다. 작업을 시작하면 아래 표에 한 줄을 더한다.
+
 | 작업 | 지도 | 상태 |
 |---|---|---|
-| C++ 규칙 위반 정리 | [cpp-rule-cleanup](cpp-rule-cleanup.md) | 조각 1-5 완료, 위반 0건. 완료 검사 질문과 지도 삭제 확인 대기 |
 
 ## 다음 작업 후보
 
@@ -16,6 +17,6 @@
 | 전투의 남은 검사(정확한 방어 구간 경계, 동시 피격 등) | [CombatFoundation](../CombatFoundation.md#미검증) | 없음 |
 | 패키지의 미확인 환경(다른 PC·Shipping·외부 인터넷·NAT) | [Packaging](../Packaging.md#세계-모듈-분리-후-패키지) | 검증할 기기와 네트워크가 있어야 한다 |
 | 자연 환경 단계 8 마무리와 단계 9 | [EnvironmentPlan](../EnvironmentPlan.md#단계별-현황) | 없음 |
-| `Docs/Learning/` 시스템별 재작성과 QA 재검증 | [결정 28](../decisions/0028-agent-workflow-restructure.md), [학습 문서의 깨진 링크](../Learning/README.md#알려진-깨진-링크) | [C++ 규칙 위반 정리](cpp-rule-cleanup.md) 뒤 |
+| `Docs/Learning/` 시스템별 재작성과 QA 재검증 | [결정 28](../decisions/0028-agent-workflow-restructure.md), [학습 문서의 깨진 링크](../Learning/README.md#알려진-깨진-링크) 없음. 선행 작업인 C++ 규칙 위반 정리는 2026-10-28에 끝났다([Coding](../Coding.md#기계-검사-규칙)) |
 | SessionFoundation 절 본문을 계약별로 다시 나누기 | [SessionFoundation](../SessionFoundation.md#현재-계약) | 링크하는 8곳을 함께 옮긴다 |
 | GitHub Issues와 CI 도입 | [결정 28](../decisions/0028-agent-workflow-restructure.md) | 보류. 여러 세션이 동시에 일을 가져갈 때 다시 검토한다 |
