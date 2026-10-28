@@ -62,7 +62,9 @@ Item을 예로 들면 `ItemDefinition`이 필요한 `ItemFragment`를 조합한�
 
 ## 기계 검사 규칙
 
-`node Tools/Agent/cpp-rules.cjs check [--summary] [paths...]`가 아래 규칙을 보고한다. 소스는 고치지 않는다. 바꾼 줄이 `.clang-format`과 맞는지는 `node Tools/Agent/cpp-rules.cjs format [--base <rev>]`가 검사한다. 파일 전체에는 적용하지 않는다. 기존 파일은 namespace 들여쓰기와 이어진 줄 정렬이 섞여 있어 규칙과 무관한 차이가 수천 건 생기기 때문이다. 바꾼 파일에 새 위반을 남기지 않는다. 기존 위반의 정리는 별도 작업으로 한다. 2026-10-25 기준 기존 위반은 60개 파일에서 183건이다(한 줄 블록 110, 연속 빈 줄 27, `GENERATED_BODY()` 뒤 빈 줄 26, 닫는 중괄호 앞 빈 줄 15, 중괄호 없는 본문 4, 헤더 `bool` 멤버 1).
+`node Tools/Agent/cpp-rules.cjs check [--summary] [paths...]`가 아래 규칙을 보고한다. 소스는 고치지 않는다. 바꾼 줄이 `.clang-format`과 맞는지는 `node Tools/Agent/cpp-rules.cjs format [--base <rev>]`가 검사한다. 파일 전체에는 적용하지 않는다. 기존 파일은 namespace 들여쓰기와 이어진 줄 정렬이 섞여 있어 규칙과 무관한 차이가 수천 건 생기기 때문이다. 바꾼 파일에 새 위반을 남기지 않는다. 2026-10-25에 기록한 기존 위반 183건(60개 파일)은 2026-10-28에 동작을 바꾸지 않고 모두 정리했다. 그 뒤 저장소 전체 검사는 0건이다.
+
+`.clang-format`은 람다 본문의 여는 중괄호를 다음 줄에 두고(`BeforeLambdaBody: true`), 이어진 줄도 탭으로 들여쓴다(`UseTab: ForContinuationAndIndentation`). 2026-10-28 기준 저장소의 `.cpp`는 람다 여는 중괄호를 다음 줄에 둔 곳이 258곳, 같은 줄에 둔 곳이 9곳이었다. 여러 줄 조건의 연산자는 기존 코드에 줄 앞 방식과 줄 끝 방식이 섞여 있다. `ColumnLimit: 0`인 이 설정은 줄 끝 방식의 줄바꿈만 유지하므로, 고치는 조건문은 `||`와 `&&`를 줄 끝에 둔다.
 
 | 규칙 | 내용 | 근거 |
 |---|---|---|

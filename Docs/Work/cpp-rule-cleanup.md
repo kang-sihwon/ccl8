@@ -25,6 +25,7 @@
 - [x] 5. 헤더 bool 멤버 (3). `CCLExperimentScreen.h:89`의 `bool bDisplayedObservation`을 결정 4대로 `uint8`로 바꾼다. 형식 정리와 다른 커밋으로 남긴다. 이 멤버는 `CCLExperimentScreen.cpp:167`에서 `bool` 지역 변수와 비교하고 `:172`에서 그 값을 대입받으므로, `uint8`이 0과 1만 담는 한 비교 결과는 같다. 완료 조건은 그 파일의 `cpp-rules.cjs check` 0건, 이 멤버를 쓰는 곳의 대입·비교가 그대로인지 확인한 기록, 빌드 통과다.
   - 결과: 멤버를 `uint8 bDisplayedObservation = 0;`으로 바꿔 전체 검사가 0건이다. 첫 빌드는 `:167`의 `uint8 == bool` 비교가 MSVC C4805 오류로 실패해, 비교식을 `static_cast<bool>(bDisplayedObservation) == bObservation`으로 고쳤다. `:172`의 대입은 그대로이고 멤버에는 0과 1만 들어가므로 비교 결과는 같다. 실행 검증은 하지 않았다. 증거는 코드 대조와 빌드다. `cpp-rules.cjs format`, `floor-guard.cjs` 0건. GenerateProjectFiles와 `CCLEditor Win64 Development` 빌드 성공.
 - [ ] 6. 닫기 (1-5). 전체 검사 0건과 목적지의 나머지 조건을 확인하고, Coding의 기준선 문장을 고친다. "아직 모르는 것"의 완료 검사 질문을 정한 뒤 지도를 닫는다.
+  - 결과: 전체 `cpp-rules.cjs check` 0건. 정리 전 커밋 `65dcd27` 기준 `format`과 `floor-guard` 0건이다. 공백 제거 비교에서 바뀐 60개 파일 중 56개는 같고, 2개는 중괄호만 늘었다. 나머지 2개(`CCLExperimentScreen.*`)는 조각 5의 두 줄만 다르다. 마지막 상태의 빌드는 조각 5에서 성공했다. Coding의 기준선 문장을 0건으로 고치고 `.clang-format` 설정과 조건 연산자 위치를 옮겼다. 완료 검사 질문은 사용자 결정을 기다린다.
 
 ## 정한 것
 
