@@ -89,6 +89,7 @@
 |---|---|
 | [AgentContextTools](AgentContextTools.md) | 도구 설치·설정·복구·진단, 검사 도구와 확인 훅의 명령 |
 | [AgentToolingResearch](AgentToolingResearch.md) | AI 주도 제작용 도구 후보·근거·도입 제안, 외부 스킬 묶음 세 개의 통합 검토 |
+| [컨셉 이미지 도구 비교 테스트](ConceptImageToolTest.md) | 컨셉 시안·3D 기준 이미지 생성 도구의 비교 대상·진행 조건·테스트 프롬프트·채점과 결과 |
 
 ## 학습
 
