@@ -19,6 +19,5 @@
 | 자연 환경 단계 8 마무리와 단계 9 | [EnvironmentPlan](../EnvironmentPlan.md#단계별-현황) | 없음 |
 | 새 설정으로 소스 코드 변경(기존 C++ 규칙 위반 정리 포함) | [결정 28](../decisions/0028-agent-workflow-restructure.md), [Coding](../Coding.md#기계-검사-규칙) | 없음 |
 | `Docs/Learning/` 시스템별 재작성과 QA 재검증 | [결정 28](../decisions/0028-agent-workflow-restructure.md), [학습 문서의 깨진 링크](../Learning/README.md#알려진-깨진-링크) | 소스 변경 뒤 |
-| 개인 볼트에 재사용 지식 반영 | [AgentContextTools](../AgentContextTools.md#obsidian-활용-절차) | Obsidian MCP가 연결돼야 한다. 반영 범위는 미정이다 |
 | SessionFoundation 절 본문을 계약별로 다시 나누기 | [SessionFoundation](../SessionFoundation.md#현재-계약) | 링크하는 8곳을 함께 옮긴다 |
 | GitHub Issues와 CI 도입 | [결정 28](../decisions/0028-agent-workflow-restructure.md) | 보류. 여러 세션이 동시에 일을 가져갈 때 다시 검토한다 |
