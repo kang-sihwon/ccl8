@@ -2,7 +2,7 @@
 
 시나리오와 배경 설명으로 컨셉 시안과 3D 모델링용 기준 이미지를 만들 AI 도구를 고르기 위한 비교 테스트다. 같은 프롬프트를 후보 도구마다 넣고 채점표로 비교한 뒤, 단계별로 쓸 도구를 정한다. 이 문서는 비교 대상, 진행 조건, 테스트 프롬프트, 채점 기준을 소유한다. 시각 기준은 [ArtDirection](ArtDirection.md)이, 에이전트 도구 조사는 [AgentToolingResearch](AgentToolingResearch.md)가 소유한다.
 
-2026-10-28 기준으로 테스트는 아직 실행하지 않았고 도구도 정하지 않았다. 결과는 이 문서의 "결과" 절에 날짜를 붙여 추가한다.
+2026-10-29에 T1 영어 프롬프트의 1라운드 일부를 실행했고 도구는 아직 정하지 않았다. 결과는 이 문서의 "결과" 절에 날짜를 붙여 추가하고, 결과 이미지는 `ConceptImageToolTest/` 폴더에 테스트 ID별로 둔다.
 
 ## 피사체의 지위
 
@@ -152,4 +152,47 @@ The same village water well, single object, three-quarter view from slightly abo
 
 ## 결과
 
-아직 없다.
+### 2026-10-29 T1 영어 1라운드 중간 기록
+
+도구별 최고점 이미지 기준으로 Nano Banana Pro가 세 항목 모두 가장 높았다. 다만 4장을 채운 도구는 Midjourney뿐이고 나머지는 1장이라 진행 조건 2를 채우지 못했다. 그래서 순위는 확정하지 않는다. 이미지는 사용자가 생성했고, AI가 이미지를 보고 채점했다.
+
+- 프롬프트는 T1 영어이고, 스타일 참조와 재시도 없이 생성했다. T1 한국어는 아직 실행하지 않았다.
+- 비교 대상 표의 GPT Image 2 자리는 GPT Image 2.5로 테스트했다. YouArt는 화면에 모델 이름을 표시했다. ChatGPT의 이미지 모델이 2.5라는 것은 같은 날 웹 조사로 추정한 것이다.
+- 모델링 활용도는 채점 기준 표에서 T1 대상이 아니다. 건물과 우물을 블록아웃 기준으로 쓸 수 있는지 보려고 참고로 채점했다.
+- 비용과 시간은 기록하지 않았다.
+- 원본이 WebP인 이미지는 LFS 규칙에 맞추려고 화질 손실 없이 PNG로 바꿔 저장했다.
+
+| 도구 | 경로와 설정 | 크기 | 지시 반영 | 스타일 적합 | 모델링 활용도(참고) | 이미지 |
+|---|---|---|---|---|---|---|
+| Nano Banana Pro | YouArt, 1K, 16:9 | 1376×768 | 5 | 5 | 5 | [보기](ConceptImageToolTest/T1/t1-en-youart-nanobananapro.jpg) |
+| Gemini 웹 | 모드 "자동", "높음". 실제 모델은 미확인(Nano Banana 2 추정), 워터마크 있음 | 1024×572 | 4 | 5 | 4 | [보기](ConceptImageToolTest/T1/t1-en-gemini-auto.png) |
+| Midjourney v8.2 1번 | YouArt, HD 끔, Stylize 100, Chaos·Weird·Experimental 0, Raw 모드 미기록 | 1456×816 | 4 | 4 | 4 | [보기](ConceptImageToolTest/T1/t1-en-youart-mj82-1.png) |
+| Midjourney v8.2 2번 | 같음 | 1456×816 | 3 | 3 | 3 | [보기](ConceptImageToolTest/T1/t1-en-youart-mj82-2.png) |
+| Midjourney v8.2 3번 | 같음 | 1456×816 | 3 | 3 | 3 | [보기](ConceptImageToolTest/T1/t1-en-youart-mj82-3.png) |
+| Midjourney v8.2 4번 | 같음 | 1456×816 | 3 | 4 | 4 | [보기](ConceptImageToolTest/T1/t1-en-youart-mj82-4.png) |
+| FLUX 2 | YouArt, max·pro 중 어느 것인지 미기록 | 1280×720 | 4 | 4 | 4 | [보기](ConceptImageToolTest/T1/t1-en-youart-flux2.jpg) |
+| GPT Image 2.5 | YouArt, 품질 설정 미기록 | 1088×608 | 4 | 3 | 4 | [보기](ConceptImageToolTest/T1/t1-en-youart-gptimage25.png) |
+| GPT Image 2.5 | ChatGPT, 채팅 모델 GPT-6.1 Tera Max | 1672×941 | 4 | 3 | 3 | [보기](ConceptImageToolTest/T1/t1-en-chatgpt-gpt61-teramax.png) |
+| GPT Image 2.5 | ChatGPT, 채팅 모델 GPT-6 Astra High | 1672×941 | 4 | 3 | 4 | [보기](ConceptImageToolTest/T1/t1-en-chatgpt-gpt6-astrahigh.png) |
+
+Midjourney 4장의 평균은 지시 반영 3.25, 스타일 적합 3.5, 모델링 활용도 3.5다.
+
+도구별 관찰은 다음과 같다.
+
+- **Nano Banana Pro**: 프롬프트 요소가 모두 들어갔고 시키지 않은 요소가 없다. 벽에 기댄 도구가 가장 명확하고, 돌계단으로 언덕의 높이차를 보였다. 재질과 건물 구조가 사실적이라 블록아웃 기준으로 쓰기 쉽다. 화각이 좁아 마을 전경보다 골목 장면에 가깝고, 우물이 중앙에서 오른쪽으로 치우쳤다.
+- **Gemini 웹**: 추가 랜드마크 없이 ArtDirection의 차분한 노출과 재질에 가깝다. 우물이 중앙에 있지 않고 시점이 높다.
+- **Midjourney v8.2**: 4장 모두 눈높이이고 추가 랜드마크가 없다. 4장 모두 언덕을 무시하고 평지 마을을 그렸고, 소품이 빽빽해 큰 색면이 약하다. 2번은 역광과 대비가 강해 분위기가 무겁다. 3번은 숲 안쪽 마을처럼 보이고 건물 층 구조가 뒤틀렸다. 4번은 위아래에 검은 띠가 생겨 쓸 수 있는 면적이 줄었다. 장별 편차가 크다.
+- **FLUX 2**: 우물이 전경 중앙에 가장 크게 보이고 계단식 언덕을 그렸다. 같은 삽을 벽마다 반복해 세웠고, CG 렌더처럼 정돈돼 생활감이 약하며 집과 문의 비례가 어색하다.
+- **GPT Image 2.5**: 세 결과 모두 시키지 않은 언덕 위 성, 강이나 호수, 먼 산을 넣었다. ChatGPT의 두 채팅 모델과 YouArt에서 같았으므로 이미지 모델 자체의 습관으로 추정한다. YouArt 결과는 언덕을 가장 잘 살렸지만 채도 높은 동화풍이라 ArtDirection과 거리가 있다.
+
+같은 날 확인한 YouArt 설정은 다음과 같다.
+
+- Midjourney의 HD는 화면에 "네이티브 2K"로 표시되지만 2944×1648로 출력됐다. 다른 모델의 1K와 화소 수를 맞추려고 1라운드는 HD를 껐다.
+- Nano Banana Pro의 1K 16:9 출력은 1376×768이다.
+
+남은 일은 다음과 같다.
+
+1. 도구마다 4장을 채우고 버전, 품질 설정, 크레딧을 기록한다.
+2. T1 한국어를 실행한다.
+3. GPT Image 2.5에만 시키지 않은 요소를 빼는 T1b를 만들어 실행한다. T1b 프롬프트는 아직 만들지 않았다.
+4. 2라운드 스타일 참조는 4장을 채운 뒤 정한다. 현재 후보는 Nano Banana Pro 결과다.
