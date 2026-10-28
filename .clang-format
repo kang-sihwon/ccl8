@@ -8,7 +8,7 @@ BasedOnStyle: LLVM
 ColumnLimit: 0
 IndentWidth: 4
 TabWidth: 4
-UseTab: ForIndentation
+UseTab: ForContinuationAndIndentation
 AccessModifierOffset: -4
 NamespaceIndentation: All
 
@@ -26,7 +26,7 @@ BraceWrapping:
   AfterExternBlock: true
   BeforeCatch: true
   BeforeElse: true
-  BeforeLambdaBody: false
+  BeforeLambdaBody: true
   BeforeWhile: false
   SplitEmptyFunction: false
   SplitEmptyRecord: false
