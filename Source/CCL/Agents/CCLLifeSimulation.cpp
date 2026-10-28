@@ -17,8 +17,6 @@ template <class T> T* MutableFeature(FKSIAgentRecord& Agent, FGameplayTag Tag)
 	auto* State = Agent.Features.Find(Tag);
 	return State ? State->Data.GetMutablePtr<T>() : nullptr;
 }
-
-
 }
 
 FCCLLifeSimulation::FCCLLifeSimulation()

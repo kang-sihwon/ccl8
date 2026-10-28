@@ -863,7 +863,6 @@ bool UCCLCampaignSmokeSubsystem::TickContent(bool bAfterVictory)
 	return false;
 }
 
-
 bool UCCLCampaignSmokeSubsystem::CheckContentReplication(ACCLPlayerController* Local, const FString& Role)
 {
 	if (!ContentReplicationStarted)

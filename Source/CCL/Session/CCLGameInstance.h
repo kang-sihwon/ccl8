@@ -9,6 +9,7 @@ UCLASS()
 class CCL_API UCCLGameInstance : public UGameInstance
 {
 	GENERATED_BODY()
+
 public:
 	virtual void Init() override;
 	virtual void Shutdown() override;

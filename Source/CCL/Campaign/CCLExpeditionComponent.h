@@ -9,6 +9,7 @@ UCLASS()
 class CCL_API UCCLExpeditionComponent : public UActorComponent
 {
 	GENERATED_BODY()
+
 public:
 	UCCLExpeditionComponent();
 	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;

@@ -87,8 +87,14 @@ void UCCLAgentWorldSubsystem::OnWorldBeginPlay(UWorld& World)
 		{
 			const FString Variant = UGameplayStatics::ParseOption(Mode->OptionsString, TEXT("LabVariant"));
 			const FString Count = UGameplayStatics::ParseOption(Mode->OptionsString, TEXT("LabCount"));
-			if (!Variant.IsEmpty()) { Config->LaboratoryVariant = FMath::Clamp(FCString::Atoi(*Variant), 0, ACCLWorldEnvironmentConfig::LaboratoryVariants(Config->LaboratoryZone, Config->LaboratorySubject).Num() - 1); }
-			if (!Count.IsEmpty()) { Config->LaboratoryCount = FMath::Clamp(FCString::Atoi(*Count), 1, 16); }
+			if (!Variant.IsEmpty())
+			{
+				Config->LaboratoryVariant = FMath::Clamp(FCString::Atoi(*Variant), 0, ACCLWorldEnvironmentConfig::LaboratoryVariants(Config->LaboratoryZone, Config->LaboratorySubject).Num() - 1);
+			}
+			if (!Count.IsEmpty())
+			{
+				Config->LaboratoryCount = FMath::Clamp(FCString::Atoi(*Count), 1, 16);
+			}
 		}
 	}
 	const TArray<uint8> Empty;
@@ -256,7 +262,6 @@ void UCCLAgentWorldSubsystem::OnWorldBeginTearDown(UWorld* World)
 		UE_LOG(LogTemp, Warning, TEXT("CCL_AGENT travel checkpoint retained previous state: %s"), *Error);
 	}
 }
-
 
 bool UCCLAgentWorldSubsystem::RequestExternalDeath(FGuid Id, FString& Error)
 {

@@ -72,7 +72,6 @@ void UCCLGameInstance::AfterMap(UWorld* World)
 		RestoreStarted = FPlatformTime::Seconds();
 		World->GetTimerManager().SetTimer(RestoreTimer, this, &ThisClass::TryRestore, 0.1f, true);
 	}
-
 }
 
 void UCCLGameInstance::ShowMenu()
@@ -307,7 +306,10 @@ bool UCCLGameInstance::SaveSession()
 	if (!Player || !Pawn || !PC->HasAuthority() || Pawn->IsDead() || !Campaign || !Director ||
 		(Player->GetAbilitySystemComponent()->HasMatchingGameplayTag(CCLTags::State_Busy) || Player->GetAbilitySystemComponent()->HasMatchingGameplayTag(CCLTags::State_Stagger)) ||
 		Campaign->GetPhase() == ECCLCampaignPhase::Error)
-	{ Status = TEXT("저장할 수 없다. 원정 중 살아 있는 호스트가 행동을 멈춘 상태에서 저장해 줘."); return false; }
+	{
+		Status = TEXT("저장할 수 없다. 원정 중 살아 있는 호스트가 행동을 멈춘 상태에서 저장해 줘.");
+		return false;
+	}
 	FCCLSessionRecord Record;
 	for (const auto& Entry : Player->GetInventory()->GetEntries())
 	{
@@ -379,7 +381,10 @@ bool UCCLGameInstance::LoadSession(bool bHost)
 	TArray<uint8> Bytes;
 	FCCLSessionRecord Record;
 	if (!UGameplayStatics::LoadDataFromSlot(Bytes, SaveSlot(), 0) || !FCCLSessionCodec::Decode(Bytes, Record))
-	{ Status = TEXT("불러올 수 없다. 저장 파일이 없거나 손상되었으며, 버전 또는 콘텐츠가 맞지 않을 수도 있다."); return false; }
+	{
+		Status = TEXT("불러올 수 없다. 저장 파일이 없거나 손상되었으며, 버전 또는 콘텐츠가 맞지 않을 수도 있다.");
+		return false;
+	}
 	Pending = Record;
 	GetSubsystem<UCCLAgentSessionStore>()->ResetSession();
 	bPendingRestore = 1;

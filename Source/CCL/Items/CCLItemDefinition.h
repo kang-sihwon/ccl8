@@ -91,7 +91,6 @@ public:
 
 	virtual bool ValidateDefinition(TArray<FText>& Errors) const override;
 
-
 public:
 	// Read-only compatibility for assets saved before the struct migration.
 	UPROPERTY(Instanced)

@@ -9,6 +9,7 @@ UCLASS()
 class ACCLInventoryNetworkProbe : public AActor
 {
     GENERATED_BODY()
+
 public:
     ACCLInventoryNetworkProbe();
     UPROPERTY()
@@ -19,6 +20,7 @@ UCLASS()
 class UCCLInventoryNetworkSmoke : public UTickableWorldSubsystem
 {
     GENERATED_BODY()
+
 public:
     virtual bool ShouldCreateSubsystem(UObject* Outer) const override;
     virtual void Tick(float DeltaTime) override;

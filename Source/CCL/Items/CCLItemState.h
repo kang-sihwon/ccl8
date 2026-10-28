@@ -6,9 +6,10 @@
 USTRUCT()
 struct CCL_API FCCLItemState
 {
-    GENERATED_BODY()
-    UPROPERTY()
-    int32 LoadedAmmo = 0;
-    UPROPERTY()
-    FCCLFoodState Food;
+	GENERATED_BODY()
+
+	UPROPERTY()
+	int32 LoadedAmmo = 0;
+	UPROPERTY()
+	FCCLFoodState Food;
 };

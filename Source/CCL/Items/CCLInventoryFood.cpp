@@ -235,7 +235,6 @@ bool FCCLInventoryFood::GetFoodQuality(const UCCLInventoryComponent& Inventory, 
 		&& CCLFood::Evaluate(Entry->GetState<FCCLItemState>().Food, WorldSeconds, Quality, Error);
 }
 
-
 bool FCCLInventoryFood::ChangeFoodEnvironment(UCCLInventoryComponent& Inventory, const FCCLFoodEnvironmentBinding& Binding, FString& Error)
 {
 	auto* Runtime = Inventory.GetWorld() ? Inventory.GetWorld()->GetSubsystem<UCCLWorldSimulationSubsystem>() : nullptr;

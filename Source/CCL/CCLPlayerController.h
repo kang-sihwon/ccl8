@@ -158,5 +158,4 @@ private:
 	FString DialogueText;
 	TWeakObjectPtr<UCameraComponent> AimCamera;
 	float OriginalAimFOV = 90;
-
 };

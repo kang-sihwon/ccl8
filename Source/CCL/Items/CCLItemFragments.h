@@ -39,7 +39,6 @@ enum class ECCLHandAction : uint8
 	Parry
 };
 
-
 USTRUCT(BlueprintType)
 struct CCL_API FCCLItemFragment_Equip : public FKSIItemFragmentData
 {

@@ -7,6 +7,7 @@ UCLASS()
 class CCL_API UCCLSessionSmokeSubsystem : public UGameInstanceSubsystem, public FTickableGameObject
 {
 	GENERATED_BODY()
+
 public:
 	virtual bool ShouldCreateSubsystem(UObject* Outer) const override;
 	virtual void Tick(float DeltaTime) override;

@@ -257,7 +257,6 @@ bool ValidateRecord(const FCCLSessionRecord& R, bool bProfile, FGuid ProfileWorl
 
 	return true;
 }
-
 } // namespace
 
 bool FCCLSessionCodec::Validate(const FCCLSessionRecord& Record)

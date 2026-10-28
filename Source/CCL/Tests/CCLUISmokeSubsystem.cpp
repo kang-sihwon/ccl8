@@ -63,7 +63,6 @@ void FinishUITest(UWorld* World, uint8 ExitCode)
 }
 }
 
-
 bool UCCLUISmokeSubsystem::ShouldCreateSubsystem(UObject* Outer) const
 {
 #if UE_BUILD_SHIPPING || UE_BUILD_TEST
@@ -528,7 +527,6 @@ void UCCLUISmokeSubsystem::Tick(float DeltaTime)
 		{
 			return;
 		}
-
 	}
 	else if (Step == 10)
 	{
@@ -696,7 +694,6 @@ void UCCLUISmokeSubsystem::Tick(float DeltaTime)
 		{
 			return;
 		}
-
 	}
 	else if (Step == 20)
 	{

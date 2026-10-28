@@ -14,6 +14,7 @@ UCLASS(EditInlineNew, DefaultToInstanced)
 class CCL_API UCCLGoalProgressEvaluator : public UObject
 {
 	GENERATED_BODY()
+
 public:
 	UPROPERTY(EditAnywhere)
 	ECCLGoalMetric Metric = ECCLGoalMetric::Balance;
@@ -27,6 +28,7 @@ UCLASS(EditInlineNew, DefaultToInstanced)
 class CCL_API UCCLGoalCompletionPolicy : public UObject
 {
 	GENERATED_BODY()
+
 public:
 	UPROPERTY(EditAnywhere)
 	uint8 bMaintenance = 0;
@@ -37,6 +39,7 @@ UCLASS()
 class CCL_API UCCLLifeGoalDefinition : public UPrimaryDataAsset
 {
 	GENERATED_BODY()
+
 public:
 	UPROPERTY(EditAnywhere)
 	FGameplayTag GoalTag;
