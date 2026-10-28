@@ -162,20 +162,20 @@ The same village water well, single object, three-quarter view from slightly abo
 - 비용과 시간은 기록하지 않았다.
 - 원본이 WebP인 이미지는 LFS 규칙에 맞추려고 화질 손실 없이 PNG로 바꿔 저장했다.
 
-| 도구 | 경로와 설정 | 크기 | 지시 반영 | 스타일 적합 | 모델링 활용도(참고) | 이미지 |
-|---|---|---|---|---|---|---|
-| Nano Banana Pro | YouArt, 1K, 16:9 | 1376×768 | 5 | 5 | 5 | [보기](ConceptImageToolTest/T1/t1-en-youart-nanobananapro.jpg) |
-| Gemini 웹 | 모드 "자동", "높음". 실제 모델은 미확인(Nano Banana 2 추정), 워터마크 있음 | 1024×572 | 4 | 5 | 4 | [보기](ConceptImageToolTest/T1/t1-en-gemini-auto.png) |
-| Midjourney v8.2 1번 | YouArt, HD 끔, Stylize 100, Chaos·Weird·Experimental 0, Raw 모드 미기록 | 1456×816 | 4 | 4 | 4 | [보기](ConceptImageToolTest/T1/t1-en-youart-mj82-1.png) |
-| Midjourney v8.2 2번 | 같음 | 1456×816 | 3 | 3 | 3 | [보기](ConceptImageToolTest/T1/t1-en-youart-mj82-2.png) |
-| Midjourney v8.2 3번 | 같음 | 1456×816 | 3 | 3 | 3 | [보기](ConceptImageToolTest/T1/t1-en-youart-mj82-3.png) |
-| Midjourney v8.2 4번 | 같음 | 1456×816 | 3 | 4 | 4 | [보기](ConceptImageToolTest/T1/t1-en-youart-mj82-4.png) |
-| FLUX 2 | YouArt, max·pro 중 어느 것인지 미기록 | 1280×720 | 4 | 4 | 4 | [보기](ConceptImageToolTest/T1/t1-en-youart-flux2.jpg) |
-| GPT Image 2.5 | YouArt, 품질 설정 미기록 | 1088×608 | 4 | 3 | 4 | [보기](ConceptImageToolTest/T1/t1-en-youart-gptimage25.png) |
-| GPT Image 2.5 | ChatGPT, 채팅 모델 GPT-6.1 Tera Max | 1672×941 | 4 | 3 | 3 | [보기](ConceptImageToolTest/T1/t1-en-chatgpt-gpt61-teramax.png) |
-| GPT Image 2.5 | ChatGPT, 채팅 모델 GPT-6 Astra High | 1672×941 | 4 | 3 | 4 | [보기](ConceptImageToolTest/T1/t1-en-chatgpt-gpt6-astrahigh.png) |
+| 도구 | 경로와 설정 | 크기 | 지시 반영 | 스타일 적합 | 모델링 활용도(참고) | 그림 느낌(사용자 순위) | 이미지 |
+|---|---|---|---|---|---|---|---|
+| Nano Banana Pro | YouArt, 1K, 16:9 | 1376×768 | 5 | 5 | 5 | 4 | [보기](ConceptImageToolTest/T1/t1-en-youart-nanobananapro.jpg) |
+| Gemini 웹 | 모드 "자동", "높음". 실제 모델은 미확인(Nano Banana 2 추정), 워터마크 있음 | 1024×572 | 4 | 5 | 4 | 3 | [보기](ConceptImageToolTest/T1/t1-en-gemini-auto.png) |
+| Midjourney v8.2 1번 | YouArt, HD 끔, Stylize 100, Chaos·Weird·Experimental 0, Raw 모드 미기록 | 1456×816 | 4 | 4 | 4 | 1 | [보기](ConceptImageToolTest/T1/t1-en-youart-mj82-1.png) |
+| Midjourney v8.2 2번 | 같음 | 1456×816 | 3 | 3 | 3 | 1 | [보기](ConceptImageToolTest/T1/t1-en-youart-mj82-2.png) |
+| Midjourney v8.2 3번 | 같음 | 1456×816 | 3 | 3 | 3 | 1 | [보기](ConceptImageToolTest/T1/t1-en-youart-mj82-3.png) |
+| Midjourney v8.2 4번 | 같음 | 1456×816 | 3 | 4 | 4 | 1 | [보기](ConceptImageToolTest/T1/t1-en-youart-mj82-4.png) |
+| FLUX 2 | YouArt, max·pro 중 어느 것인지 미기록 | 1280×720 | 4 | 4 | 4 | 2 | [보기](ConceptImageToolTest/T1/t1-en-youart-flux2.jpg) |
+| GPT Image 2.5 | YouArt, 품질 설정 미기록 | 1088×608 | 4 | 3 | 4 | 5 | [보기](ConceptImageToolTest/T1/t1-en-youart-gptimage25.png) |
+| GPT Image 2.5 | ChatGPT, 채팅 모델 GPT-6.1 Tera Max | 1672×941 | 4 | 3 | 3 | 5 | [보기](ConceptImageToolTest/T1/t1-en-chatgpt-gpt61-teramax.png) |
+| GPT Image 2.5 | ChatGPT, 채팅 모델 GPT-6 Astra High | 1672×941 | 4 | 3 | 4 | 5 | [보기](ConceptImageToolTest/T1/t1-en-chatgpt-gpt6-astrahigh.png) |
 
-Midjourney 4장의 평균은 지시 반영 3.25, 스타일 적합 3.5, 모델링 활용도 3.5다.
+Midjourney 4장의 평균은 지시 반영 3.25, 스타일 적합 3.5, 모델링 활용도 3.5다. 그림 느낌은 사용자가 도구 단위로 매긴 순위이고 1이 가장 좋다. 나머지 점수와 따로 매겼다.
 
 도구별 관찰은 다음과 같다.
 
