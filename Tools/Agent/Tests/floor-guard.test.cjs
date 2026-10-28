@@ -24,6 +24,11 @@ test('moved tests and assertions, lowered timeouts and docs are not findings', (
   const moved = diff('Source/CCL/Tests/ATests.cpp', '-IMPLEMENT_SIMPLE_AUTOMATION_TEST(FCCLATest, "CCL.A", Flags)\n-    TestTrue(TEXT("ok"), bOk);')
     + diff('Source/CCL/Tests/BTests.cpp', '+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FCCLATest, "CCL.A", Flags)\n+    TestTrue(TEXT("ok"), bOk);');
   assert.deepEqual(scan(moved), []);
+  const split = diff('Source/CCL/Tests/ATests.cpp', '-\tif (!bOk) { AddError(Error); return false; }\n+\tif (!bOk)\n+\t{\n+\t\tAddError(Error);\n+\t\treturn false;\n+\t}');
+  assert.deepEqual(scan(split), []);
+  const elsewhere = diff('Source/CCL/Tests/ATests.cpp', '-\tif (!bOk) { AddError(Error); return false; }')
+    + diff('Source/CCL/Tests/BTests.cpp', '+\tif (!bOk)\n+\t{\n+\t\tAddError(Error);\n+\t\treturn false;\n+\t}');
+  assert.deepEqual(rules(elsewhere), ['deleted-assertion']);
   assert.deepEqual(scan(diff('Tools/Validation/run_a_smoke.ps1', '-$TimeoutSeconds = 600\n+$TimeoutSeconds = 180')), []);
   assert.deepEqual(scan(diff('Docs/Work/README.md', '+- TODO: write the map')), []);
 });

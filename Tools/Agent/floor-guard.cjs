@@ -70,9 +70,14 @@ function scan(diff) {
   }
 
   // A definition or assertion that reappears elsewhere in the diff was moved, not removed.
+  // Splitting a one-line block over several lines also keeps it, so each file's added lines
+  // are joined without whitespace and searched for the removed line.
   const normalize = text => text.replace(/\s+/g, ' ').trim();
   const addedTexts = new Map();
   for (const entry of plus) addedTexts.set(normalize(entry.text), (addedTexts.get(normalize(entry.text)) ?? 0) + 1);
+  const strip = text => text.replace(/\s+/g, '');
+  const addedJoined = new Map();
+  for (const entry of plus) addedJoined.set(entry.file, (addedJoined.get(entry.file) ?? '') + strip(entry.text));
   const addedTests = new Set(plus.map(entry => entry.text.match(TEST_DEFINITION)).filter(Boolean).map(match => match.slice(1).find(Boolean)));
   for (const entry of minus) {
     const definition = entry.text.match(TEST_DEFINITION);
@@ -84,7 +89,7 @@ function scan(diff) {
       const key = normalize(entry.text);
       const count = addedTexts.get(key) ?? 0;
       if (count > 0) addedTexts.set(key, count - 1);
-      else report('deleted-assertion', entry, 'assertion or failure exit removed from a test or smoke');
+      else if (!(addedJoined.get(entry.file) ?? '').includes(strip(entry.text))) report('deleted-assertion', entry, 'assertion or failure exit removed from a test or smoke');
     }
   }
 
