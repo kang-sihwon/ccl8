@@ -17,7 +17,7 @@
 | [결정 9](decisions/0009-genre-independent-base-systems.md) | 베이스 시스템 설계 | 장르에 독립적인 공통 계약과 콘텐츠 규칙을 분리하고 데이터·정책·기능 조합으로 구성한다. Item은 ItemDefinition과 Fragment 조합을 따른다 | 유효 |  | [Coding](Coding.md) |
 | [결정 10](decisions/0010-prefer-current-ue5-systems.md) | 엔진 시스템 선택 | 명확히 불합리한 근거가 없으면 UE5 신규·현행 시스템을 기본 선택으로 사용한다. Nanite, World Partition, GAS와 Attribute·AttributeSet을 포함한다 | 유효 |  | [Coding](Coding.md) |
 | [결정 11](decisions/0011-minimal-combat-and-asc-lifetime.md) | 최소 전투 구현 | 플레이어 ASC는 PlayerState 소유, 마네킹·맨손으로 시작한다. 가드 붕괴 공격은 막고 경직하며 공격·가드·패링 중 카메라 수평 방향을 따른다 | 유효 | 결정 8 구체화 | [CombatFoundation](CombatFoundation.md) |
-| [결정 12](decisions/0012-generate-and-build-after-code.md) | 코드 작업 완료 검증 | 최종 코드 변경 후 GenerateProjectFiles.bat 실행에 성공하면 프로젝트를 빌드하고 두 결과를 각각 확인한다 | 유효 |  | [Coding](Coding.md) |
+| [결정 12](decisions/0012-generate-and-build-after-code.md) | 코드 작업 완료 검증 | 최종 코드 변경 후 GenerateProjectFiles.bat 실행에 성공하면 프로젝트를 빌드하고 두 결과를 각각 확인한다 | 유효 | 결정 29에서 보완 | [Coding](Coding.md) |
 | [결정 13](decisions/0013-header-region-blank-lines.md) | C++ 배치 | 헤더 영역은 빈 줄 하나로 구분하고 접근 지정자 다음 선언 묶음은 붙인다 | 유효 | 결정 6 보완, 결정 7 보완 | [Coding](Coding.md) |
 | [결정 14](decisions/0014-cpp-control-flow-readability.md) | C++ 배치 | CPP 제어문은 중괄호로 펼치고 독립된 처리 단계 사이를 빈 줄로 구분한다 | 유효 |  | [Coding](Coding.md) |
 | [결정 15](decisions/0015-struct-fragments-and-two-handed-gear.md) | 아이템·장비 | 공통 정보는 ItemDefinition, 선택 기능은 FInstancedStruct로 구성한다. 양손 장비와 장비 창은 ProgressionFoundation의 계약을 따른다 | 유효 | 결정 16에서 구체화 | [ProgressionFoundation](ProgressionFoundation.md) |
@@ -34,5 +34,6 @@
 | [결정 26](decisions/0026-shared-world-computation-split.md) | 공용 시스템 분리 | 프로젝트 안의 C++ 모듈로 단계 1-4의 추출·독립 실행·패키지 검증을 완료했다. 세계 후보 확정·권위·복제·삶 모델과 기존 저장 변환은 CCL에 둔다. KSIAgent는 Mass·StateTree를 요구하지 않는다 | 유효, 단계 4 검증 완료 | 결정 25 보류 해제 | [FrameworkPlan](FrameworkPlan.md) |
 | [결정 27](decisions/0027-per-feature-environment-labs.md) | 기능별 환경 실험 | 전용 레벨에서 시험 종류 하나와 표본 수를 선택한다. 새 실험은 정지한 독립 세계에서 시작한다. 사용한 Fab 리소스와 의존성은 TestResources에 모은다 | 유효, 구현·일부 PIE 검증 완료 |  | [환경 실험장 사용법](EnvironmentLaboratories.md) |
 | [결정 28](decisions/0028-agent-workflow-restructure.md) | 에이전트 작업 체계 | 규칙 문서를 태그 `agent-setup-v1`로 백업하고 새로 쓴 뒤 게임 문서를 내용 보존 검사와 함께 새 형식으로 옮긴다. 결정은 1건당 파일로 나누고 Decisions는 생성한다. 스킬에 명시된 읽기 전용 위임만 요청 없이 허용한다. 재개 지점은 `Docs/Work/`에 둔다 | 유효, 2026-10-27 이행 완료 |  | [AgentToolingResearch](AgentToolingResearch.md#스킬-묶음-통합-검토-2026-10-25), [AgentContextTools](AgentContextTools.md), [WritingGuide](WritingGuide.md#결정을-기록하는-방법), [진행 중인 작업](Work/README.md) |
+| [결정 29](decisions/0029-repository-rule-check-on-completion.md) | 코드 작업 완료 검증 | 코드 작업을 마칠 때 `cpp-rules.cjs check --summary`로 저장소 전체를 검사하고 0건이어야 한다 | 유효 | 결정 12 보완 | [Coding](Coding.md#코드-작업-완료-검증), [AGENTS.md](../AGENTS.md) |
 
 위 결정으로 확정한 범위 밖의 [GameDesign](GameDesign.md), [ArtDirection](ArtDirection.md) 세부 제안과 [StudyRoadmap](StudyRoadmap.md)의 월별 배분은 후보로 유지한다.

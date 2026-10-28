@@ -25,7 +25,7 @@
 - [x] 5. 헤더 bool 멤버 (3). `CCLExperimentScreen.h:89`의 `bool bDisplayedObservation`을 결정 4대로 `uint8`로 바꾼다. 형식 정리와 다른 커밋으로 남긴다. 이 멤버는 `CCLExperimentScreen.cpp:167`에서 `bool` 지역 변수와 비교하고 `:172`에서 그 값을 대입받으므로, `uint8`이 0과 1만 담는 한 비교 결과는 같다. 완료 조건은 그 파일의 `cpp-rules.cjs check` 0건, 이 멤버를 쓰는 곳의 대입·비교가 그대로인지 확인한 기록, 빌드 통과다.
   - 결과: 멤버를 `uint8 bDisplayedObservation = 0;`으로 바꿔 전체 검사가 0건이다. 첫 빌드는 `:167`의 `uint8 == bool` 비교가 MSVC C4805 오류로 실패해, 비교식을 `static_cast<bool>(bDisplayedObservation) == bObservation`으로 고쳤다. `:172`의 대입은 그대로이고 멤버에는 0과 1만 들어가므로 비교 결과는 같다. 실행 검증은 하지 않았다. 증거는 코드 대조와 빌드다. `cpp-rules.cjs format`, `floor-guard.cjs` 0건. GenerateProjectFiles와 `CCLEditor Win64 Development` 빌드 성공.
 - [ ] 6. 닫기 (1-5). 전체 검사 0건과 목적지의 나머지 조건을 확인하고, Coding의 기준선 문장을 고친다. "아직 모르는 것"의 완료 검사 질문을 정한 뒤 지도를 닫는다.
-  - 결과: 전체 `cpp-rules.cjs check` 0건. 정리 전 커밋 `65dcd27` 기준 `format`과 `floor-guard` 0건이다. 공백 제거 비교에서 바뀐 60개 파일 중 56개는 같고, 2개는 중괄호만 늘었다. 나머지 2개(`CCLExperimentScreen.*`)는 조각 5의 두 줄만 다르다. 마지막 상태의 빌드는 조각 5에서 성공했다. Coding의 기준선 문장을 0건으로 고치고 `.clang-format` 설정과 조건 연산자 위치를 옮겼다. 완료 검사 질문은 사용자 결정을 기다린다.
+  - 결과: 전체 `cpp-rules.cjs check` 0건. 정리 전 커밋 `65dcd27` 기준 `format`과 `floor-guard` 0건이다. 공백 제거 비교에서 바뀐 60개 파일 중 56개는 같고, 2개는 중괄호만 늘었다. 나머지 2개(`CCLExperimentScreen.*`)는 조각 5의 두 줄만 다르다. 마지막 상태의 빌드는 조각 5에서 성공했다. Coding의 기준선 문장을 0건으로 고치고 `.clang-format` 설정과 조건 연산자 위치를 옮겼다. 사용자가 전체 규칙 검사를 완료 검사에 넣기로 정해 [결정 29](../decisions/0029-repository-rule-check-on-completion.md)로 기록하고 AGENTS.md와 Coding에 반영했다. 남은 일은 지도 삭제 확인이다.
 
 ## 정한 것
 
@@ -35,11 +35,11 @@
 - 조각마다 커밋하고 빌드를 확인한다. 배치와 공백만 바꾼 조각은 멀티프로세스 플레이 검증을 반복하지 않는다([Coding](../Coding.md#형식-정리와-배치-변경)).
 - 2026-10-28 `.clang-format`의 `BeforeLambdaBody`를 `true`로, `UseTab`을 `ForContinuationAndIndentation`으로 바꿨다. 조각 3에서 Slate 체인의 람다 안 줄을 펼치자 `cpp-rules.cjs format`이 그 줄을 탭과 공백이 섞인 들여쓰기와 같은 줄 람다 중괄호로 고치라고 보고했다. 저장소의 `.cpp`에서 람다 여는 중괄호를 다음 줄에 둔 곳은 258곳, 같은 줄에 둔 곳은 9곳이다. 바꾼 설정으로 저장소 전체를 clang-format에 돌렸을 때 바뀔 줄은 13,700줄에서 11,634줄로 줄었다. 바꾼 설정에서 조각 1-3의 바뀐 줄은 모두 형식 검사를 통과한다.
 - 여러 줄 조건의 연산자 위치는 기존 코드에 두 방식이 섞여 있다(줄 앞 `||`·`&&` 715줄, 줄 끝 799줄). `ColumnLimit: 0`인 지금 설정은 줄 끝 방식만 줄바꿈을 유지하므로, 바꾼 조건문만 줄 끝 방식으로 옮긴다. 설정은 바꾸지 않는다.
+- 2026-10-28 사용자가 전체 `cpp-rules.cjs check --summary`를 코드 완료 검사에 넣기로 정했다([결정 29](../decisions/0029-repository-rule-check-on-completion.md)).
 
 ## 아직 모르는 것
 
-- 위반이 0건이 된 뒤 전체 `cpp-rules.cjs check`를 [AGENTS.md](../../AGENTS.md)의 "끝내기 전"이나 Coding의 완료 검증에 넣을지. 지금은 바꾼 줄의 형식만 검사한다. 조각 6 전에 사용자와 정한다.
-- 빌드할 때 에디터가 열려 있으면 Live Coding이 빌드를 막는다. 조각마다 빌드 전에 에디터가 닫혀 있는지 확인해야 한다.
+- 없음. 조각마다 빌드 전에 에디터가 닫혀 있는지 확인했고, 다섯 번 모두 닫혀 있었다.
 
 ## 범위 밖
 

@@ -244,15 +244,15 @@ return Result;
 
 ## 코드 작업 완료 검증
 
-코드 작업을 마칠 때 최종 변경 상태에서 다음을 순서대로 실행한다. 근거는 [결정 12](decisions/0012-generate-and-build-after-code.md)다. 문서만 바꾼 작업에는 적용하지 않는다.
+코드 작업을 마칠 때 최종 변경 상태에서 다음을 순서대로 실행한다. 근거는 [결정 12](decisions/0012-generate-and-build-after-code.md)와 [결정 29](decisions/0029-repository-rule-check-on-completion.md)다. 문서만 바꾼 작업에는 적용하지 않는다.
 
 1. 사용 중인 엔진의 `GenerateProjectFiles.bat`을 `CCL.uproject` 대상으로 실행한다. 새 파일이 없어도 실행한다.
 2. 생성에 성공하면 `CCLEditor Win64 Development`를 빌드한다. 다른 타깃·플랫폼이 작업 대상이면 그 구성도 빌드한다.
-3. `node Tools/Agent/cpp-rules.cjs format`과 `node Tools/Agent/floor-guard.cjs`를 실행한다. 바닥선 검사의 종료 코드는 0 통과, 1 발견, 2 실행 불가다.
+3. `node Tools/Agent/cpp-rules.cjs check --summary`, `node Tools/Agent/cpp-rules.cjs format`, `node Tools/Agent/floor-guard.cjs`를 실행한다. 규칙 검사는 저장소 전체를 보고 0건이어야 한다. 세 검사의 종료 코드는 0 통과, 1 발견, 2 실행 불가다.
 4. 실패하면 작업 범위의 원인을 고치고 그 단계부터 다시 실행한다. 해결하지 못한 오류가 남으면 코드 작성 상태와 검증 미완료를 나눠 보고한다.
 5. 게임 동작을 바꿨으면 `ccl8-verify` 스킬로 실행 검증하고 증거 강도를 적는다.
 
-완료 보고에는 프로젝트 파일 생성, 빌드, 두 검사의 결과를 각각 적는다. Live Coding, 코드 검사, 일부 모듈의 컴파일은 프로젝트 빌드 통과가 아니다.
+완료 보고에는 프로젝트 파일 생성, 빌드, 세 검사의 결과를 각각 적는다. Live Coding, 코드 검사, 일부 모듈의 컴파일은 프로젝트 빌드 통과가 아니다.
 
 ## 근거·설계·리뷰
 

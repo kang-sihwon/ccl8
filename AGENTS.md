@@ -38,7 +38,7 @@ ccl8은 Orbis의 방향과 그래픽 스타일을 공유하는 단기 소울라�
 
 ## 끝내기 전
 
-- 코드: [Coding](Docs/Coding.md)의 프로젝트 파일 생성과 빌드 결과를 각각 확인한다. `node Tools/Agent/cpp-rules.cjs format`과 `node Tools/Agent/floor-guard.cjs`가 통과해야 한다.
+- 코드: [Coding](Docs/Coding.md)의 프로젝트 파일 생성과 빌드 결과를 각각 확인한다. `node Tools/Agent/cpp-rules.cjs check --summary`, `node Tools/Agent/cpp-rules.cjs format`, `node Tools/Agent/floor-guard.cjs`가 통과해야 한다.
 - 게임 동작: `ccl8-verify`로 실행 검증하고 증거 강도를 적는다.
 - 스킬·지침: `node Tools/Agent/skills.cjs check`가 통과해야 한다.
 - 결정: `node Tools/Agent/decisions.cjs check`가 통과해야 한다.
