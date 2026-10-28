@@ -76,22 +76,40 @@ namespace
 
 void ACCLExperimentDirector::InitializeWaterExperiment()
 {
-	if (bWaterReady) { return; }
+	if (bWaterReady)
+	{
+		return;
+	}
 	const auto* Config = ACCLWorldEnvironmentConfig::Find(GetWorld());
 	const bool bLab = Config && Config->LaboratoryZone >= 0;
 	const auto Allows = [&](int32 Zone, int32 Subject = -1) { return ACCLWorldEnvironmentConfig::AllowsLaboratory(GetWorld(), Zone, Subject); };
 	const bool bTerrain = Allows(5) || Allows(8);
-	if (bTerrain && (!TerrainRegion || !TerrainRegion->IsTerrainReady() || TerrainRegion->IsPreparing())) { return; }
+	if (bTerrain && (!TerrainRegion || !TerrainRegion->IsTerrainReady() || TerrainRegion->IsPreparing()))
+	{
+		return;
+	}
 	auto* Runtime = GetWorld()->GetSubsystem<UCCLWorldSimulationSubsystem>();
-	if (!Runtime || !Runtime->IsRunning()) { return; }
+	if (!Runtime || !Runtime->IsRunning())
+	{
+		return;
+	}
 	FString Error;
 	FCCLWorldSnapshot Initial;
-	if (!FCCLWorldSnapshotCodec::Decode(InitialSnapshot, Initial, Error)) { return; }
+	if (!FCCLWorldSnapshotCodec::Decode(InitialSnapshot, Initial, Error))
+	{
+		return;
+	}
 	const bool bFresh = Runtime->GetSurfaceSimulation().GetRegions().IsEmpty();
 	auto BuildRegions = [&](double Time, bool bBaseline, TArray<FKSISurfaceGrid>& Grids)
 	{
-		if (Allows(2)) { Grids.Add(WeatherGrid()); }
-		if (Allows(3)) { Grids.Add(SnowGrid()); }
+		if (Allows(2))
+		{
+			Grids.Add(WeatherGrid());
+		}
+		if (Allows(3))
+		{
+			Grids.Add(SnowGrid());
+		}
 		if (Allows(4))
 		{
 			auto G = WaterGrid();
@@ -106,24 +124,45 @@ void ACCLExperimentDirector::InitializeWaterExperiment()
 			}
 			Grids.Add(MoveTemp(G));
 		}
-		if (Allows(6) && (!bLab || Config->LaboratoryVariant == 1)) { Grids.Add(ACCLEcologyExperiment::Pond()); }
+		if (Allows(6) && (!bLab || Config->LaboratoryVariant == 1))
+		{
+			Grids.Add(ACCLEcologyExperiment::Pond());
+		}
 		if (Allows(7, 0))
 		{
 			FKSISurfaceGrid Plants;
-			if (!VegetationGrid(Time, Plants, Error, bLab ? Config->LaboratoryVariant : -1, bLab ? Config->SampleCount() : 3)) { return false; }
+			if (!VegetationGrid(Time, Plants, Error, bLab ? Config->LaboratoryVariant : -1, bLab ? Config->SampleCount() : 3))
+			{
+				return false;
+			}
 			Grids.Add(MoveTemp(Plants));
 		}
-		if (Allows(9)) { Grids.Add(CycleGrid()); }
-		if (Allows(10)) { Grids.Add(FireGrid(false)); }
-		if (Allows(11)) { Grids.Add(FireGrid(true)); }
+		if (Allows(9))
+		{
+			Grids.Add(CycleGrid());
+		}
+		if (Allows(10))
+		{
+			Grids.Add(FireGrid(false));
+		}
+		if (Allows(11))
+		{
+			Grids.Add(FireGrid(true));
+		}
 		if (bTerrain)
 		{
 			FKSITerrainStore Base;
 			auto Definition = TerrainRegion->GetTerrainStore().GetSnapshot().Definition;
 			Definition.WorldId = Initial.Identity.WorldId;
-			if (bBaseline && !Base.Initialize(Definition, Error)) { return false; }
+			if (bBaseline && !Base.Initialize(Definition, Error))
+			{
+				return false;
+			}
 			FKSISurfaceGrid G;
-			if (!TerrainGrid(bBaseline ? Base.GetSnapshot() : TerrainRegion->GetTerrainStore().GetSnapshot(), TerrainRegion->GetActorTransform(), G, Error)) { return false; }
+			if (!TerrainGrid(bBaseline ? Base.GetSnapshot() : TerrainRegion->GetTerrainStore().GetSnapshot(), TerrainRegion->GetActorTransform(), G, Error))
+			{
+				return false;
+			}
 			if (bLab && Config->LaboratoryZone == 5)
 			{
 				for (auto& Cell : G.Cells)
@@ -137,43 +176,94 @@ void ACCLExperimentDirector::InitializeWaterExperiment()
 		return true;
 	};
 	TArray<FKSISurfaceGrid> CurrentGrids, BaselineGrids;
-	if (!BuildRegions(Runtime->GetClock().GetWorldSeconds(), false, CurrentGrids) || !BuildRegions(Initial.Clock.WorldSeconds, true, BaselineGrids)) { return; }
+	if (!BuildRegions(Runtime->GetClock().GetWorldSeconds(), false, CurrentGrids) || !BuildRegions(Initial.Clock.WorldSeconds, true, BaselineGrids))
+	{
+		return;
+	}
 	for (const auto& G : CurrentGrids)
 	{
-		if (!Runtime->GetSurfaceSimulation().FindRegion(G.RegionId) && !Runtime->AddSurfaceRegion(G, Error)) { return; }
+		if (!Runtime->GetSurfaceSimulation().FindRegion(G.RegionId) && !Runtime->AddSurfaceRegion(G, Error))
+		{
+			return;
+		}
 	}
-	if (Allows(11) && !Runtime->GetSurfaceSimulation().GetAirSimulation().FindSpace(FireSpaceId()) && !Runtime->AddAirSpace(FireRoom(), Error)) { return; }
+	if (Allows(11) && !Runtime->GetSurfaceSimulation().GetAirSimulation().FindSpace(FireSpaceId()) && !Runtime->AddAirSpace(FireRoom(), Error))
+	{
+		return;
+	}
 	if (!bWaterParticipantBound)
 	{
-		if (bTerrain && !TerrainRegion->AddParticipant(MakeShared<FCCLTerrainWaterParticipant>(Runtime, TerrainWaterRegionId(), TerrainRegion->GetActorTransform()), Error)) { return; }
+		if (bTerrain && !TerrainRegion->AddParticipant(MakeShared<FCCLTerrainWaterParticipant>(Runtime, TerrainWaterRegionId(), TerrainRegion->GetActorTransform()), Error))
+		{
+			return;
+		}
 		bWaterParticipantBound = 1;
 		GetWorld()->SpawnActor<ACCLSurfacePresentation>();
 	}
 	if (Allows(7, 1))
 	{
 		auto* Biology = ACCLBiologyExperiment::Find(GetWorld());
-		if (!Biology) { Biology = GetWorld()->SpawnActor<ACCLBiologyExperiment>(); }
-		if (Biology && Config && !Biology->ResidentClass) { Biology->ResidentClass = Config->ExperimentResidentClass.LoadSynchronous(); }
-		if (!Biology || !Biology->Initialize(bFresh, Initial, Error)) { return; }
+		if (!Biology)
+		{
+			Biology = GetWorld()->SpawnActor<ACCLBiologyExperiment>();
+		}
+		if (Biology && Config && !Biology->ResidentClass)
+		{
+			Biology->ResidentClass = Config->ExperimentResidentClass.LoadSynchronous();
+		}
+		if (!Biology || !Biology->Initialize(bFresh, Initial, Error))
+		{
+			return;
+		}
 	}
 	if (Allows(7, 2))
 	{
 		auto* Food = ACCLFoodExperiment::Find(GetWorld());
-		if (!Food) { Food = GetWorld()->SpawnActor<ACCLFoodExperiment>(UCCLExperimentDefinition::ZoneCenter(7) + FVector(0, -650, 0), FRotator::ZeroRotator); }
-		if (!Food || !Food->Initialize(bFresh, Initial, Error)) { return; }
+		if (!Food)
+		{
+			Food = GetWorld()->SpawnActor<ACCLFoodExperiment>(UCCLExperimentDefinition::ZoneCenter(7) + FVector(0, -650, 0), FRotator::ZeroRotator);
+		}
+		if (!Food || !Food->Initialize(bFresh, Initial, Error))
+		{
+			return;
+		}
 	}
 	if (Allows(6))
 	{
 		auto* Ecology = ACCLEcologyExperiment::Find(GetWorld());
-		if (!Ecology) { Ecology = GetWorld()->SpawnActor<ACCLEcologyExperiment>(UCCLExperimentDefinition::ZoneCenter(6), FRotator::ZeroRotator); }
-		if (!Ecology || !Ecology->Initialize(bFresh, Initial, Error)) { return; }
+		if (!Ecology)
+		{
+			Ecology = GetWorld()->SpawnActor<ACCLEcologyExperiment>(UCCLExperimentDefinition::ZoneCenter(6), FRotator::ZeroRotator);
+		}
+		if (!Ecology || !Ecology->Initialize(bFresh, Initial, Error))
+		{
+			return;
+		}
 	}
 	FKSISurfaceSimulation InitialWater;
-	if (!InitialWater.Initialize(Initial.Identity.WorldId, Initial.Clock.GameSeconds, Initial.Clock.WorldSeconds, Initial.Clock.CompletedStepId, Error)) { return; }
-	for (const auto& G : BaselineGrids) { if (!InitialWater.AddRegion(G, Error)) { return; } }
-	if (Allows(11) && !InitialWater.AddAirSpace(FireRoom(), Error)) { return; }
-	if (!InitialWater.Capture(Initial.Surface, Error) || !FCCLWorldSnapshotCodec::Encode(Initial, InitialSnapshot, Error)) { return; }
-	if (!bLab) { GetGameInstance()->GetSubsystem<UCCLAgentSessionStore>()->ExperimentInitialSnapshots.FindOrAdd(Initial.Identity.Domain) = InitialSnapshot; }
+	if (!InitialWater.Initialize(Initial.Identity.WorldId, Initial.Clock.GameSeconds, Initial.Clock.WorldSeconds, Initial.Clock.CompletedStepId, Error))
+	{
+		return;
+	}
+	for (const auto& G : BaselineGrids)
+	{
+		if (!InitialWater.AddRegion(G, Error))
+		{
+			return;
+		}
+	}
+	if (Allows(11) && !InitialWater.AddAirSpace(FireRoom(), Error))
+	{
+		return;
+	}
+	if (!InitialWater.Capture(Initial.Surface, Error) || !FCCLWorldSnapshotCodec::Encode(Initial, InitialSnapshot, Error))
+	{
+		return;
+	}
+	if (!bLab)
+	{
+		GetGameInstance()->GetSubsystem<UCCLAgentSessionStore>()->ExperimentInitialSnapshots.FindOrAdd(Initial.Identity.Domain) = InitialSnapshot;
+	}
 	bWaterReady = 1;
 	UE_LOG(LogTemp, Display, TEXT("CCL_LAB_READY zone=%d subject=%d regions=%d"), Config ? Config->LaboratoryZone : -1, Config ? Config->LaboratorySubject : 0, CurrentGrids.Num());
 }

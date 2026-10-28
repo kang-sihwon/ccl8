@@ -19,6 +19,7 @@
 - [x] 2. CCL의 Environment 밖 (없음). `Source/CCL/`에서 `Environment/`를 뺀 32건(Tests, Agents, Session, Items, Campaign, 모듈 루트)을 고친다. 완료 조건은 1과 같다.
   - 결과: 22개 파일에서 32건을 고쳐 `Environment/` 밖의 검사가 0건이고 전체는 126건이다. 22개 파일 모두 공백 제거 비교가 같다. `CCLGameInstance.cpp:310, 382`처럼 여러 줄 조건 다음 줄의 `{ ...; return false; }`도 문장별로 펼쳤다. 4칸 공백으로 들여쓴 `CCLItemState.h`는 바꾼 줄이 `.clang-format`의 탭 들여쓰기에 걸려 15줄 전체를 탭으로 바꿨다. `cpp-rules.cjs format`, `floor-guard.cjs` 0건. GenerateProjectFiles와 `CCLEditor Win64 Development` 빌드 성공.
 - [ ] 3. Environment의 물 실험과 실험 화면 (없음). `CCLExperimentWater.cpp`, `CCLExperimentScreen.*`, `CCLExperimentLaboratoryScreen.cpp`의 형식 위반 49건을 고친다. 헤더 `bool` 멤버는 조각 5가 맡는다. 완료 조건은 1과 같다.
+  - 결과: 3개 `.cpp`에서 49건을 고쳐 네 파일의 검사는 `bool` 멤버 1건만 남았고 전체는 77건이다. 세 파일 모두 공백 제거 비교가 같다. `CCLExperimentWater.cpp:173`의 중첩 한 줄 블록도 두 단계로 펼쳤다. 람다 안 줄의 형식 검사 실패는 `.clang-format` 수정("정한 것")으로 풀었다. `cpp-rules.cjs format`, `floor-guard.cjs` 0건, 도구 시험 30개 통과. GenerateProjectFiles와 `CCLEditor Win64 Development` 빌드 성공.
 - [ ] 4. Environment의 나머지 (없음). `Source/CCL/Environment/`의 남은 76건을 고친다. `CCLLaboratoryTests.cpp:65-66`의 중괄호 없는 본문 2건이 들어 있다. 완료 조건은 1과 같다.
 - [ ] 5. 헤더 bool 멤버 (3). `CCLExperimentScreen.h:89`의 `bool bDisplayedObservation`을 결정 4대로 `uint8`로 바꾼다. 형식 정리와 다른 커밋으로 남긴다. 이 멤버는 `CCLExperimentScreen.cpp:167`에서 `bool` 지역 변수와 비교하고 `:172`에서 그 값을 대입받으므로, `uint8`이 0과 1만 담는 한 비교 결과는 같다. 완료 조건은 그 파일의 `cpp-rules.cjs check` 0건, 이 멤버를 쓰는 곳의 대입·비교가 그대로인지 확인한 기록, 빌드 통과다.
 - [ ] 6. 닫기 (1-5). 전체 검사 0건과 목적지의 나머지 조건을 확인하고, Coding의 기준선 문장을 고친다. "아직 모르는 것"의 완료 검사 질문을 정한 뒤 지도를 닫는다.
@@ -29,6 +30,7 @@
 - 파일 전체에 clang-format을 돌리지 않는다. 규칙과 무관한 차이가 수천 건 생기기 때문이다([Coding](../Coding.md#기계-검사-규칙)).
 - 동작 보존은 공백 제거 비교로 확인한다. 바꾼 파일마다 `git show HEAD:<파일>`과 작업 트리 파일에서 공백 문자를 모두 지운 뒤 같은지 본다. 한 줄 블록, 빈 줄, `GENERATED_BODY()` 뒤 빈 줄은 공백만 바뀌므로 완전히 같아야 한다. 중괄호 없는 본문은 `{`와 `}`만 늘어야 한다. 헤더 `bool` 멤버는 조각 5에서 따로 확인한다.
 - 조각마다 커밋하고 빌드를 확인한다. 배치와 공백만 바꾼 조각은 멀티프로세스 플레이 검증을 반복하지 않는다([Coding](../Coding.md#형식-정리와-배치-변경)).
+- 2026-10-28 `.clang-format`의 `BeforeLambdaBody`를 `true`로, `UseTab`을 `ForContinuationAndIndentation`으로 바꿨다. 조각 3에서 Slate 체인의 람다 안 줄을 펼치자 `cpp-rules.cjs format`이 그 줄을 탭과 공백이 섞인 들여쓰기와 같은 줄 람다 중괄호로 고치라고 보고했다. 저장소의 `.cpp`에서 람다 여는 중괄호를 다음 줄에 둔 곳은 258곳, 같은 줄에 둔 곳은 9곳이다. 바꾼 설정으로 저장소 전체를 clang-format에 돌렸을 때 바뀔 줄은 13,700줄에서 11,634줄로 줄었다. 바꾼 설정에서 조각 1-3의 바뀐 줄은 모두 형식 검사를 통과한다.
 
 ## 아직 모르는 것
 
@@ -38,5 +40,5 @@
 ## 범위 밖
 
 - 이름 변경, 함수 분리, 로직 수정. 필요하면 별도 작업으로 한다.
-- 기계 검사 규칙의 추가나 변경.
+- 기계 검사 규칙의 추가나 변경. `.clang-format`은 위 "정한 것"처럼 기존 코드에 맞추는 범위에서만 고친다.
 - `Docs/Learning/` 재작성. [진행 중인 작업](README.md)의 다음 작업 후보로 남는다.

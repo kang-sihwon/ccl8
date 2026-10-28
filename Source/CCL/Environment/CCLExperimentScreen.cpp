@@ -287,7 +287,6 @@ void UCCLExperimentScreen::OnContextBound()
 
 	CloseButton = Button(TEXT("닫기 · F7"), [this]() { RequestClose(); }, []() { return true; });
 
-
 	auto ZoneList = SNew(SVerticalBox);
 	if (const auto* Current = Director())
 	{
@@ -502,9 +501,15 @@ void UCCLExperimentScreen::OnContextBound()
 			const auto* Model = UCCLSurfaceReplication::View(GetWorld());
 			const auto Id = SelectedCase == TEXT("Zone_02") ? ACCLExperimentDirector::WeatherRegionId() : SelectedCase == TEXT("Zone_03") ? ACCLExperimentDirector::SnowRegionId() : SelectedCase == TEXT("Zone_05") ? ACCLExperimentDirector::TerrainWaterRegionId() : ACCLExperimentDirector::WaterRegionId();
 			const auto* Grid = Model ? Model->FindRegion(Id) : nullptr;
-			if (!Grid) { return FText::FromString(TEXT("물 깊이 관측 대기")); }
+			if (!Grid)
+			{
+				return FText::FromString(TEXT("물 깊이 관측 대기"));
+			}
 			double MaxDepth = 0.;
-			for (const auto& Cell : Grid->Cells) { MaxDepth = FMath::Max(MaxDepth, Cell.WaterCubicMeters / FMath::Square(Grid->SpacingMeters)); }
+			for (const auto& Cell : Grid->Cells)
+			{
+				MaxDepth = FMath::Max(MaxDepth, Cell.WaterCubicMeters / FMath::Square(Grid->SpacingMeters));
+			}
 			const double Area = Grid->Cells.Num() * FMath::Square(Grid->SpacingMeters);
 			return FText::FromString(FString::Printf(TEXT("최대 물 깊이 %.2f cm · 누적 비 %.2f mm (면적 평균)\n깊이는 지면 위 물의 두께이며 지형 높이를 제외한다."), MaxDepth * 100., Grid->Ledger.RainCubicMeters / FMath::Max(Area, 0.001) * 1000.));
 		});
@@ -605,7 +610,10 @@ void UCCLExperimentScreen::OnContextBound()
 		for (int32 N=0;N<4;++N)
 		{
 			const auto* Config = ACCLWorldEnvironmentConfig::Find(GetWorld());
-			if (Config && Config->LaboratoryZone == 6 && Config->LaboratoryVariant != N) { continue; }
+			if (Config && Config->LaboratoryZone == 6 && Config->LaboratoryVariant != N)
+			{
+				continue;
+			}
 			const auto& R=E->GetView().Rows[N];
 			Text+=FString::Printf(TEXT("%s · 전체 %lld / 집계 %lld / 예약 %d\nActor %d · Mass %d · 막힘 %d\n에너지 개체 %.0f%% · 집계 %.0f%%\n먹이 %.1f · 섭취 개체 %.1f / 집계 %.1f\n"),
 				*ACCLEcologyExperiment::MediumName(N),R.Living,R.Aggregate,R.Reserved,R.Actors,R.Mass,R.Blocked,
@@ -620,7 +628,10 @@ void UCCLExperimentScreen::OnContextBound()
 		{TEXT("Actor · 동물 리그"),ECCLExperimentAction::EcologyActors},{TEXT("Mass · 위치 구체"),ECCLExperimentAction::EcologyMass},{TEXT("표현 숨김"),ECCLExperimentAction::EcologyHidden}})
 	{
 		const auto* C = ACCLWorldEnvironmentConfig::Find(GetWorld());
-		if (C && C->LaboratoryZone == 6 && Entry.Value >= ECCLExperimentAction::EcologyFeedGround && Entry.Value <= ECCLExperimentAction::EcologyFeedInsect && int32(Entry.Value) - int32(ECCLExperimentAction::EcologyFeedGround) != C->LaboratoryVariant) { continue; }
+		if (C && C->LaboratoryZone == 6 && Entry.Value >= ECCLExperimentAction::EcologyFeedGround && Entry.Value <= ECCLExperimentAction::EcologyFeedInsect && int32(Entry.Value) - int32(ECCLExperimentAction::EcologyFeedGround) != C->LaboratoryVariant)
+		{
+			continue;
+		}
 		auto Control=Button(*Entry.Key,[Action,Value=Entry.Value]() { Action(Value); },WaterAllowed);
 		EcologyButtons->AddSlot()[Control];
 		if (Entry.Value==ECCLExperimentAction::EcologyFeedGround)
@@ -742,13 +753,19 @@ void UCCLExperimentScreen::OnContextBound()
 			for (int32 Index = 0; Index < 3; ++Index)
 			{
 				const auto* Config = ACCLWorldEnvironmentConfig::Find(GetWorld());
-				if (Config && Config->LaboratoryZone == 7 && Config->LaboratoryVariant != Index && Food->GetView().Rows[Index].Quantity == 0) { continue; }
+				if (Config && Config->LaboratoryZone == 7 && Config->LaboratoryVariant != Index && Food->GetView().Rows[Index].Quantity == 0)
+				{
+					continue;
+				}
 				const auto& Row = Food->GetView().Rows[Index];
 				Text += FString::Printf(TEXT("%s · %s %.1f°C / 습도 %.0f%%\n%d개/%d묶음 · 나이 %.0f초 · 신선 %.0f%%\n곰팡이 %.0f%% · 부패 %d개\n"),
 					*ACCLFoodExperiment::StorageName(Index), Row.EnvironmentSource == 1 ? TEXT("외기") : Row.EnvironmentSource == 2 ? TEXT("실내") : TEXT("고정"), Row.Temperature, Row.Humidity * 100., Row.Quantity, Row.Lots,
 					Row.AgeSeconds, Row.Freshness * 100., Row.Mold * 100., Row.Spoiled);
 			}
-			if (!ACCLWorldEnvironmentConfig::IsLaboratory(GetWorld())) { Text += TEXT("밀폐 부패 계수 0.2 / 곰팡이 노출 0. 외기는 구역 02 날씨, 실내는 구역 11 공간을 관측한다."); }
+			if (!ACCLWorldEnvironmentConfig::IsLaboratory(GetWorld()))
+			{
+				Text += TEXT("밀폐 부패 계수 0.2 / 곰팡이 노출 0. 외기는 구역 02 날씨, 실내는 구역 11 공간을 관측한다.");
+			}
 			return FText::FromString(Text);
 		})];
 	auto FoodButtons = SNew(SWrapBox).UseAllottedSize(true).InnerSlotPadding(FVector2D(4, 4));
@@ -768,7 +785,10 @@ void UCCLExperimentScreen::OnContextBound()
 		if (const auto* C = ACCLWorldEnvironmentConfig::Find(GetWorld()); C && C->LaboratoryZone == 7)
 		{
 			const bool bUnsupported = Entry.Value == ECCLExperimentAction::FoodMoveCold || Entry.Value == ECCLExperimentAction::FoodWeather || Entry.Value == ECCLExperimentAction::FoodIndoor || (Entry.Value == ECCLExperimentAction::FoodThaw && C->LaboratoryVariant != 1);
-			if (bUnsupported) { Control->SetVisibility(EVisibility::Collapsed); }
+			if (bUnsupported)
+			{
+				Control->SetVisibility(EVisibility::Collapsed);
+			}
 		}
 		FoodButtons->AddSlot()[Control];
 		if (Entry.Value == ECCLExperimentAction::FoodAdd)
@@ -798,7 +818,6 @@ void UCCLExperimentScreen::OnContextBound()
 			const auto* Food = ACCLFoodExperiment::Find(GetWorld());
 			return FText::FromString(FString::Printf(TEXT("조건 변경은 앞으로의 속도만 바꾼다. 0배에서는 품질이 멈춘다.\n바닥 음식 %d개 · 보관함 조건 대신 위치의 온습도 적용\n지역 밖: 20°C / 습도 50%%"), Food ? Food->GetView().GroundQuantity : 0));
 		})];
-
 
 	auto FireControls = SNew(SVerticalBox).Visibility_Lambda([this]()
 	{
@@ -881,7 +900,10 @@ void UCCLExperimentScreen::OnContextBound()
 		.Font(FCoreStyle::GetDefaultFontStyle("Regular", 19)).AutoWrapText(true).Text_Lambda([this]()
 		{
 			const auto* Definition = Director() ? Director()->FindDefinition(SelectedCase) : nullptr;
-			if (ACCLWorldEnvironmentConfig::IsLaboratory(GetWorld())) { return FText::GetEmpty(); }
+			if (ACCLWorldEnvironmentConfig::IsLaboratory(GetWorld()))
+			{
+				return FText::GetEmpty();
+			}
 			return FText::FromString(Definition ? TEXT("조작: ") + Definition->Instructions.ToString() + TEXT("\n\n예상 결과: ") + Definition->Expected.ToString() : FString());
 		})]
 		+ SVerticalBox::Slot().AutoHeight().Padding(0, 0, 0, 12)
@@ -940,7 +962,10 @@ void UCCLExperimentScreen::OnContextBound()
 		[SNew(STextBlock).Font(FCoreStyle::GetDefaultFontStyle("Bold", 18)).Text_Lambda([this]()
 		{
 			const auto* Definition = Director() ? Director()->FindDefinition(SelectedCase) : nullptr;
-			if (const auto* C = ACCLWorldEnvironmentConfig::Find(GetWorld()); C && C->LaboratoryZone >= 0) { return FText::FromString(ACCLWorldEnvironmentConfig::LaboratoryTitle(C->LaboratoryZone, C->LaboratorySubject)); }
+			if (const auto* C = ACCLWorldEnvironmentConfig::Find(GetWorld()); C && C->LaboratoryZone >= 0)
+			{
+				return FText::FromString(ACCLWorldEnvironmentConfig::LaboratoryTitle(C->LaboratoryZone, C->LaboratorySubject));
+			}
 			return Definition ? Definition->Title : FText::FromString(TEXT("실험 선택"));
 		})]
 		.MenuContent()[SNew(SBox).WidthOverride(390).MaxDesiredHeight(340)
@@ -1120,7 +1145,6 @@ void UCCLExperimentScreen::RevealEcologyControls()
 		DetailScroll->ScrollDescendantIntoView(EcologyPanel,false,EDescendantScrollDestination::TopOrLeft);
 	}
 }
-
 
 void UCCLExperimentScreen::RevealBiologyControls()
 {
