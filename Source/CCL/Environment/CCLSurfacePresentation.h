@@ -11,6 +11,7 @@ UCLASS()
 class CCL_API ACCLSurfacePresentation : public AActor
 {
 	GENERATED_BODY()
+
 public:
 	ACCLSurfacePresentation();
 	virtual void Tick(float DeltaSeconds) override;

@@ -152,7 +152,10 @@ bool ACCLEcologyExperiment::MakeInitial(FGuid WorldId, double Time, FKSIEcologyS
 	}
 	for (uint32 N = 0; N < 4; ++N)
 	{
-		if (SelectedMedium >= 0 && int32(N) != SelectedMedium) { continue; }
+		if (SelectedMedium >= 0 && int32(N) != SelectedMedium)
+		{
+			continue;
+		}
 		const FVector Center = HabitatCenter(N);
 		const double Height = N == 1 ? 1. : N == 2 ? 2.5 : .35;
 		FKSIEcologySpecies S;
@@ -339,7 +342,10 @@ bool ACCLEcologyExperiment::CheckState(FString& Error) const
 	}
 	for (uint32 N = 0; N < 4; ++N)
 	{
-		if (const auto* C = ACCLWorldEnvironmentConfig::Find(GetWorld()); C && C->LaboratoryZone == 6 && int32(N) != C->LaboratoryVariant) { continue; }
+		if (const auto* C = ACCLWorldEnvironmentConfig::Find(GetWorld()); C && C->LaboratoryZone == 6 && int32(N) != C->LaboratoryVariant)
+		{
+			continue;
+		}
 		if (!E.GetPopulations().Contains(Id(30 + N)))
 		{
 			Error = TEXT("생태 개체군이 없다. 실험 초기화 후 다시 확인해 줘.");
@@ -398,7 +404,10 @@ void ACCLEcologyExperiment::UpdateView()
 			{
 				Row.Actors += Entry->Lease.Representation == EKSIEcologyRepresentation::Actor;
 				Row.Mass += Entry->Lease.Representation == EKSIEcologyRepresentation::Mass;
-				if (Entry->Lease.Representation == EKSIEcologyRepresentation::Mass) { Row.MassLocations.Add(I.PositionMeters * 100.); }
+				if (Entry->Lease.Representation == EKSIEcologyRepresentation::Mass)
+				{
+					Row.MassLocations.Add(I.PositionMeters * 100.);
+				}
 			}
 			if (const auto* B = E.GetBehaviors().Find(I.Id))
 			{
@@ -436,14 +445,23 @@ void ACCLEcologyExperiment::UpdatePresentation()
 		const bool bVisible = !C || C->LaboratoryZone < 0 || C->LaboratoryVariant == N;
 		Labels[N]->SetVisibility(bVisible);
 		MassMarkers[N]->ClearInstances();
-		if (auto* Material = LoadObject<UMaterialInterface>(nullptr, *FString::Printf(TEXT("/Game/TestResources/Diagnostics/M_Creature%d.M_Creature%d"), N, N))) { MassMarkers[N]->SetMaterial(0, Material); }
+		if (auto* Material = LoadObject<UMaterialInterface>(nullptr, *FString::Printf(TEXT("/Game/TestResources/Diagnostics/M_Creature%d.M_Creature%d"), N, N)))
+		{
+			MassMarkers[N]->SetMaterial(0, Material);
+		}
 		if (Row && bVisible)
 		{
-			for (const auto& Location : Row->MassLocations) { MassMarkers[N]->AddInstance(FTransform(FRotator::ZeroRotator, Location, FVector(.45)), true); }
+			for (const auto& Location : Row->MassLocations)
+			{
+				MassMarkers[N]->AddInstance(FTransform(FRotator::ZeroRotator, Location, FVector(.45)), true);
+			}
 		}
 		for (auto* Shape : TInlineComponentArray<UStaticMeshComponent*>(this))
 		{
-			if (Shape->GetName().StartsWith(FString::Printf(TEXT("Pen%dEdge"), N))) { Shape->SetVisibility(bVisible); }
+			if (Shape->GetName().StartsWith(FString::Printf(TEXT("Pen%dEdge"), N)))
+			{
+				Shape->SetVisibility(bVisible);
+			}
 		}
 		Labels[N]->SetText(FText::FromString(FString::Printf(TEXT("%s  %lld마리\n먹이 %.1f · 개체 %.0f%% · 집계 %.0f%%"),
 															 *MediumName(N), Row ? Row->Living : 0,

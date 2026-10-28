@@ -12,6 +12,7 @@ USTRUCT()
 struct FCCLBiologyExperimentRow
 {
 	GENERATED_BODY()
+
 	UPROPERTY() uint8 bRecorded = 0;
 	UPROPERTY() uint8 bProtected = 0;
 	UPROPERTY() uint8 DeathCause = 0;
@@ -24,6 +25,7 @@ USTRUCT()
 struct FCCLBiologyExperimentView
 {
 	GENERATED_BODY()
+
 	UPROPERTY() FGuid Epoch;
 	UPROPERTY() double WorldSeconds = 0.;
 	UPROPERTY() TArray<FCCLBiologyExperimentRow> Rows;
@@ -33,6 +35,7 @@ UCLASS()
 class CCL_API ACCLBiologyExperiment : public AActor
 {
 	GENERATED_BODY()
+
 public:
 	ACCLBiologyExperiment();
 	virtual void Tick(float DeltaSeconds) override;

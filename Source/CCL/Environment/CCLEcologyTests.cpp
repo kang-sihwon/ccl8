@@ -432,7 +432,6 @@ bool FCCLEcologyAdvanceFailureTest::RunTest(const FString& Parameters)
 	return true;
 }
 
-
 IMPLEMENT_SIMPLE_AUTOMATION_TEST(FCCLEcologyHandoffTest, "CCL.Environment.Ecology.LeaseHandoffPositionAndTerminalResult",
 	EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
 bool FCCLEcologyHandoffTest::RunTest(const FString& Parameters)

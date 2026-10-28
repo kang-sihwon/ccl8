@@ -10,7 +10,10 @@ bool ACCLExperimentDirector::VegetationGrid(double WorldSeconds, FKSISurfaceGrid
 	G.Size = SelectedKind >= 0 ? FIntPoint(FMath::Clamp(Count, 1, 16), 1) : FIntPoint(9, 3);
 	G.SpacingMeters = 1.5;
 	G.Cells.SetNum(G.Size.X * G.Size.Y);
-	if (SelectedKind >= 0) { G.OriginMeters = UCCLExperimentDefinition::ZoneCenter(7) / 100. + FVector(-G.Size.X * .75, -.75, 0.); }
+	if (SelectedKind >= 0)
+	{
+		G.OriginMeters = UCCLExperimentDefinition::ZoneCenter(7) / 100. + FVector(-G.Size.X * .75, -.75, 0.);
+	}
 	G.Forcing.TemperatureCelsius = 20.;
 	G.Forcing.FlowConductance = 0.;
 	G.Forcing.DrainageMetersPerWorldSecond = 0.;

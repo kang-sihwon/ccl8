@@ -14,6 +14,7 @@ UCLASS()
 class CCL_API ACCLWeatherPresentation : public AActor
 {
 	GENERATED_BODY()
+
 public:
 	ACCLWeatherPresentation();
 	virtual void Tick(float DeltaSeconds) override;

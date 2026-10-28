@@ -852,7 +852,6 @@ bool UCCLWorldSimulationSubsystem::ApplySnowContact(FGuid RegionId, FGuid Source
 		&& SurfaceSimulation.ApplySnowContact(RegionId, SourceId, Sequence, PositionMeters, RadiusMeters, Error);
 }
 
-
 bool UCCLWorldSimulationSubsystem::AddEcologyGroup(const FKSIEcologyGroup& Group, FString& Error)
 {
 	return CheckAuthority(Error) && EcologySimulation.AddGroup(Group, Error);
@@ -867,7 +866,6 @@ bool UCCLWorldSimulationSubsystem::AddEcologyBehavior(FKSIEcologyBehavior Behavi
 {
 	return CheckAuthority(Error) && EcologySimulation.AddBehavior(Behavior, Error);
 }
-
 
 bool UCCLWorldSimulationSubsystem::SeedEcology(const FKSIEcologySimulation& Candidate,FString& Error)
 {

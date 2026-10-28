@@ -19,6 +19,7 @@ USTRUCT()
 struct FCCLFoodExperimentRow
 {
 	GENERATED_BODY()
+
 	UPROPERTY() uint8 EnvironmentSource = 0;
 	UPROPERTY() int32 Quantity = 0;
 	UPROPERTY() int32 Lots = 0;
@@ -37,6 +38,7 @@ USTRUCT()
 struct FCCLFoodExperimentView
 {
 	GENERATED_BODY()
+
 	UPROPERTY() FGuid WorldId;
 	UPROPERTY() FGuid Epoch;
 	UPROPERTY() double WorldSeconds = 0.;
@@ -48,6 +50,7 @@ UCLASS()
 class CCL_API ACCLFoodExperiment : public AActor
 {
 	GENERATED_BODY()
+
 public:
 	ACCLFoodExperiment();
 	virtual void BeginPlay() override;

@@ -199,4 +199,3 @@ void ACCLFirePresentation::UpdateEmitter(int32 Index, UNiagaraSystem* Asset, con
 		Component->Deactivate();
 	}
 }
-

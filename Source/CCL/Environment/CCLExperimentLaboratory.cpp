@@ -16,7 +16,10 @@ bool ACCLExperimentDirector::ConfigureLaboratory(APlayerController* Requester, F
 		return false;
 	}
 	auto* Agents = GetWorld()->GetSubsystem<UCCLAgentWorldSubsystem>();
-	if (!ACCLWorldEnvironmentConfig::IsLaboratory(GetWorld()) && (!Agents || !Agents->SaveSessionForTravel(Error))) { return false; }
+	if (!ACCLWorldEnvironmentConfig::IsLaboratory(GetWorld()) && (!Agents || !Agents->SaveSessionForTravel(Error)))
+	{
+		return false;
+	}
 	const FString Options = FString::Printf(TEXT("LabVariant=%d?LabCount=%d"), Variant, Count);
 	bTravelPending = 1;
 	if (GetNetMode() == NM_Standalone)
@@ -24,21 +27,33 @@ bool ACCLExperimentDirector::ConfigureLaboratory(APlayerController* Requester, F
 		UGameplayStatics::OpenLevel(this, FName(*Map), true, Options);
 		return true;
 	}
-	if (GetWorld()->ServerTravel(Map + TEXT("?") + Options)) { return true; }
+	if (GetWorld()->ServerTravel(Map + TEXT("?") + Options))
+	{
+		return true;
+	}
 	bTravelPending = 0;
-	if (Agents) { Agents->CancelPreparedTravel(); }
+	if (Agents)
+	{
+		Agents->CancelPreparedTravel();
+	}
 	Error = TEXT("전용 레벨을 열 수 없다.");
 	return false;
 }
 
 void ACCLExperimentPlayerController::ConfigureLaboratory(int32 Zone, int32 Subject, int32 Variant, int32 Count)
 {
-	if (const auto* Director = ACCLExperimentDirector::Find(GetWorld())) { ServerConfigureLaboratory(Director->GetGeneration(), Zone, Subject, Variant, Count); }
+	if (const auto* Director = ACCLExperimentDirector::Find(GetWorld()))
+	{
+		ServerConfigureLaboratory(Director->GetGeneration(), Zone, Subject, Variant, Count);
+	}
 }
 
 void ACCLExperimentPlayerController::ServerConfigureLaboratory_Implementation(FGuid Generation, int32 Zone, int32 Subject, int32 Variant, int32 Count)
 {
 	FString Error;
 	auto* Director = ACCLExperimentDirector::Find(GetWorld());
-	if (!Director || !Director->ConfigureLaboratory(this, Generation, Zone, Subject, Variant, Count, Error)) { ClientExperimentResponse(Error); }
+	if (!Director || !Director->ConfigureLaboratory(this, Generation, Zone, Subject, Variant, Count, Error))
+	{
+		ClientExperimentResponse(Error);
+	}
 }

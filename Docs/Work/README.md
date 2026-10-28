@@ -4,7 +4,7 @@
 
 | 작업 | 지도 | 상태 |
 |---|---|---|
-| C++ 규칙 위반 정리 | [cpp-rule-cleanup](cpp-rule-cleanup.md) | 조각 3 완료, 남은 77건 |
+| C++ 규칙 위반 정리 | [cpp-rule-cleanup](cpp-rule-cleanup.md) | 조각 4 완료, 남은 1건 |
 
 ## 다음 작업 후보
 

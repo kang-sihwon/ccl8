@@ -94,7 +94,10 @@ void ACCLFoodExperiment::BeginPlay()
 		{
 			auto* Material = UMaterialInstanceDynamic::Create(FoodMaterial, this);
 			SampleMaterials.Add(Material);
-			if (Material) { Sample->SetMaterial(0, Material); }
+			if (Material)
+			{
+				Sample->SetMaterial(0, Material);
+			}
 		}
 		for (auto& Label : Labels)
 		{
@@ -135,7 +138,10 @@ bool ACCLFoodExperiment::MakeInitial(FGuid WorldId, double WorldSeconds, TArray<
 		Record.Capacity = 4;
 		Record.Environment.Conditions = Storage(Index);
 		const auto* Config = ACCLWorldEnvironmentConfig::Find(GetWorld());
-		if (Config && Config->LaboratoryZone == 7 && Index != Config->LaboratoryVariant) { continue; }
+		if (Config && Config->LaboratoryZone == 7 && Index != Config->LaboratoryVariant)
+		{
+			continue;
+		}
 		auto& Item = Record.Items.AddDefaulted_GetRef();
 		Item.Id = FGuid(7071, 7074, 1, Index + 1);
 		Item.Definition = Definition->GetPathName();
@@ -178,7 +184,10 @@ bool ACCLFoodExperiment::Initialize(bool bSeed, FCCLWorldSnapshot& Baseline, FSt
 			{
 				return false;
 			}
-			if (bSeed && !FCCLInventoryFood::ChangeFoodEnvironment(*Inventories[Index], Current[Index].Environment, Error)) { return false; }
+			if (bSeed && !FCCLInventoryFood::ChangeFoodEnvironment(*Inventories[Index], Current[Index].Environment, Error))
+			{
+				return false;
+			}
 			if (bSeed && !Current[Index].Items.IsEmpty())
 			{
 				FKSIInventoryEntry Entry;
@@ -232,7 +241,10 @@ bool ACCLFoodExperiment::Execute(ECCLExperimentAction Action, FString& Error)
 		Binding.Conditions = Storage(SelectedStorage);
 		Binding.Conditions.TemperatureCelsius = Action == ECCLExperimentAction::FoodCool ? -5. : Action == ECCLExperimentAction::FoodWarmHumid ? 35. : 20.;
 		Binding.Conditions.RelativeHumidity = Action == ECCLExperimentAction::FoodDry ? 0.2 : 1.;
-		if (!FCCLInventoryFood::ChangeFoodEnvironment(*Open, Binding, Error)) { return false; }
+		if (!FCCLInventoryFood::ChangeFoodEnvironment(*Open, Binding, Error))
+		{
+			return false;
+		}
 	}
 	else if (Action == ECCLExperimentAction::FoodWeather || Action == ECCLExperimentAction::FoodIndoor)
 	{
@@ -307,7 +319,10 @@ bool ACCLFoodExperiment::Execute(ECCLExperimentAction Action, FString& Error)
 		const bool bThaw = Cold->GetEntries()[0].GetState<FCCLItemState>().Food.Storage.TemperatureCelsius <= 0.;
 		auto Binding = Cold->GetFoodEnvironment();
 		Binding.Conditions.TemperatureCelsius = bThaw ? 20. : -5.;
-		if (!FCCLInventoryFood::ChangeFoodEnvironment(*Cold, Binding, Error)) { return false; }
+		if (!FCCLInventoryFood::ChangeFoodEnvironment(*Cold, Binding, Error))
+		{
+			return false;
+		}
 	}
 	else
 	{
@@ -384,7 +399,10 @@ void ACCLFoodExperiment::UpdatePresentation()
 		Labels[Index]->SetVisibility(bReady && bVisible);
 		for (auto* Shape : TInlineComponentArray<UStaticMeshComponent*>(this))
 		{
-			if (Shape->GetName() == FString::Printf(TEXT("Shelf%d"), Index)) { Shape->SetVisibility(bVisible); }
+			if (Shape->GetName() == FString::Printf(TEXT("Shelf%d"), Index))
+			{
+				Shape->SetVisibility(bVisible);
+			}
 		}
 		if (!bReady)
 		{
@@ -467,7 +485,6 @@ ACCLWorldPickup* ACCLFoodExperiment::FindGroundSample() const
 	}
 	return Result;
 }
-
 
 void ACCLFoodExperiment::GetActorEyesViewPoint(FVector& Location, FRotator& Rotation) const
 {

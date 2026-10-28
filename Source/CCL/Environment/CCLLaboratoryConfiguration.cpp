@@ -32,7 +32,10 @@ bool ACCLWorldEnvironmentConfig::AllowsLaboratory(const UWorld* World, int32 Zon
 FString ACCLWorldEnvironmentConfig::LaboratoryMap(int32 Zone, int32 Subject)
 {
 	const TCHAR* Names[] = {TEXT("Celestial"), TEXT("Celestial"), TEXT("Weather"), TEXT("Snow"), TEXT("Water"), TEXT("Terrain"), TEXT("Ecology"), TEXT("Vegetation"), TEXT("Persistence"), TEXT("Cycle"), TEXT("Fire"), TEXT("Shelter")};
-	if (Zone < 0 || Zone > 11 || Subject < 0 || Subject > 2) { return {}; }
+	if (Zone < 0 || Zone > 11 || Subject < 0 || Subject > 2)
+	{
+		return {};
+	}
 	const TCHAR* Name = Zone == 7 && Subject > 0 ? (Subject == 1 ? TEXT("Life") : TEXT("Decay")) : Names[Zone];
 	return FString(TEXT("/Game/Maps/Tests/")) + Name;
 }
@@ -45,9 +48,21 @@ FString ACCLWorldEnvironmentConfig::LaboratoryTitle(int32 Zone, int32 Subject)
 
 TArray<FString> ACCLWorldEnvironmentConfig::LaboratoryVariants(int32 Zone, int32 Subject)
 {
-	if (Zone == 6) { return {TEXT("지상 생물"), TEXT("물고기"), TEXT("새"), TEXT("곤충")}; }
-	if (Zone == 7 && Subject == 0) { return {TEXT("나무"), TEXT("풀"), TEXT("꽃"), TEXT("관목"), TEXT("이끼"), TEXT("양치"), TEXT("조류"), TEXT("수생"), TEXT("버섯")}; }
-	if (Zone == 7 && Subject == 1) { return {TEXT("자연 노화"), TEXT("노화 보호"), TEXT("외부 피해")}; }
-	if (Zone == 7 && Subject == 2) { return {TEXT("노출 보관"), TEXT("냉각 보관"), TEXT("밀폐 보관")}; }
+	if (Zone == 6)
+	{
+		return {TEXT("지상 생물"), TEXT("물고기"), TEXT("새"), TEXT("곤충")};
+	}
+	if (Zone == 7 && Subject == 0)
+	{
+		return {TEXT("나무"), TEXT("풀"), TEXT("꽃"), TEXT("관목"), TEXT("이끼"), TEXT("양치"), TEXT("조류"), TEXT("수생"), TEXT("버섯")};
+	}
+	if (Zone == 7 && Subject == 1)
+	{
+		return {TEXT("자연 노화"), TEXT("노화 보호"), TEXT("외부 피해")};
+	}
+	if (Zone == 7 && Subject == 2)
+	{
+		return {TEXT("노출 보관"), TEXT("냉각 보관"), TEXT("밀폐 보관")};
+	}
 	return {TEXT("기본 시험")};
 }

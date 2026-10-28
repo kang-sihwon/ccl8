@@ -52,7 +52,6 @@ struct FCCLEcologyExperimentRow
 
 	UPROPERTY()
 	double AggregateConsumed = 0.;
-
 };
 
 USTRUCT()
@@ -71,13 +70,13 @@ struct FCCLEcologyExperimentView
 
 	UPROPERTY()
 	TArray<FCCLEcologyExperimentRow> Rows;
-
 };
 
 UCLASS()
 class CCL_API ACCLEcologyExperiment : public AActor
 {
 	GENERATED_BODY()
+
 public:
 	ACCLEcologyExperiment();
 	virtual void BeginPlay() override;

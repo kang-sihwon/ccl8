@@ -23,7 +23,6 @@ ACCLExperimentStation::ACCLExperimentStation()
 	State->SetRelativeLocation(FVector(0, 0, 90));
 	State->SetWorldSize(35);
 	State->SetHorizontalAlignment(EHTA_Center);
-
 }
 
 void ACCLExperimentStation::OnConstruction(const FTransform& Transform)

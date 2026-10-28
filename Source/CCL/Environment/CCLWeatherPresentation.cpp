@@ -142,4 +142,3 @@ void ACCLWeatherPresentation::Tick(float DeltaSeconds)
 		Snow[I]->DeactivateImmediate();
 	}
 }
-

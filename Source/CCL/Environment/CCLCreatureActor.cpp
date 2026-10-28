@@ -46,7 +46,11 @@ void ACCLCreatureActor::BeginPlay()
 {
 	Super::BeginPlay();
 	OnRep_Medium();
-	for (TActorIterator<ACCLWorldEnvironmentState> It(GetWorld()); It; ++It) { WorldTime = *It; break; }
+	for (TActorIterator<ACCLWorldEnvironmentState> It(GetWorld()); It; ++It)
+	{
+		WorldTime = *It;
+		break;
+	}
 }
 
 void ACCLCreatureActor::Tick(float DeltaSeconds)
@@ -84,8 +88,14 @@ void ACCLCreatureActor::Tick(float DeltaSeconds)
 	if (Velocity.SizeSquared() > 1.)
 	{
 		Facing = Velocity.Rotation();
-		if (Medium == 0 || Medium == 3) { Facing.Pitch = 0.; }
-		if (Medium == 2) { Facing.Roll = FMath::Clamp(FMath::FindDeltaAngleDegrees(VisualRotation.Yaw, Facing.Yaw) * .5, -25., 25.); }
+		if (Medium == 0 || Medium == 3)
+		{
+			Facing.Pitch = 0.;
+		}
+		if (Medium == 2)
+		{
+			Facing.Roll = FMath::Clamp(FMath::FindDeltaAngleDegrees(VisualRotation.Yaw, Facing.Yaw) * .5, -25., 25.);
+		}
 	}
 	VisualRotation = FMath::RInterpTo(VisualRotation, Facing, DeltaSeconds, Medium == 2 ? 3.f : 5.f);
 	VisualRoot->SetWorldLocationAndRotation(VisualPosition, VisualRotation);
@@ -94,12 +104,19 @@ void ACCLCreatureActor::Tick(float DeltaSeconds)
 		// The replicated clock can arrive after this actor's BeginPlay.
 		if (!WorldTime.IsValid())
 		{
-			for (TActorIterator<ACCLWorldEnvironmentState> It(GetWorld()); It; ++It) { WorldTime = *It; break; }
+			for (TActorIterator<ACCLWorldEnvironmentState> It(GetWorld()); It; ++It)
+			{
+				WorldTime = *It;
+				break;
+			}
 		}
 		const bool bPaused = WorldTime.IsValid() && WorldTime->GetTime().TimeScale == 0.;
 		const bool bMoving = Velocity.Size() > 3. || Medium == 1 || Medium == 2;
 		auto* Animation = bMoving ? Visual.Move.Get() : Visual.Idle.Get();
-		if (!Animation) { Animation = Visual.Move; }
+		if (!Animation)
+		{
+			Animation = Visual.Move;
+		}
 		if (Animation && CurrentAnimation != Animation)
 		{
 			CreatureMesh->PlayAnimation(Animation, true);
@@ -164,7 +181,10 @@ void ACCLCreatureActor::OnRep_Medium()
 		Visual = Config->CreatureVisuals[Medium];
 		CreatureMesh->SetSkeletalMesh(Visual.Mesh);
 		CreatureMesh->SetRelativeTransform(Visual.Transform);
-		for (const auto& Shape : Shapes) { Shape->SetVisibility(!Visual.Mesh); }
+		for (const auto& Shape : Shapes)
+		{
+			Shape->SetVisibility(!Visual.Mesh);
+		}
 	}
 
 	const FVector BodyScale[] = {FVector(.8, .35, .5), FVector(.7, .18, .3), FVector(.45, .2, .25), FVector(.12, .08, .06)};
@@ -173,7 +193,10 @@ void ACCLCreatureActor::OnRep_Medium()
 	auto* DisplayMaterial = LoadObject<UMaterialInterface>(nullptr, *FString::Printf(TEXT("/Game/TestResources/Diagnostics/M_Creature%d.M_Creature%d"), Index, Index));
 	for (const auto& Shape : Shapes)
 	{
-		if (DisplayMaterial) { Shape->SetMaterial(0, DisplayMaterial); }
+		if (DisplayMaterial)
+		{
+			Shape->SetMaterial(0, DisplayMaterial);
+		}
 	}
 	const double Magnification = Index == 3 ? 3. : 1.;
 	Shapes[0]->SetRelativeScale3D(BodyScale[Index] * Magnification);

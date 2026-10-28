@@ -41,7 +41,6 @@ public:
 		return false;
 	}
 	virtual void CommitRestore() {}
-
 };
 
 UCLASS()

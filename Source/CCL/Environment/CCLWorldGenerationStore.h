@@ -20,5 +20,4 @@ public:
 		FString& OutDirectory, FString& Error);
 	static bool Recover(const FString& Root, ECCLWorldDomain Domain, FCCLWorldGenerationBundle& OutBundle, FString& Error);
 	static FKSITerrainSaveContext ContextFor(const FCCLWorldSnapshot& World);
-
 };

@@ -26,8 +26,6 @@ namespace
 		}
 		return true;
 	}
-
-
 }
 
 UCCLSurfaceReplication::UCCLSurfaceReplication()

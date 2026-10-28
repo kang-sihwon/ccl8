@@ -222,7 +222,10 @@ void ACCLVegetationPresentation::Append(const FKSISurfaceGrid& G)
 		const double Size = FMath::Clamp(FMath::Sqrt(Biomass / Species.MaximumBiomassKg), 0.12, 1.);
 		const int32 Kind = int32(Species.Kind);
 		UStaticMesh* Mesh = SpeciesMeshes.IsValidIndex(Kind) ? SpeciesMeshes[Kind].Get() : nullptr;
-		if (!Mesh && Kind == 0) { Mesh = LivingTreeMesh; }
+		if (!Mesh && Kind == 0)
+		{
+			Mesh = LivingTreeMesh;
+		}
 		if (Mesh)
 		{
 			// Keep the same geometry through dormancy. A cold plant is not a new seed.
@@ -319,7 +322,10 @@ void ACCLVegetationPresentation::Append(const FKSISurfaceGrid& G)
 void ACCLVegetationPresentation::Clear()
 {
 	TreeInstances->ClearInstances();
-	for (const auto& Instances : SpeciesInstances) { Instances->ClearInstances(); }
+	for (const auto& Instances : SpeciesInstances)
+	{
+		Instances->ClearInstances();
+	}
 	for (const auto& Batch : Batches)
 	{
 		if (Batch)

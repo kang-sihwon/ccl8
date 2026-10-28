@@ -176,7 +176,11 @@ bool ACCLExperimentDirector::Execute(APlayerController* Requester, ECCLExperimen
 		return false;
 	}
 
-	if (const auto* D = FindDefinition(CaseId); D && !ACCLWorldEnvironmentConfig::AllowsLaboratory(GetWorld(), D->Zone)) { Message = TEXT("해당 전용 레벨로 이동한 뒤 조작해 줘."); return false; }
+	if (const auto* D = FindDefinition(CaseId); D && !ACCLWorldEnvironmentConfig::AllowsLaboratory(GetWorld(), D->Zone))
+	{
+		Message = TEXT("해당 전용 레벨로 이동한 뒤 조작해 줘.");
+		return false;
+	}
 
 	if (Action == ECCLExperimentAction::Teleport)
 	{
@@ -707,7 +711,10 @@ void ACCLExperimentDirector::CompleteCase(FName CaseId, FGuid RunId, FGuid Token
 			}
 			Error = TEXT("선택 표본 존재 검사. 시간 변화는 아래 관측값으로 확인한다.");
 		}
-		else { bPassed = RunVegetation(Error); }
+		else
+		{
+			bPassed = RunVegetation(Error);
+		}
 		break;
 	case ECCLExperimentKind::Weather:
 		bPassed = RunWeather(Error);
@@ -961,7 +968,10 @@ bool ACCLExperimentDirector::MoveToSafety(APlayerController* OnlyPlayer, int32 Z
 				Character->GetCharacterMovement()->StopMovementImmediately();
 			}
 
-			if (const auto* C = ACCLWorldEnvironmentConfig::Find(GetWorld()); C && C->LaboratoryZone >= 0) { Zone = C->LaboratoryZone; }
+			if (const auto* C = ACCLWorldEnvironmentConfig::Find(GetWorld()); C && C->LaboratoryZone >= 0)
+			{
+				Zone = C->LaboratoryZone;
+			}
 			if (Zone == 5 && TerrainRegion)
 			{
 				const auto* Replication = PC->FindComponentByClass<UCCLTerrainReplication>();
@@ -976,9 +986,15 @@ bool ACCLExperimentDirector::MoveToSafety(APlayerController* OnlyPlayer, int32 Z
 			if (const auto* C = ACCLWorldEnvironmentConfig::Find(GetWorld()); C && C->LaboratoryZone >= 0 && Zone != 5)
 			{
 				FVector Focus = Zone == 6 ? ACCLEcologyExperiment::HabitatCenter(C->LaboratoryVariant) * 100. : UCCLExperimentDefinition::ZoneCenter(Zone);
-				if (Zone == 7 && C->LaboratorySubject == 2) { Focus += FVector((1 - C->LaboratoryVariant) * 260., -650., 0.); }
+				if (Zone == 7 && C->LaboratorySubject == 2)
+				{
+					Focus += FVector((1 - C->LaboratoryVariant) * 260., -650., 0.);
+				}
 				Destination = Focus + FVector(0., C->SampleCount() <= 4 ? -550. : -800., 130.);
-				if (Zone == 11) { Destination = Focus + FVector(700., 0., 130.); }
+				if (Zone == 11)
+				{
+					Destination = Focus + FVector(700., 0., 130.);
+				}
 				const FRotator ViewRotation(-12., Zone == 11 ? 180. : 90., 0.);
 				PC->SetControlRotation(ViewRotation);
 				PC->ClientSetRotation(ViewRotation);
