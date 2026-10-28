@@ -118,5 +118,4 @@ public:
     // Sends notifications after every participant and the core world committed.
     virtual void PublishWorldRestore() = 0;
     virtual void CancelWorldRestore() = 0;
-
 };

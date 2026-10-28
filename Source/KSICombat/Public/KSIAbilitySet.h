@@ -41,5 +41,4 @@ public:
 
     UPROPERTY(EditAnywhere, Category = "Effects")
     FGameplayTag InitialMagnitudeTag;
-
 };

@@ -11,14 +11,20 @@ bool UCCLTestResourceLibrary::CopyResources(const TMap<FString, FString>& Packag
 {
 	for (const auto& Pair : Packages)
 	{
-		if (!Pair.Key.StartsWith(TEXT("/Game/Fab/")) || !Pair.Value.StartsWith(TEXT("/Game/TestResources/")) || FPackageName::DoesPackageExist(Pair.Value)) { return false; }
+		if (!Pair.Key.StartsWith(TEXT("/Game/Fab/")) || !Pair.Value.StartsWith(TEXT("/Game/TestResources/")) || FPackageName::DoesPackageExist(Pair.Value))
+		{
+			return false;
+		}
 	}
 	return FModuleManager::LoadModuleChecked<FAssetToolsModule>(TEXT("AssetTools")).Get().AdvancedCopyPackages(Packages, true, false);
 }
 
 bool UCCLTestResourceLibrary::RepointResources(UObject* Object, const TMap<FString, FString>& Packages)
 {
-	if (!Object) { return false; }
+	if (!Object)
+	{
+		return false;
+	}
 	TMap<UObject*, UObject*> Replacements;
 	TMap<FSoftObjectPath, FSoftObjectPath> SoftPaths;
 	for (const auto& Pair : Packages)
@@ -27,7 +33,10 @@ bool UCCLTestResourceLibrary::RepointResources(UObject* Object, const TMap<FStri
 		const FString New = Pair.Value + TEXT(".") + FPackageName::GetShortName(Pair.Value);
 		auto* Source = LoadObject<UObject>(nullptr, *Old);
 		auto* Target = LoadObject<UObject>(nullptr, *New);
-		if (!Source || !Target) { return false; }
+		if (!Source || !Target)
+		{
+			return false;
+		}
 		Replacements.Add(Source, Target);
 		SoftPaths.Add(FSoftObjectPath(Old), FSoftObjectPath(New));
 	}

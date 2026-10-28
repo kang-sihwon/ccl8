@@ -233,7 +233,10 @@ bool FKSIEcologySimulation::AdvanceBehavior(double At, FString& Error, const IKS
 	FoodIds.Sort();
 	// Read neighbors from the same pre-step snapshot, independent of update order.
 	double NeighborhoodSize = 1.;
-	for (FGuid Id : Ids) { NeighborhoodSize = FMath::Max(NeighborhoodSize, Behaviors[Id].RadiusMeters * 4.); }
+	for (FGuid Id : Ids)
+	{
+		NeighborhoodSize = FMath::Max(NeighborhoodSize, Behaviors[Id].RadiusMeters * 4.);
+	}
 	TMap<FIntVector, TArray<FGuid>> Neighborhoods;
 	TMap<FGuid, FVector> PreviousPositions;
 	auto CellAt = [NeighborhoodSize](const FVector& Position)
@@ -242,7 +245,10 @@ bool FKSIEcologySimulation::AdvanceBehavior(double At, FString& Error, const IKS
 	};
 	for (FGuid Id : Ids)
 	{
-		if (Individuals[Id].State != EKSIEcologyLifeState::Alive) { continue; }
+		if (Individuals[Id].State != EKSIEcologyLifeState::Alive)
+		{
+			continue;
+		}
 		PreviousPositions.Add(Id, Individuals[Id].PositionMeters);
 		Neighborhoods.FindOrAdd(CellAt(Individuals[Id].PositionMeters)).Add(Id);
 	}
@@ -288,26 +294,42 @@ bool FKSIEcologySimulation::AdvanceBehavior(double At, FString& Error, const IKS
 		// Ground animals pause to inspect/forage. Hunger interrupts the pause below.
 		const double RestPhase = FMath::Fmod(At + double(GetTypeHash(Id) % 23), 23.);
 		const bool bResting = bPlanar && RestPhase < 5.;
-		if (bResting) { Target = I.PositionMeters; }
+		if (bResting)
+		{
+			Target = I.PositionMeters;
+		}
 		FVector Separation = FVector::ZeroVector;
 		const FIntVector Cell = CellAt(I.PositionMeters);
 		for (int32 X = -1; X <= 1; ++X)
-		for (int32 Y = -1; Y <= 1; ++Y)
-		for (int32 Z = -1; Z <= 1; ++Z)
 		{
-			const auto* Neighbors = Neighborhoods.Find(Cell + FIntVector(X, Y, Z));
-			if (!Neighbors) { continue; }
-			for (FGuid Other : *Neighbors)
+			for (int32 Y = -1; Y <= 1; ++Y)
 			{
-				if (Other == Id || Individuals[Other].PopulationId != I.PopulationId) { continue; }
-				FVector Away = I.PositionMeters - PreviousPositions[Other];
-				if (bPlanar) { Away.Z = 0.; }
-				const double Distance = Away.Size();
-				const double SpaceWanted = (B.RadiusMeters + Behaviors[Other].RadiusMeters) * 2.;
-				if (Distance < SpaceWanted)
+				for (int32 Z = -1; Z <= 1; ++Z)
 				{
-					const FVector Direction = Distance > .001 ? Away / Distance : FVector(FMath::Cos(Offset), FMath::Sin(Offset), 0.);
-					Separation += Direction * (SpaceWanted - Distance);
+					const auto* Neighbors = Neighborhoods.Find(Cell + FIntVector(X, Y, Z));
+					if (!Neighbors)
+					{
+						continue;
+					}
+					for (FGuid Other : *Neighbors)
+					{
+						if (Other == Id || Individuals[Other].PopulationId != I.PopulationId)
+						{
+							continue;
+						}
+						FVector Away = I.PositionMeters - PreviousPositions[Other];
+						if (bPlanar)
+						{
+							Away.Z = 0.;
+						}
+						const double Distance = Away.Size();
+						const double SpaceWanted = (B.RadiusMeters + Behaviors[Other].RadiusMeters) * 2.;
+						if (Distance < SpaceWanted)
+						{
+							const FVector Direction = Distance > .001 ? Away / Distance : FVector(FMath::Cos(Offset), FMath::Sin(Offset), 0.);
+							Separation += Direction * (SpaceWanted - Distance);
+						}
+					}
 				}
 			}
 		}
@@ -489,7 +511,6 @@ bool FKSIEcologySimulation::AdvanceBehavior(double At, FString& Error, const IKS
 
 	return true;
 }
-
 
 bool FKSIEcologySimulation::HasSpatialBehavior() const
 {

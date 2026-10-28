@@ -351,7 +351,6 @@ void FKSISurfaceScene::CopyGeometryProviders(const FKSISurfaceScene& Other)
 	GeometryProviders = Other.GeometryProviders;
 }
 
-
 bool IKSISurfaceProvider::QuerySolidPoint(FName BodyId, const FVector3d& PositionMeters, bool& bOutSolid, FString& Error) const
 {
 	Error = TEXT("Surface provider does not support volume occupancy queries.");

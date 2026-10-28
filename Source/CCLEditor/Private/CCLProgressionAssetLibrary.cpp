@@ -501,7 +501,6 @@ bool UCCLProgressionAssetLibrary::CreateAgentAssets()
 #endif
 }
 
-
 bool UCCLProgressionAssetLibrary::MigrateAgentBiologyAssets()
 {
 #if WITH_EDITOR

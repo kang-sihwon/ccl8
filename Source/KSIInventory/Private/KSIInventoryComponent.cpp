@@ -125,7 +125,6 @@ bool UKSIInventoryComponent::ValidateEntries(const TArray<FKSIInventoryEntry>& E
             return false;
         }
 
-
         Slots.Add(Entry.Slot);
         Seen.Add(Entry.Id);
     }

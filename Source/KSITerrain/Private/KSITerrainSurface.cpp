@@ -124,7 +124,6 @@ bool FKSITerrainSurface::QuerySurfaces(const FKSISurfaceQuery& Query, TArray<FKS
 	return true;
 }
 
-
 bool FKSITerrainSurface::QuerySolidPoint(FName BodyId, const FVector3d& PositionMeters, bool& bOutSolid, FString& Error) const
 {
 	if (!Revision || !Epoch.IsValid() || BodyId.IsNone() || PositionMeters.ContainsNaN() || PositionMeters.GetAbsMax() > 1.e9)

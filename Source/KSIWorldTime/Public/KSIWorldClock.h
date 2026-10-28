@@ -31,8 +31,6 @@ struct KSIWORLDTIME_API FKSIWorldClockSnapshot
 	TArray<FKSIWorldTimeRate> Rates;
 };
 
-
-
 // A single server owner queues game time and publishes a step only after its consumers commit.
 // This value object neither ticks nor advances Agent state on its own.
 class KSIWORLDTIME_API FKSIWorldClock

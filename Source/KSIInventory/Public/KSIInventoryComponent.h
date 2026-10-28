@@ -12,7 +12,6 @@ struct KSIINVENTORY_API FKSIInventoryEntry : public FFastArraySerializerItem
 {
     GENERATED_BODY()
 
-
     template <class T> const T& GetState() const
     {
         const T* Value = State.GetPtr<T>();
@@ -42,8 +41,6 @@ struct KSIINVENTORY_API FKSIInventoryEntry : public FFastArraySerializerItem
 
     UPROPERTY()
     FInstancedStruct State;
-
-
 };
 
 USTRUCT()

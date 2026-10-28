@@ -14,7 +14,8 @@
 
 2026-10-28 기준 분포는 규칙별로 한 줄 블록 110, 연속 빈 줄 27, `GENERATED_BODY()` 뒤 빈 줄 26, 닫는 중괄호 앞 빈 줄 15, 중괄호 없는 본문 4, 헤더 `bool` 멤버 1이다. 모듈별로는 `Source/CCL/Environment/`에 126건이 몰려 있다.
 
-- [ ] 1. KSI 모듈과 CCLEditor (없음). `Source/KSI*/`와 `Source/CCLEditor/`의 25건을 고친다. `KSIEcologyBehavior.cpp:295-296`의 중괄호 없는 본문 2건이 들어 있다. 완료 조건은 두 경로의 `cpp-rules.cjs check` 0건, 공백 제거 비교 통과, 빌드 통과다.
+- [x] 1. KSI 모듈과 CCLEditor (없음). `Source/KSI*/`와 `Source/CCLEditor/`의 25건을 고친다. `KSIEcologyBehavior.cpp:295-296`의 중괄호 없는 본문 2건이 들어 있다. 완료 조건은 두 경로의 `cpp-rules.cjs check` 0건, 공백 제거 비교 통과, 빌드 통과다.
+  - 결과: 11개 파일에서 25건을 고쳐 두 경로의 검사가 0건이고 전체는 158건이다. 공백 제거 비교에서 10개 파일은 같고, `KSIEcologyBehavior.cpp`는 X·Y·Z 이웃 반복문에 중괄호 2쌍만 늘었다. 안쪽 `continue`는 그대로 Z 반복문을 건너뛴다. `cpp-rules.cjs format`, `floor-guard.cjs` 0건. UE 5.8.3에서 GenerateProjectFiles와 `CCLEditor Win64 Development` 빌드가 성공했다(로그 `Saved/Tests/CppRuleCleanup-20261028/`, 로컬).
 - [ ] 2. CCL의 Environment 밖 (없음). `Source/CCL/`에서 `Environment/`를 뺀 32건(Tests, Agents, Session, Items, Campaign, 모듈 루트)을 고친다. 완료 조건은 1과 같다.
 - [ ] 3. Environment의 물 실험과 실험 화면 (없음). `CCLExperimentWater.cpp`, `CCLExperimentScreen.*`, `CCLExperimentLaboratoryScreen.cpp`의 형식 위반 49건을 고친다. 헤더 `bool` 멤버는 조각 5가 맡는다. 완료 조건은 1과 같다.
 - [ ] 4. Environment의 나머지 (없음). `Source/CCL/Environment/`의 남은 76건을 고친다. `CCLLaboratoryTests.cpp:65-66`의 중괄호 없는 본문 2건이 들어 있다. 완료 조건은 1과 같다.
