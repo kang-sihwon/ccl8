@@ -86,7 +86,7 @@ private:
 	FName SelectedCase = TEXT("Zone_00");
 	uint8 bShowCelestialView = 0;
 	double DisplayedScale = -1.;
-	bool bDisplayedObservation = false;
+	uint8 bDisplayedObservation = 0;
 	TSharedPtr<SScrollBox> DetailScroll;
 	TSharedPtr<SWidget> CelestialViewButton;
 	TSharedPtr<SWidget> CelestialView;

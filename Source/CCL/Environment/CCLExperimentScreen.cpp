@@ -164,7 +164,7 @@ void UCCLExperimentScreen::RefreshScaleInputs(bool bForce)
 {
 	const double Scale = CurrentScale();
 	const bool bObservation = IsObserving();
-	if (!bForce && DisplayedScale == Scale && bDisplayedObservation == bObservation)
+	if (!bForce && DisplayedScale == Scale && static_cast<bool>(bDisplayedObservation) == bObservation)
 	{
 		return;
 	}
