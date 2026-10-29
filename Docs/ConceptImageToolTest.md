@@ -2,7 +2,7 @@
 
 시나리오와 배경 설명으로 컨셉 시안과 3D 모델링용 기준 이미지를 만들 AI 도구를 고르기 위한 비교 테스트다. 같은 프롬프트를 후보 도구마다 넣고 채점표로 비교한 뒤, 단계별로 쓸 도구를 정한다. 이 문서는 비교 대상, 진행 조건, 테스트 프롬프트, 채점 기준을 소유한다. 시각 기준은 [ArtDirection](ArtDirection.md)이, 에이전트 도구 조사는 [AgentToolingResearch](AgentToolingResearch.md)가 소유한다.
 
-2026-10-29에 T1 영어 프롬프트의 1라운드 일부를 실행했고 도구는 아직 정하지 않았다. 결과는 이 문서의 "결과" 절에 날짜를 붙여 추가하고, 결과 이미지는 `ConceptImageToolTest/` 폴더에 테스트 ID별로 둔다.
+2026-10-29까지 T1 영어·한국어 프롬프트의 1라운드 일부를 실행했고 도구는 아직 정하지 않았다. 결과는 이 문서의 "결과" 절에 날짜를 붙여 추가하고, 결과 이미지는 `ConceptImageToolTest/` 폴더에 테스트 ID별로 둔다.
 
 ## 피사체의 지위
 
@@ -156,7 +156,7 @@ The same village water well, single object, three-quarter view from slightly abo
 
 도구별 최고점 이미지 기준으로 Nano Banana Pro가 세 항목 모두 가장 높았다. 다만 4장을 채운 도구는 Midjourney뿐이고 나머지는 1장이라 진행 조건 2를 채우지 못했다. 그래서 순위는 확정하지 않는다. 이미지는 사용자가 생성했고, AI가 이미지를 보고 채점했다.
 
-- 프롬프트는 T1 영어이고, 스타일 참조와 재시도 없이 생성했다. T1 한국어는 아직 실행하지 않았다.
+- 프롬프트는 T1 영어이고, 스타일 참조와 재시도 없이 생성했다. T1 한국어 결과는 다음 절에 있다.
 - 비교 대상 표의 GPT Image 2 자리는 GPT Image 2.5로 테스트했다. YouArt는 화면에 모델 이름을 표시했다. ChatGPT의 이미지 모델이 2.5라는 것은 같은 날 웹 조사로 추정한 것이다.
 - 모델링 활용도는 채점 기준 표에서 T1 대상이 아니다. 건물과 우물을 블록아웃 기준으로 쓸 수 있는지 보려고 참고로 채점했다.
 - 비용과 시간은 기록하지 않았다.
@@ -166,12 +166,12 @@ The same village water well, single object, three-quarter view from slightly abo
 |---|---|---|---|---|---|---|---|
 | Nano Banana Pro | YouArt, 1K, 16:9 | 1376×768 | 5 | 5 | 5 | 4 | [보기](ConceptImageToolTest/T1/t1-en-youart-nanobananapro.jpg) |
 | Gemini 웹 | 모드 "자동", "높음". 실제 모델은 미확인(Nano Banana 2 추정), 워터마크 있음 | 1024×572 | 4 | 5 | 4 | 3 | [보기](ConceptImageToolTest/T1/t1-en-gemini-auto.png) |
-| Midjourney v8.2 1번 | YouArt, HD 끔, Stylize 100, Chaos·Weird·Experimental 0, Raw 모드 미기록 | 1456×816 | 4 | 4 | 4 | 1 | [보기](ConceptImageToolTest/T1/t1-en-youart-mj82-1.png) |
+| Midjourney v8.2 1번 | YouArt, HD 끔, Stylize 100, Chaos·Weird·Experimental 0, Raw 모드 켬 | 1456×816 | 4 | 4 | 4 | 1 | [보기](ConceptImageToolTest/T1/t1-en-youart-mj82-1.png) |
 | Midjourney v8.2 2번 | 같음 | 1456×816 | 3 | 3 | 3 | 1 | [보기](ConceptImageToolTest/T1/t1-en-youart-mj82-2.png) |
 | Midjourney v8.2 3번 | 같음 | 1456×816 | 3 | 3 | 3 | 1 | [보기](ConceptImageToolTest/T1/t1-en-youart-mj82-3.png) |
 | Midjourney v8.2 4번 | 같음 | 1456×816 | 3 | 4 | 4 | 1 | [보기](ConceptImageToolTest/T1/t1-en-youart-mj82-4.png) |
-| FLUX 2 | YouArt, max·pro 중 어느 것인지 미기록 | 1280×720 | 4 | 4 | 4 | 2 | [보기](ConceptImageToolTest/T1/t1-en-youart-flux2.jpg) |
-| GPT Image 2.5 | YouArt, 품질 설정 미기록 | 1088×608 | 4 | 3 | 4 | 5 | [보기](ConceptImageToolTest/T1/t1-en-youart-gptimage25.png) |
+| FLUX 2 | YouArt, max | 1280×720 | 4 | 4 | 4 | 2 | [보기](ConceptImageToolTest/T1/t1-en-youart-flux2.jpg) |
+| GPT Image 2.5 | YouArt, landscape_16_9, 품질 high | 1088×608 | 4 | 3 | 4 | 5 | [보기](ConceptImageToolTest/T1/t1-en-youart-gptimage25.png) |
 | GPT Image 2.5 | ChatGPT, 채팅 모델 GPT-6.1 Tera Max | 1672×941 | 4 | 3 | 3 | 5 | [보기](ConceptImageToolTest/T1/t1-en-chatgpt-gpt61-teramax.png) |
 | GPT Image 2.5 | ChatGPT, 채팅 모델 GPT-6 Astra High | 1672×941 | 4 | 3 | 4 | 5 | [보기](ConceptImageToolTest/T1/t1-en-chatgpt-gpt6-astrahigh.png) |
 
@@ -189,10 +189,43 @@ Midjourney 4장의 평균은 지시 반영 3.25, 스타일 적합 3.5, 모델링
 
 - Midjourney의 HD는 화면에 "네이티브 2K"로 표시되지만 2944×1648로 출력됐다. 다른 모델의 1K와 화소 수를 맞추려고 1라운드는 HD를 껐다.
 - Nano Banana Pro의 1K 16:9 출력은 1376×768이다.
+- GPT Image 2.5의 landscape_16_9, high 출력은 1088×608이다.
+- 같은 영어 프롬프트로 HD를 켠 Midjourney 실행도 한 번 있었다. 4장 모두 2944×1648이고 채점하지 않았다.
 
-남은 일은 다음과 같다.
+### 2026-10-29 T1 한국어 1라운드 중간 기록
+
+서술 이해는 Nano Banana Pro, GPT Image 2.5, FLUX 2가 모두 5점이고 Midjourney가 가장 낮았다. 반면 한국어 프롬프트에서는 세 도구의 그림체가 영어 때와 달라져 스타일 적합이 흔들렸다. 영어 T1과 같은 이유로 순위는 확정하지 않는다. 이미지는 사용자가 YouArt에서 생성했고, AI가 사용자의 YouArt 실행 기록에서 원본을 열어 채점했다. 이미지 파일은 저장소에 저장하지 않았다.
+
+- GPT Image 2.5는 화면비 설정이 square_hd여서 1:1로 나왔다. 진행 조건 1을 어겼으므로 다른 도구와 같은 조건의 결과가 아니다.
+- 모델링 활용도와 비용·시간은 영어 T1과 같은 방식으로 다뤘다.
+
+| 도구 | 경로와 설정 | 크기 | 지시 반영 | 서술 이해 | 스타일 적합 | 모델링 활용도(참고) |
+|---|---|---|---|---|---|---|
+| Nano Banana Pro | YouArt, 16:9, 1K | 1376×768 | 4 | 5 | 4 | 4 |
+| GPT Image 2.5 | YouArt, square_hd, 품질 high | 1024×1024 | 4 | 5 | 3 | 4 |
+| FLUX 2 | YouArt, max | 1280×720 | 3 | 5 | 2 | 4 |
+| Midjourney v8.2 1번 | YouArt, 16:9, HD 끔, Raw 모드 켬, 품질 1 | 1456×816 | 3 | 3 | 2 | 3 |
+| Midjourney v8.2 2번 | 같음 | 1456×816 | 3 | 3 | 4 | 3 |
+| Midjourney v8.2 3번 | 같음 | 1456×816 | 4 | 4 | 5 | 4 |
+| Midjourney v8.2 4번 | 같음 | 1456×816 | 3 | 4 | 4 | 3 |
+
+Midjourney 4장의 평균은 지시 반영 3.25, 서술 이해 3.5, 스타일 적합 3.75, 모델링 활용도 3.25다.
+
+도구별 관찰은 다음과 같다.
+
+- **Nano Banana Pro**: "나무를 베고 천을 짜며"를 벽에 기댄 도끼·톱과 베틀로 그렸다. 언덕으로 올라가는 길, 이끼 지붕, 비스듬한 빛, 숲의 안개가 있고 이끼 낀 돌우물로 오래됨을 보였다. 영어 때의 사실적인 사진풍이 아니라 붓 자국이 보이는 컨셉 페인팅이 됐다. 우물은 광장 중앙이 아니라 길 오른쪽에 있다.
+- **GPT Image 2.5**: 장작더미와 벽의 연장, 걸어 둔 직물로 서술을 살렸고 지붕 달린 우물이 광장 중앙에 있다. 성과 호수는 없지만 먼 산과 안개 낀 골짜기를 넣었고, 영어 때처럼 채도 높은 황금빛 동화풍이다.
+- **FLUX 2**: 물레와 베틀을 여러 개 그렸고, 원형 돌바닥 한가운데에 낡은 돌우물을 두어 "가장 오래된 것"을 가장 분명하게 보였다. 그림체가 카툰풍 일러스트로 바뀌어 "사실적인 재질" 지시를 어겼다.
+- **Midjourney v8.2**: 4장 중 천을 짜는 흔적을 그린 장은 없다. 1번은 한낮의 밝은 하늘과 애니메이션풍 그림체이고 우물이 작게 왼쪽에 있다. 2번은 사실적이지만 우물이 화면 아래에서 거의 잘렸다. 3번은 숲 가장자리, 안개, 비스듬한 빛, 이끼 지붕, 광장의 돌우물이 모두 있어 한국어 결과 중 ArtDirection에 가장 가깝다. 4번은 언덕 아래 골짜기로 이어지는 넓은 풍경이지만 시점이 높고 마을 규모가 크며 우물이 작다.
+
+영어 T1과 비교하면 다음과 같다.
+
+- "비교 대상"의 추정, 곧 대화형 모델이 한국어 서술을 Midjourney보다 잘 이해한다는 추정에 맞는 결과다. FLUX 2도 서술을 잘 살렸다. 한 번의 실행이라 확인으로 보지 않는다.
+- 한국어의 "사실적인 재질"은 영어의 "physically based materials"만큼 그림체를 고정하지 못했다. Nano Banana Pro는 페인팅으로, FLUX 2는 카툰으로 바뀌었다.
+
+### 남은 일
 
 1. 도구마다 4장을 채우고 버전, 품질 설정, 크레딧을 기록한다.
-2. T1 한국어를 실행한다.
+2. GPT Image 2.5의 T1 한국어를 16:9로 다시 생성한다. 진행 조건을 어긴 실행을 바로잡는 것이므로 재시도로 보지 않는다.
 3. GPT Image 2.5에만 시키지 않은 요소를 빼는 T1b를 만들어 실행한다. T1b 프롬프트는 아직 만들지 않았다.
-4. 2라운드 스타일 참조는 4장을 채운 뒤 정한다. 현재 후보는 Nano Banana Pro 결과다.
+4. 2라운드 스타일 참조는 4장을 채운 뒤 정한다. 현재 후보는 영어 T1의 Nano Banana Pro 결과다.
