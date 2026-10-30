@@ -2,11 +2,13 @@
 
 시나리오와 배경 설명으로 컨셉 시안과 3D 모델링용 기준 이미지를 만들 AI 도구를 고르기 위한 비교 테스트다. 같은 프롬프트를 후보 도구마다 넣고 채점표로 비교한 뒤, 단계별로 쓸 도구를 정한다. 이 문서는 비교 대상, 진행 조건, 테스트 프롬프트, 채점 기준을 소유한다. 시각 기준은 [ArtDirection](ArtDirection.md)이, 에이전트 도구 조사는 [AgentToolingResearch](AgentToolingResearch.md)가 소유한다.
 
-2026-10-30까지 T1 영어·한국어와 T2 프롬프트의 1라운드 일부, T3부터 T7까지의 1라운드를 실행했고 도구는 아직 정하지 않았다. 결과는 이 문서의 "결과" 절에 날짜를 붙여 추가하고, 결과 이미지는 `ConceptImageToolTest/` 폴더에 테스트 ID별로 둔다.
+2026-10-30까지 T1 영어·한국어와 T2 프롬프트의 1라운드 일부, T3부터 T7까지의 1라운드를 실행했고 도구는 아직 정하지 않았다. T0과 T8은 2026-10-31에 설계했고 아직 실행하지 않았다. 결과는 이 문서의 "결과" 절에 날짜를 붙여 추가하고, 결과 이미지는 `ConceptImageToolTest/` 폴더에 테스트 ID별로 둔다.
 
 ## 피사체의 지위
 
 프롬프트의 마을, 주인공, 몹, 소품은 도구를 비교하기 위한 임시값이다. 2026-10-28 기준 [세계관 정본](Narrative/World.md)과 [시나리오 정본](Narrative/Scenario.md)에는 확정한 설정이 없다. 그래서 피사체는 ArtDirection의 시각 기준 제안과 [GameDesign](GameDesign.md)의 일반 몹 역할 예시에만 맞췄다. 이 프롬프트나 결과 이미지를 세계 설정, 인물 디자인, 몹 외형의 근거로 쓰지 않는다.
+
+T0과 T8은 게임에 맞는 세계로 시험하려고 [T0 세계 후보 비교](Narrative/Drafts/2026-10-31-t0-world-candidates.md)의 후보 A, 닫힌 수문을 기준으로 삼았다. 사용자가 2026-10-31에 시안 기준으로 고른 후보이고 정본 승인은 아니다. 그래서 T0과 T8의 피사체도 임시값이다.
 
 ## 비교 대상
 
@@ -48,10 +50,10 @@
 1. 테스트하는 사람이 각 도구에 프롬프트를 고치지 않고 그대로 넣는다. 화면비는 프롬프트에 적힌 값으로 맞춘다.
 2. 프롬프트당 4장을 뽑고, 재시도 없이 첫 묶음으로 채점한다. 도구별 버전과 품질 설정을 함께 기록한다.
 3. 1라운드는 스타일 참조 없이 진행한다.
-4. 2라운드는 1라운드에서 점수가 가장 높은 T1 이미지를 스타일 참조로 걸고 T2와 T3를 다시 뽑는다. 지역과 피사체가 바뀌어도 같은 톤이 유지되는지 보기 위해서다. Midjourney는 `--sref <이미지 URL>`을 쓴다. GPT Image 2와 Nano Banana Pro는 이미지를 첨부하고 아래 문장을 프롬프트 끝에 붙인다.
+4. 2라운드는 T0 시안을 스타일 참조로 걸고 T8의 새 피사체를 뽑는다. 시안은 Midjourney로 만들고 다른 도구가 화풍만 이어받아 새 모델을 만드는 방향을 사용자가 2026-10-31에 제안해, T1을 참조로 T2와 T3를 다시 뽑던 계획을 바꿨다. Midjourney는 `--sref <이미지 URL>`을 쓴다. GPT Image 2.5, Nano Banana Pro, FLUX 2는 이미지를 첨부하고 아래 문장을 프롬프트 끝에 붙인다. 모델링 기준 이미지는 고른 조명이 필요하므로 참조의 조명은 따라오지 않게 했다.
 
    ```
-   Match only the rendering style, palette and lighting quality of the attached image, not its content.
+   Match only the rendering style, color palette and material texture of the attached image. Do not copy its subject, design, composition or lighting.
    ```
 
 5. 프롬프트에 작가 이름과 Orbis 이름을 넣지 않는다.
@@ -130,6 +132,64 @@ Game prop concept sheet: an old village water well with a wooden roof frame, hem
 The same village water well, single object, three-quarter view from slightly above, centered, entire object visible, plain white background, soft even lighting, no shadows on the ground, no other objects. 1:1.
 ```
 
+### T0. 시안 기준
+
+Midjourney로 게임의 느낌을 정하는 시안을 만든다. 후보 A의 세계에 맞춰 배경, 캐릭터, 몬스터를 하나씩 뽑고, 사용자가 그림 느낌을 기준으로 종류마다 한 장을 고른다. 고른 세 장은 T8의 참조 이미지가 된다.
+
+- 이 단계는 도구 비교가 아니므로 점수를 매기지 않는다. 진행 조건 2의 재시도 금지도 적용하지 않는다.
+- 시안의 분위기를 보려고 T3, T6과 달리 배경과 조명을 단색으로 제한하지 않는다.
+- 사용자가 YouArt 이미지 생성 화면에서 실행한다. 설정은 프롬프트의 화면비, HD 끔, Raw 모드 켬, 품질 1, Stylize 100이다. 워크플로 노드를 쓰지 않는 이유는 남은 일 6에 있다.
+
+T0a는 배경인 마을이다.
+
+```
+A small high-mountain village of herders and ice cutters in a long winter, late afternoon. Low stone-and-timber houses with heavy snow on slate roofs, wool blankets drying on wooden racks, stacks of firewood running low, sheep pens, ice saws leaning against walls, a frozen river beside the village. Far up the valley, a colossal ancient stone dam gate closes off the gorge. Soft low sun, thin chimney smoke, cold air with distant haze, quiet worn lived-in mood. Wide establishing shot at eye level. Game environment concept art, physically based materials, large readable color masses. No text, no foreground characters. 16:9.
+```
+
+T0b는 캐릭터인 주인공이다.
+
+```
+Full-body character concept of a lone ice cutter from a starving mountain village, a reluctant warrior in a dark fantasy action RPG. Practical layered winter gear: thick undyed wool tunic, patched sheepskin coat, worn leather straps, fur-lined hood pushed back, iron spikes strapped to the boots, a heavy ice hatchet in one hand and a small wooden shield bound with iron. Standing pose, entire body visible from head to feet, no cropping. Muted snowy background, strong clear silhouette, readable materials (wool, fleece, leather, iron). No text. 2:3.
+```
+
+T0c는 몬스터인 옛 수문 경비병이다. 느리고 강한 공격 역할이다. T6에서 Midjourney가 갑옷을 빠뜨렸으므로 갑옷을 앞에 적었다.
+
+```
+Full-body creature concept of an ancient dam gate guard in a dark fantasy action game, long dead yet still standing watch. Heavy corroded iron plate armor covers the whole body, and thick blue-white ice has grown over the armor like a second shell. A huge, slow figure with one arm fused into a massive frozen stone mace, and a hollow helmet with frost inside. Standing pose, entire body visible from head to feet, a small human figure beside it for scale. Muted frozen riverbed background, strong clear silhouette, readable materials (corroded metal, ice, stone). No text. 2:3.
+```
+
+### T8. 화풍 이어받기
+
+T0에서 고른 이미지의 화풍과 질감만 참조해 다른 피사체를 그린다. 이 테스트가 2라운드다. 참조의 내용을 따라오지 않으면서 같은 게임의 그림처럼 보이는 도구를 찾는 것이 목표다. T8a와 T8b는 모델링 기준 이미지이므로 조명과 배경을 고정한다.
+
+| ID | 참조 | 새 피사체 | 크기 |
+|---|---|---|---|
+| T8a | T0b에서 고른 주인공 | 마을 안내인인 늙은 양치기 | 2:3 |
+| T8b | T0c에서 고른 경비병 | 거리를 유지하는 수로지기 | 2:3 |
+| T8c | T0a에서 고른 마을 | 수문 내부의 보스 공간 | 16:9 |
+
+- GPT Image 2.5, Nano Banana Pro, FLUX 2가 주 비교 대상이다. Midjourney는 `--sref`로 실행하는 대조군이다.
+- 크레딧은 T3, T6 기록으로 계산해 T8a와 T8b가 각각 126, T8c가 118이다. 셋을 합치면 370이고 T0의 30을 더하면 약 400이다.
+- Midjourney 스타일 참조를 이미지 생성 화면에서 쓸 수 있는지는 확인하지 않았다.
+
+T8a는 안내인이다.
+
+```
+Full-body character reference of an elderly shepherd who serves as the guide of a snowbound mountain village, for a dark fantasy action RPG. Long felt coat with a sheepskin collar, wool scarf, worn leather satchel, tall wooden crook, small iron lantern at the belt. Neutral standing pose, entire body visible from head to feet, no cropping. Plain light gray background, even soft lighting, strong clear silhouette, readable materials (felt, fleece, leather, wood, iron). No text. 2:3.
+```
+
+T8b는 수로지기다. 체형이 T0c와 반대라 참조의 형태가 따라오는지 보기 쉽다.
+
+```
+Full-body creature reference of an ancient canal keeper in a dark fantasy action game, a ranged enemy that keeps its distance. Very tall and thin figure in a long frayed robe stiff with frost, narrow hooded head, no armor, coils of rusted chain at the waist, holding a long harpoon of clear ice at its side. Neutral standing pose, entire body visible from head to feet, no cropping, with a plain human silhouette beside it for scale. Plain gray background, even lighting, strong clear silhouette, readable materials (cloth, ice, rusted iron). No text. 2:3.
+```
+
+T8c는 보스 공간이다. 조명은 마을과 달라도 재질과 그림체가 같은 세계로 보이는지 본다.
+
+```
+Inside a colossal ancient stone dam gate: a vast round chamber of eroded masonry, giant bronze gears and chains locked in thick ice, a frozen waterfall against the far wall. A single shaft of cold light falls from a narrow opening above; everything else is in deep shadow. Cold, desaturated palette, limited light sources, oppressive sense of scale. A wide circular open floor of flat ice clear of debris for combat, with clearly readable floor edges. Game environment concept art, physically based materials. No text, no characters. 16:9.
+```
+
 ### 이미지→3D 단계
 
 테스트하는 사람이 T7의 두 결과와 T5 시트를 Hunyuan3D, Tripo, Meshy에 각각 넣는다. 원본 실루엣과 맞는지, 보이지 않던 뒷면을 그럴듯하게 만드는지, 폴리곤 수와 텍스처를 쓸 수 있는지 비교한다. 결과 메시는 최종 에셋이 아니라 블록아웃이나 스컬프트 기반으로 보고, 리토폴로지 등 후처리가 필요하다고 가정한다. 후처리에 쓸 Blender는 설치를 확인한 기록이 없다([AgentToolingResearch](AgentToolingResearch.md#반영-상태)).
@@ -140,13 +200,14 @@ The same village water well, single object, three-quarter view from slightly abo
 
 | 항목 | 보는 것 | 해당 테스트 |
 |---|---|---|
-| 지시 반영 | 프롬프트의 요소가 빠지거나 엉뚱한 요소가 추가되지 않았는가 | 전부 |
+| 지시 반영 | 프롬프트의 요소가 빠지거나 엉뚱한 요소가 추가되지 않았는가 | T0을 뺀 전부 |
 | 서술 이해 | 한국어 서술문의 분위기와 디테일을 살렸는가 | T1 한국어 |
 | 스타일 적합 | ArtDirection의 PBR 재질, 생활감, 큰 색면, 차가운 보스 공간 기준에 맞는가 | T1, T2, T3 |
-| 톤 유지 | 2라운드에서 지역과 피사체가 바뀌어도 같은 톤인가 | 2라운드 |
+| 톤 유지 | 피사체가 바뀌어도 참조와 같은 화풍, 색감, 질감인가 | T8 |
+| 내용 번짐 | 참조의 피사체, 디자인, 구도가 따라오지 않았는가. 5점이 번짐 없음이다 | T8 |
 | 편집 보존 | 지시한 한 가지만 바뀌었는가 | T4 |
 | 시점 일관성 | 시점끼리 디테일이 맞고, 뒷면을 지어내지 않고, 축이 정렬됐는가 | T5, T7 |
-| 모델링 활용도 | 형태가 모호하지 않고 Blender 배경 평면으로 바로 쓸 수 있는가 | T3, T5, T6, T7 |
+| 모델링 활용도 | 형태가 모호하지 않고 Blender 배경 평면으로 바로 쓸 수 있는가 | T3, T5, T6, T7, T8a, T8b |
 | 실루엣 구분 | 실루엣만 보고 세 몹을 구분할 수 있는가 | T6 |
 | 비용·속도 | 4장에 든 크레딧과 시간 | 전부 |
 
@@ -431,7 +492,7 @@ Raw 모드를 끈 Midjourney 실행은 장별 점수가 3/4/2, 4/5/3, 4/5/2, 4/5
 1. T1과 T2 모두 도구마다 4장을 채우고 버전, 품질 설정, 크레딧을 기록한다.
 2. GPT Image 2.5의 T1 한국어를 16:9로 다시 생성한다. 진행 조건을 어긴 실행을 바로잡는 것이므로 재시도로 보지 않는다.
 3. GPT Image 2.5에만 시키지 않은 요소를 빼는 T1b를 만들어 실행한다. T1b 프롬프트는 아직 만들지 않았다.
-4. 2라운드 스타일 참조는 4장을 채운 뒤 정한다. 현재 후보는 영어 T1의 Nano Banana Pro 결과다. 다만 Nano Banana Pro는 T1 한국어와 T2에서 그림체가 바뀌었으므로, 4장을 채운 뒤 이 후보를 다시 판단한다.
+4. T0을 실행하고 사용자가 종류마다 참조 이미지를 한 장씩 고른 뒤 T8을 실행한다.
 5. GPT Image 2.5 3면도의 A 포즈, 무기 표시, 견갑 위치를 보강하는 T5b를 만들지 정한다. T5b 프롬프트는 아직 만들지 않았다.
 6. 워크플로의 `T6 MJ v8.2` 노드에 결과가 없는 원인을 확인한다. T7 Midjourney 노드도 `service.generation_failed`로 실패했지만, 같은 프롬프트가 이미지 생성 화면에서는 생성됐다. 원인을 알 때까지 Midjourney는 이미지 생성 화면에서 따로 실행한다.
 7. GPT Image 2.5의 T7 시트 4번과 3/4 시점 결과로 이미지→3D 단계를 진행한다. 2026-10-30 T7 실행 뒤 YouArt 잔액은 3,000이다.
