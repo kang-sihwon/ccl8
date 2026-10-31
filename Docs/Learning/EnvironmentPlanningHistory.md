@@ -10,7 +10,7 @@
 |---|---|
 | 이전 기준 | `aea2debe066b2d95fd41cb9f83100e551a0bbadb` |
 | 도입·변경 기준 | `823a254d9abd955009b19fdfa05e2a53021dd2de` |
-| 현재 기준 | `50e583859c832d6cb325e5e76beb8356e8c13959` |
+| 이 기록의 기준 | `50e583859c832d6cb325e5e76beb8356e8c13959` |
 
 조사 시작 때 확인한 `main`과 로컬 원격 추적 `origin/main`의 `50e5838`을 게임 코드 기준으로 고정한 학습 기록이다. 원격 서버를 새로 조회한 결과는 아니며 이후 추가된 커밋과 구분한다. 작업 트리의 설정·빌드 파일 변경은 이 장의 코드 기준에서 제외했다. 아래 발췌의 경로·줄 번호는 표시한 커밋 기준이고 상대 링크는 현재 체크아웃을 연다.
 
@@ -34,7 +34,7 @@ GameSeconds는 일시 정지를 제외한 게임 경과 시간, WorldSeconds는 
 
 ## 4. 기존 Agent의 시간 진행
 
-출처: `aea2deb`, [CCLAgentWorldSubsystem.cpp](../../Source/CCL/Agents/CCLAgentWorldSubsystem.cpp):63의 `UCCLAgentWorldSubsystem::Tick`. 실제 코드 전체 함수이며 들여쓰기를 공백으로 바꿨다.
+출처: `aea2deb`, `Source/CCL/Agents/CCLAgentWorldSubsystem.cpp`의 `UCCLAgentWorldSubsystem::Tick`. 이 함수는 `64a7549` 이후 공통 World 실행기로 옮겨져 현재의 진행은 [공통 시간](EnvironmentTime.md#서버저장종료의-연결)에 설명한다. 실제 코드 전체 함수이며 들여쓰기를 공백으로 바꿨다.
 
 ```cpp
 void UCCLAgentWorldSubsystem::Tick(float DeltaTime)
