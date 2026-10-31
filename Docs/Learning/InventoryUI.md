@@ -18,6 +18,8 @@
 
 코드는 필요한 부분을 발췌하고 줄바꿈했다. 함수 일부만 인용한 곳은 본문에 표시한다. 설명을 위해 든 문제 상황은 실제 발생한 버그 기록과 구분한다. 당시 코드와 경로·줄 번호는 기준 커밋으로 대조하며, 상대 링크는 현재 체크아웃 파일을 연다.
 
+`996bf49`가 공용 UI 코드를 `Source/CCL/UI/Core/`의 `CCLUI*`에서 `Source/KSIUI/`의 `KSIUI*`로 옮겼다. 이 장의 발췌는 `5e2050b`의 이름 그대로이며 `UCCLUISubsystem`, `UCCLUIRoot`, `UCCLScreen`, `FCCLUIViewDefinition`, `ECCLUIInputPolicy`는 현재 각각 `UKSIUISubsystem`, `UKSIUIRoot`, `UKSIScreen`, `FKSIUIViewDefinition`, `EKSIUIInputPolicy`다. 2026-10-31에 현재 `main`(`d4888b0`)의 `ToggleInventory`, `CloseInventory`, `CCLGameUI::Get`, `OnContextBound`, `AttachScreen`, `GetDesiredInputConfig`를 이 장의 발췌와 대조했고, 아래 근거 목록의 파일은 `d4888b0`의 경로다. 인벤토리 컨트롤러 흐름과 등록 코드는 접두사를 빼면 달라진 데가 없다.
+
 엔진 매크로 설명은 별도로 확인한 설치본의 `<Engine>/Build/Build.version` 기준 UE 5.8.3 소스를 사용한다. 이는 과거 프로젝트 커밋의 빌드·실행 엔진을 판정하는 근거는 아니다. 작성 형식은 [시스템 학습 문서 작성 규칙](../SystemExplanationGuide.md)을 따른다.
 
 ## 2. 인벤토리를 열 때 필요한 일
@@ -85,7 +87,7 @@ void SCCLInventoryWidget::Construct(const FArguments& Args)
 
 또한 Slate 위젯은 `TSharedRef`와 `TSharedPtr` 같은 공유 포인터로 수명을 관리한다. 뒤에서 나올 `UCCLInventoryContext`는 `UObject` 계열이므로 `NewObject`로 생성한다. 코드에서 두 생성 방식이 등장하는 이유는 생성 대상의 종류가 다르기 때문이다.
 
-근거: `<Engine>/Source/Runtime/SlateCore/Public/Widgets/DeclarativeSyntaxSupport.h:37`의 `SNew`, 같은 파일의 `TSlateDecl::operator<<=`와 `CallConstruct`; [SCCLInventoryWidget.h](../../Source/CCL/UI/SCCLInventoryWidget.h):12의 인자 선언; [SCCLInventoryWidget.cpp](../../Source/CCL/UI/SCCLInventoryWidget.cpp):208의 `Construct`.
+근거: `<Engine>/Source/Runtime/SlateCore/Public/Widgets/DeclarativeSyntaxSupport.h:37`의 `SNew`, 같은 파일의 `TSlateDecl::operator<<=`와 `CallConstruct`; [SCCLInventoryWidget.h](../../Source/CCL/UI/SCCLInventoryWidget.h)의 인자 선언; [SCCLInventoryWidget.cpp](../../Source/CCL/UI/SCCLInventoryWidget.cpp)의 `Construct`.
 
 ## 4. 이전 구현: 컨트롤러가 직접 화면을 관리
 
@@ -176,7 +178,7 @@ SetInputMode(FInputModeGameOnly());
 
 다만 공용 관리자가 아이템 장착 규칙이나 퀘스트 완료 조건까지 알아야 하는 것은 아니다. 결정 17은 이러한 게임 규칙과 서버 검증을 기능 계층에 남기도록 정했다.
 
-근거: [DesignLog](../Decisions.md):253의 결정 17, 배경·결정·트레이드오프.
+근거: [결정 17](../decisions/0017-genre-independent-ui.md)의 배경·결정·트레이드오프.
 
 ## 6. 현재 구현: 화면을 요청하는 코드
 
@@ -287,7 +289,7 @@ InventoryHandle = UI->OpenView(
 
 열기에 실패하면 유효하지 않은 핸들이 반환된다. 이때는 만들어 둔 문맥을 정리한다. 문맥 객체를 생성했다는 사실만으로 화면이 열렸다고 판단하지 않는 것이다.
 
-근거: [CCLPlayerController.cpp](../../Source/CCL/CCLPlayerController.cpp):257의 `ToggleInventory`, :830의 `HandleUIViewClosed`; [CCLInventoryScreen.cpp](../../Source/CCL/UI/CCLInventoryScreen.cpp):18의 `Initialize`; [CCLGameUI.cpp](../../Source/CCL/UI/CCLGameUI.cpp):32의 `Get`; [CCLUISubsystem.cpp](../../Source/CCL/UI/Core/CCLUISubsystem.cpp):238의 `OpenView`.
+근거: [CCLPlayerController.cpp](../../Source/CCL/CCLPlayerController.cpp)의 `ToggleInventory`와 `HandleUIViewClosed`; [CCLInventoryScreen.cpp](../../Source/CCL/UI/CCLInventoryScreen.cpp)의 `Initialize`; [CCLGameUI.cpp](../../Source/CCL/UI/CCLGameUI.cpp)의 `Get`; [KSIUISubsystem.cpp](../../Source/KSIUI/Private/KSIUISubsystem.cpp)의 `OpenView`.
 
 ## 7. OpenView 이후 실제 화면이 만들어지는 과정
 
@@ -365,7 +367,7 @@ flowchart TD
     Screen -->|"SNew, Host.SetContent"| Body
 ```
 
-근거: [CCLGameUI.cpp](../../Source/CCL/UI/CCLGameUI.cpp):57의 화면 등록; [CCLUISubsystem.cpp](../../Source/CCL/UI/Core/CCLUISubsystem.cpp):420의 `AttachScreen`; [CCLInventoryScreen.cpp](../../Source/CCL/UI/CCLInventoryScreen.cpp):144의 `OnContextBound`.
+근거: [CCLGameUI.cpp](../../Source/CCL/UI/CCLGameUI.cpp)의 화면 등록; [KSIUISubsystem.cpp](../../Source/KSIUI/Private/KSIUISubsystem.cpp)의 `AttachScreen`; [CCLInventoryScreen.cpp](../../Source/CCL/UI/CCLInventoryScreen.cpp)의 `OnContextBound`.
 
 ## 8. 입력 설정이 이동한 위치
 
@@ -401,7 +403,7 @@ CommonUI의 Action Router는 UI 입력을 어떤 활성 화면으로 전달하�
 
 전투 행동의 허용 여부나 서버 검증은 여전히 게임플레이의 책임이다. UI 입력을 막았다는 이유만으로 게임 규칙의 검증을 생략할 수는 없다.
 
-근거: [CCLScreen.cpp](../../Source/CCL/UI/Core/CCLScreen.cpp):18의 `GetDesiredInputConfig`; [UIFoundation](../UIFoundation.md)의 입력과 연출 계약 및 엔진 근거.
+근거: [KSIScreen.cpp](../../Source/KSIUI/Private/KSIScreen.cpp)의 `GetDesiredInputConfig`; [UIFoundation](../UIFoundation.md)의 입력과 연출 계약 및 엔진 근거.
 
 ## 9. 현재 구현: 닫기와 자원 정리
 
@@ -456,7 +458,7 @@ void UCCLInventoryScreen::OnContextReleased()
 
 이 정리를 화면 객체의 최종 파괴에만 맡기지 않는 이유도 있다. 공용 UI는 화면 객체를 풀에 보관했다가 재사용할 수 있다. **화면을 닫는 시점과 객체가 파괴되는 시점이 다를 수 있으므로**, 이번에 연결한 문맥과 자원은 닫을 때 정리해야 한다.
 
-근거: [CCLPlayerController.cpp](../../Source/CCL/CCLPlayerController.cpp):289의 `CloseInventory`; [CCLUIRoot.cpp](../../Source/CCL/UI/Core/CCLUIRoot.cpp):150의 `RemoveScreen`; [CCLInventoryScreen.cpp](../../Source/CCL/UI/CCLInventoryScreen.cpp):154의 `OnContextReleased`, 같은 파일의 `UCCLInventoryContext::Release`.
+근거: [CCLPlayerController.cpp](../../Source/CCL/CCLPlayerController.cpp)의 `CloseInventory`; [KSIUIRoot.cpp](../../Source/KSIUI/Private/KSIUIRoot.cpp)의 `RemoveScreen`; [CCLInventoryScreen.cpp](../../Source/CCL/UI/CCLInventoryScreen.cpp)의 `OnContextReleased`, 같은 파일의 `UCCLInventoryContext::Release`.
 
 ## 10. 선택한 구조와 대안의 비용
 

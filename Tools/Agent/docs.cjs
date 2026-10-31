@@ -15,11 +15,8 @@ const SCANNED = /^(Docs\/|AGENTS\.md$|README\.md$|GLOSSARY\.md$|\.agents\/skills
 const NOT_SCANNED = /^\.agents\/skills\/[^/]+\/references\//;
 // Records that Docs/Narrative/Workflow.md names by folder and file pattern instead of one link each.
 const UNLISTED = /^Docs\/Narrative\/(Research|Drafts|Reviews)\//;
-// The table in Docs/Learning/README.md#알려진-깨진-링크, fixed when those documents are rewritten (결정 28).
+// Links that are known to be broken, listed until their documents are rewritten (결정 28).
 const KNOWN_BROKEN = new Set([
-  'Docs/Learning/InventoryUI.md ../../Source/CCL/UI/Core/CCLUISubsystem.cpp',
-  'Docs/Learning/InventoryUI.md ../../Source/CCL/UI/Core/CCLScreen.cpp',
-  'Docs/Learning/InventoryUI.md ../../Source/CCL/UI/Core/CCLUIRoot.cpp',
 ]);
 const FENCE = /^ {0,3}(`{3,}|~{3,})/;
 const HEADING = /^ {0,3}#{1,6}[ \t]+(.+?)[ \t]*#*[ \t]*$/;
