@@ -116,7 +116,7 @@
 - 세계 스냅샷은 이름 있는 구간과 참여자 방식이다. `SessionContainer`는 개인 세션 레코드가 저장하는 보관함을 세계 캡처에서 빼는 예외다 (`CCLWorldParticipant.h:59-60`, `CCLWorldSimulationSubsystem.h:33`).
 - 형식 1-8의 버전별 분기가 레코드 검증 함수에 쌓여 있다 (`Source/CCL/Session/CCLSessionRecord.cpp:36-42`).
 
-[Coding](Coding.md#적용-예시)은 Save/Load의 공통 기반을 저장 레코드의 식별·버전·직렬화와 복원 연결로 정한다. 현재 세션 레코드는 저장 대상을 공통 구조에 고정하므로 이 원칙과 어긋난다. 새 저장 대상이 생기면 GameInstance, 레코드, 코덱 세 곳을 함께 고쳐야 한다.
+[Coding](Coding/Design.md#적용-예시)은 Save/Load의 공통 기반을 저장 레코드의 식별·버전·직렬화와 복원 연결로 정한다. 현재 세션 레코드는 저장 대상을 공통 구조에 고정하므로 이 원칙과 어긋난다. 새 저장 대상이 생기면 GameInstance, 레코드, 코덱 세 곳을 함께 고쳐야 한다.
 
 개선 방향은 캠페인 진행을 Campaign 참여자 구간으로, 호스트 플레이어 상태를 PlayerPersistence 프로필로 옮기는 것이다. 그러면 세션 레코드는 세계 스냅샷과 메타데이터를 담는 봉투로 줄어들고 `SessionContainer` 예외가 필요 없어진다. R1의 참여자 계약이 정리된 뒤 진행한다.
 
@@ -146,7 +146,7 @@
 - 같은 문구가 연달아 나오면 복제 값이 바뀌지 않아 클라이언트가 새 결과를 구분하지 못한다.
 - FrameworkPlan의 공용 후보인 인벤토리·장비 계열이 게임 고유 문구를 품게 된다.
 
-[Coding](Coding.md#장르에-독립적인-베이스-시스템-설계)의 "기능 실행과 표현을 분리한다"는 원칙과도 어긋난다. 개선 방향은 결과를 GameplayTag와 인자로 전달하고 문구는 클라이언트 UI 계층에서 정하는 것이다. 공용 후보 시스템부터 적용한다. 비용은 결과 태그 목록과 태그별 문구 표를 새로 관리하는 것이다. 문구를 그대로 복제하는 현재 방식은 관리할 표가 없지만 위 세 문제가 남는다.
+[Coding](Coding/Design.md#장르에-독립적인-베이스-시스템-설계)의 "기능 실행과 표현을 분리한다"는 원칙과도 어긋난다. 개선 방향은 결과를 GameplayTag와 인자로 전달하고 문구는 클라이언트 UI 계층에서 정하는 것이다. 공용 후보 시스템부터 적용한다. 비용은 결과 태그 목록과 태그별 문구 표를 새로 관리하는 것이다. 문구를 그대로 복제하는 현재 방식은 관리할 표가 없지만 위 세 문제가 남는다.
 
 ### R5. 실험장·테스트 코드의 위치
 
@@ -174,7 +174,7 @@ smoke 서브시스템은 Shipping·Test 구성에서 생성만 막고 클래스�
 | O2 | 저장 식별자 | 아이템·스킬을 에셋의 `FName`으로 저장한다 (`CCLGameInstance.cpp:316`, `:335`). 에셋 이름을 바꾸면 기존 저장을 읽지 못한다. 진행 중인 후속 수정은 중복 이름을 거부하지만 이름 변경은 다루지 않는다 | 정의에 고정 ID를 두거나 `FPrimaryAssetId`를 쓴다 |
 | O3 | 팀 구분 | `UCCLFighterComponent::Team`이 `int32`다 (`Source/CCL/Combat/CCLFighterComponent.h:93`) | AIModule의 `FGenericTeamId`와 `IGenericTeamAgentInterface`를 쓰면 AI 인지와 같은 기준을 공유한다. AIModule은 이미 의존 중이다 |
 | O4 | 로그 | 테스트를 제외한 코드에서 `LogTemp`를 65번 쓰고 프로젝트 로그 카테고리는 없다 | 시스템별 로그 카테고리를 선언한다. smoke 스크립트가 로그 줄을 파싱하는지 먼저 확인한다 |
-| O5 | 헤더 배치 | 헤더 180개 중 16개가 `GENERATED_BODY()` 다음 빈 줄 규칙을 지키지 않는다. `Source/CCL/Session/CCLGameInstance.h`는 영역 구분 전체가 없다 | 해당 파일을 고칠 때 [Coding](Coding.md#헤더-배치)의 배치로 정리한다 |
+| O5 | 헤더 배치 | 헤더 180개 중 16개가 `GENERATED_BODY()` 다음 빈 줄 규칙을 지키지 않는다. `Source/CCL/Session/CCLGameInstance.h`는 영역 구분 전체가 없다 | 해당 파일을 고칠 때 [Coding](Coding/CppLayout.md#헤더-배치)의 배치로 정리한다 |
 
 ## 진행 순서
 
