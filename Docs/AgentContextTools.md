@@ -99,6 +99,7 @@ Claude 훅과 상태 표시는 같은 런타임 탐색기를 쓰고, 패키지�
 | `node Tools/Agent/decisions.cjs check` | 결정 파일의 머리말·번호·관계, `Docs/Decisions.md`와 생성 결과의 일치, 저장소의 모든 `결정 N` 링크를 검사한다 |
 | `node Tools/Agent/decisions.cjs generate [--write]` | 결정 파일의 머리말로 `Docs/Decisions.md`를 만든다. `--write`가 없으면 출력만 한다 |
 | `node Tools/Agent/decisions.cjs next` | 새 결정의 번호와 파일 이름 형식을 출력한다 |
+| `node Tools/Agent/docs.cjs check [--summary]` | `Docs/`, 루트 문서, 스킬의 상대 링크와 앵커를 검사하고, `Docs/`의 문서가 문서 지도에서 링크로 도달되는지 본다. 학습 문서의 알려진 깨진 링크는 코드의 예외 목록으로 넘기고, 고쳐진 항목이 목록에 남으면 보고한다 |
 | `node Tools/Agent/preserve.cjs --old <path>... --new <path>... [--base <rev>] [--rename <old>=<new>]... [--allow <file>]` | `<rev>`(기본 `HEAD`)의 옛 문서에 있던 수치, `결정 N`, 코드 경로, 링크 대상 가운데 작업 트리의 새 문서 묶음에 없는 것을 처음 나온 위치와 함께 출력한다. 링크는 문서 위치를 기준으로 풀어 비교하므로 옮긴 문서도 비교할 수 있고, 옮긴 대상은 `--rename`으로 맞춘다. 허용 파일의 줄은 `<category> <token>  # 이유`다. 종료 코드는 0 보존, 1 빠짐, 2 실행 불가다 |
 | `node Tools/Agent/cpp-rules.cjs check [--summary] [paths...]` | Coding의 기계 검사 규칙 위반을 보고한다 |
 | `node Tools/Agent/cpp-rules.cjs format [--base <rev>]` | `<rev>`(기본 `HEAD`) 이후 바뀐 줄에 `.clang-format`을 적용했을 때의 차이를 검사한다 |

@@ -68,7 +68,7 @@
 
 | 문서 | 소유 내용과 읽는 시점 |
 |---|---|
-| [진행 중인 작업](Work/README.md) | 여러 세션에 걸친 작업의 재개 지점과 작업별 지도. 결정 28의 에이전트 작업 체계 재구성이 첫 작업 |
+| [진행 중인 작업](Work/README.md) | 여러 세션에 걸친 작업의 재개 지점과 작업별 지도 |
 | [StudyRoadmap](StudyRoadmap.md) | 작업 순서·단계별 범위·일정 초안 |
 | [DeliveryPlan](DeliveryPlan.md) | 단계 하나의 생성·빌드·검토·제출 절차 |
 | [Setup](Setup.md) | 초기 구성 범위와 검증 결과 |
