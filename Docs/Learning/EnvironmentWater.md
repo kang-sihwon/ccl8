@@ -1,22 +1,20 @@
 # 물 순환: 높이 대신 보존할 양부터 정하기
 
-2026-10-12 공용 모듈 분리 이후의 위치는 [Framework 파일 이동표](../FrameworkPlan/Stage4.md#코드-위치의-전후-비교)를 따른다. 아래 발췌·이름·줄 번호·해시는 기록 당시 기준을 유지하며 소스 링크는 현재 대응 파일을 연다.
-
 표면 시스템은 물·얼음·토양 수분을 물 환산 체적으로 보관하고, 이동·상변화·외부 출입을 같은 장부로 검증한다. 이 장을 읽으면 수면 메시를 움직이는 일과 물의 양을 보존하는 계산이 어떻게 연결되는지 설명할 수 있다.
 
 ## 비교 기준과 처음 필요한 구현
 
-범위는 자연환경 4단계이다. 비교 기준은 `92d1b38` → `0408d94`, 표현 보완 `a817082`이며 전체 해시·브랜치 관계·작업 트리 식별값은 [비교 근거](EnvironmentEvidence.md)에 있다. `WT-2026-10-10`은 문서 작성 중 읽은 미커밋 소스 사본을 뜻한다. 이후 수정된 HEAD와 동일하다고 가정하지 않는다.
+범위는 자연환경 4단계이다. 비교 기준은 `92d1b38` → `0408d94`, 표현 보완 `a817082`이고 현재 기준은 2026-10-31의 `main`인 `d4888b0`이다. 전체 해시와 브랜치 관계는 [비교 근거](EnvironmentEvidence.md)에 있다. 표면 계산은 2026-10-12에 `Source/KSIEnvironment/`로 옮겨져([Framework 파일 이동표](../FrameworkPlan/Stage4.md#코드-위치의-전후-비교)) `FCCLSurfaceGrid`, `FCCLSurfaceSimulation`은 현재 `FKSISurfaceGrid`, `FKSISurfaceSimulation`이다. 지형 참여자 같은 월드 연결은 CCL에 남아 있다.
 
 `92d1b38`의 지형 실행기는 참여자 계약을 갖췄지만 현재의 표면 물 계산은 아직 없다. `0408d94`에 물·눈·지형 통합 코드가 함께 커밋됐다. 따라서 이 커밋 내부에서 물만 있던 중간 코드를 Git으로 복원할 수는 없다. 단계 4와 5의 실행 순서는 각각 [물 사양](../EnvironmentPlan/Water.md)과 [눈 사양](../EnvironmentPlan/Snow.md)의 기록으로 구분한다.
 
-`FCCLSurfaceGrid`는 셀의 배열이다. 각 셀은 바닥·상한 높이와 액체·얼음·토양 수분을 가진다. 물 환산 체적은 얼음이나 눈을 녹였을 때의 물 부피다. 수지는 시작량과 유입·유출로 현재 총량을 설명할 수 있는지 보는 계산이다. `Ledger`는 그 누계를 저장하는 값이다.
+`FKSISurfaceGrid`는 셀의 배열이다. 각 셀은 바닥·상한 높이와 액체·얼음·토양 수분을 가진다. 물 환산 체적은 얼음이나 눈을 녹였을 때의 물 부피다. 수지는 시작량과 유입·유출로 현재 총량을 설명할 수 있는지 보는 계산이다. `Ledger`는 그 누계를 저장하는 값이다.
 
 ## 강수를 셀의 체적으로 바꾸기
 
 강수율이 초당 0.001m, 시간 간격이 10세계 초, 셀 면적이 4m²라고 가정하자. 내린 깊이는 `0.001 × 10 = 0.01m`다. 체적은 `0.01 × 4 = 0.04m³`다. 지붕 때문에 절반만 도달하면 `0.04 × 0.5 = 0.02m³`를 더한다. 설명용 숫자이며 현재 기후 기본값이 아니다.
 
-출처: `a817082`, [CCLSurfaceSimulation.cpp](../../Source/KSIEnvironment/Private/KSISurfaceSimulation.cpp), `const double Rain =`, 87-89줄. 실제 코드의 연속 발췌이며 들여쓰기만 정리했다.
+출처: `a817082`, `Source/CCL/Environment/CCLSurfaceSimulation.cpp`, `const double Rain =`. 실제 코드의 연속 발췌이며 들여쓰기만 정리했다. 현재 같은 줄은 [KSISurfaceSimulation.cpp](../../Source/KSIEnvironment/Private/KSISurfaceSimulation.cpp)에 있다.
 
 ```cpp
 const double Rain = F.RainMetersPerWorldSecond * WorldDt * Area * Cell.RainExposure;
@@ -30,7 +28,7 @@ G.Ledger.RainCubicMeters += Rain;
 
 모든 경계의 유량 후보를 먼저 만든 뒤 출발 셀의 물과 도착 셀의 빈 공간으로 제한한다. 적용 중 받은 물을 바로 다음 경계의 출발 예산으로 쓰면 셀 순회 방향에 따라 한 단계에서 이동하는 거리가 달라진다.
 
-출처: `a817082`, [CCLSurfaceSimulation.cpp](../../Source/KSIEnvironment/Private/KSISurfaceSimulation.cpp), `const double Requested = Transfer.Amount`, 189-194줄. 실제 코드의 연속 발췌이며 들여쓰기만 정리했다.
+출처: `a817082`, `Source/CCL/Environment/CCLSurfaceSimulation.cpp`, `const double Requested = Transfer.Amount`. 실제 코드의 연속 발췌이며 들여쓰기만 정리했다. 현재 같은 줄은 [KSISurfaceSimulation.cpp](../../Source/KSIEnvironment/Private/KSISurfaceSimulation.cpp)에 있다.
 
 ```cpp
 const double Requested = Transfer.Amount * FMath::Min(SourceScales[Transfer.From], TargetScales[Transfer.To]);
@@ -49,7 +47,7 @@ Added[Transfer.To] += Amount;
 
 처음 지형 코어의 `CommitEdit`은 지형 값만 바꿨다. 물이 추가된 뒤에는 새 바닥이 기존 물을 밀어낼 공간도 검증해야 한다. 다음은 물 통합 커밋의 확정 직전 구현이다.
 
-출처: `0408d94`, [CCLTerrainWaterParticipant.cpp](../../Source/CCL/Environment/CCLTerrainWaterParticipant.cpp), `bool FCCLTerrainWaterParticipant::ValidateCommit`, 75-86줄. 실제 코드의 연속 발췌이며 들여쓰기만 정리했다.
+출처: `0408d94`, [CCLTerrainWaterParticipant.cpp](../../Source/CCL/Environment/CCLTerrainWaterParticipant.cpp), `bool FCCLTerrainWaterParticipant::ValidateCommit`. 실제 코드의 연속 발췌이며 들여쓰기만 정리했다. 현재 `d4888b0`의 본문은 같고 인자 타입만 `FKSITerrainCandidate`다.
 
 ```cpp
 bool FCCLTerrainWaterParticipant::ValidateCommit(const FCCLTerrainCandidate& Candidate, FString& Error) const
@@ -69,7 +67,7 @@ Prepare는 새 바닥 높이를 준비한다. ValidateCommit은 최신 표면 �
 
 ## 상태·표현·복제와 비용
 
-서버 World의 `FCCLSurfaceSimulation`이 정본이고 `ACCLSurfacePresentation`은 준비된 사본으로 메시를 만든다. 표현의 모서리 보간이 서버 체적을 되쓰지 않는다. `a817082`는 연속 표면·재질과 실험 조작을 보완했다. `UDynamicMeshComponent`는 메시 표시 수단이며 이 물 수지 알고리즘은 프로젝트 코드다.
+서버 World의 `FKSISurfaceSimulation`이 정본이고 `ACCLSurfacePresentation`은 준비된 사본으로 메시를 만든다. 표현의 모서리 보간이 서버 체적을 되쓰지 않는다. `a817082`는 연속 표면·재질과 실험 조작을 보완했다. `UDynamicMeshComponent`는 메시 표시 수단이며 이 물 수지 알고리즘은 프로젝트 코드다.
 
 클라이언트는 표면이 요구하는 지형 게시 순번까지 준비된 뒤 물을 표시한다. 오래된 바닥 위에 새 수면만 표시하지 않도록 하는 연결이다. 저장·복제의 CRC는 우발적인 손상 검사이며 내용 변경 감지에는 끝에 붙인 CRC 필드를 제외한 본문을 사용한다.
 
