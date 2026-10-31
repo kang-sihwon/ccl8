@@ -8,9 +8,9 @@
 |---|---|
 | 이전 기준 | `2d39c5f7db4dfedadf4fe9825992cad63eb53044` |
 | 도입·변경 기준 | `aea2debe066b2d95fd41cb9f83100e551a0bbadb` |
-| 현재 기준 | `50e583859c832d6cb325e5e76beb8356e8c13959` |
+| 현재 기준 | `d4888b08154afab8712af974bce0ead2b90978ac` |
 
-조사 시작 때 확인한 `main`과 로컬 원격 추적 `origin/main`의 `50e5838`을 게임 코드 기준으로 고정한 학습 기록이다. 원격 서버를 새로 조회한 결과는 아니며 이후 추가된 커밋과 구분한다. 작업 트리의 설정·빌드 파일 변경은 이 장의 코드 기준에서 제외했다. 아래 발췌의 경로·줄 번호는 표시한 커밋 기준이고 상대 링크는 현재 체크아웃을 연다.
+현재 기준 `d4888b0`은 2026-10-31의 `main`이며 로컬 원격 추적과 같았다. 원격 서버를 새로 조회한 결과는 아니다. 발췌의 출처에는 커밋과 함수 이름을 적었고 상대 링크는 현재 체크아웃을 연다.
 
 이전에는 ExpeditionComponent의 Coins를 직접 줄였다. 생활 경제 통합 뒤에는 AccountComponent가 실제 계정과 재고를 연결한다. 게임 규칙과 과거 검증은 [ContentFoundation](../ContentFoundation.md), 자원 계약은 [AgentFoundation](../AgentFoundation.md)이 소유한다.
 
@@ -28,7 +28,7 @@ NPC 옆에서 구매를 요청한 뒤 서버 응답이 올 때까지 플레이�
 
 ## 4. 이전의 구매
 
-출처: `2d39c5f`, [CCLExpeditionComponent.cpp](../../Source/CCL/Campaign/CCLExpeditionComponent.cpp):48의 `UCCLExpeditionComponent::Buy`. 실제 코드 전체 함수이며 들여쓰기를 공백으로 바꿨다.
+출처: `2d39c5f`, `Source/CCL/Campaign/CCLExpeditionComponent.cpp`의 `UCCLExpeditionComponent::Buy`. 실제 코드 전체 함수이며 들여쓰기를 공백으로 바꿨다.
 
 ```cpp
 bool UCCLExpeditionComponent::Buy(ACCLVillageSteward* Steward)
@@ -53,23 +53,35 @@ bool UCCLExpeditionComponent::Buy(ACCLVillageSteward* Steward)
 
 ## 6. 현재의 구매
 
-출처: `50e5838`, [CCLExpeditionComponent.cpp](../../Source/CCL/Campaign/CCLExpeditionComponent.cpp):59의 `UCCLExpeditionComponent::Buy`. 실제 코드 전체 함수이며 들여쓰기를 공백으로 바꿨다.
+출처: `d4888b0`, [CCLExpeditionComponent.cpp](../../Source/CCL/Campaign/CCLExpeditionComponent.cpp)의 `UCCLExpeditionComponent::Buy`. 실제 코드 전체 함수이며 들여쓰기를 공백으로 바꿨다.
 
 ```cpp
 bool UCCLExpeditionComponent::Buy(ACCLVillageSteward* Steward)
 {
-    if (!CanInteract(Steward)) { return Report(false, TEXT("Approach the steward while out of combat.")); }
-    if (GetCoins() < 10) { return Report(false, TEXT("Need 10 coins for a recovery potion.")); }
-    auto* Item = LoadObject<UCCLItemDefinition>(nullptr, TEXT("/Game/Progression/DA_RecoveryPotion.DA_RecoveryPotion"));
+    if (!CanInteract(Steward))
+    {
+        return Report(false, TEXT("전투가 끝나면 마을 관리인에게 다가가자."));
+    }
+
+    const auto* Item = Steward->Offer.Item.LoadSynchronous();
+    const FString Label = Item ? Item->GetLabel().ToString() : FString(TEXT("상품"));
+    if (GetCoins() < Steward->Offer.Price)
+    {
+        return Report(false, *FString::Printf(TEXT("%s 구입에는 동전 %d개가 필요해."), *Label, Steward->Offer.Price));
+    }
+
     auto* Player = CastChecked<ACCLPlayerState>(GetOwner());
     auto* Account = GetOwner()->FindComponentByClass<UCCLAccountComponent>();
-    if (!Account || !Account->Purchase(Player->GetInventory(), Item, 10))
+    if (!Account || !Account->Purchase(Player->GetInventory(), Steward->Offer))
     {
-        return Report(false, TEXT("Purchase rejected: inventory full or supply unavailable."));
+        return Report(false, TEXT("구입 불가: 소지품이 가득 찼거나 재고가 없어."));
     }
-    return Report(true, TEXT("Purchased recovery potion. I: inventory, H: use selected item."));
+
+    return Report(true, *FString::Printf(TEXT("%s을(를) 구입했다. I: 소지품, H: 선택한 아이템 사용"), *Label));
 }
 ```
+
+`50e5838`의 `Buy`는 회복약 에셋 경로와 가격 10을 함수 안에 적어 두었다. 지금은 상품, 가격, 판매자 재고에 쓰는 자원 태그와 초기 재고를 `ACCLVillageSteward::Offer`(`FCCLShopOffer`)가 가진다. 상점마다 데이터로 다르게 정할 수 있게 된 것이다. 이 변경은 `b888b13`에 들어갔고 커밋 본문에 이유는 없다. 비용은 구입 코드가 관리인 Actor의 데이터를 신뢰한다는 점이다. 그래서 `Purchase`가 가격(1-1,000,000), 재고 한도, 자원 태그를 다시 검증한다.
 
 `GetCoins`는 계정 잔액을 읽는다. `Purchase`는 실제 아이템, 소유 인벤토리, 가격과 잔액을 다시 확인한다. 클라이언트가 임의 가격이나 보상량을 정하는 계약이 아니다.
 
@@ -77,7 +89,7 @@ bool UCCLExpeditionComponent::Buy(ACCLVillageSteward* Steward)
 
 AccountComponent는 재고와 가방 공간을 확인한 뒤 가방의 변경 알림을 보류한다. 아이템을 추가하고 거래 요청에 외부 목적지 계정·지급 아이템 GUID를 기록한다. 경제 실행에 실패하면 가방 스냅샷을 복원한다.
 
-출처: `50e5838`, [CCLAccountComponent.cpp](../../Source/CCL/Agents/CCLAccountComponent.cpp):148의 `UCCLAccountComponent::Purchase`. 실제 코드 함수 일부이며 들여쓰기를 공백으로 바꿨다.
+출처: `d4888b0`, [CCLAccountComponent.cpp](../../Source/CCL/Agents/CCLAccountComponent.cpp)의 `UCCLAccountComponent::Purchase`. 실제 코드 함수 일부이며 들여쓰기를 공백으로 바꿨다.
 
 ```cpp
     const bool bSucceeded = CCLEconomy::Execute(Economy, Request).bSucceeded != 0;
@@ -92,7 +104,7 @@ AccountComponent는 재고와 가방 공간을 확인한 뒤 가방의 변경 �
 }
 ```
 
-위 발췌 앞에는 계정·재고·가격 검사와 지급 준비가 있다. `EndTransaction`은 알림 공개 시점을 제어하며 데이터베이스의 영속 트랜잭션을 제공하는 API는 아니다. 메모리 안의 가방·계정 변경을 함께 관찰하도록 만든 프로젝트 계약이다.
+위 발췌 앞에는 계정·재고·가격 검사와 지급 준비가 있다. 현재 `Purchase`는 `FCCLShopOffer`를 받아 판매자 재고에 해당 자원이 없으면 처음 요청 때 초기 재고를 채운다. 발췌한 끝부분의 실패 복원과 `EndTransaction`은 `50e5838`과 같다. `EndTransaction`은 알림 공개 시점을 제어하며 데이터베이스의 영속 트랜잭션을 제공하는 API는 아니다. 메모리 안의 가방·계정 변경을 함께 관찰하도록 만든 프로젝트 계약이다.
 
 퀘스트 `Talk`는 Available을 Accepted로 바꾸고, Accepted 상태에서 월드 Victory를 확인한 뒤 `Reward`를 호출한다. 금고에서 계정으로 이전에 성공하면 Rewarded를 기록하고 훈련 포인트를 지급한다. 생활 주민과의 대화는 별도로 `DescribeLife`를 반환한다.
 
@@ -118,7 +130,7 @@ AccountComponent는 재고와 가방 공간을 확인한 뒤 가방의 변경 �
 | 공통 자원 계약 + 구매 어댑터 | 플레이어와 Agent의 자원 이전을 연결 | 가방 알림·실패 복원·외부 지급 기록이 필요 |
 | 범용 퀘스트 그래프 | 많은 퀘스트 제작에 유리 | 현재 단일 원정에는 정의·저장·도구 비용이 큼 |
 
-현재 구매 어댑터는 회복약과 정해진 가격을 검사한다. 범용 상점 시스템으로 일반화하는 작업은 남아 있다.
+현재 구매 어댑터는 관리인이 가진 단일 상품 제안(`FCCLShopOffer`) 하나를 검사한다. 여러 상품을 파는 상점과 재고 보충 코드는 찾지 못했다.
 
 ## 11. 확인 방법
 
