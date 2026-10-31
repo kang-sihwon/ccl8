@@ -8,9 +8,9 @@
 |---|---|
 | 이전 기준 | `68672713e47b19b0d4adb51bdc21c7c9bbe78eb6` |
 | 도입·변경 기준 | `aea2debe066b2d95fd41cb9f83100e551a0bbadb` |
-| 현재 기준 | `50e583859c832d6cb325e5e76beb8356e8c13959` |
+| 현재 기준 | `d4888b08154afab8712af974bce0ead2b90978ac` |
 
-조사 시작 때 확인한 `main`과 로컬 원격 추적 `origin/main`의 `50e5838`을 게임 코드 기준으로 고정한 학습 기록이다. 원격 서버를 새로 조회한 결과는 아니며 이후 추가된 커밋과 구분한다. 작업 트리의 설정·빌드 파일 변경은 이 장의 코드 기준에서 제외했다. 아래 발췌의 경로·줄 번호는 표시한 커밋 기준이고 상대 링크는 현재 체크아웃을 연다.
+현재 기준 `d4888b0`은 2026-10-31의 `main`이며 로컬 원격 추적과 같았다. 원격 서버를 새로 조회한 결과는 아니다. 발췌의 출처에는 커밋과 함수 이름을 적었고 상대 링크는 현재 체크아웃을 연다. `Agent` 저장 기반(`Store`, `FeatureRegistry`)은 `Source/KSIAgent/`로 옮겨져 `FKSI*` 이름이 됐고, 이 장이 다루는 판단 코드는 `Source/CCL/Agents/`에 남아 있다.
 
 이전 기준에는 Feature와 관측·기억의 기반이 있었지만 `CCLDecision.cpp`는 없었다. `aea2deb`에서 생활 판단 커널이 도입됐다. 최초 이전 코드는 기억 입력, 현재 코드는 그 정보의 소비 경로로 구분한다. 요구와 상태는 결정 18, [AgentFoundation](../AgentFoundation.md)을 따른다.
 
@@ -32,7 +32,7 @@ EvidenceId는 증거 하나를 식별한다. 같은 사건의 재전달을 새 �
 
 다음은 최초 Feature 기반의 관측 검증 부분이다.
 
-출처: `6867271`, [CCLAgentFeatures.cpp](../../Source/CCL/Agents/CCLAgentFeatures.cpp):164의 `CCLAgentFeatures::Observe`. 실제 코드 함수 일부이며 들여쓰기를 공백으로 바꿨다.
+출처: `6867271`, `Source/CCL/Agents/CCLAgentFeatures.cpp`의 `CCLAgentFeatures::Observe`. 실제 코드 함수 일부이며 들여쓰기를 공백으로 바꿨다.
 
 ```cpp
 bool CCLAgentFeatures::Observe(FCCLAgentExperience& Experience, const FCCLObservation& Observation)
@@ -67,7 +67,7 @@ bool CCLAgentFeatures::Observe(FCCLAgentExperience& Experience, const FCCLObserv
 
 다음은 승자를 고른 뒤 기존 의도를 유지하는 검사다.
 
-출처: `50e5838`, [CCLDecision.cpp](../../Source/CCL/Agents/CCLDecision.cpp):86의 `CCLDecision::Evaluate`. 실제 코드 함수 일부이며 들여쓰기를 공백으로 바꿨다.
+출처: `d4888b0`, [CCLDecision.cpp](../../Source/CCL/Agents/CCLDecision.cpp)의 `CCLDecision::Evaluate`. 실제 코드 함수 일부이며 들여쓰기를 공백으로 바꿨다.
 
 ```cpp
     if (Current != INDEX_NONE && !Result.Traces[Winner].bUrgent &&
@@ -89,7 +89,7 @@ bool CCLAgentFeatures::Observe(FCCLAgentExperience& Experience, const FCCLObserv
 }
 ```
 
-긴급하지 않은 작은 점수 차이만으로 매번 목적지를 바꾸지 않게 MinimumCommitment와 SwitchMargin을 사용한다. 긴급 욕구가 있는 후보는 이 유지 조건보다 우선할 수 있다. 위 발췌의 상수와 분기는 현재 구현이며 최종 밸런스 사양을 새로 확정하지 않는다.
+긴급하지 않은 작은 점수 차이만으로 매번 목적지를 바꾸지 않게 MinimumCommitment와 SwitchMargin을 사용한다. 긴급 욕구가 있는 후보는 이 유지 조건보다 우선할 수 있다. 위 발췌는 `50e5838`의 같은 함수와 글자 그대로 같은 현재 구현이며 최종 밸런스 사양을 새로 확정하지 않는다.
 
 ## 7. 후보 생성과 장기 목표
 
