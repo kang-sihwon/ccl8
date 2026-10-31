@@ -6,7 +6,7 @@
 
 | 작업 | 지도 | 상태 |
 |---|---|---|
-| 문서 정리와 map+tree 구조 | [docs-map-tree](docs-map-tree.md) | 조각 2 정리안 승인 대기 |
+| 문서 정리와 map+tree 구조 | [docs-map-tree](docs-map-tree.md) | 조각 3 `EnvironmentSnow` 정리안 승인 대기 |
 
 ## 다음 작업 후보
 
