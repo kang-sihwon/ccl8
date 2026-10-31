@@ -137,7 +137,7 @@ Failed to commit change! ViewportWidget was null.
 
 ## 판정 범위와 남은 검사
 
-세계 배율 0은 이미 접수된 고배율 계산 대기를 없애는 명령이 아니다. 탐색 중 높은 세계 배율을 입력한 뒤 0으로 바꿨을 때 대기 처리가 이어지는 것을 관측했고, 새 PIE에서 대기가 없는 상태로 버튼 검사를 다시 수행했다. 이는 [기존 계산 대기 설명](../EnvironmentPlan.md#실험-메뉴-조작과-검증)과 일치한다. [KSIWorldClock.cpp:101](../../Source/KSIWorldTime/Private/KSIWorldClock.cpp#L101)의 `FKSIWorldClock::ChangeTimeScale`은 배율을 바꾸고, 같은 파일 `:155`의 `Prepare`는 접수된 구간의 배율을 사용한다. 이번 보고서의 정지 정상 판정을 대기 작업 취소로 해석하면 안 된다.
+세계 배율 0은 이미 접수된 고배율 계산 대기를 없애는 명령이 아니다. 탐색 중 높은 세계 배율을 입력한 뒤 0으로 바꿨을 때 대기 처리가 이어지는 것을 관측했고, 새 PIE에서 대기가 없는 상태로 버튼 검사를 다시 수행했다. 이는 [기존 계산 대기 설명](../EnvironmentPlan/Laboratory.md#실험-메뉴-조작과-검증)과 일치한다. [KSIWorldClock.cpp:101](../../Source/KSIWorldTime/Private/KSIWorldClock.cpp#L101)의 `FKSIWorldClock::ChangeTimeScale`은 배율을 바꾸고, 같은 파일 `:155`의 `Prepare`는 접수된 구간의 배율을 사용한다. 이번 보고서의 정지 정상 판정을 대기 작업 취소로 해석하면 안 된다.
 
 144배와 288배 입력은 검증했지만 실제 10분·5분을 기다려 게임 하루가 지나는 장시간 검사는 하지 않았다. `1e10`에서도 관측 시각과 공전 변화만 확인했으며, 고배율의 실시간 처리율을 계측하지 않았다. 키를 계속 누른 상태, 게임패드, 네트워크, 패키지, 저장 복원과 날씨·지형·눈·물·불·생태계 전체 회귀도 이번 검사에 포함하지 않았다. Graft 설치·빌드는 PIE 기능 검사 대상이 아니다.
 

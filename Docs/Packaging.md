@@ -112,7 +112,7 @@ Dedicated Server에서는 시각 요소 갱신 전에 서버 모드를 확인하
 | Playground 환경 이동 | 세계·지형의 맵 왕복 | `Saved/Tests/Environment/EnvironmentPlayground-Standalone-20261011-171457-848` |
 | 생태 구역·공간 | Game 화면·새 프로세스 재개, 실제 Server와 Game의 첫·늦은 접속·80ms·2% | [영양 상태의 패키지 결과](EnvironmentNutrition.md#windows-gameserver-패키지의-생태-실행) |
 
-환경 전체의 최초 Game Listen 실행에서는 구역 09의 물이 하류에 도달하기 전에 판정해 실패했다. 실패 로그를 보존하고 실험 관찰 시간에 게임 시간 조건을 추가했다. 계산식과 수량 임계값은 유지했으며 근거는 [순환 실험의 두 시간](EnvironmentPlan.md#순환-실험의-게임-시간과-세계-시간)을 따른다.
+환경 전체의 최초 Game Listen 실행에서는 구역 09의 물이 하류에 도달하기 전에 판정해 실패했다. 실패 로그를 보존하고 실험 관찰 시간에 게임 시간 조건을 추가했다. 계산식과 수량 임계값은 유지했으며 근거는 [순환 실험의 두 시간](EnvironmentPlan/Integration.md#순환-실험의-게임-시간과-세계-시간)을 따른다.
 
 구역 09 관찰 시간 수정 후에도 Game·Server를 다시 빌드·쿠킹했다. `Saved/EnvironmentStages/Nutrition-CycleGamePackage.log`는 BuildCookRun 198.15초, `Nutrition-CycleServerPackage.log`는 138.02초와 각각 종료 코드 0을 기록했다. 위 실행 파일 경로에는 이 후속 결과가 들어 있다. Game Listen의 환경 전체·80ms 지연·2% 손실·관측자 재접속은 `Saved/Tests/Environment/EnvironmentScenario-Listen-20261011-173112-975/result.json`에서 통과했다.
 
@@ -134,7 +134,7 @@ Tools/Validation/run_environment_smoke.ps1 -Mode Dedicated -Map EnvironmentScena
 ```
 
 
-프레임 계측은 기능 검사와 별개다. 18,000프레임 실행의 중단과 600프레임 재실행의 행 수 불일치로 최신 패키지의 완료 성능 수치는 아직 없다. 근거와 재검사 항목은 [프레임 계측의 미완료 범위](EnvironmentPlan.md#프레임-계측의-미완료-범위)를 따른다.
+프레임 계측은 기능 검사와 별개다. 18,000프레임 실행의 중단과 600프레임 재실행의 행 수 불일치로 최신 패키지의 완료 성능 수치는 아직 없다. 근거와 재검사 항목은 [프레임 계측의 미완료 범위](EnvironmentPlan/Integration.md#프레임-계측의-미완료-범위)를 따른다.
 
 ### Framework 분리 후 Game·Server 패키지
 

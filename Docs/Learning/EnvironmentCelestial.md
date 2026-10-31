@@ -8,13 +8,13 @@
 
 범위는 자연환경 2단계이다. 비교 기준은 `7307465` → `4458dea` → `5f62e1e`, 이후 `0408d94`이며 전체 해시·브랜치 관계·작업 트리 식별값은 [비교 근거](EnvironmentEvidence.md)에 있다. `WT-2026-10-10`은 문서 작성 중 읽은 미커밋 소스 사본을 뜻한다. 이후 수정된 HEAD와 동일하다고 가정하지 않는다.
 
-`7307465`에는 실험장과 공통 시간이 있지만 천체·차폐 계산은 아직 없다. 최초 계산은 `4458dea`, 실험장 조명·저장·복제 연결은 `5f62e1e`에서 도입됐다. 가상의 이전 천체 코드를 만들지 않는다. 당시의 고정 조명은 [단계 1 완료 기록](../EnvironmentPlan.md#실험장-구현과-단계-1-통과)에 남아 있다.
+`7307465`에는 실험장과 공통 시간이 있지만 천체·차폐 계산은 아직 없다. 최초 계산은 `4458dea`, 실험장 조명·저장·복제 연결은 `5f62e1e`에서 도입됐다. 가상의 이전 천체 코드를 만들지 않는다. 당시의 고정 조명은 [단계 1 완료 기록](../EnvironmentPlan/Stages0to3.md#실험장-구현과-단계-1-통과)에 남아 있다.
 
 궤도 정의는 반장축·이심률·주기처럼 계산에 필요한 입력이다. 관측 결과는 특정 시각·위도·경도에서 본 방향과 일조다. `FVector3d`는 세 성분의 double 벡터이고 `FGuid`는 천체·공간을 포인터 수명과 독립적으로 식별하는 값이다. 우주 위치는 km, 표면 질의는 m, Actor 배치는 cm를 사용한다.
 
 ## 이전 고정 조명에서 시간 기반 관측으로
 
-고정 조명은 실험 메뉴를 읽기에는 충분했다. 그러나 낮·밤과 날씨를 연결하려면 저장을 복원한 같은 시각에서 같은 태양 방향이 나와야 한다. [결정 19](../decisions/0019-natural-environment-and-labs.md)와 [천체·표면 질의 설계](../EnvironmentPlan.md#천체표면-질의의-구현-설계)가 이 요구의 근거다.
+고정 조명은 실험 메뉴를 읽기에는 충분했다. 그러나 낮·밤과 날씨를 연결하려면 저장을 복원한 같은 시각에서 같은 태양 방향이 나와야 한다. [결정 19](../decisions/0019-natural-environment-and-labs.md)와 [천체·표면 질의 설계](../EnvironmentPlan/Stages0to3.md#천체표면-질의의-구현-설계)가 이 요구의 근거다.
 
 출처: `4458dea`, [CCLCelestialSystem.cpp](../../Source/KSICelestial/Private/KSICelestialSystem.cpp), `const double E = EccentricAnomaly`, 205-209줄. 실제 코드의 연속 발췌이며 들여쓰기만 정리했다.
 
@@ -61,7 +61,7 @@ for (int32 Channel = 0; Channel < 3; ++Channel)
 
 정의 로딩은 부모 관계·범위를 검사하고 유효한 후보만 적용한다. 잘못된 궤도나 오래된 표면 세대를 거부했을 때 이전 관측·장면을 유지해야 한다. 광선마다 여러 표면을 읽는 비용은 단일 높이 질의보다 크며, 현재 모델은 정밀 반그림자·대기 굴절·복잡한 유체 바람을 계산하지 않는다.
 
-검사 코드는 [CCLCelestialTests.cpp](../../Source/CCL/Environment/CCLCelestialTests.cpp), [CCLSurfaceQueryTests.cpp](../../Source/CCL/Environment/CCLSurfaceQueryTests.cpp)다. 기존 실행과 화면 검토는 [단계 2 완료 기록](../EnvironmentPlan.md#단계-2-완료-결과)에 있다. 이번 작업은 소스·기록 대조이며 천문 관측 정확도나 게임 화면을 새로 측정하지 않았다.
+검사 코드는 [CCLCelestialTests.cpp](../../Source/CCL/Environment/CCLCelestialTests.cpp), [CCLSurfaceQueryTests.cpp](../../Source/CCL/Environment/CCLSurfaceQueryTests.cpp)다. 기존 실행과 화면 검토는 [단계 2 완료 기록](../EnvironmentPlan/Stages0to3.md#단계-2-완료-결과)에 있다. 이번 작업은 소스·기록 대조이며 천문 관측 정확도나 게임 화면을 새로 측정하지 않았다.
 
 | 상황 | 기대 결과 |
 |---|---|

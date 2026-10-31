@@ -33,7 +33,7 @@ return WorldSimulation && WorldSimulation->Save(Simulation, Bytes, Error);
 
 이 발췌는 Save 내부의 연결 부분이다. 앞의 권위·실행 상태 검사와 Actor 위치 갱신을 없앤 것이 아니다. WorldSimulation이 시계·환경·생활의 같은 완료 상태를 캡처한다. 새 외부 호출을 한 줄 추가한 것으로 설명을 끝내지 않고 [CCLWorldSnapshot.cpp](../../Source/CCL/Environment/CCLWorldSnapshot.cpp)의 직렬화와 검증까지 따라가야 한다.
 
-[서버 시간 연결 기록](../EnvironmentPlan.md#서버-시간과-통합-저장-연결-설계)은 세션 버전 6에서 기존 Agent 저장 필드에 통합 스냅샷을 넣는 이전 방식을 설명한다. 세계 스키마와 내부 표면 버전은 또 다른 번호다. 하나가 증가했다고 나머지도 같은 번호가 되지 않는다. 현재 작업 트리에는 후속 생태·플레이어 저장 확장이 있으므로 그 최신 번호를 7단계 당시 형식으로 소급하지 않는다.
+[서버 시간 연결 기록](../EnvironmentPlan/Stages0to3.md#서버-시간과-통합-저장-연결-설계)은 세션 버전 6에서 기존 Agent 저장 필드에 통합 스냅샷을 넣는 이전 방식을 설명한다. 세계 스키마와 내부 표면 버전은 또 다른 번호다. 하나가 증가했다고 나머지도 같은 번호가 되지 않는다. 현재 작업 트리에는 후속 생태·플레이어 저장 확장이 있으므로 그 최신 번호를 7단계 당시 형식으로 소급하지 않는다.
 
 ## 여러 파일의 완료 세대
 
@@ -79,7 +79,7 @@ void ACCLExperimentPlayerController::ServerExperiment_Implementation(ECCLExperim
 
 소유 PlayerController의 서버 RPC가 Director에 전달한다. Director는 서버 권한, 월드 도메인, 준비 상태, 세대·실행 ID와 조작 담당자를 검사한다. 순간이동 같은 관찰자 허용 요청과 상태를 바꾸는 담당자 요청은 구분한다. 지형 조작은 게시 순번도 검사하므로 오래된 화면이 새 지형에 낡은 명령을 적용하지 않는다. 응답은 클라이언트 화면 메시지로 돌아온다.
 
-F7은 실험 화면 열기·닫기다. 일반 UI 뒤로 가기는 PIE에서 F6, 독립 게임에서는 Esc로 구분한다. 입력 소유자가 화면으로 바뀌면 Pawn의 게임 입력에만 묶은 열기 키가 닫기까지 전달되지 않을 수 있다. [UI 기반](UIFramework.md)의 후속 절과 [실험 메뉴 기록](../EnvironmentPlan.md#실험-메뉴-조작과-검증)이 그 연결을 설명한다.
+F7은 실험 화면 열기·닫기다. 일반 UI 뒤로 가기는 PIE에서 F6, 독립 게임에서는 Esc로 구분한다. 입력 소유자가 화면으로 바뀌면 Pawn의 게임 입력에만 묶은 열기 키가 닫기까지 전달되지 않을 수 있다. [UI 기반](UIFramework.md)의 후속 절과 [실험 메뉴 기록](../EnvironmentPlan/Laboratory.md#실험-메뉴-조작과-검증)이 그 연결을 설명한다.
 
 ## 단계 7까지 직접 따라갈 순서
 
