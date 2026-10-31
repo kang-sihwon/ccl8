@@ -4,7 +4,7 @@ date: 2026-10-31
 title: "문서 정리와 map+tree 구조"
 topic: "문서 구조"
 status: "유효"
-progress: "2026-10-31 시작"
+progress: "2026-10-31 완료"
 summary: "에이전트가 불필요한 내용을 적게 읽도록 문서를 하위부터 정리한다. 내용 경계로만 나누고 크기 상한은 두지 않는다. 나뉜 부모와 하위 군이 폴더가 된다. 원본은 태그 `docs-tree-v0`에 있다"
 owners: "[진행 중인 작업](../Work/README.md), [WritingGuide](../WritingGuide.md#문서의-종류와-소유), [AgentContextTools](../AgentContextTools.md#검사-도구와-훅)"
 refines: [28]
