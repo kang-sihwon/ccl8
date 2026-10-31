@@ -8,9 +8,10 @@
 |---|---|
 | 이전 기준 | `3b369682333bf541e91ee5078b03be38a87e4d75` |
 | 도입·변경 기준 | `6a9cecb09da31030d54f28c1da59c73a393f402d` |
-| 현재 기준 | `50e583859c832d6cb325e5e76beb8356e8c13959` |
+| 모듈 분리 | `dbdd174dcdae6019918ae2dfb1c4c64c9d732eab` |
+| 현재 기준 | `d4888b08154afab8712af974bce0ead2b90978ac` |
 
-조사 시작 때 확인한 `main`과 로컬 원격 추적 `origin/main`의 `50e5838`을 게임 코드 기준으로 고정한 학습 기록이다. 원격 서버를 새로 조회한 결과는 아니며 이후 추가된 커밋과 구분한다. 작업 트리의 설정·빌드 파일 변경은 이 장의 코드 기준에서 제외했다. 아래 발췌의 경로·줄 번호는 표시한 커밋 기준이고 상대 링크는 현재 체크아웃을 연다.
+현재 기준 `d4888b0`은 2026-10-31의 `main`이며 로컬 원격 추적과 같았다. 원격 서버를 새로 조회한 결과는 아니다. `dbdd174`가 보관 코드의 공용 부분을 `Source/KSIInventory/`로 옮겼다. `UCCLInventoryComponent`는 `UKSIInventoryComponent`를, `UCCLItemDefinition`은 `UKSIItemDefinition`을 상속하고, 항목 타입은 `FKSIInventoryEntry`가 됐다. 발췌의 출처에는 커밋과 함수 이름을 적었고 상대 링크는 현재 체크아웃을 연다.
 
 이전은 UObject Fragment와 초기 보관 구현, 변경 기준은 구조체 Fragment·슬롯 체계 도입이다. 이후 탄약과 거래 알림 보류가 추가된 현재까지 설명한다. 근거 결정은 15·16이며 사양은 [ProgressionFoundation](../ProgressionFoundation.md)이 소유한다.
 
@@ -30,7 +31,7 @@
 
 ## 4. 이전의 보관 추가
 
-출처: `3b36968`, [CCLInventoryComponent.cpp](../../Source/CCL/Items/CCLInventoryComponent.cpp):17의 `UCCLInventoryComponent::Add`. 실제 코드 전체 함수이며 들여쓰기를 공백으로 바꿨다.
+출처: `3b36968`, `Source/CCL/Items/CCLInventoryComponent.cpp`의 `UCCLInventoryComponent::Add`. 실제 코드 전체 함수이며 들여쓰기를 공백으로 바꿨다.
 
 ```cpp
 FGuid UCCLInventoryComponent::Add(UCCLItemDefinition* Definition, int32 Quantity)
@@ -71,18 +72,19 @@ FGuid UCCLInventoryComponent::Add(UCCLItemDefinition* Definition, int32 Quantity
 
 ## 6. 현재의 보관 추가
 
-출처: `50e5838`, [CCLInventoryComponent.cpp](../../Source/CCL/Items/CCLInventoryComponent.cpp):18의 `UCCLInventoryComponent::Add`. 실제 코드 전체 함수이며 들여쓰기를 공백으로 바꿨다.
+출처: `d4888b0`, [KSIInventoryComponent.cpp](../../Source/KSIInventory/Private/KSIInventoryComponent.cpp)의 `UKSIInventoryComponent::Add`. 실제 코드 전체 함수이며 들여쓰기를 공백으로 바꿨다.
 
 ```cpp
-FGuid UCCLInventoryComponent::Add(UCCLItemDefinition* Definition, int32 Quantity)
+FGuid UKSIInventoryComponent::Add(UKSIItemDefinition* Definition, int32 Quantity)
 {
-    if (!GetOwner()->HasAuthority() || !CanAdd(Definition, Quantity))
+    if (!CanMutate() || !CanAdd(Definition, Quantity))
     {
         return FGuid();
     }
+
     for (auto& Entry : List.Entries)
     {
-        if (Entry.Slot >= 0 && Entry.Definition == Definition && Quantity <= Definition->GetMaxStack() - Entry.Quantity)
+        if (Entry.Slot >= 0 && Entry.Definition == Definition && CanStackEntry(Entry) && Quantity <= Definition->GetMaxStack() - Entry.Quantity)
         {
             Entry.Quantity += Quantity;
             List.MarkItemDirty(Entry);
@@ -109,9 +111,13 @@ FGuid UCCLInventoryComponent::Add(UCCLItemDefinition* Definition, int32 Quantity
 }
 ```
 
-장착 항목의 `Slot`은 음수이므로 가방 중첩 대상으로 사용하지 않는다. 들어갈 기존 스택이 없으면 비어 있는 칸을 찾아 새 항목을 만들고 변경을 표시한다.
+`CanMutate`는 서버 권한과 `bMutationLocked`를 함께 본다. 장착 항목의 `Slot`은 음수이므로 가방 중첩 대상으로 사용하지 않는다. `CanStackEntry`는 가상 함수라 파생 클래스가 특정 항목을 합치지 못하게 막을 수 있다. 들어갈 기존 스택이 없으면 비어 있는 칸을 찾아 새 항목을 만들고 변경을 표시한다.
 
 `CanAdd`는 요청 수량이 한 스택 한도를 넘으면 거부한다. 큰 수량을 여러 칸으로 자동 분할하는 일반화된 알고리즘으로 읽으면 안 된다. 가방에 들어가는 항목 수와 장착된 소유 항목 수도 구분한다.
+
+### 게임 쪽 덧붙임
+
+게임의 `UCCLInventoryComponent::Add`([CCLInventoryComponent.cpp](../../Source/CCL/Items/CCLInventoryComponent.cpp))는 같은 권한 검사 뒤에 정의가 `FCCLItemFragment_Perishable`이면 음식 상태를 만들어 `FCCLInventoryFood::AddFood`로 넣고, 아니면 `Super::Add`를 부른다. 상한과 GUID, 변경 알림 규칙은 공용 기반이 맡고, 시간이 지나면 변하는 음식 상태는 게임이 맡는 구분이다. 음식 상태의 자세한 계약은 [음식 상태](../EnvironmentPlan/Ecology/Food/State.md)가 소유한다.
 
 ## 7. 이동·픽업·알림 연결
 
@@ -119,7 +125,7 @@ FGuid UCCLInventoryComponent::Add(UCCLItemDefinition* Definition, int32 Quantity
 
 `ACCLWorldPickup::TryCollect`는 거리·차폐를 확인하고 `bCollected`를 먼저 설정한다. 보관 추가가 실패하면 이를 되돌리고, 성공하면 월드 Actor를 제거한다. 같은 픽업이 중복 지급되지 않게 하는 순서다.
 
-`NotifyChanged`는 일반 상황에서 즉시 델리게이트를 호출한다. 상점 구매처럼 여러 상태를 맞추는 중에는 `BeginTransaction`과 `EndTransaction`으로 알림을 보류한다. 이는 자동 롤백 API가 아니므로 호출자가 실패 복원을 맡는다.
+`NotifyChanged`는 일반 상황에서 즉시 델리게이트를 호출한다. 상점 구매처럼 여러 상태를 맞추는 중에는 `BeginTransaction`과 `EndTransaction(bPublish)`로 알림을 보류하고, `bPublish`가 켜진 경우에만 한 번 알린다. 이는 자동 롤백 API가 아니므로 호출자가 실패 복원을 맡는다.
 
 ## 8. 권한과 참조 수명
 
