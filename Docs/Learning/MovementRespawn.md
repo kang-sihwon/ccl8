@@ -8,9 +8,9 @@
 |---|---|
 | 이전 기준 | `3258f4867c7bd47263917d8422f6ee8c8f545fb9` |
 | 도입·변경 기준 | `c8c6e4a27234bf2a78ca4c6f49c230e6badd193a` |
-| 현재 기준 | `50e583859c832d6cb325e5e76beb8356e8c13959` |
+| 현재 기준 | `d4888b08154afab8712af974bce0ead2b90978ac` |
 
-조사 시작 때 확인한 `main`과 로컬 원격 추적 `origin/main`의 `50e5838`을 게임 코드 기준으로 고정한 학습 기록이다. 원격 서버를 새로 조회한 결과는 아니며 이후 추가된 커밋과 구분한다. 작업 트리의 설정·빌드 파일 변경은 이 장의 코드 기준에서 제외했다. 아래 발췌의 경로·줄 번호는 표시한 커밋 기준이고 상대 링크는 현재 체크아웃을 연다.
+현재 기준 `d4888b0`은 2026-10-31의 `main`이며 로컬 원격 추적과 같았다. 원격 서버를 새로 조회한 결과는 아니다. 발췌의 출처에는 커밋과 함수 이름을 적었고 상대 링크는 현재 체크아웃을 연다.
 
 `3258f48`의 초기 프로젝트와 `c8c6e4a`의 이동·개별 재스폰 도입을 비교한다. 이전에 완성된 재스폰 시스템이 있었던 것은 아니다. 아래 이전 코드는 첫 구현의 실제 사망 처리이고, 현재는 GAS 전투가 연결된 상태다. 사양과 과거 실행 기록은 [MultiplayerFoundation](../MultiplayerFoundation.md)이 소유한다.
 
@@ -34,7 +34,7 @@
 
 이동 검증 단계에서는 양수 피해를 받으면 즉시 죽었다. 체력을 조금씩 줄이는 규칙은 아직 없었다.
 
-출처: `c8c6e4a`, [CCLCharacter.cpp](../../Source/CCL/CCLCharacter.cpp):53의 `ACCLCharacter::TakeDamage`. 실제 코드 전체 함수이며 들여쓰기를 공백으로 바꿨다.
+출처: `c8c6e4a`, `Source/CCL/CCLCharacter.cpp`의 `ACCLCharacter::TakeDamage`. 실제 코드 전체 함수이며 들여쓰기를 공백으로 바꿨다.
 
 ```cpp
 float ACCLCharacter::TakeDamage(float DamageAmount, const FDamageEvent& DamageEvent, AController* EventInstigator, AActor* DamageCauser)
@@ -64,7 +64,7 @@ float ACCLCharacter::TakeDamage(float DamageAmount, const FDamageEvent& DamageEv
 
 서버는 요청자가 죽었거나 이전 스폰에 실패한 경우에만 다시 스폰한다.
 
-출처: `50e5838`, [CCLGameModeBase.cpp](../../Source/CCL/CCLGameModeBase.cpp):83의 `ACCLGameModeBase::RequestRetry`. 실제 코드 전체 함수이며 들여쓰기를 공백으로 바꿨다.
+출처: `d4888b0`, [CCLGameModeBase.cpp](../../Source/CCL/CCLGameModeBase.cpp)의 `ACCLGameModeBase::RequestRetry`. 실제 코드 전체 함수이며 들여쓰기를 공백으로 바꿨다.
 
 ```cpp
 void ACCLGameModeBase::RequestRetry(APlayerController* Player)
@@ -107,7 +107,7 @@ void ACCLGameModeBase::RequestRetry(APlayerController* Player)
 
 `RestartPlayer`는 `FindPlayerStart`로 새 위치를 확인한 뒤 `RestartPlayerAtPlayerStart`를 호출한다. 프로젝트의 위치 검사는 Character 기본 캡슐 크기로 겹침을 확인한다. 실패했을 때 엔진이 이전 StartSpot으로 되돌아가는 경로를 피하려는 이유는 함수의 소스 주석에도 남아 있다.
 
-출처: `50e5838`, [CCLGameModeBase.cpp](../../Source/CCL/CCLGameModeBase.cpp):24의 `ACCLGameModeBase::RestartPlayer`. 실제 코드 전체 함수이며 들여쓰기를 공백으로 바꿨다.
+출처: `d4888b0`, [CCLGameModeBase.cpp](../../Source/CCL/CCLGameModeBase.cpp)의 `ACCLGameModeBase::RestartPlayer`. 실제 코드 전체 함수이며 들여쓰기를 공백으로 바꿨다.
 
 ```cpp
 void ACCLGameModeBase::RestartPlayer(AController* NewPlayer)

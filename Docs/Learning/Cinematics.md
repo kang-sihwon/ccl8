@@ -8,9 +8,9 @@
 |---|---|
 | 이전 기준 | `ed9a763db54edd93c7fe802b887ee96b553bb0df` |
 | 도입·변경 기준 | `0931fbfb5c96c4da24acb9d2ed44243fc0e6171f` |
-| 현재 기준 | `50e583859c832d6cb325e5e76beb8356e8c13959` |
+| 현재 기준 | `d4888b08154afab8712af974bce0ead2b90978ac` |
 
-조사 시작 때 확인한 `main`과 로컬 원격 추적 `origin/main`의 `50e5838`을 게임 코드 기준으로 고정한 학습 기록이다. 원격 서버를 새로 조회한 결과는 아니며 이후 추가된 커밋과 구분한다. 작업 트리의 설정·빌드 파일 변경은 이 장의 코드 기준에서 제외했다. 아래 발췌의 경로·줄 번호는 표시한 커밋 기준이고 상대 링크는 현재 체크아웃을 연다.
+현재 기준 `d4888b0`은 2026-10-31의 `main`이며 로컬 원격 추적과 같았다. 원격 서버를 새로 조회한 결과는 아니다. 발췌의 출처에는 커밋과 함수 이름을 적었고 상대 링크는 현재 체크아웃을 연다.
 
 이전 기준에는 `Source/CCL/Presentation/CCLCinematicSubsystem.cpp`가 없었다. `0931fbf`에 도입된 연출 경로와 현재 코드를 비교한다. 사양의 근거는 결정 18, UI 계약은 [UIFoundation](../UIFoundation.md)이다.
 
@@ -32,7 +32,7 @@ Procedural SoundWave는 코드가 만든 음성 샘플을 재생하는 자료다
 
 재생은 로컬 Controller와 Pawn, 유한한 초점·재생 시간을 확인한다.
 
-출처: `0931fbf`, [CCLCinematicSubsystem.cpp](../../Source/CCL/Presentation/CCLCinematicSubsystem.cpp):51의 `UCCLCinematicSubsystem::Play`. 실제 코드 함수 일부이며 들여쓰기를 공백으로 바꿨다.
+출처: `0931fbf`, `Source/CCL/Presentation/CCLCinematicSubsystem.cpp`의 `UCCLCinematicSubsystem::Play`. 실제 코드 함수 일부이며 들여쓰기를 공백으로 바꿨다.
 
 ```cpp
 FGuid UCCLCinematicSubsystem::Play(APlayerController* Controller, FVector Focus, const FString& Title, float Duration)
@@ -67,7 +67,7 @@ UI는 [연출 요청](UIPresentation.md)의 Handle 합성 규칙을 이미 사�
 
 다음은 Handle 검사부터 ViewTarget 복원까지의 경로다.
 
-출처: `50e5838`, [CCLCinematicSubsystem.cpp](../../Source/CCL/Presentation/CCLCinematicSubsystem.cpp):122의 `UCCLCinematicSubsystem::Cancel`. 실제 코드 전체 함수이며 들여쓰기를 공백으로 바꿨다.
+출처: `d4888b0`, [CCLCinematicSubsystem.cpp](../../Source/CCL/Presentation/CCLCinematicSubsystem.cpp)의 `UCCLCinematicSubsystem::Cancel`. 실제 코드 전체 함수이며 들여쓰기를 공백으로 바꿨다.
 
 ```cpp
 bool UCCLCinematicSubsystem::Cancel(FGuid Handle)
@@ -78,7 +78,7 @@ bool UCCLCinematicSubsystem::Cancel(FGuid Handle)
     }
     if (auto* Controller = Observer.Get())
     {
-        if (auto* UI = Controller->GetLocalPlayer() ? Controller->GetLocalPlayer()->GetSubsystem<UCCLUISubsystem>() : nullptr)
+        if (auto* UI = Controller->GetLocalPlayer() ? Controller->GetLocalPlayer()->GetSubsystem<UKSIUISubsystem>() : nullptr)
         {
             UI->ReleasePresentation(UIHandle);
             UI->CloseView(Overlay);

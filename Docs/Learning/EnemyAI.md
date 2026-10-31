@@ -10,9 +10,9 @@
 |---|---|
 | 이전 기준 | `4238990815cc932a6f38c55f947be78065389651` |
 | 도입·변경 기준 | `0931fbfb5c96c4da24acb9d2ed44243fc0e6171f` |
-| 현재 기준 | `50e583859c832d6cb325e5e76beb8356e8c13959` |
+| 현재 기준 | `d4888b08154afab8712af974bce0ead2b90978ac` |
 
-조사 시작 때 확인한 `main`과 로컬 원격 추적 `origin/main`의 `50e5838`을 게임 코드 기준으로 고정한 학습 기록이다. 원격 서버를 새로 조회한 결과는 아니며 이후 추가된 커밋과 구분한다. 작업 트리의 설정·빌드 파일 변경은 이 장의 코드 기준에서 제외했다. 아래 발췌의 경로·줄 번호는 표시한 커밋 기준이고 상대 링크는 현재 체크아웃을 연다.
+현재 기준 `d4888b0`은 2026-10-31의 `main`이며 로컬 원격 추적과 같았다. 원격 서버를 새로 조회한 결과는 아니다. 발췌의 출처에는 커밋과 함수 이름을 적었고 상대 링크는 현재 체크아웃을 연다.
 
 `4238990`의 최초 전투 AI와 현재의 Agent·공통 Action 연결을 비교한다. 콘텐츠별 공격 패턴은 `2d39c5f`에서 추가됐으며 당시 계약은 [ContentFoundation](../ContentFoundation.md)에 있다. 현재 코드의 추가 분기를 모두 최초 StateTree의 동작으로 소급하지 않는다.
 
@@ -34,7 +34,7 @@ Task의 정의와 실행별 데이터도 나뉜다. `FCCLEnemyTask`는 실행 �
 
 최초 AI는 대상을 확인하고 ASC 입력을 직접 호출했다.
 
-출처: `4238990`, [CCLEnemyAIController.cpp](../../Source/CCL/Combat/CCLEnemyAIController.cpp):133의 `ACCLEnemyAIController::StartAttack`. 실제 코드 전체 함수이며 들여쓰기를 공백으로 바꿨다.
+출처: `4238990`, `Source/CCL/Combat/CCLEnemyAIController.cpp`의 `ACCLEnemyAIController::StartAttack`. 실제 코드 전체 함수이며 들여쓰기를 공백으로 바꿨다.
 
 ```cpp
 bool ACCLEnemyAIController::StartAttack()
@@ -64,7 +64,7 @@ ContentFoundation은 일반 적 유형과 보스 체력별 공격 정의 선택�
 
 ## 6. 현재의 공격 시작
 
-출처: `50e5838`, [CCLEnemyAIController.cpp](../../Source/CCL/Combat/CCLEnemyAIController.cpp):142의 `ACCLEnemyAIController::StartAttack`. 실제 코드 전체 함수이며 들여쓰기를 공백으로 바꿨다.
+출처: `d4888b0`, [CCLEnemyAIController.cpp](../../Source/CCL/Combat/CCLEnemyAIController.cpp)의 `ACCLEnemyAIController::StartAttack`. 실제 코드 전체 함수이며 들여쓰기를 공백으로 바꿨다.
 
 ```cpp
 bool ACCLEnemyAIController::StartAttack()
@@ -85,7 +85,7 @@ bool ACCLEnemyAIController::StartAttack()
     }
     StopMovement();
     Enemy->SelectAttackPattern();
-    auto* Actions = Enemy->FindComponentByClass<UCCLActionComponent>();
+    auto* Actions = Enemy->FindComponentByClass<UKSIActionComponent>();
     if (!Actions)
     {
         return false;
@@ -96,7 +96,7 @@ bool ACCLEnemyAIController::StartAttack()
 }
 ```
 
-먼저 기존 유효성 검사를 유지한다. Agent가 교전을 거부하면 목표를 비우고 재고려 시각을 늦춘다. 허용됐을 때만 이동을 멈추고 공격 패턴을 확정한 뒤 ActionComponent에 입력을 전달한다.
+먼저 기존 유효성 검사를 유지한다. Agent가 교전을 거부하면 목표를 비우고 재고려 시각을 늦춘다. 허용됐을 때만 이동을 멈추고 공격 패턴을 확정한 뒤 `UKSIActionComponent`(공용 전투 모듈의 Action 컴포넌트)에 입력을 전달한다.
 
 마지막 Busy 태그 검사는 요청을 보냈다는 사실과 실제 행동 시작을 구분한다. ActionComponent가 없으면 실패하며 공격했다고 기록하지 않는다.
 
