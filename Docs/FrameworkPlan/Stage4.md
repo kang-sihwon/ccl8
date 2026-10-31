@@ -78,16 +78,16 @@ Check(!Clock.Commit(First.Ticket, Error) && Clock.Commit(Retry.Ticket, Error), T
 
 ### 독립 실행과 CCL 회귀
 
-UE 5.8.3, Win64 Development에서 CCL 모듈 소스·콘텐츠·설정이 없는 프로젝트 6개를 빌드하고 실행했다. 필요한 하위 모듈만 복사했다. 각 결과 폴더의 build.log·game.log·module-sha256.json을 대조했고 공용 소스를 실행 시점의 원본 해시와 대조했다. 제출 정리에서는 KSIEcologySpace.h 끝의 빈 줄 하나만 제거했다. 의미 있는 코드 변경은 없으며 별도 기록 `submission-whitespace.json`에 전후 해시를 보관한다.
+UE 5.8.3, Win64 Development에서 CCL 모듈 소스·콘텐츠·설정이 없는 프로젝트 6개를 빌드하고 실행했다. 필요한 하위 모듈만 복사했다. 각 결과의 빌드·게임 로그와 모듈 해시를 대조했고 공용 소스를 실행 시점의 원본 해시와 대조했다. 제출 정리에서는 KSIEcologySpace.h 끝의 빈 줄 하나만 제거했고 의미 있는 코드 변경은 없다.
 
-| 모듈 | 성공 항목 | 핵심 확인 | Saved/Tests/FrameworkIsolation 아래 폴더 |
-|---|---|---|---|
-| KSIWorldTime | 5 | 미게시 준비·취소·오래된 티켓·대기 시간 복원 | KSIWorldTime-20261012-025818 |
-| KSICelestial | 4 | 외부 시각의 궤도 계산·잘못된 정의 원본 보존 | KSICelestial-20261012-025950 |
-| KSITerrain | 6 | 권한 있는 편집·후보 확정·재사용 거부·저장 복원 | KSITerrain-20261012-030212 |
-| KSIAgent | 7 | 삶 Feature 없는 개체·단일 Writer·반납·복원 세대 | KSIAgent-20261012-030258 |
-| KSIEnvironment | 6 | 게임 Subsystem 없는 물 보존·저장·중복 구간 거부 | KSIEnvironment-20261012-030325 |
-| KSISave | 9 | 불완전·손상 세대 복구·의미 거부·출력 보존·파일명 충돌 거부 | KSISave-20261012-030400 |
+| 모듈 | 성공 항목 | 핵심 확인 |
+|---|---|---|
+| KSIWorldTime | 5 | 미게시 준비·취소·오래된 티켓·대기 시간 복원 |
+| KSICelestial | 4 | 외부 시각의 궤도 계산·잘못된 정의 원본 보존 |
+| KSITerrain | 6 | 권한 있는 편집·후보 확정·재사용 거부·저장 복원 |
+| KSIAgent | 7 | 삶 Feature 없는 개체·단일 Writer·반납·복원 세대 |
+| KSIEnvironment | 6 | 게임 Subsystem 없는 물 보존·저장·중복 구간 거부 |
+| KSISave | 9 | 불완전·손상 세대 복구·의미 거부·출력 보존·파일명 충돌 거부 |
 
 총 37개 항목이다. 최초 WorldTime·Celestial 독립 빌드와 실행 뒤 CCL 메타데이터 복원에서 누락 include가 드러났다. 의존을 보완한 뒤 후속 독립 실행과 최종 CCL 빌드로 복원했다. 초기 도구 호출 전체가 종료 코드 0이었다고 판정하지 않는다.
 
@@ -103,7 +103,7 @@ TerrainTravel의 경제 비교 실패는 이전 단계 3 패키지에서도 재�
 
 생태 표현 검사는 실험장 전체 표현 수가 0이어야 한다고 가정했다. 세계 복원 뒤 실험장 고유 개체가 다시 표현되는 경로와 충돌하며 이 역시 이전 패키지에서 재현됐다. 보완한 검사는 테스트 ID 6개의 사망·표현 등록 제거·실제 Actor 제거와 저장한 Mass Entity의 무효화, 대상 개체군의 생존 수를 직접 검사한다. 다른 실험장 개체는 제거하지 않는다.
 
-두 이전 패키지 실패는 ·, 보완 뒤 성공은 ·있다. 이는 검사 대상 식별을 고친 것이며 새 경제 정책이나 생태 알고리즘을 구현한 결과가 아니다.
+이는 검사 대상 식별을 고친 것이며 새 경제 정책이나 생태 알고리즘을 구현한 결과가 아니다.
 
 ### 재현과 한계
 
