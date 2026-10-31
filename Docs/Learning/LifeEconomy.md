@@ -8,9 +8,9 @@
 |---|---|
 | 이전 기준 | `68672713e47b19b0d4adb51bdc21c7c9bbe78eb6` |
 | 도입·변경 기준 | `aea2debe066b2d95fd41cb9f83100e551a0bbadb` |
-| 현재 기준 | `50e583859c832d6cb325e5e76beb8356e8c13959` |
+| 현재 기준 | `d4888b08154afab8712af974bce0ead2b90978ac` |
 
-조사 시작 때 확인한 `main`과 로컬 원격 추적 `origin/main`의 `50e5838`을 게임 코드 기준으로 고정한 학습 기록이다. 원격 서버를 새로 조회한 결과는 아니며 이후 추가된 커밋과 구분한다. 작업 트리의 설정·빌드 파일 변경은 이 장의 코드 기준에서 제외했다. 아래 발췌의 경로·줄 번호는 표시한 커밋 기준이고 상대 링크는 현재 체크아웃을 연다.
+현재 기준 `d4888b0`은 2026-10-31의 `main`이며 로컬 원격 추적과 같았다. 원격 서버를 새로 조회한 결과는 아니다. 발췌의 출처에는 커밋과 함수 이름을 적었고 상대 링크는 현재 체크아웃을 연다.
 
 이전 기준에는 Agent 기록·Feature·스냅샷이 있었지만 `CCLLifeSimulation.cpp`와 `CCLEconomy.cpp`는 없었다. 따라서 없는 이전 거래 코드를 만들어 비교하지 않는다. 요구와 검증 기록은 [AgentFoundation](../AgentFoundation.md), 결정 18을 따른다.
 
@@ -36,7 +36,7 @@ RequestId는 요청 한 번을 식별한다. 같은 ID와 같은 조건의 재�
 
 아래는 생활 시뮬레이션 도입 시 저장할 상태를 모으는 함수다.
 
-출처: `aea2deb`, [CCLLifeSimulation.cpp](../../Source/CCL/Agents/CCLLifeSimulation.cpp):307의 `FCCLLifeSimulation::Capture`. 실제 코드 전체 함수이며 들여쓰기를 공백으로 바꿨다.
+출처: `aea2deb`, `Source/CCL/Agents/CCLLifeSimulation.cpp`의 `FCCLLifeSimulation::Capture`. 실제 코드 전체 함수이며 들여쓰기를 공백으로 바꿨다.
 
 ```cpp
 bool FCCLLifeSimulation::Capture(FCCLSimulationSnapshot& Snapshot) const
@@ -71,7 +71,7 @@ bool FCCLLifeSimulation::Capture(FCCLSimulationSnapshot& Snapshot) const
 
 `Execute`는 기존 RequestId 결과를 확인하고 Agent·기회·Revision·예약, 활동 Processor와 적용 결과를 검사한다. 아래는 경제 후보에 거래를 적용하는 부분이다.
 
-출처: `50e5838`, [CCLLifeSimulation.cpp](../../Source/CCL/Agents/CCLLifeSimulation.cpp):767의 `FCCLLifeSimulation::Execute`. 실제 코드 함수 일부이며 들여쓰기를 공백으로 바꿨다.
+출처: `d4888b0`, [CCLLifeSimulation.cpp](../../Source/CCL/Agents/CCLLifeSimulation.cpp)의 `FCCLLifeSimulation::Execute`. 실제 코드 함수 일부이며 들여쓰기를 공백으로 바꿨다.
 
 ```cpp
     FCCLEconomyState Candidate;
@@ -126,7 +126,7 @@ Agent 확정까지 성공한 뒤 후보의 계좌·재고·부채·시설을 게
 
 현재 Load는 최소 길이와 64MiB 상한, CRC를 확인하고 SaveGame을 읽은 뒤 `Initialize`의 상태 검증으로 넘긴다. CRC는 손상 탐지이며 외부의 악의적인 변경을 인증하는 서명은 아니다.
 
-출처: `50e5838`, [CCLLifeSimulation.cpp](../../Source/CCL/Agents/CCLLifeSimulation.cpp):382의 `FCCLLifeSimulation::Load`. 실제 코드 전체 함수이며 들여쓰기를 공백으로 바꿨다.
+출처: `d4888b0`, [CCLLifeSimulation.cpp](../../Source/CCL/Agents/CCLLifeSimulation.cpp)의 `FCCLLifeSimulation::Load`. 실제 코드 전체 함수이며 들여쓰기를 공백으로 바꿨다.
 
 ```cpp
 bool FCCLLifeSimulation::Load(const TArray<uint8>& Bytes, FString& Error)
@@ -192,7 +192,7 @@ bool FCCLLifeSimulation::Load(const TArray<uint8>& Bytes, FString& Error)
 
 이전 진입점은 완료 여부를 반환하지 않았다.
 
-출처: `50e5838`, [CCLLifeSimulation.cpp](../../Source/CCL/Agents/CCLLifeSimulation.cpp), `void FCCLLifeSimulation::AdvanceTo(double TargetTime)`, 918-919줄. 실제 코드의 연속 발췌이며 들여쓰기만 정리했다.
+출처: `50e5838`, `Source/CCL/Agents/CCLLifeSimulation.cpp`, `void FCCLLifeSimulation::AdvanceTo(double TargetTime)`. 실제 코드의 연속 발췌이며 들여쓰기만 정리했다.
 
 ```cpp
 void FCCLLifeSimulation::AdvanceTo(double TargetTime)
@@ -201,7 +201,7 @@ void FCCLLifeSimulation::AdvanceTo(double TargetTime)
 
 이전 반복문은 원본 시각을 옮긴 뒤 사건을 적용했다. 따라서 뒤의 처리가 끝나지 못할 때도 호출자는 반환값으로 전체 완료를 판단할 수 없었다.
 
-출처: `50e5838`, [CCLLifeSimulation.cpp](../../Source/CCL/Agents/CCLLifeSimulation.cpp), `Time = Next;`, 944-945줄. 실제 코드의 연속 발췌이며 들여쓰기만 정리했다.
+출처: `50e5838`, `Source/CCL/Agents/CCLLifeSimulation.cpp`, `Time = Next;`. 실제 코드의 연속 발췌이며 들여쓰기만 정리했다.
 
 ```cpp
 Time = Next;
@@ -210,7 +210,7 @@ ApplyEvents();
 
 변경 후 `TryAdvanceTo` 내부는 생활 전체 후보와 경제 유효성을 확인한 뒤 원본을 교체한다.
 
-출처: `fe5c143`, [CCLLifeSimulation.cpp](../../Source/CCL/Agents/CCLLifeSimulation.cpp), `FCCLLifeSimulation Candidate(*this);`, 945-952줄. 실제 코드의 연속 발췌이며 들여쓰기만 정리했다.
+출처: `fe5c143`, `Source/CCL/Agents/CCLLifeSimulation.cpp`, `FCCLLifeSimulation Candidate(*this);`. 실제 코드의 연속 발췌이며 들여쓰기만 정리했다. 현재 `TryAdvanceTo`(`d4888b0`)는 이 앞에 유한한 시각과 비음수 슬라이스 예산, 같은 시각이면 성공이라는 입력 검사를 두고, 후보 복사 앞에 "복사는 안정적 핸들과 예약, Actor 소유를 보존하고 정책은 읽기 전용"이라는 주석이 있다. `AdvanceTo`는 `TryAdvanceTo`를 호출하고 오류를 버린다.
 
 ```cpp
 FCCLLifeSimulation Candidate(*this);
