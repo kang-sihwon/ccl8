@@ -2,7 +2,7 @@
 
 벨레스의 아침부터 바르툴전, 급수 복구와 다음 날 출항까지 YouArt의 Midjourney(MJ)로 탐색할 시안을 정리한다. 디자인 40항목과 장면 38항목, 총 78항목을 제안한다. 항목 수는 아래 두 목록의 합계이며 생성 횟수나 최종 이미지 장수는 아니다. 상태별 시안과 재시도는 별도로 센다.
 
-이 문서는 제작용 참조 목록이다. 시나리오의 사건은 [첫 장 상세 시나리오](../Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-first-chapter.md), 고유 설정은 [에테르 전체 구상](../Narrative/Drafts/2026-10-31-ether-taiga-dawn.md), 공통 시각 방향은 [ArtDirection](../ArtDirection.md)이 소유한다. 시안의 구성·구도·화면비·프롬프트는 제안이고 고유 서사와 최종 디자인은 아직 미승인이다. 이미지 생성은 시작하지 않았다.
+이 문서는 제작용 참조 목록이다. 시나리오의 사건은 [첫 장 상세 시나리오](../Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-first-chapter.md), 고유 설정은 [에테르 전체 구상](../Narrative/Drafts/2026-10-31-ether-taiga-dawn.md), 공통 시각 방향은 [ArtDirection](../ArtDirection.md)이 소유한다. 시안의 구성·구도·화면비·프롬프트는 제안이고 고유 서사와 최종 디자인은 아직 미승인이다. 벨레스 공간 참조 이미지 두 장을 보관했으며 전체 전경은 미확정이다.
 
 ## 문서 안내
 
@@ -10,6 +10,7 @@
 |---|---|
 | 인물·적·소품·공간·효과의 외형을 먼저 정할 때 | [디자인 시안 40항목](EtherFirstChapter/Designs.md) |
 | 도입부터 출항까지 사건별 화면을 만들 때 | [장면 시안 38항목](EtherFirstChapter/Scenes.md) |
+| 보관한 벨레스 이미지와 적용 범위, 남은 배치 문제를 확인할 때 | [벨레스 공간 참조 이미지](EtherFirstChapter/VelesReferences.md) |
 | 과거 YouArt 시험 설정과 결과를 참고할 때 | [2라운드 프롬프트](../ConceptImageToolTest/Prompts/Round2.md), [화풍 잇기 결과](../ConceptImageToolTest/Results/StyleChain.md) |
 
 ## 전체 범위
@@ -83,7 +84,7 @@ YouArt의 현재 MJ 버전, 지원 옵션과 참조 방식은 이 문서 작성 
 
 ## 상태와 결과 관리
 
-결과는 ID에 상태와 후보 번호를 붙여 구분하는 방식을 제안한다. 예를 들어 `D12-base-v01`, `D12-repaired-v01`, `S18-v01`로 적는다. 결과를 남길 때 아래 서식을 복사해 사용한다. 최초 상태는 모든 항목이 `대기`다.
+결과는 ID에 상태와 후보 번호를 붙여 구분하는 방식을 제안한다. 예를 들어 `D12-base-v01`, `D12-repaired-v01`, `S18-v01`로 적는다. 결과를 남길 때 아래 서식을 복사해 사용한다. E01은 [공간 참조 두 장](EtherFirstChapter/VelesReferences.md)을 보관했고 전체 배치는 수정이 필요하다. 나머지 항목의 생성 상태는 `대기`다.
 
 | ID·상태 | 생성 상태 | 결과 이미지·YouArt 결과 식별자 | 선택한 참조 ID | 모델·설정 | 사용한 프롬프트 | 판단·재시도 이유 |
 |---|---|---|---|---|---|---|
