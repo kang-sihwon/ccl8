@@ -1,10 +1,10 @@
 # 자연 환경과 생태계 구현 계획
 
-천체·공통 시간, 날씨, 영구 지형 변경, 눈·물·불·공간 차폐, 생태계와 실험장을 단계 0-9로 나눠 구현하고 있다. 단계 0-7은 검증을 마쳤고 단계 8의 생태·생애와 단계 9의 통합·규모 검증이 진행 중이다. 이 문서는 자연 환경 전체의 확정 범위, 소유권과 실행 계약, 단계별 통과 기준, 단계 0-2와 통합 단계의 실행 기록을 소유한다. 사용자 확정 범위는 [결정 19](decisions/0019-natural-environment-and-labs.md)에 근거한다. 단계 0-5의 통과 조건을 로컬 작업 트리에서 확인했다. 눈·이동의 현재 구현과 실행 근거는 [깊은 눈과 캐릭터 이동](EnvironmentSnow.md)이 소유한다. 물의 현재 구현과 실행 근거는 [물 순환 설계와 검증](EnvironmentWater.md)이 소유한다. 단계 3의 현재 구현과 실행 근거는 [영구 지형 통합과 검증](EnvironmentTerrain.md)이 소유한다. 아래의 과거 검증 기록은 각각 작성 당시의 상태를 보존한다.
+천체·공통 시간, 날씨, 영구 지형 변경, 눈·물·불·공간 차폐, 생태계와 실험장을 단계 0-9로 나눠 구현하고 있다. 단계 0-7은 검증을 마쳤고 단계 8의 생태·생애와 단계 9의 통합·규모 검증이 진행 중이다. 이 문서는 자연 환경 전체의 확정 범위, 소유권과 실행 계약, 단계별 통과 기준을 소유한다. 사용자 확정 범위는 [결정 19](decisions/0019-natural-environment-and-labs.md)에 근거한다.
 
 ## 단계별 현황
 
-단계의 작업과 통과 기준은 [단계별 구현과 통과 기준](#단계별-구현과-통과-기준)이 정한다. 아래 절들은 날짜순 기록이므로, 각 단계의 현재 상태와 정본은 이 표를 기준으로 읽는다. 상태는 [결정 19](decisions/0019-natural-environment-and-labs.md)의 진행 기록과 각 소유 문서의 검증 기록을 따른다.
+단계의 작업과 통과 기준은 [단계별 구현과 통과 기준](#단계별-구현과-통과-기준)이 정한다. 각 단계의 현재 구현과 실행 근거는 아래 표의 문서가 소유한다. 상태는 [결정 19](decisions/0019-natural-environment-and-labs.md)의 진행 기록과 각 소유 문서의 검증 기록을 따른다.
 
 | 단계 | 상태 | 현재 구현과 실행 근거의 정본 |
 |---|---|---|
@@ -23,36 +23,9 @@
 
 ## 다음 작업의 시작점
 
-이 절은 각 시점의 진행을 이어 적은 기록이다. 단계별 현재 상태는 위 "단계별 현황"을 따른다.
+다음 구현은 식생·피식자 먹이 연결과 Agent 생애 소유권 이전이다. 생물의 지형 목표 선택·개체 간 회피, 거리 기반 자동 표현 전환과 원거리 관심 영역별 집계 복제도 남아 있다. 식생의 최종 아트·PCG 대규모 배치, 전체 월드의 장시간 처리 성능·장애 반복과 시각 조정이 끝나지 않았으므로 단계 8·9는 진행 중이다. 최종 Game·Server 기능 검사는 통과했으며, 미완료·실패 범위는 [프레임 계측의 미완료 범위](#프레임-계측의-미완료-범위)를 따른다.
 
-2026-10-10 사용자가 단계 9까지 연속 진행을 요청했다. 단계 6의 자연 날씨·물·눈·동적 차폐·Niagara 표현과 세 실행 방식 검증을 마쳤다. 근거와 시각 조정 범위는 [자연 날씨 계산과 검증](EnvironmentWeather.md)이 소유한다. 단계 7은 [불·열·공간 환경](EnvironmentFire.md)의 연료·열·소화와 표면 융해·건조·열 확산, 저장·복제를 검증했다. 실내 열·수분·연기·문 환기도 공통 시간·저장·복제에 연결해 검증했다. 문 개구의 벽·지형 차폐도 확정 기하에 연결해 검증했다. 구역 10·11의 상시 조작과 Niagara 불꽃·연기도 두 맵에서 연결·검증했다.
-
-단계 8의 개체군 예약·사건 원장·저장과 시간순 번식·사망 계산을 구현했다. 근거와 남은 연결은 [생태계·생애 구현과 검증](EnvironmentEcology.md)이 소유한다. 생태 상태를 공통 월드 진행과 저장 스키마 4에 연결하고 실패 원본 보존·이전 저장 변환을 검증했다. 실제 Actor/Mass 전환·위치 저장·자연 사망과 Listen·Dedicated 첫·늦은 접속자의 Actor 복제를 검증했다. Agent의 공통 시간 나이·수명·보호와 실제 Actor 제거·복원을 세 맵에서 검증하고 주민 초기 에셋에도 연결했다. 식생의 일조·수분·양분 성장, 휴면·사망·재생, 연소·분해와 실내 증산을 표면 버전 7에 연결했다. 환경 자동화 102개와 두 환경 맵의 9종 식생 진행·새 프로세스 저장 재개를 검증했다. 구역 07에 9종 × 3조건의 식생 배치·조작·인스턴스 표현을 연결했다. 두 맵의 실제 화면과 저장·초기화, Listen·Dedicated 첫·늦은 접속자의 식생 복제를 검증했다.
-
-음식의 묶음별 부패·곰팡이와 인벤토리 합치기·분할·소비·이동, 세션 형식 7과 세 맵의 새 프로세스 재개를 검증했다. 명시적으로 등록한 보관함은 세계 형식 5의 공통 시계·저장 세대에 연결했다. 언로드 기록 보존, 실패 시 현재 상태 유지, 두 보관함의 원자 복원과 실제 장비·음식 세션 재개를 검증했다. 구역 07의 노출·냉각·밀폐 음식 보관 비교와 실제 메뉴 조작·월드 표현, 저장·초기화 및 첫·늦은 접속자의 공개 관측 복제를 검증했다. 당시 보관 조건은 고정 시험 입력이었으며 아래 후속 작업에서 환경 입력을 연결했다. 지속 예약 생물의 이동 후보·먹이 소비·무리 목표와 기아 사망을 공통 시간·생태 저장 형식 4에 연결했다. Actor/Mass 전환·새 프로세스 복원과 Listen·Dedicated 첫·늦은 접속을 검증했다. 실제 지형 내비게이션·수중 깊이·공중 장애물 경로를 연결하고 두 환경 맵에서 네 매체 Actor의 이동·섭취·저장 복원을 검증했다. 생태 저장 형식은 5다. 두 맵의 새 프로세스에서 공간 행동을 이어 진행한 생태 본문이 일치했고 Listen·Dedicated의 첫·늦은 접속자는 복원 위치를 확인했다. 구역 06의 네 서식지·80마리 개체군과 12개 지속 예약 개체의 공개 관측·먹이 추가·Actor/Mass/숨김을 연결했다. 두 맵의 실제 메뉴 조작·렌더링·저장·초기화와 Listen·Dedicated 첫·늦은 접속을 검증했다. 기존 환경 통합·음식 노화 검사도 통과했다. 해당 검증 시점의 환경 자동화는 119개다.
-
-음식 보관 조건을 날씨 지역·실내 공기 공간에 연결했다. 구역 07에서 고정·외기·실내 조건과 온습도를 관측하며 전환할 수 있다. 구간별 노출 보존, 생애 실패 시 시계·표면·음식 원본 유지, 언로드된 보관함의 진행, 빈 대상 이동과 인벤토리 형식 1→2 변환을 검증했다. 두 환경 맵에서 저장 후 새 프로세스의 이어 진행 결과가 일치했고, Listen·Dedicated 첫·늦은 접속자의 복원 세대·공개 음식 관측을 대조했다. 해당 검증의 환경 자동화는 123/123이다. 구현·실행 근거와 게임 근사의 한계는 [환경 연동 음식 보관](EnvironmentEcology/Food.md#환경-연동-음식-보관-구현검증)이 소유한다.
-
-음식 픽업에 생성·부패 이력 소유와 전체·일부 드롭을 연결했다. 실제 바닥 노화 후 회수, 거리·가시선·가방 부족·중복 요청의 실패 보존과 Listen·Dedicated 첫·늦은 접속자의 공개 품질·회수 제거를 검증했다. 상세 검증과 저장 경계는 [음식 픽업 이력](EnvironmentEcology/Food.md#음식-픽업-이력-구현검증)이 소유한다.
-
-바닥 음식 픽업의 위치·회전·배율과 지속 ID·회수 기록을 인벤토리 본문 형식 3에 연결했다. 복원 후보 실패의 원래 Actor 보존, 언로드 저장·같은 ID 재등록과 회수 상태의 재생성 방지를 검증했다. 두 맵의 새 프로세스 재개와 Listen·Dedicated 첫·늦은 접속자의 복원 세대·배치·공개 품질도 확인했다. 기존 음식·개인 세션 회귀와 환경 자동화 124/124를 통과했다. 세부 결과와 실행 범위는 [음식 픽업의 세계 저장](EnvironmentEcology/Food.md#음식-픽업의-세계-저장-구현검증)이 소유한다.
-
-구역 07에 음식 꺼내기·회수를 연결하고 픽업이 놓인 실내·날씨 지역의 보관 조건을 적용했다. 두 맵의 실제 메뉴·화면과 위치 전환·실내 언로드 진행·저장 복원·초기화를 검증했다. Listen·Dedicated 첫·늦은 접속자의 최종 세대·시각·공개 품질을 서버와 대조했고 기존 픽업·환경 보관의 새 프로세스 회귀도 통과했다. 환경 자동화는 125/125다. 근거와 실제 플레이어 저장·최종 아트의 남은 범위는 [위치에 따른 음식 보관](EnvironmentEcology/Food.md#위치에-따른-음식-보관-구현검증)이 소유한다.
-
-GAS 치명 피해를 Agent의 외부 사망에 연결하고 구역 07에 두 주민의 생애 관측·조작을 추가했다. Writer 충돌 중 저장·진행 거부, Actor 제거 뒤 보류 사망 확정과 이전 세대 요청 폐기를 세 맵에서 검증했다. 두 환경 맵의 실제 메뉴·화면·초기화·저장 복원과 Listen·Dedicated 첫·늦은 접속자의 공개 생애·Actor 제거를 대조했다. 환경 자동화 125/125와 기존 음식 실험 회귀도 통과했다. [Agent 치명 피해와 구역 07 생애 실험](EnvironmentEcology/AgentLife.md#agent-치명-피해와-구역-07-생애-실험-구현검증)이 상세 근거와 남은 피해 범위를 소유한다.
-
-뜨거운 연료 접촉과 고온 실내의 열 노출을 실제 플레이어·적·주민의 GAS 피해에 연결했다. 실패한 세계 진행에서 체력 보존, 부상·열 사망 저장 복원과 이전 세대 피해 폐기를 확인했다. Listen·Dedicated 첫·늦은 접속과 환경 자동화 127/127, 기존 화재 화면·음식·Campaign 생애 회귀를 통과했다. [열 피해 구현·검증](EnvironmentFire/ThermalDamage.md#열-피해-구현검증)이 게임 초 단위·시험 정책과 표현 없는 개체의 미연결 범위를 소유한다.
-
-플레이어 전체 저장의 선행 작업으로 인벤토리·장비·스킬·포인트의 통합 복원 경로를 구현했다. 잘못된 후보와 GAS의 중간 적용 거부에서 기존 항목·효과 핸들·부상을 유지했고, 가득 찬 가방의 양손 장비 교체와 이전 무기 능력 정리를 검증했다. 별도 프로세스의 개인 세션 재개와 CCL 자동화 140/140도 통과했다. [인벤토리·장비 복원 검증](SessionFoundation.md#인벤토리장비-복원-준비와-실행-검증)이 효과 제한과 세계 통합의 남은 범위를 소유한다.
-
-세계 형식 6에 플레이어 값 본문과 전역 계정·아이템 소유권 검증을 추가했다. 프로필 왕복·손상·이전 형식 1-5 변환을 포함한 CCL 자동화 143/143, 개인 세션 재개와 세계·지형 맵 왕복, 바닥 음식의 새 프로세스 재개를 통과했다. 등록된 PlayerState와의 연결 범위는 아래 참가자 검증을 따른다. [세계 플레이어 본문](SessionFoundation.md#세계-플레이어-본문-구현검증)이 검증 근거와 현재 런타임 연결 경계를 소유한다.
-
-여러 플레이어의 장비 효과를 준비한 뒤 세계를 복원하는 동기 경계를 구현하고 개인 세션에 연결했다. 두 실제 PlayerState와 실제 세계 스냅샷으로 뒤 대상의 GAS 거부·손상 세계 파일 거부에서 원본 보존을 확인했다. 정상 복원은 두 대상의 체력 후처리 뒤 인벤토리 알림을 보냈다. [다중 플레이어 복원 준비 경계](SessionFoundation.md#다중-플레이어-복원-준비-경계)가 실행 근거와 전체 프로필 연결의 남은 범위를 소유한다.
-
-서버가 등록한 플레이어의 수집·복원과 연결 해제 기록, 온라인·연결 해제 음식의 동적 보관 진행을 세계 참가자에 연결했다. 실제 음식 회수, 두 PlayerState·보관함·계정·부상의 실패 보존과 최종 알림, 별도 프로세스의 세계 시작·프로필 재등록을 검증했다. 접속·재접속·맵 전환의 자동 키 연결과 초기화 정책은 남아 있다. [세계 플레이어 참가자](SessionFoundation.md#세계-플레이어-참가자-구현검증)가 검사 근거와 남은 경계를 소유한다.
-
-호스트 개인 세션의 계정·퀘스트도 보관함·플레이어 알림 전에 확정하도록 연결했고, 알림의 잔액 조회가 이전 계좌를 다시 생성하지 않는지 검사했다. [호스트 계정·퀘스트의 알림 전 확정](SessionFoundation.md#호스트-계정퀘스트의-알림-전-확정)이 검사 근거와 캠페인 후처리의 남은 범위를 소유한다.
-
+## 세계 저장 참여와 맵 도메인
 2026-10-11에 세계 저장을 형식 7로 바꿨다. 세계 코덱은 시계·환경·생활 같은 코어와 이름 있는 구간의 봉투만 소유한다. 플레이어(`Players`, 참가 순서 0)와 보관함(`Inventories`, 참가 순서 1)은 `IKSIWorldParticipant`로 자기 구간을 수집·준비·확정·취소한다. 구간 검증기는 `FKSIWorldSectionRegistry`에 등록하며, 앞 구간이 청구한 아이템 GUID를 뒤 구간이 다시 청구하면 거부한다. 형식 6 이하의 플레이어·보관함 덩어리는 읽을 때 같은 이름의 구간으로 옮긴다. 원격 플레이어의 자동 신원 연결과 복원 시 접속자 유지는 [원격 플레이어 신원 연결과 복원 시 접속자 유지](SessionFoundation.md#원격-플레이어-신원-연결과-복원-시-접속자-유지)가 소유한다.
 
 현재 저장 참여 계약은 `KSICore`의 `IKSIWorldParticipant`와 `FKSIWorldSectionRegistry`에 있다. 표면·생활 검증 자료는 CCL의 선택 문맥으로 연결하고, 저장 형식 7과 참가 순서는 유지한다. 분리 결정과 검증은 [FrameworkPlan](FrameworkPlan.md#단계-2-구현-설계와-검증-기준)이 소유한다.
@@ -60,12 +33,6 @@ GAS 치명 피해를 Agent의 외부 사망에 연결하고 구역 07에 두 주
 저장 참여 계약은 저장의 Capture/Prepare/Commit/Publish/Cancel만 맡는다. 환경 시간이 필요한 구현만 CCL의 `ICCLWorldAdvanceParticipant`를 함께 구현하고 `RegisterAdvanceParticipant`로 따로 등록한다. 2026-10-11 설계 후속 수정에서 나눈 계약이다. 지금은 플레이어와 보관함의 저장 서브시스템이 두 인터페이스를 모두 구현한다. 각 목록은 같은 기존 우선순위로 정렬하며 모든 Commit 뒤에 Publish한다. 저장 구간 검증 문맥에 있는 Surface·Life 참조는 그대로 유지한다. 검증 근거는 [ProgressionFoundation의 2026-10-11 기록](ProgressionFoundation.md#2026-10-11-설계-후속-수정)이다.
 
 맵의 저장 도메인은 맵 이름이 아니라 `ACCLWorldEnvironmentConfig::Domain`으로 정한다. 설정 Actor가 없는 맵은 Campaign 도메인을 사용한다. 같은 설정 Actor가 생활 인구 Seed, 캐릭터의 눈 후처리 AnimBP, 실험 주민 클래스를 제공한다. 이전 구현은 맵 이름에 `Environment`가 있는지로 후처리를 켜고, 두 실험 맵을 뺀 모든 맵을 Campaign으로 취급했다. 날씨·화재 Niagara 시스템의 저작 함수는 런타임 표현 Actor에서 에디터 전용 `UCCLEnvironmentFXLibrary`로 옮겼다. Niagara Internal 헤더 경로는 Editor 빌드에만 추가하므로 게임·서버 타깃은 그 헤더를 사용하지 않는다. 에디터 저작은 여전히 비공개 속성 `FixedBounds`를 이름으로 찾으므로 엔진을 갱신할 때 다시 확인해야 한다.
-
-현재 개인 세션·세계 참가자의 플레이어·보관함 복원은 위의 형식 7 경계를 사용한다. 경비와 보스의 Agent ID 충돌, 정의만 같고 배치·수량이 다른 보급품의 복원은 [배치 식별과 체크포인트 검증](SessionFoundation.md#배치-식별과-체크포인트-검증)에서 수정했다. 집계 생물의 에너지·기아와 공개 관측은 [집계 생물의 영양 상태](EnvironmentNutrition.md)에 연결했다. 같은 문서가 100개 개체군·100만 집계 개체의 반복 저장과 실제 공간의 지연·손실 검사 범위를 구분한다.
-
-다음 구현은 식생·피식자 먹이 연결과 Agent 생애 소유권 이전이다. 생물의 지형 목표 선택·개체 간 회피, 거리 기반 자동 표현 전환과 원거리 관심 영역별 집계 복제도 남아 있다. 식생의 최종 아트·PCG 대규모 배치, 전체 월드의 장시간 처리 성능·장애 반복과 시각 조정이 끝나지 않았으므로 단계 8·9는 진행 중이다. 최종 Game·Server 기능 검사는 통과했으며, 프레임 계측의 미완료·실패 범위는 아래 통합 패키지 절을 따른다. 60배율의 정밀도 잔여 시간 수정은 아래 검증 절을 따른다.
-
-단계 0-5와 실험실 보완은 앞선 실행 기록을 유지한다. 다음 작업자는 [AGENTS.md](../AGENTS.md), Coding, VersionControl과 날씨 문서의 검증 결과·남은 범위를 먼저 읽는다. 기기가 바뀌면 실제 UE 버전과 경로를 확인하고 프로젝트 파일 생성·빌드 후 실험장을 실행한다. 현재 검증 환경은 UE 5.8.3이다. 다른 작업의 변경을 자동 stash·reset하지 않는다.
 
 ## 시간 분할 정밀도 구현·검증
 
@@ -75,7 +42,7 @@ GAS 치명 피해를 Agent의 외부 사망에 연결하고 구역 07에 두 주
 
 `CCL.Environment.Clock.SplitAcceptedBoundaries`는 시작 세계 시각 0·86400·315360000에서 각각 200개의 입력을 15개 구간으로 처리했다. 총 9000개 구간에서 취소·재시도와 매 구간 저장·복원을 실행했고 입력 종료 시각과 정확히 일치했다. 일시정지 입력 제외와 기존 배율 0 검사도 통과했다. 실제 게임 월드에서는 온라인·연결 해제 플레이어 음식이 60배율의 15세계초를 함께 처리했다.
 
-2026-10-10 UE 5.8.3의 로컬 작업 트리에서 `Tools/Validation/run_automation.ps1 -Filter 'CCL.' -TimeoutSeconds 300`의 144개 검사가 경고·실패·미실행 없이 통과했다. 근거는 `Saved/Tests/Automation/20261010-232809-465/report/index.json`이다. 두 환경 맵의 음식·복원 실행은 `Saved/Tests/LoadoutRestore/20261010-230448-330`, `20261010-230751-715`에 있다. 첫 실행은 시계 수정 후, 두 번째는 계정 조회 분리까지 적용한 빌드다. 시계 구현은 `Source/KSIWorldTime/Private/KSIWorldClock.cpp:140`, 반복 검사는 `CCLWorldClockTests.cpp:206`이 소유한다. 이는 장시간 전체 월드의 처리 성능을 증명하지 않는다.
+2026-10-10 UE 5.8.3의 로컬 작업 트리에서 `Tools/Validation/run_automation.ps1 -Filter 'CCL.' -TimeoutSeconds 300`의 144개 검사가 경고·실패·미실행 없이 통과했다. 첫 실행은 시계 수정 후, 두 번째는 계정 조회 분리까지 적용한 빌드다. 시계 구현은 `Source/KSIWorldTime/Private/KSIWorldClock.cpp:140`, 반복 검사는 `CCLWorldClockTests.cpp:206`이 소유한다. 이는 장시간 전체 월드의 처리 성능을 증명하지 않는다.
 
 ## 실험 메뉴 조작과 검증
 
@@ -91,26 +58,26 @@ GAS 치명 피해를 Agent의 외부 사망에 연결하고 구역 07에 두 주
 
 실험 메뉴는 빈 공간 클릭과 자식 위젯이 처리하지 않은 키를 받아 게임 입력으로 전달하지 않는다. 최초 포커스는 보이는 닫기 버튼이며 배율 입력 후 Enter를 눌러도 입력칸의 포커스를 유지한다. 게임 뷰포트에 키보드 포커스가 돌아오면 `RequestRefreshFocus`로 활성 메뉴의 포커스를 복원한다. 이 API는 최하위 활성 화면만 갱신하므로 다른 메뉴의 포커스를 빼앗지 않는다. 엔진 근거는 UE 5.8.3의 `<Engine>/Plugins/Runtime/CommonUI/Source/CommonUI/Public/CommonActivatableWidget.h:85`다. 지형 편집 도구의 메뉴 밖 클릭은 화면이 직접 처리하는 기존 경로를 유지한다.
 
-2026-10-12 입력·배율 보완은 UE 5.8.3 프로젝트 파일 생성과 `CCLEditor Win64 Development` 빌드를 통과했다. Standalone의 빈 공간 클릭·키 입력 격리, 메뉴 닫기·재열기, 관측 배율 144·288 입력과 ±60·정지의 양쪽 입력값 일치, 세계 배율 불변과 세계 시각 복귀를 확인했다. 근거는 `Saved/Tests/ExperimentMenu/EnvironmentScenario-Standalone-20261012-141331-473`와 `EnvironmentPlayground-Standalone-20261012-141308-096`의 `result.json`, `editor.log`다. 추가 PIE 검사는 `EnvironmentScenario-PIE-20261012-141255-279`에서 화면 포커스가 잡혔지만 게임 입력 모드와 이동·시점 차단이 적용되지 않아 실패했다. 종료 시 CommonUI가 `ViewportWidget was null`과 자식 해제 ensure를 기록했다. PIE 입력 정책 실패의 원인과 해결은 미확인이며 Standalone 통과를 PIE 통과로 확대하지 않는다. 이번 변경의 네트워크·패키지 검사는 실행하지 않았다.
+2026-10-12 입력·배율 보완은 UE 5.8.3 프로젝트 파일 생성과 `CCLEditor Win64 Development` 빌드를 통과했다. Standalone의 빈 공간 클릭·키 입력 격리, 메뉴 닫기·재열기, 관측 배율 144·288 입력과 ±60·정지의 양쪽 입력값 일치, 세계 배율 불변과 세계 시각 복귀를 확인했다. 추가 PIE 검사는 화면 포커스가 잡혔지만 게임 입력 모드와 이동·시점 차단이 적용되지 않아 실패했다. 종료 시 CommonUI가 `ViewportWidget was null`과 자식 해제 ensure를 기록했다. PIE 입력 정책 실패의 원인과 해결은 미확인이며 Standalone 통과를 PIE 통과로 확대하지 않는다. 이번 변경의 네트워크·패키지 검사는 실행하지 않았다.
 
-직접 입력 기능은 UE 5.8.3 Editor Development 빌드와 두 맵의 Standalone 메뉴 검사를 통과했다. Scenario에서는 실제 적용 버튼 클릭으로 0.5·6000·60000·600000·0배와 잘못된 문자열 거부를 확인했고, Enter로 3600배를 적용했다. 서버의 음수 거부와 Playground의 입력창·버튼 비활성화도 확인했다. 결과는 `Saved/Tests/ExperimentMenu/EnvironmentScenario-Standalone-20261012-130141-816`과 `EnvironmentPlayground-Standalone-20261012-130204-302`의 `result.json`, `editor.log`에 있다. 이 변경의 PIE·네트워크·패키지 실행은 미검증이다.
+직접 입력 기능은 UE 5.8.3 Editor Development 빌드와 두 맵의 Standalone 메뉴 검사를 통과했다. Scenario에서는 실제 적용 버튼 클릭으로 0.5·6000·60000·600000·0배와 잘못된 문자열 거부를 확인했고, Enter로 3600배를 적용했다. 서버의 음수 거부와 Playground의 입력창·버튼 비활성화도 확인했다. 이 변경의 PIE·네트워크·패키지 실행은 미검증이다.
 
-2026-10-12 로컬 수정본은 UE 5.8.3 프로젝트 생성과 Editor Development 빌드를 통과했다. 기존 메뉴 검사에서 Scenario Standalone·PIE의 실제 Slate 클릭으로 0·10·20·30·40·50·60·70·80배와 역순 감소, 0배 추가 감소를 확인했다. Playground Standalone에서는 세 버튼의 비활성화를 확인했다. 결과는 `Saved/Tests/TimeScaleStep/results.json`과 해당 폴더의 빌드·메뉴 로그에 있다. 이 배속 UI 변경의 패키지 재생성·네트워크 실행 검사는 수행하지 않았다.
+2026-10-12 로컬 수정본은 UE 5.8.3 프로젝트 생성과 Editor Development 빌드를 통과했다. 기존 메뉴 검사에서 Scenario Standalone·PIE의 실제 Slate 클릭으로 0·10·20·30·40·50·60·70·80배와 역순 감소, 0배 추가 감소를 확인했다. Playground Standalone에서는 세 버튼의 비활성화를 확인했다. 이 배속 UI 변경의 패키지 재생성·네트워크 실행 검사는 수행하지 않았다.
 
 `CCLExperimentPlayerController`는 게임 입력의 열기를, `CCLExperimentScreen`은 메뉴가 입력을 소유할 때의 닫기를 처리한다. CommonUI의 메뉴 정책과 닫힌 뒤 게임 입력 복구는 유지한다. UE 5.8.3의 F8은 에디터의 `PossessEjectPlayer`에 배정돼 있으므로 실험 메뉴에는 사용하지 않는다. 근거는 `<Engine>/Source/Editor/UnrealEd/Private/Kismet2/DebuggerCommands.cpp:365`와 `<Engine>/Source/Runtime/Engine/Private/GameViewportClient.cpp:776`이다. 아래 과거 검증 기록의 F8은 당시 단축키다.
 
 회귀 검사 `Tools/Validation/run_experiment_menu_smoke.ps1`은 실제 Slate 클릭과 키 입력으로 닫기 버튼, F7 재열기, F7 닫기와 두 번째 재열기를 실행한다. 키를 누른 채 발생하는 반복 입력이 메뉴를 다시 닫지 않는지도 검사한다. 메뉴 상태, 이동·시점 입력 정책과 플레이어 소유권을 확인한다. `-Map EnvironmentScenario` 또는 `-Map EnvironmentPlayground`를 지정하며, `-PIE`를 추가하면 실제 에디터 뷰포트에서 검사한다. 기본은 Standalone이다.
 
-2026-10-10의 최종 코드에서 아래 검사를 통과했다. 두 맵과 실행 방식별로 두 번의 재열기를 확인했으며, PIE는 조종 해제로 전환되지 않았다. 닫힌 화면의 F7 안내와 다시 열린 메뉴도 캡처로 확인했다. 경로는 저장소 기준이며 원본 로그와 이미지는 로컬 `Saved/`에 보관한다.
+2026-10-10의 최종 코드에서 아래 검사를 통과했다. 두 맵과 실행 방식별로 두 번의 재열기를 확인했으며, PIE는 조종 해제로 전환되지 않았다. 닫힌 화면의 F7 안내와 다시 열린 메뉴도 캡처로 확인했다.
 
 | 검사 | 결과와 근거 |
 |---|---|
-| 프로젝트 파일 생성 | 성공, `Saved/EnvironmentStages/MenuReopen-GPF.log` |
-| CCLEditor Win64 Development 빌드 | 성공, `Saved/EnvironmentStages/MenuReopen-Build.log` |
-| EnvironmentScenario PIE | 성공, `Saved/Tests/ExperimentMenu/EnvironmentScenario-PIE-20261010-003047-721` |
-| EnvironmentPlayground PIE | 성공, `Saved/Tests/ExperimentMenu/EnvironmentPlayground-PIE-20261010-003120-569` |
-| EnvironmentScenario Standalone | 성공, `Saved/Tests/ExperimentMenu/EnvironmentScenario-Standalone-20261010-003152-817` |
-| EnvironmentPlayground Standalone | 성공, `Saved/Tests/ExperimentMenu/EnvironmentPlayground-Standalone-20261010-003220-459` |
+| 프로젝트 파일 생성 | 성공 |
+| CCLEditor Win64 Development 빌드 | 성공 |
+| EnvironmentScenario PIE | 성공 |
+| EnvironmentPlayground PIE | 성공 |
+| EnvironmentScenario Standalone | 성공 |
+| EnvironmentPlayground Standalone | 성공 |
 
 ## 실험실 배치와 관측 도구
 
@@ -131,7 +98,7 @@ HUD는 실제 뷰포트에 맞춘다. 키 안내와 체력·스태미나는 왼�
 
 **세계 시각으로 복귀**는 최신 게시 시각을 다시 따른다. 메뉴를 다시 열거나 세계 저장을 복원해 실행 세대가 바뀌어도 세계 시각을 따른다. 입력 정의의 위상 변경은 현재 관측 시각에서 다시 평가한다. 천체 계산기가 지원하는 관측 시각의 최댓값은 `1e12`초이며, 범위를 넘는 요청은 마지막 유효 위치에서 정지하고 복귀 안내를 표시한다. 계 전체 그림의 거리·반지름은 가독성을 위해 축척을 바꾸며 행성 확대창은 관찰 위치와 방향을 비교한다. 작성된 궤도를 평가하는 디버그 도구이며 N체 중력 계산이나 실제 크기 비교는 제공하지 않는다.
 
-독립 관측은 UE 5.8.3 Editor Development 빌드와 Scenario Standalone 실험실 검사를 통과했다. `1e10` 입력 후 0.25초 Tick에서 관측 시간이 25억 초 진행하고 천체 위치가 바뀌었으며, 세계 시각·배율·대기량은 유지됐다. 실제 렌더링 프레임 사이의 관측 진행, Enter로 0배 정지, 잘못된 입력 거부와 세계 시각 복귀도 확인했다. 근거는 `Saved/Tests/ExperimentMenu/EnvironmentScenario-Standalone-20261012-132935-596`의 `result.json`, `editor.log`, `celestial-preview.png`다. 이 변경의 PIE·네트워크·패키지 실행은 미검증이다.
+독립 관측은 UE 5.8.3 Editor Development 빌드와 Scenario Standalone 실험실 검사를 통과했다. `1e10` 입력 후 0.25초 Tick에서 관측 시간이 25억 초 진행하고 천체 위치가 바뀌었으며, 세계 시각·배율·대기량은 유지됐다. 실제 렌더링 프레임 사이의 관측 진행, Enter로 0배 정지, 잘못된 입력 거부와 세계 시각 복귀도 확인했다. 이 변경의 PIE·네트워크·패키지 실행은 미검증이다.
 
 차폐 통과율은 문 열림 비율과 별개다. 한 방향의 질의선이 열린 영역을 지나면 반 열린 문에서도 바람 통과율이 100%일 수 있다. 지붕이 막는 비는 문을 열어도 0%를 유지할 수 있다.
 
@@ -143,17 +110,17 @@ UE 5.8.3에서 프로젝트 생성과 Editor 빌드를 마치고 아래 검사�
 
 | 검사 | 결과와 근거 |
 |---|---|
-| 생성·Editor 빌드 | 성공. `Saved/EnvironmentStages/LabUX-GPF.log`, `LabUX-Build.log` |
-| 환경 자동 검사 | 52/52, 경고·실패·미실행 0. `Saved/Tests/Automation/20261010-025650-348/report/index.json` |
-| 2560×1080 실험실 | F7 재열기, 왼쪽 배치, 천체 관측·자전 조작, 실제 바닥 클릭·편집, 경계 거부, 저장·복원 통과. `Saved/Tests/ExperimentMenu/EnvironmentScenario-Standalone-20261010-024431-727` |
-| 1280×720 PIE | 같은 조작과 플레이 모드·Pawn 유지 통과. `Saved/Tests/ExperimentMenu/EnvironmentScenario-PIE-20261010-024948-644` |
-| Dedicated 첫·늦은 참가자 | 입력 정의와 완료 시각의 재계산, 문 상태, 조작 권한 거부 통과. `Saved/Tests/Environment/EnvironmentScenario-Dedicated-20261010-023602-366` |
-| 지형 전송 회귀 | 전체·변경량 전송과 완료 ACK 재전송, 클라이언트 2개 통과. `Saved/Tests/TerrainNetwork/Dedicated-20261010-024026-509` |
-| 눈 이동 네트워크 | 50ms 지연·2% 손실과 이력 만료 조건의 보정, 첫·늦은 참가자 상태 일치 통과. `Saved/Tests/Snow/Dedicated-20261010-024431-637` |
-| 눈 렌더링 | 보행·발 배치·눈가루 검사와 흰 연속 표면·눌림 캡처 확인. `Saved/Tests/Snow/Standalone-20261010-025651-744` |
-| 물·얼음·진흙 렌더링 | 상태 전환·수지 검사와 재질별 화면 확인. `Saved/Tests/Water/Standalone-20261010-025718-220` |
-| 차폐 렌더링 | 닫힘·반 열림·열림의 충돌과 독립 채널, 저장 복원 통과. 방향·통과율 화면 확인. `Saved/Tests/Environment/EnvironmentScenario-Standalone-20261010-025744-853` |
-| 2560×1080 일반 UI | 장비·메뉴·대화 검사 통과. HUD 가장자리와 대화창 캡처 확인. `Saved/Tests/UIVisual/2560x1080-20261010-025827` |
+| 생성·Editor 빌드 | 성공 |
+| 환경 자동 검사 | 52/52, 경고·실패·미실행 0 |
+| 2560×1080 실험실 | F7 재열기, 왼쪽 배치, 천체 관측·자전 조작, 실제 바닥 클릭·편집, 경계 거부, 저장·복원 통과 |
+| 1280×720 PIE | 같은 조작과 플레이 모드·Pawn 유지 통과 |
+| Dedicated 첫·늦은 참가자 | 입력 정의와 완료 시각의 재계산, 문 상태, 조작 권한 거부 통과 |
+| 지형 전송 회귀 | 전체·변경량 전송과 완료 ACK 재전송, 클라이언트 2개 통과 |
+| 눈 이동 네트워크 | 50ms 지연·2% 손실과 이력 만료 조건의 보정, 첫·늦은 참가자 상태 일치 통과 |
+| 눈 렌더링 | 보행·발 배치·눈가루 검사와 흰 연속 표면·눌림 캡처 확인 |
+| 물·얼음·진흙 렌더링 | 상태 전환·수지 검사와 재질별 화면 확인 |
+| 차폐 렌더링 | 닫힘·반 열림·열림의 충돌과 독립 채널, 저장 복원 통과. 방향·통과율 화면 확인 |
+| 2560×1080 일반 UI | 장비·메뉴·대화 검사 통과. HUD 가장자리와 대화창 캡처 확인 |
 
 검토에서 Dedicated 자동 조작의 빈 Requester 접근, 대용량 RPC가 초기 GameState 복제를 밀어내는 문제와 표면 메시의 뒤집힌 앞면을 수정했다. 지형·표면 청크는 접속 속도에 맞춰 간격을 제한하고 관측의 정기 게시는 설정된 4Hz를 따른다. 천체 정의를 포함한 관측 복제 포맷은 버전 2다.
 
@@ -179,25 +146,6 @@ UE 5.8.3에서 프로젝트 생성과 Editor 빌드를 마치고 아래 검사�
 지형 데이터는 터널을 표현할 수 있는 형태를 후보로 삼되 첫 플레이 실험은 구덩이·수로·성토로 제한한다. 마을 핵심 시설·퀘스트 필수 경로·스폰 구역은 변경 권한으로 보호하고 일반 야외를 우선 편집 대상으로 삼는다.
 
 일반 생물과 주민은 공통 시간의 생애 주기를 사용한다. 핵심 퀘스트 NPC는 자연 수명으로 진행이 막히지 않도록 보호한다. 전투·화재 등 모든 피해에 대한 무적을 뜻하지는 않는다. 피해와 퀘스트 실패 정책은 해당 기능에서 별도로 정한다.
-
-## 착수 시 확인할 기존 구현
-
-계획 수립 중 확인한 위치다. 편집 전 현재 브랜치와 엔진에서 다시 확인한다. 줄 번호는 이후 변경될 수 있다.
-
-| 대상 | 근거 | 설계 제약 |
-|---|---|---|
-| Agent 시간 | `Source/CCL/Agents/CCLAgentWorldSubsystem.cpp:66` | 누적 시간이 0.25초 이상이면 60배로 AdvanceTo를 호출한다. 60의 설계 근거는 확인하지 못했다 |
-| 삶의 소유권 | `Source/CCL/Agents/CCLAgentWorldSubsystem.h:45` | 기존 Subsystem이 FCCLLifeSimulation을 소유한다. 환경에서 복제 소유하지 않는다 |
-| 시간 진행 실패 | `Source/CCL/Agents/CCLLifeSimulation.cpp:918` | AdvanceTo는 void이며 중도 실패·부분 적용 가능성이 있다. 호출만으로 완료를 확정할 수 없다 |
-| 저장 | `Source/CCL/Session/CCLSessionRecord.h:28`, `Source/CCL/Session/CCLSessionRecord.cpp:221` | v5와 64MiB 검사 경계가 있다. 지형 데이터를 무제한으로 기존 레코드에 넣지 않는다 |
-| 충돌 생성 | `<Engine>/Source/Runtime/GeometryFramework/Private/Components/DynamicMeshComponent.cpp:1598`, `:1669` | 비동기 완료는 여러 청크·내비게이션의 동시 반영을 보장하지 않는다 |
-| 표면 추출 | `<Engine>/Source/Runtime/GeometryCore/Public/Generators/MarchingCubes.h:50` | FMarchingCubes를 실험 후보로 쓸 수 있다. 전체 월드 성능은 미검증이다 |
-| 캐릭터 바닥 | `<Engine>/Source/Runtime/Engine/Private/Components/CharacterMovementComponent.cpp:7058` | 바닥 판정·이동 예측과 눈의 지지 높이를 일치시켜야 한다 |
-| 내비게이션 | `<Engine>/Source/Runtime/NavigationSystem/Public/NavigationSystem.h:973` | 변경 통지와 실제 경로 준비는 별도 상태다 |
-
-기존 맵은 `FrontEnd`, `Campaign`, `CombatPlayground`, `MultiplayerPlayground`다. 새 환경 맵은 생성 예정이다. `Tools/Validation/create_playground.py`의 기존 맵 보호와 에디터 생성 경로, `Tools/Validation/run_network_smoke.ps1`의 프로세스·로그 관리를 참고한다.
-
-기존 `UCCLNetworkSmokeSubsystem::ShouldCreateSubsystem`은 Dedicated Server를 제외한다. 환경 서버 검증기에 이 조건을 그대로 복사하지 않는다. 현재 빌드·도구 설정의 사용자 변경은 자동으로 되돌리거나 제출하지 않는다. 테스트 소스가 실제 빌드 대상에 포함되는지도 확인한다.
 
 ## 공통 시간과 천체
 
@@ -354,7 +302,7 @@ StartCase(FName)이 실행 ID를 반환하고 RequestReset(RunId), Stop(RunId), 
 
 ## 단계별 구현과 통과 기준
 
-각 단계에 관련 실험 구역을 함께 만든다. 아래 순서는 완료 이력이 아니다. 결과는 마지막 절에 기록한다. 아직 없는 후속 기능은 명시한 시험 입력으로 연결하고 완료로 표시하지 않는다. 예를 들어 단계 2는 평면·다중 표면 시험 자료로 질의 계약을 검증하며 실제 지형 편집은 단계 3에서 연결한다.
+각 단계에 관련 실험 구역을 함께 만든다. 아래 순서는 완료 이력이 아니다. 아직 없는 후속 기능은 명시한 시험 입력으로 연결하고 완료로 표시하지 않는다. 예를 들어 단계 2는 평면·다중 표면 시험 자료로 질의 계약을 검증하며 실제 지형 편집은 단계 3에서 연결한다.
 
 | 단계 | 작업 | 통과 기준 |
 |---|---|---|
@@ -368,8 +316,6 @@ StartCase(FName)이 실행 ID를 반환하고 RequestReset(RunId), Stop(RunId), 
 | 7 불·공간 환경 | 연소·열·소화·차폐·실내 온습도·환기·연기 | 구역 10·11, 융해·건조 연계, 시간·물질 단위 |
 | 8 생태·생애 | 개체군·Actor/Mass·식생·부패·Agent 나이 | 중복 없음, 전환·사망·번식·저장, 보호 NPC |
 | 9 통합·규모 | 먼 지역·저장 장애·네트워크 장애·성능·게임 연결 | 구역 08·09, 장시간 반복·패키지·수동 시각 검토 |
-
-최종 소스 변경 후 프로젝트 파일 생성과 Editor 빌드를 확인하고 실험을 실행한다. 엔진 준비 문제로 실행할 수 없으면 소스 완료와 빌드·실행 미검증을 나눠 보고한다. 미실행 상태에서 의존 단계가 통과했다고 기록하지 않는다. 새 맵·에셋은 에디터에서 열고 저장하며 LFS 대상과 실제 콘텐츠를 확인한다.
 
 ## 검증 수치와 성능
 
@@ -421,15 +367,13 @@ StartCase(FName)이 실행 ID를 반환하고 RequestReset(RunId), Stop(RunId), 
 
 ## 실행 결과 기록
 
-문서 작성 시점에는 이 계획에 따른 코드·새 맵의 구현과 실행을 시작하지 않았다. 노트북에서 단계별 상태, 변경 파일, 실행 환경, 생성·빌드·자동 검사·수동 검토 결과, 남은 문제와 다음 작업을 기록한다. 실패·미실행을 성공에 포함하지 않는다. 상세 로그와 실제 기기 경로는 Git에서 제외된 로컬 위치에 보관한다.
-
+단계 0-3의 설계와 실행 기록이다. 각 기록은 작성 당시의 상태를 보존한다.
 
 ### 2026-10-09 착수 범위
 
 단계 0의 설치 확인을 진행하고 단계 1의 시간 코어를 준비한다. 엔진 설치 완료 전에는 빌드와 에디터 실행을 보류한다. 기존 5.9 리소스의 로드·임포트 문제는 사용자가 보고한 환경 제약이며 이 기기에서 재현 검증하지 않았다. 기존 맵·에셋과 사용자 빌드 설정 변경을 보존한다.
 
 첫 작업 묶음은 설치 상태를 다시 확인하는 진단 도구, 공통 시간의 후보·확정·재시도·복원 계약, 그 계약의 자동 검사 소스다. 목표는 배율 변경 전후의 시간을 구분하고 처리하지 못한 시간을 완료 시각에 포함하지 않는 것이다. 기존 Agent의 시간 소유권 이전은 부분 실패와 저장 계약을 함께 검증할 때 연결한다. 이 준비 작업만으로 단계 1을 통과 처리하지 않는다.
-
 
 #### 단계 0 확인 결과
 
@@ -442,10 +386,10 @@ StartCase(FName)이 실행 ID를 반환하고 RequestReset(RunId), Stop(RunId), 
 | 프로젝트 파일 생성 | 미실행 | 현재 설치 경로에는 `Build/BatchFiles/GenerateProjectFiles.bat`이 없다. 설치 완료 후 Launcher 배포본의 UBT 생성 경로를 확인한다 |
 | 테스트 포함 | 기존 `bForceIncludeTestsFolder` 설정은 사용자 변경으로 주석 상태 | 해당 설정을 되돌리지 않았다. 기존 Tests 폴더의 실제 컴파일·테스트 검색 여부는 미확인이다 |
 | 콘텐츠 | 검사한 `.uasset`·`.umap` 279개, LFS 포인터 0개 | 파일 헤더만 확인했다. 5.8.3 로드·임포트 호환을 증명하지 않는다 |
-| 기존 에셋 오류 | 저장된 5.8.2 로그에서 최신 커스텀 버전으로 인한 로드 실패 확인 | `Saved/Logs/CCL.log:473`, `:1121`의 `SKM_Manny_Simple`, `:1123`의 `ABP_Combat`. 이번 실행으로 재현한 결과는 아니다 |
+| 기존 에셋 오류 | 저장된 5.8.2 로그에서 최신 커스텀 버전으로 인한 로드 실패 확인 |, `:1121`의 `SKM_Manny_Simple`, `:1123`의 `ABP_Combat`. 이번 실행으로 재현한 결과는 아니다 |
 | 기존 회귀 기준 | 이동·사망·재스폰, 전투·마을·저장, Agent 실행 검사 | [MultiplayerFoundation](MultiplayerFoundation.md#검증-상태), [AgentFoundation](AgentFoundation.md#검증)의 과거 결과를 기준으로 삼는다. 이 기기의 새 실행 결과는 없다 |
 
-진단 원본은 `Saved/Tests/EnvironmentPreflight/20261008T180704Z.json`에 있다. 파일명과 보고 시각은 UTC이며 한국 시각으로 2026-10-09에 해당한다. 실제 기기 경로는 이 로컬 보고서에만 보관했다. `Tools/Validation/environment_preflight.py`는 로컬 경로 설정을 읽고 설치·도구·Git·LFS 상태를 수집한다. 소스 설치본의 BAT가 없는 경우를 별도로 표시하며 빌드 성공을 보고하지 않는다.
+파일명과 보고 시각은 UTC이며 한국 시각으로 2026-10-09에 해당한다. 실제 기기 경로는 이 로컬 보고서에만 보관했다. `Tools/Validation/environment_preflight.py`는 로컬 경로 설정을 읽고 설치·도구·Git·LFS 상태를 수집한다. 소스 설치본의 BAT가 없는 경우를 별도로 표시하며 빌드 성공을 보고하지 않는다.
 
 #### 시간 코어의 책임과 경계
 
@@ -516,7 +460,6 @@ Clock.Commit(Retry.Ticket, Error);
 
 2026-10-09 사용자의 전체 push 지시에 따라 시간 코어·자동 검사·진단 도구를 문서와 함께 제출한다. 프로젝트 생성·빌드·실행 검증은 엔진 설치 후 수행하며, 이번 소스 제출을 단계 1 통과로 처리하지 않는다.
 
-
 ### 9단계까지의 실행 관리
 
 사용자가 9단계까지의 구현과 단계별 완료 알림을 요청했다. 위 통과 기준을 그대로 적용하며 코드 작성·빌드·실행·시각 검토를 구분한다. 완료 알림은 통과 근거를 확인한 단계에만 보낸다.
@@ -548,14 +491,14 @@ bool bCommitted = CCLWorldAdvance::Advance(Clock, Life, 0.25, 15, Error);
 
 | 검사 | 결과 | 로컬 근거 |
 |---|---|---|
-| 엔진 진단 | UE 5.8.3 소스 설치, 필수 파일 존재, LFS 포인터 0개 | `Saved/EnvironmentGoal/preflight.json` |
+| 엔진 진단 | UE 5.8.3 소스 설치, 필수 파일 존재, LFS 포인터 0개 | |
 | 진단 도구 | 12개 통과 | `Tools/Validation/Tests/test_environment_preflight.py`의 실행 결과 |
-| 프로젝트 파일 생성 | 성공 | `Saved/EnvironmentGoal/generate-project.log` |
-| Editor 빌드 | 성공 | `Saved/EnvironmentGoal/build.log` |
-| CCL 자동 검사 | 20개 통과, 실패·미실행 0개 | `Saved/Tests/Automation/20261009-115646-020/report/index.json` |
-| 실제 생활 Agent | 행동·경제·피해 기억·저장 복원 통과 | `Saved/Tests/AgentWorld/20261009-115349/editor.log` |
-| Dedicated와 클라이언트 2개 | 이동·사망·재스폰·다른 Pawn 유지 통과 | `Saved/Tests/NetworkSmoke/Dedicated-20261009-115350/` |
-| 별도 프로세스 저장 복원 | 검증 슬롯 기록·재시작·아이템·진행 복원 통과 | `Saved/Tests/SessionSmoke/20261009-115720/` |
+| 프로젝트 파일 생성 | 성공 | |
+| Editor 빌드 | 성공 | |
+| CCL 자동 검사 | 20개 통과, 실패·미실행 0개 | |
+| 실제 생활 Agent | 행동·경제·피해 기억·저장 복원 통과 | |
+| Dedicated와 클라이언트 2개 | 이동·사망·재스폰·다른 Pawn 유지 통과 | |
+| 별도 프로세스 저장 복원 | 검증 슬롯 기록·재시작·아이템·진행 복원 통과 | |
 
 새 검사는 후보의 첫 시간 구간에서 자원이 바뀐 뒤 다음 구간이 예산 때문에 실패하는 상황을 포함한다. 실패 전후 저장 바이트가 같고, 재시도 결과가 중단 없는 실행의 경제·판단 기록과 같은지 확인한다. 실행권과 예약·Actor 실행 주체도 보존한다. 배율 변경 전에 받은 대기 입력이 새 배율로 해석되지 않는지 함께 확인한다. 30일 경제 검사도 통과했다.
 
@@ -594,15 +537,15 @@ classDiagram
 
 | 검사 | 결과 | 근거 |
 |---|---|---|
-| 최종 프로젝트 파일 생성 | 성공 | `Saved/EnvironmentGoal/runtime-generate.log` |
-| 최종 CCLEditor Development 빌드 | 성공 | `Saved/EnvironmentGoal/runtime-build.log` |
-| 전체 자동 검사 | 24개 성공, 실패·미실행 0개 | `Saved/Tests/Automation/20261009-123047-132/report/index.json` |
+| 최종 프로젝트 파일 생성 | 성공 | |
+| 최종 CCLEditor Development 빌드 | 성공 | |
+| 전체 자동 검사 | 24개 성공, 실패·미실행 0개 | |
 | 통합 저장 검사 | 미처리 시간·배율 이력, 손상·영역·기반 버전 거부, 쓰기 충돌, 버전 1-5 이전, 영역별 초기화 통과 | `CCL.Environment.Save`의 4개 검사 |
-| Standalone 시간·복원 | 세계 배율 0에서 게임 시계 진행, Agent 동시 복원과 세계 식별 유지 통과 | `Saved/Tests/WorldSmoke/Standalone-20261009-122659-925/result.json` |
-| Listen 시간 복제 | 호스트 검사와 클라이언트 권한 거부·동일 시각 수신 통과 | `Saved/Tests/WorldSmoke/Listen-20261009-122322-354/result.json` |
-| Dedicated 시간 복제 | 서버 검사와 순차 접속 클라이언트 2개의 동일 세계 ID·시각 수신 통과 | `Saved/Tests/WorldSmoke/Dedicated-20261009-122320-929/result.json` |
-| 실제 NPC 연결 | 작업·부상·저장 복원·Actor 제거 후 공통 시계 진행 통과 | `Saved/Tests/AgentWorld/20261009-122236/editor.log` |
-| 별도 프로세스 세션 저장·복원 | 쓰기·읽기 및 메뉴 복귀 후 재복원 통과 | `Saved/Tests/SessionSmoke/20261009-122659/` |
+| Standalone 시간·복원 | 세계 배율 0에서 게임 시계 진행, Agent 동시 복원과 세계 식별 유지 통과 | |
+| Listen 시간 복제 | 호스트 검사와 클라이언트 권한 거부·동일 시각 수신 통과 | |
+| Dedicated 시간 복제 | 서버 검사와 순차 접속 클라이언트 2개의 동일 세계 ID·시각 수신 통과 | |
+| 실제 NPC 연결 | 작업·부상·저장 복원·Actor 제거 후 공통 시계 진행 통과 | |
+| 별도 프로세스 세션 저장·복원 | 쓰기·읽기 및 메뉴 복귀 후 재복원 통과 | |
 
 재실행 명령은 `Tools/Validation/run_world_smoke.ps1 -Mode Standalone`, `-Mode Listen -Port 19782`, `-Mode Dedicated -Port 19783`이다. 세 실행 모드 검사는 기존 Campaign 맵과 NullRHI를 사용했다. 실험장 화면이나 눈·물·날씨를 검증한 결과가 아니다. Listen·Dedicated와 NPC 검사는 영역별 초기화 보완 전 실행했으며, 해당 보완 후 전체 자동 검사·Standalone·세션 재시작 검사를 다시 실행했다. 로컬 로그 경로는 저장소 기준 상대 경로로 기재했다.
 
@@ -618,7 +561,6 @@ classDiagram
 
 실험 저장 슬롯은 캠페인과 분리하고 자동 검사에는 검사용 슬롯을 쓴다. 실험 화면은 기존 CommonUI의 입력·포커스·닫기 경로를 사용한다. 검사는 구역별 상태, 미구현 시험 거부, 서버 권한·낡은 세대 거부, 실제 실패 후 재시도, 초기화·재실행·저장 재개를 포함한다. 에디터 저장과 세 실행 모드, 화면 캡처까지 확인한 뒤 단계 1 통과 여부를 다시 판단한다.
 
-
 #### 실험장 구현과 단계 1 통과
 
 단계 1의 통과 기준을 충족했다. `EnvironmentPlayground`와 `EnvironmentScenario`는 각각 12개 구역 표지판과 같은 실험 정의를 갖춘 World Partition 맵이다. CommonUI 화면에서 구역 이동, 시작·중지·초기화·재실행, 저장·복원과 기존 두 테스트 맵으로 이동할 수 있다. 공통 시간 시험과 배율 변경은 격리 맵에서만 실행한다. 천체·날씨·눈·물·지형·생태·불·차폐의 후속 시험은 미구현 표시와 비활성화 상태를 유지한다.
@@ -629,27 +571,26 @@ classDiagram
 
 | 검사 | 결과와 근거 |
 |---|---|
-| 최종 프로젝트 파일 생성 | 성공, `Saved/EnvironmentGoal/experiment-generate.log` |
-| 최종 CCLEditor Win64 Development 빌드 | 성공, `Saved/EnvironmentGoal/experiment-build.log` |
-| CCL 전체 자동 검사 | 24개 성공, 실패·미실행 0개, `Saved/Tests/Automation/20261009-133042-749/report/index.json` |
-| 새 에디터의 저장 맵 검사 | 두 맵의 표지판 12개·공통 정의 12개 확인, `Saved/EnvironmentGoal/experiment-assets-verify.log` |
-| 종합 맵 Standalone·화면 | `Saved/Tests/Environment/EnvironmentPlayground-Standalone-20261009-133542-865/` |
-| 격리 맵 Standalone·화면 | `Saved/Tests/Environment/EnvironmentScenario-Standalone-20261009-133634-902/` |
-| 종합 맵 Listen·Dedicated | `Saved/Tests/Environment/EnvironmentPlayground-Listen-20261009-132542-350/`, `EnvironmentPlayground-Dedicated-20261009-133043-397/` |
-| 격리 맵 Listen·Dedicated | `Saved/Tests/Environment/EnvironmentScenario-Listen-20261009-133139-710/`, `EnvironmentScenario-Dedicated-20261009-131955-908/` |
-| 두 맵의 별도 프로세스 복원 | `Saved/Tests/Environment/EnvironmentPlayground-Standalone-20261009-132542-101/`, `EnvironmentScenario-Standalone-20261009-132542-350/` |
-| 네 맵 왕복·UI 해제·원래 초기 상태 복원 | `Saved/Tests/Environment/EnvironmentPlayground-Standalone-20261009-133043-121/` |
-| 기존 NPC 행동·경제·복원 | `Saved/Tests/AgentWorld/20261009-133138/editor.log` |
-| 기존 캠페인 별도 프로세스 저장 복원 | `Saved/Tests/SessionSmoke/20261009-133139/` |
+| 최종 프로젝트 파일 생성 | 성공 |
+| 최종 CCLEditor Win64 Development 빌드 | 성공 |
+| CCL 전체 자동 검사 | 24개 성공, 실패·미실행 0개 |
+| 새 에디터의 저장 맵 검사 | 두 맵의 표지판 12개·공통 정의 12개 확인 |
+| 종합 맵 Standalone·화면 | |
+| 격리 맵 Standalone·화면 | |
+| 종합 맵 Listen·Dedicated | |
+| 격리 맵 Listen·Dedicated | |
+| 두 맵의 별도 프로세스 복원 | |
+| 네 맵 왕복·UI 해제·원래 초기 상태 복원 | |
+| 기존 NPC 행동·경제·복원 | |
+| 기존 캠페인 별도 프로세스 저장 복원 | |
 
-화면 검사는 1280×720에서 실제 Slate 포인터 클릭과 F8 닫기를 실행하고 `controls.png`, `station.png`, `overview.png`를 열어 한국어·배치·구역 색상을 확인했다. Nanite 재질의 사용 플래그와 표지판의 Dedicated 처리도 수정했다. 현재 조명은 실험장 가독성을 위한 고정 조명이며 천체에 따른 일조는 단계 2에서 연결한다. 네트워크 검사는 Editor의 게임·서버 모드이며 실제 Server 타깃 패키지의 증거로 사용하지 않는다. 기존 선택적 엔진 플러그인의 Python 초기화 오류는 앞 절과 같다.
+화면 검사는 1280×720에서 실제 Slate 포인터 클릭과 F8 닫기를 실행하고 를 열어 한국어·배치·구역 색상을 확인했다. Nanite 재질의 사용 플래그와 표지판의 Dedicated 처리도 수정했다. 현재 조명은 실험장 가독성을 위한 고정 조명이며 천체에 따른 일조는 단계 2에서 연결한다. 네트워크 검사는 Editor의 게임·서버 모드이며 실제 Server 타깃 패키지의 증거로 사용하지 않는다. 기존 선택적 엔진 플러그인의 Python 초기화 오류는 앞 절과 같다.
 
-직접 확인하려면 에디터에서 `/Game/Maps/EnvironmentPlayground` 또는 `/Game/Maps/EnvironmentScenario`를 열고 실행한다. F8로 실험 화면을 열고 닫는다. 화면의 구역 목록을 스크롤해 00-11을 선택할 수 있다. 각 실행 결과는 `Saved/EnvironmentExperiments/Results/`에 남는다.
+직접 확인하려면 에디터에서 `/Game/Maps/EnvironmentPlayground` 또는 `/Game/Maps/EnvironmentScenario`를 열고 실행한다. F8로 실험 화면을 열고 닫는다. 화면의 구역 목록을 스크롤해 00-11을 선택할 수 있다.
 
 재현 도구는 `Tools/Validation/run_environment_smoke.ps1`이다. `-Map`에 두 맵 중 하나를 지정하고 `-Mode Standalone`, `-Mode Listen`, `-Mode Dedicated`로 검사한다. `-Rendered`는 Standalone의 화면 검사, `-Restart`는 별도 프로세스 저장 복원, `-Map EnvironmentPlayground -Travel`은 맵 왕복 검사다. 새 에셋 생성은 `create_environment_playgrounds.py`, 가독성 조명 설정은 `configure_environment_visuals.py`, 새 에디터의 저장 내용 확인은 `verify_environment_playgrounds.py` 순으로 실행한다.
 
 현재 완료 단계는 0·1이다. 다음 작업은 단계 2의 천체 계산·일조·현지 시각과 다중 표면·차폐 입력이다. 단계 2-9는 미완료이며 기존 전체 목표에 포함된다. 단계별 알림 자동화는 새로 통과한 단계만 알려주도록 유지한다.
-
 
 #### 천체·표면 질의의 구현 설계
 
@@ -685,7 +626,6 @@ bool IKSISurfaceProvider::QuerySurfaces(const FKSISurfaceQuery& Query,
 
 예상 검증은 원·타원 궤도의 알려진 좌표, 부모가 움직이는 위성, 같은 Seed·시각 재현, 역행 자전, 위도·기울기·남북 반구·극지, 거리 제곱에 따른 복사량, 천체 차폐, 위아래 표면·재질 필터·오래된 리비전, 닫힌 문·열린 문·부분 개구부의 독립 차폐다. 잘못된 입력은 기존 정의와 출력 상태를 유지해야 한다. 코어 검사만 통과해도 실험장·저장·네트워크 연결 전에는 단계 2 완료로 표시하지 않는다.
 
-
 #### 천체·차폐 코어와 세계 저장 연결
 
 단계 2의 수치 코어와 서버 저장 연결을 구현했다. `KSICelestialSystem`은 항성·행성·위성의 부모 관계를 검증하고, 확정 세계 시각에서 타원 궤도·자전·현지 태양시·항성 고도·방위·복사량을 계산한다. 같은 정의와 시각을 다시 넣으면 이전 계산 순서와 관계없이 같은 관측값을 얻는다. 초기 제공 정의는 항성 1개, 행성 2개, 위성 1개다. `UKSICelestialDefinition`으로 에디터 편집용 타입을 만들었으며 현재 서버 시작은 Seed 42의 기본 정의를 사용한다. 천체 에셋 선택과 실험 조작 연결은 남아 있다.
@@ -700,20 +640,19 @@ bool IKSISurfaceProvider::QuerySurfaces(const FKSISurfaceQuery& Query,
 
 천체는 최대 64개, 표면과 개구부는 각각 최대 4096개, 환경 입력 직렬화는 최대 4 MiB로 제한한다. 천체 시각 범위는 0-10¹²초다. 표면 탐색은 선형이며 최대 규모 성능을 보장하지 않는다. 같은 실행의 정확한 재현을 검사했으며 다른 플랫폼 사이의 비트 단위 일치를 검증한 것은 아니다.
 
-최종 소스의 프로젝트 파일 생성과 `CCLEditor Win64 Development` 빌드는 성공했다. 로그는 `Saved/EnvironmentGoal/celestial-generate.log`, `celestial-build.log`다. 전체 자동 검사 40개가 성공했고 경고·실패·미실행은 0개다. 보고서는 `Saved/Tests/Automation/20261009-141915-846/report/index.json`이며 실행 시간은 약 2.75초다. 천체 7개·표면 5개·입력 저장 3개·세계 저장 이전 1개를 새로 포함한다. 초기 시험 코드의 배열 자기 참조와 길이 비교의 부호 경고를 수정한 뒤 다시 생성·빌드·검사한 결과다.
+최종 소스의 프로젝트 파일 생성과 `CCLEditor Win64 Development` 빌드는 성공했다. 전체 자동 검사 40개가 성공했고 경고·실패·미실행은 0개다. 천체 7개·표면 5개·입력 저장 3개·세계 저장 이전 1개를 새로 포함한다. 초기 시험 코드의 배열 자기 참조와 길이 비교의 부호 경고를 수정한 뒤 다시 생성·빌드·검사한 결과다.
 
 실제 실행 검사는 다음과 같다. Dedicated의 클라이언트 검사는 기존 공통 시각 수신과 새 환경 변경 API의 권한 거부를 확인했다. 환경 관측값 자체의 클라이언트 복제 검증은 남아 있다. 이번 화면 없는 검사로 천체 조명이나 차폐 외형의 시각 품질을 판단하지 않는다.
 
 | 검사 | 결과와 근거 |
 |---|---|
-| Standalone 환경·시계·생활 동시 복원 | 성공, `Saved/Tests/WorldSmoke/Standalone-20261009-141957-839/` |
-| Dedicated 서버와 클라이언트 2개 | 성공, `Saved/Tests/WorldSmoke/Dedicated-20261009-142016-231/` |
-| 격리 실험장 별도 프로세스 복원 | 성공, `Saved/Tests/Environment/EnvironmentScenario-Standalone-20261009-141959-683/` |
-| 종합·격리·전투·멀티플레이 맵 왕복 | 성공, `Saved/Tests/Environment/EnvironmentPlayground-Standalone-20261009-142029-962/` |
-| 기존 캠페인 세션 재시작 | 성공, `Saved/Tests/SessionSmoke/20261009-141959/` |
+| Standalone 환경·시계·생활 동시 복원 | 성공 |
+| Dedicated 서버와 클라이언트 2개 | 성공 |
+| 격리 실험장 별도 프로세스 복원 | 성공 |
+| 종합·격리·전투·멀티플레이 맵 왕복 | 성공 |
+| 기존 캠페인 세션 재시작 | 성공 |
 
 단계 2는 계속 진행 중이다. 다음 작업은 두 실험 맵의 천체·차폐 배치, 서버 조작, 조명·하늘·진단 화면, 저장된 변경 사항의 재시작과 클라이언트 표시 검증이다. 단계 3-9의 기존 범위는 유지한다.
-
 
 #### 실험장 표현과 서버 관측 복제 설계
 
@@ -722,7 +661,6 @@ bool IKSISurfaceProvider::QuerySurfaces(const FKSISurfaceQuery& Query,
 서버 관측 화면은 공통 시각과 같은 복제 구조체에 넣는다. 천체 방향·일조·입력 리비전·표면 실행 세대, 맵이 지정한 진단 위치의 차폐와 개구부 상태를 전달한다. 진단 위치는 최대 8개, 표시 대상 개구부는 최대 64개다. 이는 실험 화면의 관심 목록 한도이며 전 행성의 표면 데이터를 매 갱신마다 복제하는 계약이 아니다. 일반 지형·수역의 범위별 복제는 해당 단계에서 연결한다.
 
 표현 Actor는 이 관측값으로 Directional Light와 표면 외형을 갱신한다. 물리 계산의 W/m²와 실험장 가독성을 위한 조명 강도 배율을 구분한다. 평면 차폐의 열린 영역과 같은 치수로 문 판을 줄여 표시하며 지붕·벽·유리와 실내외 진단 위치를 배치한다. 천체·차폐 수치 시험은 두 맵에서 실행하고, 세계 시간 변경을 수반하는 조작은 격리 맵에서만 허용한다. 자동 수치 통과와 렌더링 검토 결과를 따로 남긴다.
-
 
 #### 단계 2 완료 결과
 
@@ -734,27 +672,26 @@ F8 화면의 구역 01에서 천체 재현 검사를 실행한다. 격리 맵에
 
 태양 조명은 서버가 보낸 방향을 사용하며 지평선 아래에서는 직접광을 끈다. 달·다른 행성의 방향·각반경·밝은 면 비율은 관측 자료이고, 현재 실험 화면에는 각반경과 밝은 면 비율을 표시한다. 달·행성의 별도 하늘 메시와 최종 아트는 이 결과에 포함하지 않는다. 방의 표시·충돌은 질의 평면을 중심으로 두께 5cm인 메시를 사용한다. 문 폭의 변경과 실제 충돌이 일치하는지 검사했으며 임의의 곡면 지형은 단계 3에서 연결한다.
 
-검증 환경은 UE 5.8.3 소스 빌드와 Windows Editor다. 아래 경로는 저장소 기준이며 실제 기기 절대 경로는 생략했다. 원본 로그와 화면은 Git에서 제외된 `Saved/`에 보관한다.
+검증 환경은 UE 5.8.3 소스 빌드와 Windows Editor다. 아래 경로는 저장소 기준이며 실제 기기 절대 경로는 생략했다.
 
 | 검사 | 결과와 근거 |
 |---|---|
-| 최종 프로젝트 파일 생성·Editor 빌드 | 성공, `Saved/EnvironmentGoal/celestial-view-generate.log`, `celestial-view-build.log` |
-| CCL 자동 검사 | 42개 성공, 경고·실패·미실행 0개, `Saved/Tests/Automation/20261009-150828-426/report/index.json` |
-| 새 에디터의 저장 맵 확인 | 표면·개구부·진단 위치와 태양의 Movable 설정 확인, `Saved/EnvironmentGoal/celestial-assets-verify.log` |
-| 격리 맵 실제 조작·화면 | 자전·문 버튼의 Slate 클릭, 조명 방향·문 충돌·복원 통과, `Saved/Tests/Environment/EnvironmentScenario-Standalone-20261009-151147-412/` |
-| 종합 맵 실제 조작·화면 | 문 클릭·전역 조작 제한·조명·충돌·복원 통과, `Saved/Tests/Environment/EnvironmentPlayground-Standalone-20261009-151231-173/` |
-| 격리 맵 Listen·Dedicated | `Saved/Tests/Environment/EnvironmentScenario-Listen-20261009-150446-279/`, `EnvironmentScenario-Dedicated-20261009-150328-845/` |
-| 종합 맵 Listen·Dedicated | `Saved/Tests/Environment/EnvironmentPlayground-Listen-20261009-150828-972/`, `EnvironmentPlayground-Dedicated-20261009-150444-487/` |
-| 별도 프로세스 복원 | 위도·문 개방 상태 포함, `Saved/Tests/Environment/EnvironmentScenario-Standalone-20261009-150447-295/`, `EnvironmentPlayground-Standalone-20261009-150829-581/` |
-| 기존 네 맵 왕복 | 원래 세계·시각과 초기화 기준 유지, `Saved/Tests/Environment/EnvironmentPlayground-Standalone-20261009-150858-861/` |
-| 기존 공통 시간 서버 검사·캠페인 저장 | `Saved/Tests/WorldSmoke/Dedicated-20261009-151147-911/`, `Saved/Tests/SessionSmoke/20261009-151147/` |
+| 최종 프로젝트 파일 생성·Editor 빌드 | 성공 |
+| CCL 자동 검사 | 42개 성공, 경고·실패·미실행 0개 |
+| 새 에디터의 저장 맵 확인 | 표면·개구부·진단 위치와 태양의 Movable 설정 확인 |
+| 격리 맵 실제 조작·화면 | 자전·문 버튼의 Slate 클릭, 조명 방향·문 충돌·복원 통과 |
+| 종합 맵 실제 조작·화면 | 문 클릭·전역 조작 제한·조명·충돌·복원 통과 |
+| 격리 맵 Listen·Dedicated | |
+| 종합 맵 Listen·Dedicated | |
+| 별도 프로세스 복원 | 위도·문 개방 상태 포함 |
+| 기존 네 맵 왕복 | 원래 세계·시각과 초기화 기준 유지 |
+| 기존 공통 시간 서버 검사·캠페인 저장 | |
 
 Dedicated 검사는 서버와 조작·관찰 클라이언트 두 개를 실행했다. 늦게 접속한 클라이언트가 받은 시각으로 천체 방향·현지 시각을 다시 계산해 비교했고, 열린 문과 지붕 차폐의 수신도 확인했다. Listen 검사는 호스트와 관찰 클라이언트를 사용했다. 실제 Server 타깃 패키지와 지연·손실의 전체 조합은 단계 9의 검증 범위다. 1280×720 화면에서 조작부·하단 안내의 겹침이 없고 반 열림·열림의 문 폭이 다른 것을 확인했다. 선택적 엔진 플러그인의 Python 초기화 오류는 앞서 기록한 별도 환경 문제로 남아 있다.
 
 환경이 없는 스키마 1 저장은 런타임에서 해당 맵의 초기 환경을 선택한다. 맵 설정이 없으면 Seed 42의 기본 환경을 사용한다. 스키마 2 저장의 명시된 천체 정의 버전이 맵과 다르면 자동 치환하지 않는다. 스키마 1의 바이트 변환은 자동 검사로 확인했으며 과거 실험장 저장 파일을 새 맵에서 직접 여는 호환성 조합은 단계 9에서 추가 검사한다. 현재 두 맵의 새 프로세스 검사는 스키마 2 저장 복원이다.
 
 다음 지형 실험은 후보 메시·충돌을 준비한 뒤 여러 청크를 함께 확정하는 계약부터 구현한다. UE의 `DynamicMeshComponent.cpp:1598-1707`은 개별 컴포넌트의 비동기 충돌 생성 완료 시 그 몸체를 교체한다. 프로젝트의 여러 청크를 한 번에 확정하는 기능은 별도로 필요하다. `MarchingCubes.h:50-178`의 Bounds와 셀 수 계산은 경계에서 한 셀을 더 생성할 수 있으므로 공유 표본·경계 소유권을 먼저 검사한다. 이 엔진 근거는 `<Engine>/Source/Runtime/GeometryFramework/Private/Components/`와 `<Engine>/Source/Runtime/GeometryCore/Public/Generators/`에서 확인했다.
-
 
 #### 영구 지형 코어와 확정 경계 설계
 
@@ -788,7 +725,6 @@ classDiagram
 
 코어 검사는 경계를 가로지르는 편집, 음수 좌표 소유권, 굴착·성토·공동 표현, 보호 범위·권한·예산 초과, 중복·오래된 후보·실패 후 상태 유지, 저장 순서 재현·손상·다른 세계/세대 거부를 포함한다. 엔진 연결 검사에서는 후보 충돌 생성 실패, 캐릭터 겹침, 여러 청크 동시 교체, 늦은 충돌 결과, 내비게이션 준비와 실제 클라이언트 접속을 추가한다. 후속 물·눈 계층이 없는 시점에는 해당 계약을 시험 입력으로 검사하고 실제 연동은 각 단계에서 검증한다.
 
-
 #### 청크 표면 추출 설계
 
 `FKSITerrainMesher`는 불변 지역 상태와 실행 세대에서 청크 하나의 정점·삼각형·재질을 만든다. 서버나 클라이언트의 표시 컴포넌트를 직접 바꾸지 않으며 작업 수명은 추출 요청 하나다. 결과에는 세계·지역·실행 세대와 입력 리비전을 함께 넣어 후속 실행기가 오래된 결과를 거부할 수 있게 한다. `BuildChunk(Snapshot, Chunk, Epoch, OutMesh, Error, Cancel)`가 실패하거나 취소되면 기존 출력은 유지한다.
@@ -798,7 +734,6 @@ classDiagram
 인접 청크가 같은 전역 격자 좌표에서 밀도를 읽고 교차점을 계산한다. 출력 정점은 청크 원점 기준 미터 좌표다. 지역 끝의 불완전한 청크도 범위에 맞춰 잘라 처리한다. 엔진의 영점 표본 보간은 비다양체 방지를 위해 교차점을 모서리 안쪽으로 10⁻⁶만큼 이동한다. 이 동작은 유지하고 평면·굴착 경계·지하 공동에서 위치·면의 방향·연결이 허용 오차를 만족하는지 검사한다. 엔진 근거는 `<Engine>/Source/Runtime/GeometryCore/Public/Generators/MarchingCubes.h:238`, `:793`, `:973`이다.
 
 최초 추출은 청크 안에서 직렬로 계산해 같은 입력의 정점·삼각형 순서를 검사한다. 청크별 비동기 병렬 처리는 후속 실행기에서 확장한다. 이 선택은 청크 하나의 처리량보다 재현과 취소 경계를 먼저 검증하기 위한 것이며 전체 월드의 성능 보장은 아니다. 예상 검증 결과는 평면의 추가 셀·중복 면 없음, 청크 경계의 같은 교차점, 내부 공동의 닫힌 표면, 취소 시 이전 출력 유지다. 실제 DynamicMesh 표시와 Chaos 충돌은 별도 연결 검증이 필요하다.
-
 
 #### 지형 데이터·표면 코어 검증 결과
 
@@ -812,15 +747,14 @@ classDiagram
 
 | 검사 | 결과와 근거 |
 |---|---|
-| 최종 프로젝트 파일 생성 | 성공, `Saved/EnvironmentGoal/terrain-core-generate.log` |
-| 최종 `CCLEditor Win64 Development` 빌드 | 성공, `Saved/EnvironmentGoal/terrain-core-build.log` |
-| 지형 코어·메시 자동 검사 | 11개 성공, `Saved/Tests/Automation/20261009-155209-237/report/index.json` |
-| CCL 전체 자동 검사 | 53개 성공, 경고·실패·미실행 0개, `Saved/Tests/Automation/20261009-155316-469/report/index.json` |
+| 최종 프로젝트 파일 생성 | 성공 |
+| 최종 `CCLEditor Win64 Development` 빌드 | 성공 |
+| 지형 코어·메시 자동 검사 | 11개 성공 |
+| CCL 전체 자동 검사 | 53개 성공, 경고·실패·미실행 0개 |
 
-첫 GeometryCore 연결 빌드는 컴파일 오류 없이 중간 종료됐다. 원인은 확인되지 않았으며 원본은 `Saved/EnvironmentGoal/terrain-core-build-interrupted.log`에 보존했다. 최종 생성·빌드는 병렬 작업을 4개로 제한하고 개별 작업을 NoUba로 실행해 링크와 성공 결과를 확인했다. 위 결과는 UE 5.8.3의 Windows Editor 검사다.
+첫 GeometryCore 연결 빌드는 컴파일 오류 없이 중간 종료됐다. 최종 생성·빌드는 병렬 작업을 4개로 제한하고 개별 작업을 NoUba로 실행해 링크와 성공 결과를 확인했다. 위 결과는 UE 5.8.3의 Windows Editor 검사다.
 
 다음 작업은 후보 메시에서 충돌을 준비하는 실행기다. 기존 확정 충돌을 유지한 상태로 모든 영향 청크를 준비하고 점유·권한·리비전을 재검사한 뒤 함께 교체해야 한다. 그다음 표면 질의·내비게이션·지역 저장·클라이언트 준비와 실험장에 연결한다. 단계 4-9의 물·눈·날씨·불·생태계·통합 검증 범위는 유지한다.
-
 
 #### 후보 충돌과 서버 확정 실행기 설계
 
@@ -844,7 +778,6 @@ classDiagram
 
 물리 교체는 `FPhysicsCommand::ExecuteWrite`의 장면 쓰기 잠금 안에서 실행한다. 신규 충돌 등록과 데이터 확정이 성공한 뒤 기존 충돌을 제거한다. 근거는 `<Engine>/Source/Runtime/Engine/Private/PhysicsEngine/Experimental/PhysInterface_Chaos.cpp:639`다. 같은 게임 스레드 호출 안에서 교체하지만 복제·내비게이션이 동시에 준비된다는 의미로 확대하지 않는다. 검증은 실제 월드 광선·캡슐 검사, 여러 청크의 굴착·성토, 준비 중 기존 바닥 유지, 점유·권한 변경 거부, 취소·늦은 완료 폐기를 포함한다.
 
-
 #### 지형 실행기 검증과 인계
 
 > 다음 인계는 지형·충돌 실행기만 완료했던 시점의 기록이다. 남은 연결은 [영구 지형 통합과 검증](EnvironmentTerrain.md)에서 완료·검증했으며 현재 시작점은 문서 맨 위를 따른다.
@@ -855,22 +788,17 @@ classDiagram
 
 표시 검토에서 삼각형의 앞뒷면이 UE 기준과 반대인 결함을 찾아 추출 결과의 두 인덱스를 교환했다. 법선 자동 검사도 엔진의 `VectorUtil::Normal`을 사용한다. 근거는 `<Engine>/Source/Runtime/GeometryCore/Public/VectorUtil.h:80-96`의 왼손 좌표계 법선 계산이다. 앞선 코어 검사 기록의 면 방향 판정은 이 수정과 최종 화면 검토로 보완한다. 최종 캡처에서는 단면 재질의 바닥, 구덩이 내부와 성토 외부가 모두 보인다. 재질 종류별 아트, 노멀맵과 눈·물 표현은 아직 적용하지 않았다.
 
-검증 환경은 UE 5.8.3 소스 빌드, Windows Editor의 Standalone 게임 실행이다. 검사는 기존 미커밋 UI·캠페인 변경이 있는 작업 트리에서 실행했으며 새 체크아웃만의 결과는 별도 확인 전이다. 로컬 `CCL.Build.cs`의 `bForceIncludeTestsFolder` 주석과 두 Target의 `BuildSettingsVersion.Latest` 변경도 유지했지만 이번 제출에는 포함하지 않는다. 다음 기기는 실제 엔진의 빌드 설정 지원과 검사 검색 결과를 먼저 확인한다. 아래 경로는 저장소 기준이며 기기별 절대 경로는 생략했다. 원본 로그·화면은 Git에서 제외된 `Saved/`에 있으므로 다른 기기에서는 명령을 재실행해 생성한다.
+검증 환경은 UE 5.8.3 소스 빌드, Windows Editor의 Standalone 게임 실행이다. 검사는 기존 미커밋 UI·캠페인 변경이 있는 작업 트리에서 실행했으며 새 체크아웃만의 결과는 별도 확인 전이다. 로컬 `CCL.Build.cs`의 `bForceIncludeTestsFolder` 주석과 두 Target의 `BuildSettingsVersion.Latest` 변경도 유지했지만 이번 제출에는 포함하지 않는다. 다음 기기는 실제 엔진의 빌드 설정 지원과 검사 검색 결과를 먼저 확인한다. 아래 경로는 저장소 기준이며 기기별 절대 경로는 생략했다.
 
 | 검사 | 결과 | 근거 |
 |---|---|---|
-| 최종 프로젝트 파일 생성 | 성공 | `Saved/EnvironmentGoal/terrain-runtime-generate.log` |
-| 최종 `CCLEditor Win64 Development` 빌드 | 성공 | `Saved/EnvironmentGoal/terrain-runtime-build.log` |
-| CCL 자동 검사 | 53개 성공, 경고·실패·미실행 0개 | `Saved/Tests/Automation/20261009-164328-483/report/index.json` |
-| 최종 지형 실행 검사 | 성공, Revision 3, 청크 8개, 참여자 Commit 2회·Abort 7회 | `Saved/Tests/Terrain/20261009-164327-226/game.log`, `result.json` |
-| 최종 화면 검토 | 바닥·굴착·성토 앞면 확인 | 같은 지형 검사 폴더의 `terrain.png` |
+| 최종 프로젝트 파일 생성 | 성공 | |
+| 최종 `CCLEditor Win64 Development` 빌드 | 성공 | |
+| CCL 자동 검사 | 53개 성공, 경고·실패·미실행 0개 | |
+| 최종 지형 실행 검사 | 성공, Revision 3, 청크 8개, 참여자 Commit 2회·Abort 7회 | |
+| 최종 화면 검토 | 바닥·굴착·성토 앞면 확인 | 같은 지형 검사 폴더의 |
 
 재실행 담당자는 기기별 경로 설정과 엔진 준비를 확인한 뒤 저장소 루트에서 다음 명령을 실행한다. 첫 명령은 자동 검사이며 둘째 명령은 별도 게임 프로세스에서 지형 검사를 실행하고 화면을 저장한다. `-Rendered`를 생략하면 NullRHI로 검사한다. 검증 스크립트가 사용하는 맵은 `/Game/Maps/EnvironmentScenario`다.
-
-```powershell
-& Tools/Validation/run_automation.ps1 -Filter 'CCL.' -TimeoutSeconds 240
-& Tools/Validation/run_terrain_smoke.ps1 -Rendered -TimeoutSeconds 240
-```
 
 지형 검사는 `-CCLTerrainSmoke`로만 생성되는 `UCCLTerrainSmokeSubsystem`이 실행한다. 검사 Actor와 촬영용 조명·카메라는 실행 중 생성하며 저장된 맵 에셋에 추가하지 않는다. 두 실험 맵의 구역 05 조작 화면에는 아직 연결하지 않았다. `IsTerrainReady()`는 게시된 지형 충돌이 있다는 뜻이고 내비게이션·클라이언트·저장 준비까지 보장하지 않는다. 물·눈 참여자는 시험 구현으로만 확인했으며 실제 물·눈 상태는 후속 단계에서 연결한다.
 
@@ -892,7 +820,7 @@ classDiagram
 
 `run_environment_smoke.ps1`은 지연·손실 옵션, 관측자 재접속, 게임·서버 실행 파일 선택을 지원한다. 각 네트워크 로그에서 요청한 에뮬레이션 설정이 적용됐는지 확인한다. 관측자 재접속은 새 클라이언트 프로세스의 세계 상태 수신·조작 권한 검증이며 저장 플레이어 신원 복원 검사가 아니다.
 
-2026-10-10 최종 프로젝트 파일 생성과 Editor 빌드는 `Saved/EnvironmentStages/IntegrationRetry-GPF.log`, `IntegrationRetry-Build.log`에서 통과했다. 환경 맵과 기존 전투·멀티플레이 맵 왕복은 `Saved/Tests/Environment/EnvironmentPlayground-Standalone-20261010-232428-353`에서 통과했다. 이후 변경은 구역 01의 실제 시간 제한뿐이다. 렌더링한 환경 실험은 `EnvironmentPlayground-Standalone-20261010-232808-742`에서 통과했고 단일 시간 소유자·잘못된 반납·정상 재개, 초기화의 플레이어 계좌·금화 83 보존, 메뉴·차폐 조작을 포함한다. `controls.png`와 `overview.png`에서 메뉴와 실험장 배치를 확인했다. 최종 아트 검토를 완료한 결과는 아니다.
+2026-10-10 최종 프로젝트 파일 생성과 Editor 빌드는 통과했다. 이후 변경은 구역 01의 실제 시간 제한뿐이다. 렌더링한 환경 실험은 통과했고 단일 시간 소유자·잘못된 반납·정상 재개, 초기화의 플레이어 계좌·금화 83 보존, 메뉴·차폐 조작을 포함한다. 최종 아트 검토를 완료한 결과는 아니다.
 
 Dedicated 모드의 환경 Scenario는 80ms 지연·2% 손실에서 조작자·관측자·관측자 재접속까지 통과했다. `Saved/Tests/Environment/EnvironmentScenario-Dedicated-20261010-232811-881/result.json`은 전체 115.15초와 각 프로세스 로그를 기록한다. 서버와 세 클라이언트 실행 로그에서 `PktLag set to 80`, `PktLoss set to 2`를 확인했다. 이 실행의 서버는 Editor 서버 모드이고 클라이언트도 Editor 게임 모드다. 실제 Server 타깃·게임 패키지의 실행 결과는 [Packaging](Packaging.md)이 소유한다.
 
@@ -912,13 +840,12 @@ CSV 요약은 요청한 프레임 수가 실제 파일의 표본 수와 같은�
 
 | 실행 | 프레임 평균 | Tickable 평균 | GPU 평균 | 원본 위치 |
 |---|---|---|---|---|
-| 렌더링 1280×720 | 202.51ms | 189.69ms | 44.77ms | `Saved/Tests/Environment/EnvironmentScenario-Standalone-20261010-234916-879` |
-| NullRHI | 212.87ms | 203.05ms | 미측정 | `Saved/Tests/Environment/EnvironmentScenario-Standalone-20261010-235104-480` |
+| 렌더링 1280×720 | 202.51ms | 189.69ms | 44.77ms | |
+| NullRHI | 212.87ms | 203.05ms | 미측정 | |
 
 이는 기능 통과나 성능 목표 달성 결과가 아니다. 렌더링을 끄고도 큰 Tickable 비용이 남았으며, 현재 지형 질의는 청크와 만나지 않는 광선에도 모든 삼각형을 검사한다. [지형 질의 수정 계획](EnvironmentTerrain.md#규모-검사에서-발견한-지형-질의-비용과-수정-계획)에 따라 청크 경계 검사와 단계별 계측을 추가했다. 아래 후속 실행에서 짧은 구간의 비용을 확인했으며, 빌드가 겹친 이 예비 실행과의 정확한 개선 비율은 계산하지 않는다.
 
-`EnvironmentPlayground-Standalone-20261010-232808-742`의 일곱 캡처를 확인했다. 안내·조작 화면을 읽을 수 있고 반 열림·열림의 문 폭이 다르다. 실험장 바깥의 검은 영역과 단순한 표면·생물 표현은 남아 있으며 최종 아트 통과로 기록하지 않는다.
-
+안내·조작 화면을 읽을 수 있고 반 열림·열림의 문 폭이 다르다. 실험장 바깥의 검은 영역과 단순한 표면·생물 표현은 남아 있으며 최종 아트 통과로 기록하지 않는다.
 
 ## 구역 09 순환 실험 설계
 
@@ -928,22 +855,20 @@ CSV 요약은 요청한 프레임 수가 실제 파일의 표본 수와 같은�
 
 단일 구역에서 반복을 관찰할 수 있지만 경사 바닥은 시험 자료다. 실제 영구 지형의 새 수로 편집은 구역 05의 충돌·표면 교체 경로를 이어서 검사해야 한다. 이 순환 실험만으로 단계 9 전체, 자동 자연 기후 순환이나 최종 시각 품질을 완료 처리하지 않는다.
 
-
 ## 지형 질의 수정 후 프레임 계측
 
-2026-10-11 최종 지형 경계·서버 표현 수정의 생성·Editor 빌드 후 CCL 자동 검사 145/145를 통과했다. 경고·실패·미실행은 0개이며 `Saved/Tests/Automation/20261011-003417-156/report/index.json`이 근거다. 렌더링한 환경 Playground 기능 검사도 `EnvironmentPlayground-Standalone-20261011-003806-803`에서 통과했다. 이 절의 결과는 이후 구역 09 추가 전 소스 기준이다.
+2026-10-11 최종 지형 경계·서버 표현 수정의 생성·Editor 빌드 후 CCL 자동 검사 145/145를 통과했다. 이 절의 결과는 이후 구역 09 추가 전 소스 기준이다.
 
 자체 빌드 프로세스가 없는 상태에서 Scenario를 각 600프레임 기록하고 첫 30개를 제외한 570개 표본을 요약했다. Ryzen 9 3950X·RTX 4070 Ti, 1280×720, 60fps 제한이다.
 
 | 실행 | 프레임 평균 / 95백분위 | 게임 스레드 평균 | GPU 평균 | 대기 게임 시간 | 원본 폴더 |
 |---|---|---|---|---|---|
-| 렌더링 | 16.6692 / 16.6765ms | 6.7047ms | 4.9195ms | 0.2399–0.2414초 | `EnvironmentScenario-Standalone-20261011-003534-089` |
-| NullRHI | 16.6668 / 16.6752ms | 미측정 | 미측정 | 0.2487–0.2488초 | `EnvironmentScenario-Standalone-20261011-003630-037` |
+| 렌더링 | 16.6692 / 16.6765ms | 6.7047ms | 4.9195ms | 0.2399–0.2414초 | |
+| NullRHI | 16.6668 / 16.6752ms | 미측정 | 미측정 | 0.2487–0.2488초 | |
 
-원본은 `Saved/Tests/Environment/` 아래에 있으며 CSV·JSON과 프로세스 표본을 보존한다. 두 실행 모두 아직 시계에 입력되지 못한 게임 시간은 0이었다. 렌더링의 세계 완료 시각은 60초에서 629초로 진행했다. 프레임 제한에서의 짧은 고정 시점 관측이며 대규모·장시간·전체 맵 프레임 보장이 아니다.
+두 실행 모두 아직 시계에 입력되지 못한 게임 시간은 0이었다. 렌더링의 세계 완료 시각은 60초에서 629초로 진행했다. 프레임 제한에서의 짧은 고정 시점 관측이며 대규모·장시간·전체 맵 프레임 보장이 아니다.
 
 중첩된 exclusive CSV 구간은 자식 비용을 뺀다. 따라서 기존 Tickables와 비교하려면 새 Tickables·WorldAdvance·SurfaceAdvance·EcologyAdvance를 합산해야 한다. 이 합은 렌더링 평균 약 2.165ms, NullRHI 약 1.990ms였다. 지형 경계 검사 자체의 전체 비용 비중을 별도로 측정한 수치는 아니다.
-
 
 ## 집계 생태와 통합 규모 검증 계획
 
@@ -953,25 +878,23 @@ CSV 요약은 요청한 프레임 수가 실제 파일의 표본 수와 같은�
 
 ## 집계 영양 상태 변경 후 통합 검사
 
-2026-10-11의 경비·보스 ID와 보급품 배치 수정은 로컬 커밋 `004a8c3`에 있다. 그 위에 집계 영양 상태와 생태 본문 형식 6을 추가했다. 아래 검사는 같은 월드 저장 봉투 형식 7과 함께 실행했으며 원본은 로컬 `Saved/`에 보관한다. 기기별 절대 경로는 표에서 생략했다.
+2026-10-11의 경비·보스 ID와 보급품 배치 수정은 로컬 커밋 `004a8c3`에 있다. 그 위에 집계 영양 상태와 생태 본문 형식 6을 추가했다. 기기별 절대 경로는 표에서 생략했다.
 
 | 검사 | 결과 | 근거 |
 |---|---|---|
-| 개인 세션 저장·새 프로세스 재개·승리 복원 | 통과 | `Saved/Tests/SessionSmoke/20261011-161839` |
-| Scenario 환경 세계의 새 프로세스 재개 | 통과 | `Saved/Tests/Environment/EnvironmentScenario-Standalone-20261011-161916-121` |
-| Playground 환경 세계·지형의 맵 왕복 | 통과 | `Saved/Tests/Environment/EnvironmentPlayground-Standalone-20261011-161942-860` |
+| 개인 세션 저장·새 프로세스 재개·승리 복원 | 통과 | |
+| Scenario 환경 세계의 새 프로세스 재개 | 통과 | |
+| Playground 환경 세계·지형의 맵 왕복 | 통과 | |
 
 이 결과는 후속 개별 행동의 기아 시간 정밀화와 메뉴 표시 보완 전의 빌드다. 값 모델의 규모·새 프로세스 공간 진행·지연과 손실 결과는 [집계 생물의 영양 상태](EnvironmentNutrition.md)가 소유한다. 최종 빌드와 패키지 실행 결과는 아래 순환 실험 수정과 통합 패키지 절을 따른다.
 
 ### 순환 실험의 게임 시간과 세계 시간
 
-Windows Game의 Listen 실행에서 구역 09의 융해 뒤 하류 물이 0이어서 검사가 실패했다. 물질 수지는 0 오차였고 적설은 모두 녹았다. 원본은 `Saved/Tests/Environment/EnvironmentScenario-Listen-20261011-171507-249/host.log`다. 개인 세션, 환경 새 프로세스 재개와 맵 왕복은 같은 패키지에서 통과했다.
+Windows Game의 Listen 실행에서 구역 09의 융해 뒤 하류 물이 0이어서 검사가 실패했다. 물질 수지는 0 오차였고 적설은 모두 녹았다. 개인 세션, 환경 새 프로세스 재개와 맵 왕복은 같은 패키지에서 통과했다.
 
 표면 융해·침투는 세계 시간, 이웃 유량은 게임 시간으로 계산한다. 기존 실험은 모든 단계의 종료를 세계 시간만으로 판단했다. 60배율에서 융해 단계의 60세계초는 유량에 1게임초만 제공한다. 융해·유출 단계는 60세계초와 10게임초를 모두 채운 뒤 판정하도록 바꿨다. 하류 수량·진흙·물질 수지의 기존 임계값은 유지한다. 단계 로그에는 실제 두 경과 시간을 함께 기록한다. 10게임초는 실험장 관찰 입력이며 실제 수문학의 보장 시간은 아니다.
 
-
-수정 후 프로젝트 생성·Editor 빌드를 통과했다. 근거는 `Saved/EnvironmentStages/Nutrition-CycleGPF.log`, `Nutrition-CycleBuild.log`다. CCL 자동화 158/158은 경고·실패·미실행 없이 통과했으며 원본은 `Saved/Tests/Automation/20261011-172629-644/report/index.json`이다. Editor Listen의 80ms 지연·2% 손실·관측자 재접속도 `Saved/Tests/Environment/EnvironmentScenario-Listen-20261011-172550-603/result.json`에서 통과했다. 중지 후 재시작과 실험 재실행의 두 회차를 모두 확인했고, 첫 융해 단계의 하류 물은 0.639996784m³, 기록된 물질 수지 오차는 0이었다.
-
+수정 후 프로젝트 생성·Editor 빌드를 통과했다. Editor Listen의 80ms 지연·2% 손실·관측자 재접속도 통과했다. 중지 후 재시작과 실험 재실행의 두 회차를 모두 확인했고, 첫 융해 단계의 하류 물은 0.639996784m³, 기록된 물질 수지 오차는 0이었다.
 
 ### 통합 Game·Server 패키지 실행
 
@@ -979,17 +902,16 @@ Windows Game의 Listen 실행에서 구역 09의 융해 뒤 하류 물이 0이�
 
 | 실행 | 결과 | 원본 폴더 |
 |---|---|---|
-| Game Listen | 환경 전체·80ms 지연·2% 손실·관측자 재접속 통과 | `Saved/Tests/Environment/EnvironmentScenario-Listen-20261011-173112-975` |
-| 실제 Server와 Game 조작자·관측자 | 환경 전체·80ms 지연·2% 손실·관측자 재접속 통과 | `Saved/Tests/Environment/EnvironmentScenario-Dedicated-20261011-173314-260` |
-| Game Playground 렌더링 | 환경 전체·실험 재실행 통과, 안내·배치·문 캡처 확인 | `Saved/Tests/Environment/EnvironmentPlayground-Standalone-20261011-173243-353` |
+| Game Listen | 환경 전체·80ms 지연·2% 손실·관측자 재접속 통과 | |
+| 실제 Server와 Game 조작자·관측자 | 환경 전체·80ms 지연·2% 손실·관측자 재접속 통과 | |
+| Game Playground 렌더링 | 환경 전체·실험 재실행 통과, 안내·배치·문 캡처 확인 | |
 
-Dedicated의 각 접속 관측 구간은 1.88초에서 2.03초다. 이 구간에서 클라이언트 수신은 평균 약 24.7-26.5kB/s, 송신은 약 2.1-3.2kB/s였다. `result.json`의 `network_metrics`가 바이트·패킷 수와 구간 길이를 보존한다. 접속 직후 짧은 검사 구간의 총 전송량이며, 생태 상태만의 대역폭이나 장시간 정상 상태 평균은 아니다. 같은 PC의 로컬 지연·손실 주입이며 인터넷·NAT 환경은 검사하지 않았다.
-
+Dedicated의 각 접속 관측 구간은 1.88초에서 2.03초다. 이 구간에서 클라이언트 수신은 평균 약 24.7-26.5kB/s, 송신은 약 2.1-3.2kB/s였다. 접속 직후 짧은 검사 구간의 총 전송량이며, 생태 상태만의 대역폭이나 장시간 정상 상태 평균은 아니다. 같은 PC의 로컬 지연·손실 주입이며 인터넷·NAT 환경은 검사하지 않았다.
 
 ### 프레임 계측의 미완료 범위
 
-18,000프레임을 요청한 `Saved/Tests/Environment/EnvironmentScenario-Standalone-20261011-173523-201`은 대화 중단 시점까지 CSV 일부만 남았고 완료 결과 JSON과 정상 종료 기록이 없다. 약 5분의 완료 계측이나 장시간 성능 통과로 계산하지 않는다.
+18,000프레임을 요청한 대화 중단 시점까지 CSV 일부만 남았고 완료 결과 JSON과 정상 종료 기록이 없다. 약 5분의 완료 계측이나 장시간 성능 통과로 계산하지 않는다.
 
-문서 정리 때 다시 실행한 `EnvironmentScenario-Standalone-20261011-174313-210`은 600프레임 요청에 CSV의 수치 행이 601개여서 요약 검사가 실패했다. `result.json`은 `passed=false`와 `Frame profile validation failed`를 기록한다. 원본 CSV와 로그를 같은 폴더에 보존했다. 요청 프레임 수와 실제 CSV 행의 경계가 달라진 원인은 아직 확인하지 않았다. 표본을 임의로 제거하거나 기대 개수를 바꿔 통과로 처리하지 않는다.
+문서 정리 때 다시 실행한 600프레임 요청에 CSV의 수치 행이 601개여서 요약 검사가 실패했다. `result.json`은 `passed=false`와 `Frame profile validation failed`를 기록한다. 원본 CSV와 로그를 같은 폴더에 보존했다. 요청 프레임 수와 실제 CSV 행의 경계가 달라진 원인은 아직 확인하지 않았다. 표본을 임의로 제거하거나 기대 개수를 바꿔 통과로 처리하지 않는다.
 
 다음 계측은 패키지의 CSV 시작·종료 프레임과 요약기의 행 판정을 먼저 대조한 뒤 다시 수행한다. 전체 월드의 장시간 CPU·GPU·메모리 비용은 미검증으로 유지한다. 이 상태는 위의 자동화·패키지 기능 검사 통과와 구분한다.
