@@ -2,7 +2,7 @@
 
 2026-10-11 전체 소스 설계 검토는 기반 계약은 유지할 가치가 있고, 결함 2개(D1-D2)와 설계 위험 6개(R1-R6)를 고쳐야 한다고 결론지었다. 고칠 대상은 세계 수명·저장의 소유권, 두 갈래의 저장 구조, 클라이언트 진입 클래스에 몰린 기능 규칙이다. 이 문서는 그 검토 결과와 개선 계획을 소유한다. 구현은 시작하지 않았고 착수 여부와 순서는 사용자가 정한다.
 
-모듈 분리, `KSI` 명명, 공용 후보와 분리 단계는 [FrameworkPlan](FrameworkPlan.md)이 소유한다. 같은 날 진행 중인 장비·카탈로그·참여자 인터페이스 수정은 [코드 설계 후속 수정](ProgressionFoundation.md#2026-10-11-설계-후속-수정)이 소유한다. 이 문서는 `CCL` 모듈 안의 소유권·저장·진입점 구조를 다룬다. 겹치는 부분은 "다른 문서와의 관계"에 적는다.
+모듈 분리, `KSI` 명명, 공용 후보와 분리 단계는 [FrameworkPlan](FrameworkPlan.md)이 소유한다. 같은 날 진행 중인 장비·카탈로그·참여자 인터페이스 수정은 [코드 설계 후속 수정](ProgressionFoundation/Verification.md#2026-10-11-설계-후속-수정)이 소유한다. 이 문서는 `CCL` 모듈 안의 소유권·저장·진입점 구조를 다룬다. 겹치는 부분은 "다른 문서와의 관계"에 적는다.
 
 ## 목표와 현재 상태
 
@@ -191,7 +191,7 @@ smoke 서브시스템은 Shipping·Test 구성에서 생성만 막고 클래스�
 
 ### 클래스 다이어그램
 
-저장 참여와 시간 진행은 두 인터페이스로 나눈다. [코드 설계 후속 수정](ProgressionFoundation.md#2026-10-11-설계-후속-수정)이 진행 함수를 `ICCLWorldAdvanceParticipant`로 분리하는 중이므로 이 초안도 그 분리를 전제로 한다. 2026-10-11 작업 트리의 진행 중 선언(`Source/CCL/Environment/CCLWorldAdvanceParticipant.h`)과 비교하면, 이 초안은 `PrepareWorldAdvance`의 표면 인자만 `FCCLWorldAdvanceView`로 바꾼다. 그 수정이 끝나면 실제 선언에 다시 맞춘다.
+저장 참여와 시간 진행은 두 인터페이스로 나눈다. [코드 설계 후속 수정](ProgressionFoundation/Verification.md#2026-10-11-설계-후속-수정)이 진행 함수를 `ICCLWorldAdvanceParticipant`로 분리하는 중이므로 이 초안도 그 분리를 전제로 한다. 2026-10-11 작업 트리의 진행 중 선언(`Source/CCL/Environment/CCLWorldAdvanceParticipant.h`)과 비교하면, 이 초안은 `PrepareWorldAdvance`의 표면 인자만 `FCCLWorldAdvanceView`로 바꾼다. 그 수정이 끝나면 실제 선언에 다시 맞춘다.
 
 ```mermaid
 classDiagram
@@ -421,7 +421,7 @@ bool UCCLWorldSimulationSubsystem::AdvancePending(double MaxGameSeconds, double 
 
 ### 코드 설계 후속 수정
 
-[코드 설계 후속 수정](ProgressionFoundation.md#2026-10-11-설계-후속-수정)은 같은 날 다른 검토 결과로 시작한 수정이며, 이 문서를 작성할 때 진행 중이었다. 범위는 장비 변경의 재진입 거절, 카탈로그 중복 이름 검증, 인벤토리 기능 서비스 분리, 저장 참여자에서 시간 진행 인터페이스 분리, 표면 발행본 공유다.
+[코드 설계 후속 수정](ProgressionFoundation/Verification.md#2026-10-11-설계-후속-수정)은 같은 날 다른 검토 결과로 시작한 수정이며, 이 문서를 작성할 때 진행 중이었다. 범위는 장비 변경의 재진입 거절, 카탈로그 중복 이름 검증, 인벤토리 기능 서비스 분리, 저장 참여자에서 시간 진행 인터페이스 분리, 표면 발행본 공유다.
 
 겹치는 부분은 두 가지다. 시간 진행 인터페이스 분리는 R1의 전제이며, R1 초안은 그 결과를 기준으로 한다. 카탈로그 중복 이름 검증은 O2의 일부만 다룬다. 그 문서의 범위표에는 D1, R1의 소유권 이전, R2-R6이 없다. 그 수정의 검증 결과가 기록되면 이 문서의 줄 번호와 R1 초안을 다시 맞춘다.
 

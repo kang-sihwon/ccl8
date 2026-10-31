@@ -94,7 +94,7 @@ Agent 생활 저장 통합은 결정 18과 [AgentFoundation](AgentFoundation.md)
 
 2026-10-11부터 저장 기록의 아이템·스킬 이름은 코드 목록이 아니라 콘텐츠 카탈로그로 해석한다. `UCCLItemCatalogSettings`가 `DefaultGame.ini`에서 `/Game/Progression/DA_ItemCatalog`를 지정한다. `UCCLItemCatalog`의 `Items`와 `TrainingSkills`에 없는 이름은 null로 해석되어 저장 검증에서 거부된다. 임의 경로를 불러오지 않는다는 기존 계약은 유지한다. 카탈로그는 `/Game/Progression`의 항상 쿠킹 목록에 포함된다.
 
-같은 날 카탈로그의 이름 유일성을 추가했다. 같은 종류의 항목 안에서 이름은 유일해야 하고, 같은 객체의 중복 등록과 빈 참조도 검증 오류다. 아이템과 스킬은 별도 이름 영역을 유지한다. 에디터 Data Validation과 런타임 `Get`에서 전체 카탈로그를 검증하며, 직접 `FindItem`·`FindSkill`을 호출해도 중복 이름을 첫 항목으로 해석하지 않는다. 기존 이름 기반 저장 형식은 바꾸지 않았으므로 정의의 이름 변경은 이 검사로 해결되지 않는다. 검증 근거는 [ProgressionFoundation의 2026-10-11 기록](ProgressionFoundation.md#2026-10-11-설계-후속-수정)이다.
+같은 날 카탈로그의 이름 유일성을 추가했다. 같은 종류의 항목 안에서 이름은 유일해야 하고, 같은 객체의 중복 등록과 빈 참조도 검증 오류다. 아이템과 스킬은 별도 이름 영역을 유지한다. 에디터 Data Validation과 런타임 `Get`에서 전체 카탈로그를 검증하며, 직접 `FindItem`·`FindSkill`을 호출해도 중복 이름을 첫 항목으로 해석하지 않는다. 기존 이름 기반 저장 형식은 바꾸지 않았으므로 정의의 이름 변경은 이 검사로 해결되지 않는다. 검증 근거는 [ProgressionFoundation의 2026-10-11 기록](ProgressionFoundation/Verification.md#2026-10-11-설계-후속-수정)이다.
 
 남은 마을 보급품은 정의 이름의 집합이 아니라 남은 픽업마다 한 번씩 기록한다. 같은 정의의 픽업이 둘 있고 하나를 주웠다면 이름이 한 번만 남는다. 복원은 이름별 개수만큼 픽업을 남기고 나머지를 제거한다. 이전 방식은 같은 정의의 픽업 하나를 주운 뒤 저장하면 둘 다 되살렸다. 형식 5부터 보급품 기록은 최대 64개이고 그 전 형식은 기존 상한 2개를 따른다. 승리 기록은 처치한 경비병 비트가 하나 이상 있어야 하며, 비트 값은 0-255 범위다. 구현은 `Source/CCL/Session/CCLSessionRecord.cpp`와 `Source/CCL/Session/CCLGameInstance.cpp`의 `ApplyRecord`다.
 
