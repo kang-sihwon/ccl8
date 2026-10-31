@@ -1,17 +1,15 @@
 # Agent 지속 상태: ID, 세대와 실행권으로 쓰기를 제한하기
 
-2026-10-12 공용 모듈 분리 이후의 위치는 [Framework 파일 이동표](../FrameworkPlan/Stage4.md#코드-위치의-전후-비교)를 따른다. 아래 발췌·이름·줄 번호·해시는 기록 당시 기준을 유지하며 소스 링크는 현재 대응 파일을 연다.
-
-Agent의 삶은 Actor가 아닌 Record에 남는다. Actor·간략 실행기·Mass가 같은 Record를 다룰 때 Store가 세대와 실행권을 검증한다. `Source/CCL/Agents/CCLAgentTypes.cpp`와 `CCLAgentSnapshot.cpp`에서 교체·저장·실패 때 원본을 지키는 방식을 이해한다.
+Agent의 삶은 Actor가 아닌 Record에 남는다. Actor·간략 실행기·Mass가 같은 Record를 다룰 때 Store가 세대와 실행권을 검증한다. `Source/KSIAgent/Private/KSIAgentTypes.cpp`와 `Source/CCL/Agents/CCLAgentSnapshot.cpp`에서 교체·저장·실패 때 원본을 지키는 방식을 이해한다.
 
 ## 1. 비교 기준
 
 | 구분 | 전체 커밋 |
 |---|---|
 | 도입 기준 | `68672713e47b19b0d4adb51bdc21c7c9bbe78eb6` |
-| 현재 기준 | `50e583859c832d6cb325e5e76beb8356e8c13959` |
+| 현재 기준 | `d4888b08154afab8712af974bce0ead2b90978ac` |
 
-조사 시작 때 확인한 `main`과 로컬 원격 추적 `origin/main`의 `50e5838`을 게임 코드 기준으로 고정한 학습 기록이다. 원격 서버를 새로 조회한 결과는 아니며 이후 추가된 커밋과 구분한다. 작업 트리의 설정·빌드 파일 변경은 이 장의 코드 기준에서 제외했다. 아래 발췌의 경로·줄 번호는 표시한 커밋 기준이고 상대 링크는 현재 체크아웃을 연다.
+현재 기준 `d4888b0`은 2026-10-31의 `main`이며 로컬 원격 추적과 같았다. 원격 서버를 새로 조회한 결과는 아니다. Agent 저장 기반은 2026-10-12에 `Source/KSIAgent/`로 옮겨져([Framework 파일 이동표](../FrameworkPlan/Stage4.md#코드-위치의-전후-비교)) `FCCLAgentStore`, `FCCLAgentHandle`, `FCCLAgentLease`, `FCCLAgentRecord`, `FCCLFeatureRegistry`는 현재 `FKSI*`다. 발췌의 출처에는 커밋과 함수 이름을 적었고 상대 링크는 현재 체크아웃을 연다.
 
 `6867271`이 선택적 Feature·Store·스냅샷의 최초 구현이다. 이전에는 이 지속 Agent 기반이 없었다. 이후 생활 실행과 Mass 연결이 추가됐으며 공통 쓰기 계약은 유지됐다. 정본은 결정 18과 [AgentFoundation](../AgentFoundation.md)이다.
 
@@ -25,13 +23,13 @@ Agent의 삶은 Actor가 아닌 Record에 남는다. Actor·간략 실행기·Ma
 
 Definition은 불변 설정, Record는 개인의 지속 값, Processor는 실행 코드다. Feature는 `FInstancedStruct`와 버전으로 저장하며 Registry가 태그에 맞는 구조체 타입·의존성·검증·변환 함수를 등록한다.
 
-`FCCLAgentHandle`의 ID는 개인을, Generation은 현재 Store 항목 세대를 식별한다. `FCCLAgentLease`는 Handle, Writer와 Epoch를 묶는다. 한 번 반납한 Writer가 오래된 Lease를 다시 사용하지 못하도록 Epoch를 바꾼다.
+`FKSIAgentHandle`의 ID는 개인을, Generation은 현재 Store 항목 세대를 식별한다. `FKSIAgentLease`는 Handle, Writer와 Epoch를 묶는다. 한 번 반납한 Writer가 오래된 Lease를 다시 사용하지 못하도록 Epoch를 바꾼다.
 
 FInstancedStruct는 [엔진 근거](EngineEvidence.md)의 UE5 타입을 사용한다. 세대·Lease 정책은 엔진 자동 기능이 아닌 프로젝트의 값 저장 계약이다.
 
 ## 4. 최초 실행권 발급
 
-출처: `6867271`, [CCLAgentTypes.cpp](../../Source/KSIAgent/Private/KSIAgentTypes.cpp):86의 `FCCLAgentStore::Acquire`. 실제 코드 전체 함수이며 들여쓰기를 공백으로 바꿨다.
+출처: `6867271`, `Source/CCL/Agents/CCLAgentTypes.cpp`의 `FCCLAgentStore::Acquire`. 현재 [KSIAgentTypes.cpp](../../Source/KSIAgent/Private/KSIAgentTypes.cpp)의 `FKSIAgentStore::Acquire`는 이름만 다르다. 실제 코드 전체 함수이며 들여쓰기를 공백으로 바꿨다.
 
 ```cpp
 FCCLAgentLease FCCLAgentStore::Acquire(FCCLAgentHandle Handle, FGuid Writer)
@@ -59,11 +57,11 @@ FCCLAgentLease FCCLAgentStore::Acquire(FCCLAgentHandle Handle, FGuid Writer)
 
 ## 6. 현재 Commit과 일괄 검사
 
-출처: `50e5838`, [CCLAgentTypes.cpp](../../Source/KSIAgent/Private/KSIAgentTypes.cpp):100의 `FCCLAgentStore::Commit`. 실제 코드 전체 함수이며 들여쓰기를 공백으로 바꿨다.
+출처: `d4888b0`, [KSIAgentTypes.cpp](../../Source/KSIAgent/Private/KSIAgentTypes.cpp)의 `FKSIAgentStore::Commit`. 실제 코드 전체 함수이며 들여쓰기를 공백으로 바꿨다.
 
 ```cpp
-bool FCCLAgentStore::Commit(const FCCLAgentLease& Lease, FCCLAgentRecord Record,
-    const FCCLFeatureRegistry& Registry, FString& Error)
+bool FKSIAgentStore::Commit(const FKSIAgentLease& Lease, FKSIAgentRecord Record,
+    const FKSIFeatureRegistry& Registry, FString& Error)
 {
     check(IsInGameThread());
     auto* Entry = Records.Find(Lease.Handle.Id);
@@ -81,11 +79,11 @@ bool FCCLAgentStore::Commit(const FCCLAgentLease& Lease, FCCLAgentRecord Record,
 
 Writer와 세대가 맞아도 Epoch가 다르면 실패한다. 시간 역행과 Record ID 바꿔치기도 거부한다. Registry가 후보 Feature를 변환·검증한 후에만 원본을 교체한다.
 
-출처: `50e5838`, [CCLAgentTypes.cpp](../../Source/KSIAgent/Private/KSIAgentTypes.cpp):116의 `FCCLAgentStore::CommitBatch`. 실제 코드 전체 함수이며 들여쓰기를 공백으로 바꿨다.
+출처: `d4888b0`, [KSIAgentTypes.cpp](../../Source/KSIAgent/Private/KSIAgentTypes.cpp)의 `FKSIAgentStore::CommitBatch`. 실제 코드 전체 함수이며 들여쓰기를 공백으로 바꿨다.
 
 ```cpp
-bool FCCLAgentStore::CommitBatch(TArray<TPair<FCCLAgentLease, FCCLAgentRecord>> Updates,
-    const FCCLFeatureRegistry& Registry, FString& Error)
+bool FKSIAgentStore::CommitBatch(TArray<TPair<FKSIAgentLease, FKSIAgentRecord>> Updates,
+    const FKSIFeatureRegistry& Registry, FString& Error)
 {
     check(IsInGameThread());
     TSet<FGuid> Seen;
