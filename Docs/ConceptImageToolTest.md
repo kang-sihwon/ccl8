@@ -2,7 +2,7 @@
 
 시나리오와 배경 설명으로 컨셉 시안과 3D 모델링용 기준 이미지를 만들 AI 도구를 고르기 위한 비교 테스트다. 같은 프롬프트를 후보 도구마다 넣고 채점표로 비교한 뒤, 단계별로 쓸 도구를 정한다. 이 문서는 비교 대상, 진행 조건, 테스트 프롬프트, 채점 기준을 소유한다. 시각 기준은 [ArtDirection](ArtDirection.md)이, 에이전트 도구 조사는 [AgentToolingResearch](AgentToolingResearch.md)가 소유한다.
 
-2026-10-30까지 T1 영어·한국어와 T2 프롬프트의 1라운드 일부, T3부터 T7까지의 1라운드를 실행했고 도구는 아직 정하지 않았다. T0과 T8은 2026-10-31에 실행했다. 결과는 이 문서의 "결과" 절에 날짜를 붙여 추가하고, 결과 이미지는 `ConceptImageToolTest/` 폴더에 테스트 ID별로 둔다.
+2026-10-30까지 T1 영어·한국어와 T2 프롬프트의 1라운드 일부, T3부터 T7까지의 1라운드를 실행했고 도구는 아직 정하지 않았다. T0과 T8부터 T11까지는 2026-10-31에 실행했다. 결과는 이 문서의 "결과" 절에 날짜를 붙여 추가하고, 결과 이미지는 `ConceptImageToolTest/` 폴더에 테스트 ID별로 둔다.
 
 ## 피사체의 지위
 
@@ -194,6 +194,56 @@ T8c는 보스 공간이다. 조명은 마을과 달라도 재질과 그림체가
 Inside a colossal ancient stone dam gate: a vast round chamber of eroded masonry, giant bronze gears and chains locked in thick ice, a frozen waterfall against the far wall. A single shaft of cold light falls from a narrow opening above; everything else is in deep shadow. Cold, desaturated palette, limited light sources, oppressive sense of scale. A wide circular open floor of flat ice clear of debris for combat, with clearly readable floor edges. Game environment concept art, physically based materials. No text, no characters. 16:9.
 ```
 
+### T9. 시안 부분 수정
+
+T4의 조건을 T8 결과에 적용한다. 입력마다 두 프롬프트를 따로 넣는다. 입력은 T8a Midjourney 2번, T8b Midjourney 2번, T8c GPT Image 2.5 1번이다. T4와 같이 편집 입력이 없는 Midjourney는 뺐다.
+
+T9a는 양치기다.
+
+```
+Keep the character exactly the same: face, body proportions, colors, materials, pose, background and lighting. Change only one thing: replace the sheepskin collar with a dark knitted wool hood resting on the shoulders.
+```
+
+```
+Keep everything identical. Change only the staff: replace the wooden crook with a long walking spear with an iron tip, held in the same hand.
+```
+
+T9b는 수로지기다.
+
+```
+Keep the creature exactly the same: proportions, colors, materials, pose, background and lighting. Change only one thing: replace the rusted chain at the waist with a wide cracked leather belt.
+```
+
+```
+Keep everything identical. Change only the weapon: replace the ice harpoon with a long-handled sickle of rusted iron held in the same hand.
+```
+
+T9c는 보스 공간이다.
+
+```
+Keep the scene exactly the same: camera, composition, architecture, colors, materials and lighting. Change only one thing: replace the frozen waterfall with a huge closed bronze gate.
+```
+
+```
+Keep everything identical. Change only one thing: add one large cracked bronze gear leaning against the left wall, and keep the circular floor clear.
+```
+
+### T10. 시안 3면도
+
+T9의 양치기와 수로지기 입력에 T5 프롬프트를 고치지 않고 넣는다. T10a가 양치기, T10b가 수로지기다.
+
+### T11. 공간 시점 변경
+
+T7은 소품 시트이므로, 보스 공간에서는 기존 이미지를 유지한 채 카메라를 돌릴 수 있는지 본다. 입력은 T9c와 같다. T11a는 여러 시점의 시트이고, T11b는 시점을 옮긴 한 장이다.
+
+```
+Environment layout sheet of the room in the attached image. Three views arranged left to right on one sheet: the same view as the attached image, the room seen from the left side, and the room seen from directly above. Keep the same room, architecture, materials, colors and lighting in every view. No text labels. 16:9.
+```
+
+```
+Show the exact same room from a different camera angle: move the camera around the room so it looks from the right edge of the circular floor toward the left wall. Keep the same architecture, gears, chains, frozen waterfall, ice floor, materials, colors and lighting. Do not add new objects or characters. 16:9.
+```
+
 ### 이미지→3D 단계
 
 테스트하는 사람이 T7의 두 결과와 T5 시트를 Hunyuan3D, Tripo, Meshy에 각각 넣는다. 원본 실루엣과 맞는지, 보이지 않던 뒷면을 그럴듯하게 만드는지, 폴리곤 수와 텍스처를 쓸 수 있는지 비교한다. 결과 메시는 최종 에셋이 아니라 블록아웃이나 스컬프트 기반으로 보고, 리토폴로지 등 후처리가 필요하다고 가정한다. 후처리에 쓸 Blender는 설치를 확인한 기록이 없다([AgentToolingResearch](AgentToolingResearch.md#반영-상태)).
@@ -209,9 +259,9 @@ Inside a colossal ancient stone dam gate: a vast round chamber of eroded masonry
 | 스타일 적합 | ArtDirection의 PBR 재질, 생활감, 큰 색면, 차가운 보스 공간 기준에 맞는가 | T1, T2, T3 |
 | 톤 유지 | 피사체가 바뀌어도 참조와 같은 화풍, 색감, 질감인가 | T8 |
 | 내용 번짐 | 참조의 피사체, 디자인, 구도가 따라오지 않았는가. 5점이 번짐 없음이다 | T8 |
-| 편집 보존 | 지시한 한 가지만 바뀌었는가 | T4 |
-| 시점 일관성 | 시점끼리 디테일이 맞고, 뒷면을 지어내지 않고, 축이 정렬됐는가 | T5, T7 |
-| 모델링 활용도 | 형태가 모호하지 않고 Blender 배경 평면으로 바로 쓸 수 있는가 | T3, T5, T6, T7, T8a, T8b |
+| 편집 보존 | 지시한 한 가지만 바뀌었는가. T11은 입력의 방이 유지되는가 | T4, T9, T11 |
+| 시점 일관성 | 시점끼리 디테일이 맞고, 뒷면을 지어내지 않고, 축이 정렬됐는가 | T5, T7, T10 |
+| 모델링 활용도 | 형태가 모호하지 않고 Blender 배경 평면으로 바로 쓸 수 있는가 | T3, T5, T6, T7, T8a, T8b, T10 |
 | 실루엣 구분 | 실루엣만 보고 세 몹을 구분할 수 있는가 | T6 |
 | 비용·속도 | 4장에 든 크레딧과 시간 | 전부 |
 
@@ -531,13 +581,65 @@ Raw 모드를 끈 Midjourney 실행은 장별 점수가 3/4/2, 4/5/3, 4/5/2, 4/5
 - **FLUX 2**: 내용 번짐은 없지만 깨끗한 CG 느낌이라 참조의 회화 톤에서 가장 멀다. T8b는 1번에 삼지창, 4번에 로브 없는 해골 몸이 나왔다.
 - **Midjourney v8.2**: T8c는 마을의 회화 톤과 가장 비슷하지만 원형 바닥이 없고, 2번과 3번에 시키지 않은 인물이 있다. T8b는 키 크고 마른 체형이 가장 잘 나왔지만 밝은 청백색으로 바뀌어 경비병의 톤과 다르고, 로브가 뭉쳐 구조가 덜 읽힌다.
 
+### 2026-10-31 T9, T10, T11 기록
+
+게임 시안에서도 GPT Image 2.5가 수정과 3면도 모두 가장 높았고, 사용자 순위도 T9-T11을 묶어 GPT Image 2.5, Nano Banana Pro, FLUX 2 순이다. 보스 공간은 GPT Image 2.5와 Nano Banana Pro가 방을 잘 유지했지만, 카메라는 조금만 옮겼다.
+
+- AI가 `ConceptImageToolTest T3` 워크플로에 노드를 추가하고 입력 노드의 출력을 연결했다. 입력 번호는 사용자가 지정하지 않아 AI가 정했다. 실행 기록에서 입력 파일 세 장을 확인했다. 이미지 파일은 저장소에 저장하지 않았다.
+- T10과 T11은 16:9이고 크기는 GPT Image 2.5 1088×608, Nano Banana Pro 1376×768, FLUX 2 1280×720이다. T9는 입력 비율을 따랐고 FLUX 2는 2:3 대신 3:4(768×1024)로 생성했다.
+- Midjourney는 T5에서 두 번 입력과 다른 인물을 그려 T10에서도 뺐다.
+- 크레딧은 T9가 680, T10과 T11이 448이고 잔액은 1,306이다. 실행 시간은 약 82초와 약 64초다.
+- 점수는 T9가 지시 반영과 편집 보존, T10이 지시 반영, 시점 일관성, 모델링 활용도, T11이 지시 반영과 편집 보존이다.
+
+| 테스트 | 도구 | 1번 | 2번 | 3번 | 4번 | 평균 |
+|---|---|---|---|---|---|---|
+| T9a 후드 | GPT Image 2.5 | 5/5 | 5/5 | 5/5 | 5/5 | 5 / 5 |
+| | Nano Banana Pro | 5/5 | 5/5 | 5/5 | 5/5 | 5 / 5 |
+| | FLUX 2 | 5/4 | 3/4 | 5/4 | 3/4 | 4 / 4 |
+| T9a 창 | GPT Image 2.5 | 5/5 | 5/5 | 5/5 | 5/5 | 5 / 5 |
+| | Nano Banana Pro | 4/5 | 5/5 | 5/5 | 5/5 | 4.75 / 5 |
+| | FLUX 2 | 5/4 | 5/4 | 5/4 | 5/4 | 5 / 4 |
+| T9b 벨트 | GPT Image 2.5 | 5/5 | 5/5 | 5/5 | 5/5 | 5 / 5 |
+| | Nano Banana Pro | 4/5 | 4/5 | 5/5 | 4/5 | 4.25 / 5 |
+| | FLUX 2 | 5/3 | 5/4 | 5/4 | 5/4 | 5 / 3.75 |
+| T9b 낫 | GPT Image 2.5 | 5/5 | 5/5 | 5/5 | 5/5 | 5 / 5 |
+| | Nano Banana Pro | 5/5 | 5/5 | 5/5 | 5/5 | 5 / 5 |
+| | FLUX 2 | 5/4 | 4/3 | 3/3 | 3/4 | 3.75 / 3.5 |
+| T9c 청동문 | GPT Image 2.5 | 4/5 | 5/5 | 5/5 | 5/5 | 4.75 / 5 |
+| | Nano Banana Pro | 4/5 | 4/5 | 4/5 | 4/5 | 4 / 5 |
+| | FLUX 2 | 5/3 | 4/2 | 5/2 | 4/2 | 4.5 / 2.25 |
+| T9c 톱니 | GPT Image 2.5 | 5/5 | 5/5 | 5/5 | 4/5 | 4.75 / 5 |
+| | Nano Banana Pro | 4/5 | 5/5 | 5/5 | 5/5 | 4.75 / 5 |
+| | FLUX 2 | 4/2 | 4/1 | 5/3 | 5/3 | 4.5 / 2.25 |
+| T10a 양치기 | GPT Image 2.5 | 3/4/4 | 3/4/4 | 3/4/4 | 4/4/5 | 3.25 / 4 / 4.25 |
+| | Nano Banana Pro | 3/3/3 | 4/4/4 | 4/3/4 | 4/3/4 | 3.75 / 3.25 / 3.75 |
+| | FLUX 2 | 3/3/3 | 3/3/4 | 3/3/4 | 3/3/3 | 3 / 3 / 3.5 |
+| T10b 수로지기 | GPT Image 2.5 | 4/4/4 | 3/4/4 | 3/4/4 | 3/4/4 | 3.25 / 4 / 4 |
+| | Nano Banana Pro | 3/3/3 | 3/3/3 | 3/3/3 | 2/3/2 | 2.75 / 3 / 2.75 |
+| | FLUX 2 | 3/3/3 | 3/3/3 | 2/3/3 | 2/2/2 | 2.5 / 2.75 / 2.75 |
+| T11a 시트 | GPT Image 2.5 | 4/4 | 4/4 | 4/4 | 4/4 | 4 / 4 |
+| | Nano Banana Pro | 4/4 | 4/4 | 4/4 | 4/4 | 4 / 4 |
+| | FLUX 2 | 2/2 | 2/2 | 2/2 | 2/2 | 2 / 2 |
+| T11b 카메라 | GPT Image 2.5 | 3/5 | 3/5 | 3/5 | 3/5 | 3 / 5 |
+| | Nano Banana Pro | 2/5 | 2/5 | 2/5 | 2/5 | 2 / 5 |
+| | FLUX 2 | 4/3 | 4/3 | 4/3 | 4/3 | 4 / 3 |
+
+순서 번호는 YouArt 결과 목록의 순서이고, FLUX 2는 노드 순서다.
+
+도구별 관찰은 다음과 같다.
+
+- **GPT Image 2.5**: T9는 얼굴, 자세, 재질, 배경이 입력과 거의 같다. T10은 입력의 재질과 인물을 네 시점 모두 유지했지만, 지팡이는 양치기 4번에만, 작살은 수로지기 1번에만 있다. T11b는 같은 방을 유지하고 시점은 조금만 옮겼다.
+- **Nano Banana Pro**: T9의 보존은 GPT Image 2.5와 비슷하다. 벨트는 조끼처럼 넓게 그린 장이 많고, 청동문은 지시보다 작다. T10은 양치기 2번을 뺀 7장이 평면적인 카툰풍으로 바뀌었다. 같은 입력으로 T9를 실행했을 때는 그림체가 바뀌지 않았다. T11b는 시점을 가장 적게 옮겼다.
+- **FLUX 2**: T9c는 조명, 벽, 폭포까지 바뀌었다. T10b 3번과 4번에 글자나 표시가 들어갔다. T11a는 잘라 붙인 조각처럼 나왔다. T11b는 카메라를 가장 많이 돌렸지만 바닥과 벽이 달라졌다.
+- T11a의 위에서 본 칸은 입력에 없는 천장과 바닥 구조를 지어낸 것으로 보이므로, 평면도로 쓰지 않는다.
+
 ### 남은 일
 
 1. T1과 T2 모두 도구마다 4장을 채우고 버전, 품질 설정, 크레딧을 기록한다.
 2. GPT Image 2.5의 T1 한국어를 16:9로 다시 생성한다. 진행 조건을 어긴 실행을 바로잡는 것이므로 재시도로 보지 않는다.
 3. GPT Image 2.5에만 시키지 않은 요소를 빼는 T1b를 만들어 실행한다. T1b 프롬프트는 아직 만들지 않았다.
 4. T8 결과와 사용자 순위로 단계별 도구를 정한다.
-5. GPT Image 2.5 3면도의 A 포즈, 무기 표시, 견갑 위치를 보강하는 T5b를 만들지 정한다. T5b 프롬프트는 아직 만들지 않았다.
+5. GPT Image 2.5 3면도의 A 포즈, 무기 표시, 견갑 위치를 보강하는 T5b를 만들지 정한다. T10에서도 무기가 빠졌다. T5b 프롬프트는 아직 만들지 않았다.
 6. 워크플로의 `T6 MJ v8.2` 노드에 결과가 없는 원인을 확인한다. T7 Midjourney 노드도 `service.generation_failed`로 실패했지만, 같은 프롬프트가 이미지 생성 화면에서는 생성됐다. T8 Midjourney 노드는 네 실행 중 세 실행이 `input.rejected`로 한 번 실패한 뒤 다시 실행해 생성됐다. 워크플로에서 실패하면 다시 실행하고, 계속 실패하면 이미지 생성 화면에서 따로 실행한다.
-7. GPT Image 2.5의 T7 시트 4번과 3/4 시점 결과로 이미지→3D 단계를 진행한다. 2026-10-31 T8 실행 뒤 YouArt 잔액은 2,434다.
+7. GPT Image 2.5의 T7 시트 4번과 3/4 시점 결과로 이미지→3D 단계를 진행한다. 2026-10-31 T11 실행 뒤 YouArt 잔액은 1,306이다.
 8. GPT Image 2.5의 내용 번짐이 다른 종류의 참조로 줄어드는지 시험할지 정한다. 예를 들어 인물을 그릴 때 경비병이나 마을을 참조한다.
