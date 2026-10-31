@@ -7,9 +7,9 @@
 | 구분 | 전체 커밋 |
 |---|---|
 | 도입 기준 | `3b369682333bf541e91ee5078b03be38a87e4d75` |
-| 현재 기준 | `50e583859c832d6cb325e5e76beb8356e8c13959` |
+| 현재 기준 | `d4888b08154afab8712af974bce0ead2b90978ac` |
 
-조사 시작 때 확인한 `main`과 로컬 원격 추적 `origin/main`의 `50e5838`을 게임 코드 기준으로 고정한 학습 기록이다. 원격 서버를 새로 조회한 결과는 아니며 이후 추가된 커밋과 구분한다. 작업 트리의 설정·빌드 파일 변경은 이 장의 코드 기준에서 제외했다. 아래 발췌의 경로·줄 번호는 표시한 커밋 기준이고 상대 링크는 현재 체크아웃을 연다.
+현재 기준 `d4888b0`은 2026-10-31의 `main`이며 로컬 원격 추적과 같았다. 원격 서버를 새로 조회한 결과는 아니다. 발췌의 출처에는 커밋과 함수 이름을 적었고 상대 링크는 현재 체크아웃을 연다.
 
 `3b36968`에서 소비·훈련이 처음 구현됐다. 그 이전에 완성된 성장 시스템은 없었다. 현재까지 `Learn`의 핵심 검사·효과·비용 순서는 유지된다. 달라지지 않은 계약도 실제 전후 코드로 확인한다. 사양과 수치는 [ProgressionFoundation](../ProgressionFoundation.md)을 따른다.
 
@@ -27,26 +27,34 @@
 
 ## 4. 최초 구현의 훈련
 
-출처: `3b36968`, [CCLLoadoutComponent.cpp](../../Source/CCL/Items/CCLLoadoutComponent.cpp):126의 `UCCLLoadoutComponent::Learn`. 실제 코드 전체 함수이며 들여쓰기를 공백으로 바꿨다.
+출처: `3b36968`, `Source/CCL/Items/CCLLoadoutComponent.cpp`의 `UCCLLoadoutComponent::Learn`. 실제 코드 전체 함수이며 들여쓰기를 공백으로 바꿨다.
 
 ```cpp
 bool UCCLLoadoutComponent::Learn(UCCLSkillDefinition* Definition)
 {
+    if (bMutating || bRestoring)
+    {
+        return false;
+    }
+
     if (!CanAct() || !Definition || !AvailableSkills.Contains(Definition) || IsLearned(Definition) ||
         Definition->PointCost <= 0 || Points < Definition->PointCost || !Definition->Effect || !FMath::IsFinite(Definition->Magnitude) ||
         Definition->Effect->GetDefaultObject<UGameplayEffect>()->DurationPolicy != EGameplayEffectDurationType::Infinite)
     {
-        return Report(false, TEXT("Training unavailable or not enough points."));
+        return Report(false, TEXT("훈련할 수 없거나 훈련 점수가 부족하다."));
     }
+    TGuardValue<uint8> MutationGuard(bMutating, 1);
+    TGuardValue<uint8> InventoryGuard(GetInventory()->bMutationLocked, 1);
+    FScopedAggregatorOnDirtyBatch AttributeBatch;
     const FActiveGameplayEffectHandle Handle = GetASC()->ApplyEffect(Definition->Effect, Definition->Magnitude);
-    if (!Handle.IsValid())
+    if (!Handle.IsValid() || !GetASC()->GetActiveGameplayEffect(Handle))
     {
-        return Report(false, TEXT("Training effect failed."));
+        return Report(false, TEXT("훈련 효과를 적용하지 못했다."));
     }
     SkillEffects.Add(Handle);
     Learned.Add(Definition);
     Points -= Definition->PointCost;
-    return Report(true, TEXT("Training learned."));
+    return Report(true, TEXT("훈련을 완료했다."));
 }
 ```
 
@@ -60,41 +68,54 @@ bool UCCLLoadoutComponent::Learn(UCCLSkillDefinition* Definition)
 
 ## 6. 현재의 훈련과 회복
 
-출처: `50e5838`, [CCLLoadoutComponent.cpp](../../Source/CCL/Items/CCLLoadoutComponent.cpp):279의 `UCCLLoadoutComponent::Learn`. 실제 코드 전체 함수이며 들여쓰기를 공백으로 바꿨다.
+출처: `d4888b0`, [CCLLoadoutComponent.cpp](../../Source/CCL/Items/CCLLoadoutComponent.cpp)의 `UCCLLoadoutComponent::Learn`. 실제 코드 전체 함수이며 들여쓰기를 공백으로 바꿨다.
 
 ```cpp
 bool UCCLLoadoutComponent::Learn(UCCLSkillDefinition* Definition)
 {
+    if (bMutating || bRestoring)
+    {
+        return false;
+    }
+
     if (!CanAct() || !Definition || !AvailableSkills.Contains(Definition) || IsLearned(Definition) ||
         Definition->PointCost <= 0 || Points < Definition->PointCost || !Definition->Effect || !FMath::IsFinite(Definition->Magnitude) ||
         Definition->Effect->GetDefaultObject<UGameplayEffect>()->DurationPolicy != EGameplayEffectDurationType::Infinite)
     {
-        return Report(false, TEXT("Training unavailable or not enough points."));
+        return Report(false, TEXT("훈련할 수 없거나 훈련 점수가 부족하다."));
     }
+    TGuardValue<uint8> MutationGuard(bMutating, 1);
+    TGuardValue<uint8> InventoryGuard(GetInventory()->bMutationLocked, 1);
+    FScopedAggregatorOnDirtyBatch AttributeBatch;
     const FActiveGameplayEffectHandle Handle = GetASC()->ApplyEffect(Definition->Effect, Definition->Magnitude);
-    if (!Handle.IsValid())
+    if (!Handle.IsValid() || !GetASC()->GetActiveGameplayEffect(Handle))
     {
-        return Report(false, TEXT("Training effect failed."));
+        return Report(false, TEXT("훈련 효과를 적용하지 못했다."));
     }
     SkillEffects.Add(Handle);
     Learned.Add(Definition);
     Points -= Definition->PointCost;
-    return Report(true, TEXT("Training learned."));
+    return Report(true, TEXT("훈련을 완료했다."));
 }
 ```
 
-첫 구현과 같은 검사·효과·비용 계약을 볼 수 있다. 새 기능이 추가됐다는 이유로 이 함수의 의미까지 바뀌었다고 가정하지 않는다.
+첫 구현과 같은 검사·효과·비용 순서가 유지된다. 더해진 것은 세 가지다. 학습이나 복원 도중에 다시 들어오는 호출을 `bMutating`과 `bRestoring`으로 막고, 효과를 적용하는 동안 가방 변경을 `bMutationLocked`로 잠그며 속성 갱신을 `FScopedAggregatorOnDirtyBatch`로 모은다. 효과 핸들이 유효할 뿐 아니라 ASC에 활성 효과로 남아 있는지도 확인한다. 함수의 의미(검사, 효과, 목록, 비용 순서)는 그대로다. 이 보강이 어느 커밋에서 들어왔는지와 그 이유는 확인하지 않았다.
 
 회복은 별도 함수로 처리한다.
 
-출처: `50e5838`, [CCLLoadoutComponent.cpp](../../Source/CCL/Items/CCLLoadoutComponent.cpp):253의 `UCCLLoadoutComponent::Use`. 실제 코드 전체 함수이며 들여쓰기를 공백으로 바꿨다.
+출처: `d4888b0`, [CCLLoadoutComponent.cpp](../../Source/CCL/Items/CCLLoadoutComponent.cpp)의 `UCCLLoadoutComponent::Use`. 실제 코드 전체 함수이며 들여쓰기를 공백으로 바꿨다.
 
 ```cpp
 bool UCCLLoadoutComponent::Use(FGuid Id)
 {
+    if (bMutating || bRestoring)
+    {
+        return false;
+    }
+
     if (!CanAct())
     {
-        return Report(false, TEXT("Cannot use an item now."));
+        return Report(false, TEXT("지금은 아이템을 사용할 수 없다."));
     }
     auto* Inventory = GetInventory();
     const auto* Entry = Inventory ? Inventory->Find(Id) : nullptr;
@@ -102,22 +123,52 @@ bool UCCLLoadoutComponent::Use(FGuid Id)
     auto* ASC = GetASC();
     if (!Fragment || !Fragment->Effect || !FMath::IsFinite(Fragment->Magnitude) || Fragment->Magnitude <= 0.f)
     {
-        return Report(false, TEXT("Select a recovery item."));
+        return Report(false, TEXT("회복 아이템을 선택해 줘."));
     }
+    if (Entry->GetState<FCCLItemState>().Food.IsPresent())
+    {
+        FCCLFoodQuality Quality;
+        if (!FCCLInventoryFood::GetFoodQuality(*Inventory, Id, Quality) || Quality.SpoiledQuantity > 0 || Quality.MoldyQuantity > 0)
+        {
+            return Report(false, TEXT("부패하거나 곰팡이가 생긴 음식 묶음은 사용할 수 없다."));
+        }
+    }
+
     if (ASC->GetNumericAttribute(UCCLHealthSet::GetHealthAttribute()) >= ASC->GetNumericAttribute(UCCLHealthSet::GetMaxHealthAttribute()))
     {
-        return Report(false, TEXT("Health is already full."));
+        return Report(false, TEXT("체력이 이미 가득 차 있다."));
     }
+
+    TGuardValue<uint8> MutationGuard(bMutating, 1);
+    // Consume first and restore the exact entries if the effect is rejected, so one item never heals twice.
+    const TArray<FKSIInventoryEntry> Before = Inventory->GetEntries();
+    if (!Inventory->BeginTransaction())
+    {
+        return Report(false, TEXT("지금은 아이템을 사용할 수 없다."));
+    }
+
+    if (!Inventory->Remove(Id, 1))
+    {
+        Inventory->EndTransaction(false);
+        return Report(false, TEXT("아이템을 소모하지 못했다."));
+    }
+
+    TGuardValue<uint8> InventoryGuard(Inventory->bMutationLocked, 1);
     if (!ASC->ApplyEffect(Fragment->Effect, Fragment->Magnitude).WasSuccessfullyApplied())
     {
-        return Report(false, TEXT("Item effect failed."));
+        Inventory->RestoreValidated(Before);
+        Inventory->FinishTransaction(false);
+        return Report(false, TEXT("아이템 효과를 적용하지 못했다."));
     }
-    Inventory->Remove(Id, 1);
-    return Report(true, TEXT("Recovery item used."));
+
+    Inventory->FinishTransaction(true);
+    return Report(true, TEXT("회복 아이템을 사용했다."));
 }
 ```
 
-보유 아이템의 ConsumableData를 조회하고 체력이 이미 최대이면 소비하지 않는다. 효과 적용 성공 후 아이템 하나를 제거한다. 선택한 UI 슬롯 번호 대신 소유 GUID로 다시 조회한다.
+보유 아이템의 ConsumableData를 조회하고 체력이 이미 최대이면 소비하지 않는다. 선택한 UI 슬롯 번호 대신 소유 GUID로 다시 조회한다. 음식 상태가 있는 항목은 부패하거나 곰팡이가 생긴 수량이 있으면 거부한다.
+
+`50e5838`의 `Use`는 효과를 적용한 뒤 아이템을 제거했다. 지금은 순서가 반대다. 가방 변경 알림을 보류하는 트랜잭션을 열고 아이템 하나를 먼저 제거한 다음 효과를 적용한다. 효과가 거부되면 소모 전의 항목을 `RestoreValidated`로 되돌리고 `FinishTransaction(false)`로 알림 없이 닫는다. 성공하면 `FinishTransaction(true)`로 알림을 한 번 보낸다. 이 순서는 `b888b13`에서 들어왔고 커밋 본문에는 이유가 없다. 소스 주석은 이유를 "한 아이템이 두 번 회복하지 않도록"이라고 적었다. 효과 적용 중 가방이 다시 바뀌어 같은 아이템이 남은 채 회복되는 경로를 막으려는 순서로 읽히지만, 실제로 겪은 사고의 기록은 찾지 못했다.
 
 ## 7. 재스폰과 저장 내부 연결
 
