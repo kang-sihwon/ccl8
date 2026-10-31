@@ -32,4 +32,4 @@ HUD의 기본 글자 배율은 2026-10-07 사용자 요청으로 기존의 2배�
 
 능력치는 GAS AttributeSet에 두고, 전투 정책은 공격 보너스 세트가 없는 공격자도 처리한다. 장비·학습 효과에는 생명 단위 제거 태그를 붙이지 않아 개별 재스폰 뒤에도 유지된다. Avatar가 바뀌면 장비 정의를 다시 연결하고 회복된 최대 체력까지 초기화한다. 아이템 삭제와 장비 참조가 어긋나지 않도록 보관 변경을 구독한다. 컴포넌트가 종료되면 소유 효과를 정리한다.
 
-Fast Array의 항목별 복제를 쓴다. 전체 배열 복제도 가능하지만 수량·항목의 변경을 명시적으로 표시하는 엔진 계약을 재사용한다. 이 계약은 `<Engine>/Source/Runtime/Net/Core/Classes/Net/Serialization/FastArraySerializer.h`의 `MarkItemDirty`·`MarkArrayDirty` 설명에서 확인했다. 가방은 16칸이고 장착 항목은 별도로 유지한다. 무게·내구도·정렬·거래 기능은 없다. 저장은 정의 ID·GUID·수량·장비·학습 상태를 대상으로 하며 UI와 Actor 참조를 담지 않는다. 슬롯 배치와 장착 상태의 저장 형식은 [SessionFoundation](../SessionFoundation.md)의 저장 정책이 소유한다.
+Fast Array의 항목별 복제를 쓴다. 전체 배열 복제도 가능하지만 수량·항목의 변경을 명시적으로 표시하는 엔진 계약을 재사용한다. 이 계약은 `<Engine>/Source/Runtime/Net/Core/Classes/Net/Serialization/FastArraySerializer.h`의 `MarkItemDirty`·`MarkArrayDirty` 설명에서 확인했다. 가방은 16칸이고 장착 항목은 별도로 유지한다. 무게·내구도·정렬·거래 기능은 없다. 저장은 정의 ID·GUID·수량·장비·학습 상태를 대상으로 하며 UI와 Actor 참조를 담지 않는다. 슬롯 배치와 장착 상태의 저장 형식은 [개인 체크포인트](../SessionFoundation/Checkpoint.md)가 소유한다.
