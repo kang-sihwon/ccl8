@@ -1,6 +1,6 @@
 # 깊은 눈과 캐릭터 이동
 
-[EnvironmentPlan](EnvironmentPlan.md)의 단계 5를 구현하고 코드·설계 검토, 생성·빌드와 실행 검증을 통과했다. 눈의 물 환산 체적·외형 체적을 서버 표면 상태에 추가하고 캐릭터 이동 컴포넌트(CMC)와 발 IK, 접촉 흔적과 저장·복제를 연결했다. 검증 대상은 UE 5.8.3이다. 이 문서는 눈의 보존량, CMC 저항과 발 IK, 접촉 흔적, 저장·복제와 구역 03의 검증 기록을 소유한다. 단계 5를 마친 시점에는 사용자의 직접 테스트를 위해 멈추고 단계 6-9를 시작하지 않았다. 그 뒤의 단계별 진행 상태는 [EnvironmentPlan](EnvironmentPlan.md)이 소유한다.
+[EnvironmentPlan](EnvironmentPlan.md)의 단계 5를 구현하고 코드·설계 검토, 생성·빌드와 실행 검증을 통과했다. 눈의 물 환산 체적·외형 체적을 서버 표면 상태에 추가하고 캐릭터 이동 컴포넌트(CMC)와 발 IK, 접촉 흔적과 저장·복제를 연결했다. 검증 대상은 UE 5.8.3이다. 이 문서는 눈의 보존량, CMC 저항과 발 IK, 접촉 흔적, 저장·복제와 구역 03의 검증 기록을 소유한다. 단계별 진행 상태는 [EnvironmentPlan](EnvironmentPlan.md)이 소유한다.
 
 ## 목표와 책임
 
@@ -8,7 +8,7 @@
 
 | 소유자 | 책임과 수명 |
 |---|---|
-| `FCCLSurfaceSimulation` | 세계의 눈 체적·강설·융해·접촉 영수증을 저장한다 |
+| `FKSISurfaceSimulation` | 세계의 눈 체적·강설·융해·접촉 영수증을 저장한다 |
 | `UCCLSnowMovementComponent` | Character 수명의 CMC 확장이다. 저장 이동, 저항과 서버 접촉을 처리한다 |
 | `UCCLSurfaceReplication` | PlayerController 수명의 사본 전송·서버 전송 이력·임시 접촉 표현을 관리한다 |
 | `UCCLSnowAnimInstance` | 원래 포즈 뒤에 두 발의 IK를 적용한다. 게임 스레드에서 입력을 복사한다 |
@@ -17,12 +17,12 @@
 
 ```mermaid
 classDiagram
-    UCCLWorldSimulationSubsystem *-- FCCLSurfaceSimulation : authoritative state
-    UCCLSnowMovementComponent --> FCCLSurfaceSimulation : server contacts
+    UCCLWorldSimulationSubsystem *-- FKSISurfaceSimulation : authoritative state
+    UCCLSnowMovementComponent --> FKSISurfaceSimulation : server contacts
     UCCLSnowMovementComponent --> UCCLSurfaceReplication : serial and prediction
-    UCCLSurfaceReplication --> FCCLSurfaceSimulation : replica and history
-    UCCLSnowAnimInstance --> FCCLSurfaceSimulation : copied foot inputs
-    ACCLSurfacePresentation --> FCCLSurfaceSimulation : visible volume
+    UCCLSurfaceReplication --> FKSISurfaceSimulation : replica and history
+    UCCLSnowAnimInstance --> FKSISurfaceSimulation : copied foot inputs
+    ACCLSurfacePresentation --> FKSISurfaceSimulation : visible volume
     ACCLExperimentDirector --> UCCLWorldSimulationSubsystem : experiment controls
 ```
 
@@ -34,14 +34,7 @@ classDiagram
 
 서버 접촉은 `(SourceId, Sequence)`로 중복을 제거한다. 검사·후보 계산·보존 검증을 통과한 뒤 격자와 영수증을 함께 바꾼다. 거부한 접촉은 순번을 소비하지 않는다. 초기화는 영수증을 비우며 저장 복원은 영수증까지 복원한다. 비동기 지형 변경도 확정 직전의 최신 눈을 새 지표에 붙인다. 상한 아래 공간이 부족하면 지형 편집을 거부한다.
 
-```cpp
-bool SampleSnow(const FVector& PositionMeters, FCCLSnowSample& Sample) const;
-bool ApplySnowContact(FGuid RegionId, FGuid SourceId, uint64 Sequence,
-    const FVector& PositionMeters, double RadiusMeters, FString& Error);
-uint64 LastSnowContact(FGuid SourceId) const;
-```
-
-`ApplySnowContact`의 세계 실행 진입점은 `UCCLWorldSimulationSubsystem`이다. CMC는 실제 서버 이동 경로를 짧은 간격으로 나눠 접촉을 만든다. 큰 순간이동은 출발점부터 흔적을 긋지 않는다. 클라이언트는 영구 상태를 변경하지 않고, 응답 또는 2초 경과까지 임시 눌림만 표시한다.
+`SampleSnow`, `ApplySnowContact`, `LastSnowContact`의 서명은 `Source/KSIEnvironment/Public/KSISurfaceSimulation.h`가 소유한다. `ApplySnowContact`의 세계 실행 진입점은 `UCCLWorldSimulationSubsystem`이다. CMC는 실제 서버 이동 경로를 짧은 간격으로 나눠 접촉을 만든다. 큰 순간이동은 출발점부터 흔적을 긋지 않는다. 클라이언트는 영구 상태를 변경하지 않고, 응답 또는 2초 경과까지 임시 눌림만 표시한다.
 
 ## CMC 예측과 발 배치
 
@@ -49,12 +42,7 @@ uint64 LastSnowContact(FGuid SourceId) const;
 
 `FSnowSavedMove::SetMoveFor`는 표면 게시 순번·접촉 순번·깊이를 보관한다. `PrepMoveFor`는 보정 후 재실행에 같은 값을 공급한다. 이동 패킷은 두 순번만 추가하며 클라이언트의 깊이 수치를 서버에 전달하지 않는다. 서버는 자기 전송 이력에서 해당 순번의 깊이를 읽는다. 현재보다 지나치게 얕은 이력, 만료된 이력과 이전 세계 Epoch는 현재 상태로 계산하고 보정한다.
 
-UE 5.8.3의 `ForceClientAdjustment()`는 `ServerLastClientAdjustmentTime`만 초기화한다. 실제 강제 위치 보정은 서버 예측 데이터의 플래그도 필요하다. 현재 구현의 핵심은 다음과 같다.
-
-```cpp
-GetPredictionData_Server_Character()->bForceClientUpdate = true;
-ForceClientAdjustment();
-```
+UE 5.8.3의 `ForceClientAdjustment()`는 `ServerLastClientAdjustmentTime`만 초기화한다. 실제 강제 위치 보정은 서버 예측 데이터의 `bForceClientUpdate`도 필요하므로 `CCLSnowMovementComponent.cpp`가 둘을 함께 호출한다.
 
 엔진 근거는 `<Engine>/Source/Runtime/Engine/Private/Components/CharacterMovementComponent.cpp:8116`의 `ForceClientAdjustment`, 같은 파일 `:10401`의 보정 분기와 `:8674`의 `PrepMoveFor` 호출이다. 이 방식은 CMC를 확장하며 별도의 전체 캐릭터 예측기를 만들지 않는다.
 
@@ -64,15 +52,11 @@ ForceClientAdjustment();
 
 ## 저장·복제와 비용
 
-세계 스키마는 3을 유지하고 내부 표면 스냅샷을 버전 2로 확장했다. 버전 1의 물·얼음·토양 수분은 보존하며 눈·강설·영수증을 빈 값으로 읽는다. 새 버전은 눈의 두 체적과 강설 장부, 접촉 영수증을 함께 저장한다. 손상·초과 입력은 원본을 바꾸기 전에 거부한다.
+눈의 두 체적, 강설 장부, 접촉 영수증은 표면 스냅샷 버전 2부터 저장한다. 현재 세계 스키마와 표면 스냅샷 버전은 모두 7이다. 버전 1의 물·얼음·토양 수분은 보존하며 눈·강설·영수증을 빈 값으로 읽는다. 손상·초과 입력은 원본을 바꾸기 전에 거부한다.
 
 구역 03은 8m × 8m, 64 × 64셀, 간격 0.125m다. 첫 1m 구간은 깊이 0.08m, 나머지는 0.6m다. 계획의 0.05m 세부 타일은 성능 비교 후보로 남긴다. 물 구역과 합친 표면은 총 5,504셀이다. 보행 후 접촉 출처가 하나인 저장물은 358,528바이트였다.
 
-현재 한도는 16개 지역·총 65,536셀·표면 저장 8MiB·접촉 출처 128개다. 서버는 접속자마다 최대 4개의 불변 표면 발행본 참조를 보관하며 15초 안의 같은 Epoch만 사용한다. 발행본의 표면 모델과 원본 바이트는 연결 간 공유한다. 같은 서버 프레임의 발행 요청과 변경 없는 바이트를 재사용하는 계약은 아래 문단에 있다. 임시 접촉은 최대 64개다. 전체 후보 복사와 전체 스냅샷 전송은 실패 처리와 재접속을 단순하게 만들지만, 접속자·지역 수에 따라 메모리와 대역폭 비용이 증가한다. 출처를 계속 추가하는 장시간 재스폰 정책과 대규모 비용은 단계 9에서 검증할 범위다.
-
-표면 발행본의 수명은 2026-10-11 설계 후속 수정에서 정했다. `UCCLSurfacePublicationSubsystem::Acquire`의 첫 요청은 그 서버 프레임의 표면 바이트와 지형 완료 번호를 고정하고, 같은 프레임의 다음 요청은 그 객체를 재사용한다. 동일 프레임에서 뒤늦게 바뀐 월드 상태는 다음 프레임의 발행 후보에 반영한다. 복원 Epoch가 달라지면 같은 프레임에도 새 후보를 만든다. `FCCLSurfacePublicationCache`는 이전 발행본과 정확한 바이트·Epoch·지형 완료 번호를 비교해 모두 같으면 기존 객체를 유지하고, 달라지면 새 불변 객체에 표면 모델과 바이트를 저장한다. 연결은 전송 중 객체와 최근 4개 전송의 참조를 소유하고, 전송 번호·확인 위치·전송 시각과 15초 이력 제한도 연결별로 유지한다. 마지막 참조가 사라지면 과거 객체도 해제된다.
-
-이 공유로 연결 수만큼 표면 모델과 원본 전송 바이트를 복사하던 비용을 줄였다. 청크 RPC의 바이트 복사와 연결별 네트워크 송신량은 남는다. 같은 프레임에서 직렬화는 한 번이며, 다음 프레임의 요청에서는 변경 여부 확인을 위한 직렬화가 다시 필요하다. 불변 공유본은 복사를 줄이는 대신 느린 연결이 이전 발행본의 수명을 연장한다. CPU 시간과 최대 메모리 사용량은 측정하지 않았다. 검증 근거는 [ProgressionFoundation의 2026-10-11 기록](ProgressionFoundation.md#2026-10-11-설계-후속-수정)이다.
+현재 한도는 16개 지역·총 65,536셀·표면 저장 8MiB·접촉 출처 128개다. 서버는 접속자마다 최대 4개의 불변 표면 발행본 참조를 보관하며 15초 안의 같은 Epoch만 사용한다. 발행본의 표면 모델과 원본 바이트는 연결 간 공유하며, 수명 계약은 [EnvironmentWater](EnvironmentWater.md#표면-발행본의-수명)가 소유한다. 임시 접촉은 최대 64개다. 전체 후보 복사와 전체 스냅샷 전송은 실패 처리와 재접속을 단순하게 만들지만, 접속자·지역 수에 따라 메모리와 대역폭 비용이 증가한다. 출처를 계속 추가하는 장시간 재스폰 정책과 대규모 비용은 단계 9에서 검증할 범위다.
 
 ## 직접 테스트하는 순서
 
@@ -83,34 +67,19 @@ ForceClientAdjustment();
 5. PASS 후 **실험 저장 → 융해 → 저장 불러오기**로 흔적 복원을 확인한다. **새 적설 켜기 / 끄기**는 눌린 곳에 눈이 다시 쌓이는 입력이다. Scenario의 **60배**에서 변화를 보기 쉽다.
 6. 처음 상태로 돌아가려면 **전체 초기화**를 사용한다. 저장 복원·초기화 때 캐릭터를 안전 지점으로 옮기므로 필요하면 구역 03으로 다시 이동한다.
 
-메뉴를 닫아도 화면 왼쪽 아래에 F7 안내가 표시된다. PIE에서 마우스를 해제했다면 게임 화면을 클릭한 뒤 F7을 누른다. [실험 메뉴 조작과 검증](EnvironmentPlan.md#실험-메뉴-조작과-검증)에 입력 경로와 검사 방법을 기록한다.
+메뉴를 닫아도 화면 왼쪽 아래에 F7 안내가 표시된다. PIE에서 마우스를 해제했다면 게임 화면을 클릭한 뒤 F7을 누른다. [실험 메뉴 조작과 검증](EnvironmentPlan.md#실험-메뉴-조작과-검증)에 입력 경로와 검사 방법을 기록한다. 전용 레벨 `Snow`는 [기능별 환경 실험장](EnvironmentLaboratories.md)의 절차를 따른다.
 
 수치 PASS는 이동 거리·압축 셀·수지 검사다. 보행 감각이나 최종 미술 품질에 대한 판정은 포함하지 않는다. 눈은 이웃 셀 모서리를 공유하는 연속 메시로 표시한다. 셀 중심 깊이는 물리 입력을 따르고 모서리·법선은 표현에서 보간한다. 임시 눌림도 표현에만 적용한다. 절차적 입자감을 추가했지만 부츠 모양의 정밀 변위·고해상도 흔적 텍스처·최종 VFX는 아직 없다. 공통 책임과 비용은 [표면 표현](EnvironmentWater.md#표면-표현)을 따른다.
 
 ## 실행 근거와 검토 결과
 
-2026-10-10의 연속 표면·재질과 복제 송신량 보완 결과는 [실험실 보완 검증](EnvironmentPlan.md#실험실-보완-검증)에 기록한다. 아래 표는 앞선 단계 완료 시점의 기록이다.
+2026-10-10의 연속 표면·재질과 복제 송신량 보완 결과는 [실험실 보완 검증](EnvironmentPlan.md#실험실-보완-검증)에 기록한다.
 
-2026-10-09 로컬 실행을 기록한다. 아래 경로는 저장소 상대 경로이며 `Saved/`의 원본은 Git 제출 대상이 아니다.
+2026-10-09 단계 완료 시점에 프로젝트 생성과 Editor 빌드가 성공했고 환경 자동 검사는 52/52, 경고·실패·미실행 0이었다. Dedicated Server와 첫·늦은 접속, Listen Server와 두 클라이언트는 눈 상태 바이트가 일치했다. 압축 흔적의 별도 프로세스 저장·복원과 서로 다른 두 맵의 네 번 왕복은 전체 세계 상태가 일치했다. 각 프로세스의 50ms 지연·2% 손실 설정에서 이력 만료와 CMC 보정이 통과했고, 실제 저장 이동 재실행과 서버·첫·늦은 접속의 표면 바이트가 일치했다. 조작부·보행·발 진단·흔적 화면을 직접 확인했고, 일반 캠페인의 경로 이동·전투·보스·승리·재스폰과 기존 Agent 실행도 통과했다.
 
-| 검사 | 결과와 근거 |
-|---|---|
-| 프로젝트 생성·Editor 빌드 | 성공. `Saved/EnvironmentStages/Stage5-GPF.log`, `Stage5-Build.log` |
-| 환경 자동 검사 | 52/52, 경고·실패·미실행 0. `Saved/Tests/Automation/20261009-233306-271/report/index.json` |
-| Dedicated Server와 첫·늦은 접속 | 눈 상태 바이트 일치. `Saved/Tests/Snow/Dedicated-20261009-232411-995` |
-| Listen Server와 두 클라이언트 | 눈 상태 바이트 일치. `Saved/Tests/Snow/Listen-20261009-234208-119` |
-| 압축 흔적의 별도 프로세스 저장·복원 | 전체 세계 상태 일치. `Saved/Tests/TerrainScenario/EnvironmentScenario-20261009-233359-222` |
-| 서로 다른 두 맵의 흔적과 영수증 | 네 번 왕복 후 전체 세계 상태 일치. `Saved/Tests/TerrainTravel/Standalone-20261009-233359-799` |
-| 이력 만료와 지연·손실 중 CMC 보정 | 통과. 각 프로세스의 50ms 지연·2% 손실 설정에서 실제 저장 이동 재실행과 서버·첫·늦은 접속의 표면 바이트 일치. `Saved/Tests/Snow/Dedicated-20261009-233859-043` |
-| 최종 렌더링 보행·발 배치·눈가루 | 통과. `Saved/Tests/Snow/Standalone-20261009-233859-874`의 조작부·보행·발 진단·흔적 화면을 직접 확인 |
-| 일반 캠페인 회귀 | 경로 이동·전투·보스·승리·재스폰 통과. `Saved/Tests/CampaignSmoke/Standalone-20261009-233859` |
-| 기존 Agent 실행 | 통과. `Saved/Tests/AgentWorld/20261009-234205/editor.log` |
-
-보정 시험은 이동 속도를 낮추고 서버의 표면 전송 틱을 일시 중단해 이력을 만료시킨다. 현재 상태로 계산한 강제 보정 경로 1,559회, 첫 클라이언트의 저장 이동 재실행 5,081회를 관측했다. 이 횟수는 시험 조건의 계측값이며 실제 패킷 수나 성능 목표가 아니다. 렌더링에서 발 높이는 지지 지표 기준 7.933-70.074cm였고 눈가루 인스턴스 생성도 확인했다. 발 진단 화면은 한 프레임 동안 눈 표시만 숨겼으며 권위 표면과 정상 보행 화면은 유지했다.
+보정 시험은 이동 속도를 낮추고 서버의 표면 전송 틱을 일시 중단해 이력을 만료시킨다. 현재 상태로 계산한 강제 보정 경로 1,559회, 첫 클라이언트의 저장 이동 재실행 5,081회를 관측했다. 이 횟수는 시험 조건의 계측값이며 실제 패킷 수나 성능 목표가 아니다. 렌더링에서 발 높이는 지지 지표 기준 7.933-70.074cm였고 눈가루 인스턴스 생성도 확인했다.
 
 자동 검사는 강설 시간 구간의 분할, 반복 압축·재분배·융해 수지, 접촉 중복·실패 후 원본 유지, 지형 지지 변경·수용 공간 거부와 비어 있지 않은 버전 1 저장물의 변환을 포함한다. 저장·맵 왕복 검사는 초기 눈뿐 아니라 실제 접촉으로 변형한 눈과 영수증도 비교한다.
-
-검토 중 자기 발밑 압축으로 이동 저항이 약해지는 문제, 다음 눈 높이를 반영하지 않은 발 목표, CMC 보정 요청과 실제 강제 보정의 차이를 수정했다. 검증기의 계측은 복원 과정의 상태 변화에도 실행 중 관측한 최대 횟수를 유지한다.
 
 ## 대안과 남은 범위
 
@@ -118,4 +87,4 @@ ForceClientAdjustment();
 
 국소 발 조정은 native TwoBoneIK로 처리했다. 전신 균형 조절이 필요하면 Control Rig를 비교할 수 있으며 포즈 전달과 리그 평가 비용을 측정해야 한다. 현재 눈가루는 단순 메시 입자이며 최종 VFX 품질과 원격 관찰자별 표현은 후속 범위다.
 
-자연 날씨, 장시간·대규모 성능, 실제 Server 타깃과 패키지의 재질·애니메이션 포함은 이번 단계의 통과 범위가 아니다. 단계 6-9와 Framework 분리는 시작하지 않는다. 현재 검증 결과를 바탕으로 사용자가 테스트 레벨에서 직접 확인한다.
+자연 날씨, 장시간·대규모 성능, 실제 Server 타깃과 패키지의 재질·애니메이션 포함은 이 단계의 통과 범위가 아니다.
