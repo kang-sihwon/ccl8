@@ -1,10 +1,8 @@
 # GAS 전투: 자원 수명과 한 번의 공격을 분리하기
 
-후속 `b888b13`에서 `CCLCombatAbility` 파일이 `AbilitySystem/`에서 `Combat/`으로 이동했다. 아래 코드의 비교 커밋과 당시 줄 번호는 유지하고 파일 링크만 현재 위치로 연결한다.
-
 현재 전투는 PlayerState의 ASC가 능력과 자원을 유지하고, Character의 Fighter와 CombatComponent가 현재 생명의 실행을 연결한다. 이 장의 목표는 `Source/CCL/AbilitySystem/`과 `Combat/`에서 입력, 예측, 적중 검증, 효과 적용, 취소가 이어지는 이유를 설명하는 것이다. 발사체는 [무기 행동](Weapons.md), 적의 선택은 [적 AI](EnemyAI.md)에서 다룬다.
 
-2026-10-12 공용 전투·행동이 KSICombat으로 옮겨졌다. 이 장의 발췌는 아래 고정 커밋의 학습 기록을 유지한다. 현재 타입·경계·검증은 [Framework 단계 3](../FrameworkPlan/Stage3.md#단계-3-구현과-검증)을 따른다.
+`35ab176`이 공용 전투·행동을 `Source/KSICombat/`으로 옮겼고, 앞서 `b888b13`이 `CCLCombatAbility`를 `AbilitySystem/`에서 `Combat/`으로 옮겼다. 이 장은 현재 코드(`d4888b0`)를 설명한다. 이전 이름 `UCCLCombatComponent`, `FCCLHitContext`, `CCLHit`는 현재 `UKSICombatComponent`, `FKSIHitContext`, `KSIHit`다. 현재 타입·경계·검증은 [Framework 단계 3](../FrameworkPlan/Stage3.md#단계-3-구현과-검증)을 따른다.
 
 ## 1. 비교 기준
 
@@ -12,9 +10,10 @@
 |---|---|
 | 이전 기준 | `c8c6e4a27234bf2a78ca4c6f49c230e6badd193a` |
 | 도입·변경 기준 | `4238990815cc932a6f38c55f947be78065389651` |
-| 현재 기준 | `50e583859c832d6cb325e5e76beb8356e8c13959` |
+| 모듈 분리 | `35ab176c3dd840a8d28f50c30e1f91d717730986` |
+| 현재 기준 | `d4888b08154afab8712af974bce0ead2b90978ac` |
 
-조사 시작 때 확인한 `main`과 로컬 원격 추적 `origin/main`의 `50e5838`을 게임 코드 기준으로 고정한 학습 기록이다. 원격 서버를 새로 조회한 결과는 아니며 이후 추가된 커밋과 구분한다. 작업 트리의 설정·빌드 파일 변경은 이 장의 코드 기준에서 제외했다. 아래 발췌의 경로·줄 번호는 표시한 커밋 기준이고 상대 링크는 현재 체크아웃을 연다.
+현재 기준 `d4888b0`은 2026-10-31의 `main`이며 로컬 원격 추적과 같았다. 원격 서버를 새로 조회한 결과는 아니다. 발췌의 출처에는 커밋과 함수 이름을 적었고 상대 링크는 현재 체크아웃을 연다.
 
 이전 기준에는 양수 피해로 바로 죽는 이동 검증용 Character가 있었다. `4238990`에서 GAS 전투가 도입됐고 `ed9a763`에서 근접과 발사체가 공통 적중 적용 경로를 사용하게 됐다. 후자의 전체 해시는 [무기 행동](Weapons.md)에 있다. 수치와 과거 검증은 [CombatFoundation](../CombatFoundation.md)이 소유한다.
 
@@ -36,7 +35,7 @@
 
 이전 Character는 유효한 양수 피해에 `Die`를 직접 호출했다.
 
-출처: `c8c6e4a`, [CCLCharacter.cpp](../../Source/CCL/CCLCharacter.cpp):53의 `ACCLCharacter::TakeDamage`. 실제 코드 전체 함수이며 들여쓰기를 공백으로 바꿨다.
+출처: `c8c6e4a`, `Source/CCL/CCLCharacter.cpp`의 `ACCLCharacter::TakeDamage`. 실제 코드 전체 함수이며 들여쓰기를 공백으로 바꿨다.
 
 ```cpp
 float ACCLCharacter::TakeDamage(float DamageAmount, const FDamageEvent& DamageEvent, AController* EventInstigator, AActor* DamageCauser)
@@ -58,7 +57,7 @@ float ACCLCharacter::TakeDamage(float DamageAmount, const FDamageEvent& DamageEv
 
 ## 5. 변경 이유
 
-[DesignLog](../Decisions.md)의 결정 8·10·11은 회피·가드·패링, 현행 엔진 시스템 사용, PlayerState 소유 ASC를 요구한다. 장르 공통 적중 검증과 소울라이크 방어 정책을 분리한다는 방향은 결정 9와 CombatFoundation에 기록돼 있다.
+[Decisions](../Decisions.md)의 결정 8·10·11은 회피·가드·패링, 현행 엔진 시스템 사용, PlayerState 소유 ASC를 요구한다. 장르 공통 적중 검증과 소울라이크 방어 정책을 분리한다는 방향은 결정 9와 CombatFoundation에 기록돼 있다.
 
 코드에 대한 분석으로 보면 공통 CombatComponent가 가드 각도나 패링 비용까지 알면 다른 피해 대상에 재사용하기 어려워진다. 현재는 검증한 적중 문맥을 정책에 전달하고, 정책이 적용할 효과와 결과 태그를 정한다.
 
@@ -66,7 +65,7 @@ float ACCLCharacter::TakeDamage(float DamageAmount, const FDamageEvent& DamageEv
 
 서버의 `PossessedBy`와 클라이언트의 `OnRep_PlayerState`는 다음 함수로 들어온다.
 
-출처: `50e5838`, [CCLCharacter.cpp](../../Source/CCL/CCLCharacter.cpp):188의 `ACCLCharacter::InitializeAbilitySystem`. 실제 코드 전체 함수이며 들여쓰기를 공백으로 바꿨다.
+출처: `d4888b0`, [CCLCharacter.cpp](../../Source/CCL/CCLCharacter.cpp)의 `ACCLCharacter::InitializeAbilitySystem`. 실제 코드 전체 함수이며 들여쓰기를 공백으로 바꿨다.
 
 ```cpp
 void ACCLCharacter::InitializeAbilitySystem()
@@ -96,7 +95,7 @@ void ACCLCharacter::InitializeAbilitySystem()
 
 같은 ASC라면 중복 구독을 피하고, 다른 ASC라면 이전 체력 델리게이트를 해제한다. `InitAbilityActorInfo` 다음에 Fighter 초기화와 장비 동기화를 실행한다. 체력 델리게이트는 해당 ASC를 기록한 뒤 연결한다.
 
-Fighter의 `Initialize`는 능력·세트·생명 자원을 준비한다. `UCCLAbilitySet::GrantTo`는 서버에서 AttributeSet과 Ability를 부여하고 클래스 중복을 검사한다. 공유 DataAsset 자체에 플레이어별 현재 체력을 쓰지 않는다.
+Fighter의 `Initialize`는 능력·세트·생명 자원을 준비한다. `UKSIAbilitySet::GrantTo`(게임의 `UCCLAbilitySet`이 상속한다)는 서버에서 AttributeSet과 Ability를 부여하고 클래스 중복을 검사한다. 공유 DataAsset 자체에 플레이어별 현재 체력을 쓰지 않는다.
 
 ## 7. 공격과 적중의 내부 연결
 
@@ -104,20 +103,21 @@ Fighter의 `Initialize`는 능력·세트·생명 자원을 준비한다. `UCCLA
 
 서버 CombatComponent는 공격 ID, 현재 Avatar, 거리, 차폐와 중복 대상을 확인한다. 다음은 정책 호출 직전 부분이다. 앞선 권한·거리·차폐 검사는 이 발췌에 생략돼 있다.
 
-출처: `50e5838`, [CCLCombatComponent.cpp](https://github.com/kang-sihwon/ccl8/blob/50e583859c832d6cb325e5e76beb8356e8c13959/Source/CCL/Combat/CCLCombatComponent.cpp):99의 `UCCLCombatComponent::ResolveHit`. 실제 코드 함수 일부이며 들여쓰기를 공백으로 바꿨다.
+출처: `d4888b0`, [KSICombatComponent.cpp](../../Source/KSICombat/Private/KSICombatComponent.cpp)의 `UKSICombatComponent::ResolveHit`. 실제 코드 함수 일부이며 들여쓰기를 공백으로 바꿨다. `50e5838`의 `UCCLCombatComponent::ResolveHit`과 비교하면 이름과 아래 세 가지가 다르다.
 
 ```cpp
-    const UCCLCombatDefinition* Definition = ActiveDefinition;
+    const UKSICombatDefinition* Definition = ActiveDefinition;
 
     if (!Definition->HitRule)
     {
         return FGameplayTag();
     }
 
-    FCCLHitContext Context{Source, Target, SourceASC, TargetASC, Definition, Hit, AttackId};
+    TGuardValue<uint8> Resolving(bResolvingHit, 1);
+    FKSIHitContext Context{Source, Target, SourceASC, TargetASC, Definition, Hit, AttackId};
     // Reserve before policy side effects: cancellation can synchronously re-enter the resolver.
     HitActors.Add(Target);
-    const FGameplayTag Outcome = CCLHit::Apply(Context);
+    const FGameplayTag Outcome = KSIHit::Apply(Context);
     OnHitResolved.Broadcast(Target, Outcome);
     return Outcome;
 }
@@ -125,7 +125,9 @@ Fighter의 `Initialize`는 능력·세트·생명 자원을 준비한다. `UCCLA
 
 대상을 먼저 `HitActors`에 넣는 순서에 주목하자. 효과나 Ability 취소는 동기적으로 다른 콜백을 부를 수 있으므로, 부수 효과 전에 중복 적중을 예약한다.
 
-`CCLHit::Apply`는 정의에 지정한 HitRule의 `Resolve`를 호출한다. 현재 소울라이크 정책은 `UCCLDuelHitRule`이다. 정책은 사망·팀·무적을 검사한 뒤 정면 패링, 가드와 일반 피해를 판단한다. 효과가 있는 결과라면 Spec에 수치를 넣고 적용 성공을 확인한다. 단순히 UI에 ‘적중’ 문구를 보냈다는 이유로 체력이 줄지는 않는다.
+모듈을 옮기면서 같은 함수에 세 가지가 더해졌다. 첫째, 함수 앞쪽의 검사에 `IsValid(Source)`와 `Hit.ImpactPoint.ContainsNaN()`이 들어가 사라진 Source와 잘못된 충돌 지점을 거부한다. 둘째, 위 발췌의 `TGuardValue`가 `bResolvingHit`를 켜서 정책 안에서 이 함수가 다시 불리면 앞쪽 검사에서 거부한다. 셋째, 정책이 읽는 문맥이 `FKSIHitContext`가 됐다. 추가한 검사의 이유는 `35ab176` 본문에 따로 없고, [Framework 단계 3](../FrameworkPlan/Stage3.md#단계-3-구현과-검증)이 "판정 콜백에서 새 공격을 시작하는" 경우를 거부한다고 적은 것과 같은 방향이다. 어느 사고를 겪은 뒤의 수정인지는 기록이 없다.
+
+`KSIHit::Apply`는 정의에 지정한 HitRule의 `Resolve`를 호출한다. 현재 소울라이크 정책은 `UCCLDuelHitRule`이다. 정책은 사망·팀·무적을 검사한 뒤 정면 패링, 가드와 일반 피해를 판단한다. 효과가 있는 결과라면 Spec에 수치를 넣고 적용 성공을 확인한다. 단순히 UI에 ‘적중’ 문구를 보냈다는 이유로 체력이 줄지는 않는다.
 
 ## 8. 예측과 권한
 
@@ -137,7 +139,7 @@ Fighter의 `Initialize`는 능력·세트·생명 자원을 준비한다. `UCCLA
 
 능력 종료 시 공격 창과 생명 효과의 핸들을 정리한다.
 
-출처: `50e5838`, [CCLCombatAbility.cpp](../../Source/CCL/Combat/CCLCombatAbility.cpp):154의 `UCCLCombatAbility::EndAbility`. 실제 코드 전체 함수이며 들여쓰기를 공백으로 바꿨다.
+출처: `d4888b0`, [CCLCombatAbility.cpp](../../Source/CCL/Combat/CCLCombatAbility.cpp)의 `UCCLCombatAbility::EndAbility`. 실제 코드 전체 함수이며 들여쓰기를 공백으로 바꿨다.
 
 ```cpp
 void UCCLCombatAbility::EndAbility(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilityActivationInfo ActivationInfo, bool bReplicateEndAbility, bool bWasCancelled)
@@ -200,6 +202,6 @@ Fighter의 `EndLife`도 능력·입력과 생명 효과를 정리한다. 무한 
 
 ## 불의 열 노출에서 들어오는 피해
 
-현재 작업 트리에는 단계 7 최초 통과 뒤의 열 피해 연결이 있다. `c182af3`는 그 검증을 남긴 문서 커밋이며 실제 코드는 미커밋이다. 공통 세계 진행 전에 노출을 준비하고 성공 뒤 즉시 GAS 체력 효과를 적용한다. Niagara 불꽃의 표시가 피해를 직접 적용하지 않는다. 이 연결은 앞의 ASC 소유·Avatar 수명 계약을 이용한다.
+불의 열 피해 연결은 `c8816e7`에 커밋돼 있다. 공통 세계 진행 전에 노출을 준비하고 성공 뒤 즉시 GAS 체력 효과를 적용한다. Niagara 불꽃의 표시가 피해를 직접 적용하지 않는다. 이 연결은 앞의 ASC 소유·Avatar 수명 계약을 이용한다.
 
-실제 전후 코드·실패 경계·대안과 확인 방법은 [불과 열의 후속 GAS 연결](EnvironmentFire.md#현재-코드의-후속-열-피해-연결)에서 이어 읽는다. 현재 브랜치와 고정 기준은 [환경 비교 근거](EnvironmentEvidence.md)를 따른다.
+실제 전후 코드·실패 경계·대안과 확인 방법은 [불과 열의 후속 GAS 연결](EnvironmentFire.md#현재-코드의-후속-열-피해-연결)에서 이어 읽는다. 비교 기준은 [환경 비교 근거](EnvironmentEvidence.md)를 따른다.
