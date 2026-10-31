@@ -16,7 +16,8 @@
 
 - [x] 1. `EnvironmentPlan/Stages0to3` 62.6KB (없음). 완료 조건은 정리, 대조, 커밋이다. 이후 조각도 같다.
   - 결과: 31.8KB로 줄었고 `TimeAndLabs`, `Celestial`, `TerrainCore`로 나눴다. 가장 큰 하위는 12.2KB다. 시간, 지형, 환경 입력의 한도는 소스와 맞췄고, 천체 수, 표면 수, 진단 위치, 활성 청크 한도는 찾지 못해 당시 값으로 남겼다.
-- [ ] 2. `EnvironmentPlan/Ecology/Food` 56.4KB (없음).
+- [x] 2. `EnvironmentPlan/Ecology/Food` 56.4KB (없음).
+  - 결과: 29.6KB로 줄었고 `State`, `Containers`, `Storage`, `Pickup`으로 나눴다. 가장 큰 하위는 11KB다. 묶음, 컨테이너, 거리 한도는 소스와 맞췄다.
 - [ ] 3. `ConceptImageToolTest/Results` 48.6KB (없음).
 - [ ] 4. `EnvironmentPlan` 31.2KB (없음).
 - [ ] 5. `SessionFoundation/PlayerRestore` 30.5KB (없음).
