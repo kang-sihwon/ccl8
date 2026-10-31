@@ -2,7 +2,7 @@
 
 시나리오와 배경 설명으로 컨셉 시안과 3D 모델링용 기준 이미지를 만들 AI 도구를 고르기 위한 비교 테스트다. 같은 프롬프트를 후보 도구마다 넣고 채점표로 비교한 뒤, 단계별로 쓸 도구를 정한다. 이 문서는 비교 대상, 진행 조건, 테스트 프롬프트, 채점 기준을 소유한다. 시각 기준은 [ArtDirection](ArtDirection.md)이, 에이전트 도구 조사는 [AgentToolingResearch](AgentToolingResearch.md)가 소유한다.
 
-2026-10-30까지 T1 영어·한국어와 T2 프롬프트의 1라운드 일부, T3부터 T7까지의 1라운드를 실행했고 도구는 아직 정하지 않았다. T0과 T8부터 T11까지는 2026-10-31에 실행했다. 결과는 이 문서의 "결과" 절에 날짜를 붙여 추가하고, 결과 이미지는 `ConceptImageToolTest/` 폴더에 테스트 ID별로 둔다.
+2026-10-30까지 T1 영어·한국어와 T2 프롬프트의 1라운드 일부, T3부터 T7까지의 1라운드를 실행했고 도구는 아직 정하지 않았다. T0과 T8부터 T12까지는 2026-10-31에 실행했다. 결과는 이 문서의 "결과" 절에 날짜를 붙여 추가하고, 결과 이미지는 `ConceptImageToolTest/` 폴더에 테스트 ID별로 둔다.
 
 ## 피사체의 지위
 
@@ -244,6 +244,40 @@ Environment layout sheet of the room in the attached image. Three views arranged
 Show the exact same room from a different camera angle: move the camera around the room so it looks from the right edge of the circular floor toward the left wall. Keep the same architecture, gears, chains, frozen waterfall, ice floor, materials, colors and lighting. Do not add new objects or characters. 16:9.
 ```
 
+### T12. 오브젝트 추출
+
+배경 시안에서 오브젝트를 하나씩 뽑아 단독 에셋 이미지로 만들 수 있는지 본다. 조건은 T7의 3/4 시점을 따른다. T12a부터 T12d까지의 입력은 T0a 1, 2, 4번이다. 마을 그림에 톱니가 없어 T12e의 입력은 T8c Midjourney 1번이다.
+
+T12a는 집이다.
+
+```
+Extract one timber-and-stone village house with its snow-covered slate roof from the attached images as a single standalone game asset. Keep the same design, materials, colors and weathering as in the images. Single object only, three-quarter view from slightly above, centered, entire object visible, plain white background, soft even lighting, no shadows on the ground, no other objects, no text. 1:1.
+```
+
+T12b는 돌이다.
+
+```
+Extract one large snow-dusted boulder from the attached images as a single standalone game asset. Keep the same shape language, materials, colors and weathering as in the images. Single object only, three-quarter view from slightly above, centered, entire object visible, plain white background, soft even lighting, no shadows on the ground, no other objects, no text. 1:1.
+```
+
+T12c는 지형이다.
+
+```
+Extract one square patch of the snowy riverside ground from the attached images as a standalone terrain block, like a small diorama. Keep the same snow, frozen ground, stones, materials and colors as in the images. Single terrain block only, three-quarter view from slightly above, centered, entire block visible, plain white background, soft even lighting, no shadows on the ground, no buildings, no other objects, no text. 1:1.
+```
+
+T12d는 성벽이다.
+
+```
+Extract one section of the colossal ancient stone dam wall from the attached images as a single standalone game asset. Keep the same masonry, materials, colors and weathering as in the images. Single object only, three-quarter view from slightly above, centered, entire object visible, plain white background, soft even lighting, no shadows on the ground, no other objects, no text. 1:1.
+```
+
+T12e는 톱니다.
+
+```
+Extract the large rusted gear from the attached image as a single standalone game asset. Keep the same design, materials, colors and weathering as in the image. Single object only, three-quarter view from slightly above, centered, entire object visible, plain white background, soft even lighting, no shadows on the ground, no other objects, no text. 1:1.
+```
+
 ### 이미지→3D 단계
 
 테스트하는 사람이 T7의 두 결과와 T5 시트를 Hunyuan3D, Tripo, Meshy에 각각 넣는다. 원본 실루엣과 맞는지, 보이지 않던 뒷면을 그럴듯하게 만드는지, 폴리곤 수와 텍스처를 쓸 수 있는지 비교한다. 결과 메시는 최종 에셋이 아니라 블록아웃이나 스컬프트 기반으로 보고, 리토폴로지 등 후처리가 필요하다고 가정한다. 후처리에 쓸 Blender는 설치를 확인한 기록이 없다([AgentToolingResearch](AgentToolingResearch.md#반영-상태)).
@@ -259,9 +293,10 @@ Show the exact same room from a different camera angle: move the camera around t
 | 스타일 적합 | ArtDirection의 PBR 재질, 생활감, 큰 색면, 차가운 보스 공간 기준에 맞는가 | T1, T2, T3 |
 | 톤 유지 | 피사체가 바뀌어도 참조와 같은 화풍, 색감, 질감인가 | T8 |
 | 내용 번짐 | 참조의 피사체, 디자인, 구도가 따라오지 않았는가. 5점이 번짐 없음이다 | T8 |
+| 입력 일치 | 뽑은 오브젝트의 디자인, 재질, 색이 입력과 같은가 | T12 |
 | 편집 보존 | 지시한 한 가지만 바뀌었는가. T11은 입력의 방이 유지되는가 | T4, T9, T11 |
 | 시점 일관성 | 시점끼리 디테일이 맞고, 뒷면을 지어내지 않고, 축이 정렬됐는가 | T5, T7, T10 |
-| 모델링 활용도 | 형태가 모호하지 않고 Blender 배경 평면으로 바로 쓸 수 있는가 | T3, T5, T6, T7, T8a, T8b, T10 |
+| 모델링 활용도 | 형태가 모호하지 않고 Blender 배경 평면으로 바로 쓸 수 있는가 | T3, T5, T6, T7, T8a, T8b, T10, T12 |
 | 실루엣 구분 | 실루엣만 보고 세 몹을 구분할 수 있는가 | T6 |
 | 비용·속도 | 4장에 든 크레딧과 시간 | 전부 |
 
@@ -633,6 +668,36 @@ Raw 모드를 끈 Midjourney 실행은 장별 점수가 3/4/2, 4/5/3, 4/5/2, 4/5
 - **FLUX 2**: T9c는 조명, 벽, 폭포까지 바뀌었다. T10b 3번과 4번에 글자나 표시가 들어갔다. T11a는 잘라 붙인 조각처럼 나왔다. T11b는 카메라를 가장 많이 돌렸지만 바닥과 벽이 달라졌다.
 - T11a의 위에서 본 칸은 입력에 없는 천장과 바닥 구조를 지어낸 것으로 보이므로, 평면도로 쓰지 않는다.
 
+### 2026-10-31 T12 기록
+
+두 도구 모두 다섯 종을 단독 에셋 이미지로 뽑았다. 입력을 잘라 낸 것이 아니라, 입력의 화풍과 재질로 새로 그린 결과다. GPT Image 2.5가 지시 반영이 가장 높았다. 사용자 순위는 아직 없다.
+
+- AI가 `ConceptImageToolTest T3` 워크플로에 노드 10개를 추가했다. 실행 기록에서 T12e의 입력 파일을 확인했다. 이미지 파일은 저장소에 저장하지 않았다.
+- FLUX 2는 T9-T11 순위가 가장 낮아 비용을 줄이려고 뺐다. Midjourney는 편집 입력이 없어 뺐다.
+- 크기는 두 도구 모두 1024×1024다. 크레딧은 Nano Banana Pro 40씩, GPT Image 2.5는 참조 세 장 32씩, 참조 한 장 24로 모두 352이고 잔액은 954다.
+- 시간은 대부분 약 30-50초였고, GPT Image 2.5 T12a만 약 2분 50초였다.
+- 점수는 지시 반영, 입력 일치, 모델링 활용도 순이다.
+
+| 테스트 | 도구 | 1번 | 2번 | 3번 | 4번 | 평균 |
+|---|---|---|---|---|---|---|
+| T12a 집 | GPT Image 2.5 | 5/5/5 | 5/5/5 | 5/5/5 | 5/5/5 | 5 / 5 / 5 |
+| | Nano Banana Pro | 4/4/5 | 4/4/5 | 4/4/5 | 4/4/5 | 4 / 4 / 5 |
+| T12b 돌 | GPT Image 2.5 | 5/4/5 | 5/4/5 | 5/4/5 | 5/4/5 | 5 / 4 / 5 |
+| | Nano Banana Pro | 4/4/5 | 4/4/5 | 4/4/5 | 4/4/5 | 4 / 4 / 5 |
+| T12c 지형 | GPT Image 2.5 | 5/5/4 | 5/5/4 | 5/5/4 | 5/5/4 | 5 / 5 / 4 |
+| | Nano Banana Pro | 4/3/4 | 4/3/4 | 4/3/4 | 4/3/4 | 4 / 3 / 4 |
+| T12d 성벽 | GPT Image 2.5 | 5/4/4 | 5/4/4 | 5/4/4 | 5/4/4 | 5 / 4 / 4 |
+| | Nano Banana Pro | 4/3/4 | 4/3/4 | 4/3/4 | 4/3/4 | 4 / 3 / 4 |
+| T12e 톱니 | GPT Image 2.5 | 5/3/5 | 5/3/5 | 5/3/5 | 5/3/5 | 5 / 3 / 5 |
+| | Nano Banana Pro | 5/2/5 | 3/5/2 | 3/5/2 | 3/5/3 | 3.5 / 4.25 / 3 |
+
+순서 번호는 YouArt 결과 목록의 순서다.
+
+도구별 관찰은 다음과 같다.
+
+- **GPT Image 2.5**: 집은 검은 슬레이트, 얼룩진 눈, 주황 천, 장작까지 마을과 같다. 지형은 물길, 바위, 절단면이 있고, 성벽은 수문의 푸른 회색을 유지했다. 톱니는 깔끔한 단독 물체이지만 입력보다 투박한 디자인으로 바뀌었다.
+- **Nano Banana Pro**: 지시와 달리 바닥 그림자가 있다. 지형은 평평하고 색이 옅으며, 성벽에는 입력에 없는 이끼가 생겼다. 톱니 2-4번은 입력처럼 축과 함께 나와 단일 오브젝트 지시를 어겼다.
+
 ### 남은 일
 
 1. T1과 T2 모두 도구마다 4장을 채우고 버전, 품질 설정, 크레딧을 기록한다.
@@ -641,5 +706,5 @@ Raw 모드를 끈 Midjourney 실행은 장별 점수가 3/4/2, 4/5/3, 4/5/2, 4/5
 4. T8 결과와 사용자 순위로 단계별 도구를 정한다.
 5. GPT Image 2.5 3면도의 A 포즈와 견갑 위치를 보강하는 T5b를 만들지 정한다. 3면도에는 무기가 필요 없다. T5b 프롬프트는 아직 만들지 않았다.
 6. 워크플로의 `T6 MJ v8.2` 노드에 결과가 없는 원인을 확인한다. T7 Midjourney 노드도 `service.generation_failed`로 실패했지만, 같은 프롬프트가 이미지 생성 화면에서는 생성됐다. T8 Midjourney 노드는 네 실행 중 세 실행이 `input.rejected`로 한 번 실패한 뒤 다시 실행해 생성됐다. 워크플로에서 실패하면 다시 실행하고, 계속 실패하면 이미지 생성 화면에서 따로 실행한다.
-7. GPT Image 2.5의 T7 시트 4번과 3/4 시점 결과로 이미지→3D 단계를 진행한다. 2026-10-31 T11 실행 뒤 YouArt 잔액은 1,306이다.
+7. GPT Image 2.5의 T7 시트 4번과 3/4 시점 결과로 이미지→3D 단계를 진행한다. 2026-10-31 T12 실행 뒤 YouArt 잔액은 954다.
 8. GPT Image 2.5의 내용 번짐이 다른 종류의 참조로 줄어드는지 시험할지 정한다. 예를 들어 인물을 그릴 때 경비병이나 마을을 참조한다.
