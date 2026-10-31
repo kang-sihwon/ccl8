@@ -98,7 +98,6 @@ ccl8의 시스템을 실제 플레이 상황과 Git의 이전·현재 코드로 
 
 | 문서 | 깨진 대상 |
 |---|---|
-| [ContentValidation](ContentValidation.md) | `Source/CCL/Editor/CCLCombatAssetLibrary.cpp`, `Source/CCL/Editor/CCLProgressionAssetLibrary.cpp` |
 | [EnvironmentFollowupEvidence](EnvironmentFollowupEvidence.md) | `Packaging.md#2026-10-11-이후-변경의-패키지-미검증` 앵커 |
 | [EnvironmentMapConfiguration](EnvironmentMapConfiguration.md) | `Source/CCL/Editor/CCLEnvironmentFXLibrary.cpp` |
 | [InventoryUI](InventoryUI.md) | `Source/CCL/UI/Core/`의 `CCLUISubsystem.cpp`, `CCLScreen.cpp`, `CCLUIRoot.cpp` |

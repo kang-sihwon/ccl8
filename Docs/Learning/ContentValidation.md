@@ -8,11 +8,13 @@ C++ 클래스가 컴파일돼도 필요한 DataAsset·맵·StateTree가 없으�
 |---|---|
 | 이전 기준 | `4238990815cc932a6f38c55f947be78065389651` |
 | 도입·변경 기준 | `3b369682333bf541e91ee5078b03be38a87e4d75` |
-| 현재 기준 | `50e583859c832d6cb325e5e76beb8356e8c13959` |
+| 모듈 분리 전 기준 | `50e583859c832d6cb325e5e76beb8356e8c13959` |
+| 모듈 분리 | `996bf49a0ca3ff5e1fe309675addc2bb37434616` |
+| 현재 기준 | `d4888b08154afab8712af974bce0ead2b90978ac` |
 
-조사 시작 때 확인한 `main`과 로컬 원격 추적 `origin/main`의 `50e5838`을 게임 코드 기준으로 고정한 학습 기록이다. 원격 서버를 새로 조회한 결과는 아니며 이후 추가된 커밋과 구분한다. 작업 트리의 설정·빌드 파일 변경은 이 장의 코드 기준에서 제외했다. 아래 발췌의 경로·줄 번호는 표시한 커밋 기준이고 상대 링크는 현재 체크아웃을 연다.
+현재 기준 `d4888b0`은 2026-10-31의 `main`이며 로컬 원격 추적과 같았다. 원격 서버를 새로 조회한 결과는 아니다. `996bf49`가 에디터 전용 제작 도구를 `Source/CCL/Editor/`에서 별도 모듈 `Source/CCLEditor/`로 옮겼다. 이전 발췌는 `4238990` 시점의 `Source/CCL/Editor/` 코드이고 현재 발췌는 `Source/CCLEditor/Private/`의 `d4888b0` 코드다. 상대 링크는 현재 체크아웃을 연다.
 
-전투 에셋 생성 기반에서 성장·장비·생활 Agent 제작 도구로 확장된 경로를 읽는다. 대상은 `Source/CCL/Editor/`, `Source/CCL/Tests/`, `Tools/Validation/`다. 실제 실행·제출 기준은 [Coding](../Coding.md), [DeliveryPlan](../DeliveryPlan.md), [Packaging](../Packaging.md)이 소유한다.
+전투 에셋 생성 기반에서 성장·장비·생활 Agent 제작 도구로 확장된 경로를 읽는다. 대상은 `Source/CCLEditor/`, `Source/CCL/Tests/`, `Tools/Validation/`다. 실제 실행·제출 기준은 [Coding](../Coding.md), [DeliveryPlan](../DeliveryPlan.md), [Packaging](../Packaging.md)이 소유한다.
 
 ## 2. 해결할 문제
 
@@ -22,7 +24,7 @@ C++ 클래스가 컴파일돼도 필요한 DataAsset·맵·StateTree가 없으�
 
 ## 3. 에디터 전용 코드와 패키지
 
-`WITH_EDITOR`는 에디터 코드 포함 여부를 가르는 컴파일 조건이다. 런타임 모듈 안에 함수 선언이 있어도 내부의 에디터 생성 코드는 게임 빌드에서 제외할 수 있다.
+`WITH_EDITOR`는 에디터 코드 포함 여부를 가르는 컴파일 조건이다. 이 장의 제작 도구는 처음에는 런타임 모듈 `CCL` 안에 있어서 함수 선언이 게임 빌드에도 남고 내부 에디터 코드만 제외됐다. 지금은 `CCLEditor` 모듈에 있고 함수 안에도 `WITH_EDITOR` 가드가 남아 있다. `CCL.uproject`는 이 모듈을 `Editor` 종류로 선언하고, 모듈이 `CCL`을 참조하므로 게임 빌드에는 들어가지 않는다.
 
 `UPackage`는 저장되는 에셋의 패키지다. `NewObject`로 객체를 만들고 AssetRegistry에 등록한 뒤 `UPackage::SavePackage`로 디스크에 저장하는 단계는 서로 다르다. `MarkPackageDirty`만 호출하면 저장 완료가 아니다.
 
@@ -32,7 +34,7 @@ Commandlet은 에디터의 배치 작업 실행 경로다. 테스트에서 사�
 
 다음은 전투 검사 맵에서 내비게이션 경계를 준비하는 초기 코드다.
 
-출처: `4238990`, [CCLCombatAssetLibrary.cpp](../../Source/CCL/Editor/CCLCombatAssetLibrary.cpp):177의 `UCCLCombatAssetLibrary::ConfigureCombatWorld`. 실제 코드 함수 일부이며 들여쓰기를 공백으로 바꿨다.
+출처: `4238990`, `Source/CCL/Editor/CCLCombatAssetLibrary.cpp`의 `UCCLCombatAssetLibrary::ConfigureCombatWorld`. 실제 코드 함수 일부이며 들여쓰기를 공백으로 바꿨다. 현재 [Source/CCLEditor/Private/CCLCombatAssetLibrary.cpp](../../Source/CCLEditor/Private/CCLCombatAssetLibrary.cpp)의 같은 함수는 아래 설명처럼 이름이 `CombatNavigation`인 Volume을 먼저 찾고 없을 때만 만든다.
 
 ```cpp
 bool UCCLCombatAssetLibrary::ConfigureCombatWorld()
@@ -58,7 +60,7 @@ bool UCCLCombatAssetLibrary::ConfigureCombatWorld()
     }
 ```
 
-현재 편집 중인 World와 WorldPartition을 확인한 뒤 Streaming을 끄고 이름으로 기존 Navigation Bounds를 찾는다. 뒤에서는 없을 경우 Volume을 만들고 Brush 크기·위치·Bounds를 설정한 뒤 Navigation 갱신과 Build를 요청한다.
+발췌는 현재 편집 중인 World와 WorldPartition을 확인한 뒤 Streaming을 끄고 새 Volume을 만든다. 현재 코드는 이 사이에 `CombatNavigation` 레이블의 기존 Volume을 찾는 단계가 있어 다시 실행해도 Volume이 늘지 않는다. 이어서 Brush 크기·위치·Bounds를 설정하고 Bounds가 0이면 실패하며 Navigation 갱신과 Build를 요청한다.
 
 이 함수는 일반 실행 중 월드를 구성하는 게임 규칙이 아니다. 에디터 제작 경로이며 기존 Level의 의도와 맞는지 확인하고 사용해야 한다.
 
@@ -72,7 +74,7 @@ bool UCCLCombatAssetLibrary::ConfigureCombatWorld()
 
 장비 생성은 기존 패키지가 있으면 해당 항목을 건너뛴다.
 
-출처: `50e5838`, [CCLProgressionAssetLibrary.cpp](../../Source/CCL/Editor/CCLProgressionAssetLibrary.cpp):162의 `UCCLProgressionAssetLibrary::CreateEquipmentAssets`. 실제 코드 함수 일부이며 들여쓰기를 공백으로 바꿨다.
+출처: `d4888b0`, [CCLProgressionAssetLibrary.cpp](../../Source/CCLEditor/Private/CCLProgressionAssetLibrary.cpp)의 `UCCLProgressionAssetLibrary::CreateEquipmentAssets`. 실제 코드 함수 일부이며 들여쓰기를 공백으로 바꿨다.
 
 ```cpp
 bool UCCLProgressionAssetLibrary::CreateEquipmentAssets()
@@ -80,8 +82,8 @@ bool UCCLProgressionAssetLibrary::CreateEquipmentAssets()
 #if WITH_EDITOR
     const TCHAR* Names[] = {TEXT("DA_TrainingSword"), TEXT("DA_TrainingShield"), TEXT("DA_TrainingStaff"),    TEXT("DA_TrainingArmor"),
                             TEXT("DA_TrainingBoots"), TEXT("DA_TrainingCloak"),  TEXT("DA_TrainingNecklace"), TEXT("DA_TrainingRing")};
-    const TCHAR* Labels[] = {TEXT("Training Sword"), TEXT("Training Shield"), TEXT("Two-hand Staff"),    TEXT("Training Armor"),
-                             TEXT("Training Boots"), TEXT("Training Cloak"),  TEXT("Training Necklace"), TEXT("Training Ring")};
+    const TCHAR* Labels[] = {TEXT("훈련용 검"), TEXT("훈련용 방패"), TEXT("양손 지팡이"),    TEXT("훈련용 갑옷"),
+                             TEXT("훈련용 장화"), TEXT("훈련용 망토"),  TEXT("훈련용 목걸이"), TEXT("훈련용 반지")};
     const FGameplayTag Slots[] = {CCLItemTags::Slot_RightHand, CCLItemTags::Slot_RightHand, CCLItemTags::Slot_RightHand,
                                   CCLItemTags::Slot_Armor,     CCLItemTags::Slot_Boots,     CCLItemTags::Slot_Cloak,
                                   CCLItemTags::Slot_Necklace,  CCLItemTags::Slot_RingOne};
@@ -104,7 +106,7 @@ bool UCCLProgressionAssetLibrary::CreateEquipmentAssets()
 
 저장 도우미는 변경을 표시하고 패키지를 실제 저장한다.
 
-출처: `50e5838`, [CCLProgressionAssetLibrary.cpp](../../Source/CCL/Editor/CCLProgressionAssetLibrary.cpp):46의 `SaveProgression`. 실제 코드 전체 함수이며 들여쓰기를 공백으로 바꿨다.
+출처: `d4888b0`, [CCLProgressionAssetLibrary.cpp](../../Source/CCLEditor/Private/CCLProgressionAssetLibrary.cpp)의 `SaveProgression`. 실제 코드 전체 함수이며 들여쓰기를 공백으로 바꿨다.
 
 ```cpp
 bool SaveProgression(UObject* Object)
@@ -129,7 +131,7 @@ bool SaveProgression(UObject* Object)
 
 `CCLCombatAssetLibrary`는 전투 정의와 검사 월드를, `CCLProgressionAssetLibrary`는 성장·장비·부착·투사체·Agent 자료와 마이그레이션을 다룬다. Python 스크립트는 에디터의 Level·Actor·Asset API와 이 함수를 이용해 콘텐츠를 배치한다.
 
-Details Customization은 에셋 편집을 돕는다. `CCL.cpp`의 모듈 Startup은 Agent 성향과 AttachmentProfile 편집기를 등록하고 Shutdown은 등록을 해제한다. Commandlet에서는 편집 UI 등록을 건너뛴다. 이 UI는 런타임 검증을 대신하지 않는다.
+Details Customization은 에셋 편집을 돕는다. [CCLEditorModule.cpp](../../Source/CCLEditor/Private/CCLEditorModule.cpp)의 `StartupModule`은 Agent 성향과 AttachmentProfile 편집기를 등록하고 `ShutdownModule`은 등록을 해제한다. Commandlet에서는 편집 UI 등록을 건너뛴다. 이 UI는 런타임 검증을 대신하지 않는다.
 
 검사는 두 층이다. Automation은 값·규칙·실패 계약을, Smoke Subsystem은 실제 월드·복제·입력·UI의 연결을 확인한다. 테스트 소스가 존재해도 현재 Target에 포함됐는지와 실행 필터가 실제 테스트를 찾았는지는 별도로 확인한다.
 
