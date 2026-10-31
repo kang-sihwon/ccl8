@@ -1,8 +1,6 @@
 # 영구 지형 통합과 검증
 
-[EnvironmentPlan](EnvironmentPlan.md) 단계 3의 표면 질의, 저장 세대, 내비게이션, 복제와 구역 05 연결을 다룬다. 2026-10-09 UE 5.8.3 소스 빌드에서 단계 3의 통과 조건을 확인했다. 구현 위치는 `Source/CCL/Environment/`이며 실행 검사는 `Source/CCL/Tests/`와 `Tools/Validation/`에 있다. 물과의 확정·복원 연결은 [물 순환 설계와 검증](EnvironmentWater.md)이 소유한다. 눈의 지지·체적 보존과 이동·저장 연결은 [깊은 눈과 캐릭터 이동](EnvironmentSnow.md)에 기록했다. 이 문서는 영구 지형의 게시 순서, 저장 세대, 내비게이션·충돌 준비, 복제와 구역 05의 검증 기록을 소유한다.
-
-> 검증 범위: 아래 실행 결과는 명시한 엔진과 환경의 결과이며 다른 기기에서는 프로젝트 생성·빌드와 실행을 다시 확인한다.
+[EnvironmentPlan](EnvironmentPlan.md) 단계 3의 표면 질의, 저장 세대, 내비게이션, 복제와 구역 05 연결을 다룬다. 2026-10-09 UE 5.8.3 소스 빌드에서 단계 3의 통과 조건을 확인했다. 구현 위치는 `Source/KSITerrain/`와 `Source/CCL/Environment/`이며 실행 검사는 `Source/CCL/Tests/`와 `Tools/Validation/`에 있다. 물과의 확정·복원 연결은 [물 순환 설계와 검증](EnvironmentWater.md)이 소유한다. 눈의 지지·체적 보존과 이동·저장 연결은 [깊은 눈과 캐릭터 이동](EnvironmentSnow.md)에 기록했다. 이 문서는 영구 지형의 게시 순서, 저장 세대, 내비게이션·충돌 준비, 복제와 구역 05의 검증 기록을 소유한다.
 
 ## 책임과 게시 순서
 
@@ -29,16 +27,9 @@ classDiagram
     ACCLExperimentDirector --> FCCLWorldGenerationStore : complete generation
 ```
 
-`RequestRestore`는 밀도만 먼저 바꾸지 않는다. 후보 충돌을 준비한 뒤 세계 복원 콜백과 지형 교체를 같은 게임 스레드 확정 구간에서 수행한다. 실패하면 후보를 폐기한다. 정본 지형 바이트가 같은 경우에만 기존 충돌을 재사용하며 새 Epoch와 게시 순번을 발급한다. 후속 물이나 눈 참여자가 등록된 복원은 아직 거부한다. 참여자를 누락한 채 성공으로 처리하지 않는다.
+`RequestRestore`는 밀도만 먼저 바꾸지 않는다. 후보 충돌을 준비한 뒤 세계 복원 콜백과 지형 교체를 같은 게임 스레드 확정 구간에서 수행한다. 실패하면 후보를 폐기한다. 정본 지형 바이트가 같은 경우에만 기존 충돌을 재사용하며 새 Epoch와 게시 순번을 발급한다. 등록된 물·눈 참여자는 같은 후보를 `ValidateRestore`로 검증하고 확정 구간에서 `CommitRestore`한다. 참여자가 있는데 세계 상태 없이 요청한 복원은 거부한다.
 
-```cpp
-bool RequestRestore(const TArray<uint8>& Bytes,
-    const FKSITerrainSaveContext& Context, FString& Error,
-    TFunction<bool(FString&)> BeforePublish = {});
-bool IsTerrainReady() const;
-bool IsNavigationReady() const;
-bool IsReplicaReady() const;
-```
+`RequestRestore`와 준비 상태 함수의 서명은 `Source/CCL/Environment/CCLTerrainRegion.h`가 소유한다.
 
 세 준비 상태의 뜻은 다르다. `IsTerrainReady`는 기존 확정 충돌의 존재를 나타낸다. `IsNavigationReady`는 현재 리비전과 Epoch의 동적 NavMesh 갱신 완료를 나타낸다. `IsReplicaReady`는 해당 클라이언트가 최신 게시를 적용하고 물리 프레임을 지난 상태다. 편집 준비 중에도 이전 지형은 사용할 수 있다.
 
@@ -68,7 +59,7 @@ bool IsReplicaReady() const;
 
 일반 월드 종료에서는 `OnWorldBeginTearDown`에서 진행 중 후보를 취소하고 확정된 상태를 보관한다. 명시적 전환에서 이미 캡처한 경우에는 그 묶음을 유지한다. 뒤늦은 `Deinitialize`가 세계 바이트만 덮어 지형과 세대를 섞지 않도록 막는다. 도메인을 초기화하면 그 도메인의 전환 묶음도 지운다.
 
-이 경로는 프로세스 안의 세션 보존이다. 디스크 저장은 앞 절의 완료 세대 저장소가 담당한다. 맵별 마지막 묶음을 메모리에 유지하는 비용이 생기며, 현재 실험장의 초기 복원은 한 지역을 대상으로 한다. Framework 분리 시점과 후보는 [FrameworkPlan](FrameworkPlan.md)이 소유하고 실제 분리는 보류한다.
+이 경로는 프로세스 안의 세션 보존이다. 디스크 저장은 앞 절의 완료 세대 저장소가 담당한다. 맵별 마지막 묶음을 메모리에 유지하는 비용이 생기며, 현재 실험장의 초기 복원은 한 지역을 대상으로 한다. 공용 모듈 분리는 [FrameworkPlan](FrameworkPlan.md)이 소유한다.
 
 엔진 근거는 `<Engine>/Source/Runtime/Engine/Private/World.cpp:6138`의 `BeginTearingDown`과 `<Engine>/Source/Runtime/Engine/Private/UnrealEngine.cpp:16183`의 맵 해제 순서다. 프로젝트 연결은 `Source/CCL/Agents/CCLAgentWorldSubsystem.cpp`와 `Source/CCL/Environment/CCLExperimentTerrain.cpp`에 있다.
 
@@ -101,27 +92,11 @@ UE 근거는 `<Engine>/Source/Runtime/NavigationSystem/Private/NavigationSystem.
 
 ## 검증
 
-2026-10-10의 커서 편집·저장 안내와 복제 송신량 보완은 [실험실 보완 검증](EnvironmentPlan.md#실험실-보완-검증)에 기록한다. 아래 표는 앞선 단계 완료 시점의 기록이다.
+2026-10-10의 커서 편집·저장 안내와 복제 송신량 보완은 [실험실 보완 검증](EnvironmentPlan.md#실험실-보완-검증)에 기록한다. 실행 절차는 `ccl8-verify`가 소유한다.
 
-최종 소스 변경 뒤 프로젝트 파일 생성과 `CCLEditor Win64 Development` 빌드가 성공했다. 원본은 Git에서 제외된 `Saved/Tests/` 아래에 보관하며 다음 경로는 저장소 기준이다. 현재 작업 트리의 기존 UI와 캠페인 변경을 유지한 상태에서 검증하며 깨끗한 체크아웃이나 패키지 실행 결과로 확대 해석하지 않는다.
+아래는 2026-10-09 단계 완료 시점의 기록이다. 프로젝트 파일 생성과 `CCLEditor Win64 Development` 빌드가 성공했고, CCL 환경 자동 검사 42개가 경고·실패·미실행 0으로 성공했다. 당시 작업 트리의 UI와 캠페인 변경을 유지한 상태에서 검증했으므로 깨끗한 체크아웃이나 패키지 실행 결과로 확대 해석하지 않는다.
 
-| 검사 | 결과와 근거 |
-|---|---|
-| 프로젝트 파일 생성·Editor 빌드 | 성공. `Saved/Reviews/terrain-fixes-generate.log`, `terrain-fixes-build.log` |
-| CCL 환경 자동 검사 | 42개 성공, 경고·실패·미실행 0개. `Saved/Tests/Automation/20261009-205054-003/report/index.json` |
-| 충돌·점유·실패·취소·복원·경로 | 통과. `Saved/Tests/Terrain/20261009-205052-778/result.json` |
-| Dedicated와 클라이언트 2개 | 완료 응답 지연 후 재전송, 중복 후보 유지, 동순번 내용 충돌 거부, 전체·변경량 전송과 늦은 접속 통과. `Saved/Tests/TerrainNetwork/Dedicated-20261009-203137-699/result.json` |
-| Listen과 클라이언트 2개 | 같은 조건 통과. `Saved/Tests/TerrainNetwork/Listen-20261009-203409-541/result.json` |
-| Standalone 맵 왕복 | 두 실험장 사이 4회 전환, 도메인별 세계·지형 복원과 준비 중 전환 거부 통과. `Saved/Tests/TerrainTravel/Standalone-20261009-204919-429/result.json` |
-| Listen 맵 왕복 | 클라이언트 1개와 4회 전환, 복귀 후 최신 충돌 준비 응답까지 통과. `Saved/Tests/TerrainTravel/Listen-20261009-204919-041/result.json` |
-| Dedicated 맵 왕복 | 같은 조건 통과. `Saved/Tests/TerrainTravel/Dedicated-20261009-205053-123/result.json` |
-| 격리 실험장 디스크 저장·새 프로세스 복원 | 굴착·성토·수로·초기화·취소와 세계·지형 복원 통과. `Saved/Tests/TerrainScenario/EnvironmentScenario-20261009-204920-951/result.json` |
-| 격리 실험장 화면·새 프로세스 복원(기존 검사) | 실제 Slate 시작 버튼, 굴착·성토·수로·초기화·재실행 취소, 세계·지형 복원 통과. `Saved/Tests/TerrainScenario/EnvironmentScenario-20261009-182619-883/result.json` |
-| 종합 실험장 화면·새 프로세스 복원(기존 검사) | 같은 조건 통과. `Saved/Tests/TerrainScenario/EnvironmentPlayground-20261009-182720-205/result.json` |
-| 기존 세계 저장 재시작 | 통과. `Saved/Tests/Environment/EnvironmentScenario-Standalone-20261009-175521-967/result.json` |
-| 기존 생활 Agent 실행 | 행동·저장·Actor 재구성 통과. `Saved/Tests/AgentWorld/20261009-210014/editor.log` |
-
-기존 화면 검토는 두 지형 시나리오 폴더의 `terrain-controls.png`와 `terrain-overview.png`를 사용했다. 한국어 버튼과 상태가 잘리지 않고 굴착과 성토가 표시되는지 확인했다. 초기 화면 검사에서 DDC 종료 대기와 첫 Slate 클릭의 미반영이 발생했다. 종료 제한을 120초로 조정하고 실제 실행 상태를 확인해 클릭을 최대 네 번 재시도한다. 위 최종 실행은 정상 종료까지 통과했다.
+충돌·점유·실패·취소·복원·경로 검사가 통과했다. Dedicated와 클라이언트 2개, Listen과 클라이언트 2개에서 완료 응답 지연 후 재전송, 중복 후보 유지, 동순번 내용 충돌 거부, 전체·변경량 전송과 늦은 접속이 통과했다. 맵 왕복은 Standalone에서 두 실험장 사이 4회 전환, 도메인별 세계·지형 복원과 준비 중 전환 거부가 통과했고, Listen과 Dedicated는 클라이언트 1개와 4회 전환 뒤 최신 충돌 준비 응답까지 통과했다. 격리 실험장은 디스크 저장과 새 프로세스 복원에서 굴착·성토·수로·초기화·취소와 세계·지형 복원이 통과했고, 격리·종합 실험장 모두 실제 Slate 시작 버튼과 재실행 취소, 복원이 통과했다. 기존 세계 저장 재시작과 생활 Agent의 행동·저장·Actor 재구성도 통과했다. 화면에서 한국어 버튼과 상태가 잘리지 않고 굴착과 성토가 표시되는지 확인했다.
 
 표면 자동 검사는 같은 XY의 지상·천장·동굴 바닥, 재질, 청크 순서 독립적인 ID, 오래된 질의와 결과 예산을 확인한다. 세대 저장 자동 검사는 최신 파일 손상, 완료 표식 누락과 세대 혼합 거부, 이전 완료 세대 선택을 확인한다. 지형 시나리오 검사는 비동기 복원 중 시계의 자동 Tick을 끄고 명시적으로 누적한 시간·대기 입력·Agent와 실제 충돌을 비교한다.
 
@@ -129,27 +104,14 @@ UE 근거는 `<Engine>/Source/Runtime/NavigationSystem/Private/NavigationSystem.
 
 복제 재시도 검사는 최종 준비 응답 하나를 서버에서 무시하고 해당 전송의 제한 시간을 넘긴다. 정상 시간 초과 분기, 변경량 기준 불일치에 따른 전체 전송과 서버 준비 상태의 회복을 확인한다. 같은 순번을 준비 중 또는 적용 후 다시 처리해도 후보 작업과 Epoch가 바뀌지 않는지 검사한다. 이는 조건을 주입한 재현이며 실제 패킷 손실 측정은 아니다.
 
-```powershell
-& Tools/Validation/run_automation.ps1 -Filter 'CCL.Environment' -TimeoutSeconds 240
-& Tools/Validation/run_terrain_smoke.ps1 -Rendered -TimeoutSeconds 240
-& Tools/Validation/run_terrain_scenario_smoke.ps1 -Map EnvironmentScenario -Rendered
-& Tools/Validation/run_terrain_scenario_smoke.ps1 -Map EnvironmentPlayground -Rendered
-& Tools/Validation/run_terrain_network_smoke.ps1 -Mode Dedicated -Port 19831
-& Tools/Validation/run_terrain_network_smoke.ps1 -Mode Listen -Port 19832
-& Tools/Validation/run_terrain_travel_smoke.ps1 -Mode Standalone
-& Tools/Validation/run_terrain_travel_smoke.ps1 -Mode Listen -Port 19841
-& Tools/Validation/run_terrain_travel_smoke.ps1 -Mode Dedicated -Port 19842
-```
-
-대규모 지역의 질의 시간, 다수 접속자의 메모리와 전송량, 실제 네트워크 손실, 패키지 실행과 아트 품질은 별도 측정이 필요하다. 현재 표면은 기본 재질을 사용한다. 기존 선택적 EditorToolset의 Python 초기화 오류는 지형 PASS와 구분해 기록한다.
+대규모 지역의 질의 시간, 다수 접속자의 메모리와 전송량, 실제 네트워크 손실, 패키지 실행과 아트 품질은 별도 측정이 필요하다. 현재 표면은 기본 재질을 사용한다.
 
 ## 규모 검사에서 발견한 지형 질의 비용과 수정 계획
 
-2026-10-10 프레임 예비 계측에서는 환경 Scenario의 Tickable 처리가 렌더링 유무와 관계없이 큰 비용을 차지했다. 서버 빌드와 병행한 180프레임 검사이므로 최종 성능 기준은 아니다. 현재 `FKSITerrainSurface::QuerySurfaces`는 질의 선분이 청크와 만나지 않아도 모든 삼각형을 검사한다. 정확한 병목 비중은 환경 진행의 단계별 CSV 표본으로 확인한다.
+2026-10-10 프레임 예비 계측에서는 환경 Scenario의 Tickable 처리가 렌더링 유무와 관계없이 큰 비용을 차지했다. 서버 빌드와 병행한 180프레임 검사이므로 최종 성능 기준은 아니다. 당시 `FKSITerrainSurface::QuerySurfaces`는 질의 선분이 청크와 만나지 않아도 모든 삼각형을 검사했다.
 
 불변 지형 게시 객체가 청크별 로컬 경계를 한 번 계산하고, UE의 `FMath::LineBoxIntersection`으로 선분과 만나지 않는 청크를 제외한다. 경계는 기존 삼각형 판정의 작은 가장자리 오차를 포함하도록 확장한다. 교차 후보의 삼각형 판정·정렬·중복 제거·결과 상한은 유지한다. 저장·복제 상태에는 경계를 추가하지 않는다. 충돌과 같은 세대의 제공자가 교체될 때 경계도 새로 생성한다.
 
-청크마다 경계 저장 비용과 질의당 경계 검사 비용이 생긴다. 청크 밖을 지나는 강수·일조·바람 질의에는 유리하지만, 청크 안의 모든 삼각형을 지나는 질의까지 빠르게 만들지는 않는다. 그 경우의 공간 트리는 별도 측정 후 판단한다. 자동 검사는 평행축, 양방향, 선분 길이 제한, 청크 꼭짓점·가장자리와 작은 허용 오차, 회전·이동, 빈 청크, 다층 결과를 확인한다. 최종 생성·빌드 후 전체 자동 검사와 실험장·패키지 검사를 다시 수행한다.
-
+청크마다 경계 저장 비용과 질의당 경계 검사 비용이 생긴다. 청크 밖을 지나는 강수·일조·바람 질의에는 유리하지만, 청크 안의 모든 삼각형을 지나는 질의까지 빠르게 만들지는 않는다. 그 경우의 공간 트리는 별도 측정 후 판단한다. 자동 검사는 평행축, 양방향, 선분 길이 제한, 청크 꼭짓점·가장자리와 작은 허용 오차, 회전·이동, 빈 청크, 다층 결과를 확인한다.
 
 2026-10-11 지형 경계 검사는 CCL 자동 검사 145/145에 포함해 통과했다. `CCL.Environment.Terrain.SurfaceChunkBounds`가 변환·양방향·가장자리·빈 청크·다층·선분 제한을 검사한다. 해당 소스의 생성·Editor 빌드와 렌더링 실험, 실제 Server 타깃의 지연·손실·재접속도 통과했다. 정확한 실행 경로와 600프레임 계측의 범위는 [환경 통합 기록](EnvironmentPlan.md#지형-질의-수정-후-프레임-계측)과 [패키지 기록](Packaging.md#server-실행-수정과-실제-네트워크-통과)을 따른다.
