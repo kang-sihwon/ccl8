@@ -8,11 +8,12 @@
 |---|---|
 | 이전 기준 | `3b369682333bf541e91ee5078b03be38a87e4d75` |
 | 도입·변경 기준 | `6a9cecb09da31030d54f28c1da59c73a393f402d` |
-| 현재 기준 | `50e583859c832d6cb325e5e76beb8356e8c13959` |
+| 인벤토리 모듈 분리 | `dbdd174dcdae6019918ae2dfb1c4c64c9d732eab` |
+| 현재 기준 | `d4888b08154afab8712af974bce0ead2b90978ac` |
 
-조사 시작 때 확인한 `main`과 로컬 원격 추적 `origin/main`의 `50e5838`을 게임 코드 기준으로 고정한 학습 기록이다. 원격 서버를 새로 조회한 결과는 아니며 이후 추가된 커밋과 구분한다. 작업 트리의 설정·빌드 파일 변경은 이 장의 코드 기준에서 제외했다. 아래 발췌의 경로·줄 번호는 표시한 커밋 기준이고 상대 링크는 현재 체크아웃을 연다.
+현재 기준 `d4888b0`은 2026-10-31의 `main`이며 로컬 원격 추적과 같았다. 원격 서버를 새로 조회한 결과는 아니다. `dbdd174`가 인벤토리 항목 타입을 `KSIInventory` 모듈로 옮겨서 `50e5838`의 `FCCLInventoryEntry`는 현재 `FKSIInventoryEntry`다. 발췌의 출처에는 커밋과 함수 이름을 적었고 상대 링크는 현재 체크아웃을 연다.
 
-이전은 단일 장비 GUID·효과, 변경 기준은 구조체 Fragment와 태그 슬롯·양손 점유 구현이다. 현재 계약은 [ProgressionFoundation](../ProgressionFoundation.md), 요구 이유는 [DesignLog](../Decisions.md)의 결정 15·16을 따른다.
+이전은 단일 장비 GUID·효과, 변경 기준은 구조체 Fragment와 태그 슬롯·양손 점유 구현이다. 현재 계약은 [ProgressionFoundation](../ProgressionFoundation.md), 요구 이유는 [Decisions](../Decisions.md)의 결정 15·16을 따른다.
 
 ## 2. 양손 장비 교체의 문제
 
@@ -30,7 +31,7 @@ GUID는 실제 소유 아이템 하나를 식별한다. `FActiveGameplayEffectHa
 
 ## 4. 이전의 단일 장비
 
-출처: `3b36968`, [CCLLoadoutComponent.cpp](../../Source/CCL/Items/CCLLoadoutComponent.cpp):90의 `UCCLLoadoutComponent::Equip`. 실제 코드 함수 일부이며 들여쓰기를 공백으로 바꿨다.
+출처: `3b36968`, `Source/CCL/Items/CCLLoadoutComponent.cpp`의 `UCCLLoadoutComponent::Equip`. 실제 코드 함수 일부이며 들여쓰기를 공백으로 바꿨다.
 
 ```cpp
     if (EquipmentEffect.IsValid())
@@ -56,7 +57,7 @@ GUID는 실제 소유 아이템 하나를 식별한다. `FActiveGameplayEffectHa
 
 다음은 `Equip`이 새 점유와 반환 대상을 준비하는 부분이다. 앞의 서버 행동 가능 여부, 소유 GUID, 정의·슬롯 검사는 생략했다.
 
-출처: `50e5838`, [CCLLoadoutComponent.cpp](../../Source/CCL/Items/CCLLoadoutComponent.cpp):100의 `UCCLLoadoutComponent::Equip`. 실제 코드 함수 일부이며 들여쓰기를 공백으로 바꿨다.
+출처: `d4888b0`, [CCLLoadoutComponent.cpp](../../Source/CCL/Items/CCLLoadoutComponent.cpp)의 `UCCLLoadoutComponent::Equip`. 실제 코드 함수 일부이며 들여쓰기를 공백으로 바꿨다.
 
 ```cpp
     TArray<FCCLEquippedSlot> NewEquipment = EquipmentSlots;
@@ -78,7 +79,7 @@ GUID는 실제 소유 아이템 하나를 식별한다. `FActiveGameplayEffectHa
         NewEquipment.Add(NewSlot);
     }
 
-    TArray<FCCLInventoryEntry> Placement = Inventory->GetEntries();
+    TArray<FKSIInventoryEntry> Placement = Inventory->GetEntries();
     for (auto& Value : Placement)
     {
         if (Value.Id == Id)
@@ -92,7 +93,7 @@ GUID는 실제 소유 아이템 하나를 식별한다. `FActiveGameplayEffectHa
         auto* Value = Placement.FindByPredicate([ReturnId](const auto& Item) { return Item.Id == ReturnId; });
         if (!Value)
         {
-            return Report(false, TEXT("Equipment state is unavailable."));
+            return Report(false, TEXT("장비 상태를 확인할 수 없다."));
         }
 
         int32 Free = 0;
@@ -103,7 +104,7 @@ GUID는 실제 소유 아이템 하나를 식별한다. `FActiveGameplayEffectHa
 
         if (Free >= Inventory->Capacity)
         {
-            return Report(false, TEXT("Not enough inventory space to return equipment."));
+            return Report(false, TEXT("장비를 돌려놓을 소지품 공간이 부족하다."));
         }
 
         Value->Slot = Free;
@@ -112,7 +113,7 @@ GUID는 실제 소유 아이템 하나를 식별한다. `FActiveGameplayEffectHa
 
 실제 가방 복사본에서 새 장비의 칸을 먼저 비우고 반환할 항목마다 빈 칸을 찾는다. 공간이 부족하면 원본 슬롯과 효과를 교체하기 전에 실패한다. 새 장비가 비운 칸도 반환 공간으로 이용할 수 있다.
 
-이후 새 효과를 만들고 보관 배치를 적용한다. 보관 복원이 실패하면 새 효과를 제거한다. 성공하면 반환된 장비의 효과를 제거하고 EquipmentSlots를 교체한 뒤 Avatar를 동기화한다.
+이후 흐름은 현재 코드 기준으로 다음과 같다. 먼저 `Inventory->CanRestore(Placement)`로 새 배치가 유효한지 확인하고 `BeginTransaction`으로 가방 변경을 묶는다. `bMutating`과 가방의 `bMutationLocked`를 가드로 켜서 도중에 같은 변경이 다시 들어오지 못하게 하고, 범위를 빠져나갈 때 `FinishTransaction(bPublish)`가 호출된다. 새 장비에 효과가 있고 아직 장착 전이면 효과를 검증해 적용하며, 실패하면 아직 배치를 바꾸기 전이므로 그대로 반환한다. 이어서 `RestoreValidated`로 배치를 확정하고 반환된 장비의 효과를 제거한 뒤 `EquipmentSlots`를 교체한다. 마지막에 `bPublish`를 켜서 변경을 게시하고 `SyncAvatar`를 호출한다. `50e5838`의 이 함수와 비교하면 가방 변경을 트랜잭션으로 게시하는 부분이 더해졌다. 이유는 커밋 본문에 없다.
 
 ## 7. 부착 지점에서 실제 소켓까지
 
@@ -120,7 +121,7 @@ GUID는 실제 소유 아이템 하나를 식별한다. `FActiveGameplayEffectHa
 
 실제 소켓 해석은 다음과 같다.
 
-출처: `50e5838`, [CCLAttachmentProfile.cpp](../../Source/CCL/Items/CCLAttachmentProfile.cpp):8의 `UCCLAttachmentProfile::Resolve`. 실제 코드 전체 함수이며 들여쓰기를 공백으로 바꿨다.
+출처: `d4888b0`, [CCLAttachmentProfile.cpp](../../Source/CCL/Items/CCLAttachmentProfile.cpp)의 `UCCLAttachmentProfile::Resolve`. 실제 코드 전체 함수이며 들여쓰기를 공백으로 바꿨다.
 
 ```cpp
 bool UCCLAttachmentProfile::Resolve(const USkeletalMesh* Mesh, FGameplayTag Point, FName& OutSocket, FString& Error) const
