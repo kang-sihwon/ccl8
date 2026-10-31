@@ -8,9 +8,9 @@ HUD는 기능 데이터를 모으고, 표시 모델과 문맥은 변경을 알�
 |---|---|
 | 이전 기준 | `494a0ac977c7037d8ca732eeb27edbc317162f1f` |
 | 도입·변경 기준 | `bbe9b3bbd452710f5ee5079f59f2da760258acd3` |
-| 현재 기준 | `50e583859c832d6cb325e5e76beb8356e8c13959` |
+| 현재 기준 | `d4888b08154afab8712af974bce0ead2b90978ac` |
 
-조사 시작 때 확인한 `main`과 로컬 원격 추적 `origin/main`의 `50e5838`을 게임 코드 기준으로 고정한 학습 기록이다. 원격 서버를 새로 조회한 결과는 아니며 이후 추가된 커밋과 구분한다. 작업 트리의 설정·빌드 파일 변경은 이 장의 코드 기준에서 제외했다. 아래 발췌의 경로·줄 번호는 표시한 커밋 기준이고 상대 링크는 현재 체크아웃을 연다.
+현재 기준 `d4888b0`은 2026-10-31의 `main`이며 로컬 원격 추적과 같았다. 원격 서버를 새로 조회한 결과는 아니다. 발췌의 출처에는 커밋과 함수 이름을 적었고 상대 링크는 현재 체크아웃을 연다. `ACCLHUD::DrawHUD`는 이 장이 설명하는 대로 표시 모델로 옮겨져 현재 코드에는 없고, `Tick`과 `RefreshContent`가 남아 있다.
 
 이전 HUD는 Canvas에서 직접 배치·줄바꿈·그리기를 처리했다. `bbe9b3b`에서 능력치·일반 안내·대화를 공용 화면으로 나눴다. 계약·기존 실행 근거는 [UIFoundation](../UIFoundation.md)이 소유한다.
 
@@ -30,7 +30,7 @@ Canvas·UMG·델리게이트는 UE4에도 있었다. 이 장에서는 UE5 설치
 
 ## 4. 이전 Canvas HUD
 
-출처: `494a0ac`, [CCLHUD.cpp](../../Source/CCL/CCLHUD.cpp):27의 `ACCLHUD::DrawHUD`. 실제 코드 함수 일부이며 들여쓰기를 공백으로 바꿨다.
+출처: `494a0ac`, `Source/CCL/CCLHUD.cpp`의 `ACCLHUD::DrawHUD`. 실제 코드 함수 일부이며 들여쓰기를 공백으로 바꿨다.
 
 ```cpp
 void ACCLHUD::DrawHUD()
@@ -61,7 +61,7 @@ void ACCLHUD::DrawHUD()
 
 ## 6. 현재의 값 연결
 
-출처: `50e5838`, [CCLCombatViewModel.cpp](../../Source/CCL/UI/CCLCombatViewModel.cpp):13의 `UCCLCombatViewModel::Bind`. 실제 코드 전체 함수이며 들여쓰기를 공백으로 바꿨다.
+출처: `d4888b0`, [CCLCombatViewModel.cpp](../../Source/CCL/UI/CCLCombatViewModel.cpp)의 `UCCLCombatViewModel::Bind`. 실제 코드 전체 함수이며 들여쓰기를 공백으로 바꿨다.
 
 ```cpp
 void UCCLCombatViewModel::Bind(UAbilitySystemComponent* InASC)
@@ -118,7 +118,7 @@ HUD는 현재 Pawn의 ASC를 넘긴다. 재스폰으로 몸이 바뀌어도 플�
 
 ## 9. 구독 해제
 
-출처: `50e5838`, [CCLCombatViewModel.cpp](../../Source/CCL/UI/CCLCombatViewModel.cpp):60의 `UCCLCombatViewModel::Unbind`. 실제 코드 전체 함수이며 들여쓰기를 공백으로 바꿨다.
+출처: `d4888b0`, [CCLCombatViewModel.cpp](../../Source/CCL/UI/CCLCombatViewModel.cpp)의 `UCCLCombatViewModel::Unbind`. 실제 코드 전체 함수이며 들여쓰기를 공백으로 바꿨다.
 
 ```cpp
 void UCCLCombatViewModel::Unbind()
