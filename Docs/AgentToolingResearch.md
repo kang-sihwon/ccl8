@@ -16,7 +16,7 @@ AI 주도 제작에 쓸 도구는 UE 내장 Unreal MCP를 먼저 검증하고, c
 
 | 제안 | 상태 | 근거 |
 |---|---|---|
-| 내장 Unreal MCP와 최소 Toolset 활성화 | 활성화됨. `ModelContextProtocol`, `EditorToolset`, `AutomationTestToolset`을 Editor 타깃에 켰다. 연결에는 에디터 실행이 필요하다 | `CCL.uproject`, [AgentContextTools의 Unreal MCP](AgentContextTools.md#unreal-mcp) |
+| 내장 Unreal MCP와 최소 Toolset 활성화 | 활성화됨. `ModelContextProtocol`, `EditorToolset`, `AutomationTestToolset`을 Editor 타깃에 켰다. 연결에는 에디터 실행이 필요하다 | `CCL.uproject`, [AgentContextTools의 Unreal MCP](AgentContextTools/Setup.md#unreal-mcp) |
 | MCP로 PIE 시작·조작·캡처 검증 | 2026-10-12 QA에서 사용 | [QA 보고서](QA/README.md) |
 | `ccl8-verify` | 작성. MCP PIE 절차는 스킬의 `references/mcp-pie.md`로 옮겼다 | `.agents/skills/ccl8-verify/` |
 | `ccl8-ue-editor`, `ccl8-asset-pipeline` | 만들지 않음 | `.agents/skills/`에 없음 |
