@@ -1,12 +1,10 @@
 # 공통 시간의 정밀도: 마지막 분할을 끝내는 조건
 
-2026-10-12 공용 모듈 분리 이후의 위치는 [Framework 파일 이동표](../FrameworkPlan/Stage4.md#코드-위치의-전후-비교)를 따른다. 아래 발췌·이름·줄 번호·해시는 기록 당시 기준을 유지하며 소스 링크는 현재 대응 파일을 연다.
-
 시계는 입력받은 게임·세계 종료 시각을 보존하고, 마지막 분할에서 두 시각에 함께 도달한다. [공통 시간](EnvironmentTime.md)의 후보 확정을 이해했다면, 이 장에서는 계산이 성공했는데도 아주 작은 잔여 시간이 남을 수 있는 이유를 배운다.
 
 ## 비교 기준과 문제
 
-이전 코드는 `a817082`, 수정이 포함된 코드는 `c8816e7`이다. `d7782f1`까지 해당 종료 조건이 유지됨을 확인했다. 브랜치와 전체 커밋, 실제로 읽은 기존 검사 결과는 [후속 비교 근거](EnvironmentFollowupEvidence.md)에 있다. 이 장의 현재는 그 고정 기준을 뜻한다.
+이전 코드는 `a817082`, 수정이 포함된 코드는 `c8816e7`이다. 현재 기준은 2026-10-31의 `main`인 `d4888b0`이고, 시계는 2026-10-12에 `Source/KSIWorldTime/`으로 옮겨졌다([Framework 파일 이동표](../FrameworkPlan/Stage4.md#코드-위치의-전후-비교)). 이전 `c8816e7`의 종료 조건이 `d4888b0`의 `KSIWorldClock.cpp`에 글자 그대로 남아 있음을 확인했다. 브랜치와 전체 커밋, 실제로 읽은 기존 검사 결과는 [후속 비교 근거](EnvironmentFollowupEvidence.md)에 있다. 
 
 [시간 분할 정밀도 기록](../EnvironmentPlan/Integration/Clock.md#시간-분할-정밀도-구현검증)은 60배율에서 남은 게임·세계 구간을 함께 검사하도록 바꾼 이유를 설명한다. 다음 숫자는 그 조건을 이해하기 위한 예다. 모든 배율에 대한 수학적 정확성을 증명하는 예는 아니다.
 
@@ -18,7 +16,7 @@
 
 이전 코드도 끝점 자체는 저장했다. 다만 끝점을 선택할 조건을 이번에 계산한 `Delta`와 남은 게임 시간의 정확한 동등 비교로 판정했다.
 
-출처: `a817082`, [CCLWorldClock.cpp](../../Source/KSIWorldTime/Private/KSIWorldClock.cpp), 168-173줄. 연속 발췌이며 들여쓰기만 정리했다.
+출처: `a817082`, `Source/CCL/Environment/CCLWorldClock.cpp`의 `FCCLWorldClock::Prepare`. 연속 발췌이며 들여쓰기만 정리했다.
 
 ```cpp
 if (Delta == Pending.GameSeconds)
@@ -31,7 +29,7 @@ if (Delta == Pending.GameSeconds)
 
 세계 시간 예산으로 나누어 구한 Delta와 반복 처리 뒤 남은 게임 시간이 조금 다르면 이 분기에 들어오지 못한다. 문제를 단순히 ‘double에 ==를 쓰면 안 된다’로 외우면 수정의 의미를 놓친다. 여기서 필요한 것은 두 시계의 입력 구간을 함께 끝낼 수 있는지 판정하는 일이다.
 
-출처: `c8816e7`, [CCLWorldClock.cpp](../../Source/KSIWorldTime/Private/KSIWorldClock.cpp), 168-174줄. 연속 발췌이며 들여쓰기만 정리했다.
+출처: `d4888b0`, [KSIWorldClock.cpp](../../Source/KSIWorldTime/Private/KSIWorldClock.cpp)의 `FKSIWorldClock::Prepare`. 연속 발췌이며 들여쓰기만 정리했다. `c8816e7`에서 들어온 수정이 그대로다.
 
 ```cpp
 if (Pending.GameToSeconds - State.GameSeconds <= MaxGameSeconds &&
@@ -51,7 +49,7 @@ if (Pending.GameToSeconds - State.GameSeconds <= MaxGameSeconds &&
 
 시계를 준비한 뒤 생활 계산이 실패하면 같은 입력 구간을 다시 처리해야 한다. `Abort`는 준비를 취소하고, 다음 Prepare는 같은 끝점을 대상으로 삼는다. 시계를 저장·복원할 때도 완료 시각뿐 아니라 대기 구간의 끝점과 배율을 보존해야 한다.
 
-[CCLWorldClockTests.cpp](../../Source/CCL/Environment/CCLWorldClockTests.cpp)의 `FCCLWorldClockSplitBoundaryTest::RunTest`는 시작 세계 시각 0, 86400, 315360000초에서 각각 200개 입력을 처리한다. 입력 하나를 15번 나누므로 `3 × 200 × 15 = 9000`개 분할이다. 각 분할에서 준비·취소·재준비 후 두 끝점을 비교하고, 확정·저장·새 시계 복원을 반복한다.
+[CCLWorldClockTests.cpp](../../Source/CCL/Environment/CCLWorldClockTests.cpp)의 `FCCLWorldClockSplitBoundaryTest::RunTest`(자동화 이름 `CCL.Environment.Clock.SplitAcceptedBoundaries`)는 시작 세계 시각 0, 86400, 315360000초에서 각각 200개 입력을 처리한다. 입력 하나를 15번 나누므로 `3 × 200 × 15 = 9000`개 분할이다. 각 분할에서 준비·취소·재준비 후 두 끝점을 비교하고, 확정·저장·새 시계 복원을 반복한다.
 
 입력마다 일시 정지된 100게임 초도 별도로 넣는다. 이 입력은 결과에 포함되지 않아야 하므로 최종 게임 시각은 `(Frame + 1) × 0.25`다. 최종 세계 시각은 `Start + (Frame + 1) × 15`다. 테스트가 검사하는 것은 잔여 대기 시간의 부재와 두 끝점의 일치다.
 
