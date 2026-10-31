@@ -6,7 +6,7 @@ HUD, 대화, 인벤토리, 메뉴를 공용 UI에 연결하거나 뷰포트 좌�
 
 HUD는 실제 뷰포트를 채우는 Canvas를 루트로 쓴다. 1280×720 고정 캔버스를 `ScaleToFit`으로 감싸면 넓은 화면의 여백 때문에 앵커가 실제 화면 끝을 가리키지 않는다. DPI에 따른 글자·패널 크기 조정과 화면 가장자리 배치는 나눠 처리한다. 새 UMG 화면은 1280×720 설계 크기를 ScaleBox로 맞춰 프로젝트 DPI 배율 때문에 글자가 작아지지 않게 한다.
 
-메뉴에서 월드를 클릭할 때는 Slate 절대 좌표를 `USlateBlueprintLibrary::AbsoluteToViewport`의 픽셀 좌표로 바꾼 뒤 역투영한다. 위젯 로컬 좌표를 픽셀로 쓰지 않는다. 엔진 근거는 `<Engine>/Source/Runtime/UMG/Private/SlateBlueprintLibrary.cpp:71`과 `<Engine>/Source/Runtime/Engine/Private/SceneView.cpp:1542`다. 해상도별 실제 클릭과 대상 변경 결과를 함께 확인한다. 배치·조작법과 실행 근거는 [실험실 배치와 관측 도구](../EnvironmentPlan/IntegratedLab.md#실험실-배치와-관측-도구)가 소유한다.
+메뉴에서 월드를 클릭할 때는 Slate 절대 좌표를 `USlateBlueprintLibrary::AbsoluteToViewport`의 픽셀 좌표로 바꾼 뒤 역투영한다. 위젯 로컬 좌표를 픽셀로 쓰지 않는다. 엔진 근거는 `<Engine>/Source/Runtime/UMG/Private/SlateBlueprintLibrary.cpp:71`과 `<Engine>/Source/Runtime/Engine/Private/SceneView.cpp:1542`다. 해상도별 실제 클릭과 대상 변경 결과를 함께 확인한다. 배치·조작법과 실행 근거는 [실험실 배치와 관측 도구](../EnvironmentPlan/IntegratedLab/Observation.md#실험실-배치와-관측-도구)가 소유한다.
 
 ## 기능 연결
 
