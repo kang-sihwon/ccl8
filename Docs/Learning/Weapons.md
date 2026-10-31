@@ -1,8 +1,8 @@
 # 무기 행동과 발사체: 발사 순간의 상태를 보존하기
 
-무기의 행동은 아이템 GUID를 Source ID로 등록하고 GAS 능력을 실행한다. 발사체는 발사 당시의 피해·팀·효과를 보존해 발사자 Actor가 사라져도 적중을 처리한다. `Source/CCL/Actions/`와 `Combat/CCLProjectile.cpp`에서 능력 소유와 날아가는 탄환의 수명을 나누는 이유를 배운다.
+무기의 행동은 아이템 GUID를 Source ID로 등록하고 GAS 능력을 실행한다. 발사체는 발사 당시의 피해·팀·효과를 보존해 발사자 Actor가 사라져도 적중을 처리한다. `Source/KSICombat/`의 Action 코드와 `Source/CCL/Combat/CCLProjectile.cpp`에서 능력 소유와 날아가는 탄환의 수명을 나누는 이유를 배운다.
 
-2026-10-12 공용 전투·행동이 KSICombat으로 옮겨졌다. 이 장의 발췌는 아래 고정 커밋의 학습 기록을 유지한다. 현재 타입·경계·검증은 [Framework 단계 3](../FrameworkPlan/Stage3.md#단계-3-구현과-검증)을 따른다.
+`35ab176c3dd840a8d28f50c30e1f91d717730986`이 공용 전투·행동을 `Source/KSICombat/`으로 옮겼다. 이 장은 현재 코드(`d4888b0`)를 설명하며 `UCCLActionComponent`, `FCCLActionSource`, `FCCLHitContext`, `CCLHit`는 각각 `UKSIActionComponent`, `FKSIActionSource`, `FKSIHitContext`, `KSIHit`가 됐다. 현재 타입·경계·검증은 [Framework 단계 3](../FrameworkPlan/Stage3.md#단계-3-구현과-검증)을 따른다.
 
 ## 1. 비교 기준
 
@@ -10,9 +10,10 @@
 |---|---|
 | 이전 기준 | `68672713e47b19b0d4adb51bdc21c7c9bbe78eb6` |
 | 도입·변경 기준 | `ed9a763db54edd93c7fe802b887ee96b553bb0df` |
-| 현재 기준 | `50e583859c832d6cb325e5e76beb8356e8c13959` |
+| 모듈 분리 | `35ab176c3dd840a8d28f50c30e1f91d717730986` |
+| 현재 기준 | `d4888b08154afab8712af974bce0ead2b90978ac` |
 
-조사 시작 때 확인한 `main`과 로컬 원격 추적 `origin/main`의 `50e5838`을 게임 코드 기준으로 고정한 학습 기록이다. 원격 서버를 새로 조회한 결과는 아니며 이후 추가된 커밋과 구분한다. 작업 트리의 설정·빌드 파일 변경은 이 장의 코드 기준에서 제외했다. 아래 발췌의 경로·줄 번호는 표시한 커밋 기준이고 상대 링크는 현재 체크아웃을 연다.
+현재 기준 `d4888b0`은 2026-10-31의 `main`이며 로컬 원격 추적과 같았다. 원격 서버를 새로 조회한 결과는 아니다. 발췌의 출처에는 커밋과 함수 이름을 적었고 상대 링크는 현재 체크아웃을 연다.
 
 이전 기준에는 근접 GAS와 무기 정의가 있었지만 현재의 발사체 실행 경로는 없었다. `ed9a763`이 Source 기반 Action과 지속 발사체를 도입했다. 구조 계약은 [AgentFoundation](../AgentFoundation.md), 장비 소유는 [ProgressionFoundation](../ProgressionFoundation.md)이 소유한다.
 
@@ -24,7 +25,7 @@
 
 ## 3. SpecHandle과 Source ID
 
-`FGameplayAbilitySpecHandle`은 ASC에 부여된 능력의 식별자다. `FCCLActionSource`는 Source ID와 행동 태그별 SpecHandle을 묶는 프로젝트 타입이다. 같은 Ability 클래스를 쓰는 무기도 소스를 구분해서 제거할 수 있다.
+`FGameplayAbilitySpecHandle`은 ASC에 부여된 능력의 식별자다. `FKSIActionSource`는 Source ID와 행동 태그별 SpecHandle을 묶는 프로젝트 타입이다. 같은 Ability 클래스를 쓰는 무기도 소스를 구분해서 제거할 수 있다.
 
 `GameplayEffectSpec`은 실행에 사용할 효과 인스턴스 정보다. `DuplicateObject`는 원본 UObject 정의를 복제한다. 발사체가 공유 DataAsset을 직접 수정하지 않도록 복사본을 만든다.
 
@@ -34,7 +35,7 @@
 
 이전 AbilitySet은 같은 클래스가 이미 부여돼 있으면 건너뛰었다.
 
-출처: `6867271`, [CCLAbilitySet.cpp](../../Source/CCL/AbilitySystem/CCLAbilitySet.cpp):23의 `UCCLAbilitySet::GrantTo`. 실제 코드 함수 일부이며 들여쓰기를 공백으로 바꿨다.
+출처: `6867271`, `Source/CCL/AbilitySystem/CCLAbilitySet.cpp`의 `UCCLAbilitySet::GrantTo`. 이 함수는 지금 [KSIAbilitySet.cpp](../../Source/KSICombat/Private/KSIAbilitySet.cpp)의 `UKSIAbilitySet::GrantTo`다. 실제 코드 함수 일부이며 들여쓰기를 공백으로 바꿨다.
 
 ```cpp
     for (const auto& Grant : Abilities)
@@ -62,12 +63,12 @@
 
 `RegisterSource`는 권한·ID·정의·중복 행동 태그를 검사하고 능력을 부여해 핸들을 기록한다. `Execute`는 해당 Source의 해당 행동 핸들을 찾아 활성화한다.
 
-출처: `50e5838`, [CCLActionComponent.cpp](https://github.com/kang-sihwon/ccl8/blob/50e583859c832d6cb325e5e76beb8356e8c13959/Source/CCL/Actions/CCLActionComponent.cpp):61의 `UCCLActionComponent::RemoveSource`. 실제 코드 전체 함수이며 들여쓰기를 공백으로 바꿨다.
+출처: `d4888b0`, [KSIActionComponent.cpp](../../Source/KSICombat/Private/KSIActionComponent.cpp)의 `UKSIActionComponent::RemoveSource`. 실제 코드 전체 함수이며 들여쓰기를 공백으로 바꿨다.
 
 ```cpp
-void UCCLActionComponent::RemoveSource(FGuid Id)
+void UKSIActionComponent::RemoveSource(FGuid Id)
 {
-    const int32 Index = Sources.IndexOfByPredicate([Id](const FCCLActionSource& Source) { return Source.Id == Id; });
+    const int32 Index = Sources.IndexOfByPredicate([Id](const FKSIActionSource& Source) { return Source.Id == Id; });
     if (Index == INDEX_NONE)
     {
         return;
@@ -92,7 +93,7 @@ void UCCLActionComponent::RemoveSource(FGuid Id)
 
 발사 시에는 다음 값을 탄환에 캡처한다.
 
-출처: `50e5838`, [CCLProjectile.cpp](../../Source/CCL/Combat/CCLProjectile.cpp):55의 `ACCLProjectile::Launch`. 실제 코드 전체 함수이며 들여쓰기를 공백으로 바꿨다.
+출처: `d4888b0`, [CCLProjectile.cpp](../../Source/CCL/Combat/CCLProjectile.cpp)의 `ACCLProjectile::Launch`. 실제 코드 전체 함수이며 들여쓰기를 공백으로 바꿨다.
 
 ```cpp
 void ACCLProjectile::Launch(UAbilitySystemComponent* ASC, const UCCLCombatDefinition* Definition,
@@ -122,9 +123,9 @@ void ACCLProjectile::Launch(UAbilitySystemComponent* ASC, const UCCLCombatDefini
 }
 ```
 
-피해 보너스도 발사 시 복사한 정의에 반영한다. 적중 때 현재 무기의 보너스를 다시 더하면 이미 캡처한 값을 중복 적용할 수 있으므로 DetachedShot 경로를 구분한다.
+피해 보너스도 발사 시 복사한 정의에 반영한다. 적중 때 현재 무기의 보너스를 다시 더하면 이미 캡처한 값을 중복 적용할 수 있으므로 `bDetachedSource` 경로를 구분한다.
 
-출처: `50e5838`, [CCLProjectile.cpp](../../Source/CCL/Combat/CCLProjectile.cpp):81의 `ACCLProjectile::Impact`. 실제 코드 전체 함수이며 들여쓰기를 공백으로 바꿨다.
+출처: `d4888b0`, [CCLProjectile.cpp](../../Source/CCL/Combat/CCLProjectile.cpp)의 `ACCLProjectile::Impact`. `50e5838`에서는 팀을 `Context.CapturedTeam`, 분리 여부를 `bDetachedShot`으로 넘겼다. 실제 코드 전체 함수이며 들여쓰기를 공백으로 바꿨다.
 
 ```cpp
 void ACCLProjectile::Impact(UPrimitiveComponent* HitComponent, AActor* Other,
@@ -139,20 +140,23 @@ void ACCLProjectile::Impact(UPrimitiveComponent* HitComponent, AActor* Other,
     auto* TargetASC = UAbilitySystemBlueprintLibrary::GetAbilitySystemComponent(Other);
     if (CapturedEffect.IsValid() && ShotDefinition && TargetASC && IsValid(Other))
     {
-        FCCLHitContext Context{IsValid(GetOwner()) ? GetOwner() : this, Other,
+        FKSIHitContext Context{IsValid(GetOwner()) ? GetOwner() : this, Other,
             IsValid(SourceASC) ? SourceASC.Get() : nullptr, TargetASC, ShotDefinition, Hit, 0};
-        Context.bDetachedShot = 1;
+        Context.bDetachedSource = 1;
         Context.CapturedEffect = CapturedEffect;
-        Context.CapturedTeam = CapturedTeam;
+        Context.SourceFacts.InitializeAs<FCCLHitSourceFacts>();
+        Context.SourceFacts.GetMutable<FCCLHitSourceFacts>().Team = CapturedTeam;
         Context.IncomingDirection = (Hit.TraceEnd - Hit.TraceStart).GetSafeNormal();
-        CCLHit::Apply(Context);
+        KSIHit::Apply(Context);
     }
 
     Destroy();
 }
 ```
 
-발사자가 유효하지 않으면 발사체 자체를 문맥 Source로 사용하고 캡처한 효과로 공통 `CCLHit::Apply`에 전달한다. Target의 현재 Avatar와 정책은 여전히 검증한다. 발사자가 사라졌다고 모든 방어 검사를 건너뛰는 구조가 아니다.
+팀은 이제 공용 문맥의 필드가 아니라 `SourceFacts`에 담긴다. `SourceFacts`는 `FInstancedStruct`라 공용 `KSICombat`은 내용을 해석하지 않고, 게임의 `FCCLHitSourceFacts`(`Source/CCL/Combat/CCLHitRule.h`)가 팀 번호를 넣는다. 이렇게 하면 팀 개념이 공용 모듈에 들어가지 않는다([Framework 단계 3](../FrameworkPlan/Stage3.md#단계-3-구현과-검증)). 비용은 정책이 값을 꺼낼 때 타입을 확인해야 한다는 점이다.
+
+발사자가 유효하지 않으면 발사체 자체를 문맥 Source로 사용하고 캡처한 효과로 공통 `KSIHit::Apply`에 전달한다. Target의 현재 Avatar와 정책은 여전히 검증한다. 발사자가 사라졌다고 모든 방어 검사를 건너뛰는 구조가 아니다.
 
 ## 8. 서버와 탄약 상태
 
