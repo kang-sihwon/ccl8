@@ -37,6 +37,7 @@
 | [결정 29](decisions/0029-repository-rule-check-on-completion.md) | 코드 작업 완료 검증 | 코드 작업을 마칠 때 `cpp-rules.cjs check --summary`로 저장소 전체를 검사하고 0건이어야 한다 | 유효 | 결정 12 보완 | [Coding](Coding.md#코드-작업-완료-검증), [AGENTS.md](../AGENTS.md) |
 | [결정 30](decisions/0030-document-cleanup-and-map-tree.md) | 문서 구조 | 에이전트가 불필요한 내용을 적게 읽도록 문서를 하위부터 정리한다. 내용 경계로만 나누고 크기 상한은 두지 않는다. 나뉜 부모와 하위 군이 폴더가 된다. 원본은 태그 `docs-tree-v0`에 있다 | 유효, 2026-10-31 완료 | 결정 28 구체화, 결정 32에서 구체화, 결정 31에서 보완 | [진행 중인 작업](Work/README.md), [WritingGuide](WritingGuide.md#문서의-종류와-소유), [AgentContextTools](AgentContextTools.md#검사-도구와-훅) |
 | [결정 31](decisions/0031-document-cleanup-without-per-document-approval.md) | 문서 구조 | 문서 정리는 문서별 승인 없이 끝까지 진행하고, 판단이 애매한 항목은 작업 지도에 모아 마지막에 한 번에 묻는다 | 유효 | 결정 30 보완 | [진행 중인 작업](Work/README.md) |
-| [결정 32](decisions/0032-document-tree-layout.md) | 문서 구조 | 나뉜 문서의 부모는 원래 경로에 두고 하위는 같은 이름의 폴더에 둔다. 환경 문서 군은 `Docs/EnvironmentPlan/` 아래로 모은다. 큰 기록의 추가 정리는 해당 시스템을 다룰 때 한다 | 유효 | 결정 30 구체화 | [WritingGuide](WritingGuide.md#문서-구조) |
+| [결정 32](decisions/0032-document-tree-layout.md) | 문서 구조 | 나뉜 문서의 부모는 원래 경로에 두고 하위는 같은 이름의 폴더에 둔다. 환경 문서 군은 `Docs/EnvironmentPlan/` 아래로 모은다. 큰 기록의 추가 정리는 해당 시스템을 다룰 때 한다 | 유효 | 결정 30 구체화, 결정 33에서 보완 | [WritingGuide](WritingGuide.md#문서-구조) |
+| [결정 33](decisions/0033-large-document-cleanup-first.md) | 문서 구조 | 큰 문서의 정리를 해당 시스템 작업까지 미루지 않는다. 크기 순으로 내용을 직접 읽고 정리한 뒤 항목별로 나눈다. 문서별 승인 없이 진행하고 애매한 항목은 마지막에 한 번에 묻는다 | 유효 | 결정 32 보완 | [진행 중인 작업](Work/README.md) |
 
 위 결정으로 확정한 범위 밖의 [GameDesign](GameDesign.md), [ArtDirection](ArtDirection.md) 세부 제안과 [StudyRoadmap](StudyRoadmap.md)의 월별 배분은 후보로 유지한다.

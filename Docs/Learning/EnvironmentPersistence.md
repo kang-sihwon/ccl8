@@ -33,7 +33,7 @@ return WorldSimulation && WorldSimulation->Save(Simulation, Bytes, Error);
 
 이 발췌는 Save 내부의 연결 부분이다. 앞의 권위·실행 상태 검사와 Actor 위치 갱신을 없앤 것이 아니다. WorldSimulation이 시계·환경·생활의 같은 완료 상태를 캡처한다. 새 외부 호출을 한 줄 추가한 것으로 설명을 끝내지 않고 [CCLWorldSnapshot.cpp](../../Source/CCL/Environment/CCLWorldSnapshot.cpp)의 직렬화와 검증까지 따라가야 한다.
 
-[서버 시간 연결 기록](../EnvironmentPlan/Stages0to3.md#서버-시간과-통합-저장-연결-설계)은 세션 버전 6에서 기존 Agent 저장 필드에 통합 스냅샷을 넣는 이전 방식을 설명한다. 세계 스키마와 내부 표면 버전은 또 다른 번호다. 하나가 증가했다고 나머지도 같은 번호가 되지 않는다. 현재 작업 트리에는 후속 생태·플레이어 저장 확장이 있으므로 그 최신 번호를 7단계 당시 형식으로 소급하지 않는다.
+[서버 시간 연결 기록](../EnvironmentPlan/Stages0to3/TimeAndLabs.md#서버-시간과-통합-저장-연결-설계)은 세션 버전 6에서 기존 Agent 저장 필드에 통합 스냅샷을 넣는 이전 방식을 설명한다. 세계 스키마와 내부 표면 버전은 또 다른 번호다. 하나가 증가했다고 나머지도 같은 번호가 되지 않는다. 현재 작업 트리에는 후속 생태·플레이어 저장 확장이 있으므로 그 최신 번호를 7단계 당시 형식으로 소급하지 않는다.
 
 ## 여러 파일의 완료 세대
 

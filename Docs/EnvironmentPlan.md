@@ -16,9 +16,9 @@
 
 | 단계 | 상태 | 현재 구현과 실행 근거의 정본 |
 |---|---|---|
-| 0 환경 확인 | 완료 | [단계 0 확인 결과](EnvironmentPlan/Stages0to3.md#단계-0-확인-결과) |
-| 1 실험장·시간 | 완료 | [실험장 구현과 단계 1 통과](EnvironmentPlan/Stages0to3.md#실험장-구현과-단계-1-통과), [시간 트랜잭션 구현과 검증](EnvironmentPlan/Stages0to3.md#시간-트랜잭션-구현과-검증) |
-| 2 천체·차폐 입력 | 완료 | [단계 2 완료 결과](EnvironmentPlan/Stages0to3.md#단계-2-완료-결과) |
+| 0 환경 확인 | 완료 | [단계 0 확인 결과](EnvironmentPlan/Stages0to3/TimeAndLabs.md#단계-0-확인-결과) |
+| 1 실험장·시간 | 완료 | [실험장 구현과 단계 1 통과](EnvironmentPlan/Stages0to3/TimeAndLabs.md#실험장-구현과-단계-1-통과), [시간 트랜잭션 구현과 검증](EnvironmentPlan/Stages0to3/TimeAndLabs.md#시간-트랜잭션-구현과-검증) |
+| 2 천체·차폐 입력 | 완료 | [단계 2 완료 결과](EnvironmentPlan/Stages0to3/Celestial.md#단계-2-완료-결과) |
 | 3 영구 지형 | 완료 | [영구 지형 통합과 검증](EnvironmentPlan/Terrain.md) |
 | 4 물 순환 | 완료 | [물 순환 설계와 검증](EnvironmentPlan/Water.md) |
 | 5 깊은 눈·이동 | 완료 | [깊은 눈과 캐릭터 이동](EnvironmentPlan/Snow.md) |
