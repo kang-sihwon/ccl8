@@ -8,9 +8,9 @@ Agent의 영구 기록과 화면 속 Actor는 수명이 다르다. 이 장은 �
 |---|---|
 | 이전 기준 | `aea2debe066b2d95fd41cb9f83100e551a0bbadb` |
 | 도입·변경 기준 | `0931fbfb5c96c4da24acb9d2ed44243fc0e6171f` |
-| 현재 기준 | `50e583859c832d6cb325e5e76beb8356e8c13959` |
+| 현재 기준 | `d4888b08154afab8712af974bce0ead2b90978ac` |
 
-조사 시작 때 확인한 `main`과 로컬 원격 추적 `origin/main`의 `50e5838`을 게임 코드 기준으로 고정한 학습 기록이다. 원격 서버를 새로 조회한 결과는 아니며 이후 추가된 커밋과 구분한다. 작업 트리의 설정·빌드 파일 변경은 이 장의 코드 기준에서 제외했다. 아래 발췌의 경로·줄 번호는 표시한 커밋 기준이고 상대 링크는 현재 체크아웃을 연다.
+현재 기준 `d4888b0`은 2026-10-31의 `main`이며 로컬 원격 추적과 같았다. 원격 서버를 새로 조회한 결과는 아니다. Store와 FeatureRegistry는 `Source/KSIAgent/`로 옮겨져 `FCCLAgentStore`, `FCCLFeatureRegistry`가 `FKSIAgentStore`, `FKSIFeatureRegistry`가 됐다. 발췌의 출처에는 커밋과 함수 이름을 적었고 상대 링크는 현재 체크아웃을 연다.
 
 `aea2deb`의 생활 Actor 실행과 `0931fbf`에서 추가한 Mass 연결을 비교한다. Mass 이전에 별도의 가상 Mass 코드를 두지 않는다. 계약과 기록은 [AgentFoundation](../AgentFoundation.md)과 [직접 확인 안내](../AgentFoundation/Verification.md#직접-확인)에 있다.
 
@@ -34,7 +34,7 @@ Mass Entity는 Actor가 아닌 데이터 중심 표현이다. Fragment는 Entity
 
 다음은 Actor 수명이 끝나는 정리 경로다.
 
-출처: `aea2deb`, [CCLAgentAIController.cpp](../../Source/CCL/Agents/CCLAgentAIController.cpp):29의 `ACCLAgentAIController::OnUnPossess`. 실제 코드 전체 함수이며 들여쓰기를 공백으로 바꿨다.
+출처: `aea2deb`, `Source/CCL/Agents/CCLAgentAIController.cpp`의 `ACCLAgentAIController::OnUnPossess`. 실제 코드 전체 함수이며 들여쓰기를 공백으로 바꿨다.
 
 ```cpp
 void ACCLAgentAIController::OnUnPossess()
@@ -58,14 +58,14 @@ void ACCLAgentAIController::OnUnPossess()
 
 Mass 진입은 Store의 Agent를 찾고 쓰기 실행권을 얻은 뒤 Entity를 만든다.
 
-출처: `50e5838`, [CCLMassAgentBridge.cpp](../../Source/CCL/Agents/CCLMassAgentBridge.cpp):5의 `CCLMassAgentBridge::Enter`. 실제 코드 전체 함수이며 들여쓰기를 공백으로 바꿨다.
+출처: `d4888b0`, [CCLMassAgentBridge.cpp](../../Source/CCL/Agents/CCLMassAgentBridge.cpp)의 `CCLMassAgentBridge::Enter`. 실제 코드 전체 함수이며 들여쓰기를 공백으로 바꿨다.
 
 ```cpp
-FMassEntityHandle CCLMassAgentBridge::Enter(FMassEntityManager& Manager, FCCLAgentStore& Store, FGuid Id)
+FMassEntityHandle CCLMassAgentBridge::Enter(FMassEntityManager& Manager, FKSIAgentStore& Store, FGuid Id)
 {
     const auto Handle = Store.GetHandle(Id);
     const auto* Record = Store.Find(Handle);
-    if (!Record)
+    if (!Record || !CCLAgentBiology::IsAlive(*Record))
     {
         return {};
     }
@@ -83,15 +83,17 @@ FMassEntityHandle CCLMassAgentBridge::Enter(FMassEntityManager& Manager, FCCLAge
 }
 ```
 
+진입 조건에 `CCLAgentBiology::IsAlive`가 더해져 죽은 Agent는 Entity로 만들지 않는다. `50e5838`의 `Enter`에는 이 검사가 없었다. 죽은 기록에 실행권을 주지 않으려는 변경으로 읽히며, 생애·사망 Feature는 [생애·식생·부패](../EnvironmentPlan/Ecology/AgentLife.md)가 소유한다. 이 검사는 `c8816e7`에 들어왔고 커밋 본문에 이유는 없다.
+
 Fragment는 Intent와 Lease를 보관한다. 판단은 같은 `CCLDecision::Evaluate`를 호출한다. 현재 Fragment가 모든 Feature·물리·GAS 상태를 복제하는 것은 아니다.
 
 반환할 때는 최신 기록에 Fragment의 Intent를 넣어 Store에 Commit한다.
 
-출처: `50e5838`, [CCLMassAgentBridge.cpp](../../Source/CCL/Agents/CCLMassAgentBridge.cpp):40의 `CCLMassAgentBridge::Leave`. 실제 코드 전체 함수이며 들여쓰기를 공백으로 바꿨다.
+출처: `d4888b0`, [CCLMassAgentBridge.cpp](../../Source/CCL/Agents/CCLMassAgentBridge.cpp)의 `CCLMassAgentBridge::Leave`. 실제 코드 전체 함수이며 들여쓰기를 공백으로 바꿨다.
 
 ```cpp
-bool CCLMassAgentBridge::Leave(FMassEntityManager& Manager, FMassEntityHandle Entity, FCCLAgentStore& Store,
-    const FCCLFeatureRegistry& Registry, FString& Error)
+bool CCLMassAgentBridge::Leave(FMassEntityManager& Manager, FMassEntityHandle Entity, FKSIAgentStore& Store,
+    const FKSIFeatureRegistry& Registry, FString& Error)
 {
     if (!Manager.IsEntityValid(Entity))
     {
