@@ -32,7 +32,8 @@
   - 결과: 부모는 6KB로 줄었고 `Modules`, `Naming`, `Process`로 나눴다. 본문은 원문 그대로 옮겼다.
 - [x] 9. `CombatFoundation` 23.0KB (없음).
   - 결과: 전체 20.7KB, 부모 2.5KB로 줄었고 `Contracts`, `Actions`, `Verification`으로 나눴다. 규범 내용이 대부분이라 날짜별 실행 기록만 남은 사실 목록으로 줄였다.
-- [ ] 10. `EnvironmentPlan/Ecology` 22.6KB (없음).
+- [x] 10. `EnvironmentPlan/Ecology` 22.6KB (없음).
+  - 결과: 부모는 6.1KB로 줄었고 `Core`, `Representation`으로 나눴다. 끝난 다음 작업 문장과 소스 사본을 뺐다.
 - [ ] 11. `Packaging/Records` 22.1KB (없음).
 
 ## 정한 것
