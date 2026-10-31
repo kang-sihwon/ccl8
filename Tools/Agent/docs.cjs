@@ -24,7 +24,6 @@ const KNOWN_BROKEN = new Set([
   'Docs/Learning/InventoryUI.md ../../Source/CCL/UI/Core/CCLUISubsystem.cpp',
   'Docs/Learning/InventoryUI.md ../../Source/CCL/UI/Core/CCLScreen.cpp',
   'Docs/Learning/InventoryUI.md ../../Source/CCL/UI/Core/CCLUIRoot.cpp',
-  'Docs/Learning/Map.md ../../Source/CCL/Map/CCLMapSystem.cpp',
 ]);
 const FENCE = /^ {0,3}(`{3,}|~{3,})/;
 const HEADING = /^ {0,3}#{1,6}[ \t]+(.+?)[ \t]*#*[ \t]*$/;

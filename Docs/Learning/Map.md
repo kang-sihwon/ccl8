@@ -1,6 +1,6 @@
 # 지도: 같은 공개 자료를 미니맵과 전체 지도에 표시하기
 
-미니맵과 전체 지도는 `UCCLMapSubsystem`이 모은 지형·마커를 공유하고 표시 범위만 다르게 사용한다. 이 장은 월드 위치를 화면 좌표로 옮기는 과정과 관찰자에게 공개할 정보의 경계를 설명한다.
+미니맵과 전체 지도는 `UKSIMapSubsystem`이 모은 지형·마커를 공유하고 표시 범위만 다르게 사용한다. 이 장은 월드 위치를 화면 좌표로 옮기는 과정과 관찰자에게 공개할 정보의 경계를 설명한다.
 
 ## 1. 비교 기준
 
@@ -8,11 +8,13 @@
 |---|---|
 | 이전 기준 | `ed9a763db54edd93c7fe802b887ee96b553bb0df` |
 | 도입·변경 기준 | `0931fbfb5c96c4da24acb9d2ed44243fc0e6171f` |
-| 현재 기준 | `50e583859c832d6cb325e5e76beb8356e8c13959` |
+| 모듈 분리 전 기준 | `50e583859c832d6cb325e5e76beb8356e8c13959` |
+| 모듈 분리 | `996bf49a0ca3ff5e1fe309675addc2bb37434616` |
+| 현재 기준 | `d4888b08154afab8712af974bce0ead2b90978ac` |
 
-조사 시작 때 확인한 `main`과 로컬 원격 추적 `origin/main`의 `50e5838`을 게임 코드 기준으로 고정한 학습 기록이다. 원격 서버를 새로 조회한 결과는 아니며 이후 추가된 커밋과 구분한다. 작업 트리의 설정·빌드 파일 변경은 이 장의 코드 기준에서 제외했다. 아래 발췌의 경로·줄 번호는 표시한 커밋 기준이고 상대 링크는 현재 체크아웃을 연다.
+현재 기준 `d4888b0`은 2026-10-31의 `main`이며 로컬 원격 추적과 같았다. 원격 서버를 새로 조회한 결과는 아니다. `996bf49`가 지도 자료 수집을 `Source/CCL/Map/`의 `CCLMap*`에서 `Source/KSIMap/`의 `KSIMap*`으로 옮겼다. 이전 발췌는 `0931fbf` 시점의 `CCL*` 이름 그대로 두고, 현재 발췌는 `d4888b0`의 `KSI*` 이름이다. 두 코드는 접두사만 다르다. 상대 링크는 현재 체크아웃을 연다.
 
-이전 기준에는 `Source/CCL/Map/CCLMapSystem.cpp`와 `UI/CCLMapScreen.cpp`가 없었다. `0931fbf`의 최초 도입을 현재 기준과 대조한다. 요구·기존 확인은 결정 18과 [AgentFoundation](../AgentFoundation/Verification.md#직접-확인)에 있다.
+이전 기준에는 지도 시스템(`Source/CCL/Map/CCLMapSystem.cpp`)과 화면(`UI/CCLMapScreen.cpp`)이 없었다. 지도 시스템은 지금 `Source/KSIMap/Private/KSIMapSystem.cpp`에 있고 화면은 CCL에 남아 있다. `0931fbf`의 최초 도입을 현재 기준과 대조한다. 요구·기존 확인은 결정 18과 [AgentFoundation](../AgentFoundation/Verification.md#직접-확인)에 있다.
 
 ## 2. 해결할 문제
 
@@ -32,7 +34,7 @@
 
 이전 지도 구현이 없으므로 최초 공개 판정 코드를 읽는다.
 
-출처: `0931fbf`, [CCLMapSystem.cpp](../../Source/CCL/Map/CCLMapSystem.cpp):9의 `UCCLMapMarkerComponent::IsRevealedTo`. 실제 코드 전체 함수이며 들여쓰기를 공백으로 바꿨다.
+출처: `0931fbf`, `Source/CCL/Map/CCLMapSystem.cpp`의 `UCCLMapMarkerComponent::IsRevealedTo`. 현재 [KSIMapSystem.cpp](../../Source/KSIMap/Private/KSIMapSystem.cpp)의 `UKSIMapMarkerComponent::IsRevealedTo`는 이름만 다르다. 실제 코드 전체 함수이며 들여쓰기를 공백으로 바꿨다.
 
 ```cpp
 bool UCCLMapMarkerComponent::IsRevealedTo(const APlayerController* Observer) const
@@ -60,10 +62,10 @@ bool UCCLMapMarkerComponent::IsRevealedTo(const APlayerController* Observer) con
 
 ## 6. 현재의 투영과 화면 범위
 
-출처: `50e5838`, [CCLMapSystem.cpp](../../Source/CCL/Map/CCLMapSystem.cpp):96의 `UCCLMapSubsystem::Project`. 실제 코드 전체 함수이며 들여쓰기를 공백으로 바꿨다.
+출처: `d4888b0`, [KSIMapSystem.cpp](../../Source/KSIMap/Private/KSIMapSystem.cpp)의 `UKSIMapSubsystem::Project`. 실제 코드 전체 함수이며 들여쓰기를 공백으로 바꿨다.
 
 ```cpp
-FVector2D UCCLMapSubsystem::Project(FVector World, const FBox2D& InBounds, FVector2D Size)
+FVector2D UKSIMapSubsystem::Project(FVector World, const FBox2D& InBounds, FVector2D Size)
 {
     const FVector2D Extent = InBounds.GetSize();
     return FVector2D((World.X - InBounds.Min.X) / FMath::Max(1., Extent.X) * Size.X,
@@ -75,7 +77,7 @@ FVector2D UCCLMapSubsystem::Project(FVector World, const FBox2D& InBounds, FVect
 
 화면에서는 Context의 전체 지도 여부로 크기·원점·Bounds를 정한다.
 
-출처: `50e5838`, [CCLMapScreen.cpp](../../Source/CCL/UI/CCLMapScreen.cpp):43의 `UCCLMapScreen::NativePaint`. 실제 코드 함수 일부이며 들여쓰기를 공백으로 바꿨다.
+출처: `d4888b0`, [CCLMapScreen.cpp](../../Source/CCL/UI/CCLMapScreen.cpp)의 `UCCLMapScreen::NativePaint`. 실제 코드 함수 일부이며 들여쓰기를 공백으로 바꿨다.
 
 ```cpp
     const FVector2D Screen = Geometry.GetLocalSize();
@@ -132,7 +134,7 @@ MapSubsystem은 LocalPlayer 수명이며 화면은 자기 OwningPlayer로 Refres
 | Pawn 사라짐·월드 교체 | 오래된 마커 제거·캐시 재생성 |
 | 지역 모서리·영역 밖 위치 | 좌표 방향과 클리핑이 일관됨 |
 
-기존 통합 확인은 [AgentFoundation](../AgentFoundation/Verification.md#검증)에 있다. 이번에는 코드로 좌표·공개·해제 경로를 확인했으며 화면이나 네트워크를 새로 실행하지 않았다.
+기존 통합 확인은 [AgentFoundation](../AgentFoundation/Verification.md#검증)에 있다. 이번에는 `d4888b0`의 코드로 좌표·공개·해제 경로를 확인했으며 화면이나 네트워크를 새로 실행하지 않았다.
 
 ## 12. 이해 확인
 
