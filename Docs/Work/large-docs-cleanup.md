@@ -34,7 +34,8 @@
   - 결과: 전체 20.7KB, 부모 2.5KB로 줄었고 `Contracts`, `Actions`, `Verification`으로 나눴다. 규범 내용이 대부분이라 날짜별 실행 기록만 남은 사실 목록으로 줄였다.
 - [x] 10. `EnvironmentPlan/Ecology` 22.6KB (없음).
   - 결과: 부모는 6.1KB로 줄었고 `Core`, `Representation`으로 나눴다. 끝난 다음 작업 문장과 소스 사본을 뺐다.
-- [ ] 11. `Packaging/Records` 22.1KB (없음).
+- [x] 11. `Packaging/Records` 22.1KB (없음).
+  - 결과: 13KB로 줄었다. 패키지에서 얻은 규칙을 앞으로 모으고 빈 경로 표와 반복 한계 문장을 뺐다. 내용 경계가 없어 나누지 않았다.
 
 ## 정한 것
 
