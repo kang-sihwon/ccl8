@@ -33,7 +33,7 @@
 
 서식지·개체군·무리·개체를 구분하고 먼 집계에서 가까운 표현으로 전환할 때 수를 보존한다. 출생·사망·포획·이주는 사건 ID로 한 번 적용한다. 기억·서사·소유권을 가진 개체는 안정적인 ID를 유지한다. 화면 밖의 집계를 임의로 다시 채우지 않는다. 대표 지상 생물·물고기·새·곤충으로 같은 계약을 검사한다.
 
-세계 시간은 생물의 나이와 생태 진행의 기준이다. Actor/Mass는 표현·실행을 맡고 권위 수량의 원본이 아니다. 기존 Agent의 ID·실행권과 생태계 예약을 연결하되 직업·재산·기억 Feature를 모든 생물에 강제하지 않는다. 핵심 NPC의 자연 노화 보호는 아래 Agent 생애 연결이 소유한다. 식물·버섯과 음식 부패도 이 단계의 필수 후속 작업이다.
+세계 시간은 생물의 나이와 생태 진행의 기준이다. Actor/Mass는 표현·실행을 맡고 권위 수량의 원본이 아니다. 기존 Agent의 ID·실행권과 생태계 예약을 연결하되 직업·재산·기억 Feature를 모든 생물에 강제하지 않는다. 핵심 NPC의 자연 노화 보호는 아래 Agent 생애 연결이 소유한다.
 
 ## 책임과 수명
 
@@ -63,30 +63,11 @@ classDiagram
 
 ## 값 모델 인터페이스
 
-```cpp
-bool Apply(const FKSIEcologyEvent& Event, FString& Error);
-bool Materialize(FGuid RequestId, FGuid PopulationId, FGuid CohortId,
-    FGuid IndividualId, bool bPersistent, FString& Error);
-bool Acquire(FGuid IndividualId, EKSIEcologyRepresentation Representation,
-    FGuid Writer, FKSIEcologyLease& OutLease, FString& Error);
-bool Release(const FKSIEcologyLease& Lease, FString& Error);
-bool AdvanceTo(double TargetWorldSeconds, FString& Error, int32 MaxBoundaries = 256);
-bool Capture(TArray<uint8>& Bytes, FString& Error) const;
-bool Restore(const TArray<uint8>& Bytes, FString& Error);
-```
+`Apply`, `Materialize`, `Acquire`, `Release`, `AdvanceTo`, `Capture`, `Restore`의 서명은 `Source/KSIEnvironment/Public/KSIEcologySimulation.h`가 소유한다.
 
 집계 수는 연령군의 수량이고, 예약된 살아 있는 개체는 별도 수량이다. 현재 개체군은 종·서식지별 수량 단위이며 이동 무리의 별도 그룹·행동은 아직 구현하지 않았다. 원장 검사는 두 수량을 합산한다. `Materialize`는 한 마리를 집계에서 빼고 지속 레코드에 넣는다. `Acquire`는 수량을 바꾸지 않고 Actor 또는 Mass의 실행권을 발급한다. 같은 개체에 두 실행권을 주지 않는다. 일반 개체의 `Release`는 집계로 돌려보내고, 중요 개체는 레코드를 남긴 채 먼 상태로 전환한다.
 
-```cpp
-FKSIEcologySimulation Candidate = *this;
-// 요청 검증과 수량 변경은 후보에서 수행한다.
-if (!Candidate.Validate(Error))
-{
-    return false;
-}
-*this = MoveTemp(Candidate);
-return true;
-```
+요청 검증과 수량 변경은 후보에서 수행하고, 검증을 통과해야 후보로 원본을 교체한다.
 
 ## 시간순 생애 계산
 
@@ -102,15 +83,13 @@ return true;
 
 `UCCLWorldSimulationSubsystem`은 생태 상태를 소유하고 서버에서만 종·서식지·개체군 등록과 사건·실행권 변경을 허용한다. 생태 전용 시계는 진행시키지 않는다. `CCLWorldAdvance::Advance`가 공통 시계의 구간으로 표면과 생태 후보를 계산하고 Agent의 원자적 진행까지 성공한 뒤 세 후보를 게시한다. 생태의 시간 예산 초과나 Agent 실패는 미처리 입력을 보존하며 다른 모델을 먼저 진행시키지 않는다.
 
-월드 저장 스키마 4는 환경 입력·표면 다음에 크기가 제한된 생태 바이트를 넣고 기존 Agent 바이트를 보존한다. 생태의 세계 ID·완료 세계 시각은 월드 헤더·시계와 같아야 한다. 손상·다른 세계·다른 시각은 Agent를 교체하기 전에 거부한다. 복원 뒤 생태 실행권에는 새 세대를 적용하므로 저장 전 Actor/Mass의 늦은 반납을 거부한다.
+현재 월드 저장 스키마는 7이다. 스키마 4부터 환경 입력·표면 다음에 크기가 제한된 생태 바이트를 넣고 기존 Agent 바이트를 보존한다. 생태의 세계 ID·완료 세계 시각은 월드 헤더·시계와 같아야 한다. 손상·다른 세계·다른 시각은 Agent를 교체하기 전에 거부한다. 복원 뒤 생태 실행권에는 새 세대를 적용하므로 저장 전 Actor/Mass의 늦은 반납을 거부한다.
 
 스키마 1-3에는 생태 바이트가 없다. 이 저장은 같은 세계 ID와 저장 당시 완료 시각의 빈 생태 상태로 변환한다. 초기 개체군을 임의 생성하거나 종료 중 현실 시간을 더하지 않는다. 생태가 포함된 저장의 예약·영수증·연령군은 그대로 복원하며 남아 있던 시간 구간을 다시 진행할 수 있다. 지역 지형 묶음도 기존 월드 저장 바이트를 포함하므로 같은 완료 표식에 생태가 함께 들어간다. 지형을 수정하면서 생태를 저장하는 통합 실패 조합은 단계 9에서 추가 검사한다.
 
 ## 검증 방법
 
 대표 네 종에서 예약·반환을 반복해 총수가 바뀌지 않는지 검사한다. 이주 양쪽 원장, 중복 사건, 같은 ID의 다른 요청, 부족한 수량, 다른 종·서식 매체, 실행권 충돌, 오래된 실행권, 저장 재개와 손상 저장 거부를 확인한다. 저장은 실행권을 포함하지 않으며 복원 후 새 세대를 발급해 복원 전 쓰기를 거부해야 한다.
-
-후속 검증은 Agent와 생태 사이의 생애 소유권 이전과 원거리 집계 복제, 식생의 성장·화재·재생, 음식의 보관·합치기, 생물의 이동·먹이·무리, 구역 06·07 조작·네트워크·저장이다. 이 문서의 초기 값 모델 검사가 전체 단계 8의 완료를 뜻하지 않는다.
 
 ## 트레이드오프와 UE 통합
 
@@ -120,20 +99,19 @@ return true;
 
 ## 실행 근거와 남은 연결
 
-초기 생태 코어를 UE 5.8.3의 로컬 작업 트리에서 검사한 결과는 아래 표와 같다. 월드 통합 이후의 최종 검증은 다음 절에서 구분한다. 경로는 저장소 상대 경로이며 원본 로그는 로컬 `Saved/`에 보관한다.
+초기 생태 코어를 UE 5.8.3의 로컬 작업 트리에서 검사한 결과는 아래 표와 같다. 월드 통합 이후의 최종 검증은 다음 절에서 구분한다.
 
 | 검사 | 결과와 근거 |
 |---|---|
-| 프로젝트 파일 생성 | 성공. `Saved/EnvironmentStages/Ecology-GPF.log` |
-| Editor 빌드 | 성공. `Saved/EnvironmentStages/Ecology-Build.log` |
-| 환경 자동화 | 88/88 성공. 생태 검사 9개 포함, 경고·실패·미실행 0. `Saved/Tests/Automation/20261010-135234-767/report/index.json` |
+| 프로젝트 파일 생성 | 성공 |
+| Editor 빌드 | 성공 |
+| 환경 자동화 | 88/88 성공. 생태 검사 9개 포함, 경고·실패·미실행 0 |
 | 생태 값 모델 | 네 매체의 예약·반환, 실행권 충돌, 중요 ID 유지, 사건 재전송·충돌, 이주·사망·포획·유입 원장 |
 | 저장과 시간 | 손상·길이·버전·할당 상한 거부, 복원 세대 변경, 시간 분할·중간 저장 재개 일치, 멸종 유지, 시간 예산 실패 원본 보존 |
 
 구현은 `KSIEcologySimulation.h/.cpp`, `KSIEcologyAdvance.cpp`와 `CCLEcologyTests.cpp`에 있다. 저장은 정렬된 키 순서와 CRC를 사용하며 최대 8MiB로 제한한다. 실행권은 저장하지 않고 개체 예약과 영수증을 저장한다. 버전 2에는 종의 번식 간격이 추가되었다. 버전 1의 자동 번식은 꺼진 상태로 읽도록 구현했으며 과거 저장의 전체 통합 검사는 단계 9에서 수행한다.
 
-위의 초기 값 모델과 월드 통합 검사에서 Actor/Mass는 실행권 종류다. 실제 Actor 생성·Mass Entity 전환의 검증은 아래 별도 절에 기록한다. 종의 이동 매체도 서식지 적합성 검사이며 이동·먹이 탐색 구현을 뜻하지 않는다. 식생·버섯·음식 부패, 종별 이동·먹이·무리 행동과 구역 06·07의 조작·네트워크를 연결해야 단계 8을 완료할 수 있다. Agent 나이·보호의 구현·검증은 아래 별도 절에서 구분한다.
-
+위의 초기 값 모델과 월드 통합 검사에서 Actor/Mass는 실행권 종류다. 실제 Actor 생성·Mass Entity 전환의 검증은 아래 별도 절에 기록한다. 종의 이동 매체도 서식지 적합성 검사이며 이동·먹이 탐색 구현을 뜻하지 않는다. Agent 나이·보호의 구현·검증은 아래 별도 절에서 구분한다.
 
 ### 월드 통합 실행 근거
 
@@ -143,13 +121,12 @@ return true;
 
 | 검사 | 결과와 근거 |
 |---|---|
-| 최종 프로젝트 파일 생성·Editor 빌드 | 성공. `Saved/EnvironmentStages/EcologyWorld-GPF.log`, `EcologyWorld-Build.log` |
-| 환경 자동화 | 90/90, 경고·실패·미실행 0. `Saved/Tests/Automation/20261010-140023-357/report/index.json` |
-| 기존 시나리오·새 프로세스 회귀 | 통과. `Saved/Tests/Environment/EnvironmentScenario-Standalone-20261010-140103-101` |
-| EnvironmentScenario 생태 저장·새 프로세스 재개 | 통과. `Saved/Tests/Ecology/EnvironmentScenario-20261010-140252-611` |
-| EnvironmentPlayground 생태 저장·새 프로세스 재개 | 통과. `Saved/Tests/Ecology/EnvironmentPlayground-20261010-140251-169` |
-| 캠페인 세션 저장·재개 | 통과. `Saved/Tests/SessionSmoke/20261010-140251` |
-
+| 최종 프로젝트 파일 생성·Editor 빌드 | 성공 |
+| 환경 자동화 | 90/90, 경고·실패·미실행 0 |
+| 기존 시나리오·새 프로세스 회귀 | 통과 |
+| EnvironmentScenario 생태 저장·새 프로세스 재개 | 통과 |
+| EnvironmentPlayground 생태 저장·새 프로세스 재개 | 통과 |
+| 캠페인 세션 저장·재개 | 통과 |
 
 ### Actor/Mass 연결과 실행 근거
 
@@ -180,7 +157,6 @@ DestroyPreviousRepresentation();
 
 실제 Actor와 Mass Entity의 존재, 전환 전후 집계·예약 합계, 오래된 Actor 종료, 외부 Entity 제거, 저장 복원 뒤 표현 폐기, 사망과 중복 반환을 검사한다. Mass의 즉시 생성·파괴는 처리 중이 아닌 게임 스레드에서만 수행하고 처리 중이면 재시도를 요청한다. 기존 `MassEntity`, `MassCore` 의존을 사용한다. UE5 Mass Entity는 실행 표현이며 개체군 보존·저장 계약을 대신하지 않는다. 임시 표현을 준비하는 동안 메모리를 조금 더 쓰는 대신 실패 시 기존 상태를 보존한다.
 
-
 표현 전환과 저장 직전에는 현재 Actor 또는 Fragment의 위치를 값 모델에 반영한다. 잘못된 위치는 거부하고 표현을 마지막 유효 위치로 되돌린다. 생태 저장 버전 3은 예약 개체의 위치를 포함하며 이전 버전 1·2의 위치는 서식지 중심으로 읽도록 구현했다. 이전 위치 형식의 별도 파일 검증은 아직 수행하지 않았다. 저장에 실행권은 넣지 않는다. 복원 성공 시 이전 표현을 즉시 폐기하고 저장된 예약을 새 실행권으로 다시 표현할 수 있다.
 
 `Suspend`는 표현만 해제하고 예약을 보존한다. 일반적인 언로드는 `Release`로 집계에 반환한다. `Transfer`는 준비된 표현에 새 실행권을 발급한 뒤 이전 표현을 폐기하므로 오래된 Actor의 `EndPlay`가 새 실행권을 반납하지 못한다. 자연 사망이 실행권을 회수한 경우에도 같은 규칙으로 객체만 정리한다. Mass 처리가 진행 중인 즉시 생성·파괴 요청은 거부한다. 근거는 UE 5.8.3의 `<Engine>/Source/Runtime/MassEntity/Public/MassEntitySubsystem.h`의 `GetMutableEntityManager`와 `MassEntityManager.h`의 `IsProcessing`이다.
@@ -189,16 +165,15 @@ DestroyPreviousRepresentation();
 
 | 검사 | 결과와 근거 |
 |---|---|
-| 최종 프로젝트 파일 생성·Editor 빌드 | 성공. `Saved/EnvironmentStages/EcologyRepresentation-GPF.log`, `EcologyRepresentation-Build.log` |
-| 환경 자동화 | 92/92, 경고·실패·미실행 0. `Saved/Tests/Automation/20261010-142038-105/report/index.json` |
-| 두 맵의 실제 Actor/Mass 전환 | 통과. `Saved/Tests/EcologyRepresentation/EnvironmentScenario-20261010-142159-887`, `EnvironmentPlayground-20261010-142156-736` |
-| 최종 Standalone 검사 | 통과. `Saved/Tests/EcologyRepresentation/EnvironmentScenario-Standalone-20261010-142833-091` |
-| Listen 첫·늦은 접속자 | 통과. `Saved/Tests/EcologyRepresentation/EnvironmentScenario-Listen-20261010-142833-759` |
-| Dedicated 첫·늦은 접속자 | 통과. `Saved/Tests/EcologyRepresentation/EnvironmentScenario-Dedicated-20261010-142834-865` |
-| 생태 저장·새 프로세스 재개 회귀 | 통과. `Saved/Tests/Ecology/EnvironmentScenario-20261010-142157-584` |
+| 최종 프로젝트 파일 생성·Editor 빌드 | 성공 |
+| 환경 자동화 | 92/92, 경고·실패·미실행 0 |
+| 두 맵의 실제 Actor/Mass 전환 | 통과 |
+| 최종 Standalone 검사 | 통과 |
+| Listen 첫·늦은 접속자 | 통과 |
+| Dedicated 첫·늦은 접속자 | 통과 |
+| 생태 저장·새 프로세스 재개 회귀 | 통과 |
 
 이 검사는 NullRHI의 Editor 실행 파일을 사용했다. Dedicated는 `-server` 실행이며 별도 Server 타깃 빌드나 패키지 검증은 아니다. Actor 외형은 기본 Sphere·Cube로 구분한 임시 표현이고 충돌·애니메이션·종별 이동·먹이 탐색·거리 자동 전환은 아직 없다. 실제 렌더링 외관, 지연·손실·재접속, 원거리 집계와 Mass의 클라이언트 표현은 후속 검증이다. 이 표현 검사의 Agent 생애 연결은 아래 별도 검증으로 구분한다.
-
 
 ### Agent 생애 연결과 실행 근거
 
@@ -230,25 +205,23 @@ double Age = Biology.DeathCause == ECCLAgentDeathCause::None
 
 선택 Feature는 기억·직업 없는 생물에 주민 데이터를 강제하지 않는 대신, 기존 콘텐츠의 생애 설정과 소유권 전환을 명시적으로 관리해야 한다. UE5의 기존 `FInstancedStruct` Registry·버전 검증 경로를 사용하며 추가 모듈은 필요 없다. 이 생애 규칙은 UE 엔진의 자동 노화 기능이 아니다.
 
-
 | 검사 | 결과와 근거 |
 |---|---|
-| 최종 프로젝트 파일 생성·Editor 빌드 | 성공. `Saved/EnvironmentStages/AgentBiology-GPF.log`, `AgentBiology-Build.log` |
-| 환경 자동화 | 96/96, 경고·실패·미실행 0. 생애 검사 4개 포함. `Saved/Tests/Automation/20261010-144010-588/report/index.json` |
-| 기존 Agent 자동화 | 9/9, 경고·실패·미실행 0. `Saved/Tests/Automation/20261010-144007-841/report/index.json` |
-| Campaign 실제 생애 검사 | 통과. `Saved/Tests/AgentBiology/Campaign-20261010-144249-352` |
-| EnvironmentScenario 실제 생애 검사 | 통과. `Saved/Tests/AgentBiology/EnvironmentScenario-20261010-144247-282` |
-| EnvironmentPlayground 실제 생애 검사 | 통과. `Saved/Tests/AgentBiology/EnvironmentPlayground-20261010-144249-101` |
-| 주민 에셋 추가·새 프로세스 재확인 | 8명에 빠진 Feature만 추가. 재실행 추가 0명, 파일 SHA-256 동일. `Saved/EnvironmentStages/AgentBiology-Assets.log`, `AgentBiology-AssetsReload.log` |
-| 갱신된 주민 에셋의 생활 실행 회귀 | 통과. 실제 StateTree 이동·작업·피해·저장·복원. `Saved/Tests/AgentWorld/20261010-144734` |
-| 갱신된 주민 에셋의 새 프로세스 세션 재개 | 통과. `Saved/Tests/SessionSmoke/20261010-144736`의 write·read |
+| 최종 프로젝트 파일 생성·Editor 빌드 | 성공 |
+| 환경 자동화 | 96/96, 경고·실패·미실행 0. 생애 검사 4개 포함 |
+| 기존 Agent 자동화 | 9/9, 경고·실패·미실행 0 |
+| Campaign 실제 생애 검사 | 통과 |
+| EnvironmentScenario 실제 생애 검사 | 통과 |
+| EnvironmentPlayground 실제 생애 검사 | 통과 |
+| 주민 에셋 추가·새 프로세스 재확인 | 8명에 빠진 Feature만 추가. 재실행 추가 0명, 파일 SHA-256 동일 |
+| 갱신된 주민 에셋의 생활 실행 회귀 | 통과. 실제 StateTree 이동·작업·피해·저장·복원 |
+| 갱신된 주민 에셋의 새 프로세스 세션 재개 | 통과|
 
 자동화는 배율 0·10의 나이, 정확한 수명 종료 시각, 보호 개체의 외부 사망, 사망 뒤 나이 고정, 잘못된 생애·미래 출생·중복 소유권 거부를 검사한다. 생애 경계를 넘은 후보가 예산 초과로 실패하면 저장 바이트가 그대로 남는지도 확인했다. `Tools/Validation/run_agent_biology.ps1`은 실제 월드에서 두 주민을 만들고 자연 사망·보호 유지·실제 피해·외부 사망·Actor 폐기·저장 복원을 검사한다. Campaign 첫 실행은 시험 좌표가 바닥 밖에 있어 실패했으며 실제 지면 질의로 배치를 고친 뒤 세 맵에서 통과했다.
 
 `Tools/Validation/update_agent_biology.py`는 `DA_MerchantLifeScenario`에서 알려진 주민의 누락 Feature만 추가하고 기존 Feature·경제·목표·StateTree를 보존한다. 신규 주민의 시험 기본값은 20-27년 나이, 18년 성숙, 80년 수명이며 1년을 365일의 초로 작성한다. 첫 주민은 자연 노화 보호를 사용한다. 이 수치는 짧은 자동 검사에서 쓰는 100초 수명과 별개이며 최종 제작 밸런스가 아니다. 기존 저장의 누락 Feature에는 이 기본값을 소급 주입하지 않는다.
 
 현재 생애 Actor 검사는 Standalone·NullRHI 결과다. 생애 사망의 첫·늦은 접속자·재접속 검증, 개체군에서 Agent로 생애 소유권 이전, 생애 관측 UI, 성숙에 따른 외형·행동과 플레이어 노화는 이 결과에 포함하지 않는다. 플레이어 노화는 원래 범위에서 제외된다. 식생·음식 부패·실제 종별 이동과 구역 06·07은 계속 작업한다.
-
 
 ### 식생·토양 결합 설계
 
@@ -286,7 +259,6 @@ if (!KSISurfaceVegetation::AdvanceCandidate(Candidate, From, Delta, Sun, Dayligh
 
 셀 패치는 멀리 있는 식생의 비용을 제한하는 대신 같은 셀에 여러 종이 겹치는 경쟁을 직접 표현하지 못한다. 대표 종마다 셀·지역을 나눠 검사하고 밀도·세부 메시는 표현 계층에서 처리한다. 기존 UE5 표면 값 모델과 월드 수명을 사용하며 새로운 엔진 모듈은 필요 없다.
 
-
 ### 식생 값 모델과 실제 월드 검증
 
 2026-10-10 UE 5.8.3의 로컬 작업 트리에서 표면 버전 7과 식생 진행을 검증했다. 나무·풀·꽃·관목·이끼·양치류·조류·수생 식물·버섯의 9개 분류를 저장하며 수생 종은 표면 물, 다른 종은 토양 물을 소비한다. 버섯은 유기물이 없으면 성장하지 않는다. 종별 외형·실제 생물학 수치를 완성한 결과는 아니다.
@@ -295,21 +267,14 @@ if (!KSISurfaceVegetation::AdvanceCandidate(Candidate, From, Delta, Sun, Dayligh
 
 | 검사 | 결과와 근거 |
 |---|---|
-| 프로젝트 파일 생성·Editor 빌드 | 성공. `Saved/EnvironmentStages/Vegetation-GPF.log`, `Vegetation-Build.log` |
-| 환경 자동화 | 102/102, 경고·실패·미실행 0. `Saved/Tests/Automation/20261010-151606-674/report/index.json` |
-| EnvironmentScenario 실제 월드·새 프로세스 | 통과. `Saved/Tests/Vegetation/EnvironmentScenario-20261010-151634-489` |
-| EnvironmentPlayground 실제 월드·새 프로세스 | 통과. `Saved/Tests/Vegetation/EnvironmentPlayground-20261010-151635-660` |
+| 프로젝트 파일 생성·Editor 빌드 | 성공 |
+| 환경 자동화 | 102/102, 경고·실패·미실행 0 |
+| EnvironmentScenario 실제 월드·새 프로세스 | 통과 |
+| EnvironmentPlayground 실제 월드·새 프로세스 | 통과 |
 
 두 맵의 검사는 실행 중 임시 표면에 9종을 넣고 실제 공통 시계로 자연 사망·고사체 분해·재생을 진행했다. 세계 시계·표면·Agent 시각의 일치, 버섯의 실제 유기물 소비, 월드 저장·변경·복원을 확인했다. 별도 프로세스는 저장된 전체 표면 바이트와 CRC가 같은지 확인한 뒤 생장 주기를 이어 갔다. 검사 명령은 다음과 같다.
 
-```powershell
-& Tools/Validation/run_automation.ps1 -Filter CCL.Environment -TimeoutSeconds 300
-& Tools/Validation/run_vegetation_smoke.ps1 -Map EnvironmentScenario
-& Tools/Validation/run_vegetation_smoke.ps1 -Map EnvironmentPlayground
-```
-
 위 실행은 Editor 바이너리의 Standalone·NullRHI 검사다. 저장된 맵에 식생 배치를 추가하거나 PCG·메시·재질을 표시한 검사는 아니다. 식생은 서버 표면의 같은 저장 바이트를 사용하지만 이번 검사에서 식생이 있는 상태의 Listen·Dedicated 복제를 실행하지는 않았다. 구역 07의 직접 조작·표시·초기화, 식생 에셋과 장거리 배치, 음식의 신선도·곰팡이·합치기는 다음 연결 대상이다. 단계 8은 진행 중이며 단계 9의 최종 통합·규모 검증도 남아 있다.
-
 
 ### 구역 07 식생 조작·표현 연결 설계
 
@@ -318,7 +283,6 @@ if (!KSISurfaceVegetation::AdvanceCandidate(Candidate, From, Delta, Sun, Dayligh
 최초 표면을 만드는 새 실험 세계에만 초기 식생을 넣는다. 저장된 세계에 해당 지역이 없을 때는 자동으로 채우지 않으며 명시적인 실험 초기화로 새 기본 배치를 사용할 수 있다. 저장·불러오기·초기화는 기존 세계 세대와 시계에 묶는다. 자동 검사는 표시 계층과 분리한 후보를 진행해 수지와 저장 재현성을 확인한다. 이 구역의 식생 통과 결과가 Agent 생애 관측이나 음식 부패까지 검증했다는 의미는 아니다.
 
 구역 조작, 권한 거부, 초기화·저장 복원, 두 맵의 실제 렌더링, Listen·Dedicated의 첫 접속·늦은 접속을 검증한다. 표시에는 전체 생체·고사량, 성장·휴면·고사 패치 수, 탄 양과 재생 누계를 제공한다. 상호 경쟁 없이 조건별 패치를 나누는 단순 모델의 한계는 유지한다.
-
 
 ### 구역 07 식생 조작과 복제 검증
 
@@ -330,14 +294,14 @@ if (!KSISurfaceVegetation::AdvanceCandidate(Candidate, From, Delta, Sun, Dayligh
 
 | 검사 | 결과와 근거 |
 |---|---|
-| 프로젝트 파일 생성·Editor 빌드 | 성공. `Saved/EnvironmentStages/VegetationZone-GPF.log`, `VegetationZone-Build.log` |
-| 환경 자동화 | 102/102, 경고·실패·미실행 0. `Saved/Tests/Automation/20261010-155258-252/report/index.json` |
-| Scenario 최종 렌더링·조작 | 통과. `Saved/Tests/VegetationZone/Standalone-20261010-155259-287` |
-| Playground 렌더링·조작 | 통과. `Saved/Tests/VegetationZone/Standalone-20261010-154431-371` |
-| Listen 첫·늦은 접속 | 통과. `Saved/Tests/VegetationZone/Listen-20261010-153916-980` |
-| Dedicated 첫·늦은 접속 | 통과. `Saved/Tests/VegetationZone/Dedicated-20261010-154429-849` |
-| 기존 불 구역 회귀 | 통과. `Saved/Tests/FireZone/Standalone-20261010-154431-102/result.json` |
-| 폰트·두 맵 식생 에셋 저장 | 작업 PASS 확인. `Saved/EnvironmentStages/VegetationZone-Font.log`, `VegetationZone-AssetsFinal.log` |
+| 프로젝트 파일 생성·Editor 빌드 | 성공 |
+| 환경 자동화 | 102/102, 경고·실패·미실행 0 |
+| Scenario 최종 렌더링·조작 | 통과 |
+| Playground 렌더링·조작 | 통과 |
+| Listen 첫·늦은 접속 | 통과 |
+| Dedicated 첫·늦은 접속 | 통과 |
+| 기존 불 구역 회귀 | 통과 |
+| 폰트·두 맵 식생 에셋 저장 | 작업 PASS 확인 |
 
 `Tools/Validation/run_vegetation_zone.ps1`은 `-Map EnvironmentScenario` 또는 `EnvironmentPlayground`, `-Mode Standalone`, `Listen`, `Dedicated`를 받는다. Standalone에 `-Rendered`를 더하면 조작 메뉴·성장·연소 화면을 저장한다. 검사는 서버의 구역 조작 API를 호출하고 화면을 렌더링한다. Slate 버튼을 마우스로 클릭한 검사는 아니다. Dedicated는 실제 조작 담당 클라이언트가 들어오고 권한을 얻은 뒤 조작을 시작한다.
 
@@ -346,7 +310,6 @@ if (!KSISurfaceVegetation::AdvanceCandidate(Candidate, From, Delta, Sun, Dayligh
 화면 검토에서 식생을 덮던 일반 연료 블록을 제외했다. 불이 붙지 않은 셀이 128개 효과 슬롯을 먼저 소비해 뒤쪽 화재가 보이지 않던 문제도 고쳤다. 현재 불꽃·표면 연기는 타는 셀만 슬롯을 소비한다. 성장 화면의 낮은 식생·수면 조류·9종 한글 이름과 연소 화면의 첫 나무 불꽃·탄 흔적을 확인했다. 날씨 Niagara 생성 이력 경고의 원인과 수정은 [날씨 표현 보완](EnvironmentWeather.md#눈-niagara-생성-이력-보완)이 소유한다.
 
 마지막 표현 검토에서 조류의 수면 높이만 바뀌면 메시 갱신을 건너뛸 수 있는 누락을 수정했다. 지역 ID와 수면 높이도 변경 판정에 포함하고 새 클래스의 선언·제어문 배치를 정리했다. 위 표의 최종 생성·빌드·환경 자동화·Scenario 렌더링은 이 수정 이후 결과다. Playground와 네트워크 결과는 이 표시 갱신 보완 전의 실행이며 시뮬레이션·저장·복제 코드는 동일하다.
-
 
 ### 음식 부패와 인벤토리 연결 설계
 
@@ -394,7 +357,6 @@ Current = MoveTemp(Candidate);
 
 값 검사는 시간 분할·냉장·고온·습도·밀폐, 정확한 신선도·곰팡이 경계, 혼합·분할·소비 후 원본 시각, 다른 세계·시간 역행·비정상 수치·묶음 예산 실패를 포함한다. 실제 월드에서는 공통 시각과 인벤토리 수량의 일치, 상태 이전·복원·새 프로세스 재개를 확인한다. 세션 형식의 이전 버전은 음식 상태가 없는 그대로 읽으며 기존 아이템에 생성 시각을 임의로 주입하지 않는다. 구역 07의 식품 조작·화면·네트워크와 환경 전체 저장의 인벤토리 원자 복원은 후속 통합까지 확인해야 완료다.
 
-
 ### 음식 상태·인벤토리·세션 검증
 
 2026-10-10 UE 5.8.3에서 `CCLFoodState.h/.cpp`의 값 모델과 `CCLInventoryFood.cpp`의 실제 인벤토리 연결을 검증했다. 기존 비식품에는 빈 음식 상태를 유지한다. `DA_Bread`는 최대 20개, 기준 보존 시간 86,400초와 곰팡이 발현·성장 각 43,200초의 선택 Fragment를 가진다. 이 값은 기능 검증용 초기 설정이며 생물학적 정확도나 최종 게임 밸런스를 뜻하지 않는다. 실제 보급·섭취 콘텐츠와 화면은 아직 연결하지 않았다.
@@ -407,15 +369,15 @@ Current = MoveTemp(Candidate);
 
 | 검사 | 결과와 근거 |
 |---|---|
-| 프로젝트 파일 생성·Editor 빌드 | 성공. `Saved/EnvironmentStages/Food-GPF.log`, `Food-Build.log` |
-| 환경 자동화 | 107/107, 경고·실패·미실행 0. `Saved/Tests/Automation/20261010-161440-645/report/index.json` |
-| Campaign 음식·새 프로세스 | 통과. `Saved/Tests/Food/Campaign-20261010-161439-642` |
-| Scenario 음식·새 프로세스 | 통과. `Saved/Tests/Food/EnvironmentScenario-20261010-161441-127` |
-| Playground 음식·새 프로세스 | 통과. `Saved/Tests/Food/EnvironmentPlayground-20261010-161440-036` |
-| 기존 세션 저장·불러오기 회귀 | 통과. `Saved/Tests/SessionSmoke/20261010-161534` |
-| 음식 에셋 생성 | 작업 PASS와 새 프로세스 로드 확인. `Saved/EnvironmentStages/Food-Asset.log` |
-| 장비 태그·저장 호환 회귀 | 통과. `Saved/Tests/Automation/20261010-161755-532/report/index.json` |
-| 기존 획득·장착·회복·성장과 캠페인 | 통과. `Saved/Tests/CampaignSmoke/Standalone-20261010-161754` |
+| 프로젝트 파일 생성·Editor 빌드 | 성공 |
+| 환경 자동화 | 107/107, 경고·실패·미실행 0 |
+| Campaign 음식·새 프로세스 | 통과 |
+| Scenario 음식·새 프로세스 | 통과 |
+| Playground 음식·새 프로세스 | 통과 |
+| 기존 세션 저장·불러오기 회귀 | 통과 |
+| 음식 에셋 생성 | 작업 PASS와 새 프로세스 로드 확인 |
+| 장비 태그·저장 호환 회귀 | 통과 |
+| 기존 획득·장착·회복·성장과 캠페인 | 통과 |
 
 음식 자동 검사 5개는 온도·습도·밀폐·냉각, 정확한 만료·곰팡이 경계, 조회 원본 보존, 시간 분할, 오래된 음식과 새 음식 혼합·분할·소비, 다른 세계·정책·시간 역행·묶음 예산 거부, 직렬화 재개·손상·미지원 버전을 확인한다. 기존 세션 변환 검사에는 형식 6에서 7로의 변환을 추가했다. 중복 Fragment 검사에서 같은 TArray 내부 원소를 직접 Add해 발생한 테스트 assert는 별도 값 복사로 수정했다.
 
@@ -424,7 +386,6 @@ Current = MoveTemp(Candidate);
 새 프로세스는 저장한 공통 세계와 음식 항목을 복원하고 음식 바이트·아이템 GUID·세계 시각을 대조한 뒤 부패를 계속 진행했다. Campaign은 같은 음식이 들어간 세션 형식 7의 왕복과 미래 음식 시각 거부도 확인했다. 이는 Editor Standalone·NullRHI 검사다. 구역 07 음식 조작·렌더링, Listen·Dedicated 음식 복제, 실제 음식 픽업의 이력 전달, 모든 컨테이너를 포함한 환경 전체 저장·원자 복원과 패키지 검증은 남았다. 세션 검사의 개별 파일 복원을 구역 08 전체 저장 완료로 확대하지 않는다.
 
 장비 회귀의 이전 기대값은 복원 버전을 6으로 고정하고 있었다. 현재 형식 7을 반환하는 계약과 맞춰 기대값을 갱신한 뒤 태그·양손 점유·이전 형식 변환 검사가 통과했다. 표의 최종 생성·빌드와 장비·캠페인 회귀는 이 테스트 수정 이후 결과이며, 앞선 음식·환경·세션 실행과 음식·저장 구현은 같다.
-
 
 ### 전체 세계 저장의 컨테이너 연결 설계
 
@@ -453,7 +414,6 @@ bool CanRestore(const TArray<FKSIInventoryEntry>& Entries) const;
 
 세션 저장은 호스트 인벤토리를 세션 항목이 소유한다. 이 기존 경로에는 `SessionInventory`를 명시해 같은 호출에서 수집한 개인 항목만 세계 컨테이너 수집에서 제외한다. 다른 미등록 음식은 계속 거부한다. 세션 검증은 세계 컨테이너와 개인 항목의 GUID 중복을 거부하며 복원은 세계를 먼저 적용한 뒤 개인 항목·장비를 적용한다. 일반 세계 저장이나 맵 전환에 이 예외를 자동 적용하지 않는다. 개인 계정·장비까지 포함한 일반 세계 복원은 후속 범위다.
 
-
 ### 컨테이너 세계 저장 검증
 
 2026-10-10 UE 5.8.3에서 명시적으로 등록한 보관함을 세계 형식 5에 연결했다. `CCLInventorySnapshot.h/.cpp`는 값 기록과 제한된 직렬화를, `CCLInventoryPersistenceSubsystem.h/.cpp`는 살아 있는 컴포넌트·언로드 기록·복원 후보를 맡는다. `CCLWorldSimulationSubsystem`의 시작·저장·복원이 이를 호출한다. 자동 등록, 배치 Actor 생성과 계정 재접속의 ID 복구까지 구현한 상태는 아니다.
@@ -466,19 +426,18 @@ bool CanRestore(const TArray<FKSIInventoryEntry>& Entries) const;
 
 | 검사 | 결과와 근거 |
 |---|---|
-| 최종 프로젝트 파일 생성·Editor 빌드 | 성공. `Saved/EnvironmentStages/InventoryWorld-GPF.log`, `InventoryWorld-Build.log` |
-| 최종 환경 자동화 | 109/109, 경고·실패·미실행 0. `Saved/Tests/Automation/20261010-164124-436/report/index.json` |
-| Scenario 보관함 저장·새 프로세스 | 통과. `Saved/Tests/Food/EnvironmentScenario-20261010-163815-354` |
-| Campaign 보관함 저장·새 프로세스 | 통과. `Saved/Tests/Food/Campaign-20261010-163813-845` |
-| 최종 Playground 보관함 저장·새 프로세스 | 통과. `Saved/Tests/Food/EnvironmentPlayground-20261010-164124-439` |
-| 최종 실제 개인 장비·음식 세션 | 통과. `Saved/Tests/SessionSmoke/20261010-164125` |
+| 최종 프로젝트 파일 생성·Editor 빌드 | 성공 |
+| 최종 환경 자동화 | 109/109, 경고·실패·미실행 0 |
+| Scenario 보관함 저장·새 프로세스 | 통과 |
+| Campaign 보관함 저장·새 프로세스 | 통과 |
+| 최종 Playground 보관함 저장·새 프로세스 | 통과 |
+| 최종 실제 개인 장비·음식 세션 | 통과 |
 
 실제 맵 검사는 같은 저장의 시계와 두 보관함을 되돌리고 음식 바이트를 대조한다. 인벤토리 트랜잭션·생활 쓰기 예약·손상 파일·미등록 음식에 의한 거부, 중복 컨테이너 ID, 잘못된 용량, 언로드 이후 저장과 재등록도 검사했다. 최초 실행에서는 세계 저장 함수의 컨테이너 수집 연결 누락을 발견했다. 연결을 수정하고 저장 파일의 컨테이너 개수까지 검사하도록 보강한 뒤 통과했다. Scenario·Campaign 검사는 최종 개인 세션 소유자 인계 추가 전 결과이며, 같은 일반 세계 저장·복원 경로를 사용한다. 마지막 변경 뒤에는 표의 최종 빌드·환경·Playground·실제 세션 검사를 수행했다.
 
 실제 세션 검사는 호스트가 장갑을 장착하고 스킬·물약·빵 2개를 가진 상태로 저장했다. 새 프로세스의 초기 불러오기와 메뉴 복귀 후 재불러오기에서 음식 GUID·수량·이력 바이트와 기존 장비·효과·진행을 확인했다. 승리 후 재저장·불러오기도 통과했다. 개인 세션 항목과 세계 컨테이너의 동일 아이템 GUID는 Campaign 음식 검사에서 거부했다. 이전 세계 형식 1-4의 빈 컨테이너 변환은 환경 자동화에 포함한다.
 
 검증 범위는 Editor Standalone·NullRHI다. 일반 세계 저장에서 플레이어 장비·계정 인벤토리를 함께 되돌리는 참여자, 음식이 있는 개인 상태의 일반 맵 전환, 실제 배치 상자·픽업의 지속 ID 연결, 구역 07 음식 표시·조작과 네트워크·패키지 검증은 남았다. 호스트의 명시적 세션 저장 외에는 개인 음식의 저장 예외를 자동 적용하지 않는다. 이 기반 검증을 구역 08의 모든 저장 대상 통합 완료로 확대하지 않는다.
-
 
 ### 구역 07 음식 비교 실험
 
@@ -499,7 +458,6 @@ classDiagram
 
 최초의 새 실험만 기본 음식을 생성한다. 일반 저장 복원과 재방문에서는 저장된 빈 상태도 그대로 보존하며 전체 초기화만 작성한 초기 음식으로 되돌린다. 검증은 두 맵의 실제 조작·화면, 저장·복원·초기화, Listen·Dedicated 첫·늦은 접속자의 관측 일치와 클라이언트 변경 거부를 포함한다. 실험의 고정 조건을 날씨·실내 환경 자동 입력 완료로 확대하지 않는다. 동적 환경 조건은 공통 시간의 구간 경계와 함께 후속 연결한다.
 
-
 ### 음식 비교 조작과 실행 검증
 
 두 환경 맵에서 F7을 열고 **07 생애·식생·부패**를 선택하면 음식 보관 비교를 볼 수 있다. **새 음식 2개 추가**, **노출 → 냉각 1개 이동**, **냉각 음식 해동 / 재냉각**을 조작한다. 시간 배율을 높이면 노출 음식의 신선도 감소와 곰팡이, 냉각 보존과 밀폐의 느린 변화를 비교할 수 있다. 월드의 세 음식 표본과 글자도 같은 공개 관측값을 사용한다. 곰팡이가 있으면 초록, 곰팡이 없이 부패했으면 짙은 갈색, 그 밖에는 음식 기본색으로 표시한다. 메시·재질은 실험용 표현이며 최종 아트가 아니다.
@@ -508,18 +466,18 @@ classDiagram
 
 서버가 `FCCLFoodExperimentView`에 세계 ID·실행 세대·완료 시각과 세 보관함의 집계를 함께 게시한다. `UCCLInventoryComponent::List`의 `COND_OwnerOnly`는 유지한다. 소유자가 없는 실험 Actor의 상세 항목은 일반 관찰 클라이언트에 보내지 않으며, 표시에 필요한 수량·품질 집계만 복제한다. `OnRep_View`와 서버 조작 완료에서 월드 표현을 갱신한다. 이 실험의 관측은 0.2초 간격이므로 매 프레임 시계와 같은 빈도로 변하는 화면은 아니다.
 
-2026-10-10 UE 5.8.3에서 다음 검사를 수행했다. 경로는 저장소 기준이며 원본은 로컬 `Saved/`에 보관한다. 프로젝트 파일 생성 뒤 `CCLEditor Win64 Development` 빌드를 수행했다.
+2026-10-10 UE 5.8.3에서 다음 검사를 수행했다. 프로젝트 파일 생성 뒤 `CCLEditor Win64 Development` 빌드를 수행했다.
 
 | 검사 | 결과와 근거 |
 |---|---|
-| 최종 생성·Editor 빌드 | 성공. `Saved/EnvironmentStages/FoodZone-GPF.log`, `FoodZone-Build.log` |
-| 환경 자동화 | 109/109, 경고·실패·미실행 0. `Saved/Tests/Automation/20261010-170845-421/report/index.json` |
-| 음식 저장·새 프로세스 회귀 | 통과. `Saved/Tests/Food/EnvironmentScenario-20261010-170817-073` |
-| Scenario 실제 메뉴·렌더링 | 통과. `Saved/Tests/FoodZone/Standalone-20261010-171331-141` |
-| Playground 실제 메뉴·렌더링 | 통과. `Saved/Tests/FoodZone/Standalone-20261010-171411-260` |
-| Listen Scenario 첫·늦은 접속 | 통과. `Saved/Tests/FoodZone/Listen-20261010-170423-765` |
-| Dedicated Playground 첫·늦은 접속 | 통과. `Saved/Tests/FoodZone/Dedicated-20261010-171152-648` |
-| 기존 구역 07 식생 조작·저장 회귀 | 통과. `Saved/Tests/VegetationZone/Standalone-20261010-171343-489` |
+| 최종 생성·Editor 빌드 | 성공 |
+| 환경 자동화 | 109/109, 경고·실패·미실행 0 |
+| 음식 저장·새 프로세스 회귀 | 통과 |
+| Scenario 실제 메뉴·렌더링 | 통과 |
+| Playground 실제 메뉴·렌더링 | 통과 |
+| Listen Scenario 첫·늦은 접속 | 통과 |
+| Dedicated Playground 첫·늦은 접속 | 통과 |
+| 기존 구역 07 식생 조작·저장 회귀 | 통과 |
 
 음식 검사는 추가 버튼의 실제 Slate 클릭, 한 개 이동, 노출 부패·냉각 보존·밀폐 지연, 해동 후 기존 이력의 진행을 확인한다. 실험 저장·불러오기 뒤 음식 직렬화 바이트를 대조하고, 전체 초기화 뒤 다시 저장을 복원한다. 네트워크 검사는 접속자 두 명의 관측·복원 상태, 상세 인벤토리 비공개와 클라이언트의 직접 변경 거부를 확인한다. 늦은 접속자는 복원 완료 후 접속한다. 초기 실행에서 두 렌더링 검사를 동시에 돌렸을 때 클릭 직후 판정이 한 번 실패했다. 클릭 결과를 다음 프레임부터 제한 시간 동안 기다리도록 보강하고 두 맵은 순서대로 검사한다. 실패 원인이 병렬 실행이라고 확정한 것은 아니다.
 
@@ -528,7 +486,6 @@ classDiagram
 재실행은 `Tools/Validation/run_food_zone.ps1 -Map EnvironmentScenario -Rendered`와 `-Map EnvironmentPlayground -Rendered`로 한다. `-Mode Listen` 또는 `-Mode Dedicated`는 렌더링 없는 서버·클라이언트 검사를 실행한다. Dedicated는 Editor의 `-server` 실행이며 실제 Server 타깃 패키지 검증이 아니다. 구역 메뉴의 기존 **자동 검사**는 식생 검사이며 음식 검사는 이 별도 실행기가 소유한다.
 
 음식 실험 조건은 고정 입력이다. 날씨·실내 온습도의 시간 구간 연결, 월드 픽업의 생성·이동 이력, 플레이어 계정·장비와 배치 컨테이너의 전체 저장·맵 전환은 남아 있다. Agent 관측·조작과 생물의 이동·먹이·무리, 원거리 집계 복제, 최종 아트·PCG 규모, 실제 Server 타깃과 단계 9 통합·장시간 검증도 남아 있다.
-
 
 ### 생물 행동과 먹이 수지 연결 설계
 
@@ -561,7 +518,6 @@ Simulation = MoveTemp(Candidate);
 
 고정 경계는 저장 재개와 실행 분할의 재현성을 얻는 대신 큰 시간 가속에서 처리량을 제한한다. 예산 초과는 시간을 버리지 않고 더 짧은 구간으로 재시도한다. 전역 행동 Tree 대신 값 상태의 의도 계산을 공통 모델에 두며, UE5의 Actor·Mass 실행기는 같은 결과를 표현한다. 먹이 수치는 게임 자원 단위이며 실제 생태 에너지 모델의 정확도를 주장하지 않는다. 검증은 네 이동 매체·먹이 종류 거부·경쟁 소비·기아 사망·무리 복귀, 저장 바이트 일치·이전 형식 변환, 실패 후 원본 보존과 실제 Actor/Mass 전환을 포함한다.
 
-
 ### 생물 행동 기반 실행 검증
 
 `KSIEcologyBehavior.cpp`는 지속 예약 개체의 이동 후보·먹이 선택·섭취와 무리 목표를 계산한다. 지상 생물과 기어 다니는 곤충은 고정 수평면, 물고기와 새는 서식지 상자 안에서 높이를 포함해 이동한다. 기존 표현 위치를 직접 수정하는 방식은 행동을 등록하지 않은 개체에 유지한다. 행동이 있는 개체의 Actor·Mass 위치는 확정된 모델에서 읽으며 표현의 오래된 위치를 반영하는 요청은 거부한다.
@@ -570,17 +526,17 @@ Simulation = MoveTemp(Candidate);
 
 에너지가 없는 시간이 정책의 기아 한도에 도달하면 기존 사망 원장에 한 번 반영하고 실행권을 무효화한다. 사망과 먹이 수지는 표현이 없는 지속 예약에서도 같은 경계로 진행한다. 생태 저장 형식 4는 행동·무리·먹이 기록을 함께 보관하며 이전 형식 1-3에는 이 기록을 만들지 않는다. 형식 3의 실제 바이트 배치를 읽는 변환 검사와 유효한 CRC를 갖더라도 섭취 합계가 맞지 않는 기록의 거부를 추가했다. 외부 세계 저장 형식은 5를 유지한다.
 
-2026-10-10 UE 5.8.3의 검증 결과는 다음과 같다. 경로는 저장소 기준이며 원본은 로컬 `Saved/`에 보관한다.
+2026-10-10 UE 5.8.3의 검증 결과는 다음과 같다.
 
 | 검사 | 결과와 근거 |
 |---|---|
-| 최종 프로젝트 파일 생성·Editor 빌드 | 성공. `Saved/EnvironmentStages/EcologyBehavior-GPF.log`, `EcologyBehavior-Build.log` |
-| 최종 환경 자동화 | 115/115, 경고·실패·미실행 0. `Saved/Tests/Automation/20261010-173153-420/report/index.json` |
-| Scenario 행동·별도 프로세스 복원 | 통과. `Saved/Tests/EcologyBehavior/EnvironmentScenario-Standalone-20261010-172703-692` |
-| 최종 Playground 행동·별도 프로세스 복원 | 통과. `Saved/Tests/EcologyBehavior/EnvironmentPlayground-Standalone-20261010-173155-803` |
-| 최종 Dedicated Playground 첫·늦은 접속 | 통과. `Saved/Tests/EcologyBehavior/EnvironmentPlayground-Dedicated-20261010-173152-997` |
-| 최종 Listen Scenario 첫·늦은 접속 | 통과. `Saved/Tests/EcologyBehavior/EnvironmentScenario-Listen-20261010-173236-721` |
-| 기존 수동 Actor/Mass 전환 회귀 | 통과. `Saved/Tests/EcologyRepresentation/EnvironmentScenario-Standalone-20261010-173231-518` |
+| 최종 프로젝트 파일 생성·Editor 빌드 | 성공 |
+| 최종 환경 자동화 | 115/115, 경고·실패·미실행 0 |
+| Scenario 행동·별도 프로세스 복원 | 통과 |
+| 최종 Playground 행동·별도 프로세스 복원 | 통과 |
+| 최종 Dedicated Playground 첫·늦은 접속 | 통과 |
+| 최종 Listen Scenario 첫·늦은 접속 | 통과 |
+| 기존 수동 Actor/Mass 전환 회귀 | 통과 |
 
 자동화의 새 행동 검사 6개는 네 이동 매체의 실제 위치 변화·섭취, 소수 구간 분할·저장 재개 뒤 바이트 일치, 무리 기준점 복귀와 개체별 목표 차이, 등록 전 시간의 먹이 재생 방지, 먹이 경쟁·종류 거부·기아 사망·실행권 무효화, 예산 실패와 후속 Agent 실패의 원본 보존을 확인한다. 먹이를 실제 식생에서 가져오거나 피식 개체를 제거하는 검사까지 포함하지는 않는다.
 
@@ -591,7 +547,6 @@ Simulation = MoveTemp(Candidate);
 재실행은 `Tools/Validation/run_ecology_behavior.ps1 -Map EnvironmentPlayground`다. 기본 Standalone은 별도 읽기 프로세스까지 실행한다. `-Mode Listen -Port 20322` 또는 `-Mode Dedicated`를 지정하면 첫·늦은 접속을 검사한다. 이번 실행은 모두 NullRHI이며 Dedicated는 Editor의 서버 모드다. 렌더링·실제 Server 타깃 패키지와 성능 측정의 근거로 쓰지 않는다.
 
 이 기반은 고정 공간 입력의 행동 진행을 검증한 상태다. 지형·내비게이션과 물 깊이·비행 장애물, 무리의 충돌 회피·먹이 경쟁 정책, 식생·피식자와 연결한 실제 먹이 공급, 일반 집계의 에너지·기아 계산, Agent 생애 소유권 이전, 구역 06의 상시 배치·관측·조작과 원거리 집계 복제는 남아 있다. 1초 경계와 상태 예산은 재현·보호 기준이며 대규모 또는 장기간 실행 비용을 측정한 수치가 아니다. 단계 8·9 전체는 계속 진행 중이다.
-
 
 ### 실제 공간 경로 연결 설계
 
@@ -612,22 +567,21 @@ classDiagram
 
 UE의 지상 경로 탐색을 재사용하면 실제 내비게이션과 지형 갱신을 따르지만 동기 경로 질의 비용이 든다. 수중·공중의 제한 격자는 Recast 지상 경로로 표현할 수 없는 체적 이동을 검사하는 초기 연결이며 좁은 틈을 놓치거나 예산 안에 경로를 찾지 못할 수 있다. 이때 관통이나 순간 이동으로 대체하지 않는다. 검증은 실제 벽 우회·몸체 충돌·건조 구간 거부·액체 깊이 변화, 지형 준비 거부와 같은 시각 후보, 경로 길이·섭취 시각·저장 재개의 보존을 포함한다. 공간 경로를 붙이는 것만으로 구역 06의 화면이나 최종 이동 표현을 완료 처리하지 않는다.
 
-
 ### 실제 공간 경로 실행 검증
 
 공간 정책을 켠 생물은 UE 월드의 몸체 충돌과 경로를 확인한 뒤 이동한다. 지상·곤충은 게시된 지형 세대와 내비게이션의 완전한 경로를 확인한다. 새·물고기는 서식지의 제한 격자에서 우회 경로를 찾는다. 물고기는 얼음을 제외한 액체 깊이에 몸체가 들어가는지도 검사한다. 먹이까지의 마지막 구간도 충돌 검사에 포함하며, 경로 없음은 `Blocked` 상태로 남긴다.
 
 생태 저장 형식 5는 행동의 공간 정책과 반경을 보존한다. 형식 4는 기존 고정 공간 정책으로 읽고 이력 값을 보존한다. 이 공간 행동 검증 당시의 바깥 세계 형식은 5였다. 현재 세계 형식 6의 플레이어 본문과 연결 범위는 [세계 플레이어 본문](SessionFoundation.md#세계-플레이어-본문-구현검증)을 따른다. 경로 자체는 저장하지 않고 다음 진행에서 현재 확정 기하로 다시 계산한다. 따라서 저장 이후 장애물이 달라진 세계의 이동 결과까지 같은 바이트로 재현한다고 주장하지 않는다.
 
-2026-10-10 UE 5.8.3의 결과다. 경로는 저장소 기준이며 원본은 로컬 `Saved/`에 보관한다.
+2026-10-10 UE 5.8.3의 결과다.
 
 | 검사 | 결과와 근거 |
 |---|---|
-| 최종 프로젝트 파일 생성·Editor 빌드 | 성공. `Saved/EnvironmentStages/EcologySpace-GPF.log`, `EcologySpace-Build.log` |
-| 최종 환경 자동화 | 119/119, 경고·실패·미실행 0. `Saved/Tests/Automation/20261010-180327-564/report/index.json` |
-| Scenario 실제 공간 | 통과. `Saved/Tests/EcologySpace/EnvironmentScenario-Standalone-20261010-180245-906` |
-| Playground 실제 공간 | 통과. `Saved/Tests/EcologySpace/EnvironmentPlayground-Standalone-20261010-180327-191` |
-| 저장 형식 5의 기존 행동·별도 프로세스 복원 | 통과. `Saved/Tests/EcologyBehavior/EnvironmentScenario-Standalone-20261010-175055-336`. 이후 공간 준비 조건·검사 좌표 수정 전 결과 |
+| 최종 프로젝트 파일 생성·Editor 빌드 | 성공 |
+| 최종 환경 자동화 | 119/119, 경고·실패·미실행 0 |
+| Scenario 실제 공간 | 통과 |
+| Playground 실제 공간 | 통과 |
+| 저장 형식 5의 기존 행동·별도 프로세스 복원 | 통과. 이후 공간 준비 조건·검사 좌표 수정 전 결과 |
 
 추가 자동화 4개는 우회 거리만큼의 이동 시간과 도착 후 섭취, 질의 실패의 원본 보존과 막힌 경로의 정지, 같은 시각의 표면 후보와 형식 4 변환, 몸체 깊이·건조 셀·얼음 거부를 확인한다. 실제 월드 검사는 지형 경로, 벽 우회와 완전히 막힌 벽, 수중 우회와 건조 띠를 확인한다. 이어서 네 매체의 Actor를 만들어 공통 세계 시간 20초 이상 진행하고 섭취 이력·모델과 Actor 위치·세계 저장 복원을 대조한다. 먹은 뒤 다시 배회할 수 있으므로 종료 시점에 계속 먹이 쪽에 있어야 한다는 조건은 두지 않는다.
 
@@ -637,26 +591,24 @@ UE의 지상 경로 탐색을 재사용하면 실제 내비게이션과 지형 �
 
 격자 탐색은 축당 최대 64칸, 방문 최대 512개, 간격은 0.5m와 몸체 지름 중 큰 값이다. 수중 연결은 셀 간격을 고려한 표본으로 검사한다. 좁은 통로·여러 수역의 연결·대규모 탐색 성능은 추가 검증이 필요하다. 지상 목적지의 높이는 콘텐츠가 실제 도달 가능한 몸체 중심으로 제공해야 한다. 자동 표면 목표 선택, 경사·계단·이동 장애물의 연속 실행, 개체 간 회피·무리 경로 유지, 실제 식생·피식자 공급과 구역 06 연결은 남아 있다. 이 검증만으로 단계 8·9 전체를 완료 처리하지 않는다.
 
-
 ### 공간 정책의 재시작·접속 검증 설계
 
 공간 이동의 재개 검사는 저장 직후의 상태뿐 아니라 같은 기하에서 더 진행한 결과를 비교한다. 쓰기 프로세스는 세계·생태 본문을 저장하고 8세계초를 더 진행한 생태 본문을 기준으로 남긴다. 읽기 프로세스는 같은 맵의 지형과 검사 벽을 준비한 뒤 저장을 복원하고 같은 구간을 진행한다. 두 결과에서 위치·에너지·섭취·먹이 잔량을 포함한 생태 본문 전체가 일치해야 한다. 벽은 검사용 고정 기하로 다시 만들므로 임의 Actor의 영구 저장을 검증하는 것으로 해석하지 않는다.
 
 접속 검사는 서버가 공간 이동 전 위치를 게시한 뒤 첫 클라이언트의 관측을 기다린다. 서버는 이동·섭취 후 저장을 복원하고 Actor를 다시 만든다. 첫 클라이언트와 이후 접속한 클라이언트가 서버의 복원 위치·이동 매체를 확인한다. 위치 허용 오차는 기존 `FRepMovement` 기준인 1cm이며 생태 변경 권한은 서버에 유지한다. 수중·공중 검사 공간을 기본 Actor 거리 범위 안의 상공에 배치해 실제 거리 관련성을 유지한다. 기본 반경을 늘리거나 검사 Actor를 항상 관련 상태로 만들지 않는다.
 
-
 ### 공간 정책의 재시작·접속 결과
 
-공간 정책을 켠 상태에서 새 프로세스의 후속 진행과 실제 첫·늦은 접속 검사를 통과했다. 2026-10-10 UE 5.8.3에서 확인했으며 아래 경로는 저장소 기준이다. 원본은 로컬 `Saved/`에 보관한다.
+공간 정책을 켠 상태에서 새 프로세스의 후속 진행과 실제 첫·늦은 접속 검사를 통과했다. 2026-10-10 UE 5.8.3에서 확인했으며 아래 경로는 저장소 기준이다.
 
 | 검사 | 결과와 근거 |
 |---|---|
-| 최종 프로젝트 파일 생성·Editor 빌드 | 성공. `Saved/EnvironmentStages/EcologySpaceResume-GPF.log`, `EcologySpaceResume-Build.log` |
-| 최종 환경 자동화 | 119/119, 경고·실패·미실행 0. `Saved/Tests/Automation/20261010-181357-795/report/index.json` |
-| Scenario 새 프로세스 재개 | 통과. `Saved/Tests/EcologySpace/EnvironmentScenario-Standalone-20261010-181306-932` |
-| Playground 새 프로세스 재개 | 통과. `Saved/Tests/EcologySpace/EnvironmentPlayground-Standalone-20261010-181345-266` |
-| Dedicated Playground 첫·늦은 접속 | 통과. `Saved/Tests/EcologySpace/EnvironmentPlayground-Dedicated-20261010-181447-472` |
-| Listen Scenario 첫·늦은 접속 | 통과. `Saved/Tests/EcologySpace/EnvironmentScenario-Listen-20261010-181448-515` |
+| 최종 프로젝트 파일 생성·Editor 빌드 | 성공 |
+| 최종 환경 자동화 | 119/119, 경고·실패·미실행 0 |
+| Scenario 새 프로세스 재개 | 통과 |
+| Playground 새 프로세스 재개 | 통과 |
+| Dedicated Playground 첫·늦은 접속 | 통과 |
+| Listen Scenario 첫·늦은 접속 | 통과 |
 
 두 Standalone 실행의 읽기 프로세스는 저장 직후의 생태 본문을 먼저 대조했다. 복원한 세계에서 8세계초를 더 진행한 생태 본문도 쓰기 프로세스의 결과와 바이트 단위로 일치했다. 이 비교에는 네 매체의 위치·행동·에너지·섭취 이력과 먹이 잔량·원장이 포함된다. 이후 다시 원래 저장으로 복원하고 실제 Actor를 재생성했다. 실행기는 읽기 프로세스의 `CONTINUATION_MATCH`와 `PASS`, 정상 종료를 확인한다.
 
@@ -665,7 +617,6 @@ UE의 지상 경로 탐색을 재사용하면 실제 내비게이션과 지형 �
 네트워크의 첫 접속자는 네 Actor의 초기 위치를 먼저 관측한다. 서버가 공간 이동·섭취 후 저장을 복원하면 첫 접속자와 이후에 들어온 접속자가 복원 위치와 이동 매체를 확인한다. 클라이언트의 생태 행동 변경 요청도 거부됐다. 검사 생물의 `NetCullDistanceSquared`와 관련성 설정은 변경하지 않았다. 복제된 위치의 허용 오차는 1cm다. 클라이언트의 전체 생태 원장 복제나 클라이언트 자체 경로 계산까지 검사한 것은 아니다.
 
 재실행은 `Tools/Validation/run_ecology_space.ps1 -Map EnvironmentPlayground`다. 기본 Standalone은 쓰기 프로세스 종료 후 읽기 프로세스까지 실행한다. `-Mode Dedicated -Port 20331` 또는 `-Mode Listen -Port 20332`는 첫·늦은 접속을 검사한다. 모두 NullRHI이며 Dedicated는 Editor의 서버 모드다. 렌더링·실제 Server 타깃 패키지·손실 및 지연·자동 거리 전환은 별도 검증 대상이다. 고정 검사 벽을 새 프로세스에서 다시 만드는 절차는 월드 Actor의 일반 저장 기능을 대신하지 않는다.
-
 
 ### 구역 06 상시 생태 실험 설계
 
@@ -683,7 +634,6 @@ classDiagram
 
 메뉴의 네 먹이 버튼은 해당 서식지에 새 자원 원장을 추가한다. 원래 먹이의 생성량·소비 이력을 덮지 않는다. 공개 행은 집계·예약·Actor·Mass 수, 살아 있는 예약 개체의 평균 에너지와 섭취량·먹이 잔량을 같은 서버 시각에서 계산한다. 상세 세계 모델 전체 대신 작은 관측을 복제하므로 메뉴 조회 비용은 낮지만 원거리 개체군 복제의 일반 계약을 대신하지 않는다. 실제 UI 조작, 전환 전후 수량, 표현 없는 진행, 세계 저장·복원·초기화, 첫·늦은 접속과 렌더링을 확인한다.
 
-
 ### 구역 06 실행·관측·복원 검증
 
 2026-10-10 UE 5.8.3에서 위 배치를 두 환경 맵에 연결했다. 메뉴에서 구역 06을 선택하면 네 개체군의 전체·집계·예약 수, Actor·Mass 수, 경로 막힘, 평균 에너지와 살아 있는 예약 개체의 섭취량을 읽는다. 먹이 버튼은 해당 서식지에 10단위의 독립된 자원을 추가한다. `Actor 표현`, `Mass 표현`, `표현 숨김`은 고정 예약 개체의 표현을 바꾼다. Mass와 숨김은 현재 월드에 모형을 그리지 않는다. 한글 표지는 `F_EcologyLabel`을 사용한다.
@@ -694,16 +644,16 @@ classDiagram
 
 | 검사 | 결과와 로컬 근거 |
 |---|---|
-| 최종 프로젝트 파일 생성 | 성공. `Saved/EnvironmentStages/EcologyZone-GPF.log` |
-| 최종 CCLEditor Win64 Development | 성공. `Saved/EnvironmentStages/EcologyZone-Build.log` |
-| 에셋·한글 글꼴 생성 | 성공. `Saved/EnvironmentStages/EcologyZone-Assets.log` |
-| Scenario 실제 메뉴·렌더링·자동 검사·복원 | 통과. `Saved/Tests/EcologyZone/Standalone-20261010-184032-872` |
-| Playground 실제 메뉴·렌더링·복원 | 통과. `Saved/Tests/EcologyZone/Standalone-20261010-183804-800` |
-| Dedicated Playground 첫·늦은 접속 | 통과. `Saved/Tests/EcologyZone/Dedicated-20261010-183503-573` |
-| Listen Scenario 첫·늦은 접속 | 통과. `Saved/Tests/EcologyZone/Listen-20261010-183807-310` |
-| 기존 Scenario 환경 통합 검사 | 통과. `Saved/Tests/Environment/EnvironmentScenario-Standalone-20261010-184035-383` |
-| 상시 생태와 음식 보관·노화·저장 회귀 | 통과. `Saved/Tests/FoodZone/Standalone-20261010-184029-931` |
-| 최종 환경 자동화 | 119/119, 경고·실패·미실행 0. `Saved/Tests/Automation/20261010-184032-158/report/index.json` |
+| 최종 프로젝트 파일 생성 | 성공 |
+| 최종 CCLEditor Win64 Development | 성공 |
+| 에셋·한글 글꼴 생성 | 성공 |
+| Scenario 실제 메뉴·렌더링·자동 검사·복원 | 통과 |
+| Playground 실제 메뉴·렌더링·복원 | 통과 |
+| Dedicated Playground 첫·늦은 접속 | 통과 |
+| Listen Scenario 첫·늦은 접속 | 통과 |
+| 기존 Scenario 환경 통합 검사 | 통과 |
+| 상시 생태와 음식 보관·노화·저장 회귀 | 통과 |
+| 최종 환경 자동화 | 119/119, 경고·실패·미실행 0 |
 
 재실행은 `Tools/Validation/run_ecology_zone.ps1 -Map EnvironmentScenario -Rendered`다. Playground는 `-Map EnvironmentPlayground`, 네트워크는 `-Mode Dedicated -Port 20401` 또는 `-Mode Listen -Port 20402`를 쓴다. 렌더링 검사는 Standalone에서 실행했다. 네트워크는 NullRHI이며 Dedicated는 Editor 서버 모드다. 실제 Server 타깃 패키지·지연 및 손실·대규모 부하는 이 결과에 포함하지 않는다.
 
@@ -712,7 +662,6 @@ classDiagram
 캡처 요청은 프레임 끝에 처리되므로 요청 직후 같은 Tick에서 숨김·불러오기를 실행하면 모형이 빠졌다. 검사기를 별도 단계로 나눠 캡처가 끝난 다음 상태를 바꾸었다. 최종 두 맵의 캡처에서 메뉴 조작·한글 표지·지상 및 비행 모형을 확인했다. 모형은 기본 도형이며, 곤충은 작고 물고기는 불투명 수면 아래에 가려진다. 먹이 주변의 개체 겹침, 수중 관측성·색상·최종 생물 아트는 후속 시각·회피 작업에 남긴다. 수중 이동과 복원 위치는 실행 검사로 따로 확인했다.
 
 구역 06 연결은 완료했지만 단계 8·9 전체는 진행 중이다. 다음은 Agent 생애 관측·조작, 환경 기반 보관 조건과 픽업 이력, 식생·피식자 먹이와 집계 에너지, 자동 목표 선택·회피·거리 전환, 전체 저장 통합과 규모·패키지 검증이다.
-
 
 ### 환경 연동 음식 보관 설계
 
@@ -747,7 +696,6 @@ return CCLFood::ChangeStorage(Candidate, NextConditions, Step.WorldToSeconds, Er
 
 검증은 차갑고 따뜻한 구간의 누적 노출, 관측 사이 분할 진행·중간 저장, 누락된 환경 출처와 생애 실패의 원본 보존, 언로드 상태의 진행, 빈 대상 보관함 이동, 버전 1 변환, 실제 외기·실내 변화와 메뉴·저장·복제를 포함한다. 이번 연결은 UE5의 기존 WorldSubsystem·값 후보·인벤토리 트랜잭션을 사용하며 새로운 엔진 모듈 의존은 없다. UE4에서 UE5로 바뀐 엔진 전용 API를 도입하는 작업은 아니다.
 
-
 ### 환경 연동 음식 보관 구현·검증
 
 2026-10-10 UE 5.8.3에서 구역 07에 `노출: 외기 / 고정`, `밀폐: 실내 / 고정` 조작을 연결했다. 외기는 구역 02의 날씨 지역, 실내는 구역 11의 공기 공간을 명시적으로 참조한다. 실제 보관함 위치에서 지역·방을 자동으로 찾는 기능은 아니다. 메뉴에 출처와 온도·습도를 표시하고 온도는 소수 첫째 자리까지 보인다. 냉각 표본의 고정 -5°C 조건과 기존 이동·해동 조작은 유지한다.
@@ -766,20 +714,19 @@ return CCLFood::ChangeStorage(Candidate, NextConditions, Step.WorldToSeconds, Er
 
 | 검사 | 결과와 로컬 근거 |
 |---|---|
-| 최종 프로젝트 파일 생성·Editor 빌드 | 성공. `Saved/EnvironmentStages/FoodEnvironment-GPF.log`, `FoodEnvironment-Build.log` |
-| 최종 환경 자동화 | 123/123, 경고·실패·미실행 0. `Saved/Tests/Automation/20261010-191152-911/report/index.json` |
-| Scenario 메뉴·렌더링·새 프로세스 재개 | 통과. `Saved/Tests/FoodEnvironment/Standalone-20261010-190442-533` |
-| 최종 Playground 메뉴·렌더링·새 프로세스 재개 | 통과. `Saved/Tests/FoodEnvironment/Standalone-20261010-191130-708` |
-| 최종 Listen Scenario 첫·늦은 접속 | 통과. `Saved/Tests/FoodEnvironment/Listen-20261010-191128-571` |
-| 최종 Dedicated Playground 첫·늦은 접속 | 통과. `Saved/Tests/FoodEnvironment/Dedicated-20261010-191214-375` |
-| 기존 고정 음식 조작·저장 회귀 | 통과. `Saved/Tests/FoodZone/Standalone-20261010-191151-996` |
+| 최종 프로젝트 파일 생성·Editor 빌드 | 성공 |
+| 최종 환경 자동화 | 123/123, 경고·실패·미실행 0 |
+| Scenario 메뉴·렌더링·새 프로세스 재개 | 통과 |
+| 최종 Playground 메뉴·렌더링·새 프로세스 재개 | 통과 |
+| 최종 Listen Scenario 첫·늦은 접속 | 통과 |
+| 최종 Dedicated Playground 첫·늦은 접속 | 통과 |
+| 기존 고정 음식 조작·저장 회귀 | 통과 |
 
 Scenario 렌더링 검사는 최종 온도 소수 표시와 세대 비교 강화 전의 실행이다. 최종 Playground 캡처에서 외기 30.0°C·습도 13%, 실내 20.1°C·습도 24%와 다섯 음식 조작 버튼을 확인했다. 표의 네트워크 최종 검사는 복원 세대 비교까지 포함한다. Dedicated는 Editor 서버 모드이고 네트워크 검사는 NullRHI다. 실제 Server 타깃 패키지·지연·손실과 대규모 보관함 비용은 아직 검사하지 않았다.
 
 첫 값 검사에서 따뜻한 구간의 부패 기대값이 상대 습도 계수를 빠뜨렸고, 실내 시험 입력은 빈 개구 배열을 전달하지 않았다. 두 시험 입력을 수정한 뒤 최종 123개를 통과했다. 재실행은 `Tools/Validation/run_food_environment.ps1 -Map EnvironmentPlayground -Rendered`다. 네트워크는 `-Mode Listen -Map EnvironmentScenario -Port 20412` 또는 `-Mode Dedicated -Map EnvironmentPlayground -Port 20411`을 쓴다.
 
 단계 8·9 전체는 진행 중이다. 다음 범위는 실제 음식 픽업의 이력·복제, 플레이어 장비·계정과 배치 컨테이너의 전체 저장 통합, Agent 생애 관측·조작과 피해 연결, 생태 먹이·회피·거리 전환 및 규모·패키지 검증이다.
-
 
 ### 음식 픽업 이력 설계
 
@@ -813,7 +760,6 @@ return true;
 
 값 하나를 픽업에 직접 저장하는 대안보다 컴포넌트 비용이 늘지만 기존 이력 이동·실패 복원·저장 누락 검사를 재사용한다. Actor·컴포넌트 복제는 UE4에도 있던 구조이며 이번 연결에서 UE5 전용 신규 API나 엔진 모듈 의존은 추가하지 않는다.
 
-
 ### 음식 픽업 이력 구현·검증
 
 2026-10-10 UE 5.8.3에서 `ACCLWorldPickup`에 단일 슬롯 음식 인벤토리를 추가했다. 월드가 준비된 후 서버 초기화 시점에 새 음식 이력을 만들고, 이미 이력이 있는 음식은 `InitializeFood` 또는 `DropFood`로 받는다. 줍기는 기존 거리 225cm·가시선 검사를 거친 뒤 전체 이력을 대상 인벤토리로 옮긴다. 이미 회수 중인 픽업의 재진입 요청과 열린 대상 트랜잭션은 거부한다. 비음식 보급품의 지급은 기존 경로를 사용한다.
@@ -828,15 +774,14 @@ return true;
 
 | 검사 | 결과와 로컬 근거 |
 |---|---|
-| 최종 프로젝트 생성·Editor 빌드 | 성공. `Saved/EnvironmentStages/FoodPickup-GPF.log`, `FoodPickup-Build.log` |
-| Scenario Standalone 픽업·드롭·실패·저장 본문 | 통과. `Saved/Tests/FoodPickup/Standalone-20261010-192417-071` |
-| Listen Scenario 첫·늦은 접속·회수 제거 | 통과. `Saved/Tests/FoodPickup/Listen-20261010-192415-832` |
-| Dedicated Playground 첫·늦은 접속·회수 제거 | 통과. `Saved/Tests/FoodPickup/Dedicated-20261010-192415-567` |
-| 환경 자동화 | 123/123, 경고·실패·미실행 0. `Saved/Tests/Automation/20261010-192414-404/report/index.json` |
-| 기존 캠페인 Standalone | 통과. `Saved/Tests/CampaignSmoke/Standalone-20261010-192417` |
+| 최종 프로젝트 생성·Editor 빌드 | 성공 |
+| Scenario Standalone 픽업·드롭·실패·저장 본문 | 통과 |
+| Listen Scenario 첫·늦은 접속·회수 제거 | 통과 |
+| Dedicated Playground 첫·늦은 접속·회수 제거 | 통과 |
+| 환경 자동화 | 123/123, 경고·실패·미실행 0 |
+| 기존 캠페인 Standalone | 통과 |
 
 검사는 NullRHI이며 Dedicated는 Editor 서버 모드다. 검사 이후 헤더의 기존 `RefreshVisual` 선언을 함수 영역으로 옮겼으며 동작 코드는 바꾸지 않았다. 최종 프로젝트 생성·빌드는 이 선언 정리를 포함한다. 재실행은 `Tools/Validation/run_food_pickup.ps1 -Mode Standalone -Map EnvironmentScenario`이며 Listen은 `-Port 20422`, Dedicated는 `-Map EnvironmentPlayground -Port 20421`을 쓴다. 실제 Server 타깃·지연·손실·대규모 픽업 비용과 바닥 픽업의 새 프로세스 복원은 아직 검증하지 않았다.
-
 
 ### 음식 픽업의 세계 저장 설계
 
@@ -872,7 +817,6 @@ Inventories->CommitRestore();
 
 값 기록과 실제 Actor를 분리하면 언로드 중에도 상태를 보존하고 복원 전에 실패를 검사할 수 있다. 대신 복원 시 Actor 교체와 후보 메모리 비용이 든다. 살아 있는 Actor를 즉시 수정하는 방식보다 실패 원본 보존이 쉽다. UE4에도 있던 지연 Actor 생성과 UE5에서 사용하는 기존 WorldSubsystem·인벤토리 계약을 조합하며 새 엔진 모듈 의존은 없다.
 
-
 ### 음식 픽업의 세계 저장 구현·검증
 
 2026-10-10 UE 5.8.3에서 음식 픽업을 지속 컨테이너 소유자로 등록했다. 인벤토리 본문 버전 3의 `ECCLInventoryOwner::FoodPickup`은 지속 ID·Transform과 단일 슬롯 음식 이력을 가진다. 위치·회전·배율은 저장 값이며 빈 항목 배열은 회수된 상태를 뜻한다. 버전 1·2는 일반 컨테이너로 변환하고 바깥 세계 형식 5·개인 세션 형식 7은 유지한다. 아이템 ID의 소유자 중복, 픽업의 비음식 항목·추가 슬롯·잘못된 Transform은 거부한다.
@@ -893,22 +837,21 @@ Inventories->CommitRestore();
 
 | 검사 | 결과와 로컬 근거 |
 |---|---|
-| 최종 프로젝트 생성·Editor 빌드 | 성공. `Saved/EnvironmentStages/FoodPickupSave-GPF.log`, `FoodPickupSave-Build.log` |
-| Scenario 저장·실패·언로드·재등록·새 프로세스 | 통과. `Saved/Tests/FoodPickup/Standalone-20261010-195252-881` |
-| Playground 저장·실패·언로드·재등록·새 프로세스 | 통과. `Saved/Tests/FoodPickup/Standalone-20261010-195253-793` |
-| Listen Scenario 첫·늦은 접속·복원 | 통과. `Saved/Tests/FoodPickup/Listen-20261010-195254-001` |
-| Dedicated Playground 첫·늦은 접속·복원 | 통과. `Saved/Tests/FoodPickup/Dedicated-20261010-195256-418` |
-| 환경 자동화와 이전 본문 변환 | 124/124, 경고·실패·미실행 0. `Saved/Tests/Automation/20261010-194359-317/report/index.json` |
-| 기존 음식 이동·컨테이너 복원·새 프로세스 | 통과. `Saved/Tests/Food/EnvironmentScenario-20261010-194359-178` |
-| 기존 환경 연동 음식 재개 | 통과. `Saved/Tests/FoodEnvironment/Standalone-20261010-193802-414` |
-| 개인 세션 저장·재개 회귀 | 통과. `Saved/Tests/SessionSmoke/20261010-194520` |
+| 최종 프로젝트 생성·Editor 빌드 | 성공 |
+| Scenario 저장·실패·언로드·재등록·새 프로세스 | 통과 |
+| Playground 저장·실패·언로드·재등록·새 프로세스 | 통과 |
+| Listen Scenario 첫·늦은 접속·복원 | 통과 |
+| Dedicated Playground 첫·늦은 접속·복원 | 통과 |
+| 환경 자동화와 이전 본문 변환 | 124/124, 경고·실패·미실행 0 |
+| 기존 음식 이동·컨테이너 복원·새 프로세스 | 통과 |
+| 기존 환경 연동 음식 재개 | 통과 |
+| 개인 세션 저장·재개 회귀 | 통과 |
 
 기존 음식 검사기의 100세계초 진행은 최대 32회 반복을 전제해 첫 회귀 검사에서 미완료로 실패했다. 상시 생태 경로가 세계 진행을 다음 정수초까지 제한하므로 요청 초 수에 32회 여유를 더하는 검사 예산으로 수정했다. 세계 진행 제한을 풀거나 시간 입력을 버리지 않았다. 위 음식 회귀는 수정 후 결과다.
 
 자동화·기존 음식·환경·개인 세션 회귀는 픽업의 배율 덮어쓰기와 재등록 위치 보완 전의 같은 저장 형식에서 실행했다. 표의 네 픽업 실행은 두 보완을 포함한 최종 빌드다. 모든 실행은 NullRHI이며 Dedicated는 Editor 서버 모드다. 실제 렌더링·Server 타깃 패키지·지연과 손실·대규모 비용은 포함하지 않는다. 맵에 작성된 음식 픽업 에셋의 ID 편집·중복 검증, 회수 기록의 장시간 누적과 압축 정책도 후속 작업이다.
 
 재실행은 `Tools/Validation/run_food_pickup.ps1`에 `-Map EnvironmentScenario` 또는 `-Map EnvironmentPlayground`를 지정한다. Standalone은 저장 후 새 프로세스까지 실행하며 Listen은 `-Mode Listen -Port 20422`, Dedicated는 `-Mode Dedicated -Port 20421`을 쓴다. 단계 8·9는 진행 중이다. 다음은 구역 07의 상시 픽업·드롭 조작과 관측, 위치 기반 보관 조건, Agent 생애 관측·피해 연결과 플레이어 장비·계정을 포함한 전체 저장 통합이다.
-
 
 ## 위치에 따른 바닥 음식과 구역 07 조작 설계
 
@@ -918,9 +861,7 @@ Inventories->CommitRestore();
 
 구역 07에 노출 보관함에서 바닥으로 1개 꺼내기와 바닥 음식을 노출 보관함으로 회수하는 실험 조작을 추가한다. 보관함 Actor를 회수 주체로 사용하고 기존 거리·가시선 검사를 유지한다. 한 번에 근처 실험 음식 하나를 놓으며 공개 관측에 바닥 수량을 표시한다. 실제 플레이어 E 회수 및 플레이어 장비의 세계 저장 참여는 별도 후속 범위다. 검증은 위치 우선순위·경계·조건 전환 이력의 자동화, 실제 Slate 버튼 입력·화면 확인, 저장·복원·초기화와 기존 음식 픽업의 네트워크 검사로 나눈다.
 
-
 실행 검사에서 보관함 Actor의 원점이 바닥 충돌 안에 있어 회수 가시선이 시작점에서 막히는 것을 확인했다. 회수 거리는 Actor 원점 기준 225cm를 유지하고 가시선 시작은 `GetActorEyesViewPoint`를 사용한다. 보관함은 이 지점을 원점보다 80cm 높게 제공한다. UE 5.8.3의 기본 Actor 구현은 위치·회전을 그대로 반환한다(`Engine/Source/Runtime/Engine/Private/Actor.cpp:3769`). 일반 Actor를 쓰는 기존 픽업 검사는 기존 원점을 유지하며 캐릭터는 자신의 시점을 사용한다. 음식의 별도 DroppedMesh가 없으면 기본 구체로 표시한다. 최종 음식 외형은 별도 에셋 작업 범위다.
-
 
 ## 위치에 따른 음식 보관 구현·검증
 
@@ -932,22 +873,21 @@ Inventories->CommitRestore();
 
 | 검사 | 결과와 근거 |
 |---|---|
-| 프로젝트 파일 생성·Editor 빌드 | 통과. `Saved/EnvironmentStages/FoodLocation-GPF.log`, `Saved/EnvironmentStages/FoodLocation-Build.log`, `Saved/EnvironmentStages/FoodLocation-FinalBuild.log` |
-| 환경 자동화 | 125/125, 경고·실패·미실행 0. `Saved/Tests/Automation/20261010-200752-843/report/index.json` |
-| Scenario 실제 메뉴·화면·위치 전환·실내 언로드·복원 | 통과. `Saved/Tests/FoodZone/Standalone-20261010-201737-615` |
-| Playground 실제 메뉴·화면·최종 시간 검사 | 통과. `Saved/Tests/FoodZone/Standalone-20261010-202458-898` |
-| Scenario Listen 구역 07·첫·늦은 접속 | 통과. `Saved/Tests/FoodZone/Listen-20261010-202503-260` |
-| Playground Dedicated 구역 07·첫·늦은 접속 | 통과. `Saved/Tests/FoodZone/Dedicated-20261010-202345-075` |
-| 픽업의 새 프로세스 저장 재개 | 통과. `Saved/Tests/FoodPickup/Standalone-20261010-201735-661` |
-| 기존 픽업 Listen·Dedicated 회귀 | 통과. `Saved/Tests/FoodPickup/Listen-20261010-201904-105`, `Saved/Tests/FoodPickup/Dedicated-20261010-201330-718` |
-| 기존 환경 연동 보관·새 프로세스 회귀 | 통과. `Saved/Tests/FoodEnvironment/Standalone-20261010-201905-439` |
+| 프로젝트 파일 생성·Editor 빌드 | 통과 |
+| 환경 자동화 | 125/125, 경고·실패·미실행 0 |
+| Scenario 실제 메뉴·화면·위치 전환·실내 언로드·복원 | 통과 |
+| Playground 실제 메뉴·화면·최종 시간 검사 | 통과 |
+| Scenario Listen 구역 07·첫·늦은 접속 | 통과 |
+| Playground Dedicated 구역 07·첫·늦은 접속 | 통과 |
+| 픽업의 새 프로세스 저장 재개 | 통과 |
+| 기존 픽업 Listen·Dedicated 회귀 | 통과 |
+| 기존 환경 연동 보관·새 프로세스 회귀 | 통과 |
 
 최종 구역 07 검사는 합성 시간 입력을 4배율·0.25게임초로 넣어 1세계초씩 진행한다. 초기화가 되돌린 시간 배율을 다시 일시정지하며, 최종 복원 뒤 서버가 공개한 세대·세계 시각·세 보관함의 수량·신선도·곰팡이·부패 수량을 두 클라이언트가 직접 대조한다. 실제 프레임 시간으로 60배율을 진행하던 검사에서는 큐에 남은 입력 때문에 늦은 접속 시각의 신선도가 고정 임계값을 벗어났다. 또한 수동 입력 0.25게임초를 60배율에서 1세계초로 반복 분할하면 정밀도보다 작은 시간이 보류되는 경우를 재현했다. 음식 검사는 이진수로 정확한 입력 단위를 사용하며 세계 시계의 잔여 시간을 버리거나 허용 오차를 완화하지 않았다. 이 잔여 시간의 일시정지·재개 계약은 단계 9에서 별도로 검증한다.
 
 환경 자동화는 공간 선택·이력 계산을 검증한다. Scenario 화면 검사는 최종 시간 제어 보강 전의 같은 게임 구현으로 수행했고, Playground 화면과 두 구역 07 네트워크 검사는 보강 후 결과다. Dedicated는 Editor 서버 모드다. 최종 음식 아트, 실제 플레이어 E 회수·장비를 포함한 세계 저장, 위치 이동 궤적의 연속 노출, 대량 픽업 비용·회수 기록 정리, Server 타깃 패키지·지연과 손실 검증은 남아 있다.
 
 재실행은 `Tools/Validation/run_food_zone.ps1 -Rendered -Map EnvironmentPlayground`로 화면을 확인한다. 네트워크는 `-Mode Listen -Map EnvironmentScenario -Port 20282` 또는 `-Mode Dedicated -Map EnvironmentPlayground -Port 20281`을 사용한다. 단계 8·9는 진행 중이며 다음은 Agent 생애 관측·조작과 피해 연결, 플레이어 장비·계정을 포함한 저장 통합이다.
-
 
 ## GAS 치명 피해와 Agent 생애 연결 설계
 
@@ -957,11 +897,9 @@ Writer 충돌로 사망을 바로 기록하지 못하면 Actor가 아닌 세계 
 
 실행 검사는 기존 세 맵의 생애 시나리오에 실제 치명 GameplayEffect, Writer 충돌 중 저장·진행 거부, 해제 뒤 사망 확정, 이전 세대 요청 폐기와 저장 복원을 추가한다. 구역 07의 상시 관측·조작은 이 경계를 사용해 후속 연결한다. 화재 노출량의 피해 변환과 생태 개체의 Agent 승격은 별도 구현 범위다.
 
-
 구역 07은 일반 주민과 자연 노화 보호 주민 두 명을 사용한다. 초기 나이 20초·성숙 10초·수명 300초는 실험 입력이다. 일반 주민의 남은 수명을 10초로 줄이는 조작, 보호 주민의 자연 노화 보호 전환, 보호 주민에게 실제 치명 GameplayEffect를 적용하는 조작을 제공한다. 이미 수명을 넘긴 주민의 보호 해제는 거부하며 전체 초기화로 처음 상태에서 다시 비교한다. 공개 관측은 완료 세대·세계 시각·나이·수명·보호·사망 원인·현재 체력만 복제한다.
 
 생애 값은 기존 LifeSimulation에 저장한다. 실험 표현 Actor는 살아 있는 실험 ID만 만들고, 복원 Epoch가 바뀌면 이전 표현을 제거한 뒤 저장 상태에서 다시 만든다. 처음 채우기는 새 환경 세계에만 적용하며 이전 저장에 표본이 없다면 전체 초기화로 기준 상태를 적용한다. 저장 기준 상태에 두 표본을 포함한다. 표본은 지면 위에 정지한 Manny이며 일반 주민 AI·직업·거래를 별도로 만들지 않는다.
-
 
 ## Agent 치명 피해와 구역 07 생애 실험 구현·검증
 
@@ -973,16 +911,16 @@ Writer 충돌로 사망을 바로 기록하지 못하면 Actor가 아닌 세계 
 
 | 검사 | 결과와 로컬 근거 |
 |---|---|
-| 프로젝트 생성·최종 Editor 빌드 | 통과. `Saved/EnvironmentStages/AgentZone-GPF.log`, `Saved/EnvironmentStages/AgentZone-FinalBuild.log` |
-| Campaign 치명 효과·Actor 제거·Writer 충돌·세대 복원 | 통과. `Saved/Tests/AgentBiology/Campaign-20261010-205005-458` |
-| Scenario 같은 생애 경계 검사 | 통과. `Saved/Tests/AgentBiology/EnvironmentScenario-20261010-205022-963` |
-| Playground 같은 생애 경계 검사 | 통과. `Saved/Tests/AgentBiology/EnvironmentPlayground-20261010-205040-926` |
-| Scenario 실제 Slate 조작·화면·자연/외부 사망·초기화·복원 | 통과. `Saved/Tests/BiologyZone/Standalone-20261010-204819-824` |
-| Playground 실제 Slate 조작·화면·생애 복원 | 통과. `Saved/Tests/BiologyZone/Standalone-20261010-205005-784` |
-| Listen Scenario 첫·늦은 접속 | 통과. `Saved/Tests/BiologyZone/Listen-20261010-205004-534` |
-| Dedicated Playground 첫·늦은 접속 | 통과. `Saved/Tests/BiologyZone/Dedicated-20261010-204820-938` |
-| 환경 자동화 | 125/125, 경고·실패·미실행 0. `Saved/Tests/Automation/20261010-204846-934/report/index.json` |
-| 기존 음식 메뉴·위치 환경·저장·초기화 회귀 | 통과. `Saved/Tests/FoodZone/Standalone-20261010-205005-461` |
+| 프로젝트 생성·최종 Editor 빌드 | 통과 |
+| Campaign 치명 효과·Actor 제거·Writer 충돌·세대 복원 | 통과 |
+| Scenario 같은 생애 경계 검사 | 통과 |
+| Playground 같은 생애 경계 검사 | 통과 |
+| Scenario 실제 Slate 조작·화면·자연/외부 사망·초기화·복원 | 통과 |
+| Playground 실제 Slate 조작·화면·생애 복원 | 통과 |
+| Listen Scenario 첫·늦은 접속 | 통과 |
+| Dedicated Playground 첫·늦은 접속 | 통과 |
+| 환경 자동화 | 125/125, 경고·실패·미실행 0 |
+| 기존 음식 메뉴·위치 환경·저장·초기화 회귀 | 통과 |
 
 모든 검사는 UE 5.8.3의 로컬 작업 트리에서 수행했다. 표의 경로는 프로젝트 기준이며 원본 로그의 기기별 절대 경로는 옮기지 않았다. Scenario 화면·Dedicated·환경 자동화 이후 변경은 생애 검사에 Actor 선제 제거 조건을 추가한 것뿐이다. 나머지 검사는 그 조건을 포함한 최종 빌드에서 실행했다. 두 렌더링 실행의 생존·자연 사망·외부 사망 화면을 확인했다. 실제 Slate 입력은 남은 수명과 치명 피해 버튼에 적용했고 보호 전환은 Director 명령 경로로 검사했다.
 
@@ -991,7 +929,6 @@ Writer 충돌로 사망을 바로 기록하지 못하면 Actor가 아닌 세계 
 재실행은 `Tools/Validation/run_biology_zone.ps1 -Rendered -Map EnvironmentScenario`를 사용한다. 다른 맵은 `-Map EnvironmentPlayground`, 네트워크는 `-Mode Listen -Port 20446` 또는 `-Mode Dedicated -Port 20445`로 실행한다. 생애 경계 검사는 `Tools/Validation/run_agent_biology.ps1 -Map Campaign`에 같은 두 환경 맵 이름도 지정할 수 있다.
 
 Actor의 연료 접촉·실내 고온은 [열 피해 구현·검증](EnvironmentFire/ThermalDamage.md#열-피해-구현검증)에 연결했다. 생태 개체와 Agent 사이의 소유권 이전, 전체 플레이어 장비·계정 저장은 남아 있다. 직접 GAS 비치명 피해의 모든 종류를 지속 부상 값으로 변환한 것은 아니다. 기존 명중의 부상 기록과 이번 치명 사망 연결을 구분한다. 단계 8·9는 진행 중이다.
-
 
 ## 집계 생물의 에너지·기아 구현
 
