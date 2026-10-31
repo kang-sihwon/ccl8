@@ -1,6 +1,6 @@
 # UI 표시 제어: 중첩 요청을 해제해도 남은 정책을 지키기
 
-UI 표시 제어는 현재 기본 상태에 살아 있는 요청들을 합성한다. 컷신 요청을 해제해도 사망 등 다른 요청이 남아 있다면 그 제한을 유지한다. `Source/CCL/UI/Core/CCLUISubsystem.cpp`와 `CCLScreen.cpp`에서 숨김·입력·갱신·페이드의 독립성을 이해한다.
+UI 표시 제어는 현재 기본 상태에 살아 있는 요청들을 합성한다. 컷신 요청을 해제해도 사망 등 다른 요청이 남아 있다면 그 제한을 유지한다. `Source/KSIUI/Private/KSIUISubsystem.cpp`와 `KSIScreen.cpp`에서 숨김·입력·갱신·페이드의 독립성을 이해한다.
 
 ## 1. 비교 기준
 
@@ -8,11 +8,13 @@ UI 표시 제어는 현재 기본 상태에 살아 있는 요청들을 합성한
 |---|---|
 | 이전 기준 | `bbe9b3bbd452710f5ee5079f59f2da760258acd3` |
 | 도입·변경 기준 | `37dd9045730412708a9f28e7d21cc4858c386202` |
-| 현재 기준 | `50e583859c832d6cb325e5e76beb8356e8c13959` |
+| 모듈 분리 전 기준 | `50e583859c832d6cb325e5e76beb8356e8c13959` |
+| 모듈 분리 | `996bf49a0ca3ff5e1fe309675addc2bb37434616` |
+| 현재 기준 | `d4888b08154afab8712af974bce0ead2b90978ac` |
 
-조사 시작 때 확인한 `main`과 로컬 원격 추적 `origin/main`의 `50e5838`을 게임 코드 기준으로 고정한 학습 기록이다. 원격 서버를 새로 조회한 결과는 아니며 이후 추가된 커밋과 구분한다. 작업 트리의 설정·빌드 파일 변경은 이 장의 코드 기준에서 제외했다. 아래 발췌의 경로·줄 번호는 표시한 커밋 기준이고 상대 링크는 현재 체크아웃을 연다.
+현재 기준 `d4888b0`은 2026-10-31의 `main`이며 로컬 원격 추적과 같았다. 원격 서버를 새로 조회한 결과는 아니다. `996bf49`가 공용 UI를 `CCLUI*`에서 `Source/KSIUI/`의 `KSIUI*`로 옮겼다. 이전 발췌는 `37dd904` 시점의 `CCL*` 이름 그대로 두고, 현재 발췌는 `d4888b0`의 `KSI*` 이름이다. 두 코드는 접두사만 다르다. 상대 링크는 현재 체크아웃을 연다.
 
-이전 공용 UI에는 현재의 범위·소유자 기반 표시 요청 기능이 없었다. `37dd904`에서 추가했고 `b6cc535`에서 생성 중 닫힘 등 수명 검사를 보완했다. 세부 계약과 기존 검사 결과는 [UIFoundation](../UIFoundation.md)이 소유한다.
+`37dd904` 이전의 공용 UI에는 현재의 범위·소유자 기반 표시 요청 기능이 없었다. `37dd904`에서 추가했고 `b6cc535`에서 생성 중 닫힘 등 수명 검사를 보완했다. 세부 계약과 기존 검사 결과는 [UIFoundation](../UIFoundation.md)이 소유한다.
 
 ## 2. 잘못된 복구의 예
 
@@ -22,7 +24,7 @@ UI 표시 제어는 현재 기본 상태에 살아 있는 요청들을 합성한
 
 ## 3. 표시, 입력, 갱신과 활성화
 
-`FCCLUIViewPresentation`은 가시성·UI 입력·표시 갱신·불투명도를 나눈다. `bBlockGameplay`는 로컬 플레이어 전체의 게임 입력을 제한하는 별도 옵션이다.
+`FKSIUIViewPresentation`은 가시성·UI 입력·표시 갱신·불투명도를 나눈다. `bBlockGameplay`는 로컬 플레이어 전체의 게임 입력을 제한하는 별도 옵션이다.
 
 CommonUI의 비활성화는 스택에서 제거되는 경로로 이어질 수 있다. 잠깐 숨기는 동안 열린 핸들·문맥을 유지하려면 화면 닫기나 비활성화와 구분해야 한다. 이는 프로젝트 표시 정책이며 UE4에서 UE5로의 일괄 문법 변경이 아니다.
 
@@ -30,7 +32,7 @@ CommonUI의 비활성화는 스택에서 제거되는 경로로 이어질 수 �
 
 표시 요청이 처음 도입된 커밋부터 핸들을 제거한 뒤 재계산했다.
 
-출처: `37dd904`, [CCLUISubsystem.cpp](../../Source/CCL/UI/Core/CCLUISubsystem.cpp):562의 `UCCLUISubsystem::ReleasePresentation`. 실제 코드 전체 함수이며 들여쓰기를 공백으로 바꿨다.
+출처: `37dd904`, `Source/CCL/UI/Core/CCLUISubsystem.cpp`의 `UCCLUISubsystem::ReleasePresentation`. 실제 코드 전체 함수이며 들여쓰기를 공백으로 바꿨다.
 
 ```cpp
 void UCCLUISubsystem::ReleasePresentation(FCCLUIPresentationHandle Handle)
@@ -53,10 +55,10 @@ void UCCLUISubsystem::ReleasePresentation(FCCLUIPresentationHandle Handle)
 
 ## 6. 현재의 합성
 
-출처: `50e5838`, [CCLUISubsystem.cpp](../../Source/CCL/UI/Core/CCLUISubsystem.cpp):619의 `UCCLUISubsystem::ApplyPresentation`. 실제 코드 전체 함수이며 들여쓰기를 공백으로 바꿨다.
+출처: `d4888b0`, [KSIUISubsystem.cpp](../../Source/KSIUI/Private/KSIUISubsystem.cpp)의 `UKSIUISubsystem::ApplyPresentation`. 실제 코드 전체 함수이며 들여쓰기를 공백으로 바꿨다.
 
 ```cpp
-void UCCLUISubsystem::ApplyPresentation(FCCLUIViewHandle Handle, float FadeSeconds)
+void UKSIUISubsystem::ApplyPresentation(FKSIUIViewHandle Handle, float FadeSeconds)
 {
     const auto* View = Views.Find(Handle.Id);
     if (!View || !View->Screen)
@@ -64,11 +66,11 @@ void UCCLUISubsystem::ApplyPresentation(FCCLUIViewHandle Handle, float FadeSecon
         return;
     }
 
-    FCCLUIViewPresentation State = View->BasePresentation;
+    FKSIUIViewPresentation State = View->BasePresentation;
     for (const auto& Pair : Presentations)
     {
         const auto& Request = Pair.Value.Definition;
-        if (Pair.Value.Owner.IsValid() && (Request.Scope != ECCLUIScope::World || Pair.Value.World == GetWorld()) &&
+        if (Pair.Value.Owner.IsValid() && (Request.Scope != EKSIUIScope::World || Pair.Value.World == GetWorld()) &&
             Request.Matches(View->Definition.Groups))
         {
             State.bVisible = State.bVisible && !Request.bHide;
@@ -89,7 +91,7 @@ void UCCLUISubsystem::ApplyPresentation(FCCLUIViewHandle Handle, float FadeSecon
 
 ## 7. 페이드와 입력 라우팅
 
-`UCCLScreen::ApplyPresentation`은 현재 불투명도에서 새 목표까지의 페이드를 준비한다. `TickManagedPresentation`이 실제 값을 진행하고 `UpdatePresentationVisuals`가 Visibility·Enabled·포커스 참여를 적용한다.
+`UKSIScreen::ApplyPresentation`은 현재 불투명도에서 새 목표까지의 페이드를 준비한다. `TickManagedPresentation`이 실제 값을 진행하고 `UpdatePresentationVisuals`가 Visibility·Enabled·포커스 참여를 적용한다.
 
 관리자가 페이드를 진행하므로 숨긴 위젯 자신의 Tick이 멈춰도 복구가 가능하다. 페이드가 끝나기 전에는 UI 입력을 차단하며, 상호작용 가능성이 바뀌면 CommonUI 라우팅을 다시 계산한다.
 
@@ -126,7 +128,7 @@ void UCCLUISubsystem::ApplyPresentation(FCCLUIViewHandle Handle, float FadeSecon
 | 월드 종료·소유자 소멸 | 이전 요청 정리 |
 | 숨김 중 사망 | 게임 규칙 계속 적용 |
 
-기존 UIPresentation·UIFoundation 검사 결과를 읽었으며 이번 작성에서는 실제 페이드나 입력 검사를 새로 하지 않았다.
+기존 UIPresentation·UIFoundation 검사 결과를 읽었으며 이번 작성에서는 `d4888b0`의 소스를 대조했고 실제 페이드나 입력 검사는 새로 하지 않았다.
 
 ## 12. 이해 확인
 
