@@ -20,7 +20,8 @@
   - 결과: 29.6KB로 줄었고 `State`, `Containers`, `Storage`, `Pickup`으로 나눴다. 가장 큰 하위는 11KB다. 묶음, 컨테이너, 거리 한도는 소스와 맞췄다.
 - [x] 3. `ConceptImageToolTest/Results` 48.6KB (없음).
   - 결과: 전체 40.2KB로 줄었고 시험군별 5개 문서와 요약으로 나눴다. 요약은 4.2KB, 가장 큰 하위는 12.3KB다. 점수표와 관찰은 측정값이라 원문 그대로 옮겼다.
-- [ ] 4. `EnvironmentPlan` 31.2KB (없음).
+- [x] 4. `EnvironmentPlan` 31.2KB (없음).
+  - 결과: 부모는 8.6KB로 줄었고 `Design`, `Persistence`, `Criteria`로 나눴다. 소유자 표의 없는 후보 이름을 실제 코드 이름으로 고쳤고, 컴파일되지 않는 인터페이스 초안을 뺐다.
 - [x] 5. `SessionFoundation/PlayerRestore` 30.5KB (없음).
   - 결과: 21KB로 줄었고 `Profile`, `Loadout`, `Identity`로 나눴다. 가장 큰 하위는 8.7KB다. 뒤 절에서 뒤집힌 옛 복원 거부 계약은 현재 계약으로 합쳤고, 프로젝트 소스의 줄 번호는 함수 이름으로 바꿨다.
 - [ ] 6. `EnvironmentPlan/Ecology/Behavior` 26.3KB (없음).
