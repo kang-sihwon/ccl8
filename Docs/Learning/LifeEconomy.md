@@ -82,7 +82,7 @@ bool FCCLLifeSimulation::Capture(FCCLSimulationSnapshot& Snapshot) const
     const auto Transaction = CCLEconomy::Execute(Candidate, Request);
     if (!Transaction.bSucceeded)
     {
-        FCCLAgentRecord Failed = *Agent;
+        FKSIAgentRecord Failed = *Agent;
         if (auto* Experience = MutableFeature<FCCLAgentExperience>(Failed, CCLAgentTags::Feature_Experience))
         {
             FCCLObservation Observation;
