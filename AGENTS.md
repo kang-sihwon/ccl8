@@ -32,7 +32,7 @@ ccl8은 Orbis의 방향과 그래픽 스타일을 공유하는 단기 소울라�
 | 엔진 내부 동작·API·셰이더 | `graft_ue58`. 부족한 범위는 엔진 소스 |
 | 여러 문서의 관계·누락·영향 | `Tools/Graphify/graphify_ccl8.cmd`. 그래프는 단서다. 원문으로 확인하고, 오래됐다는 이유만으로 재빌드하지 않는다 |
 | 코드 리뷰 | 수정 요청이 없으면 지적까지만 한다 |
-| 일반 UE·도구 지식 | 개인 Obsidian 볼트. [활용 절차](Docs/AgentContextTools.md#obsidian-활용-절차)대로 시작할 때 읽고 끝날 때 검증한 지식을 반영한다. ccl8 고유 결정과 진행은 이 저장소에 적는다 |
+| 일반 UE·도구 지식 | 개인 Obsidian 볼트. [활용 절차](Docs/AgentContextTools/Setup.md#obsidian-활용-절차)대로 시작할 때 읽고 끝날 때 검증한 지식을 반영한다. ccl8 고유 결정과 진행은 이 저장소에 적는다 |
 
 스킬 정본은 `.agents/skills/`다. `.claude/skills/`는 `node Tools/Agent/skills.cjs sync`로 맞춘다.
 
@@ -42,4 +42,5 @@ ccl8은 Orbis의 방향과 그래픽 스타일을 공유하는 단기 소울라�
 - 게임 동작: `ccl8-verify`로 실행 검증하고 증거 강도를 적는다.
 - 스킬·지침: `node Tools/Agent/skills.cjs check`가 통과해야 한다.
 - 결정: `node Tools/Agent/decisions.cjs check`가 통과해야 한다.
+- 문서: `node Tools/Agent/docs.cjs check`가 통과해야 한다.
 - 여러 세션에 걸친 작업: 지도의 진행과 아직 모르는 것을 갱신한다.

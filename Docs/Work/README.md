@@ -6,7 +6,7 @@
 
 | 작업 | 지도 | 상태 |
 |---|---|---|
-| 문서 정리와 map+tree 구조 | [docs-map-tree](docs-map-tree.md) | 조각 3 `EnvironmentSnow` 정리안 승인 대기 |
+| 문서 정리와 map+tree 구조 | [docs-map-tree](docs-map-tree.md) | 문서 정리 끝. 마지막 질문의 답을 기다림 |
 
 ## 다음 작업 후보
 
@@ -19,5 +19,4 @@
 | 패키지의 미확인 환경(다른 PC·Shipping·외부 인터넷·NAT) | [Packaging](../Packaging/Records.md#세계-모듈-분리-후-패키지) | 검증할 기기와 네트워크가 있어야 한다 |
 | 자연 환경 단계 8 마무리와 단계 9 | [EnvironmentPlan](../EnvironmentPlan.md#단계별-현황) | 없음 |
 | `Docs/Learning/` 시스템별 재작성과 QA 재검증 | [결정 28](../decisions/0028-agent-workflow-restructure.md), [학습 문서의 깨진 링크](../Learning/README.md#알려진-깨진-링크) | 없음. 선행 작업인 C++ 규칙 위반 정리는 2026-10-28에 끝났다([Coding](../Coding/CppLayout.md#기계-검사-규칙)) |
-| SessionFoundation 절 본문을 계약별로 다시 나누기 | [SessionFoundation](../SessionFoundation.md#현재-계약) | 링크하는 8곳을 함께 옮긴다 |
 | GitHub Issues와 CI 도입 | [결정 28](../decisions/0028-agent-workflow-restructure.md) | 보류. 여러 세션이 동시에 일을 가져갈 때 다시 검토한다 |

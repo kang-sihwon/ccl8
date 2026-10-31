@@ -6,7 +6,7 @@ topic: "에이전트 작업 체계"
 status: "유효"
 progress: "2026-10-27 이행 완료"
 summary: "규칙 문서를 태그 `agent-setup-v1`로 백업하고 새로 쓴 뒤 게임 문서를 내용 보존 검사와 함께 새 형식으로 옮긴다. 결정은 1건당 파일로 나누고 Decisions는 생성한다. 스킬에 명시된 읽기 전용 위임만 요청 없이 허용한다. 재개 지점은 `Docs/Work/`에 둔다"
-owners: "[AgentToolingResearch](../AgentToolingResearch/SkillReview.md#스킬-묶음-통합-검토-2026-10-25), [AgentContextTools](../AgentContextTools.md), [WritingGuide](../WritingGuide.md#결정을-기록하는-방법), [진행 중인 작업](../Work/README.md)"
+owners: "[AgentToolingResearch](../AgentToolingResearch/SkillReview.md#스킬-묶음-통합-검토-2026-10-25), [AgentContextTools](../AgentContextTools.md), [WritingGuide](../WritingGuide/DecisionRecords.md#결정을-기록하는-방법), [진행 중인 작업](../Work/README.md)"
 ---
 
 # 2026-10-25 — 결정 28: 에이전트 작업 체계의 재구성

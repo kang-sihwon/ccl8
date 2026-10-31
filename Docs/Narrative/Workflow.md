@@ -68,7 +68,7 @@
 
 ## 승인과 정본 반영
 
-1. 사용자가 승인하면 작성자는 [WritingGuide의 결정 기록 절차](../WritingGuide.md#결정을-기록하는-방법)로 결정 파일을 만든다. 머리말의 `topic`은 `서사`, `owners`는 반영할 World·Scenario 절이다. 본문 배경에는 승인 날짜, 사용자 발언의 직접 인용, 승인 범위를 적는다.
+1. 사용자가 승인하면 작성자는 [WritingGuide의 결정 기록 절차](../WritingGuide/DecisionRecords.md#결정을-기록하는-방법)로 결정 파일을 만든다. 머리말의 `topic`은 `서사`, `owners`는 반영할 World·Scenario 절이다. 본문 배경에는 승인 날짜, 사용자 발언의 직접 인용, 승인 범위를 적는다.
 2. 작성자는 승인 범위의 내용만 World·Scenario의 "확정한" 절에 쓰고 항목 끝에 `근거: 결정 N` 링크를 붙인다.
 3. 기존 확정 내용을 바꿀 때도 사용자 승인과 새 결정이 필요하다. 새 결정은 앞선 결정을 `supersedes`나 `supersedes_part`로 가리킨다. 바뀐 정본 항목은 새 결정을 근거로 달고, 옛 문장은 결정 파일과 Git이 맡는다. 옛 항목의 상태는 대체됨이다.
 4. 반영 뒤 작성자는 승인 범위, 정본 문장, 결정 파일이 서로 맞는지와 게임 요구사항과 충돌하지 않는지 확인하고 `node Tools/Agent/decisions.cjs check`를 실행한다.
