@@ -26,7 +26,8 @@
   - 결과: 21KB로 줄었고 `Profile`, `Loadout`, `Identity`로 나눴다. 가장 큰 하위는 8.7KB다. 뒤 절에서 뒤집힌 옛 복원 거부 계약은 현재 계약으로 합쳤고, 프로젝트 소스의 줄 번호는 함수 이름으로 바꿨다.
 - [x] 6. `EnvironmentPlan/Ecology/Behavior` 26.3KB (없음).
   - 결과: 15.8KB로 줄었고 `Model`, `Space`, `Zone06`으로 나눴다. 가장 큰 하위는 6.1KB다. 설계와 검증 절을 기능별로 합쳤다.
-- [ ] 7. `CodeStructurePlan` 26.2KB (없음).
+- [x] 7. `CodeStructurePlan` 26.2KB (없음).
+  - 결과: 부모는 7.2KB로 줄었고 `Defects`, `Risks`로 나눴다. 지적 본문은 기준 커밋의 기록이라 원문 그대로 옮겼다. D1, D2, R1이 지금도 남아 있는 것을 확인했다.
 - [ ] 8. `FrameworkPlan` 24.8KB (없음).
 - [ ] 9. `CombatFoundation` 23.0KB (없음).
 - [ ] 10. `EnvironmentPlan/Ecology` 22.6KB (없음).
