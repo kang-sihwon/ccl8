@@ -25,7 +25,6 @@ const KNOWN_BROKEN = new Set([
   'Docs/Learning/InventoryUI.md ../../Source/CCL/UI/Core/CCLScreen.cpp',
   'Docs/Learning/InventoryUI.md ../../Source/CCL/UI/Core/CCLUIRoot.cpp',
   'Docs/Learning/Map.md ../../Source/CCL/Map/CCLMapSystem.cpp',
-  'Docs/Learning/UIFramework.md ../../Source/CCL/UI/Core/CCLUISubsystem.cpp',
   'Docs/Learning/UIPresentation.md ../../Source/CCL/UI/Core/CCLUISubsystem.cpp',
 ]);
 const FENCE = /^ {0,3}(`{3,}|~{3,})/;
