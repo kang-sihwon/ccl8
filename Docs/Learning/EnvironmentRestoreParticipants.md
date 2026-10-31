@@ -18,7 +18,7 @@
 
 ## 이전의 구체 배열에서 이름 있는 구간으로
 
-출처: `c8816e7`, [CCLWorldSnapshot.h](../../Source/CCL/Environment/CCLWorldSnapshot.h), 38-43줄. 연속 발췌이며 들여쓰기만 정리했다.
+출처: `c8816e7`, [CCLWorldSnapshot.h](../../Source/CCL/Environment/CCLWorldSnapshot.h). 연속 발췌이며 들여쓰기만 정리했다.
 
 ```cpp
 TArray<uint8> Life;
@@ -31,7 +31,7 @@ FCCLEnvironmentInputs Environment = FCCLEnvironmentInputsCodec::MakeDefault(42);
 
 기존 세계 스냅샷은 `FCCLInventorySnapshot`과 `FCCLPlayerSnapshot` 타입을 직접 알았다. 실제 형식도 두 본문을 정해진 위치에 기록했다. 기존 복원에도 실패를 보존하는 준비·콜백 경계는 있었다. 형식 7에서 처음 원자 복원이 생겼다고 설명하면 과거 코드를 잘못 읽은 것이다.
 
-출처: `b888b13`, [CCLWorldSnapshot.h](../../Source/CCL/Environment/CCLWorldSnapshot.h), 27-31줄. 연속 발췌이며 들여쓰기만 정리했다.
+출처: `b888b13`, [CCLWorldSnapshot.h](../../Source/CCL/Environment/CCLWorldSnapshot.h). 연속 발췌이며 들여쓰기만 정리했다.
 
 ```cpp
 struct FCCLWorldSection
@@ -49,7 +49,7 @@ struct FCCLWorldSection
 
 이전에는 세계 실행기가 플레이어 복원 함수와 보관함 알림을 직접 연결했다.
 
-출처: `c8816e7`, [CCLWorldSimulationSubsystem.cpp](../../Source/CCL/Environment/CCLWorldSimulationSubsystem.cpp), 397-410줄. 연속 발췌이며 들여쓰기만 정리했다.
+출처: `c8816e7`, [CCLWorldSimulationSubsystem.cpp](../../Source/CCL/Environment/CCLWorldSimulationSubsystem.cpp). 연속 발췌이며 들여쓰기만 정리했다.
 
 ```cpp
 const bool bRestored = Players->Restore(Snapshot.Players, Snapshot.Identity.WorldId, Snapshot.Clock.WorldSeconds,
@@ -72,7 +72,7 @@ return bRestored;
 
 현재는 `PrepareParticipants`가 순서대로 후보를 준비하고 성공 개수를 센다. 모두 준비되면 다음 함수가 확정 호출을 중첩한다. `TFunctionRef<bool()>`는 소유하지 않는 호출 가능 객체 참조다. 여기서는 동기 호출 중에만 사용하며 타이머에 저장해 나중에 실행하는 계약이 아니다.
 
-출처: `b888b13`, [CCLWorldSimulationSubsystem.cpp](../../Source/CCL/Environment/CCLWorldSimulationSubsystem.cpp), 681-693줄. 연속 발췌이며 들여쓰기만 정리했다.
+출처: `b888b13`, [CCLWorldSimulationSubsystem.cpp](../../Source/CCL/Environment/CCLWorldSimulationSubsystem.cpp). 연속 발췌이며 들여쓰기만 정리했다.
 
 ```cpp
 bool UCCLWorldSimulationSubsystem::CommitParticipants(int32 Index, int32 Prepared, TFunctionRef<bool()> CommitCore)
@@ -116,7 +116,7 @@ sequenceDiagram
 
 준비가 중간에 실패하면 앞서 성공한 참여자만 역순으로 취소한다. 실패를 반환한 참여자 자신의 부분 준비는 그 구현에서 정리해야 한다. 중앙 실행기가 실패한 참여자까지 자동 취소해 준다고 가정하면 자원이 남을 수 있다.
 
-출처: `b888b13`, [CCLWorldSimulationSubsystem.cpp](../../Source/CCL/Environment/CCLWorldSimulationSubsystem.cpp), 695-701줄. 연속 발췌이며 들여쓰기만 정리했다.
+출처: `b888b13`, [CCLWorldSimulationSubsystem.cpp](../../Source/CCL/Environment/CCLWorldSimulationSubsystem.cpp). 연속 발췌이며 들여쓰기만 정리했다.
 
 ```cpp
 void UCCLWorldSimulationSubsystem::CancelParticipants(int32 Prepared)

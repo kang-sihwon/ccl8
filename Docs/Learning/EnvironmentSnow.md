@@ -1,14 +1,12 @@
 # 깊은 눈과 이동: 질량·깊이·예측 입력을 나누기
 
-2026-10-12 공용 모듈 분리 이후의 위치는 [Framework 파일 이동표](../FrameworkPlan/Stage4.md#코드-위치의-전후-비교)를 따른다. 아래 발췌·이름·줄 번호·해시는 기록 당시 기준을 유지하며 소스 링크는 현재 대응 파일을 연다.
-
 후속 변경에서 눈 후처리를 Character의 맵 이름 조건에서 컴포넌트의 설정 참조로 옮겼다. 실제 전후 코드는 [환경 맵 설정](EnvironmentMapConfiguration.md)에 있으며 아래의 기존 예측·질량 설명은 당시 기준을 유지한다.
 
 깊은 눈은 물의 양을 보존하면서 눌리고, 캐릭터는 그 깊이에 따라 저항과 발 배치를 바꾼다. 이 장에서는 일반 CMC를 확장한 이유와 클라이언트 재실행에서 과거 눈 입력을 유지하는 방법을 배운다.
 
 ## 비교 기준과 필요한 개념
 
-범위는 자연환경 5단계이다. 비교 기준은 `50e5838` → `0408d94`, 표현 보완 `a817082`이며 전체 해시·브랜치 관계·작업 트리 식별값은 [비교 근거](EnvironmentEvidence.md)에 있다. `WT-2026-10-10`은 문서 작성 중 읽은 미커밋 소스 사본을 뜻한다. 이후 수정된 HEAD와 동일하다고 가정하지 않는다.
+범위는 자연환경 5단계이다. 비교 기준은 `50e5838` → `0408d94`, 표현 보완 `a817082`이며 전체 해시와 브랜치 관계는 [비교 근거](EnvironmentEvidence.md)에 있다. 이 장이 처음 쓰였을 때 인용한 미커밋 작업 트리(`WT-2026-10-10`)는 `c8816e7`에 커밋됐다. 현재 기준은 2026-10-31의 `main`인 `d4888b0`이다. 코드가 `Source/KSI*/` 모듈로 옮겨진 위치는 [Framework 파일 이동표](../FrameworkPlan/Stage4.md#코드-위치의-전후-비교)를 따른다.
 
 CMC는 `UCharacterMovementComponent`의 약칭이다. SavedMove는 클라이언트가 서버 보정 뒤 이동을 다시 실행하기 위해 보관하는 입력이다. IK는 목표 위치에 맞게 관절을 배치하는 계산이며 여기서는 두 발의 목표를 보정한다. 서버의 눈 체적, 로컬의 임시 눌림, 애니메이션 목표는 서로 다른 상태다.
 
@@ -18,7 +16,7 @@ CMC는 `UCharacterMovementComponent`의 약칭이다. SavedMove는 클라이언�
 
 이전 Character 생성자는 기본 이동 컴포넌트를 사용했다.
 
-출처: `50e5838`, [CCLCharacter.cpp](../../Source/CCL/CCLCharacter.cpp), `ACCLCharacter::ACCLCharacter()`, 25-26줄. 실제 코드의 연속 발췌이며 들여쓰기만 정리했다.
+출처: `50e5838`, [CCLCharacter.cpp](../../Source/CCL/CCLCharacter.cpp), `ACCLCharacter::ACCLCharacter()`. 실제 코드의 연속 발췌이며 들여쓰기만 정리했다.
 
 ```cpp
 ACCLCharacter::ACCLCharacter()
@@ -27,7 +25,7 @@ ACCLCharacter::ACCLCharacter()
 
 변경 후에는 기본 서브오브젝트의 클래스를 지정한다.
 
-출처: `0408d94`, [CCLCharacter.cpp](../../Source/CCL/CCLCharacter.cpp), `ACCLCharacter::ACCLCharacter(`, 27-29줄. 실제 코드의 연속 발췌이며 들여쓰기만 정리했다.
+출처: `0408d94`, [CCLCharacter.cpp](../../Source/CCL/CCLCharacter.cpp), `ACCLCharacter::ACCLCharacter(`. 실제 코드의 연속 발췌이며 들여쓰기만 정리했다.
 
 ```cpp
 ACCLCharacter::ACCLCharacter(const FObjectInitializer& ObjectInitializer)
@@ -43,7 +41,7 @@ ACCLCharacter::ACCLCharacter(const FObjectInitializer& ObjectInitializer)
 
 접촉 계산은 일부 눈을 이웃으로 옮기고 남은 눈을 압축한다. 이웃 공간이 부족하면 남은 양을 원래 셀에 보관한다. 융해할 때는 물 환산량을 액체로 옮긴다. 물과 눈을 함께 보존하는 장부는 [물 순환](EnvironmentWater.md)에서 설명했다.
 
-출처: `0408d94`, [CCLSnowSimulation.cpp](../../Source/KSIEnvironment/Private/KSISnowSimulation.cpp), `if (Sequence <= SnowContacts.FindRef(SourceId))`, 57-60줄. 실제 코드의 연속 발췌이며 들여쓰기만 정리했다.
+출처: `0408d94`, [CCLSnowSimulation.cpp](../../Source/KSIEnvironment/Private/KSISnowSimulation.cpp), `if (Sequence <= SnowContacts.FindRef(SourceId))`. 실제 코드의 연속 발췌이며 들여쓰기만 정리했다.
 
 ```cpp
 if (Sequence <= SnowContacts.FindRef(SourceId))
@@ -56,7 +54,7 @@ if (Sequence <= SnowContacts.FindRef(SourceId))
 
 ## 저항과 예측 재실행
 
-출처: `0408d94`, [CCLSnowMovementComponent.cpp](../../Source/CCL/Environment/CCLSnowMovementComponent.cpp), `float UCCLSnowMovementComponent::GetMaxSpeed`, 168-172줄. 실제 코드의 연속 발췌이며 들여쓰기만 정리했다.
+출처: `0408d94`, [CCLSnowMovementComponent.cpp](../../Source/CCL/Environment/CCLSnowMovementComponent.cpp), `float UCCLSnowMovementComponent::GetMaxSpeed`. 실제 코드의 연속 발췌이며 들여쓰기만 정리했다.
 
 ```cpp
 float UCCLSnowMovementComponent::GetMaxSpeed() const

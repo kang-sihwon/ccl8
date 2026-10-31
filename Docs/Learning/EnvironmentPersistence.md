@@ -6,7 +6,7 @@
 
 ## 비교 기준과 단계 0의 의미
 
-범위는 자연환경 0·1단계와 3-7단계의 공통 저장·검증이다. 비교 기준은 `50e5838` → `64a7549` → `7307465` → `0408d94`, 작업 트리의 실험 조작이며 전체 해시·브랜치 관계·작업 트리 식별값은 [비교 근거](EnvironmentEvidence.md)에 있다. `WT-2026-10-10`은 문서 작성 중 읽은 미커밋 소스 사본을 뜻한다. 이후 수정된 HEAD와 동일하다고 가정하지 않는다.
+범위는 자연환경 0·1단계와 3-7단계의 공통 저장·검증이다. 비교 기준은 `50e5838` → `64a7549` → `7307465` → `0408d94`, 작업 트리의 실험 조작이며 전체 해시·브랜치 관계·작업 트리 식별값은 [비교 근거](EnvironmentEvidence.md)에 있다. 이 장이 처음 쓰였을 때 인용한 미커밋 작업 트리(`WT-2026-10-10`)는 이후 커밋됐다. 현재 기준은 2026-10-31의 `main`인 `d4888b0`이다. 코드가 `Source/KSI*/` 모듈로 옮겨진 위치는 [Framework 파일 이동표](../FrameworkPlan/Stage4.md#코드-위치의-전후-비교)를 따른다.
 
 단계 0은 기능 구현 전에 사용할 엔진, 프로젝트 경로, 테스트 포함 여부와 기존 실패를 확인하는 작업이다. `Tools/Validation/environment_preflight.py`의 파일 존재 검사는 진단이며 실제 빌드 성공과 다르다. 실행 가능한 엔진으로 프로젝트 파일 생성·Editor 빌드·기존 회귀를 확인한 결과가 [환경 계획](../EnvironmentPlan.md)에 따로 남아 있다. 이번 문서 작성에서는 설치본의 Build.version이 5.8.3임을 읽었고 게임은 실행하지 않았다.
 
@@ -16,7 +16,7 @@
 
 예전 `UCCLAgentWorldSubsystem::Save`는 서버 여부를 확인하고 Actor 위치를 생활 기록에 반영한 뒤 생활만 직렬화했다.
 
-출처: `50e5838`, [CCLAgentWorldSubsystem.cpp](../../Source/CCL/Agents/CCLAgentWorldSubsystem.cpp), `return Simulation.Save(Bytes);`, 100줄. 실제 코드의 연속 발췌이며 들여쓰기만 정리했다.
+출처: `50e5838`, [CCLAgentWorldSubsystem.cpp](../../Source/CCL/Agents/CCLAgentWorldSubsystem.cpp), `return Simulation.Save(Bytes);`. 실제 코드의 연속 발췌이며 들여쓰기만 정리했다.
 
 ```cpp
 return Simulation.Save(Bytes);
@@ -24,7 +24,7 @@ return Simulation.Save(Bytes);
 
 환경 연결 뒤 같은 진입점의 끝이 바뀌었다.
 
-출처: `a817082`, [CCLAgentWorldSubsystem.cpp](../../Source/CCL/Agents/CCLAgentWorldSubsystem.cpp), `auto* WorldSimulation = GetWorld()->GetSubsystem<UCCLWorldSimulationSubsystem>();`, 126-127줄. 실제 코드의 연속 발췌이며 들여쓰기만 정리했다.
+출처: `a817082`, [CCLAgentWorldSubsystem.cpp](../../Source/CCL/Agents/CCLAgentWorldSubsystem.cpp), `auto* WorldSimulation = GetWorld()->GetSubsystem<UCCLWorldSimulationSubsystem>();`. 실제 코드의 연속 발췌이며 들여쓰기만 정리했다.
 
 ```cpp
 auto* WorldSimulation = GetWorld()->GetSubsystem<UCCLWorldSimulationSubsystem>();
@@ -39,7 +39,7 @@ return WorldSimulation && WorldSimulation->Save(Simulation, Bytes, Error);
 
 지형까지 저장하면 파일 하나의 쓰기 성공으로 끝나지 않는다. 세계 파일만 새로 쓰고 지형 파일은 이전 상태로 남으면 서로 유효한 파일이어도 결합할 수 없다. `FCCLWorldGenerationStore`는 별도 세대 디렉터리에 세계·지역 파일을 쓰고 CRC와 문맥을 검사한 뒤 완료 표식을 게시한다.
 
-출처: `0408d94`, [CCLWorldGenerationStore.cpp](../../Source/CCL/Environment/CCLWorldGenerationStore.cpp), `if (!WriteFlushed(Directory / TEXT("complete.tmp")`, 115-120줄. 실제 코드의 연속 발췌이며 들여쓰기만 정리했다.
+출처: `0408d94`, [CCLWorldGenerationStore.cpp](../../Source/CCL/Environment/CCLWorldGenerationStore.cpp), `if (!WriteFlushed(Directory / TEXT("complete.tmp")`. 실제 코드의 연속 발췌이며 들여쓰기만 정리했다.
 
 ```cpp
 if (!WriteFlushed(Directory / TEXT("complete.tmp"), Marker)
