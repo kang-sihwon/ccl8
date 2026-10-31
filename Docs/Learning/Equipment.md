@@ -113,7 +113,9 @@ GUID는 실제 소유 아이템 하나를 식별한다. `FActiveGameplayEffectHa
 
 실제 가방 복사본에서 새 장비의 칸을 먼저 비우고 반환할 항목마다 빈 칸을 찾는다. 공간이 부족하면 원본 슬롯과 효과를 교체하기 전에 실패한다. 새 장비가 비운 칸도 반환 공간으로 이용할 수 있다.
 
-이후 흐름은 현재 코드 기준으로 다음과 같다. 먼저 `Inventory->CanRestore(Placement)`로 새 배치가 유효한지 확인하고 `BeginTransaction`으로 가방 변경을 묶는다. `bMutating`과 가방의 `bMutationLocked`를 가드로 켜서 도중에 같은 변경이 다시 들어오지 못하게 하고, 범위를 빠져나갈 때 `FinishTransaction(bPublish)`가 호출된다. 새 장비에 효과가 있고 아직 장착 전이면 효과를 검증해 적용하며, 실패하면 아직 배치를 바꾸기 전이므로 그대로 반환한다. 이어서 `RestoreValidated`로 배치를 확정하고 반환된 장비의 효과를 제거한 뒤 `EquipmentSlots`를 교체한다. 마지막에 `bPublish`를 켜서 변경을 게시하고 `SyncAvatar`를 호출한다. `50e5838`의 이 함수와 비교하면 가방 변경을 트랜잭션으로 게시하는 부분이 더해졌다. 이유는 커밋 본문에 없다.
+이후 흐름은 현재 코드 기준으로 다음과 같다. 먼저 `Inventory->CanRestore(Placement)`로 새 배치가 유효한지 확인하고 `BeginTransaction`으로 가방의 변경 알림을 보류한다. `bMutating`과 가방의 `bMutationLocked`를 가드로 켜서 도중에 같은 변경이 다시 들어오지 못하게 하고, `FScopedAggregatorOnDirtyBatch`로 속성 갱신을 한 번에 모은다. 범위를 빠져나갈 때 `FinishTransaction(bPublish)`가 호출되며 `bPublish`가 켜진 경우에만 변경 알림을 한 번 보낸다. 새 장비에 효과가 있고 아직 장착 전이면 효과를 검증해 적용하고, 실패하면 아직 배치를 바꾸기 전이므로 그대로 반환한다. 이어서 `RestoreValidated`로 배치를 확정하고 반환된 장비의 효과를 제거한 뒤 `EquipmentSlots`를 교체한다. 마지막에 `bPublish`를 켜고 `SyncAvatar`를 호출한다.
+
+`50e5838`의 같은 함수는 효과를 먼저 적용하고 `Inventory->Restore(Placement)`가 실패하면 그 효과를 제거했다. 지금은 `Restore`가 실패할 수 있는 검증(`CanRestore`)을 앞으로 옮겨서 효과를 적용한 뒤 배치가 거부되는 경로가 없다. 그 대신 `Inventory->Restore`가 아닌 `RestoreValidated`를 부르므로 검증과 확정 사이에 가방이 바뀌지 않는다는 전제를 `bMutationLocked`가 지킨다. 이 변경은 `dbdd174`에 들어갔고 커밋 본문에 이유는 없다.
 
 ## 7. 부착 지점에서 실제 소켓까지
 
