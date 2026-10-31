@@ -4,7 +4,7 @@
 
 ## 비교 기준과 개념
 
-이전 `c8816e7`과 변경 `b888b13`을 비교하며 작성 기준은 `d7782f1`이다. 전체 해시는 [후속 비교 근거](EnvironmentFollowupEvidence.md)에 있다. 변경 사실과 이유의 기록은 `b888b13` 커밋 본문과 [환경 계획](../EnvironmentPlan.md#다음-작업의-시작점)이다.
+이전 `c8816e7`과 변경 `b888b13`을 비교하며 작성 기준은 `d7782f1`이다. 현재 기준은 2026-10-31의 `main`인 `d4888b0`이고, `b888b13` 발췌 세 개는 현재 코드에서 같은 줄을 확인했다. c8816e7 발췌는 이전 코드다. 전체 해시는 [후속 비교 근거](EnvironmentFollowupEvidence.md)에 있다. 변경 사실과 이유의 기록은 `b888b13` 커밋 본문과 [환경 계획](../EnvironmentPlan.md#다음-작업의-시작점)이다.
 
 도메인은 Campaign·Playground·Scenario 중 어떤 영구 세계 영역을 사용하는지 정하는 분류다. `ACCLWorldEnvironmentConfig`는 월드에 배치하는 `AInfo` 파생 Actor다. `UPROPERTY(EditAnywhere, BlueprintReadWrite)`는 해당 값을 에디터와 Blueprint에서 다룰 수 있게 노출한다. 노출했다고 자동 저장·복제가 되는 것은 아니다.
 
@@ -12,7 +12,7 @@
 
 ## 저장 도메인을 고르는 코드
 
-출처: `c8816e7`, [CCLWorldSimulationSubsystem.cpp](../../Source/CCL/Environment/CCLWorldSimulationSubsystem.cpp), 456-465줄. 연속 발췌이며 들여쓰기만 정리했다.
+출처: `c8816e7`, [CCLWorldSimulationSubsystem.cpp](../../Source/CCL/Environment/CCLWorldSimulationSubsystem.cpp). 연속 발췌이며 들여쓰기만 정리했다.
 
 ```cpp
 ECCLWorldDomain UCCLWorldSimulationSubsystem::DomainForWorld(const UWorld* World)
@@ -29,7 +29,7 @@ ECCLWorldDomain UCCLWorldSimulationSubsystem::DomainForWorld(const UWorld* World
 
 이전 코드는 두 실험 맵의 정확한 이름만 특별 취급했다. 설명용으로 Scenario 맵을 복제해 새 이름으로 저장하면 마지막 분기에 따라 Campaign으로 분류될 수 있다. 이는 코드로 도출한 예이며 실제 데이터 오염 사고가 있었다는 기록은 아니다.
 
-출처: `b888b13`, [CCLWorldSimulationSubsystem.cpp](../../Source/CCL/Environment/CCLWorldSimulationSubsystem.cpp), 498-507줄. 연속 발췌이며 들여쓰기만 정리했다.
+출처: `b888b13`, [CCLWorldSimulationSubsystem.cpp](../../Source/CCL/Environment/CCLWorldSimulationSubsystem.cpp). 연속 발췌이며 들여쓰기만 정리했다.
 
 ```cpp
 ECCLWorldDomain UCCLWorldSimulationSubsystem::DomainForWorld(const UWorld* World)
@@ -50,7 +50,7 @@ ECCLWorldDomain UCCLWorldSimulationSubsystem::DomainForWorld(const UWorld* World
 
 기존에는 공통 Character의 BeginPlay에서 맵 이름에 `Environment`가 들어 있는지 검사했다.
 
-출처: `c8816e7`, [CCLCharacter.cpp](../../Source/CCL/CCLCharacter.cpp), 95-106줄. 연속 발췌이며 들여쓰기만 정리했다.
+출처: `c8816e7`, [CCLCharacter.cpp](../../Source/CCL/CCLCharacter.cpp). 연속 발췌이며 들여쓰기만 정리했다.
 
 ```cpp
 void ACCLCharacter::BeginPlay()
@@ -70,7 +70,7 @@ void ACCLCharacter::BeginPlay()
 
 수정 뒤에는 눈 이동 컴포넌트의 BeginPlay가 설정을 읽는다.
 
-출처: `b888b13`, [CCLSnowMovementComponent.cpp](../../Source/CCL/Environment/CCLSnowMovementComponent.cpp), 103-109줄. 연속 발췌이며 들여쓰기만 정리했다.
+출처: `b888b13`, [CCLSnowMovementComponent.cpp](../../Source/CCL/Environment/CCLSnowMovementComponent.cpp). 연속 발췌이며 들여쓰기만 정리했다.
 
 ```cpp
 if (const auto* Config = ACCLWorldEnvironmentConfig::Find(GetWorld()); Config && CharacterOwner && CharacterOwner->GetMesh())

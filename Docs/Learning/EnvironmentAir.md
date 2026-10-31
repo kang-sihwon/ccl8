@@ -34,8 +34,8 @@ HalfExtents는 사각형의 반너비·반높이다. 둘에 4를 곱해야 전�
 출처: `d4888b0`, [KSISurfaceSimulation.cpp](../../Source/KSIEnvironment/Private/KSISurfaceSimulation.cpp), `const FKSIAirSimulation PreviousAir = Air;`. 실제 코드의 연속 발췌이며 들여쓰기만 정리했다.
 
 ```cpp
-const FCCLAirSimulation PreviousAir = Air;
-FCCLSurfaceThermalContext Context;
+const FKSIAirSimulation PreviousAir = Air;
+FKSISurfaceThermalContext Context;
 Context.PreviousAir = &PreviousAir;
 Context.Shelter = Shelter;
 Context.Observer = Observer;
