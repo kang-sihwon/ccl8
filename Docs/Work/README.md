@@ -6,7 +6,6 @@
 
 | 작업 | 지도 | 상태 |
 |---|---|---|
-| 큰 문서 내용 정리 | [large-docs-cleanup](large-docs-cleanup.md) | 끝남. 지도 닫기 확인 대기 |
 
 ## 다음 작업 후보
 
