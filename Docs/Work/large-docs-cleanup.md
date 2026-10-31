@@ -36,6 +36,17 @@
   - 결과: 부모는 6.1KB로 줄었고 `Core`, `Representation`으로 나눴다. 끝난 다음 작업 문장과 소스 사본을 뺐다.
 - [x] 11. `Packaging/Records` 22.1KB (없음).
   - 결과: 13KB로 줄었다. 패키지에서 얻은 규칙을 앞으로 모으고 빈 경로 표와 반복 한계 문장을 뺐다. 내용 경계가 없어 나누지 않았다.
+- [ ] 12. `UIFoundation` 18.6KB (없음).
+- [ ] 13. `AgentFoundation` 18.4KB (없음).
+- [ ] 14. `ProgressionFoundation` 17.7KB (없음).
+- [ ] 15. `AgentToolingResearch/SkillReview` 17.5KB (없음).
+- [ ] 16. `SessionFoundation` 17KB (없음).
+- [ ] 17. `ContentFoundation` 14.9KB (없음).
+- [ ] 18. `EnvironmentPlan/Ecology/AgentLife` 13KB (없음).
+- [ ] 19. `EnvironmentPlan/Ecology/Vegetation` 12.6KB (없음).
+- [ ] 20. `MultiplayerFoundation` 12.2KB (없음).
+- [ ] 21. `AgentToolingResearch` 12.2KB (없음).
+- [ ] 22. `EnvironmentPlan/Ecology/Nutrition` 10.2KB (없음).
 
 ## 정한 것
 
