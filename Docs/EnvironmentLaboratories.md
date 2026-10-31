@@ -4,6 +4,13 @@
 
 레벨 선택과 설정은 `Source/CCL/Environment/CCLExperimentLaboratoryScreen.cpp`, 서버 검증·이동은 `CCLExperimentLaboratory.cpp`, 레벨·종류 목록은 `CCLLaboratoryConfiguration.cpp`가 소유한다. 이 문서는 실험장의 사용법, 레벨과 표본, 실험용 리소스와 제출 범위, 후속 작업 기준과 검증 기록을 소유한다. 근거는 [결정 27](decisions/0027-per-feature-environment-labs.md)이다.
 
+## 하위 문서
+
+| 문서 | 읽는 때 |
+|---|---|
+| [실험장 리소스](EnvironmentLaboratories/Resources.md) | 실험용 에셋을 연결하거나 Fab 후보를 고르고 제출 범위를 확인할 때 |
+| [실험장 검증](EnvironmentLaboratories/Verification.md) | 전용 레벨의 검증 결과와 미검증 범위를 확인할 때 |
+
 ## 시작과 조작
 
 1. 콘텐츠 브라우저에서 `/Game/Maps/Tests/Ecology` 등 원하는 레벨을 열고 Play를 누른다.
@@ -62,115 +69,3 @@
 부패 수량은 선택한 보관함 안의 음식 개수다. 음식 메시 하나가 해당 묶음을 나타내므로 수량만큼 메시를 늘어놓지 않는다. **건조·고온다습·냉각**은 선택한 보관함의 앞으로의 온습도를 바꾼다. 1배로 천천히, 60배로 빠르게 진행하면 신선도에 따라 빵 표면이 어두워지고 곰팡이 무늬가 퍼진다. 0배에서는 조건만 바꾸며 품질은 진행하지 않는다. 냉각은 이후 부패와 곰팡이 성장을 멈추지만 기존 손상을 복구하지 않는다. 밀폐의 부패 계수 0.2·곰팡이 노출 0은 유지한다. 바닥으로 꺼낸 음식은 위치의 환경을 사용한다.
 
 부패 표본은 이미 보유한 Fishermans_Cabin의 `SM_Bread_01`을 사용한다. 필요한 원본 의존성을 `/Game/TestResources/Fishermans_Cabin`에 복사했으며, 진단 재질 `M_FoodProgress`가 빵 텍스처와 복제된 품질을 함께 사용한다. 재질의 녹색 피복은 곰팡이 비율을 설명하는 시각 표시이며 미생물 분포를 계산한 결과는 아니다. `Tools/Validation/update_food_presentation.py`로 누락 의존성과 재질을 만들 수 있다.
-
-## 리소스와 제출 범위
-
-### 연결한 실험용 리소스
-
-나무 외에 `SM_Grass_01`, `SM_Flower_01`, `SM_Bush_01`과 실제 의존성을 보유 Fab 폴더에서 공유 폴더로 복사했다. `copy_laboratory_foliage.py`가 복사를, `configure_laboratory_life.py`가 전용 레벨 연결을 수행한다.
-
-동물은 [Quaternius의 양](https://opengameart.org/content/lowpoly-animated-farm-animal-pack), mujtaba-io의 [비둘기](https://opengameart.org/content/low-poly-3d-pigeon-model-rigged-animated-untextured)와 [개미](https://opengameart.org/content/ant-3d-model-rigging-animated-low-poly-ish)를 사용한다. 이 세 출처는 CC0다. 초기 [Quaternius 물고기](https://quaternius.com/packs/animatedfish.html)는 보유 Fab AnimatedPondFish의 `SKM_Fish`와 `SKM_Fish_Animation`으로 교체했다. CC0 원본의 사용 파일과 변환 내역은 `Tools/Validation/laboratory_animal_sources.json`에 남아 있다.
-
-`copy_laboratory_fern_pond.py`는 선택한 양치·물고기 메시, 수영 애니메이션과 의존성을 포함한 에셋 20개를 `/Game/TestResources/PN_Fern`, `/Game/TestResources/AnimatedPondFish`로 복사한다. `configure_laboratory_fern_pond.py`는 기존 다른 종류의 설정을 유지하면서 물고기 프로필과 양치 메시를 교체한다. 물고기는 14본, 수영 루프 1.25초이며 +Y인 머리 방향을 -90° 회전해 이동 방향 +X에 맞췄다. 크기는 1.25배다. 원본 Fab 폴더는 보존하고 데모 맵·캐릭터·이동 Blueprint는 공유 폴더에 포함하지 않는다.
-
-Blender 원본의 리그 이름을 보존한 FBX를 사용한다. 초기 양·물고기 임포트는 Unreal의 `Armature` 제거 처리 후 애니메이션 배율이 맞지 않아 화면에 정상 표시되지 않았다. `export_laboratory_animal.py`와 `import_laboratory_animals.py`는 명시적 리그 루트를 유지하며, 양의 걷기·대기는 별도 베이크 후 `import_laboratory_gaits.py`로 연결한다. 동물의 표시 프로필은 레벨의 `CreatureVisuals` 배열에 메시·이동·대기·좌표 보정·기준 속도를 저장한다.
-
-### 보유 Fab 라이브러리에서 확인한 후보
-
-2026-10-14 로그인된 Fab 라이브러리에서 다음 제품의 보유 상태를 확인했다. 로컬 프로젝트의 에셋 목록과 계정의 보유 목록은 다르다. 이후 PN_Fern과 AnimatedPondFish는 사용자가 다운로드했으며 위의 선택 에셋을 연결했다. Advanced Flock System은 도입하지 않았다.
-
-| 용도 | 보유 제품과 제품 페이지에서 확인한 구성 | 적용 판단 |
-|---|---|---|
-| 지상 동물·새·곤충 | [Stylized Fantasy Creatures Bundle](https://www.fab.com/listings/8e208ab4-667d-4a86-870a-f0c3e9b0e080): 21종, Skeletal Mesh 26개, 리그·애니메이션 포함. 양 24개·독수리 15개·말벌 12개 애니메이션 | 사용자가 보유 버전 문제를 알려 적용 후보에서 제외함 |
-| 물고기·수생 식물 | [Animated Pond Fish](https://www.fab.com/listings/91c3a100-3ca3-49c3-bd40-73152ee1f35e): 리그·애니메이션이 있는 물고기 5개, 수련 3개, 연못·수면 포함 | 선택한 물고기 메시와 수영 루프를 연결함. 수생 식물은 미적용이며 팩의 이동 Blueprint는 사용하지 않음 |
-| 군집 이동 | [Advanced Flock System](https://www.fab.com/listings/70626312-656b-4037-8e69-4cba921d04d4): 영역 제한, 장애물 회피, 추종과 군집 매개변수를 제공하는 플러그인 | 물고기 군집 이동의 검토 후보. 세계 시간 배율·결정론·저장·Actor/Mass 전환과의 호환성은 미검증 |
-
-위 세 제품 페이지는 UE 5.8 지원을 표시한다. 실제 도입 여부와 검증 범위는 위 표와 [검증 기록](#검증-범위)을 따른다. 식생 라이브러리에서도 기존 후보인 optimized Grass Library, Meadow Flowers, Fern Collection과 Norway Maple의 보유 상태를 확인했다. 양치는 다운로드한 PN_Fern에서 선정했다.
-
-### 생물과 식생의 공개 Fab 후보
-
-2026-10-14 제품 페이지의 형식과 설명을 확인한 후보 목록이다. 이후 실제 연결한 리소스는 위의 연결 기록을 따른다. 나머지 후보의 UE 5.8.3 임포트와 애니메이션 재생은 미검증이다. 생물은 현재 생태 계산의 위치·활동 상태에 메시와 애니메이션을 연결해야 한다. 제품에 포함된 별도 AI를 그대로 실행하면 프로젝트의 이동·먹이 계산과 중복될 수 있다.
-
-| 용도 | 후보와 확인한 구성 | 연결할 내용 |
-|---|---|---|
-| 새 | [Birds](https://www.fab.com/listings/c5b54173-3087-4060-9380-5f9c500c31ec), UE 형식, 까마귀·비둘기·갈매기, 87개 애니메이션 | 공중 이동 방향에 비행·회전 애니메이션 연결. 착지 행동은 현재 실험에 별도 구현 필요 |
-| 물고기 | [Freshwater Fish Collection Animated](https://www.fab.com/listings/e9b2af6f-cc6a-4d29-baa1-3155b3f403bf), 15종, Maya·FBX와 애니메이션 | 수중 경로를 따라 헤엄 재생. FBX 임포트·스케일·스켈레톤 확인 필요 |
-| 지상 동물 | [Animalia Red Deer](https://www.fab.com/listings/b50abc7d-c347-469f-b130-c6536f1e420a), 사슴과 애니메이션, gFur 필수 아님 | 이동·섭취·정지 상태와 동작 연결 |
-| 곤충 | [Butterfly Animated](https://www.fab.com/listings/8761bf1c-339c-444e-b725-90600aa64c94), 리그와 비행 반복 2개 | 변환 형식과 UE 임포트 확인 후 비행 루프 연결 |
-| 풀 | [optimized Grass Library](https://www.fab.com/listings/8b68642e-35f4-438e-82b4-799fc2228303), 무료 표시, UE 형식, 12종·110개 군집과 Pivot Painter 바람 | 생체량 크기, 고사·적설 재질, 환경 풍속 연결 |
-| 꽃 | [Meadow Flowers](https://www.fab.com/listings/e648b1bd-11f6-4895-bd43-15e399c80297), 무료 표시, UE 형식, 20종·96개 군집 | 꽃 종류와 성장 크기 연결. 조회 페이지에 지역 제한 안내가 있어 계정에서 확인 필요 |
-| 양치 | [Fern Collection](https://www.fab.com/listings/b778bd8f-524c-42b6-b60c-4caac59029c1), 무료 표시, UE 형식, 8종과 셰이더 바람 | 식생 상태와 바람 파라미터 연결 |
-| 수생 식물 | [Aquarium Plants Collection](https://www.fab.com/listings/3bdf1ee1-0c9d-45b3-9420-925383ee2ff3), UE 형식, 성장·바람 애니메이션 | 실제 물 깊이에 맞춰 배치하고 생체량을 성장 파라미터에 연결 |
-| 버섯 | [Mushroom Pack](https://www.fab.com/listings/b15ed5a5-3e34-4ad6-8fdc-f97f6f6d6101), 49개 메시, UE·FBX 형식 | 성장·고사 크기와 상태 재질 연결 |
-| 관목 | [Realistic bush](https://www.fab.com/listings/fe9c415b-ccac-4e89-925f-f5bf7543aae5), UE 형식, 여러 수형과 4K 텍스처 | 패치 크기에 맞는 수형 선정 후 성장·휴면 상태 연결 |
-| 이끼 | [Realistic Moss Foliage Plants Pack](https://www.fab.com/listings/fe0260a4-1a8f-459d-bb2f-a58ea6561345), UE 형식, 이끼 배치 Blueprint 포함 | 이끼 메시만 추출해 토양 수분·생체량과 연결 |
-| 조류 | [Water with algae PBR Textures](https://www.fab.com/listings/8f8f716b-f3cc-4dfe-a2b1-4102fd3338ed), 물·진흙·조류 혼합 PBR 텍스처 8종 | 조류는 수면 패치 재질로 표현하는 후보. 독립 식물 메시가 아니며 생체량에 따라 피복률을 조절할 구현 필요 |
-| 부패 음식 | [4K Scanned Bread](https://www.fab.com/listings/5d913fa4-a175-4365-869a-ea0061e20930?lang=en), 통빵·반쪽·슬라이스 3종, FBX·Blender 형식, 메시당 3–7천 삼각형 | 현재 실험용 빵의 외형 후보. 신선도 색 보간과 곰팡이 마스크를 별도 연결해야 하며 부패 기능이 포함된 상품은 아님 |
-
-나무는 현재 복사된 Norway Maple을 활용할 수 있다. 계정 보유 여부는 위의 보유 목록에서 확인한 제품에 한정한다.
-
-실제로 배치한 Fab 메시·Niagara와 그 머티리얼·텍스처 의존성을 `/Game/TestResources`로 복사하고 참조를 바꿨다. 원본 `/Game/Fab`는 보존하며 `.gitignore`로 제외했다. 기존 프로젝트의 마네킹·환경 머티리얼 등은 원래 공유 경로를 유지한다.
-
-추가 Fab 리소스 제출 대상은 `Content/TestResources/`다. 새 실험 기능을 다른 PC에서도 실행하려면 다음 변경도 함께 제출해야 한다.
-
-- `Content/Maps/Tests/`와 변경된 기존 실험 맵·외부 액터 패키지
-- 참조를 바꾼 `Content/Progression/DA_TrainingSword.uasset`, `DA_TrainingShield.uasset`
-- 이번 작업의 `Source/CCL/`, `Source/CCLEditor/`, `Config/DefaultGame.ini`, `.gitignore`, `Tools/Validation/` 변경
-
-`Tools/Validation/create_test_laboratories.py`는 누락된 전용 레벨과 리소스 사본을 만든다. `verify_test_resources.py`는 원본 Fab 참조와 복사 리소스의 누락된 의존성을 검사한다. 둘 다 에디터 Python에서 실행하며 결과는 `Saved/Laboratories/`에 남긴다. 에셋 파일은 저장소의 LFS 규칙을 따른다.
-
-`update_laboratory_presentation.py`는 기존 전용 레벨에 강수 리소스를 연결하고 물고기 수면 재질을 만든다. Clock을 삭제하기 전에 패키지 참조가 없는지 검사한다. PIE를 종료한 에디터에서 실행한다.
-
-## 검증 범위
-
-### PN_Fern·AnimatedPondFish 적용 검증
-
-2026-10-14 UE 5.8.3에서 Unreal MCP로 두 팩을 검사하고 선택 에셋을 복사했다. Ecology와 Vegetation을 저장·다시 로드한 뒤, 물고기 3마리의 새 Skeletal Mesh·14본·수영 재생과 수중 위치 변화를 PIE에서 확인했다. 양치는 같은 메시 3개를 유지하며 60배 성장에서 첫 표본 배율이 약 0.378에서 0.638로 증가했다.
-
-0배에서 수영 애니메이션 시각이 진행되던 문제는 `BeginPlay` 이후 준비된 월드 시간 액터를 다시 찾도록 고쳤다. 재시작 후 PIE에서 1배의 위치·애니메이션 진행과 0배의 동일 Actor 위치·동일 애니메이션 시각을 확인했다. 정지 직후 표시 위치가 서버 위치에 도달하는 보간은 유지한다.
-
-추가한 에셋은 의존성 포함 20개, 약 99 MiB다. 당시 공유 리소스는 188개이며 원본 Fab 참조와 리소스 의존성 누락은 없다. 기존 전투의 `LS_Attack_01` 누락은 별도 항목이다. 원본 팩의 미사용 데모 캐릭터에서 발생한 Blueprint 컴파일 오류는 이번 공유 에셋의 의존성이 아니며, 해당 데모는 수정하지 않았다. 새 폴더의 `.uasset`에 Git LFS 규칙이 적용되는 것을 확인했다. 멀티플레이·패키지 실행과 Advanced Flock System 연결은 이번 검증에 포함하지 않았다.
-
-### 식생 연속 성장·동물 리그 검증
-
-2026-10-14 UE 5.8.3에서 GPF와 최종 Editor 빌드를 통과했다. 환경 자동화는 142개 통과, 실패·경고 0건이다. `LaboratoryGrowthContinuity`는 9종의 추운 상태에서 생체량 유지, 20°C 복귀 후 3,600세계초까지 동일 개체·생장 주기 보존을 검사한다. 기존 생태 검사도 시간 분할·저장 복원, 먹이 보존, 군집 개체별 위치 차이와 경로 검사를 통과했다.
-
-MCP PIE에서 네 종류의 Skeletal Mesh, 본 수, 애니메이션 시각과 위치 변화를 기록했다. 재임포트 뒤 양·물고기·비둘기·개미의 실제 표시를 스크린샷으로 다시 확인했다. 나무는 60배 진행, 겨울, 20°C·정지, 60배 재개 순서로 동일 메시 3개를 유지했고 첫 인스턴스 배율은 약 0.274에서 0.603으로 증가했다. 조건 복귀 때 씨앗 크기로 돌아가지 않았다. 사용자 경험의 정확한 조작 순서 전체를 재현한 것은 아니며, 확인한 짧은 수명과 휴면 메시 교체 문제를 수정했다.
-
-실패한 임포트 폴더와 미사용 애니메이션 20개를 사용자 승인으로 삭제한 뒤 공유 리소스는 168개이며 원본 Fab 참조와 공유 리소스의 누락된 의존성은 없다. 기존 `LS_Attack_01` 누락은 별도 항목이다. 멀티플레이·패키지 실행, 고밀도 군집의 겹침 방지, 모든 지형에서의 동작은 미검증이다.
-
-후속 PIE에서 풀·꽃·관목도 종류별로 3개씩 배치해 실제 메시 연결을 확인했다.
-
-### 사용성 보완 검증
-
-2026-10-14 UE 5.8.3 작업 트리에서 GPF와 Editor 빌드를 통과했다. `CCL.Environment.*`는 140개 통과, 실패·경고 0건이다. `LaboratoryRainOnset`은 서로 다른 셀 크기에서 첫 강수의 깊이·물질 수지와 풍속 입력 검증을 포함한다. `LaboratoryVegetationFire`는 가뭄으로 건조한 뒤 세계 시간이 정지한 상태의 연소와 열 수지를 검사한다.
-
-MCP PIE에서 날씨·눈·물·지형, 물고기·새, 식생, 차폐, 순환, 생애·부패의 진입 전후 상태를 기록했다. 확대된 메뉴와 사용법 본문을 화면에서 확인했다. 날씨·눈·식생의 강수 입자, 물고기 수면과 수중 위치 변화, 새의 공중 위치 변화를 확인했다. 환경 순환은 두 회차의 모든 단계와 물질 수지 검사를 통과했다. 최종 문 방향 시점에서는 실내 발화와 문 밖 연기 표시를 확인했다. 식생은 가뭄을 60배로 15초 진행한 뒤 세계 시간을 정지하고 발화해 불꽃과 연기를 확인했다.
-
-물·지형의 초기 저수량을 제거했지만 사용자가 보고한 간헐적 수위 폭증의 재현 원인까지 확정한 것은 아니다. 이번 새 레벨 진입과 60배 강수 관찰에서는 폭증을 재현하지 못했다. 기존 저장 복원·매우 높은 배율·장시간 누적 강수의 조합은 미검증이다. 눈 레벨은 초기 적설과 추가 강설을 확인했으며 융해 중의 간헐적 수위 문제를 재현한 검사는 아니다.
-
-### 부패·고배율 강수 후속 검증
-
-2026-10-14 UE 5.8.3에서 GPF와 최종 Editor 빌드를 통과했다. 환경 자동화는 141개 통과, 실패·경고 0건이다. `LaboratoryDecayProgress`는 같은 시각의 조건 변경이 품질을 보존하는지, 고온다습·냉각·건조 전환이 이후 속도에 적용되는지 검사한다. `LaboratoryRainOnset`은 셀 간격 3종·60/120/600배·18/72 mm/h의 첫 강수와 30게임초 누적 깊이·물질 수지를 검사한다.
-
-MCP PIE에서는 보유 빵 메시, 시간에 따른 색 변화와 곰팡이 무늬, 정지 상태의 조건 변경, 냉각 후 60배 진행을 확인했다. 고온다습 환경에서 약 58세계초에 신선도 45.76%·곰팡이 23.73%였고, 냉각 후 약 299세계초까지 같은 품질을 유지했다. 물·날씨·눈·지형 메뉴에는 지형 높이를 제외한 최대 물 깊이와 면적 평균 누적 강수량을 추가했다.
-
-음식의 새로운 조건·표시를 포함한 멀티플레이와 패키지 실행은 미검증이다.
-
-고배율 재검사는 저장·불러오기 없이 네 레벨과 60·120·600배의 12개 조합을 진행했다. 요청 배율의 실제 적용과 계산 실패가 없음을 확인했으며, 약 15실제초에 각각 900·1785·8880–8895세계초가 진행됐다. 초기·0.5초·15초의 수면 메시 높이에서 시작 직후 폭증은 재현하지 못했다. 지형의 수면 절대 높이 약 4 m는 지형 높이를 포함하므로 물 깊이로 해석하지 않는다. 매 프레임 최대 깊이 추적이나 사용자가 경험한 정확한 조작 순서를 재현한 검사가 아니므로 간헐적 결함의 원인은 미확정이다.
-
-### 기존 전용 레벨 검증
-
-2026-10-13 UE 5.8.3 작업 트리에서 GenerateProjectFiles와 `CCLEditor Win64 Development` 빌드가 성공했다. `CCL.Environment.*` 자동 검사 138개가 통과했다. 새 `LaboratorySelection` 검사는 생태계 4종의 1·3·16개 선택과 식생 9종의 단일 종류 배치를 검사한다. 자동 검사는 최종 시각 표시 보완 전 실행했고, 보완 후 빌드와 MCP 화면 검사를 수행했다.
-
-MCP PIE에서 확인한 동작은 다음과 같다.
-
-- 전용 레벨 14개의 진입·준비 상태와 표본 분리를 확인했다. 냉각·밀폐 보관을 포함해 15회 진입했다. 기존 `EnvironmentScenario`에서도 9개 표면 영역과 생태·생애·음식·식생·지형 실험 컨트롤러가 준비됐다.
-- 메뉴에서 물고기 5개를 선택·배치하고 다른 시험 액터가 없는지 확인했다. Actor 몸체와 Mass 구체가 실제 화면에 보였다.
-- 수중 Mass 5개의 위치·섭취량·에너지 변화가 진행됐다.
-- 지상 Actor 3개를 실시간으로 진행시켜 먹이 섭취·에너지 증가와 막힘 0을 확인했다.
-- 생애 4개 중 첫 표본을 수명으로 사망시킨 뒤 초기화하여 모두 복원했다.
-- 나무 3개만 배치하고 시간이 흐를 때 생체량 증가를 확인했다.
-- 노출 음식 6개의 부패·곰팡이 진행을 확인했다.
-
-이번 전용 레벨의 멀티플레이·패키지 실행·장시간 성능, 모든 종류의 시각 표현과 모든 조작 조합은 검증하지 않았다.
