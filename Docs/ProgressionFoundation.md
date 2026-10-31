@@ -107,7 +107,7 @@ public:
 
 ### 에셋 도구
 
-- `Tools/Validation/migrate_equipment_tags.py`는 기존 정의 12개와 기본 마네킹을 `Saved/EquipmentTagBackup/`에 백업한 뒤 변환을 요청한다. 기본 마네킹에 `CCL_Grip_L/R`, `CCL_Shield_L/R`, `CCL_Stow_Back` 소켓을 추가하고 `Content/Progression/DA_HumanoidAttachments.uasset`을 만든다. 기존 소켓과 이미 있는 프로필 설정은 덮어쓰지 않는다. 재시작한 새 에디터 모듈에서 실행해야 하며, 구버전 모듈에서는 에셋 저장 전에 실패한다.
+- `Tools/Validation/migrate_equipment_tags.py`는 기존 정의 12개와 기본 마네킹을 백업한 뒤 변환을 요청한다. 기본 마네킹에 `CCL_Grip_L/R`, `CCL_Shield_L/R`, `CCL_Stow_Back` 소켓을 추가하고 `Content/Progression/DA_HumanoidAttachments.uasset`을 만든다. 기존 소켓과 이미 있는 프로필 설정은 덮어쓰지 않는다. 재시작한 새 에디터 모듈에서 실행해야 하며, 구버전 모듈에서는 에셋 저장 전에 실패한다.
 - `Tools/Validation/create_equipment.py`는 기존 정의를 덮어쓰지 않고 시험용 장비 8종을 만든다.
 - `migrate_item_fragments.py`는 기존 정의 네 개의 별도 변환 도구다. `migrate_equipment_tags.py` 실행이 그 네 개를 포함해 백업·로드 변환·저장을 마쳤으므로 따로 실행할 필요가 없다.
 
@@ -169,11 +169,11 @@ Fast Array의 항목별 복제를 쓴다. 전체 배열 복제도 가능하지�
 
 ## 검증 상태
 
-아래는 2026-10-07 UE 5.9 노트북의 기록이고, [2026-10-11 설계 후속 수정](#2026-10-11-설계-후속-수정)만 UE 5.8.3 기록이다. 그 뒤의 UE 5.8.3 재검증은 [2026-10-11 재검증 기록](QA/FullReviewReverification-2026-10-11.md)이 소유한다. 경로는 저장소 기준이고, 파일명만 적은 로그는 `Saved/StageValidation/` 아래에 있다.
+아래는 2026-10-07 UE 5.9 노트북의 기록이고, [2026-10-11 설계 후속 수정](#2026-10-11-설계-후속-수정)만 UE 5.8.3 기록이다. 그 뒤의 UE 5.8.3 재검증은 [2026-10-11 재검증 기록](QA/FullReviewReverification-2026-10-11.md)이 소유한다.
 
 ### 태그 개편
 
-생성 BAT·전체 에디터 빌드, 에셋 백업·변환, 태그 계약 자동 검사, 단독·Listen·저장·화면 검사를 통과했다. 최종 생성·빌드 근거는 `Saved/StageValidation/Tags-Generate.log`, `Tags-Build.log`다. `migrate_equipment_tags.py` 실행에서 정의 12개 변환 성공과 오류·경고 0개를 확인했고, 원본 백업은 로컬 `Saved/EquipmentTagBackup/20261007-225914-285642/`에 있다. 프로필 에셋과 기본 마네킹의 장착 소켓을 만들고 다시 불러와 검증했다.
+생성 BAT·전체 에디터 빌드, 에셋 백업·변환, 태그 계약 자동 검사, 단독·Listen·저장·화면 검사를 통과했다. 프로필 에셋과 기본 마네킹의 장착 소켓을 만들고 다시 불러와 검증했다.
 
 `CCL.Equipment.TagContracts`는 명시 소켓·중복 매핑·잘못된 태그·형식 1-3 변환·형식 4 왕복을 검사했다. 검사 중 숫자 슬롯을 enum 이름으로 잘못 해석하는 저장 호환 결함을 고쳤다. UE JSON의 숫자도 문자열 조회에 응답하므로 슬롯 값의 실제 자료형을 먼저 구분한다. 테스트용 중복 배열 요소가 복사본을 추가하도록 한 수정도 함께 했다.
 
@@ -181,14 +181,12 @@ Fast Array의 항목별 복제를 쓴다. 전체 배열 복제도 가능하지�
 
 | 태그 개편 검사 | 로컬 근거 |
 |---|---|
-| 기존 에셋 백업·소켓·프로필·정의 변환 | `Saved/StageValidation/Tags-Migrate.log` |
-| 태그·소켓·저장 버전 계약 | `Saved/Tests/Automation/20261007-230548-043/report/index.json`, 성공 1·실패 0 |
-| 단독·Listen 원격 입력·복제·재스폰 | `Saved/StageValidation/Tags-Standalone.log`, `Tags-Listen.log` |
-| 별도 프로세스 저장·복원 | `Saved/StageValidation/Tags-Session.log` |
-| 720p·1080p 드래그·장착·해제·대화 전환 | `Saved/StageValidation/Tags-UI-1280.log`, `Tags-UI-1920.log` |
-| 실제 오른손 소켓과 양손 장비 메시 하나 | `Saved/Tests/UIVisual/1280x720-20261007-230543/game.log` |
-
-화면 캡처는 `Saved/Tests/UIVisual/1280x720-20261007-230543/`와 `1920x1080-20261007-230642/`에 있고 캐릭터·슬롯·대화창 배치를 확인했다.
+| 기존 에셋 백업·소켓·프로필·정의 변환 | |
+| 태그·소켓·저장 버전 계약 |, 성공 1·실패 0 |
+| 단독·Listen 원격 입력·복제·재스폰 | |
+| 별도 프로세스 저장·복원 | |
+| 720p·1080p 드래그·장착·해제·대화 전환 | |
+| 실제 오른손 소켓과 양손 장비 메시 하나 | |
 
 ### 구조체 Fragment와 장비 개편
 
@@ -198,15 +196,15 @@ Fast Array의 항목별 복제를 쓴다. 전체 배열 복제도 가능하지�
 
 | 장비 개편 검사 | 로컬 근거 |
 |---|---|
-| 생성 BAT·화면 수정 전 전체 에디터 빌드 | `Saved/StageValidation/Equipment-Generate.log`, `Equipment-Build.log` |
-| 시험용 장비 8종 생성 | `Equipment-Assets.log` |
-| 단독·Listen 원격 기능 | `Equipment-Standalone.log`, `Equipment-Listen.log` |
-| 별도 프로세스 저장·복원 | `Equipment-Session.log` |
-| 가방 부족·양손 교체·반지·저장 무결성, 수정 전 UI 실패 재현 | `Equipment-Offscreen.log`, `Saved/Tests/UIVisual/1280x720-20261007-170902/game.log` |
-| 화면 수정 후 컴파일, 링크 제외 | `Equipment-UIFix-Compile.log` |
-| 최종 생성 BAT·에디터 컴파일, 링크 제외 | `Equipment-Final-Generate.log`, `Equipment-Final-Compile.log` |
-| 게임 타깃 빌드·패키지 | `Equipment-Package.log`의 게임 빌드 성공, `Equipment-Package-Final.log`의 UAT 성공 |
-| 패키지 720p·1080p UI | `Equipment-Packaged-UI-1280.log`, `Equipment-Packaged-UI-1920.log` |
+| 생성 BAT·화면 수정 전 전체 에디터 빌드 | |
+| 시험용 장비 8종 생성 | |
+| 단독·Listen 원격 기능 | |
+| 별도 프로세스 저장·복원 | |
+| 가방 부족·양손 교체·반지·저장 무결성, 수정 전 UI 실패 재현 | |
+| 화면 수정 후 컴파일, 링크 제외 | |
+| 최종 생성 BAT·에디터 컴파일, 링크 제외 | |
+| 게임 타깃 빌드·패키지 | |
+| 패키지 720p·1080p UI | |
 
 오프스크린 검사는 게임 내부의 Slate 포인터 이벤트를 쓰며 Windows 바탕화면의 수동 조작 검사가 아니다. 글자 배율 변경은 별도 패키지의 1280×720과 1920×1080 캡처에서 안내·체력·인벤토리 표시로 확인했다.
 
@@ -216,11 +214,11 @@ Fast Array의 항목별 복제를 쓴다. 전체 배열 복제도 가능하지�
 
 | 검사 | 로컬 근거 |
 |---|---|
-| 최종 생성 BAT·빌드 | `Saved/StageValidation/Stage4-Generate.log`, `Stage4-Build.log` |
-| 정의·보급품 저장 | `Saved/StageValidation/Stage4-Assets.log` |
-| Standalone 기능 | `Saved/StageValidation/Stage4-Standalone.log` |
-| Dedicated·Listen 원격·호스트·지연과 손실 | `Saved/StageValidation/Stage4-Dedicated-Final.log`, `Stage4-Listen-Final.log`, `Stage4-Host-Final.log`, `Stage4-Impaired-Final.log` |
-| 기존 전투·이동 회귀 | `Saved/StageValidation/Stage4-Combat-Standalone.log`, `Stage4-Combat-Dedicated.log`, `Stage4-Movement.log` |
+| 최종 생성 BAT·빌드 | |
+| 정의·보급품 저장 | |
+| Standalone 기능 | |
+| Dedicated·Listen 원격·호스트·지연과 손실 | |
+| 기존 전투·이동 회귀 | |
 
 ### 2026-10-11 설계 후속 수정
 
@@ -249,26 +247,26 @@ KSI 모듈 분리, 타입 전면 개명, 저장 형식 마이그레이션은 이
 
 | 검사 | 결과 | 로컬 근거 |
 |---|---|---|
-| 프로젝트 파일 생성 | 성공 | `Saved/Tests/DesignFixes-20261011/GenerateProjectFiles.log` |
-| CCLEditor Win64 Development 전체 링크 | 성공 | `Saved/Tests/DesignFixes-20261011/EditorBuild.log` |
-| CCL 자동화 전체 | 161개 성공, 실패·경고·미실행 0개 | `Saved/Tests/Automation/20261011-194350-765/report/index.json` |
-| 장비 복원·새 프로세스 플레이어 복원 | 성공 | `Saved/Tests/LoadoutRestore/20261011-192650-634/result.json` |
-| 발사·탄약·재장전 | 성공 | `Saved/Tests/Projectile/20261011-192743/editor.log` |
-| 음식 환경·오프라인 보관·새 프로세스 재개 | 성공 | `Saved/Tests/FoodEnvironment/Standalone-20261011-193251-165/result.json` |
-| 세계 시간·저장·복원 | 성공 | `Saved/Tests/WorldSmoke/Standalone-20261011-193952-054/result.json` |
-| 캠페인 장비·훈련·전투·재스폰 | 성공 | `Saved/Tests/CampaignSmoke/Standalone-20261011-194008/driver.log` |
-| 눈 Listen·첫 접속·지연 접속 | 성공 | `Saved/Tests/Snow/Listen-20261011-193254-227/result.json` |
-| 눈 Dedicated·첫 접속·지연 접속 | 성공 | `Saved/Tests/Snow/Dedicated-20261011-193938-237/result.json` |
-| 눈 Dedicated 지연 50ms·손실 2%·보정 | 성공 | `Saved/Tests/Snow/Dedicated-20261011-194350-463/result.json` |
+| 프로젝트 파일 생성 | 성공 | |
+| CCLEditor Win64 Development 전체 링크 | 성공 | |
+| CCL 자동화 전체 | 161개 성공, 실패·경고·미실행 0개 | |
+| 장비 복원·새 프로세스 플레이어 복원 | 성공 | |
+| 발사·탄약·재장전 | 성공 | |
+| 음식 환경·오프라인 보관·새 프로세스 재개 | 성공 | |
+| 세계 시간·저장·복원 | 성공 | |
+| 캠페인 장비·훈련·전투·재스폰 | 성공 | |
+| 눈 Listen·첫 접속·지연 접속 | 성공 | |
+| 눈 Dedicated·첫 접속·지연 접속 | 성공 | |
+| 눈 Dedicated 지연 50ms·손실 2%·보정 | 성공 | |
 
 새 자동화는 `CCL.Items.Loadout.AtomicPublication`, `CCL.Items.Catalog.UniqueSaveNames`, `CCL.Environment.Surface.SharedPublication`이다. 장비 알림에서 최종 슬롯·속성과 직접 인벤토리 쓰기 거절을 확인했고, GAS 적용 질의의 재진입·적용 거절·훈련 포인트 단일 차감도 확인했다. 공유 발행본은 8개 소비자의 동일 객체 참조, Epoch·지형 완료 번호 변경, 실패 후보와 이전 객체 수명을 검사한다.
 
 이 검증 중 검사 도구 네 개를 고쳤다.
 
-- 음식 환경 실행 검사는 순간 실내 온도를 유지 중인 음식 온도 샘플과 직접 비교하던 조건을 보완했다. 성공한 세계 진행마다 정수 세계 시각의 실내 온도를 독립적으로 기록하고 그 값·시각과 보관 상태를 비교한다. 이 검사는 생산 코드의 1초 샘플 주기를 바꾸지 않는다. 초기 실패 로그는 `Saved/Tests/FoodEnvironment/Standalone-20261011-192744-762/server.log`, 계측한 재실행은 `Standalone-20261011-193016-999/server.log`에 남았다.
+- 음식 환경 실행 검사는 순간 실내 온도를 유지 중인 음식 온도 샘플과 직접 비교하던 조건을 보완했다. 성공한 세계 진행마다 정수 세계 시각의 실내 온도를 독립적으로 기록하고 그 값·시각과 보관 상태를 비교한다. 이 검사는 생산 코드의 1초 샘플 주기를 바꾸지 않는다.
 - 세계 실행 검사는 기존 호출당 0.25게임초 한도를 무시하고 2초 입력을 한 번에 처리했다고 가정했다. 제한된 반복으로 대기 입력을 모두 처리한 뒤 완료 시각과 저장을 확인하도록 고쳤다.
 - 캠페인 성장 검사는 비장비 중 첫 보급품을 회복품으로 골라 탄약을 수집하던 조건을 고쳤다. 원래 수치 기대값에 맞는 장갑과 회복품의 정의 이름을 명시한다.
-- 눈 검사 도구의 `TimeoutSeconds`를 실행 프로세스에도 전달하도록 연결했다. 기존 C++ 검사는 이 옵션과 무관하게 200초에 종료했다. 지연 50ms·손실 2%의 초기 실행은 `Saved/Tests/Snow/Dedicated-20261011-193353-252`에서 서버 6단계 제한 시간을 넘겼고, 이 실패를 정상 통과로 집계하지 않는다. 제한 시간을 420초로 일치시킨 재검사에서 서버·첫 클라이언트·지연 접속 클라이언트가 모두 통과했다. 서버는 6,189회의 이동 보정을 기록했고, 첫 클라이언트는 자신의 시작 후 186.388초에 복원 발행본을 확인했다. 이 결과는 제한된 시간 안의 기능 검증이며 전송 지연의 성능 목표를 충족했다는 판정은 아니다.
+- 눈 검사 도구의 `TimeoutSeconds`를 실행 프로세스에도 전달하도록 연결했다. 기존 C++ 검사는 이 옵션과 무관하게 200초에 종료했다. 지연 50ms·손실 2%의 초기 실행은 서버 6단계 제한 시간을 넘겼고, 이 실패를 정상 통과로 집계하지 않는다. 제한 시간을 420초로 일치시킨 재검사에서 서버·첫 클라이언트·지연 접속 클라이언트가 모두 통과했다. 서버는 6,189회의 이동 보정을 기록했고, 첫 클라이언트는 자신의 시작 후 186.388초에 복원 발행본을 확인했다. 이 결과는 제한된 시간 안의 기능 검증이며 전송 지연의 성능 목표를 충족했다는 판정은 아니다.
 
 검증 로그의 기기별 절대 경로는 저장소 상대 경로 또는 `<Engine>`으로 표기했다. 에디터 기반 실행 검사이며 새 패키지 생성과 렌더링 화면 검사는 포함하지 않는다.
 

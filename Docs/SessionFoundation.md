@@ -58,7 +58,7 @@ sequenceDiagram
 
 각 항목에 가방 슬롯을 기록하고 장착 항목은 `INDEX_NONE`으로 표시한다. 부위별 장착 목록은 GUID를 참조하며 양손 장비는 같은 GUID로 두 손을 모두 차지해야 한다. 형식 1은 배열 순서로 가방 칸을 만들고, 형식 1·2의 단일 장비 참조는 새 부위 목록으로 변환한다. 중복 부위·잘못된 장비 종류·불완전한 양손 점유·어느 부위에도 연결되지 않은 장착 항목은 거부한다. 구현 근거는 `Source/CCL/Session/CCLSessionRecord.cpp`다.
 
-태그 변경 전 형식 3에서는 2026-10-07 별도 프로세스로 가방 칸·장착 상태·GUID·수량·효과를 저장·복원했고 양손 장비 직렬화와 불완전한 점유 거부도 통과했다. 근거는 `Saved/StageValidation/Equipment-Session.log`와 `Saved/Tests/UIVisual/1280x720-20261007-170902/game.log`다.
+태그 변경 전 형식 3에서는 2026-10-07 별도 프로세스로 가방 칸·장착 상태·GUID·수량·효과를 저장·복원했고 양손 장비 직렬화와 불완전한 점유 거부도 통과했다.
 
 주소 입력은 호스트 이름 또는 IPv4와 선택적인 포트만 허용한다. URL 옵션·경로·공백·범위를 벗어난 포트는 거부한다. LAN 또는 직접 접속이 가능한 호스트 주소를 쓰며 매치메이킹·계정·NAT 중계는 이번 범위가 아니다. 접속·이동 실패는 엔진 이벤트를 받아 메뉴에 표시한다.
 
@@ -74,17 +74,15 @@ sequenceDiagram
 
 | 검사 | 로컬 근거 |
 |---|---|
-| 생성·빌드·시작 맵 | `Saved/StageValidation/Stage6-Generate.log`, `Stage6-Build.log`, `Stage6-Assets.log` |
-| 최종 저장·불러오기·키보드·화면 | `Stage6-Rendered-Final.log`, `Saved/Tests/SessionSmoke/`의 최종 실행 원본 로그 |
-| 방 생성·접속, 접속 실패 | `Stage6-Network.log`, `Stage6-Failure.log` |
-| 콘텐츠·성장·전투 회귀 | `Stage6-Content.log`, `Stage6-Progression.log`, `Stage6-Combat.log` |
-| 화면 | `Saved/Tests/SessionVisual/` |
+| 생성·빌드·시작 맵 | |
+| 최종 저장·불러오기·키보드·화면 | |
+| 방 생성·접속, 접속 실패 | |
+| 콘텐츠·성장·전투 회귀 | |
+| 화면 | |
 
-표에서 파일명만 쓴 로그는 `Saved/StageValidation/` 기준이다. 테스트는 `CCL_Validation` 슬롯을 쓰며 일반 플레이의 `CCL_Checkpoint` 슬롯과 구분한다. 로컬 저장 파일은 Git에 넣지 않는다. 엔진 API 근거는 `<Engine>/Source/Runtime/Engine/Private/GameplayStatics.cpp:2215`의 `SaveDataToSlot`과 같은 파일 2316행의 `LoadDataFromSlot` 경로와 `Engine.h:2390`의 `OnNetworkFailure` 이벤트다.
-
+테스트는 `CCL_Validation` 슬롯을 쓰며 일반 플레이의 `CCL_Checkpoint` 슬롯과 구분한다. 로컬 저장 파일은 Git에 넣지 않는다. 엔진 API 근거는 `<Engine>/Source/Runtime/Engine/Private/GameplayStatics.cpp:2215`의 `SaveDataToSlot`과 같은 파일 2316행의 `LoadDataFromSlot` 경로와 `Engine.h:2390`의 `OnNetworkFailure` 이벤트다.
 
 Agent 생활 저장 통합은 결정 18과 [AgentFoundation](AgentFoundation.md)을 따른다. v5에는 선택적 `AgentSimulation` 스냅샷과 `AccountId`가 추가된다. 계정이 포함된 저장의 이전 `Coins` 필드는 0이며, 옛 저장에만 금화 이관 값으로 쓰인다. 생활 스냅샷은 Unreal 구조체 기반 로컬 저장이므로 JSON의 Definition 허용 목록과 별개로 Feature 타입·버전·교차 참조를 검증한다. 신뢰할 수 없는 외부 저장 파일을 안전하게 읽는 보안 경계로 사용하지 않는다.
-
 
 ## 공통 세계의 플레이어 프로필 설계
 
@@ -108,7 +106,6 @@ classDiagram
 
 검증은 형식 왕복·이전 저장 변환, 중복 계정·항목·식별 키와 없는 장비·부분 양손 점유의 거부, 실제 음식 회수 후 세계 저장, 다중 플레이어의 장비·부상·금화·퀘스트 복원, 실패 원본 보존, 맵 전환·새 프로세스 재개와 소유자 전용 복제를 대상으로 한다. 원격 플레이어의 자동 재연결은 서버가 신뢰하는 신원과 연결해야 하며 클라이언트가 임의 계정 ID를 제출하는 방식으로 구현하지 않는다. 호스트 개인 슬롯의 기존 완전 체력 재개 정책과 일반 세계의 상태 복원 정책을 구분한다.
 
-
 ## 인벤토리·장비 복원 준비와 실행 검증
 
 `UCCLLoadoutComponent::RestoreState`는 인벤토리 항목·장착 점유·스킬·포인트를 함께 검사하고 적용한다. 장착 항목은 가방 슬롯 밖에 있어야 하며 양손 장비는 양쪽 참조를 모두 가져야 한다. 누락된 아이템·중복 부위·고립된 장착 항목·잘못된 스킬·포인트는 상태 변경 전에 거부한다. 후보를 먼저 복사하므로 호출자가 현재 인벤토리·장비 배열 자체를 넘겨도 복원 중 배열을 잃지 않는다.
@@ -125,13 +122,12 @@ UE 5.8.3 소스에서 `AbilitySystemComponent.cpp:1037`의 적용 Query 거부�
 
 | 검사 | 결과와 로컬 근거 |
 |---|---|
-| 최종 프로젝트 생성·Editor 빌드 | 성공. `Saved/EnvironmentStages/LoadoutRestore-FinalGPF.log`, `LoadoutRestore-FinalBuild.log` |
-| 실제 PlayerState·GAS 복원 | 실패 원본·효과 핸들 보존, 가득 찬 가방에서 양손 장비 교체, 중복 보너스 방지, 부상·완전 체력 정책, 이전 무기 부여 제거 통과. `Saved/Tests/LoadoutRestore/20261010-212916-155/game.log` |
-| 별도 프로세스의 개인 세션 재개 | 음식 이력·장비·스킬·부분 체크포인트, 메뉴 왕복·승리 재개 통과. `Saved/Tests/SessionSmoke/20261010-212913` |
-| CCL 자동 검사 | 140/140, 경고·실패·미실행 0. `Saved/Tests/Automation/20261010-212917-604/report/index.json` |
+| 최종 프로젝트 생성·Editor 빌드 | 성공 |
+| 실제 PlayerState·GAS 복원 | 실패 원본·효과 핸들 보존, 가득 찬 가방에서 양손 장비 교체, 중복 보너스 방지, 부상·완전 체력 정책, 이전 무기 부여 제거 통과 |
+| 별도 프로세스의 개인 세션 재개 | 음식 이력·장비·스킬·부분 체크포인트, 메뉴 왕복·승리 재개 통과 |
+| CCL 자동 검사 | 140/140, 경고·실패·미실행 0 |
 
 실행기는 `Tools/Validation/run_loadout_restore.ps1`이며 EnvironmentScenario의 Standalone에서 확인했다. 네트워크의 전체 개인 프로필 복원, 실제 플레이어가 회수한 음식의 일반 세계 저장과 맵 전환, 신뢰한 계정 신원의 재연결은 후속 통합 검증이다.
-
 
 ## 세계 플레이어 본문 구현·검증
 
@@ -143,16 +139,15 @@ UE 5.8.3 소스에서 `AbilitySystemComponent.cpp:1037`의 적용 Query 거부�
 
 | 검사 | 결과와 로컬 근거 |
 |---|---|
-| 최종 프로젝트 생성·Editor 빌드 | 성공. `Saved/EnvironmentStages/PlayerProfile-FinalGPF.log`, `PlayerProfile-FinalBuild.log` |
-| 프로필·세계 값 검증과 기존 자동 검사 | 143/143, 경고·실패·미실행 0. `Saved/Tests/Automation/20261010-214223-820/report/index.json` |
-| 개인 음식·장비의 별도 프로세스 재개 | 기존 세션 형식 7의 호스트 저장·읽기 통과. `Saved/Tests/SessionSmoke/20261010-214222` |
-| 세계·지형 맵 네 번 왕복 | Standalone 통과. `Saved/Tests/TerrainTravel/Standalone-20261010-214437-716` |
-| 바닥 음식 픽업의 저장·복원·새 프로세스 재개 | Standalone 통과. `Saved/Tests/FoodPickup/Standalone-20261010-214438-812` |
+| 최종 프로젝트 생성·Editor 빌드 | 성공 |
+| 프로필·세계 값 검증과 기존 자동 검사 | 143/143, 경고·실패·미실행 0 |
+| 개인 음식·장비의 별도 프로세스 재개 | 기존 세션 형식 7의 호스트 저장·읽기 통과 |
+| 세계·지형 맵 네 번 왕복 | Standalone 통과 |
+| 바닥 음식 픽업의 저장·복원·새 프로세스 재개 | Standalone 통과 |
 
 새 자동 검사는 프로필·양손 점유·음식·부상 비율·계정 잔액의 왕복, 불완전한 점유·잘못된 참조·음식 시각·수량·중복 소유권의 거부와 실패 출력 보존을 확인했다. 정상 프로필 64명과 65명, 정상 항목 총 4,096개와 4,097개를 각각 대조했다. 잘못된 UTF-8·큰 길이·큰 배열 수·잘림·뒷부분 추가도 거부했다. 저장을 읽는 보안·인증 경계 전체를 검증한 결과는 아니며 식별 키 형식 검사도 계정 인증을 대신하지 않는다.
 
-첫 맵 왕복 검사는 현재 상태를 비교하는 후보가 보관함을 수집하지 않아 실패했다. `CCLTerrainTravelSmokeSubsystem`이 실제 `UCCLInventoryPersistenceSubsystem::Capture` 결과를 비교 후보에 넣도록 보완한 뒤 통과했다. 저장된 값을 비교 후보에 복사하지 않는다. 원본 실패 로그는 `Saved/Tests/TerrainTravel/Standalone-20261010-214223-530/server.log`에 보존했다. 자동 검사·개인 세션 검사 이후의 코드 변경은 이 실행 검사의 수집·진단 보완뿐이다.
-
+첫 맵 왕복 검사는 현재 상태를 비교하는 후보가 보관함을 수집하지 않아 실패했다. `CCLTerrainTravelSmokeSubsystem`이 실제 `UCCLInventoryPersistenceSubsystem::Capture` 결과를 비교 후보에 넣도록 보완한 뒤 통과했다. 저장된 값을 비교 후보에 복사하지 않는다. 자동 검사·개인 세션 검사 이후의 코드 변경은 이 실행 검사의 수집·진단 보완뿐이다.
 
 ## 다중 플레이어 복원 준비 경계
 
@@ -172,15 +167,14 @@ static bool Execute(TConstArrayView<FCCLLoadoutRestoreRequest> Requests,
 
 | 검사 | 결과와 로컬 근거 |
 |---|---|
-| 최종 프로젝트 생성·Editor 빌드 | 성공. `Saved/EnvironmentStages/PlayerBatch-FinalGPF.log`, `PlayerBatch-FinalBuild.log` |
-| 두 PlayerState·실제 세계 복원 실행 | Standalone 통과, 종료 코드 0. `Saved/Tests/LoadoutRestore/20261010-220226-670/result.json` |
-| 개인 세션의 별도 프로세스 재개 | 쓰기·읽기·메뉴 재진입·완료 체크포인트 통과. `Saved/Tests/SessionSmoke/20261010-215945` |
-| 기존 CCL 자동 검사 | 143/143, 경고·실패·미실행 0. `Saved/Tests/Automation/20261010-215946-005/report/index.json` |
+| 최종 프로젝트 생성·Editor 빌드 | 성공 |
+| 두 PlayerState·실제 세계 복원 실행 | Standalone 통과, 종료 코드 0 |
+| 개인 세션의 별도 프로세스 재개 | 쓰기·읽기·메뉴 재진입·완료 체크포인트 통과 |
+| 기존 CCL 자동 검사 | 143/143, 경고·실패·미실행 0 |
 
 자동 검사·개인 세션 검사 이후의 변경은 실제 세계 파일을 사용하도록 강화한 실행 검사뿐이다. 프로덕션 코드는 그 검사 이후 바뀌지 않았다. 이 실행은 같은 서버 월드에 있는 두 PlayerState를 사용했으며 두 원격 클라이언트의 복제 검증은 아니다. 아래 세계 참가자는 등록된 프로필 수집·해석과 계정·퀘스트 확정, 보관함 알림을 연결한다. 접속·맵 전환·재접속의 자동 신원 연결은 남아 있다. 바깥 개인 세션의 호스트 계정·퀘스트도 아래 확정 콜백을 통해 알림 전에 적용한다. 캠페인 후처리는 `ApplyRecord`의 별도 경로다.
 
 엔진 근거는 `<Engine>/Plugins/Runtime/GameplayAbilities/Source/GameplayAbilities/Private/GameplayEffectAggregator.cpp:687`의 `FScopedAggregatorOnDirtyBatch::EndLock`이다. 전역 잠금 수가 0일 때만 Dirty Aggregator를 게시한다. 일괄 갱신은 모든 ASC의 Attribute 변경 콜백을 동시에 관측하게 만드는 트랜잭션은 아니며, 여기서 검증한 최종 관측 경계는 Loadout 인벤토리 알림이다. 프로젝트 구현은 `Source/CCL/Items/CCLLoadoutRestore.cpp:158`과 `Source/CCL/Session/CCLGameInstance.cpp:320`에 있다.
-
 
 ## 세계 플레이어 참가자 구현·검증
 
@@ -196,18 +190,17 @@ static bool Execute(TConstArrayView<FCCLLoadoutRestoreRequest> Requests,
 
 | 검사 | 결과와 로컬 근거 |
 |---|---|
-| 최종 프로젝트 생성·Editor 빌드 | 성공. `Saved/EnvironmentStages/PlayerRuntime-FinalGPF.log`, `PlayerRuntime-FinalBuild.log` |
-| 실제 프로필·보관함·음식 진행·새 세계 시작 | 쓰기·읽기 종료 코드 0. `Saved/Tests/LoadoutRestore/20261010-222346-737/result.json` |
-| 기존 CCL 자동 검사 | 143/143, 경고·실패·미실행 0. `Saved/Tests/Automation/20261010-222101-429/report/index.json` |
-| 기존 개인 세션 재개 | 쓰기·읽기·메뉴 재진입·완료 체크포인트 통과. `Saved/Tests/SessionSmoke/20261010-222102` |
-| 기존 동적 보관함의 새 프로세스 재개 | Standalone 통과. `Saved/Tests/FoodEnvironment/Standalone-20261010-222103-187/result.json` |
+| 최종 프로젝트 생성·Editor 빌드 | 성공 |
+| 실제 프로필·보관함·음식 진행·새 세계 시작 | 쓰기·읽기 종료 코드 0 |
+| 기존 CCL 자동 검사 | 143/143, 경고·실패·미실행 0 |
+| 기존 개인 세션 재개 | 쓰기·읽기·메뉴 재진입·완료 체크포인트 통과 |
+| 기존 동적 보관함의 새 프로세스 재개 | Standalone 통과 |
 
-자동 검사·기존 세션·보관함 회귀 이후에는 새 프로세스 시작 검사를 추가하고 새 파일의 서식을 정리했다. 프로덕션 동작 변경은 없었다. 첫 실행 검사의 준비 대기 실패는 `Saved/Tests/LoadoutRestore/20261010-221553-552/game.log`에 남아 있다. 다음 실행에서 드러난 동적 보관 API의 보관함 전용 제한은 등록 플레이어 검사로 보완했다. 당시 원본은 `Saved/Tests/LoadoutRestore/20261010-221905-762/game.log`에 남아 있다.
+자동 검사·기존 세션·보관함 회귀 이후에는 새 프로세스 시작 검사를 추가하고 새 파일의 서식을 정리했다. 프로덕션 동작 변경은 없었다. 첫 실행 검사의 준비 대기 실패는 남아 있다. 다음 실행에서 드러난 동적 보관 API의 보관함 전용 제한은 등록 플레이어 검사로 보완했다.
 
 일반 플레이 흐름은 아직 `Bind`를 자동 호출하지 않는다. 접속 키 발급·재접속 검증, 계정의 최초 생성 시점, 맵 전환의 재등록, 프로필 없는 이전 저장·실험 초기화 정책을 연결해야 한다. 현재 살아 있는 등록 플레이어의 프로필이 없는 복원은 거부하므로 그 상태의 기존 초기화 버튼까지 완료했다고 주장하지 않는다. 저장 용량과 다른 가방, 사망·행동 중 복원 정책, 바깥 개인 세션의 캠페인 후처리, 실제 두 원격 클라이언트의 소유자 복제·지연·손실 검증도 남아 있다. 계정 잔액은 기존 원장이 소유하고 프로필은 참조만 복원한다.
 
 주요 구현은 `Source/CCL/Session/CCLPlayerPersistenceSubsystem.cpp:53`의 수집, 175줄의 개인 값 확정, 323줄의 일괄 복원, 412줄의 동적 음식 준비다. 세계 복원 연결은 `Source/CCL/Environment/CCLWorldSimulationSubsystem.cpp:397`, 보관함의 지연 알림은 `Source/CCL/Items/CCLInventoryPersistenceSubsystem.cpp:431`에 있다.
-
 
 ## 호스트 계정·퀘스트의 알림 전 확정
 
@@ -219,11 +212,11 @@ static bool Execute(TConstArrayView<FCCLLoadoutRestoreRequest> Requests,
 
 | 검사 | 결과와 로컬 근거 |
 |---|---|
-| 최종 프로젝트 생성·Editor 빌드 | 성공. `Saved/EnvironmentStages/SessionFinalize-FinalGPF.log`, `SessionFinalize-FinalBuild.log` |
-| 호스트·보관함 알림, 실패 보존, 이전 금화 이관 | 통과. `Saved/Tests/SessionSmoke/20261010-224139/write.log` |
-| 별도 프로세스 재개·메뉴 재진입·승리 재개 | 통과. 같은 디렉터리의 `read.log` |
-| 다중 플레이어·동적 음식·새 프로세스 세계 시작 | 통과. `Saved/Tests/LoadoutRestore/20261010-224202-605/result.json` |
-| 기존 CCL 자동 검사 | 143/143, 경고·실패·미실행 0. `Saved/Tests/Automation/20261010-224201-653/report/index.json` |
+| 최종 프로젝트 생성·Editor 빌드 | 성공 |
+| 호스트·보관함 알림, 실패 보존, 이전 금화 이관 | 통과 |
+| 별도 프로세스 재개·메뉴 재진입·승리 재개 | 통과. 같은 디렉터리의 |
+| 다중 플레이어·동적 음식·새 프로세스 세계 시작 | 통과 |
+| 기존 CCL 자동 검사 | 143/143, 경고·실패·미실행 0 |
 
 구현은 `Source/CCL/Session/CCLGameInstance.cpp:305`의 `FinalizeProfile`, `Source/CCL/Environment/CCLWorldSimulationSubsystem.cpp:404`의 콜백 호출과 그 뒤의 보관함 알림이다. 실행 검사는 `Source/CCL/Tests/CCLSessionPublicationSmoke.cpp:17`의 `CheckPublication`이 소유한다. 개인 세션 재개 검사의 쓰기 단계에서 실행하며 일반 체크포인트 슬롯을 사용하지 않는다.
 
@@ -237,7 +230,7 @@ static bool Execute(TConstArrayView<FCCLLoadoutRestoreRequest> Requests,
 
 환경 실험의 전체 초기화는 살아 있는 플레이어의 계정 ID와 원장 잔액을 초기 세계 후보에 명시적으로 넣는다. 누락된 현재 계좌는 초기화를 거부한다. 따라서 초기화를 성공시킨 뒤 화면 조회나 다음 Tick에 계좌를 만드는 순서에 의존하지 않는다. 이는 미등록 플레이어의 금화 보존이며, 등록된 전체 프로필의 초기화 정책은 별도 작업으로 남아 있다.
 
-2026-10-10 UE 5.8.3에서 `Tools/Validation/run_session_smoke.ps1`의 실제 저장·별도 프로세스 재개·메뉴 복귀·승리 재개와 새 계좌 누락 검사를 통과했다. 근거는 `Saved/Tests/SessionSmoke/20261010-230750`이다. 계정 분리 후 실제 두 플레이어·세계 재개는 `Saved/Tests/LoadoutRestore/20261010-230751-715`에서 통과했다. 환경 초기화의 금화 83 보존은 `Saved/Tests/Environment/EnvironmentPlayground-Standalone-20261010-232808-742/standalone.log`에서 확인했다. 계정 생성 경계는 `Source/CCL/Agents/CCLAccountComponent.cpp:195`, 명시적 초기화는 `Source/CCL/Environment/CCLExperimentDirector.cpp`의 `ResetLife.ImportAccountBalance`가 소유한다.
+2026-10-10 UE 5.8.3에서 `Tools/Validation/run_session_smoke.ps1`의 실제 저장·별도 프로세스 재개·메뉴 복귀·승리 재개와 새 계좌 누락 검사를 통과했다. 계정 분리 후 실제 두 플레이어·세계 재개는 통과했다. 환경 초기화의 금화 83 보존은 확인했다. 계정 생성 경계는 `Source/CCL/Agents/CCLAccountComponent.cpp:195`, 명시적 초기화는 `Source/CCL/Environment/CCLExperimentDirector.cpp`의 `ResetLife.ImportAccountBalance`가 소유한다.
 
 ## 원격 플레이어 신원 연결과 복원 시 접속자 유지
 
@@ -267,11 +260,10 @@ static bool Execute(TConstArrayView<FCCLLoadoutRestoreRequest> Requests,
 
 남은 마을 보급품은 정의 이름의 집합이 아니라 남은 픽업마다 한 번씩 기록한다. 같은 정의의 픽업이 둘 있고 하나를 주웠다면 이름이 한 번만 남는다. 복원은 이름별 개수만큼 픽업을 남기고 나머지를 제거한다. 이전 방식은 같은 정의의 픽업 하나를 주운 뒤 저장하면 둘 다 되살렸다. 형식 5부터 보급품 기록은 최대 64개이고 그 전 형식은 기존 상한 2개를 따른다. 승리 기록은 처치한 경비병 비트가 하나 이상 있어야 하며, 비트 값은 0-255 범위다. 구현은 `Source/CCL/Session/CCLSessionRecord.cpp`와 `Source/CCL/Session/CCLGameInstance.cpp`의 `ApplyRecord`다.
 
-
 ## 배치 식별과 체크포인트 검증
 
 경비 1·2와 보스 3의 Agent ID를 유지하고 세 번째 이후 경비는 4부터 배정한다. 경비 배열 순서 변경은 기존 처치 마스크와 함께 별도 호환성 판단이 필요하다. 구형 저장에서 세 명 이상의 경비가 사용한 충돌 상태는 자동 분리하지 않는다.
 
 보급품은 맵에 저장한 `PlacementId`와 정의·남은 수량으로 저장한다. Director가 자신이 생성한 픽업만 추적하며 음식의 세계 저장용 `PersistentId`는 재사용하지 않는다. 외부 세션 형식은 8로 확장하고 구형 세션은 배치가 확실한 기본 구성만 변환한다. 모호한 구형 저장은 원본을 보존하고 적용 전에 거부한다. 배치 ID·정의·수량과 처치 마스크는 세계·플레이어 복원보다 먼저 검증한다.
 
-검증 대상은 경비 1·2·3·8명과 보스의 ID 고유성, 같은 정의의 서로 다른 두 배치·수량 복원, 설정 순서 변경, 잘못된 배치 거부, 구형 저장과 프로필 회귀다. 최종 프로젝트 파일 생성·Editor 빌드 뒤 자동화와 별도 프로세스 세션 재개를 실행한다. UE 5.8.3에서 프로젝트 파일 생성과 Editor 빌드를 통과했다. `Saved/EnvironmentStages/Identity-GPF.log`, `Identity-Build.log`가 근거다. 전체 자동화는 `Saved/Tests/Automation/20261011-155853-103/report/index.json`의 155개가 통과했고 실패·미실행은 없다. 실제 저장·별도 프로세스 재개·승리 복원은 `Saved/Tests/SessionSmoke/20261011-155839`에서 통과했다. 맵에 직접 배치됐던 장갑·포션은 `create_progression.py`로 Director의 배치에 이전했다. `Identity-Assets.log`에서 5개 배치를 확인했다. 앞의 정의별 개수 복원 설명은 형식 7까지의 이력이며 형식 8은 이 절의 배치 식별을 사용한다.
+검증 대상은 경비 1·2·3·8명과 보스의 ID 고유성, 같은 정의의 서로 다른 두 배치·수량 복원, 설정 순서 변경, 잘못된 배치 거부, 구형 저장과 프로필 회귀다. 최종 프로젝트 파일 생성·Editor 빌드 뒤 자동화와 별도 프로세스 세션 재개를 실행한다. UE 5.8.3에서 프로젝트 파일 생성과 Editor 빌드를 통과했다. 전체 자동화는 155개가 통과했고 실패·미실행은 없다. 실제 저장·별도 프로세스 재개·승리 복원은 통과했다. 맵에 직접 배치됐던 장갑·포션은 `create_progression.py`로 Director의 배치에 이전했다. 5개 배치를 확인했다. 앞의 정의별 개수 복원 설명은 형식 7까지의 이력이며 형식 8은 이 절의 배치 식별을 사용한다.

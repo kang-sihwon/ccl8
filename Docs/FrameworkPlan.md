@@ -262,7 +262,7 @@ $FrameworkRevision = 'ef44376d21811df02b5cf28b2c50105047921e2c'
 
 ## 단계 1 구현 범위와 검증 기준
 
-2026-10-11 사용자의 착수 지시에 따라 `CCLEditor`, `KSIUI`, `KSIMap`을 분리하고 검증했다. 단계 2는 이 결과를 검토한 뒤 진행한다. 이번 변경의 기준은 `2930929aca25f32415b0e961f8f2d90172f4ce44`와 기존 미커밋 코드 보완을 포함한 작업 트리다. 모듈별 파일 해시는 `Saved/Tests/FrameworkStage1-20261011/module-source-manifest.json`에 보관했다.
+2026-10-11 사용자의 착수 지시에 따라 `CCLEditor`, `KSIUI`, `KSIMap`을 분리하고 검증했다. 단계 2는 이 결과를 검토한 뒤 진행한다. 이번 변경의 기준은 `2930929aca25f32415b0e961f8f2d90172f4ce44`와 기존 미커밋 코드 보완을 포함한 작업 트리다.
 
 UI는 LocalPlayer가 관리자와 화면 수명을 소유하며 CommonUI·UMG·Enhanced Input을 사용한다. MVVM은 CCL의 기능별 표시 모델에 남긴다. 지도도 LocalPlayer 범위의 관찰자 표시 데이터를 제공하며 KSIUI를 참조하지 않는다. 서버 권위·복제와 게임 화면 구성은 CCL이 소유한다. Editor 폴더의 제작 도구와 Details 등록은 CCL을 참조하는 Editor 모듈로 이동했다.
 
@@ -326,24 +326,24 @@ UE 5.8.3의 초기 작업 트리에서 아래 항목을 확인했다. 이 작업
 
 | 검사 | 결과 | 근거 |
 |---|---|---|
-| 이동 전 UI 수명 기준 | 통과 | `Saved/Tests/UIFoundation/20261011-215040/game.log` |
-| 최종 프로젝트 파일 생성 | 성공 | `Saved/Tests/FrameworkStage1-20261011/GenerateProjectFiles-Final2.log` |
-| Editor·Game·Server Win64 Development | 모두 성공 | 같은 폴더의 `CCLEditor-Final.log`, `CCL-Final.log`, `CCLServer-Final.log` |
-| 초기 KSIUI 단독 프로젝트 | 화면 생성·해제와 내부 상태 검사 통과. 실제 입력 검증은 아래 보완 결과로 대체 | `Saved/Tests/FrameworkIsolation/KSIUI-20261011-215834/`의 `build.log`, `game.log`, `module-sha256.json` |
-| KSIMap 단독 프로젝트 | 표식 공개 조건·지역 지형·좌표 투영 통과. KSIUI·CCL 미로드 | `Saved/Tests/FrameworkIsolation/KSIMap-20261011-220124/`의 같은 파일 |
-| 전체 자동 검사 | 163개 성공, 경고·실패·미실행 0개 | `Saved/Tests/Automation/20261011-221435-352/report/index.json` |
+| 이동 전 UI 수명 기준 | 통과 | |
+| 최종 프로젝트 파일 생성 | 성공 | |
+| Editor·Game·Server Win64 Development | 모두 성공 | 같은 폴더의 |
+| 초기 KSIUI 단독 프로젝트 | 화면 생성·해제와 내부 상태 검사 통과. 실제 입력 검증은 아래 보완 결과로 대체 |.log`, `module-sha256.json` |
+| KSIMap 단독 프로젝트 | 표식 공개 조건·지역 지형·좌표 투영 통과. KSIUI·CCL 미로드 | |
+| 전체 자동 검사 | 163개 성공, 경고·실패·미실행 0개 | |
 | 타입·에셋 호환 | 32개 타입 경로·enum 값, 기존 패키지 454개와 구형 UI Blueprint 부모 로드 통과 | 위 보고서의 `CCL.Framework.MigratedTypes`, `CCL.Framework.ExistingAssets` |
-| UI 수명·맵 이동·플레이어 격리 | 통과 | `Saved/Tests/UIFoundation/20261011-220909/game.log` |
-| 지도·연출 통합 | 지도 지형·표식·투영, 카메라·UI 복구 통과 | `Saved/Tests/Integration/20261011-220937/editor.log` |
-| 장비 UI·입력·중첩 연출·사망 정리 | 1280×720 통과 | `Saved/Tests/UIVisual/1280x720-20261011-221435/game.log` |
-| Dedicated 콘텐츠 회귀 | 서버, driver·witness·late의 상품·개인 상태 검사 통과 | `Saved/Tests/CampaignSmoke/Dedicated-20261011-221602/` |
-| Windows Development 패키지 | Cook·Stage·Archive 성공 | `Saved/Tests/FrameworkStage1-20261011/Package-Windows.log` |
-| 패키지 UI 실행 | 1280×720 장비·입력·연출 검사 통과 | `Saved/Tests/UIVisual/1280x720-20261011-221935/game.log` |
-| 패키지 Listen 콘텐츠 회귀 | 호스트 driver·원격 witness·late의 상품·개인 상태 검사 통과 | `Saved/Tests/CampaignSmoke/Listen-20261011-221934/` |
+| UI 수명·맵 이동·플레이어 격리 | 통과 | |
+| 지도·연출 통합 | 지도 지형·표식·투영, 카메라·UI 복구 통과 | |
+| 장비 UI·입력·중첩 연출·사망 정리 | 1280×720 통과 | |
+| Dedicated 콘텐츠 회귀 | 서버, driver·witness·late의 상품·개인 상태 검사 통과 | |
+| Windows Development 패키지 | Cook·Stage·Archive 성공 | |
+| 패키지 UI 실행 | 1280×720 장비·입력·연출 검사 통과 | |
+| 패키지 Listen 콘텐츠 회귀 | 호스트 driver·원격 witness·late의 상품·개인 상태 검사 통과 | |
 
-Windows 패키지는 `Saved/Packages/FrameworkStage1/Windows/CCL.exe`다. Server 타깃은 빌드와 Editor의 Dedicated 실행으로 확인했으며 별도 WindowsServer 패키지는 만들지 않았다.
+Server 타깃은 빌드와 Editor의 Dedicated 실행으로 확인했으며 별도 WindowsServer 패키지는 만들지 않았다.
 
-`Saved/Tests/Presentation/1280x720-world-map.png`와 `Saved/Tests/UIVisual/1280x720-20261011-221435/inventory-equipped.png`를 열어 지도 표식·지역 경계와 장비 화면의 글자·슬롯·미리보기를 확인했다. 화면의 최종 아트 품질이나 성능 개선을 판정한 검사는 아니다.
+를 열어 지도 표식·지역 경계와 장비 화면의 글자·슬롯·미리보기를 확인했다. 화면의 최종 아트 품질이나 성능 개선을 판정한 검사는 아니다.
 
 첫 빌드에서는 남아 있던 상대 include, DLL export와 제작 모듈의 직접 엔진 의존 누락을 수정했다. UI 검사에 남아 있던 "구형 저장은 즉시 최신 버전이 된다"는 기대값도 현재 코덱 계약에 맞췄다. 코덱은 슬롯 변환 후 버전 7을 유지하며 버전 8의 보급품 배치 변환은 캠페인 맵 정보가 필요하다. 저장 로직은 바꾸지 않았다. 신규 에셋 검사에서 두 번째 파일 검색이 첫 목록을 덮어쓰는 문제도 고친 뒤 454개 로드를 다시 확인했다.
 
@@ -359,15 +359,15 @@ UI 검사는 여러 프레임에 걸쳐 Registry의 매핑 활성화, 실제 라
 
 | 검사 | 결과 | 근거 |
 |---|---|---|
-| 보완한 KSIUI 단독 실행 | 매핑 등록, 라우터·액션 값 차단과 복구, 화면 해제 통과 | `Saved/Tests/FrameworkIsolation/KSIUI-20261011-231912/game.log` |
-| KSIMap 단독 회귀 | 통과 | `Saved/Tests/FrameworkIsolation/KSIMap-20261011-232006/game.log` |
-| 입력 클래스 누락 재현 | 명시적 FAIL 출력, PASS 없음. 임시 설정은 검사 뒤 복원 | KSIUI 검사 폴더의 `negative-missing-input.log` |
+| 보완한 KSIUI 단독 실행 | 매핑 등록, 라우터·액션 값 차단과 복구, 화면 해제 통과 | |
+| KSIMap 단독 회귀 | 통과 | |
+| 입력 클래스 누락 재현 | 명시적 FAIL 출력, PASS 없음. 임시 설정은 검사 뒤 복원 | KSIUI 검사 폴더의 |
 | 과거 오류 로그 판정 | 초기 거짓 성공 로그는 실패, 설정 보완 로그는 오류 없음으로 판정 | `Tools/Validation/run_framework_isolation.ps1`의 실제 오류 패턴으로 비교 |
-| 제출본 프로젝트 파일 생성·Editor 빌드 | 성공 | `Saved/Tests/FrameworkStage1Fix/Submitted-Generate.log`, `Submitted-Editor.log` |
+| 제출본 프로젝트 파일 생성·Editor 빌드 | 성공 | |
 | 제출본 전체 자동 검사 | 160개 성공, 경고·실패·미실행 0개. 기존 에셋 454개 로드 포함 | 같은 폴더의 `Submitted-Automation.json` |
-| 제출본 UI 수명·맵 이동 | 통과 | 같은 폴더의 `Submitted-UIFoundation.log` |
+| 제출본 UI 수명·맵 이동 | 통과 | 같은 폴더의 |
 
-제출본은 기존 작업 트리를 덮어쓰지 않고 Git index에서 별도 검증 프로젝트로 내보냈다. Framework 1단계 코드·설정·검사 도구만 포함하며, 기존 콘텐츠·인벤토리·환경 보완과 다른 문서 작업은 포함하지 않는다. 검증 사본은 같은 이름의 원본 바이너리를 읽지 않도록 uproject 파일명만 고유하게 지정했다. 소스·모듈 이름과 descriptor 내용은 제출본을 유지했고, 실제 DLL 로드 경로를 확인했다. 초기 작업 트리의 자동 검사 163개와 달리 제출본에는 기존 로컬 보완의 검사 3개가 들어 있지 않아 160개를 실행했다. 제출 소스의 Git blob 목록은 `Saved/Tests/FrameworkStage1Fix/submitted-blobs.json`이다.
+제출본은 기존 작업 트리를 덮어쓰지 않고 Git index에서 별도 검증 프로젝트로 내보냈다. Framework 1단계 코드·설정·검사 도구만 포함하며, 기존 콘텐츠·인벤토리·환경 보완과 다른 문서 작업은 포함하지 않는다. 검증 사본은 같은 이름의 원본 바이너리를 읽지 않도록 uproject 파일명만 고유하게 지정했다. 소스·모듈 이름과 descriptor 내용은 제출본을 유지했고, 실제 DLL 로드 경로를 확인했다. 초기 작업 트리의 자동 검사 163개와 달리 제출본에는 기존 로컬 보완의 검사 3개가 들어 있지 않아 160개를 실행했다.
 
 ### 사용·갱신 범위
 
@@ -377,10 +377,9 @@ UI 검사는 여러 프레임에 걸쳐 Registry의 매핑 활성화, 실제 라
 
 공용 모듈을 갱신할 때에는 선택 모듈의 단독 실행, 사용하는 게임의 회귀와 원본 에셋 로드를 함께 확인한다. 네이티브 타입을 옮기거나 이름을 바꾸면 기존 CoreRedirects를 유지하고 새 변환을 추가한다. 코드·설정·도구의 제출과 문서 제출은 별도이며, 현재 코드의 원격 공개 여부는 완료 보고에서 구분한다. 단계 2는 이번 결과를 검토한 뒤 착수한다.
 
-
 ## 단계 2 구현 설계와 검증 기준
 
-사용자 지시에 따라 `KSICore`의 저장 참여·구간 등록·시간 읽기 계약과 `KSIInventory`의 기본 정의·보관 추출을 완료했다. 기준 소스는 `996bf49a0ca3ff5e1fe309675addc2bb37434616` 이후의 로컬 보완을 포함한다. 변경 전 사본은 `Saved/Tests/FrameworkStage2/Before/`에 보관한다. 설계 근거는 결정 24다. 실행 검증의 완료 여부는 아래 기록에서 구분한다.
+사용자 지시에 따라 `KSICore`의 저장 참여·구간 등록·시간 읽기 계약과 `KSIInventory`의 기본 정의·보관 추출을 완료했다. 기준 소스는 `996bf49a0ca3ff5e1fe309675addc2bb37434616` 이후의 로컬 보완을 포함한다. 설계 근거는 결정 24다. 실행 검증의 완료 여부는 아래 기록에서 구분한다.
 
 공용 인벤토리는 ActorComponent 수명, 서버 변경 권한, 소유자 대상 Fast Array 복제, GUID·수량·슬롯과 확장 상태를 소유한다. CCL 파생 클래스가 음식·탄약 검증, 환경 관측, 장비 트랜잭션과 기존 저장 형식을 연결한다. 게임 클래스의 경로를 유지하고 이동하는 공용 구조체에는 CoreRedirects를 적용한다.
 
@@ -401,7 +400,6 @@ classDiagram
 파생형 연결은 기존 게임 타입과 저장 호환을 유지하기 쉽지만 기본 규칙과 게임 규칙의 회귀 검사를 각각 요구한다. 전역 기능 등록 방식은 여러 확장을 교체하기 편하지만 등록 수명과 로드 순서 의존이 늘어 현재 단계에는 사용하지 않는다. UE 5.8.3의 `FInstancedStruct`와 Fast Array를 사용하며 UE4 호환은 검증 범위에 포함하지 않는다.
 
 예상 결과는 KSICore 단독 빌드, KSICore·KSIInventory만 사용하는 두 상자의 보관·이동·저장·복원 성공, 기존 에셋 로드와 장비·소비·탄약·음식·저장 회귀 통과다. 최종 소스에서 프로젝트 파일 생성과 Editor·Game·Server 빌드를 구분해 기록한다.
-
 
 ### 책임과 공개 계약
 
@@ -443,32 +441,30 @@ if (Box.Capture(Saved))
 
 이동한 구조체 `CCLInventoryEntry`, `CCLInventoryList`, `CCLItemFragmentData`는 `/Script/KSIInventory`의 KSI 이름으로 연결한다. 장비·음식 Fragment와 게임 클래스는 CCL에 유지하므로 해당 타입에는 새 리다이렉트를 만들지 않는다. 런타임 항목의 구조체 필드를 통째로 저장한 외부 파일은 지원 대상으로 추가하지 않았다.
 
-
 ### 실행 결과와 재현 범위
 
-UE 5.8.3, Win64 Development에서 아래 최초 로컬 검증 결과를 확인했다. 이후 패키지 실행에서 발견한 서버 글꼴 로딩 수정과 최종 검증·제출 범위는 다음 절을 따른다. 변경 전 작업 트리의 기존 보완을 포함한 검사로, 깨끗한 원격 커밋만의 결과가 아니다. 이번 변경의 파일 목록은 `Saved/Tests/FrameworkStage2/changed-paths.json`, 검증 소스 해시는 같은 폴더의 `worktree-sha256.json`과 `module-source-manifest.json`에 있다. 로그의 기기별 절대 경로는 아래에서 저장소 상대 경로로 표기했다.
+UE 5.8.3, Win64 Development에서 아래 최초 로컬 검증 결과를 확인했다. 이후 패키지 실행에서 발견한 서버 글꼴 로딩 수정과 최종 검증·제출 범위는 다음 절을 따른다. 변경 전 작업 트리의 기존 보완을 포함한 검사로, 깨끗한 원격 커밋만의 결과가 아니다. 이번 변경의 파일 목록은 , 검증 소스 해시는 같은 폴더의 `worktree-sha256.json`과 `module-source-manifest.json`에 있다. 로그의 기기별 절대 경로는 아래에서 저장소 상대 경로로 표기했다.
 
 | 검사 | 결과 | 근거 |
 |---|---|---|
-| 변경 전 자동 검사 | 163개 성공, 경고·실패 0 | `Saved/Tests/Automation/20261011-234354-067/report/index.json` |
-| 최종 프로젝트 파일 생성 | 성공 | `Saved/Tests/FrameworkStage2/Generate-Verified.log` |
-| 최종 Editor·Game·Server 빌드 | 세 타깃 성공 | 같은 폴더의 `Editor-Verified.log`, `Game-Verified.log`, `Server-Verified.log` |
-| KSICore 독립 실행 | CCL·Inventory 없는 구간 검증, 등록 해제와 외부 시각 읽기 성공 | `Saved/Tests/FrameworkIsolation/KSICore-20261012-001927/game.log` |
-| KSIInventory 독립 실행 | 두 상자의 보관·부분/전체 이동, 파일 왕복, 콜백 재진입 거부, 잘린 입력·후행 바이트·알 수 없는 정의·중복 정의 식별자 거부 성공 | `Saved/Tests/FrameworkIsolation/KSIInventory-20261012-002244/game.log` |
-| 최종 CCL 자동 검사·에셋 | 163개 성공, 경고·실패 0. 원본 패키지 454개를 재저장 없이 로드. 추가 구조체 리다이렉트 확인 | `Saved/Tests/Automation/20261012-002503-201/report/index.json`, 같은 검사 폴더의 `editor.log` |
-| 장비 복원 | 새 프로세스에서 장비·플레이어 저장 복원 성공 | `Saved/Tests/LoadoutRestore/20261012-000503-645/result.json` |
-| 탄약·투사체 | 재장전·발사와 세션 codec의 탄약 보존 성공 | `Saved/Tests/Projectile/20261012-000533/editor.log` |
-| 음식·환경·픽업 | 새 프로세스 음식 복원·노화 연속성, 환경 연결과 픽업 회수 성공 | `Saved/Tests/Food/EnvironmentScenario-20261012-000550-428/result.json`, `Saved/Tests/FoodEnvironment/Standalone-20261012-000623-720/result.json`, `Saved/Tests/FoodPickup/Standalone-20261012-000708-023/result.json` |
-| 분리 전 저장 파일 | 2026-10-10 저장의 세계 시각 `116.096656`, 음식 CRC `2407150248` 일치와 후속 노화 성공 | `Saved/Tests/FrameworkStage2/LegacyFood/reader-verified.log`. 원본은 `Saved/Tests/Food/EnvironmentScenario-20261010-194359-178/` |
-| 확장 상태 네트워크 | 전용 서버·클라이언트 2개에서 음식·탄약의 타입·값·변경 알림, 소유자 전용 복제, 클라이언트 변경 거부와 늦은 접속 성공 | `Saved/Tests/InventoryNetwork/20261012-003107/result.json` |
-| UI 수명·세션 | 화면 수명·맵 이동과 네트워크 세션 저장·복원 성공 | `Saved/Tests/UIFoundation/20261012-002535/game.log`, `Saved/Tests/SessionSmoke/20261012-002630/` |
-| 장비·소비·성장 네트워크 | 전용 서버의 동작과 재스폰 뒤 인벤토리·장비·훈련 유지 성공 | `Saved/Tests/CampaignSmoke/Dedicated-20261012-002658/server.log` |
-| 화면 조작 | 1280×720의 장착·이동·소비·세션·대화 조작 검사 성공. 장비 화면 캡처 확인 | `Saved/Tests/UIVisual/1280x720-20261012-002825/game.log`, 같은 폴더의 `equipment-full.png` |
+| 변경 전 자동 검사 | 163개 성공, 경고·실패 0 | |
+| 최종 프로젝트 파일 생성 | 성공 | |
+| 최종 Editor·Game·Server 빌드 | 세 타깃 성공 | 같은 폴더의 |
+| KSICore 독립 실행 | CCL·Inventory 없는 구간 검증, 등록 해제와 외부 시각 읽기 성공 | |
+| KSIInventory 독립 실행 | 두 상자의 보관·부분/전체 이동, 파일 왕복, 콜백 재진입 거부, 잘린 입력·후행 바이트·알 수 없는 정의·중복 정의 식별자 거부 성공 | |
+| 최종 CCL 자동 검사·에셋 | 163개 성공, 경고·실패 0. 원본 패키지 454개를 재저장 없이 로드. 추가 구조체 리다이렉트 확인 |, 같은 검사 폴더의 |
+| 장비 복원 | 새 프로세스에서 장비·플레이어 저장 복원 성공 | |
+| 탄약·투사체 | 재장전·발사와 세션 codec의 탄약 보존 성공 | |
+| 음식·환경·픽업 | 새 프로세스 음식 복원·노화 연속성, 환경 연결과 픽업 회수 성공 | |
+| 분리 전 저장 파일 | 2026-10-10 저장의 세계 시각 `116.096656`, 음식 CRC `2407150248` 일치와 후속 노화 성공 |. 원본은 |
+| 확장 상태 네트워크 | 전용 서버·클라이언트 2개에서 음식·탄약의 타입·값·변경 알림, 소유자 전용 복제, 클라이언트 변경 거부와 늦은 접속 성공 | |
+| UI 수명·세션 | 화면 수명·맵 이동과 네트워크 세션 저장·복원 성공 | |
+| 장비·소비·성장 네트워크 | 전용 서버의 동작과 재스폰 뒤 인벤토리·장비·훈련 유지 성공 | |
+| 화면 조작 | 1280×720의 장착·이동·소비·세션·대화 조작 검사 성공. 장비 화면 캡처 확인 |, 같은 폴더의 |
 
 독립 검사에 복사한 KSICore와 KSIInventory 소스는 최종 원본과 바이트 단위로 일치한다. 두 모듈의 헤더·구현·Build.cs에는 CCL·전투·음식·환경 타입 참조가 없다. 재현 명령은 `Tools/Validation/run_framework_isolation.ps1 -Module KSICore`와 `-Module KSIInventory`다. 독립 프로젝트는 CCL 설정·맵·에셋을 복사하지 않는다. 확장 상태 복제는 `Tools/Validation/run_inventory_network.ps1`로 재현한다.
 
 최종 실행 검사는 빌드 종료 뒤 순서대로 수행했다. 빌드와 동시에 시작한 UI·이전 저장 검사에서는 게임 검사에 도달하기 전 엔진 시작 단계의 대기·시간 초과가 있어 성공 근거에서 제외했다. 소스 엔진을 공유하는 독립 빌드 뒤에는 UBT로 CCL 메타데이터를 복구했다. 이 최초 검사에는 패키징·패키지 실행을 포함하지 않았다. 다른 UE 버전, Iris 전환과 실제 두 번째 프로젝트의 장기 배포도 검증하지 않았다. 단계 3-4는 별도 검토 대상으로 유지한다.
-
 
 ### 패키지 검증과 제출 범위
 
@@ -476,7 +472,7 @@ UE 5.8.3, Win64 Development에서 아래 최초 로컬 검증 결과를 확인�
 
 제출 범위는 `KSICore`, `KSIInventory`, CCL 어댑터와 호출부, 모듈·리다이렉트 설정, 독립·복제·음식 검사 도구다. 분리의 기반으로 사용한 [코드 설계 후속 보완](ProgressionFoundation.md#2026-10-11-설계-후속-수정)의 장비 알림·카탈로그·음식/무기 서비스·선택적 시간 진행·표면 공유 발행본과 해당 회귀 도구도 함께 포함한다. 기존 `Guide.md`의 설계 초안 링크와 미추적 `CodeStructurePlan.md`는 이 제출에서 제외한다. 에셋은 수정하거나 재저장하지 않았다.
 
-최종 소스와 패키지 실행 파일의 SHA-256은 `Saved/Tests/FrameworkStage2/Packaging/verified-source.json`과 `package-binaries-final.json`에 보존한다. 독립 검사 뒤 공용 모듈 소스는 바뀌지 않았으며, 최종 패키지 검사에는 서버 생성자 보완까지 포함한다. 단계 3-4는 착수하지 않았다.
+독립 검사 뒤 공용 모듈 소스는 바뀌지 않았으며, 최종 패키지 검사에는 서버 생성자 보완까지 포함한다. 단계 3-4는 착수하지 않았다.
 
 ## 단계 3 구현과 검증
 
@@ -551,25 +547,24 @@ UCCLCombatDefinition·UCCLAbilitySystemComponent·UCCLAbilitySet은 게임 파�
 
 ### 실행 근거와 한계
 
-UE 5.8.3, Win64 Development에서 아래 항목을 확인했다. 로그 경로는 저장소 기준이다. 실행 검사 시점의 소스·설정·검사 도구·에셋 해시는 `Saved/Tests/FrameworkStage3/verified-source.json`, 제출 파일 해시는 `submitted-source.json`에 있다. 정적 의존 검사와 독립 소스 대조는 `static-validation.json`을 따른다.
+UE 5.8.3, Win64 Development에서 아래 항목을 확인했다. 로그 경로는 저장소 기준이다. 정적 의존 검사와 독립 소스 대조는 `static-validation.json`을 따른다.
 
 | 검사 | 결과 | 근거 |
 |---|---|---|
-| 프로젝트 파일 생성·Editor 빌드 | 성공 | `Saved/Tests/FrameworkStage3/Generate-Submission.log`, `Editor-Submission.log` |
-| KSICombat 독립 빌드·실행 | 함정·표적, GAS 거부·재진입·차폐·캡처 효과·Action 수명 27개 확인 | `Saved/Tests/FrameworkIsolation/KSICombat-20261012-014330/game.log` |
-| CCL 자동 검사·원본 에셋 | 164개 성공, 검사 경고·실패 0. 원본 패키지 454개 로드 | `Saved/Tests/Automation/20261012-014958-637/report/index.json`, 같은 폴더 `editor.log` |
-| 전투 네트워크·재스폰 | Standalone, Dedicated 지연·손실, Listen 원격·호스트 통과 | `Saved/Tests/FrameworkStage3/Combat-Standalone.log`, `Combat-Dedicated.log`, `Combat-Listen.log`, `Combat-Host.log` |
-| 게임 연결 | 투사체·Agent 피격 기억·새 프로세스 장비 복원·Dedicated 성장 통과 | 같은 폴더의 `Projectile.log`, `Agent.log`, `Loadout.log`, `Progression.log` |
+| 프로젝트 파일 생성·Editor 빌드 | 성공 | |
+| KSICombat 독립 빌드·실행 | 함정·표적, GAS 거부·재진입·차폐·캡처 효과·Action 수명 27개 확인 | |
+| CCL 자동 검사·원본 에셋 | 164개 성공, 검사 경고·실패 0. 원본 패키지 454개 로드 |, 같은 폴더 |
+| 전투 네트워크·재스폰 | Standalone, Dedicated 지연·손실, Listen 원격·호스트 통과 | |
+| 게임 연결 | 투사체·Agent 피격 기억·새 프로세스 장비 복원·Dedicated 성장 통과 | 같은 폴더의 |
 | Game·Server 패키지 | 생성·실행과 UI 검증 통과 | [전투 모듈 패키지 검증](Packaging.md#전투-모듈-분리-후-패키지) |
 
 독립 프로젝트에 복사한 KSICombat 소스는 실행 검사 시점의 CCL 소스와 바이트 단위로 같다. 제출 직전 KSIHitRule.h 끝의 빈 줄 하나만 제거했고 선언·실행 코드는 그대로다. 이 차이는 `post-validation-formatting.json`에 기록했으며 프로젝트 생성·Editor 빌드를 다시 확인했다. 재현은 `Tools/Validation/run_framework_isolation.ps1 -Module KSICombat`이다. 이 프로젝트는 CCL·Inventory·UI 코드·콘텐츠를 복사하지 않고 GameplayAbilities만 활성화한다. 전체 자동 검사는 `Tools/Validation/run_automation.ps1 -Filter 'CCL.'`로 실행한다.
 
 첫 Editor 링크에서 제작 도구의 KSICombat 직접 의존 누락을 고쳤다. Listen 원격 검사에서는 준비 중 적 AI가 호스트를 죽이는 간섭이 있어 검사 대기부터 AI를 정지시켰다. 수정 후 관찰자 생존 조건을 유지한 네 가지 구성을 다시 통과했다. 투사체 도구의 단일 인자 배열 변환도 보완했다. 이 실패들과 모듈 DLL 생성 전 시작해 결과가 없던 자동 검사 시도는 성공 근거에서 제외했다. 최초 분리 전 전체 검사 결과를 새로 확보했다는 뜻은 아니다.
 
-자동 검사 시작 전에는 기존 실행에서도 보인 `Condition failed` 진단이 15줄 남았다. 일부 Editor 게임 프로세스에는 EditorToolset·ToolsetRegistry의 `AgentSkill`·`PythonTestRunner` Python 초기화 오류도 있다. 164개 테스트의 결과 JSON과 이 시작 진단을 구분하며, 전체 Editor 로그가 오류 없이 실행됐다는 뜻은 아니다. 최종 로그 분류는 `Saved/Tests/FrameworkStage3/final-results.json`에 보존했다.
+자동 검사 시작 전에는 기존 실행에서도 보인 `Condition failed` 진단이 15줄 남았다. 일부 Editor 게임 프로세스에는 EditorToolset·ToolsetRegistry의 `AgentSkill`·`PythonTestRunner` Python 초기화 오류도 있다. 164개 테스트의 결과 JSON과 이 시작 진단을 구분하며, 전체 Editor 로그가 오류 없이 실행됐다는 뜻은 아니다.
 
 GAS와 모듈·리다이렉트는 UE4에도 있던 개념이다. 이번 API·실행 검증 범위는 UE 5.8.3이다. GAS를 필수로 유지하면 기존 예측과 효과 수명을 재사용하지만, GAS가 없는 프로젝트에도 그대로 사용할 수는 없다. 범용 효과 전달 인터페이스를 추가하는 대안보다 공개 경계가 작고 현재 동작을 보존하기 쉬워 이 구성을 택했다. 성능 개선, Shipping·다른 UE 버전·Iris·다른 PC의 호환은 주장하지 않는다. 단계 4와 공용 저장소 배포는 착수하지 않았다.
-
 
 ## 단계 4 구현과 검증
 
@@ -627,7 +622,7 @@ Check(!Clock.Commit(First.Ticket, Error) && Clock.Commit(Retry.Ticket, Error), T
 
 ### 코드 위치의 전후 비교
 
-아래 표는 이동 전 파일 이름과 현재 모듈이다. CCL의 게임 연결과 기존 자동 검사 파일은 원래 폴더에 남는다. 각 모듈의 Public은 공개 헤더, Private은 구현이다. 전체 이동 38개 파일의 원본 대조는 `Saved/Tests/FrameworkStage4/extraction-check.json`, 파일·식별자 대응은 같은 폴더의 `migration.json`에 있다.
+아래 표는 이동 전 파일 이름과 현재 모듈이다. CCL의 게임 연결과 기존 자동 검사 파일은 원래 폴더에 남는다. 각 모듈의 Public은 공개 헤더, Private은 구현이다.
 
 | 이동 전 이름 | 현재 소유와 진입점 |
 |---|---|
@@ -660,11 +655,11 @@ UE 5.8.3, Win64 Development에서 CCL 모듈 소스·콘텐츠·설정이 없는
 
 총 37개 항목이다. 최초 WorldTime·Celestial 독립 빌드와 실행 뒤 CCL 메타데이터 복원에서 누락 include가 드러났다. 의존을 보완한 뒤 후속 독립 실행과 최종 CCL 빌드로 복원했다. 초기 도구 호출 전체가 종료 코드 0이었다고 판정하지 않는다.
 
-분리 전 전체 자동 검사와 최종 자동 검사는 각각 164개 성공, 경고·실패·미실행 0이다. 기준 보고서는 `Saved/Tests/Automation/20261012-023549-139/report/index.json`, 최종 보고서는 `Saved/Tests/Automation/20261012-033035-821/report/index.json`이다. 실행 검증의 프로젝트 파일 생성·Editor 빌드는 `Saved/Tests/FrameworkStage4/Generate-Final.log`·`Editor-Final.log`에 있다. 끝 빈 줄 정리 후 제출본의 생성·빌드는 `Generate-Submission.log`·`Editor-Submission.log`에서 다시 확인했다.
+분리 전 전체 자동 검사와 최종 자동 검사는 각각 164개 성공, 경고·실패·미실행 0이다.
 
-기존 콘텐츠 454개 로드와 타입 이동 검사를 통과했다. 작업 전에 보존한 이전 저장에서 세대 31, 세계 시각 20.925562173초, 지형 1개를 복구했다. 세계의 시간·생활·표면·생태 복원과 지형 재직렬화 바이트 일치를 확인했다. 근거는 최종 보고서의 `CCL.Environment.Save.GenerationRecovery`와 `CCL_LEGACY_GENERATION` 기록이다. 저장 사본은 `Saved/Tests/FrameworkStage4/LegacyGeneration`, 원본 해시는 `legacy-source.json`에 있다.
+기존 콘텐츠 454개 로드와 타입 이동 검사를 통과했다. 작업 전에 보존한 이전 저장에서 세대 31, 세계 시각 20.925562173초, 지형 1개를 복구했다. 세계의 시간·생활·표면·생태 복원과 지형 재직렬화 바이트 일치를 확인했다. 근거는 최종 보고서의 `CCL.Environment.Save.GenerationRecovery`와 `CCL_LEGACY_GENERATION` 기록이다.
 
-월드 Dedicated, 지형 편집·복제·맵 왕복, Agent 저장, 생태 행동·Actor/Mass·공간 경로, 환경 새 프로세스 재개·맵 이동과 Listen 지연 80ms·손실 2%·재접속 검사를 통과했다. 명령과 원본 로그 위치는 `Saved/Tests/FrameworkStage4/runtime-commands.json` 및 항목별 `.log`에 있다. 테스트 Subsystem 보완 뒤 전체 자동화와 해당 생태 검사를 재실행했다. 변경하지 않은 앞선 월드·지형·Agent 실행은 해당 검증 시점의 결과다.
+월드 Dedicated, 지형 편집·복제·맵 왕복, Agent 저장, 생태 행동·Actor/Mass·공간 경로, 환경 새 프로세스 재개·맵 이동과 Listen 지연 80ms·손실 2%·재접속 검사를 통과했다. 테스트 Subsystem 보완 뒤 전체 자동화와 해당 생태 검사를 재실행했다. 변경하지 않은 앞선 월드·지형·Agent 실행은 해당 검증 시점의 결과다.
 
 ### 기존 실행 검사에서 보완한 조건
 
@@ -672,19 +667,11 @@ TerrainTravel의 경제 비교 실패는 이전 단계 3 패키지에서도 재�
 
 생태 표현 검사는 실험장 전체 표현 수가 0이어야 한다고 가정했다. 세계 복원 뒤 실험장 고유 개체가 다시 표현되는 경로와 충돌하며 이 역시 이전 패키지에서 재현됐다. 보완한 검사는 테스트 ID 6개의 사망·표현 등록 제거·실제 Actor 제거와 저장한 Mass Entity의 무효화, 대상 개체군의 생존 수를 직접 검사한다. 다른 실험장 개체는 제거하지 않는다.
 
-두 이전 패키지 실패는 `Terrain-Travel-BaselinePackage.log`·`Ecology-Representation-BaselinePackage.log`, 보완 뒤 성공은 `Terrain-Travel.log`·`Ecology-Representation.log`에 있다. 로그 공통 루트는 `Saved/Tests/FrameworkStage4/`다. 이는 검사 대상 식별을 고친 것이며 새 경제 정책이나 생태 알고리즘을 구현한 결과가 아니다.
+두 이전 패키지 실패는 ·, 보완 뒤 성공은 ·있다. 이는 검사 대상 식별을 고친 것이며 새 경제 정책이나 생태 알고리즘을 구현한 결과가 아니다.
 
 ### 재현과 한계
 
 자동화 시작 전 기존 `LogAutomationTest: Error: Condition failed` 15줄이 남았고 테스트 보고서의 경고·실패는 0이다. 일부 Editor 게임 실행에는 Toolsets의 AgentSkill·PythonTestRunner 초기화 오류가 남았다. 의도한 서버 종료의 연결 끊김도 별도로 확인했다. 회귀 실행에서 치명적 오류·어설션·ensure·CDO 생성자 오류는 발견하지 않았다.
-
-```powershell
-Tools/Validation/run_framework_isolation.ps1 -Module KSISave
-Tools/Validation/run_framework_isolation.ps1 -Module KSIEnvironment
-Tools/Validation/run_automation.ps1 -Filter 'CCL.' -TimeoutSeconds 600 -LegacyGenerationDirectory Saved/Tests/FrameworkStage4/LegacyGeneration
-Tools/Validation/run_terrain_travel_smoke.ps1 -Mode Dedicated
-Tools/Validation/run_ecology_representation.ps1 -Mode Dedicated
-```
 
 LegacyGenerationDirectory는 실제 이전 파일 사본을 준비한 뒤 지정한다. 일반 자동 검사는 이 선택 인자를 생략해 실행할 수 있다. 공용 모듈을 선택해 검사할 때는 `-Module`에 표의 다른 이름을 지정한다. 공유 소스 엔진의 빌드 메타데이터 때문에 독립 빌드와 CCL 실행은 순서대로 수행한다.
 

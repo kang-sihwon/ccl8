@@ -104,34 +104,34 @@ T 대화와 B 구매는 거리·시야 조건을 만족하는 NPC 중 가장 가
 
 | 검사 | 결과 | 로컬 근거 |
 |---|---|---|
-| 프로젝트 파일 생성 | 성공 | `Saved/Tests/ContentFoundation-20261011/GenerateProjectFiles.log` |
-| `CCLEditor Win64 Development` | 성공 | 같은 폴더의 `EditorBuild.log` |
-| CCL 자동 검사 | 161개 성공, 경고·실패·미실행·진행 중 0 | `Saved/Tests/Automation/20261011-211541-112/report/index.json` |
-| 콘텐츠 Standalone | 통과 | `Saved/Tests/CampaignSmoke/Standalone-20261011-211506` |
-| 콘텐츠 Dedicated | 조작자·관찰자·늦은 참가자 통과 | `Saved/Tests/CampaignSmoke/Dedicated-20261011-211615` |
-| 콘텐츠 Listen 원격 조작 | 호스트 관찰자·원격 조작자·늦은 참가자 통과 | `Saved/Tests/CampaignSmoke/Listen-20261011-211754` |
-| 콘텐츠 Listen 호스트 조작 | 호스트 조작자·원격 관찰자·늦은 참가자 통과 | `Saved/Tests/CampaignSmoke/Listen-20261011-211927` |
-| 콘텐츠 Dedicated 지연·손실 | `PktLag 50`, `PktLoss 2` 적용과 모든 역할 통과 | `Saved/Tests/CampaignSmoke/Dedicated-20261011-212058` |
-| 콘텐츠 렌더링 실행 | Standalone 전체 흐름 통과, 1280×720 NPC 이름·대사·잔액 부족 안내와 조작 안내 확인 | `Saved/Tests/CampaignSmoke/Standalone-20261011-212233`, `Saved/Tests/ContentFoundation-20261011/Visual/steward.png` |
+| 프로젝트 파일 생성 | 성공 | |
+| `CCLEditor Win64 Development` | 성공 | 같은 폴더의 |
+| CCL 자동 검사 | 161개 성공, 경고·실패·미실행·진행 중 0 | |
+| 콘텐츠 Standalone | 통과 | |
+| 콘텐츠 Dedicated | 조작자·관찰자·늦은 참가자 통과 | |
+| 콘텐츠 Listen 원격 조작 | 호스트 관찰자·원격 조작자·늦은 참가자 통과 | |
+| 콘텐츠 Listen 호스트 조작 | 호스트 조작자·원격 관찰자·늦은 참가자 통과 | |
+| 콘텐츠 Dedicated 지연·손실 | `PktLag 50`, `PktLoss 2` 적용과 모든 역할 통과 | |
+| 콘텐츠 렌더링 실행 | Standalone 전체 흐름 통과, 1280×720 NPC 이름·대사·잔액 부족 안내와 조작 안내 확인 | |
 
-역할별 확인 결과는 `Saved/Tests/ContentFoundation-20261011/verified-results.json`에 묶었다. 렌더링 캡처는 기본 회복약의 대화 화면이며, 변경 상품의 수신은 각 클라이언트의 데이터 검사로 확인했다. Windows 패키지는 다시 만들지 않았다.
+렌더링 캡처는 기본 회복약의 대화 화면이며, 변경 상품의 수신은 각 클라이언트의 데이터 검사로 확인했다. Windows 패키지는 다시 만들지 않았다.
 
 ### 2026-10-07 UE 5.9.0
 
-아래 결과와 `Saved/StageValidation/` 경로는 노트북에서 확인한 과거 기록이다. 원본 로그가 현재 작업 공간에 없으므로 다시 확인한 결과로 취급하지 않는다.
+원본 로그가 현재 작업 공간에 없으므로 다시 확인한 결과로 취급하지 않는다.
 
 생성 BAT·CCLEditor 빌드·공격 정의 3개와 NPC 저장을 통과했다. Standalone·Dedicated·Listen 원격·호스트·왕복 지연 100ms와 손실 2% 구성에서 실제 클라이언트 요청으로 수락·구매·귀환 보상을 검사했고, 각 네트워크 구성에서 늦은 접속도 통과했다. 원거리 거래, 잔액 부족, 보관 공간 부족, 중복 보상을 거부했고 재스폰 후 개인 상태를 유지했다. 보스는 절반 체력에서 휩쓸기와 강공격을 교대했으며, 정면 방어 중인 대상에게 휩쓸기 피해 24가 적용됐다. 성장·전투 회귀도 통과했다. NPC 렌더링 화면에서 안내인·이름·구매 가격·거부 결과·다음 행동을 확인했다.
 
 | 검사 | 로컬 근거 |
 |---|---|
-| 생성 BAT·빌드·에셋 | `Saved/StageValidation/Stage5-Generate.log`, `Stage5-Build.log`, `Stage5-Assets.log` |
-| 기능·멀티플레이 | 같은 폴더의 `Stage5-Standalone.log`, `Stage5-Dedicated.log`, `Stage5-Listen.log`, `Stage5-Host.log`, `Stage5-Impaired.log` |
-| 기존 기능 회귀 | `Stage5-Progression.log`, `Stage5-Combat.log` |
-| NPC 화면 | `Saved/Tests/CampaignVisual/steward.png` |
+| 생성 BAT·빌드·에셋 | |
+| 기능·멀티플레이 | 같은 폴더의 |
+| 기존 기능 회귀 | |
+| NPC 화면 | |
 
-같은 날 별도 패키지의 1280×720·1920×1080 캡처에서 대화 상자의 이름·대사·조작 안내를 확인했고 인벤토리 전환과 거리 이탈로 닫히는 검사도 통과했다. 근거는 `Saved/StageValidation/Equipment-Packaged-UI-1280.log`, `Equipment-Packaged-UI-1920.log`와 `Saved/Tests/UIVisual/`의 해당 실행 캡처다.
+같은 날 별도 패키지의 1280×720·1920×1080 캡처에서 대화 상자의 이름·대사·조작 안내를 확인했고 인벤토리 전환과 거리 이탈로 닫히는 검사도 통과했다.
 
-같은 날 옮겨 온 커서 4개, 레벨 프로토타입 29개, 무기 27개, 애니메이션 관련 2개를 저장 없이 불러왔다. 62개 모두 객체 로드에는 성공했지만 `BP_WobbleTarget`은 `/Game/DemoTemplate/_Core/MI_Intro_Colorway`가 없고, `ABP_FP_Copy`와 `CtrlRig_FPWarp`에는 `/Game/FirstPerson/Anims/` 참조가 남아 있다. `ABP_FP_Copy`는 유효한 Control Rig 클래스가 없어 Blueprint 컴파일 오류도 난다. 원본 에셋은 바꾸지 않았고 대화 UI는 이 리소스에 의존하지 않는다. 결과는 로컬 `Saved/StageValidation/ImportedResources-Report.json`과 `ImportedResources.log`에 있다.
+같은 날 옮겨 온 커서 4개, 레벨 프로토타입 29개, 무기 27개, 애니메이션 관련 2개를 저장 없이 불러왔다. 62개 모두 객체 로드에는 성공했지만 `BP_WobbleTarget`은 `/Game/DemoTemplate/_Core/MI_Intro_Colorway`가 없고, `ABP_FP_Copy`와 `CtrlRig_FPWarp`에는 `/Game/FirstPerson/Anims/` 참조가 남아 있다. `ABP_FP_Copy`는 유효한 Control Rig 클래스가 없어 Blueprint 컴파일 오류도 난다. 원본 에셋은 바꾸지 않았고 대화 UI는 이 리소스에 의존하지 않는다.
 
 ### 미검증
 

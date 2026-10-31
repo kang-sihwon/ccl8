@@ -120,7 +120,7 @@ HUD는 실제 뷰포트를 채우는 Canvas를 루트로 쓴다. 1280×720 고�
 4. 인벤토리를 닫고 마을 안내인 근처에서 `T`를 누른다. 중앙 아래 대화 상자의 이름과 본문을 확인한다.
 5. `Esc`로 메뉴를 열었다 닫는다. 캐릭터 조작이 복구되는지 확인한다.
 
-연출 요청은 기반 API로 제공하며 일반 플레이에 컷신 단축키를 추가하지 않았다. 자동 실행으로 저장한 비교용 화면은 로컬 `Saved/Tests/UIVisual/1920x1080-20261008-100611/`의 `equipment-full.png`(장비 창), `npc-dialogue.png`(대화창), `presentation-dialogue-only.png`(HUD 그룹을 숨기고 대화창만 남긴 상태)다.
+연출 요청은 기반 API로 제공하며 일반 플레이에 컷신 단축키를 추가하지 않았다. 자동 실행으로 저장한 비교용 화면은 로컬 (장비 창)(대화창)(HUD 그룹을 숨기고 대화창만 남긴 상태)다.
 
 ## 이전과 검증
 
@@ -137,7 +137,7 @@ HUD는 실제 뷰포트를 채우는 Canvas를 루트로 쓴다. 1280×720 고�
 
 ### 2026-10-07 공용 기반
 
-생성 BAT와 전체 Editor 빌드 근거는 `Saved/StageValidation/UI-Generate.log`, `UI-Build.log`다. `CCL.UI.RegistryContracts`는 `Saved/Tests/Automation/20261007-235614-219/report/index.json`에서 성공했다. `run_ui_foundation.ps1`은 `Saved/Tests/UIFoundation/20261007-235928/game.log`에서 통과했고, 맵 이동 후 스택 순서 보존과 닫기 콜백 재진입 거부도 확인했다.
+`CCL.UI.RegistryContracts`는 성공했다. `run_ui_foundation.ps1`은 통과했고, 맵 이동 후 스택 순서 보존과 닫기 콜백 재진입 거부도 확인했다.
 
 ### 2026-10-08 인벤토리·메뉴 이전
 
@@ -145,28 +145,28 @@ HUD는 실제 뷰포트를 채우는 Canvas를 루트로 쓴다. 1280×720 고�
 
 | 인벤토리·메뉴 이전 검사 | 로컬 근거와 결과 |
 |---|---|
-| 최종 생성 BAT·전체 Editor 빌드 | `Saved/StageValidation/UIInventory-Generate.log`, `UIInventory-Build.log`, 성공 |
-| 실제 포인터 이동·교환·장착·해제, 드래그 중 닫기, 풀 재사용, 메뉴 입력, 재스폰 | `Saved/Tests/UIVisual/1280x720-20261008-001933/game.log`, 통과 |
-| 위 검사와 로컬 플레이어별 메뉴·인벤토리 분리 | `Saved/Tests/UIVisual/1920x1080-20261008-002538/game.log`, 통과 |
-| Listen 원격 장착·복제·원정·개별 재스폰 | `Saved/Tests/CampaignSmoke/Listen-20261008-002532/`, 서버·클라이언트 통과 |
-| 기본 레지스트리 연결 후 공용 수명 계약 회귀 | `Saved/Tests/UIFoundation/20261008-002702/game.log`, 통과 |
-| 시작 메뉴 키보드 입력·맵 이동·별도 프로세스 저장·복원 | `Saved/Tests/SessionSmoke/20261008-002754/write.log`, `read.log`, 통과 |
+| 최종 생성 BAT·전체 Editor 빌드 |, 성공 |
+| 실제 포인터 이동·교환·장착·해제, 드래그 중 닫기, 풀 재사용, 메뉴 입력, 재스폰 |, 통과 |
+| 위 검사와 로컬 플레이어별 메뉴·인벤토리 분리 |, 통과 |
+| Listen 원격 장착·복제·원정·개별 재스폰 |, 서버·클라이언트 통과 |
+| 기본 레지스트리 연결 후 공용 수명 계약 회귀 |, 통과 |
+| 시작 메뉴 키보드 입력·맵 이동·별도 프로세스 저장·복원 |, 통과 |
 
-두 UI 검사 폴더의 `equipment-full.png`에서 장착 슬롯과 캐릭터 미리보기를, 1080p의 `managed-session-menu.png`에서 메뉴 배치를 확인했다. 미리보기의 장비 외형은 검증용 임시 도형이다.
+두 UI 검사 폴더의 장착 슬롯과 캐릭터 미리보기를, 1080p의 메뉴 배치를 확인했다. 미리보기의 장비 외형은 검증용 임시 도형이다.
 
-코드 검토에서 첫 번째 로컬 플레이어에 고정된 메뉴 소유를 플레이어별 핸들로 바꾸고, 드래그 취소도 해당 소유자의 작업에만 적용했다. 컨트롤러의 서버·클라이언트 RPC 정의 18개는 이전과 같으며 비교 근거는 `Saved/StageValidation/UIInventory-Review.log`에 있다.
+코드 검토에서 첫 번째 로컬 플레이어에 고정된 메뉴 소유를 플레이어별 핸들로 바꾸고, 드래그 취소도 해당 소유자의 작업에만 적용했다.
 
 ### 2026-10-08 HUD·대화창
 
-HP·기력 표시와 NPC 대화를 독립 위젯으로 구성하고 기능별 변경 알림에 연결했다. 생성 BAT와 전체 빌드는 `Saved/StageValidation/UIHUD-Generate.log`, `UIHUD-Build.log`에서 성공했다. `CCL.UI.RegistryContracts`와 `CCL.UI.ViewModelLifetime`은 `Saved/Tests/Automation/20261008-094539-900/report/index.json`에서 2개 모두 통과했다.
+HP·기력 표시와 NPC 대화를 독립 위젯으로 구성하고 기능별 변경 알림에 연결했다. 생성 BAT와 전체 빌드는 성공했다. `CCL.UI.RegistryContracts`와 `CCL.UI.ViewModelLifetime`은 2개 모두 통과했다.
 
-`Saved/Tests/UIVisual/1280x720-20261008-094813/`와 `1920x1080-20261008-094813/`에서 독립 대화창의 본문 변경, 거리 이탈, 늦은 응답 거부, 인벤토리 입력, 재스폰, 로컬 플레이어 분리를 통과했다. `npc-dialogue.png`와 `managed-hud.png`를 열어 배치와 글자 크기를 확인했다. 인벤토리·메뉴가 열린 상태의 응답 거부도 실제 게임 검사에서 확인했다. 공용 수명 회귀는 `Saved/Tests/UIFoundation/20261008-094647/game.log`, Listen 원격 장비·퀘스트·재스폰 회귀는 `Saved/Tests/CampaignSmoke/Listen-20261008-094921/`에서 통과했다.
+독립 대화창의 본문 변경, 거리 이탈, 늦은 응답 거부, 인벤토리 입력, 재스폰, 로컬 플레이어 분리를 통과했다. 를 열어 배치와 글자 크기를 확인했다. 인벤토리·메뉴가 열린 상태의 응답 거부도 실제 게임 검사에서 확인했다. 공용 수명 회귀는 , Listen 원격 장비·퀘스트·재스폰 회귀는 통과했다.
 
-첫 실행 시도는 Windows 스마트 앱 컨트롤에 막혔고, 사용자가 설정을 바꾼 뒤 위 검사를 실제로 실행했다. 차단 당시 기록은 `Saved/StageValidation/UIHUD-BlockedRecheck.log`에 있다. 차단된 시도는 통과 횟수에 넣지 않는다.
+첫 실행 시도는 Windows 스마트 앱 컨트롤에 막혔고, 사용자가 설정을 바꾼 뒤 위 검사를 실제로 실행했다. 차단된 시도는 통과 횟수에 넣지 않는다.
 
 ### 2026-10-08 표시 제어
 
-최종 생성·빌드는 `Saved/StageValidation/UIPresentation-Generate.log`, `UIPresentation-Build.log`에서 성공했다. 720p 검사 `Saved/Tests/UIVisual/1280x720-20261008-100357/`와 최종 보완 후 1080p 검사 `1920x1080-20261008-100611/`에서 중첩·페이드·갱신·입력·사망 검사가 통과했다. `presentation-dialogue-only.png`에서 HUD가 숨겨지고 NPC 대화만 남는 화면을 확인했다. 맵 이동과 플레이어 격리는 `Saved/Tests/UIFoundation/20261008-100611/game.log`, 자동 검사 2개는 `Saved/Tests/Automation/20261008-100503-711/report/index.json`에서 통과했다. 코드 검토에서 월드 정리 Tick 직전의 이전 월드 요청 제외를 보완했다. 공용 Core는 캐릭터·장비·GAS·퀘스트 클래스를 참조하지 않으며, 서버 RPC는 이 변경에서 바꾸지 않았다.
+최종 생성·빌드는 성공했다. 720p 검사 최종 보완 후 1080p 검사 중첩·페이드·갱신·입력·사망 검사가 통과했다. HUD가 숨겨지고 NPC 대화만 남는 화면을 확인했다. 맵 이동과 플레이어 격리는 , 자동 검사 2개는 통과했다. 코드 검토에서 월드 정리 Tick 직전의 이전 월드 요청 제외를 보완했다. 공용 Core는 캐릭터·장비·GAS·퀘스트 클래스를 참조하지 않으며, 서버 RPC는 이 변경에서 바꾸지 않았다.
 
 ### 2026-10-08 통합 검사
 
@@ -174,17 +174,17 @@ HP·기력 표시와 NPC 대화를 독립 위젯으로 구성하고 기능별 �
 
 | 통합 검사 | 로컬 근거 | 결과 |
 |---|---|---|
-| 최종 생성 BAT·CCLEditor 전체 빌드 | `Saved/StageValidation/UIIntegration-Generate.log`, `UIIntegration-Build.log` | 성공 |
-| RTS 자원·선택·미니맵, 대화 본문·선택지, 일시정지 페이드, 생성 중 닫힘 | `Saved/Tests/UIFoundation/20261008-101321/game.log` | 통과 |
-| Dedicated 원격 장비·양손·서버 검증·복제·재스폰 | `Saved/Tests/CampaignSmoke/Dedicated-20261008-100835/` | 서버·driver·witness·늦은 접속 통과 |
-| Listen 호스트 장비·성장·개별 재스폰 | `Saved/Tests/CampaignSmoke/Listen-20261008-101057/` | 호스트·witness·늦은 접속 통과 |
-| 지연 50ms·손실 2%에서 NPC 거래·퀘스트·중복 보상 거부 | `Saved/Tests/CampaignSmoke/Listen-20261008-101322/` | 서버·driver·witness·늦은 접속 통과 |
-| 시작 메뉴 키 입력·별도 프로세스 저장 복원 | `Saved/Tests/SessionSmoke/20261008-100828/` | write·read 통과 |
-| 방 생성·원격 접속·게스트 저장 거부 | `Saved/Tests/SessionSmoke/20261008-101056/` | host·join 통과 |
-| 접속 실패와 메뉴 복구 | `Saved/Tests/SessionSmoke/20261008-101143/` | badjoin 통과 |
-| 장비 태그·저장 호환, UI 레지스트리·표시 모델 | `Saved/Tests/Automation/20261008-101144-062/report/index.json` | 프로젝트 검사 3개 통과; 함께 선택된 엔진 검사 1개도 통과 |
+| 최종 생성 BAT·CCLEditor 전체 빌드 | | 성공 |
+| RTS 자원·선택·미니맵, 대화 본문·선택지, 일시정지 페이드, 생성 중 닫힘 | | 통과 |
+| Dedicated 원격 장비·양손·서버 검증·복제·재스폰 | | 서버·driver·witness·늦은 접속 통과 |
+| Listen 호스트 장비·성장·개별 재스폰 | | 호스트·witness·늦은 접속 통과 |
+| 지연 50ms·손실 2%에서 NPC 거래·퀘스트·중복 보상 거부 | | 서버·driver·witness·늦은 접속 통과 |
+| 시작 메뉴 키 입력·별도 프로세스 저장 복원 | | write·read 통과 |
+| 방 생성·원격 접속·게스트 저장 거부 | | host·join 통과 |
+| 접속 실패와 메뉴 복구 | | badjoin 통과 |
+| 장비 태그·저장 호환, UI 레지스트리·표시 모델 | | 프로젝트 검사 3개 통과; 함께 선택된 엔진 검사 1개도 통과 |
 
-통합 코드 검토에서 초기 표시 정책의 기능 콜백이 화면을 닫는 경우에도 `OpenView`가 유효한 핸들을 반환할 수 있는 결함을 고쳤다. `UCCLUICloseOnHideProbe`가 그 경로에서 열린 화면과 반환 핸들이 모두 남지 않는지 검사한다. 문맥 델리게이트 해제, 풀 재사용 초기화, 소유자 소멸, 맵 이동 후 스택 순서와 입력 소유도 검토했다. 서버 RPC 본문 13개의 보존과 공용 Core 의존성 검사 근거는 `Saved/StageValidation/UIIntegration-Review.log`에 있다. 이 결함 수정 뒤의 최종 생성·빌드 근거는 `Saved/StageValidation/UIFinal-Generate.log`, `UIFinal-Build.log`이며 최종 검사 코드의 컴파일·링크가 성공했다.
+통합 코드 검토에서 초기 표시 정책의 기능 콜백이 화면을 닫는 경우에도 `OpenView`가 유효한 핸들을 반환할 수 있는 결함을 고쳤다. `UCCLUICloseOnHideProbe`가 그 경로에서 열린 화면과 반환 핸들이 모두 남지 않는지 검사한다. 문맥 델리게이트 해제, 풀 재사용 초기화, 소유자 소멸, 맵 이동 후 스택 순서와 입력 소유도 검토했다.
 
 2026-10-08 당시 범위에는 다음 한계가 있었다.
 

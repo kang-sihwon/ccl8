@@ -87,15 +87,15 @@ UE 5.8.3에서 캠페인 기본·콘텐츠·성장·Dedicated를 다시 확인�
 
 | 항목 | 상태 | 로컬 근거 |
 |---|---|---|
-| 프로젝트 생성·CCLEditor 빌드 | 통과 | `Saved/StageValidation/Stage3-Generate.log`, `Stage3-Build.log` |
-| World Partition·Nanite 진행 맵 생성 | 종료 코드 0 | `Saved/StageValidation/Stage3-Assets.log` |
-| Standalone 진행·개별 재스폰 | 통과 | `Saved/StageValidation/Stage3-Navigation-Final.log` |
-| Dedicated와 승리 후 늦은 접속 | 통과 | `Saved/StageValidation/Stage3-Dedicated-Final.log` |
-| Listen 원격·호스트, Dedicated 왕복 지연 100ms·손실 2%와 늦은 접속 | 통과 | `Saved/StageValidation/Stage3-Listen-Final.log`, `Stage3-Host-Final.log`, `Stage3-Impaired-Final.log` |
-| 기존 전투 회귀 | Standalone·Dedicated 통과 | `Saved/StageValidation/Stage3-Combat-Standalone-Final.log`, `Stage3-Combat-Dedicated-Final.log` |
-| 기존 이동 회귀 | Standalone 통과 | `Saved/StageValidation/Stage3-Regression-Movement.log` |
-| 기본 서버 맵 | 맵 인자 없이 Campaign 로드 후 정상 종료 | `Saved/StageValidation/Stage3-DefaultServer.log` |
-| 화면 검사 | 마을·도로·보스·승리 목표와 체력 표시 확인, 표지판 회전 수정 | `Saved/Tests/CampaignVisual/`, `Saved/StageValidation/Stage3-Rendered-Final.log` |
+| 프로젝트 생성·CCLEditor 빌드 | 통과 | |
+| World Partition·Nanite 진행 맵 생성 | 종료 코드 0 | |
+| Standalone 진행·개별 재스폰 | 통과 | |
+| Dedicated와 승리 후 늦은 접속 | 통과 | |
+| Listen 원격·호스트, Dedicated 왕복 지연 100ms·손실 2%와 늦은 접속 | 통과 | |
+| 기존 전투 회귀 | Standalone·Dedicated 통과 | |
+| 기존 이동 회귀 | Standalone 통과 | |
+| 기본 서버 맵 | 맵 인자 없이 Campaign 로드 후 정상 종료 | |
+| 화면 검사 | 마을·도로·보스·승리 목표와 체력 표시 확인, 표지판 회전 수정 | |
 
 진행 검사는 먼저 일반 적의 실제 StateTree 접근·공격을 확인한 뒤, 위치를 고정하고 AI를 정지한 상태에서 실제 공격 Ability로 적을 처치한다. 자동 사망 통지는 서버에서만 집계하고 클라이언트는 승리와 남은 적 수를 확인한다.
 
@@ -103,11 +103,11 @@ UE 5.8.3에서 캠페인 기본·콘텐츠·성장·Dedicated를 다시 확인�
 
 AI 실행 검사에서 StateTree는 실행 중이지만 이동 거리 0, 내비게이션 투영 실패가 관찰됐다. 저장된 `CombatNavigation` 볼륨의 범위가 0이었다. `UCubeBuilder::Build`만 호출한 생성 경로에 볼륨의 `UModel`과 브러시 컴포넌트 연결이 빠져 있었다.
 
-`UCCLCombatAssetLibrary::ConfigureCombatWorld`가 엔진의 `UActorFactory::CreateBrushForVolumeActor`로 브러시를 만들고 0이 아닌 범위를 검사하도록 고쳤다. 근거는 UE 5.9의 `<Engine>/Source/Editor/UnrealEd/Private/Factories/ActorFactory.cpp`에 있는 같은 함수다. `Tools/Validation/repair_navigation.py`로 기존 전투·진행 맵의 배치를 유지하면서 브러시를 복구했고, 저장 검사에서 반범위 `(2000, 2000, 300)`을 확인했다. 근거 로그는 `Saved/StageValidation/Stage3-Nav-Repair.log`다.
+`UCCLCombatAssetLibrary::ConfigureCombatWorld`가 엔진의 `UActorFactory::CreateBrushForVolumeActor`로 브러시를 만들고 0이 아닌 범위를 검사하도록 고쳤다. 근거는 UE 5.9의 `<Engine>/Source/Editor/UnrealEd/Private/Factories/ActorFactory.cpp`에 있는 같은 함수다. `Tools/Validation/repair_navigation.py`로 기존 전투·진행 맵의 배치를 유지하면서 브러시를 복구했고, 저장 검사에서 반범위 `(2000, 2000, 300)`을 확인했다.
 
 복구 후 최종 실행에서 내비게이션 투영 성공과 적의 300cm 이상 이동·공격 피해를 관찰했다. Standalone, Dedicated, Listen 원격·호스트, Dedicated 지연·손실 구성에서 진행·승리·개별 재스폰을 통과했고 네트워크 구성마다 늦은 접속을 확인했다. 화면 캡처의 순간 이동 잔상은 검사 실행에서 Motion Blur를 끄고 확인했다. Python Rotator의 위치 인자로 뒤집혔던 표지판은 이름 있는 pitch·yaw·roll 인자로 고쳤다.
 
-World Partition 외부 Actor의 기존 회전을 고칠 때는 `Modify`로 저장 대상을 표시해야 했다. 첫 회전 수정은 재로드 후 유지되지 않아 보정했고, `Saved/StageValidation/Stage3-Presentation-Saved.log`에서 재로드한 표지판의 pitch 0·yaw 180·roll 0을 확인했다.
+World Partition 외부 Actor의 기존 회전을 고칠 때는 `Modify`로 저장 대상을 표시해야 했다. 첫 회전 수정은 재로드 후 유지되지 않아 보정했고재로드한 표지판의 pitch 0·yaw 180·roll 0을 확인했다.
 
 ### 미검증
 

@@ -186,15 +186,15 @@ Standalone과 네트워크 실행에서 서버의 전투 검사는 통과했지�
 | 100ms 왕복 지연·2% 손실 | Dedicated 전투 통과 |
 | 화면이 있는 애니메이션·방향·예고 가독성 | 기본 자세·공격·가드·패링·회피·사망 6개 캡처 확인. 최종 조작감·예고 가독성은 추가 검토 필요 |
 
-로컬 근거는 `Saved/StageValidation/Stage2-Generate.log`, `Stage2-Build.log`, `Stage2-Assets-Reviewed.log`, `Stage2-Combat-*-Final.log`, `Stage2-Movement-*.log`와 `Saved/Tests/VisualSmoke/`다. 경로는 저장소 기준이다. 화면에서 공격 후 체력 감소, 방어 자세, 회피 이동, 사망 안내를 확인했다. 기존 `run_network_smoke.ps1`의 네 실행 구성도 다시 통과했다.
+경로는 저장소 기준이다. 화면에서 공격 후 체력 감소, 방어 자세, 회피 이동, 사망 안내를 확인했다. 기존 `run_network_smoke.ps1`의 네 실행 구성도 다시 통과했다.
 
 UE 5.9의 EditorToolset·ToolsetRegistry Python 초기화 오류와 HLOD 편집기 클래스 경고는 게임 실행 로그에 남았다. 전투 판정·종료 성공과 이 플러그인 초기화 메시지는 구분하며, 실행 검사 전체의 로그에 오류가 없었다는 뜻은 아니다.
 
 ### 2026-10-06 엔진 모듈 목록 갱신과 효과 생성자 수정
 
-사용자 승인으로 UBT의 `WriteMetadata` 두 작업을 실행했다. 실제 내용이 바뀐 엔진 파일은 DataRegistry, GameplayAbilities, GameplayStateTree의 `.modules` 세 개이며 엔진 재컴파일은 없었다. 세 플러그인과 CCL의 BuildId가 실행 엔진과 일치한다. 갱신 전 파일과 실제 빌드 로그는 로컬 `Saved/ManifestUpdate/Before/`, `Saved/ManifestUpdate/Build.log`에 보존했다.
+사용자 승인으로 UBT의 `WriteMetadata` 두 작업을 실행했다. 실제 내용이 바뀐 엔진 파일은 DataRegistry, GameplayAbilities, GameplayStateTree의 `.modules` 세 개이며 엔진 재컴파일은 없었다. 세 플러그인과 CCL의 BuildId가 실행 엔진과 일치한다.
 
-`CCLEffects.cpp`의 생성자는 `CreateDefaultSubobject`로 GameplayEffectComponent를 만들고 `GEComponents`에 등록한다. 생성자에서 `FindOrAddComponent`가 이름 없는 `NewObject`를 호출해 생긴 초기화 오류를 고친 것이다. 수정 후 프로젝트 파일 생성, 전체 빌드, 클래스 로드 성공 표식 `CCL_MANIFEST_LOAD_PASS`를 확인했다. 로컬 근거는 `Saved/ManifestUpdate/GenerateProjectFiles.log`, `FinalBuild.log`, `EditorLoadFixed.log`다. 클래스 로드 검사는 전투·화면 검증을 대신하지 않는다.
+`CCLEffects.cpp`의 생성자는 `CreateDefaultSubobject`로 GameplayEffectComponent를 만들고 `GEComponents`에 등록한다. 생성자에서 `FindOrAddComponent`가 이름 없는 `NewObject`를 호출해 생긴 초기화 오류를 고친 것이다. 수정 후 프로젝트 파일 생성, 전체 빌드, 클래스 로드 성공 표식 `CCL_MANIFEST_LOAD_PASS`를 확인했다. 클래스 로드 검사는 전투·화면 검증을 대신하지 않는다.
 
 ### 2026-10-07 내비게이션 후속 수정
 
