@@ -22,7 +22,7 @@ lifts_hold: [25]
 
 CCLWorldAdvance의 세계 후보 확정, TerrainRegion의 권위·게시·복제, Agent의 생활·경제·성격·생물과 Actor/Mass 연결은 게임이 소유한다. UCCLAgentSnapshot 클래스 경로와 기존 세계·지형 저장 형식은 유지한다. KSISave는 완료된 불변 파일 묶음을 게시·복구하며 게임 codec과 의미 검증은 동기 콜백으로 받는다. 공용 모듈에서 CCL 콘텐츠나 게임 클래스를 참조하지 않는다.
 
-6개 최소 프로젝트의 독립 빌드·실행, 기존 에셋·저장 복원, CCL 회귀와 Game·실제 Server 패키지 검증을 완료했다. 구체 범위와 최초 실패·보완 근거는 [Framework 단계 4](../FrameworkPlan.md#단계-4-구현과-검증), 패키지 실행은 [Packaging](../Packaging.md#세계-모듈-분리-후-패키지)이 소유한다. 공용 저장소의 배포·동기화와 성능 목표 충족은 이번 결정에 포함하지 않는다.
+6개 최소 프로젝트의 독립 빌드·실행, 기존 에셋·저장 복원, CCL 회귀와 Game·실제 Server 패키지 검증을 완료했다. 구체 범위와 최초 실패·보완 근거는 [Framework 단계 4](../FrameworkPlan.md#단계-4-구현과-검증), 패키지 실행은 [Packaging](../Packaging/Records.md#세계-모듈-분리-후-패키지)이 소유한다. 공용 저장소의 배포·동기화와 성능 목표 충족은 이번 결정에 포함하지 않는다.
 
 ### 트레이드오프
 

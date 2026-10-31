@@ -16,7 +16,7 @@
 |---|---|---|
 | 사용자의 실제 플레이로 조작감·콘텐츠 분량·아트·밸런스 검토 | [StudyRoadmap](../StudyRoadmap.md) | 사용자가 플레이할 시점을 정한다 |
 | 전투의 남은 검사(정확한 방어 구간 경계, 동시 피격 등) | [CombatFoundation](../CombatFoundation.md#미검증) | 없음 |
-| 패키지의 미확인 환경(다른 PC·Shipping·외부 인터넷·NAT) | [Packaging](../Packaging.md#세계-모듈-분리-후-패키지) | 검증할 기기와 네트워크가 있어야 한다 |
+| 패키지의 미확인 환경(다른 PC·Shipping·외부 인터넷·NAT) | [Packaging](../Packaging/Records.md#세계-모듈-분리-후-패키지) | 검증할 기기와 네트워크가 있어야 한다 |
 | 자연 환경 단계 8 마무리와 단계 9 | [EnvironmentPlan](../EnvironmentPlan.md#단계별-현황) | 없음 |
 | `Docs/Learning/` 시스템별 재작성과 QA 재검증 | [결정 28](../decisions/0028-agent-workflow-restructure.md), [학습 문서의 깨진 링크](../Learning/README.md#알려진-깨진-링크) | 없음. 선행 작업인 C++ 규칙 위반 정리는 2026-10-28에 끝났다([Coding](../Coding.md#기계-검사-규칙)) |
 | SessionFoundation 절 본문을 계약별로 다시 나누기 | [SessionFoundation](../SessionFoundation.md#현재-계약) | 링크하는 8곳을 함께 옮긴다 |

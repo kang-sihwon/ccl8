@@ -468,7 +468,7 @@ UE 5.8.3, Win64 Development에서 아래 최초 로컬 검증 결과를 확인�
 
 ### 패키지 검증과 제출 범위
 
-2026-10-12 Windows Development의 Game·Server 패키지 생성과 실행 검증을 완료했다. 상세 실행 결과, 남은 쿠킹 경고와 재현 명령은 [Framework 분리 후 Game·Server 패키지](Packaging.md#framework-분리-후-gameserver-패키지)가 소유한다. 처음 패키지에서 발견한 화면용 글꼴의 서버 생성자 로딩을 수정한 뒤 프로젝트 생성·Editor 빌드·163개 자동 검사와 패키지 회귀를 다시 확인했다.
+2026-10-12 Windows Development의 Game·Server 패키지 생성과 실행 검증을 완료했다. 상세 실행 결과, 남은 쿠킹 경고와 재현 명령은 [Framework 분리 후 Game·Server 패키지](Packaging/Records.md#framework-분리-후-gameserver-패키지)가 소유한다. 처음 패키지에서 발견한 화면용 글꼴의 서버 생성자 로딩을 수정한 뒤 프로젝트 생성·Editor 빌드·163개 자동 검사와 패키지 회귀를 다시 확인했다.
 
 제출 범위는 `KSICore`, `KSIInventory`, CCL 어댑터와 호출부, 모듈·리다이렉트 설정, 독립·복제·음식 검사 도구다. 분리의 기반으로 사용한 [코드 설계 후속 보완](ProgressionFoundation/Verification.md#2026-10-11-설계-후속-수정)의 장비 알림·카탈로그·음식/무기 서비스·선택적 시간 진행·표면 공유 발행본과 해당 회귀 도구도 함께 포함한다. 기존 `Guide.md`의 설계 초안 링크와 미추적 `CodeStructurePlan.md`는 이 제출에서 제외한다. 에셋은 수정하거나 재저장하지 않았다.
 
@@ -556,7 +556,7 @@ UE 5.8.3, Win64 Development에서 아래 항목을 확인했다. 로그 경로�
 | CCL 자동 검사·원본 에셋 | 164개 성공, 검사 경고·실패 0. 원본 패키지 454개 로드 |, 같은 폴더 |
 | 전투 네트워크·재스폰 | Standalone, Dedicated 지연·손실, Listen 원격·호스트 통과 | |
 | 게임 연결 | 투사체·Agent 피격 기억·새 프로세스 장비 복원·Dedicated 성장 통과 | 같은 폴더의 |
-| Game·Server 패키지 | 생성·실행과 UI 검증 통과 | [전투 모듈 패키지 검증](Packaging.md#전투-모듈-분리-후-패키지) |
+| Game·Server 패키지 | 생성·실행과 UI 검증 통과 | [전투 모듈 패키지 검증](Packaging/Records.md#전투-모듈-분리-후-패키지) |
 
 독립 프로젝트에 복사한 KSICombat 소스는 실행 검사 시점의 CCL 소스와 바이트 단위로 같다. 제출 직전 KSIHitRule.h 끝의 빈 줄 하나만 제거했고 선언·실행 코드는 그대로다. 이 차이는 `post-validation-formatting.json`에 기록했으며 프로젝트 생성·Editor 빌드를 다시 확인했다. 재현은 `Tools/Validation/run_framework_isolation.ps1 -Module KSICombat`이다. 이 프로젝트는 CCL·Inventory·UI 코드·콘텐츠를 복사하지 않고 GameplayAbilities만 활성화한다. 전체 자동 검사는 `Tools/Validation/run_automation.ps1 -Filter 'CCL.'`로 실행한다.
 
@@ -675,6 +675,6 @@ TerrainTravel의 경제 비교 실패는 이전 단계 3 패키지에서도 재�
 
 LegacyGenerationDirectory는 실제 이전 파일 사본을 준비한 뒤 지정한다. 일반 자동 검사는 이 선택 인자를 생략해 실행할 수 있다. 공용 모듈을 선택해 검사할 때는 `-Module`에 표의 다른 이름을 지정한다. 공유 소스 엔진의 빌드 메타데이터 때문에 독립 빌드와 CCL 실행은 순서대로 수행한다.
 
-Game·실제 Server 타깃 패키지 결과와 재현 명령은 [세계 모듈 패키지 검증](Packaging.md#세계-모듈-분리-후-패키지)을 따른다. Saved의 소스 해시·로그·패키지는 로컬 근거이며 Git 제출 대상이 아니다. 공유 문서의 경로는 저장소 상대 경로로 표기했다.
+Game·실제 Server 타깃 패키지 결과와 재현 명령은 [세계 모듈 패키지 검증](Packaging/Records.md#세계-모듈-분리-후-패키지)을 따른다. Saved의 소스 해시·로그·패키지는 로컬 근거이며 Git 제출 대상이 아니다. 공유 문서의 경로는 저장소 상대 경로로 표기했다.
 
 모듈 수와 공개 API는 늘었지만 세계 조정까지 공용화하는 대안보다 게임별 정책과 재사용 계산의 의존이 분명하다. UE 모듈·CoreRedirects·SaveGame은 UE4에도 있던 개념이다. 실제 검증 대상은 UE 5.8.3이며 DynamicMesh·Chaos 경로를 유지한다. Shipping·다른 엔진 버전·다른 PC·외부 인터넷·Iris·성능 향상은 검증하지 않았다. 기존 환경 성능 측정의 미완료는 별도로 남으며 이번 기능 PASS로 대체하지 않는다. 공용 저장소의 배포·동기화 방식도 후속 결정이다.

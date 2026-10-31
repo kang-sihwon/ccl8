@@ -114,4 +114,4 @@ UE 근거는 `<Engine>/Source/Runtime/NavigationSystem/Private/NavigationSystem.
 
 청크마다 경계 저장 비용과 질의당 경계 검사 비용이 생긴다. 청크 밖을 지나는 강수·일조·바람 질의에는 유리하지만, 청크 안의 모든 삼각형을 지나는 질의까지 빠르게 만들지는 않는다. 그 경우의 공간 트리는 별도 측정 후 판단한다. 자동 검사는 평행축, 양방향, 선분 길이 제한, 청크 꼭짓점·가장자리와 작은 허용 오차, 회전·이동, 빈 청크, 다층 결과를 확인한다.
 
-2026-10-11 지형 경계 검사는 CCL 자동 검사 145/145에 포함해 통과했다. `CCL.Environment.Terrain.SurfaceChunkBounds`가 변환·양방향·가장자리·빈 청크·다층·선분 제한을 검사한다. 해당 소스의 생성·Editor 빌드와 렌더링 실험, 실제 Server 타깃의 지연·손실·재접속도 통과했다. 정확한 실행 경로와 600프레임 계측의 범위는 [환경 통합 기록](EnvironmentPlan/Integration.md#지형-질의-수정-후-프레임-계측)과 [패키지 기록](Packaging.md#server-실행-수정과-실제-네트워크-통과)을 따른다.
+2026-10-11 지형 경계 검사는 CCL 자동 검사 145/145에 포함해 통과했다. `CCL.Environment.Terrain.SurfaceChunkBounds`가 변환·양방향·가장자리·빈 청크·다층·선분 제한을 검사한다. 해당 소스의 생성·Editor 빌드와 렌더링 실험, 실제 Server 타깃의 지연·손실·재접속도 통과했다. 정확한 실행 경로와 600프레임 계측의 범위는 [환경 통합 기록](EnvironmentPlan/Integration.md#지형-질의-수정-후-프레임-계측)과 [패키지 기록](Packaging/Records.md#server-실행-수정과-실제-네트워크-통과)을 따른다.
