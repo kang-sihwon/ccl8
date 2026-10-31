@@ -18,6 +18,5 @@
 | 패키지의 미확인 환경(다른 PC·Shipping·외부 인터넷·NAT) | [Packaging](../Packaging/Records.md#세계-모듈-분리-후-패키지) | 검증할 기기와 네트워크가 있어야 한다 |
 | 자연 환경 단계 8 마무리와 단계 9 | [EnvironmentPlan](../EnvironmentPlan.md#단계별-현황) | 없음 |
 | `Docs/Learning/` 시스템별 재작성과 QA 재검증 | [결정 28](../decisions/0028-agent-workflow-restructure.md), [학습 문서의 깨진 링크](../Learning/README.md#알려진-깨진-링크) | 없음. 선행 작업인 C++ 규칙 위반 정리는 2026-10-28에 끝났다([Coding](../Coding/CppLayout.md#기계-검사-규칙)) |
-| 15KB가 넘는 문서의 내용 정리: `EnvironmentPlan/`의 `Terrain`, `Integration`, `IntegratedLab`, `Fire`, `ConceptImageToolTest/Prompts` | [결정 33](../decisions/0033-large-document-cleanup-first.md) | 없음. 2026-10-31 정리의 대상에 넣지 않았다 |
 | GitHub Issues와 CI 도입 | [결정 28](../decisions/0028-agent-workflow-restructure.md) | 보류. 여러 세션이 동시에 일을 가져갈 때 다시 검토한다 |
 | 전역 설정과 프로젝트 설정의 graft 훅 중복 제거 | [AgentContextTools](../AgentContextTools.md) | 보류. 세션 시작 문구가 두 번 들어오지만 2026-10-31에 고치지 않기로 했다 |
