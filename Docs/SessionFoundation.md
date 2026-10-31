@@ -16,12 +16,12 @@
 |---|---|---|
 | 개인 체크포인트 | 단일 로컬 슬롯 `CCL_Checkpoint`에 호스트 개인 상태와 원정 체크포인트를 저장한다. 외부 세션 형식은 8(`Source/CCL/Session/CCLSessionRecord.h:52`)이며 보급품은 배치 ID로 기록한다 | [이번 저장 정책](#이번-저장-정책), [배치 식별과 체크포인트 검증](#배치-식별과-체크포인트-검증) |
 | 정의 해석 | 저장의 아이템·스킬 이름은 `DA_ItemCatalog`로 해석하고 없는 이름은 거부한다 | [정의 카탈로그와 보급품 개수](#정의-카탈로그와-보급품-개수) |
-| 세계 저장의 플레이어 | 세계 형식 6부터 플레이어 프로필 배열이 있고, 서버가 등록한 PlayerState를 수집·복원한다. 현재 세계 형식은 7이다(`Source/CCL/Environment/CCLWorldSnapshot.cpp:384`) | [세계 플레이어 본문 구현·검증](SessionFoundation/PlayerRestore.md#세계-플레이어-본문-구현검증), [세계 플레이어 참가자 구현·검증](SessionFoundation/PlayerRestore.md#세계-플레이어-참가자-구현검증) |
-| 원격 플레이어 신원 | 서버가 첫 접속에서 비밀 키를 발급하고 재접속 때 자동으로 프로필에 연결한다. 인증이 아니다([결정 21](decisions/0021-server-issued-player-identity.md)) | [원격 플레이어 신원 연결과 복원 시 접속자 유지](SessionFoundation/PlayerRestore.md#원격-플레이어-신원-연결과-복원-시-접속자-유지) |
+| 세계 저장의 플레이어 | 세계 형식 6부터 플레이어 프로필 배열이 있고, 서버가 등록한 PlayerState를 수집·복원한다. 현재 세계 형식은 7이다(`Source/CCL/Environment/CCLWorldSnapshot.cpp:384`) | [세계 플레이어 본문 구현·검증](SessionFoundation/PlayerRestore/Profile.md#세계-플레이어-본문-구현검증), [세계 플레이어 참가자 구현·검증](SessionFoundation/PlayerRestore/Profile.md#세계-플레이어-참가자-구현검증) |
+| 원격 플레이어 신원 | 서버가 첫 접속에서 비밀 키를 발급하고 재접속 때 자동으로 프로필에 연결한다. 인증이 아니다([결정 21](decisions/0021-server-issued-player-identity.md)) | [원격 플레이어 신원 연결과 복원 시 접속자 유지](SessionFoundation/PlayerRestore/Identity.md#원격-플레이어-신원-연결과-복원-시-접속자-유지) |
 | 복원 중 접속자 | 저장 본문에 프로필이 없는 등록 플레이어는 거부하지 않고 현재 상태로 유지한다 | 같은 절. 세계 참가자 절의 거부 계약을 대체한다 |
-| 복원 실패 경계 | 여러 Loadout의 GAS 효과를 모두 준비한 뒤 세계를 확정하고, 어느 쪽이 거부되면 기존 상태를 유지한다 | [다중 플레이어 복원 준비 경계](SessionFoundation/PlayerRestore.md#다중-플레이어-복원-준비-경계), [인벤토리·장비 복원 준비와 실행 검증](SessionFoundation/PlayerRestore.md#인벤토리장비-복원-준비와-실행-검증) |
-| 알림 순서 | 호스트 계정·퀘스트를 확정한 뒤 보관함·플레이어 인벤토리 알림을 보낸다 | [호스트 계정·퀘스트의 알림 전 확정](SessionFoundation/PlayerRestore.md#호스트-계정퀘스트의-알림-전-확정) |
-| 계정 | 조회·Tick·보상은 원장을 바꾸지 않고, 사라진 계좌는 복원 확정의 `EnsureOpen`만 다시 연다 | [계정 조회와 초기 생성 분리 구현·검증](SessionFoundation/PlayerRestore.md#계정-조회와-초기-생성-분리-구현검증), 원격 신원 절 |
+| 복원 실패 경계 | 여러 Loadout의 GAS 효과를 모두 준비한 뒤 세계를 확정하고, 어느 쪽이 거부되면 기존 상태를 유지한다 | [다중 플레이어 복원 준비 경계](SessionFoundation/PlayerRestore/Loadout.md#다중-플레이어-복원-준비-경계), [인벤토리·장비 복원 준비와 실행 검증](SessionFoundation/PlayerRestore/Loadout.md#인벤토리장비-복원-준비와-실행-검증) |
+| 알림 순서 | 호스트 계정·퀘스트를 확정한 뒤 보관함·플레이어 인벤토리 알림을 보낸다 | [호스트 계정·퀘스트의 알림 전 확정](SessionFoundation/PlayerRestore/Profile.md#호스트-계정퀘스트의-알림-전-확정) |
+| 계정 | 조회·Tick·보상은 원장을 바꾸지 않고, 사라진 계좌는 복원 확정의 `EnsureOpen`만 다시 연다 | [계정 조회와 초기 생성 분리 구현·검증](SessionFoundation/PlayerRestore/Identity.md#계정-조회와-초기-생성-분리-구현검증), 원격 신원 절 |
 
 남은 작업은 각 절의 마지막 문단에 있다. 그중 원격 접속의 자동 신원 연결은 2026-10-11에 구현됐다.
 
