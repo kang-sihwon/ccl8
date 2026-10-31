@@ -6,14 +6,14 @@ topic: "에이전트 작업 체계"
 status: "유효"
 progress: "2026-10-27 이행 완료"
 summary: "규칙 문서를 태그 `agent-setup-v1`로 백업하고 새로 쓴 뒤 게임 문서를 내용 보존 검사와 함께 새 형식으로 옮긴다. 결정은 1건당 파일로 나누고 Decisions는 생성한다. 스킬에 명시된 읽기 전용 위임만 요청 없이 허용한다. 재개 지점은 `Docs/Work/`에 둔다"
-owners: "[AgentToolingResearch](../AgentToolingResearch/SkillReview.md#스킬-묶음-통합-검토-2026-10-25), [AgentContextTools](../AgentContextTools.md), [WritingGuide](../WritingGuide/DecisionRecords.md#결정을-기록하는-방법), [진행 중인 작업](../Work/README.md)"
+owners: "[AgentToolingResearch](../AgentToolingResearch/BundleReview.md), [AgentContextTools](../AgentContextTools.md), [WritingGuide](../WritingGuide/DecisionRecords.md#결정을-기록하는-방법), [진행 중인 작업](../Work/README.md)"
 ---
 
 # 2026-10-25 — 결정 28: 에이전트 작업 체계의 재구성
 
 ### 배경
 
-사용자가 mattpocock/skills, addyosmani/agent-skills, cursor/plugins의 pstack을 코드까지 읽고, 처음 구성한다는 기준으로 현재 설정과 장점을 합친 체계를 요청했다. 비교 결과와 채택·제외 근거는 [AgentToolingResearch](../AgentToolingResearch/SkillReview.md#스킬-묶음-통합-검토-2026-10-25)가 소유한다. 현재 설정은 매 턴 `Docs/Guide.md` 13.5KB와 스킬 15개의 설명 약 5.2KB를 불러오고, `.claude/skills`와 `.agents/skills`를 손으로 동기화하며, 기계적으로 검사할 수 있는 C++ 배치 규칙을 문장으로만 두고 있다. 사용자는 grilling으로 열린 결정을 정했다.
+사용자가 mattpocock/skills, addyosmani/agent-skills, cursor/plugins의 pstack을 코드까지 읽고, 처음 구성한다는 기준으로 현재 설정과 장점을 합친 체계를 요청했다. 비교 결과와 채택·제외 근거는 [AgentToolingResearch](../AgentToolingResearch/BundleReview.md)가 소유한다. 현재 설정은 매 턴 `Docs/Guide.md` 13.5KB와 스킬 15개의 설명 약 5.2KB를 불러오고, `.claude/skills`와 `.agents/skills`를 손으로 동기화하며, 기계적으로 검사할 수 있는 C++ 배치 규칙을 문장으로만 두고 있다. 사용자는 grilling으로 열린 결정을 정했다.
 
 ### 결정
 
