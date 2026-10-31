@@ -136,7 +136,7 @@ void UCCLWorldSimulationSubsystem::CancelParticipants(int32 Prepared)
 
 형식 5는 보관함, 형식 6은 보관함과 플레이어 본문을 고정 위치에 넣었다. Decode는 이를 `Inventories`와 `Players`라는 구간으로 옮기고 형식 7 후보를 검증한다. 구간을 도입하기 전 파일에 없는 구간은 null로 전달된다. 구체 참여자가 그 경우를 빈 저장 구간으로 해석하되, 실행 중 유지할 접속자의 정책은 별도다.
 
-[원격 플레이어 복원 정책](../SessionFoundation.md#원격-플레이어-신원-연결과-복원-시-접속자-유지)은 저장 이후에 들어온 등록 플레이어의 현재 상태를 유지한다. 그 플레이어의 아이템은 `KeptItems`로 다음 참여자에게 전달한다. 보관함이 과거 파일의 같은 아이템을 되살리는 요청은 거부한다. 값 검증기의 `ClaimedItems`와 런타임 유지 대상의 `KeptItems`를 같은 집합으로 혼동하지 않는다.
+[원격 플레이어 복원 정책](../SessionFoundation/PlayerRestore.md#원격-플레이어-신원-연결과-복원-시-접속자-유지)은 저장 이후에 들어온 등록 플레이어의 현재 상태를 유지한다. 그 플레이어의 아이템은 `KeptItems`로 다음 참여자에게 전달한다. 보관함이 과거 파일의 같은 아이템을 되살리는 요청은 거부한다. 값 검증기의 `ClaimedItems`와 런타임 유지 대상의 `KeptItems`를 같은 집합으로 혼동하지 않는다.
 
 ## 대안과 확인
 
