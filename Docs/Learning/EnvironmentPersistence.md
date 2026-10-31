@@ -1,12 +1,12 @@
 # 저장과 실험장: 같은 세계를 복원하고 조작 결과를 확인하기
 
-세계 형식 7의 이름 있는 구간과 참여자별 복원·취소는 [세계 저장 참여자](EnvironmentRestoreParticipants.md), 맵의 저장 영역 선택은 [환경 맵 설정](EnvironmentMapConfiguration.md)으로 이어진다. 기존 본문의 커밋·사본 기준은 유지한다.
+세계 형식 7의 이름 있는 구간과 참여자별 복원·취소는 [세계 저장 참여자](EnvironmentRestoreParticipants.md), 맵의 저장 영역 선택은 [환경 맵 설정](EnvironmentMapConfiguration.md)으로 이어진다.
 
 환경 저장은 시계·생활·표면·지형을 같은 완료 상태로 묶고, 실험장은 그 계약을 직접 조작하게 한다. 이 장은 기존 생활 저장에서 세계 저장으로의 확장과 UI 요청이 서버의 실제 변경으로 이어지는 흐름을 설명한다.
 
 ## 비교 기준과 단계 0의 의미
 
-범위는 자연환경 0·1단계와 3-7단계의 공통 저장·검증이다. 비교 기준은 `50e5838` → `64a7549` → `7307465` → `0408d94`, 작업 트리의 실험 조작이며 전체 해시·브랜치 관계·작업 트리 식별값은 [비교 근거](EnvironmentEvidence.md)에 있다. 이 장이 처음 쓰였을 때 인용한 미커밋 작업 트리(`WT-2026-10-10`)는 이후 커밋됐다. 현재 기준은 2026-10-31의 `main`인 `d4888b0`이다. 코드가 `Source/KSI*/` 모듈로 옮겨진 위치는 [Framework 파일 이동표](../FrameworkPlan/Stage4.md#코드-위치의-전후-비교)를 따른다.
+범위는 자연환경 0·1단계와 3-7단계의 공통 저장·검증이다. 비교 기준은 `50e5838` → `64a7549` → `7307465` → `0408d94`, `c8816e7`에 커밋된 실험 조작이며 전체 해시와 브랜치 관계는 [비교 근거](EnvironmentEvidence.md)에 있다. 이 장이 처음 쓰였을 때 인용한 미커밋 작업 트리(`WT-2026-10-10`)는 `c8816e7`에 커밋됐다. 현재 기준은 2026-10-31의 `main`인 `d4888b0`이다. 코드가 `Source/KSI*/` 모듈로 옮겨진 위치는 [Framework 파일 이동표](../FrameworkPlan/Stage4.md#코드-위치의-전후-비교)를 따른다.
 
 단계 0은 기능 구현 전에 사용할 엔진, 프로젝트 경로, 테스트 포함 여부와 기존 실패를 확인하는 작업이다. `Tools/Validation/environment_preflight.py`의 파일 존재 검사는 진단이며 실제 빌드 성공과 다르다. 실행 가능한 엔진으로 프로젝트 파일 생성·Editor 빌드·기존 회귀를 확인한 결과가 [환경 계획](../EnvironmentPlan.md)에 따로 남아 있다. 이번 문서 작성에서는 설치본의 Build.version이 5.8.3임을 읽었고 게임은 실행하지 않았다.
 
@@ -33,7 +33,7 @@ return WorldSimulation && WorldSimulation->Save(Simulation, Bytes, Error);
 
 이 발췌는 Save 내부의 연결 부분이다. 앞의 권위·실행 상태 검사와 Actor 위치 갱신을 없앤 것이 아니다. WorldSimulation이 시계·환경·생활의 같은 완료 상태를 캡처한다. 새 외부 호출을 한 줄 추가한 것으로 설명을 끝내지 않고 [CCLWorldSnapshot.cpp](../../Source/CCL/Environment/CCLWorldSnapshot.cpp)의 직렬화와 검증까지 따라가야 한다.
 
-[서버 시간 연결 기록](../EnvironmentPlan/Stages0to3/TimeAndLabs.md#서버-시간과-통합-저장-연결-설계)은 세션 버전 6에서 기존 Agent 저장 필드에 통합 스냅샷을 넣는 이전 방식을 설명한다. 세계 스키마와 내부 표면 버전은 또 다른 번호다. 하나가 증가했다고 나머지도 같은 번호가 되지 않는다. 현재 작업 트리에는 후속 생태·플레이어 저장 확장이 있으므로 그 최신 번호를 7단계 당시 형식으로 소급하지 않는다.
+[서버 시간 연결 기록](../EnvironmentPlan/Stages0to3/TimeAndLabs.md#서버-시간과-통합-저장-연결-설계)은 세션 버전 6에서 기존 Agent 저장 필드에 통합 스냅샷을 넣는 이전 방식을 설명한다. 세계 스키마와 내부 표면 버전은 또 다른 번호다. 하나가 증가했다고 나머지도 같은 번호가 되지 않는다. 현재(`d4888b0`) 세계 스키마는 7이고 외부 세션 형식은 8이다([개인 체크포인트](../SessionFoundation/Checkpoint.md#형식별-변환)). 이 번호를 7단계 당시 형식으로 소급하지 않는다.
 
 ## 여러 파일의 완료 세대
 
@@ -64,20 +64,20 @@ if (!WriteFlushed(Directory / TEXT("complete.tmp"), Marker)
 
 `7307465`에서 두 실험장과 12개 구역 정의가 추가됐다. 후속 기능이 없는 시점에는 조작을 비활성화했고 각 단계에서 실제 계산·표현을 연결했다. 화면 등록·문맥·핸들은 [공용 UI](UIFramework.md)의 기존 계약을 사용한다. 화면이 실험 상태의 정본을 소유하지 않는다.
 
-출처: `WT-2026-10-10`, [CCLExperimentPlayerController.cpp](../../Source/CCL/Environment/CCLExperimentPlayerController.cpp), `void ACCLExperimentPlayerController::ServerExperiment_Implementation`, 148-155줄. 실제 코드의 연속 발췌이며 들여쓰기만 정리했다.
+출처: `d4888b0`, [CCLExperimentPlayerController.cpp](../../Source/CCL/Environment/CCLExperimentPlayerController.cpp), `void ACCLExperimentPlayerController::ServerExperiment_Implementation`. 실제 코드의 연속 발췌이며 들여쓰기만 정리했다.
 
 ```cpp
 void ACCLExperimentPlayerController::ServerExperiment_Implementation(ECCLExperimentAction Action, FName CaseId,
-    FGuid Generation, FGuid RunId, uint64 TerrainSerial)
+    FGuid Generation, FGuid RunId, uint64 TerrainSerial, double TimeScale)
 {
     FString Message;
     auto* Director = ACCLExperimentDirector::Find(GetWorld());
-    const bool bAccepted = Director && Director->Execute(this, Action, CaseId, Generation, RunId, Message, TerrainSerial);
+    const bool bAccepted = Director && Director->Execute(this, Action, CaseId, Generation, RunId, Message, TerrainSerial, nullptr, TimeScale);
     ClientExperimentResponse(Message.IsEmpty() ? (bAccepted ? TEXT("조작 요청을 처리했다.") : TEXT("조작 요청을 거부했다.")) : Message);
 }
 ```
 
-소유 PlayerController의 서버 RPC가 Director에 전달한다. Director는 서버 권한, 월드 도메인, 준비 상태, 세대·실행 ID와 조작 담당자를 검사한다. 순간이동 같은 관찰자 허용 요청과 상태를 바꾸는 담당자 요청은 구분한다. 지형 조작은 게시 순번도 검사하므로 오래된 화면이 새 지형에 낡은 명령을 적용하지 않는다. 응답은 클라이언트 화면 메시지로 돌아온다.
+소유 PlayerController의 서버 RPC가 Director에 전달한다. Director는 서버 권한, 월드 도메인, 준비 상태, 세대·실행 ID와 조작 담당자를 검사한다. 순간이동 같은 관찰자 허용 요청과 상태를 바꾸는 담당자 요청은 구분한다. 시간 배율을 직접 입력하는 조작은 `TimeScale` 인자로 같은 경로에 실린다(`b322d5e`에서 추가됐다). 지형 조작은 게시 순번도 검사하므로 오래된 화면이 새 지형에 낡은 명령을 적용하지 않는다. 응답은 클라이언트 화면 메시지로 돌아온다.
 
 F7은 실험 화면 열기·닫기다. 일반 UI 뒤로 가기는 PIE에서 F6, 독립 게임에서는 Esc로 구분한다. 입력 소유자가 화면으로 바뀌면 Pawn의 게임 입력에만 묶은 열기 키가 닫기까지 전달되지 않을 수 있다. [UI 기반](UIFramework.md)의 후속 절과 [실험 메뉴 기록](../EnvironmentPlan/IntegratedLab/Menu.md#실험-메뉴-조작과-검증)이 그 연결을 설명한다.
 
