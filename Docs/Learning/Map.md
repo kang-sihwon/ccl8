@@ -12,7 +12,7 @@
 
 조사 시작 때 확인한 `main`과 로컬 원격 추적 `origin/main`의 `50e5838`을 게임 코드 기준으로 고정한 학습 기록이다. 원격 서버를 새로 조회한 결과는 아니며 이후 추가된 커밋과 구분한다. 작업 트리의 설정·빌드 파일 변경은 이 장의 코드 기준에서 제외했다. 아래 발췌의 경로·줄 번호는 표시한 커밋 기준이고 상대 링크는 현재 체크아웃을 연다.
 
-이전 기준에는 `Source/CCL/Map/CCLMapSystem.cpp`와 `UI/CCLMapScreen.cpp`가 없었다. `0931fbf`의 최초 도입을 현재 기준과 대조한다. 요구·기존 확인은 결정 18과 [AgentFoundation](../AgentFoundation.md#직접-확인)에 있다.
+이전 기준에는 `Source/CCL/Map/CCLMapSystem.cpp`와 `UI/CCLMapScreen.cpp`가 없었다. `0931fbf`의 최초 도입을 현재 기준과 대조한다. 요구·기존 확인은 결정 18과 [AgentFoundation](../AgentFoundation/Verification.md#직접-확인)에 있다.
 
 ## 2. 해결할 문제
 
@@ -132,7 +132,7 @@ MapSubsystem은 LocalPlayer 수명이며 화면은 자기 OwningPlayer로 Refres
 | Pawn 사라짐·월드 교체 | 오래된 마커 제거·캐시 재생성 |
 | 지역 모서리·영역 밖 위치 | 좌표 방향과 클리핑이 일관됨 |
 
-기존 통합 확인은 [AgentFoundation](../AgentFoundation.md#검증)에 있다. 이번에는 코드로 좌표·공개·해제 경로를 확인했으며 화면이나 네트워크를 새로 실행하지 않았다.
+기존 통합 확인은 [AgentFoundation](../AgentFoundation/Verification.md#검증)에 있다. 이번에는 코드로 좌표·공개·해제 경로를 확인했으며 화면이나 네트워크를 새로 실행하지 않았다.
 
 ## 12. 이해 확인
 
