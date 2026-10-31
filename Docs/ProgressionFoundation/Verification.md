@@ -61,9 +61,9 @@
 
 | 대상 | 책임과 수명 | 변경 | 계약 소유 |
 |---|---|---|---|
-| Loadout | 서버 PlayerState의 장착·훈련 상태 | 명령 재진입 거절, 효과와 슬롯 확정 후 인벤토리 알림 | [장비 변경의 확정 순서](../ProgressionFoundation.md#장비-변경의-확정-순서) |
+| Loadout | 서버 PlayerState의 장착·훈련 상태 | 명령 재진입 거절, 효과와 슬롯 확정 후 인벤토리 알림 | [장비 변경의 확정 순서](Equipment.md#장비-변경의-확정-순서) |
 | ItemCatalog | 콘텐츠 에셋의 저장 이름 해석 | 중복 이름과 빈 항목 검증, 모호한 해석 거절 | [SessionFoundation](../SessionFoundation.md#정의-카탈로그와-보급품-개수) |
-| Inventory 기능 | 인벤토리가 소유하는 개별 상태의 실행 | 무기·음식 실행을 기능 서비스로 분리, 저장·복제 필드 유지 | [장비 변경의 확정 순서](../ProgressionFoundation.md#장비-변경의-확정-순서) |
+| Inventory 기능 | 인벤토리가 소유하는 개별 상태의 실행 | 무기·음식 실행을 기능 서비스로 분리, 저장·복제 필드 유지 | [장비 변경의 확정 순서](Equipment.md#장비-변경의-확정-순서) |
 | WorldParticipant | 월드 서브시스템의 저장 참여자 | 환경 시간 진행을 선택 인터페이스로 분리 | [EnvironmentPlan](../EnvironmentPlan.md#다음-작업의-시작점) |
 | Surface publication | 서버 월드의 불변 전송 데이터 | 연결 간 발행본 공유, 연결별 확인·전송 위치·과거 참조 유지 | [EnvironmentWater](../EnvironmentPlan/Water.md#표면-발행본의-수명) |
 
