@@ -10,9 +10,9 @@ GameInstance는 맵 이동을 넘어 접속 결과와 보류 중인 저장 레�
 |---|---|
 | 이전 기준 | `b5d9495d99bcfb903a7f5ef205f9f5b2cfcfe45e` |
 | 도입·변경 기준 | `494a0ac977c7037d8ca732eeb27edbc317162f1f` |
-| 현재 기준 | `50e583859c832d6cb325e5e76beb8356e8c13959` |
+| 현재 기준 | `d4888b08154afab8712af974bce0ead2b90978ac` |
 
-조사 시작 때 확인한 `main`과 로컬 원격 추적 `origin/main`의 `50e5838`을 게임 코드 기준으로 고정한 학습 기록이다. 원격 서버를 새로 조회한 결과는 아니며 이후 추가된 커밋과 구분한다. 작업 트리의 설정·빌드 파일 변경은 이 장의 코드 기준에서 제외했다. 아래 발췌의 경로·줄 번호는 표시한 커밋 기준이고 상대 링크는 현재 체크아웃을 연다.
+현재 기준 `d4888b0`은 2026-10-31의 `main`이며 로컬 원격 추적과 같았다. 원격 서버를 새로 조회한 결과는 아니다. 발췌의 출처에는 커밋과 함수 이름을 적었고 상대 링크는 현재 체크아웃을 연다.
 
 메뉴는 `b5d9495`에서 GameInstance가 직접 Slate를 만들고 입력을 지정했다. `494a0ac`에서 공용 UI로 이전했다. 저장은 `f19fe61`에서 도입된 뒤 아이템·장비·탄약·Agent 상태를 수용했다. 저장 버전은 커밋 기준 현재 5이며 정책의 정본은 [SessionFoundation](../SessionFoundation.md)이다.
 
@@ -32,7 +32,7 @@ Codec은 저장 바이트와 값 레코드를 변환하는 프로젝트 코드�
 
 ## 4. 이전 메뉴의 직접 입력 관리
 
-출처: `b5d9495`, [CCLGameInstance.cpp](../../Source/CCL/Session/CCLGameInstance.cpp):64의 `UCCLGameInstance::ShowMenu`. 실제 코드 함수 일부이며 들여쓰기를 공백으로 바꿨다.
+출처: `b5d9495`, `Source/CCL/Session/CCLGameInstance.cpp`의 `UCCLGameInstance::ShowMenu`. 실제 코드 함수 일부이며 들여쓰기를 공백으로 바꿨다.
 
 ```cpp
 void UCCLGameInstance::ShowMenu()
@@ -61,7 +61,7 @@ void UCCLGameInstance::ShowMenu()
 
 ## 6. 현재 메뉴와 불러오기
 
-출처: `50e5838`, [CCLGameInstance.cpp](../../Source/CCL/Session/CCLGameInstance.cpp):89의 `UCCLGameInstance::ShowMenuForPlayer`. 실제 코드 함수 일부이며 들여쓰기를 공백으로 바꿨다.
+출처: `d4888b0`, [CCLGameInstance.cpp](../../Source/CCL/Session/CCLGameInstance.cpp)의 `UCCLGameInstance::ShowMenuForPlayer`. 실제 코드 함수 일부이며 들여쓰기를 공백으로 바꿨다.
 
 ```cpp
     if (auto* CCL = Cast<ACCLPlayerController>(PC))
@@ -83,7 +83,7 @@ void UCCLGameInstance::ShowMenu()
 
 불러오기의 월드 전환은 다음 함수가 맡는다.
 
-출처: `50e5838`, [CCLGameInstance.cpp](../../Source/CCL/Session/CCLGameInstance.cpp):254의 `UCCLGameInstance::LoadSession`. 실제 코드 전체 함수이며 들여쓰기를 공백으로 바꿨다.
+출처: `d4888b0`, [CCLGameInstance.cpp](../../Source/CCL/Session/CCLGameInstance.cpp)의 `UCCLGameInstance::LoadSession`. 실제 코드 전체 함수이며 들여쓰기를 공백으로 바꿨다.
 
 ```cpp
 bool UCCLGameInstance::LoadSession(bool bHost)
@@ -91,11 +91,14 @@ bool UCCLGameInstance::LoadSession(bool bHost)
     TArray<uint8> Bytes;
     FCCLSessionRecord Record;
     if (!UGameplayStatics::LoadDataFromSlot(Bytes, SaveSlot(), 0) || !FCCLSessionCodec::Decode(Bytes, Record))
-    { Status = TEXT("Cannot load: checkpoint missing, damaged, incompatible or references unavailable content."); return false; }
+    {
+        Status = TEXT("불러올 수 없다. 저장 파일이 없거나 손상되었으며, 버전 또는 콘텐츠가 맞지 않을 수도 있다.");
+        return false;
+    }
     Pending = Record;
     GetSubsystem<UCCLAgentSessionStore>()->ResetSession();
     bPendingRestore = 1;
-    Status = TEXT("Loading checkpoint ...");
+    Status = TEXT("저장한 진행 상황을 불러오는 중...");
     HideMenu();
     UGameplayStatics::OpenLevel(this, TEXT("/Game/Maps/Campaign"), true, bHost ? TEXT("listen") : TEXT(""));
     return true;
@@ -160,6 +163,6 @@ GameInstance와 Actor의 수명이 다르다. 값 레코드와 ID를 보관하�
 
 ## 환경 저장 이후의 비교 기준
 
-앞의 버전 5·호스트 체크포인트·부분 적용 실패 설명은 고정 커밋 `50e5838`의 계약이다. `64a7549` 이후에는 생활 저장 진입점이 공통 세계 저장으로 연결되고, 지형 도입 후에는 세계와 지역 파일을 완료 세대로 묶는다. 현재 작업 트리의 플레이어 전체 프로필·음식 저장 확장은 7단계보다 뒤의 작업이므로 옛 버전 설명을 최신 전체 저장의 사양으로 읽지 않는다.
+앞의 버전 5 설명은 `50e5838` 시점의 형식이다. 현재 외부 세션 형식은 8이고 `FCCLSessionRecord::Version`이 정본이다. 6에서 공통 세계 시계·환경·생활, 7에서 음식 묶음 이력, 8에서 보급품의 배치 ID가 더해졌다. 형식별 변환은 [개인 체크포인트](../SessionFoundation/Checkpoint.md#형식별-변환)가 소유한다. `64a7549` 이후에는 생활 저장 진입점이 공통 세계 저장으로 연결되고, 지형 도입 후에는 세계와 지역 파일을 완료 세대로 묶는다. 이 장의 호스트 체크포인트·부분 적용 실패 설명은 지금도 개인 세션 계약이다.
 
-실제 전후 코드·실패 경계·대안과 확인 방법은 [환경 저장과 실험장](EnvironmentPersistence.md)에서 이어 읽는다. 현재 브랜치와 고정 기준은 [환경 비교 근거](EnvironmentEvidence.md)를 따른다.
+실제 전후 코드·실패 경계·대안과 확인 방법은 [환경 저장과 실험장](EnvironmentPersistence.md)에서 이어 읽는다. 비교 기준은 [환경 비교 근거](EnvironmentEvidence.md)를 따른다.
