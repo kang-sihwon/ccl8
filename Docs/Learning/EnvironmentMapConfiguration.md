@@ -90,7 +90,7 @@ Config·캐릭터·메시가 있어야 로딩을 시도하고, 클래스가 로�
 
 후처리 클래스가 비어 있거나 로딩되지 않으면 위 분기는 적용을 건너뛴다. 이 짧은 코드에는 이전 후처리를 명시적으로 해제하는 처리가 없다. BeginPlay 시 선택 경로이므로 런타임 중 설정 Actor 값을 바꾸기만 하면 기존 캐릭터의 후처리도 즉시 재설정된다고 가정하면 안 된다. 캐릭터 재생성 시에는 새 컴포넌트가 다시 설정을 읽는다.
 
-같은 검토 변경에서 날씨·불 Niagara 에셋을 만드는 코드는 에디터 전용 [CCLEnvironmentFXLibrary.cpp](../../Source/CCL/Editor/CCLEnvironmentFXLibrary.cpp)로 이동했다. 게임 중 만들어 둔 효과를 재생하는 일과 편집기에서 에셋을 저작하는 일의 수명을 나눈 것이다. 상세 빌드 조건은 [CCL.Build.cs](../../Source/CCL/CCL.Build.cs), 실제 패키지 검증 범위는 [Packaging](../Packaging.md)이 소유한다.
+같은 검토 변경에서 날씨·불 Niagara 에셋을 만드는 코드는 에디터 전용 `Source/CCL/Editor/`의 `CCLEnvironmentFXLibrary.cpp`로 이동했다. 이 파일은 이후 `Source/CCLEditor/`로 옮겨져 지금은 [CCLEnvironmentFXLibrary.cpp](../../Source/CCLEditor/Private/CCLEnvironmentFXLibrary.cpp)다. 게임 중 만들어 둔 효과를 재생하는 일과 편집기에서 에셋을 저작하는 일의 수명을 나눈 것이다. 상세 빌드 조건은 [CCL.Build.cs](../../Source/CCL/CCL.Build.cs), 실제 패키지 검증 범위는 [Packaging](../Packaging.md)이 소유한다.
 
 ## 대안·확인과 이해 점검
 

@@ -17,8 +17,6 @@ const NOT_SCANNED = /^\.agents\/skills\/[^/]+\/references\//;
 const UNLISTED = /^Docs\/Narrative\/(Research|Drafts|Reviews)\//;
 // The table in Docs/Learning/README.md#알려진-깨진-링크, fixed when those documents are rewritten (결정 28).
 const KNOWN_BROKEN = new Set([
-  'Docs/Learning/EnvironmentFollowupEvidence.md ../Packaging.md#2026-10-11-이후-변경의-패키지-미검증',
-  'Docs/Learning/EnvironmentMapConfiguration.md ../../Source/CCL/Editor/CCLEnvironmentFXLibrary.cpp',
   'Docs/Learning/InventoryUI.md ../../Source/CCL/UI/Core/CCLUISubsystem.cpp',
   'Docs/Learning/InventoryUI.md ../../Source/CCL/UI/Core/CCLScreen.cpp',
   'Docs/Learning/InventoryUI.md ../../Source/CCL/UI/Core/CCLUIRoot.cpp',
