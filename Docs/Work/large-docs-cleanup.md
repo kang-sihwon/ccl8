@@ -18,7 +18,8 @@
   - 결과: 31.8KB로 줄었고 `TimeAndLabs`, `Celestial`, `TerrainCore`로 나눴다. 가장 큰 하위는 12.2KB다. 시간, 지형, 환경 입력의 한도는 소스와 맞췄고, 천체 수, 표면 수, 진단 위치, 활성 청크 한도는 찾지 못해 당시 값으로 남겼다.
 - [x] 2. `EnvironmentPlan/Ecology/Food` 56.4KB (없음).
   - 결과: 29.6KB로 줄었고 `State`, `Containers`, `Storage`, `Pickup`으로 나눴다. 가장 큰 하위는 11KB다. 묶음, 컨테이너, 거리 한도는 소스와 맞췄다.
-- [ ] 3. `ConceptImageToolTest/Results` 48.6KB (없음).
+- [x] 3. `ConceptImageToolTest/Results` 48.6KB (없음).
+  - 결과: 전체 40.2KB로 줄었고 시험군별 5개 문서와 요약으로 나눴다. 요약은 4.2KB, 가장 큰 하위는 12.3KB다. 점수표와 관찰은 측정값이라 원문 그대로 옮겼다.
 - [ ] 4. `EnvironmentPlan` 31.2KB (없음).
 - [ ] 5. `SessionFoundation/PlayerRestore` 30.5KB (없음).
 - [ ] 6. `EnvironmentPlan/Ecology/Behavior` 26.3KB (없음).
