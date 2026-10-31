@@ -2,8 +2,6 @@
 
 [EnvironmentPlan](EnvironmentPlan.md) 단계 3의 표면 질의, 저장 세대, 내비게이션, 복제와 구역 05 연결을 다룬다. 2026-10-09 UE 5.8.3 소스 빌드에서 단계 3의 통과 조건을 확인했다. 구현 위치는 `Source/CCL/Environment/`이며 실행 검사는 `Source/CCL/Tests/`와 `Tools/Validation/`에 있다. 물과의 확정·복원 연결은 [물 순환 설계와 검증](EnvironmentWater.md)이 소유한다. 눈의 지지·체적 보존과 이동·저장 연결은 [깊은 눈과 캐릭터 이동](EnvironmentSnow.md)에 기록했다. 이 문서는 영구 지형의 게시 순서, 저장 세대, 내비게이션·충돌 준비, 복제와 구역 05의 검증 기록을 소유한다.
 
-2026-10-12에 공용 계산을 KSI 모듈로 옮겼다. 소유 모듈과 현재 코드 위치는 [Framework 단계 4](FrameworkPlan.md#단계-4-구현과-검증)가 소유한다. 아래 구현·검증 기록의 CCL 이름은 당시 이름이며 이동 대상만 KSI로 바뀌었다. 게임 연결과 당시 검증 범위는 그대로다.
-
 > 검증 범위: 아래 실행 결과는 명시한 엔진과 환경의 결과이며 다른 기기에서는 프로젝트 생성·빌드와 실행을 다시 확인한다.
 
 ## 책임과 게시 순서
@@ -12,8 +10,8 @@
 
 | 소유자 | 책임과 수명 |
 |---|---|
-| `FCCLTerrainSurface` | 확정 메시의 불변 사본으로 다층 표면을 질의한다. 게시마다 교체한다 |
-| `FCCLSurfaceScene` | 지역별 표면 공급자를 합성한다. 교체와 제거 시 질의 Epoch를 바꾼다 |
+| `FKSITerrainSurface` | 확정 메시의 불변 사본으로 다층 표면을 질의한다. 게시마다 교체한다 |
+| `FKSISurfaceScene` | 지역별 표면 공급자를 합성한다. 교체와 제거 시 질의 Epoch를 바꾼다 |
 | `FCCLWorldGenerationStore` | 세계와 지역 파일을 같은 문맥으로 검증하고 완료 세대를 게시한다 |
 | `ACCLTerrainRegion` | 후보 충돌 준비, 확정 상태, 내비게이션 리비전과 클라이언트 적용 순번을 관리한다 |
 | `UCCLTerrainReplication` | PlayerController 하나의 전송, 마지막 확인 바이트와 준비 완료 응답을 관리한다 |
@@ -23,10 +21,10 @@
 ```mermaid
 classDiagram
     ACCLExperimentDirector --> ACCLTerrainRegion : authorized edits and restore
-    ACCLTerrainRegion *-- FCCLTerrainStore : committed density
-    ACCLTerrainRegion *-- UCCLTerrainChunkComponent : mesh and collision
-    ACCLTerrainRegion --> FCCLTerrainSurface : immutable published mesh
-    FCCLSurfaceScene o-- FCCLTerrainSurface : region providers
+    ACCLTerrainRegion *-- FKSITerrainStore : committed density
+    ACCLTerrainRegion *-- UKSITerrainChunkComponent : mesh and collision
+    ACCLTerrainRegion --> FKSITerrainSurface : immutable published mesh
+    FKSISurfaceScene o-- FKSITerrainSurface : region providers
     UCCLTerrainReplication --> ACCLTerrainRegion : snapshot or delta
     ACCLExperimentDirector --> FCCLWorldGenerationStore : complete generation
 ```
@@ -35,7 +33,7 @@ classDiagram
 
 ```cpp
 bool RequestRestore(const TArray<uint8>& Bytes,
-    const FCCLTerrainSaveContext& Context, FString& Error,
+    const FKSITerrainSaveContext& Context, FString& Error,
     TFunction<bool(FString&)> BeforePublish = {});
 bool IsTerrainReady() const;
 bool IsNavigationReady() const;
@@ -147,7 +145,7 @@ UE 근거는 `<Engine>/Source/Runtime/NavigationSystem/Private/NavigationSystem.
 
 ## 규모 검사에서 발견한 지형 질의 비용과 수정 계획
 
-2026-10-10 프레임 예비 계측에서는 환경 Scenario의 Tickable 처리가 렌더링 유무와 관계없이 큰 비용을 차지했다. 서버 빌드와 병행한 180프레임 검사이므로 최종 성능 기준은 아니다. 현재 `FCCLTerrainSurface::QuerySurfaces`는 질의 선분이 청크와 만나지 않아도 모든 삼각형을 검사한다. 정확한 병목 비중은 환경 진행의 단계별 CSV 표본으로 확인한다.
+2026-10-10 프레임 예비 계측에서는 환경 Scenario의 Tickable 처리가 렌더링 유무와 관계없이 큰 비용을 차지했다. 서버 빌드와 병행한 180프레임 검사이므로 최종 성능 기준은 아니다. 현재 `FKSITerrainSurface::QuerySurfaces`는 질의 선분이 청크와 만나지 않아도 모든 삼각형을 검사한다. 정확한 병목 비중은 환경 진행의 단계별 CSV 표본으로 확인한다.
 
 불변 지형 게시 객체가 청크별 로컬 경계를 한 번 계산하고, UE의 `FMath::LineBoxIntersection`으로 선분과 만나지 않는 청크를 제외한다. 경계는 기존 삼각형 판정의 작은 가장자리 오차를 포함하도록 확장한다. 교차 후보의 삼각형 판정·정렬·중복 제거·결과 상한은 유지한다. 저장·복제 상태에는 경계를 추가하지 않는다. 충돌과 같은 세대의 제공자가 교체될 때 경계도 새로 생성한다.
 

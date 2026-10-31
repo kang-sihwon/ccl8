@@ -1,14 +1,12 @@
 # 집계 생물의 에너지·먹이·기아
 
-집계 생물도 세계 시간이 흐르면 에너지를 소비하고, 같은 서식지의 먹이를 먹거나 기아로 죽는다. 계산은 `Source/KSIEnvironment/Private/KSIEcologyNutrition.cpp`가 맡는다. 이 문서를 쓸 때의 위치는 `Source/CCL/Environment/CCLEcologyNutrition.cpp`였다. [생태계·생애](EnvironmentEcology.md)의 하위 사양이며 범위는 [결정 19](decisions/0019-natural-environment-and-labs.md)의 단계 8을 따른다. 이 문서의 에너지와 먹이 계수는 게임 실험용 값이다. 이 문서는 집계 생물의 에너지·먹이·기아 계산, 예약·반환 때의 상태 이전, 저장 형식과 검증 기록을 소유한다.
-
-2026-10-12에 공용 계산을 KSI 모듈로 옮겼다. 소유 모듈과 현재 코드 위치는 [Framework 단계 4](FrameworkPlan.md#단계-4-구현과-검증)가 소유한다. 아래 구현·검증 기록의 CCL 이름은 당시 이름이며 이동 대상만 KSI로 바뀌었다. 게임 연결과 당시 검증 범위는 그대로다.
+집계 생물도 세계 시간이 흐르면 에너지를 소비하고, 같은 서식지의 먹이를 먹거나 기아로 죽는다. 계산은 `Source/KSIEnvironment/Private/KSIEcologyNutrition.cpp`가 맡는다. 이 문서를 쓸 때의 위치는 `Source/KSIEnvironment/Private/KSIEcologyNutrition.cpp`였다. [생태계·생애](EnvironmentEcology.md)의 하위 사양이며 범위는 [결정 19](decisions/0019-natural-environment-and-labs.md)의 단계 8을 따른다. 이 문서의 에너지와 먹이 계수는 게임 실험용 값이다. 이 문서는 집계 생물의 에너지·먹이·기아 계산, 예약·반환 때의 상태 이전, 저장 형식과 검증 기록을 소유한다.
 
 ## 개체 수만 저장하던 집계의 한계
 
 집계는 같은 출생 시각의 생물을 연령군 하나로 묶어 개체 수를 기록한다. 예를 들어 20마리 가운데 3마리를 Actor로 표현하면 집계에 17마리, 예약에 3마리가 남는다. 이전에는 예약 개체의 행동만 에너지와 먹이를 계산했다. 그래서 같은 세계에 있어도 집계 17마리는 굶지 않았다.
 
-`main`의 비교 기준은 `004a8c3`이다. 그 기준의 `CCLEcologyBehavior.cpp::AdvanceBehavior`는 먹이를 재생한 뒤 `Behaviors`를 순회했다. 다음 코드는 순서만 남긴 발췌다.
+`main`의 비교 기준은 `004a8c3`이다. 그 기준의 `KSIEcologyBehavior.cpp::AdvanceBehavior`는 먹이를 재생한 뒤 `Behaviors`를 순회했다. 다음 코드는 순서만 남긴 발췌다.
 
 ```cpp
 // 004a8c3: 먹이 재생 다음에 명시적인 개체 행동만 계산한다.
@@ -30,11 +28,11 @@ Behaviors.GetKeys(Ids);
 ForageSources.GetKeys(FoodIds);
 ```
 
-종의 `AggregateDietMask`가 0이면 기존 동작을 유지한다. 활성 종이 있으면 `CCLEcologyAdvance.cpp::AdvanceCandidate`가 정수 세계초마다 경계를 만든다. Actor가 없고 등록된 먹이가 없어도 대사와 기아가 진행한다. 이는 프레임마다 모든 생물을 생성하는 방식보다 상태가 적지만, 각 생물의 식사 이력과 경쟁 순서를 표현하지 못한다.
+종의 `AggregateDietMask`가 0이면 기존 동작을 유지한다. 활성 종이 있으면 `KSIEcologyAdvance.cpp::AdvanceCandidate`가 정수 세계초마다 경계를 만든다. Actor가 없고 등록된 먹이가 없어도 대사와 기아가 진행한다. 이는 프레임마다 모든 생물을 생성하는 방식보다 상태가 적지만, 각 생물의 식사 이력과 경쟁 순서를 표현하지 못한다.
 
 ## 에너지 계산과 음식 원장
 
-`FCCLEcologyNutrition`은 개체당 평균 에너지 `Energy`, 에너지가 없었던 시간 `StarvedSeconds`, 마지막 계산 시각 `LastStepSeconds`를 가진다. 에너지는 0에서 1 사이다. `Charge`는 마지막 계산 이후 소비량을 먼저 빼고, 실제로 에너지가 0이었던 시간만 기아에 더한다.
+`FKSIEcologyNutrition`은 개체당 평균 에너지 `Energy`, 에너지가 없었던 시간 `StarvedSeconds`, 마지막 계산 시각 `LastStepSeconds`를 가진다. 에너지는 0에서 1 사이다. `Charge`는 마지막 계산 이후 소비량을 먼저 빼고, 실제로 에너지가 0이었던 시간만 기아에 더한다.
 
 시험 입력의 에너지 1과 초당 대사 0.25를 대입하면 2초 후 에너지는 `1 - 0.25 × 2 = 0.5`다. 4초가 되면 0이 된다. 기아 제한이 2초라면 먹이가 없는 6초 경계에서 죽는다. 이 순서는 `ReservationStarvationAndRestart`가 검사한다.
 

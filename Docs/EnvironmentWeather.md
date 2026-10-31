@@ -2,20 +2,18 @@
 
 지역 날씨를 천체 일조, 기후 정의와 이전 수분·기온 상태에서 진행한다. 구역 02에서 자연 진행과 강제 비·눈을 선택하고 기온, 대기 수분, 바람과 표면 수지를 확인한다. 범위 근거는 결정 19와 [환경 계획](EnvironmentPlan.md#단계별-구현과-통과-기준)이다. 이 문서는 지역 날씨의 값 모델, 공통 시간과의 확정 순서, 구역 02 조작, 저장·복제와 검증 기록을 소유한다.
 
-2026-10-12에 공용 계산을 KSI 모듈로 옮겼다. 소유 모듈과 현재 코드 위치는 [Framework 단계 4](FrameworkPlan.md#단계-4-구현과-검증)가 소유한다. 아래 구현·검증 기록의 CCL 이름은 당시 이름이며 이동 대상만 KSI로 바뀌었다. 게임 연결과 당시 검증 범위는 그대로다.
-
 ## 목표와 책임
 
-서버의 `UCCLWorldSimulationSubsystem`이 공통 시간을 소유한다. `FCCLWeatherModel`은 일조와 기후 입력으로 지역 날씨 후보를 계산한다. `FCCLSurfaceGrid`가 기후 정의와 지속 날씨 상태를 보관한다. `CCLWorldAdvance`는 날씨·표면·생활·시계의 후보를 같은 완료 경계에서 확정한다. 클라이언트는 기존 표면 스냅샷 복제를 통해 확정 날씨를 받는다.
+서버의 `UCCLWorldSimulationSubsystem`이 공통 시간을 소유한다. `FKSIWeatherModel`은 일조와 기후 입력으로 지역 날씨 후보를 계산한다. `FKSISurfaceGrid`가 기후 정의와 지속 날씨 상태를 보관한다. `CCLWorldAdvance`는 날씨·표면·생활·시계의 후보를 같은 완료 경계에서 확정한다. 클라이언트는 기존 표면 스냅샷 복제를 통해 확정 날씨를 받는다.
 
 ```mermaid
 classDiagram
-    UCCLWorldSimulationSubsystem *-- FCCLSurfaceSimulation
-    FCCLSurfaceSimulation *-- FCCLSurfaceGrid
-    FCCLSurfaceGrid *-- FCCLClimate
-    FCCLSurfaceGrid *-- FCCLWeatherState
-    FCCLSurfaceSimulation ..> FCCLWeatherModel
-    FCCLSurfaceSimulation ..> FCCLCelestialSystem
+    UCCLWorldSimulationSubsystem *-- FKSISurfaceSimulation
+    FKSISurfaceSimulation *-- FKSISurfaceGrid
+    FKSISurfaceGrid *-- FKSIClimate
+    FKSISurfaceGrid *-- FKSIWeatherState
+    FKSISurfaceSimulation ..> FKSIWeatherModel
+    FKSISurfaceSimulation ..> FKSICelestialSystem
 ```
 
 ## 계산 계약
@@ -30,7 +28,7 @@ classDiagram
 
 ## 인터페이스와 검증 기준
 
-`FCCLWeatherModel::Advance`는 기후·시각·간격·일조와 상태를 받는다. `FCCLSurfaceSimulation::ChangeClimate`는 지역 기후를 검증하고 교체한다. 진행 API는 선택적 천체 문맥을 받으며 자연 모드에서 시간이 진행할 때 문맥이 없으면 실패한다.
+`FKSIWeatherModel::Advance`는 기후·시각·간격·일조와 상태를 받는다. `FKSISurfaceSimulation::ChangeClimate`는 지역 기후를 검증하고 교체한다. 진행 API는 선택적 천체 문맥을 받으며 자연 모드에서 시간이 진행할 때 문맥이 없으면 실패한다.
 
 검증은 낮·밤과 계절별 일조에 따른 온도 차이, 차가운 조건의 눈과 따뜻한 조건의 비, 저장·복원 후 같은 결과, 실패 후 재시도의 중복 강수 없음, 0배속, 잘못된 수치 거부를 포함한다. 구역 02에서 자연·강제 입력 표시와 표면 변화를 확인한다. 프로젝트 파일 생성·Editor 빌드·자동 검사·실제 실행 결과를 각각 기록한다.
 
@@ -51,8 +49,8 @@ classDiagram
 
 | 파일 | 소유 내용 |
 |---|---|
-| `Source/CCL/Environment/CCLWeatherModel.h`, `CCLWeatherModel.cpp` | 기후 값, 지속 날씨 상태, 입력 검증·진행·직렬화 |
-| `Source/CCL/Environment/CCLSurfaceSimulation.cpp` | 구간 중간의 천체 관측, 비·눈·증발 입력과 표면 수지 |
+| `Source/KSIEnvironment/Public/KSIWeatherModel.h`, `KSIWeatherModel.cpp` | 기후 값, 지속 날씨 상태, 입력 검증·진행·직렬화 |
+| `Source/KSIEnvironment/Private/KSISurfaceSimulation.cpp` | 구간 중간의 천체 관측, 비·눈·증발 입력과 표면 수지 |
 | `Source/CCL/Environment/CCLWorldAdvance.cpp` | 생활 실패 시 날씨·표면 후보 폐기와 시간 재시도 |
 | `Source/CCL/Environment/CCLWeatherPresentation.cpp` | 확정 강수량을 읽는 Niagara 비·눈과 볼류메트릭 구름 |
 | `Source/CCL/Environment/CCLExperimentWeather.cpp` | 구역 02 초기값·자연/강제 조작·격리 자동 검사 |
@@ -61,7 +59,7 @@ classDiagram
 
 표의 경로는 이 문서를 쓸 때의 위치다. 2026-10-12 이후 날씨 모델과 표면 계산은 `Source/KSIEnvironment/`의 `KSIWeatherModel.h`·`KSIWeatherModel.cpp`, `KSISurfaceSimulation.h`·`KSISurfaceSimulation.cpp`에 있다.
 
-초기 기후 수치는 `FCCLClimate`에 있는 실험용 값이다. 자연 날씨는 구역 02에서 켜져 있고 기존 물·눈 구역은 별도의 수동 입력을 유지한다. 활성 지역은 같은 천체 관찰 지점을 쓰되 기후 값과 대기 상태는 지역마다 보관한다.
+초기 기후 수치는 `FKSIClimate`에 있는 실험용 값이다. 자연 날씨는 구역 02에서 켜져 있고 기존 물·눈 구역은 별도의 수동 입력을 유지한다. 활성 지역은 같은 천체 관찰 지점을 쓰되 기후 값과 대기 상태는 지역마다 보관한다.
 
 ## 검증 범위와 남은 표현
 
@@ -103,7 +101,7 @@ classDiagram
 지역 기후를 바꾸는 공개 진입점은 다음과 같다. 월드 소유자는 서버 권한과 실행 상태를 검사한 뒤 값 코어에 전달한다.
 
 ```cpp
-bool ChangeClimate(FGuid RegionId, const FCCLClimate& Climate, FString& Error);
+bool ChangeClimate(FGuid RegionId, const FKSIClimate& Climate, FString& Error);
 ```
 
 `CCLWorldAdvance.cpp`에서 날씨를 포함한 표면 후보가 유효한 뒤의 핵심 경로다. 생활 계산 실패 뒤에 표면과 시계를 교체하지 않으므로 재시도에서 강수를 두 번 소비하지 않는다.
@@ -131,7 +129,7 @@ return true;
 - 단계 8: 종·서식지·개체군과 개체 표현의 수량 계약을 구현한다. 대표 지상·수중·공중·곤충의 전환, 식생·버섯·부패, Agent 노화와 핵심 NPC 수명 보호를 저장·재시도로 검증한다.
 - 단계 9: 먼 지역 진행과 재진입, 저장 중단·손상·과거 버전, 지연·손실·늦은 참가자·재접속, 장시간 반복·성능을 검사한다. 구역 08·09와 기존 게임을 연결하고 게임·Server 타깃 패키지 및 렌더링 화면을 확인한다.
 
-차폐는 `FCCLSurfaceSimulation::Advance`의 선택적 읽기 전용 provider로 전달한다. 동적 차폐를 요청한 지역은 문맥 누락을 오류로 처리한다. 후보 계산 중 질의가 실패하면 노출·물·날씨·공통 시간을 함께 보존한다. 계산 비용은 활성 지역의 셀 수와 표면 수에 비례하므로 규모 검증에서 측정한다. 기존 수동 표면 실험의 고정 노출률은 유지한다.
+차폐는 `FKSISurfaceSimulation::Advance`의 선택적 읽기 전용 provider로 전달한다. 동적 차폐를 요청한 지역은 문맥 누락을 오류로 처리한다. 후보 계산 중 질의가 실패하면 노출·물·날씨·공통 시간을 함께 보존한다. 계산 비용은 활성 지역의 셀 수와 표면 수에 비례하므로 규모 검증에서 측정한다. 기존 수동 표면 실험의 고정 노출률은 유지한다.
 
 
 ## 차폐와 표현의 추가 검증

@@ -4,8 +4,6 @@
 
 기능별 전용 레벨과 단일 종류·표본 수 선택은 [환경 실험장 사용법](EnvironmentLaboratories.md)을 따른다. 아래 구역 06·07의 비교 배치 설명은 기존 통합 실험장 기준이다.
 
-2026-10-12에 공용 계산을 KSI 모듈로 옮겼다. 소유 모듈과 현재 코드 위치는 [Framework 단계 4](FrameworkPlan.md#단계-4-구현과-검증)가 소유한다. 아래 구현·검증 기록의 CCL 이름은 당시 이름이며 이동 대상만 KSI로 바뀌었다. 게임 연결과 당시 검증 범위는 그대로다.
-
 ## 구현 현황
 
 아래 절은 영역별 설계와 구현·검증을 날짜순으로 쌓은 기록이다. 이 표는 영역마다 연결한 내용과 검증 기록의 위치를 가리킨다.
@@ -41,11 +39,11 @@
 
 | 값 또는 소유자 | 책임과 수명 |
 |---|---|
-| `FCCLEcologySpecies` | 종 ID·이동 방식·성숙·수명·번식 간격. 저장과 검증에 쓰는 종 데이터 |
-| `FCCLEcologyHabitat` | 공간 경계·서식 매체·수용 규모. 종과 개체군이 참조 |
-| `FCCLEcologyPopulation` | 종·서식지에 속한 집계, 출생 시각별 연령군과 수량 원장 |
-| `FCCLEcologyIndividual` | 집계에서 예약한 한 개체의 ID·출생 시각·상태. 중요 개체는 먼 상태에서도 유지 |
-| `FCCLEcologySimulation` | 서버 값 상태와 사건 영수증·표현 실행권. 실패 시 후보를 폐기 |
+| `FKSIEcologySpecies` | 종 ID·이동 방식·성숙·수명·번식 간격. 저장과 검증에 쓰는 종 데이터 |
+| `FKSIEcologyHabitat` | 공간 경계·서식 매체·수용 규모. 종과 개체군이 참조 |
+| `FKSIEcologyPopulation` | 종·서식지에 속한 집계, 출생 시각별 연령군과 수량 원장 |
+| `FKSIEcologyIndividual` | 집계에서 예약한 한 개체의 ID·출생 시각·상태. 중요 개체는 먼 상태에서도 유지 |
+| `FKSIEcologySimulation` | 서버 값 상태와 사건 영수증·표현 실행권. 실패 시 후보를 폐기 |
 | `UCCLWorldSimulationSubsystem` | 생태·표면·시계의 월드 수명과 서버 권한. Agent 진행까지 성공한 후보를 함께 게시 |
 | `FCCLWorldSnapshotCodec` | 같은 세계 ID·완료 시각·저장 세대의 생태·시계·표면·Agent 검증과 복원 |
 | `UCCLEcologyRepresentationSubsystem` | 실제 Actor·Mass Entity의 생성·전환·위치 수집·폐기. 서버 실행권과 예약을 연결 |
@@ -53,25 +51,25 @@
 
 ```mermaid
 classDiagram
-    UCCLWorldSimulationSubsystem *-- FCCLEcologySimulation
-    FCCLEcologySimulation *-- FCCLEcologySpecies
-    FCCLEcologySimulation *-- FCCLEcologyHabitat
-    FCCLEcologySimulation *-- FCCLEcologyPopulation
-    FCCLEcologySimulation *-- FCCLEcologyIndividual
-    FCCLEcologyPopulation --> FCCLEcologySpecies
-    FCCLEcologyPopulation --> FCCLEcologyHabitat
-    FCCLEcologyIndividual --> FCCLEcologyPopulation
+    UCCLWorldSimulationSubsystem *-- FKSIEcologySimulation
+    FKSIEcologySimulation *-- FKSIEcologySpecies
+    FKSIEcologySimulation *-- FKSIEcologyHabitat
+    FKSIEcologySimulation *-- FKSIEcologyPopulation
+    FKSIEcologySimulation *-- FKSIEcologyIndividual
+    FKSIEcologyPopulation --> FKSIEcologySpecies
+    FKSIEcologyPopulation --> FKSIEcologyHabitat
+    FKSIEcologyIndividual --> FKSIEcologyPopulation
 ```
 
 ## 값 모델 인터페이스
 
 ```cpp
-bool Apply(const FCCLEcologyEvent& Event, FString& Error);
+bool Apply(const FKSIEcologyEvent& Event, FString& Error);
 bool Materialize(FGuid RequestId, FGuid PopulationId, FGuid CohortId,
     FGuid IndividualId, bool bPersistent, FString& Error);
-bool Acquire(FGuid IndividualId, ECCLEcologyRepresentation Representation,
-    FGuid Writer, FCCLEcologyLease& OutLease, FString& Error);
-bool Release(const FCCLEcologyLease& Lease, FString& Error);
+bool Acquire(FGuid IndividualId, EKSIEcologyRepresentation Representation,
+    FGuid Writer, FKSIEcologyLease& OutLease, FString& Error);
+bool Release(const FKSIEcologyLease& Lease, FString& Error);
 bool AdvanceTo(double TargetWorldSeconds, FString& Error, int32 MaxBoundaries = 256);
 bool Capture(TArray<uint8>& Bytes, FString& Error) const;
 bool Restore(const TArray<uint8>& Bytes, FString& Error);
@@ -80,7 +78,7 @@ bool Restore(const TArray<uint8>& Bytes, FString& Error);
 집계 수는 연령군의 수량이고, 예약된 살아 있는 개체는 별도 수량이다. 현재 개체군은 종·서식지별 수량 단위이며 이동 무리의 별도 그룹·행동은 아직 구현하지 않았다. 원장 검사는 두 수량을 합산한다. `Materialize`는 한 마리를 집계에서 빼고 지속 레코드에 넣는다. `Acquire`는 수량을 바꾸지 않고 Actor 또는 Mass의 실행권을 발급한다. 같은 개체에 두 실행권을 주지 않는다. 일반 개체의 `Release`는 집계로 돌려보내고, 중요 개체는 레코드를 남긴 채 먼 상태로 전환한다.
 
 ```cpp
-FCCLEcologySimulation Candidate = *this;
+FKSIEcologySimulation Candidate = *this;
 // 요청 검증과 수량 변경은 후보에서 수행한다.
 if (!Candidate.Validate(Error))
 {
@@ -118,7 +116,7 @@ return true;
 
 값 모델은 Actor의 생성·소멸에 수량이 끌려가지 않게 하지만 실행권과 예약을 연결하는 어댑터가 필요하다. 일반 개체는 집계로 돌려보내 메모리를 제한하고 중요 개체만 ID·기록을 유지한다. 과거 사건 영수증과 사용한 개체 ID는 재적용 방지를 위해 보존하며 설정한 예산을 넘으면 실패한다. 영수증 정리 정책과 큰 월드의 비용은 단계 9에서 측정한다.
 
-기존 `FCCLAgentStore`는 세대·실행권으로 의도 쓰기를 보호하고 `CCLMassAgentBridge`는 실제 Mass Entity에 그 실행권을 연결한다. 생태 예약은 개체군 수량의 소유권이며 Agent 의도 쓰기와 다른 계약이다. 이를 하나의 전역 잠금으로 합치지 않는다. 이 설계는 UE4와 UE5의 Actor 수명 차이에 기대지 않으며 Mass 어댑터는 UE5의 별도 실행 경로다.
+기존 `FKSIAgentStore`는 세대·실행권으로 의도 쓰기를 보호하고 `CCLMassAgentBridge`는 실제 Mass Entity에 그 실행권을 연결한다. 생태 예약은 개체군 수량의 소유권이며 Agent 의도 쓰기와 다른 계약이다. 이를 하나의 전역 잠금으로 합치지 않는다. 이 설계는 UE4와 UE5의 Actor 수명 차이에 기대지 않으며 Mass 어댑터는 UE5의 별도 실행 경로다.
 
 ## 실행 근거와 남은 연결
 
@@ -132,7 +130,7 @@ return true;
 | 생태 값 모델 | 네 매체의 예약·반환, 실행권 충돌, 중요 ID 유지, 사건 재전송·충돌, 이주·사망·포획·유입 원장 |
 | 저장과 시간 | 손상·길이·버전·할당 상한 거부, 복원 세대 변경, 시간 분할·중간 저장 재개 일치, 멸종 유지, 시간 예산 실패 원본 보존 |
 
-구현은 `CCLEcologySimulation.h/.cpp`, `CCLEcologyAdvance.cpp`와 `CCLEcologyTests.cpp`에 있다. 저장은 정렬된 키 순서와 CRC를 사용하며 최대 8MiB로 제한한다. 실행권은 저장하지 않고 개체 예약과 영수증을 저장한다. 버전 2에는 종의 번식 간격이 추가되었다. 버전 1의 자동 번식은 꺼진 상태로 읽도록 구현했으며 과거 저장의 전체 통합 검사는 단계 9에서 수행한다.
+구현은 `KSIEcologySimulation.h/.cpp`, `KSIEcologyAdvance.cpp`와 `CCLEcologyTests.cpp`에 있다. 저장은 정렬된 키 순서와 CRC를 사용하며 최대 8MiB로 제한한다. 실행권은 저장하지 않고 개체 예약과 영수증을 저장한다. 버전 2에는 종의 번식 간격이 추가되었다. 버전 1의 자동 번식은 꺼진 상태로 읽도록 구현했으며 과거 저장의 전체 통합 검사는 단계 9에서 수행한다.
 
 위의 초기 값 모델과 월드 통합 검사에서 Actor/Mass는 실행권 종류다. 실제 Actor 생성·Mass Entity 전환의 검증은 아래 별도 절에 기록한다. 종의 이동 매체도 서식지 적합성 검사이며 이동·먹이 탐색 구현을 뜻하지 않는다. 식생·버섯·음식 부패, 종별 이동·먹이·무리 행동과 구역 06·07의 조작·네트워크를 연결해야 단계 8을 완료할 수 있다. Agent 나이·보호의 구현·검증은 아래 별도 절에서 구분한다.
 
@@ -155,21 +153,21 @@ return true;
 
 ### Actor/Mass 연결과 실행 근거
 
-실제 표현은 `UCCLEcologyRepresentationSubsystem`이 월드 수명으로 관리한다. `ACCLCreatureActor`와 `FCCLEcologyMassFragment`는 개체 ID·위치와 현재 실행권을 읽고, 수량 원장은 `FCCLEcologySimulation`에 유지한다. 새 표현을 준비한 다음 실행권을 원자적으로 교체하고 이전 표현을 제거한다. 준비나 전환이 실패하면 기존 표현·실행권을 유지한다.
+실제 표현은 `UCCLEcologyRepresentationSubsystem`이 월드 수명으로 관리한다. `ACCLCreatureActor`와 `FCCLEcologyMassFragment`는 개체 ID·위치와 현재 실행권을 읽고, 수량 원장은 `FKSIEcologySimulation`에 유지한다. 새 표현을 준비한 다음 실행권을 원자적으로 교체하고 이전 표현을 제거한다. 준비나 전환이 실패하면 기존 표현·실행권을 유지한다.
 
 ```mermaid
 classDiagram
     UCCLEcologyRepresentationSubsystem --> UCCLWorldSimulationSubsystem
     UCCLEcologyRepresentationSubsystem o-- ACCLCreatureActor
     UCCLEcologyRepresentationSubsystem --> UMassEntitySubsystem
-    FCCLEcologyMassFragment --> FCCLEcologyLease
-    ACCLCreatureActor --> FCCLEcologyLease
+    FCCLEcologyMassFragment --> FKSIEcologyLease
+    ACCLCreatureActor --> FKSIEcologyLease
 ```
 
 `SetRepresentation(IndividualId, Representation, Error)`는 예약된 개체의 표현을 바꾼다. `Transfer`는 같은 개체의 예약을 보존하고 실행권 순번·소유자를 교체한다. `UpdatePosition`과 `Finish`는 현재 실행권으로만 위치·사망·포획·이주를 반영한다. 초기 위치는 서식지 중심이며, 위치도 저장한다. 자동 거리 전환·먹이 탐색·종별 이동과 네트워크 관심 영역은 이 연결 위에서 별도로 검증한다.
 
 ```cpp
-FCCLEcologyLease NewLease;
+FKSIEcologyLease NewLease;
 if (!Runtime->TransferEcologyIndividual(OldLease, NewRepresentation,
     NewWriter, NewLease, Error))
 {
@@ -210,8 +208,8 @@ Agent의 출생 시각·성숙·수명·사망 원인과 자연 노화 보호는
 
 ```mermaid
 classDiagram
-    FCCLLifeSimulation *-- FCCLAgentStore
-    FCCLAgentRecord o-- FCCLAgentBiology
+    FCCLLifeSimulation *-- FKSIAgentStore
+    FKSIAgentRecord o-- FCCLAgentBiology
     UCCLAgentComponent --> FCCLLifeSimulation
     UCCLWorldSimulationSubsystem --> FCCLLifeSimulation
     UCCLAgentWorldSubsystem *-- FCCLLifeSimulation
@@ -254,29 +252,29 @@ double Age = Biology.DeathCause == ECCLAgentDeathCause::None
 
 ### 식생·토양 결합 설계
 
-`FCCLSurfaceVegetationLayer`는 표면 지역의 셀별 식생 패치와 토양 양분·유기물을 소유한다. 한 셀은 한 종의 패치를 표현하며 종 데이터는 나무·풀·꽃·관목·이끼·양치류·조류·수생 식물·버섯을 구분할 수 있다. 패치의 성장·성숙·휴면·죽음, 생체량·고사량·탄 누계·재생 횟수와 현재 생장 주기의 시작 시각을 저장한다. 개별 잎·줄기는 시뮬레이션 개체로 만들지 않는다. PCG와 Actor·인스턴스 메시는 이후 이 저장 상태를 배치·표현한다.
+`FKSISurfaceVegetationLayer`는 표면 지역의 셀별 식생 패치와 토양 양분·유기물을 소유한다. 한 셀은 한 종의 패치를 표현하며 종 데이터는 나무·풀·꽃·관목·이끼·양치류·조류·수생 식물·버섯을 구분할 수 있다. 패치의 성장·성숙·휴면·죽음, 생체량·고사량·탄 누계·재생 횟수와 현재 생장 주기의 시작 시각을 저장한다. 개별 잎·줄기는 시뮬레이션 개체로 만들지 않는다. PCG와 Actor·인스턴스 메시는 이후 이 저장 상태를 배치·표현한다.
 
 성장은 공통 세계 시간과 실제 토양 물·양분으로 제한한다. 광합성 종은 천체 일조와 셀의 햇빛 통과율을 사용한다. 버섯은 토양 유기물도 소비하며 그늘 조건을 적용한다. 위도와 주광원의 적위로 얻은 낮 길이, 온도와 수분이 생장·휴면을 정한다. 자연 수명과 가뭄 스트레스가 끝나는 경계에서 죽음을 기록하고, 재생 가능한 뿌리·균사와 대기 시간·자원이 남아 있을 때만 새 생장 주기를 시작한다. 재생 자체가 생체량을 채우지는 않는다.
 
 ```mermaid
 classDiagram
-    FCCLSurfaceGrid *-- FCCLSurfaceVegetationLayer
-    FCCLSurfaceVegetationLayer *-- FCCLVegetationSpecies
-    FCCLSurfaceVegetationLayer *-- FCCLVegetationCell
-    FCCLSurfaceVegetationLayer --> FCCLSurfaceFireLayer
-    FCCLSurfaceSimulation --> FCCLCelestialSystem
+    FKSISurfaceGrid *-- FKSISurfaceVegetationLayer
+    FKSISurfaceVegetationLayer *-- FKSIVegetationSpecies
+    FKSISurfaceVegetationLayer *-- FKSIVegetationCell
+    FKSISurfaceVegetationLayer --> FKSISurfaceFireLayer
+    FKSISurfaceSimulation --> FKSICelestialSystem
 ```
 
 식생 패치가 있는 셀의 연소 가능한 생체·고사량은 같은 셀의 연료와 일치해야 한다. 연료 원장에 성장 유입·분해 유출을 추가한다. 화재의 실제 연소량을 식생에서 차감하고 탄 누계·양분 환원을 기록한다. 열에 죽은 생체는 고사량으로 옮기며 심한 열은 재생 원본도 없앤다. 고사체 분해는 연료를 줄이고 토양 유기물·양분을 늘린다. 토양 수분 소비는 식생의 증산 누계와 기존 표면 증발 유출에 한 번 기록한다. 실내에서는 같은 물을 방의 수증기로 옮기고 잠열을 방의 가용 열에서 차감한다. 앞서 예약한 표면·식생의 열 소비를 제외한 잔여량으로 성장을 제한한다. 질소·탄소·산소 화학을 모두 푸는 정밀 물질 모델은 아니다.
 
 ```cpp
-bool Initialize(FCCLSurfaceGrid& Grid, const TArray<FCCLVegetationSpecies>& Species,
-    const TArray<FCCLVegetationSeed>& Seeds, double WorldSeconds, FString& Error);
-bool AdvanceCandidate(FCCLSurfaceGrid& Grid, double WorldFrom, double WorldDelta,
+bool Initialize(FKSISurfaceGrid& Grid, const TArray<FKSIVegetationSpecies>& Species,
+    const TArray<FKSIVegetationSeed>& Seeds, double WorldSeconds, FString& Error);
+bool AdvanceCandidate(FKSISurfaceGrid& Grid, double WorldFrom, double WorldDelta,
     double IrradianceWattsPerM2, double DaylightHours, FString& Error,
-    FCCLSurfaceThermalContext* Context = nullptr);
+    FKSISurfaceThermalContext* Context = nullptr);
 // 호출자는 게시 전 표면 후보만 전달한다.
-if (!CCLSurfaceVegetation::AdvanceCandidate(Candidate, From, Delta, Sun, Daylight, Error))
+if (!KSISurfaceVegetation::AdvanceCandidate(Candidate, From, Delta, Sun, Daylight, Error))
 {
     return false;
 }
@@ -366,8 +364,8 @@ if (!CCLSurfaceVegetation::AdvanceCandidate(Candidate, From, Delta, Sun, Dayligh
 ```mermaid
 classDiagram
     UCCLItemDefinition *-- FCCLItemFragment_Perishable
-    UCCLInventoryComponent *-- FCCLInventoryEntry
-    FCCLInventoryEntry *-- FCCLFoodState
+    UCCLInventoryComponent *-- FKSIInventoryEntry
+    FKSIInventoryEntry *-- FCCLFoodState
     FCCLFoodState *-- FCCLFoodLot
     FCCLFoodState *-- FCCLFoodStorage
     CCLFood --> FCCLFoodState
@@ -446,7 +444,7 @@ classDiagram
 
 ```cpp
 bool BindPersistence(FGuid ContainerId, FString& Error);
-bool CanRestore(const TArray<FCCLInventoryEntry>& Entries) const;
+bool CanRestore(const TArray<FKSIInventoryEntry>& Entries) const;
 // PrepareRestore가 검증과 잠금을 끝낸 뒤 세계를 적용한다.
 // 실패하면 CancelRestore, 성공하면 CommitRestore를 호출한다.
 ```
@@ -534,14 +532,14 @@ classDiagram
 
 ### 생물 행동과 먹이 수지 연결 설계
 
-예약된 생물의 이동·먹이 섭취·무리 복귀를 공통 세계 시간의 후보 상태에서 계산한다. `FCCLEcologyBehavior`는 개체별 이동 속도·먹이 종류·에너지·굶주림·선택 대상을, `FCCLEcologyForage`는 서식지의 먹이 위치·잔량·재생·누적 소비를, `FCCLEcologyGroup`은 같은 서식지의 무리 기준점·반경을 소유한다. 표현 객체의 Tick에서 먹이를 다시 소비하지 않는다. 기존 종·개체군 수량과 사건 원장은 그대로 생태 모델이 소유한다.
+예약된 생물의 이동·먹이 섭취·무리 복귀를 공통 세계 시간의 후보 상태에서 계산한다. `FKSIEcologyBehavior`는 개체별 이동 속도·먹이 종류·에너지·굶주림·선택 대상을, `FKSIEcologyForage`는 서식지의 먹이 위치·잔량·재생·누적 소비를, `FKSIEcologyGroup`은 같은 서식지의 무리 기준점·반경을 소유한다. 표현 객체의 Tick에서 먹이를 다시 소비하지 않는다. 기존 종·개체군 수량과 사건 원장은 그대로 생태 모델이 소유한다.
 
 ```mermaid
 classDiagram
-    FCCLEcologySimulation *-- FCCLEcologyBehavior
-    FCCLEcologySimulation *-- FCCLEcologyForage
-    FCCLEcologySimulation *-- FCCLEcologyGroup
-    UCCLEcologyRepresentationSubsystem --> FCCLEcologySimulation
+    FKSIEcologySimulation *-- FKSIEcologyBehavior
+    FKSIEcologySimulation *-- FKSIEcologyForage
+    FKSIEcologySimulation *-- FKSIEcologyGroup
+    UCCLEcologyRepresentationSubsystem --> FKSIEcologySimulation
     UCCLEcologyRepresentationSubsystem --> ACCLCreatureActor
     UCCLEcologyRepresentationSubsystem --> FCCLEcologyMassFragment
 ```
@@ -551,7 +549,7 @@ classDiagram
 `AddGroup`, `AddForage`, `AddBehavior`는 등록 후보 전체를 검증하고 실패 시 원본을 보존한다. 행동 진행은 세계의 정수 초 경계에서 순서가 고정된 개체 ID로 처리한다. 각 개체와 먹이는 마지막 처리 시각을 저장하므로 소수 시각의 등록·저장·분할 진행에도 경과 시간이 중복되지 않는다. 먹이 잔량과 소비·재생 원장을 같은 후보에서 갱신한다. 먹이 부족·처리 예산 초과·후속 Agent 실패는 다른 세계 소유자와 함께 검증한다.
 
 ```cpp
-FCCLEcologySimulation Candidate = Simulation;
+FKSIEcologySimulation Candidate = Simulation;
 if (!Candidate.AddForage(Source, Error) || !Candidate.AddBehavior(Behavior, Error))
 {
     return false;
@@ -566,7 +564,7 @@ Simulation = MoveTemp(Candidate);
 
 ### 생물 행동 기반 실행 검증
 
-`CCLEcologyBehavior.cpp`는 지속 예약 개체의 이동 후보·먹이 선택·섭취와 무리 목표를 계산한다. 지상 생물과 기어 다니는 곤충은 고정 수평면, 물고기와 새는 서식지 상자 안에서 높이를 포함해 이동한다. 기존 표현 위치를 직접 수정하는 방식은 행동을 등록하지 않은 개체에 유지한다. 행동이 있는 개체의 Actor·Mass 위치는 확정된 모델에서 읽으며 표현의 오래된 위치를 반영하는 요청은 거부한다.
+`KSIEcologyBehavior.cpp`는 지속 예약 개체의 이동 후보·먹이 선택·섭취와 무리 목표를 계산한다. 지상 생물과 기어 다니는 곤충은 고정 수평면, 물고기와 새는 서식지 상자 안에서 높이를 포함해 이동한다. 기존 표현 위치를 직접 수정하는 방식은 행동을 등록하지 않은 개체에 유지한다. 행동이 있는 개체의 Actor·Mass 위치는 확정된 모델에서 읽으며 표현의 오래된 위치를 반영하는 요청은 거부한다.
 
 먹이는 잔량과 함께 초기량·재생량·소비량을 기록한다. 검증은 `초기량 + 재생량 = 잔량 + 소비량`과 전체 먹이 소비량·개체별 누적 섭취량의 합을 대조한다. 같은 먹이를 두 개체가 중복 소비하지 않도록 안정적인 ID 순서로 처리한다. 이 순서는 재현하기 쉽지만 먼저 처리되는 개체가 부족한 자원을 먼저 얻는다. 공정한 분배나 경쟁의 생태적 정확성을 구현한 것은 아니다. 허용된 종류·같은 서식지·잔량을 만족하는 가까운 먹이만 선택하며, 도착에 쓴 시간을 제외하고 섭취한다.
 
@@ -597,15 +595,15 @@ Simulation = MoveTemp(Candidate);
 
 ### 실제 공간 경로 연결 설계
 
-행동의 이동 후보를 실제 충돌·내비게이션·수역으로 검증하는 경로 제공자를 추가한다. `ICCLEcologySpace`는 읽기 전용 경로 요청 계약, `FCCLEcologyWorldSpace`는 게임 스레드의 UE 월드·확정 지형과 같은 시각의 표면 후보를 읽는 어댑터다. 행동은 경로 길이에 따른 이동 시간을 빼고 목적지까지 도착했을 때만 남은 시간으로 섭취한다. 장애물 뒤의 먹이를 직선 거리만으로 먹지 않는다.
+행동의 이동 후보를 실제 충돌·내비게이션·수역으로 검증하는 경로 제공자를 추가한다. `IKSIEcologySpace`는 읽기 전용 경로 요청 계약, `FCCLEcologyWorldSpace`는 게임 스레드의 UE 월드·확정 지형과 같은 시각의 표면 후보를 읽는 어댑터다. 행동은 경로 길이에 따른 이동 시간을 빼고 목적지까지 도착했을 때만 남은 시간으로 섭취한다. 장애물 뒤의 먹이를 직선 거리만으로 먹지 않는다.
 
 ```mermaid
 classDiagram
-    FCCLEcologySimulation --> ICCLEcologySpace
-    FCCLEcologyWorldSpace ..|> ICCLEcologySpace
+    FKSIEcologySimulation --> IKSIEcologySpace
+    FCCLEcologyWorldSpace ..|> IKSIEcologySpace
     FCCLEcologyWorldSpace --> UNavigationSystemV1
     FCCLEcologyWorldSpace --> UWorld
-    FCCLEcologyWorldSpace --> FCCLSurfaceSimulation
+    FCCLEcologyWorldSpace --> FKSISurfaceSimulation
 ```
 
 행동 정책의 `bUseWorldSpace`와 몸체 반경을 저장한다. 기존 형식의 고정 공간 실험에는 이 정책을 소급 적용하지 않는다. 지상·기어 다니는 곤충은 UE 내비게이션의 완전한 경로를 사용하고 몸체 충돌을 확인한다. 부분 경로나 준비되지 않은 지형·내비게이션을 성공 경로로 쓰지 않는다. 수중·공중은 서식지 안에서 제한된 3차원 격자를 탐색하며 각 연결을 구형 몸체의 Sweep으로 검사한다. 수중 연결은 몸체 범위가 실제 액체 수량으로 계산한 바닥·수면 사이에 있는지도 확인한다.
@@ -728,7 +726,7 @@ classDiagram
     UCCLInventoryPersistenceSubsystem --> FCCLInventorySnapshot
     FCCLInventorySnapshot *-- FCCLFoodEnvironmentBinding
     UCCLInventoryComponent *-- FCCLFoodEnvironmentBinding
-    FCCLFoodEnvironmentBinding --> FCCLSurfaceSimulation
+    FCCLFoodEnvironmentBinding --> FKSISurfaceSimulation
 ```
 
 인터페이스는 `CCLFoodEnvironment::Sample(Binding, Surface, Error)`와 `Advance(Record, SurfaceCandidate, WorldFrom, Error)`, 인벤토리의 `ChangeFoodEnvironment(Binding, Error)`다. 세계 진행의 선택적 Prepare 콜백이 음식 후보를 준비한 뒤 생애 진행이 성공해야 공통 시계·표면·생태와 음식 후보를 게시한다. 실패는 예약한 인벤토리를 해제하고 원래 기록과 시간 입력을 유지한다. 모든 컨테이너 교체가 끝난 다음 알림을 보낸다.

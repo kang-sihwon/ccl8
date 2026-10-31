@@ -2,8 +2,6 @@
 
 단계 7은 연소·소화·확산과 공간별 온습도·연기를 공통 환경 상태에 연결한다. 범위는 [결정 19](decisions/0019-natural-environment-and-labs.md)와 [환경 계획](EnvironmentPlan.md#불열공간-차폐)을 따른다. 연소·표면·공기를 공통 진행·저장·복제에 연결하고 자동 검사와 실제 월드 실행을 검증했다. 구역 10·11의 상시 조작과 Niagara 불꽃·연기 표현까지 실제 실행했다. 식생의 탄 상태 연결은 단계 8에서 이어 갔고, 식생 생체량과 연료 원장의 연결은 [생태계·생애](EnvironmentEcology.md)가 소유한다. 표현 조정과 규모 검증은 단계 9의 범위다. 이 문서는 연소 코어, 표면의 융해·건조와 열 확산, 공간 환기, 구역 10·11의 조작과 표현, 열 노출의 GAS 피해와 검증 기록을 소유한다.
 
-2026-10-12에 공용 계산을 KSI 모듈로 옮겼다. 소유 모듈과 현재 코드 위치는 [Framework 단계 4](FrameworkPlan.md#단계-4-구현과-검증)가 소유한다. 아래 구현·검증 기록의 CCL 이름은 당시 이름이며 이동 대상만 KSI로 바뀌었다. 게임 연결과 당시 검증 범위는 그대로다.
-
 ## 목표와 단위
 
 연소는 연료 kg, 연료 수분 kg, 열 J, 열용량 J/K, 연기 kg를 사용한다. 불의 진행과 공간 환기는 게임 초를 쓴다. 세계 시간을 가속해 계절을 바꿔도 불꽃 확산과 플레이어의 소화 반응 시간이 같은 배율로 빨라지지 않게 한다. 비·눈의 유입은 기존 세계 초 기준을 유지한다. 시험 수치는 콘텐츠의 초기값이며 실제 물질의 정확한 열역학이나 최종 밸런스를 뜻하지 않는다.
@@ -12,16 +10,16 @@
 
 ## 목표 책임과 수명
 
-서버 World의 기존 표면 값 상태가 셀별 연료·열·연소 흔적을 소유한다. 계산 코어는 인접 셀로 보내는 열을 같은 이전 상태에서 구하고 한 번 적용한다. 공간 값 상태는 안정적인 공간 ID와 체적, 온도·수분·연기를 보관한다. `FCCLSurfaceScene`의 개구부는 공간과 외부 또는 다른 공간을 연결한다. 표현 Actor와 Niagara 컴포넌트는 확정 상태를 읽으며 연료를 직접 소모하지 않는다.
+서버 World의 기존 표면 값 상태가 셀별 연료·열·연소 흔적을 소유한다. 계산 코어는 인접 셀로 보내는 열을 같은 이전 상태에서 구하고 한 번 적용한다. 공간 값 상태는 안정적인 공간 ID와 체적, 온도·수분·연기를 보관한다. `FKSISurfaceScene`의 개구부는 공간과 외부 또는 다른 공간을 연결한다. 표현 Actor와 Niagara 컴포넌트는 확정 상태를 읽으며 연료를 직접 소모하지 않는다.
 
 ```mermaid
 classDiagram
-    UCCLWorldSimulationSubsystem *-- FCCLSurfaceSimulation
-    FCCLSurfaceSimulation *-- FCCLSurfaceGrid
-    FCCLSurfaceGrid *-- FCCLCombustionCell
-    FCCLSurfaceSimulation *-- FCCLAirSpace
-    FCCLSurfaceSimulation ..> FCCLSurfaceScene
-    ACCLFirePresentation ..> FCCLSurfaceSimulation
+    UCCLWorldSimulationSubsystem *-- FKSISurfaceSimulation
+    FKSISurfaceSimulation *-- FKSISurfaceGrid
+    FKSISurfaceGrid *-- FKSICombustionCell
+    FKSISurfaceSimulation *-- FKSIAirSpace
+    FKSISurfaceSimulation ..> FKSISurfaceScene
+    ACCLFirePresentation ..> FKSISurfaceSimulation
 ```
 
 ## 착수 전 인터페이스 초안
@@ -30,8 +28,8 @@ classDiagram
 
 ```cpp
 bool Ignite(FGuid RegionId, int32 CellIndex, double HeatJoules, FString& Error);
-bool AddAirSpace(const FCCLAirSpace& Space, FString& Error);
-bool Advance(const FCCLWorldStep& Step, FString& Error);
+bool AddAirSpace(const FKSIAirSpace& Space, FString& Error);
+bool Advance(const FKSIWorldStep& Step, FString& Error);
 ```
 
 날씨·열·물·공기 후보를 먼저 계산하고 생활 진행까지 성공한 뒤 공통 시계를 확정한다. 중간 오류에서 불만 타거나 환기만 진행한 상태를 게시하지 않는다. 저장·복제는 같은 표면 스냅샷 버전을 확장한다.
@@ -51,13 +49,13 @@ bool Advance(const FCCLWorldStep& Step, FString& Error);
 
 ## 연소 코어의 현재 구현
 
-`CCLCombustionModel.h/.cpp`가 연료·열 상태와 전달량을 계산한다. 2026-10-12 이후 위치는 `Source/KSIEnvironment/`의 `KSICombustionModel.h`·`KSICombustionModel.cpp`이고, 표면 연소는 `KSISurfaceFire.h`·`KSISurfaceFire.cpp`다. `FCCLCombustionCell`은 남은 연료·연소 누계와 초기·추가·연소·손실·전달 열량을 저장한다. 열은 절대온도 기준의 열용량 곱으로 저장하며 표시 기온은 섭씨로 환산한다. `FCCLCombustionFlux`는 증발시킨 물 kg, 표면·공기에 넘길 열 J와 발생 연기 kg를 반환한다. 공기 전달 열이 음수이면 공기에서 연료로 열을 옮긴다. `CCLSurfaceFire`가 실제 표면의 물과 눈·얼음에 전달량을 반영한다. 연기 발생 누계를 보관하며 셀이 속한 공간에 같은 발생량을 넣는다.
+`KSICombustionModel.h/.cpp`가 연료·열 상태와 전달량을 계산한다. 2026-10-12 이후 위치는 `Source/KSIEnvironment/`의 `KSICombustionModel.h`·`KSICombustionModel.cpp`이고, 표면 연소는 `KSISurfaceFire.h`·`KSISurfaceFire.cpp`다. `FKSICombustionCell`은 남은 연료·연소 누계와 초기·추가·연소·손실·전달 열량을 저장한다. 열은 절대온도 기준의 열용량 곱으로 저장하며 표시 기온은 섭씨로 환산한다. `FKSICombustionFlux`는 증발시킨 물 kg, 표면·공기에 넘길 열 J와 발생 연기 kg를 반환한다. 공기 전달 열이 음수이면 공기에서 연료로 열을 옮긴다. `KSISurfaceFire`가 실제 표면의 물과 눈·얼음에 전달량을 반영한다. 연기 발생 누계를 보관하며 셀이 속한 공간에 같은 발생량을 넣는다.
 
 ```cpp
-static bool Advance(const FCCLCombustionMaterial& Material,
+static bool Advance(const FKSICombustionMaterial& Material,
     double GameSeconds, double AmbientCelsius, double WindMetersPerSecond,
-    double AvailableWaterKg, FCCLCombustionCell& State,
-    FCCLCombustionFlux& Flux, FString& Error, double AvailableAirHeatJoules = 1.e15);
+    double AvailableWaterKg, FKSICombustionCell& State,
+    FKSICombustionFlux& Flux, FString& Error, double AvailableAirHeatJoules = 1.e15);
 ```
 
 계산은 최대 0.1게임 초로 나누며 한 요청은 409.6게임 초까지 허용한다. 실패하면 상태와 출력 전달량을 모두 보존한다. 물은 호출자가 소유하며 모델 내부의 지역 변수에서 가용량을 차감한다. 같은 물을 연료 상태에 영구 복제하지 않는다. 열·연료 검증 뒤에 후보 상태와 출력 전달량을 한 번 교체한다.
@@ -78,9 +76,9 @@ return true;
 
 ## 표면의 융해·건조와 열 확산
 
-`FCCLSurfaceGrid::Fire`는 선택적인 `FCCLSurfaceFireLayer`를 소유한다. `Cells`가 비어 있으면 연소 상태를 할당하지 않으며, 사용하면 표면 셀 수와 같아야 한다. 재질은 지역 단위로 한 번 저장한다. `UCCLWorldSimulationSubsystem::IgniteSurface`는 서버 권위를 검사하고 기존 연료 셀에 외부 열을 더한다. 발화 요청으로 소모한 연료를 채우지는 않는다.
+`FKSISurfaceGrid::Fire`는 선택적인 `FKSISurfaceFireLayer`를 소유한다. `Cells`가 비어 있으면 연소 상태를 할당하지 않으며, 사용하면 표면 셀 수와 같아야 한다. 재질은 지역 단위로 한 번 저장한다. `UCCLWorldSimulationSubsystem::IgniteSurface`는 서버 권위를 검사하고 기존 연료 셀에 외부 열을 더한다. 발화 요청으로 소모한 연료를 채우지는 않는다.
 
-`CCLSurfaceSimulation`은 최대 0.25게임 초인 표면 하위 단계마다 `CCLSurfaceFire::AdvanceCandidate`를 호출한다. 비·눈 유입과 기존 상변화 뒤에 연소를 계산하고 물 흐름을 적용한다. 연소에 제공하는 물은 표면 액체와 토양의 실제 보유량이다. 증발량은 액체, 토양 순서로 차감하고 기존 물 수지의 증발 항목에 한 번 넣는다. 표면에 남은 열은 얼음, 눈 순서로 녹이며 눈 부피도 남은 질량에 비례해 줄인다. 융해에는 게임용 계수 334kJ/kg를 쓴다.
+`KSISurfaceSimulation`은 최대 0.25게임 초인 표면 하위 단계마다 `KSISurfaceFire::AdvanceCandidate`를 호출한다. 비·눈 유입과 기존 상변화 뒤에 연소를 계산하고 물 흐름을 적용한다. 연소에 제공하는 물은 표면 액체와 토양의 실제 보유량이다. 증발량은 액체, 토양 순서로 차감하고 기존 물 수지의 증발 항목에 한 번 넣는다. 표면에 남은 열은 얼음, 눈 순서로 녹이며 눈 부피도 남은 질량에 비례해 줄인다. 융해에는 게임용 계수 334kJ/kg를 쓴다.
 
 열 수지는 셀별 저장·추가·연소·손실·전달량과 지역별 전달 내역을 함께 검사한다. 지역의 전달 내역에는 인접 셀 전송, 융해, 증발과 나머지 표면 방출 열을 기록한다. 연기 발생 누계는 연소한 연료와 재질의 연기 비율에 일치해야 한다. 실내 셀은 연료의 냉각 열과 융해·증발에 쓰지 않은 표면 전달 열을 공간에 넣는다. 실외 셀의 방출 열은 기존 외부 손실로 남는다.
 
@@ -131,11 +129,11 @@ return true;
 
 ## 공간 환기 값 모델과 검증
 
-`FCCLAirSimulation`은 최대 64개의 평균 공기 상태를 소유한다. 각 `FCCLAirSpace`는 겹치지 않는 위치 범위와 안정적인 ID를 가진다. 공간의 기하 범위와 공기 체적은 별도 입력이며 복잡한 방의 실제 체적을 자동 계산하지 않는다. 경계 위치는 최솟값을 포함하고 최댓값을 제외해 인접 공간 중 한 곳만 소유한다.
+`FKSIAirSimulation`은 최대 64개의 평균 공기 상태를 소유한다. 각 `FKSIAirSpace`는 겹치지 않는 위치 범위와 안정적인 ID를 가진다. 공간의 기하 범위와 공기 체적은 별도 입력이며 복잡한 방의 실제 체적을 자동 계산하지 않는다. 경계 위치는 최솟값을 포함하고 최댓값을 제외해 인접 공간 중 한 곳만 소유한다.
 
 `AddSource`는 열·수증기·연기를 외부에서 넣거나 저장된 열을 꺼낸다. 열은 양수·음수 입력을 허용하지만 수증기와 연기의 음수 생성 및 보유 열 초과 출금은 거부한다. 공간마다 초기량·입출량을 저장하며 전체 공간 합계에서도 열원·외부 출입을 검사한다. 두 방 사이 교환은 전체 합계를 바꾸지 않는다.
 
-`Advance`는 `FCCLSurfaceOpening` 배열과 공간 ID별 외부 기온·수증기 농도·풍속을 받는다. 닫힌 문은 교환량이 0이다. 열린 문은 면적, 풍속과 온도 차이로 교환 부피를 구한다. 단위 면적당 교환 속도는 실험식 `0.05 + 0.1 × 풍속 + 0.01 × sqrt(온도 차이의 절댓값)`을 쓰며 정밀 대류 공식으로 해석하지 않는다.
+`Advance`는 `FKSISurfaceOpening` 배열과 공간 ID별 외부 기온·수증기 농도·풍속을 받는다. 닫힌 문은 교환량이 0이다. 열린 문은 면적, 풍속과 온도 차이로 교환 부피를 구한다. 단위 면적당 교환 속도는 실험식 `0.05 + 0.1 × 풍속 + 0.01 × sqrt(온도 차이의 절댓값)`을 쓰며 정밀 대류 공식으로 해석하지 않는다.
 
 최대 0.25게임 초마다 개구부별 교환 부피를 작은 공간 체적의 1/4 이하로 제한한다. 여러 개구부의 합계가 한 공간 체적의 절반을 넘으면 양 끝 공간의 제한을 함께 적용한다. 모든 문을 안정적인 ID 순서로 계산하고 같은 이전 상태에서 열·수증기·연기의 양방향 전달량을 구한다. 한 단계에서 방금 받은 연기를 다음 방으로 바로 넘기지 않는다.
 
@@ -143,8 +141,8 @@ return true;
 
 ```cpp
 bool AddSource(FGuid SpaceId, double HeatJoules, double VaporKg, double SmokeKg, FString& Error);
-bool Advance(double GameSeconds, const TArray<FCCLSurfaceOpening>& Openings,
-    const TMap<FGuid, FCCLAirExterior>& Exteriors, FString& Error);
+bool Advance(double GameSeconds, const TArray<FKSISurfaceOpening>& Openings,
+    const TMap<FGuid, FKSIAirExterior>& Exteriors, FString& Error);
 ```
 
 2026-10-10 최종 실행은 `Saved/EnvironmentStages/Air-GPF.log`, `Air-Build.log`, `Saved/Tests/Automation/20261010-123742-532/report/index.json`이다. 프로젝트 파일 생성과 CCLEditor Win64 Development 빌드가 성공했으며 환경 자동 검사 69/69, 경고·실패·미실행·진행 중 0이다. `CCL.Environment.Air`의 다섯 검사에서 다음을 확인했다.
@@ -196,7 +194,7 @@ bool Advance(double GameSeconds, const TArray<FCCLSurfaceOpening>& Openings,
 
 개방된 직사각형 내부의 4×4 지점에서 문 법선 양쪽 0.5m 구간을 검사한다. 구조물의 바람 투과율과 지형 차폐를 반영하며, 문 지점의 확정 지형 밀도로 완전히 매몰된 개구도 막는다. 지형 provider는 충돌과 함께 게시된 스냅샷을 보유하므로 아직 확정하지 않은 굴착 후보는 영향을 주지 않는다. 16개 면적 표본으로 계산 범위를 제한하므로 표본보다 작은 틈과 원거리 통로의 연결을 모두 해석하지 않는다.
 
-`ICCLSurfaceProvider::QueryOpeningFraction`은 전달받은 문 상태가 확정 장면과 다르면 실패한다. `FCCLSurfaceScene`은 같은 리비전·세대의 표면 교차와 체적 질의를 수행한다. `FCCLTerrainSurface::QuerySolidPoint`는 월드 좌표를 지역 좌표로 변환해 게시된 밀도를 읽고 메시와 같은 -0.5mm 기준을 적용한다. 이 질의를 지원하지 않는 provider는 빈 공간으로 간주하지 않고 실패를 반환한다.
+`IKSISurfaceProvider::QueryOpeningFraction`은 전달받은 문 상태가 확정 장면과 다르면 실패한다. `FKSISurfaceScene`은 같은 리비전·세대의 표면 교차와 체적 질의를 수행한다. `FKSITerrainSurface::QuerySolidPoint`는 월드 좌표를 지역 좌표로 변환해 게시된 밀도를 읽고 메시와 같은 -0.5mm 기준을 적용한다. 이 질의를 지원하지 않는 provider는 빈 공간으로 간주하지 않고 실패를 반환한다.
 
 2026-10-10 UE 5.8.3의 최종 실행 근거는 다음과 같다.
 
@@ -254,12 +252,12 @@ bool Advance(double GameSeconds, const TArray<FCCLSurfaceOpening>& Openings,
 classDiagram
     UCCLWorldSimulationSubsystem --> UCCLThermalExposureSubsystem : Prepare then Commit
     UCCLThermalExposureSubsystem --> UCCLThermalReceiverComponent : registered receivers
-    UCCLThermalExposureSubsystem --> FCCLSurfaceSimulation : previous committed state
+    UCCLThermalExposureSubsystem --> FKSISurfaceSimulation : previous committed state
     UCCLThermalExposureSubsystem --> UCCLAbilitySystemComponent : instant effect
     UCCLThermalExposureSubsystem --> UCCLAgentComponent : injury persistence
 ```
 
-핵심 인터페이스는 `Prepare(const FCCLWorldStep&, const FCCLSurfaceSimulation&, FString&)`, `Commit()`, `Cancel()`이다. 후보는 Actor·ASC의 약한 참조, 피해량과 현재 세계 Epoch·StepId를 보관한다. 실패·복원 뒤 후보는 적용하지 않는다. 영향을 받을 Agent의 Writer를 미리 확인해 예약 충돌이면 세계 진행 전체를 거부한다.
+핵심 인터페이스는 `Prepare(const FKSIWorldStep&, const FKSISurfaceSimulation&, FString&)`, `Commit()`, `Cancel()`이다. 후보는 Actor·ASC의 약한 참조, 피해량과 현재 세계 Epoch·StepId를 보관한다. 실패·복원 뒤 후보는 적용하지 않는다. 영향을 받을 Agent의 Writer를 미리 확인해 예약 충돌이면 세계 진행 전체를 거부한다.
 
 ```cpp
 if (!Exposure->Prepare(Step, PreviousSurface, Error)) { return false; }

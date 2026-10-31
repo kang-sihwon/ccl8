@@ -2,8 +2,6 @@
 
 같은 직업의 Agent도 다른 목표·생활 기반·경험·관계를 가지고 시작하고, 실행 결과가 실제 자원과 세계를 바꿔 다음 선택의 원인이 된다. 상인 8명의 30일 시험과 실제 마을 실행으로 이 계약을 검증했다. 이 문서는 [결정 18](decisions/0018-agent-lives-from-resources.md)의 구현 계약, 구현 경계, 검증 기록, 현재 제한을 소유한다.
 
-2026-10-12에 공용 계산을 KSI 모듈로 옮겼다. 소유 모듈과 현재 코드 위치는 [Framework 단계 4](FrameworkPlan.md#단계-4-구현과-검증)가 소유한다([결정 26](decisions/0026-shared-world-computation-split.md)). 아래 구현·검증 기록의 CCL 이름은 2026-10-08 당시 이름이며, 이후 이동한 대상만 KSI 이름으로 바뀌었다. 게임 연결과 당시 검증 범위는 그대로다.
-
 공통 세계 시간, 생물 개체군과 노화·성장으로 확장하는 계획은 [EnvironmentPlan](EnvironmentPlan.md)이 소유한다. 선택 생애 Feature의 나이·수명·자연 노화 보호와 검증 결과는 [생태계·생애 구현](EnvironmentEcology.md#agent-생애-연결과-실행-근거)이 소유한다. 이 문서의 초기 구현 범위와 확장 계획의 완료 상태는 구분한다.
 
 ## 데이터와 소유권
@@ -93,7 +91,7 @@ classDiagram
 
 Agent Record는 Actor를 참조하지 않는다. `UCCLAgentComponent`는 지속 기록의 Actor 표현이며 `AgentId`만 가진다. 생활·사회 기능이 필요 없는 적은 성격·욕구·경험만 조합할 수 있다. Mass 실험은 같은 판단 함수를 호출하고 의도·실행권만 Fragment로 옮기며, 인벤토리·생활 기록을 Mass Fragment에 복제하지 않는다.
 
-`Source/CCL/Agents/`의 `CCLAgentTypes`는 선택적 Feature, 타입·버전·의존성·Migration과 ID·세대·실행권을 구현한다. `CCLAgentFeatures`는 성격·생활·욕구·기억을, `CCLAgentSnapshot`은 실행권 수집 이후 저장을 담당한다. 구조체 인스턴스는 `FInstancedStruct`다. `CCLAgentTraitsCustomization`은 기본 성격과 가치관을 0-100으로 편집하고 내부에는 0-1을 쓴다. 에디터 Details의 수동 조작은 미확인이다.
+`Source/CCL/Agents/`의 `KSIAgentTypes`는 선택적 Feature, 타입·버전·의존성·Migration과 ID·세대·실행권을 구현한다. `CCLAgentFeatures`는 성격·생활·욕구·기억을, `CCLAgentSnapshot`은 실행권 수집 이후 저장을 담당한다. 구조체 인스턴스는 `FInstancedStruct`다. `CCLAgentTraitsCustomization`은 기본 성격과 가치관을 0-100으로 편집하고 내부에는 0-1을 쓴다. 에디터 Details의 수동 조작은 미확인이다.
 
 `FCCLLifeSimulation`이 기회 조회·판단 입력 생성·결과 확정·시간·목표 평가를 묶는다. 독립 `CCLDecision::Evaluate`는 값 입력만 읽는다. `ACCLAgentAIController`의 StateTree는 선택, 이동, 예약, 수행과 실패 복구를 실행한다. `UCCLLifeGoalDefinition`은 진행 계산기와 완료 정책을 교체한다. 새 활동은 `RegisterActivity`에 Build·Apply 처리기를 등록하며, 간략 실행 지원 여부를 별도로 선언한다. 미지원 간략 실행은 실패한다.
 

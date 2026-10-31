@@ -2,8 +2,6 @@
 
 천체·공통 시간, 날씨, 영구 지형 변경, 눈·물·불·공간 차폐, 생태계와 실험장을 단계 0-9로 나눠 구현하고 있다. 단계 0-7은 검증을 마쳤고 단계 8의 생태·생애와 단계 9의 통합·규모 검증이 진행 중이다. 이 문서는 자연 환경 전체의 확정 범위, 소유권과 실행 계약, 단계별 통과 기준, 단계 0-2와 통합 단계의 실행 기록을 소유한다. 사용자 확정 범위는 [결정 19](decisions/0019-natural-environment-and-labs.md)에 근거한다. 단계 0-5의 통과 조건을 로컬 작업 트리에서 확인했다. 눈·이동의 현재 구현과 실행 근거는 [깊은 눈과 캐릭터 이동](EnvironmentSnow.md)이 소유한다. 물의 현재 구현과 실행 근거는 [물 순환 설계와 검증](EnvironmentWater.md)이 소유한다. 단계 3의 현재 구현과 실행 근거는 [영구 지형 통합과 검증](EnvironmentTerrain.md)이 소유한다. 아래의 과거 검증 기록은 각각 작성 당시의 상태를 보존한다.
 
-2026-10-12에 공용 계산을 KSI 모듈로 옮겼다. 소유 모듈과 현재 코드 위치는 [Framework 단계 4](FrameworkPlan.md#단계-4-구현과-검증)가 소유한다. 아래 구현·검증 기록의 CCL 이름은 당시 이름이며 이동 대상만 KSI로 바뀌었다. 게임 연결과 당시 검증 범위는 그대로다.
-
 ## 단계별 현황
 
 단계의 작업과 통과 기준은 [단계별 구현과 통과 기준](#단계별-구현과-통과-기준)이 정한다. 아래 절들은 날짜순 기록이므로, 각 단계의 현재 상태와 정본은 이 표를 기준으로 읽는다. 상태는 [결정 19](decisions/0019-natural-environment-and-labs.md)의 진행 기록과 각 소유 문서의 검증 기록을 따른다.
@@ -55,7 +53,7 @@ GAS 치명 피해를 Agent의 외부 사망에 연결하고 구역 07에 두 주
 
 호스트 개인 세션의 계정·퀘스트도 보관함·플레이어 알림 전에 확정하도록 연결했고, 알림의 잔액 조회가 이전 계좌를 다시 생성하지 않는지 검사했다. [호스트 계정·퀘스트의 알림 전 확정](SessionFoundation.md#호스트-계정퀘스트의-알림-전-확정)이 검사 근거와 캠페인 후처리의 남은 범위를 소유한다.
 
-2026-10-11에 세계 저장을 형식 7로 바꿨다. 세계 코덱은 시계·환경·생활 같은 코어와 이름 있는 구간의 봉투만 소유한다. 플레이어(`Players`, 참가 순서 0)와 보관함(`Inventories`, 참가 순서 1)은 `ICCLWorldParticipant`로 자기 구간을 수집·준비·확정·취소한다. 구간 검증기는 `FCCLWorldSectionRegistry`에 등록하며, 앞 구간이 청구한 아이템 GUID를 뒤 구간이 다시 청구하면 거부한다. 형식 6 이하의 플레이어·보관함 덩어리는 읽을 때 같은 이름의 구간으로 옮긴다. 원격 플레이어의 자동 신원 연결과 복원 시 접속자 유지는 [원격 플레이어 신원 연결과 복원 시 접속자 유지](SessionFoundation.md#원격-플레이어-신원-연결과-복원-시-접속자-유지)가 소유한다.
+2026-10-11에 세계 저장을 형식 7로 바꿨다. 세계 코덱은 시계·환경·생활 같은 코어와 이름 있는 구간의 봉투만 소유한다. 플레이어(`Players`, 참가 순서 0)와 보관함(`Inventories`, 참가 순서 1)은 `IKSIWorldParticipant`로 자기 구간을 수집·준비·확정·취소한다. 구간 검증기는 `FKSIWorldSectionRegistry`에 등록하며, 앞 구간이 청구한 아이템 GUID를 뒤 구간이 다시 청구하면 거부한다. 형식 6 이하의 플레이어·보관함 덩어리는 읽을 때 같은 이름의 구간으로 옮긴다. 원격 플레이어의 자동 신원 연결과 복원 시 접속자 유지는 [원격 플레이어 신원 연결과 복원 시 접속자 유지](SessionFoundation.md#원격-플레이어-신원-연결과-복원-시-접속자-유지)가 소유한다.
 
 현재 저장 참여 계약은 `KSICore`의 `IKSIWorldParticipant`와 `FKSIWorldSectionRegistry`에 있다. 표면·생활 검증 자료는 CCL의 선택 문맥으로 연결하고, 저장 형식 7과 참가 순서는 유지한다. 분리 결정과 검증은 [FrameworkPlan](FrameworkPlan.md#단계-2-구현-설계와-검증-기준)이 소유한다.
 
@@ -71,13 +69,13 @@ GAS 치명 피해를 Agent의 외부 사망에 연결하고 구역 07에 두 주
 
 ## 시간 분할 정밀도 구현·검증
 
-60배율에서 0.25게임초를 1세계초씩 처리해도 입력받은 두 종료 시각까지 진행한다. 서버 공통 시계의 `FCCLWorldClock::Prepare`에서 남은 게임·세계 구간이 각각 예산에 들어오는지 확인하고, 모두 들어오면 저장된 두 종료 시각을 사용한다. 기존 `Prepare`·`Commit`·`Abort` 인터페이스와 저장 형식은 유지한다. 허용 오차를 늘리거나 잔여 시간을 삭제하지 않는다.
+60배율에서 0.25게임초를 1세계초씩 처리해도 입력받은 두 종료 시각까지 진행한다. 서버 공통 시계의 `FKSIWorldClock::Prepare`에서 남은 게임·세계 구간이 각각 예산에 들어오는지 확인하고, 모두 들어오면 저장된 두 종료 시각을 사용한다. 기존 `Prepare`·`Commit`·`Abort` 인터페이스와 저장 형식은 유지한다. 허용 오차를 늘리거나 잔여 시간을 삭제하지 않는다.
 
 `CCLWorldAdvance`와 각 참가자는 같은 후보 구간을 소비하며 실패하면 원본을 유지한다. 시계는 실행 중인 서버 World가 소유하는 값 객체이므로 새 UObject나 복제 수명은 추가하지 않는다. 종료 경계를 기준으로 판단하면 게임·세계 시각의 반복 덧셈 차이를 마지막 분할에서 해소할 수 있다. 대신 두 단위의 남은 구간과 예산을 함께 검사해야 한다. 고정 정수 시간으로 전환하는 방식은 저장·배율 표현 변경이 필요하므로 이 수정에는 사용하지 않는다.
 
 `CCL.Environment.Clock.SplitAcceptedBoundaries`는 시작 세계 시각 0·86400·315360000에서 각각 200개의 입력을 15개 구간으로 처리했다. 총 9000개 구간에서 취소·재시도와 매 구간 저장·복원을 실행했고 입력 종료 시각과 정확히 일치했다. 일시정지 입력 제외와 기존 배율 0 검사도 통과했다. 실제 게임 월드에서는 온라인·연결 해제 플레이어 음식이 60배율의 15세계초를 함께 처리했다.
 
-2026-10-10 UE 5.8.3의 로컬 작업 트리에서 `Tools/Validation/run_automation.ps1 -Filter 'CCL.' -TimeoutSeconds 300`의 144개 검사가 경고·실패·미실행 없이 통과했다. 근거는 `Saved/Tests/Automation/20261010-232809-465/report/index.json`이다. 두 환경 맵의 음식·복원 실행은 `Saved/Tests/LoadoutRestore/20261010-230448-330`, `20261010-230751-715`에 있다. 첫 실행은 시계 수정 후, 두 번째는 계정 조회 분리까지 적용한 빌드다. 시계 구현은 `Source/CCL/Environment/CCLWorldClock.cpp:140`, 반복 검사는 `CCLWorldClockTests.cpp:206`이 소유한다. 이는 장시간 전체 월드의 처리 성능을 증명하지 않는다.
+2026-10-10 UE 5.8.3의 로컬 작업 트리에서 `Tools/Validation/run_automation.ps1 -Filter 'CCL.' -TimeoutSeconds 300`의 144개 검사가 경고·실패·미실행 없이 통과했다. 근거는 `Saved/Tests/Automation/20261010-232809-465/report/index.json`이다. 두 환경 맵의 음식·복원 실행은 `Saved/Tests/LoadoutRestore/20261010-230448-330`, `20261010-230751-715`에 있다. 첫 실행은 시계 수정 후, 두 번째는 계정 조회 분리까지 적용한 빌드다. 시계 구현은 `Source/KSIWorldTime/Private/KSIWorldClock.cpp:140`, 반복 검사는 `CCLWorldClockTests.cpp:206`이 소유한다. 이는 장시간 전체 월드의 처리 성능을 증명하지 않는다.
 
 ## 실험 메뉴 조작과 검증
 
@@ -224,8 +222,8 @@ UE 5.8.3에서 프로젝트 생성과 Editor 빌드를 마치고 아래 검사�
 |---|---|
 | `UCCLWorldSessionStore` | GameInstance 수명. 세계 ID·저장 세대·맵 전환 스냅샷을 보관하며 독립 실행하지 않는다 |
 | `UCCLWorldSimulationSubsystem` | 서버 World 수명. 공통 시계·실행 순서·완료 판정 |
-| `FCCLCelestialSystem` | 천체 정의에서 위치·일조 계산 |
-| `FCCLTerrainStore` | 청크 밀도·재질·리비전과 영구 편집 기록 |
+| `FKSICelestialSystem` | 천체 정의에서 위치·일조 계산 |
+| `FKSITerrainStore` | 청크 밀도·재질·리비전과 영구 편집 기록 |
 | `FCCLEnvironmentSimulation` | 날씨, 표면의 눈·물·열·연료, 차폐 계산 |
 | `FCCLEcosystemSimulation` | 서식지·개체군 집계와 개체 표현 전환 |
 | 기존 `UCCLAgentWorldSubsystem` | FCCLLifeSimulation과 Actor 연결 유지. 자체 시간 진행을 제거하고 공통 실행기의 호출을 받는다 |
@@ -243,7 +241,7 @@ UE 5.8.3에서 프로젝트 생성과 Editor 빌드를 마치고 아래 검사�
 인터페이스 초안이며 컴파일 가능한 완성 헤더는 아니다.
 
 ```cpp
-struct FCCLWorldStep
+struct FKSIWorldStep
 {
     uint64 StepId = 0;
     double GameDeltaSeconds = 0;
@@ -251,9 +249,9 @@ struct FCCLWorldStep
     double WorldToSeconds = 0;
 };
 
-FCCLAdvanceResult Advance(const FCCLWorldStep& Step);
-bool QuerySurface(const FCCLSurfaceQuery& Query, FCCLSurfaceSample& OutSample) const;
-FCCLEditTicket RequestTerrainEdit(const FCCLTerrainEdit& Edit);
+FCCLAdvanceResult Advance(const FKSIWorldStep& Step);
+bool QuerySurface(const FKSISurfaceQuery& Query, FKSISurfaceSample& OutSample) const;
+FCCLEditTicket RequestTerrainEdit(const FKSITerrainEdit& Edit);
 FCCLEditState GetEditState(FCCLEditTicket Ticket) const;
 FCCLContactResult ApplySurfaceContact(const FCCLSurfaceContact& Contact);
 bool CaptureCommittedSnapshot(FCCLWorldSnapshot& OutSnapshot, FString& OutError);
@@ -451,19 +449,19 @@ StartCase(FName)이 실행 ID를 반환하고 RequestReset(RunId), Stop(RunId), 
 
 #### 시간 코어의 책임과 경계
 
-`Source/CCL/Environment/CCLWorldClock.h`와 `.cpp`는 Actor·에셋을 참조하지 않는 시간 코어다. 2026-10-12 이후 위치는 `Source/KSIWorldTime/`의 `KSIWorldClock.h`·`KSIWorldClock.cpp`다. 아래는 2026-10-09 기록이다. 그때는 소스 준비 상태이며 서버 Subsystem과 기존 Agent에는 연결하지 않았다. 모듈 의존성과 기존 빌드 설정은 변경하지 않았다.
+`Source/KSIWorldTime/Public/KSIWorldClock.h`와 `.cpp`는 Actor·에셋을 참조하지 않는 시간 코어다. 2026-10-12 이후 위치는 `Source/KSIWorldTime/`의 `KSIWorldClock.h`·`KSIWorldClock.cpp`다. 아래는 2026-10-09 기록이다. 그때는 소스 준비 상태이며 서버 Subsystem과 기존 Agent에는 연결하지 않았다. 모듈 의존성과 기존 빌드 설정은 변경하지 않았다.
 
 | 타입 | 책임과 소유 | 수명·권위 |
 |---|---|---|
-| `FCCLWorldClock` | 입력 시간, 배율 이력, 처리 대기 구간과 완료 시각 소유 | 향후 서버 World 실행기가 단독 소유한다. 코어 자체는 Tick이나 네트워크 권한 검사를 수행하지 않는다 |
-| `FCCLWorldStep` | 후보 시간 구간, 완료 순번과 시도별 Ticket 전달 | Prepare부터 Commit 또는 Abort까지 사용한다. 티켓은 재시도·초기화·복원 뒤 재사용하지 않는다 |
-| `FCCLWorldClockSnapshot` | 완료 시각·순번, 대기 구간, 입력 시점별 배율의 값 복사 | Capture·Restore용 메모리 자료다. 디스크 저장·세션 v5 변환은 아직 연결하지 않았다 |
+| `FKSIWorldClock` | 입력 시간, 배율 이력, 처리 대기 구간과 완료 시각 소유 | 향후 서버 World 실행기가 단독 소유한다. 코어 자체는 Tick이나 네트워크 권한 검사를 수행하지 않는다 |
+| `FKSIWorldStep` | 후보 시간 구간, 완료 순번과 시도별 Ticket 전달 | Prepare부터 Commit 또는 Abort까지 사용한다. 티켓은 재시도·초기화·복원 뒤 재사용하지 않는다 |
+| `FKSIWorldClockSnapshot` | 완료 시각·순번, 대기 구간, 입력 시점별 배율의 값 복사 | Capture·Restore용 메모리 자료다. 디스크 저장·세션 v5 변환은 아직 연결하지 않았다 |
 | 기존 `UCCLAgentWorldSubsystem` | LifeSimulation의 소유권과 기존 시간 진행 유지 | 공통 실행기 이전 전까지 기존 게임 동작을 유지한다 |
 
 ```mermaid
 classDiagram
-    FCCLWorldClock *-- FCCLWorldClockSnapshot : 시간 상태 소유
-    FCCLWorldClock ..> FCCLWorldStep : 후보 반환
+    FKSIWorldClock *-- FKSIWorldClockSnapshot : 시간 상태 소유
+    FKSIWorldClock ..> FKSIWorldStep : 후보 반환
     UCCLAgentWorldSubsystem *-- FCCLLifeSimulation : 기존 소유권 유지
 ```
 
@@ -474,20 +472,20 @@ classDiagram
 ```cpp
 bool QueueGameTime(double DeltaSeconds, bool bPaused, FString& Error);
 bool ChangeTimeScale(double NewScale, FString& Error);
-bool Prepare(double MaxGameSeconds, double MaxWorldSeconds, FCCLWorldStep& OutStep, FString& Error);
+bool Prepare(double MaxGameSeconds, double MaxWorldSeconds, FKSIWorldStep& OutStep, FString& Error);
 bool Commit(const FGuid& Ticket, FString& Error);
 bool Abort(const FGuid& Ticket, FString& Error);
-bool Capture(FCCLWorldClockSnapshot& OutSnapshot, FString& Error) const;
-bool Restore(const FCCLWorldClockSnapshot& Snapshot, FString& Error);
+bool Capture(FKSIWorldClockSnapshot& OutSnapshot, FString& Error) const;
+bool Restore(const FKSIWorldClockSnapshot& Snapshot, FString& Error);
 ```
 
 다음은 자동 검사에 포함한 재시도 흐름의 발췌다. 소비자 상태를 바꾸기 전 실패한 경우를 가정한다.
 
 ```cpp
-FCCLWorldClock Clock;
+FKSIWorldClock Clock;
 FString Error;
-FCCLWorldStep First;
-FCCLWorldStep Retry;
+FKSIWorldStep First;
+FKSIWorldStep Retry;
 Clock.QueueGameTime(1, false, Error);
 Clock.Prepare(1, 15, First, Error);
 Clock.Abort(First.Ticket, Error);
@@ -537,7 +535,7 @@ Agent 시간 진행은 후보 상태에서 사건·욕구·판단·경제를 계
 classDiagram
     UCCLAgentWorldSubsystem *-- FCCLLifeSimulation : 삶 소유
     CCLWorldAdvance ..> FCCLLifeSimulation : 후보 계산 후 게시
-    CCLWorldAdvance ..> FCCLWorldClock : 동일 시각 확정
+    CCLWorldAdvance ..> FKSIWorldClock : 동일 시각 확정
 ```
 
 ```cpp
@@ -575,7 +573,7 @@ bool bCommitted = CCLWorldAdvance::Advance(Clock, Life, 0.25, 15, Error);
 
 ```mermaid
 classDiagram
-    UCCLWorldSimulationSubsystem *-- FCCLWorldClock
+    UCCLWorldSimulationSubsystem *-- FKSIWorldClock
     UCCLWorldSimulationSubsystem --> UCCLAgentWorldSubsystem : advance together
     UCCLAgentWorldSubsystem *-- FCCLLifeSimulation
     UCCLAgentSessionStore o-- FCCLWorldSnapshot : encoded travel snapshot
@@ -657,30 +655,30 @@ classDiagram
 
 단계 2는 천체 계산·표면 질의 코어를 먼저 검증한 뒤 서버 저장·복제와 실험장 표현을 연결한다. 천체 코어에는 별도 시계를 두지 않는다. 확정된 `WorldSeconds`와 정의 버전·Seed에서 위치와 일조를 재계산한다. 우주 좌표는 double km, 지역 표면 질의는 double m, 에디터 Actor 좌표는 cm로 구분한다. 표현 경계에서만 변환한다.
 
-`FCCLCelestialSystem`은 항성·행성·위성의 안정적인 이름 ID와 부모 관계를 검증하고 타원 궤도를 계산한다. 궤도 요소는 부모 위치에 상대적이며 축 방향은 공통 관성 좌표를 기준으로 한다. 자전축은 공전 위치를 따라 회전시키지 않는다. 자전은 부호 있는 항성일 주기, 현지 태양시는 관측 지점 자오선과 항성 방향의 차이로 계산한다. 따라서 자전 주기와 태양일을 같은 값으로 취급하지 않는다. 계산식은 [JPL의 케플러 요소와 좌표 변환](https://ssd.jpl.nasa.gov/planets/approx_pos.html)을 참고한다. 게임 천체의 수치와 주기는 정의 데이터이며 JPL의 실제 태양계 천문력이라고 표시하지 않는다.
+`FKSICelestialSystem`은 항성·행성·위성의 안정적인 이름 ID와 부모 관계를 검증하고 타원 궤도를 계산한다. 궤도 요소는 부모 위치에 상대적이며 축 방향은 공통 관성 좌표를 기준으로 한다. 자전축은 공전 위치를 따라 회전시키지 않는다. 자전은 부호 있는 항성일 주기, 현지 태양시는 관측 지점 자오선과 항성 방향의 차이로 계산한다. 따라서 자전 주기와 태양일을 같은 값으로 취급하지 않는다. 계산식은 [JPL의 케플러 요소와 좌표 변환](https://ssd.jpl.nasa.gov/planets/approx_pos.html)을 참고한다. 게임 천체의 수치와 주기는 정의 데이터이며 JPL의 실제 태양계 천문력이라고 표시하지 않는다.
 
 위도·경도·축 기울기에서 지역의 북·동·상 방향을 구한다. 항성별 고도·방위·현지 태양시와 대기권 밖의 복사량을 반환하고, 이후 기후가 대기·구름·지역 차폐를 적용한다. 계절은 거리 하나로 분류하지 않고 공전 위치에 따른 태양 적위와 일조에서 파생한다. [NASA의 축 기울기·계절 설명](https://science.nasa.gov/helio-and-you-seasons-on-earth-mars-and-beyond/)과 부합하는지 무기울기·남북 반구·극지 시험으로 확인한다. 천체 간 차폐는 우선 점광원 광선과 구체로 검사하며 반영식·굴절·N체 중력은 이번 계산의 정확도 주장에 포함하지 않는다.
 
-`ICCLSurfaceProvider`는 천체 ID·지역 광선·종류 필터·요구 리비전으로 여러 표면을 질의하는 공통 경계다. 시험용 `FCCLSurfaceScene`은 유한 평면 패치와 직사각형 개구부를 사용한다. 표면 ID·법선·재질·리비전·눈·물 입력을 반환하며 Actor 주소나 삼각형 인덱스를 영구 ID로 쓰지 않는다. 표면 질의 공급자를 교체하는 방식으로 단계 3의 실제 지형을 연결한다.
+`IKSISurfaceProvider`는 천체 ID·지역 광선·종류 필터·요구 리비전으로 여러 표면을 질의하는 공통 경계다. 시험용 `FKSISurfaceScene`은 유한 평면 패치와 직사각형 개구부를 사용한다. 표면 ID·법선·재질·리비전·눈·물 입력을 반환하며 Actor 주소나 삼각형 인덱스를 영구 ID로 쓰지 않는다. 표면 질의 공급자를 교체하는 방식으로 단계 3의 실제 지형을 연결한다.
 
 차폐는 일사·강수·바람의 서로 다른 광선과 투과율로 계산한다. 개구부에는 닫힘 비율 대신 0-1의 열림 비율과 연결 공간 ID를 둔다. 부분 개방은 열린 실제 사각 영역에 적용하고 환기 입력으로 유효 개구 면적을 반환한다. 열·습도·연기의 시간 진행은 단계 7에서 이 공간 연결을 사용한다. 전체 입력 교체는 먼저 검증하고 성공했을 때만 새 리비전을 게시한다.
 
 ```mermaid
 classDiagram
-    UCCLWorldSimulationSubsystem *-- FCCLWorldClock
-    UCCLCelestialDefinition *-- FCCLCelestialDefinitionData
-    FCCLCelestialSystem ..> FCCLCelestialDefinitionData : validate and evaluate
-    UCCLWorldSimulationSubsystem --> FCCLCelestialSystem : committed world seconds
-    ICCLSurfaceProvider <|.. FCCLSurfaceScene
-    FCCLShelterEvaluator --> ICCLSurfaceProvider : independent rays
+    UCCLWorldSimulationSubsystem *-- FKSIWorldClock
+    UKSICelestialDefinition *-- FKSICelestialDefinitionData
+    FKSICelestialSystem ..> FKSICelestialDefinitionData : validate and evaluate
+    UCCLWorldSimulationSubsystem --> FKSICelestialSystem : committed world seconds
+    IKSISurfaceProvider <|.. FKSISurfaceScene
+    FKSIShelterEvaluator --> IKSISurfaceProvider : independent rays
 ```
 
 ```cpp
-bool FCCLCelestialSystem::Initialize(const FCCLCelestialDefinitionData& Definition, FString& Error);
-bool FCCLCelestialSystem::Observe(double WorldSeconds, const FCCLCelestialObserver& Observer,
-    FCCLCelestialObservation& OutObservation, FString& Error) const;
-bool ICCLSurfaceProvider::QuerySurfaces(const FCCLSurfaceQuery& Query,
-    TArray<FCCLSurfaceSample>& OutSamples, FString& Error) const;
+bool FKSICelestialSystem::Initialize(const FKSICelestialDefinitionData& Definition, FString& Error);
+bool FKSICelestialSystem::Observe(double WorldSeconds, const FKSICelestialObserver& Observer,
+    FKSICelestialObservation& OutObservation, FString& Error) const;
+bool IKSISurfaceProvider::QuerySurfaces(const FKSISurfaceQuery& Query,
+    TArray<FKSISurfaceSample>& OutSamples, FString& Error) const;
 ```
 
 최대 64개 천체와 제한된 반복의 케플러 해법은 첫 구현의 계산 한도다. 표면 시험 장면은 선형 탐색을 사용하므로 광범위 지형에는 공간 인덱스가 필요하다. 이 한도를 대규모 월드 성능 검증으로 대신하지 않는다. 천체 정의 버전·관측 위치·개구부 상태는 실행 연결 때 저장·복제 계약에 포함하고, 다른 정의의 저장을 조용히 적용하지 않는다. 기존 환경 없는 저장의 이전 경로도 함께 검사한다.
@@ -690,9 +688,9 @@ bool ICCLSurfaceProvider::QuerySurfaces(const FCCLSurfaceQuery& Query,
 
 #### 천체·차폐 코어와 세계 저장 연결
 
-단계 2의 수치 코어와 서버 저장 연결을 구현했다. `CCLCelestialSystem`은 항성·행성·위성의 부모 관계를 검증하고, 확정 세계 시각에서 타원 궤도·자전·현지 태양시·항성 고도·방위·복사량을 계산한다. 같은 정의와 시각을 다시 넣으면 이전 계산 순서와 관계없이 같은 관측값을 얻는다. 초기 제공 정의는 항성 1개, 행성 2개, 위성 1개다. `UCCLCelestialDefinition`으로 에디터 편집용 타입을 만들었으며 현재 서버 시작은 Seed 42의 기본 정의를 사용한다. 천체 에셋 선택과 실험 조작 연결은 남아 있다.
+단계 2의 수치 코어와 서버 저장 연결을 구현했다. `KSICelestialSystem`은 항성·행성·위성의 부모 관계를 검증하고, 확정 세계 시각에서 타원 궤도·자전·현지 태양시·항성 고도·방위·복사량을 계산한다. 같은 정의와 시각을 다시 넣으면 이전 계산 순서와 관계없이 같은 관측값을 얻는다. 초기 제공 정의는 항성 1개, 행성 2개, 위성 1개다. `UKSICelestialDefinition`으로 에디터 편집용 타입을 만들었으며 현재 서버 시작은 Seed 42의 기본 정의를 사용한다. 천체 에셋 선택과 실험 조작 연결은 남아 있다.
 
-`CCLSurfaceQuery`는 안정적인 표면 ID, 천체 ID, 재질, 미터 단위 위치·법선과 빛·강수·바람 투과율을 반환한다. 같은 XY의 바닥·지붕 윗면·아랫면을 따로 질의하고 거리순으로 정렬한다. 개구부는 실제 열린 사각형 영역으로 처리한다. 반쯤 열린 문은 열린 쪽의 광선을 통과시키며 닫힌 쪽은 계속 막는다. 방별 유효 개구 면적도 조회할 수 있다. 요청 개수 한도를 넘으면 결과를 잘라 차폐가 사라진 것처럼 처리하지 않고 질의 전체를 거부한다.
+`KSISurfaceQuery`는 안정적인 표면 ID, 천체 ID, 재질, 미터 단위 위치·법선과 빛·강수·바람 투과율을 반환한다. 같은 XY의 바닥·지붕 윗면·아랫면을 따로 질의하고 거리순으로 정렬한다. 개구부는 실제 열린 사각형 영역으로 처리한다. 반쯤 열린 문은 열린 쪽의 광선을 통과시키며 닫힌 쪽은 계속 막는다. 방별 유효 개구 면적도 조회할 수 있다. 요청 개수 한도를 넘으면 결과를 잘라 차폐가 사라진 것처럼 처리하지 않고 질의 전체를 거부한다.
 
 표면 질의는 리비전과 실행 세대 GUID를 제공한다. 복원으로 같은 리비전 숫자가 재등장해도 이전 실행 세대를 지정한 질의는 거부한다. 지연 작업은 두 값을 함께 보관해야 한다. 이 코어는 게임 스레드의 검증 후 교체를 전제로 하며 공유 가변 장면의 동시 쓰기를 허용하는 구현은 아니다. 단계 3의 비동기 추출은 별도 불변 입력과 완료 검증으로 연결한다.
 
@@ -764,18 +762,18 @@ Dedicated 검사는 서버와 조작·관찰 클라이언트 두 개를 실행�
 
 | 소유자 | 책임과 수명 |
 |---|---|
-| `FCCLTerrainStore` | 서버 지역 수명. 확정된 희소 밀도·재질과 요청 순번을 소유한다 |
-| `FCCLTerrainCandidate` | 편집 요청 수명. 불변인 이전·후보 상태와 영향 청크를 보관한다. 폐기해도 확정 상태는 변하지 않는다 |
-| `FCCLTerrainCodec` | 별도 지역 저장의 크기 제한·정렬·손상 검사와 세계 저장 세대 연결 |
+| `FKSITerrainStore` | 서버 지역 수명. 확정된 희소 밀도·재질과 요청 순번을 소유한다 |
+| `FKSITerrainCandidate` | 편집 요청 수명. 불변인 이전·후보 상태와 영향 청크를 보관한다. 폐기해도 확정 상태는 변하지 않는다 |
+| `FKSITerrainCodec` | 별도 지역 저장의 크기 제한·정렬·손상 검사와 세계 저장 세대 연결 |
 | 후속 지형 실행기 | 서버 권한을 해석하고 후보 메시·충돌·점유·표면 이동의 준비 상태를 검사한다. 물리 갱신 경계에서 표시와 데이터를 함께 확정한다 |
 | 후속 지형 표현·질의 | 같은 확정 밀도에서 메시·충돌·다중 표면을 제공한다. 내비게이션과 클라이언트 준비는 별도로 추적한다 |
 
 ```mermaid
 classDiagram
-    FCCLTerrainStore *-- FCCLTerrainSnapshot : committed
-    FCCLTerrainCandidate --> FCCLTerrainSnapshot : immutable before and after
-    FCCLTerrainStore ..> FCCLTerrainCandidate : prepare and commit
-    FCCLTerrainCodec ..> FCCLTerrainSnapshot : bounded region record
+    FKSITerrainStore *-- FKSITerrainSnapshot : committed
+    FKSITerrainCandidate --> FKSITerrainSnapshot : immutable before and after
+    FKSITerrainStore ..> FKSITerrainCandidate : prepare and commit
+    FKSITerrainCodec ..> FKSITerrainSnapshot : bounded region record
 ```
 
 격자 한 청크는 32³개 표본을 소유한다. 기본 표본 간격 0.5m에서 청크 폭은 16m다. 좌표를 청크 크기로 내림 나눈 값이 소유자를 정하므로 음수 좌표에서도 경계 표본을 중복 저장하지 않는다. 메시 생성에 필요한 이웃 표본은 인접 청크에서 읽는다. 바뀐 표본에 인접한 모든 셀의 메시 청크를 영향 목록에 넣는다. 밀도는 1mm 단위의 부호 있는 정수이며 양수는 빈 공간이다. 거리장은 표본 간격의 네 배로 제한하고 굴착은 구의 차집합, 성토는 합집합으로 계산한다. 이 해상도보다 작은 지형은 보장하지 않는다.
@@ -793,7 +791,7 @@ classDiagram
 
 #### 청크 표면 추출 설계
 
-`FCCLTerrainMesher`는 불변 지역 상태와 실행 세대에서 청크 하나의 정점·삼각형·재질을 만든다. 서버나 클라이언트의 표시 컴포넌트를 직접 바꾸지 않으며 작업 수명은 추출 요청 하나다. 결과에는 세계·지역·실행 세대와 입력 리비전을 함께 넣어 후속 실행기가 오래된 결과를 거부할 수 있게 한다. `BuildChunk(Snapshot, Chunk, Epoch, OutMesh, Error, Cancel)`가 실패하거나 취소되면 기존 출력은 유지한다.
+`FKSITerrainMesher`는 불변 지역 상태와 실행 세대에서 청크 하나의 정점·삼각형·재질을 만든다. 서버나 클라이언트의 표시 컴포넌트를 직접 바꾸지 않으며 작업 수명은 추출 요청 하나다. 결과에는 세계·지역·실행 세대와 입력 리비전을 함께 넣어 후속 실행기가 오래된 결과를 거부할 수 있게 한다. `BuildChunk(Snapshot, Chunk, Epoch, OutMesh, Error, Cancel)`가 실패하거나 취소되면 기존 출력은 유지한다.
 
 엔진 `FMarchingCubes`를 `GeometryCore`의 비공개 모듈 의존으로 사용한다. 자체 Marching Cubes 표를 만들지 않는다. 현재 엔진의 셀 수는 `floor(BoundsDimension / CubeSize) + 1`이므로 정수 격자 좌표에서 CubeSize를 1, Bounds 최대를 마지막 표본보다 0.5 작게 지정한다. 실제 추출 셀 수가 요청한 크기와 같은지 확인한다. 이 조정은 밀도나 표면을 축소하는 것이 아니라 엔진의 반복 범위를 지정하는 것이다.
 
@@ -808,9 +806,9 @@ classDiagram
 
 단계 3의 희소 밀도·재질 저장, 편집 후보와 CPU 표면 추출을 구현하고 검사했다. 단계 3은 계속 진행 중이며 실제 DynamicMesh 표시·Chaos 충돌·내비게이션·지역 파일 묶음의 중단 복구·네트워크·실험장 조작은 연결 전이다. 현재 완료 단계는 0·1·2다.
 
-`CCLTerrainStore`의 굴착·성토는 이전 상태를 보존한 후보를 만들고, 확정 시 실행 세대·리비전·권한을 다시 검사한다. 청크를 가로지르는 편집과 지하 공동, 순번 재전송, 저장 손상과 다른 세계·시각·세대의 복원 거부를 확인했다. 지역 레코드 한도는 32MiB, 변경 표본은 지역당 2,097,152개, 한 번의 브러시 작업은 262,144개 표본으로 제한한다. 이 수치는 `CCLTerrainStore.h`와 `CCLTerrainCodec`의 방어 한도이며 목표 프레임 성능을 뜻하지 않는다.
+`KSITerrainStore`의 굴착·성토는 이전 상태를 보존한 후보를 만들고, 확정 시 실행 세대·리비전·권한을 다시 검사한다. 청크를 가로지르는 편집과 지하 공동, 순번 재전송, 저장 손상과 다른 세계·시각·세대의 복원 거부를 확인했다. 지역 레코드 한도는 32MiB, 변경 표본은 지역당 2,097,152개, 한 번의 브러시 작업은 262,144개 표본으로 제한한다. 이 수치는 `KSITerrainStore.h`와 `CCLTerrainCodec`의 방어 한도이며 목표 프레임 성능을 뜻하지 않는다.
 
-`CCLTerrainMesher`는 엔진 Marching Cubes에서 청크별 표면을 추출한다. 평면 청크는 32×32 셀의 삼각형 2,048개와 정점 1,089개를 만들며 위쪽 청크에 같은 바닥을 중복 생성하지 않는다. 음수 좌표의 불완전한 청크도 검사했다. 굴착 경계 양쪽의 선분 끝점이 일치하고, 지하 공동의 모든 모서리에 삼각형 두 개가 연결되는 것을 확인했다. 바닥은 위쪽 빈 공간을, 공동 벽은 내부 빈 공간을 향한다. 같은 입력의 배열 순서와 작업 도중 취소 시 기존 출력 유지도 통과했다. 임의의 모든 밀도 패턴이나 최종 렌더링 품질을 검증한 결과는 아니다.
+`KSITerrainMesher`는 엔진 Marching Cubes에서 청크별 표면을 추출한다. 평면 청크는 32×32 셀의 삼각형 2,048개와 정점 1,089개를 만들며 위쪽 청크에 같은 바닥을 중복 생성하지 않는다. 음수 좌표의 불완전한 청크도 검사했다. 굴착 경계 양쪽의 선분 끝점이 일치하고, 지하 공동의 모든 모서리에 삼각형 두 개가 연결되는 것을 확인했다. 바닥은 위쪽 빈 공간을, 공동 벽은 내부 빈 공간을 향한다. 같은 입력의 배열 순서와 작업 도중 취소 시 기존 출력 유지도 통과했다. 임의의 모든 밀도 패턴이나 최종 렌더링 품질을 검증한 결과는 아니다.
 
 | 검사 | 결과와 근거 |
 |---|---|
@@ -826,7 +824,7 @@ classDiagram
 
 #### 후보 충돌과 서버 확정 실행기 설계
 
-`ACCLTerrainRegion`은 서버 지역의 밀도 저장소, 청크 표시·충돌과 편집 작업을 소유한다. 메시 추출은 불변 상태를 캡처한 작업으로 실행하고 한 번에 두 개까지만 진행한다. `UCCLTerrainChunkComponent`는 청크 하나의 DynamicMesh와 Chaos 충돌을 준비한다. 준비 중인 컴포넌트는 월드에 등록하지 않는다. 완료된 충돌·입력 세대·지역 리비전을 확인한 뒤 지역 Actor의 `TG_PrePhysics`에서 영향 청크를 함께 교체한다. 클라이언트 복제와 내비게이션 준비 판정은 후속 연결이다.
+`ACCLTerrainRegion`은 서버 지역의 밀도 저장소, 청크 표시·충돌과 편집 작업을 소유한다. 메시 추출은 불변 상태를 캡처한 작업으로 실행하고 한 번에 두 개까지만 진행한다. `UKSITerrainChunkComponent`는 청크 하나의 DynamicMesh와 Chaos 충돌을 준비한다. 준비 중인 컴포넌트는 월드에 등록하지 않는다. 완료된 충돌·입력 세대·지역 리비전을 확인한 뒤 지역 Actor의 `TG_PrePhysics`에서 영향 청크를 함께 교체한다. 클라이언트 복제와 내비게이션 준비 판정은 후속 연결이다.
 
 컴포넌트는 엔진의 `CreatePhysicsMeshesAsync`를 사용하고 완료 콜백까지 강한 참조로 수명을 유지한다. 취소는 결과의 게시를 막으며 이미 시작한 충돌 계산은 완료 후 버린다. 월드 종료 후 콜백이 와도 Actor나 월드에 접근하지 않는다. 엔진은 `BodySetup.cpp:493-561`에서 게임 스레드 완료와 취소를 처리하며, `DynamicMeshComponent.h:804`, `:837`에 준비된 BodySetup과 완료 오버라이드를 제공한다. 두 경로는 각각 `<Engine>/Source/Runtime/Engine/Private/PhysicsEngine/`와 `<Engine>/Source/Runtime/GeometryFramework/Public/Components/`다.
 
@@ -836,10 +834,10 @@ classDiagram
 
 ```mermaid
 classDiagram
-    ACCLTerrainRegion *-- FCCLTerrainStore
-    ACCLTerrainRegion *-- UCCLTerrainChunkComponent : active and prepared
+    ACCLTerrainRegion *-- FKSITerrainStore
+    ACCLTerrainRegion *-- UKSITerrainChunkComponent : active and prepared
     ACCLTerrainRegion o-- ICCLTerrainEditParticipant
-    UCCLTerrainChunkComponent --|> UDynamicMeshComponent
+    UKSITerrainChunkComponent --|> UDynamicMeshComponent
 ```
 
 지역 API는 `InitializeTerrain`, 서버 정책을 지정하는 `SetEditAuthority`, `RequestEdit`, `CancelPendingEdit`를 제공한다. 요청에 권한 자료를 실어 보내지 않고 서버에 등록된 정책을 찾는다. 한 지역의 편집은 하나씩 처리한다. 정책 변경과 취소는 준비 중에도 가능하다. 다른 편집은 현재 요청이 끝난 뒤 최신 리비전으로 제출한다. 초기 활성 청크는 최대 256개로 제한하며 넓은 세계의 스트리밍은 후속 지역 로딩 계약에서 처리한다.
@@ -879,12 +877,12 @@ classDiagram
 다음 담당자는 아래 순서로 단계 3의 남은 계약을 연결한다. 각 항목의 완료 조건과 전체 단계의 통과 기준을 모두 확인한 뒤 단계 4로 넘어간다.
 
 1. `CCLSurfaceScene`의 질의 계약에 확정 지형을 연결한다. 같은 XY의 지상·동굴 바닥·천장과 요구 리비전, 재질·안정적인 표면 식별을 검사한다.
-2. `FCCLTerrainCodec`과 세계 저장 문맥을 실제 지역 파일 묶음에 연결한다. 완료 표식을 마지막에 기록하고 중단·손상·누락 시 이전 완료 세대를 복원한다. 런타임 복원도 후보 충돌 준비 후 함께 확정해야 하며 `Store.Restore`만 호출해 표시·충돌과 다른 밀도를 게시하지 않는다.
+2. `FKSITerrainCodec`과 세계 저장 문맥을 실제 지역 파일 묶음에 연결한다. 완료 표식을 마지막에 기록하고 중단·손상·누락 시 이전 완료 세대를 복원한다. 런타임 복원도 후보 충돌 준비 후 함께 확정해야 하며 `Store.Restore`만 호출해 표시·충돌과 다른 밀도를 게시하지 않는다.
 3. 확정된 청크의 내비게이션 갱신과 리비전별 준비 판정을 연결한다. 현재 컴포넌트는 내비게이션 반영을 끈 상태다. 갱신 중인 경로로 AI를 보내지 않고 굴착·성토 후 실제 경로 탐색을 검사한다.
 4. 서버 편집 요청의 호출자와 권한 주체를 연결하고 확정 스냅샷·변경량을 복제한다. 클라이언트는 충돌 준비를 따로 추적한다. 늦은 접속·오래된 결과·권한 없는 요청을 Listen과 Dedicated에서 검사한다. 현재 지형 Actor에는 복제·클라이언트 편집 RPC가 없다.
 5. `ACCLExperimentDirector`와 두 실험 맵의 구역 05에 굴착·성토·보호 구역·초기화·재실행·상태 표시를 연결한다. 구덩이·수로·성토, 재시작과 이전 비동기 결과 폐기를 실제 조작으로 확인한다. 현재 자동 검사의 임시 Actor 배치만으로 구역 완료를 판정하지 않는다.
 
-편집 시작점은 `Source/CCL/Environment/CCLTerrainRegion.h`, `CCLTerrainChunkComponent.h`, `CCLTerrainStore.h`, `CCLTerrainMesher.h`다. 실행 검사는 `Source/CCL/Tests/CCLTerrainSmokeSubsystem.cpp`와 `Tools/Validation/run_terrain_smoke.ps1`이 소유한다. 현재 묶음의 변경은 이 지형 코드·검사·필요한 모듈 의존성과 본 문서로 제한한다. 기존 UI·캠페인·에셋·로컬 설정의 미커밋 변경은 제출 대상에서 제외한다.
+편집 시작점은 `Source/CCL/Environment/CCLTerrainRegion.h`, `KSITerrainChunkComponent.h`, `KSITerrainStore.h`, `KSITerrainMesher.h`다. 실행 검사는 `Source/CCL/Tests/CCLTerrainSmokeSubsystem.cpp`와 `Tools/Validation/run_terrain_smoke.ps1`이 소유한다. 현재 묶음의 변경은 이 지형 코드·검사·필요한 모듈 의존성과 본 문서로 제한한다. 기존 UI·캠페인·에셋·로컬 설정의 미커밋 변경은 제출 대상에서 제외한다.
 
 ## 시계 실험의 대기·시간 소유권과 통합 검사
 
