@@ -2,7 +2,7 @@
 
 마네킹의 맨손 공격 하나와 일반 몹 한 종류로 공격, 회피, 가드, 패링, 사망, 개별 재스폰을 연결했고 Standalone, Dedicated, Listen에서 서버 판정을 검증했다. 이 문서는 전투의 책임 배치, ASC 수명, 행동과 프로토타입 수치, 판정 계약, 검증 기록을 소유한다. 범위와 초기 수치의 근거는 [결정 8](decisions/0008-dodge-guard-parry.md)과 [결정 11](decisions/0011-minimal-combat-and-asc-lifetime.md)이다. 장르에 독립적인 기반과 UE5 현행 시스템 우선 원칙은 [Coding](Coding.md)이 소유한다.
 
-공용 판정·입력·능력 부여·행동 수명은 `Source/KSICombat/`에 있다. `Source/CCL/AbilitySystem`은 게임 ASC·AbilitySet 파생형과 AttributeSet·효과를, `Combat`은 능력·판정 정책·적·투사체를 소유한다. 게임별 무기·아이템·UI 연결도 CCL에 남긴다. 모듈 경계와 UE 5.8.3 검증은 [Framework 단계 3](FrameworkPlan.md#단계-3-구현과-검증)이 소유한다.
+공용 판정·입력·능력 부여·행동 수명은 `Source/KSICombat/`에 있다. `Source/CCL/AbilitySystem`은 게임 ASC·AbilitySet 파생형과 AttributeSet·효과를, `Combat`은 능력·판정 정책·적·투사체를 소유한다. 게임별 무기·아이템·UI 연결도 CCL에 남긴다. 모듈 경계와 UE 5.8.3 검증은 [Framework 단계 3](FrameworkPlan/Stage3.md#단계-3-구현과-검증)이 소유한다.
 
 ## 목표와 경계
 

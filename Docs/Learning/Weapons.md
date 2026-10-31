@@ -2,7 +2,7 @@
 
 무기의 행동은 아이템 GUID를 Source ID로 등록하고 GAS 능력을 실행한다. 발사체는 발사 당시의 피해·팀·효과를 보존해 발사자 Actor가 사라져도 적중을 처리한다. `Source/CCL/Actions/`와 `Combat/CCLProjectile.cpp`에서 능력 소유와 날아가는 탄환의 수명을 나누는 이유를 배운다.
 
-2026-10-12 공용 전투·행동이 KSICombat으로 옮겨졌다. 이 장의 발췌는 아래 고정 커밋의 학습 기록을 유지한다. 현재 타입·경계·검증은 [Framework 단계 3](../FrameworkPlan.md#단계-3-구현과-검증)을 따른다.
+2026-10-12 공용 전투·행동이 KSICombat으로 옮겨졌다. 이 장의 발췌는 아래 고정 커밋의 학습 기록을 유지한다. 현재 타입·경계·검증은 [Framework 단계 3](../FrameworkPlan/Stage3.md#단계-3-구현과-검증)을 따른다.
 
 ## 1. 비교 기준
 

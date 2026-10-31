@@ -21,7 +21,7 @@ lifts_hold: [24]
 
 피해·팀·스태미나·가드·패링·AttributeSet과 무기·탄약은 CCL이 소유한다. 발사 당시 팀은 게임 구조체를 FInstancedStruct 값으로 전달한다. UCCLCombatDefinition·UCCLAbilitySystemComponent·UCCLAbilitySet은 게임 파생형으로 유지하고 기존 에셋 경로를 보존한다. 옮긴 타입은 KSI 이름과 CoreRedirects를 사용한다. Source 행동 목록은 별도 복제하지 않으며 입력·능력 예측과 효과 복제는 GAS가 처리한다.
 
-원본 에셋 로드, CCL 회귀와 패키지 실행에 더해, KSICombat만 복사한 별도 프로젝트에서 함정·표적·행동 수명을 검증했다. 검사 범위와 근거는 [FrameworkPlan](../FrameworkPlan.md#단계-3-구현과-검증)이 소유한다. 단계 4와 공용 저장소 배포는 착수하지 않는다.
+원본 에셋 로드, CCL 회귀와 패키지 실행에 더해, KSICombat만 복사한 별도 프로젝트에서 함정·표적·행동 수명을 검증했다. 검사 범위와 근거는 [FrameworkPlan](../FrameworkPlan/Stage3.md#단계-3-구현과-검증)이 소유한다. 단계 4와 공용 저장소 배포는 착수하지 않는다.
 
 ### 트레이드오프
 

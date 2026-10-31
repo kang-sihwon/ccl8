@@ -110,7 +110,7 @@ Tools/Validation/run_environment_smoke.ps1 -Mode Dedicated -Map EnvironmentScena
 
 ### Framework 분리 후 Game·Server 패키지
 
-2026-10-12 `KSICore`·`KSIInventory` 분리와 선행 인벤토리·환경 보완을 포함한 Windows Development 패키지를 생성했다. 게임·전용 서버 모두 쿠킹·스테이징·아카이브까지 완료했다. 최초 패키지의 서버 글꼴 로딩 오류를 고친 최종 산출물이며, 아래 실행 기록은 에디터 실행과 구분한다. 제출 범위와 모듈 독립 검증은 [FrameworkPlan](../FrameworkPlan.md#패키지-검증과-제출-범위)을 따른다.
+2026-10-12 `KSICore`·`KSIInventory` 분리와 선행 인벤토리·환경 보완을 포함한 Windows Development 패키지를 생성했다. 게임·전용 서버 모두 쿠킹·스테이징·아카이브까지 완료했다. 최초 패키지의 서버 글꼴 로딩 오류를 고친 최종 산출물이며, 아래 실행 기록은 에디터 실행과 구분한다. 제출 범위와 모듈 독립 검증은 [FrameworkPlan](../FrameworkPlan/Stage2.md#패키지-검증과-제출-범위)을 따른다.
 
 | 용도 | 경로 |
 |---|---|
@@ -167,7 +167,7 @@ Tools/Validation/run_environment_smoke.ps1 -Mode Dedicated -Map EnvironmentScena
 
 ### 전투 모듈 분리 후 패키지
 
-2026-10-12 KSICombat 분리 후 Game·실제 Server 타깃의 Windows Development 빌드·쿠킹·스테이징·아카이브와 실행 검사를 완료했다. 공용 모듈·게임 정책의 경계, 자동 검사 164개와 독립 실행 27개 항목은 [Framework 단계 3](../FrameworkPlan.md#단계-3-구현과-검증)을 따른다.
+2026-10-12 KSICombat 분리 후 Game·실제 Server 타깃의 Windows Development 빌드·쿠킹·스테이징·아카이브와 실행 검사를 완료했다. 공용 모듈·게임 정책의 경계, 자동 검사 164개와 독립 실행 27개 항목은 [Framework 단계 3](../FrameworkPlan/Stage3.md#단계-3-구현과-검증)을 따른다.
 
 | 용도 | 경로 |
 |---|---|
@@ -217,7 +217,7 @@ Game 쿠킹에는 기존 실험장 FText 저장 경고, Game·Server 쿠킹에�
 
 ### 세계 모듈 분리 후 패키지
 
-2026-10-12 Framework 단계 4의 시간·천체·지형·Agent·환경·저장 모듈을 포함한 Game·실제 Server 타깃의 Windows Development 패키지와 실행을 검증했다. 모듈 경계, 전체 자동 검사 164개, 독립 프로젝트 6개의 37개 항목과 이전 저장 호환은 [Framework 단계 4](../FrameworkPlan.md#단계-4-구현과-검증)를 따른다.
+2026-10-12 Framework 단계 4의 시간·천체·지형·Agent·환경·저장 모듈을 포함한 Game·실제 Server 타깃의 Windows Development 패키지와 실행을 검증했다. 모듈 경계, 전체 자동 검사 164개, 독립 프로젝트 6개의 37개 항목과 이전 저장 호환은 [Framework 단계 4](../FrameworkPlan/Stage4.md#단계-4-구현과-검증)를 따른다.
 
 | 용도 | 경로 |
 |---|---|

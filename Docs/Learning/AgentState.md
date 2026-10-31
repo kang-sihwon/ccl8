@@ -1,6 +1,6 @@
 # Agent 지속 상태: ID, 세대와 실행권으로 쓰기를 제한하기
 
-2026-10-12 공용 모듈 분리 이후의 위치는 [Framework 파일 이동표](../FrameworkPlan.md#코드-위치의-전후-비교)를 따른다. 아래 발췌·이름·줄 번호·해시는 기록 당시 기준을 유지하며 소스 링크는 현재 대응 파일을 연다.
+2026-10-12 공용 모듈 분리 이후의 위치는 [Framework 파일 이동표](../FrameworkPlan/Stage4.md#코드-위치의-전후-비교)를 따른다. 아래 발췌·이름·줄 번호·해시는 기록 당시 기준을 유지하며 소스 링크는 현재 대응 파일을 연다.
 
 Agent의 삶은 Actor가 아닌 Record에 남는다. Actor·간략 실행기·Mass가 같은 Record를 다룰 때 Store가 세대와 실행권을 검증한다. `Source/CCL/Agents/CCLAgentTypes.cpp`와 `CCLAgentSnapshot.cpp`에서 교체·저장·실패 때 원본을 지키는 방식을 이해한다.
 

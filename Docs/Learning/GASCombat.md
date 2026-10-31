@@ -4,7 +4,7 @@
 
 현재 전투는 PlayerState의 ASC가 능력과 자원을 유지하고, Character의 Fighter와 CombatComponent가 현재 생명의 실행을 연결한다. 이 장의 목표는 `Source/CCL/AbilitySystem/`과 `Combat/`에서 입력, 예측, 적중 검증, 효과 적용, 취소가 이어지는 이유를 설명하는 것이다. 발사체는 [무기 행동](Weapons.md), 적의 선택은 [적 AI](EnemyAI.md)에서 다룬다.
 
-2026-10-12 공용 전투·행동이 KSICombat으로 옮겨졌다. 이 장의 발췌는 아래 고정 커밋의 학습 기록을 유지한다. 현재 타입·경계·검증은 [Framework 단계 3](../FrameworkPlan.md#단계-3-구현과-검증)을 따른다.
+2026-10-12 공용 전투·행동이 KSICombat으로 옮겨졌다. 이 장의 발췌는 아래 고정 커밋의 학습 기록을 유지한다. 현재 타입·경계·검증은 [Framework 단계 3](../FrameworkPlan/Stage3.md#단계-3-구현과-검증)을 따른다.
 
 ## 1. 비교 기준
 

@@ -57,7 +57,7 @@
 
 ### 2026-10-11 설계 후속 수정
 
-2026-10-11 전체 코드 검토의 후속 구현을 UE 5.8.3에서 검증했다. 당시 로컬 작업 트리 기준이며, 코드 제출 범위는 [FrameworkPlan](../FrameworkPlan.md#패키지-검증과-제출-범위), 2026-10-12 패키지 검증은 [Packaging](../Packaging/Records.md#framework-분리-후-gameserver-패키지)이 소유한다. 아래 이름은 2026-10-11 당시 이름이다. `ICCLWorldParticipant`는 지금 `KSICore`의 `IKSIWorldParticipant`다.
+2026-10-11 전체 코드 검토의 후속 구현을 UE 5.8.3에서 검증했다. 당시 로컬 작업 트리 기준이며, 코드 제출 범위는 [FrameworkPlan](../FrameworkPlan/Stage2.md#패키지-검증과-제출-범위), 2026-10-12 패키지 검증은 [Packaging](../Packaging/Records.md#framework-분리-후-gameserver-패키지)이 소유한다. 아래 이름은 2026-10-11 당시 이름이다. `ICCLWorldParticipant`는 지금 `KSICore`의 `IKSIWorldParticipant`다.
 
 | 대상 | 책임과 수명 | 변경 | 계약 소유 |
 |---|---|---|---|
