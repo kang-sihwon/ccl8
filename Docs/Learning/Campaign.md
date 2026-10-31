@@ -8,9 +8,9 @@
 |---|---|
 | 이전 기준 | `30952c8bcf65b597d7ee9de5237a86ce42430fc2` |
 | 도입·변경 기준 | `b1ee3a1c9c72c29b5781ef609475ad29784c5eb9` |
-| 현재 기준 | `50e583859c832d6cb325e5e76beb8356e8c13959` |
+| 현재 기준 | `d4888b08154afab8712af974bce0ead2b90978ac` |
 
-조사 시작 때 확인한 `main`과 로컬 원격 추적 `origin/main`의 `50e5838`을 게임 코드 기준으로 고정한 학습 기록이다. 원격 서버를 새로 조회한 결과는 아니며 이후 추가된 커밋과 구분한다. 작업 트리의 설정·빌드 파일 변경은 이 장의 코드 기준에서 제외했다. 아래 발췌의 경로·줄 번호는 표시한 커밋 기준이고 상대 링크는 현재 체크아웃을 연다.
+현재 기준 `d4888b0`은 2026-10-31의 `main`이며 로컬 원격 추적과 같았다. 원격 서버를 새로 조회한 결과는 아니다. 발췌의 출처에는 커밋과 함수 이름을 적었고 상대 링크는 현재 체크아웃을 연다.
 
 이전 기준은 개별 전투 검증 단계이며 캠페인 Director가 없다. `b1ee3a1`이 이 시스템의 최초 구현이다. 없는 이전 Director 코드를 가정하지 않고 최초 구현의 처리와 현재의 저장 연결을 비교한다. 사양은 [CampaignFoundation](../CampaignFoundation.md)이 소유한다.
 
@@ -30,7 +30,7 @@ GameMode는 서버 규칙을 실행하고 GameState는 클라이언트가 조회
 
 Director 소속의 죽은 적인지와 중복 처리 여부를 확인한 뒤 진행을 바꾼다.
 
-출처: `b1ee3a1`, [CCLCampaignDirector.cpp](../../Source/CCL/Campaign/CCLCampaignDirector.cpp):91의 `ACCLCampaignDirector::NotifyEnemyDefeated`. 실제 코드 전체 함수이며 들여쓰기를 공백으로 바꿨다.
+출처: `b1ee3a1`, `Source/CCL/Campaign/CCLCampaignDirector.cpp`의 `ACCLCampaignDirector::NotifyEnemyDefeated`. 실제 코드 전체 함수이며 들여쓰기를 공백으로 바꿨다.
 
 ```cpp
 void ACCLCampaignDirector::NotifyEnemyDefeated(ACCLEnemyCharacter* Enemy)
@@ -75,7 +75,7 @@ Agent 통합 뒤에는 살아 있는 적의 부상도 별도 생활 스냅샷으
 
 ## 6. 현재의 진행 처리
 
-출처: `50e5838`, [CCLCampaignDirector.cpp](../../Source/CCL/Campaign/CCLCampaignDirector.cpp):110의 `ACCLCampaignDirector::NotifyEnemyDefeated`. 실제 코드 전체 함수이며 들여쓰기를 공백으로 바꿨다.
+출처: `d4888b0`, [CCLCampaignDirector.cpp](../../Source/CCL/Campaign/CCLCampaignDirector.cpp)의 `ACCLCampaignDirector::NotifyEnemyDefeated`. 실제 코드 전체 함수이며 들여쓰기를 공백으로 바꿨다.
 
 ```cpp
 void ACCLCampaignDirector::NotifyEnemyDefeated(ACCLEnemyCharacter* Enemy)
@@ -86,7 +86,7 @@ void ACCLCampaignDirector::NotifyEnemyDefeated(ACCLEnemyCharacter* Enemy)
         return;
     }
 
-    if (Enemy == Boss.Get() && State->GetPhase() == ECCLCampaignPhase::Boss)
+    if (Enemy == BossEnemy.Get() && State->GetPhase() == ECCLCampaignPhase::Boss)
     {
         Defeated.Add(Enemy);
         State->SetProgress(ECCLCampaignPhase::Victory, 0);
@@ -94,23 +94,23 @@ void ACCLCampaignDirector::NotifyEnemyDefeated(ACCLEnemyCharacter* Enemy)
         return;
     }
 
-    if (!Guards.Contains(Enemy))
+    if (!GuardEnemies.Contains(Enemy))
     {
         return;
     }
 
     Defeated.Add(Enemy);
-    const int32 Remaining = Guards.Num() - Defeated.Num();
+    const int32 Remaining = GuardEnemies.Num() - Defeated.Num();
     State->SetProgress(ECCLCampaignPhase::Road, Remaining);
     if (Remaining == 0)
     {
-        Boss = SpawnEnemy(BossLocation, true);
-        State->SetProgress(Boss.IsValid() ? ECCLCampaignPhase::Boss : ECCLCampaignPhase::Error, 0);
+        BossEnemy = SpawnEnemy(Boss, BossAgentId());
+        State->SetProgress(BossEnemy.IsValid() ? ECCLCampaignPhase::Boss : ECCLCampaignPhase::Error, 0);
     }
 }
 ```
 
-첫 구현과 비교해 보스 사망을 한 번만 승리로 반영하는 골격은 유지된다. 경비병을 식별하는 상태와 복원 경로가 추가돼도 클라이언트가 ‘승리했다’는 값을 서버에 보내는 인터페이스는 만들지 않는다.
+첫 구현과 비교해 보스 사망을 한 번만 승리로 반영하는 골격은 유지된다. 달라진 것은 이름과 생성 인자다. 멤버가 `Guards`와 `Boss`에서 `GuardEnemies`와 `BossEnemy`로 바뀌었고, 보스는 위치와 플래그 대신 설정 항목(`Boss`)과 고정 Agent ID(`BossAgentId()`)로 생성한다. 체크포인트를 넘어 경비병과 보스의 Agent 식별을 유지하려는 변경이며 `004a8c3`("Preserve campaign agent and supply identities across checkpoints")에 들어갔다. 배치 ID는 [세션·저장](SessionSave.md)과 [SessionFoundation](../SessionFoundation/Checkpoint.md#배치-식별과-체크포인트-검증)이 설명한다. 경비병을 식별하는 상태와 복원 경로가 추가돼도 클라이언트가 ‘승리했다’는 값을 서버에 보내는 인터페이스는 만들지 않는다.
 
 ## 7. 사망에서 화면까지
 
