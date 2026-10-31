@@ -1,6 +1,6 @@
 # ccl8
 
-ccl8은 Orbis의 방향과 그래픽 스타일을 공유하는 단기 소울라이크 RPG다. UE 프로젝트는 `CCL.uproject`이고 게임 모듈은 `Source/CCL/`, 공용 모듈은 `Source/KSI*/`에 있다. 기본 엔진 기준은 UE 5.8.1이고 실제 검증에 쓴 설치본은 작업 문서에 적는다. 설치 경로와 도구 설정은 [AgentContextTools](Docs/AgentContextTools.md)가 소유한다.
+ccl8은 Orbis의 방향과 그래픽 스타일을 공유하는 단기 소울라이크 RPG다. UE 프로젝트는 `CCL.uproject`이고 게임 모듈은 `Source/CCL/`, 공용 모듈은 `Source/KSI*/`에 있다. 기본 엔진 기준은 UE 5.8.3이고 실제 검증에 쓴 설치본은 작업 문서에 적는다. 설치 경로와 도구 설정은 [AgentContextTools](Docs/AgentContextTools.md)가 소유한다.
 
 ## 세션 시작
 

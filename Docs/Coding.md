@@ -15,7 +15,7 @@ AI는 [Direction](Direction.md)의 합의된 제작 범위에서 `Source/`, `Con
 
 구현 전에 관련 기획·아트·사양 문서를 읽고 목표, 변경 범위, 검증 기준을 해당 문서에 적는다. 통상적인 구현 선택은 AI가 판단하고 기록한다. 장르·핵심 경험·콘텐츠 범위의 변경, Orbis 원본 수정, 유료 구매, 외부 공개는 사용자의 별도 지시를 따른다.
 
-기준 환경은 Windows와 UE 5.8.1 소스 빌드다. 실제 엔진 버전은 `<Engine>/Build/Build.version`에서 확인한다. 엔진 소스는 읽기 전용 참고 자료이고, 경로는 로컬 설정에 둔다([AgentContextTools](AgentContextTools.md)).
+기준 환경은 Windows와 UE 5.8.3 소스 빌드다. 실제 엔진 버전은 `<Engine>/Build/Build.version`에서 확인한다. 엔진 소스는 읽기 전용 참고 자료이고, 경로는 로컬 설정에 둔다([AgentContextTools](AgentContextTools.md)).
 
 빌드 타깃은 `CCL`, `CCLEditor`, `CCLServer`다. 분리 모듈의 목록·의존·독립 검사용 최소 프로젝트는 [FrameworkPlan](FrameworkPlan.md)이 소유한다. 그 밖의 프로젝트 빌드 타깃은 실행하지 않는다. 엔진 전체 재빌드와 대형 인덱스 생성은 필요성과 비용을 먼저 사용자에게 제시한다.
 
