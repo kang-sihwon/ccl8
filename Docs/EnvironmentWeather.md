@@ -90,4 +90,4 @@ UE 5.8.3의 `<Engine>/Plugins/FX/Niagara/Source/Niagara/Private/Stateless/Niagar
 
 `CCLWeatherPresentation.cpp`의 에디터 에셋 구성에서 눈의 반복 길이를 1초로 늘렸다. 비는 0.25초를 유지한다. 눈은 강수율 표현의 반응 간격이 길어지는 대신 동시에 보존하는 생성 기록 수가 줄어든다. 서버의 강수량·물·눈 계산은 바꾸지 않았다. `Tools/Validation/update_precipitation_lifecycle.py`로 기존 비·눈 에셋을 갱신하고 새 게임 프로세스의 화면에서 경고가 사라진 것을 확인했다.
 
-생성·빌드와 관련 실행 범위는 [구역 07 검증](EnvironmentEcology.md#구역-07-식생-조작과-복제-검증)에 기록한다. 장시간·최대 강수량의 효과 비용 검증까지 완료한 결과는 아니다.
+생성·빌드와 관련 실행 범위는 [구역 07 검증](EnvironmentEcology/Vegetation.md#구역-07-식생-조작과-복제-검증)에 기록한다. 장시간·최대 강수량의 효과 비용 검증까지 완료한 결과는 아니다.
