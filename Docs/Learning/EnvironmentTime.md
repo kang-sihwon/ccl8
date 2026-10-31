@@ -6,7 +6,7 @@
 
 ## 비교 기준과 문제
 
-범위는 자연환경 1단계이다. 비교 기준은 `50e5838` → `fe5c143` → `64a7549` → `a817082`와 작업 트리이며 전체 해시·브랜치 관계·작업 트리 식별값은 [비교 근거](EnvironmentEvidence.md)에 있다. `WT-2026-10-10`은 문서 작성 중 읽은 미커밋 소스 사본을 뜻한다. 이후 수정된 HEAD와 동일하다고 가정하지 않는다.
+범위는 자연환경 1단계이다. 비교 기준은 `50e5838` → `fe5c143` → `64a7549` → `a817082`이고 현재 기준은 2026-10-31의 `main`인 `d4888b0`(전체 해시 `d4888b08154afab8712af974bce0ead2b90978ac`)이다. 이 장이 처음 쓰였을 때 인용한 미커밋 작업 트리(`WT-2026-10-10`)는 이후 커밋됐으므로 이제 `d4888b0`의 코드를 직접 설명한다. 앞 네 커밋의 전체 해시와 브랜치 관계는 [비교 근거](EnvironmentEvidence.md)에 있다. 시계와 표면 계산이 `Source/KSIWorldTime/`과 `Source/KSIEnvironment/`로 옮겨져 `FCCLWorldClock`, `FCCLSurfaceSimulation`은 현재 `FKSIWorldClock`, `FKSISurfaceSimulation`이다. 아래 `fe5c143`과 `a817082` 발췌는 당시 이름 그대로다.
 
 주민은 물건을 거래하고 같은 세계에는 비가 내린다고 생각해 보자. 생활은 15세계 초를 처리했는데 물 계산이 실패하면 저장 파일 속 두 시스템이 서로 다른 시각을 가리킨다. 단순히 시계 숫자만 되돌리면 이미 완료한 거래를 다음 시도에서 또 실행할 수 있다. [결정 19](../decisions/0019-natural-environment-and-labs.md)는 공통 시간과 영구 상태를 함께 요구했고, [시간 트랜잭션 설계](../EnvironmentPlan/Stages0to3/TimeAndLabs.md#시간-트랜잭션-구현과-검증)는 이 부분 실패를 구현 문제로 기록했다.
 
@@ -14,7 +14,7 @@
 
 ## 이전 구현의 실행 순서
 
-출처: `50e5838`, [CCLAgentWorldSubsystem.cpp](../../Source/CCL/Agents/CCLAgentWorldSubsystem.cpp), `void UCCLAgentWorldSubsystem::Tick`, 66-78줄. 실제 코드의 연속 발췌이며 들여쓰기만 정리했다.
+출처: `50e5838`, `Source/CCL/Agents/CCLAgentWorldSubsystem.cpp`, `void UCCLAgentWorldSubsystem::Tick`. 실제 코드의 연속 발췌이며 들여쓰기만 정리했다.
 
 ```cpp
 void UCCLAgentWorldSubsystem::Tick(float DeltaTime)
@@ -38,7 +38,7 @@ void UCCLAgentWorldSubsystem::Tick(float DeltaTime)
 
 첫 변경은 시계와 생활의 실패 경계를 맞췄다. 다음은 `fe5c143`의 연결 함수에서 입력 시각 일치 검사 뒤 실행하는 부분이다.
 
-출처: `fe5c143`, [CCLWorldAdvance.cpp](../../Source/CCL/Environment/CCLWorldAdvance.cpp), `FCCLWorldClock CandidateClock`, 16-29줄. 실제 코드의 연속 발췌이며 들여쓰기만 정리했다.
+출처: `fe5c143`, `Source/CCL/Environment/CCLWorldAdvance.cpp`, `FCCLWorldClock CandidateClock`. 실제 코드의 연속 발췌이며 들여쓰기만 정리했다.
 
 ```cpp
 FCCLWorldClock CandidateClock = Clock;
@@ -64,7 +64,7 @@ Clock = MoveTemp(CandidateClock);
 
 이후 `a817082`에서는 같은 구간을 소비하는 표면 후보를 생활 앞에 추가했다.
 
-출처: `a817082`, [CCLWorldAdvance.cpp](../../Source/CCL/Environment/CCLWorldAdvance.cpp), `FCCLSurfaceSimulation CandidateSurface`, 25-44줄. 실제 코드의 연속 발췌이며 들여쓰기만 정리했다.
+출처: `a817082`, `Source/CCL/Environment/CCLWorldAdvance.cpp`, `FCCLSurfaceSimulation CandidateSurface`. 실제 코드의 연속 발췌이며 들여쓰기만 정리했다.
 
 ```cpp
 FCCLSurfaceSimulation CandidateSurface;
@@ -89,15 +89,28 @@ if (Surface)
 Clock = MoveTemp(CandidateClock);
 ```
 
-현재 작업 트리에서는 표면 진행에 천체·관찰자·차폐·개구부 문맥도 전달한다. 날씨·불·실내 공기는 표면 후보 안에 있으므로 생활 실패 시 함께 폐기된다. 작업 트리에 추가된 Ecology와 Prepare 콜백은 후속 생태·저장 작업이다. 위 발췌는 그 코드가 없던 확정 커밋으로 7단계까지의 공통 원리를 설명한다. 전체 현재 함수는 [CCLWorldAdvance.cpp](../../Source/CCL/Environment/CCLWorldAdvance.cpp)에 있다.
+현재 `CCLWorldAdvance::Advance`([CCLWorldAdvance.cpp](../../Source/CCL/Environment/CCLWorldAdvance.cpp))는 같은 원리를 더 많은 소비자에 적용한다. 순서는 다음과 같다.
+
+1. 시계, 생태, 생활이 같은 완료 시각과 세계에서 시작하는지 확인한다. 한 개체가 생태와 Agent 생물학을 동시에 소유하면 거부한다.
+2. 공간 행동이 있는 생태는 한 번에 처리할 세계 시간을 다음 정수 초 경계로 제한한다.
+3. 시계 후보를 Prepare·Commit한다.
+4. 표면 후보를 진행한다. 천체, 관찰자, 차폐 provider, 개구부 문맥이 함께 전달된다. 날씨·불·실내 공기는 표면 후보 안에 있다.
+5. 생태 후보를 같은 시각까지 진행한다.
+6. 호출자가 넘긴 `Prepare` 콜백을 실행한다(열 노출 준비 등).
+7. 마지막으로 생활을 `TryAdvanceTo`로 진행한다.
+8. 모두 성공했을 때만 표면, 생태, 시계를 원본에 옮긴다.
+
+어느 단계든 실패하면 원본은 그대로다. `a817082`와 달리 생활이 표면·생태 뒤에 있고, 생활까지 성공해야 확정된다. 생태 후보, `Prepare` 콜백과 생물학 소유 검사는 모두 `c8816e7`에서 들어왔고 이 장이 따로 다루지 않는 후속 작업이다.
 
 ## 배율과 대기 시간의 계산
 
 설명용으로 게임 2초를 10배, 다음 3초를 20배로 받았다고 하자. 앞 구간의 세계 시간은 `2 × 10 = 20초`, 뒤 구간은 `3 × 20 = 60초`다. 합계는 80세계 초다. 마지막 배율 20을 전체 5초에 곱하면 100초가 되어 과거 구간의 의미가 바뀐다.
 
-`FCCLWorldClock`은 대기 구간에 당시 배율을 남긴다. 처리 예산을 넘는 구간은 다음 시도까지 보존한다. 실패는 완료 시각의 진행을 막으며 오류와 대기량은 별도로 표시한다. 세계 배율 0에서도 게임 시간은 진행할 수 있다. 그래서 불·환기는 계속되고 계절·강수 진행은 멈출 수 있다. 새 게임 시간 입력 자체를 중단하는 일시 정지와 구분한다.
+`FKSIWorldClock`은 대기 구간에 당시 배율을 남긴다. 처리 예산을 넘는 구간은 다음 시도까지 보존한다. 실패는 완료 시각의 진행을 막으며 오류와 대기량은 별도로 표시한다. 세계 배율 0에서도 게임 시간은 진행할 수 있다. 그래서 불·환기는 계속되고 계절·강수 진행은 멈출 수 있다. 새 게임 시간 입력 자체를 중단하는 일시 정지와 구분한다.
 
 ## 서버·저장·종료의 연결
+
+현재 `UCCLWorldSimulationSubsystem::Tick`은 클라이언트나 일시 정지, 수동 진행 중에는 아무것도 하지 않는다. 그렇지 않으면 이번 프레임의 `DeltaTime`을 큐에 넣고, 대기 게임 시간이 0.25초 이상이면 한 프레임에 최대 8번까지 `AdvancePending(0.25, 15)`를 호출한다. 한 번에 최대 게임 0.25초와 세계 15초를 처리한다는 뜻이다. 예산을 넘는 시간은 버리지 않고 다음 프레임으로 남긴다. 8번과 15초는 현재 구현 상수이며 설계 근거가 따로 기록된 값은 아니다.
 
 `64a7549`는 독립 Agent Tick을 공통 World 실행기로 옮겼다. `UCCLWorldSimulationSubsystem`이 시계를 소유하고 `UCCLAgentWorldSubsystem`은 생활 정본을 유지한다. WorldSubsystem은 월드에 붙는 서비스라는 뜻이며, 두 Subsystem이 각각 같은 생활을 복사해 별도로 진행하지 않는다. 클라이언트는 복제된 완료 상태를 읽는다.
 
@@ -107,7 +120,7 @@ Clock = MoveTemp(CandidateClock);
 
 ## 확인과 이해 점검
 
-이번 작성에서는 Git 소스와 기존 기록을 대조했다. 실행 기록은 [환경 계획](../EnvironmentPlan.md)의 시간 트랜잭션·서버 시간 검증 절, 검사 코드는 [CCLWorldAdvanceTests.cpp](../../Source/CCL/Environment/CCLWorldAdvanceTests.cpp)와 [CCLWorldClockTests.cpp](../../Source/CCL/Environment/CCLWorldClockTests.cpp)다. 새 빌드나 게임 실행은 하지 않았다.
+이번 작성에서는 `d4888b0`의 소스와 기존 기록을 대조했다. 실행 기록은 [환경 계획](../EnvironmentPlan.md)의 시간 트랜잭션·서버 시간 검증 절, 검사 코드는 [CCLWorldAdvanceTests.cpp](../../Source/CCL/Environment/CCLWorldAdvanceTests.cpp)와 [CCLWorldClockTests.cpp](../../Source/CCL/Environment/CCLWorldClockTests.cpp)다. 새 빌드나 게임 실행은 하지 않았다.
 
 | 상황 | 확인할 결과 |
 |---|---|
