@@ -81,7 +81,7 @@ Dedicated Server에서는 시각 요소 갱신 전에 서버 모드를 확인하
 | 개인 세션 | 체크포인트·새 프로세스 재개·승리 복원 | |
 | Scenario 환경 재개 | 새 프로세스의 세계 저장 복원 | |
 | Playground 환경 이동 | 세계·지형의 맵 왕복 | |
-| 생태 구역·공간 | Game 화면·새 프로세스 재개, 실제 Server와 Game의 첫·늦은 접속·80ms·2% | [영양 상태의 패키지 결과](../EnvironmentNutrition.md#windows-gameserver-패키지의-생태-실행) |
+| 생태 구역·공간 | Game 화면·새 프로세스 재개, 실제 Server와 Game의 첫·늦은 접속·80ms·2% | [영양 상태의 패키지 결과](../EnvironmentPlan/Ecology/Nutrition.md#windows-gameserver-패키지의-생태-실행) |
 
 환경 전체의 최초 Game Listen 실행에서는 구역 09의 물이 하류에 도달하기 전에 판정해 실패했다. 실패 로그를 보존하고 실험 관찰 시간에 게임 시간 조건을 추가했다. 계산식과 수량 임계값은 유지했으며 근거는 [순환 실험의 두 시간](../EnvironmentPlan/Integration.md#순환-실험의-게임-시간과-세계-시간)을 따른다.
 
@@ -89,7 +89,7 @@ Dedicated Server에서는 시각 요소 갱신 전에 서버 모드를 확인하
 
 실제 Server와 Game 클라이언트의 환경 전체 검사도 통과했다. `server_target=true`, `packaged_client=true`이며 80ms 지연·2% 손실을 적용한 상태에서 조작자·관측자 접속과 관측자 재접속을 확인했다. 에디터 게임 모드로 Server를 대신한 결과가 아니다.
 
-Game의 Playground 렌더링 전체 검사는 통과했다. 같은 폴더의 안내·12개 구역 배치·열린 문을 확인했다. 생태 전용 검사의 두 화면도 [영양 상태 문서](../EnvironmentNutrition.md)에 연결했다. 시험 영역 바깥의 검은 배경과 단순한 형상·재질은 그대로 남아 있다.
+Game의 Playground 렌더링 전체 검사는 통과했다. 같은 폴더의 안내·12개 구역 배치·열린 문을 확인했다. 생태 전용 검사의 두 화면도 [영양 상태 문서](../EnvironmentPlan/Ecology/Nutrition.md)에 연결했다. 시험 영역 바깥의 검은 배경과 단순한 형상·재질은 그대로 남아 있다.
 
 이 결과는 한 PC의 로컬 Development 검사다. Shipping, 다른 PC·외부 인터넷·NAT와 최종 아트 품질은 검증하지 않았다. 실험장 관측자의 재접속은 환경 상태 복제를 검사하며 모든 캠페인 원격 프로필 복원 조합의 검증으로 확대하지 않는다.
 

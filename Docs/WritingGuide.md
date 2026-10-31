@@ -25,7 +25,7 @@
 | 종류 | 예 | 수정 규칙 |
 |---|---|---|
 | 규범 | `AGENTS.md`, `Docs/Coding.md`, 이 문서 | 코드나 작업이 규칙을 어기면 규칙을 낮추지 않고 위반을 기록한다 |
-| 사양 | `*Foundation.md`, `Environment*.md`의 시스템 문서 | 확정 수치와 인터페이스 계약에 근거 결정 번호를 붙인다. 구현과 다르면 구현을 확인해 고친다 |
+| 사양 | `*Foundation.md`, `EnvironmentPlan/`의 시스템 문서 | 확정 수치와 인터페이스 계약에 근거 결정 번호를 붙인다. 구현과 다르면 구현을 확인해 고친다 |
 | 정본 | `Docs/Narrative/World.md`, `Docs/Narrative/Scenario.md` | 사용자가 승인한 내용만 적고 항목마다 근거 결정을 붙인다. 바꾸려면 사용자 승인과 새 결정이 필요하다 |
 | 이력 | `Docs/decisions/`의 결정 파일 본문, 날짜 붙은 QA·검토 보고서, `Docs/Narrative/Research/`의 조사 기록 | 다시 쓰지 않는다. 정정은 새 항목으로 붙인다. 경로가 바뀌면 링크 대상만 고친다 |
 | 절차 | `Docs/Mentoring.md`, `Docs/AgentContextTools.md`, `Docs/Narrative/Workflow.md` | 실제로 실행한 단계만 적고 단계마다 누가 무엇을 하는지 쓴다 |

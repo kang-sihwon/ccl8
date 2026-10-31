@@ -162,7 +162,7 @@ smoke 서브시스템은 Shipping·Test 구성에서 생성만 막고 클래스�
 
 `CCLWorldAdvance::Advance`는 단계마다 표면과 생태 상태 전체를 후보로 복사한다 (`Source/CCL/Environment/CCLWorldAdvance.cpp:56`, `:67`). 세계 시뮬레이션의 Tick은 한 프레임에 최대 8단계를 진행한다 (`CCLWorldSimulationSubsystem.cpp:58-64`).
 
-다음은 측정이 아닌 계산값이다. `FCCLSurfaceCell`은 `double` 10개와 `uint8` 하나라 정렬 후 약 88B다. 현재 한도 65,536셀([깊은 눈과 캐릭터 이동](EnvironmentSnow.md))에서는 복사 한 번이 약 5.5MiB이고, 한 프레임에 최대 약 44MiB를 할당·복사한다. 생태와 Life 후보 복사는 이 계산에 넣지 않았다.
+다음은 측정이 아닌 계산값이다. `FCCLSurfaceCell`은 `double` 10개와 `uint8` 하나라 정렬 후 약 88B다. 현재 한도 65,536셀([깊은 눈과 캐릭터 이동](EnvironmentPlan/Snow.md))에서는 복사 한 번이 약 5.5MiB이고, 한 프레임에 최대 약 44MiB를 할당·복사한다. 생태와 Life 후보 복사는 이 계산에 넣지 않았다.
 
 이 위험은 [EnvironmentPlan](EnvironmentPlan.md)에 이미 기록되어 있고 규모 측정은 단계 9로 잡혀 있다. 측정용 CSV 범위(`CCLWorldAdvance`, `CCLSurfaceAdvance`)가 이미 있으므로 한도 근처 장면에서 먼저 한 번 측정할 것을 제안한다. 비용이 크면 표면 이중 버퍼 교체나 변경 지역만 복사하는 방식을 비교한다.
 

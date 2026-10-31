@@ -6,7 +6,7 @@
 
 | 작업 | 지도 | 상태 |
 |---|---|---|
-| 문서 정리와 map+tree 구조 | [docs-map-tree](docs-map-tree.md) | 문서 정리 끝. 마지막 질문의 답을 기다림 |
+| 문서 정리와 map+tree 구조 | [docs-map-tree](docs-map-tree.md) | 끝남. 지도 닫기 확인 대기 |
 
 ## 다음 작업 후보
 

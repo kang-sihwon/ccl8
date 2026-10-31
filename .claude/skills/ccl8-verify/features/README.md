@@ -35,31 +35,31 @@
 
 | 기능 | 스크립트 | 맵 | 모드 | PASS 표식 | 입력 | 소유 문서 | 기능 파일 |
 |---|---|---|---|---|---|---|---|
-| 실험장 구역 전체 | `run_environment_smoke.ps1` | EnvironmentPlayground, EnvironmentScenario | S/L/D | `CCL_EXPERIMENT_SMOKE PASS` | `Slate` | EnvironmentPlan, EnvironmentWeather | [environment-lab](environment-lab.md) |
+| 실험장 구역 전체 | `run_environment_smoke.ps1` | EnvironmentPlayground, EnvironmentScenario | S/L/D | `CCL_EXPERIMENT_SMOKE PASS` | `Slate` | EnvironmentPlan, EnvironmentPlan/Weather | [environment-lab](environment-lab.md) |
 | 실험 메뉴·전용 레벨 | `run_experiment_menu_smoke.ps1` | 위 두 맵 | 단일 | `CCL_EXPERIMENT_SMOKE PASS` | `Slate` | EnvironmentPlan | [environment-lab](environment-lab.md) |
-| 영구 지형 | `run_terrain_smoke.ps1` | EnvironmentScenario | 단일 | `CCL_TERRAIN_SMOKE PASS` | `internal` | EnvironmentTerrain | [environment-lab](environment-lab.md) |
-| 지형 조작 장면 | `run_terrain_scenario_smoke.ps1` | 위 두 맵 | 단일 | `CCL_TERRAIN_SCENARIO PASS` | `Slate` | EnvironmentTerrain | [environment-lab](environment-lab.md) |
-| 지형 복제 | `run_terrain_network_smoke.ps1` | EnvironmentScenario | L/D | `CCL_TERRAIN_NETWORK PASS` | `internal` | EnvironmentTerrain | 없음 |
-| 지형 위 이동 | `run_terrain_travel_smoke.ps1` | EnvironmentScenario | S/L/D | `CCL_TERRAIN_TRAVEL PASS` | `internal` | EnvironmentTerrain, FrameworkPlan | 없음 |
+| 영구 지형 | `run_terrain_smoke.ps1` | EnvironmentScenario | 단일 | `CCL_TERRAIN_SMOKE PASS` | `internal` | EnvironmentPlan/Terrain | [environment-lab](environment-lab.md) |
+| 지형 조작 장면 | `run_terrain_scenario_smoke.ps1` | 위 두 맵 | 단일 | `CCL_TERRAIN_SCENARIO PASS` | `Slate` | EnvironmentPlan/Terrain | [environment-lab](environment-lab.md) |
+| 지형 복제 | `run_terrain_network_smoke.ps1` | EnvironmentScenario | L/D | `CCL_TERRAIN_NETWORK PASS` | `internal` | EnvironmentPlan/Terrain | 없음 |
+| 지형 위 이동 | `run_terrain_travel_smoke.ps1` | EnvironmentScenario | S/L/D | `CCL_TERRAIN_TRAVEL PASS` | `internal` | EnvironmentPlan/Terrain, FrameworkPlan | 없음 |
 | 물 | `run_water_smoke.ps1` | EnvironmentScenario | S/L/D | `CCL_WATER_SMOKE PASS` | `Slate` | EnvironmentPlan | 없음 |
 | 깊은 눈 | `run_snow_smoke.ps1` | EnvironmentScenario | S/L/D | `CCL_SNOW_SMOKE PASS` | `internal` | EnvironmentPlan | 없음 |
-| 날씨 | `run_weather_smoke.ps1` | EnvironmentScenario | S/L/D | `CCL_WEATHER_SMOKE PASS` | `internal` | EnvironmentWeather | 없음 |
-| 연소 | `run_fire_smoke.ps1` | EnvironmentScenario | S/L/D | `CCL_FIRE_SMOKE PASS` | `internal` | EnvironmentFire | 없음 |
-| 화재 구역 | `run_fire_zones.ps1` | 위 두 맵 | S/L/D | `CCL_FIRE_ZONE PASS` | `internal` | EnvironmentFire | 없음 |
-| 열 | `run_thermal_smoke.ps1` | 위 두 맵 | S/L/D | `CCL_THERMAL PASS` | `internal` | EnvironmentFire | 없음 |
-| 생태계 | `run_ecology_smoke.ps1` | 위 두 맵 | 단일 | `CCL_ECOLOGY PASS` | `internal` | EnvironmentEcology | 없음 |
-| 생태계 행동 | `run_ecology_behavior.ps1` | 위 두 맵 | S/L/D | `CCL_ECOLOGY_BEHAVIOR PASS` | `internal` | EnvironmentEcology | 없음 |
-| 생태계 표현 전환 | `run_ecology_representation.ps1` | 위 두 맵 | S/L/D | `CCL_ECOLOGY_REPRESENTATION PASS` | `internal` | EnvironmentEcology, FrameworkPlan | 없음 |
-| 생태계 공간 | `run_ecology_space.ps1` | 위 두 맵 | S/L/D | `CCL_ECOLOGY_SPACE PASS` | `internal` | EnvironmentEcology, EnvironmentNutrition | 없음 |
-| 생태계 구역 | `run_ecology_zone.ps1` | 위 두 맵 | S/L/D | `CCL_ECOLOGY_ZONE PASS` | `Slate` | EnvironmentEcology, EnvironmentNutrition | 없음 |
-| 생물 생애 | `run_agent_biology.ps1` | Campaign, 위 두 맵 | 단일, `-Map` | `CCL_AGENT_BIOLOGY PASS` | `internal` | EnvironmentEcology | 없음 |
-| 생애 구역 | `run_biology_zone.ps1` | 위 두 맵 | S/L/D | `CCL_BIOLOGY_ZONE PASS` | `Slate` | EnvironmentEcology | 없음 |
-| 식생 | `run_vegetation_smoke.ps1` | 위 두 맵 | 단일 | `CCL_VEGETATION PASS` | `internal` | EnvironmentEcology | 없음 |
-| 식생 구역 | `run_vegetation_zone.ps1` | 위 두 맵 | S/L/D | `CCL_VEGETATION_ZONE PASS` | `internal` | EnvironmentEcology | 없음 |
-| 음식 | `run_food_smoke.ps1` | 위 두 맵, Campaign | 단일 | `CCL_FOOD PASS` | `internal` | EnvironmentEcology, Packaging | 없음 |
-| 음식 환경 | `run_food_environment.ps1` | 위 두 맵 | S/L/D | `CCL_FOOD_ENVIRONMENT PASS` | `Slate` | EnvironmentEcology | 없음 |
-| 음식 줍기 | `run_food_pickup.ps1` | 위 두 맵 | S/L/D | `CCL_FOOD_PICKUP PASS` | `internal` | EnvironmentEcology | 없음 |
-| 음식 구역 | `run_food_zone.ps1` | 위 두 맵 | S/L/D | `CCL_FOOD_ZONE PASS` | `Slate` | EnvironmentEcology | 없음 |
+| 날씨 | `run_weather_smoke.ps1` | EnvironmentScenario | S/L/D | `CCL_WEATHER_SMOKE PASS` | `internal` | EnvironmentPlan/Weather | 없음 |
+| 연소 | `run_fire_smoke.ps1` | EnvironmentScenario | S/L/D | `CCL_FIRE_SMOKE PASS` | `internal` | EnvironmentPlan/Fire | 없음 |
+| 화재 구역 | `run_fire_zones.ps1` | 위 두 맵 | S/L/D | `CCL_FIRE_ZONE PASS` | `internal` | EnvironmentPlan/Fire | 없음 |
+| 열 | `run_thermal_smoke.ps1` | 위 두 맵 | S/L/D | `CCL_THERMAL PASS` | `internal` | EnvironmentPlan/Fire | 없음 |
+| 생태계 | `run_ecology_smoke.ps1` | 위 두 맵 | 단일 | `CCL_ECOLOGY PASS` | `internal` | EnvironmentPlan/Ecology | 없음 |
+| 생태계 행동 | `run_ecology_behavior.ps1` | 위 두 맵 | S/L/D | `CCL_ECOLOGY_BEHAVIOR PASS` | `internal` | EnvironmentPlan/Ecology | 없음 |
+| 생태계 표현 전환 | `run_ecology_representation.ps1` | 위 두 맵 | S/L/D | `CCL_ECOLOGY_REPRESENTATION PASS` | `internal` | EnvironmentPlan/Ecology, FrameworkPlan | 없음 |
+| 생태계 공간 | `run_ecology_space.ps1` | 위 두 맵 | S/L/D | `CCL_ECOLOGY_SPACE PASS` | `internal` | EnvironmentPlan/Ecology, EnvironmentPlan/Ecology/Nutrition | 없음 |
+| 생태계 구역 | `run_ecology_zone.ps1` | 위 두 맵 | S/L/D | `CCL_ECOLOGY_ZONE PASS` | `Slate` | EnvironmentPlan/Ecology, EnvironmentPlan/Ecology/Nutrition | 없음 |
+| 생물 생애 | `run_agent_biology.ps1` | Campaign, 위 두 맵 | 단일, `-Map` | `CCL_AGENT_BIOLOGY PASS` | `internal` | EnvironmentPlan/Ecology | 없음 |
+| 생애 구역 | `run_biology_zone.ps1` | 위 두 맵 | S/L/D | `CCL_BIOLOGY_ZONE PASS` | `Slate` | EnvironmentPlan/Ecology | 없음 |
+| 식생 | `run_vegetation_smoke.ps1` | 위 두 맵 | 단일 | `CCL_VEGETATION PASS` | `internal` | EnvironmentPlan/Ecology | 없음 |
+| 식생 구역 | `run_vegetation_zone.ps1` | 위 두 맵 | S/L/D | `CCL_VEGETATION_ZONE PASS` | `internal` | EnvironmentPlan/Ecology | 없음 |
+| 음식 | `run_food_smoke.ps1` | 위 두 맵, Campaign | 단일 | `CCL_FOOD PASS` | `internal` | EnvironmentPlan/Ecology, Packaging | 없음 |
+| 음식 환경 | `run_food_environment.ps1` | 위 두 맵 | S/L/D | `CCL_FOOD_ENVIRONMENT PASS` | `Slate` | EnvironmentPlan/Ecology | 없음 |
+| 음식 줍기 | `run_food_pickup.ps1` | 위 두 맵 | S/L/D | `CCL_FOOD_PICKUP PASS` | `internal` | EnvironmentPlan/Ecology | 없음 |
+| 음식 구역 | `run_food_zone.ps1` | 위 두 맵 | S/L/D | `CCL_FOOD_ZONE PASS` | `Slate` | EnvironmentPlan/Ecology | 없음 |
 
 ## 맵 실행 밖의 검사
 

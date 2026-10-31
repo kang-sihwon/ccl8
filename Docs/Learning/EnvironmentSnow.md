@@ -12,7 +12,7 @@
 
 CMC는 `UCharacterMovementComponent`의 약칭이다. SavedMove는 클라이언트가 서버 보정 뒤 이동을 다시 실행하기 위해 보관하는 입력이다. IK는 목표 위치에 맞게 관절을 배치하는 계산이며 여기서는 두 발의 목표를 보정한다. 서버의 눈 체적, 로컬의 임시 눌림, 애니메이션 목표는 서로 다른 상태다.
 
-[결정 19](../decisions/0019-natural-environment-and-labs.md)는 쌓인 눈을 통과하면 길이 남고 융해·물 순환으로 이어지도록 요구했다. 표면을 색칠하는 효과만으로는 이동 저항과 영구 흔적을 설명할 수 없다. [눈 검토 기록](../EnvironmentSnow.md)은 자기 발밑 압축으로 저항이 약해지는 문제와 강제 보정 경로의 수정을 기록한다.
+[결정 19](../decisions/0019-natural-environment-and-labs.md)는 쌓인 눈을 통과하면 길이 남고 융해·물 순환으로 이어지도록 요구했다. 표면을 색칠하는 효과만으로는 이동 저항과 영구 흔적을 설명할 수 없다. [눈 검토 기록](../EnvironmentPlan/Snow.md)은 자기 발밑 압축으로 저항이 약해지는 문제와 강제 보정 경로의 수정을 기록한다.
 
 ## 일반 이동에서 눈 입력을 소비하는 이동으로
 
@@ -70,7 +70,7 @@ float UCCLSnowMovementComponent::GetMaxSpeed() const
 
 앞쪽 캡슐 주변의 눈을 읽어 이미 압축한 발밑 때문에 저항이 즉시 사라지는 것을 막는다. `FSnowSavedMove::SetMoveFor`는 표면 게시 순번·접촉 순번·깊이를 저장하고 `PrepMoveFor`는 보정 후 같은 입력을 복원한다. 네트워크 패킷에는 두 순번만 추가한다. 서버는 자기 전송 이력에서 깊이를 찾으므로 클라이언트가 보낸 임의의 깊이를 신뢰하지 않는다.
 
-이력이 만료되거나 현재보다 과도하게 얕은 과거 상태를 요구하면 서버 현재 상태로 계산하고 보정한다. UE 5.8.3의 `ForceClientAdjustment()`는 보정 시각만 초기화한다. 실제 강제 보정에는 `bForceClientUpdate`도 설정한다. 근거는 [엔진 근거](EnvironmentEvidence.md#엔진-확인)와 [눈 사양](../EnvironmentSnow.md#cmc-예측과-발-배치)에 있다.
+이력이 만료되거나 현재보다 과도하게 얕은 과거 상태를 요구하면 서버 현재 상태로 계산하고 보정한다. UE 5.8.3의 `ForceClientAdjustment()`는 보정 시각만 초기화한다. 실제 강제 보정에는 `bForceClientUpdate`도 설정한다. 근거는 [엔진 근거](EnvironmentEvidence.md#엔진-확인)와 [눈 사양](../EnvironmentPlan/Snow.md#cmc-예측과-발-배치)에 있다.
 
 ## 발 배치·실패·종료
 
@@ -80,7 +80,7 @@ float UCCLSnowMovementComponent::GetMaxSpeed() const
 
 ## 확인과 이해 점검
 
-기존 [눈 실행 검증](../EnvironmentSnow.md#실행-근거와-검토-결과)은 흔적 저장·맵 왕복·지연과 손실 조건에서의 실제 이동 보정을 구분해 기록한다. 소스는 [CCLSnowSimulationTests.cpp](../../Source/CCL/Environment/CCLSnowSimulationTests.cpp)와 [CCLSnowSmokeSubsystem.cpp](../../Source/CCL/Tests/CCLSnowSmokeSubsystem.cpp)다. 이번에는 재실행하지 않았다.
+기존 [눈 실행 검증](../EnvironmentPlan/Snow.md#실행-근거와-검토-결과)은 흔적 저장·맵 왕복·지연과 손실 조건에서의 실제 이동 보정을 구분해 기록한다. 소스는 [CCLSnowSimulationTests.cpp](../../Source/CCL/Environment/CCLSnowSimulationTests.cpp)와 [CCLSnowSmokeSubsystem.cpp](../../Source/CCL/Tests/CCLSnowSmokeSubsystem.cpp)다. 이번에는 재실행하지 않았다.
 
 | 상황 | 기대 결과 |
 |---|---|

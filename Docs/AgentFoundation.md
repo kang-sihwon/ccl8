@@ -2,7 +2,7 @@
 
 같은 직업의 Agent도 다른 목표·생활 기반·경험·관계를 가지고 시작하고, 실행 결과가 실제 자원과 세계를 바꿔 다음 선택의 원인이 된다. 상인 8명의 30일 시험과 실제 마을 실행으로 이 계약을 검증했다. 이 문서는 [결정 18](decisions/0018-agent-lives-from-resources.md)의 구현 계약, 구현 경계, 검증 기록, 현재 제한을 소유한다.
 
-공통 세계 시간, 생물 개체군과 노화·성장으로 확장하는 계획은 [EnvironmentPlan](EnvironmentPlan.md)이 소유한다. 선택 생애 Feature의 나이·수명·자연 노화 보호와 검증 결과는 [생태계·생애 구현](EnvironmentEcology/AgentLife.md#agent-생애-연결과-실행-근거)이 소유한다. 이 문서의 초기 구현 범위와 확장 계획의 완료 상태는 구분한다.
+공통 세계 시간, 생물 개체군과 노화·성장으로 확장하는 계획은 [EnvironmentPlan](EnvironmentPlan.md)이 소유한다. 선택 생애 Feature의 나이·수명·자연 노화 보호와 검증 결과는 [생태계·생애 구현](EnvironmentPlan/Ecology/AgentLife.md#agent-생애-연결과-실행-근거)이 소유한다. 이 문서의 초기 구현 범위와 확장 계획의 완료 상태는 구분한다.
 
 ## 데이터와 소유권
 

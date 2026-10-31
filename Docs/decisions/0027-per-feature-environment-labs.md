@@ -6,7 +6,7 @@ topic: "기능별 환경 실험"
 status: "유효"
 progress: "구현·일부 PIE 검증 완료"
 summary: "전용 레벨에서 시험 종류 하나와 표본 수를 선택한다. 새 실험은 정지한 독립 세계에서 시작한다. 사용한 Fab 리소스와 의존성은 TestResources에 모은다"
-owners: "[환경 실험장 사용법](../EnvironmentLaboratories.md)"
+owners: "[환경 실험장 사용법](../EnvironmentPlan/Laboratories.md)"
 ---
 
 # 2026-10-13 — 결정 27: 기능별 환경 실험과 단일 표본 종류
@@ -19,7 +19,7 @@ owners: "[환경 실험장 사용법](../EnvironmentLaboratories.md)"
 
 기능별 전용 레벨은 새 세계·정지한 시계로 시작하고 선택한 시험만 초기화한다. 생태계·식생·생애·부패의 종류·수량은 서버가 검증한 뒤 레벨을 다시 열어 반영한다. 초기화는 해당 실험의 시작 상태를 복원한다. 통합 실험장은 기존 비교·회귀 용도로 유지한다.
 
-사용한 Fab 리소스의 머티리얼·텍스처 의존성을 TestResources로 복사하고 기존 배치의 참조를 바꾼다. 원본 Fab는 보존하며 제출에서 제외한다. 레벨 목록·수량 단위·조작·제출 범위와 확인한 검증은 [환경 실험장 사용법](../EnvironmentLaboratories.md)이 소유한다.
+사용한 Fab 리소스의 머티리얼·텍스처 의존성을 TestResources로 복사하고 기존 배치의 참조를 바꾼다. 원본 Fab는 보존하며 제출에서 제외한다. 레벨 목록·수량 단위·조작·제출 범위와 확인한 검증은 [환경 실험장 사용법](../EnvironmentPlan/Laboratories.md)이 소유한다.
 
 ### 트레이드오프
 

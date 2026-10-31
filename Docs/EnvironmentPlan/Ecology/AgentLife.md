@@ -1,6 +1,6 @@
 # Agent 생애
 
-Agent의 나이, 수명, 자연 노화 보호, GAS 치명 피해와 실제 Actor 제거·복원을 소유한다. 상위 문서는 [생태계·생애](../EnvironmentEcology.md)다.
+Agent의 나이, 수명, 자연 노화 보호, GAS 치명 피해와 실제 Actor 제거·복원을 소유한다. 상위 문서는 [생태계·생애](../Ecology.md)다.
 
 ## Agent 생애 연결과 실행 근거
 
@@ -89,4 +89,4 @@ Writer 충돌로 사망을 바로 기록하지 못하면 Actor가 아닌 세계 
 
 재실행은 `Tools/Validation/run_biology_zone.ps1 -Rendered -Map EnvironmentScenario`를 사용한다. 다른 맵은 `-Map EnvironmentPlayground`, 네트워크는 `-Mode Listen -Port 20446` 또는 `-Mode Dedicated -Port 20445`로 실행한다. 생애 경계 검사는 `Tools/Validation/run_agent_biology.ps1 -Map Campaign`에 같은 두 환경 맵 이름도 지정할 수 있다.
 
-Actor의 연료 접촉·실내 고온은 [열 피해 구현·검증](../EnvironmentFire/ThermalDamage.md#열-피해-구현검증)에 연결했다. 생태 개체와 Agent 사이의 소유권 이전, 전체 플레이어 장비·계정 저장은 남아 있다. 직접 GAS 비치명 피해의 모든 종류를 지속 부상 값으로 변환한 것은 아니다. 기존 명중의 부상 기록과 이번 치명 사망 연결을 구분한다. 단계 8·9는 진행 중이다.
+Actor의 연료 접촉·실내 고온은 [열 피해 구현·검증](../Fire/ThermalDamage.md#열-피해-구현검증)에 연결했다. 생태 개체와 Agent 사이의 소유권 이전, 전체 플레이어 장비·계정 저장은 남아 있다. 직접 GAS 비치명 피해의 모든 종류를 지속 부상 값으로 변환한 것은 아니다. 기존 명중의 부상 기록과 이번 치명 사망 연결을 구분한다. 단계 8·9는 진행 중이다.

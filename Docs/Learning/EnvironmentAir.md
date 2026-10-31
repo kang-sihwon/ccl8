@@ -60,7 +60,7 @@ if (!Air.Advance(GameDelta, EffectiveOpenings, Exteriors, Error))
 
 ## 문 표시와 실제 통로의 차이
 
-[기하 연결 기록](../EnvironmentFire.md)은 열린 문 뒤의 벽·성토가 환기를 막는 경우를 다룬다. 현재 `FCCLSurfaceScene::QueryOpeningFraction`은 개구와 정본 장면의 일치를 확인하고 열린 사각 영역에서 표본을 질의한다. 밀도 내부인지, 짧은 광선이 다른 벽·지형을 통과하는지 검사해 실제 유효 비율을 구한다.
+[기하 연결 기록](../EnvironmentPlan/Fire.md)은 열린 문 뒤의 벽·성토가 환기를 막는 경우를 다룬다. 현재 `FCCLSurfaceScene::QueryOpeningFraction`은 개구와 정본 장면의 일치를 확인하고 열린 사각 영역에서 표본을 질의한다. 밀도 내부인지, 짧은 광선이 다른 벽·지형을 통과하는지 검사해 실제 유효 비율을 구한다.
 
 창이 화면상 열렸다는 값만 믿으면 벽으로 막힌 공간에서도 연기가 빠질 수 있다. 반대로 표본 질의는 작은 틈·복잡한 기하를 정밀 해석하는 방법은 아니다. 질의 실패 시 환기만 건너뛰며 세계를 완료하지 않고 공통 후보를 거부한다.
 
@@ -68,7 +68,7 @@ if (!Air.Advance(GameDelta, EffectiveOpenings, Exteriors, Error))
 
 실내 상태는 표면 시뮬레이션의 값 상태로 저장·복제된다. 표현 Actor가 사라졌다고 공기 상태를 매번 초기화하지 않는다. 읽는 저장의 버전에 공간 모델이 없으면 임의의 방을 채우지 않는 이전 형식 의미를 보존한다. 세계 시간이 멈춰도 게임 시간이 진행하면 환기는 진행할 수 있다.
 
-[CCLAirSimulationTests.cpp](../../Source/CCL/Environment/CCLAirSimulationTests.cpp)는 문 개방·두 방 보존·여러 문·잘못된 입력을 다룬다. [CCLSurfaceAirTests.cpp](../../Source/CCL/Environment/CCLSurfaceAirTests.cpp)는 여러 지역의 단일 환기와 열 예산·실패 원본 보존을 다룬다. [CCLVentilationGeometryTests.cpp](../../Source/CCL/Environment/CCLVentilationGeometryTests.cpp)는 확정 기하 연결을 검사한다. 기존 실행 결과는 [불·공간 환경](../EnvironmentFire.md)에 있고 이번에는 재실행하지 않았다.
+[CCLAirSimulationTests.cpp](../../Source/CCL/Environment/CCLAirSimulationTests.cpp)는 문 개방·두 방 보존·여러 문·잘못된 입력을 다룬다. [CCLSurfaceAirTests.cpp](../../Source/CCL/Environment/CCLSurfaceAirTests.cpp)는 여러 지역의 단일 환기와 열 예산·실패 원본 보존을 다룬다. [CCLVentilationGeometryTests.cpp](../../Source/CCL/Environment/CCLVentilationGeometryTests.cpp)는 확정 기하 연결을 검사한다. 기존 실행 결과는 [불·공간 환경](../EnvironmentPlan/Fire.md)에 있고 이번에는 재실행하지 않았다.
 
 공간 평균 모델은 정밀 3D 유체보다 적은 상태로 열 축적·문 환기를 다룬다. 그 대신 산소 반응·정밀 압력·연기 중독·실내 각 지점의 농도 차이를 제공하지 않는다. UE5 Niagara는 표현 수단이고 이 평균 모델은 프로젝트 구현이다.
 

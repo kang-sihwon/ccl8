@@ -76,7 +76,7 @@ CCL은 공용 시스템을 사용하는 첫 프로젝트로 둔다. 공용 시�
 | `KSIMap` | 마커 등록·공개 조건·좌표 투영·지도 자료 | Agent·퀘스트 없이 위치 자료 제공. UI 연결은 선택 | [지도 학습](Learning/Map.md) |
 | `KSIWorldTime` | 공통 시계·배율·실행 구간·후보 확정 | Agent·날씨 없이 시간과 실행 순서 사용 | [EnvironmentPlan](EnvironmentPlan.md) |
 | `KSICelestial` | 천체 위치·현지 시각·일조 계산 | 외부 시각을 받아 자체 시계·날씨·지형 없이 계산 | [EnvironmentPlan](EnvironmentPlan.md) |
-| `KSITerrain` | 지형 데이터·편집·메시·충돌·표면 질의 | 물·눈·생태 없이 지형 편집 사용 | [EnvironmentTerrain](EnvironmentTerrain.md) |
+| `KSITerrain` | 지형 데이터·편집·메시·충돌·표면 질의 | 물·눈·생태 없이 지형 편집 사용 | [EnvironmentTerrain](EnvironmentPlan/Terrain.md) |
 | `KSIAgent` | ID·Feature·Store·Handle·Lease와 상태 교체 | 경제·인벤토리·전투 없이 개체 상태와 단일 작성자 검증 | [AgentFoundation](AgentFoundation.md) |
 
 표의 모듈은 단계 1-4에서 추출했다. KSIEnvironment의 범위와 모듈별 실제 검증은 [단계 4](FrameworkPlan/Stage4.md#단계-4-구현과-검증)를 따른다. 게임 동작의 정본은 관련 사양서가 소유한다.

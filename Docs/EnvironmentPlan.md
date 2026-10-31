@@ -6,7 +6,7 @@
 
 | 문서 | 읽는 때 |
 |---|---|
-| [통합 실험장](EnvironmentPlan/Laboratory.md) | 구역별 실험 메뉴, 입력 경로, 통합 맵 배치를 바꾸거나 확인할 때 |
+| [통합 실험장](EnvironmentPlan/IntegratedLab.md) | 구역별 실험 메뉴, 입력 경로, 통합 맵 배치를 바꾸거나 확인할 때 |
 | [통합 검증](EnvironmentPlan/Integration.md) | 시간 분할, 프레임 계측, 통합 패키지 등 단계 9의 결과를 확인할 때 |
 | [단계 0-3 구현 기록](EnvironmentPlan/Stages0to3.md) | 시간·천체·지형 코어의 설계 근거와 당시 검증을 찾을 때 |
 
@@ -19,15 +19,15 @@
 | 0 환경 확인 | 완료 | [단계 0 확인 결과](EnvironmentPlan/Stages0to3.md#단계-0-확인-결과) |
 | 1 실험장·시간 | 완료 | [실험장 구현과 단계 1 통과](EnvironmentPlan/Stages0to3.md#실험장-구현과-단계-1-통과), [시간 트랜잭션 구현과 검증](EnvironmentPlan/Stages0to3.md#시간-트랜잭션-구현과-검증) |
 | 2 천체·차폐 입력 | 완료 | [단계 2 완료 결과](EnvironmentPlan/Stages0to3.md#단계-2-완료-결과) |
-| 3 영구 지형 | 완료 | [영구 지형 통합과 검증](EnvironmentTerrain.md) |
-| 4 물 순환 | 완료 | [물 순환 설계와 검증](EnvironmentWater.md) |
-| 5 깊은 눈·이동 | 완료 | [깊은 눈과 캐릭터 이동](EnvironmentSnow.md) |
-| 6 자연 날씨 | 완료 | [자연 날씨 계산과 검증](EnvironmentWeather.md) |
-| 7 불·공간 환경 | 완료 | [불·열·공간 환경](EnvironmentFire.md) |
-| 8 생태·생애 | 진행 중 | [생태계·생애](EnvironmentEcology.md), [집계 생물의 영양 상태](EnvironmentNutrition.md) |
+| 3 영구 지형 | 완료 | [영구 지형 통합과 검증](EnvironmentPlan/Terrain.md) |
+| 4 물 순환 | 완료 | [물 순환 설계와 검증](EnvironmentPlan/Water.md) |
+| 5 깊은 눈·이동 | 완료 | [깊은 눈과 캐릭터 이동](EnvironmentPlan/Snow.md) |
+| 6 자연 날씨 | 완료 | [자연 날씨 계산과 검증](EnvironmentPlan/Weather.md) |
+| 7 불·공간 환경 | 완료 | [불·열·공간 환경](EnvironmentPlan/Fire.md) |
+| 8 생태·생애 | 진행 중 | [생태계·생애](EnvironmentPlan/Ecology.md), [집계 생물의 영양 상태](EnvironmentPlan/Ecology/Nutrition.md) |
 | 9 통합·규모 | 진행 중. 통합 Game·Server 패키지 실행은 통과, 프레임 계측은 미완료 | [통합 Game·Server 패키지 실행](EnvironmentPlan/Integration.md#통합-gameserver-패키지-실행), [프레임 계측의 미완료 범위](EnvironmentPlan/Integration.md#프레임-계측의-미완료-범위), [Packaging](Packaging.md) |
 
-실험장의 사용법과 전용 레벨은 [기능별 환경 실험장](EnvironmentLaboratories.md)이 소유한다.
+실험장의 사용법과 전용 레벨은 [기능별 환경 실험장](EnvironmentPlan/Laboratories.md)이 소유한다.
 
 ## 다음 작업의 시작점
 

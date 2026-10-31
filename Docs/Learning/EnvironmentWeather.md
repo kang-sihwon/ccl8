@@ -10,7 +10,7 @@
 
 `5a640bf`와 `a5c79b0`는 날씨 구현·표현의 검증을 기록한 문서 커밋이다. 그 해시에 날씨 신규 소스까지 들어 있다고 가정하지 않는다. 비교한 소스는 미커밋 `WT-2026-10-10`이며 파일별 해시는 [비교 근거](EnvironmentEvidence.md)에 남긴다.
 
-처음 물 실험은 비·기온을 지정해 보존을 확인하면 충분했다. [결정 19](../decisions/0019-natural-environment-and-labs.md)는 일조·계절·날씨의 연결을 요구했고 [날씨 계산 계약](../EnvironmentWeather.md#계산-계약)은 지역 기후와 지속 대기 상태를 기존 표면에 붙이기로 했다. 당시 기록된 이유와 여기서 계산한 예시를 구분한다.
+처음 물 실험은 비·기온을 지정해 보존을 확인하면 충분했다. [결정 19](../decisions/0019-natural-environment-and-labs.md)는 일조·계절·날씨의 연결을 요구했고 [날씨 계산 계약](../EnvironmentPlan/Weather.md#계산-계약)은 지역 기후와 지속 대기 상태를 기존 표면에 붙이기로 했다. 당시 기록된 이유와 여기서 계산한 예시를 구분한다.
 
 `FCCLClimate`는 기준 기온·수분 공급·반응 시간 같은 정의다. `FCCLWeatherState`는 현재 기온·수증기·구름 같은 변하는 값이다. `Forcing`은 물·눈 계산에 넘기는 외부 입력이다. 정의, 상태, 소비자 입력을 구분하면 강제 실험과 자연 진행을 같은 표면 모델에 연결할 수 있다.
 
@@ -93,7 +93,7 @@ G.Forcing.EvaporationMetersPerWorldSecond = G.Weather.EvaporationMetersPerSecond
 
 ## 확인과 이해 점검
 
-기존 실행 결과는 [날씨 검증](../EnvironmentWeather.md#차폐와-표현의-추가-검증)에 있다. 최초 계산, 차폐·표현 연결, 눈 효과 생성 이력 보완은 각각 다른 검증 범위다. [CCLWeatherTests.cpp](../../Source/CCL/Environment/CCLWeatherTests.cpp)에서 저장 재개·큰 요청 분할·생활 실패·동적 차폐를 읽을 수 있다. 이번에는 소스와 기록을 대조했으며 실행하지 않았다.
+기존 실행 결과는 [날씨 검증](../EnvironmentPlan/Weather.md#차폐와-표현의-추가-검증)에 있다. 최초 계산, 차폐·표현 연결, 눈 효과 생성 이력 보완은 각각 다른 검증 범위다. [CCLWeatherTests.cpp](../../Source/CCL/Environment/CCLWeatherTests.cpp)에서 저장 재개·큰 요청 분할·생활 실패·동적 차폐를 읽을 수 있다. 이번에는 소스와 기록을 대조했으며 실행하지 않았다.
 
 | 상황 | 기대 결과 |
 |---|---|

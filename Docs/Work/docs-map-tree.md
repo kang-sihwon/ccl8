@@ -39,19 +39,14 @@
 - 문서별 승인 없이 끝까지 진행한다([결정 31](../decisions/0031-document-cleanup-without-per-document-approval.md)).
 - 실행 기록은 결론, 검사 범위, 측정값만 남기고 `Saved/` 경로와 수정 내역은 뺀다. 코드 이름과 수치는 현재 소스에 맞추고, 소스의 사본은 위치 안내로 바꾼다. 2026-10-31 `EnvironmentWater` 정리안으로 사용자가 승인했다.
 
-## 나중에 물을 것
-
-마지막에 사용자에게 한 번에 묻는다. 그때까지는 적은 임시 처리를 따른다.
-
-- 부모 문서를 원래 경로에 둘지 폴더 안 `README.md`로 옮길지. 임시 처리는 원래 경로 유지다. 부모를 가리키는 링크가 깨지지 않는다.
-- `EnvironmentPlan`의 형제 문서(`EnvironmentWater` 등)를 `Docs/EnvironmentPlan/` 아래로 모을지. 임시 처리는 현재 경로 유지다.
-- 로그 경로만 뺀 큰 기록(`Stages0to3` 63KB, `Food` 56KB, `PlayerRestore` 31KB)과 줄 단위로 보지 않은 사양서를 더 줄일지. 임시 처리는 그대로 두는 것이다.
-- 전역 설정과 프로젝트 설정의 graft 훅 중복을 없앨지. 임시 처리는 그대로 두는 것이다.
-- 로컬 커밋과 태그 `docs-tree-v0`를 `origin`에 올릴지. 임시 처리는 올리지 않는 것이다.
+- 2026-10-31 사용자가 마지막 질문에 답했다. 폴더 배치와 추가 정리 시점은 [결정 32](../decisions/0032-document-tree-layout.md), 나머지는 아래와 같다.
+- 커밋과 태그 `docs-tree-v0`를 `origin`에 올린다.
+- 전역 설정의 graft 훅 중복은 지금 고치지 않는다.
 
 ## 범위 밖
 
 - `Docs/Learning/`. [결정 28](../decisions/0028-agent-workflow-restructure.md)대로 시스템별 재작성에서 다룬다.
 - 결정 본문, QA 보고서, 서사 정본의 확정 영역. 깨진 링크의 대상만 고친다.
 - `.claude/settings.json`, `.mcp.json`, `.codex/config.toml`의 위치. 도구가 정한 경로다.
-- 전역 설정과 프로젝트 설정의 graft 훅 중복. 전역 설정은 사용자가 정한다.
+- 전역 설정과 프로젝트 설정의 graft 훅 중복.
+- 로그 경로만 뺀 큰 기록과 줄 단위로 검토하지 않은 사양서의 추가 정리. 해당 시스템을 다루는 작업에서 한다.

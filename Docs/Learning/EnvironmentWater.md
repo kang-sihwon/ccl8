@@ -8,7 +8,7 @@
 
 범위는 자연환경 4단계이다. 비교 기준은 `92d1b38` → `0408d94`, 표현 보완 `a817082`이며 전체 해시·브랜치 관계·작업 트리 식별값은 [비교 근거](EnvironmentEvidence.md)에 있다. `WT-2026-10-10`은 문서 작성 중 읽은 미커밋 소스 사본을 뜻한다. 이후 수정된 HEAD와 동일하다고 가정하지 않는다.
 
-`92d1b38`의 지형 실행기는 참여자 계약을 갖췄지만 현재의 표면 물 계산은 아직 없다. `0408d94`에 물·눈·지형 통합 코드가 함께 커밋됐다. 따라서 이 커밋 내부에서 물만 있던 중간 코드를 Git으로 복원할 수는 없다. 단계 4와 5의 실행 순서는 각각 [물 사양](../EnvironmentWater.md)과 [눈 사양](../EnvironmentSnow.md)의 기록으로 구분한다.
+`92d1b38`의 지형 실행기는 참여자 계약을 갖췄지만 현재의 표면 물 계산은 아직 없다. `0408d94`에 물·눈·지형 통합 코드가 함께 커밋됐다. 따라서 이 커밋 내부에서 물만 있던 중간 코드를 Git으로 복원할 수는 없다. 단계 4와 5의 실행 순서는 각각 [물 사양](../EnvironmentPlan/Water.md)과 [눈 사양](../EnvironmentPlan/Snow.md)의 기록으로 구분한다.
 
 `FCCLSurfaceGrid`는 셀의 배열이다. 각 셀은 바닥·상한 높이와 액체·얼음·토양 수분을 가진다. 물 환산 체적은 얼음이나 눈을 녹였을 때의 물 부피다. 수지는 시작량과 유입·유출로 현재 총량을 설명할 수 있는지 보는 계산이다. `Ledger`는 그 누계를 저장하는 값이다.
 
@@ -77,7 +77,7 @@ Prepare는 새 바닥 높이를 준비한다. ValidateCommit은 최신 표면 �
 
 ## 확인과 이해 점검
 
-기존 실행 기록은 [물 검증](../EnvironmentWater.md#실행-근거와-검토-결과), 코드 검사는 [CCLSurfaceSimulationTests.cpp](../../Source/CCL/Environment/CCLSurfaceSimulationTests.cpp)다. 이번 작업은 문서·소스 대조이고 새 실행 검증은 하지 않았다.
+기존 실행 기록은 [물 검증](../EnvironmentPlan/Water.md#실행-근거와-검토-결과), 코드 검사는 [CCLSurfaceSimulationTests.cpp](../../Source/CCL/Environment/CCLSurfaceSimulationTests.cpp)다. 이번 작업은 문서·소스 대조이고 새 실행 검증은 하지 않았다.
 
 | 상황 | 확인할 결과 |
 |---|---|

@@ -1,6 +1,6 @@
 # 환경 실험장
 
-환경 실험은 두 경로로 한다. 통합 실험장 `/Game/Maps/EnvironmentPlayground`, `/Game/Maps/EnvironmentScenario`는 여러 기능을 구역별로 비교한다. 전용 레벨 `/Game/Maps/Tests/<기능>`은 시험 하나와 표본 수를 골라 0배속에서 새로 시작한다. 소유 문서는 `Docs/EnvironmentPlan.md`(구역과 단계), `Docs/EnvironmentLaboratories.md`(전용 레벨)이며, 기능별 계산은 날씨·지형·물·눈·불·생태계 문서가 소유한다.
+환경 실험은 두 경로로 한다. 통합 실험장 `/Game/Maps/EnvironmentPlayground`, `/Game/Maps/EnvironmentScenario`는 여러 기능을 구역별로 비교한다. 전용 레벨 `/Game/Maps/Tests/<기능>`은 시험 하나와 표본 수를 골라 0배속에서 새로 시작한다. 소유 문서는 `Docs/EnvironmentPlan.md`(구역과 단계), `Docs/EnvironmentPlan/Laboratories.md`(전용 레벨)이며, 기능별 계산은 날씨·지형·물·눈·불·생태계 문서가 소유한다.
 
 ## 하위 기능
 

@@ -6,7 +6,7 @@ topic: "자연 환경·실험장"
 status: "유효"
 progress: "단계 0-7 검증 완료·단계 8 진행"
 summary: "공통 시간·천체·날씨, 영구 지형과 눈·물·불·차폐, 생태·생애 주기와 기능별 실험장을 단계적으로 구현한다. 60배속은 변경 가능한 실험 기본 후보이며 최종 게임 배율은 미정이다"
-owners: "[EnvironmentPlan](../EnvironmentPlan.md), [영구 지형 통합과 검증](../EnvironmentTerrain.md)"
+owners: "[EnvironmentPlan](../EnvironmentPlan.md), [영구 지형 통합과 검증](../EnvironmentPlan/Terrain.md)"
 refines: [18]
 ---
 

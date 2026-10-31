@@ -77,13 +77,13 @@ if (!FCCLTerrainNavigation::IsRouteReady(GetWorld(), GetPawn()->GetActorLocation
 
 서버가 새 충돌을 게시했어도 클라이언트가 같은 지형을 준비했는지는 별개다. 복제기는 전체 또는 차이 바이트를 청크로 보내고 수신자의 충돌 준비 응답을 기다린다. 준비되지 않은 접속자의 이동을 보류하며 다른 접속자까지 동시에 멈추지는 않는다. 같은 게시 순번의 재전송은 내용 일치와 실제 준비 상태를 확인한 뒤 응답한다.
 
-저장은 세계 파일과 지역 파일을 한 완료 세대로 묶는다. 복원은 저장된 Revision을 되살릴 수 있지만 실행 세대는 새로 구분한다. 종료 때 준비 중 후보를 취소하고 마지막 확정 상태를 보존한다. 자세한 저장 절차는 [저장과 실험장](EnvironmentPersistence.md), 현행 제한과 실행 결과는 [영구 지형 사양](../EnvironmentTerrain.md)에 있다.
+저장은 세계 파일과 지역 파일을 한 완료 세대로 묶는다. 복원은 저장된 Revision을 되살릴 수 있지만 실행 세대는 새로 구분한다. 종료 때 준비 중 후보를 취소하고 마지막 확정 상태를 보존한다. 자세한 저장 절차는 [저장과 실험장](EnvironmentPersistence.md), 현행 제한과 실행 결과는 [영구 지형 사양](../EnvironmentPlan/Terrain.md)에 있다.
 
 높이맵은 표면·저장 처리가 단순하지만 터널 기반 요구에 제약이 있다. 밀도 청크는 표현 범위를 넓히는 대신 추출·충돌·네트워크·저장 비용을 늘린다. 현재 표면 물은 지표 한 층을 대상으로 하므로 지형의 다층 질의 지원을 동굴 유체 완성으로 확대 해석하지 않는다. UE5 DynamicMesh·Chaos를 활용하지만 후보·게시·준비 응답은 프로젝트가 만든 계약이다.
 
 ## 확인과 이해 점검
 
-이번 작성에서는 소스·Git 이력과 [지형 검증 기록](../EnvironmentTerrain.md)을 대조했다. [CCLTerrainTests.cpp](../../Source/CCL/Environment/CCLTerrainTests.cpp), [CCLTerrainMeshTests.cpp](../../Source/CCL/Environment/CCLTerrainMeshTests.cpp), [네트워크 검사](../../Source/CCL/Tests/CCLTerrainNetworkSmokeSubsystem.cpp)가 확인 지점이다. 빌드·게임 실행은 새로 하지 않았다.
+이번 작성에서는 소스·Git 이력과 [지형 검증 기록](../EnvironmentPlan/Terrain.md)을 대조했다. [CCLTerrainTests.cpp](../../Source/CCL/Environment/CCLTerrainTests.cpp), [CCLTerrainMeshTests.cpp](../../Source/CCL/Environment/CCLTerrainMeshTests.cpp), [네트워크 검사](../../Source/CCL/Tests/CCLTerrainNetworkSmokeSubsystem.cpp)가 확인 지점이다. 빌드·게임 실행은 새로 하지 않았다.
 
 | 상황 | 기대 결과 |
 |---|---|

@@ -1,6 +1,6 @@
 # 영구 지형 통합과 검증
 
-[EnvironmentPlan](EnvironmentPlan.md) 단계 3의 표면 질의, 저장 세대, 내비게이션, 복제와 구역 05 연결을 다룬다. 2026-10-09 UE 5.8.3 소스 빌드에서 단계 3의 통과 조건을 확인했다. 구현 위치는 `Source/KSITerrain/`와 `Source/CCL/Environment/`이며 실행 검사는 `Source/CCL/Tests/`와 `Tools/Validation/`에 있다. 물과의 확정·복원 연결은 [물 순환 설계와 검증](EnvironmentWater.md)이 소유한다. 눈의 지지·체적 보존과 이동·저장 연결은 [깊은 눈과 캐릭터 이동](EnvironmentSnow.md)에 기록했다. 이 문서는 영구 지형의 게시 순서, 저장 세대, 내비게이션·충돌 준비, 복제와 구역 05의 검증 기록을 소유한다.
+[EnvironmentPlan](../EnvironmentPlan.md) 단계 3의 표면 질의, 저장 세대, 내비게이션, 복제와 구역 05 연결을 다룬다. 2026-10-09 UE 5.8.3 소스 빌드에서 단계 3의 통과 조건을 확인했다. 구현 위치는 `Source/KSITerrain/`와 `Source/CCL/Environment/`이며 실행 검사는 `Source/CCL/Tests/`와 `Tools/Validation/`에 있다. 물과의 확정·복원 연결은 [물 순환 설계와 검증](Water.md)이 소유한다. 눈의 지지·체적 보존과 이동·저장 연결은 [깊은 눈과 캐릭터 이동](Snow.md)에 기록했다. 이 문서는 영구 지형의 게시 순서, 저장 세대, 내비게이션·충돌 준비, 복제와 구역 05의 검증 기록을 소유한다.
 
 ## 책임과 게시 순서
 
@@ -59,7 +59,7 @@ classDiagram
 
 일반 월드 종료에서는 `OnWorldBeginTearDown`에서 진행 중 후보를 취소하고 확정된 상태를 보관한다. 명시적 전환에서 이미 캡처한 경우에는 그 묶음을 유지한다. 뒤늦은 `Deinitialize`가 세계 바이트만 덮어 지형과 세대를 섞지 않도록 막는다. 도메인을 초기화하면 그 도메인의 전환 묶음도 지운다.
 
-이 경로는 프로세스 안의 세션 보존이다. 디스크 저장은 앞 절의 완료 세대 저장소가 담당한다. 맵별 마지막 묶음을 메모리에 유지하는 비용이 생기며, 현재 실험장의 초기 복원은 한 지역을 대상으로 한다. 공용 모듈 분리는 [FrameworkPlan](FrameworkPlan.md)이 소유한다.
+이 경로는 프로세스 안의 세션 보존이다. 디스크 저장은 앞 절의 완료 세대 저장소가 담당한다. 맵별 마지막 묶음을 메모리에 유지하는 비용이 생기며, 현재 실험장의 초기 복원은 한 지역을 대상으로 한다. 공용 모듈 분리는 [FrameworkPlan](../FrameworkPlan.md)이 소유한다.
 
 엔진 근거는 `<Engine>/Source/Runtime/Engine/Private/World.cpp:6138`의 `BeginTearingDown`과 `<Engine>/Source/Runtime/Engine/Private/UnrealEngine.cpp:16183`의 맵 해제 순서다. 프로젝트 연결은 `Source/CCL/Agents/CCLAgentWorldSubsystem.cpp`와 `Source/CCL/Environment/CCLExperimentTerrain.cpp`에 있다.
 
@@ -92,7 +92,7 @@ UE 근거는 `<Engine>/Source/Runtime/NavigationSystem/Private/NavigationSystem.
 
 ## 검증
 
-2026-10-10의 커서 편집·저장 안내와 복제 송신량 보완은 [실험실 보완 검증](EnvironmentPlan/Laboratory.md#실험실-보완-검증)에 기록한다. 실행 절차는 `ccl8-verify`가 소유한다.
+2026-10-10의 커서 편집·저장 안내와 복제 송신량 보완은 [실험실 보완 검증](IntegratedLab.md#실험실-보완-검증)에 기록한다. 실행 절차는 `ccl8-verify`가 소유한다.
 
 아래는 2026-10-09 단계 완료 시점의 기록이다. 프로젝트 파일 생성과 `CCLEditor Win64 Development` 빌드가 성공했고, CCL 환경 자동 검사 42개가 경고·실패·미실행 0으로 성공했다. 당시 작업 트리의 UI와 캠페인 변경을 유지한 상태에서 검증했으므로 깨끗한 체크아웃이나 패키지 실행 결과로 확대 해석하지 않는다.
 
@@ -114,4 +114,4 @@ UE 근거는 `<Engine>/Source/Runtime/NavigationSystem/Private/NavigationSystem.
 
 청크마다 경계 저장 비용과 질의당 경계 검사 비용이 생긴다. 청크 밖을 지나는 강수·일조·바람 질의에는 유리하지만, 청크 안의 모든 삼각형을 지나는 질의까지 빠르게 만들지는 않는다. 그 경우의 공간 트리는 별도 측정 후 판단한다. 자동 검사는 평행축, 양방향, 선분 길이 제한, 청크 꼭짓점·가장자리와 작은 허용 오차, 회전·이동, 빈 청크, 다층 결과를 확인한다.
 
-2026-10-11 지형 경계 검사는 CCL 자동 검사 145/145에 포함해 통과했다. `CCL.Environment.Terrain.SurfaceChunkBounds`가 변환·양방향·가장자리·빈 청크·다층·선분 제한을 검사한다. 해당 소스의 생성·Editor 빌드와 렌더링 실험, 실제 Server 타깃의 지연·손실·재접속도 통과했다. 정확한 실행 경로와 600프레임 계측의 범위는 [환경 통합 기록](EnvironmentPlan/Integration.md#지형-질의-수정-후-프레임-계측)과 [패키지 기록](Packaging/Records.md#server-실행-수정과-실제-네트워크-통과)을 따른다.
+2026-10-11 지형 경계 검사는 CCL 자동 검사 145/145에 포함해 통과했다. `CCL.Environment.Terrain.SurfaceChunkBounds`가 변환·양방향·가장자리·빈 청크·다층·선분 제한을 검사한다. 해당 소스의 생성·Editor 빌드와 렌더링 실험, 실제 Server 타깃의 지연·손실·재접속도 통과했다. 정확한 실행 경로와 600프레임 계측의 범위는 [환경 통합 기록](Integration.md#지형-질의-수정-후-프레임-계측)과 [패키지 기록](../Packaging/Records.md#server-실행-수정과-실제-네트워크-통과)을 따른다.

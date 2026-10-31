@@ -10,7 +10,7 @@
 
 기준 커밋에는 연소 코어가 없다. 과거의 가상 `bOnFire` 구현을 만들어 전후 코드라고 제시하지 않는다. `a5c79b0`, `ab195b1`, `ac0deb5`, `9e3570f`는 각각 코어·표면·공기·실험장 검증을 기록한 문서 커밋이다. 실제 신규 소스는 작업 트리 식별값으로 구분한다.
 
-[결정 19](../decisions/0019-natural-environment-and-labs.md)와 [불 사양](../EnvironmentFire.md)은 연료·수분·열·차폐·소화를 연결하도록 정했다. 연소는 kg, 열은 J, 열용량은 J/K를 사용한다. 열용량은 온도를 1K 올리는 데 필요한 에너지다. 여기서 Flux는 이번 단계에 다른 시스템으로 전달할 양이다. 재료 계수는 게임용 근사이며 실물의 정밀 물성값으로 해석하지 않는다.
+[결정 19](../decisions/0019-natural-environment-and-labs.md)와 [불 사양](../EnvironmentPlan/Fire.md)은 연료·수분·열·차폐·소화를 연결하도록 정했다. 연소는 kg, 열은 J, 열용량은 J/K를 사용한다. 열용량은 온도를 1K 올리는 데 필요한 에너지다. 여기서 Flux는 이번 단계에 다른 시스템으로 전달할 양이다. 재료 계수는 게임용 근사이며 실물의 정밀 물성값으로 해석하지 않는다.
 
 ## 물만 있던 표면에서 연료·열을 가진 표면으로
 
@@ -71,7 +71,7 @@ World 실행기가 서버 권한을 확인하고 값 모델에 요청한다. 실
 
 ## 현재 코드의 후속 열 피해 연결
 
-현재 작업 트리에는 단계 7 최초 통과 이후의 열 피해 연결도 있다. `c182af3`의 문서 기록과 [열 피해 검증](../EnvironmentFire/ThermalDamage.md#열-피해-구현검증)이 근거다. 생태계 8단계 전체를 설명하지 않지만, 불이 기존 GAS 전투와 만나는 경계는 여기서 짚는다.
+현재 작업 트리에는 단계 7 최초 통과 이후의 열 피해 연결도 있다. `c182af3`의 문서 기록과 [열 피해 검증](../EnvironmentPlan/Fire/ThermalDamage.md#열-피해-구현검증)이 근거다. 생태계 8단계 전체를 설명하지 않지만, 불이 기존 GAS 전투와 만나는 경계는 여기서 짚는다.
 
 `UCCLThermalExposureSubsystem::Prepare`는 이전 확정 표면과 Actor 위치에서 피해 후보를 만든다. 공통 진행 실패 시 Cancel하고, 성공 후 Commit이 세계 Epoch·StepId와 대상의 현재 Avatar를 다시 확인한다. 후보를 먼저 비운 뒤 즉시 체력 효과를 적용하므로 중복 Commit을 막는다. 이것은 물리 열량을 HP로 보존 변환하는 식이 아니라 별도 게임 피해 정책이다.
 
@@ -87,7 +87,7 @@ GAS 체계는 [GAS 전투](GASCombat.md)를 먼저 읽는다. 현재 코드의 A
 
 ## 검증·대안과 이해 점검
 
-기존 단계 7 실행은 [불 사양](../EnvironmentFire.md)의 코어·표면·공기·상시 구역 결과를 구분해 읽는다. [CCLCombustionTests.cpp](../../Source/CCL/Environment/CCLCombustionTests.cpp)와 [CCLSurfaceFireTests.cpp](../../Source/CCL/Environment/CCLSurfaceFireTests.cpp)가 수지·실패 재시도의 근거다. 이번 문서 작성에서는 실행하지 않았다.
+기존 단계 7 실행은 [불 사양](../EnvironmentPlan/Fire.md)의 코어·표면·공기·상시 구역 결과를 구분해 읽는다. [CCLCombustionTests.cpp](../../Source/CCL/Environment/CCLCombustionTests.cpp)와 [CCLSurfaceFireTests.cpp](../../Source/CCL/Environment/CCLSurfaceFireTests.cpp)가 수지·실패 재시도의 근거다. 이번 문서 작성에서는 실행하지 않았다.
 
 연소를 값 모델로 분리하면 화면 없는 서버와 저장 재개를 다루기 쉽다. 대신 연료·열·수분 전달의 단위와 상한을 모든 연결부에서 맞춰야 한다. Niagara 입자만으로 화재를 표현하는 대안은 시각 작업이 간단하지만 서버 소화·융해·저장 규칙을 별도로 만들어야 한다. GAS와 RPC는 UE4에도 있던 체계이며 여기서의 연소 원자성은 프로젝트 계약이다.
 

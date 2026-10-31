@@ -65,7 +65,7 @@
 | ItemCatalog | 콘텐츠 에셋의 저장 이름 해석 | 중복 이름과 빈 항목 검증, 모호한 해석 거절 | [SessionFoundation](../SessionFoundation.md#정의-카탈로그와-보급품-개수) |
 | Inventory 기능 | 인벤토리가 소유하는 개별 상태의 실행 | 무기·음식 실행을 기능 서비스로 분리, 저장·복제 필드 유지 | [장비 변경의 확정 순서](../ProgressionFoundation.md#장비-변경의-확정-순서) |
 | WorldParticipant | 월드 서브시스템의 저장 참여자 | 환경 시간 진행을 선택 인터페이스로 분리 | [EnvironmentPlan](../EnvironmentPlan.md#다음-작업의-시작점) |
-| Surface publication | 서버 월드의 불변 전송 데이터 | 연결 간 발행본 공유, 연결별 확인·전송 위치·과거 참조 유지 | [EnvironmentWater](../EnvironmentWater.md#표면-발행본의-수명) |
+| Surface publication | 서버 월드의 불변 전송 데이터 | 연결 간 발행본 공유, 연결별 확인·전송 위치·과거 참조 유지 | [EnvironmentWater](../EnvironmentPlan/Water.md#표면-발행본의-수명) |
 
 KSI 모듈 분리, 타입 전면 개명, 저장 형식 마이그레이션은 이 수정에 포함하지 않았다. 저장 필드를 유지하므로 에셋 변환은 수행하지 않았다.
 

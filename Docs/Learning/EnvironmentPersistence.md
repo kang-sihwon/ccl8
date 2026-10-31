@@ -79,7 +79,7 @@ void ACCLExperimentPlayerController::ServerExperiment_Implementation(ECCLExperim
 
 소유 PlayerController의 서버 RPC가 Director에 전달한다. Director는 서버 권한, 월드 도메인, 준비 상태, 세대·실행 ID와 조작 담당자를 검사한다. 순간이동 같은 관찰자 허용 요청과 상태를 바꾸는 담당자 요청은 구분한다. 지형 조작은 게시 순번도 검사하므로 오래된 화면이 새 지형에 낡은 명령을 적용하지 않는다. 응답은 클라이언트 화면 메시지로 돌아온다.
 
-F7은 실험 화면 열기·닫기다. 일반 UI 뒤로 가기는 PIE에서 F6, 독립 게임에서는 Esc로 구분한다. 입력 소유자가 화면으로 바뀌면 Pawn의 게임 입력에만 묶은 열기 키가 닫기까지 전달되지 않을 수 있다. [UI 기반](UIFramework.md)의 후속 절과 [실험 메뉴 기록](../EnvironmentPlan/Laboratory.md#실험-메뉴-조작과-검증)이 그 연결을 설명한다.
+F7은 실험 화면 열기·닫기다. 일반 UI 뒤로 가기는 PIE에서 F6, 독립 게임에서는 Esc로 구분한다. 입력 소유자가 화면으로 바뀌면 Pawn의 게임 입력에만 묶은 열기 키가 닫기까지 전달되지 않을 수 있다. [UI 기반](UIFramework.md)의 후속 절과 [실험 메뉴 기록](../EnvironmentPlan/IntegratedLab.md#실험-메뉴-조작과-검증)이 그 연결을 설명한다.
 
 ## 단계 7까지 직접 따라갈 순서
 
@@ -94,7 +94,7 @@ F7은 실험 화면 열기·닫기다. 일반 UI 뒤로 가기는 PIE에서 F6, 
 
 ## 검증의 해석과 이해 점검
 
-소스 존재, 자동 검사, 실제 서버 실행, 화면, 새 프로세스 저장, 패키지 실행은 서로 다른 근거다. NullRHI 실행으로 시각 품질을 판정하지 않는다. Editor의 `-server` 실행을 Server 타깃 패키지 검증으로 쓰지 않는다. 실행 결과의 소유 문서는 [환경 계획](../EnvironmentPlan.md), [지형](../EnvironmentTerrain.md), [물](../EnvironmentWater.md), [눈](../EnvironmentSnow.md), [날씨](../EnvironmentWeather.md), [불](../EnvironmentFire.md)이다.
+소스 존재, 자동 검사, 실제 서버 실행, 화면, 새 프로세스 저장, 패키지 실행은 서로 다른 근거다. NullRHI 실행으로 시각 품질을 판정하지 않는다. Editor의 `-server` 실행을 Server 타깃 패키지 검증으로 쓰지 않는다. 실행 결과의 소유 문서는 [환경 계획](../EnvironmentPlan.md), [지형](../EnvironmentPlan/Terrain.md), [물](../EnvironmentPlan/Water.md), [눈](../EnvironmentPlan/Snow.md), [날씨](../EnvironmentPlan/Weather.md), [불](../EnvironmentPlan/Fire.md)이다.
 
 **CRC가 맞는 파일 두 개면 함께 복원해도 될까?** 세계 ID·세대·완료 시각이 다를 수 있다. 각 파일의 유효성과 파일 사이의 일치 조건을 함께 검사해야 한다.
 

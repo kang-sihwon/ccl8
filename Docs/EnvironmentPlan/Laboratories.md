@@ -2,14 +2,14 @@
 
 `/Game/Maps/Tests`의 전용 레벨에서 시험 하나를 골라 실행한다. 생태계·식생·생애·부패는 종류 하나와 표본 수를 정한 뒤 새로 배치한다. 레벨마다 세계 시간과 초기 상태를 새로 만들고 0배속에서 시작한다. 기존 통합 실험장은 여러 기능을 함께 비교할 때 사용한다.
 
-레벨 선택과 설정은 `Source/CCL/Environment/CCLExperimentLaboratoryScreen.cpp`, 서버 검증·이동은 `CCLExperimentLaboratory.cpp`, 레벨·종류 목록은 `CCLLaboratoryConfiguration.cpp`가 소유한다. 이 문서는 실험장의 사용법, 레벨과 표본, 실험용 리소스와 제출 범위, 후속 작업 기준과 검증 기록을 소유한다. 근거는 [결정 27](decisions/0027-per-feature-environment-labs.md)이다.
+레벨 선택과 설정은 `Source/CCL/Environment/CCLExperimentLaboratoryScreen.cpp`, 서버 검증·이동은 `CCLExperimentLaboratory.cpp`, 레벨·종류 목록은 `CCLLaboratoryConfiguration.cpp`가 소유한다. 이 문서는 실험장의 사용법, 레벨과 표본, 실험용 리소스와 제출 범위, 후속 작업 기준과 검증 기록을 소유한다. 근거는 [결정 27](../decisions/0027-per-feature-environment-labs.md)이다.
 
 ## 하위 문서
 
 | 문서 | 읽는 때 |
 |---|---|
-| [실험장 리소스](EnvironmentLaboratories/Resources.md) | 실험용 에셋을 연결하거나 Fab 후보를 고르고 제출 범위를 확인할 때 |
-| [실험장 검증](EnvironmentLaboratories/Verification.md) | 전용 레벨의 검증 결과와 미검증 범위를 확인할 때 |
+| [실험장 리소스](Laboratories/Resources.md) | 실험용 에셋을 연결하거나 Fab 후보를 고르고 제출 범위를 확인할 때 |
+| [실험장 검증](Laboratories/Verification.md) | 전용 레벨의 검증 결과와 미검증 범위를 확인할 때 |
 
 ## 시작과 조작
 
