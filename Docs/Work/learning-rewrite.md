@@ -16,21 +16,15 @@
 
 ## 진행
 
-- [x] UIFramework, UIPresentation, Map, ContentValidation, InventoryUI, EnvironmentFollowupEvidence, EnvironmentMapConfiguration. 발췌가 접두사만 달랐고, 끝났다.
-- [ ] AgentExecution. 달라짐: `CCLMassAgentBridge::Enter`가 죽은 Agent를 거부한다.
-- [ ] Weapons. 달라짐: `ACCLProjectile::Impact`.
-- [ ] GASCombat. 달라짐: `UCCLCombatComponent::ResolveHit`(일부 발췌).
-- [ ] Equipment. 달라짐: `UCCLLoadoutComponent::Equip`(일부 발췌).
-- [ ] ItemInventory. 달라짐: `UCCLInventoryComponent::Add`.
-- [ ] Progression. 달라짐: `UCCLLoadoutComponent::Learn`, `Use`.
-- [ ] Campaign. 달라짐: `ACCLCampaignDirector::NotifyEnemyDefeated`.
-- [ ] SessionSave. 달라짐: `UCCLGameInstance::LoadSession`.
-- [ ] VillageServices. 달라짐: `UCCLExpeditionComponent::Buy`.
-- [ ] AgentDecision. 달라짐: `CCLDecision::Evaluate`(일부 발췌).
-- [ ] HUDDialogue. 이전 기준의 `ACCLHUD::DrawHUD`를 현재 코드에서 찾지 못했다. 현재 HUD는 표시 모델로 바뀌었는지 확인한다.
-- [ ] EnemyAI, LifeEconomy, Cinematics, MovementRespawn. 발췌는 같거나 일부만 같다. 옛 이름과 줄 번호만 고친다.
-- [ ] 환경 장(EnvironmentAir, Celestial, Fire, Snow, Terrain, Time, TimeAccuracy, Water, Weather, RestoreParticipants, Persistence). 발췌 형식이 달라 위 비교를 하지 못했다. 일부는 "기록 당시 기준을 유지한다"는 안내만 있다.
+2026-10-31에 모든 장을 `d4888b0` 기준으로 다시 대조했다. 장마다 커밋이 하나씩 있다.
+
+- [x] UI 기반, UI 연출, 지도, 콘텐츠 제작, 인벤토리 UI, 환경 후속 근거, 환경 맵 설정. 발췌가 접두사만 달랐다.
+- [x] 전투 장(GASCombat, Weapons, Equipment, EnemyAI). `ResolveHit`의 재진입 가드, 팀 정보의 `SourceFacts` 이동, 장비 교체의 인벤토리 트랜잭션을 설명에 반영했다.
+- [x] 아이템·성장·세션·캠페인·마을(ItemInventory, Progression, SessionSave, Campaign, VillageServices). `Use`의 소모 순서, 구매의 데이터 구동 상품, 세션 형식 8을 반영했다.
+- [x] Agent·HUD·연출·이동(AgentState, AgentDecision, AgentExecution, LifeEconomy, HUDDialogue, Cinematics, MovementRespawn). `Enter`의 생존 검사를 반영했다.
+- [x] 환경 장 전체. 미커밋 사본(`WT-2026-10-10`)을 인용하던 발췌는 `c8816e7`에 커밋된 것을 확인하고 `d4888b0`로 다시 대조해 출처를 바꿨다. 근거 문서(EnvironmentEvidence, EnvironmentFollowupEvidence, EnvironmentPlanningHistory)는 당시 기록으로 두고 안내만 고쳤다.
 
 ## 아직 모르는 것
 
-- 환경 장을 현재 코드로 다시 쓰는 범위. 비교 학습 기록으로 두는 쪽이 나은지 사용자 판단이 필요하다.
+- 바뀐 코드가 어느 사고를 겪은 뒤의 수정인지는 대부분 커밋 본문에 없다. 장에는 "이유 기록 없음"으로 적었다. 이유를 아는 사람이 있으면 채운다.
+- 빌드와 게임 실행은 하지 않았다. 코드와 문서의 대조만 했다.
