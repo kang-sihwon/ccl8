@@ -46,6 +46,7 @@ classDiagram
 6. **실험 저장**, 입력 변경, **저장 불러오기** 순서로 비교한다. **자동 검사**는 실제 상태의 복사본을 900세계 초 진행하고 표면 수지·저장 왕복을 검사한다.
 
 전용 레벨 `Weather`는 [기능별 환경 실험장](Laboratories.md)의 절차를 따른다.
+
 ## 구현 위치와 단위
 
 | 파일 | 소유 내용 |
@@ -76,7 +77,7 @@ classDiagram
 
 ## 차폐와 표현의 추가 검증
 
-2026-10-10 단계 6의 차폐·표현 연결 후 프로젝트 생성과 Editor 빌드가 성공했고 환경 자동 검사는 58/58, 경고·실패 0이었다. 앞 절의 기록은 계산 코어 구현 당시의 결과이며, 후속 검증은 이 절이 소유한다.
+2026-10-10 단계 6의 차폐·표현 연결 후 프로젝트 생성과 Editor 빌드가 성공했고 환경 자동 검사는 58/58, 경고·실패 0이었다. 앞 절의 57/57은 계산 코어 구현 당시의 결과이고, 차폐·표현 이후의 검증은 이 절의 기록이다.
 
 두 맵의 새 프로세스 검증에서 표면 9개·구역 12개와 날씨 Actor·비·눈·구름 에셋 참조를 확인했다. Standalone에서 자연 상태·비·눈·높은 수분 공급으로 생성한 구름 화면 4장을 확인했다. Dedicated의 첫·늦은 참가자는 기온·수증기·구름이 일치했고 지붕 노출률·권한 거부를 확인했으며, Listen도 같은 수치·차폐·권한 검사가 통과했다. 기존 실험장은 천체·저장·복원·문 개폐가 통과했다.
 
@@ -86,7 +87,7 @@ Niagara 에셋은 엔진의 `FountainLightweight`를 복제한 뒤 초기 수명
 
 2026-10-10 구역 07의 실제 렌더링에서 눈 Niagara의 활성 생성 이력이 GPU 처리 상한을 넘었다는 경고를 확인했다. 눈 입자의 최대 수명은 2.7초인데 0.25초마다 반복하며 변하는 강수율을 평가하고 있었다. 서로 다른 강수율의 생성 기록이 입자 수명 동안 함께 남아 한도를 넘는 조건이었다.
 
-UE 5.8.3의 `<Engine>/Plugins/FX/Niagara/Source/Niagara/Private/Stateless/NiagaraStatelessEmitterInstance.cpp:705`는 반복마다 생성율을 다시 평가한다. 같은 파일 743줄부터는 생성율과 시간 경계·확률·수명 조건이 맞는 기록만 합치며, 846줄부터는 생성 종료 시각에 최대 수명을 더한 경계가 지나야 기록을 제거한다. `NiagaraStatelessEmitterData.cpp:114`는 GPU 생성 기록 상한을 검사하고 148줄에서 화면 경고를 만든다. 이 근거는 UE 5.8.3 Stateless Niagara 경로에 해당한다.
+UE 5.8.3의 `Niagara/Private/Stateless/NiagaraStatelessEmitterInstance.cpp`에서 `InitSpawnInfosForLoop`는 반복마다 생성율을 다시 평가하고 생성율과 시간 경계·확률·수명 조건이 맞는 기록만 합친다. `TickSpawnInfos`는 생성 종료 시각에 최대 수명을 더한 경계가 지나야 기록을 제거한다. `NiagaraStatelessEmitterData.cpp`는 `MaxGpuSpawnInfos`로 GPU 생성 기록 상한을 검사하고 넘으면 화면 경고를 만든다. 이 근거는 UE 5.8.3 Stateless Niagara 경로에 해당한다.
 
 `CCLWeatherPresentation.cpp`의 에디터 에셋 구성에서 눈의 반복 길이를 1초로 늘렸다. 비는 0.25초를 유지한다. 눈은 강수율 표현의 반응 간격이 길어지는 대신 동시에 보존하는 생성 기록 수가 줄어든다. 서버의 강수량·물·눈 계산은 바꾸지 않았다. `Tools/Validation/update_precipitation_lifecycle.py`로 기존 비·눈 에셋을 갱신하고 새 게임 프로세스의 화면에서 경고가 사라진 것을 확인했다.
 
