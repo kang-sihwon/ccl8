@@ -36,17 +36,28 @@
   - 결과: 부모는 6.1KB로 줄었고 `Core`, `Representation`으로 나눴다. 끝난 다음 작업 문장과 소스 사본을 뺐다.
 - [x] 11. `Packaging/Records` 22.1KB (없음).
   - 결과: 13KB로 줄었다. 패키지에서 얻은 규칙을 앞으로 모으고 빈 경로 표와 반복 한계 문장을 뺐다. 내용 경계가 없어 나누지 않았다.
-- [ ] 12. `UIFoundation` 18.6KB (없음).
-- [ ] 13. `AgentFoundation` 18.4KB (없음).
-- [ ] 14. `ProgressionFoundation` 17.7KB (없음).
-- [ ] 15. `AgentToolingResearch/SkillReview` 17.5KB (없음).
-- [ ] 16. `SessionFoundation` 17KB (없음).
-- [ ] 17. `ContentFoundation` 14.9KB (없음).
-- [ ] 18. `EnvironmentPlan/Ecology/AgentLife` 13KB (없음).
-- [ ] 19. `EnvironmentPlan/Ecology/Vegetation` 12.6KB (없음).
-- [ ] 20. `MultiplayerFoundation` 12.2KB (없음).
-- [ ] 21. `AgentToolingResearch` 12.2KB (없음).
-- [ ] 22. `EnvironmentPlan/Ecology/Nutrition` 10.2KB (없음).
+- [x] 12. `UIFoundation` 18.6KB (없음).
+  - 결과: 전체 17.7KB, 부모 3.7KB로 줄었고 `Contracts`, `Features`, `Verification`으로 나눴다. 없는 표시 모델을 적은 그림과 시그니처 사본을 뺐다.
+- [x] 13. `AgentFoundation` 18.4KB (없음).
+  - 결과: 전체 18KB, 부모 7KB로 줄었고 `Implementation`, `Verification`으로 나눴다. 계약 문장이 대부분이라 크기는 거의 그대로다.
+- [x] 14. `ProgressionFoundation` 17.7KB (없음).
+  - 결과: 전체 17KB, 부모 6.3KB로 줄었고 `Equipment`, `Inventory`로 나눴다. 입력 표는 소스와 맞췄고, 바뀐 시그니처 사본을 뺐다.
+- [x] 15. `AgentToolingResearch/SkillReview` 17.5KB (없음).
+  - 결과: 15.1KB로 줄었고 묶음 검토를 `BundleReview`로 나눴다. 이미 반영된 수정 목록과 목표 구조를 뺐다.
+- [x] 16. `SessionFoundation` 17KB (없음).
+  - 결과: 전체 16.4KB, 부모 6.3KB로 줄었고 `Checkpoint`, `Verification`으로 나눴다. 날짜순 서술을 현재 설명과 형식별 변환 표로 바꿨고 UE 5.9 줄 번호를 이름으로 바꿨다.
+- [x] 17. `ContentFoundation` 14.9KB (없음).
+  - 결과: 전체 14.2KB, 부모 4.4KB로 줄었고 `Rules`, `Verification`으로 나눴다. 옛 위치 열과 빈 근거 열을 뺐다.
+- [x] 18. `EnvironmentPlan/Ecology/AgentLife` 13KB (없음).
+  - 결과: 10.3KB로 줄었다. 설계와 실행 기록의 반복을 합쳤고 내용 경계가 없어 나누지 않았다.
+- [x] 19. `EnvironmentPlan/Ecology/Vegetation` 12.6KB (없음).
+  - 결과: 8.1KB로 줄었다. 설계와 실행 기록의 반복을 합쳤고 내용 경계가 없어 나누지 않았다.
+- [x] 20. `MultiplayerFoundation` 12.2KB (없음).
+  - 결과: 전체 10KB, 부모 6KB로 줄었고 `Verification`으로 나눴다. 설치본별 기록을 합쳤고 현재와 다른 `Die` 사본을 뺐다. 엔진 줄 번호는 UE 5.8.3에서 다시 확인했다.
+- [x] 21. `AgentToolingResearch` 12.2KB (없음).
+  - 결과: 7.2KB로 줄었다. 끝난 도입 순서, 제안 표, `.uproject`가 없다는 옛 전제를 뺐다.
+- [x] 22. `EnvironmentPlan/Ecology/Nutrition` 10.2KB (없음).
+  - 결과: 9.6KB로 줄었다. 이미 설명 위주라 끝난 이력만 뺐고 나누지 않았다.
 
 ## 정한 것
 
@@ -59,5 +70,5 @@
 
 ## 범위 밖
 
-- 20KB 미만 문서. 2026-10-31 재측정에서 가장 큰 문서는 18.6KB이고, 남은 문서는 [진행 중인 작업](README.md)의 후보로 옮겼다.
+- 조각 1-22에 없는 문서. 2026-10-31 재측정에서 가장 큰 문서는 18.4KB이고, 15KB가 넘는 문서는 [진행 중인 작업](README.md)의 후보로 옮겼다.
 - `Docs/Learning/`, 결정 본문, QA 보고서, 서사 정본의 확정 영역.
