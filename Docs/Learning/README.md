@@ -103,4 +103,4 @@ ccl8의 시스템을 실제 플레이 상황과 Git의 이전·현재 코드로 
 | [EnvironmentMapConfiguration](EnvironmentMapConfiguration.md) | `Source/CCL/Editor/CCLEnvironmentFXLibrary.cpp` |
 | [InventoryUI](InventoryUI.md) | `Source/CCL/UI/Core/`의 `CCLUISubsystem.cpp`, `CCLScreen.cpp`, `CCLUIRoot.cpp` |
 | [Map](Map.md) | `Source/CCL/Map/CCLMapSystem.cpp` |
-| [UIFramework](UIFramework.md), [UIPresentation](UIPresentation.md) | `Source/CCL/UI/Core/CCLUISubsystem.cpp` |
+| [UIPresentation](UIPresentation.md) | `Source/CCL/UI/Core/CCLUISubsystem.cpp` |
