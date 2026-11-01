@@ -25,6 +25,8 @@
 
 세계수는 [중앙 분지의 본류 서쪽에 표시한 후보](EtherWorldMap/2026-11-01-ignis-macro-terrain.md#세계수-위치-후보)를 추가했다. 지도상의 수관은 가독성을 위해 강조한 상징이며 실제 높이와 수관 너비는 미정이다.
 
+도시와 정치 관계를 지도에서 함께 볼 때는 [통치·생산·교역 배치안](../Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-ignis-governance-layout.md)을 읽는다. [통합 PNG](EtherWorldMap/Images/ignis-governance-production-trade-v2.png)에 정치권 4곳과 생산·공급 거점 8곳, 수운·육로·연안 해로를 표시했다. 입력·출력·프롬프트와 화면 확인 범위는 [제작 기록](EtherWorldMap/2026-11-01-ignis-governance-prompts.md)이 소유한다. 정밀 국경·면적·항행 조건을 검증한 지도는 아니다.
+
 앞서 만든 [이그니스 거점 배치](../Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-ignis-spatial-layout.md)와 [벨레스·첫 장 동선](../Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-first-chapter-spatial-layout.md)은 비교 자료로 보존한다. 대륙 전체 지형을 고른 뒤 다시 검토하며 기존 좌표를 확정 조건으로 사용하지 않는다.
 
 ## 생성 시안의 제작 정보
