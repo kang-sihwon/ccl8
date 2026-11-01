@@ -1,0 +1,4 @@
+interface:
+  display_name: "Worldbuilding Studio"
+  short_description: "지리와 정착에서 세력, 국가, 갈등, 인물과 스토리까지 연결해 작성"
+  default_prompt: "$worldbuilding-studio 기존 지도와 설정을 읽고 정착지의 성장, 세력 관계와 갈등을 연결한 세계관 초안을 작성해줘."
