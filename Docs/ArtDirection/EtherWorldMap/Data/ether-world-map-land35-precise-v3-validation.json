@@ -1,0 +1,105 @@
+{
+  "status": "PASS",
+  "area_method": "Independent 5-point Gaussian quadrature of exported SVG coastline, spherical integral",
+  "circumference_km": 40000,
+  "surface_area_km2": 509295817.89406514,
+  "continents": [
+    {
+      "id": 1,
+      "name": "Ignis Taiga",
+      "target_km2": 20000000.0,
+      "svg_quadrature_area_km2": 19999999.999995403,
+      "error_km2": -4.597008228302002e-06,
+      "max_svg_coordinate_error": 2.777361673977907e-13
+    },
+    {
+      "id": 2,
+      "name": "Arvena",
+      "target_km2": 40000000.0,
+      "svg_quadrature_area_km2": 40000000.00000106,
+      "error_km2": 1.0579824447631836e-06,
+      "max_svg_coordinate_error": 2.7766677845875165e-13
+    },
+    {
+      "id": 3,
+      "name": "Ordas",
+      "target_km2": 35000000.0,
+      "svg_quadrature_area_km2": 34999999.99998965,
+      "error_km2": -1.0348856449127197e-05,
+      "max_svg_coordinate_error": 2.773337115513641e-13
+    },
+    {
+      "id": 4,
+      "name": "Seradion",
+      "target_km2": 73253536.2629228,
+      "svg_quadrature_area_km2": 73253536.26292135,
+      "error_km2": -1.4454126358032227e-06,
+      "max_svg_coordinate_error": 2.777222896099829e-13
+    },
+    {
+      "id": 5,
+      "name": "Niver",
+      "target_km2": 10000000.0,
+      "svg_quadrature_area_km2": 9999999.999996707,
+      "error_km2": -3.293156623840332e-06,
+      "max_svg_coordinate_error": 2.765565554341265e-13
+    }
+  ],
+  "total_land_area_km2": 178253536.26290417,
+  "total_land_percent": 34.99999999999634,
+  "independent_raster_estimate": {
+    "width": 7200,
+    "height": 3600,
+    "land_percent": 34.99918048067025,
+    "tolerance_percentage_points": 0.05,
+    "note": "Pixel-center classification is approximate; SVG integral is the area authority"
+  },
+  "grid": {
+    "longitude_step_deg": 30,
+    "latitude_step_deg": 15,
+    "interior_vertical_lines": 11,
+    "interior_horizontal_lines": 11,
+    "cell_size_px": [
+      300,
+      150
+    ],
+    "canvas_px": [
+      3600,
+      1800
+    ],
+    "checked": true
+  },
+  "reference_points_checked": true,
+  "exact_bounds_checked": true,
+  "continents_valid": true,
+  "max_continent_overlap_xy": 0.0,
+  "polar_coast_range_y": [
+    0.89,
+    0.92
+  ],
+  "polar_seam_height_and_tangent_match": true,
+  "ordas_inland_sea_open": true,
+  "trade_connections": [
+    {
+      "id": "ignis-arvena",
+      "interior_intersection_length_xy": 0.0,
+      "max_endpoint_shore_error_xy": 0.0
+    },
+    {
+      "id": "arvena-ordas",
+      "interior_intersection_length_xy": 0.0,
+      "max_endpoint_shore_error_xy": 0.0
+    },
+    {
+      "id": "ignis-ordas",
+      "interior_intersection_length_xy": 0.0,
+      "max_endpoint_shore_error_xy": 0.0
+    }
+  ],
+  "hash_normalization": "UTF-8 text normalized to LF; binary files unchanged",
+  "files_sha256": {
+    "Data/ether-world-map-land35-precise-v3.json": "7fb1ea5461708dadca67f46ba9dd6dd579ed2ae329c275edd0707a2f85a2c0f4",
+    "Images/ether-world-map-land35-precise-v3.svg": "d92cb99953232619ca00bc10010e89ede3210cd6a961bc70b97307c08e4b8624",
+    "Images/ether-world-map-land35-precise-v3.png": "19cd36cda09e1363c6ddf84faa51bcb42312377a87379e9488121fc785487e08"
+  }
+}
