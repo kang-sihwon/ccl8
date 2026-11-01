@@ -1,5 +1,26 @@
 # 벨레스 주변 생활권 지도 시안
 
+## 수직 시점 수정안
+
+사용자는 이전 시안의 산과 나무가 비스듬하게 보인다고 지적했다. 같은 지역을 수직으로 내려다본 평면 지도로 다시 생성했다. 산의 측면 묘사는 등고선으로 바꾸고 숲과 건물은 수관과 지붕의 윗면으로 표현했다. 기본 제공 `image_gen`으로 기존 확장 지도를 참조했다.
+
+![벨레스 주변 수직 시점 지도](Images/veles-wider-region-nadir-v2.png)
+
+강의 흐름과 정착지의 대략적인 위치는 유지했지만 일부 길과 건물 배치는 달라졌다. 등고선은 실제 고도 자료에서 계산한 것이 아니며 축척과 수계 검증도 하지 않았다. 수직 시점의 표현을 검토하는 시안이다.
+
+### 수정 입력문
+
+```text
+Use case: style-transfer. Edit the supplied regional map to correct its projection. The user rejected the oblique mountains, upright trees and visible building walls. Redraw this SAME geographic region as a genuinely FLAT PLANIMETRIC ORTHOGRAPHIC MAP, camera exactly vertically down, 90 degree nadir. This is a flat game cartographic map sheet, not a landscape painting or a diorama.
+
+Preserve river course, village locations, road relationships and label locations from reference. Preserve restrained olive green vegetation, gray beige ground, muted slate blue river, cream labels. Landscape 3:2, edge-to-edge map only.
+
+CRITICAL transformation: completely REMOVE every pictorial mountain peak, rocky cliff face, upright conifer/tree silhouette, front-facing cave entrance and building facade. Replace mountains with continuous nested topographic contour curves and delicate low-contrast relief shading seen vertically from overhead. All landforms are plan-view footprints with branching ridgelines and valley contour shapes. No object extends upwards on page to conceal terrain behind it. Forests are flat textured dark green area fills with small irregular circular canopy crowns viewed directly from above; absolutely no triangular Christmas-tree symbols or trunks. Buildings are tiny rectangular rooftop footprints viewed directly from above, with no visible walls. Far and near buildings equal scale. Cave shown only by tiny dark ground mark adjacent to its label, never a facade. Roads and rivers are flat uniformly cartographic shapes. No cinematic lighting, cast shadows, depth of field, distance haze, horizon, vanishing point, foreshortening, tilted plane, 3D raised relief, isometric perspective, illustrated mountain icons or oblique overhead view. The contours and land cover should visually read like an elegant modern topographic atlas with muted game-art textures.
+
+Keep exact Korean place labels, small readable type: "벨레스", "금빛 안개 삼림", "동굴 입구", "테른 강", "거목돌봄마을", "목재마을", "보리마을". Veles central-right west bank, grove hamlet northeast, lumber village west, barley village southwest. No additional places. No UI, frame, border, compass, scale bar, grid, markers, player arrows, legend, buttons. This is the same expanded region converted to a strict vertical plan view.
+```
+
+
 사용자가 고른 첫 지도 표현을 바탕으로 벨레스 주변까지 범위를 넓힌 시안이다. [기존 지역 지도](Images/veles-map-only-original-style-v1.png)의 올리브색 숲·회갈색 지형·청회색 강을 참조하고 UI 없이 제작했다. 상위 문서는 [세계지도 시안](../EtherWorldMap.md)이다.
 
 ![벨레스 주변 생활권 지도](Images/veles-wider-region-original-style-v1.png)
