@@ -24,6 +24,19 @@
 
 기본 제공 `image_gen`으로 [앞선 UI 시안](Images/veles-ingame-map-ui-v1.png)을 공간 참조로 삼아 각각 생성했다. 작성자가 세 화면에서 UI 제거, 지명, 마을·북쪽 동굴·숲길·본류 굽이의 큰 배치를 확인했다. 복사본은 원본과 SHA-256이 일치한다. 지류·등고선·건물·식생의 세부는 생성 과정에서 달라졌으며 픽셀 정합이나 실제 지형·거리를 검증한 자료가 아니다. 지도 바탕 선택용 후보이고 기존 서사·좌표의 변경 근거로 사용하지 않는다.
 
+## 처음 시안의 표현 유지
+
+사용자가 처음 UI 시안의 표현으로 지도만 확인하도록 요청해 별도 편집본을 만들었다. 기본 제공 `image_gen`으로 원래의 올리브색 숲·회갈색 지형·청회색 강과 지명을 유지하도록 요청하고 상하단 UI·위치·목적지 표식을 제거했다. 화면에서 UI 제거와 주요 지형 배치를 확인했으며 픽셀 단위 보존은 보장하지 않는다. 아직 최종 선택을 뜻하지 않는다.
+
+![처음 시안의 표현으로 UI를 제거한 지도](Images/veles-map-only-original-style-v1.png)
+
+편집 입력문:
+
+```text
+Edit the supplied original Veles map ONLY to remove game UI overlays. Preserve the original mature muted olive forest, warm gray-beige terrain, desaturated slate-teal water, dense fine contour linework, texture, contrast, and all geography as faithfully as possible. This is NOT a style variation. Do not brighten, recolor, simplify, stylize, change framing, move buildings, change roads, river banks, islands, forests or cave. Keep the same image dimensions and overhead view.
+Remove the entire top dark header bar including title, breadcrumb, compass and close button, and the entire bottom dark footer including legend and input hints; seamlessly reconstruct the map terrain beneath both strips to fill the whole canvas. Remove cyan player triangle, gold objective diamond, white circular location markers and their drop shadows, seamlessly revealing the underlying terrain. Preserve the existing Korean cartographic labels in their original placement and typography: 벨레스, 금빛 안개 삼림, 테른 강, 공방, 급수대, 나루, 숲 입구, 동굴 입구. No UI, no borders, no legend, no new text or symbols. The result should look like the exact original map artwork with just its interface removed.
+```
+
 ## 입력문
 
 ### A
