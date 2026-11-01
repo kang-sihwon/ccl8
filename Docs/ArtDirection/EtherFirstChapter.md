@@ -11,6 +11,7 @@
 | 인물·적·소품·공간·효과의 외형을 먼저 정할 때 | [디자인 시안 40항목](EtherFirstChapter/Designs.md) |
 | 도입부터 출항까지 사건별 화면을 만들 때 | [장면 시안 38항목](EtherFirstChapter/Scenes.md) |
 | 보관한 벨레스 이미지와 적용 범위, 남은 배치 문제를 확인할 때 | [벨레스 공간 참조 이미지](EtherFirstChapter/VelesReferences.md) |
+| 대륙·지역 지리를 먼저 정하고 마을 배치로 좁혀 갈 때 | [Jenova 지도 생성 자료 조사](../AgentToolingResearch/2026-11-01-jenova-map-generation.md) |
 | 과거 YouArt 시험 설정과 결과를 참고할 때 | [2라운드 프롬프트](../ConceptImageToolTest/Prompts/Round2.md), [화풍 잇기 결과](../ConceptImageToolTest/Results/StyleChain.md) |
 
 ## 전체 범위
