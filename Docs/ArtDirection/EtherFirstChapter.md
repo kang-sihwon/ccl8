@@ -12,6 +12,7 @@
 | 도입부터 출항까지 사건별 화면을 만들 때 | [장면 시안 38항목](EtherFirstChapter/Scenes.md) |
 | 보관한 벨레스 이미지와 적용 범위, 남은 배치 문제를 확인할 때 | [벨레스 공간 참조 이미지](EtherFirstChapter/VelesReferences.md) |
 | 대륙·지역 지리를 먼저 정하고 마을 배치로 좁혀 갈 때 | [Jenova 지도 생성 자료 조사](../AgentToolingResearch/2026-11-01-jenova-map-generation.md) |
+| 사용자 제공 지리 초안에 맞춰 강·수원·마을과 출항 원경을 배치할 때 | [벨레스 주변 지리와 시각 배치](../Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-veles-geography.md) |
 | 과거 YouArt 시험 설정과 결과를 참고할 때 | [2라운드 프롬프트](../ConceptImageToolTest/Prompts/Round2.md), [화풍 잇기 결과](../ConceptImageToolTest/Results/StyleChain.md) |
 
 ## 전체 범위
@@ -28,6 +29,8 @@
 D는 피사체 디자인, E는 공간, X는 효과, S는 장면을 구분하는 식별자다. 하위 문서의 각 ID는 하나의 제작 의도를 뜻한다. 같은 ID 안에 여러 상태가 있으면 상태마다 별도 이미지를 만들고 같은 디자인인지 비교한다. 하나의 화면에 모든 상태를 억지로 넣지 않는다.
 
 ## 먼저 만들 시안
+
+공간의 전체 배치를 정하기 전에는 [5대륙 배치](../Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-world-map.md), [이그니스 타이가 지형](../Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-ignis-taiga-geography.md), 벨레스 주변 지리의 순서로 관계를 검토한다. 아래 묶음은 그 공간 관계를 참고해 만들 시각 후보이며 지리나 최종 디자인의 확정 순서를 뜻하지 않는다.
 
 첫 묶음은 아래 12항목을 제안한다. 공통 색과 주인공·곰의 비례, 설비의 구조를 먼저 비교하면 나머지 장면을 다시 만드는 일을 줄일 수 있다.
 
