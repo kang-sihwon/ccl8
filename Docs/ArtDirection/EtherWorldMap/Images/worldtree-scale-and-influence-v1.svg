@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1100" viewBox="0 0 1800 1100"><rect width="100%" height="100%" fill="#f6f2e8"/>
+<text x="45" y="64" font-family="Malgun Gothic, sans-serif" font-size="38" fill="#263945">세계수 실제 규모와 생활권 | 작업 기준안</text>
+<text x="45" y="103" font-family="Malgun Gothic, sans-serif" font-size="21" fill="#59646b">8 km 높이 · 18 km 수관 · 거주 제한 반경 12 km / 실제 생물·기후 검증 아님</text>
+<text x="80" y="178" font-family="Malgun Gothic, sans-serif" font-size="28" fill="#263945">수평 영향 범위 (동일 축척)</text>
+<circle cx="410" cy="540" r="260" fill="#e4dfc3" stroke="#987f53" stroke-width="2"/>
+<circle cx="410" cy="540" r="156" fill="#e0c89b" stroke="#987f53" stroke-width="2"/>
+<circle cx="410" cy="540" r="117" fill="#e2b454" stroke="#987f53" stroke-width="2"/>
+<circle cx="410" cy="540" r="78" fill="#af9259" stroke="#987f53" stroke-width="2"/>
+<circle cx="410" cy="540" r="7.8" fill="#624a33" stroke="#ffffff" stroke-width="2"/>
+<circle cx="644" cy="696" r="7" fill="#347e85" stroke="#ffffff" stroke-width="2"/>
+<text x="665" y="701" font-family="Malgun Gothic, sans-serif" font-size="21" fill="#263945">관리도시 중심</text>
+<text x="665" y="729" font-family="Malgun Gothic, sans-serif" font-size="19" fill="#263945">뿌리 중심에서 21.6 km</text>
+<text x="70" y="871" font-family="Malgun Gothic, sans-serif" font-size="21" fill="#263945">갈색: 굵은 노출 뿌리 6 km / 금색: 수관 반경 9 km</text>
+<text x="70" y="907" font-family="Malgun Gothic, sans-serif" font-size="21" fill="#263945">진한 베이지: 상주 제한 12 km / 옅은색: 완충 20 km</text>
+<text x="950" y="178" font-family="Malgun Gothic, sans-serif" font-size="28" fill="#263945">측면 치수 (가로·세로 동일 축척)</text>
+<polyline points="970.00,570.00 1700.00,570.00" fill="none" stroke="#8e8d78" stroke-width="3" stroke-linejoin="round"/>
+<polygon points="1300,570 1310,430 1328,405 1340,570" fill="#775936"/>
+<polygon points="1032,474 1105,388 1220,341 1320,314 1420,341 1535,388 1608,474" fill="#c9a143"/>
+<polyline points="1032.00,490.00 1608.00,490.00" fill="none" stroke="#765e2e" stroke-width="2" stroke-linejoin="round"/>
+<text x="1200" y="624" font-family="Malgun Gothic, sans-serif" font-size="24" fill="#263945">수관 너비 18 km</text>
+<text x="1570" y="269" font-family="Malgun Gothic, sans-serif" font-size="24" fill="#263945">최상부 8 km</text>
+<text x="960" y="648" font-family="Malgun Gothic, sans-serif" font-size="23" fill="#263945">수관 하단은 지면 위 3 km</text>
+<text x="960" y="686" font-family="Malgun Gothic, sans-serif" font-size="21" fill="#263945">줄기 밑동 지름 1.2 km / 지반 표고 400 m</text>
+<text x="960" y="757" font-family="Malgun Gothic, sans-serif" font-size="22" fill="#263945">벨레스 거리 208.6 km → 나무 꼭대기 고도각 1.20°</text>
+<text x="960" y="797" font-family="Malgun Gothic, sans-serif" font-size="22" fill="#263945">가까운 능선 뒤에서 상부 수관을 공개</text>
+<text x="960" y="836" font-family="Malgun Gothic, sans-serif" font-size="21" fill="#263945">대륙 지도 아이콘 크기와 실제 수관 크기는 별개</text>
+<text x="60" y="1031" font-family="Malgun Gothic, sans-serif" font-size="21" fill="#263945">반경 12 km는 관리 정책상의 예방 구역이다. 실제 뿌리·낙하물 위험 한계는 미검증이다.</text></svg>

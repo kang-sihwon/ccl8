@@ -21,9 +21,11 @@
 
 ## 이그니스 지역 확대
 
+세계수의 실제 치수와 그 영향을 받는 도시·마을의 현재 작업 후보는 [세계수·정착지 설계도](EtherWorldMap/2026-11-01-worldtree-settlement-plans.md)에서 읽는다. 새 지역도는 관리도시·로덴·벨레스의 거리와 가림 조건을 정의한다. 아래 생성 이미지는 대륙의 큰 지형·정치 관계를 보는 개념도로 유지하며, 중앙 도시 표식의 실거리 배치로 사용하지 않는다.
+
 현재 배치의 바탕은 [이그니스 전체 지형 시안](EtherWorldMap/2026-11-01-ignis-macro-terrain.md)이다. 대륙이 화면 대부분을 채우도록 확대한 뒤 산맥·고원·분지·평야·강·호수와 세계수를 표현했다. 사용자가 다음 단계로 이그니스의 큰 도시 배치를 요청해 [주요 도시 8곳의 후보](../Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-ignis-major-cities.md)를 추가했다. [도시 시안 제작 기록](EtherWorldMap/2026-11-01-ignis-city-prompts.md)에 입력·출력·프롬프트를 둔다.
 
-세계수는 [중앙 분지의 본류 서쪽에 표시한 후보](EtherWorldMap/2026-11-01-ignis-macro-terrain.md#세계수-위치-후보)를 추가했다. 지도상의 수관은 가독성을 위해 강조한 상징이며 실제 높이와 수관 너비는 미정이다.
+세계수는 [중앙 분지의 본류 서쪽에 표시한 후보](EtherWorldMap/2026-11-01-ignis-macro-terrain.md#세계수-위치-후보)를 추가했다. 지도상의 수관은 가독성을 위해 강조한 상징이며 실제 치수의 작업 후보는 [세계수 규모](../Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-worldtree-scale.md)에 정리했다.
 
 도시와 정치 관계를 지도에서 함께 볼 때는 [통치·생산·교역 배치안](../Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-ignis-governance-layout.md)을 읽는다. [통합 PNG](EtherWorldMap/Images/ignis-governance-production-trade-v2.png)에 정치권 4곳과 생산·공급 거점 8곳, 수운·육로·연안 해로를 표시했다. 입력·출력·프롬프트와 화면 확인 범위는 [제작 기록](EtherWorldMap/2026-11-01-ignis-governance-prompts.md)이 소유한다. 정밀 국경·면적·항행 조건을 검증한 지도는 아니다.
 

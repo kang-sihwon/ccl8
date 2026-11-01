@@ -31,8 +31,11 @@
 | 주요 도시의 정착·성장·생활과 지역 조직을 구체화할 때 | [이그니스 도시 성장 배경](2026-10-31-ether-taiga-dawn/2026-11-01-ignis-city-origins.md) |
 | 도시의 국가 소속과 통치·교역·갈등 관계를 검토할 때 | [이그니스 세력과 국가 관계](2026-10-31-ether-taiga-dawn/2026-11-01-ignis-political-relations.md) |
 | 통치·협약 범위와 생산 거점·교역로를 지도에서 볼 때 | [이그니스 통치·생산·교역 배치](2026-10-31-ether-taiga-dawn/2026-11-01-ignis-governance-layout.md) |
+| 세계수의 실제 치수·영향 범위·원경 조건을 정할 때 | [세계수 규모](2026-10-31-ether-taiga-dawn/2026-11-01-worldtree-scale.md) |
+| 세계수 규모에 맞춘 대도시 조정과 일반 도시·마을을 볼 때 | [이그니스 정착망](2026-10-31-ether-taiga-dawn/2026-11-01-ignis-settlement-network.md) |
+| 현재 벨레스 생활권과 첫 장의 거리·고도·출항 가림을 볼 때 | [벨레스 지역 배치](2026-10-31-ether-taiga-dawn/2026-11-01-veles-region-layout.md) |
 | 마을·수원·큰 강·출항 원경을 같은 지형에 놓을 때 | [벨레스 주변 지리와 시각 배치](2026-10-31-ether-taiga-dawn/2026-11-01-veles-geography.md) |
-| 벨레스·숲·동굴과 출항까지의 동선을 좌표로 놓을 때 | [벨레스와 첫 장 공간 배치](2026-10-31-ether-taiga-dawn/2026-11-01-first-chapter-spatial-layout.md) |
+| 보류한 벨레스·숲·동굴·출항 좌표안을 비교할 때 | [이전 첫 장 공간 배치](2026-10-31-ether-taiga-dawn/2026-11-01-first-chapter-spatial-layout.md) |
 | 첫 장 이후의 이야기 방향을 확인할 때 | [첫 대륙의 전체 이야기](#8-첫-대륙의-전체-이야기), [여러 대륙으로의 확장](#9-여러-대륙으로의-확장) |
 | 제작할 공간과 연출, 남은 판단을 확인할 때 | [제작 범위](2026-10-31-ether-taiga-dawn/2026-11-01-first-chapter.md#10-실제-첫-게임의-제작-범위), [검토할 사항](#10-정본-반영-전에-검토할-사항) |
 

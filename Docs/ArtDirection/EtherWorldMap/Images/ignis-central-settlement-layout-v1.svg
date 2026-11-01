@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1250" viewBox="0 0 1800 1250"><rect width="100%" height="100%" fill="#f6f2e8"/>
+<text x="45" y="64" font-family="Malgun Gothic, sans-serif" font-size="38" fill="#263945">중앙 분지 정착망 | 세계수 규모 적용안</text>
+<text x="45" y="103" font-family="Malgun Gothic, sans-serif" font-size="21" fill="#59646b">신규 지역 좌표: 동쪽 +X, 북쪽 +Y, km / 세계지도 위경도에 아직 고정하지 않은 설계도</text>
+<polyline points="150.00,1150.00 150.00,250.00" fill="none" stroke="#d7ddcf" stroke-width="1" stroke-linejoin="round"/>
+<text x="150" y="1190" font-family="Malgun Gothic, sans-serif" font-size="16" fill="#263945">-25</text>
+<polyline points="250.00,1150.00 250.00,250.00" fill="none" stroke="#d7ddcf" stroke-width="1" stroke-linejoin="round"/>
+<text x="250" y="1190" font-family="Malgun Gothic, sans-serif" font-size="16" fill="#263945">0</text>
+<polyline points="350.00,1150.00 350.00,250.00" fill="none" stroke="#d7ddcf" stroke-width="1" stroke-linejoin="round"/>
+<text x="350" y="1190" font-family="Malgun Gothic, sans-serif" font-size="16" fill="#263945">25</text>
+<polyline points="450.00,1150.00 450.00,250.00" fill="none" stroke="#d7ddcf" stroke-width="1" stroke-linejoin="round"/>
+<text x="450" y="1190" font-family="Malgun Gothic, sans-serif" font-size="16" fill="#263945">50</text>
+<polyline points="550.00,1150.00 550.00,250.00" fill="none" stroke="#d7ddcf" stroke-width="1" stroke-linejoin="round"/>
+<text x="550" y="1190" font-family="Malgun Gothic, sans-serif" font-size="16" fill="#263945">75</text>
+<polyline points="650.00,1150.00 650.00,250.00" fill="none" stroke="#d7ddcf" stroke-width="1" stroke-linejoin="round"/>
+<text x="650" y="1190" font-family="Malgun Gothic, sans-serif" font-size="16" fill="#263945">100</text>
+<polyline points="750.00,1150.00 750.00,250.00" fill="none" stroke="#d7ddcf" stroke-width="1" stroke-linejoin="round"/>
+<text x="750" y="1190" font-family="Malgun Gothic, sans-serif" font-size="16" fill="#263945">125</text>
+<polyline points="850.00,1150.00 850.00,250.00" fill="none" stroke="#d7ddcf" stroke-width="1" stroke-linejoin="round"/>
+<text x="850" y="1190" font-family="Malgun Gothic, sans-serif" font-size="16" fill="#263945">150</text>
+<polyline points="950.00,1150.00 950.00,250.00" fill="none" stroke="#d7ddcf" stroke-width="1" stroke-linejoin="round"/>
+<text x="950" y="1190" font-family="Malgun Gothic, sans-serif" font-size="16" fill="#263945">175</text>
+<polyline points="1050.00,1150.00 1050.00,250.00" fill="none" stroke="#d7ddcf" stroke-width="1" stroke-linejoin="round"/>
+<text x="1050" y="1190" font-family="Malgun Gothic, sans-serif" font-size="16" fill="#263945">200</text>
+<polyline points="150.00,1150.00 1050.00,1150.00" fill="none" stroke="#d7ddcf" stroke-width="1" stroke-linejoin="round"/>
+<text x="100" y="1155" font-family="Malgun Gothic, sans-serif" font-size="17" fill="#263945">-50</text>
+<polyline points="150.00,1050.00 1050.00,1050.00" fill="none" stroke="#d7ddcf" stroke-width="1" stroke-linejoin="round"/>
+<text x="100" y="1055" font-family="Malgun Gothic, sans-serif" font-size="17" fill="#263945">-25</text>
+<polyline points="150.00,950.00 1050.00,950.00" fill="none" stroke="#d7ddcf" stroke-width="1" stroke-linejoin="round"/>
+<text x="100" y="955" font-family="Malgun Gothic, sans-serif" font-size="17" fill="#263945">0</text>
+<polyline points="150.00,850.00 1050.00,850.00" fill="none" stroke="#d7ddcf" stroke-width="1" stroke-linejoin="round"/>
+<text x="100" y="855" font-family="Malgun Gothic, sans-serif" font-size="17" fill="#263945">25</text>
+<polyline points="150.00,750.00 1050.00,750.00" fill="none" stroke="#d7ddcf" stroke-width="1" stroke-linejoin="round"/>
+<text x="100" y="755" font-family="Malgun Gothic, sans-serif" font-size="17" fill="#263945">50</text>
+<polyline points="150.00,650.00 1050.00,650.00" fill="none" stroke="#d7ddcf" stroke-width="1" stroke-linejoin="round"/>
+<text x="100" y="655" font-family="Malgun Gothic, sans-serif" font-size="17" fill="#263945">75</text>
+<polyline points="150.00,550.00 1050.00,550.00" fill="none" stroke="#d7ddcf" stroke-width="1" stroke-linejoin="round"/>
+<text x="100" y="555" font-family="Malgun Gothic, sans-serif" font-size="17" fill="#263945">100</text>
+<polyline points="150.00,450.00 1050.00,450.00" fill="none" stroke="#d7ddcf" stroke-width="1" stroke-linejoin="round"/>
+<text x="100" y="455" font-family="Malgun Gothic, sans-serif" font-size="17" fill="#263945">125</text>
+<polyline points="150.00,350.00 1050.00,350.00" fill="none" stroke="#d7ddcf" stroke-width="1" stroke-linejoin="round"/>
+<text x="100" y="355" font-family="Malgun Gothic, sans-serif" font-size="17" fill="#263945">150</text>
+<polyline points="150.00,250.00 1050.00,250.00" fill="none" stroke="#d7ddcf" stroke-width="1" stroke-linejoin="round"/>
+<text x="100" y="255" font-family="Malgun Gothic, sans-serif" font-size="17" fill="#263945">175</text>
+<polyline points="882.00,322.00 850.00,370.00 830.00,390.00 834.00,430.00 798.00,450.00 782.00,502.00 730.00,510.00 722.00,546.00 690.00,570.00 642.00,598.00 582.00,650.00 506.00,710.00 442.00,782.00 394.00,870.00 362.00,998.00 374.00,1070.00 418.00,1142.00" fill="none" stroke="#309fc3" stroke-width="9" stroke-linejoin="round"/>
+<circle cx="250" cy="950" r="80" fill="#e8dfbd" stroke="#8e8057" stroke-width="2"/>
+<circle cx="250" cy="950" r="48" fill="#d7bc8a" stroke="#8e8057" stroke-width="2"/>
+<circle cx="250" cy="950" r="36" fill="#d9ac44" stroke="#8e8057" stroke-width="2"/>
+<polyline points="322.00,998.00 362.00,998.00" fill="none" stroke="#a66549" stroke-width="6" stroke-linejoin="round"/>
+<text x="1150" y="209" font-family="Malgun Gothic, sans-serif" font-size="29" fill="#263945">핵심 재배치</text>
+<text x="1150" y="263" font-family="Malgun Gothic, sans-serif" font-size="23" fill="#263945">세계수: (0, 0), 높이 8 km</text>
+<text x="1150" y="307" font-family="Malgun Gothic, sans-serif" font-size="23" fill="#263945">관리도시: (18, -12), 제한권 밖</text>
+<text x="1150" y="351" font-family="Malgun Gothic, sans-serif" font-size="23" fill="#263945">환적장: (28, -12), 동쪽 강변</text>
+<text x="1150" y="395" font-family="Malgun Gothic, sans-serif" font-size="23" fill="#263945">로덴: (110, 95), 약 145 km</text>
+<text x="1150" y="439" font-family="Malgun Gothic, sans-serif" font-size="23" fill="#263945">벨레스: (150, 145), 약 209 km</text>
+<text x="1150" y="483" font-family="Malgun Gothic, sans-serif" font-size="23" fill="#263945">로덴과 벨레스는 같은 수계</text>
+<text x="1150" y="527" font-family="Malgun Gothic, sans-serif" font-size="23" fill="#263945">벨레스 → 로덴: 하류 남서 방향</text>
+<circle cx="322" cy="998" r="10" fill="#2c6974" stroke="#ffffff" stroke-width="2"/>
+<text x="177" y="1049" font-family="Malgun Gothic, sans-serif" font-size="23" fill="#263945">관리도시</text>
+<circle cx="362" cy="998" r="10" fill="#2c6974" stroke="#ffffff" stroke-width="2"/>
+<text x="382" y="1006" font-family="Malgun Gothic, sans-serif" font-size="23" fill="#263945">환적장</text>
+<circle cx="690" cy="570" r="10" fill="#2c6974" stroke="#ffffff" stroke-width="2"/>
+<text x="710" y="601" font-family="Malgun Gothic, sans-serif" font-size="23" fill="#263945">로덴</text>
+<circle cx="850" cy="370" r="10" fill="#2c6974" stroke="#ffffff" stroke-width="2"/>
+<text x="870" y="408" font-family="Malgun Gothic, sans-serif" font-size="23" fill="#263945">벨레스 V01</text>
+<circle cx="798" cy="450" r="10" fill="#2c6974" stroke="#ffffff" stroke-width="2"/>
+<text x="638" y="485" font-family="Malgun Gothic, sans-serif" font-size="23" fill="#263945">T01 목재집산</text>
+<circle cx="398" cy="910" r="10" fill="#2c6974" stroke="#ffffff" stroke-width="2"/>
+<text x="416" y="923" font-family="Malgun Gothic, sans-serif" font-size="23" fill="#263945">T02 분지시장</text>
+<circle cx="430" cy="1090" r="10" fill="#2c6974" stroke="#ffffff" stroke-width="2"/>
+<text x="445" y="1113" font-family="Malgun Gothic, sans-serif" font-size="23" fill="#263945">T03 하류곡창</text>
+<circle cx="866" cy="346" r="6" fill="#81925d" stroke="#ffffff" stroke-width="2"/>
+<text x="881" y="310" font-family="Malgun Gothic, sans-serif" font-size="19" fill="#263945">V02 거목돌봄</text>
+<circle cx="810" cy="402" r="6" fill="#81925d" stroke="#ffffff" stroke-width="2"/>
+<text x="640" y="403" font-family="Malgun Gothic, sans-serif" font-size="19" fill="#263945">V03 보리마을</text>
+<circle cx="822" cy="378" r="6" fill="#81925d" stroke="#ffffff" stroke-width="2"/>
+<text x="652" y="367" font-family="Malgun Gothic, sans-serif" font-size="19" fill="#263945">V04 목재마을</text>
+<text x="160" y="929" font-family="Malgun Gothic, sans-serif" font-size="24" fill="#263945">세계수</text>
+<text x="1150" y="676" font-family="Malgun Gothic, sans-serif" font-size="26" fill="#263945">일반 도시: T01-T03</text>
+<text x="1150" y="720" font-family="Malgun Gothic, sans-serif" font-size="26" fill="#263945">마을: V01-V04</text>
+<text x="1150" y="781" font-family="Malgun Gothic, sans-serif" font-size="23" fill="#263945">설계 강선 길이 73.4 km</text>
+<text x="1150" y="822" font-family="Malgun Gothic, sans-serif" font-size="22" fill="#263945">운항 일수·수심·교량은 검증 전</text>
+<text x="1150" y="892" font-family="Malgun Gothic, sans-serif" font-size="22" fill="#263945">대륙의 다른 도시·국가 경계는</text>
+<text x="1150" y="927" font-family="Malgun Gothic, sans-serif" font-size="22" fill="#263945">이 지역 그림의 밖에 이어진다.</text>
+<text x="80" y="1210" font-family="Malgun Gothic, sans-serif" font-size="20" fill="#263945">북쪽 ↑  |  해안·산맥·수문을 복원한 지도가 아닌 좌표 관계도다. 이전의 보류 위경도·거리와 혼용하지 않는다.</text></svg>

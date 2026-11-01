@@ -6,6 +6,8 @@
 
 ## 통합 지도
 
+이 이미지는 통치·생산·교역 관계를 보는 개념도다. 이후 세계수 실제 치수에 맞춰 [관리도시·로덴과 중앙 정착망](2026-11-01-ignis-settlement-network.md)을 조정했다. 중앙의 실거리와 배후 거점은 새 지역도를 우선하며, 아래 PNG의 도시 표식 간격이나 P1·P3·R1-R4 세부 선형을 새 좌표로 간주하지 않는다. 정치권 소속과 품목·교역 연결의 의미는 유지한다.
+
 ![이그니스 통치 지역과 생산·교역 배치안](../../../ArtDirection/EtherWorldMap/Images/ignis-governance-production-trade-v2.png)
 
 지도의 도시와 세계수는 위치를 읽기 위한 과장된 기호다. 영역의 넓이나 경로 길이를 실제 면적·거리로 환산하지 않는다. 생성 이미지의 해안·수계·지형은 픽셀 단위로 고정되지 않았으며 정확한 대륙 면적·위경도는 [세계지도 기준](../../../ArtDirection/EtherWorldMap.md)이 유지한다. 입력·출력과 프롬프트는 [지도 제작 기록](../../../ArtDirection/EtherWorldMap/2026-11-01-ignis-governance-prompts.md)에 있다.

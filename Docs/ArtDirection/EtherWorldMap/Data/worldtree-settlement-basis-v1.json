@@ -1,0 +1,372 @@
+{
+  "status": "design_candidate_not_global_georeference",
+  "sphere_radius_km": 6366.197723675814,
+  "regional_projection": "azimuthal equidistant centered at World Tree; x east/y north in km; global anchor not assigned",
+  "tree": {
+    "height_km": 8,
+    "ground_asl_km": 0.4,
+    "crown_width_km": 18,
+    "crown_bottom_above_ground_km": 3,
+    "trunk_base_diameter_km": 1.2,
+    "exposed_roots_radius_km": 6,
+    "restricted_residential_radius_km": 12,
+    "transition_outer_radius_km": 20
+  },
+  "regional_points_km": {
+    "world_tree": [
+      0,
+      0
+    ],
+    "management_city": [
+      18,
+      -12
+    ],
+    "river_landing": [
+      28,
+      -12
+    ],
+    "roden": [
+      110,
+      95
+    ],
+    "veles": [
+      150,
+      145
+    ],
+    "T01": [
+      137,
+      125
+    ],
+    "T02": [
+      37,
+      10
+    ],
+    "T03": [
+      45,
+      -35
+    ],
+    "V02": [
+      154,
+      151
+    ],
+    "V03": [
+      140,
+      137
+    ],
+    "V04": [
+      143,
+      143
+    ]
+  },
+  "regional_river_km": [
+    [
+      158,
+      157
+    ],
+    [
+      150,
+      145
+    ],
+    [
+      145,
+      140
+    ],
+    [
+      146,
+      130
+    ],
+    [
+      137,
+      125
+    ],
+    [
+      133,
+      112
+    ],
+    [
+      120,
+      110
+    ],
+    [
+      118,
+      101
+    ],
+    [
+      110,
+      95
+    ],
+    [
+      98,
+      88
+    ],
+    [
+      83,
+      75
+    ],
+    [
+      64,
+      60
+    ],
+    [
+      48,
+      42
+    ],
+    [
+      36,
+      20
+    ],
+    [
+      28,
+      -12
+    ],
+    [
+      31,
+      -30
+    ],
+    [
+      42,
+      -48
+    ]
+  ],
+  "local_points_m": {
+    "quay": [
+      0,
+      0
+    ],
+    "workshop": [
+      60,
+      110
+    ],
+    "water_point": [
+      -20,
+      90
+    ],
+    "water_store": [
+      45,
+      175
+    ],
+    "forest_gate": [
+      90,
+      260
+    ],
+    "squirrel": [
+      180,
+      440
+    ],
+    "guardian": [
+      80,
+      740
+    ],
+    "wolves": [
+      220,
+      1040
+    ],
+    "cave": [
+      260,
+      1250
+    ],
+    "old_workshop": [
+      280,
+      1300
+    ],
+    "boss": [
+      300,
+      1360
+    ],
+    "spring": [
+      320,
+      1390
+    ],
+    "local_grove_tree": [
+      320,
+      1420
+    ],
+    "ridge": [
+      -650,
+      -650
+    ],
+    "reveal": [
+      -1000,
+      -1000
+    ]
+  },
+  "local_river_m": [
+    [
+      800,
+      1000
+    ],
+    [
+      500,
+      600
+    ],
+    [
+      180,
+      160
+    ],
+    [
+      0,
+      0
+    ],
+    [
+      -300,
+      -150
+    ],
+    [
+      -320,
+      -900
+    ],
+    [
+      -1000,
+      -1000
+    ],
+    [
+      -1350,
+      -1100
+    ]
+  ],
+  "forest_walk_m": [
+    [
+      60,
+      110
+    ],
+    [
+      -20,
+      90
+    ],
+    [
+      90,
+      260
+    ],
+    [
+      180,
+      440
+    ],
+    [
+      80,
+      740
+    ],
+    [
+      220,
+      1040
+    ],
+    [
+      260,
+      1250
+    ],
+    [
+      280,
+      1300
+    ],
+    [
+      300,
+      1360
+    ]
+  ],
+  "spring_water_m": [
+    [
+      320,
+      1390
+    ],
+    [
+      250,
+      1150
+    ],
+    [
+      160,
+      930
+    ],
+    [
+      130,
+      700
+    ],
+    [
+      100,
+      480
+    ],
+    [
+      20,
+      290
+    ],
+    [
+      45,
+      175
+    ],
+    [
+      -20,
+      90
+    ],
+    [
+      0,
+      20
+    ]
+  ],
+  "local_frame": {
+    "origin_regional_km": [
+      150,
+      145
+    ],
+    "mapping": "regional_xy_km = origin_regional_km + local_xy_m / 1000; aligned projected axes, not a separate tangent-plane georeference",
+    "extent_m": [
+      -1350,
+      800,
+      -1100,
+      1420
+    ],
+    "local_distances": "Euclidean design distances; sphere distortion not corrected at village scale",
+    "reveal_regional_km": [
+      149.0,
+      144.0
+    ]
+  },
+  "visibility_inputs": {
+    "quay_eye_asl_m": 611.6,
+    "reveal_eye_asl_m": 609.6,
+    "ridge_top_asl_m": 760,
+    "ridge_radius_m": 220,
+    "spring_surface_asl_m": 740,
+    "crown_sample_offsets_m": [
+      -9000,
+      -4500,
+      0,
+      4500,
+      9000
+    ],
+    "river_drawn_half_width_m": 33.92857142857142
+  },
+  "computed": {
+    "veles_tree_surface_km": 208.62646045025065,
+    "roden_tree_surface_km": 145.34441853748632,
+    "management_tree_km": 21.633307652783937,
+    "veles_roden_geodesic_km": 64.03105678426498,
+    "veles_roden_river_km": 73.38815009965725,
+    "walk_to_boss_m": 1464.3522555013074,
+    "boat_to_reveal_m": 1772.9904269986596,
+    "tree_top_elevation_from_quay_deg": 1.1974405843783267,
+    "tree_crown_bottom_elevation_from_quay_deg": -0.17338674893334746,
+    "tree_top_elevation_after_bend_deg": 1.2189224588768868,
+    "crown_width_angle_approx_deg": 4.940336800744662,
+    "top_sea_sphere_horizon_km": 415.09690998060836,
+    "ridge_sample_intersections_before_m": [
+      704.6129051553331,
+      701.4230379751108,
+      699.6590382499663,
+      699.2699832317613,
+      700.2425854542817
+    ],
+    "ridge_sample_intersections_after_m": [
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "ridge_min_apparent_elevation_deg": 11.888948782023153,
+    "river_centerline_min_ridge_center_distance_m": 295.3528007045076,
+    "river_drawn_bank_ridge_clearance_m": 41.42422927593619
+  },
+  "limits": [
+    "No refraction, real terrain DEM, fog, canopy transmissivity, weather, hydrology, navigation, travel-time or ecological simulation",
+    "Regional point-to-point lengths calculated on proposed AEQD sphere; local diagram uses design meters",
+    "Five crown-width sightline samples test only the proposed 220m-radius blocking ridge; no actual landscape validation"
+  ]
+}
