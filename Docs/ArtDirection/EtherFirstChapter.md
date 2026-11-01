@@ -13,6 +13,7 @@
 | 보관한 벨레스 이미지와 적용 범위, 남은 배치 문제를 확인할 때 | [벨레스 공간 참조 이미지](EtherFirstChapter/VelesReferences.md) |
 | 대륙·지역 지리를 먼저 정하고 마을 배치로 좁혀 갈 때 | [Jenova 지도 생성 자료 조사](../AgentToolingResearch/2026-11-01-jenova-map-generation.md) |
 | 사용자 제공 지리 초안에 맞춰 강·수원·마을과 출항 원경을 배치할 때 | [벨레스 주변 지리와 시각 배치](../Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-veles-geography.md) |
+| 세계지도 v3에 연결한 마을·숲·동굴 좌표와 첫 장 동선을 참조할 때 | [벨레스와 첫 장 공간 배치](../Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-first-chapter-spatial-layout.md) |
 | 과거 YouArt 시험 설정과 결과를 참고할 때 | [2라운드 프롬프트](../ConceptImageToolTest/Prompts/Round2.md), [화풍 잇기 결과](../ConceptImageToolTest/Results/StyleChain.md) |
 
 ## 전체 범위

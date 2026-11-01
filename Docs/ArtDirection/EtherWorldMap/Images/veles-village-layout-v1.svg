@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1100" viewBox="0 0 1800 1100">
+<rect width="1800" height="1100" fill="#f6f3e9"/>
+<text x="65" y="42" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="36" font-weight="700" fill="#173e48">벨레스 · 마을 중심부 배치</text>
+<text x="67" y="95" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="19" font-weight="400" fill="#53676b">북쪽이 위  |  급수대 원점, 단위 m  |  높은 생활 공간 → 낮은 나루 → 남서쪽 하류</text>
+<polyline points="65.0000,139.0000 1735.0000,139.0000" fill="none" stroke="#b9c6bb" stroke-width="2" stroke-linejoin="round"/>
+<polygon points="70.0000,175.0000 970.0000,175.0000 970.0000,975.0000 70.0000,975.0000" fill="#d9dcb4" stroke="none" stroke-width="1"/>
+<polygon points="891.5843,235.0000 948.4465,519.3107 949.6238,527.2510 949.9995,535.2694 949.5698,543.2850 948.3390,551.2172 946.3195,558.9861 943.5316,566.5135 853.5316,776.5135 852.1707,779.5164 758.6786,975.0000 491.1146,975.0000 609.6721,915.7212 707.1179,711.9710 786.6806,526.3246 731.5535,250.6893 730.3893,242.8830 730.0000,235.0000 730.3893,227.1170 731.5535,219.3107 740.4157,175.0000 903.5843,175.0000 891.5843,235.0000" fill="#7cb7c0" stroke="#4e939f" stroke-width="2"/>
+<polygon points="380.0000,545.0000 480.0000,545.0000 480.0000,615.0000 380.0000,615.0000" fill="#b68566" stroke="#725e4e" stroke-width="1"/>
+<text x="384" y="553" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="20" font-weight="700" fill="#fff8e8">공방</text>
+<polygon points="240.0000,445.0000 324.0000,445.0000 324.0000,505.0000 240.0000,505.0000" fill="#b68566" stroke="#725e4e" stroke-width="1"/>
+<text x="244" y="453" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="20" font-weight="700" fill="#fff8e8">주거</text>
+<polygon points="330.0000,355.0000 410.0000,355.0000 410.0000,415.0000 330.0000,415.0000" fill="#b68566" stroke="#725e4e" stroke-width="1"/>
+<text x="334" y="363" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="20" font-weight="700" fill="#fff8e8">주거</text>
+<polygon points="630.0000,545.0000 700.0000,545.0000 700.0000,595.0000 630.0000,595.0000" fill="#b68566" stroke="#725e4e" stroke-width="1"/>
+<text x="634" y="553" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="20" font-weight="700" fill="#fff8e8">창고</text>
+<polyline points="430.0000,565.0000 510.0000,535.0000 610.0000,615.0000 700.0000,735.0000" fill="none" stroke="#c6b391" stroke-width="18" stroke-linejoin="round"/>
+<polyline points="430.0000,565.0000 460.0000,335.0000 420.0000,175.0000" fill="none" stroke="#c6b391" stroke-width="17" stroke-linejoin="round"/>
+<polyline points="440.0000,175.0000 470.0000,395.0000 510.0000,535.0000" fill="none" stroke="#338da9" stroke-width="5" stroke-linejoin="round"/>
+<circle cx="510" cy="535" r="15" fill="#91c1c3" stroke="#526e68" stroke-width="3"/>
+<polygon points="690.0000,709.0000 755.0000,709.0000 755.0000,735.0000 690.0000,735.0000" fill="#b29b79" stroke="#6b6756" stroke-width="1"/>
+<polygon points="762.0000,689.0000 778.0000,689.0000 782.0000,739.0000 770.0000,759.0000 758.0000,739.0000" fill="#8d795f" stroke="#5c655c" stroke-width="1"/>
+<polygon points="778.0000,755.0000 794.0000,755.0000 798.0000,805.0000 786.0000,825.0000 774.0000,805.0000" fill="#8d795f" stroke="#5c655c" stroke-width="1"/>
+<polyline points="510.0000,535.0000 610.0000,615.0000 700.0000,735.0000" fill="none" stroke="#ad7850" stroke-width="2" stroke-linejoin="round" stroke-dasharray="7 6"/>
+<circle cx="430" cy="565" r="6" fill="#a75535" stroke="none" stroke-width="2"/>
+<circle cx="700" cy="735" r="6" fill="#8a608d" stroke="none" stroke-width="2"/>
+<text x="500" y="485" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="21" font-weight="700" fill="#243f43">급수대 · 316m</text>
+<text x="290" y="645" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="20" font-weight="400" fill="#243f43">공방 앞 식사 공간 · 314m</text>
+<text x="594" y="825" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="20" font-weight="700" fill="#243f43">나루 · 302m</text>
+<text x="470" y="245" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="21" font-weight="700" fill="#243f43">숲 출입구 ↑</text>
+<text x="160" y="285" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="18" font-weight="400" fill="#267b99">식수는 북쪽 수원에서</text>
+<polyline points="840.0000,465.0000 840.0000,595.0000" fill="none" stroke="#267b99" stroke-width="4" stroke-linejoin="round"/>
+<polygon points="840.0000,595.0000 835.0000,582.0000 845.0000,582.0000" fill="#267b99" stroke="none" stroke-width="1"/>
+<text x="810" y="385" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="22" font-weight="700" fill="#267b99">테른 강</text>
+<polyline points="630.0000,895.0000 520.0000,945.0000" fill="none" stroke="#8a608d" stroke-width="4" stroke-linejoin="round"/>
+<polygon points="520.0000,945.0000 529.7657,935.0687 533.9038,944.1724" fill="#8a608d" stroke="none" stroke-width="1"/>
+<text x="230" y="885" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="20" font-weight="700" fill="#795280">출항 → 남서쪽 굽이</text>
+<text x="1030" y="180" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="27" font-weight="700" fill="#243f43">같은 공간을 다섯 번 사용</text>
+<text x="1030" y="235" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="23" font-weight="400" fill="#243f43">아침: 공방 → 급수대에서 수리</text>
+<text x="1030" y="283" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="23" font-weight="400" fill="#243f43">고장: 스승 점검 / 친구 비상 운반</text>
+<text x="1030" y="331" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="23" font-weight="400" fill="#243f43">귀환: 급수 확인 / 정상 사용 재개</text>
+<text x="1030" y="379" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="23" font-weight="400" fill="#243f43">저녁: 공방 앞 식사 / 도끼 보강</text>
+<text x="1030" y="427" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="23" font-weight="400" fill="#243f43">다음 날: 기존 나루에서 출항</text>
+<text x="1030" y="520" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="25" font-weight="700" fill="#243f43">고도와 길</text>
+<text x="1030" y="570" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="21" font-weight="400" fill="#243f43">식수 수원 456m → 급수대 316m</text>
+<text x="1030" y="610" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="21" font-weight="400" fill="#243f43">공방 314m / 나루 302m / 강 300m</text>
+<text x="1030" y="650" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="21" font-weight="400" fill="#243f43">급수대–나루 약 139m, 굽은 운반길</text>
+<text x="1030" y="690" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="21" font-weight="400" fill="#243f43">운반 경사로와 짧은 보행 계단을 분리</text>
+<text x="1030" y="730" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="21" font-weight="400" fill="#243f43">주거·공방은 높은 단, 나루는 낮은 단</text>
+<text x="1030" y="810" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="25" font-weight="700" fill="#243f43">전경 카메라</text>
+<text x="1030" y="855" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="22" font-weight="400" fill="#243f43">북동쪽 구릉에서 남서쪽을 본다.</text>
+<text x="1030" y="899" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="21" font-weight="400" fill="#243f43">나루에서는 능선이 세계수를 가리고,</text>
+<text x="1030" y="934" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="21" font-weight="400" fill="#243f43">하류 굽이 뒤에서 수관을 공개한다.</text>
+<polyline points="925.0000,260.0000 925.0000,195.0000" fill="none" stroke="#284b51" stroke-width="3" stroke-linejoin="round"/>
+<polygon points="925.0000,195.0000 930.0000,208.0000 920.0000,208.0000" fill="#284b51" stroke="none" stroke-width="1"/>
+<text x="915" y="175" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="18" font-weight="700" fill="#243f43">N</text>
+<polyline points="130.0000,945.0000 330.0000,945.0000" fill="none" stroke="#284b51" stroke-width="3" stroke-linejoin="round"/>
+<text x="140" y="967" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="16" font-weight="400" fill="#243f43">100m</text>
+<text x="70" y="1042" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="18" font-weight="400" fill="#5c7274">배치도이며 건축 확정안·홍수 검증·수리 설비 상세도는 아님. 기존 색·재료 참조 이미지를 함께 사용.</text>
+</svg>

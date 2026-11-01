@@ -7,7 +7,7 @@ Orbis의 그래픽 스타일을 ccl8의 마을, 전투 구간, 보스 공간에 
 | 문서 | 읽는 때 |
 |---|---|
 | [에테르 첫 장 MJ 시안 목록](ArtDirection/EtherFirstChapter.md) | 도입부터 바르툴전 이후 출항까지 YouArt에서 만들 디자인과 장면 시안을 고를 때 |
-| [에테르 세계지도 시안](ArtDirection/EtherWorldMap.md) | 육지 35%·이그니스 약 2,000만 km²를 목표로 생성한 지도와 미검증 항목을 비교할 때 |
+| [에테르 세계지도 시안](ArtDirection/EtherWorldMap.md) | 육지 35%·이그니스 2,000만 km²의 계산 보정 지도와 대륙·벨레스 지역 확대를 볼 때 |
 
 ## 참고 근거
 
