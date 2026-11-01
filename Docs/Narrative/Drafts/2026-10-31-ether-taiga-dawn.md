@@ -27,6 +27,7 @@
 | 기준 문서를 첨부해 Jenova에서 세계지도 시안을 만들 때 | [Jenova 세계지도 프롬프트](2026-10-31-ether-taiga-dawn/2026-11-01-jenova-world-map-prompt.md) |
 | 첫 대륙의 지형·거점 좌표와 후속 여정을 구체화할 때 | [이그니스 타이가 지리와 여정](2026-10-31-ether-taiga-dawn/2026-11-01-ignis-taiga-geography.md) |
 | 계산 보정 세계지도 위의 지형·강·거점 배치를 확인할 때 | [이그니스 내부 지형과 거점 배치](2026-10-31-ether-taiga-dawn/2026-11-01-ignis-spatial-layout.md) |
+| 전체 지형·세계수 시안에 주요 도시의 위치와 기능을 배치할 때 | [이그니스 주요 도시 배치](2026-10-31-ether-taiga-dawn/2026-11-01-ignis-major-cities.md) |
 | 마을·수원·큰 강·출항 원경을 같은 지형에 놓을 때 | [벨레스 주변 지리와 시각 배치](2026-10-31-ether-taiga-dawn/2026-11-01-veles-geography.md) |
 | 벨레스·숲·동굴과 출항까지의 동선을 좌표로 놓을 때 | [벨레스와 첫 장 공간 배치](2026-10-31-ether-taiga-dawn/2026-11-01-first-chapter-spatial-layout.md) |
 | 첫 장 이후의 이야기 방향을 확인할 때 | [첫 대륙의 전체 이야기](#8-첫-대륙의-전체-이야기), [여러 대륙으로의 확장](#9-여러-대륙으로의-확장) |

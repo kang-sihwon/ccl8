@@ -42,6 +42,8 @@ SYMBOL: one extraordinary ancient living tree with a powerful short-visible trun
 
 ## 먼저 고를 지형
 
+이 지형과 세계수 표시를 바탕으로 사용자가 요청한 [주요 도시 배치안](../../Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-ignis-major-cities.md)을 별도로 만들었다. 이 문서의 원본 지형 PNG와 세계수 PNG는 도시를 추가하기 전 비교 자료로 유지한다.
+
 | 위치 | 이번 시안에서 제안한 형태 |
 |---|---|
 | 북쪽 해안 | 만과 빙식 골짜기, 낮은 설원·툰드라, 일부 호수 |
