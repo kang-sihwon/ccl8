@@ -18,6 +18,28 @@
 
 확대 참조는 세계지도 v3의 이그니스 좌표를 동일 비율로 옮겼다. 2,400×1,200 화면에서 해안 외곽의 가로 범위는 2,280픽셀, 세로 범위는 약 1,089.8픽셀이다. 이는 지도 영역을 대륙 위주로 채운다는 뜻이며 만과 바다를 메워 육지색을 화면의 100%로 만든다는 뜻은 아니다.
 
+## 세계수 위치 후보
+
+세계수는 중앙 분지의 호수군 남쪽, 큰 강 본류의 서쪽 육지에 놓는 시안을 제안한다. 북부 산맥 아래의 저지에 자리하며 강은 나무 동쪽으로 흘러 남쪽 만에 닿는다. 주변에 숲과 관리도시 생활권을 펼칠 여유를 남기되 도시 배치는 아직 그리지 않았다.
+
+![세계수 위치를 표시한 전체 지형 시안](Images/ignis-macro-terrain-worldtree-v1.png)
+
+사용자는 세계수가 커서 대륙지도에도 보여야 한다고 요청했다. 기본 제공 `image_gen`으로 지형 원본에 황금빛 수관의 나무 표식을 추가했다. 이 그림의 나무 크기는 지도에서 알아보기 쉽게 강조한 상징 표현이며 수관이 실제로 수백 km에 걸친다는 설정이 아니다. 실제 높이·수관 너비·원경 가시 범위는 별도로 결정한다. 앞서 보류한 거점 배치의 세계수 좌표와 높이를 확정하거나 재채택한 것도 아니다.
+
+입력 지형의 구도와 주요 산맥·강·해안을 유지하도록 요청했으며 큰 형태는 화면에서 대조했다. 생성 편집이므로 주변 지형의 픽셀 단위 보존이나 해안 면적 일치는 검증하지 않았다. 원래의 지형 PNG와 정확한 해안 SVG를 모두 유지한다.
+
+### 세계수 추가 프롬프트
+
+입력 이미지는 `ignis-macro-terrain-concept-v1.png` 한 장이다.
+
+```text
+Edit the provided Ignis Taiga full-continent terrain map. Make ONE localized addition: a recognizable golden World Tree cartographic landmark in the central interior basin. Keep the entire existing continent framing, coastline, northern mountains, western plateaus, eastern ridges, lakes, rivers, southern bay and sea otherwise unchanged. Do not regenerate or rearrange terrain.
+
+LOCATION: root/base anchor at approximately 49% of full image width from the left and 53% of full image height from the top, on land in the central basin south of the chain of small central lakes and WEST (left) of the broad main river flowing into the southern bay. It is an inland basin landmark, NOT at the coastal delta, NOT in a lake, NOT atop the northern snow mountains. The river must continue passing to the east of the World Tree without a rerouted channel or dam.
+
+SYMBOL: one extraordinary ancient living tree with a powerful short-visible trunk and a broad, tiered crown of golden needle-like foliage, darker olive-gold shaded lower branches, subtly bright sunlit upper crown, a believable tree silhouette rather than a glowing magical orb. Use a tasteful small pictorial landmark integrated with the map's painterly shaded-relief atlas style. The full tree symbol should be about 8% of image width and 12% of image height, rooted at the anchor; crown extends upward on the map. This is cartographic exaggeration for readability, NOT a literal hundreds-of-kilometers-wide physical tree. It must be clearly visible at whole-continent viewing size but leave the continent's overall terrain as the dominant subject. Add only a very restrained ground contact shadow. Do not add giant exposed root networks, new lakes, settlements, buildings, roads, labels, text, circles, borders, glow rays, clouds, or other symbols. Keep the surrounding terrain and waterways legible. North stays up. Same wide aspect ratio and map extent as the supplied image.
+```
+
 ## 먼저 고를 지형
 
 | 위치 | 이번 시안에서 제안한 형태 |

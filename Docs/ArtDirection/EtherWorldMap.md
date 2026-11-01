@@ -23,6 +23,8 @@
 
 현재 먼저 검토할 것은 [이그니스 전체 지형 시안](EtherWorldMap/2026-11-01-ignis-macro-terrain.md)이다. 대륙이 화면 대부분을 채우도록 확대한 뒤 산맥·고원·분지·평야·강·호수의 큰 구성을 고른다. 사용자가 지형을 먼저 잡는 순서로 바로잡았으므로 거점과 첫 장 배치는 보류한다.
 
+세계수는 [중앙 분지의 본류 서쪽에 표시한 후보](EtherWorldMap/2026-11-01-ignis-macro-terrain.md#세계수-위치-후보)를 추가했다. 지도상의 수관은 가독성을 위해 강조한 상징이며 실제 높이와 수관 너비는 미정이다.
+
 앞서 만든 [이그니스 거점 배치](../Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-ignis-spatial-layout.md)와 [벨레스·첫 장 동선](../Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-first-chapter-spatial-layout.md)은 비교 자료로 보존한다. 대륙 전체 지형을 고른 뒤 다시 검토하며 기존 좌표를 확정 조건으로 사용하지 않는다.
 
 ## 생성 시안의 제작 정보
