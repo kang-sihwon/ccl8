@@ -41,5 +41,6 @@
 | [결정 33](decisions/0033-large-document-cleanup-first.md) | 문서 구조 | 큰 문서의 정리를 해당 시스템 작업까지 미루지 않는다. 크기 순으로 내용을 직접 읽고 정리한 뒤 항목별로 나눈다. 문서별 승인 없이 진행하고 애매한 항목은 마지막에 한 번에 묻는다 | 유효 | 결정 32 보완 | [진행 중인 작업](Work/README.md) |
 | [결정 34](decisions/0034-concept-and-ingame-map-roles.md) | 지도 아트 | 기존 이그니스 생성 지도는 지역 이동용 개념도로 활용할 수 있고, 실제 인게임 UI 지도는 붉은사막·원신을 방향 참고로 한 평면 도면형 지도로 제작한다. 구체적인 시각 요소와 기능은 별도 제안이다 | 유효 | 결정 35에서 구체화 | [지도 용도와 UI 방향](ArtDirection/EtherWorldMap.md#지도-용도와-ui-방향) |
 | [결정 35](decisions/0035-nadir-map-presentation.md) | 지도 아트 | 이후 지도 바탕은 수직으로 내려다보는 정사영 평면 표현을 따른다. 산은 등고선·음영, 숲·건물은 윗면으로 표시하며 UI 제작은 뒤로 미룬다 | 유효 | 결정 34 구체화 | [지도 용도와 UI 방향](ArtDirection/EtherWorldMap.md#지도-용도와-ui-방향) |
+| [결정 36](decisions/0036-narrative-plot-drafts-and-retention.md) | 서사 작업 | 현재 서사 작업은 주인공의 성장·지역 갈등·몬스터 전투를 연결하는 플롯 구성이다. 수정된 후보를 현재안으로 갱신하되 이전안을 보존하고 최종 확정 후 불필요한 자료를 정리한다 | 유효 |  | [모험 플롯 후보](Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-03-adventure-plot.md#작업-목적과-사용자-방향), [후보 수정과 보존](Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-03-adventure-plot.md#후보-수정과-보존) |
 
 위 결정으로 확정한 범위 밖의 [GameDesign](GameDesign.md), [ArtDirection](ArtDirection.md) 세부 제안과 [StudyRoadmap](StudyRoadmap.md)의 월별 배분은 후보로 유지한다.
