@@ -42,5 +42,6 @@
 | [결정 34](decisions/0034-concept-and-ingame-map-roles.md) | 지도 아트 | 기존 이그니스 생성 지도는 지역 이동용 개념도로 활용할 수 있고, 실제 인게임 UI 지도는 붉은사막·원신을 방향 참고로 한 평면 도면형 지도로 제작한다. 구체적인 시각 요소와 기능은 별도 제안이다 | 유효 | 결정 35에서 구체화 | [지도 용도와 UI 방향](ArtDirection/EtherWorldMap.md#지도-용도와-ui-방향) |
 | [결정 35](decisions/0035-nadir-map-presentation.md) | 지도 아트 | 이후 지도 바탕은 수직으로 내려다보는 정사영 평면 표현을 따른다. 산은 등고선·음영, 숲·건물은 윗면으로 표시하며 UI 제작은 뒤로 미룬다 | 유효 | 결정 34 구체화 | [지도 용도와 UI 방향](ArtDirection/EtherWorldMap.md#지도-용도와-ui-방향) |
 | [결정 36](decisions/0036-narrative-plot-drafts-and-retention.md) | 서사 작업 | 현재 서사 작업은 주인공의 성장·지역 갈등·몬스터 전투를 연결하는 플롯 구성이다. 수정된 후보를 현재안으로 갱신하되 이전안을 보존하고 최종 확정 후 불필요한 자료를 정리한다 | 유효 |  | [모험 플롯 후보](Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-03-adventure-plot.md#작업-목적과-사용자-방향), [후보 수정과 보존](Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-03-adventure-plot.md#후보-수정과-보존) |
+| [결정 37](decisions/0037-unrestricted-protagonist-weapons.md) | 전투·서사 | 모든 무기를 사용할 수 있게 하는 목표를 따른다. 주인공의 기본·전용 무기를 특정 종류로 고정하지 않고 서사와 성장·전투 장면도 무기 선택을 허용한다 | 유효 |  | [게임 기획의 확정 목표](GameDesign.md#확정한-것), [주인공의 무기와 전투 방식](Narrative/Drafts/2026-10-31-ether-taiga-dawn.md#무기와-전투-방식) |
 
 위 결정으로 확정한 범위 밖의 [GameDesign](GameDesign.md), [ArtDirection](ArtDirection.md) 세부 제안과 [StudyRoadmap](StudyRoadmap.md)의 월별 배분은 후보로 유지한다.

@@ -12,10 +12,12 @@
 |---|---|
 | 현재 제안한 지역별 사건·보스·동료·성장·이동 계기를 볼 때 | [지역별 상세 후보](2026-11-03-adventure-plot/2026-11-03-regional-arcs.md) |
 | 주인공의 사적인 욕망·성격·약점·전투 정체성과 성장 행동을 볼 때 | [주인공 구체화 후보](2026-11-03-adventure-plot/2026-11-03-protagonist.md) |
+| 모든 무기 사용 목표와 수정 전의 도끼·근접전 고정 표현을 확인할 때 | [결정 37](../../../decisions/0037-unrestricted-protagonist-weapons.md), [수정 전 후보 보존본](2026-11-03-adventure-plot/2026-11-03-fixed-weapon-previous.md) |
 | 전쟁 확대안, 초기 지역 개요와 최종 보스 대안을 비교할 때 | [앞선 제안 보존본](2026-11-03-adventure-plot/2026-11-03-earlier-proposals.md) |
 | 작업 목적과 이전안 보존의 사용자 지시를 확인할 때 | [결정 36](../../../decisions/0036-narrative-plot-drafts-and-retention.md) |
 | 대화와 문서의 기록 누락·의미 보존 검토 범위를 확인할 때 | [세션 기록 대조](../../Reviews/2026-11-03-adventure-session-record-review.md) |
 | 주인공의 동기·성장·전투 정체성 후보의 검토 범위를 확인할 때 | [주인공 독립 검토](../../Reviews/2026-11-03-protagonist-review.md) |
+| 모든 무기 사용 목표 반영과 이전 문장 보존 검토를 확인할 때 | [무기 고정 해제 검토](../../Reviews/2026-11-03-weapon-choice-review.md) |
 | 기존 방문 순서와 지역별로 얻는 해결 조건을 확인할 때 | [이그니스 지리와 여정](2026-11-01-ignis-taiga-geography.md#첫-대륙의-이야기-흐름) |
 | 기존 첫 장의 장면·대사·보스전·출항을 확인할 때 | [첫 장 상세](2026-11-01-first-chapter.md) |
 

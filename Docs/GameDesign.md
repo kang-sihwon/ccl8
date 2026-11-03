@@ -9,6 +9,7 @@
 | 멀티플레이와 작업 순서 | 이번 CCL에서 멀티플레이를 구현하고, 멀티플레이 기본 흐름부터 전투·성장·콘텐츠 순으로 만든다. 구현 순서는 [StudyRoadmap](StudyRoadmap.md)이 소유한다 | [결정 3](decisions/0003-multiplayer-first-order.md) |
 | 실행 환경과 재스폰 | 평소 작업은 Standalone, 서버 검증은 Dedicated Server와 Listen Server에서 한다. 사망한 플레이어만 개별 재스폰한다. 상세 설계는 [MultiplayerFoundation](MultiplayerFoundation.md)에 있다 | [결정 5](decisions/0005-run-modes-and-respawn.md) |
 | 방어 행동 | 최소 전투에 회피, 가드, 패링을 모두 포함한다. 세 행동의 역할과 구현은 [CombatFoundation](CombatFoundation.md)이 소유한다 | [결정 8](decisions/0008-dodge-guard-parry.md) |
+| 무기 사용 목표 | 모든 무기를 사용할 수 있게 하며 주인공의 무기를 특정 종류로 고정하지 않는다. 실제 지원 종류·숙련·장비 조건·무기별 동작과 구현 완료 여부는 별도로 확인한다 | [결정 37](decisions/0037-unrestricted-protagonist-weapons.md) |
 
 ## 플레이 흐름(제안)
 
@@ -22,7 +23,7 @@
 
 ## 전투(제안)
 
-첫 검증은 무기 동작 세트 하나로 시작한다. Orbis의 체간 중심 전투는 참고 후보이며 ccl8의 사양이 아니다.
+첫 검증은 무기 동작 세트 하나로 시작한다. 이는 검증의 시작 범위이며 모든 무기를 사용할 수 있게 하는 목표를 한 종류로 제한하지 않는다. Orbis의 체간 중심 전투는 참고 후보이며 ccl8의 사양이 아니다.
 
 일반 몹은 빠른 근접 압박, 느리지만 강한 공격, 거리 유지와 견제 같은 역할로 비교한다. 이 역할 예시는 확정된 종류나 수량이 아니다. 공통 리그·동작·AI를 재사용하면 제작량이 줄지만, 타이밍과 대응이 같아지면 다른 적으로 느껴지지 않을 수 있다.
 
