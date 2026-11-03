@@ -1,0 +1,2846 @@
+[
+  {
+    "slug": "academic-historian",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/academic-historian",
+    "title": "Academic Historian"
+  },
+  {
+    "slug": "academic-linguist",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/academic-linguist",
+    "title": "Academic Linguist"
+  },
+  {
+    "slug": "academic-psychologist",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/academic-psychologist",
+    "title": "Academic Psychologist"
+  },
+  {
+    "slug": "academic-research-assistant",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/academic-research-assistant",
+    "title": "Academic Research Assistant"
+  },
+  {
+    "slug": "academic-researcher",
+    "status": 404,
+    "url": "https://www.jenova.ai/a/academic-researcher",
+    "title": "Jenova - The AI Agent Platform"
+  },
+  {
+    "slug": "academic-theologian",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/academic-theologian",
+    "title": "Academic Theologian"
+  },
+  {
+    "slug": "accounting-and-audit-assistant",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/accounting-and-audit-assistant",
+    "title": "Accounting & Audit Assistant"
+  },
+  {
+    "slug": "accounting-audit-assistant",
+    "status": 404,
+    "url": "https://www.jenova.ai/a/accounting-audit-assistant",
+    "title": "Jenova - The AI Agent Platform"
+  },
+  {
+    "slug": "acting-coach",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/acting-coach",
+    "title": "Acting Coach"
+  },
+  {
+    "slug": "adhd-coach",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/adhd-coach",
+    "title": "ADHD Coach"
+  },
+  {
+    "slug": "agent-tool-overload-architecting-for-scalability",
+    "status": 404,
+    "url": "https://www.jenova.ai/a/agent-tool-overload-architecting-for-scalability",
+    "title": "Jenova - The AI Agent Platform"
+  },
+  {
+    "slug": "ai-dungeon",
+    "status": 404,
+    "url": "https://www.jenova.ai/a/ai-dungeon",
+    "title": "Jenova - The AI Agent Platform"
+  },
+  {
+    "slug": "ai-for-beginners",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/ai-for-beginners",
+    "title": "AI for Beginners"
+  },
+  {
+    "slug": "aircraft-maintenance-assistant",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/aircraft-maintenance-assistant",
+    "title": "Aircraft Maintenance Assistant"
+  },
+  {
+    "slug": "alpha-male-dating-coach",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/alpha-male-dating-coach",
+    "title": "Alpha Male Dating Coach"
+  },
+  {
+    "slug": "alternate-historian",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/alternate-historian",
+    "title": "Alternate Historian"
+  },
+  {
+    "slug": "ancient-greek-tutor",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/ancient-greek-tutor",
+    "title": "Ancient Greek Tutor"
+  },
+  {
+    "slug": "antique-expert",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/antique-expert",
+    "title": "Antique Expert"
+  },
+  {
+    "slug": "ap-exam-tutor",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/ap-exam-tutor",
+    "title": "AP Exam Tutor"
+  },
+  {
+    "slug": "appliance-repair-technician",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/appliance-repair-technician",
+    "title": "Appliance Repair Technician"
+  },
+  {
+    "slug": "art-advisor",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/art-advisor",
+    "title": "Art Advisor"
+  },
+  {
+    "slug": "assignment-generator",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/assignment-generator",
+    "title": "Assignment Generator"
+  },
+  {
+    "slug": "aura-reader",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/aura-reader",
+    "title": "Aura Reader"
+  },
+  {
+    "slug": "auto-repair-mechanic",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/auto-repair-mechanic",
+    "title": "Auto Repair Mechanic"
+  },
+  {
+    "slug": "automate-notion-with-an-ai-agent-jenovas-new-mcp-integration",
+    "status": 404,
+    "url": "https://www.jenova.ai/a/automate-notion-with-an-ai-agent-jenovas-new-mcp-integration",
+    "title": "Jenova - The AI Agent Platform"
+  },
+  {
+    "slug": "aviation-mentor",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/aviation-mentor",
+    "title": "Aviation Mentor"
+  },
+  {
+    "slug": "bar-exam-tutor",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/bar-exam-tutor",
+    "title": "Bar Exam Tutor"
+  },
+  {
+    "slug": "bartender-coach",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/bartender-coach",
+    "title": "Bartender Coach"
+  },
+  {
+    "slug": "beauty-consultant",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/beauty-consultant",
+    "title": "Beauty Consultant"
+  },
+  {
+    "slug": "bible-study-guide",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/bible-study-guide",
+    "title": "Bible Study Guide"
+  },
+  {
+    "slug": "biology-tutor",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/biology-tutor",
+    "title": "Biology Tutor"
+  },
+  {
+    "slug": "board-game-creator",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/board-game-creator",
+    "title": "Board Game Creator"
+  },
+  {
+    "slug": "brand-kit-generator",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/brand-kit-generator",
+    "title": "Brand Kit Generator"
+  },
+  {
+    "slug": "brand-tracker",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/brand-tracker",
+    "title": "Brand Tracker"
+  },
+  {
+    "slug": "bridal-evening-gown-designer",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/bridal-evening-gown-designer",
+    "title": "Bridal & Evening Gown Designer"
+  },
+  {
+    "slug": "brochure-maker",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/brochure-maker",
+    "title": "Brochure Maker"
+  },
+  {
+    "slug": "browser-use-vs-mcp-two-paths-for-agentic-web",
+    "status": 404,
+    "url": "https://www.jenova.ai/a/browser-use-vs-mcp-two-paths-for-agentic-web",
+    "title": "Jenova - The AI Agent Platform"
+  },
+  {
+    "slug": "buddhist-monk",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/buddhist-monk",
+    "title": "Buddhist Monk"
+  },
+  {
+    "slug": "business-card-maker",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/business-card-maker",
+    "title": "Business Card Maker"
+  },
+  {
+    "slug": "business-co-pilot",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/business-co-pilot",
+    "title": "Business Co-Pilot"
+  },
+  {
+    "slug": "business-copilot",
+    "status": 404,
+    "url": "https://www.jenova.ai/a/business-copilot",
+    "title": "Jenova - The AI Agent Platform"
+  },
+  {
+    "slug": "business-plan-writer",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/business-plan-writer",
+    "title": "Business Plan Writer"
+  },
+  {
+    "slug": "business-valuation-expert",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/business-valuation-expert",
+    "title": "Business Valuation Expert"
+  },
+  {
+    "slug": "c-coding-assistant",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/c-coding-assistant",
+    "title": "C Coding Assistant"
+  },
+  {
+    "slug": "car-buying-advisor",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/car-buying-advisor",
+    "title": "Car Buying Advisor"
+  },
+  {
+    "slug": "career-advisor",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/career-advisor",
+    "title": "Career Advisor"
+  },
+  {
+    "slug": "carpenters-assistant",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/carpenters-assistant",
+    "title": "Carpenter's Assistant"
+  },
+  {
+    "slug": "case-study-generator",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/case-study-generator",
+    "title": "Case Study Generator"
+  },
+  {
+    "slug": "catholic-priest",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/catholic-priest",
+    "title": "Catholic Priest"
+  },
+  {
+    "slug": "celebrity-gossip-columnist",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/celebrity-gossip-columnist",
+    "title": "Celebrity Gossip Columnist"
+  },
+  {
+    "slug": "cfa-tutor",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/cfa-tutor",
+    "title": "CFA Tutor"
+  },
+  {
+    "slug": "character-creator",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/character-creator",
+    "title": "Character Creator"
+  },
+  {
+    "slug": "chemistry-tutor",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/chemistry-tutor",
+    "title": "Chemistry Tutor"
+  },
+  {
+    "slug": "chess-coach",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/chess-coach",
+    "title": "Chess Coach"
+  },
+  {
+    "slug": "childrens-book-creator",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/childrens-book-creator",
+    "title": "Children's Book Creator"
+  },
+  {
+    "slug": "chinese-chess-coach",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/chinese-chess-coach",
+    "title": "Chinese Chess Coach"
+  },
+  {
+    "slug": "chinese-english-translator",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/chinese-english-translator",
+    "title": "Chinese-English Translator"
+  },
+  {
+    "slug": "chinese-fortune-teller",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/chinese-fortune-teller",
+    "title": "Chinese Fortune Teller"
+  },
+  {
+    "slug": "chinese-tutor",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/chinese-tutor",
+    "title": "Chinese Tutor"
+  },
+  {
+    "slug": "chinese-zodiac-master",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/chinese-zodiac-master",
+    "title": "Chinese Zodiac Master"
+  },
+  {
+    "slug": "christian-pastor",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/christian-pastor",
+    "title": "Christian Pastor"
+  },
+  {
+    "slug": "civilization",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/civilization",
+    "title": "Civilization"
+  },
+  {
+    "slug": "clinical-research-advisor",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/clinical-research-advisor",
+    "title": "Clinical Research Advisor"
+  },
+  {
+    "slug": "clinical-scribe",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/clinical-scribe",
+    "title": "Clinical Scribe"
+  },
+  {
+    "slug": "cloud-architect",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/cloud-architect",
+    "title": "Cloud Architect"
+  },
+  {
+    "slug": "college-admissions-consultant",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/college-admissions-consultant",
+    "title": "College Admissions Consultant"
+  },
+  {
+    "slug": "college-life",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/college-life",
+    "title": "College Life"
+  },
+  {
+    "slug": "coloring-book-creator",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/coloring-book-creator",
+    "title": "Coloring Book Creator"
+  },
+  {
+    "slug": "comic-creator",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/comic-creator",
+    "title": "Comic Creator"
+  },
+  {
+    "slug": "commodities-analyst",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/commodities-analyst",
+    "title": "Commodities Analyst"
+  },
+  {
+    "slug": "computer-science-tutor",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/computer-science-tutor",
+    "title": "Computer Science Tutor"
+  },
+  {
+    "slug": "concept-art-creator",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/concept-art-creator",
+    "title": "Concept Art Creator"
+  },
+  {
+    "slug": "confucian-scholar",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/confucian-scholar",
+    "title": "Confucian Scholar"
+  },
+  {
+    "slug": "conlang-creator",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/conlang-creator",
+    "title": "Conlang Creator"
+  },
+  {
+    "slug": "conspiracy-theorist",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/conspiracy-theorist",
+    "title": "Conspiracy Theorist"
+  },
+  {
+    "slug": "construction-estimator",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/construction-estimator",
+    "title": "Construction Estimator"
+  },
+  {
+    "slug": "corporate-training-designer",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/corporate-training-designer",
+    "title": "Corporate Training Designer"
+  },
+  {
+    "slug": "cosmetic-surgery-image-specialist",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/cosmetic-surgery-image-specialist",
+    "title": "Cosmetic Surgery Image Specialist"
+  },
+  {
+    "slug": "costume-designer",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/costume-designer",
+    "title": "Costume Designer"
+  },
+  {
+    "slug": "cpa-tutor",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/cpa-tutor",
+    "title": "CPA Tutor"
+  },
+  {
+    "slug": "cpp-coding-assistant",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/cpp-coding-assistant",
+    "title": "C++ Coding Assistant"
+  },
+  {
+    "slug": "creative-fiction-writer",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/creative-fiction-writer",
+    "title": "Creative Fiction Writer"
+  },
+  {
+    "slug": "crush-decoder",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/crush-decoder",
+    "title": "Crush Decoder"
+  },
+  {
+    "slug": "cryptocurrency-analyst",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/cryptocurrency-analyst",
+    "title": "Cryptocurrency Analyst"
+  },
+  {
+    "slug": "crystal-ball-reader",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/crystal-ball-reader",
+    "title": "Crystal Ball Reader"
+  },
+  {
+    "slug": "csharp-coding-assistant",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/csharp-coding-assistant",
+    "title": "C#/.NET Coding Assistant"
+  },
+  {
+    "slug": "csharp-dotnet-coding-assistant",
+    "status": 404,
+    "url": "https://www.jenova.ai/a/csharp-dotnet-coding-assistant",
+    "title": "Jenova - The AI Agent Platform"
+  },
+  {
+    "slug": "csv-generator",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/csv-generator",
+    "title": "CSV Generator"
+  },
+  {
+    "slug": "cup-reader",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/cup-reader",
+    "title": "Cup Reader"
+  },
+  {
+    "slug": "curriculum-designer",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/curriculum-designer",
+    "title": "Curriculum Designer"
+  },
+  {
+    "slug": "cybersecurity-analyst",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/cybersecurity-analyst",
+    "title": "Cybersecurity Analyst"
+  },
+  {
+    "slug": "daoist-sage",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/daoist-sage",
+    "title": "Daoist Sage"
+  },
+  {
+    "slug": "data-privacy-consultant",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/data-privacy-consultant",
+    "title": "Data Privacy Consultant"
+  },
+  {
+    "slug": "data-science-consultant",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/data-science-consultant",
+    "title": "Data Science Consultant"
+  },
+  {
+    "slug": "date-planner",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/date-planner",
+    "title": "Date Planner"
+  },
+  {
+    "slug": "dating-app-advisor",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/dating-app-advisor",
+    "title": "Dating App Advisor"
+  },
+  {
+    "slug": "dating-background-investigator",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/dating-background-investigator",
+    "title": "Dating Background Investigator"
+  },
+  {
+    "slug": "dead-rules",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/dead-rules",
+    "title": "Dead Rules"
+  },
+  {
+    "slug": "deep-research",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/deep-research",
+    "title": "Deep Research"
+  },
+  {
+    "slug": "dental-image-specialist",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/dental-image-specialist",
+    "title": "Dental Image Specialist"
+  },
+  {
+    "slug": "dermatology-advisor",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/dermatology-advisor",
+    "title": "Dermatology Advisor"
+  },
+  {
+    "slug": "devops-advisor",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/devops-advisor",
+    "title": "DevOps Advisor"
+  },
+  {
+    "slug": "dharma-study-guide",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/dharma-study-guide",
+    "title": "Dharma Study Guide"
+  },
+  {
+    "slug": "digital-ad-designer",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/digital-ad-designer",
+    "title": "Digital Ad Designer"
+  },
+  {
+    "slug": "digital-detox-coach",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/digital-detox-coach",
+    "title": "Digital Detox Coach"
+  },
+  {
+    "slug": "dividend-investing-advisor",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/dividend-investing-advisor",
+    "title": "Dividend Investing Advisor"
+  },
+  {
+    "slug": "dj-coach",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/dj-coach",
+    "title": "DJ Coach"
+  },
+  {
+    "slug": "dream-interpreter",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/dream-interpreter",
+    "title": "Dream Interpreter"
+  },
+  {
+    "slug": "dropbox",
+    "status": 404,
+    "url": "https://www.jenova.ai/a/dropbox",
+    "title": "Jenova - The AI Agent Platform"
+  },
+  {
+    "slug": "e-commerce-business-partner",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/e-commerce-business-partner",
+    "title": "E-Commerce Business Partner"
+  },
+  {
+    "slug": "e-sports-analyst",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/e-sports-analyst",
+    "title": "E-Sports Analyst"
+  },
+  {
+    "slug": "economics-analyst",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/economics-analyst",
+    "title": "Economics Analyst"
+  },
+  {
+    "slug": "economics-tutor",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/economics-tutor",
+    "title": "Economics Tutor"
+  },
+  {
+    "slug": "electricians-assistant",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/electricians-assistant",
+    "title": "Electrician's Assistant"
+  },
+  {
+    "slug": "email-writer",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/email-writer",
+    "title": "Email Writer"
+  },
+  {
+    "slug": "energy-analyst",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/energy-analyst",
+    "title": "Energy Analyst"
+  },
+  {
+    "slug": "english-literature-tutor",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/english-literature-tutor",
+    "title": "English Literature Tutor"
+  },
+  {
+    "slug": "english-tutor",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/english-tutor",
+    "title": "English Tutor"
+  },
+  {
+    "slug": "environmental-consultant",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/environmental-consultant",
+    "title": "Environmental Consultant"
+  },
+  {
+    "slug": "esports-analyst",
+    "status": 404,
+    "url": "https://www.jenova.ai/a/esports-analyst",
+    "title": "Jenova - The AI Agent Platform"
+  },
+  {
+    "slug": "essay-writer",
+    "status": 404,
+    "url": "https://www.jenova.ai/a/essay-writer",
+    "title": "Jenova - The AI Agent Platform"
+  },
+  {
+    "slug": "etf-research-analyst",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/etf-research-analyst",
+    "title": "ETF Research Analyst"
+  },
+  {
+    "slug": "etiquette-coach",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/etiquette-coach",
+    "title": "Etiquette Coach"
+  },
+  {
+    "slug": "etsy-business-advisor",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/etsy-business-advisor",
+    "title": "Etsy Business Advisor"
+  },
+  {
+    "slug": "excel-generator",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/excel-generator",
+    "title": "Excel Generator"
+  },
+  {
+    "slug": "executive-coach",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/executive-coach",
+    "title": "Executive Coach"
+  },
+  {
+    "slug": "expense-and-receipt-tracker",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/expense-and-receipt-tracker",
+    "title": "Expense & Receipt Tracker"
+  },
+  {
+    "slug": "expense-receipt-tracker",
+    "status": 404,
+    "url": "https://www.jenova.ai/a/expense-receipt-tracker",
+    "title": "Jenova - The AI Agent Platform"
+  },
+  {
+    "slug": "expense-report-generator",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/expense-report-generator",
+    "title": "Expense Report Generator"
+  },
+  {
+    "slug": "face-reader",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/face-reader",
+    "title": "Face Reader"
+  },
+  {
+    "slug": "family-history-chronicler",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/family-history-chronicler",
+    "title": "Family History Chronicler"
+  },
+  {
+    "slug": "fan-fiction-writer",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/fan-fiction-writer",
+    "title": "Fan Fiction Writer"
+  },
+  {
+    "slug": "fantasy-sports-advisor",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/fantasy-sports-advisor",
+    "title": "Fantasy Sports Advisor"
+  },
+  {
+    "slug": "farm-agriculture-advisor",
+    "status": 404,
+    "url": "https://www.jenova.ai/a/farm-agriculture-advisor",
+    "title": "Jenova - The AI Agent Platform"
+  },
+  {
+    "slug": "farm-and-agriculture-advisor",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/farm-and-agriculture-advisor",
+    "title": "Farm & Agriculture Advisor"
+  },
+  {
+    "slug": "fashion-collection-planner",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/fashion-collection-planner",
+    "title": "Fashion Collection Planner"
+  },
+  {
+    "slug": "fashion-consultant",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/fashion-consultant",
+    "title": "Fashion Consultant"
+  },
+  {
+    "slug": "fashion-designer",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/fashion-designer",
+    "title": "Fashion Designer"
+  },
+  {
+    "slug": "fashion-lookbook-creator",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/fashion-lookbook-creator",
+    "title": "Fashion Lookbook Creator"
+  },
+  {
+    "slug": "fashion-mockup-studio",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/fashion-mockup-studio",
+    "title": "Fashion Mockup Studio"
+  },
+  {
+    "slug": "fashion-sketch-creator",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/fashion-sketch-creator",
+    "title": "Fashion Sketch Creator"
+  },
+  {
+    "slug": "feng-shui-advisor",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/feng-shui-advisor",
+    "title": "Feng Shui Advisor"
+  },
+  {
+    "slug": "fertility-ivf-advisor",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/fertility-ivf-advisor",
+    "title": "Fertility & IVF Advisor"
+  },
+  {
+    "slug": "film-screenwriter",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/film-screenwriter",
+    "title": "Film Screenwriter"
+  },
+  {
+    "slug": "fitness-and-workout-coach",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/fitness-and-workout-coach",
+    "title": "Fitness & Workout Coach"
+  },
+  {
+    "slug": "fitness-workout-coach",
+    "status": 404,
+    "url": "https://www.jenova.ai/a/fitness-workout-coach",
+    "title": "Jenova - The AI Agent Platform"
+  },
+  {
+    "slug": "flyer-maker",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/flyer-maker",
+    "title": "Flyer Maker"
+  },
+  {
+    "slug": "food-photo-enhancer",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/food-photo-enhancer",
+    "title": "Food Photo Enhancer"
+  },
+  {
+    "slug": "food-safety-expert",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/food-safety-expert",
+    "title": "Food Safety Expert"
+  },
+  {
+    "slug": "football-betting-analyst",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/football-betting-analyst",
+    "title": "Football Betting Analyst"
+  },
+  {
+    "slug": "football-soccer-analyst",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/football-soccer-analyst",
+    "title": "Football (Soccer) Analyst"
+  },
+  {
+    "slug": "forex-market-analyst",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/forex-market-analyst",
+    "title": "Forex Market Analyst"
+  },
+  {
+    "slug": "fragrance-consultant",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/fragrance-consultant",
+    "title": "Fragrance Consultant"
+  },
+  {
+    "slug": "franchise-consultant",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/franchise-consultant",
+    "title": "Franchise Consultant"
+  },
+  {
+    "slug": "freelance-business-coach",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/freelance-business-coach",
+    "title": "Freelance Business Coach"
+  },
+  {
+    "slug": "french-english-translator",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/french-english-translator",
+    "title": "French-English Translator"
+  },
+  {
+    "slug": "french-tutor",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/french-tutor",
+    "title": "French Tutor"
+  },
+  {
+    "slug": "fundamental-stock-analyst",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/fundamental-stock-analyst",
+    "title": "Fundamental Stock Analyst"
+  },
+  {
+    "slug": "game-designer-assistant",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/game-designer-assistant",
+    "title": "Game Designer Assistant"
+  },
+  {
+    "slug": "gardening-companion",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/gardening-companion",
+    "title": "Gardening Companion"
+  },
+  {
+    "slug": "genshin-meta-analyst",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/genshin-meta-analyst",
+    "title": "Genshin Meta Analyst"
+  },
+  {
+    "slug": "geo-blog-writer",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/geo-blog-writer",
+    "title": "GEO Blog Writer"
+  },
+  {
+    "slug": "geo-growth-strategist",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/geo-growth-strategist",
+    "title": "GEO Growth Strategist"
+  },
+  {
+    "slug": "geopolitics-analyst",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/geopolitics-analyst",
+    "title": "Geopolitics Analyst"
+  },
+  {
+    "slug": "german-english-translator",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/german-english-translator",
+    "title": "German-English Translator"
+  },
+  {
+    "slug": "german-tutor",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/german-tutor",
+    "title": "German Tutor"
+  },
+  {
+    "slug": "glp-1-companion",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/glp-1-companion",
+    "title": "GLP-1 Companion"
+  },
+  {
+    "slug": "gmat-tutor",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/gmat-tutor",
+    "title": "GMAT Tutor"
+  },
+  {
+    "slug": "gnostic-scholar",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/gnostic-scholar",
+    "title": "Gnostic Scholar"
+  },
+  {
+    "slug": "go-coding-assistant",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/go-coding-assistant",
+    "title": "Go Coding Assistant"
+  },
+  {
+    "slug": "google-ads-generator",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/google-ads-generator",
+    "title": "Google Ads Generator"
+  },
+  {
+    "slug": "grading-assistant",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/grading-assistant",
+    "title": "Grading Assistant"
+  },
+  {
+    "slug": "graduate-school-admissions-consultant",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/graduate-school-admissions-consultant",
+    "title": "Graduate School Admissions Consultant"
+  },
+  {
+    "slug": "grant-proposal-writer",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/grant-proposal-writer",
+    "title": "Grant Proposal Writer"
+  },
+  {
+    "slug": "graphic-designer",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/graphic-designer",
+    "title": "Graphic Designer"
+  },
+  {
+    "slug": "gre-tutor",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/gre-tutor",
+    "title": "GRE Tutor"
+  },
+  {
+    "slug": "greeting-card-maker",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/greeting-card-maker",
+    "title": "Greeting Card Maker"
+  },
+  {
+    "slug": "grief-counselor",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/grief-counselor",
+    "title": "Grief Counselor"
+  },
+  {
+    "slug": "handbag-designer",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/handbag-designer",
+    "title": "Handbag Designer"
+  },
+  {
+    "slug": "hat-designer",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/hat-designer",
+    "title": "Hat Designer"
+  },
+  {
+    "slug": "high-value-dating-advisor",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/high-value-dating-advisor",
+    "title": "High Value Dating Advisor"
+  },
+  {
+    "slug": "hindu-priest",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/hindu-priest",
+    "title": "Hindu Priest"
+  },
+  {
+    "slug": "hindu-scripture-guide",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/hindu-scripture-guide",
+    "title": "Hindu Scripture Guide"
+  },
+  {
+    "slug": "history-tutor",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/history-tutor",
+    "title": "History Tutor"
+  },
+  {
+    "slug": "home-renovation-advisor",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/home-renovation-advisor",
+    "title": "Home Renovation Advisor"
+  },
+  {
+    "slug": "home-safety-inspector",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/home-safety-inspector",
+    "title": "Home Safety Inspector"
+  },
+  {
+    "slug": "homework-assistant",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/homework-assistant",
+    "title": "Homework Assistant"
+  },
+  {
+    "slug": "honkai-star-rail-meta-analyst",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/honkai-star-rail-meta-analyst",
+    "title": "Honkai Star Rail Meta Analyst"
+  },
+  {
+    "slug": "hr-consultant",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/hr-consultant",
+    "title": "HR Consultant"
+  },
+  {
+    "slug": "html-generator",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/html-generator",
+    "title": "HTML Generator"
+  },
+  {
+    "slug": "human-design-reader",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/human-design-reader",
+    "title": "Human Design Reader"
+  },
+  {
+    "slug": "hvac-technician",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/hvac-technician",
+    "title": "HVAC Technician"
+  },
+  {
+    "slug": "i-ching-oracle",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/i-ching-oracle",
+    "title": "I Ching Oracle"
+  },
+  {
+    "slug": "immigration-and-visa-consultant",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/immigration-and-visa-consultant",
+    "title": "Immigration & Visa Consultant"
+  },
+  {
+    "slug": "immigration-visa-consultant",
+    "status": 404,
+    "url": "https://www.jenova.ai/a/immigration-visa-consultant",
+    "title": "Jenova - The AI Agent Platform"
+  },
+  {
+    "slug": "indonesian-english-translator",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/indonesian-english-translator",
+    "title": "Indonesian-English Translator"
+  },
+  {
+    "slug": "indonesian-tutor",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/indonesian-tutor",
+    "title": "Indonesian Tutor"
+  },
+  {
+    "slug": "infographic-maker",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/infographic-maker",
+    "title": "Infographic Maker"
+  },
+  {
+    "slug": "insomnia-recovery-coach",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/insomnia-recovery-coach",
+    "title": "Insomnia Recovery Coach"
+  },
+  {
+    "slug": "interview-coach",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/interview-coach",
+    "title": "Interview Coach"
+  },
+  {
+    "slug": "invoice-generator",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/invoice-generator",
+    "title": "Invoice Generator"
+  },
+  {
+    "slug": "ip-researcher",
+    "status": 404,
+    "url": "https://www.jenova.ai/a/ip-researcher",
+    "title": "Jenova - The AI Agent Platform"
+  },
+  {
+    "slug": "iq-tester",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/iq-tester",
+    "title": "IQ Tester"
+  },
+  {
+    "slug": "italian-english-translator",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/italian-english-translator",
+    "title": "Italian-English Translator"
+  },
+  {
+    "slug": "italian-tutor",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/italian-tutor",
+    "title": "Italian Tutor"
+  },
+  {
+    "slug": "j-pop-analyst",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/j-pop-analyst",
+    "title": "J-Pop Analyst"
+  },
+  {
+    "slug": "japanese-english-translator",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/japanese-english-translator",
+    "title": "Japanese-English Translator"
+  },
+  {
+    "slug": "japanese-roleplay-tutor",
+    "status": 404,
+    "url": "https://www.jenova.ai/a/japanese-roleplay-tutor",
+    "title": "Jenova - The AI Agent Platform"
+  },
+  {
+    "slug": "japanese-tutor",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/japanese-tutor",
+    "title": "Japanese Tutor"
+  },
+  {
+    "slug": "java-coding-assistant",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/java-coding-assistant",
+    "title": "Java Coding Assistant"
+  },
+  {
+    "slug": "javascript-typescript-coding-assistant",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/javascript-typescript-coding-assistant",
+    "title": "JavaScript/TypeScript Coding Assistant"
+  },
+  {
+    "slug": "jenova",
+    "status": 404,
+    "url": "https://www.jenova.ai/a/jenova",
+    "title": "Jenova - The AI Agent Platform"
+  },
+  {
+    "slug": "jewelry-designer",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/jewelry-designer",
+    "title": "Jewelry Designer"
+  },
+  {
+    "slug": "jewelry-expert",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/jewelry-expert",
+    "title": "Jewelry Expert"
+  },
+  {
+    "slug": "json-generator",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/json-generator",
+    "title": "JSON Generator"
+  },
+  {
+    "slug": "k-pop-analyst",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/k-pop-analyst",
+    "title": "K-Pop Analyst"
+  },
+  {
+    "slug": "k-pop-producer",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/k-pop-producer",
+    "title": "K-Pop Producer"
+  },
+  {
+    "slug": "korean-english-translator",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/korean-english-translator",
+    "title": "Korean-English Translator"
+  },
+  {
+    "slug": "korean-tutor",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/korean-tutor",
+    "title": "Korean Tutor"
+  },
+  {
+    "slug": "kotlin-coding-assistant",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/kotlin-coding-assistant",
+    "title": "Kotlin Coding Assistant"
+  },
+  {
+    "slug": "latin-tutor",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/latin-tutor",
+    "title": "Latin Tutor"
+  },
+  {
+    "slug": "law-school-admissions-consultant",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/law-school-admissions-consultant",
+    "title": "Law School Admissions Consultant"
+  },
+  {
+    "slug": "learn-chinese-through-roleplay",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/learn-chinese-through-roleplay",
+    "title": "Learn Chinese Through Roleplay"
+  },
+  {
+    "slug": "learn-english-through-roleplay",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/learn-english-through-roleplay",
+    "title": "Learn English Through Roleplay"
+  },
+  {
+    "slug": "learn-french-through-roleplay",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/learn-french-through-roleplay",
+    "title": "Learn French Through Roleplay"
+  },
+  {
+    "slug": "learn-german-through-roleplay",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/learn-german-through-roleplay",
+    "title": "Learn German Through Roleplay"
+  },
+  {
+    "slug": "learn-indonesian-through-roleplay",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/learn-indonesian-through-roleplay",
+    "title": "Learn Indonesian Through Roleplay"
+  },
+  {
+    "slug": "learn-italian-through-roleplay",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/learn-italian-through-roleplay",
+    "title": "Learn Italian Through Roleplay"
+  },
+  {
+    "slug": "learn-japanese-through-roleplay",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/learn-japanese-through-roleplay",
+    "title": "Learn Japanese Through Roleplay"
+  },
+  {
+    "slug": "learn-korean-through-roleplay",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/learn-korean-through-roleplay",
+    "title": "Learn Korean Through Roleplay"
+  },
+  {
+    "slug": "learn-portuguese-through-roleplay",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/learn-portuguese-through-roleplay",
+    "title": "Learn Portuguese Through Roleplay"
+  },
+  {
+    "slug": "learn-russian-through-roleplay",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/learn-russian-through-roleplay",
+    "title": "Learn Russian Through Roleplay"
+  },
+  {
+    "slug": "learn-spanish-through-roleplay",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/learn-spanish-through-roleplay",
+    "title": "Learn Spanish Through Roleplay"
+  },
+  {
+    "slug": "learn-thai-through-roleplay",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/learn-thai-through-roleplay",
+    "title": "Learn Thai Through Roleplay"
+  },
+  {
+    "slug": "learn-vietnamese-through-roleplay",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/learn-vietnamese-through-roleplay",
+    "title": "Learn Vietnamese Through Roleplay"
+  },
+  {
+    "slug": "leetcode-coach",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/leetcode-coach",
+    "title": "LeetCode Coach"
+  },
+  {
+    "slug": "legal-and-contract-advisor",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/legal-and-contract-advisor",
+    "title": "Legal & Contract Advisor"
+  },
+  {
+    "slug": "legal-contract-advisor",
+    "status": 404,
+    "url": "https://www.jenova.ai/a/legal-contract-advisor",
+    "title": "Jenova - The AI Agent Platform"
+  },
+  {
+    "slug": "lesson-plan-generator",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/lesson-plan-generator",
+    "title": "Lesson Plan Generator"
+  },
+  {
+    "slug": "lingerie-designer",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/lingerie-designer",
+    "title": "Lingerie Designer"
+  },
+  {
+    "slug": "linguistics-tutor",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/linguistics-tutor",
+    "title": "Linguistics Tutor"
+  },
+  {
+    "slug": "literature-review-assistant",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/literature-review-assistant",
+    "title": "Literature Review Assistant"
+  },
+  {
+    "slug": "logo-generator",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/logo-generator",
+    "title": "Logo Generator"
+  },
+  {
+    "slug": "longevity-advisor",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/longevity-advisor",
+    "title": "Longevity Advisor"
+  },
+  {
+    "slug": "looksmaxxing-coach",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/looksmaxxing-coach",
+    "title": "Looksmaxxing Coach"
+  },
+  {
+    "slug": "love-island",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/love-island",
+    "title": "Love Island"
+  },
+  {
+    "slug": "lsat-tutor",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/lsat-tutor",
+    "title": "LSAT Tutor"
+  },
+  {
+    "slug": "lucid-dreaming-coach",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/lucid-dreaming-coach",
+    "title": "Lucid Dreaming Coach"
+  },
+  {
+    "slug": "luxury-lifestyle-advisor",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/luxury-lifestyle-advisor",
+    "title": "Luxury Lifestyle Advisor"
+  },
+  {
+    "slug": "lyric-writer",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/lyric-writer",
+    "title": "Lyric Writer"
+  },
+  {
+    "slug": "machiavelli-mentor",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/machiavelli-mentor",
+    "title": "Machiavelli Mentor"
+  },
+  {
+    "slug": "macro-strategist",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/macro-strategist",
+    "title": "Macro Strategist"
+  },
+  {
+    "slug": "mahjong-tutor",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/mahjong-tutor",
+    "title": "Mahjong Tutor"
+  },
+  {
+    "slug": "manga-creator",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/manga-creator",
+    "title": "Manga Creator"
+  },
+  {
+    "slug": "map-maker",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/map-maker",
+    "title": "Map Maker"
+  },
+  {
+    "slug": "markdown-generator",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/markdown-generator",
+    "title": "Markdown Generator"
+  },
+  {
+    "slug": "marketing-image-generator",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/marketing-visual-designer",
+    "title": "Marketing Visual Designer"
+  },
+  {
+    "slug": "marketing-strategist",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/marketing-strategist",
+    "title": "Marketing Strategist"
+  },
+  {
+    "slug": "marketing-visual-designer",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/marketing-visual-designer",
+    "title": "Marketing Visual Designer"
+  },
+  {
+    "slug": "mascot-designer",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/mascot-designer",
+    "title": "Mascot Designer"
+  },
+  {
+    "slug": "masonry-expert",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/masonry-expert",
+    "title": "Masonry Expert"
+  },
+  {
+    "slug": "master-barista-coach",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/master-barista-coach",
+    "title": "Master Barista Coach"
+  },
+  {
+    "slug": "master-chef-coach",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/master-chef-coach",
+    "title": "Master Chef Coach"
+  },
+  {
+    "slug": "math-tutor",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/math-tutor",
+    "title": "Math Tutor"
+  },
+  {
+    "slug": "mba-admissions-consultant",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/mba-admissions-consultant",
+    "title": "MBA Admissions Consultant"
+  },
+  {
+    "slug": "mbti-personality-guide",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/mbti-personality-guide",
+    "title": "MBTI Personality Guide"
+  },
+  {
+    "slug": "mcat-tutor",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/mcat-tutor",
+    "title": "MCAT Tutor"
+  },
+  {
+    "slug": "mcp-ai-agent",
+    "status": 404,
+    "url": "https://www.jenova.ai/a/mcp-ai-agent",
+    "title": "Jenova - The AI Agent Platform"
+  },
+  {
+    "slug": "mcp-and-the-agentic-web",
+    "status": 404,
+    "url": "https://www.jenova.ai/a/mcp-and-the-agentic-web",
+    "title": "Jenova - The AI Agent Platform"
+  },
+  {
+    "slug": "mcp-and-the-dawn-of-the-agentic-web",
+    "status": 404,
+    "url": "https://www.jenova.ai/a/mcp-and-the-dawn-of-the-agentic-web",
+    "title": "Jenova - The AI Agent Platform"
+  },
+  {
+    "slug": "mcp-server-builder",
+    "status": 404,
+    "url": "https://www.jenova.ai/a/mcp-server-builder",
+    "title": "Jenova - The AI Agent Platform"
+  },
+  {
+    "slug": "mcp-vs-api-the-new-standard-for-ai-integration",
+    "status": 404,
+    "url": "https://www.jenova.ai/a/mcp-vs-api-the-new-standard-for-ai-integration",
+    "title": "Jenova - The AI Agent Platform"
+  },
+  {
+    "slug": "meal-planner",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/meal-planner",
+    "title": "Meal Planner"
+  },
+  {
+    "slug": "medical-image-analyst",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/medical-image-analyst",
+    "title": "Medical Image Analyst"
+  },
+  {
+    "slug": "medical-school-admissions-consultant",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/medical-school-admissions-consultant",
+    "title": "Medical School Admissions Consultant"
+  },
+  {
+    "slug": "meditation-guide",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/meditation-guide",
+    "title": "Meditation Guide"
+  },
+  {
+    "slug": "meme-generator",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/meme-generator",
+    "title": "Meme Generator"
+  },
+  {
+    "slug": "mergers-acquisitions-advisor",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/mergers-acquisitions-advisor",
+    "title": "Mergers & Acquisitions Advisor"
+  },
+  {
+    "slug": "meta-ads-image-generator",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/meta-ads-image-generator",
+    "title": "Meta Ads Image Generator"
+  },
+  {
+    "slug": "microdrama-screenwriter",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/microdrama-screenwriter",
+    "title": "Microdrama Screenwriter"
+  },
+  {
+    "slug": "microscopy-image-analyst",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/microscopy-image-analyst",
+    "title": "Microscopy Image Analyst"
+  },
+  {
+    "slug": "military-and-defense-analyst",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/military-and-defense-analyst",
+    "title": "Military & Defense Analyst"
+  },
+  {
+    "slug": "military-defense-analyst",
+    "status": 404,
+    "url": "https://www.jenova.ai/a/military-defense-analyst",
+    "title": "Jenova - The AI Agent Platform"
+  },
+  {
+    "slug": "mlb-analyst",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/mlb-analyst",
+    "title": "MLB Analyst"
+  },
+  {
+    "slug": "model-context-protocol-mcp",
+    "status": 404,
+    "url": "https://www.jenova.ai/a/model-context-protocol-mcp",
+    "title": "Jenova - The AI Agent Platform"
+  },
+  {
+    "slug": "model-context-protocol-mcp-explained",
+    "status": 404,
+    "url": "https://www.jenova.ai/a/model-context-protocol-mcp-explained",
+    "title": "Jenova - The AI Agent Platform"
+  },
+  {
+    "slug": "modeling-coach",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/modeling-coach",
+    "title": "Modeling Coach"
+  },
+  {
+    "slug": "mormon-bishop",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/mormon-bishop",
+    "title": "Mormon Bishop"
+  },
+  {
+    "slug": "mormon-scripture-guide",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/mormon-scripture-guide",
+    "title": "Mormon Scripture Guide"
+  },
+  {
+    "slug": "motorcycle-repair-mechanic",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/motorcycle-repair-mechanic",
+    "title": "Motorcycle Repair Mechanic"
+  },
+  {
+    "slug": "music-composition-assistant",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/music-composition-assistant",
+    "title": "Music Composition Assistant"
+  },
+  {
+    "slug": "music-teacher",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/music-teacher",
+    "title": "Music Teacher"
+  },
+  {
+    "slug": "mystic-tarot-reader",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/mystic-tarot-reader",
+    "title": "Mystic Tarot Reader"
+  },
+  {
+    "slug": "mythology-creator",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/mythology-creator",
+    "title": "Mythology Creator"
+  },
+  {
+    "slug": "nail-art-designer",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/nail-art-designer",
+    "title": "Nail Art Designer"
+  },
+  {
+    "slug": "name-generator",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/name-generator",
+    "title": "Name Generator"
+  },
+  {
+    "slug": "nba-analyst",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/nba-analyst",
+    "title": "NBA Analyst"
+  },
+  {
+    "slug": "negotiation-coach",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/negotiation-coach",
+    "title": "Negotiation Coach"
+  },
+  {
+    "slug": "newsletter-generator",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/newsletter-generator",
+    "title": "Newsletter Generator"
+  },
+  {
+    "slug": "nfl-analyst",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/nfl-analyst",
+    "title": "NFL Analyst"
+  },
+  {
+    "slug": "nhl-analyst",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/nhl-analyst",
+    "title": "NHL Analyst"
+  },
+  {
+    "slug": "numerology-reader",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/numerology-reader",
+    "title": "Numerology Reader"
+  },
+  {
+    "slug": "nursing-tutor",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/nursing-tutor",
+    "title": "Nursing Tutor"
+  },
+  {
+    "slug": "nutritionist",
+    "status": 404,
+    "url": "https://www.jenova.ai/a/nutritionist",
+    "title": "Jenova - The AI Agent Platform"
+  },
+  {
+    "slug": "old-english-tutor",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/old-english-tutor",
+    "title": "Old English Tutor"
+  },
+  {
+    "slug": "one-among-us",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/one-among-us",
+    "title": "One Among Us"
+  },
+  {
+    "slug": "options-strategist",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/options-strategist",
+    "title": "Options Strategist"
+  },
+  {
+    "slug": "outfit-rater",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/outfit-rater",
+    "title": "Outfit Rater"
+  },
+  {
+    "slug": "palm-reader",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/palm-reader",
+    "title": "Palm Reader"
+  },
+  {
+    "slug": "parenting-and-baby-advisor",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/parenting-and-baby-advisor",
+    "title": "Parenting & Baby Advisor"
+  },
+  {
+    "slug": "parenting-baby-advisor",
+    "status": 404,
+    "url": "https://www.jenova.ai/a/parenting-baby-advisor",
+    "title": "Jenova - The AI Agent Platform"
+  },
+  {
+    "slug": "past-life-reader",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/past-life-reader",
+    "title": "Past Life Reader"
+  },
+  {
+    "slug": "patent-trademark-copyright-ip-researcher",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/patent-trademark-copyright-ip-researcher",
+    "title": "Patent, Trademark, Copyright & IP Researcher"
+  },
+  {
+    "slug": "pdf-doc-generator",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/pdf-generator",
+    "title": "PDF Generator"
+  },
+  {
+    "slug": "pdf-generator",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/pdf-generator",
+    "title": "PDF Generator"
+  },
+  {
+    "slug": "pediatric-advisor",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/pediatric-advisor",
+    "title": "Pediatric Advisor"
+  },
+  {
+    "slug": "people-and-contact-finder",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/people-and-contact-finder",
+    "title": "People & Contact Finder"
+  },
+  {
+    "slug": "people-contact-finder",
+    "status": 404,
+    "url": "https://www.jenova.ai/a/people-contact-finder",
+    "title": "Jenova - The AI Agent Platform"
+  },
+  {
+    "slug": "performance-review-consultant",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/performance-review-consultant",
+    "title": "Performance Review Consultant"
+  },
+  {
+    "slug": "personal-allergy-advisor",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/personal-allergy-advisor",
+    "title": "Personal Allergy Advisor"
+  },
+  {
+    "slug": "personal-astrologer",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/personal-astrologer",
+    "title": "Personal Astrologer"
+  },
+  {
+    "slug": "personal-companion",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/personal-companion",
+    "title": "Personal Companion"
+  },
+  {
+    "slug": "personal-financial-advisor",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/personal-financial-advisor",
+    "title": "Personal Financial Advisor"
+  },
+  {
+    "slug": "personal-insurance-advisor",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/personal-insurance-advisor",
+    "title": "Personal Insurance Advisor"
+  },
+  {
+    "slug": "personal-journal",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/personal-journal",
+    "title": "Personal Journal"
+  },
+  {
+    "slug": "personal-medical-analyst",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/personal-medical-analyst",
+    "title": "Personal Medical Analyst"
+  },
+  {
+    "slug": "personal-nutritionist",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/personal-nutritionist",
+    "title": "Personal Nutritionist"
+  },
+  {
+    "slug": "personal-secretary",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/personal-secretary",
+    "title": "Personal Secretary"
+  },
+  {
+    "slug": "personal-tax-advisor",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/personal-tax-advisor",
+    "title": "Personal Tax Advisor"
+  },
+  {
+    "slug": "personal-therapist",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/personal-therapist",
+    "title": "Personal Therapist"
+  },
+  {
+    "slug": "personal-wellness-advisor",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/personal-wellness-advisor",
+    "title": "Personal Wellness Advisor"
+  },
+  {
+    "slug": "personality-analyzer",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/personality-analyzer",
+    "title": "Personality Analyzer"
+  },
+  {
+    "slug": "pet-care-advisor",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/pet-care-advisor",
+    "title": "Pet Care Advisor"
+  },
+  {
+    "slug": "pharmacy-tutor",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/pharmacy-tutor",
+    "title": "Pharmacy Tutor"
+  },
+  {
+    "slug": "photo-editor",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/photo-editor",
+    "title": "Photo Editor"
+  },
+  {
+    "slug": "photography-coach",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/photography-coach",
+    "title": "Photography Coach"
+  },
+  {
+    "slug": "physical-ai-robotics-expert",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/physical-ai-robotics-expert",
+    "title": "Physical AI & Robotics Expert"
+  },
+  {
+    "slug": "physical-therapist",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/physical-therapist",
+    "title": "Physical Therapist"
+  },
+  {
+    "slug": "physics-tutor",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/physics-tutor",
+    "title": "Physics Tutor"
+  },
+  {
+    "slug": "pixel-art-creator",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/pixel-art-creator",
+    "title": "Pixel Art Creator"
+  },
+  {
+    "slug": "plumbers-assistant",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/plumbers-assistant",
+    "title": "Plumber's Assistant"
+  },
+  {
+    "slug": "poem-writer",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/poem-writer",
+    "title": "Poem Writer"
+  },
+  {
+    "slug": "pokemon-card-analyst",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/pokemon-card-analyst",
+    "title": "Pokémon Card Analyst"
+  },
+  {
+    "slug": "poker-coach",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/poker-coach",
+    "title": "Poker Coach"
+  },
+  {
+    "slug": "political-analyst",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/political-analyst",
+    "title": "Political Analyst"
+  },
+  {
+    "slug": "political-compass-tester",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/political-compass-tester",
+    "title": "Political Compass Tester"
+  },
+  {
+    "slug": "political-science-tutor",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/political-science-tutor",
+    "title": "Political Science Tutor"
+  },
+  {
+    "slug": "pop-music-analyst",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/pop-music-analyst",
+    "title": "Pop Music Analyst"
+  },
+  {
+    "slug": "portfolio-management-strategist",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/portfolio-management-strategist",
+    "title": "Portfolio Management Strategist"
+  },
+  {
+    "slug": "portuguese-english-translator",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/portuguese-english-translator",
+    "title": "Portuguese-English Translator"
+  },
+  {
+    "slug": "portuguese-tutor",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/portuguese-tutor",
+    "title": "Portuguese Tutor"
+  },
+  {
+    "slug": "poster-maker",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/poster-maker",
+    "title": "Poster Maker"
+  },
+  {
+    "slug": "powerpoint-generator",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/powerpoint-generator",
+    "title": "PowerPoint Generator"
+  },
+  {
+    "slug": "prediction-market-analyst",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/prediction-market-analyst",
+    "title": "Prediction Market Analyst"
+  },
+  {
+    "slug": "pricing-strategist",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/pricing-strategist",
+    "title": "Pricing Strategist"
+  },
+  {
+    "slug": "procurement-consultant",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/procurement-consultant",
+    "title": "Procurement Consultant"
+  },
+  {
+    "slug": "product-copywriter",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/product-copywriter",
+    "title": "Product Copywriter"
+  },
+  {
+    "slug": "product-photo-editor",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/product-photo-editor",
+    "title": "Product Photo Editor"
+  },
+  {
+    "slug": "professional-background-investigator",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/professional-background-investigator",
+    "title": "Professional Background Investigator"
+  },
+  {
+    "slug": "project-coordinator",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/project-coordinator",
+    "title": "Project Coordinator"
+  },
+  {
+    "slug": "prompt-generator",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/prompt-generator",
+    "title": "Prompt Generator"
+  },
+  {
+    "slug": "property-inspection-analyst",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/property-inspection-analyst",
+    "title": "Property Inspection Analyst"
+  },
+  {
+    "slug": "property-management-assistant",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/property-management-assistant",
+    "title": "Property Management Assistant"
+  },
+  {
+    "slug": "proposal-generator",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/proposal-generator",
+    "title": "Proposal Generator"
+  },
+  {
+    "slug": "psychology-tutor",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/psychology-tutor",
+    "title": "Psychology Tutor"
+  },
+  {
+    "slug": "public-relations-advisor",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/public-relations-advisor",
+    "title": "Public Relations Advisor"
+  },
+  {
+    "slug": "public-speaking-coach",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/public-speaking-coach",
+    "title": "Public Speaking Coach"
+  },
+  {
+    "slug": "purchase-order-generator",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/purchase-order-generator",
+    "title": "Purchase Order Generator"
+  },
+  {
+    "slug": "puzzle-creator",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/puzzle-creator",
+    "title": "Puzzle Creator"
+  },
+  {
+    "slug": "python-coding-assistant",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/python-coding-assistant",
+    "title": "Python Coding Assistant"
+  },
+  {
+    "slug": "quality-management-consultant",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/quality-management-consultant",
+    "title": "Quality Management Consultant"
+  },
+  {
+    "slug": "quiz-maker",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/quiz-maker",
+    "title": "Quiz Maker"
+  },
+  {
+    "slug": "rabbi",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/rabbi",
+    "title": "Rabbi"
+  },
+  {
+    "slug": "real-estate-agent-assistant",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/real-estate-agent-assistant",
+    "title": "Real Estate Agent Assistant"
+  },
+  {
+    "slug": "real-estate-buying-advisor",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/real-estate-buying-advisor",
+    "title": "Real Estate Buying Advisor"
+  },
+  {
+    "slug": "real-estate-image-editor",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/real-estate-image-editor",
+    "title": "Real Estate Image Editor"
+  },
+  {
+    "slug": "real-estate-investment-analyst",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/real-estate-investment-analyst",
+    "title": "Real Estate Investment Analyst"
+  },
+  {
+    "slug": "real-time-search",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/real-time-search",
+    "title": "Real-Time Search"
+  },
+  {
+    "slug": "receipt-generator",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/receipt-generator",
+    "title": "Receipt Generator"
+  },
+  {
+    "slug": "reddit-search",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/reddit-search",
+    "title": "Reddit Search"
+  },
+  {
+    "slug": "reit-investment-analyst",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/reit-investment-analyst",
+    "title": "REIT Investment Analyst"
+  },
+  {
+    "slug": "relationship-advisor",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/relationship-advisor",
+    "title": "Relationship Advisor"
+  },
+  {
+    "slug": "relationships",
+    "status": 404,
+    "url": "https://www.jenova.ai/a/relationships",
+    "title": "Jenova - The AI Agent Platform"
+  },
+  {
+    "slug": "relationships-advisor",
+    "status": 404,
+    "url": "https://www.jenova.ai/a/relationships-advisor",
+    "title": "Jenova - The AI Agent Platform"
+  },
+  {
+    "slug": "religion-creator",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/religion-creator",
+    "title": "Religion Creator"
+  },
+  {
+    "slug": "remote-mcp-servers",
+    "status": 404,
+    "url": "https://www.jenova.ai/a/remote-mcp-servers",
+    "title": "Jenova - The AI Agent Platform"
+  },
+  {
+    "slug": "remote-mcp-servers-architecture-and-integration",
+    "status": 404,
+    "url": "https://www.jenova.ai/a/remote-mcp-servers-architecture-and-integration",
+    "title": "Jenova - The AI Agent Platform"
+  },
+  {
+    "slug": "research-proposal-writer",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/research-proposal-writer",
+    "title": "Research Proposal Writer"
+  },
+  {
+    "slug": "resume-and-cover-letter-writer",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/resume-and-cover-letter-writer",
+    "title": "Resume & Cover Letter Writer"
+  },
+  {
+    "slug": "resume-cover-letter-writer",
+    "status": 404,
+    "url": "https://www.jenova.ai/a/resume-cover-letter-writer",
+    "title": "Jenova - The AI Agent Platform"
+  },
+  {
+    "slug": "resume-screener",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/resume-screener",
+    "title": "Resume Screener"
+  },
+  {
+    "slug": "retirement-planner",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/retirement-planner",
+    "title": "Retirement Planner"
+  },
+  {
+    "slug": "rfp-generator",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/rfp-generator",
+    "title": "RFP Generator"
+  },
+  {
+    "slug": "roleplay-game-master",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/roleplay-game-master",
+    "title": "Roleplay Game Master"
+  },
+  {
+    "slug": "ruby-coding-assistant",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/ruby-coding-assistant",
+    "title": "Ruby Coding Assistant"
+  },
+  {
+    "slug": "rune-reader",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/rune-reader",
+    "title": "Rune Reader"
+  },
+  {
+    "slug": "russian-english-translator",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/russian-english-translator",
+    "title": "Russian-English Translator"
+  },
+  {
+    "slug": "russian-tutor",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/russian-tutor",
+    "title": "Russian Tutor"
+  },
+  {
+    "slug": "rust-coding-assistant",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/rust-coding-assistant",
+    "title": "Rust Coding Assistant"
+  },
+  {
+    "slug": "sales-coach",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/sales-coach",
+    "title": "Sales Coach"
+  },
+  {
+    "slug": "sanskrit-tutor",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/sanskrit-tutor",
+    "title": "Sanskrit Tutor"
+  },
+  {
+    "slug": "sat-act-tutor",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/sat-act-tutor",
+    "title": "SAT/ACT Tutor"
+  },
+  {
+    "slug": "scam-fraud-detector",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/scam-fraud-detector",
+    "title": "Scam & Fraud Detector"
+  },
+  {
+    "slug": "seo-blog-generator",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/seo-blog-generator",
+    "title": "SEO Blog Generator"
+  },
+  {
+    "slug": "seo-growth-strategist",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/seo-growth-strategist",
+    "title": "SEO Growth Strategist"
+  },
+  {
+    "slug": "shinto-priest",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/shinto-priest",
+    "title": "Shinto Priest"
+  },
+  {
+    "slug": "shopify-store-advisor",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/shopify-store-advisor",
+    "title": "Shopify Store Advisor"
+  },
+  {
+    "slug": "shopping-advisor",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/shopping-advisor",
+    "title": "Shopping Advisor"
+  },
+  {
+    "slug": "sneaker-designer",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/sneaker-designer",
+    "title": "Sneaker Designer"
+  },
+  {
+    "slug": "sneaker-expert",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/sneaker-expert",
+    "title": "Sneaker Expert"
+  },
+  {
+    "slug": "social-media-content-generator",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/social-media-content-generator",
+    "title": "Social Media Content Generator"
+  },
+  {
+    "slug": "spanish-english-translator",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/spanish-english-translator",
+    "title": "Spanish-English Translator"
+  },
+  {
+    "slug": "spanish-tutor",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/spanish-tutor",
+    "title": "Spanish Tutor"
+  },
+  {
+    "slug": "sports-betting-research-assistant",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/sports-betting-research-assistant",
+    "title": "Sports Betting Research Assistant"
+  },
+  {
+    "slug": "sql-coding-assistant",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/sql-coding-assistant",
+    "title": "SQL Coding Assistant"
+  },
+  {
+    "slug": "startup-advisor",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/startup-advisor",
+    "title": "Startup Advisor"
+  },
+  {
+    "slug": "statistics-tutor",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/statistics-tutor",
+    "title": "Statistics Tutor"
+  },
+  {
+    "slug": "stock-screener",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/stock-screener",
+    "title": "Stock Screener"
+  },
+  {
+    "slug": "storyboard-artist",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/storyboard-artist",
+    "title": "Storyboard Artist"
+  },
+  {
+    "slug": "streetwear-designer",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/streetwear-designer",
+    "title": "Streetwear Designer"
+  },
+  {
+    "slug": "study-buddy",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/study-buddy",
+    "title": "Study Buddy"
+  },
+  {
+    "slug": "supply-chain-analyst",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/supply-chain-analyst",
+    "title": "Supply Chain Analyst"
+  },
+  {
+    "slug": "survey-design-consultant",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/survey-design-consultant",
+    "title": "Survey Design Consultant"
+  },
+  {
+    "slug": "swift-coding-assistant",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/swift-coding-assistant",
+    "title": "Swift Coding Assistant"
+  },
+  {
+    "slug": "tattoo-artist",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/tattoo-artist",
+    "title": "Tattoo Artist"
+  },
+  {
+    "slug": "technical-stock-analyst",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/technical-stock-analyst",
+    "title": "Technical Stock Analyst"
+  },
+  {
+    "slug": "textile-print-designer",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/textile-print-designer",
+    "title": "Textile & Print Designer"
+  },
+  {
+    "slug": "texting-reply-coach",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/texting-reply-coach",
+    "title": "Texting & Reply Coach"
+  },
+  {
+    "slug": "thai-english-translator",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/thai-english-translator",
+    "title": "Thai-English Translator"
+  },
+  {
+    "slug": "thai-tutor",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/thai-tutor",
+    "title": "Thai Tutor"
+  },
+  {
+    "slug": "the-asylum",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/the-asylum",
+    "title": "The Asylum"
+  },
+  {
+    "slug": "the-mansion",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/the-mansion",
+    "title": "The Mansion"
+  },
+  {
+    "slug": "the-philosopher",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/the-philosopher",
+    "title": "The Philosopher"
+  },
+  {
+    "slug": "three-kingdoms",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/three-kingdoms",
+    "title": "Three Kingdoms"
+  },
+  {
+    "slug": "thumbnail-maker",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/thumbnail-maker",
+    "title": "Thumbnail Maker"
+  },
+  {
+    "slug": "toefl-ielts-tutor",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/toefl-ielts-tutor",
+    "title": "TOEFL/IELTS Tutor"
+  },
+  {
+    "slug": "torah-study-partner",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/torah-study-partner",
+    "title": "Torah Study Partner"
+  },
+  {
+    "slug": "tour-guide",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/tour-guide",
+    "title": "Tour Guide"
+  },
+  {
+    "slug": "trading-card-game-creator",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/trading-card-game-creator",
+    "title": "Trading Card Game Creator"
+  },
+  {
+    "slug": "travel-planning-advisor",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/travel-planning-advisor",
+    "title": "Travel Planning Advisor"
+  },
+  {
+    "slug": "tsv-generator",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/tsv-generator",
+    "title": "TSV Generator"
+  },
+  {
+    "slug": "txt-doc-generator",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/txt-generator",
+    "title": "TXT Generator"
+  },
+  {
+    "slug": "txt-generator",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/txt-generator",
+    "title": "TXT Generator"
+  },
+  {
+    "slug": "ui-ux-prototype-generator",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/ui-ux-prototype-generator",
+    "title": "UI/UX Prototype Generator"
+  },
+  {
+    "slug": "ui-ux-reviewer",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/ui-ux-reviewer",
+    "title": "UI/UX Reviewer"
+  },
+  {
+    "slug": "value-investing-advisor",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/value-investing-advisor",
+    "title": "Value Investing Advisor"
+  },
+  {
+    "slug": "vedic-astrologer",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/vedic-astrologer",
+    "title": "Vedic Astrologer"
+  },
+  {
+    "slug": "vehicle-damage-assessor",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/vehicle-damage-assessor",
+    "title": "Vehicle Damage Assessor"
+  },
+  {
+    "slug": "vesper-court",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/vesper-court",
+    "title": "Vesper Court"
+  },
+  {
+    "slug": "veterinary-image-analyst",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/veterinary-image-analyst",
+    "title": "Veterinary Image Analyst"
+  },
+  {
+    "slug": "vibe-coding-tutor",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/vibe-coding-tutor",
+    "title": "Vibe Coding Tutor"
+  },
+  {
+    "slug": "vietnamese-english-translator",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/vietnamese-english-translator",
+    "title": "Vietnamese-English Translator"
+  },
+  {
+    "slug": "vietnamese-tutor",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/vietnamese-tutor",
+    "title": "Vietnamese Tutor"
+  },
+  {
+    "slug": "visual-novel-creator",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/visual-novel-creator",
+    "title": "Visual Novel Creator"
+  },
+  {
+    "slug": "wallpaper-designer",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/wallpaper-designer",
+    "title": "Wallpaper Designer"
+  },
+  {
+    "slug": "watch-expert",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/watch-expert",
+    "title": "Watch Expert"
+  },
+  {
+    "slug": "webtoon-creator",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/webtoon-creator",
+    "title": "Webtoon Creator"
+  },
+  {
+    "slug": "wedding-planner",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/wedding-planner",
+    "title": "Wedding Planner"
+  },
+  {
+    "slug": "welders-assistant",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/welders-assistant",
+    "title": "Welder's Assistant"
+  },
+  {
+    "slug": "what-if-analyst",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/what-if-analyst",
+    "title": "What-If Analyst"
+  },
+  {
+    "slug": "whiskey-and-spirits-guide",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/whiskey-and-spirits-guide",
+    "title": "Whiskey & Spirits Guide"
+  },
+  {
+    "slug": "whiskey-spirits-guide",
+    "status": 404,
+    "url": "https://www.jenova.ai/a/whiskey-spirits-guide",
+    "title": "Jenova - The AI Agent Platform"
+  },
+  {
+    "slug": "wine-connoisseur",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/wine-connoisseur",
+    "title": "Wine Connoisseur"
+  },
+  {
+    "slug": "word-doc-generator",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/word-generator",
+    "title": "Word Generator"
+  },
+  {
+    "slug": "word-generator",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/word-generator",
+    "title": "Word Generator"
+  },
+  {
+    "slug": "worldbuilding-studio",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/worldbuilding-studio",
+    "title": "Worldbuilding Studio"
+  },
+  {
+    "slug": "writing-assistant",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/writing-assistant",
+    "title": "Writing Assistant"
+  },
+  {
+    "slug": "xml-generator",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/xml-generator",
+    "title": "XML Generator"
+  },
+  {
+    "slug": "yaml-generator",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/yaml-generator",
+    "title": "YAML Generator"
+  },
+  {
+    "slug": "yoga-instructor",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/yoga-instructor",
+    "title": "Yoga Instructor"
+  },
+  {
+    "slug": "youtube-search",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/youtube-search",
+    "title": "YouTube Search"
+  },
+  {
+    "slug": "youtube-search-mcp-server-unlocking-global-video-intelligence",
+    "status": 404,
+    "url": "https://www.jenova.ai/a/youtube-search-mcp-server-unlocking-global-video-intelligence",
+    "title": "Jenova - The AI Agent Platform"
+  },
+  {
+    "slug": "zenless-zone-zero-meta-analyst",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/zenless-zone-zero-meta-analyst",
+    "title": "Zenless Zone Zero Meta Analyst"
+  },
+  {
+    "slug": "zoroastrian-priest",
+    "status": 200,
+    "url": "https://www.jenova.ai/a/zoroastrian-priest",
+    "title": "Zoroastrian Priest"
+  }
+]
