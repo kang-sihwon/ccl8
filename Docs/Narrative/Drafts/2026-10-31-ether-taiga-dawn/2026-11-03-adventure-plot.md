@@ -11,6 +11,8 @@
 | 읽는 때 | 문서 |
 |---|---|
 | 현재 제안한 지역별 사건·보스·동료·성장·이동 계기를 볼 때 | [지역별 상세 후보](2026-11-03-adventure-plot/2026-11-03-regional-arcs.md) |
+| 벨레스 출항부터 로덴의 조사·구조 전투·책임과 세르나행 조건을 볼 때 | [벨레스에서 로덴으로](2026-11-03-adventure-plot/2026-11-03-veles-roden.md) |
+| 벨레스·로덴 구간의 인과·동료 역할·무기 선택과 보존 검토를 확인할 때 | [구간 독립 검토](../../Reviews/2026-11-03-veles-roden-review.md) |
 | 주인공의 사적인 욕망·성격·약점·전투 정체성과 성장 행동을 볼 때 | [주인공 구체화 후보](2026-11-03-adventure-plot/2026-11-03-protagonist.md) |
 | 모든 무기 사용 목표와 수정 전의 도끼·근접전 고정 표현을 확인할 때 | [결정 37](../../../decisions/0037-unrestricted-protagonist-weapons.md), [수정 전 후보 보존본](2026-11-03-adventure-plot/2026-11-03-fixed-weapon-previous.md) |
 | 전쟁 확대안, 초기 지역 개요와 최종 보스 대안을 비교할 때 | [앞선 제안 보존본](2026-11-03-adventure-plot/2026-11-03-earlier-proposals.md) |
