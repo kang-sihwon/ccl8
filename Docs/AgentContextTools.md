@@ -34,6 +34,8 @@
 
 세계관의 지리·정착·세력·국가와 갈등을 연결하거나 배경과 스토리를 작성할 때는 [worldbuilding-studio](../.agents/skills/worldbuilding-studio/SKILL.md)를 쓴다. Codex에서는 `$worldbuilding-studio`, Claude Code에서는 `/worldbuilding-studio`로 직접 부를 수 있다. CCL의 서사 기록·검토·승인 절차는 `ccl8-narrative`가 연결하는 [서사 작업 절차](Narrative/Workflow.md)를 유지한다.
 
+세계·지역·도시·던전·전투 지도의 생성, 검토, 부분 수정과 축척 연결에는 [map-maker](../.agents/skills/map-maker/SKILL.md)를 쓴다. Codex에서는 `$map-maker`, Claude Code에서는 `/map-maker`로 직접 부를 수 있다. Jenova의 공개 지도 제작 흐름을 참고한 로컬 작업 지침이며, Jenova 서비스 연결과 생성 품질을 보장하는 기능은 아니다. 설정 도출은 `worldbuilding-studio`, 지도 결과와 좌표·표기 대조는 `map-maker`가 맡는다.
+
 저장소 루트는 `CCL.uproject`와 `.git`이 함께 있는 폴더다. 위치와 폴더명은 기기마다 달라도 되고, `ccl8-*` 스킬과 `graphify_ccl8.cmd`의 이름은 폴더명과 무관하다. 공유 도구는 실행 파일 위치로 프로젝트 경로를 계산한다. 엔진 경로는 `Engine/Build/Build.version`이 있는 `Engine` 폴더다. 엔진 인덱스는 기존 외부 디렉터리를 참조하고 자동 생성하지 않는다.
 
 폴더를 옮겼으면 `.codex/config.toml`의 두 Graft 서버에서 `args`와 `cwd`를 새 저장소 루트로 고치고 에이전트를 재시작한다. Unreal MCP 항목은 그대로 둔다. 실제 경로의 제출 기준은 [VersionControl의 기기별 경로와 로컬 설정](VersionControl.md#기기별-경로와-로컬-설정)을 따른다.

@@ -21,4 +21,4 @@ disable-model-invocation: true
 | `graphify` | 문서 그래프를 직접 만들거나 질의할 때 |
 | `/trace` (Claude Code 명령) | UE 5.8 심볼·CVar를 엔진 소스에서 추적해 볼트에 적을 때 |
 
-에이전트가 스스로 찾아 쓰는 스킬은 `graft`, `ccl8-design`, `ccl8-verify`, `ccl8-debug`, `ccl8-review`, `ccl8-docs`, `ccl8-writing`, `ccl8-narrative`, `worldbuilding-studio`, `grilling`, `writing-for-agents`다. 이 스킬들도 이름으로 직접 부를 수 있다.
+에이전트가 스스로 찾아 쓰는 스킬은 `graft`, `ccl8-design`, `ccl8-verify`, `ccl8-debug`, `ccl8-review`, `ccl8-docs`, `ccl8-writing`, `ccl8-narrative`, `worldbuilding-studio`, `map-maker`, `grilling`, `writing-for-agents`다. 이 스킬들도 이름으로 직접 부를 수 있다.

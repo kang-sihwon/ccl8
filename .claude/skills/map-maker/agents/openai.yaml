@@ -1,0 +1,4 @@
+interface:
+  display_name: "Map Maker"
+  short_description: "세계·도시·던전 지도 제작과 부분 수정, 지형·축척·표기 검토"
+  default_prompt: "$map-maker 기존 설정과 지도를 기준으로 필요한 범위의 평면 지도를 만들고, 지형·수계·거점·지명과 축척의 일치 여부를 확인해줘."
