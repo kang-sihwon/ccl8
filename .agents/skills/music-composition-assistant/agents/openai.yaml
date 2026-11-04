@@ -1,0 +1,4 @@
+interface:
+  display_name: "Music Composition Assistant"
+  short_description: "지역·인물·보스 테마의 모티프·편성·악보 초안 구성"
+  default_prompt: "$music-composition-assistant 지역과 보스의 정서·전투 흐름에 맞춰 공통 모티프와 변주·편성·반복 구조를 설계해줘."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Roleplay Game Master"
+  short_description: "플레이어 선택에 따른 NPC 반응·분기·결과 모의 진행"
+  default_prompt: "$roleplay-game-master 기존 플롯의 한 장면을 역할극으로 시험하고 내 선택에 따른 NPC 반응·갈등·다음 선택지를 보여줘."

@@ -9,7 +9,7 @@ description: ccl8의 시나리오, 세계관, 배경 설정, 판타지 레퍼런
 
 서사 작업 절차는 단계와 판정, 작성자·독립 검토자·승인자의 역할, 출처와 인용, 기록 위치, 승인과 정본 반영, 인계를 정하는 유일한 절차 정본이다. 서사 문서의 소유는 `../../../Docs/NarrativeConcept.md`가 정한다. 이 스킬에서 해당 규칙을 복제하거나 변경하지 않는다.
 
-지리와 정착, 세력과 국가, 문화와 갈등을 연결해 세계관·배경·스토리를 작성하거나 설정 변경의 영향을 검토할 때는 [worldbuilding-studio](../worldbuilding-studio/SKILL.md)를 함께 쓴다. 창작 방법은 그 스킬이 맡고, 이 스킬은 서사 작업 절차의 진입점으로 유지한다.
+지리·정착·세력·문화와 설정 변경의 영향에는 [worldbuilding-studio](../worldbuilding-studio/SKILL.md), 플롯·장면·대사에는 [creative-fiction-writer](../creative-fiction-writer/SKILL.md)를 관련 후보로 제안한다. 요청에 필요한 조합을 [스킬 사용 안내](../../../Docs/AgentContextTools/SkillUsage.md)에 따라 확인하고 승인한 범위에서 적용한다. 창작 방법은 선택한 전문 스킬이 맡고, 이 스킬은 서사 작업 절차의 진입점으로 유지한다.
 
 독립 검토는 세션 모델의 읽기 전용 검토 에이전트 하나에 맡길 수 있다. 시작할 때 한 줄로 알리고, 에이전트에게는 파일을 쓰지 말고 판정과 지적만 보고하게 한다. 근거는 [결정 28](../../../Docs/decisions/0028-agent-workflow-restructure.md)이다.
 

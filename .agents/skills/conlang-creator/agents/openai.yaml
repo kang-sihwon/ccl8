@@ -1,0 +1,4 @@
+interface:
+  display_name: "Conlang Creator"
+  short_description: "가상 언어·문자와 문화권별 지명·인명·어원 규칙 설계"
+  default_prompt: "$conlang-creator 기존 지명·인명을 보존하면서 문화권의 발음·어근·명명 규칙을 만들고 새 이름 후보를 검증해줘."

@@ -21,4 +21,6 @@ disable-model-invocation: true
 | `graphify` | 문서 그래프를 직접 만들거나 질의할 때 |
 | `/trace` (Claude Code 명령) | UE 5.8 심볼·CVar를 엔진 소스에서 추적해 볼트에 적을 때 |
 
-에이전트가 스스로 찾아 쓰는 스킬은 `graft`, `ccl8-design`, `ccl8-verify`, `ccl8-debug`, `ccl8-review`, `ccl8-docs`, `ccl8-writing`, `ccl8-narrative`, `worldbuilding-studio`, `map-maker`, `grilling`, `writing-for-agents`다. 이 스킬들도 이름으로 직접 부를 수 있다.
+에이전트가 후보로 찾는 기존 스킬은 `graft`, `ccl8-design`, `ccl8-verify`, `ccl8-debug`, `ccl8-review`, `ccl8-docs`, `ccl8-writing`, `ccl8-narrative`, `worldbuilding-studio`, `map-maker`, `grilling`, `writing-for-agents`다. 이 스킬들도 이름으로 직접 부를 수 있다.
+
+게임 제작·조사 스킬 15개의 전체 목록·역할·요청 예는 [스킬 선택과 사용 안내](../../../Docs/AgentContextTools/SkillUsage.md)에 있다. 작업 요청에는 그 안내에 따라 사용할 스킬과 관련 후보를 보여 주고 선택을 확인한다. 기존 승인 범위의 후속 작업은 반복 확인하지 않는다.

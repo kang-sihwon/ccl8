@@ -5,6 +5,8 @@ description: 세계관, 배경, 스토리를 서로 연결해 작성할 때 쓴�
 
 # 세계관과 스토리 제작
 
+작업 전 스킬 선택·확인과 관련 후보 안내는 [스킬 사용 안내](../../../Docs/AgentContextTools/SkillUsage.md)를 따른다. 전체 플롯·장면은 [creative-fiction-writer](../creative-fiction-writer/SKILL.md), 인물 동기는 [character-creator](../character-creator/SKILL.md), 전투 규칙은 [game-designer-assistant](../game-designer-assistant/SKILL.md)를 필요에 따라 함께 제안한다.
+
 사용자의 설정을 출발점으로 사람들이 그 세계에서 어떻게 살아가고, 무엇을 두고 협력하거나 충돌하며, 그 속에서 어떤 이야기가 생기는지 작성한다. 창작 방법을 소유하며 프로젝트의 정본 승인과 파일 관리 절차는 해당 프로젝트 지침을 따른다.
 
 ## 시작

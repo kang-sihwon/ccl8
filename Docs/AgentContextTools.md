@@ -10,6 +10,7 @@
 |---|---|
 | [기기 준비와 복구](AgentContextTools/Setup.md) | 새 기기를 설정하거나 플러그인, Unreal MCP, 볼트를 복구할 때 |
 | [색인 도구](AgentContextTools/Indexes.md) | Graft와 Graphify를 설치, 재구성, 진단할 때 |
+| [스킬 선택과 사용 안내](AgentContextTools/SkillUsage.md) | 작업 전 사용할 스킬을 확인하고 제작·조사 스킬 15개의 역할·요청 예·연관 스킬을 찾을 때 |
 
 ## 공유 설정과 로컬 설정
 

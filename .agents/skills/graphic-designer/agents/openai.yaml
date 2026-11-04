@@ -1,0 +1,4 @@
+interface:
+  display_name: "Graphic Designer"
+  short_description: "로고·문장·아이콘·홍보물의 시각 체계와 가독성 설계"
+  default_prompt: "$graphic-designer 기존 색·서체·상징을 기준으로 목적과 표시 크기에 맞는 그래픽을 만들고 가독성을 확인해줘."

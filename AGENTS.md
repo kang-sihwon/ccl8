@@ -16,6 +16,7 @@ ccl8은 Orbis의 방향과 그래픽 스타일을 공유하는 단기 소울라�
 - 엔진 동작은 현재 엔진 소스로 확인하고 `path:line`을 남긴다. UE4와 UE5의 차이를 구분하고, 설계 대안마다 트레이드오프를 붙인다.
 - 확정한 결정은 [WritingGuide](Docs/WritingGuide.md)의 결정 기록 절차로 남긴다. 과거 결정은 새 결정으로 번복한다.
 - 훈련이나 힌트를 요청받으면 [Mentoring](Docs/Mentoring.md) 절차를 쓴다.
+- 작업 요청에는 [스킬 선택과 사용 안내](Docs/AgentContextTools/SkillUsage.md)에 따라 사용할 스킬·역할·산출물과 관련 선택 스킬을 먼저 보여 주고 확인받는다. 직접 지정하거나 같은 범위에서 이미 승인한 스킬은 다시 묻지 않는다. 선택을 위한 읽기 전용 확인은 먼저 할 수 있다. 근거는 [결정 38](Docs/decisions/0038-skill-selection-and-creation-suite.md)이다.
 
 ## 경계
 

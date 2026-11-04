@@ -1,0 +1,4 @@
+interface:
+  display_name: "Creative Fiction Writer"
+  short_description: "플롯·장면·대사 작성과 인과관계·복선·인물 변화 검토"
+  default_prompt: "$creative-fiction-writer 기존 후보를 읽고 사건·몬스터 전투·동료 관계·성장·다음 지역의 계기가 이어지는 플롯을 구성해줘."

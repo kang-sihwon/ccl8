@@ -1,0 +1,4 @@
+interface:
+  display_name: "Mythology Creator"
+  short_description: "문화와 환경에서 신계·창세·괴물 전승·성지 구성"
+  default_prompt: "$mythology-creator 세계의 환경·역사·주민의 두려움에서 몬스터와 보스의 기원·전승·금기를 도출해줘."

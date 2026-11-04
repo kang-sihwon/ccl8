@@ -1,0 +1,4 @@
+interface:
+  display_name: "Game Designer Assistant"
+  short_description: "전투·성장·조우·경제 설계와 상호작용·허점 검토"
+  default_prompt: "$game-designer-assistant 무기 선택을 유지하면서 지역의 몬스터 조우·보스전·성장·보상이 연결되도록 기획해줘."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Deep Research"
+  short_description: "게임 참고 자료의 다중 출처 조사·비교·근거 정리"
+  default_prompt: "$deep-research 게임에 적용할 주제를 조사하고 검증된 사실·출처 간 차이·적용 후보·미확인을 구분해줘."

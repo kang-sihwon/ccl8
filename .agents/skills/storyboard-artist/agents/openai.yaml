@@ -1,0 +1,4 @@
+interface:
+  display_name: "Storyboard Artist"
+  short_description: "컷신·보스 등장·추격 장면의 숏·카메라·연속성 설계"
+  default_prompt: "$storyboard-artist 장면의 목적과 인물 동선을 정하고 숏 목록·카메라·타이밍이 이어지는 스토리보드를 구성해줘."

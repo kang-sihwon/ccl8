@@ -1,0 +1,4 @@
+interface:
+  display_name: "Character Creator"
+  short_description: "주인공·동료·적대자의 동기·결점·관계·말투 설계"
+  default_prompt: "$character-creator 인물의 욕망·필요·두려움과 모순을 정하고 실제 선택·관계 변화가 드러나는 인물 시트를 만들어줘."

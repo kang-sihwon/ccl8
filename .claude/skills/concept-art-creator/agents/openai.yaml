@@ -1,0 +1,4 @@
+interface:
+  display_name: "Concept Art Creator"
+  short_description: "게임 캐릭터·괴물·환경의 형태·재질·색채 콘셉트 제작"
+  default_prompt: "$concept-art-creator 기존 설정과 아트 기준을 읽고 형태·재질·기능이 구별되는 콘셉트 시안을 만들어줘."

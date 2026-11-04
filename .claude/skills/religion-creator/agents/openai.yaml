@@ -1,0 +1,4 @@
+interface:
+  display_name: "Religion Creator"
+  short_description: "가상 종교의 교리·의례·교단·분파·생활 규범 설계"
+  default_prompt: "$religion-creator 종교가 해결하려는 문제·구원의 답·일상 실천을 정하고 교단의 권력·의례·분파 갈등을 구성해줘."

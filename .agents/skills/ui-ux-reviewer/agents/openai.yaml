@@ -1,0 +1,4 @@
+interface:
+  display_name: "UI/UX Reviewer"
+  short_description: "HUD·메뉴·인벤토리의 정보·입력·상태·사용성 검토"
+  default_prompt: "$ui-ux-reviewer 화면의 목적과 입력 방식을 기준으로 가독성·상태 누락·사용 흐름을 검토하고 수정 우선순위를 알려줘."
