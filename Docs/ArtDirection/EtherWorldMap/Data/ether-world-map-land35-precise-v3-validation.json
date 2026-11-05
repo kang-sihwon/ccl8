@@ -98,6 +98,11 @@
   ],
   "hash_normalization": "UTF-8 text normalized to LF; binary files unchanged",
   "files_sha256": {
+    "Data/ether-world-map-land35-precise-v3.json": "cb18b67a8d6123e40da69dae4174a001966ef6e4cb44080a79369e0e210b51ad",
+    "Images/ether-world-map-land35-precise-v3.svg": "ea4df2d46cb11fb82b11c1a2f46c50911d1c8c8041ea8b91e4555afa87f4dee2",
+    "Images/ether-world-map-land35-precise-v3.png": "19cd36cda09e1363c6ddf84faa51bcb42312377a87379e9488121fc785487e08"
+  },
+  "previous_files_sha256_raw_crlf_checkout": {
     "Data/ether-world-map-land35-precise-v3.json": "7fb1ea5461708dadca67f46ba9dd6dd579ed2ae329c275edd0707a2f85a2c0f4",
     "Images/ether-world-map-land35-precise-v3.svg": "d92cb99953232619ca00bc10010e89ede3210cd6a961bc70b97307c08e4b8624",
     "Images/ether-world-map-land35-precise-v3.png": "19cd36cda09e1363c6ddf84faa51bcb42312377a87379e9488121fc785487e08"
