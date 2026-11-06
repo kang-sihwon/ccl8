@@ -1,5 +1,7 @@
 # 에테르 첫 장: 숲이 다시 숨 쉬는 날
 
+이 원고는 앞선 장면 구성의 보존본이다. 결정 39에 따른 현재 상세 비교안은 [시작부터 출항까지](2026-11-06-opening-and-continent/opening-scenario.md)이며, 보완 근거는 [첫 장 연결 점검](2026-11-06-opening-and-continent/opening-audit.md)에 있다.
+
 도입부터 바르툴전, 수원 복구, 마을 귀환과 출항까지의 장면별 전개와 제작 범위를 담은 후보다. 사용자가 제공한 「에테르 — 타이가의 서광 첫 장 시나리오.md」를 바탕으로 한다.
 
 무기는 [결정 37](../../../decisions/0037-unrestricted-protagonist-weapons.md)에 따라 특정 종류로 고정하지 않는다. 준비·전투·정비·출항은 선택한 무기와 장비에 맞춰 표현하며, [수정 전 문장과 대사](2026-11-03-adventure-plot/2026-11-03-fixed-weapon-previous.md)는 비교용으로 보존한다.
