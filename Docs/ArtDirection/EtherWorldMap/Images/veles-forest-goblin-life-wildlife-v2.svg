@@ -1,0 +1,132 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2200" height="1900"><rect width="100%" height="100%" fill="#f5f2e9"/>
+<text x="60" y="45" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="45" font-weight="700" fill="#23404a">벨레스 숲 | 고블린 생활·약탈·운반과 일반 동물</text>
+<text x="60" y="112" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="27" font-weight="400" fill="#23404a">설계 후보 · 북쪽 ↑ · 좌표 m · 이전 배치 보존 · 점 하나는 한 개체를 뜻하지 않음</text>
+<polygon points="65.00,1729.50 1422.00,1729.50 1422.00,200.00 65.00,200.00" fill="#e9eddf"/>
+<polyline points="272.00,1729.50 272.00,200.00" fill="none" stroke="#ced6c7" stroke-width="1"/>
+<text x="274.0" y="203.0" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="18" font-weight="400" fill="#23404a">-200</text>
+<polyline points="502.00,1729.50 502.00,200.00" fill="none" stroke="#ced6c7" stroke-width="1"/>
+<text x="503.99999999999994" y="203.0" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="18" font-weight="400" fill="#23404a">0</text>
+<polyline points="732.00,1729.50 732.00,200.00" fill="none" stroke="#ced6c7" stroke-width="1"/>
+<text x="734.0" y="203.0" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="18" font-weight="400" fill="#23404a">200</text>
+<polyline points="962.00,1729.50 962.00,200.00" fill="none" stroke="#ced6c7" stroke-width="1"/>
+<text x="963.9999999999999" y="203.0" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="18" font-weight="400" fill="#23404a">400</text>
+<polyline points="1192.00,1729.50 1192.00,200.00" fill="none" stroke="#ced6c7" stroke-width="1"/>
+<text x="1194.0" y="203.0" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="18" font-weight="400" fill="#23404a">600</text>
+<polyline points="1422.00,1729.50 1422.00,200.00" fill="none" stroke="#ced6c7" stroke-width="1"/>
+<text x="1424.0" y="203.0" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="18" font-weight="400" fill="#23404a">800</text>
+<polyline points="65.00,1672.00 1422.00,1672.00" fill="none" stroke="#ced6c7" stroke-width="1"/>
+<text x="67.0" y="1675.0" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="18" font-weight="400" fill="#23404a">200</text>
+<polyline points="65.00,1442.00 1422.00,1442.00" fill="none" stroke="#ced6c7" stroke-width="1"/>
+<text x="67.0" y="1445.0" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="18" font-weight="400" fill="#23404a">400</text>
+<polyline points="65.00,1212.00 1422.00,1212.00" fill="none" stroke="#ced6c7" stroke-width="1"/>
+<text x="67.0" y="1215.0" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="18" font-weight="400" fill="#23404a">600</text>
+<polyline points="65.00,982.00 1422.00,982.00" fill="none" stroke="#ced6c7" stroke-width="1"/>
+<text x="67.0" y="984.9999999999999" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="18" font-weight="400" fill="#23404a">800</text>
+<polyline points="65.00,752.00 1422.00,752.00" fill="none" stroke="#ced6c7" stroke-width="1"/>
+<text x="67.0" y="755.0" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="18" font-weight="400" fill="#23404a">1000</text>
+<polyline points="65.00,522.00 1422.00,522.00" fill="none" stroke="#ced6c7" stroke-width="1"/>
+<text x="67.0" y="525.0" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="18" font-weight="400" fill="#23404a">1200</text>
+<polyline points="65.00,292.00 1422.00,292.00" fill="none" stroke="#ced6c7" stroke-width="1"/>
+<text x="67.0" y="295.0" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="18" font-weight="400" fill="#23404a">1400</text>
+<polyline points="550.86,1687.45 605.50,1603.00 709.00,1396.00 639.26,1186.77 594.00,1051.00 682.13,862.14 755.00,706.00 770.03,627.09 801.00,464.50" fill="none" stroke="#aaa48e" stroke-width="2"/>
+<polyline points="709.00,1396.00 847.00,1304.00 881.50,1074.00 904.50,855.50 755.00,706.00" fill="none" stroke="#aaa48e" stroke-width="2"/>
+<polyline points="639.26,1186.77 375.50,1292.50 214.50,1062.50 249.00,809.50 456.00,591.00 801.00,464.50" fill="none" stroke="#aaa48e" stroke-width="2"/>
+<polyline points="594.00,1051.00 214.50,1062.50" fill="none" stroke="#aaa48e" stroke-width="2"/>
+<polyline points="639.26,1186.77 881.50,1074.00" fill="none" stroke="#aaa48e" stroke-width="2"/>
+<polyline points="249.00,809.50 682.13,862.14" fill="none" stroke="#aaa48e" stroke-width="2"/>
+<polyline points="682.13,862.14 904.50,855.50" fill="none" stroke="#aaa48e" stroke-width="2"/>
+<polyline points="214.50,1062.50 260.48,1061.11 300.99,1069.08 341.22,1067.86 381.17,1057.45 427.15,1056.06 467.73,1066.33 507.96,1065.11 547.85,1052.40 594.00,1051.00" fill="none" stroke="#78674b" stroke-width="3"/>
+<polyline points="801.00,464.50 783.75,470.25 749.25,470.25 726.25,489.80 697.50,489.80 668.75,512.80 628.50,527.75 582.50,545.00 536.50,563.40 456.00,591.00" fill="none" stroke="#78674b" stroke-width="3"/>
+<polyline points="870.00,303.50 789.50,579.50 686.00,832.50 651.50,1097.00 617.00,1350.00 525.00,1568.50 553.75,1700.75" fill="none" stroke="#388b9a" stroke-width="5"/>
+<polyline points="1422.00,752.00 1077.00,1212.00 709.00,1718.00" fill="none" stroke="#69a8bd" stroke-width="14"/>
+<polyline points="881.50,1074.00 921.75,1097.00 950.50,1166.00" fill="none" stroke="#bb8c3b" stroke-width="3"/>
+<polyline points="214.50,1062.50 260.50,1097.00 323.75,1120.00" fill="none" stroke="#bb8c3b" stroke-width="3"/>
+<polyline points="375.50,1292.50 323.75,1120.00" fill="none" stroke="#bb8c3b" stroke-width="3"/>
+<polyline points="835.50,1304.00 893.00,1281.00 921.75,1212.00 950.50,1166.00" fill="none" stroke="#bd9762" stroke-width="2"/>
+<polyline points="881.50,970.50 881.50,1074.00 921.75,1097.00 950.50,1166.00" fill="none" stroke="#bd9762" stroke-width="2"/>
+<polyline points="950.50,1166.00 985.00,1189.00 1002.25,1120.00 921.75,1097.00 950.50,1166.00" fill="none" stroke="#b37422" stroke-width="3"/>
+<polyline points="835.50,1304.00 789.50,1350.00 766.50,1269.50 847.00,1235.00 893.00,1281.00 835.50,1304.00" fill="none" stroke="#b37422" stroke-width="3"/>
+<polyline points="881.50,970.50 812.50,982.00 795.25,901.50 904.50,855.50 939.00,890.00 881.50,970.50" fill="none" stroke="#b37422" stroke-width="3"/>
+<polyline points="323.75,1120.00 283.50,1154.50 375.50,1171.75 375.50,1097.00 323.75,1120.00" fill="none" stroke="#b37422" stroke-width="3"/>
+<polyline points="950.50,1166.00 921.75,1097.00 881.50,1074.00 639.26,1186.77 375.50,1292.50 323.75,1120.00 214.50,1062.50" fill="none" stroke="#875ca4" stroke-width="5"/>
+<circle cx="950.4999999999999" cy="1166.0" r="5" fill="#875ca4"/>
+<text x="930.4999999999999" y="1176.0" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="24" font-weight="700" fill="#875ca4">1</text>
+<circle cx="881.4999999999999" cy="1074.0" r="5" fill="#875ca4"/>
+<text x="861.4999999999999" y="1084.0" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="24" font-weight="700" fill="#875ca4">2</text>
+<circle cx="639.258064516129" cy="1186.7741935483868" r="5" fill="#875ca4"/>
+<text x="619.258064516129" y="1196.7741935483868" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="24" font-weight="700" fill="#875ca4">3</text>
+<circle cx="323.75" cy="1120.0" r="5" fill="#875ca4"/>
+<text x="303.75" y="1130.0" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="24" font-weight="700" fill="#875ca4">4</text>
+<circle cx="214.5" cy="1062.5" r="5" fill="#875ca4"/>
+<text x="194.5" y="1072.5" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="24" font-weight="700" fill="#875ca4">5</text>
+<circle cx="709.0" cy="1396.0" r="5" fill="#42724f"/>
+<text x="716.0" y="1398.0" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="24" font-weight="700" fill="#42724f">다람쥐</text>
+<circle cx="846.9999999999999" cy="1235.0" r="5" fill="#42724f"/>
+<text x="853.9999999999999" y="1237.0" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="24" font-weight="700" fill="#42724f">다람쥐</text>
+<circle cx="306.5" cy="1246.5" r="5" fill="#42724f"/>
+<text x="313.5" y="1248.5" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="24" font-weight="700" fill="#42724f">다람쥐</text>
+<circle cx="611.25" cy="1534.0" r="5" fill="#42724f"/>
+<text x="618.25" y="1536.0" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="24" font-weight="700" fill="#42724f">새</text>
+<circle cx="846.9999999999999" cy="1125.75" r="5" fill="#42724f"/>
+<text x="853.9999999999999" y="1127.75" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="24" font-weight="700" fill="#42724f">새</text>
+<circle cx="795.25" cy="441.5" r="5" fill="#42724f"/>
+<text x="802.25" y="443.5" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="24" font-weight="700" fill="#42724f">새</text>
+<circle cx="237.5" cy="1028.0" r="5" fill="#42724f"/>
+<text x="187.5" y="993.0" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="24" font-weight="700" fill="#42724f">새</text>
+<circle cx="835.4999999999999" cy="1419.0" r="5" fill="#42724f"/>
+<text x="842.4999999999999" y="1421.0" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="24" font-weight="700" fill="#42724f">토끼</text>
+<circle cx="427.25" cy="1263.75" r="5" fill="#42724f"/>
+<text x="434.25" y="1265.75" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="24" font-weight="700" fill="#42724f">토끼</text>
+<circle cx="174.25" cy="1120.0" r="5" fill="#42724f"/>
+<text x="181.25" y="1122.0" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="24" font-weight="700" fill="#42724f">토끼</text>
+<circle cx="157.0" cy="1189.0" r="5" fill="#42724f"/>
+<text x="164.0" y="1191.0" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="24" font-weight="700" fill="#42724f">사슴</text>
+<circle cx="984.9999999999999" cy="895.75" r="5" fill="#42724f"/>
+<text x="991.9999999999999" y="897.75" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="24" font-weight="700" fill="#42724f">사슴</text>
+<circle cx="743.5" cy="832.5" r="5" fill="#42724f"/>
+<text x="750.5" y="834.5" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="24" font-weight="700" fill="#42724f">사슴</text>
+<circle cx="950.4999999999999" cy="1166.0" r="8" fill="#98601a"/>
+<text x="961.4999999999999" y="1146.0" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="24" font-weight="700" fill="#98601a">GB01 · 4</text>
+<circle cx="835.4999999999999" cy="1304.0" r="8" fill="#98601a"/>
+<text x="850.4999999999999" y="1271.0" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="24" font-weight="700" fill="#98601a">GB02 · 2</text>
+<circle cx="881.4999999999999" cy="970.4999999999999" r="8" fill="#98601a"/>
+<text x="892.4999999999999" y="950.4999999999999" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="24" font-weight="700" fill="#98601a">GB03 · 3</text>
+<circle cx="323.75" cy="1120.0" r="8" fill="#98601a"/>
+<text x="218.75" y="1088.0" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="24" font-weight="700" fill="#98601a">GB04 · 3</text>
+<circle cx="605.5" cy="1603.0" r="5" fill="#2f4850"/>
+<text x="615.5" y="1573.0" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="24" font-weight="700" fill="#2f4850">숲 입구</text>
+<circle cx="801.0" cy="464.5" r="5" fill="#2f4850"/>
+<text x="811.0" y="434.5" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="24" font-weight="700" fill="#2f4850">동굴</text>
+<circle cx="214.5" cy="1062.5" r="5" fill="#2f4850"/>
+<text x="224.5" y="1032.5" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="24" font-weight="700" fill="#2f4850">O2 자재 적치장</text>
+<circle cx="455.99999999999994" cy="591.0" r="5" fill="#2f4850"/>
+<text x="465.99999999999994" y="561.0" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="24" font-weight="700" fill="#2f4850">O5 조망</text>
+<circle cx="639.258064516129" cy="1186.7741935483868" r="5" fill="#2f4850"/>
+<text x="574.258064516129" y="1204.7741935483868" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="24" font-weight="700" fill="#2f4850">B02</text>
+<text x="1470" y="220" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="28" font-weight="700" fill="#23404a">고블린은 공간을 사용한다</text>
+<text x="1470" y="268" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="25" font-weight="400" fill="#23404a">황갈색: 각 집단의 행동 예시</text>
+<text x="1470" y="316" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="25" font-weight="400" fill="#23404a">보라색: 같은 GB05 두 명의 운반길</text>
+<text x="1470" y="364" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="25" font-weight="400" fill="#23404a">① 동쪽 적재 → ② 동쪽 연결</text>
+<text x="1470" y="412" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="25" font-weight="400" fill="#23404a">③ B02 도하 → ④ 서쪽 분류</text>
+<text x="1470" y="460" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="25" font-weight="400" fill="#23404a">⑤ O2 확인 → 같은 길로 복귀</text>
+<text x="1470" y="508" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="25" font-weight="400" fill="#23404a">시작점·종점 동시 배치가 아님</text>
+<text x="1470" y="556" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="25" font-weight="400" fill="#23404a">경로의 실제 위치와 시각은 미정</text>
+<text x="1470" y="604" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="25" font-weight="400" fill="#23404a"></text>
+<text x="1470" y="634" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="25" font-weight="400" fill="#23404a">일반 동물은 숲의 생활이다</text>
+<text x="1470" y="682" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="25" font-weight="400" fill="#23404a">초록 표식: 관찰 장소 예시</text>
+<text x="1470" y="730" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="25" font-weight="400" fill="#23404a">다람쥐: 먹이와 둥지</text>
+<text x="1470" y="778" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="28" font-weight="700" fill="#23404a">새: 나뭇가지·먹이·물가</text>
+<text x="1470" y="826" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="25" font-weight="400" fill="#23404a">토끼: 초지와 은신처</text>
+<text x="1470" y="874" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="25" font-weight="400" fill="#23404a">사슴: 풀밭과 수로 접근</text>
+<text x="1470" y="922" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="25" font-weight="400" fill="#23404a">표식 수 ≠ 개체 수 / 전투 대상 수</text>
+<text x="1470" y="970" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="25" font-weight="400" fill="#23404a"></text>
+<text x="1470" y="1000" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="25" font-weight="400" fill="#23404a">늑대는 접근 시 위험할 수 있음</text>
+<text x="1470" y="1048" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="25" font-weight="400" fill="#23404a">사냥 과제·필수 처치 조건 없음</text>
+<text x="1470" y="1096" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="25" font-weight="400" fill="#23404a">동물 반응을 적 경보기로 고정 안 함</text>
+<text x="1470" y="1144" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="25" font-weight="400" fill="#23404a"></text>
+<text x="1470" y="1174" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="25" font-weight="400" fill="#23404a">이동 AI·포식·재등장 미검증</text>
+<line x1="122.5" y1="1677.7499999999998" x2="237.5" y2="1677.7499999999998" stroke="#23404a" stroke-width="5"/>
+<text x="122.5" y="1687.7499999999998" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="22" font-weight="400" fill="#23404a">100m</text>
+<text x="65" y="1785" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="25" font-weight="400" fill="#23404a">기존 15개 장소·길 기준점·수계와 G/W 분포 보존. S01–S04 전투 배치는 이전안으로 보존.</text>
+<text x="65" y="1830" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="25" font-weight="400" fill="#23404a">일반 동물의 수량·고블린 추격·감지·전투 난도·실제 통행은 미검증. 새 시안은 정본 수치가 아니다.</text>
+</svg>

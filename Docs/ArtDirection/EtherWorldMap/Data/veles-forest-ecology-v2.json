@@ -1,0 +1,1947 @@
+{
+  "status": "goblin_and_wildlife_distribution_candidate_not_runtime_spawn_table",
+  "basis": "veles-forest-ecology-v1.json",
+  "basis_decision": 42,
+  "local_frame": {
+    "origin_regional_km": [
+      150,
+      145
+    ],
+    "mapping": "regional_xy_km = origin_regional_km + local_xy_m / 1000; aligned projected axes, not a separate tangent-plane georeference",
+    "extent_m": [
+      -1350,
+      800,
+      -1100,
+      1420
+    ],
+    "local_distances": "Euclidean design distances; sphere distortion not corrected at village scale",
+    "reveal_regional_km": [
+      149.0,
+      144.0
+    ]
+  },
+  "preserved_local_points_m": {
+    "quay": [
+      0,
+      0
+    ],
+    "workshop": [
+      60,
+      110
+    ],
+    "water_point": [
+      -20,
+      90
+    ],
+    "water_store": [
+      45,
+      175
+    ],
+    "forest_gate": [
+      90,
+      260
+    ],
+    "squirrel": [
+      180,
+      440
+    ],
+    "guardian": [
+      80,
+      740
+    ],
+    "wolves": [
+      220,
+      1040
+    ],
+    "cave": [
+      260,
+      1250
+    ],
+    "old_workshop": [
+      280,
+      1300
+    ],
+    "boss": [
+      300,
+      1360
+    ],
+    "spring": [
+      320,
+      1390
+    ],
+    "local_grove_tree": [
+      320,
+      1420
+    ],
+    "ridge": [
+      -650,
+      -650
+    ],
+    "reveal": [
+      -1000,
+      -1000
+    ]
+  },
+  "preserved_river_m": [
+    [
+      800,
+      1000
+    ],
+    [
+      500,
+      600
+    ],
+    [
+      180,
+      160
+    ],
+    [
+      0,
+      0
+    ],
+    [
+      -300,
+      -150
+    ],
+    [
+      -320,
+      -900
+    ],
+    [
+      -1000,
+      -1000
+    ],
+    [
+      -1350,
+      -1100
+    ]
+  ],
+  "preserved_spring_water_m": [
+    [
+      320,
+      1390
+    ],
+    [
+      250,
+      1150
+    ],
+    [
+      160,
+      930
+    ],
+    [
+      130,
+      700
+    ],
+    [
+      100,
+      480
+    ],
+    [
+      20,
+      290
+    ],
+    [
+      45,
+      175
+    ],
+    [
+      -20,
+      90
+    ],
+    [
+      0,
+      20
+    ]
+  ],
+  "preserved_forest_walk_m": [
+    [
+      60,
+      110
+    ],
+    [
+      -20,
+      90
+    ],
+    [
+      90,
+      260
+    ],
+    [
+      180,
+      440
+    ],
+    [
+      80,
+      740
+    ],
+    [
+      220,
+      1040
+    ],
+    [
+      260,
+      1250
+    ],
+    [
+      280,
+      1300
+    ],
+    [
+      300,
+      1360
+    ]
+  ],
+  "map_extent_m": [
+    -380,
+    800,
+    150,
+    1480
+  ],
+  "zones": [
+    {
+      "id": "F01",
+      "name": "마을 바깥 관리림",
+      "polygon_m": [
+        [
+          -100,
+          240
+        ],
+        [
+          160,
+          240
+        ],
+        [
+          280,
+          430
+        ],
+        [
+          220,
+          520
+        ],
+        [
+          -160,
+          500
+        ],
+        [
+          -180,
+          360
+        ]
+      ],
+      "label_m": [
+        -145,
+        355
+      ],
+      "color": "#e3e9cd"
+    },
+    {
+      "id": "F02",
+      "name": "동쪽 열매숲",
+      "polygon_m": [
+        [
+          180,
+          480
+        ],
+        [
+          330,
+          470
+        ],
+        [
+          450,
+          750
+        ],
+        [
+          450,
+          940
+        ],
+        [
+          260,
+          980
+        ],
+        [
+          170,
+          780
+        ],
+        [
+          120,
+          600
+        ]
+      ],
+      "label_m": [
+        345,
+        580
+      ],
+      "color": "#d3e4bc"
+    },
+    {
+      "id": "F03",
+      "name": "수로 작업림",
+      "polygon_m": [
+        [
+          -140,
+          500
+        ],
+        [
+          120,
+          500
+        ],
+        [
+          180,
+          900
+        ],
+        [
+          130,
+          1010
+        ],
+        [
+          -100,
+          970
+        ],
+        [
+          -170,
+          750
+        ]
+      ],
+      "label_m": [
+        -55,
+        660
+      ],
+      "color": "#d9e6da"
+    },
+    {
+      "id": "F04",
+      "name": "서쪽 바위숲",
+      "polygon_m": [
+        [
+          -350,
+          600
+        ],
+        [
+          -130,
+          540
+        ],
+        [
+          -100,
+          850
+        ],
+        [
+          60,
+          1150
+        ],
+        [
+          -120,
+          1230
+        ],
+        [
+          -330,
+          1040
+        ]
+      ],
+      "label_m": [
+        -320,
+        1000
+      ],
+      "color": "#ddd8cc"
+    },
+    {
+      "id": "F05",
+      "name": "상류 물가",
+      "polygon_m": [
+        [
+          130,
+          900
+        ],
+        [
+          430,
+          900
+        ],
+        [
+          470,
+          1140
+        ],
+        [
+          290,
+          1210
+        ],
+        [
+          160,
+          1140
+        ],
+        [
+          130,
+          1010
+        ]
+      ],
+      "label_m": [
+        365,
+        1110
+      ],
+      "color": "#cce6df"
+    },
+    {
+      "id": "F06",
+      "name": "뿌리 언덕",
+      "polygon_m": [
+        [
+          -120,
+          1160
+        ],
+        [
+          150,
+          1080
+        ],
+        [
+          330,
+          1160
+        ],
+        [
+          420,
+          1380
+        ],
+        [
+          320,
+          1450
+        ],
+        [
+          180,
+          1380
+        ],
+        [
+          80,
+          1280
+        ]
+      ],
+      "label_m": [
+        65,
+        1260
+      ],
+      "color": "#dce2bd"
+    }
+  ],
+  "groups": [
+    {
+      "id": "G01",
+      "species": "뿌리 파수꾼",
+      "count_candidate": 1,
+      "home_m": [
+        80,
+        740
+      ],
+      "route_m": [
+        [
+          80,
+          680
+        ],
+        [
+          40,
+          760
+        ],
+        [
+          90,
+          820
+        ],
+        [
+          100,
+          760
+        ],
+        [
+          80,
+          680
+        ]
+      ],
+      "routine_polygon_m": [
+        [
+          20,
+          660
+        ],
+        [
+          110,
+          660
+        ],
+        [
+          110,
+          835
+        ],
+        [
+          20,
+          835
+        ]
+      ],
+      "pursuit_polygon_m": [
+        [
+          -20,
+          620
+        ],
+        [
+          115,
+          620
+        ],
+        [
+          115,
+          860
+        ],
+        [
+          -20,
+          860
+        ]
+      ],
+      "zone": "F03",
+      "example_route_length_m": 310.83495367439355
+    },
+    {
+      "id": "G02",
+      "species": "뿌리 파수꾼",
+      "count_candidate": 2,
+      "home_m": [
+        -90,
+        820
+      ],
+      "route_m": [
+        [
+          -140,
+          780
+        ],
+        [
+          -60,
+          780
+        ],
+        [
+          -60,
+          850
+        ],
+        [
+          -140,
+          850
+        ],
+        [
+          -140,
+          780
+        ]
+      ],
+      "routine_polygon_m": [
+        [
+          -160,
+          750
+        ],
+        [
+          -40,
+          750
+        ],
+        [
+          -40,
+          880
+        ],
+        [
+          -160,
+          880
+        ]
+      ],
+      "pursuit_polygon_m": [
+        [
+          -195,
+          700
+        ],
+        [
+          30,
+          700
+        ],
+        [
+          30,
+          920
+        ],
+        [
+          -195,
+          920
+        ]
+      ],
+      "zone": "F03",
+      "example_route_length_m": 300.0
+    },
+    {
+      "id": "G03",
+      "species": "뿌리 파수꾼",
+      "count_candidate": 1,
+      "home_m": [
+        190,
+        1140
+      ],
+      "route_m": [
+        [
+          150,
+          1090
+        ],
+        [
+          205,
+          1100
+        ],
+        [
+          205,
+          1170
+        ],
+        [
+          150,
+          1170
+        ],
+        [
+          150,
+          1090
+        ]
+      ],
+      "routine_polygon_m": [
+        [
+          130,
+          1070
+        ],
+        [
+          210,
+          1070
+        ],
+        [
+          210,
+          1190
+        ],
+        [
+          130,
+          1190
+        ]
+      ],
+      "pursuit_polygon_m": [
+        [
+          90,
+          1020
+        ],
+        [
+          184,
+          1020
+        ],
+        [
+          210,
+          1060
+        ],
+        [
+          225,
+          1130
+        ],
+        [
+          225,
+          1230
+        ],
+        [
+          90,
+          1230
+        ]
+      ],
+      "zone": "F06",
+      "example_route_length_m": 260.90169943749476
+    },
+    {
+      "id": "G04",
+      "species": "뿌리 파수꾼",
+      "count_candidate": 1,
+      "home_m": [
+        225,
+        1210
+      ],
+      "route_m": [
+        [
+          205,
+          1190
+        ],
+        [
+          240,
+          1190
+        ],
+        [
+          245,
+          1230
+        ],
+        [
+          205,
+          1230
+        ],
+        [
+          205,
+          1190
+        ]
+      ],
+      "routine_polygon_m": [
+        [
+          190,
+          1180
+        ],
+        [
+          250,
+          1180
+        ],
+        [
+          250,
+          1240
+        ],
+        [
+          190,
+          1240
+        ]
+      ],
+      "pursuit_polygon_m": [
+        [
+          160,
+          1170
+        ],
+        [
+          245,
+          1170
+        ],
+        [
+          252,
+          1180
+        ],
+        [
+          265,
+          1246
+        ],
+        [
+          160,
+          1246
+        ]
+      ],
+      "zone": "F06",
+      "example_route_length_m": 155.31128874149275
+    },
+    {
+      "id": "W01",
+      "species": "서리발 늑대",
+      "count_candidate": 3,
+      "home_m": [
+        -210,
+        870
+      ],
+      "route_m": [
+        [
+          -260,
+          820
+        ],
+        [
+          -140,
+          800
+        ],
+        [
+          -100,
+          880
+        ],
+        [
+          -210,
+          950
+        ],
+        [
+          -280,
+          900
+        ],
+        [
+          -260,
+          820
+        ]
+      ],
+      "routine_polygon_m": [
+        [
+          -290,
+          780
+        ],
+        [
+          -80,
+          780
+        ],
+        [
+          -80,
+          980
+        ],
+        [
+          -290,
+          980
+        ]
+      ],
+      "pursuit_polygon_m": [
+        [
+          -330,
+          710
+        ],
+        [
+          10,
+          710
+        ],
+        [
+          10,
+          1030
+        ],
+        [
+          -330,
+          1030
+        ]
+      ],
+      "zone": "F04",
+      "example_route_length_m": 509.96738299278843
+    },
+    {
+      "id": "W02",
+      "species": "서리발 늑대",
+      "count_candidate": 4,
+      "home_m": [
+        300,
+        1040
+      ],
+      "route_m": [
+        [
+          260,
+          980
+        ],
+        [
+          360,
+          980
+        ],
+        [
+          390,
+          1060
+        ],
+        [
+          320,
+          1110
+        ],
+        [
+          260,
+          1070
+        ],
+        [
+          260,
+          980
+        ]
+      ],
+      "routine_polygon_m": [
+        [
+          225,
+          965
+        ],
+        [
+          385,
+          965
+        ],
+        [
+          420,
+          1080
+        ],
+        [
+          295,
+          1140
+        ],
+        [
+          255,
+          1120
+        ],
+        [
+          225,
+          1050
+        ]
+      ],
+      "pursuit_polygon_m": [
+        [
+          205,
+          950
+        ],
+        [
+          430,
+          950
+        ],
+        [
+          450,
+          1110
+        ],
+        [
+          290,
+          1190
+        ],
+        [
+          265,
+          1150
+        ],
+        [
+          215,
+          1035
+        ]
+      ],
+      "zone": "F05",
+      "example_route_length_m": 433.5743156328814
+    },
+    {
+      "id": "W03",
+      "species": "서리발 늑대",
+      "count_candidate": 3,
+      "home_m": [
+        -30,
+        1070
+      ],
+      "route_m": [
+        [
+          -90,
+          1020
+        ],
+        [
+          50,
+          1020
+        ],
+        [
+          130,
+          1050
+        ],
+        [
+          70,
+          1130
+        ],
+        [
+          -30,
+          1170
+        ],
+        [
+          -90,
+          1020
+        ]
+      ],
+      "routine_polygon_m": [
+        [
+          -100,
+          1000
+        ],
+        [
+          155,
+          1000
+        ],
+        [
+          155,
+          1180
+        ],
+        [
+          -100,
+          1180
+        ]
+      ],
+      "pursuit_polygon_m": [
+        [
+          -150,
+          960
+        ],
+        [
+          155,
+          960
+        ],
+        [
+          185,
+          1050
+        ],
+        [
+          185,
+          1230
+        ],
+        [
+          -150,
+          1230
+        ]
+      ],
+      "zone": "F04",
+      "example_route_length_m": 594.6982778099004
+    },
+    {
+      "id": "GB01",
+      "species": "고블린",
+      "home_m": [
+        390,
+        640
+      ],
+      "count_candidate": 4,
+      "routine_polygon_m": [
+        [
+          350,
+          590
+        ],
+        [
+          455,
+          590
+        ],
+        [
+          455,
+          730
+        ],
+        [
+          350,
+          730
+        ]
+      ],
+      "route_m": [
+        [
+          390,
+          640
+        ],
+        [
+          420,
+          620
+        ],
+        [
+          435,
+          680
+        ],
+        [
+          365,
+          700
+        ],
+        [
+          390,
+          640
+        ]
+      ],
+      "pursuit_polygon_m": null,
+      "role": "동쪽 주둔지: 식량 보관·도구 수선·거점 경계",
+      "route_semantics": "One possible activity circuit, not simultaneous actor locations or mandatory combat sequence"
+    },
+    {
+      "id": "GB02",
+      "species": "고블린",
+      "home_m": [
+        290,
+        520
+      ],
+      "count_candidate": 2,
+      "routine_polygon_m": [
+        [
+          220,
+          450
+        ],
+        [
+          340,
+          450
+        ],
+        [
+          360,
+          540
+        ],
+        [
+          330,
+          600
+        ],
+        [
+          220,
+          580
+        ]
+      ],
+      "route_m": [
+        [
+          290,
+          520
+        ],
+        [
+          250,
+          480
+        ],
+        [
+          230,
+          550
+        ],
+        [
+          300,
+          580
+        ],
+        [
+          340,
+          540
+        ],
+        [
+          290,
+          520
+        ]
+      ],
+      "pursuit_polygon_m": null,
+      "role": "동쪽 생활조: 열매·땔감 채집과 작은 덫 점검",
+      "route_semantics": "One possible activity circuit, not simultaneous actor locations or mandatory combat sequence"
+    },
+    {
+      "id": "GB03",
+      "species": "고블린",
+      "home_m": [
+        330,
+        810
+      ],
+      "count_candidate": 3,
+      "routine_polygon_m": [
+        [
+          235,
+          745
+        ],
+        [
+          360,
+          745
+        ],
+        [
+          405,
+          900
+        ],
+        [
+          365,
+          945
+        ],
+        [
+          245,
+          900
+        ]
+      ],
+      "route_m": [
+        [
+          330,
+          810
+        ],
+        [
+          270,
+          800
+        ],
+        [
+          255,
+          870
+        ],
+        [
+          350,
+          910
+        ],
+        [
+          380,
+          880
+        ],
+        [
+          330,
+          810
+        ]
+      ],
+      "pursuit_polygon_m": null,
+      "role": "약탈조: 관리 물자 보관자리 관찰·운반 짐 탈취·철수",
+      "route_semantics": "One possible activity circuit, not simultaneous actor locations or mandatory combat sequence"
+    },
+    {
+      "id": "GB04",
+      "species": "고블린",
+      "home_m": [
+        -155,
+        680
+      ],
+      "count_candidate": 3,
+      "routine_polygon_m": [
+        [
+          -210,
+          610
+        ],
+        [
+          -90,
+          610
+        ],
+        [
+          -90,
+          715
+        ],
+        [
+          -210,
+          715
+        ]
+      ],
+      "route_m": [
+        [
+          -155,
+          680
+        ],
+        [
+          -190,
+          650
+        ],
+        [
+          -110,
+          635
+        ],
+        [
+          -110,
+          700
+        ],
+        [
+          -155,
+          680
+        ]
+      ],
+      "pursuit_polygon_m": null,
+      "role": "서쪽 폐자재 거점: 훔친 물자 분류·휴식·접근 감시",
+      "route_semantics": "One possible activity circuit, not simultaneous actor locations or mandatory combat sequence"
+    }
+  ],
+  "route_nodes_m": {
+    "workshop": [
+      60,
+      110
+    ],
+    "water_point": [
+      -20,
+      90
+    ],
+    "forest_gate": [
+      90,
+      260
+    ],
+    "squirrel": [
+      180,
+      440
+    ],
+    "guardian": [
+      80,
+      740
+    ],
+    "wolves": [
+      220,
+      1040
+    ],
+    "cave": [
+      260,
+      1250
+    ],
+    "B01": [
+      42.485207100591715,
+      186.5680473372781
+    ],
+    "B02": [
+      119.35483870967742,
+      621.9354838709678
+    ],
+    "B03": [
+      156.63793103448276,
+      904.2241379310344
+    ],
+    "B04": [
+      233.06930693069307,
+      1108.6138613861385
+    ],
+    "E1": [
+      300,
+      520
+    ],
+    "E2": [
+      330,
+      720
+    ],
+    "E3": [
+      350,
+      910
+    ],
+    "W1": [
+      -110,
+      530
+    ],
+    "W2": [
+      -250,
+      730
+    ],
+    "W3": [
+      -220,
+      950
+    ],
+    "W4": [
+      -40,
+      1140
+    ]
+  },
+  "paths": [
+    {
+      "id": "R01",
+      "name": "기존 관리로",
+      "nodes": [
+        "workshop",
+        "water_point",
+        "B01",
+        "forest_gate",
+        "squirrel",
+        "B02",
+        "guardian",
+        "B03",
+        "wolves",
+        "B04",
+        "cave"
+      ],
+      "centerline_length_m": 1347.2550542265947
+    },
+    {
+      "id": "R02",
+      "name": "동쪽 열매숲 길",
+      "nodes": [
+        "squirrel",
+        "E1",
+        "E2",
+        "E3",
+        "wolves"
+      ],
+      "centerline_length_m": 721.3570300340568
+    },
+    {
+      "id": "R03",
+      "name": "서쪽 바위숲 길",
+      "nodes": [
+        "B02",
+        "W1",
+        "W2",
+        "W3",
+        "W4",
+        "cave"
+      ],
+      "centerline_length_m": 1294.517766732665
+    },
+    {
+      "id": "R04",
+      "name": "작업장 연결",
+      "nodes": [
+        "guardian",
+        "W2"
+      ],
+      "centerline_length_m": 330.15148038438355
+    },
+    {
+      "id": "R05",
+      "name": "동쪽 연결",
+      "nodes": [
+        "B02",
+        "E2"
+      ],
+      "centerline_length_m": 232.35325110410488
+    },
+    {
+      "id": "R06",
+      "name": "북서 연결",
+      "nodes": [
+        "W3",
+        "B03"
+      ],
+      "centerline_length_m": 379.4094893938379
+    },
+    {
+      "id": "R07",
+      "name": "물가 연결",
+      "nodes": [
+        "B03",
+        "E3"
+      ],
+      "centerline_length_m": 193.44831427868573
+    }
+  ],
+  "bridges": [
+    {
+      "id": "B01",
+      "xy_m": [
+        42.485207100591715,
+        186.5680473372781
+      ]
+    },
+    {
+      "id": "B02",
+      "xy_m": [
+        119.35483870967742,
+        621.9354838709678
+      ]
+    },
+    {
+      "id": "B03",
+      "xy_m": [
+        156.63793103448276,
+        904.2241379310344
+      ]
+    },
+    {
+      "id": "B04",
+      "xy_m": [
+        233.06930693069307,
+        1108.6138613861385
+      ]
+    }
+  ],
+  "pois": [
+    {
+      "id": "O1",
+      "name": "수로 파편 흔적",
+      "xy_m": [
+        160,
+        490
+      ]
+    },
+    {
+      "id": "O2",
+      "name": "옛 자재 적치장",
+      "xy_m": [
+        -250,
+        730
+      ]
+    },
+    {
+      "id": "O3",
+      "name": "열매·수지 채집터",
+      "xy_m": [
+        330,
+        720
+      ]
+    },
+    {
+      "id": "O4",
+      "name": "곰 발자국",
+      "xy_m": [
+        220,
+        1040
+      ]
+    },
+    {
+      "id": "O5",
+      "name": "상류 조망 바위",
+      "xy_m": [
+        -40,
+        1140
+      ]
+    }
+  ],
+  "overlaps": [
+    {
+      "id": "X1",
+      "groups": "W01 + G02",
+      "xy_m": [
+        -120,
+        840
+      ],
+      "kind": "routine"
+    },
+    {
+      "id": "X2",
+      "groups": "W03 + G03",
+      "xy_m": [
+        145,
+        1120
+      ],
+      "kind": "routine"
+    },
+    {
+      "id": "X3",
+      "groups": "G03 + G04",
+      "xy_m": [
+        210,
+        1200
+      ],
+      "kind": "pursuit"
+    }
+  ],
+  "basis_sha256": "744a518ccfc56b4cd59694e6430e8457e2546da251a7f90823496133e38b0ead",
+  "retired_combat_ids": [
+    "S01",
+    "S02",
+    "S03",
+    "S04"
+  ],
+  "legacy_label_note": "The preserved squirrel route node is a geographic observation point, not a combat spawn. No S group is active in v2.",
+  "mobile_groups": [
+    {
+      "id": "GB05",
+      "species": "고블린",
+      "count_candidate": 2,
+      "route_m": [
+        [
+          390,
+          640
+        ],
+        [
+          365,
+          700
+        ],
+        [
+          330,
+          720
+        ],
+        [
+          119.35483870967742,
+          621.9354838709678
+        ],
+        [
+          -110,
+          530
+        ],
+        [
+          -155,
+          680
+        ],
+        [
+          -250,
+          730
+        ]
+      ],
+      "role": "양 거점 운반조",
+      "stage_examples": [
+        "동쪽에서 적재",
+        "R05와 B02를 지나 서쪽으로 운반",
+        "폐자재 거점에서 분류",
+        "O2의 물자를 확인하고 복귀"
+      ],
+      "note": "The same two actors move along this route; no additional camp copies, no full-route presence or fixed departure times. Reverse travel is allowed. The bridge is shared, never a required combat gate."
+    }
+  ],
+  "camp_spurs": [
+    {
+      "id": "H1",
+      "route_m": [
+        [
+          330,
+          720
+        ],
+        [
+          365,
+          700
+        ],
+        [
+          390,
+          640
+        ]
+      ]
+    },
+    {
+      "id": "H2",
+      "route_m": [
+        [
+          -250,
+          730
+        ],
+        [
+          -210,
+          700
+        ],
+        [
+          -155,
+          680
+        ]
+      ]
+    },
+    {
+      "id": "H3",
+      "route_m": [
+        [
+          -110,
+          530
+        ],
+        [
+          -155,
+          680
+        ]
+      ]
+    }
+  ],
+  "deployment_links": [
+    {
+      "group": "GB02",
+      "route_m": [
+        [
+          290,
+          520
+        ],
+        [
+          340,
+          540
+        ],
+        [
+          365,
+          600
+        ],
+        [
+          390,
+          640
+        ]
+      ]
+    },
+    {
+      "group": "GB03",
+      "route_m": [
+        [
+          330,
+          810
+        ],
+        [
+          330,
+          720
+        ],
+        [
+          365,
+          700
+        ],
+        [
+          390,
+          640
+        ]
+      ]
+    }
+  ],
+  "wildlife": [
+    {
+      "id": "A-SQ",
+      "name": "다람쥐",
+      "sites_m": [
+        [
+          180,
+          440
+        ],
+        [
+          300,
+          580
+        ],
+        [
+          -170,
+          570
+        ]
+      ],
+      "behavior": "먹이·둥지·수풀로 도피. 통증 관찰 장면은 선택 후보이며 전투 없음"
+    },
+    {
+      "id": "A-BD",
+      "name": "새",
+      "sites_m": [
+        [
+          95,
+          320
+        ],
+        [
+          300,
+          675
+        ],
+        [
+          255,
+          1270
+        ],
+        [
+          -230,
+          760
+        ]
+      ],
+      "behavior": "먹이·나뭇가지·물가를 오감. 항상 적 위치를 알리는 경보기는 아님"
+    },
+    {
+      "id": "A-RB",
+      "name": "토끼",
+      "sites_m": [
+        [
+          290,
+          420
+        ],
+        [
+          -65,
+          555
+        ],
+        [
+          -285,
+          680
+        ]
+      ],
+      "behavior": "초지 가장자리에서 먹이를 찾고 가까이 접근하면 은신"
+    },
+    {
+      "id": "A-DR",
+      "name": "사슴",
+      "sites_m": [
+        [
+          -300,
+          620
+        ],
+        [
+          420,
+          875
+        ],
+        [
+          210,
+          930
+        ]
+      ],
+      "behavior": "숲 가장자리·풀밭·수로 접근 자리 후보. 늑대와 위험한 거점은 피하는 방향"
+    }
+  ],
+  "wildlife_note": "Sites are illustrative habitat observations, not spawn counts, constant occupancy, prey rewards or hunting objectives. No wildlife population simulation has been validated.",
+  "population_summary": {
+    "goblins_resident_and_field": 12,
+    "goblins_mobile": 2,
+    "wolves": 10,
+    "wardens": 5,
+    "total_combat_capable_outdoors": 29,
+    "excluded": "wildlife, indoor wardens, Bartul; number is not required kills or expected simultaneous enemies"
+  },
+  "detail_basis": "veles-forest-detail-v1.json",
+  "limits": [
+    "New goblin pursuit bounds, alarm distances, timing, respawn, combat balance and movement collision are unspecified",
+    "Old squirrel encounter spacing is historical; new route checks exclude GB05 because its location depends on travel phase",
+    "Old G/W polygons remain candidates; the earlier pursuit trims are not applied",
+    "No goblin responsibility for the water-source accident is established"
+  ],
+  "checks": {
+    "preserved_source_geometry": true,
+    "retained_G_W_groups_unchanged": true,
+    "squirrel_combat_groups_removed": true,
+    "goblin_routes_within_routine_polygons": true,
+    "group_routes_clear_of_detail_obstacles": true,
+    "new_route_water_crossings_only_at_B02": true,
+    "unique_combat_population": 29
+  },
+  "route_audit": {
+    "outbound": {
+      "path_m": [
+        [
+          90,
+          260
+        ],
+        [
+          180,
+          440
+        ],
+        [
+          300,
+          520
+        ],
+        [
+          330,
+          720
+        ],
+        [
+          350,
+          910
+        ],
+        [
+          220,
+          1040
+        ],
+        [
+          233.06930693069307,
+          1108.6138613861385
+        ],
+        [
+          260,
+          1250
+        ]
+      ],
+      "length_m": 1136.3787312733573,
+      "excluded_groups": [],
+      "static_routine_contacts": [
+        {
+          "id": "G04",
+          "intervals_m": [
+            [
+              1065.120203518539,
+              1082.9348354572435
+            ]
+          ]
+        },
+        {
+          "id": "W02",
+          "intervals_m": [
+            [
+              816.5371308310699,
+              915.5320801970876
+            ]
+          ]
+        },
+        {
+          "id": "GB02",
+          "intervals_m": [
+            [
+              249.32013498111954,
+              422.9610367562914
+            ]
+          ]
+        },
+        {
+          "id": "GB03",
+          "intervals_m": [
+            [
+              572.8437757531096,
+              768.9681291876589
+            ]
+          ]
+        }
+      ],
+      "outside_static_routine_spans_m": [
+        [
+          0,
+          249.32013498111954,
+          249.32013498111954
+        ],
+        [
+          422.9610367562914,
+          572.8437757531096,
+          149.88273899681826
+        ],
+        [
+          768.9681291876589,
+          816.5371308310699,
+          47.56900164341107
+        ],
+        [
+          915.5320801970876,
+          1065.120203518539,
+          149.58812332145146
+        ],
+        [
+          1082.9348354572435,
+          1136.3787312733573,
+          53.44389581611381
+        ]
+      ],
+      "GB05": "excluded from static coverage; position depends on phase",
+      "meaning": "Intersection means a potential encounter area, not an actual fight or simultaneous occupancy"
+    },
+    "return_G04_stopped_other_groups_present": {
+      "path_m": [
+        [
+          260,
+          1250
+        ],
+        [
+          245,
+          1245
+        ],
+        [
+          215,
+          1245
+        ],
+        [
+          195,
+          1228
+        ],
+        [
+          170,
+          1228
+        ],
+        [
+          145,
+          1208
+        ],
+        [
+          110,
+          1195
+        ],
+        [
+          70,
+          1180
+        ],
+        [
+          30,
+          1164
+        ],
+        [
+          -40,
+          1140
+        ],
+        [
+          -220,
+          950
+        ],
+        [
+          -250,
+          730
+        ],
+        [
+          -210.0184,
+          731.2116
+        ],
+        [
+          -174.7921,
+          724.2754
+        ],
+        [
+          -139.8082,
+          725.3355
+        ],
+        [
+          -105.0665,
+          734.3919
+        ],
+        [
+          -65.0849,
+          735.6035
+        ],
+        [
+          -29.798,
+          726.6682
+        ],
+        [
+          5.1859,
+          727.7283
+        ],
+        [
+          39.8669,
+          738.7838
+        ],
+        [
+          80,
+          740
+        ],
+        [
+          119.35483870967742,
+          621.9354838709678
+        ],
+        [
+          180,
+          440
+        ],
+        [
+          90,
+          260
+        ]
+      ],
+      "length_m": 1662.2062784715135,
+      "excluded_groups": [
+        "G04"
+      ],
+      "static_routine_contacts": [
+        {
+          "id": "G01",
+          "intervals_m": [
+            [
+              1083.7289650666821,
+              1229.0597987508138
+            ]
+          ]
+        },
+        {
+          "id": "W01",
+          "intervals_m": [
+            [
+              546.6135047872139,
+              759.5118104532809
+            ]
+          ]
+        },
+        {
+          "id": "W03",
+          "intervals_m": [
+            [
+              209.13214711659614,
+              413.45514776226764
+            ]
+          ]
+        }
+      ],
+      "outside_static_routine_spans_m": [
+        [
+          0,
+          209.13214711659614,
+          209.13214711659614
+        ],
+        [
+          413.45514776226764,
+          546.6135047872139,
+          133.1583570249462
+        ],
+        [
+          759.5118104532809,
+          1083.7289650666821,
+          324.21715461340125
+        ],
+        [
+          1229.0597987508138,
+          1662.2062784715135,
+          433.14647972069974
+        ]
+      ],
+      "GB05": "excluded from static coverage; position depends on phase",
+      "meaning": "Intersection means a potential encounter area, not an actual fight or simultaneous occupancy"
+    }
+  }
+}

@@ -19,16 +19,18 @@
 
 사용자가 2026-10-31 [에테르 시나리오 후보](Drafts/2026-10-31-ether-taiga-dawn.md)를 "기본 시나리오는 이걸로 할게"라고 골랐다. 첫 장 세부 시나리오와 사용자 제공 지리 원고 두 편을 기존 후보에 연결했다. 2026-11-07 K01-K09 추천안의 정본 반영을 승인했고 H01-H07은 보류로 유지했다.
 
-- 상태: 핵심 설정 `CLOSED` (결정 41의 필드 교전 수정 반영), 숲 탐색·분포 후보 `DISCUSSION` (독립 검토 PASS)
+- 상태: 핵심 설정 `CLOSED` (결정 41·42의 필드 교전과 일반 동물 구분 반영), 고블린·생태 분포 후보 `DISCUSSION` (독립 검토 PASS)
 - 담당: 없음
+- 고블린 분포 검토: [독립 검토](Reviews/2026-11-07-goblin-wildlife-review.md)는 PASS이며 지적 없음이다. 수량·기존 좌표 보존·새 동선·공백 계산·두 PNG와 결정 반영 범위를 확인했다. 실제 이동·AI·전투 밀도·일반 생태 실행은 미검증이다.
+- 현재 숲 분포: [고블린 거점·일반 생태 v2](Drafts/2026-10-31-ether-taiga-dawn/2026-11-06-opening-and-continent/2026-11-07-goblin-territories-and-wildlife.md)에 두 거점·생활조·약탈조·운반조와 다람쥐·새·토끼·사슴을 배치했다. 고블린 14명·늑대 10마리·파수꾼 5기의 29개체는 후보이며 일반 동물 수량은 미정이다. 새 고블린 추격·경보는 미검증이다. 이전 S01-S04 전투 배치·25개체와 그 분석은 현행 수치가 아니다. 다음은 고블린 거점 내부와 활동조 귀환 시 혼잡을 상세화하는 일이다.
 - 공간 상세 검토: [독립 검토](Reviews/2026-11-07-forest-detail-review.md)는 PASS이며 지적 없음이다. 두 확대도·통행 폭·장애물·시야 표본·거리의 일치를 확인했다. 실제 지형·무기·카메라·AI 실행은 미검증이다.
 - 왕복 흐름 검토: [독립 검토](Reviews/2026-11-07-forest-roundtrip-review.md)는 비교도 종명 표기 한 곳을 고치고 재확인한 뒤 PASS다. 경로·생활권 교차·공백·보정 전후 계산과 문서·그림의 일치를 확인했다. 실제 전투 밀도와 체감은 미검증이다.
 - 현재 공간 상세: [작업장 연결로·동굴 출구](Drafts/2026-10-31-ether-taiga-dawn/2026-11-06-opening-and-continent/2026-11-07-forest-sightlines-and-clearance.md)에 두 확대 지도·여섯 작업 단·여섯 장애물·아홉 관찰선을 작성했다. 연결로 폭 6–8m, 동굴 문턱 5m·바깥길 6–8m는 후보이며 기존 기준점·수계·몬스터 분포를 유지한다. 새 굽이를 적용한 귀환 약 1,662m, 중간 생활권 공백 약 324m·마지막 약 433m를 계산했다. 다음은 반대 접근 방향과 미처리·추격 중 귀환 사례를 비교하는 일이다.
-- 현재 왕복 흐름: [동쪽 진입·서쪽 귀환 모의 탐색](Drafts/2026-10-31-ether-taiga-dawn/2026-11-06-opening-and-continent/2026-11-07-forest-roundtrip-walkthrough.md)에 보스·복구를 포함한 탐색 사례와 거리 비교도를 작성했다. 동쪽 약 1,136m 진입과 R03 상부·R04·관리로 귀환을 추천한다. 기존 직선 연결의 귀환 약 1,651m와 중간 공백 약 321m는 비교 자료이며 새 상세선 수치는 위 공간 상세가 소유한다. 세 추격 범위 보정은 비교용 추천으로 남긴다. 전투 공백이 체감상 해결됐는지는 미검증이다.
+- 이전 왕복 흐름: [동쪽 진입·서쪽 귀환 모의 탐색](Drafts/2026-10-31-ether-taiga-dawn/2026-11-06-opening-and-continent/2026-11-07-forest-roundtrip-walkthrough.md)의 다람쥐 교전·S01 처리 사례와 비교도를 보존한다. 현행 활동권 공백과 귀환 사례는 위 v2 문서가 소유한다. S04 추격 축소는 현행 대상이 없어 보존안으로 남기고 G02·W01 축소는 미적용 비교 후보로 유지한다.
 - 숲 배치 검토: [독립 검토](Reviews/2026-11-07-veles-forest-population-review.md)는 PASS다. 두 PNG와 SVG, 원자료 보존·수량·길 연결·활동 및 추격 범위를 확인했다. 실제 지형과 전투 밀도·AI·UE 실행은 미검증이다.
 - 필드 전투 검토: [독립 검토](Reviews/2026-11-07-field-combat-revision-review.md)는 PASS다. 고정 다섯 전투 해제, 일반 교전과 주요 사건 구분, 바르툴·무기·복구 조건 유지, 이전안 보존을 확인했다. 실제 필드 배치와 교전 빈도는 미검증이다.
-- 현재 전투 기준: [결정 41](../decisions/0041-field-exploration-combat.md)에 따라 분포한 동물·몬스터와 탐색 중 싸운다. K05를 다섯 번의 순차 전투로 적용한 부분을 대체했고, 다른 채택 조건과 보류 항목은 유지한다. [필드 개정 후보](Drafts/2026-10-31-ether-taiga-dawn/2026-11-06-opening-and-continent/2026-11-07-field-combat-revision.md)의 방향을 아래 숲 배치로 구체화했다.
-- 현재 숲 배치: [벨레스 숲 문서와 지도](Drafts/2026-10-31-ether-taiga-dawn/2026-11-06-opening-and-continent/2026-11-07-veles-forest-population.md)에 6구역, 11개 무리·순찰 단위와 야외 25개체, 평소 이동·추격 범위·세 중첩 지점·주 길과 가로 연결을 제안했다. 기존 15개 장소와 물길을 보존했고 평면 계산 검사는 PASS다. 수량은 처치 목표나 정본이 아니며 H02·H04는 유지한다. 경로별 공백·과도한 중첩과 귀환 경험은 위 왕복 흐름에서 비교한다.
+- 현재 전투 기준: [결정 41](../decisions/0041-field-exploration-combat.md)의 탐색 중 교전을 유지하고 [결정 42](../decisions/0042-goblin-territories-and-forest-wildlife.md)로 다람쥐 전투를 일반 동물 관찰로 대체했다. 고블린 거점·생활·약탈 동선을 중심으로 분포를 구성한다. 늑대·파수꾼·바르툴의 원인과 나머지 채택 조건·보류 항목은 유지한다.
+- 이전 숲 배치: [벨레스 숲 v1 문서와 지도](Drafts/2026-10-31-ether-taiga-dawn/2026-11-06-opening-and-continent/2026-11-07-veles-forest-population.md)의 6구역·11개 단위·25개체와 당시 검토를 보존한다. 기존 지형·길·수계·G/W 분포는 v2에도 이어지지만 다람쥐 전투와 당시 밀도 검토는 현행이 아니다.
 - 핵심 설정 선택: [추천·대안·보류 비교표](Drafts/2026-10-31-ether-taiga-dawn/2026-11-06-opening-and-continent/2026-11-07-core-setting-options.md)의 K01-K09를 모두 채택해 [World](World.md)·[Scenario](Scenario.md)에 반영했다. A01-A09의 비교와 H01-H07의 보류 조건은 보존했다. 추천안 작성 때의 [독립 검토](Reviews/2026-11-07-core-setting-options-review.md)는 PASS이며 채택 근거는 결정 40이다.
 - 이전 공간 연결: [후보와 v1 도면](Drafts/2026-10-31-ether-taiga-dawn/2026-11-06-opening-and-continent/2026-11-07-opening-spatial-connections.md)의 기존 15개 장소 좌표·네 관리교·동굴 퇴로·복구·출항은 참조한다. 다섯 전투의 고정 순서와 귀환 중 전투 없음은 현행 기준이 아니다. [당시 독립 검토](Reviews/2026-11-07-opening-canon-spatial-review.md)의 PASS는 수정 전 기준에 대한 기록이다. 지도 이미지는 비교 자료로 보존하며 현재 야외 분포는 새 숲 지도에서 본다.
 - 대륙 지도 정합: [36곳 좌표 정합 후보](../ArtDirection/EtherWorldMap/2026-11-07-continent-coordinate-map.md)에 원본 해안과 중앙 9곳을 유지한 전역 좌표, 외곽 27곳과 수계·노선, 전체도와 원본 투영 대조도를 작성했다. 계산 검증과 [독립 검토](Reviews/2026-11-07-continent-coordinate-review.md)는 PASS다. 전역 원점·외곽 배치·지형은 새 후보이고 정본 승인은 별도다.

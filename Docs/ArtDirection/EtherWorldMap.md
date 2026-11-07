@@ -29,7 +29,7 @@
 
 ## 계산 보정본
 
-벨레스 숲의 전체 길과 몬스터 생활권은 [숲 배치 지도](../Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-06-opening-and-continent/2026-11-07-veles-forest-population.md), 작업장 연결로와 동굴 출구의 폭·엄폐·관찰 위치는 [두 확대 도면](../Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-06-opening-and-continent/2026-11-07-forest-sightlines-and-clearance.md)에서 본다. 확대 도면은 같은 기준점을 유지한 상세 후보이며 실제 지형·전투 검증 자료가 아니다.
+벨레스 숲의 현행 전투·생태 분포는 [고블린 거점과 일반 동물 v2](../Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-06-opening-and-continent/2026-11-07-goblin-territories-and-wildlife.md)에서 본다. [분포 v1](../Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-06-opening-and-continent/2026-11-07-veles-forest-population.md)은 이전안이다. 작업장 연결로와 동굴 출구의 폭·엄폐·관찰 위치는 [두 확대 도면](../Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-06-opening-and-continent/2026-11-07-forest-sightlines-and-clearance.md)을 참조하며, 이 확대도는 새 고블린의 시야·전투를 검증한 자료가 아니다.
 
 2026-11-01 사용자가 생성 도구의 재시도 대신 계산으로 보정한 SVG와 PNG 제작을 승인했다. 해안선의 좌표가 계산 기준이며 PNG는 같은 좌표를 그린 3,600×1,800 미리보기다.
 

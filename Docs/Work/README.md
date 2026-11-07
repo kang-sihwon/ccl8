@@ -6,7 +6,7 @@
 
 | 작업 | 지도 | 상태 |
 |---|---|---|
-| 첫 장 시나리오와 플레이 대륙 배경 | [서사 작업 현황](../Narrative/CurrentWork.md) | [작업장 연결로·동굴 출구 상세](../Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-06-opening-and-continent/2026-11-07-forest-sightlines-and-clearance.md)에 통행 폭·작업 단·엄폐와 시야 표본을 두 확대 지도로 작성했다. 다음은 반대 방향 접근과 미처리·추격 중 귀환 사례 비교다. 이전 분포·지도와 H01-H07은 보존한다. |
+| 첫 장 시나리오와 플레이 대륙 배경 | [서사 작업 현황](../Narrative/CurrentWork.md) | [고블린 거점·일반 생태 v2](../Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-06-opening-and-continent/2026-11-07-goblin-territories-and-wildlife.md)에 두 거점·생활·약탈·운반과 일반 동물 분포를 작성했다. 방향은 결정 42로 반영하고 세부 수치·배치는 후보로 유지한다. 다음은 고블린 거점 내부와 활동조 귀환 시 혼잡 비교다. 이전안과 H01-H07은 보존한다. |
 
 ## 다음 작업 후보
 
