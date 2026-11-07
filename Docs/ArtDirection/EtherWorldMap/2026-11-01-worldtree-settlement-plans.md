@@ -6,6 +6,7 @@
 
 | 자료 | 읽는 때 |
 |---|---|
+| [중앙 생활권 좌표 기준도](2026-11-07-central-coordinate-map.md) | 중앙 9곳의 현재 이름·기호·좌표와 벨레스 이웃 마을의 확대 배치를 볼 때 |
 | [세계수 치수 PNG](Images/worldtree-scale-and-influence-v1.png), [SVG](Images/worldtree-scale-and-influence-v1.svg) | 나무의 실제 높이·너비와 생활권 이격을 비교할 때 |
 | [중앙 분지 PNG](Images/ignis-central-settlement-layout-v1.png), [SVG](Images/ignis-central-settlement-layout-v1.svg) | 세계수·관리도시·로덴·벨레스와 중앙의 일반 도시·마을 위치를 볼 때 |
 | [첫 장 지역 PNG](Images/veles-first-chapter-layout-v2.png), [SVG](Images/veles-first-chapter-layout-v2.svg) | 마을·숲·동굴·출항 가림 지형의 동선을 볼 때 |

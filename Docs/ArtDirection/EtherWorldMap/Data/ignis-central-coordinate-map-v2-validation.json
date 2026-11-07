@@ -1,0 +1,43 @@
+{
+  "status": "PASS",
+  "basis": "worldtree-settlement-basis-v1.json",
+  "basis_hash_method": "SHA256 of UTF-8 JSON sorted keys, compact separators, ensure_ascii=false",
+  "basis_semantic_sha256": "51b53cb7eb3259a9541d58701c98c619ddcdc9df8f8e6f4f98c0fe4eeb4b2e9f",
+  "output_hashes": {
+    "svg_utf8_lf_sha256": "a567bc848fd1f19d76b6bdc82ce82f210af6efa214c0df00245d1a78e4e1cd51",
+    "png_raw_sha256": "d155166ddc880cd35442120cc1f22232609310c723879c296ebe2587080d5906"
+  },
+  "panels": {
+    "main": {
+      "markers": 10,
+      "kinds": {
+        "major": 2,
+        "town": 3,
+        "village": 4,
+        "landing": 1
+      },
+      "max_pair_distance_error_km": 2.842170943040401e-14,
+      "pixels_per_km_x": 5,
+      "pixels_per_km_y": 5
+    },
+    "zoom": {
+      "markers": 4,
+      "kinds": {
+        "village": 4
+      },
+      "max_pair_distance_error_km": 1.7763568394002505e-15,
+      "pixels_per_km_x": 25,
+      "pixels_per_km_y": 25
+    }
+  },
+  "main_river_vertices": 17,
+  "world_tree_crown_diameter_km": 18,
+  "restricted_residential_radius_km": 12,
+  "errors": [],
+  "limits": [
+    "Regional design coordinates, no world-map georeference",
+    "No DEM, drainage, climate, navigation or travel-time validation",
+    "PNG visual inspection is separate from SVG coordinate validation",
+    "Outer 27 settlements absent from this central-region chart"
+  ]
+}
