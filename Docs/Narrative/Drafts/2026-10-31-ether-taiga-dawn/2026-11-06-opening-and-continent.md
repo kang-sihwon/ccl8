@@ -6,8 +6,9 @@
 
 | 순서 | 읽는 문서 | 산출물 |
 |---|---|---|
+| 현재 전투 구조 | [필드 탐색과 전투 개정 후보](2026-11-06-opening-and-continent/2026-11-07-field-combat-revision.md) | 분포한 동물·몬스터와 탐색 중 싸우는 구조, 서식 구역·갈림길·대표 사건의 관계를 볼 때 |
 | 설정 선택 | [핵심 설정의 채택 추천·대안·보류](2026-11-06-opening-and-continent/2026-11-07-core-setting-options.md) | 첫 장의 핵심 후보를 선택하고 대안의 영향과 보류 시점을 비교할 때 |
-| 공간 연결 | [공방부터 출항까지의 연결 후보](2026-11-06-opening-and-continent/2026-11-07-opening-spatial-connections.md) | 채택한 첫 장을 장소·전투·퇴로·물길·귀환·출항에 배치할 때 |
+| 이전 공간 연결 | [공방부터 출항까지의 연결 후보](2026-11-06-opening-and-continent/2026-11-07-opening-spatial-connections.md) | 이전 순차 전투안과 장소·퇴로·물길·출항의 좌표 참조를 비교할 때 |
 | 1 | [첫 장 연결 점검](2026-11-06-opening-and-continent/opening-audit.md) | 기존 장면의 빈틈과 이번 상세안의 대응 |
 | 2 | [지형과 36개 정착지](2026-11-06-opening-and-continent/geography.md) | 다섯 대륙의 외형 기준, 이그니스 유역·고개·정착 위치와 공급 관계 |
 | 3 | [국가·세력·몬스터의 현재 상황](2026-11-06-opening-and-continent/present-world.md) | 첫날 아침에 이미 진행 중인 선택·압력·협력과 충돌 조건 |

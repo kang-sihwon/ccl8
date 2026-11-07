@@ -4,7 +4,7 @@
 
 이 문서는 [기존 첫 장](../2026-11-01-first-chapter.md)을 바탕으로 [지형과 생활권](geography.md), [현재 세력 상황과 결정 조건](present-world.md)을 반영한 상세 후보다. 스승과 주민의 역할, 각 전투의 판단, 파편의 이동, 복구 확인과 출항 인계를 보완했다. 기존 첫 장과 장기 모험 후보는 비교 자료로 보존한다. 나루지기 친구는 기존 인물 후보의 이름인 린을 사용하며 주인공과 스승의 이름·성별은 열어 둔다.
 
-핵심 설정 K01-K09는 [결정 40](../../../../decisions/0040-opening-core-settings.md)으로 채택했다. 확정 범위는 [Scenario](../../../Scenario.md)가 소유하며 아래 상세 원고 전체를 승인한 것은 아니다. 공간별 후속 후보는 [첫 장 공간 연결](2026-11-07-opening-spatial-connections.md)에서 읽는다.
+핵심 설정 K01-K09는 [결정 40](../../../../decisions/0040-opening-core-settings.md)으로 채택했고 전투 구조는 [결정 41](../../../../decisions/0041-field-exploration-combat.md)로 바로잡았다. 확정 범위는 [Scenario](../../../Scenario.md)가 소유한다. 아래 전투 장면은 기존 원고로 보존하며 전체 교전 횟수·필수 순서·귀환 중 전투 없음의 근거로 쓰지 않는다. 현재 필드 구조와 단서 접근은 [필드 전투 개정 후보](2026-11-07-field-combat-revision.md), 앞선 공간 비교안은 [첫 장 공간 연결](2026-11-07-opening-spatial-connections.md)에서 읽는다.
 
 ## 인물이 이번 하루에 원하는 것
 

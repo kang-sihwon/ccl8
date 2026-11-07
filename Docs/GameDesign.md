@@ -10,8 +10,11 @@
 | 실행 환경과 재스폰 | 평소 작업은 Standalone, 서버 검증은 Dedicated Server와 Listen Server에서 한다. 사망한 플레이어만 개별 재스폰한다. 상세 설계는 [MultiplayerFoundation](MultiplayerFoundation.md)에 있다 | [결정 5](decisions/0005-run-modes-and-respawn.md) |
 | 방어 행동 | 최소 전투에 회피, 가드, 패링을 모두 포함한다. 세 행동의 역할과 구현은 [CombatFoundation](CombatFoundation.md)이 소유한다 | [결정 8](decisions/0008-dodge-guard-parry.md) |
 | 무기 사용 목표 | 모든 무기를 사용할 수 있게 하며 주인공의 무기를 특정 종류로 고정하지 않는다. 실제 지원 종류·숙련·장비 조건·무기별 동작과 구현 완료 여부는 별도로 확인한다 | [결정 37](decisions/0037-unrestricted-protagonist-weapons.md) |
+| 탐색과 일반 전투 | 동물·몬스터가 분포한 필드를 돌아다니며 개체나 무리와 마주치고 싸운다. 스토리 분기마다 정해진 전투를 한 번씩 치르는 구조로 제한하지 않는다. 첫 장의 적용 기준은 [Scenario](Narrative/Scenario.md#필드-탐색과-바르툴의-생존)가 소유한다 | [결정 41](decisions/0041-field-exploration-combat.md) |
 
 ## 플레이 흐름(제안)
+
+아래 표는 경험의 큰 흐름이며 구간마다 전투가 한 번씩만 발생한다는 배치가 아니다. 일반 필드는 이동·탐색·교전이 이어지는 공간으로 구성한다. 첫 장의 [필드 전투 개정 후보](Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-06-opening-and-continent/2026-11-07-field-combat-revision.md)에서 기존 장면과 서식 구역을 구분한다.
 
 | 구간 | 플레이어 경험 | 설계 의도 |
 |---|---|---|

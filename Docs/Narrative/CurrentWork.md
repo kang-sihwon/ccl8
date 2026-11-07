@@ -19,10 +19,12 @@
 
 사용자가 2026-10-31 [에테르 시나리오 후보](Drafts/2026-10-31-ether-taiga-dawn.md)를 "기본 시나리오는 이걸로 할게"라고 골랐다. 첫 장 세부 시나리오와 사용자 제공 지리 원고 두 편을 기존 후보에 연결했다. 2026-11-07 K01-K09 추천안의 정본 반영을 승인했고 H01-H07은 보류로 유지했다.
 
-- 상태: 핵심 설정 `CLOSED` (K01-K09 채택·정본 반영), 공간 연결 `DISCUSSION` (새 후보 작성·독립 검토 PASS)
-- 담당: 없음 (정본 반영과 첫 장 공간 연결 후보·독립 검토 완료)
+- 상태: 핵심 설정 `CLOSED` (결정 41의 필드 교전 수정 반영), 필드 전투 개정 후보 `DISCUSSION` (독립 검토 PASS)
+- 담당: 없음 (전투 기준 수정과 후보 작성·독립 검토 완료)
+- 필드 전투 검토: [독립 검토](Reviews/2026-11-07-field-combat-revision-review.md)는 PASS다. 고정 다섯 전투 해제, 일반 교전과 주요 사건 구분, 바르툴·무기·복구 조건 유지, 이전안 보존을 확인했다. 실제 필드 배치와 교전 빈도는 미검증이다.
+- 현재 전투 기준: [결정 41](../decisions/0041-field-exploration-combat.md)에 따라 분포한 동물·몬스터와 탐색 중 싸운다. K05를 다섯 번의 순차 전투로 적용한 부분을 대체했고, 다른 채택 조건과 보류 항목은 유지한다. [필드 개정 후보](Drafts/2026-10-31-ether-taiga-dawn/2026-11-06-opening-and-continent/2026-11-07-field-combat-revision.md)에 구역별 분포·행동·갈림길·일반 교전과 주요 사건을 나눴다. 다음은 서식 범위·무리·이동·위험이 겹치는 장소와 탐색 목적을 지도에 배치하는 일이다.
 - 핵심 설정 선택: [추천·대안·보류 비교표](Drafts/2026-10-31-ether-taiga-dawn/2026-11-06-opening-and-continent/2026-11-07-core-setting-options.md)의 K01-K09를 모두 채택해 [World](World.md)·[Scenario](Scenario.md)에 반영했다. A01-A09의 비교와 H01-H07의 보류 조건은 보존했다. 추천안 작성 때의 [독립 검토](Reviews/2026-11-07-core-setting-options-review.md)는 PASS이며 채택 근거는 결정 40이다.
-- 첫 장 공간 연결: [새 후보와 도면](Drafts/2026-10-31-ether-taiga-dawn/2026-11-06-opening-and-continent/2026-11-07-opening-spatial-connections.md)에 기존 15개 장소 좌표, 네 관리교, 다섯 전투, 동굴의 사람·곰 퇴로, 샘 복구·귀환·인계·출항을 연결했다. [독립 검토](Reviews/2026-11-07-opening-canon-spatial-review.md)는 PASS다. 전투 바닥과 샘 연결 공간, 운반 설비·격리 집수부는 새 후보다. 다음 상세 작업은 이 공간을 기준으로 전투별 전조·대응·변화·승리 확인과 전후 장면을 쓰는 일이다.
+- 이전 공간 연결: [후보와 v1 도면](Drafts/2026-10-31-ether-taiga-dawn/2026-11-06-opening-and-continent/2026-11-07-opening-spatial-connections.md)의 기존 15개 장소 좌표·네 관리교·동굴 퇴로·복구·출항은 참조한다. 다섯 전투의 고정 순서와 귀환 중 전투 없음은 현행 기준이 아니다. [당시 독립 검토](Reviews/2026-11-07-opening-canon-spatial-review.md)의 PASS는 수정 전 기준에 대한 기록이다. 지도 이미지는 보존하며 새 분포도는 아직 작성하지 않았다.
 - 대륙 지도 정합: [36곳 좌표 정합 후보](../ArtDirection/EtherWorldMap/2026-11-07-continent-coordinate-map.md)에 원본 해안과 중앙 9곳을 유지한 전역 좌표, 외곽 27곳과 수계·노선, 전체도와 원본 투영 대조도를 작성했다. 계산 검증과 [독립 검토](Reviews/2026-11-07-continent-coordinate-review.md)는 PASS다. 전역 원점·외곽 배치·지형은 새 후보이고 정본 승인은 별도다.
 - 중앙 지도 보정: [좌표 기준도](../ArtDirection/EtherWorldMap/2026-11-07-central-coordinate-map.md)에 중앙 정착지 9곳과 환적장, 벨레스 이웃 확대도를 작성했다. SVG 좌표 역산·기호 개수·동일 가로세로 축척 검사와 독립 PNG 검토 PASS. 이 좌표를 대륙 정합 후보에서도 그대로 유지했다.
 - 통합 재검증: [최초 재검증](Reviews/2026-11-04-creation-skills-revalidation.md)은 `CHANGES_REQUESTED`였다. 36개 정착지 설정·표기와 주요 면적·거리를 대조한 결과를 보존한다. [후속 독립 검토](Reviews/2026-11-05-revalidation-followup.md)에서 전투 강화, 세르나의 선행 경험, 배치 참조 세 곳, 지도 해시 정정의 네 항목이 `PASS`다.

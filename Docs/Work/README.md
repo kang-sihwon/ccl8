@@ -6,7 +6,7 @@
 
 | 작업 | 지도 | 상태 |
 |---|---|---|
-| 첫 장 시나리오와 플레이 대륙 배경 | [서사 작업 현황](../Narrative/CurrentWork.md) | K01-K09를 [결정 40](../decisions/0040-opening-core-settings.md)으로 채택해 정본에 반영했고 H01-H07과 비교 대안을 보존했다. [첫 장 공간 연결 후보](../Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-06-opening-and-continent/2026-11-07-opening-spatial-connections.md)에 다섯 전투·동굴 퇴로·물길·귀환·출항을 연결했다. 다음은 전투별 판단과 전후 장면 상세화다. 대륙 배경·정밀 지형·수치·실행 검증은 현황 문서의 후보·보류 상태를 따른다. |
+| 첫 장 시나리오와 플레이 대륙 배경 | [서사 작업 현황](../Narrative/CurrentWork.md) | K01-K09 채택 뒤 [결정 41](../decisions/0041-field-exploration-combat.md)로 전투를 필드 탐색 중 교전 중심으로 바로잡았다. [필드 개정 후보](../Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-06-opening-and-continent/2026-11-07-field-combat-revision.md)에 서식·이동·갈림길과 주요 사건을 연결했다. 다음은 구역별 개체 분포와 탐색 동선의 지도 배치다. 이전 순차 전투안·지도와 H01-H07은 보존한다. |
 
 ## 다음 작업 후보
 

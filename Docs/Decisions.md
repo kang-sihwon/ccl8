@@ -45,6 +45,7 @@
 | [결정 37](decisions/0037-unrestricted-protagonist-weapons.md) | 전투·서사 | 모든 무기를 사용할 수 있게 하는 목표를 따른다. 주인공의 기본·전용 무기를 특정 종류로 고정하지 않고 서사와 성장·전투 장면도 무기 선택을 허용한다 | 유효 |  | [게임 기획의 확정 목표](GameDesign.md#확정한-것), [주인공의 무기와 전투 방식](Narrative/Drafts/2026-10-31-ether-taiga-dawn.md#무기와-전투-방식) |
 | [결정 38](decisions/0038-skill-selection-and-creation-suite.md) | 에이전트 작업 체계 | Jenova 참고 제작·조사 스킬 15개를 안내하고 C++ Coding Assistant는 제외한다. 작업 전에 사용할 스킬과 관련 후보를 제안해 확인받고, 승인한 같은 작업에는 반복 확인하지 않는다 | 유효 | 결정 28 구체화 | [스킬 선택과 사용 안내](AgentContextTools/SkillUsage.md), [협업 지침](../AGENTS.md#협업) |
 | [결정 39](decisions/0039-opening-scenario-and-continent-context.md) | 서사 작업 | 주인공 시나리오는 첫 보스와 항구 출항까지 상세화한다. 플레이 대륙은 지형에 따른 정착·국가·세력·몬스터·갈등의 현재 상황을 구성하고 다른 대륙은 세계지도상 기본 형태를 정한다 | 유효 | 결정 36 일부 대체, 결정 40에서 구체화 | [서사 작업 현황](Narrative/CurrentWork.md#상세화할-범위와-순서) |
-| [결정 40](decisions/0040-opening-core-settings.md) | 서사 | 젊은 에테르 장인의 출발 동기, 자원과 결정의 규칙, 다섯 전투와 바르툴 생존, 복구 인계와 다음 아침 출항을 채택한다. 대안과 보류 항목은 보존한다 | 유효 | 결정 39 구체화 | [세계관 정본](Narrative/World.md#확정한-설정), [시나리오 정본](Narrative/Scenario.md#확정한-인물-관계와-플롯) |
+| [결정 40](decisions/0040-opening-core-settings.md) | 서사 | 주인공 동기, 자원·결정 규칙, 바르툴 생존, 복구 인계와 출항은 유지한다. 다섯 전투의 순차 진행은 결정 41의 필드 탐색 전투로 대체하며 대안과 보류 항목은 보존한다 | 유효(부분) | 결정 39 구체화, 결정 41에서 일부 대체 | [세계관 정본](Narrative/World.md#확정한-설정), [시나리오 정본](Narrative/Scenario.md#확정한-인물-관계와-플롯) |
+| [결정 41](decisions/0041-field-exploration-combat.md) | 서사 | 동물과 몬스터가 분포한 필드를 탐색하며 싸우는 구조를 기준으로 한다. 첫 장을 다섯 번의 순차 전투로 제한하지 않으며 기존 장면은 대표 상황으로 보존한다 | 유효 | 결정 40 일부 대체 | [시나리오 정본](Narrative/Scenario.md#필드-탐색과-바르툴의-생존), [게임 기획](GameDesign.md#확정한-것) |
 
 위 결정으로 확정한 범위 밖의 [GameDesign](GameDesign.md), [ArtDirection](ArtDirection.md) 세부 제안과 [StudyRoadmap](StudyRoadmap.md)의 월별 배분은 후보로 유지한다.
