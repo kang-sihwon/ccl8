@@ -1,0 +1,70 @@
+{
+  "status": "PASS",
+  "failures": [],
+  "counts": {
+    "major": 8,
+    "town": 12,
+    "village": 16
+  },
+  "central_preserved": 9,
+  "outer_candidates": 27,
+  "original_coast_vertices": 6156,
+  "global_roundtrip_max_error_km": 1.8269655220124374e-12,
+  "svg_marker_max_error_km": 2.2558821464950272e-07,
+  "svg_coast_max_error_km": 2.372914580830379e-07,
+  "native_coast_max_error_deg": 3.0020427078389637e-09,
+  "coastal_settlement_distance_to_coast_km": {
+    "M03": 2.705564349228325,
+    "M05": 2.9959757806717318,
+    "M06": 2.97730669935241,
+    "T06": 2.9999664134738313,
+    "T09": 3.0000000000000187,
+    "V08": 2.9999999999997957,
+    "V12": 2.9998421370495323
+  },
+  "spherical_straight_distances_km": {
+    "V01_M02": 64.03105678426505,
+    "M01_M03": 1125.1948281573202,
+    "M04_T04": 601.1298776380423,
+    "M04_M05": 1375.066554732282,
+    "T06_V08": 38.587795118954176,
+    "M07_T10": 161.93869994864238,
+    "M03_M08": 1614.959497929594
+  },
+  "river_count": 14,
+  "route_count": 24,
+  "label_overlaps": [],
+  "checks": [
+    "Source geometry hash and all 6156 SVG coastline vertices",
+    "All 36 names/categories, inland status and coordinate roundtrip",
+    "9 unchanged central points, landing and 17 unchanged river vertices",
+    "No proper coastline crossing by all route polylines",
+    "14 river profiles strictly descending, junction coordinates/elevations and acyclic outlets",
+    "No proper river/ridge or unrecorded river/river intersections",
+    "40 SVG displayed markers represent 36 unique settlements",
+    "36 markers and 6156 coastline vertices in original-projection sheet",
+    "Main sheet text bounding boxes do not overlap",
+    "Native sheet marker coordinates independently inverted",
+    "No main-sheet settlement center hidden by a label background"
+  ],
+  "limitations": [
+    "Authored terrain geometry only, no DEM or climate/hydrological simulation",
+    "Proper segment intersection excludes tangency and collinear overlap. Separate inland endpoint tests performed.",
+    "Road centerlines represent valley corridors, not constructed roads. Bridges and bank offsets unresolved.",
+    "Projected coastline edges are chords between transformed source vertices. Original spherical edge interpretation retained in source.",
+    "Visual raster inspection and independent narrative review are separate from this computation."
+  ],
+  "sha256": {
+    "Data/ignis-continent-georeference-v1.json": "41c19e4def8c7be28240df58609376cc869d21391a10b500d311c0cf0d5d3d65",
+    "Images/ignis-continent-coordinate-map-v1.svg": "df1e949f750539bd5ba6d239cc5e6d81cc284271cc26053f65bda85264dd9fcf",
+    "Images/ignis-continent-coordinate-map-v1.png": "d27d96d828e33c88e54ee725a83980cad35ebec53385c3dc675ecf05e3261e1f",
+    "Images/ignis-world-registration-v1.svg": "deb646f7b6a83ef5457f2445e4833d69f5592a7a84a50f359de5c39a2f3ecc28",
+    "Images/ignis-world-registration-v1.png": "af63f503ef8d0ef1225559d1bc90731c07dc5e3e0f037524e676f498a5d1c534"
+  },
+  "hash_methods": {
+    "PNG": "raw bytes",
+    "SVG and JSON": "UTF-8 without BOM, newline normalized to LF"
+  },
+  "native_marker_max_error_deg": 2.8863682249580666e-09,
+  "occluded_settlement_centers": []
+}

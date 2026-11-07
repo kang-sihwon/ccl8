@@ -1,0 +1,2158 @@
+{
+  "schema_version": 1,
+  "status": "design_candidate_not_canon",
+  "source_coast": "ether-world-map-land35-precise-v3.json",
+  "source_geometry_sha256": "fa38398d057fcf97af3d003e9cc6dc0efcac6acb9f892ae1027fb4e535fa440b",
+  "source_vertex_count": 6156,
+  "coordinate_system": {
+    "type": "spherical_azimuthal_equidistant",
+    "radius_km": 6366.197723675814,
+    "origin_lon_lat_deg": [
+      -1.0,
+      54.0
+    ],
+    "axes": "x east and y north at origin",
+    "rotation_deg": 0,
+    "units": "km",
+    "limitations": "Distances from origin are true great-circle distances. Other planar distances and areas are distorted. No WGS84 or DEM."
+  },
+  "settlements": [
+    {
+      "id": "M01",
+      "name": "세계수 관리도시",
+      "kind": "major",
+      "xy_km": [
+        18,
+        -12
+      ],
+      "lon_lat_deg": [
+        -0.7251033917037691,
+        53.89168573836356
+      ],
+      "polity": "tern",
+      "parent": null,
+      "terrain": "central",
+      "position_source": "management_city"
+    },
+    {
+      "id": "M02",
+      "name": "로덴",
+      "kind": "major",
+      "xy_km": [
+        110,
+        95
+      ],
+      "lon_lat_deg": [
+        0.7193966689101895,
+        54.842938715676794
+      ],
+      "polity": "tern",
+      "parent": null,
+      "terrain": "central",
+      "position_source": "roden"
+    },
+    {
+      "id": "M03",
+      "name": "세르나",
+      "kind": "major",
+      "xy_km": [
+        417.4518741058252,
+        -1063.9045819597554
+      ],
+      "lon_lat_deg": [
+        4.227923014539118,
+        44.291798181644374
+      ],
+      "polity": "tern",
+      "parent": null,
+      "terrain": "coastal_terrace",
+      "position_source": "outer_candidate"
+    },
+    {
+      "id": "M04",
+      "name": "하르덴",
+      "kind": "major",
+      "xy_km": [
+        -1435.2733267209078,
+        454.34169769054535
+      ],
+      "lon_lat_deg": [
+        -24.47799301052021,
+        55.900000000000006
+      ],
+      "polity": "west",
+      "parent": null,
+      "terrain": "east_draining_plateau",
+      "position_source": "outer_candidate"
+    },
+    {
+      "id": "M05",
+      "name": "서안항",
+      "kind": "major",
+      "xy_km": [
+        -2688.9679063549847,
+        1019.6143362075417
+      ],
+      "lon_lat_deg": [
+        -46.32089721446472,
+        54.96872110581616
+      ],
+      "polity": "west",
+      "parent": null,
+      "terrain": "coastal_terrace",
+      "position_source": "outer_candidate"
+    },
+    {
+      "id": "M06",
+      "name": "동안항",
+      "kind": "major",
+      "xy_km": [
+        2672.681747193104,
+        1034.0935111734775
+      ],
+      "lon_lat_deg": [
+        44.25363823324935,
+        55.15575585493094
+      ],
+      "polity": "east",
+      "parent": null,
+      "terrain": "coastal_terrace",
+      "position_source": "outer_candidate"
+    },
+    {
+      "id": "M07",
+      "name": "북부 관문도시",
+      "kind": "major",
+      "xy_km": [
+        -230.9529376219892,
+        1069.001952106139
+      ],
+      "lon_lat_deg": [
+        -5.648767617812353,
+        63.550000000000004
+      ],
+      "polity": "north",
+      "parent": null,
+      "terrain": "south_foothill_valley",
+      "position_source": "outer_candidate"
+    },
+    {
+      "id": "M08",
+      "name": "남동 평야도시",
+      "kind": "major",
+      "xy_km": [
+        2016.8396215333198,
+        -786.0727062591023
+      ],
+      "lon_lat_deg": [
+        24.47799301052021,
+        43.750000000000014
+      ],
+      "polity": "east",
+      "parent": null,
+      "terrain": "inland_plain",
+      "position_source": "outer_candidate"
+    },
+    {
+      "id": "T01",
+      "name": "타르넬",
+      "kind": "town",
+      "xy_km": [
+        137,
+        125
+      ],
+      "lon_lat_deg": [
+        1.1555798656151361,
+        55.10614574650333
+      ],
+      "polity": "tern",
+      "parent": null,
+      "terrain": "central",
+      "position_source": "T01"
+    },
+    {
+      "id": "T02",
+      "name": "미레바",
+      "kind": "town",
+      "xy_km": [
+        37,
+        10
+      ],
+      "lon_lat_deg": [
+        -0.4322507620916614,
+        54.08866472076582
+      ],
+      "polity": "tern",
+      "parent": null,
+      "terrain": "central",
+      "position_source": "T02"
+    },
+    {
+      "id": "T03",
+      "name": "오르센",
+      "kind": "town",
+      "xy_km": [
+        45,
+        -35
+      ],
+      "lon_lat_deg": [
+        -0.31616192376838015,
+        53.68304729673721
+      ],
+      "polity": "tern",
+      "parent": null,
+      "terrain": "central",
+      "position_source": "T03"
+    },
+    {
+      "id": "T04",
+      "name": "켈바",
+      "kind": "town",
+      "xy_km": [
+        -890.3430271555216,
+        200.3333881209349
+      ],
+      "lon_lat_deg": [
+        -15.0633803141663,
+        55.0
+      ],
+      "polity": "west",
+      "parent": null,
+      "terrain": "east_valley_entry",
+      "position_source": "outer_candidate"
+    },
+    {
+      "id": "T05",
+      "name": "드라벤",
+      "kind": "town",
+      "xy_km": [
+        -2042.566363225762,
+        550.0494071750638
+      ],
+      "lon_lat_deg": [
+        -33.89260570687415,
+        54.550000000000004
+      ],
+      "polity": "west",
+      "parent": null,
+      "terrain": "west_valley_below_pass",
+      "position_source": "outer_candidate"
+    },
+    {
+      "id": "T06",
+      "name": "살레크",
+      "kind": "town",
+      "xy_km": [
+        -3276.6510507913813,
+        -452.11380244250523
+      ],
+      "lon_lat_deg": [
+        -42.03442301644434,
+        41.48028530137359
+      ],
+      "polity": "west_treaty",
+      "parent": null,
+      "terrain": "coastal_terrace",
+      "position_source": "outer_candidate"
+    },
+    {
+      "id": "T07",
+      "name": "메르사",
+      "kind": "town",
+      "xy_km": [
+        1234.242555079002,
+        -752.7680848574923
+      ],
+      "lon_lat_deg": [
+        15.063380314166269,
+        46.000000000000014
+      ],
+      "polity": "east",
+      "parent": null,
+      "terrain": "grain_road",
+      "position_source": "outer_candidate"
+    },
+    {
+      "id": "T08",
+      "name": "에스칼",
+      "kind": "town",
+      "xy_km": [
+        2228.776414958394,
+        475.8503179346188
+      ],
+      "lon_lat_deg": [
+        33.89260570687415,
+        53.20000000000001
+      ],
+      "polity": "east",
+      "parent": null,
+      "terrain": "east_draining_forest",
+      "position_source": "outer_candidate"
+    },
+    {
+      "id": "T09",
+      "name": "루세아",
+      "kind": "town",
+      "xy_km": [
+        2996.5653615724295,
+        -1723.98245293493
+      ],
+      "lon_lat_deg": [
+        31.18394484039485,
+        32.763206968188406
+      ],
+      "polity": "east",
+      "parent": null,
+      "terrain": "coastal_terrace",
+      "position_source": "outer_candidate"
+    },
+    {
+      "id": "T10",
+      "name": "네르바",
+      "kind": "town",
+      "xy_km": [
+        -205.9529376219892,
+        909.001952106139
+      ],
+      "lon_lat_deg": [
+        -4.953807396066772,
+        62.12747582849426
+      ],
+      "polity": "north",
+      "parent": "M07",
+      "terrain": "lower_valley",
+      "position_source": "outer_candidate"
+    },
+    {
+      "id": "T11",
+      "name": "케르딘",
+      "kind": "town",
+      "xy_km": [
+        -265.95293762198924,
+        1219.001952106139
+      ],
+      "lon_lat_deg": [
+        -6.609589811325755,
+        64.87177674492295
+      ],
+      "polity": "north",
+      "parent": "M07",
+      "terrain": "valley_below_high_pass",
+      "position_source": "outer_candidate"
+    },
+    {
+      "id": "T12",
+      "name": "울렌",
+      "kind": "town",
+      "xy_km": [
+        -550.9529376219892,
+        1139.001952106139
+      ],
+      "lon_lat_deg": [
+        -12.245021357605813,
+        63.8396248638379
+      ],
+      "polity": "north_treaty",
+      "parent": "M07",
+      "terrain": "sheltered_branch_valley",
+      "position_source": "outer_candidate"
+    },
+    {
+      "id": "V01",
+      "name": "벨레스",
+      "kind": "village",
+      "xy_km": [
+        150,
+        145
+      ],
+      "lon_lat_deg": [
+        1.3706119778145285,
+        55.28227997171035
+      ],
+      "polity": "trade_agreement_unsettled",
+      "parent": null,
+      "terrain": "central",
+      "position_source": "veles"
+    },
+    {
+      "id": "V02",
+      "name": "솔숨",
+      "kind": "village",
+      "xy_km": [
+        154,
+        151
+      ],
+      "lon_lat_deg": [
+        1.4370761310058986,
+        55.33501461125799
+      ],
+      "polity": "tern",
+      "parent": null,
+      "terrain": "central",
+      "position_source": "V02"
+    },
+    {
+      "id": "V03",
+      "name": "들보리",
+      "kind": "village",
+      "xy_km": [
+        140,
+        137
+      ],
+      "lon_lat_deg": [
+        1.208695864179934,
+        55.21324910240429
+      ],
+      "polity": "tern",
+      "parent": null,
+      "terrain": "central",
+      "position_source": "V03"
+    },
+    {
+      "id": "V04",
+      "name": "숲곁",
+      "kind": "village",
+      "xy_km": [
+        143,
+        143
+      ],
+      "lon_lat_deg": [
+        1.259042825035169,
+        55.26636127485317
+      ],
+      "polity": "tern",
+      "parent": null,
+      "terrain": "central",
+      "position_source": "V04"
+    },
+    {
+      "id": "V05",
+      "name": "윗샘",
+      "kind": "village",
+      "xy_km": [
+        -920.3430271555216,
+        235.3333881209349
+      ],
+      "lon_lat_deg": [
+        -15.637661903169494,
+        55.25276270512722
+      ],
+      "polity": "west",
+      "parent": "T04",
+      "terrain": "upper_intake",
+      "position_source": "outer_candidate"
+    },
+    {
+      "id": "V06",
+      "name": "누마",
+      "kind": "village",
+      "xy_km": [
+        -1460.2733267209078,
+        489.34169769054535
+      ],
+      "lon_lat_deg": [
+        -25.045776589604543,
+        56.11930812329781
+      ],
+      "polity": "west",
+      "parent": "M04",
+      "terrain": "sheltered_plateau",
+      "position_source": "outer_candidate"
+    },
+    {
+      "id": "V07",
+      "name": "바람재",
+      "kind": "village",
+      "xy_km": [
+        -1405.2733267209078,
+        469.34169769054535
+      ],
+      "lon_lat_deg": [
+        -24.10104873326338,
+        56.11422932722882
+      ],
+      "polity": "west",
+      "parent": "M04",
+      "terrain": "sheltered_below_windmills",
+      "position_source": "outer_candidate"
+    },
+    {
+      "id": "V08",
+      "name": "갈매",
+      "kind": "village",
+      "xy_km": [
+        -3263.0058320556363,
+        -414.54620476072546
+      ],
+      "lon_lat_deg": [
+        -42.11649810923252,
+        41.82211786936417
+      ],
+      "polity": "west_treaty",
+      "parent": null,
+      "terrain": "coastal_terrace",
+      "position_source": "outer_candidate"
+    },
+    {
+      "id": "V09",
+      "name": "씨앗골",
+      "kind": "village",
+      "xy_km": [
+        1269.242555079002,
+        -727.7680848574923
+      ],
+      "lon_lat_deg": [
+        15.574135752495177,
+        46.14879855775064
+      ],
+      "polity": "east",
+      "parent": "T07",
+      "terrain": "seed_fields",
+      "position_source": "outer_candidate"
+    },
+    {
+      "id": "V10",
+      "name": "물나래",
+      "kind": "village",
+      "xy_km": [
+        2041.8396215333198,
+        -811.0727062591023
+      ],
+      "lon_lat_deg": [
+        24.669687768233537,
+        43.46475804727837
+      ],
+      "polity": "east",
+      "parent": "M08",
+      "terrain": "irrigated_terrace",
+      "position_source": "outer_candidate"
+    },
+    {
+      "id": "V11",
+      "name": "긴솔",
+      "kind": "village",
+      "xy_km": [
+        2193.776414958394,
+        505.8503179346188
+      ],
+      "lon_lat_deg": [
+        33.63921372920631,
+        53.58042228672045
+      ],
+      "polity": "east",
+      "parent": "T08",
+      "terrain": "upper_ship_forest",
+      "position_source": "outer_candidate"
+    },
+    {
+      "id": "V12",
+      "name": "청그물",
+      "kind": "village",
+      "xy_km": [
+        3708.3977467602954,
+        -106.39942917938025
+      ],
+      "lon_lat_deg": [
+        46.530141124596376,
+        41.775378231192484
+      ],
+      "polity": "east",
+      "parent": null,
+      "terrain": "coastal_terrace",
+      "position_source": "outer_candidate"
+    },
+    {
+      "id": "V13",
+      "name": "돌곡",
+      "kind": "village",
+      "xy_km": [
+        -180.9529376219892,
+        924.001952106139
+      ],
+      "lon_lat_deg": [
+        -4.489944497305906,
+        62.27447275816613
+      ],
+      "polity": "north",
+      "parent": "T10",
+      "terrain": "storage_terrace",
+      "position_source": "outer_candidate"
+    },
+    {
+      "id": "V14",
+      "name": "길목",
+      "kind": "village",
+      "xy_km": [
+        -255.95293762198924,
+        1189.001952106139
+      ],
+      "lon_lat_deg": [
+        -6.347582093595765,
+        64.61007285689391
+      ],
+      "polity": "north",
+      "parent": "T11",
+      "terrain": "lower_approach",
+      "position_source": "outer_candidate"
+    },
+    {
+      "id": "V15",
+      "name": "여름뜰",
+      "kind": "village",
+      "xy_km": [
+        -590.9529376219892,
+        1194.001952106139
+      ],
+      "lon_lat_deg": [
+        -13.252440461798525,
+        64.26409991605608
+      ],
+      "polity": "north_treaty",
+      "parent": "T12",
+      "terrain": "seasonal_summer_assembly",
+      "position_source": "outer_candidate"
+    },
+    {
+      "id": "V16",
+      "name": "새불",
+      "kind": "village",
+      "xy_km": [
+        -220.9529376219892,
+        994.001952106139
+      ],
+      "lon_lat_deg": [
+        -5.348282022182241,
+        62.88264420132198
+      ],
+      "polity": "north",
+      "parent": "M07",
+      "terrain": "roadside_terrace",
+      "position_source": "outer_candidate"
+    }
+  ],
+  "world_tree": {
+    "xy_km": [
+      0,
+      0
+    ],
+    "lon_lat_deg": [
+      -1.0,
+      54.0
+    ],
+    "crown_radius_km": 9,
+    "residential_exclusion_radius_km": 12
+  },
+  "river_landing": {
+    "xy_km": [
+      28,
+      -12
+    ],
+    "lon_lat_deg": [
+      -0.5723860985069943,
+      53.891239569213695
+    ]
+  },
+  "ports": {
+    "M03": {
+      "coast_vertex": 2932,
+      "shore_xy_km": [
+        416.4258136758482,
+        -1066.7236598221132
+      ],
+      "settlement_xy_km": [
+        417.4518741058252,
+        -1063.9045819597554
+      ],
+      "offshore_xy_km": [
+        412.32157195594016,
+        -1077.9999712715442
+      ]
+    },
+    "M05": {
+      "coast_vertex": 1634,
+      "shore_xy_km": [
+        -2691.2660396843416,
+        1021.5426990366013
+      ],
+      "settlement_xy_km": [
+        -2688.9679063549847,
+        1019.6143362075417
+      ],
+      "offshore_xy_km": [
+        -2700.4585730017693,
+        1029.2561503528398
+      ]
+    },
+    "M06": {
+      "coast_vertex": 4241,
+      "shore_xy_km": [
+        2675.279823404457,
+        1035.5935111734775
+      ],
+      "settlement_xy_km": [
+        2672.681747193104,
+        1034.0935111734775
+      ],
+      "offshore_xy_km": [
+        2685.67212824987,
+        1041.5935111734775
+      ]
+    },
+    "T06": {
+      "coast_vertex": 1926,
+      "shore_xy_km": [
+        -3273.696627532345,
+        -452.634746975506
+      ],
+      "settlement_xy_km": [
+        -3276.6510507913813,
+        -452.11380244250523
+      ],
+      "offshore_xy_km": [
+        -3261.8789344961983,
+        -454.71852510750915
+      ]
+    },
+    "T09": {
+      "coast_vertex": 3447,
+      "shore_xy_km": [
+        2998.0653615724295,
+        -1726.5805291462834
+      ],
+      "settlement_xy_km": [
+        2996.5653615724295,
+        -1723.98245293493
+      ],
+      "offshore_xy_km": [
+        3004.0653615724295,
+        -1736.9728339916967
+      ]
+    },
+    "V08": {
+      "coast_vertex": 1932,
+      "shore_xy_km": [
+        -3260.407755844283,
+        -416.04620476072546
+      ],
+      "settlement_xy_km": [
+        -3263.0058320556363,
+        -414.54620476072546
+      ],
+      "offshore_xy_km": [
+        -3250.0154509988697,
+        -422.04620476072546
+      ]
+    },
+    "V12": {
+      "coast_vertex": 3991,
+      "shore_xy_km": [
+        3711.216824622653,
+        -105.37336874940324
+      ],
+      "settlement_xy_km": [
+        3708.3977467602954,
+        -106.39942917938025
+      ],
+      "offshore_xy_km": [
+        3722.493136072084,
+        -101.26912702949522
+      ]
+    },
+    "plain_mouth": {
+      "coast_vertex": 3205,
+      "shore_xy_km": [
+        1775.3479059282918,
+        -1700.8915031896872
+      ],
+      "settlement_xy_km": [
+        1773.0497725989349,
+        -1698.9631403606277
+      ],
+      "offshore_xy_km": [
+        1784.5404392457194,
+        -1708.6049545059257
+      ]
+    },
+    "north_mouth": {
+      "coast_vertex": 41,
+      "shore_xy_km": [
+        -198.7813152474704,
+        2267.0124244441017
+      ],
+      "settlement_xy_km": [
+        -201.3793914588237,
+        2265.5124244441017
+      ],
+      "offshore_xy_km": [
+        -188.38901040205712,
+        2273.0124244441017
+      ]
+    }
+  },
+  "rivers": [
+    {
+      "id": "H01",
+      "label": "테른",
+      "xy_km": [
+        [
+          544.5678274359643,
+          1206.8545374268083
+        ],
+        [
+          578.2526718176341,
+          704.8192494456285
+        ],
+        [
+          350,
+          400
+        ],
+        [
+          230,
+          260
+        ],
+        [
+          158,
+          157
+        ],
+        [
+          150,
+          145
+        ],
+        [
+          145,
+          140
+        ],
+        [
+          146,
+          130
+        ],
+        [
+          137,
+          125
+        ],
+        [
+          133,
+          112
+        ],
+        [
+          120,
+          110
+        ],
+        [
+          118,
+          101
+        ],
+        [
+          110,
+          95
+        ],
+        [
+          98,
+          88
+        ],
+        [
+          83,
+          75
+        ],
+        [
+          64,
+          60
+        ],
+        [
+          48,
+          42
+        ],
+        [
+          36,
+          20
+        ],
+        [
+          28,
+          -12
+        ],
+        [
+          31,
+          -30
+        ],
+        [
+          42,
+          -48
+        ],
+        [
+          50,
+          -180
+        ],
+        [
+          100,
+          -350
+        ],
+        [
+          417.4518741058252,
+          -1063.9045819597554
+        ],
+        [
+          416.4258136758482,
+          -1066.7236598221132
+        ]
+      ],
+      "bed_elevation_m": [
+        1800,
+        1250,
+        950,
+        800,
+        650,
+        600,
+        575,
+        550,
+        520,
+        490,
+        460,
+        440,
+        420,
+        400,
+        380,
+        360,
+        340,
+        320,
+        290,
+        270,
+        250,
+        180,
+        90,
+        8,
+        0
+      ],
+      "outlet": "sea:M03"
+    },
+    {
+      "id": "H02",
+      "label": "하르덴 동향 지류",
+      "xy_km": [
+        [
+          -1500.2733267209078,
+          524.3416976905453
+        ],
+        [
+          -1435.2733267209078,
+          454.34169769054535
+        ],
+        [
+          -890.3430271555216,
+          200.3333881209349
+        ],
+        [
+          -650,
+          100
+        ],
+        [
+          -300,
+          -60
+        ],
+        [
+          50,
+          -180
+        ]
+      ],
+      "bed_elevation_m": [
+        1700,
+        1350,
+        850,
+        600,
+        300,
+        180
+      ],
+      "outlet": "H01"
+    },
+    {
+      "id": "H03",
+      "label": "서향 계곡",
+      "xy_km": [
+        [
+          -1932.566363225762,
+          630.0494071750638
+        ],
+        [
+          -2042.566363225762,
+          550.0494071750638
+        ],
+        [
+          -2398.0872119468345,
+          808.3101181429267
+        ],
+        [
+          -2688.9679063549847,
+          1019.6143362075417
+        ],
+        [
+          -2691.2660396843416,
+          1021.5426990366013
+        ]
+      ],
+      "bed_elevation_m": [
+        1150,
+        850,
+        300,
+        8,
+        0
+      ],
+      "outlet": "sea:M05"
+    },
+    {
+      "id": "H04",
+      "label": "북부 남향 지류",
+      "xy_km": [
+        [
+          -285.95293762198924,
+          1289.001952106139
+        ],
+        [
+          -265.95293762198924,
+          1219.001952106139
+        ],
+        [
+          -230.9529376219892,
+          1069.001952106139
+        ],
+        [
+          -205.9529376219892,
+          909.001952106139
+        ],
+        [
+          -350,
+          600
+        ],
+        [
+          -180,
+          320
+        ],
+        [
+          -80,
+          120
+        ],
+        [
+          50,
+          -180
+        ]
+      ],
+      "bed_elevation_m": [
+        1800,
+        1400,
+        1000,
+        750,
+        600,
+        400,
+        260,
+        180
+      ],
+      "outlet": "H01"
+    },
+    {
+      "id": "H05",
+      "label": "동안 계곡",
+      "xy_km": [
+        [
+          2128.776414958394,
+          575.8503179346187
+        ],
+        [
+          2193.776414958394,
+          505.8503179346188
+        ],
+        [
+          2228.776414958394,
+          475.8503179346188
+        ],
+        [
+          2472.9243476874844,
+          782.8840742159912
+        ],
+        [
+          2672.681747193104,
+          1034.0935111734775
+        ],
+        [
+          2675.279823404457,
+          1035.5935111734775
+        ]
+      ],
+      "bed_elevation_m": [
+        1200,
+        900,
+        650,
+        300,
+        8,
+        0
+      ],
+      "outlet": "sea:M06"
+    },
+    {
+      "id": "H06",
+      "label": "평야 지선",
+      "xy_km": [
+        [
+          1498.0304937055057,
+          102.58368691648238
+        ],
+        [
+          1956.8396215333198,
+          -626.0727062591023
+        ],
+        [
+          2016.8396215333198,
+          -786.0727062591023
+        ],
+        [
+          2041.8396215333198,
+          -811.0727062591023
+        ],
+        [
+          1773.0497725989349,
+          -1698.9631403606277
+        ],
+        [
+          1775.3479059282918,
+          -1700.8915031896872
+        ]
+      ],
+      "bed_elevation_m": [
+        800,
+        400,
+        180,
+        160,
+        8,
+        0
+      ],
+      "outlet": "sea:plain_mouth"
+    },
+    {
+      "id": "H07",
+      "label": "메르사 지선",
+      "xy_km": [
+        [
+          1264.242555079002,
+          -592.7680848574923
+        ],
+        [
+          1234.242555079002,
+          -752.7680848574923
+        ],
+        [
+          250,
+          -500
+        ],
+        [
+          417.4518741058252,
+          -1063.9045819597554
+        ]
+      ],
+      "bed_elevation_m": [
+        450,
+        180,
+        30,
+        8
+      ],
+      "outlet": "H01"
+    },
+    {
+      "id": "H08",
+      "label": "울렌 지선",
+      "xy_km": [
+        [
+          -580.9529376219892,
+          1239.001952106139
+        ],
+        [
+          -550.9529376219892,
+          1139.001952106139
+        ],
+        [
+          -230.9529376219892,
+          1069.001952106139
+        ]
+      ],
+      "bed_elevation_m": [
+        1600,
+        1200,
+        1000
+      ],
+      "outlet": "H04"
+    },
+    {
+      "id": "H09",
+      "label": "윗샘 지류",
+      "xy_km": [
+        [
+          -940.3430271555216,
+          275.3333881209349
+        ],
+        [
+          -920.3430271555216,
+          235.3333881209349
+        ],
+        [
+          -890.3430271555216,
+          200.3333881209349
+        ]
+      ],
+      "bed_elevation_m": [
+        1300,
+        1000,
+        850
+      ],
+      "outlet": "H02"
+    },
+    {
+      "id": "H10",
+      "label": "북해안 별도 유역",
+      "xy_km": [
+        [
+          -183.7840986026257,
+          1717.5410495040785
+        ],
+        [
+          -202.94940884416607,
+          1919.7136432997106
+        ],
+        [
+          -201.3793914588237,
+          2265.5124244441017
+        ],
+        [
+          -198.7813152474704,
+          2267.0124244441017
+        ]
+      ],
+      "bed_elevation_m": [
+        2200,
+        950,
+        8,
+        0
+      ],
+      "outlet": "sea:north_mouth"
+    },
+    {
+      "id": "H11",
+      "label": "T06 연안 담수 지선",
+      "xy_km": [
+        [
+          -3355.4356710323545,
+          -438.2219482291513
+        ],
+        [
+          -3276.6510507913813,
+          -452.11380244250523
+        ],
+        [
+          -3273.696627532345,
+          -452.634746975506
+        ]
+      ],
+      "bed_elevation_m": [
+        300,
+        8,
+        0
+      ],
+      "outlet": "sea:T06"
+    },
+    {
+      "id": "H12",
+      "label": "T09 연안 담수 지선",
+      "xy_km": [
+        [
+          2956.5653615724295,
+          -1654.7004206321735
+        ],
+        [
+          2996.5653615724295,
+          -1723.98245293493
+        ],
+        [
+          2998.0653615724295,
+          -1726.5805291462834
+        ]
+      ],
+      "bed_elevation_m": [
+        300,
+        8,
+        0
+      ],
+      "outlet": "sea:T09"
+    },
+    {
+      "id": "H13",
+      "label": "V08 연안 담수 지선",
+      "xy_km": [
+        [
+          -3332.2878643583867,
+          -374.54620476072546
+        ],
+        [
+          -3263.0058320556363,
+          -414.54620476072546
+        ],
+        [
+          -3260.407755844283,
+          -416.04620476072546
+        ]
+      ],
+      "bed_elevation_m": [
+        300,
+        8,
+        0
+      ],
+      "outlet": "sea:V08"
+    },
+    {
+      "id": "H14",
+      "label": "V12 연안 담수 지선",
+      "xy_km": [
+        [
+          3633.2223370974284,
+          -133.7610406454338
+        ],
+        [
+          3708.3977467602954,
+          -106.39942917938025
+        ],
+        [
+          3711.216824622653,
+          -105.37336874940324
+        ]
+      ],
+      "bed_elevation_m": [
+        300,
+        8,
+        0
+      ],
+      "outlet": "sea:V12"
+    }
+  ],
+  "ridges": [
+    {
+      "id": "D01",
+      "name": "백풍 산맥",
+      "xy_km": [
+        [
+          -1580.5458315526587,
+          1933.1885707401839
+        ],
+        [
+          -1151.5367726608229,
+          1699.483611376729
+        ],
+        [
+          -647.388699367114,
+          1533.935840927268
+        ],
+        [
+          -202.17987849122446,
+          1468.1207142957803
+        ],
+        [
+          329.64290081364817,
+          1479.7884780936288
+        ],
+        [
+          895.8418514036352,
+          1444.1334000419324
+        ],
+        [
+          1669.5725704636693,
+          1566.381035004673
+        ]
+      ],
+      "role": "north_south_divide"
+    },
+    {
+      "id": "D02a",
+      "name": "서부 분수계 북부",
+      "xy_km": [
+        [
+          -1151.5367726608229,
+          1699.483611376729
+        ],
+        [
+          -1443.557051828598,
+          1163.9359794832399
+        ],
+        [
+          -1708.5551931480923,
+          532.4101669585787
+        ]
+      ],
+      "role": "west_east_divide"
+    },
+    {
+      "id": "D02b",
+      "name": "서부 분수계 남부",
+      "xy_km": [
+        [
+          -1708.5551931480923,
+          462.41016695857866
+        ],
+        [
+          -1999.6453661232413,
+          -141.1149073189828
+        ],
+        [
+          -2411.7440987653167,
+          -570.1693433445884
+        ]
+      ],
+      "role": "west_east_divide"
+    },
+    {
+      "id": "D03a",
+      "name": "동부 분수계 북부",
+      "xy_km": [
+        [
+          895.8418514036352,
+          1444.1334000419324
+        ],
+        [
+          1405.6862429979926,
+          874.2013591186784
+        ],
+        [
+          1833.9392848598509,
+          283.92870623179664
+        ],
+        [
+          2564.541951958239,
+          -164.1017141357631
+        ]
+      ],
+      "role": "east_plain_divide"
+    },
+    {
+      "id": "D03b",
+      "name": "동부 분수계 남부",
+      "xy_km": [
+        [
+          2594.541951958239,
+          -244.1017141357631
+        ],
+        [
+          2965.3826291613223,
+          -633.9276734399988
+        ]
+      ],
+      "role": "east_plain_divide"
+    }
+  ],
+  "lakes": [
+    {
+      "id": "L01",
+      "center_xy_km": [
+        -180,
+        320
+      ],
+      "symbol_radius_km": 34,
+      "river": "H04",
+      "surface_elevation_m": 400
+    },
+    {
+      "id": "L02",
+      "center_xy_km": [
+        -350,
+        600
+      ],
+      "symbol_radius_km": 25,
+      "river": "H04",
+      "surface_elevation_m": 600
+    }
+  ],
+  "passes": [
+    {
+      "id": "P01",
+      "xy_km": [
+        -1708.5551931480923,
+        497.41016695857866
+      ],
+      "role": "R5 low pass, west/east watershed"
+    },
+    {
+      "id": "P02",
+      "xy_km": [
+        2579.541951958239,
+        -204.1017141357631
+      ],
+      "role": "R7 low pass, east/plain watershed"
+    }
+  ],
+  "routes": [
+    {
+      "id": "R1",
+      "mode": "river",
+      "xy_km": [
+        [
+          110,
+          95
+        ],
+        [
+          98,
+          88
+        ],
+        [
+          83,
+          75
+        ],
+        [
+          64,
+          60
+        ],
+        [
+          48,
+          42
+        ],
+        [
+          36,
+          20
+        ],
+        [
+          28,
+          -12
+        ],
+        [
+          31,
+          -30
+        ],
+        [
+          42,
+          -48
+        ],
+        [
+          50,
+          -180
+        ],
+        [
+          100,
+          -350
+        ],
+        [
+          417.4518741058252,
+          -1063.9045819597554
+        ]
+      ],
+      "stops": [
+        "M02",
+        "river_landing",
+        "M03"
+      ],
+      "notes": "Tern corridor only. Rapids, depth, towage and transshipment remain unverified."
+    },
+    {
+      "id": "R2",
+      "mode": "road",
+      "xy_km": [
+        [
+          18,
+          -12
+        ],
+        [
+          28,
+          -12
+        ]
+      ],
+      "stops": [
+        "M01",
+        "river_landing"
+      ],
+      "notes": "Same west-bank access. No crossing implied."
+    },
+    {
+      "id": "R3",
+      "mode": "road",
+      "xy_km": [
+        [
+          18,
+          -12
+        ],
+        [
+          -140,
+          160
+        ],
+        [
+          -300,
+          550
+        ],
+        [
+          -205.9529376219892,
+          909.001952106139
+        ],
+        [
+          -230.9529376219892,
+          1069.001952106139
+        ]
+      ],
+      "stops": [
+        "M01",
+        "T10",
+        "M07"
+      ],
+      "notes": "South foothill road. H04 crossing at Nerva requires bridge or ferry."
+    },
+    {
+      "id": "R4",
+      "mode": "road",
+      "xy_km": [
+        [
+          18,
+          -12
+        ],
+        [
+          -200,
+          0
+        ],
+        [
+          -650,
+          100
+        ],
+        [
+          -890.3430271555216,
+          200.3333881209349
+        ],
+        [
+          -1435.2733267209078,
+          454.34169769054535
+        ]
+      ],
+      "stops": [
+        "M01",
+        "T04",
+        "M04"
+      ],
+      "notes": "East-draining valley road. River crossings require local bridges."
+    },
+    {
+      "id": "R5",
+      "mode": "road",
+      "xy_km": [
+        [
+          -1435.2733267209078,
+          454.34169769054535
+        ],
+        [
+          -1708.5551931480923,
+          497.41016695857866
+        ],
+        [
+          -2042.566363225762,
+          550.0494071750638
+        ],
+        [
+          -2688.9679063549847,
+          1019.6143362075417
+        ]
+      ],
+      "stops": [
+        "M04",
+        "T05",
+        "M05"
+      ],
+      "notes": "Dry low pass at D02 break. Road crosses divide, river does not."
+    },
+    {
+      "id": "R6",
+      "mode": "road",
+      "xy_km": [
+        [
+          417.4518741058252,
+          -1063.9045819597554
+        ],
+        [
+          550,
+          -600
+        ],
+        [
+          1234.242555079002,
+          -752.7680848574923
+        ],
+        [
+          2016.8396215333198,
+          -786.0727062591023
+        ]
+      ],
+      "stops": [
+        "M03",
+        "T07",
+        "M08"
+      ],
+      "notes": "Land east of the bay. Tributary crossings require ferry or bridge."
+    },
+    {
+      "id": "R7",
+      "mode": "road",
+      "xy_km": [
+        [
+          2016.8396215333198,
+          -786.0727062591023
+        ],
+        [
+          2579.541951958239,
+          -204.1017141357631
+        ],
+        [
+          2600,
+          400
+        ],
+        [
+          2672.681747193104,
+          1034.0935111734775
+        ]
+      ],
+      "stops": [
+        "M08",
+        "M06"
+      ],
+      "notes": "Low pass at D03 break. Eskal joins through B15 at [2600,400]."
+    },
+    {
+      "id": "R8",
+      "mode": "sea",
+      "xy_km": [
+        [
+          -2700.4585730017693,
+          1029.2561503528398
+        ],
+        [
+          -2905.0,
+          700.0
+        ],
+        [
+          -3395.0,
+          -350.0
+        ],
+        [
+          -3395.0,
+          -525.0
+        ],
+        [
+          -3360.0,
+          -560.0
+        ],
+        [
+          -3261.8789344961983,
+          -454.71852510750915
+        ],
+        [
+          -3255.0,
+          -1085.0
+        ],
+        [
+          -3045.0,
+          -1470.0
+        ],
+        [
+          -2905.0,
+          -1540.0
+        ],
+        [
+          -2275.0,
+          -1610.0
+        ],
+        [
+          140.0,
+          -1295.0
+        ],
+        [
+          412.32157195594016,
+          -1077.9999712715442
+        ]
+      ],
+      "stops": [
+        "M05",
+        "T06",
+        "M03"
+      ],
+      "notes": "Offshore polyline and separately recorded harbor approach. Depth, hazards and seasons unverified."
+    },
+    {
+      "id": "R9",
+      "mode": "sea",
+      "xy_km": [
+        [
+          412.32157195594016,
+          -1077.9999712715442
+        ],
+        [
+          770.0,
+          -1820.0
+        ],
+        [
+          1050.0,
+          -1890.0
+        ],
+        [
+          2870.0,
+          -1820.0
+        ],
+        [
+          3010.0,
+          -1750.0
+        ],
+        [
+          3004.0653615724295,
+          -1736.9728339916967
+        ],
+        [
+          3045.0,
+          -1715.0
+        ],
+        [
+          3360.0,
+          -1400.0
+        ],
+        [
+          3850.0,
+          -840.0
+        ],
+        [
+          3815.0,
+          -350.0
+        ],
+        [
+          3675.0,
+          0.0
+        ],
+        [
+          3430.0,
+          385.0
+        ],
+        [
+          2685.67212824987,
+          1041.5935111734775
+        ]
+      ],
+      "stops": [
+        "M03",
+        "T09",
+        "M06"
+      ],
+      "notes": "Offshore polyline and separately recorded harbor approach. Depth, hazards and seasons unverified."
+    },
+    {
+      "id": "B01",
+      "mode": "road",
+      "xy_km": [
+        [
+          -205.9529376219892,
+          909.001952106139
+        ],
+        [
+          -180.9529376219892,
+          924.001952106139
+        ]
+      ],
+      "stops": [
+        "T10",
+        "V13"
+      ],
+      "notes": "Local connection candidate. River crossings and gradients need detailed design."
+    },
+    {
+      "id": "B02",
+      "mode": "road",
+      "xy_km": [
+        [
+          -230.9529376219892,
+          1069.001952106139
+        ],
+        [
+          -220.9529376219892,
+          994.001952106139
+        ]
+      ],
+      "stops": [
+        "M07",
+        "V16"
+      ],
+      "notes": "Local connection candidate. River crossings and gradients need detailed design."
+    },
+    {
+      "id": "B03",
+      "mode": "road",
+      "xy_km": [
+        [
+          -230.9529376219892,
+          1069.001952106139
+        ],
+        [
+          -255.95293762198924,
+          1189.001952106139
+        ]
+      ],
+      "stops": [
+        "M07",
+        "V14"
+      ],
+      "notes": "Local connection candidate. River crossings and gradients need detailed design."
+    },
+    {
+      "id": "B04",
+      "mode": "road",
+      "xy_km": [
+        [
+          -255.95293762198924,
+          1189.001952106139
+        ],
+        [
+          -265.95293762198924,
+          1219.001952106139
+        ]
+      ],
+      "stops": [
+        "V14",
+        "T11"
+      ],
+      "notes": "Local connection candidate. River crossings and gradients need detailed design."
+    },
+    {
+      "id": "B05",
+      "mode": "road",
+      "xy_km": [
+        [
+          -230.9529376219892,
+          1069.001952106139
+        ],
+        [
+          -550.9529376219892,
+          1139.001952106139
+        ]
+      ],
+      "stops": [
+        "M07",
+        "T12"
+      ],
+      "notes": "Local connection candidate. River crossings and gradients need detailed design."
+    },
+    {
+      "id": "B06",
+      "mode": "road",
+      "xy_km": [
+        [
+          -550.9529376219892,
+          1139.001952106139
+        ],
+        [
+          -590.9529376219892,
+          1194.001952106139
+        ]
+      ],
+      "stops": [
+        "T12",
+        "V15"
+      ],
+      "notes": "Local connection candidate. River crossings and gradients need detailed design."
+    },
+    {
+      "id": "B07",
+      "mode": "road",
+      "xy_km": [
+        [
+          -890.3430271555216,
+          200.3333881209349
+        ],
+        [
+          -920.3430271555216,
+          235.3333881209349
+        ]
+      ],
+      "stops": [
+        "T04",
+        "V05"
+      ],
+      "notes": "Local connection candidate. River crossings and gradients need detailed design."
+    },
+    {
+      "id": "B08",
+      "mode": "road",
+      "xy_km": [
+        [
+          -1435.2733267209078,
+          454.34169769054535
+        ],
+        [
+          -1460.2733267209078,
+          489.34169769054535
+        ]
+      ],
+      "stops": [
+        "M04",
+        "V06"
+      ],
+      "notes": "Local connection candidate. River crossings and gradients need detailed design."
+    },
+    {
+      "id": "B09",
+      "mode": "road",
+      "xy_km": [
+        [
+          -1435.2733267209078,
+          454.34169769054535
+        ],
+        [
+          -1405.2733267209078,
+          469.34169769054535
+        ]
+      ],
+      "stops": [
+        "M04",
+        "V07"
+      ],
+      "notes": "Local connection candidate. River crossings and gradients need detailed design."
+    },
+    {
+      "id": "B10",
+      "mode": "road",
+      "xy_km": [
+        [
+          1234.242555079002,
+          -752.7680848574923
+        ],
+        [
+          1269.242555079002,
+          -727.7680848574923
+        ]
+      ],
+      "stops": [
+        "T07",
+        "V09"
+      ],
+      "notes": "Local connection candidate. River crossings and gradients need detailed design."
+    },
+    {
+      "id": "B11",
+      "mode": "road",
+      "xy_km": [
+        [
+          2016.8396215333198,
+          -786.0727062591023
+        ],
+        [
+          2041.8396215333198,
+          -811.0727062591023
+        ]
+      ],
+      "stops": [
+        "M08",
+        "V10"
+      ],
+      "notes": "Local connection candidate. River crossings and gradients need detailed design."
+    },
+    {
+      "id": "B12",
+      "mode": "road",
+      "xy_km": [
+        [
+          2228.776414958394,
+          475.8503179346188
+        ],
+        [
+          2193.776414958394,
+          505.8503179346188
+        ]
+      ],
+      "stops": [
+        "T08",
+        "V11"
+      ],
+      "notes": "Local connection candidate. River crossings and gradients need detailed design."
+    },
+    {
+      "id": "B13",
+      "mode": "road",
+      "xy_km": [
+        [
+          -3276.6510507913813,
+          -452.11380244250523
+        ],
+        [
+          -3290.0,
+          -420.0
+        ],
+        [
+          -3263.0058320556363,
+          -414.54620476072546
+        ]
+      ],
+      "stops": [
+        "T06",
+        "V08"
+      ],
+      "notes": "Local connection candidate. River crossings and gradients need detailed design."
+    },
+    {
+      "id": "B14",
+      "mode": "sea",
+      "xy_km": [
+        [
+          2685.67212824987,
+          1041.5935111734775
+        ],
+        [
+          3605.0,
+          210.0
+        ],
+        [
+          3722.493136072084,
+          -101.26912702949522
+        ],
+        [
+          3815.0,
+          -420.0
+        ],
+        [
+          3850.0,
+          -840.0
+        ],
+        [
+          3255.0,
+          -1505.0
+        ],
+        [
+          3010.0,
+          -1750.0
+        ],
+        [
+          3004.0653615724295,
+          -1736.9728339916967
+        ]
+      ],
+      "stops": [
+        "M06",
+        "V12",
+        "T09"
+      ],
+      "notes": "Coastal feeder. Same offshore/harbor distinction as R9."
+    },
+    {
+      "id": "B15",
+      "mode": "road",
+      "xy_km": [
+        [
+          2228.776414958394,
+          475.8503179346188
+        ],
+        [
+          2600,
+          400
+        ]
+      ],
+      "stops": [
+        "T08",
+        "R7_junction"
+      ],
+      "notes": "Forest branch connecting Eskal to R7. Junction is not a settlement."
+    }
+  ],
+  "central_basis": "worldtree-settlement-basis-v1.json",
+  "limitations": [
+    "All outer positions and global anchor are new design candidates.",
+    "36 locations are selected narrative hubs, not an exhaustive census.",
+    "River heights are monotonic design profiles, not terrain-derived gradients.",
+    "Ridge lines and lake outlines are schematic symbols, not surveyed terrain.",
+    "Roads are corridors; shared river alignments mean valley access, not driving on the river.",
+    "No port bathymetry, road grade, climate, population, travel time or UE validation."
+  ]
+}

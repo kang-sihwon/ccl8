@@ -6,7 +6,7 @@
 
 | 작업 | 지도 | 상태 |
 |---|---|---|
-| 첫 장 시나리오와 플레이 대륙 배경 | [서사 작업 현황](../Narrative/CurrentWork.md) | [통합 후보](../Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-06-opening-and-continent.md)에 첫 장 점검, 지형·36개 정착망, 국가·인간/몬스터 세력의 현재 상황, 출항까지 상세 시나리오 반영의 네 단계를 완료했다. [독립 검토](../Narrative/Reviews/2026-11-06-opening-continent-review.md)는 PASS다. 다음은 고유 설정 후보 검토와 승인 범위 논의다. [중앙 9곳 좌표 기준도](../ArtDirection/EtherWorldMap/2026-11-07-central-coordinate-map.md)를 추가해 거리·방향 표현을 보정했고 독립 검토 PASS다. 외곽 27곳과 대륙 정밀 좌표 정합·실행 검증은 남아 있다. |
+| 첫 장 시나리오와 플레이 대륙 배경 | [서사 작업 현황](../Narrative/CurrentWork.md) | [통합 후보](../Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-06-opening-and-continent.md)의 네 단계와 [독립 검토](../Narrative/Reviews/2026-11-06-opening-continent-review.md) PASS를 완료했다. [36곳 좌표 정합 후보](../ArtDirection/EtherWorldMap/2026-11-07-continent-coordinate-map.md)는 원본 해안·중앙 9곳을 유지하고 외곽 27곳·주요 수계·교역로를 연결했다. 계산 검증과 [지도 독립 검토](../Narrative/Reviews/2026-11-07-continent-coordinate-review.md)도 PASS다. 다음은 새 배치·고유 설정의 검토와 승인 범위 논의다. 정밀 지형·기후·물류·실행 검증은 남아 있다. |
 
 ## 다음 작업 후보
 
