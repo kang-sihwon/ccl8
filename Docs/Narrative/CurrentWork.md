@@ -20,7 +20,8 @@
 사용자가 2026-10-31 [에테르 시나리오 후보](Drafts/2026-10-31-ether-taiga-dawn.md)를 "기본 시나리오는 이걸로 할게"라고 골랐다. 첫 장 세부 시나리오와 사용자 제공 지리 원고 두 편을 기존 후보에 연결했다. 고유 서사의 정본 반영 범위는 아직 승인 전이다.
 
 - 상태: `DISCUSSION` (목표 1→4 통합 후보 작성·독립 검토 PASS. 고유 설정 정본 승인은 미실시)
-- 담당: 없음 (대륙 지도 정합과 독립 검토 완료)
+- 담당: 없음 (첫 장 핵심 설정 비교와 독립 검토 완료)
+- 핵심 설정 선택: [추천·대안·보류 비교표](Drafts/2026-10-31-ether-taiga-dawn/2026-11-06-opening-and-continent/2026-11-07-core-setting-options.md)에 추천 9항목, 비교 대안 9개, 보류 7항목을 작성했다. 주인공 동기, 유한한 에테르·검은 결정, 몬스터 전투·바르툴 해방, 복구 인계와 출항을 비교한다. [독립 검토](Reviews/2026-11-07-core-setting-options-review.md)는 PASS다. 다음은 채택할 항목의 범위 검토이며 사용자 채택·정본 반영은 미실시다.
 - 대륙 지도 정합: [36곳 좌표 정합 후보](../ArtDirection/EtherWorldMap/2026-11-07-continent-coordinate-map.md)에 원본 해안과 중앙 9곳을 유지한 전역 좌표, 외곽 27곳과 수계·노선, 전체도와 원본 투영 대조도를 작성했다. 계산 검증과 [독립 검토](Reviews/2026-11-07-continent-coordinate-review.md)는 PASS다. 전역 원점·외곽 배치·지형은 새 후보이고 정본 승인은 별도다.
 - 중앙 지도 보정: [좌표 기준도](../ArtDirection/EtherWorldMap/2026-11-07-central-coordinate-map.md)에 중앙 정착지 9곳과 환적장, 벨레스 이웃 확대도를 작성했다. SVG 좌표 역산·기호 개수·동일 가로세로 축척 검사와 독립 PNG 검토 PASS. 이 좌표를 대륙 정합 후보에서도 그대로 유지했다.
 - 통합 재검증: [최초 재검증](Reviews/2026-11-04-creation-skills-revalidation.md)은 `CHANGES_REQUESTED`였다. 36개 정착지 설정·표기와 주요 면적·거리를 대조한 결과를 보존한다. [후속 독립 검토](Reviews/2026-11-05-revalidation-followup.md)에서 전투 강화, 세르나의 선행 경험, 배치 참조 세 곳, 지도 해시 정정의 네 항목이 `PASS`다.
