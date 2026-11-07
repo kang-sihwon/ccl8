@@ -20,11 +20,13 @@
 사용자가 2026-10-31 [에테르 시나리오 후보](Drafts/2026-10-31-ether-taiga-dawn.md)를 "기본 시나리오는 이걸로 할게"라고 골랐다. 첫 장 세부 시나리오와 사용자 제공 지리 원고 두 편을 기존 후보에 연결했다. 2026-11-07 K01-K09 추천안의 정본 반영을 승인했고 H01-H07은 보류로 유지했다.
 
 - 상태: 핵심 설정 `CLOSED` (결정 41의 필드 교전 수정 반영), 숲 탐색·분포 후보 `DISCUSSION` (독립 검토 PASS)
-- 담당: 없음 (숲 배치 문서·지도·계산 검사·독립 검토 완료)
+- 담당: 없음
+- 왕복 흐름 검토: [독립 검토](Reviews/2026-11-07-forest-roundtrip-review.md)는 비교도 종명 표기 한 곳을 고치고 재확인한 뒤 PASS다. 경로·생활권 교차·공백·보정 전후 계산과 문서·그림의 일치를 확인했다. 실제 전투 밀도와 체감은 미검증이다.
+- 현재 왕복 흐름: [동쪽 진입·서쪽 귀환 모의 탐색](Drafts/2026-10-31-ether-taiga-dawn/2026-11-06-opening-and-continent/2026-11-07-forest-roundtrip-walkthrough.md)에 보스·복구를 포함한 탐색 사례와 거리 비교도를 작성했다. 동쪽 약 1,136m 진입과 R03 상부·R04·관리로 약 1,651m 귀환을 추천한다. S01 재접촉 없음·G04 정지 사례에서 서쪽 전체 귀환의 마지막 생활권 공백 약 629m가 추천 경로에서는 약 433m다. 중간 약 321m 구간도 남으므로 실제 밀도 해결로 판정하지 않는다. 세 추격 범위 보정은 비교용 추천이며 기존 배치와 지도는 보존했다. 다음은 O2-R04와 동굴 출구의 시야·통행·추격을 끊을 지형을 구체화하는 일이다.
 - 숲 배치 검토: [독립 검토](Reviews/2026-11-07-veles-forest-population-review.md)는 PASS다. 두 PNG와 SVG, 원자료 보존·수량·길 연결·활동 및 추격 범위를 확인했다. 실제 지형과 전투 밀도·AI·UE 실행은 미검증이다.
 - 필드 전투 검토: [독립 검토](Reviews/2026-11-07-field-combat-revision-review.md)는 PASS다. 고정 다섯 전투 해제, 일반 교전과 주요 사건 구분, 바르툴·무기·복구 조건 유지, 이전안 보존을 확인했다. 실제 필드 배치와 교전 빈도는 미검증이다.
 - 현재 전투 기준: [결정 41](../decisions/0041-field-exploration-combat.md)에 따라 분포한 동물·몬스터와 탐색 중 싸운다. K05를 다섯 번의 순차 전투로 적용한 부분을 대체했고, 다른 채택 조건과 보류 항목은 유지한다. [필드 개정 후보](Drafts/2026-10-31-ether-taiga-dawn/2026-11-06-opening-and-continent/2026-11-07-field-combat-revision.md)의 방향을 아래 숲 배치로 구체화했다.
-- 현재 숲 배치: [벨레스 숲 문서와 지도](Drafts/2026-10-31-ether-taiga-dawn/2026-11-06-opening-and-continent/2026-11-07-veles-forest-population.md)에 6구역, 11개 무리·순찰 단위와 야외 25개체, 평소 이동·추격 범위·세 중첩 지점·주 길과 가로 연결을 제안했다. 기존 15개 장소와 물길을 보존했고 평면 계산 검사는 PASS다. 수량은 처치 목표나 정본이 아니며 H02·H04는 유지한다. 다음은 경로별 탐색 사례를 대조해 교전 공백·과도한 중첩과 귀환 경험을 검토하는 일이다.
+- 현재 숲 배치: [벨레스 숲 문서와 지도](Drafts/2026-10-31-ether-taiga-dawn/2026-11-06-opening-and-continent/2026-11-07-veles-forest-population.md)에 6구역, 11개 무리·순찰 단위와 야외 25개체, 평소 이동·추격 범위·세 중첩 지점·주 길과 가로 연결을 제안했다. 기존 15개 장소와 물길을 보존했고 평면 계산 검사는 PASS다. 수량은 처치 목표나 정본이 아니며 H02·H04는 유지한다. 경로별 공백·과도한 중첩과 귀환 경험은 위 왕복 흐름에서 비교한다.
 - 핵심 설정 선택: [추천·대안·보류 비교표](Drafts/2026-10-31-ether-taiga-dawn/2026-11-06-opening-and-continent/2026-11-07-core-setting-options.md)의 K01-K09를 모두 채택해 [World](World.md)·[Scenario](Scenario.md)에 반영했다. A01-A09의 비교와 H01-H07의 보류 조건은 보존했다. 추천안 작성 때의 [독립 검토](Reviews/2026-11-07-core-setting-options-review.md)는 PASS이며 채택 근거는 결정 40이다.
 - 이전 공간 연결: [후보와 v1 도면](Drafts/2026-10-31-ether-taiga-dawn/2026-11-06-opening-and-continent/2026-11-07-opening-spatial-connections.md)의 기존 15개 장소 좌표·네 관리교·동굴 퇴로·복구·출항은 참조한다. 다섯 전투의 고정 순서와 귀환 중 전투 없음은 현행 기준이 아니다. [당시 독립 검토](Reviews/2026-11-07-opening-canon-spatial-review.md)의 PASS는 수정 전 기준에 대한 기록이다. 지도 이미지는 비교 자료로 보존하며 현재 야외 분포는 새 숲 지도에서 본다.
 - 대륙 지도 정합: [36곳 좌표 정합 후보](../ArtDirection/EtherWorldMap/2026-11-07-continent-coordinate-map.md)에 원본 해안과 중앙 9곳을 유지한 전역 좌표, 외곽 27곳과 수계·노선, 전체도와 원본 투영 대조도를 작성했다. 계산 검증과 [독립 검토](Reviews/2026-11-07-continent-coordinate-review.md)는 PASS다. 전역 원점·외곽 배치·지형은 새 후보이고 정본 승인은 별도다.

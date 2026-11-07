@@ -6,7 +6,7 @@
 
 | 작업 | 지도 | 상태 |
 |---|---|---|
-| 첫 장 시나리오와 플레이 대륙 배경 | [서사 작업 현황](../Narrative/CurrentWork.md) | [결정 41](../decisions/0041-field-exploration-combat.md)의 필드 교전 방향으로 [벨레스 숲 탐색·분포 지도](../Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-06-opening-and-continent/2026-11-07-veles-forest-population.md)를 작성했다. 6구역·11개 무리와 순찰·평소 이동과 추격 범위·갈림길을 제안했다. 다음은 경로별 탐색과 귀환 사례로 전투 공백·과도한 중첩을 검토하는 일이다. 이전안과 H01-H07은 보존한다. |
+| 첫 장 시나리오와 플레이 대륙 배경 | [서사 작업 현황](../Narrative/CurrentWork.md) | [숲 왕복 모의 탐색](../Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-06-opening-and-continent/2026-11-07-forest-roundtrip-walkthrough.md)에 동쪽 진입·보스·서쪽 귀환, 생활권 공백과 추격 중첩 비교를 작성했다. 다음은 O2-R04와 동굴 출구의 지형 상세화다. 이전 분포·지도와 H01-H07은 보존하며 세 추격 보정은 비교 후보로 남긴다. |
 
 ## 다음 작업 후보
 

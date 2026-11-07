@@ -1,0 +1,1326 @@
+{
+  "status": "paper_route_analysis_not_runtime_combat_validation",
+  "basis": "veles-forest-ecology-v1.json",
+  "metric": "Exact 2D polyline intersection with routine/pursuit polygons. Intersections are exposure opportunities, not aggro events or combat counts.",
+  "outbound": {
+    "id": "east_outbound",
+    "nodes": [
+      "forest_gate",
+      "squirrel",
+      "E1",
+      "E2",
+      "E3",
+      "wolves",
+      "B04",
+      "cave"
+    ],
+    "xy_m": [
+      [
+        90,
+        260
+      ],
+      [
+        180,
+        440
+      ],
+      [
+        300,
+        520
+      ],
+      [
+        330,
+        720
+      ],
+      [
+        350,
+        910
+      ],
+      [
+        220,
+        1040
+      ],
+      [
+        233.069,
+        1108.614
+      ],
+      [
+        260,
+        1250
+      ]
+    ],
+    "node_distance_m": {
+      "forest_gate": 0.0,
+      "squirrel": 201.246,
+      "E1": 345.468,
+      "E2": 547.706,
+      "E3": 738.755,
+      "wolves": 922.603,
+      "B04": 992.451,
+      "cave": 1136.379
+    },
+    "excluded_groups_for_sample_state": [],
+    "length_m": 1136.379,
+    "intersections": [
+      {
+        "group": "S01",
+        "count": 2,
+        "routine_m": [
+          [
+            100.623,
+            273.357
+          ]
+        ],
+        "pursuit_m": [
+          [
+            67.082,
+            308.858
+          ]
+        ]
+      },
+      {
+        "group": "S02",
+        "count": 3,
+        "routine_m": [
+          [
+            345.468,
+            527.482
+          ]
+        ],
+        "pursuit_m": [
+          [
+            282.371,
+            592.954
+          ]
+        ]
+      },
+      {
+        "group": "S04",
+        "count": 3,
+        "routine_m": [
+          [
+            597.982,
+            738.755
+          ]
+        ],
+        "pursuit_m": [
+          [
+            547.706,
+            823.608
+          ]
+        ]
+      },
+      {
+        "group": "G04",
+        "count": 1,
+        "routine_m": [
+          [
+            1065.12,
+            1082.935
+          ]
+        ],
+        "pursuit_m": [
+          [
+            1054.94,
+            1132.307
+          ]
+        ]
+      },
+      {
+        "group": "W02",
+        "count": 4,
+        "routine_m": [
+          [
+            816.537,
+            915.532
+          ]
+        ],
+        "pursuit_m": [
+          [
+            795.324,
+            934.379
+          ]
+        ]
+      }
+    ],
+    "outside_all_routine_m": [
+      [
+        0,
+        100.623,
+        100.623
+      ],
+      [
+        273.357,
+        345.468,
+        72.111
+      ],
+      [
+        527.482,
+        597.982,
+        70.5
+      ],
+      [
+        738.755,
+        816.537,
+        77.782
+      ],
+      [
+        915.532,
+        1065.12,
+        149.588
+      ],
+      [
+        1082.935,
+        1136.379,
+        53.444
+      ]
+    ],
+    "overlaps": [
+      {
+        "kind": "pursuit_m",
+        "from_m": 282.371,
+        "to_m": 308.858,
+        "groups": [
+          "S01",
+          "S02"
+        ],
+        "population_ceiling": 5
+      },
+      {
+        "kind": "pursuit_m",
+        "from_m": 547.706,
+        "to_m": 592.954,
+        "groups": [
+          "S02",
+          "S04"
+        ],
+        "population_ceiling": 6
+      },
+      {
+        "kind": "pursuit_m",
+        "from_m": 795.324,
+        "to_m": 823.608,
+        "groups": [
+          "S04",
+          "W02"
+        ],
+        "population_ceiling": 7
+      }
+    ]
+  },
+  "return_fresh": {
+    "id": "west_return_all_groups",
+    "nodes": [
+      "cave",
+      "W4",
+      "W3",
+      "W2",
+      "W1",
+      "B02",
+      "squirrel",
+      "forest_gate"
+    ],
+    "xy_m": [
+      [
+        260,
+        1250
+      ],
+      [
+        -40,
+        1140
+      ],
+      [
+        -220,
+        950
+      ],
+      [
+        -250,
+        730
+      ],
+      [
+        -110,
+        530
+      ],
+      [
+        119.355,
+        621.935
+      ],
+      [
+        180,
+        440
+      ],
+      [
+        90,
+        260
+      ]
+    ],
+    "node_distance_m": {
+      "cave": 0.0,
+      "W4": 319.531,
+      "W3": 581.256,
+      "W2": 803.292,
+      "W1": 1047.423,
+      "B02": 1294.518,
+      "squirrel": 1486.295,
+      "forest_gate": 1687.541
+    },
+    "excluded_groups_for_sample_state": [],
+    "length_m": 1687.541,
+    "intersections": [
+      {
+        "group": "S01",
+        "count": 2,
+        "routine_m": [
+          [
+            1428.32,
+            1586.918
+          ]
+        ],
+        "pursuit_m": [
+          [
+            1396.045,
+            1620.459
+          ]
+        ]
+      },
+      {
+        "group": "S03",
+        "count": 2,
+        "routine_m": [
+          [
+            900.944,
+            1058.197
+          ]
+        ],
+        "pursuit_m": [
+          [
+            839.912,
+            1122.837
+          ]
+        ]
+      },
+      {
+        "group": "G01",
+        "count": 1,
+        "routine_m": [],
+        "pursuit_m": [
+          [
+            1289.316,
+            1289.826
+          ]
+        ]
+      },
+      {
+        "group": "G03",
+        "count": 1,
+        "routine_m": [],
+        "pursuit_m": [
+          [
+            58.097,
+            181.068
+          ]
+        ]
+      },
+      {
+        "group": "G04",
+        "count": 1,
+        "routine_m": [
+          [
+            29.048,
+            74.557
+          ]
+        ],
+        "pursuit_m": [
+          [
+            11.619,
+            106.51
+          ]
+        ]
+      },
+      {
+        "group": "W01",
+        "count": 3,
+        "routine_m": [
+          [
+            539.931,
+            752.829
+          ]
+        ],
+        "pursuit_m": [
+          [
+            471.056,
+            827.705
+          ]
+        ]
+      },
+      {
+        "group": "W03",
+        "count": 3,
+        "routine_m": [
+          [
+            203.338,
+            406.773
+          ]
+        ],
+        "pursuit_m": [
+          [
+            79.883,
+            479.474
+          ]
+        ]
+      }
+    ],
+    "outside_all_routine_m": [
+      [
+        0,
+        29.048,
+        29.048
+      ],
+      [
+        74.557,
+        203.338,
+        128.781
+      ],
+      [
+        406.773,
+        539.931,
+        133.158
+      ],
+      [
+        752.829,
+        900.944,
+        148.115
+      ],
+      [
+        1058.197,
+        1428.32,
+        370.123
+      ],
+      [
+        1586.918,
+        1687.541,
+        100.623
+      ]
+    ],
+    "overlaps": [
+      {
+        "kind": "pursuit_m",
+        "from_m": 58.097,
+        "to_m": 79.883,
+        "groups": [
+          "G03",
+          "G04"
+        ],
+        "population_ceiling": 2
+      },
+      {
+        "kind": "pursuit_m",
+        "from_m": 79.883,
+        "to_m": 106.51,
+        "groups": [
+          "G03",
+          "G04",
+          "W03"
+        ],
+        "population_ceiling": 5
+      },
+      {
+        "kind": "pursuit_m",
+        "from_m": 106.51,
+        "to_m": 181.068,
+        "groups": [
+          "G03",
+          "W03"
+        ],
+        "population_ceiling": 4
+      },
+      {
+        "kind": "pursuit_m",
+        "from_m": 471.056,
+        "to_m": 479.474,
+        "groups": [
+          "W01",
+          "W03"
+        ],
+        "population_ceiling": 6
+      }
+    ]
+  },
+  "return_sample": {
+    "id": "west_return_after_S01_G04_resolved",
+    "nodes": [
+      "cave",
+      "W4",
+      "W3",
+      "W2",
+      "W1",
+      "B02",
+      "squirrel",
+      "forest_gate"
+    ],
+    "xy_m": [
+      [
+        260,
+        1250
+      ],
+      [
+        -40,
+        1140
+      ],
+      [
+        -220,
+        950
+      ],
+      [
+        -250,
+        730
+      ],
+      [
+        -110,
+        530
+      ],
+      [
+        119.355,
+        621.935
+      ],
+      [
+        180,
+        440
+      ],
+      [
+        90,
+        260
+      ]
+    ],
+    "node_distance_m": {
+      "cave": 0.0,
+      "W4": 319.531,
+      "W3": 581.256,
+      "W2": 803.292,
+      "W1": 1047.423,
+      "B02": 1294.518,
+      "squirrel": 1486.295,
+      "forest_gate": 1687.541
+    },
+    "excluded_groups_for_sample_state": [
+      "S01",
+      "G04"
+    ],
+    "length_m": 1687.541,
+    "intersections": [
+      {
+        "group": "S03",
+        "count": 2,
+        "routine_m": [
+          [
+            900.944,
+            1058.197
+          ]
+        ],
+        "pursuit_m": [
+          [
+            839.912,
+            1122.837
+          ]
+        ]
+      },
+      {
+        "group": "G01",
+        "count": 1,
+        "routine_m": [],
+        "pursuit_m": [
+          [
+            1289.316,
+            1289.826
+          ]
+        ]
+      },
+      {
+        "group": "G03",
+        "count": 1,
+        "routine_m": [],
+        "pursuit_m": [
+          [
+            58.097,
+            181.068
+          ]
+        ]
+      },
+      {
+        "group": "W01",
+        "count": 3,
+        "routine_m": [
+          [
+            539.931,
+            752.829
+          ]
+        ],
+        "pursuit_m": [
+          [
+            471.056,
+            827.705
+          ]
+        ]
+      },
+      {
+        "group": "W03",
+        "count": 3,
+        "routine_m": [
+          [
+            203.338,
+            406.773
+          ]
+        ],
+        "pursuit_m": [
+          [
+            79.883,
+            479.474
+          ]
+        ]
+      }
+    ],
+    "outside_all_routine_m": [
+      [
+        0,
+        203.338,
+        203.338
+      ],
+      [
+        406.773,
+        539.931,
+        133.158
+      ],
+      [
+        752.829,
+        900.944,
+        148.115
+      ],
+      [
+        1058.197,
+        1687.541,
+        629.344
+      ]
+    ],
+    "overlaps": [
+      {
+        "kind": "pursuit_m",
+        "from_m": 79.883,
+        "to_m": 181.068,
+        "groups": [
+          "G03",
+          "W03"
+        ],
+        "population_ceiling": 4
+      },
+      {
+        "kind": "pursuit_m",
+        "from_m": 471.056,
+        "to_m": 479.474,
+        "groups": [
+          "W01",
+          "W03"
+        ],
+        "population_ceiling": 6
+      }
+    ]
+  },
+  "return_short_option": {
+    "id": "west_return_via_R04",
+    "nodes": [
+      "cave",
+      "W4",
+      "W3",
+      "W2",
+      "guardian",
+      "B02",
+      "squirrel",
+      "forest_gate"
+    ],
+    "xy_m": [
+      [
+        260,
+        1250
+      ],
+      [
+        -40,
+        1140
+      ],
+      [
+        -220,
+        950
+      ],
+      [
+        -250,
+        730
+      ],
+      [
+        80,
+        740
+      ],
+      [
+        119.355,
+        621.935
+      ],
+      [
+        180,
+        440
+      ],
+      [
+        90,
+        260
+      ]
+    ],
+    "node_distance_m": {
+      "cave": 0.0,
+      "W4": 319.531,
+      "W3": 581.256,
+      "W2": 803.292,
+      "guardian": 1133.443,
+      "B02": 1257.894,
+      "squirrel": 1449.671,
+      "forest_gate": 1650.917
+    },
+    "excluded_groups_for_sample_state": [
+      "S01",
+      "G04"
+    ],
+    "length_m": 1650.917,
+    "intersections": [
+      {
+        "group": "G01",
+        "count": 1,
+        "routine_m": [
+          [
+            1073.416,
+            1217.771
+          ]
+        ],
+        "pursuit_m": [
+          [
+            1033.398,
+            1244.123
+          ]
+        ]
+      },
+      {
+        "group": "G02",
+        "count": 2,
+        "routine_m": [],
+        "pursuit_m": [
+          [
+            858.317,
+            1083.421
+          ]
+        ]
+      },
+      {
+        "group": "G03",
+        "count": 1,
+        "routine_m": [],
+        "pursuit_m": [
+          [
+            58.097,
+            181.068
+          ]
+        ]
+      },
+      {
+        "group": "W01",
+        "count": 3,
+        "routine_m": [
+          [
+            539.931,
+            752.829
+          ]
+        ],
+        "pursuit_m": [
+          [
+            471.056,
+            1063.411
+          ]
+        ]
+      },
+      {
+        "group": "W03",
+        "count": 3,
+        "routine_m": [
+          [
+            203.338,
+            406.773
+          ]
+        ],
+        "pursuit_m": [
+          [
+            79.883,
+            479.474
+          ]
+        ]
+      }
+    ],
+    "outside_all_routine_m": [
+      [
+        0,
+        203.338,
+        203.338
+      ],
+      [
+        406.773,
+        539.931,
+        133.158
+      ],
+      [
+        752.829,
+        1073.416,
+        320.587
+      ],
+      [
+        1217.771,
+        1650.917,
+        433.146
+      ]
+    ],
+    "overlaps": [
+      {
+        "kind": "pursuit_m",
+        "from_m": 79.883,
+        "to_m": 181.068,
+        "groups": [
+          "G03",
+          "W03"
+        ],
+        "population_ceiling": 4
+      },
+      {
+        "kind": "pursuit_m",
+        "from_m": 471.056,
+        "to_m": 479.474,
+        "groups": [
+          "W01",
+          "W03"
+        ],
+        "population_ceiling": 6
+      },
+      {
+        "kind": "pursuit_m",
+        "from_m": 858.317,
+        "to_m": 1033.398,
+        "groups": [
+          "G02",
+          "W01"
+        ],
+        "population_ceiling": 5
+      },
+      {
+        "kind": "pursuit_m",
+        "from_m": 1033.398,
+        "to_m": 1063.411,
+        "groups": [
+          "G01",
+          "G02",
+          "W01"
+        ],
+        "population_ceiling": 6
+      },
+      {
+        "kind": "pursuit_m",
+        "from_m": 1063.411,
+        "to_m": 1083.421,
+        "groups": [
+          "G01",
+          "G02"
+        ],
+        "population_ceiling": 3
+      }
+    ]
+  },
+  "limits": [
+    "No detection range, patrol phase, terrain, speed, stamina, recovery or fight-duration simulation",
+    "Pursuit areas do not trigger enemies; overlap needs prior detection and walkable access",
+    "Outside routine polygons does not prove safety or boredom",
+    "Exact kill counts and elapsed play time are not specified"
+  ],
+  "basis_sha256": "744a518ccfc56b4cd59694e6430e8457e2546da251a7f90823496133e38b0ead",
+  "proposal": {
+    "status": "comparison_only_not_applied_to_population_v1",
+    "changes": [
+      {
+        "id": "S04",
+        "before_pursuit_polygon_m": [
+          [
+            280,
+            720
+          ],
+          [
+            490,
+            720
+          ],
+          [
+            490,
+            970
+          ],
+          [
+            280,
+            970
+          ]
+        ],
+        "proposed_pursuit_polygon_m": [
+          [
+            280,
+            720
+          ],
+          [
+            490,
+            720
+          ],
+          [
+            490,
+            940
+          ],
+          [
+            280,
+            940
+          ]
+        ]
+      },
+      {
+        "id": "G02",
+        "before_pursuit_polygon_m": [
+          [
+            -195,
+            700
+          ],
+          [
+            30,
+            700
+          ],
+          [
+            30,
+            920
+          ],
+          [
+            -195,
+            920
+          ]
+        ],
+        "proposed_pursuit_polygon_m": [
+          [
+            -195,
+            750
+          ],
+          [
+            30,
+            750
+          ],
+          [
+            30,
+            920
+          ],
+          [
+            -195,
+            920
+          ]
+        ]
+      },
+      {
+        "id": "W01",
+        "before_pursuit_polygon_m": [
+          [
+            -330,
+            710
+          ],
+          [
+            10,
+            710
+          ],
+          [
+            10,
+            1030
+          ],
+          [
+            -330,
+            1030
+          ]
+        ],
+        "proposed_pursuit_polygon_m": [
+          [
+            -330,
+            710
+          ],
+          [
+            -40,
+            710
+          ],
+          [
+            -40,
+            1030
+          ],
+          [
+            -330,
+            1030
+          ]
+        ]
+      }
+    ],
+    "outbound": {
+      "id": "east_after_proposed_pursuit_trim",
+      "nodes": [
+        "forest_gate",
+        "squirrel",
+        "E1",
+        "E2",
+        "E3",
+        "wolves",
+        "B04",
+        "cave"
+      ],
+      "xy_m": [
+        [
+          90,
+          260
+        ],
+        [
+          180,
+          440
+        ],
+        [
+          300,
+          520
+        ],
+        [
+          330,
+          720
+        ],
+        [
+          350,
+          910
+        ],
+        [
+          220,
+          1040
+        ],
+        [
+          233.069,
+          1108.614
+        ],
+        [
+          260,
+          1250
+        ]
+      ],
+      "node_distance_m": {
+        "forest_gate": 0.0,
+        "squirrel": 201.246,
+        "E1": 345.468,
+        "E2": 547.706,
+        "E3": 738.755,
+        "wolves": 922.603,
+        "B04": 992.451,
+        "cave": 1136.379
+      },
+      "excluded_groups_for_sample_state": [],
+      "length_m": 1136.379,
+      "intersections": [
+        {
+          "group": "S01",
+          "count": 2,
+          "routine_m": [
+            [
+              100.623,
+              273.357
+            ]
+          ],
+          "pursuit_m": [
+            [
+              67.082,
+              308.858
+            ]
+          ]
+        },
+        {
+          "group": "S02",
+          "count": 3,
+          "routine_m": [
+            [
+              345.468,
+              527.482
+            ]
+          ],
+          "pursuit_m": [
+            [
+              282.371,
+              592.954
+            ]
+          ]
+        },
+        {
+          "group": "S04",
+          "count": 3,
+          "routine_m": [
+            [
+              597.982,
+              738.755
+            ]
+          ],
+          "pursuit_m": [
+            [
+              547.706,
+              781.182
+            ]
+          ]
+        },
+        {
+          "group": "G04",
+          "count": 1,
+          "routine_m": [
+            [
+              1065.12,
+              1082.935
+            ]
+          ],
+          "pursuit_m": [
+            [
+              1054.94,
+              1132.307
+            ]
+          ]
+        },
+        {
+          "group": "W02",
+          "count": 4,
+          "routine_m": [
+            [
+              816.537,
+              915.532
+            ]
+          ],
+          "pursuit_m": [
+            [
+              795.324,
+              934.379
+            ]
+          ]
+        }
+      ],
+      "outside_all_routine_m": [
+        [
+          0,
+          100.623,
+          100.623
+        ],
+        [
+          273.357,
+          345.468,
+          72.111
+        ],
+        [
+          527.482,
+          597.982,
+          70.5
+        ],
+        [
+          738.755,
+          816.537,
+          77.782
+        ],
+        [
+          915.532,
+          1065.12,
+          149.588
+        ],
+        [
+          1082.935,
+          1136.379,
+          53.444
+        ]
+      ],
+      "overlaps": [
+        {
+          "kind": "pursuit_m",
+          "from_m": 282.371,
+          "to_m": 308.858,
+          "groups": [
+            "S01",
+            "S02"
+          ],
+          "population_ceiling": 5
+        },
+        {
+          "kind": "pursuit_m",
+          "from_m": 547.706,
+          "to_m": 592.954,
+          "groups": [
+            "S02",
+            "S04"
+          ],
+          "population_ceiling": 6
+        }
+      ]
+    },
+    "recommended_return": {
+      "id": "R03_upper_R04_R01_after_proposed_pursuit_trim",
+      "nodes": [
+        "cave",
+        "W4",
+        "W3",
+        "W2",
+        "guardian",
+        "B02",
+        "squirrel",
+        "forest_gate"
+      ],
+      "xy_m": [
+        [
+          260,
+          1250
+        ],
+        [
+          -40,
+          1140
+        ],
+        [
+          -220,
+          950
+        ],
+        [
+          -250,
+          730
+        ],
+        [
+          80,
+          740
+        ],
+        [
+          119.355,
+          621.935
+        ],
+        [
+          180,
+          440
+        ],
+        [
+          90,
+          260
+        ]
+      ],
+      "node_distance_m": {
+        "cave": 0.0,
+        "W4": 319.531,
+        "W3": 581.256,
+        "W2": 803.292,
+        "guardian": 1133.443,
+        "B02": 1257.894,
+        "squirrel": 1449.671,
+        "forest_gate": 1650.917
+      },
+      "excluded_groups_for_sample_state": [
+        "S01",
+        "G04"
+      ],
+      "length_m": 1650.917,
+      "intersections": [
+        {
+          "group": "G01",
+          "count": 1,
+          "routine_m": [
+            [
+              1073.416,
+              1217.771
+            ]
+          ],
+          "pursuit_m": [
+            [
+              1033.398,
+              1244.123
+            ]
+          ]
+        },
+        {
+          "group": "G03",
+          "count": 1,
+          "routine_m": [],
+          "pursuit_m": [
+            [
+              58.097,
+              181.068
+            ]
+          ]
+        },
+        {
+          "group": "W01",
+          "count": 3,
+          "routine_m": [
+            [
+              539.931,
+              752.829
+            ]
+          ],
+          "pursuit_m": [
+            [
+              471.056,
+              1013.388
+            ]
+          ]
+        },
+        {
+          "group": "W03",
+          "count": 3,
+          "routine_m": [
+            [
+              203.338,
+              406.773
+            ]
+          ],
+          "pursuit_m": [
+            [
+              79.883,
+              479.474
+            ]
+          ]
+        }
+      ],
+      "outside_all_routine_m": [
+        [
+          0,
+          203.338,
+          203.338
+        ],
+        [
+          406.773,
+          539.931,
+          133.158
+        ],
+        [
+          752.829,
+          1073.416,
+          320.587
+        ],
+        [
+          1217.771,
+          1650.917,
+          433.146
+        ]
+      ],
+      "overlaps": [
+        {
+          "kind": "pursuit_m",
+          "from_m": 79.883,
+          "to_m": 181.068,
+          "groups": [
+            "G03",
+            "W03"
+          ],
+          "population_ceiling": 4
+        },
+        {
+          "kind": "pursuit_m",
+          "from_m": 471.056,
+          "to_m": 479.474,
+          "groups": [
+            "W01",
+            "W03"
+          ],
+          "population_ceiling": 6
+        }
+      ]
+    }
+  }
+}

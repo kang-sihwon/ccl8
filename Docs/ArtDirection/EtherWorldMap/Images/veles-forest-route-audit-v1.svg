@@ -1,0 +1,118 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2100" height="1320" viewBox="0 0 2100 1320"><rect width="100%" height="100%" fill="#f4f2ec"/>
+<text x="75" y="48" font-family="Malgun Gothic,sans-serif" font-size="48" font-weight="700" dominant-baseline="text-before-edge" fill="#20332e">벨레스 숲 · 진입과 귀환의 생활권 간격</text>
+<text x="75" y="119" font-family="Malgun Gothic,sans-serif" font-size="27" font-weight="400" dominant-baseline="text-before-edge" fill="#566861">같은 거리 축으로 비교한 평면 경로 분석 | 전투 횟수·소요 시간·실제 난도 측정 아님</text>
+<text x="75" y="168" font-family="Malgun Gothic,sans-serif" font-size="27" font-weight="400" dominant-baseline="text-before-edge" fill="#20332e">색 막대는 평소 생활권을 지나는 구간이다. 개체와 조우하거나 싸운다는 보장은 없다.</text>
+<rect x="75" y="222" width="28" height="28" fill="#bf862f"/>
+<text x="118" y="221" font-family="Malgun Gothic,sans-serif" font-size="25" font-weight="400" dominant-baseline="text-before-edge" fill="#20332e">금빛꼬리 다람쥐</text>
+<rect x="485" y="222" width="28" height="28" fill="#477d99"/>
+<text x="528" y="221" font-family="Malgun Gothic,sans-serif" font-size="25" font-weight="400" dominant-baseline="text-before-edge" fill="#20332e">서리발 늑대</text>
+<rect x="895" y="222" width="28" height="28" fill="#69875d"/>
+<text x="938" y="221" font-family="Malgun Gothic,sans-serif" font-size="25" font-weight="400" dominant-baseline="text-before-edge" fill="#20332e">뿌리 파수꾼</text>
+<text x="1345" y="221" font-family="Malgun Gothic,sans-serif" font-size="25" font-weight="400" dominant-baseline="text-before-edge" fill="#566861">회색 = 평소 생활권 밖 (안전 보장 아님)</text>
+<text x="75" y="277" font-family="Malgun Gothic,sans-serif" font-size="31" font-weight="700" dominant-baseline="text-before-edge" fill="#20332e">진입 · 동쪽 열매숲 → 물가 → 동굴</text>
+<text x="75" y="320" font-family="Malgun Gothic,sans-serif" font-size="23" font-weight="400" dominant-baseline="text-before-edge" fill="#566861">시작: 숲 입구 / 끝: 동굴 입구</text>
+<rect x="95" y="371" width="1196.3545583333332" height="37" fill="#d5dbd5"/>
+<rect x="200.93365833333334" y="371" width="181.85051666666672" height="37" fill="#bf862f"/>
+<text x="266.8589166666667" y="419" font-family="Malgun Gothic,sans-serif" font-size="24" font-weight="700" dominant-baseline="text-before-edge" fill="#20332e">S01</text>
+<rect x="458.7010333333334" y="371" width="191.6202944444444" height="37" fill="#bf862f"/>
+<text x="529.5111805555556" y="419" font-family="Malgun Gothic,sans-serif" font-size="24" font-weight="700" dominant-baseline="text-before-edge" fill="#20332e">S02</text>
+<rect x="724.5421611111111" y="371" width="148.20268611111115" height="37" fill="#bf862f"/>
+<text x="773.6435041666667" y="419" font-family="Malgun Gothic,sans-serif" font-size="24" font-weight="700" dominant-baseline="text-before-edge" fill="#20332e">S04</text>
+<rect x="1216.3346666666666" y="371" width="18.75523611111117" height="37" fill="#69875d"/>
+<text x="1200.7122847222222" y="419" font-family="Malgun Gothic,sans-serif" font-size="24" font-weight="700" dominant-baseline="text-before-edge" fill="#20332e">G04</text>
+<rect x="954.6320083333334" y="371" width="104.21973611111112" height="37" fill="#477d99"/>
+<text x="981.741876388889" y="419" font-family="Malgun Gothic,sans-serif" font-size="24" font-weight="700" dominant-baseline="text-before-edge" fill="#20332e">W02</text>
+<line x1="95.0" y1="464" x2="95.0" y2="472" stroke="#7c8e84" stroke-width="1"/>
+<text x="77.0" y="477" font-family="Malgun Gothic,sans-serif" font-size="20" font-weight="400" dominant-baseline="text-before-edge" fill="#566861">0</text>
+<line x1="305.55555555555554" y1="464" x2="305.55555555555554" y2="472" stroke="#7c8e84" stroke-width="1"/>
+<text x="287.55555555555554" y="477" font-family="Malgun Gothic,sans-serif" font-size="20" font-weight="400" dominant-baseline="text-before-edge" fill="#566861">200</text>
+<line x1="516.1111111111111" y1="464" x2="516.1111111111111" y2="472" stroke="#7c8e84" stroke-width="1"/>
+<text x="498.1111111111111" y="477" font-family="Malgun Gothic,sans-serif" font-size="20" font-weight="400" dominant-baseline="text-before-edge" fill="#566861">400</text>
+<line x1="726.6666666666667" y1="464" x2="726.6666666666667" y2="472" stroke="#7c8e84" stroke-width="1"/>
+<text x="708.6666666666667" y="477" font-family="Malgun Gothic,sans-serif" font-size="20" font-weight="400" dominant-baseline="text-before-edge" fill="#566861">600</text>
+<line x1="937.2222222222223" y1="464" x2="937.2222222222223" y2="472" stroke="#7c8e84" stroke-width="1"/>
+<text x="919.2222222222223" y="477" font-family="Malgun Gothic,sans-serif" font-size="20" font-weight="400" dominant-baseline="text-before-edge" fill="#566861">800</text>
+<line x1="1147.7777777777778" y1="464" x2="1147.7777777777778" y2="472" stroke="#7c8e84" stroke-width="1"/>
+<text x="1129.7777777777778" y="477" font-family="Malgun Gothic,sans-serif" font-size="20" font-weight="400" dominant-baseline="text-before-edge" fill="#566861">1000</text>
+<line x1="1358.3333333333335" y1="464" x2="1358.3333333333335" y2="472" stroke="#7c8e84" stroke-width="1"/>
+<text x="1340.3333333333335" y="477" font-family="Malgun Gothic,sans-serif" font-size="20" font-weight="400" dominant-baseline="text-before-edge" fill="#566861">1200</text>
+<line x1="1568.888888888889" y1="464" x2="1568.888888888889" y2="472" stroke="#7c8e84" stroke-width="1"/>
+<text x="1550.888888888889" y="477" font-family="Malgun Gothic,sans-serif" font-size="20" font-weight="400" dominant-baseline="text-before-edge" fill="#566861">1400</text>
+<line x1="1779.4444444444446" y1="464" x2="1779.4444444444446" y2="472" stroke="#7c8e84" stroke-width="1"/>
+<text x="1761.4444444444446" y="477" font-family="Malgun Gothic,sans-serif" font-size="20" font-weight="400" dominant-baseline="text-before-edge" fill="#566861">1600</text>
+<line x1="1990.0" y1="464" x2="1990.0" y2="472" stroke="#7c8e84" stroke-width="1"/>
+<text x="1972.0" y="477" font-family="Malgun Gothic,sans-serif" font-size="20" font-weight="400" dominant-baseline="text-before-edge" fill="#566861">1800</text>
+<line x1="95" y1="468" x2="1990" y2="468" stroke="#a6b3a9" stroke-width="1"/>
+<text x="1730" y="323" font-family="Malgun Gothic,sans-serif" font-size="24" font-weight="400" dominant-baseline="text-before-edge" fill="#20332e">총 1,136.4m</text>
+<text x="75" y="517" font-family="Malgun Gothic,sans-serif" font-size="31" font-weight="700" dominant-baseline="text-before-edge" fill="#20332e">비교 귀환 · 서쪽 길 전체 → 남쪽 관리로</text>
+<text x="75" y="560" font-family="Malgun Gothic,sans-serif" font-size="23" font-weight="400" dominant-baseline="text-before-edge" fill="#566861">S01 재접촉 없음 · G04 정지 가정</text>
+<rect x="95" y="611" width="1776.6056638888888" height="37" fill="#d5dbd5"/>
+<rect x="1043.4938222222222" y="611" width="165.5524638888888" height="37" fill="#bf862f"/>
+<text x="1101.2700541666666" y="659" font-family="Malgun Gothic,sans-serif" font-size="24" font-weight="700" dominant-baseline="text-before-edge" fill="#20332e">S03</text>
+<rect x="663.4273583333334" y="611" width="224.13428333333326" height="37" fill="#477d99"/>
+<text x="750.4945" y="659" font-family="Malgun Gothic,sans-serif" font-size="24" font-weight="700" dominant-baseline="text-before-edge" fill="#20332e">W01</text>
+<rect x="309.06972777777776" y="611" width="214.17184722222225" height="37" fill="#477d99"/>
+<text x="391.1556513888889" y="659" font-family="Malgun Gothic,sans-serif" font-size="24" font-weight="700" dominant-baseline="text-before-edge" fill="#20332e">W03</text>
+<line x1="95.0" y1="704" x2="95.0" y2="712" stroke="#7c8e84" stroke-width="1"/>
+<text x="77.0" y="717" font-family="Malgun Gothic,sans-serif" font-size="20" font-weight="400" dominant-baseline="text-before-edge" fill="#566861">0</text>
+<line x1="305.55555555555554" y1="704" x2="305.55555555555554" y2="712" stroke="#7c8e84" stroke-width="1"/>
+<text x="287.55555555555554" y="717" font-family="Malgun Gothic,sans-serif" font-size="20" font-weight="400" dominant-baseline="text-before-edge" fill="#566861">200</text>
+<line x1="516.1111111111111" y1="704" x2="516.1111111111111" y2="712" stroke="#7c8e84" stroke-width="1"/>
+<text x="498.1111111111111" y="717" font-family="Malgun Gothic,sans-serif" font-size="20" font-weight="400" dominant-baseline="text-before-edge" fill="#566861">400</text>
+<line x1="726.6666666666667" y1="704" x2="726.6666666666667" y2="712" stroke="#7c8e84" stroke-width="1"/>
+<text x="708.6666666666667" y="717" font-family="Malgun Gothic,sans-serif" font-size="20" font-weight="400" dominant-baseline="text-before-edge" fill="#566861">600</text>
+<line x1="937.2222222222223" y1="704" x2="937.2222222222223" y2="712" stroke="#7c8e84" stroke-width="1"/>
+<text x="919.2222222222223" y="717" font-family="Malgun Gothic,sans-serif" font-size="20" font-weight="400" dominant-baseline="text-before-edge" fill="#566861">800</text>
+<line x1="1147.7777777777778" y1="704" x2="1147.7777777777778" y2="712" stroke="#7c8e84" stroke-width="1"/>
+<text x="1129.7777777777778" y="717" font-family="Malgun Gothic,sans-serif" font-size="20" font-weight="400" dominant-baseline="text-before-edge" fill="#566861">1000</text>
+<line x1="1358.3333333333335" y1="704" x2="1358.3333333333335" y2="712" stroke="#7c8e84" stroke-width="1"/>
+<text x="1340.3333333333335" y="717" font-family="Malgun Gothic,sans-serif" font-size="20" font-weight="400" dominant-baseline="text-before-edge" fill="#566861">1200</text>
+<line x1="1568.888888888889" y1="704" x2="1568.888888888889" y2="712" stroke="#7c8e84" stroke-width="1"/>
+<text x="1550.888888888889" y="717" font-family="Malgun Gothic,sans-serif" font-size="20" font-weight="400" dominant-baseline="text-before-edge" fill="#566861">1400</text>
+<line x1="1779.4444444444446" y1="704" x2="1779.4444444444446" y2="712" stroke="#7c8e84" stroke-width="1"/>
+<text x="1761.4444444444446" y="717" font-family="Malgun Gothic,sans-serif" font-size="20" font-weight="400" dominant-baseline="text-before-edge" fill="#566861">1600</text>
+<line x1="1990.0" y1="704" x2="1990.0" y2="712" stroke="#7c8e84" stroke-width="1"/>
+<text x="1972.0" y="717" font-family="Malgun Gothic,sans-serif" font-size="20" font-weight="400" dominant-baseline="text-before-edge" fill="#566861">1800</text>
+<line x1="95" y1="708" x2="1990" y2="708" stroke="#a6b3a9" stroke-width="1"/>
+<text x="1730" y="563" font-family="Malgun Gothic,sans-serif" font-size="24" font-weight="400" dominant-baseline="text-before-edge" fill="#20332e">총 1,687.5m</text>
+<text x="1219.046286111111" y="616" font-family="Malgun Gothic,sans-serif" font-size="22" font-weight="400" dominant-baseline="text-before-edge" fill="#404e47">마지막 공백 629.3m</text>
+<text x="75" y="757" font-family="Malgun Gothic,sans-serif" font-size="31" font-weight="700" dominant-baseline="text-before-edge" fill="#20332e">추천 귀환 · 서쪽 위쪽 → R04 → 관리로</text>
+<text x="75" y="800" font-family="Malgun Gothic,sans-serif" font-size="23" font-weight="400" dominant-baseline="text-before-edge" fill="#566861">같은 귀환 상태 / 새로운 길·개체 추가 없음</text>
+<rect x="95" y="851" width="1738.0487305555555" height="37" fill="#d5dbd5"/>
+<rect x="1225.068511111111" y="851" width="151.97373611111112" height="37" fill="#69875d"/>
+<text x="1276.0553791666666" y="899" font-family="Malgun Gothic,sans-serif" font-size="24" font-weight="700" dominant-baseline="text-before-edge" fill="#20332e">G01</text>
+<rect x="663.4273583333334" y="851" width="224.13428333333326" height="37" fill="#477d99"/>
+<text x="750.4945" y="899" font-family="Malgun Gothic,sans-serif" font-size="24" font-weight="700" dominant-baseline="text-before-edge" fill="#20332e">W01</text>
+<rect x="309.06972777777776" y="851" width="214.17184722222225" height="37" fill="#477d99"/>
+<text x="391.1556513888889" y="899" font-family="Malgun Gothic,sans-serif" font-size="24" font-weight="700" dominant-baseline="text-before-edge" fill="#20332e">W03</text>
+<line x1="95.0" y1="944" x2="95.0" y2="952" stroke="#7c8e84" stroke-width="1"/>
+<text x="77.0" y="957" font-family="Malgun Gothic,sans-serif" font-size="20" font-weight="400" dominant-baseline="text-before-edge" fill="#566861">0</text>
+<line x1="305.55555555555554" y1="944" x2="305.55555555555554" y2="952" stroke="#7c8e84" stroke-width="1"/>
+<text x="287.55555555555554" y="957" font-family="Malgun Gothic,sans-serif" font-size="20" font-weight="400" dominant-baseline="text-before-edge" fill="#566861">200</text>
+<line x1="516.1111111111111" y1="944" x2="516.1111111111111" y2="952" stroke="#7c8e84" stroke-width="1"/>
+<text x="498.1111111111111" y="957" font-family="Malgun Gothic,sans-serif" font-size="20" font-weight="400" dominant-baseline="text-before-edge" fill="#566861">400</text>
+<line x1="726.6666666666667" y1="944" x2="726.6666666666667" y2="952" stroke="#7c8e84" stroke-width="1"/>
+<text x="708.6666666666667" y="957" font-family="Malgun Gothic,sans-serif" font-size="20" font-weight="400" dominant-baseline="text-before-edge" fill="#566861">600</text>
+<line x1="937.2222222222223" y1="944" x2="937.2222222222223" y2="952" stroke="#7c8e84" stroke-width="1"/>
+<text x="919.2222222222223" y="957" font-family="Malgun Gothic,sans-serif" font-size="20" font-weight="400" dominant-baseline="text-before-edge" fill="#566861">800</text>
+<line x1="1147.7777777777778" y1="944" x2="1147.7777777777778" y2="952" stroke="#7c8e84" stroke-width="1"/>
+<text x="1129.7777777777778" y="957" font-family="Malgun Gothic,sans-serif" font-size="20" font-weight="400" dominant-baseline="text-before-edge" fill="#566861">1000</text>
+<line x1="1358.3333333333335" y1="944" x2="1358.3333333333335" y2="952" stroke="#7c8e84" stroke-width="1"/>
+<text x="1340.3333333333335" y="957" font-family="Malgun Gothic,sans-serif" font-size="20" font-weight="400" dominant-baseline="text-before-edge" fill="#566861">1200</text>
+<line x1="1568.888888888889" y1="944" x2="1568.888888888889" y2="952" stroke="#7c8e84" stroke-width="1"/>
+<text x="1550.888888888889" y="957" font-family="Malgun Gothic,sans-serif" font-size="20" font-weight="400" dominant-baseline="text-before-edge" fill="#566861">1400</text>
+<line x1="1779.4444444444446" y1="944" x2="1779.4444444444446" y2="952" stroke="#7c8e84" stroke-width="1"/>
+<text x="1761.4444444444446" y="957" font-family="Malgun Gothic,sans-serif" font-size="20" font-weight="400" dominant-baseline="text-before-edge" fill="#566861">1600</text>
+<line x1="1990.0" y1="944" x2="1990.0" y2="952" stroke="#7c8e84" stroke-width="1"/>
+<text x="1972.0" y="957" font-family="Malgun Gothic,sans-serif" font-size="20" font-weight="400" dominant-baseline="text-before-edge" fill="#566861">1800</text>
+<line x1="95" y1="948" x2="1990" y2="948" stroke="#a6b3a9" stroke-width="1"/>
+<text x="1730" y="803" font-family="Malgun Gothic,sans-serif" font-size="24" font-weight="400" dominant-baseline="text-before-edge" fill="#20332e">총 1,650.9m</text>
+<text x="1387.0422472222222" y="856" font-family="Malgun Gothic,sans-serif" font-size="22" font-weight="400" dominant-baseline="text-before-edge" fill="#404e47">마지막 공백 433.1m</text>
+<text x="897.5616416666667" y="856" font-family="Malgun Gothic,sans-serif" font-size="22" font-weight="400" dominant-baseline="text-before-edge" fill="#404e47">320.6m</text>
+<text x="1915" y="1072" font-family="Malgun Gothic,sans-serif" font-size="21" font-weight="400" dominant-baseline="text-before-edge" fill="#566861">거리(m)</text>
+<line x1="75" y1="1120" x2="2025" y2="1120" stroke="#c0cbc2" stroke-width="2"/>
+<text x="75" y="1146" font-family="Malgun Gothic,sans-serif" font-size="27" font-weight="700" dominant-baseline="text-before-edge" fill="#20332e">혼잡 보정 비교</text>
+<text x="355" y="1147" font-family="Malgun Gothic,sans-serif" font-size="25" font-weight="400" dominant-baseline="text-before-edge" fill="#20332e">S04 북쪽 · G02 남쪽 · W01 동쪽 추격 한계를 축소하는 안을 계산했다.</text>
+<text x="75" y="1192" font-family="Malgun Gothic,sans-serif" font-size="25" font-weight="400" dominant-baseline="text-before-edge" fill="#20332e">평소 생활권과 위 막대는 그대로다. 기존 분포 v1에 보정을 적용한 그림이 아니다.</text>
+<text x="75" y="1241" font-family="Malgun Gothic,sans-serif" font-size="23" font-weight="400" dominant-baseline="text-before-edge" fill="#566861">보스·실내 구간, 길 밖 탐색, 교전 중 이동은 제외. 귀환 공백은 처리 상태에 따라 달라진다.</text>
+</svg>
