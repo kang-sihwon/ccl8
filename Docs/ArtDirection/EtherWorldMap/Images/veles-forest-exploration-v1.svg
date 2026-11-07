@@ -1,0 +1,143 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2100" height="1550" viewBox="0 0 2100 1550">
+<rect width="2100" height="1550" fill="#f4f1e8"/>
+<text x="45" y="30" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="42" font-weight="700" fill="#29414a">벨레스 숲 | 탐색 구역과 연결</text>
+<text x="48" y="93" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="24" font-weight="400" fill="#29414a">첫 방문 시점의 배치 후보 · 북쪽 ↑ · 좌표 m · 기존 장소와 물길 유지</text>
+<polygon points="45.000,1332.100 1071.600,1332.100 1071.600,175.000 45.000,175.000" fill="#faf9f3"/>
+<polyline points="45.000,1332.100 1071.600,1332.100 1071.600,175.000 45.000,175.000 45.000,1332.100" fill="none" stroke="#c6cfc2" stroke-width="2" stroke-linejoin="round"/>
+<polyline points="201.600,1332.100 201.600,175.000" fill="none" stroke="#e3e5da" stroke-width="1" stroke-linejoin="round"/>
+<text x="188.6" y="1342.1" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="16" font-weight="400" fill="#29414a">-200</text>
+<polyline points="375.600,1332.100 375.600,175.000" fill="none" stroke="#e3e5da" stroke-width="1" stroke-linejoin="round"/>
+<text x="362.6" y="1342.1" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="16" font-weight="400" fill="#29414a">0</text>
+<polyline points="549.600,1332.100 549.600,175.000" fill="none" stroke="#e3e5da" stroke-width="1" stroke-linejoin="round"/>
+<text x="536.6" y="1342.1" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="16" font-weight="400" fill="#29414a">200</text>
+<polyline points="723.600,1332.100 723.600,175.000" fill="none" stroke="#e3e5da" stroke-width="1" stroke-linejoin="round"/>
+<text x="710.6" y="1342.1" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="16" font-weight="400" fill="#29414a">400</text>
+<polyline points="897.600,1332.100 897.600,175.000" fill="none" stroke="#e3e5da" stroke-width="1" stroke-linejoin="round"/>
+<text x="884.6" y="1342.1" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="16" font-weight="400" fill="#29414a">600</text>
+<polyline points="1071.600,1332.100 1071.600,175.000" fill="none" stroke="#e3e5da" stroke-width="1" stroke-linejoin="round"/>
+<text x="1058.6" y="1342.1" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="16" font-weight="400" fill="#29414a">800</text>
+<polyline points="45.000,1288.600 1071.600,1288.600" fill="none" stroke="#e3e5da" stroke-width="1" stroke-linejoin="round"/>
+<text x="48.0" y="1268.6" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="15" font-weight="400" fill="#29414a">200</text>
+<polyline points="45.000,1114.600 1071.600,1114.600" fill="none" stroke="#e3e5da" stroke-width="1" stroke-linejoin="round"/>
+<text x="48.0" y="1094.6" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="15" font-weight="400" fill="#29414a">400</text>
+<polyline points="45.000,940.600 1071.600,940.600" fill="none" stroke="#e3e5da" stroke-width="1" stroke-linejoin="round"/>
+<text x="48.0" y="920.6" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="15" font-weight="400" fill="#29414a">600</text>
+<polyline points="45.000,766.600 1071.600,766.600" fill="none" stroke="#e3e5da" stroke-width="1" stroke-linejoin="round"/>
+<text x="48.0" y="746.6" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="15" font-weight="400" fill="#29414a">800</text>
+<polyline points="45.000,592.600 1071.600,592.600" fill="none" stroke="#e3e5da" stroke-width="1" stroke-linejoin="round"/>
+<text x="48.0" y="572.6" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="15" font-weight="400" fill="#29414a">1000</text>
+<polyline points="45.000,418.600 1071.600,418.600" fill="none" stroke="#e3e5da" stroke-width="1" stroke-linejoin="round"/>
+<text x="48.0" y="398.6" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="15" font-weight="400" fill="#29414a">1200</text>
+<polyline points="45.000,244.600 1071.600,244.600" fill="none" stroke="#e3e5da" stroke-width="1" stroke-linejoin="round"/>
+<text x="48.0" y="224.6" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="15" font-weight="400" fill="#29414a">1400</text>
+<polygon points="288.600,1253.800 514.800,1253.800 619.200,1088.500 567.000,1010.200 236.400,1027.600 219.000,1149.400" fill="#e3e9cd"/>
+<polyline points="288.600,1253.800 514.800,1253.800 619.200,1088.500 567.000,1010.200 236.400,1027.600 219.000,1149.400 288.600,1253.800" fill="none" stroke="#bcc5b3" stroke-width="2" stroke-linejoin="round"/>
+<polygon points="532.200,1045.000 662.700,1053.700 767.100,810.100 767.100,644.800 601.800,610.000 523.500,784.000 480.000,940.600" fill="#d3e4bc"/>
+<polyline points="532.200,1045.000 662.700,1053.700 767.100,810.100 767.100,644.800 601.800,610.000 523.500,784.000 480.000,940.600 532.200,1045.000" fill="none" stroke="#bcc5b3" stroke-width="2" stroke-linejoin="round"/>
+<polygon points="253.800,1027.600 480.000,1027.600 532.200,679.600 488.700,583.900 288.600,618.700 227.700,810.100" fill="#d9e6da"/>
+<polyline points="253.800,1027.600 480.000,1027.600 532.200,679.600 488.700,583.900 288.600,618.700 227.700,810.100 253.800,1027.600" fill="none" stroke="#bcc5b3" stroke-width="2" stroke-linejoin="round"/>
+<polygon points="71.100,940.600 262.500,992.800 288.600,723.100 427.800,462.100 271.200,392.500 88.500,557.800" fill="#ddd8cc"/>
+<polyline points="71.100,940.600 262.500,992.800 288.600,723.100 427.800,462.100 271.200,392.500 88.500,557.800 71.100,940.600" fill="none" stroke="#bcc5b3" stroke-width="2" stroke-linejoin="round"/>
+<polygon points="488.700,679.600 749.700,679.600 784.500,470.800 627.900,409.900 514.800,470.800 488.700,583.900" fill="#cce6df"/>
+<polyline points="488.700,679.600 749.700,679.600 784.500,470.800 627.900,409.900 514.800,470.800 488.700,583.900 488.700,679.600" fill="none" stroke="#bcc5b3" stroke-width="2" stroke-linejoin="round"/>
+<polygon points="271.200,453.400 506.100,523.000 662.700,453.400 741.000,262.000 654.000,201.100 532.200,262.000 445.200,349.000" fill="#dce2bd"/>
+<polyline points="271.200,453.400 506.100,523.000 662.700,453.400 741.000,262.000 654.000,201.100 532.200,262.000 445.200,349.000 271.200,453.400" fill="none" stroke="#bcc5b3" stroke-width="2" stroke-linejoin="round"/>
+<polyline points="1071.600,592.600 810.600,940.600 532.200,1323.400" fill="none" stroke="#68a9c1" stroke-width="34" stroke-linejoin="round"/>
+<polyline points="654.000,253.300 593.100,462.100 514.800,653.500 488.700,853.600 462.600,1045.000 393.000,1210.300 414.750,1310.350" fill="none" stroke="#3e9896" stroke-width="5" stroke-linejoin="round"/>
+<polyline points="412.562,1300.286 453.900,1236.400 532.200,1079.800 479.439,921.516 445.200,818.800 511.875,675.925 567.000,557.800 578.370,498.106 601.800,375.100" fill="none" stroke="#a86938" stroke-width="5" stroke-linejoin="round"/>
+<polyline points="532.200,1079.800 636.600,1010.200 662.700,836.200 680.100,670.900 567.000,557.800" fill="none" stroke="#85785c" stroke-width="3" stroke-linejoin="round"/>
+<polyline points="479.439,921.516 279.900,1001.500 158.100,827.500 184.200,636.100 340.800,470.800 601.800,375.100" fill="none" stroke="#85785c" stroke-width="3" stroke-linejoin="round"/>
+<polyline points="445.200,818.800 158.100,827.500" fill="none" stroke="#85785c" stroke-width="3" stroke-linejoin="round"/>
+<polyline points="479.439,921.516 662.700,836.200" fill="none" stroke="#85785c" stroke-width="3" stroke-linejoin="round"/>
+<polyline points="184.200,636.100 511.875,675.925" fill="none" stroke="#85785c" stroke-width="3" stroke-linejoin="round"/>
+<polyline points="511.875,675.925 680.100,670.900" fill="none" stroke="#85785c" stroke-width="3" stroke-linejoin="round"/>
+<polygon points="405.562,1295.286 419.562,1295.286 419.562,1305.286 405.562,1305.286" fill="#e7c667"/>
+<polyline points="405.562,1295.286 419.562,1295.286 419.562,1305.286 405.562,1305.286 405.562,1295.286" fill="none" stroke="#705b2c" stroke-width="2" stroke-linejoin="round"/>
+<text x="422.5621301775148" y="1306.285798816568" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="17" font-weight="400" fill="#29414a">B01</text>
+<polygon points="472.439,916.516 486.439,916.516 486.439,926.516 472.439,926.516" fill="#e7c667"/>
+<polyline points="472.439,916.516 486.439,916.516 486.439,926.516 472.439,926.516 472.439,916.516" fill="none" stroke="#705b2c" stroke-width="2" stroke-linejoin="round"/>
+<text x="489.43870967741935" y="927.516129032258" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="17" font-weight="400" fill="#29414a">B02</text>
+<polygon points="504.875,670.925 518.875,670.925 518.875,680.925 504.875,680.925" fill="#e7c667"/>
+<polyline points="504.875,670.925 518.875,670.925 518.875,680.925 504.875,680.925 504.875,670.925" fill="none" stroke="#705b2c" stroke-width="2" stroke-linejoin="round"/>
+<text x="521.875" y="681.9250000000001" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="17" font-weight="400" fill="#29414a">B03</text>
+<polygon points="571.370,493.106 585.370,493.106 585.370,503.106 571.370,503.106" fill="#e7c667"/>
+<polyline points="571.370,493.106 585.370,493.106 585.370,503.106 571.370,503.106 571.370,493.106" fill="none" stroke="#705b2c" stroke-width="2" stroke-linejoin="round"/>
+<text x="588.370297029703" y="504.10594059405946" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="17" font-weight="400" fill="#29414a">B04</text>
+<polygon points="453.900,1228.400 461.900,1236.400 453.900,1244.400 445.900,1236.400" fill="#384d64"/>
+<polyline points="453.900,1228.400 461.900,1236.400 453.900,1244.400 445.900,1236.400 453.900,1228.400" fill="none" stroke="#ffffff" stroke-width="2" stroke-linejoin="round"/>
+<text x="343.9" y="1252.4" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="21" font-weight="700" fill="#29414a">숲 입구</text>
+<polygon points="601.800,367.100 609.800,375.100 601.800,383.100 593.800,375.100" fill="#384d64"/>
+<polyline points="601.800,367.100 609.800,375.100 601.800,383.100 593.800,375.100 601.800,367.100" fill="none" stroke="#ffffff" stroke-width="2" stroke-linejoin="round"/>
+<text x="636.8" y="370.1" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="21" font-weight="700" fill="#29414a">동굴 입구</text>
+<polygon points="636.600,271.400 644.600,279.400 636.600,287.400 628.600,279.400" fill="#384d64"/>
+<polyline points="636.600,271.400 644.600,279.400 636.600,287.400 628.600,279.400 636.600,271.400" fill="none" stroke="#ffffff" stroke-width="2" stroke-linejoin="round"/>
+<text x="671.6" y="269.4" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="21" font-weight="700" fill="#29414a">바르툴 · 실내</text>
+<polygon points="654.000,219.200 662.000,227.200 654.000,235.200 646.000,227.200" fill="#384d64"/>
+<polyline points="654.000,219.200 662.000,227.200 654.000,235.200 646.000,227.200 654.000,219.200" fill="none" stroke="#ffffff" stroke-width="2" stroke-linejoin="round"/>
+<text x="689.0" y="217.2" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="21" font-weight="700" fill="#29414a">지역 거목</text>
+<polyline points="601.800,375.100 619.200,331.600 636.600,279.400" fill="none" stroke="#465c6a" stroke-width="3" stroke-linejoin="round" stroke-dasharray="8 6"/>
+<text x="249.45" y="1153.75" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="25" font-weight="700" fill="#29414a">F01</text>
+<text x="249.45" y="1186.75" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="22" font-weight="400" fill="#29414a">마을 바깥 관리림</text>
+<text x="675.75" y="958.0" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="25" font-weight="700" fill="#29414a">F02</text>
+<text x="675.75" y="991.0" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="22" font-weight="400" fill="#29414a">동쪽 열매숲</text>
+<text x="327.75" y="888.4" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="25" font-weight="700" fill="#29414a">F03</text>
+<text x="327.75" y="921.4" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="22" font-weight="400" fill="#29414a">수로 작업림</text>
+<text x="97.2" y="592.6" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="25" font-weight="700" fill="#29414a">F04</text>
+<text x="97.2" y="625.6" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="22" font-weight="400" fill="#29414a">서쪽 바위숲</text>
+<text x="693.15" y="496.9" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="25" font-weight="700" fill="#29414a">F05</text>
+<text x="693.15" y="529.9" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="22" font-weight="400" fill="#29414a">상류 물가</text>
+<text x="432.15" y="366.4" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="25" font-weight="700" fill="#29414a">F06</text>
+<text x="432.15" y="399.4" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="22" font-weight="400" fill="#29414a">뿌리 언덕</text>
+<polygon points="514.800,1028.300 522.800,1036.300 514.800,1044.300 506.800,1036.300" fill="#b58a23"/>
+<polyline points="514.800,1028.300 522.800,1036.300 514.800,1044.300 506.800,1036.300 514.800,1028.300" fill="none" stroke="#ffffff" stroke-width="2" stroke-linejoin="round"/>
+<text x="526.8" y="1016.3" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="20" font-weight="700" fill="#29414a">O1</text>
+<polygon points="158.100,819.500 166.100,827.500 158.100,835.500 150.100,827.500" fill="#b58a23"/>
+<polyline points="158.100,819.500 166.100,827.500 158.100,835.500 150.100,827.500 158.100,819.500" fill="none" stroke="#ffffff" stroke-width="2" stroke-linejoin="round"/>
+<text x="170.1" y="807.5" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="20" font-weight="700" fill="#29414a">O2</text>
+<polygon points="662.700,828.200 670.700,836.200 662.700,844.200 654.700,836.200" fill="#b58a23"/>
+<polyline points="662.700,828.200 670.700,836.200 662.700,844.200 654.700,836.200 662.700,828.200" fill="none" stroke="#ffffff" stroke-width="2" stroke-linejoin="round"/>
+<text x="674.7" y="816.2" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="20" font-weight="700" fill="#29414a">O3</text>
+<polygon points="567.000,549.800 575.000,557.800 567.000,565.800 559.000,557.800" fill="#b58a23"/>
+<polyline points="567.000,549.800 575.000,557.800 567.000,565.800 559.000,557.800 567.000,549.800" fill="none" stroke="#ffffff" stroke-width="2" stroke-linejoin="round"/>
+<text x="579.0" y="537.8" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="20" font-weight="700" fill="#29414a">O4</text>
+<polygon points="340.800,462.800 348.800,470.800 340.800,478.800 332.800,470.800" fill="#b58a23"/>
+<polyline points="340.800,462.800 348.800,470.800 340.800,478.800 332.800,470.800 340.800,462.800" fill="none" stroke="#ffffff" stroke-width="2" stroke-linejoin="round"/>
+<text x="352.8" y="450.8" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="20" font-weight="700" fill="#29414a">O5</text>
+<text x="640.95" y="1001.5" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="19" font-weight="700" fill="#775932">R02</text>
+<text x="136.35" y="853.6" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="19" font-weight="700" fill="#775932">R03</text>
+<text x="397.35" y="1005.85" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="19" font-weight="700" fill="#775932">R01</text>
+<text x="232.05" y="814.45" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="19" font-weight="700" fill="#775932">R04</text>
+<text x="575.7" y="875.35" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="19" font-weight="700" fill="#775932">R05</text>
+<text x="310.35" y="653.5" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="19" font-weight="700" fill="#775932">R06</text>
+<text x="593.1" y="653.5" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="19" font-weight="700" fill="#775932">R07</text>
+<text x="895" y="710" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="24" font-weight="700" fill="#397e9d">큰 강</text>
+<text x="895" y="745" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="19" font-weight="400" fill="#397e9d">기존 본류</text>
+<polyline points="88.500,1288.600 262.500,1288.600" fill="none" stroke="#29414a" stroke-width="4" stroke-linejoin="round"/>
+<text x="88.5" y="1255.6" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="21" font-weight="400" fill="#29414a">200m</text>
+<text x="45" y="1390" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="23" font-weight="400" fill="#29414a">실선 물길·주요 장소 좌표는 기존 기준 유지. 구역 경계·길·개체 범위는 새 설계 후보.</text>
+<text x="45" y="1430" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="21" font-weight="400" fill="#29414a">지형 경사·실제 충돌·추격 AI·재등장·교전 빈도는 미검증. 동굴 내부와 출항 강선은 별도 기존 도면 참조.</text>
+<text x="1130" y="170" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="31" font-weight="700" fill="#29414a">여섯 구역을 돌아다니는 필드</text>
+<text x="1130" y="235" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="25" font-weight="700" fill="#29414a">F01  마을 바깥 관리림</text>
+<text x="1130" y="273" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="22" font-weight="400" fill="#29414a">낮은 위험 · 사람의 길과 동물의 생활권</text>
+<text x="1130" y="322" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="25" font-weight="700" fill="#29414a">F02  동쪽 열매숲</text>
+<text x="1130" y="360" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="22" font-weight="400" fill="#29414a">S02·S04 · 먹이와 채집터를 따라 탐색</text>
+<text x="1130" y="409" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="25" font-weight="700" fill="#29414a">F03  수로 작업림</text>
+<text x="1130" y="447" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="22" font-weight="400" fill="#29414a">G01·G02 · 작업 단과 관리로의 교전</text>
+<text x="1130" y="496" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="25" font-weight="700" fill="#29414a">F04  서쪽 바위숲</text>
+<text x="1130" y="534" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="22" font-weight="400" fill="#29414a">S03·W01·W03 · 시야가 끊기는 우회 길</text>
+<text x="1130" y="583" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="25" font-weight="700" fill="#29414a">F05  상류 물가</text>
+<text x="1130" y="621" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="22" font-weight="400" fill="#29414a">W02 · 물과 사냥감이 모이는 곳</text>
+<text x="1130" y="670" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="25" font-weight="700" fill="#29414a">F06  뿌리 언덕</text>
+<text x="1130" y="708" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="22" font-weight="400" fill="#29414a">G03·G04 · 상류 접근과 동굴 앞 공간</text>
+<text x="1130" y="790" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="29" font-weight="700" fill="#29414a">탐색할 이유</text>
+<text x="1130" y="840" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="24" font-weight="400" fill="#29414a">O1  수로 파편 흔적</text>
+<text x="1130" y="883" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="24" font-weight="400" fill="#29414a">O2  옛 자재 적치장</text>
+<text x="1130" y="926" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="24" font-weight="400" fill="#29414a">O3  열매·수지 채집터</text>
+<text x="1130" y="969" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="24" font-weight="400" fill="#29414a">O4  곰 발자국</text>
+<text x="1130" y="1012" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="24" font-weight="400" fill="#29414a">O5  상류 조망 바위</text>
+<text x="1130" y="1090" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="29" font-weight="700" fill="#29414a">갈림길의 선택</text>
+<text x="1130" y="1140" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="22" font-weight="400" fill="#29414a">R01 관리로 / R02 동쪽 길 / R03 서쪽 길</text>
+<text x="1130" y="1180" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="22" font-weight="400" fill="#29414a">R04–R07은 가로 연결. 전부 하나로 이어진다.</text>
+<text x="1130" y="1220" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="22" font-weight="400" fill="#29414a">O 표식은 관찰·자원·길 찾기의 후보다.</text>
+<text x="1130" y="1260" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="22" font-weight="400" fill="#29414a">전투 완료 순서나 필수 퀘스트 표식이 아니다.</text>
+</svg>

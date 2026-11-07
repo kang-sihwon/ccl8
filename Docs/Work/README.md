@@ -6,7 +6,7 @@
 
 | 작업 | 지도 | 상태 |
 |---|---|---|
-| 첫 장 시나리오와 플레이 대륙 배경 | [서사 작업 현황](../Narrative/CurrentWork.md) | K01-K09 채택 뒤 [결정 41](../decisions/0041-field-exploration-combat.md)로 전투를 필드 탐색 중 교전 중심으로 바로잡았다. [필드 개정 후보](../Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-06-opening-and-continent/2026-11-07-field-combat-revision.md)에 서식·이동·갈림길과 주요 사건을 연결했다. 다음은 구역별 개체 분포와 탐색 동선의 지도 배치다. 이전 순차 전투안·지도와 H01-H07은 보존한다. |
+| 첫 장 시나리오와 플레이 대륙 배경 | [서사 작업 현황](../Narrative/CurrentWork.md) | [결정 41](../decisions/0041-field-exploration-combat.md)의 필드 교전 방향으로 [벨레스 숲 탐색·분포 지도](../Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-06-opening-and-continent/2026-11-07-veles-forest-population.md)를 작성했다. 6구역·11개 무리와 순찰·평소 이동과 추격 범위·갈림길을 제안했다. 다음은 경로별 탐색과 귀환 사례로 전투 공백·과도한 중첩을 검토하는 일이다. 이전안과 H01-H07은 보존한다. |
 
 ## 다음 작업 후보
 

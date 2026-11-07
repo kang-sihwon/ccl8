@@ -1,0 +1,17 @@
+{
+  "status": "PASS",
+  "preserved_points": 15,
+  "zones": 6,
+  "groups": 11,
+  "outdoor_population_candidate": 25,
+  "connected_nodes": 18,
+  "edges": 23,
+  "independent_cycles": 6,
+  "bridges": 4,
+  "routine_and_pursuit_water_crossings": 0,
+  "errors": [],
+  "limits": [
+    "2D centerline/polygon checks only",
+    "No terrain slope, walkable width, water-bank clearance, runtime density or AI test"
+  ]
+}

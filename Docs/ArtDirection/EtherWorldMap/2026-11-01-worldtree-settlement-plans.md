@@ -6,6 +6,7 @@
 
 | 자료 | 읽는 때 |
 |---|---|
+| [벨레스 숲 탐색·분포 지도](../../Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-06-opening-and-continent/2026-11-07-veles-forest-population.md) | 현재 필드 후보의 6구역·갈림길·11개 무리와 순찰·평소 활동과 추격 범위를 볼 때 |
 | [첫 장 공간 연결 후보](../../Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-06-opening-and-continent/2026-11-07-opening-spatial-connections.md) | 이전 순차 전투 도면의 장소·물길·동굴·출항 좌표를 참조할 때. 현재 필드 교전 구조는 [개정 후보](../../Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-06-opening-and-continent/2026-11-07-field-combat-revision.md)를 따른다. |
 | [중앙 생활권 좌표 기준도](2026-11-07-central-coordinate-map.md) | 중앙 9곳의 현재 이름·기호·좌표와 벨레스 이웃 마을의 확대 배치를 볼 때 |
 | [세계수 치수 PNG](Images/worldtree-scale-and-influence-v1.png), [SVG](Images/worldtree-scale-and-influence-v1.svg) | 나무의 실제 높이·너비와 생활권 이격을 비교할 때 |
