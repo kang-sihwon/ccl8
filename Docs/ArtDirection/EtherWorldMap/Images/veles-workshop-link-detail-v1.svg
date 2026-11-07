@@ -1,0 +1,142 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2200" height="1420" viewBox="0 0 2200 1420"><rect width="100%" height="100%" fill="#f5f2e9"/>
+<text x="60" y="40" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="46" font-weight="700" fill="#233c40">벨레스 숲 | 작업장 연결로 R04</text>
+<text x="60" y="108" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="27" font-weight="400" fill="#233c40">좌표 기반 상세 후보 · 북쪽 ↑ · 설계 폭(m) 표시 · 기존 기준점과 수로 보존</text>
+<text x="60" y="151" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="25" font-weight="400" fill="#5b6b65">관찰선은 지정한 두 점의 비교다. 감지 거리·확정 교전·완전한 안전을 뜻하지 않는다.</text>
+<defs><clipPath id="map"><rect x="70" y="220" width="1430" height="870"/></clipPath></defs><g clip-path="url(#map)">
+<rect x="70" y="220" width="1430" height="870" fill="#e9eddf"/>
+<polygon points="101.09,686.30 753.91,686.30 753.91,64.57 101.09,64.57" fill="#e1cfc9" stroke="#e1cfc9"/>
+<polygon points="505.22,779.57 878.26,779.57 878.26,375.43 505.22,375.43" fill="#cfdfdc" stroke="#cfdfdc"/>
+<polygon points="1064.78,1059.35 1344.57,1059.35 1344.57,515.33 1064.78,515.33" fill="#cfdfdc" stroke="#cfdfdc"/>
+<polyline points="70.00,1090.43 70.00,220.00" fill="none" stroke="#d0d9cc" stroke-width="1"/>
+<text x="72.00" y="231.33" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-weight="700" font-size="16" fill="#728179">-300</text>
+<polyline points="225.43,1090.43 225.43,220.00" fill="none" stroke="#d0d9cc" stroke-width="1"/>
+<text x="227.43" y="231.33" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-weight="700" font-size="16" fill="#728179">-250</text>
+<polyline points="380.87,1090.43 380.87,220.00" fill="none" stroke="#d0d9cc" stroke-width="1"/>
+<text x="382.87" y="231.33" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-weight="700" font-size="16" fill="#728179">-200</text>
+<polyline points="536.30,1090.43 536.30,220.00" fill="none" stroke="#d0d9cc" stroke-width="1"/>
+<text x="538.30" y="231.33" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-weight="700" font-size="16" fill="#728179">-150</text>
+<polyline points="691.74,1090.43 691.74,220.00" fill="none" stroke="#d0d9cc" stroke-width="1"/>
+<text x="693.74" y="231.33" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-weight="700" font-size="16" fill="#728179">-100</text>
+<polyline points="847.17,1090.43 847.17,220.00" fill="none" stroke="#d0d9cc" stroke-width="1"/>
+<text x="849.17" y="231.33" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-weight="700" font-size="16" fill="#728179">-50</text>
+<polyline points="1002.61,1090.43 1002.61,220.00" fill="none" stroke="#d0d9cc" stroke-width="1"/>
+<text x="1004.61" y="231.33" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-weight="700" font-size="16" fill="#728179">0</text>
+<polyline points="1158.04,1090.43 1158.04,220.00" fill="none" stroke="#d0d9cc" stroke-width="1"/>
+<text x="1160.04" y="231.33" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-weight="700" font-size="16" fill="#728179">50</text>
+<polyline points="1313.48,1090.43 1313.48,220.00" fill="none" stroke="#d0d9cc" stroke-width="1"/>
+<text x="1315.48" y="231.33" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-weight="700" font-size="16" fill="#728179">100</text>
+<polyline points="1468.91,1090.43 1468.91,220.00" fill="none" stroke="#d0d9cc" stroke-width="1"/>
+<text x="1470.91" y="231.33" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-weight="700" font-size="16" fill="#728179">150</text>
+<polyline points="70.00,1090.43 1500.00,1090.43" fill="none" stroke="#d0d9cc" stroke-width="1"/>
+<text x="75.11" y="1092.43" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-weight="700" font-size="16" fill="#728179">650</text>
+<polyline points="70.00,935.00 1500.00,935.00" fill="none" stroke="#d0d9cc" stroke-width="1"/>
+<text x="75.11" y="937.00" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-weight="700" font-size="16" fill="#728179">700</text>
+<polyline points="70.00,779.57 1500.00,779.57" fill="none" stroke="#d0d9cc" stroke-width="1"/>
+<text x="75.11" y="781.57" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-weight="700" font-size="16" fill="#728179">750</text>
+<polyline points="70.00,624.13 1500.00,624.13" fill="none" stroke="#d0d9cc" stroke-width="1"/>
+<text x="75.11" y="626.13" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-weight="700" font-size="16" fill="#728179">800</text>
+<polyline points="70.00,468.70 1500.00,468.70" fill="none" stroke="#d0d9cc" stroke-width="1"/>
+<text x="75.11" y="470.70" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-weight="700" font-size="16" fill="#728179">850</text>
+<polyline points="70.00,313.26 1500.00,313.26" fill="none" stroke="#d0d9cc" stroke-width="1"/>
+<text x="75.11" y="315.26" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-weight="700" font-size="16" fill="#728179">900</text>
+<polyline points="1189.13,2769.13 940.43,2831.30 1134.68,2531.10 1282.39,2302.83 1562.17,1743.26 1373.65,1177.68 1251.30,810.65 1489.55,300.13 1686.52,-121.96 1727.15,-335.26 1810.87,-774.78" fill="none" stroke="#9f9d84" stroke-width="2" stroke-dasharray="7 7"/>
+<polyline points="1562.17,1743.26 1935.22,1494.57 2028.48,872.83 2090.65,282.17 1686.52,-121.96" fill="none" stroke="#9f9d84" stroke-width="2" stroke-dasharray="7 7"/>
+<polyline points="1373.65,1177.68 660.65,1463.48 225.43,841.74 318.70,157.83 878.26,-432.83 1810.87,-774.78" fill="none" stroke="#9f9d84" stroke-width="2" stroke-dasharray="7 7"/>
+<polyline points="1251.30,810.65 225.43,841.74" fill="none" stroke="#9f9d84" stroke-width="2" stroke-dasharray="7 7"/>
+<polyline points="1373.65,1177.68 2028.48,872.83" fill="none" stroke="#9f9d84" stroke-width="2" stroke-dasharray="7 7"/>
+<polyline points="318.70,157.83 1489.55,300.13" fill="none" stroke="#9f9d84" stroke-width="2" stroke-dasharray="7 7"/>
+<polyline points="1489.55,300.13 2090.65,282.17" fill="none" stroke="#9f9d84" stroke-width="2" stroke-dasharray="7 7"/>
+<polyline points="1997.39,-1210.00 1779.78,-463.91 1500.00,220.00 1406.74,935.00 1313.48,1618.91 1064.78,2209.57 1142.50,2567.07 940.43,2831.30 1002.61,3048.91" fill="none" stroke="#4c9da9" stroke-width="5"/>
+<polyline points="225.43,841.74 349.73,837.97" fill="none" stroke="#d9cba1" stroke-width="24.869565217391305"/>
+<circle cx="225.43" cy="841.74" r="12.434782608695652" fill="#d9cba1"/>
+<circle cx="349.73" cy="837.97" r="12.434782608695652" fill="#d9cba1"/>
+<polyline points="349.73,837.97 459.23,859.54" fill="none" stroke="#d9cba1" stroke-width="18.652173913043477"/>
+<circle cx="349.73" cy="837.97" r="9.326086956521738" fill="#d9cba1"/>
+<circle cx="459.23" cy="859.54" r="9.326086956521738" fill="#d9cba1"/>
+<polyline points="459.23,859.54 567.99,856.24" fill="none" stroke="#d9cba1" stroke-width="18.652173913043477"/>
+<circle cx="459.23" cy="859.54" r="9.326086956521738" fill="#d9cba1"/>
+<circle cx="567.99" cy="856.24" r="9.326086956521738" fill="#d9cba1"/>
+<polyline points="567.99,856.24 675.99,828.09" fill="none" stroke="#d9cba1" stroke-width="21.76086956521739"/>
+<circle cx="567.99" cy="856.24" r="10.880434782608695" fill="#d9cba1"/>
+<circle cx="675.99" cy="828.09" r="10.880434782608695" fill="#d9cba1"/>
+<polyline points="675.99,828.09 800.28,824.32" fill="none" stroke="#d9cba1" stroke-width="21.76086956521739"/>
+<circle cx="675.99" cy="828.09" r="10.880434782608695" fill="#d9cba1"/>
+<circle cx="800.28" cy="824.32" r="10.880434782608695" fill="#d9cba1"/>
+<polyline points="800.28,824.32 909.98,852.10" fill="none" stroke="#d9cba1" stroke-width="18.652173913043477"/>
+<circle cx="800.28" cy="824.32" r="9.326086956521738" fill="#d9cba1"/>
+<circle cx="909.98" cy="852.10" r="9.326086956521738" fill="#d9cba1"/>
+<polyline points="909.98,852.10 1018.73,848.80" fill="none" stroke="#d9cba1" stroke-width="18.652173913043477"/>
+<circle cx="909.98" cy="852.10" r="9.326086956521738" fill="#d9cba1"/>
+<circle cx="1018.73" cy="848.80" r="9.326086956521738" fill="#d9cba1"/>
+<polyline points="1018.73,848.80 1126.54,814.43" fill="none" stroke="#d9cba1" stroke-width="24.869565217391305"/>
+<circle cx="1018.73" cy="848.80" r="12.434782608695652" fill="#d9cba1"/>
+<circle cx="1126.54" cy="814.43" r="12.434782608695652" fill="#d9cba1"/>
+<polyline points="1126.54,814.43 1251.30,810.65" fill="none" stroke="#d9cba1" stroke-width="24.869565217391305"/>
+<circle cx="1126.54" cy="814.43" r="12.434782608695652" fill="#d9cba1"/>
+<circle cx="1251.30" cy="810.65" r="12.434782608695652" fill="#d9cba1"/>
+<polygon points="197.46,863.50 253.41,863.50 253.41,819.98 197.46,819.98" fill="#f3dfac" stroke="#a29360"/>
+<text x="232.43" y="857.74" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-weight="700" font-size="22" fill="#69532b">P1</text>
+<polygon points="648.01,849.85 703.97,849.85 703.97,806.33 648.01,806.33" fill="#f3dfac" stroke="#a29360"/>
+<text x="682.99" y="844.09" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-weight="700" font-size="22" fill="#69532b">P2</text>
+<polygon points="1089.24,842.41 1163.85,842.41 1163.85,786.45 1089.24,786.45" fill="#f3dfac" stroke="#a29360"/>
+<text x="1133.54" y="830.43" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-weight="700" font-size="22" fill="#69532b">P3</text>
+<polyline points="225.43,841.74 349.73,837.97 459.23,859.54 567.99,856.24 675.99,828.09 800.28,824.32 909.98,852.10 1018.73,848.80 1126.54,814.43 1251.30,810.65" fill="none" stroke="#826533" stroke-width="3"/>
+<polygon points="520.34,823.47 613.56,820.65 611.96,767.82 518.74,770.65" fill="#847c69" stroke="#5d5d50"/>
+<text x="570.15" y="763.65" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-weight="700" font-size="23" fill="#443b30">A1</text>
+<polygon points="768.08,787.97 845.76,785.62 844.06,729.69 766.38,732.04" fill="#847c69" stroke="#5d5d50"/>
+<text x="810.07" y="726.83" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-weight="700" font-size="23" fill="#443b30">A2</text>
+<polygon points="1035.58,891.83 1082.19,890.42 1081.63,871.78 1035.02,873.19" fill="#ae8359" stroke="#5d5d50"/>
+<text x="1062.61" y="849.80" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-weight="700" font-size="23" fill="#443b30">A3</text>
+<polyline points="474.77,859.06 722.83,561.96" fill="none" stroke="#b45142" stroke-width="2" stroke-dasharray="7 7"/>
+<circle cx="474.77" cy="859.06" r="5" fill="#b45142"/>
+<text x="444.77" y="831.06" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-weight="700" font-size="22" fill="#b45142">V1</text>
+<polyline points="675.99,828.09 722.83,561.96" fill="none" stroke="#2b8269" stroke-width="2" stroke-dasharray="7 7"/>
+<circle cx="675.99" cy="828.09" r="5" fill="#2b8269"/>
+<text x="645.99" y="800.09" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-weight="700" font-size="22" fill="#2b8269">V2</text>
+<polyline points="909.98,852.10 722.83,561.96" fill="none" stroke="#b45142" stroke-width="2" stroke-dasharray="7 7"/>
+<circle cx="909.98" cy="852.10" r="5" fill="#b45142"/>
+<text x="879.98" y="824.10" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-weight="700" font-size="22" fill="#b45142">V3</text>
+<polyline points="1018.73,848.80 1251.30,810.65" fill="none" stroke="#2b8269" stroke-width="2" stroke-dasharray="7 7"/>
+<circle cx="1018.73" cy="848.80" r="5" fill="#2b8269"/>
+<text x="988.73" y="820.80" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-weight="700" font-size="22" fill="#2b8269">V4</text>
+<circle cx="349.78" cy="406.52" r="8" fill="#375b66"/>
+<text x="361.78" y="411.52" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-weight="700" font-size="27" fill="#244b59">W01</text>
+<circle cx="722.83" cy="561.96" r="8" fill="#375b66"/>
+<text x="734.83" y="566.96" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-weight="700" font-size="27" fill="#244b59">G02</text>
+<circle cx="1251.30" cy="810.65" r="8" fill="#375b66"/>
+<text x="1263.30" y="815.65" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-weight="700" font-size="27" fill="#244b59">G01</text>
+<circle cx="225.43" cy="841.74" r="6" fill="#233c40"/>
+<text x="233.43" y="806.74" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-weight="700" font-size="23" fill="#233c40">W2 / O2</text>
+<circle cx="1251.30" cy="810.65" r="6" fill="#233c40"/>
+<text x="1259.30" y="775.65" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-weight="700" font-size="23" fill="#233c40">G01 / R01</text>
+<text x="396.48" y="883.75" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-weight="700" font-size="22" fill="#735719">6m</text>
+<text x="847.13" y="873.21" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-weight="700" font-size="22" fill="#735719">6m</text>
+<text x="1180.92" y="847.54" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-weight="700" font-size="22" fill="#735719">8m</text>
+</g>
+<line x1="70" y1="1125" x2="225.43478260869566" y2="1125" stroke="#233c40" stroke-width="5"/>
+<text x="70" y="1139" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="22" font-weight="400" fill="#233c40">50m</text>
+<text x="470" y="1139" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="22" font-weight="400" fill="#5b6b65">회색 점선: 기존 연결 기준선 / 갈색: 상세 보행 후보</text>
+<text x="1540" y="220" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="31" font-weight="700" fill="#233c40">통행과 싸울 자리</text>
+<text x="1540" y="264" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="26" font-weight="400" fill="#233c40">작업장 연결로</text>
+<text x="1540" y="303" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="24" font-weight="400" fill="#233c40">기준 330.2m → 상세 334.8m</text>
+<text x="1540" y="340" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="27" font-weight="400" fill="#233c40">유효 폭 6–8m</text>
+<text x="1540" y="380" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="24" font-weight="400" fill="#233c40">P1 18×14m · 적치장</text>
+<text x="1540" y="417" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="24" font-weight="400" fill="#233c40">P2 18×14m · 관찰 자리</text>
+<text x="1540" y="454" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="24" font-weight="400" fill="#233c40">P3 24×18m · 관리로 접근</text>
+<text x="1540" y="520" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="27" font-weight="400" fill="#233c40">차폐물 높이 (주변 바닥 기준)</text>
+<text x="1540" y="560" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="23" font-weight="400" fill="#233c40">A1 바위 3.5m / A2 바위 3.2m</text>
+<text x="1540" y="596" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="24" font-weight="400" fill="#233c40">A3 자재 더미 0.8m</text>
+<text x="1540" y="633" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="24" font-weight="400" fill="#233c40">낮은 자재는 완전 엄폐가 아님</text>
+<text x="1540" y="699" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="29" font-weight="700" fill="#233c40">관찰선 예시</text>
+<text x="1540" y="741" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="24" font-weight="400" fill="#233c40">녹색: 목록의 높은 장애물 없음</text>
+<text x="1540" y="778" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="24" font-weight="400" fill="#233c40">붉은색: 높은 바위에 가림</text>
+<text x="1540" y="815" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="23" font-weight="400" fill="#233c40">눈·대상 점 높이 1.6m의 평지 가정</text>
+<text x="1540" y="851" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="23" font-weight="400" fill="#233c40">소리와 움직이는 적의 시야는 별도</text>
+<text x="1540" y="916" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="29" font-weight="700" fill="#233c40">접근 판단</text>
+<text x="1540" y="958" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="24" font-weight="400" fill="#233c40">V2에서 G02 거점을 살핀 뒤</text>
+<text x="1540" y="995" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="24" font-weight="400" fill="#233c40">A2 남쪽 길로 시야를 끊고 이동</text>
+<text x="1540" y="1032" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="24" font-weight="400" fill="#233c40">G01 쪽 공간을 새로 확인한다.</text>
+<text x="1540" y="1098" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="24" font-weight="400" fill="#233c40">새 적·잠금·전투 종료선 없음</text>
+<text x="60" y="1305" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="25" font-weight="400" fill="#233c40">색면: 기존 평소 생활권 / 원형 점: 무리 기준점 (현재 개체 위치 아님)</text>
+<text x="60" y="1353" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="25" font-weight="400" fill="#5b6b65">실제 지형·고저차·공격·카메라·AI 미검증. 기존 지도 보존. 본 도면은 새 상세 후보다.</text>
+</svg>

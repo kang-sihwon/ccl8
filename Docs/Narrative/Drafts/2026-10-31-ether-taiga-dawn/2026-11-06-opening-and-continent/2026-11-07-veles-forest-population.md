@@ -12,6 +12,7 @@
 
 | 자료 | 읽는 때 |
 |---|---|
+| [작업장 연결로·동굴 출구 상세](2026-11-07-forest-sightlines-and-clearance.md) | 이 분포를 유지한 새 확대도에서 통행 폭·바위·관찰 위치와 상세 보행선을 볼 때 |
 | [탐색 지도 SVG](../../../../ArtDirection/EtherWorldMap/Images/veles-forest-exploration-v1.svg) | 구역·길·물길·탐색 장소를 확대해 볼 때 |
 | [분포도 SVG](../../../../ArtDirection/EtherWorldMap/Images/veles-forest-population-v1.svg) | 같은 좌표에서 무리의 평소 활동·이동·추격 한계를 비교할 때 |
 | [좌표·분포 JSON](../../../../ArtDirection/EtherWorldMap/Data/veles-forest-ecology-v1.json) | 구역 다각형·무리 기준점·이동선·연결 노드·수량의 원자료를 확인할 때 |

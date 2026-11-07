@@ -6,7 +6,7 @@
 
 | 작업 | 지도 | 상태 |
 |---|---|---|
-| 첫 장 시나리오와 플레이 대륙 배경 | [서사 작업 현황](../Narrative/CurrentWork.md) | [숲 왕복 모의 탐색](../Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-06-opening-and-continent/2026-11-07-forest-roundtrip-walkthrough.md)에 동쪽 진입·보스·서쪽 귀환, 생활권 공백과 추격 중첩 비교를 작성했다. 다음은 O2-R04와 동굴 출구의 지형 상세화다. 이전 분포·지도와 H01-H07은 보존하며 세 추격 보정은 비교 후보로 남긴다. |
+| 첫 장 시나리오와 플레이 대륙 배경 | [서사 작업 현황](../Narrative/CurrentWork.md) | [작업장 연결로·동굴 출구 상세](../Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-06-opening-and-continent/2026-11-07-forest-sightlines-and-clearance.md)에 통행 폭·작업 단·엄폐와 시야 표본을 두 확대 지도로 작성했다. 다음은 반대 방향 접근과 미처리·추격 중 귀환 사례 비교다. 이전 분포·지도와 H01-H07은 보존한다. |
 
 ## 다음 작업 후보
 

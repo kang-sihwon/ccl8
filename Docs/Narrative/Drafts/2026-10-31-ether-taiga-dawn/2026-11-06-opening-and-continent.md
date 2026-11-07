@@ -6,6 +6,7 @@
 
 | 순서 | 읽는 문서 | 산출물 |
 |---|---|---|
+| 현재 공간 상세 | [작업장 연결로·동굴 출구](2026-11-06-opening-and-continent/2026-11-07-forest-sightlines-and-clearance.md) | 길의 폭·작업 단·시야를 가리는 바위와 관찰 위치를 확대 지도에서 볼 때 |
 | 현재 탐색 흐름 | [동쪽 진입·서쪽 귀환 모의 탐색](2026-11-06-opening-and-continent/2026-11-07-forest-roundtrip-walkthrough.md) | 탐색·보스·복구·다른 길 귀환과 생활권 공백·추격 중첩의 비교를 볼 때 |
 | 현재 숲 배치 | [벨레스 숲 탐색 구역·몬스터 분포](2026-11-06-opening-and-continent/2026-11-07-veles-forest-population.md) | 여섯 구역·길 선택·11개 무리와 순찰·이동 및 추격 범위를 지도와 함께 볼 때 |
 | 현재 전투 구조 | [필드 탐색과 전투 개정 후보](2026-11-06-opening-and-continent/2026-11-07-field-combat-revision.md) | 분포한 동물·몬스터와 탐색 중 싸우는 구조, 서식 구역·갈림길·대표 사건의 관계를 볼 때 |

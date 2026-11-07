@@ -1,0 +1,753 @@
+{
+  "status": "detail_design_candidate_not_canon_or_runtime_geometry",
+  "basis": "veles-forest-ecology-v1.json",
+  "basis_sha256": "744a518ccfc56b4cd59694e6430e8457e2546da251a7f90823496133e38b0ead",
+  "frame": {
+    "origin": "Veles quay (0,0)",
+    "unit": "m",
+    "x": "east",
+    "y": "north"
+  },
+  "preservation": "Parent nodes, reference lines, waterways, group homes, counts and routine/pursuit polygons are unchanged. New detail centerlines supersede only the straight reference segments for this candidate.",
+  "height_model": "Local flat floor at each ray; observer and target point 1.6m above it. Opaque obstacles are vertical prisms. No terrain elevation or full silhouette calculation.",
+  "width_model": "Nominal clear strip centered on each segment, round joins; flat pads at junctions. Width excludes obstacles; not a tested capsule, attack or camera clearance.",
+  "areas": [
+    {
+      "id": "workshop_link",
+      "extent_m": [
+        -300,
+        160,
+        650,
+        930
+      ],
+      "reference_nodes": [
+        "W2",
+        "guardian"
+      ],
+      "reference_centerline_m": [
+        [
+          -250,
+          730
+        ],
+        [
+          80,
+          740
+        ]
+      ],
+      "detailed_centerline_m": [
+        [
+          -250.0,
+          730.0
+        ],
+        [
+          -210.0184,
+          731.2116
+        ],
+        [
+          -174.7921,
+          724.2754
+        ],
+        [
+          -139.8082,
+          725.3355
+        ],
+        [
+          -105.0665,
+          734.3919
+        ],
+        [
+          -65.0849,
+          735.6035
+        ],
+        [
+          -29.798,
+          726.6682
+        ],
+        [
+          5.1859,
+          727.7283
+        ],
+        [
+          39.8669,
+          738.7838
+        ],
+        [
+          80,
+          740
+        ]
+      ],
+      "segment_clear_width_m": [
+        8,
+        6,
+        6,
+        7,
+        7,
+        6,
+        6,
+        8,
+        8
+      ],
+      "obstacles": [
+        {
+          "id": "A1",
+          "polygon_m": [
+            [
+              -155.1345,
+              735.8761
+            ],
+            [
+              -125.1482,
+              736.7848
+            ],
+            [
+              -125.6631,
+              753.777
+            ],
+            [
+              -155.6494,
+              752.8683
+            ]
+          ],
+          "height_above_local_floor_m": 3.5,
+          "kind": "rock"
+        },
+        {
+          "id": "A2",
+          "polygon_m": [
+            [
+              -75.4438,
+              747.2951
+            ],
+            [
+              -50.4552,
+              748.0523
+            ],
+            [
+              -51.0004,
+              766.0441
+            ],
+            [
+              -75.989,
+              765.2868
+            ]
+          ],
+          "height_above_local_floor_m": 3.2,
+          "kind": "rock"
+        },
+        {
+          "id": "A3",
+          "polygon_m": [
+            [
+              10.6076,
+              713.8862
+            ],
+            [
+              25.6008,
+              714.3405
+            ],
+            [
+              25.419,
+              720.3378
+            ],
+            [
+              10.4259,
+              719.8834
+            ]
+          ],
+          "height_above_local_floor_m": 0.8,
+          "kind": "timber"
+        }
+      ],
+      "pads": [
+        {
+          "id": "P1",
+          "center_m": [
+            -250.0,
+            730.0
+          ],
+          "size_m": [
+            18,
+            14
+          ]
+        },
+        {
+          "id": "P2",
+          "center_m": [
+            -105.0665,
+            734.3919
+          ],
+          "size_m": [
+            18,
+            14
+          ]
+        },
+        {
+          "id": "P3",
+          "center_m": [
+            39.8669,
+            738.7838
+          ],
+          "size_m": [
+            24,
+            18
+          ]
+        }
+      ],
+      "rays": [
+        {
+          "id": "V1",
+          "observer_m": [
+            -169.7944,
+            724.4268
+          ],
+          "target_m": [
+            -90,
+            820
+          ],
+          "expected": "blocked",
+          "length_m": 124.505,
+          "blocked_by": [
+            "A1"
+          ],
+          "result": "blocked"
+        },
+        {
+          "id": "V2",
+          "observer_m": [
+            -105.0665,
+            734.3919
+          ],
+          "target_m": [
+            -90,
+            820
+          ],
+          "expected": "open",
+          "length_m": 86.924,
+          "blocked_by": [],
+          "result": "open"
+        },
+        {
+          "id": "V3",
+          "observer_m": [
+            -29.798,
+            726.6682
+          ],
+          "target_m": [
+            -90,
+            820
+          ],
+          "expected": "blocked",
+          "length_m": 111.064,
+          "blocked_by": [
+            "A2"
+          ],
+          "result": "blocked"
+        },
+        {
+          "id": "V4",
+          "observer_m": [
+            5.1859,
+            727.7283
+          ],
+          "target_m": [
+            80,
+            740
+          ],
+          "expected": "open",
+          "length_m": 75.814,
+          "blocked_by": [],
+          "result": "open"
+        }
+      ],
+      "context_groups": [
+        "W01",
+        "G02",
+        "G01"
+      ],
+      "anchor_labels": {
+        "W2": "W2 / O2",
+        "guardian": "G01 / R01"
+      },
+      "reference_length_m": 330.151,
+      "detail_length_m": 334.758
+    },
+    {
+      "id": "cave_exit",
+      "extent_m": [
+        -90,
+        325,
+        1030,
+        1290
+      ],
+      "reference_nodes": [
+        "cave",
+        "W4"
+      ],
+      "reference_centerline_m": [
+        [
+          260,
+          1250
+        ],
+        [
+          -40,
+          1140
+        ]
+      ],
+      "detailed_centerline_m": [
+        [
+          260,
+          1250
+        ],
+        [
+          245,
+          1245
+        ],
+        [
+          215,
+          1245
+        ],
+        [
+          195,
+          1228
+        ],
+        [
+          170,
+          1228
+        ],
+        [
+          145,
+          1208
+        ],
+        [
+          110,
+          1195
+        ],
+        [
+          70,
+          1180
+        ],
+        [
+          30,
+          1164
+        ],
+        [
+          -40,
+          1140
+        ]
+      ],
+      "segment_clear_width_m": [
+        5,
+        8,
+        6,
+        6,
+        6,
+        8,
+        8,
+        7,
+        8
+      ],
+      "obstacles": [
+        {
+          "id": "C1",
+          "polygon_m": [
+            [
+              235,
+              1215
+            ],
+            [
+              241,
+              1215
+            ],
+            [
+              241,
+              1225
+            ],
+            [
+              235,
+              1225
+            ]
+          ],
+          "height_above_local_floor_m": 3.2,
+          "kind": "rock"
+        },
+        {
+          "id": "C2",
+          "polygon_m": [
+            [
+              180,
+              1205
+            ],
+            [
+              201,
+              1205
+            ],
+            [
+              201,
+              1217
+            ],
+            [
+              180,
+              1217
+            ]
+          ],
+          "height_above_local_floor_m": 3.8,
+          "kind": "root_rock"
+        },
+        {
+          "id": "C3",
+          "polygon_m": [
+            [
+              218,
+              1234
+            ],
+            [
+              232,
+              1234
+            ],
+            [
+              232,
+              1237
+            ],
+            [
+              218,
+              1237
+            ]
+          ],
+          "height_above_local_floor_m": 0.8,
+          "kind": "timber"
+        }
+      ],
+      "pads": [
+        {
+          "id": "Q1",
+          "center_m": [
+            245,
+            1245
+          ],
+          "size_m": [
+            18,
+            14
+          ]
+        },
+        {
+          "id": "Q2",
+          "center_m": [
+            145,
+            1208
+          ],
+          "size_m": [
+            20,
+            16
+          ]
+        },
+        {
+          "id": "Q3",
+          "center_m": [
+            -40,
+            1140
+          ],
+          "size_m": [
+            22,
+            18
+          ]
+        }
+      ],
+      "rays": [
+        {
+          "id": "V5",
+          "observer_m": [
+            245,
+            1245
+          ],
+          "target_m": [
+            225,
+            1210
+          ],
+          "expected": "open",
+          "length_m": 40.311,
+          "blocked_by": [],
+          "result": "open"
+        },
+        {
+          "id": "V6",
+          "observer_m": [
+            260,
+            1250
+          ],
+          "target_m": [
+            190,
+            1140
+          ],
+          "expected": "blocked",
+          "length_m": 130.384,
+          "blocked_by": [
+            "C1"
+          ],
+          "result": "blocked"
+        },
+        {
+          "id": "V7",
+          "observer_m": [
+            195,
+            1228
+          ],
+          "target_m": [
+            190,
+            1140
+          ],
+          "expected": "blocked",
+          "length_m": 88.142,
+          "blocked_by": [
+            "C2"
+          ],
+          "result": "blocked"
+        },
+        {
+          "id": "V8",
+          "observer_m": [
+            145,
+            1208
+          ],
+          "target_m": [
+            190,
+            1140
+          ],
+          "expected": "open",
+          "length_m": 81.541,
+          "blocked_by": [],
+          "result": "open"
+        },
+        {
+          "id": "V9",
+          "observer_m": [
+            110,
+            1195
+          ],
+          "target_m": [
+            80,
+            1160
+          ],
+          "expected": "open",
+          "length_m": 46.098,
+          "blocked_by": [],
+          "result": "open"
+        }
+      ],
+      "context_groups": [
+        "W03",
+        "G03",
+        "G04"
+      ],
+      "anchor_labels": {
+        "cave": "동굴 / 260,1250",
+        "W4": "W4 / O5",
+        "B04": "B04"
+      },
+      "reference_length_m": 319.531,
+      "detail_length_m": 326.213
+    }
+  ],
+  "limits": [
+    "No runtime AI, pathfinding, slope, drainage, frost, projectile, camera or encounter verification",
+    "Open ray means no listed opaque blocker, not detection or a guaranteed view of an actor",
+    "Blocked ray is one static sample, not concealment from every moving enemy or an automatic combat reset",
+    "Earlier pursuit trims remain comparison-only; no new trim applied here"
+  ],
+  "checks": [
+    {
+      "area": "workshop_link",
+      "endpoints_preserved": true,
+      "minimum_strip_to_obstacle_gap_m": 3.881,
+      "minimum_strip_to_water_centerline_gap_m": 50.754,
+      "pads_clear_of_obstacles": true,
+      "group_homes_and_example_centerlines_clear": true,
+      "sample_rays_match": true
+    },
+    {
+      "area": "cave_exit",
+      "endpoints_preserved": true,
+      "minimum_strip_to_obstacle_gap_m": 4.0,
+      "minimum_strip_to_water_centerline_gap_m": 15.9,
+      "pads_clear_of_obstacles": true,
+      "group_homes_and_example_centerlines_clear": true,
+      "sample_rays_match": true
+    }
+  ],
+  "return_sample": {
+    "excluded": [
+      "S01",
+      "G04"
+    ],
+    "centerline_m": [
+      [
+        260,
+        1250
+      ],
+      [
+        245,
+        1245
+      ],
+      [
+        215,
+        1245
+      ],
+      [
+        195,
+        1228
+      ],
+      [
+        170,
+        1228
+      ],
+      [
+        145,
+        1208
+      ],
+      [
+        110,
+        1195
+      ],
+      [
+        70,
+        1180
+      ],
+      [
+        30,
+        1164
+      ],
+      [
+        -40,
+        1140
+      ],
+      [
+        -220,
+        950
+      ],
+      [
+        -250,
+        730
+      ],
+      [
+        -210.0184,
+        731.2116
+      ],
+      [
+        -174.7921,
+        724.2754
+      ],
+      [
+        -139.8082,
+        725.3355
+      ],
+      [
+        -105.0665,
+        734.3919
+      ],
+      [
+        -65.0849,
+        735.6035
+      ],
+      [
+        -29.798,
+        726.6682
+      ],
+      [
+        5.1859,
+        727.7283
+      ],
+      [
+        39.8669,
+        738.7838
+      ],
+      [
+        80,
+        740
+      ],
+      [
+        119.35483870967742,
+        621.9354838709678
+      ],
+      [
+        180,
+        440
+      ],
+      [
+        90,
+        260
+      ]
+    ],
+    "length_m": 1662.2062784715135,
+    "routine_intersections": [
+      {
+        "group": "G01",
+        "spans_m": [
+          [
+            1083.728965066668,
+            1104.5808707470887
+          ],
+          [
+            1104.5808707470887,
+            1144.7323944796944
+          ],
+          [
+            1144.7323944796944,
+            1229.0597987508513
+          ]
+        ]
+      },
+      {
+        "group": "W01",
+        "spans_m": [
+          [
+            546.6135047871863,
+            587.9385121397202
+          ],
+          [
+            587.9385121397202,
+            759.5118104533415
+          ]
+        ]
+      },
+      {
+        "group": "W03",
+        "spans_m": [
+          [
+            209.13214711659614,
+            252.21346557367218
+          ],
+          [
+            252.21346557367218,
+            326.2134655736722
+          ],
+          [
+            326.2134655736722,
+            413.45514776235484
+          ]
+        ]
+      }
+    ],
+    "outside_routine_spans_m": [
+      [
+        0,
+        209.13214711659614,
+        209.13214711659614
+      ],
+      [
+        413.45514776235484,
+        546.6135047871863,
+        133.1583570248315
+      ],
+      [
+        759.5118104533415,
+        1083.728965066668,
+        324.21715461332656
+      ],
+      [
+        1229.0597987508513,
+        1662.2062784715135,
+        433.1464797206622
+      ]
+    ],
+    "note": "New detours only. Earlier 629/433/321m comparisons remain historical baseline; no refreshed pursuit/AI simulation."
+  }
+}
