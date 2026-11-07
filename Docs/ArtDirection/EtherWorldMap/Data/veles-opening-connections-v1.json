@@ -1,0 +1,385 @@
+{
+  "status": "spatial_candidate_under_decision_40_not_canon_geometry",
+  "basis": "worldtree-settlement-basis-v1.json",
+  "frame": {
+    "origin_regional_km": [
+      150,
+      145
+    ],
+    "mapping": "regional_xy_km = origin_regional_km + local_xy_m / 1000; aligned projected axes, not a separate tangent-plane georeference",
+    "extent_m": [
+      -1350,
+      800,
+      -1100,
+      1420
+    ],
+    "local_distances": "Euclidean design distances; sphere distortion not corrected at village scale",
+    "reveal_regional_km": [
+      149.0,
+      144.0
+    ]
+  },
+  "local_points_m": {
+    "quay": [
+      0,
+      0
+    ],
+    "workshop": [
+      60,
+      110
+    ],
+    "water_point": [
+      -20,
+      90
+    ],
+    "water_store": [
+      45,
+      175
+    ],
+    "forest_gate": [
+      90,
+      260
+    ],
+    "squirrel": [
+      180,
+      440
+    ],
+    "guardian": [
+      80,
+      740
+    ],
+    "wolves": [
+      220,
+      1040
+    ],
+    "cave": [
+      260,
+      1250
+    ],
+    "old_workshop": [
+      280,
+      1300
+    ],
+    "boss": [
+      300,
+      1360
+    ],
+    "spring": [
+      320,
+      1390
+    ],
+    "local_grove_tree": [
+      320,
+      1420
+    ],
+    "ridge": [
+      -650,
+      -650
+    ],
+    "reveal": [
+      -1000,
+      -1000
+    ]
+  },
+  "forest_walk_m": [
+    [
+      60,
+      110
+    ],
+    [
+      -20,
+      90
+    ],
+    [
+      90,
+      260
+    ],
+    [
+      180,
+      440
+    ],
+    [
+      80,
+      740
+    ],
+    [
+      220,
+      1040
+    ],
+    [
+      260,
+      1250
+    ],
+    [
+      280,
+      1300
+    ],
+    [
+      300,
+      1360
+    ]
+  ],
+  "spring_water_m": [
+    [
+      320,
+      1390
+    ],
+    [
+      250,
+      1150
+    ],
+    [
+      160,
+      930
+    ],
+    [
+      130,
+      700
+    ],
+    [
+      100,
+      480
+    ],
+    [
+      20,
+      290
+    ],
+    [
+      45,
+      175
+    ],
+    [
+      -20,
+      90
+    ],
+    [
+      0,
+      20
+    ]
+  ],
+  "local_river_m": [
+    [
+      800,
+      1000
+    ],
+    [
+      500,
+      600
+    ],
+    [
+      180,
+      160
+    ],
+    [
+      0,
+      0
+    ],
+    [
+      -300,
+      -150
+    ],
+    [
+      -320,
+      -900
+    ],
+    [
+      -1000,
+      -1000
+    ],
+    [
+      -1350,
+      -1100
+    ]
+  ],
+  "outbound_nodes": [
+    "workshop",
+    "water_point",
+    "forest_gate",
+    "squirrel",
+    "guardian",
+    "wolves",
+    "cave",
+    "old_workshop",
+    "boss"
+  ],
+  "return_nodes": [
+    "boss",
+    "old_workshop",
+    "cave",
+    "wolves",
+    "guardian",
+    "squirrel",
+    "forest_gate",
+    "water_point",
+    "workshop"
+  ],
+  "combat_nodes": [
+    "squirrel",
+    "guardian",
+    "wolves",
+    "old_workshop",
+    "boss"
+  ],
+  "bridges": [
+    {
+      "id": "B1",
+      "xy_m": [
+        42.485207100591715,
+        186.5680473372781
+      ],
+      "walk_segment": 1,
+      "water_segment": 5
+    },
+    {
+      "id": "B2",
+      "xy_m": [
+        119.35483870967742,
+        621.9354838709678
+      ],
+      "walk_segment": 3,
+      "water_segment": 3
+    },
+    {
+      "id": "B3",
+      "xy_m": [
+        156.63793103448276,
+        904.2241379310344
+      ],
+      "walk_segment": 4,
+      "water_segment": 2
+    },
+    {
+      "id": "B4",
+      "xy_m": [
+        233.06930693069307,
+        1108.6138613861385
+      ],
+      "walk_segment": 5,
+      "water_segment": 1
+    }
+  ],
+  "new_cave_nodes_m": {
+    "observation": [
+      285,
+      1330
+    ],
+    "entry": [
+      290,
+      1344
+    ],
+    "controls": [
+      282,
+      1364
+    ],
+    "bear_exit": [
+      318,
+      1375
+    ],
+    "sun_ledge": [
+      340,
+      1400
+    ],
+    "isolation_sump": [
+      272,
+      1354
+    ]
+  },
+  "new_cave_walks_m": [
+    [
+      [
+        260,
+        1250
+      ],
+      [
+        280,
+        1300
+      ],
+      [
+        280,
+        1320
+      ],
+      [
+        285,
+        1330
+      ],
+      [
+        290,
+        1344
+      ],
+      [
+        300,
+        1360
+      ]
+    ],
+    [
+      [
+        300,
+        1360
+      ],
+      [
+        282,
+        1364
+      ],
+      [
+        272,
+        1354
+      ]
+    ],
+    [
+      [
+        300,
+        1360
+      ],
+      [
+        318,
+        1375
+      ],
+      [
+        320,
+        1390
+      ],
+      [
+        340,
+        1400
+      ]
+    ]
+  ],
+  "arena_bounds_m": [
+    280,
+    320,
+    1344,
+    1376
+  ],
+  "arena_note": "40x32 combat floor with separate spring annex, proposed reinterpretation of old room size",
+  "boat_to_reveal_m": [
+    [
+      0,
+      0
+    ],
+    [
+      -300,
+      -150
+    ],
+    [
+      -320,
+      -900
+    ],
+    [
+      -1000,
+      -1000
+    ]
+  ],
+  "limits": [
+    "Path edges encode adjacency, not validated slope, clearance or navigation.",
+    "No combat timing, fluid capacity or UE validation.",
+    "Normal water, human retreat and bear retreat are distinct."
+  ],
+  "checks": {
+    "preserved_anchor_count": 15,
+    "combat_count": 5,
+    "bridge_count": 4,
+    "walk_m": 1464.3522555013074,
+    "boat_m": 1772.9904269986596,
+    "boss_to_spring_m": 36.05551275463989
+  }
+}

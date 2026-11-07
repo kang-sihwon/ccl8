@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2100" height="1500" viewBox="0 0 2100 1500">
+<rect width="2100" height="1500" fill="#f3f0e7"/>
+<text x="50" y="28" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="43" font-weight="700" fill="#263e49">벨레스 첫 장 | 공간 연결 후보</text>
+<text x="52" y="90" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="25" font-weight="400" fill="#263e49">확정: K01–K09의 사건과 조건    /    후보: 좌표·방 크기·연결 통로·시설·교량</text>
+<rect x="45" y="155" width="955" height="1195" fill="#faf9f3" stroke="#c8cdc3" stroke-width="2"/>
+<text x="63" y="167" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="26" font-weight="700" fill="#263e49">지역 연결 · 북쪽 ↑ · 단위 m</text>
+<polyline points="230.638,1202.915 230.638,231.298" fill="none" stroke="#dfe3d9" stroke-width="1" stroke-linejoin="round"/>
+<text x="210.63829787234042" y="1207.9148936170213" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="17" font-weight="400" fill="#263e49">-1000</text>
+<polyline points="418.936,1202.915 418.936,231.298" fill="none" stroke="#dfe3d9" stroke-width="1" stroke-linejoin="round"/>
+<text x="398.93617021276594" y="1207.9148936170213" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="17" font-weight="400" fill="#263e49">-500</text>
+<polyline points="607.234,1202.915 607.234,231.298" fill="none" stroke="#dfe3d9" stroke-width="1" stroke-linejoin="round"/>
+<text x="587.2340425531914" y="1207.9148936170213" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="17" font-weight="400" fill="#263e49">0</text>
+<polyline points="795.532,1202.915 795.532,231.298" fill="none" stroke="#dfe3d9" stroke-width="1" stroke-linejoin="round"/>
+<text x="775.531914893617" y="1207.9148936170213" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="17" font-weight="400" fill="#263e49">500</text>
+<polyline points="98.830,1165.255 946.170,1165.255" fill="none" stroke="#dfe3d9" stroke-width="1" stroke-linejoin="round"/>
+<polyline points="98.830,976.957 946.170,976.957" fill="none" stroke="#dfe3d9" stroke-width="1" stroke-linejoin="round"/>
+<polyline points="98.830,788.660 946.170,788.660" fill="none" stroke="#dfe3d9" stroke-width="1" stroke-linejoin="round"/>
+<polyline points="98.830,600.362 946.170,600.362" fill="none" stroke="#dfe3d9" stroke-width="1" stroke-linejoin="round"/>
+<polyline points="98.830,412.064 946.170,412.064" fill="none" stroke="#dfe3d9" stroke-width="1" stroke-linejoin="round"/>
+<polyline points="908.511,412.064 795.532,562.702 675.021,728.404 607.234,788.660 494.255,845.149 486.723,1127.596 230.638,1165.255 98.830,1202.915" fill="none" stroke="#58a6c1" stroke-width="20" stroke-linejoin="round"/>
+<polyline points="727.745,265.191 701.383,355.574 667.489,438.426 656.191,525.043 644.894,607.894 614.766,679.447 624.181,722.755 599.702,754.766 607.234,781.128" fill="none" stroke="#49a5a0" stroke-width="5" stroke-linejoin="round"/>
+<polyline points="629.830,747.234 599.702,754.766 641.128,690.745 675.021,622.957 637.362,509.979 690.085,397.000 705.149,317.915 712.681,299.085 720.213,276.489" fill="none" stroke="#b36a34" stroke-width="6" stroke-linejoin="round"/>
+<circle cx="362.4468085106383" cy="1033.4468085106382" r="82.85106382978724" fill="#aeb69b" stroke="#8a957f" stroke-width="2"/>
+<text x="262.4468085106383" y="1018.4468085106382" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="24" font-weight="700" fill="#263e49">가림 능선</text>
+<rect x="617.233790759159" y="713.3988417474505" width="12.0" height="10.0" fill="#e2c987" stroke="#6d644d" stroke-width="2"/>
+<rect x="646.1825669183253" y="549.4413177762526" width="12.0" height="10.0" fill="#e2c987" stroke="#6d644d" stroke-width="2"/>
+<rect x="660.2232208363903" y="443.13261188554657" width="12.0" height="10.0" fill="#e2c987" stroke="#6d644d" stroke-width="2"/>
+<rect x="689.0069517590057" y="366.1603117758585" width="12.0" height="10.0" fill="#e2c987" stroke="#6d644d" stroke-width="2"/>
+<circle cx="641.1276595744681" cy="690.7446808510638" r="7" fill="#285f6b" stroke="#ffffff" stroke-width="2"/>
+<text x="501.1276595744681" y="695.7446808510638" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="24" font-weight="400" fill="#263e49">숲 입구</text>
+<circle cx="675.0212765957447" cy="622.9574468085107" r="7" fill="#a9593d" stroke="#ffffff" stroke-width="2"/>
+<text x="700.0212765957447" y="614.9574468085107" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="24" font-weight="400" fill="#263e49">① 다람쥐</text>
+<circle cx="637.3617021276596" cy="509.97872340425533" r="7" fill="#a9593d" stroke="#ffffff" stroke-width="2"/>
+<text x="447.36170212765956" y="499.97872340425533" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="24" font-weight="400" fill="#263e49">② 숲 파수꾼</text>
+<circle cx="690.0851063829787" cy="397.0" r="7" fill="#a9593d" stroke="#ffffff" stroke-width="2"/>
+<text x="715.0851063829787" y="387.0" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="24" font-weight="400" fill="#263e49">③ 늑대</text>
+<circle cx="705.1489361702128" cy="317.9148936170213" r="7" fill="#285f6b" stroke="#ffffff" stroke-width="2"/>
+<text x="535.1489361702128" y="305.9148936170213" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="24" font-weight="400" fill="#263e49">동굴 입구</text>
+<circle cx="607.2340425531914" cy="788.6595744680851" r="7" fill="#285f6b" stroke="#ffffff" stroke-width="2"/>
+<text x="412.23404255319144" y="800.6595744680851" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="24" font-weight="400" fill="#263e49">마을 확대도 →</text>
+<circle cx="230.63829787234042" cy="1165.255319148936" r="7" fill="#285f6b" stroke="#ffffff" stroke-width="2"/>
+<text x="170.63829787234042" y="1180.255319148936" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="24" font-weight="400" fill="#263e49">상부 수관 공개</text>
+<circle cx="720.2127659574468" cy="276.48936170212767" r="9" fill="#a9593d" stroke="#ffffff" stroke-width="2"/>
+<text x="743.2127659574468" y="276.48936170212767" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="23" font-weight="700" fill="#263e49">④ 작업실 → ⑤ 바르툴</text>
+<circle cx="727.7446808510638" cy="253.8936170212766" r="12" fill="#b9a24c" stroke="#ffffff" stroke-width="2"/>
+<text x="750.7446808510638" y="215.8936170212766" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="21" font-weight="400" fill="#263e49">지역 거목</text>
+<polyline points="607.234,788.660 494.255,845.149 486.723,1127.596 230.638,1165.255" fill="none" stroke="#315a9c" stroke-width="5" stroke-linejoin="round"/>
+<text x="125.19148936170212" y="272.72340425531917" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="24" font-weight="700" fill="#263e49">갈 때: 다섯 전투 → 수원 복구</text>
+<text x="125.19148936170212" y="310.72340425531917" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="21" font-weight="400" fill="#263e49">돌아올 때: 같은 길, 새 전투 없음</text>
+<text x="136.48936170212767" y="953.4468085106382" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="21" font-weight="400" fill="#263e49">배는 능선 동쪽과</text>
+<text x="136.48936170212767" y="984.4468085106382" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="21" font-weight="400" fill="#263e49">남쪽을 돌아 나간다</text>
+<polyline points="136.489,1180.319 324.787,1180.319" fill="none" stroke="#263e49" stroke-width="3" stroke-linejoin="round"/>
+<text x="136.48936170212767" y="1150.3191489361702" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="20" font-weight="400" fill="#263e49">500m</text>
+<rect x="1030" y="155" width="1025" height="745" fill="#faf9f3" stroke="#c8cdc3" stroke-width="2"/>
+<text x="1048" y="167" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="26" font-weight="700" fill="#263e49">동굴 확대 · 북쪽 ↑ · 수평 위치 후보</text>
+<rect x="1370.5" y="628.5" width="98.28571428571422" height="73.71428571428578" fill="#e4dfcd" stroke="#aaaea3" stroke-width="2"/>
+<rect x="1419.642857142857" y="431.92857142857144" width="122.85714285714289" height="98.28571428571433" fill="#ead8bd" stroke="#aaaea3" stroke-width="2"/>
+<polyline points="1358.214,818.929 1419.643,665.357 1419.643,603.929 1435.000,573.214 1450.357,530.214 1481.071,481.071" fill="none" stroke="#b36a34" stroke-width="12" stroke-linejoin="round"/>
+<polyline points="1481.071,481.071 1536.357,435.000 1542.500,388.929 1603.929,358.214" fill="none" stroke="#719275" stroke-width="19" stroke-linejoin="round"/>
+<rect x="1508.7142857142856" y="327.5" width="125.92857142857156" height="92.14285714285717" fill="#e1e8dc" stroke="#aaaea3" stroke-width="2"/>
+<polyline points="1481.071,481.071 1536.357,435.000 1542.500,388.929 1603.929,358.214" fill="none" stroke="#719275" stroke-width="10" stroke-linejoin="round"/>
+<polyline points="1481.071,481.071 1425.786,468.786 1395.071,499.500" fill="none" stroke="#b36a34" stroke-width="5" stroke-linejoin="round"/>
+<polyline points="1542.500,388.929 1408.125,849.643" fill="none" stroke="#49a5a0" stroke-width="4" stroke-linejoin="round"/>
+<circle cx="1358.2142857142856" cy="818.9285714285714" r="7" fill="#285f6b" stroke="#ffffff" stroke-width="2"/>
+<text x="1218.2142857142856" y="818.9285714285714" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="23" font-weight="700" fill="#263e49">동굴 입구</text>
+<circle cx="1419.642857142857" cy="665.3571428571429" r="7" fill="#a9593d" stroke="#ffffff" stroke-width="2"/>
+<text x="1274.642857142857" y="650.3571428571429" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="23" font-weight="700" fill="#263e49">④ 작업실</text>
+<circle cx="1481.0714285714284" cy="481.0714285714286" r="7" fill="#a9593d" stroke="#ffffff" stroke-width="2"/>
+<text x="1516.0714285714284" y="473.0714285714286" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="23" font-weight="700" fill="#263e49">⑤ 바르툴</text>
+<circle cx="1542.5" cy="388.92857142857144" r="7" fill="#285f6b" stroke="#ffffff" stroke-width="2"/>
+<text x="1392.5" y="368.92857142857144" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="23" font-weight="700" fill="#263e49">샘 740m</text>
+<circle cx="1435.0" cy="573.2142857142858" r="5" fill="#546d66" stroke="#ffffff" stroke-width="2"/>
+<text x="1275.0" y="563.2142857142858" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="21" font-weight="400" fill="#263e49">관찰·후퇴</text>
+<circle cx="1425.7857142857142" cy="468.78571428571433" r="5" fill="#546d66" stroke="#ffffff" stroke-width="2"/>
+<text x="1245.7857142857142" y="448.78571428571433" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="21" font-weight="400" fill="#263e49">설비·조작부</text>
+<circle cx="1536.3571428571427" cy="435.0" r="5" fill="#546d66" stroke="#ffffff" stroke-width="2"/>
+<text x="1571.3571428571427" y="435.0" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="21" font-weight="400" fill="#263e49">곰 퇴로</text>
+<circle cx="1603.9285714285713" cy="358.2142857142857" r="5" fill="#546d66" stroke="#ffffff" stroke-width="2"/>
+<text x="1628.9285714285713" y="348.2142857142857" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="21" font-weight="400" fill="#263e49">마른 선반</text>
+<circle cx="1395.0714285714284" cy="499.5" r="5" fill="#546d66" stroke="#ffffff" stroke-width="2"/>
+<text x="1260.0714285714284" y="507.5" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="21" font-weight="400" fill="#263e49">격리 집수</text>
+<text x="1640" y="720" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="22" font-weight="700" fill="#263e49">주 전투 바닥 40×32m</text>
+<text x="1640" y="755" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="21" font-weight="400" fill="#263e49">샘 공간은 별도 연결</text>
+<text x="1640" y="788" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="20" font-weight="400" fill="#263e49">높이·경사·충돌 미검증</text>
+<rect x="1030" y="925" width="1025" height="425" fill="#faf9f3" stroke="#c8cdc3" stroke-width="2"/>
+<text x="1048" y="937" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="26" font-weight="700" fill="#263e49">마을 확대 · 북쪽 ↑ · 접근 관계</text>
+<polyline points="1506.953,984.922 1532.344,1101.719 1466.328,1188.047 1486.641,1259.141" fill="none" stroke="#49a5a0" stroke-width="5" stroke-linejoin="round"/>
+<polyline points="1547.578,1167.734 1466.328,1188.047 1578.047,1015.391" fill="none" stroke="#b36a34" stroke-width="5" stroke-linejoin="round"/>
+<polyline points="1486.641,1279.453 1547.578,1167.734 1532.344,1101.719" fill="none" stroke="#9363a0" stroke-width="4" stroke-linejoin="round"/>
+<circle cx="1486.640625" cy="1279.453125" r="6" fill="#285f6b" stroke="#ffffff" stroke-width="2"/>
+<text x="1501.640625" y="1279.453125" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="21" font-weight="400" fill="#263e49">나루 · 운반·출항</text>
+<circle cx="1547.578125" cy="1167.734375" r="6" fill="#285f6b" stroke="#ffffff" stroke-width="2"/>
+<text x="1572.578125" y="1164.734375" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="21" font-weight="400" fill="#263e49">공방 · 준비·귀환·저녁</text>
+<circle cx="1466.328125" cy="1188.046875" r="6" fill="#285f6b" stroke="#ffffff" stroke-width="2"/>
+<text x="1366.328125" y="1176.046875" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="21" font-weight="400" fill="#263e49">급수대</text>
+<circle cx="1532.34375" cy="1101.71875" r="6" fill="#285f6b" stroke="#ffffff" stroke-width="2"/>
+<text x="1557.34375" y="1089.71875" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="21" font-weight="400" fill="#263e49">분배 · 점검·인계</text>
+<circle cx="1578.046875" cy="1015.390625" r="6" fill="#285f6b" stroke="#ffffff" stroke-width="2"/>
+<text x="1598.046875" y="1002.390625" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="21" font-weight="400" fill="#263e49">숲으로</text>
+<text x="1055" y="1265" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="18" font-weight="400" fill="#79558a">보라선: 접근 관계만 표시</text>
+<text x="1055" y="1296" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="18" font-weight="400" fill="#263e49">계단·운반 설비의 상세 형상은 미정</text>
+<text x="55" y="1380" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="23" font-weight="400" fill="#263e49">갈색: 보행·귀환    청록: 샘물길    파랑: 본류·출항    황색 사각: 관리교 4곳    녹색: 곰 퇴로</text>
+<text x="55" y="1425" dominant-baseline="text-before-edge" font-family="Malgun Gothic, sans-serif" font-size="21" font-weight="400" fill="#263e49">기존 15개 장소·물길·중심선 보존 | 전투·보행 경사·수문·항행·원경 실행은 미검증 | 상세 인과는 공간 연결 문서 참조</text>
+</svg>

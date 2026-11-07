@@ -1,6 +1,6 @@
 # 서사 작업 안내
 
-세계관, 고유 인물과 사건은 아직 미정이다. 확정된 것은 장르(소울라이크 RPG)와 마을, 보스, NPC와 간단한 시나리오의 범위뿐이며, 이 범위는 [Direction](Direction.md#확정-범위)이 소유한다. 근거는 [결정 1](decisions/0001-production-scope.md)이다.
+첫 장의 핵심 세계 법칙과 인물·사건은 [결정 40](decisions/0040-opening-core-settings.md)의 K01-K09 범위로 확정했다. 정밀 지형·수치·인물 신상·대륙 제도·신화·출항 이후 이야기는 보류한다. 장르(소울라이크 RPG)와 마을, 보스, NPC와 간단한 시나리오의 제작 범위는 [Direction](Direction.md#확정-범위)이 소유하며 근거는 [결정 1](decisions/0001-production-scope.md)이다.
 
 이 문서는 서사 문서의 소유를 정한다. 확정 설정은 World와 Scenario에만 둔다. Workflow, CurrentWork, Glossary는 작업 절차와 기록 틀이며 세부 게임 설정을 확정하지 않는다. 서사 작업은 `ccl8-narrative` 스킬로 시작한다.
 

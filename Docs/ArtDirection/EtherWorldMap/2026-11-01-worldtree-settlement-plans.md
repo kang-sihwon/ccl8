@@ -6,6 +6,7 @@
 
 | 자료 | 읽는 때 |
 |---|---|
+| [첫 장 공간 연결 후보](../../Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-06-opening-and-continent/2026-11-07-opening-spatial-connections.md) | 채택한 사건을 기존 좌표 위에서 다섯 전투·관리교·동굴 퇴로·귀환·출항으로 연결한 새 도면을 볼 때 |
 | [중앙 생활권 좌표 기준도](2026-11-07-central-coordinate-map.md) | 중앙 9곳의 현재 이름·기호·좌표와 벨레스 이웃 마을의 확대 배치를 볼 때 |
 | [세계수 치수 PNG](Images/worldtree-scale-and-influence-v1.png), [SVG](Images/worldtree-scale-and-influence-v1.svg) | 나무의 실제 높이·너비와 생활권 이격을 비교할 때 |
 | [중앙 분지 PNG](Images/ignis-central-settlement-layout-v1.png), [SVG](Images/ignis-central-settlement-layout-v1.svg) | 세계수·관리도시·로덴·벨레스와 중앙의 일반 도시·마을 위치를 볼 때 |

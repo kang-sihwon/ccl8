@@ -6,7 +6,7 @@
 
 | 작업 | 지도 | 상태 |
 |---|---|---|
-| 첫 장 시나리오와 플레이 대륙 배경 | [서사 작업 현황](../Narrative/CurrentWork.md) | [통합 후보](../Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-06-opening-and-continent.md)의 네 단계와 [독립 검토](../Narrative/Reviews/2026-11-06-opening-continent-review.md) PASS를 완료했다. [36곳 좌표 정합 후보](../ArtDirection/EtherWorldMap/2026-11-07-continent-coordinate-map.md)는 원본 해안·중앙 9곳을 유지하고 외곽 27곳·주요 수계·교역로를 연결했다. 계산 검증과 [지도 독립 검토](../Narrative/Reviews/2026-11-07-continent-coordinate-review.md)도 PASS다. [핵심 설정 비교표](../Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-06-opening-and-continent/2026-11-07-core-setting-options.md)의 추천 9·대안 9·보류 7항목도 작성하고 독립 검토 PASS를 받았다. 다음은 채택할 설정·배치의 범위 검토다. 정밀 지형·기후·물류·실행 검증은 남아 있다. |
+| 첫 장 시나리오와 플레이 대륙 배경 | [서사 작업 현황](../Narrative/CurrentWork.md) | K01-K09를 [결정 40](../decisions/0040-opening-core-settings.md)으로 채택해 정본에 반영했고 H01-H07과 비교 대안을 보존했다. [첫 장 공간 연결 후보](../Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-06-opening-and-continent/2026-11-07-opening-spatial-connections.md)에 다섯 전투·동굴 퇴로·물길·귀환·출항을 연결했다. 다음은 전투별 판단과 전후 장면 상세화다. 대륙 배경·정밀 지형·수치·실행 검증은 현황 문서의 후보·보류 상태를 따른다. |
 
 ## 다음 작업 후보
 
