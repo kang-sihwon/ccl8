@@ -6,7 +6,7 @@
 
 | 작업 | 지도 | 상태 |
 |---|---|---|
-| 첫 장 시나리오와 플레이 대륙 배경 | [서사 작업 현황](../Narrative/CurrentWork.md) | [고블린 거점·일반 생태 v2](../Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-06-opening-and-continent/2026-11-07-goblin-territories-and-wildlife.md)에 두 거점·생활·약탈·운반과 일반 동물 분포를 작성했다. 방향은 결정 42로 반영하고 세부 수치·배치는 후보로 유지한다. 다음은 고블린 거점 내부와 활동조 귀환 시 혼잡 비교다. 이전안과 H01-H07은 보존한다. |
+| 첫 장 시나리오와 플레이 대륙 배경 | [서사 작업 현황](../Narrative/CurrentWork.md) | [대륙 생태·성장 후보](../Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-08-continent-ecology-progression.md)에 여섯 메인 구간·세 선택 탐색권·36곳 연결과 레벨 참조안을 작성했다. 독립 검토 PASS이며 다음은 타르넬–로덴의 탐색 구간 상세화다. 첫 장 정본·고블린 분포 v2·이전안·H01-H07은 유지한다. |
 
 ## 다음 작업 후보
 

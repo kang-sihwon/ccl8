@@ -1,0 +1,1057 @@
+{
+  "status": "continent_ecology_story_and_leveling_candidate_not_canon_or_implemented_level_system",
+  "basis": "ignis-continent-georeference-v1.json",
+  "basis_sha256": "6db8af3cd42905181145fb26bd22793523428dcdd728b1d7d78c46e7acc773b0",
+  "coordinate_system": {
+    "type": "spherical_azimuthal_equidistant",
+    "radius_km": 6366.197723675814,
+    "origin_lon_lat_deg": [
+      -1.0,
+      54.0
+    ],
+    "axes": "x east and y north at origin",
+    "rotation_deg": 0,
+    "units": "km",
+    "limitations": "Distances from origin are true great-circle distances. Other planar distances and areas are distorted. No WGS84 or DEM."
+  },
+  "source_coast_geometry_sha256": "fa38398d057fcf97af3d003e9cc6dc0efcac6acb9f892ae1027fb4e535fa440b",
+  "stages": [
+    {
+      "id": "S1",
+      "name": "벨레스 숲",
+      "player_level_band": [
+        1,
+        6
+      ],
+      "boss_reference_level": 6,
+      "settlement_ids": [
+        "V01",
+        "V02",
+        "V03",
+        "V04"
+      ],
+      "environment": "상류 혼합림·샘·그늘 서리",
+      "wildlife": "다람쥐·새·토끼·사슴",
+      "threats": "고블린 / 늑대 / 뿌리 파수꾼",
+      "color": "#427a56"
+    },
+    {
+      "id": "S2",
+      "name": "타르넬·로덴",
+      "player_level_band": [
+        6,
+        12
+      ],
+      "boss_reference_level": 12,
+      "settlement_ids": [
+        "T01",
+        "M02"
+      ],
+      "environment": "강변 단·여울·도시 정비층",
+      "wildlife": "물새·수달·담수어",
+      "threats": "여울턱 / 유리턱 군체 / 정비체",
+      "color": "#247d95"
+    },
+    {
+      "id": "S3",
+      "name": "하류·세르나",
+      "player_level_band": [
+        12,
+        18
+      ],
+      "boss_reference_level": 18,
+      "settlement_ids": [
+        "T02",
+        "T03",
+        "M03"
+      ],
+      "environment": "범람원·갈대습지·하구 암초",
+      "wildlife": "갈매기·왜가리·게·어군",
+      "threats": "갈대매복종 / 갑각 포식종 / 해수",
+      "color": "#b58b30"
+    },
+    {
+      "id": "S4",
+      "name": "켈바·하르덴",
+      "player_level_band": [
+        18,
+        25
+      ],
+      "boss_reference_level": 25,
+      "settlement_ids": [
+        "T04",
+        "V05",
+        "M04",
+        "V06",
+        "V07"
+      ],
+      "environment": "계곡·고원·절벽·바람길",
+      "wildlife": "산토끼·산양·맹금류",
+      "threats": "활공 포식종 / 바위매복종 / 비룡",
+      "color": "#aa6740"
+    },
+    {
+      "id": "S5",
+      "name": "북부 관문·겨울 분지",
+      "player_level_band": [
+        25,
+        33
+      ],
+      "boss_reference_level": 33,
+      "settlement_ids": [
+        "T10",
+        "V13",
+        "V16",
+        "M07",
+        "V14",
+        "T11",
+        "T12",
+        "V15"
+      ],
+      "environment": "침엽림·눈 계곡·난방 유적",
+      "wildlife": "설토끼·순록·눈들꿩",
+      "threats": "한랭 포식종 / 백각 거수 / 겨울지기",
+      "color": "#647bb0"
+    },
+    {
+      "id": "S6",
+      "name": "관리도시·세계수 심부",
+      "player_level_band": [
+        33,
+        40
+      ],
+      "boss_reference_level": 40,
+      "settlement_ids": [
+        "M01"
+      ],
+      "environment": "정착 외곽·뿌리층·옛 설비",
+      "wildlife": "바깥 새·사슴 / 심부 소형 생태",
+      "threats": "시설 경비 / 뿌리굴착종 / 심근룡 후보",
+      "color": "#865b94"
+    }
+  ],
+  "optional_zones": [
+    {
+      "id": "E1",
+      "name": "서해 교역권",
+      "player_level_band": [
+        16,
+        24
+      ],
+      "danger_level_band": [
+        24,
+        28
+      ],
+      "settlement_ids": [
+        "T05",
+        "M05",
+        "T06",
+        "V08"
+      ],
+      "environment": "고개·서향 계곡·피항 포구",
+      "wildlife": "산양·물개·바닷새",
+      "threats": "고갯길 약탈단 / 바위매복종 / 연안 포식종"
+    },
+    {
+      "id": "E2",
+      "name": "남동 곡창",
+      "player_level_band": [
+        8,
+        16
+      ],
+      "danger_level_band": [
+        18,
+        22
+      ],
+      "settlement_ids": [
+        "T07",
+        "M08",
+        "V09",
+        "V10"
+      ],
+      "environment": "경작 단·초지·관개수로",
+      "wildlife": "들토끼·노루·종달새·농가 가축",
+      "threats": "곡물 약탈 고블린 / 늪트롤 후보"
+    },
+    {
+      "id": "E3",
+      "name": "동부 조선림·연안",
+      "player_level_band": [
+        14,
+        22
+      ],
+      "danger_level_band": [
+        23,
+        27
+      ],
+      "settlement_ids": [
+        "T08",
+        "M06",
+        "T09",
+        "V11",
+        "V12"
+      ],
+      "environment": "조선림·계곡·바깥 연안",
+      "wildlife": "다람쥐·사슴·해안 조류·어군",
+      "threats": "목재 약탈단 / 수지거미 후보 / 암초 포식종"
+    }
+  ],
+  "settlement_coverage": [
+    {
+      "id": "V01",
+      "name": "벨레스",
+      "zone": "S1",
+      "role": "main_story_hub",
+      "xy_km": [
+        150,
+        145
+      ],
+      "lon_lat_deg": [
+        1.3706119778145285,
+        55.28227997171035
+      ]
+    },
+    {
+      "id": "V02",
+      "name": "솔숨",
+      "zone": "S1",
+      "role": "optional_or_background",
+      "xy_km": [
+        154,
+        151
+      ],
+      "lon_lat_deg": [
+        1.4370761310058986,
+        55.33501461125799
+      ]
+    },
+    {
+      "id": "V03",
+      "name": "들보리",
+      "zone": "S1",
+      "role": "optional_or_background",
+      "xy_km": [
+        140,
+        137
+      ],
+      "lon_lat_deg": [
+        1.208695864179934,
+        55.21324910240429
+      ]
+    },
+    {
+      "id": "V04",
+      "name": "숲곁",
+      "zone": "S1",
+      "role": "optional_or_background",
+      "xy_km": [
+        143,
+        143
+      ],
+      "lon_lat_deg": [
+        1.259042825035169,
+        55.26636127485317
+      ]
+    },
+    {
+      "id": "T01",
+      "name": "타르넬",
+      "zone": "S2",
+      "role": "main_story_hub",
+      "xy_km": [
+        137,
+        125
+      ],
+      "lon_lat_deg": [
+        1.1555798656151361,
+        55.10614574650333
+      ]
+    },
+    {
+      "id": "M02",
+      "name": "로덴",
+      "zone": "S2",
+      "role": "main_story_hub",
+      "xy_km": [
+        110,
+        95
+      ],
+      "lon_lat_deg": [
+        0.7193966689101895,
+        54.842938715676794
+      ]
+    },
+    {
+      "id": "T02",
+      "name": "미레바",
+      "zone": "S3",
+      "role": "transit_support_optional_stop",
+      "xy_km": [
+        37,
+        10
+      ],
+      "lon_lat_deg": [
+        -0.4322507620916614,
+        54.08866472076582
+      ]
+    },
+    {
+      "id": "T03",
+      "name": "오르센",
+      "zone": "S3",
+      "role": "transit_support_optional_stop",
+      "xy_km": [
+        45,
+        -35
+      ],
+      "lon_lat_deg": [
+        -0.31616192376838015,
+        53.68304729673721
+      ]
+    },
+    {
+      "id": "M03",
+      "name": "세르나",
+      "zone": "S3",
+      "role": "main_story_hub",
+      "xy_km": [
+        417.4518741058252,
+        -1063.9045819597554
+      ],
+      "lon_lat_deg": [
+        4.227923014539118,
+        44.291798181644374
+      ]
+    },
+    {
+      "id": "T04",
+      "name": "켈바",
+      "zone": "S4",
+      "role": "main_story_hub",
+      "xy_km": [
+        -890.3430271555216,
+        200.3333881209349
+      ],
+      "lon_lat_deg": [
+        -15.0633803141663,
+        55.0
+      ]
+    },
+    {
+      "id": "V05",
+      "name": "윗샘",
+      "zone": "S4",
+      "role": "optional_or_background",
+      "xy_km": [
+        -920.3430271555216,
+        235.3333881209349
+      ],
+      "lon_lat_deg": [
+        -15.637661903169494,
+        55.25276270512722
+      ]
+    },
+    {
+      "id": "M04",
+      "name": "하르덴",
+      "zone": "S4",
+      "role": "main_story_hub",
+      "xy_km": [
+        -1435.2733267209078,
+        454.34169769054535
+      ],
+      "lon_lat_deg": [
+        -24.47799301052021,
+        55.900000000000006
+      ]
+    },
+    {
+      "id": "V06",
+      "name": "누마",
+      "zone": "S4",
+      "role": "optional_or_background",
+      "xy_km": [
+        -1460.2733267209078,
+        489.34169769054535
+      ],
+      "lon_lat_deg": [
+        -25.045776589604543,
+        56.11930812329781
+      ]
+    },
+    {
+      "id": "V07",
+      "name": "바람재",
+      "zone": "S4",
+      "role": "optional_or_background",
+      "xy_km": [
+        -1405.2733267209078,
+        469.34169769054535
+      ],
+      "lon_lat_deg": [
+        -24.10104873326338,
+        56.11422932722882
+      ]
+    },
+    {
+      "id": "T10",
+      "name": "네르바",
+      "zone": "S5",
+      "role": "main_story_hub",
+      "xy_km": [
+        -205.9529376219892,
+        909.001952106139
+      ],
+      "lon_lat_deg": [
+        -4.953807396066772,
+        62.12747582849426
+      ]
+    },
+    {
+      "id": "V13",
+      "name": "돌곡",
+      "zone": "S5",
+      "role": "optional_or_background",
+      "xy_km": [
+        -180.9529376219892,
+        924.001952106139
+      ],
+      "lon_lat_deg": [
+        -4.489944497305906,
+        62.27447275816613
+      ]
+    },
+    {
+      "id": "V16",
+      "name": "새불",
+      "zone": "S5",
+      "role": "optional_or_background",
+      "xy_km": [
+        -220.9529376219892,
+        994.001952106139
+      ],
+      "lon_lat_deg": [
+        -5.348282022182241,
+        62.88264420132198
+      ]
+    },
+    {
+      "id": "M07",
+      "name": "북부 관문도시",
+      "zone": "S5",
+      "role": "main_story_hub",
+      "xy_km": [
+        -230.9529376219892,
+        1069.001952106139
+      ],
+      "lon_lat_deg": [
+        -5.648767617812353,
+        63.550000000000004
+      ]
+    },
+    {
+      "id": "V14",
+      "name": "길목",
+      "zone": "S5",
+      "role": "main_story_hub",
+      "xy_km": [
+        -255.95293762198924,
+        1189.001952106139
+      ],
+      "lon_lat_deg": [
+        -6.347582093595765,
+        64.61007285689391
+      ]
+    },
+    {
+      "id": "T11",
+      "name": "케르딘",
+      "zone": "S5",
+      "role": "main_story_hub",
+      "xy_km": [
+        -265.95293762198924,
+        1219.001952106139
+      ],
+      "lon_lat_deg": [
+        -6.609589811325755,
+        64.87177674492295
+      ]
+    },
+    {
+      "id": "T12",
+      "name": "울렌",
+      "zone": "S5",
+      "role": "optional_or_background",
+      "xy_km": [
+        -550.9529376219892,
+        1139.001952106139
+      ],
+      "lon_lat_deg": [
+        -12.245021357605813,
+        63.8396248638379
+      ]
+    },
+    {
+      "id": "V15",
+      "name": "여름뜰",
+      "zone": "S5",
+      "role": "optional_or_background",
+      "xy_km": [
+        -590.9529376219892,
+        1194.001952106139
+      ],
+      "lon_lat_deg": [
+        -13.252440461798525,
+        64.26409991605608
+      ]
+    },
+    {
+      "id": "M01",
+      "name": "세계수 관리도시",
+      "zone": "S6",
+      "role": "early_transit_hub_and_late_core_access",
+      "xy_km": [
+        18,
+        -12
+      ],
+      "lon_lat_deg": [
+        -0.7251033917037691,
+        53.89168573836356
+      ]
+    },
+    {
+      "id": "T05",
+      "name": "드라벤",
+      "zone": "E1",
+      "role": "optional_or_background",
+      "xy_km": [
+        -2042.566363225762,
+        550.0494071750638
+      ],
+      "lon_lat_deg": [
+        -33.89260570687415,
+        54.550000000000004
+      ]
+    },
+    {
+      "id": "M05",
+      "name": "서안항",
+      "zone": "E1",
+      "role": "optional_or_background",
+      "xy_km": [
+        -2688.9679063549847,
+        1019.6143362075417
+      ],
+      "lon_lat_deg": [
+        -46.32089721446472,
+        54.96872110581616
+      ]
+    },
+    {
+      "id": "T06",
+      "name": "살레크",
+      "zone": "E1",
+      "role": "optional_or_background",
+      "xy_km": [
+        -3276.6510507913813,
+        -452.11380244250523
+      ],
+      "lon_lat_deg": [
+        -42.03442301644434,
+        41.48028530137359
+      ]
+    },
+    {
+      "id": "V08",
+      "name": "갈매",
+      "zone": "E1",
+      "role": "optional_or_background",
+      "xy_km": [
+        -3263.0058320556363,
+        -414.54620476072546
+      ],
+      "lon_lat_deg": [
+        -42.11649810923252,
+        41.82211786936417
+      ]
+    },
+    {
+      "id": "T07",
+      "name": "메르사",
+      "zone": "E2",
+      "role": "optional_or_background",
+      "xy_km": [
+        1234.242555079002,
+        -752.7680848574923
+      ],
+      "lon_lat_deg": [
+        15.063380314166269,
+        46.000000000000014
+      ]
+    },
+    {
+      "id": "M08",
+      "name": "남동 평야도시",
+      "zone": "E2",
+      "role": "optional_or_background",
+      "xy_km": [
+        2016.8396215333198,
+        -786.0727062591023
+      ],
+      "lon_lat_deg": [
+        24.47799301052021,
+        43.750000000000014
+      ]
+    },
+    {
+      "id": "V09",
+      "name": "씨앗골",
+      "zone": "E2",
+      "role": "optional_or_background",
+      "xy_km": [
+        1269.242555079002,
+        -727.7680848574923
+      ],
+      "lon_lat_deg": [
+        15.574135752495177,
+        46.14879855775064
+      ]
+    },
+    {
+      "id": "V10",
+      "name": "물나래",
+      "zone": "E2",
+      "role": "optional_or_background",
+      "xy_km": [
+        2041.8396215333198,
+        -811.0727062591023
+      ],
+      "lon_lat_deg": [
+        24.669687768233537,
+        43.46475804727837
+      ]
+    },
+    {
+      "id": "T08",
+      "name": "에스칼",
+      "zone": "E3",
+      "role": "optional_or_background",
+      "xy_km": [
+        2228.776414958394,
+        475.8503179346188
+      ],
+      "lon_lat_deg": [
+        33.89260570687415,
+        53.20000000000001
+      ]
+    },
+    {
+      "id": "M06",
+      "name": "동안항",
+      "zone": "E3",
+      "role": "optional_or_background",
+      "xy_km": [
+        2672.681747193104,
+        1034.0935111734775
+      ],
+      "lon_lat_deg": [
+        44.25363823324935,
+        55.15575585493094
+      ]
+    },
+    {
+      "id": "T09",
+      "name": "루세아",
+      "zone": "E3",
+      "role": "optional_or_background",
+      "xy_km": [
+        2996.5653615724295,
+        -1723.98245293493
+      ],
+      "lon_lat_deg": [
+        31.18394484039485,
+        32.763206968188406
+      ]
+    },
+    {
+      "id": "V11",
+      "name": "긴솔",
+      "zone": "E3",
+      "role": "optional_or_background",
+      "xy_km": [
+        2193.776414958394,
+        505.8503179346188
+      ],
+      "lon_lat_deg": [
+        33.63921372920631,
+        53.58042228672045
+      ]
+    },
+    {
+      "id": "V12",
+      "name": "청그물",
+      "zone": "E3",
+      "role": "optional_or_background",
+      "xy_km": [
+        3708.3977467602954,
+        -106.39942917938025
+      ],
+      "lon_lat_deg": [
+        46.530141124596376,
+        41.775378231192484
+      ]
+    }
+  ],
+  "new_candidate_points": {
+    "U01": {
+      "name": "북부 옛 겨울 분지 접근 후보",
+      "xy_km": [
+        -335.95293762198924,
+        1369.001952106139
+      ]
+    },
+    "C01": {
+      "name": "세계수 외곽 점검 접근 후보",
+      "xy_km": [
+        12,
+        -8
+      ]
+    }
+  },
+  "main_route_legs": [
+    {
+      "id": "J12",
+      "from": "V01",
+      "to": "M02",
+      "basis": [
+        "H01 V01–M02"
+      ],
+      "xy_km": [
+        [
+          150,
+          145
+        ],
+        [
+          145,
+          140
+        ],
+        [
+          146,
+          130
+        ],
+        [
+          137,
+          125
+        ],
+        [
+          133,
+          112
+        ],
+        [
+          120,
+          110
+        ],
+        [
+          118,
+          101
+        ],
+        [
+          110,
+          95
+        ]
+      ]
+    },
+    {
+      "id": "J23",
+      "from": "M02",
+      "to": "M03",
+      "basis": [
+        "R1"
+      ],
+      "xy_km": [
+        [
+          110,
+          95
+        ],
+        [
+          98,
+          88
+        ],
+        [
+          83,
+          75
+        ],
+        [
+          64,
+          60
+        ],
+        [
+          48,
+          42
+        ],
+        [
+          36,
+          20
+        ],
+        [
+          28,
+          -12
+        ],
+        [
+          31,
+          -30
+        ],
+        [
+          42,
+          -48
+        ],
+        [
+          50,
+          -180
+        ],
+        [
+          100,
+          -350
+        ],
+        [
+          417.4518741058252,
+          -1063.9045819597554
+        ]
+      ]
+    },
+    {
+      "id": "J34",
+      "from": "M03",
+      "to": "M04",
+      "basis": [
+        "R1 upstream to landing",
+        "R2 reverse",
+        "R4"
+      ],
+      "xy_km": [
+        [
+          417.4518741058252,
+          -1063.9045819597554
+        ],
+        [
+          100,
+          -350
+        ],
+        [
+          50,
+          -180
+        ],
+        [
+          42,
+          -48
+        ],
+        [
+          31,
+          -30
+        ],
+        [
+          28,
+          -12
+        ],
+        [
+          18,
+          -12
+        ],
+        [
+          -200,
+          0
+        ],
+        [
+          -650,
+          100
+        ],
+        [
+          -890.3430271555216,
+          200.3333881209349
+        ],
+        [
+          -1435.2733267209078,
+          454.34169769054535
+        ]
+      ]
+    },
+    {
+      "id": "J45",
+      "from": "M04",
+      "to": "M07",
+      "basis": [
+        "R4 reverse",
+        "R3"
+      ],
+      "xy_km": [
+        [
+          -1435.2733267209078,
+          454.34169769054535
+        ],
+        [
+          -890.3430271555216,
+          200.3333881209349
+        ],
+        [
+          -650,
+          100
+        ],
+        [
+          -200,
+          0
+        ],
+        [
+          18,
+          -12
+        ],
+        [
+          -140,
+          160
+        ],
+        [
+          -300,
+          550
+        ],
+        [
+          -205.9529376219892,
+          909.001952106139
+        ],
+        [
+          -230.9529376219892,
+          1069.001952106139
+        ]
+      ]
+    },
+    {
+      "id": "J5U",
+      "from": "M07",
+      "to": "U01",
+      "basis": [
+        "B03",
+        "B04",
+        "new local candidate to U01"
+      ],
+      "xy_km": [
+        [
+          -230.9529376219892,
+          1069.001952106139
+        ],
+        [
+          -255.95293762198924,
+          1189.001952106139
+        ],
+        [
+          -265.95293762198924,
+          1219.001952106139
+        ],
+        [
+          -295.95293762198924,
+          1289.001952106139
+        ],
+        [
+          -335.95293762198924,
+          1369.001952106139
+        ]
+      ]
+    },
+    {
+      "id": "J56",
+      "from": "U01",
+      "to": "M01",
+      "basis": [
+        "reverse J5U",
+        "R3 reverse"
+      ],
+      "xy_km": [
+        [
+          -335.95293762198924,
+          1369.001952106139
+        ],
+        [
+          -295.95293762198924,
+          1289.001952106139
+        ],
+        [
+          -265.95293762198924,
+          1219.001952106139
+        ],
+        [
+          -255.95293762198924,
+          1189.001952106139
+        ],
+        [
+          -230.9529376219892,
+          1069.001952106139
+        ],
+        [
+          -205.9529376219892,
+          909.001952106139
+        ],
+        [
+          -300,
+          550
+        ],
+        [
+          -140,
+          160
+        ],
+        [
+          18,
+          -12
+        ]
+      ]
+    },
+    {
+      "id": "J6C",
+      "from": "M01",
+      "to": "world_tree",
+      "basis": [
+        "new outer maintenance access, schematic surface projection only"
+      ],
+      "xy_km": [
+        [
+          18,
+          -12
+        ],
+        [
+          12,
+          -8
+        ],
+        [
+          0,
+          0
+        ]
+      ]
+    }
+  ],
+  "level_model": {
+    "start": 1,
+    "target_end": 40,
+    "regional_gains": [
+      5,
+      6,
+      6,
+      7,
+      8,
+      7
+    ],
+    "numbers": "Reference player capability bands, no XP/HP/damage formula and no implemented level-system claim",
+    "wildlife": "No combat-level assignment to ordinary wildlife",
+    "scaling": "No global automatic scaling proposed; weak resident fauna and monsters remain weak on revisits"
+  },
+  "checks": {
+    "settlements_covered_once": 36,
+    "settlement_coordinates_unchanged": true,
+    "route_leg_endpoints_connected": true,
+    "shared_route_reuse": true,
+    "new_candidate_points_inland": true,
+    "gain_sum": 39
+  },
+  "limits": [
+    "First-chapter adopted canon retained; post-departure long journey and final boss remain candidates",
+    "New U01 and core access have no terrain or water-crossing verification",
+    "Existing route depth, bridges, slopes, season and elapsed travel time remain unverified",
+    "Stage level bands apply to selected adventure spaces, never every inhabitant or whole-city combat level",
+    "Encounter rates and level gains are design budgets, not playtest measurements"
+  ]
+}

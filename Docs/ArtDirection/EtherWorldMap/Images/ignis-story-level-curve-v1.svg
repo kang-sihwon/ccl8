@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2200" height="1220" viewBox="0 0 2200 1220"><rect width="100%" height="100%" fill="#f4f1e7"/>
+<text x="70" y="45" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="49" font-weight="700" fill="#254047">이그니스 | 지역 이동과 권장 성장 곡선</text>
+<text x="70" y="112" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="28" font-weight="400" fill="#254047">설계 비교값 · 자동 레벨 스케일링·강제 입장 제한·현행 구현 수치 아님</text>
+<polyline points="115.00,880.00 2070.00,880.00" fill="none" stroke="#d7dccd" stroke-width="2"/>
+<text x="65" y="865.0" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="24" font-weight="400" fill="#254047">1</text>
+<polyline points="115.00,812.31 2070.00,812.31" fill="none" stroke="#d7dccd" stroke-width="2"/>
+<text x="65" y="797.3076923076923" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="24" font-weight="400" fill="#254047">5</text>
+<polyline points="115.00,727.69 2070.00,727.69" fill="none" stroke="#d7dccd" stroke-width="2"/>
+<text x="65" y="712.6923076923076" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="24" font-weight="400" fill="#254047">10</text>
+<polyline points="115.00,643.08 2070.00,643.08" fill="none" stroke="#d7dccd" stroke-width="2"/>
+<text x="65" y="628.0769230769231" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="24" font-weight="400" fill="#254047">15</text>
+<polyline points="115.00,558.46 2070.00,558.46" fill="none" stroke="#d7dccd" stroke-width="2"/>
+<text x="65" y="543.4615384615385" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="24" font-weight="400" fill="#254047">20</text>
+<polyline points="115.00,473.85 2070.00,473.85" fill="none" stroke="#d7dccd" stroke-width="2"/>
+<text x="65" y="458.8461538461538" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="24" font-weight="400" fill="#254047">25</text>
+<polyline points="115.00,389.23 2070.00,389.23" fill="none" stroke="#d7dccd" stroke-width="2"/>
+<text x="65" y="374.2307692307692" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="24" font-weight="400" fill="#254047">30</text>
+<polyline points="115.00,304.62 2070.00,304.62" fill="none" stroke="#d7dccd" stroke-width="2"/>
+<text x="65" y="289.61538461538464" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="24" font-weight="400" fill="#254047">35</text>
+<polyline points="115.00,220.00 2070.00,220.00" fill="none" stroke="#d7dccd" stroke-width="2"/>
+<text x="65" y="205.0" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="24" font-weight="400" fill="#254047">40</text>
+<polygon points="200.00,880.00 315.00,880.00 315.00,795.38 200.00,795.38" fill="#427a56"/>
+<text x="175" y="905" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="26" font-weight="700" fill="#254047">S1 벨레스</text>
+<text x="200" y="950" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="27" font-weight="700" fill="#427a56">1 → 6</text>
+<text x="192" y="995" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="24" font-weight="400" fill="#254047">주 경로 +5</text>
+<polygon points="510.00,795.38 625.00,795.38 625.00,693.85 510.00,693.85" fill="#247d95"/>
+<text x="485" y="905" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="26" font-weight="700" fill="#254047">S2 로덴</text>
+<text x="510" y="950" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="27" font-weight="700" fill="#247d95">6 → 12</text>
+<text x="502" y="995" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="24" font-weight="400" fill="#254047">주 경로 +6</text>
+<polygon points="820.00,693.85 935.00,693.85 935.00,592.31 820.00,592.31" fill="#b58b30"/>
+<text x="795" y="905" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="26" font-weight="700" fill="#254047">S3 세르나</text>
+<text x="820" y="950" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="27" font-weight="700" fill="#b58b30">12 → 18</text>
+<text x="812" y="995" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="24" font-weight="400" fill="#254047">주 경로 +6</text>
+<polygon points="1130.00,592.31 1245.00,592.31 1245.00,473.85 1130.00,473.85" fill="#aa6740"/>
+<text x="1105" y="905" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="26" font-weight="700" fill="#254047">S4 하르덴</text>
+<text x="1130" y="950" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="27" font-weight="700" fill="#aa6740">18 → 25</text>
+<text x="1122" y="995" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="24" font-weight="400" fill="#254047">주 경로 +7</text>
+<polygon points="1440.00,473.85 1555.00,473.85 1555.00,338.46 1440.00,338.46" fill="#647bb0"/>
+<text x="1415" y="905" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="26" font-weight="700" fill="#254047">S5 북부</text>
+<text x="1440" y="950" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="27" font-weight="700" fill="#647bb0">25 → 33</text>
+<text x="1432" y="995" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="24" font-weight="400" fill="#254047">주 경로 +8</text>
+<polygon points="1750.00,338.46 1865.00,338.46 1865.00,220.00 1750.00,220.00" fill="#865b94"/>
+<text x="1725" y="905" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="26" font-weight="700" fill="#254047">S6 세계수</text>
+<text x="1750" y="950" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="27" font-weight="700" fill="#865b94">33 → 40</text>
+<text x="1742" y="995" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="24" font-weight="400" fill="#254047">주 경로 +7</text>
+<polyline points="257.00,795.38 567.00,693.85 877.00,592.31 1187.00,473.85 1497.00,338.46 1807.00,220.00" fill="none" stroke="#4f4a42" stroke-width="3"/>
+<text x="70" y="1080" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="25" font-weight="400" fill="#254047">지역 일반 적·정예·보스는 서로 다른 기준을 쓴다. 낮은 레벨 개체도 남으며, 일반 동물에게 이 곡선을 적용하지 않는다.</text>
+<text x="70" y="1132" dominant-baseline="text-before-edge" font-family="Malgun Gothic,sans-serif" font-size="25" font-weight="400" fill="#254047">주 경로만으로 다음 구간에 진입할 성장량을 목표로 한다. 선택 탐색·반복 사냥을 필수 레벨 노가다로 요구하지 않는다.</text>
+</svg>
