@@ -20,6 +20,7 @@
 | 읽는 때 | 문서·절 |
 |---|---|
 | 레퍼런스를 바탕으로 등장 종·초자연 존재·구조체와 지역 연결을 비교할 때 | [몬스터 확장안](2026-10-31-ether-taiga-dawn/2026-11-08-expanded-monster-roster.md) |
+| 같은 종의 피부색·외모·행동과 파생형별 레벨 차이를 볼 때 | [몬스터 파생형 기준안](2026-10-31-ether-taiga-dawn/2026-11-08-monster-variants.md) |
 | 몬스터 원형의 출처와 작품별 해석 차이를 확인할 때 | [소설·게임 레퍼런스 조사](../Research/2026-11-08-fantasy-monster-references.md) |
 | 최초 14종의 상세 생태·기능명 대응과 이전 추천을 비교할 때 | [종 기준안 보존본](2026-10-31-ether-taiga-dawn/2026-11-08-monster-roster.md) |
 | 확장 종 기준 메인 이동·환경·동물·생활권·레벨·36곳 연결을 볼 때 | [이그니스 생태·성장 v2](2026-10-31-ether-taiga-dawn/2026-11-08-continent-ecology-progression-v2.md) |
