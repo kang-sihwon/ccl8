@@ -19,6 +19,7 @@
 
 | 읽는 때 | 문서·절 |
 |---|---|
+| 타르넬–로덴의 현행 탐색 장소·생활권·성장·구조·다른 귀환길을 볼 때 | [S2 탐색 상세 후보와 지도](2026-10-31-ether-taiga-dawn/2026-11-08-tarnel-roden-exploration.md) |
 | 레퍼런스를 바탕으로 등장 종·초자연 존재·구조체와 지역 연결을 비교할 때 | [몬스터 확장안](2026-10-31-ether-taiga-dawn/2026-11-08-expanded-monster-roster.md) |
 | 같은 종의 피부색·외모·행동과 파생형별 레벨 차이를 볼 때 | [몬스터 파생형 기준안](2026-10-31-ether-taiga-dawn/2026-11-08-monster-variants.md) |
 | 64항목·199형태의 이전 외형·배치와 원문을 찾을 때 | [5대륙 파생형 전체안](2026-10-31-ether-taiga-dawn/2026-11-08-worldwide-monster-variants.md) |

@@ -8,6 +8,7 @@
 
 | 문서 | 소유하는 내용 |
 |---|---|
+| [타르넬–로덴 탐색 상세](2026-11-08-tarnel-roden-exploration.md) | S2의 6→10 범위를 적용한 22장소·13형태·생활권·구조 사건·왕복 지도. 세계 분류·199형태·해금은 유지한다. |
 | [64항목 분류](2026-11-08-world-distribution-and-leveling/species-distribution.md) | 모든 기본 ID의 공통·고유 구분, 대륙과 유지 조건, 보류 7항목 |
 | [199형태 배치](2026-11-08-world-distribution-and-leveling/variant-distribution.md) | 모든 형태 ID의 현행 대륙·권역·교전 권장 범위와 외형 원문 연결 |
 | [지역별 생태](2026-11-08-world-distribution-and-leveling/regional-ecology.md) | 자연환경·일반 동물·먹이·생활·거점·이동·사람과의 충돌, 분포 관계도 |

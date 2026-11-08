@@ -8,6 +8,8 @@
 
 ## 지도 용도와 UI 방향
 
+현행 분포·레벨의 기준은 [세계 분포·성장 후보](../Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-08-world-distribution-and-leveling.md)다. 이를 적용한 [타르넬–로덴 구간도·탐색 확대도](EtherWorldMap/2026-11-08-tarnel-roden-exploration-map.md)에 두 생활권의 진입·귀환·철수와 22개 장소를 작성했다. 아래 v1·v2 안내와 수치는 이전 작업 기록이며, 새 S2 도면이 다른 지역의 옛 그림까지 갱신한 것은 아니다.
+
 확장 몬스터 기준의 현재 분포·레벨 문서는 [생태·성장 v2](../Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-08-continent-ecology-progression-v2.md)다. v2는 문서 작업이며 아래 v1의 지도·JSON을 갱신하지 않았다. v1 그림은 기존 지형·경로의 참고이고 확장 종의 현행 배치도가 아니다.
 
 대륙 메인 여정을 기존 좌표에 연결한 [이동·생태·성장 후보](../Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-08-continent-ecology-progression.md)에 전체 경로도·중앙 확대도·성장 곡선과 JSON을 추가했다. 36곳과 기존 해안·물길을 유지하고 여섯 메인 구간과 세 선택 탐색권을 구분한다. 새 접근점·레벨·지역 생태는 후보이며 그림의 색 표식은 기후 경계나 실제 스폰 영역이 아니다.

@@ -1,0 +1,1521 @@
+{
+  "status": "design_candidate_not_spawn_or_navmesh_validation",
+  "coordinate_system": "local east/north meters added to existing World Tree centered projection km; no rotation",
+  "anchors": {
+    "T": [
+      137,
+      125
+    ],
+    "R": [
+      110,
+      95
+    ]
+  },
+  "source_basis": "Docs/ArtDirection/EtherWorldMap/Data/worldtree-settlement-basis-v1.json",
+  "source_sha256": "bd3881e02c533df5993a014d4b840253bd5c10262626ab22eb59ea35aac25431",
+  "preserved_river_knots_km": [
+    [
+      158,
+      157
+    ],
+    [
+      150,
+      145
+    ],
+    [
+      145,
+      140
+    ],
+    [
+      146,
+      130
+    ],
+    [
+      137,
+      125
+    ],
+    [
+      133,
+      112
+    ],
+    [
+      120,
+      110
+    ],
+    [
+      118,
+      101
+    ],
+    [
+      110,
+      95
+    ],
+    [
+      98,
+      88
+    ],
+    [
+      83,
+      75
+    ],
+    [
+      64,
+      60
+    ],
+    [
+      48,
+      42
+    ],
+    [
+      36,
+      20
+    ],
+    [
+      28,
+      -12
+    ],
+    [
+      31,
+      -30
+    ],
+    [
+      42,
+      -48
+    ]
+  ],
+  "corridor_knots_km": [
+    [
+      137,
+      125
+    ],
+    [
+      133,
+      112
+    ],
+    [
+      120,
+      110
+    ],
+    [
+      118,
+      101
+    ],
+    [
+      110,
+      95
+    ]
+  ],
+  "corridor_planar_length_km": 45.97396140399424,
+  "city_anchor_planar_distance_km": 40.36087214122113,
+  "frames": {
+    "T": {
+      "anchor": [
+        137,
+        125
+      ],
+      "bounds": [
+        -650,
+        -1750,
+        1550,
+        400
+      ],
+      "scale": 0.56,
+      "screen": {
+        "origin_px": [
+          80,
+          190
+        ],
+        "scale_px_per_m": 0.56
+      },
+      "visible_river_local_knots_m": [
+        [
+          720.0,
+          400
+        ],
+        [
+          0.0,
+          0
+        ],
+        [
+          -153.84615384615387,
+          -500
+        ],
+        [
+          -307.69230769230774,
+          -1000
+        ],
+        [
+          -538.4615384615385,
+          -1750
+        ]
+      ]
+    },
+    "R": {
+      "anchor": [
+        110,
+        95
+      ],
+      "bounds": [
+        -1120,
+        -180,
+        1200,
+        1570
+      ],
+      "scale": 0.56,
+      "screen": {
+        "origin_px": [
+          80,
+          190
+        ],
+        "scale_px_per_m": 0.56
+      },
+      "visible_river_local_knots_m": [
+        [
+          -308.57142857142856,
+          -180
+        ],
+        [
+          0.0,
+          0
+        ],
+        [
+          533.3333333333333,
+          400
+        ],
+        [
+          1066.6666666666665,
+          800
+        ],
+        [
+          1200.0,
+          900
+        ]
+      ]
+    }
+  },
+  "nodes": {
+    "T": [
+      {
+        "id": "A01",
+        "name": "공동 나루",
+        "xy_m": [
+          360,
+          80
+        ],
+        "regional_xy_km": [
+          137.36,
+          125.08
+        ]
+      },
+      {
+        "id": "A02",
+        "name": "목재 검사길",
+        "xy_m": [
+          540,
+          -180
+        ],
+        "regional_xy_km": [
+          137.54,
+          124.82
+        ]
+      },
+      {
+        "id": "A03",
+        "name": "샛개울 다리",
+        "xy_m": [
+          420,
+          -650
+        ],
+        "regional_xy_km": [
+          137.42,
+          124.35
+        ]
+      },
+      {
+        "id": "A04",
+        "name": "옛 적재장",
+        "xy_m": [
+          1000,
+          -430
+        ],
+        "regional_xy_km": [
+          138.0,
+          124.57
+        ]
+      },
+      {
+        "id": "A05",
+        "name": "수액 숲",
+        "xy_m": [
+          1220,
+          -950
+        ],
+        "regional_xy_km": [
+          138.22,
+          124.05
+        ]
+      },
+      {
+        "id": "A06",
+        "name": "적토 저장굴",
+        "xy_m": [
+          1050,
+          -1300
+        ],
+        "regional_xy_km": [
+          138.05,
+          123.7
+        ]
+      },
+      {
+        "id": "A07",
+        "name": "어살·여울 관찰턱",
+        "xy_m": [
+          -270,
+          -1170
+        ],
+        "regional_xy_km": [
+          136.73,
+          123.83
+        ]
+      },
+      {
+        "id": "A08",
+        "name": "하류 쉼나루",
+        "xy_m": [
+          -360,
+          -1510
+        ],
+        "regional_xy_km": [
+          136.64,
+          123.49
+        ]
+      },
+      {
+        "id": "A09",
+        "name": "높은 운반길",
+        "xy_m": [
+          720,
+          -1420
+        ],
+        "regional_xy_km": [
+          137.72,
+          123.58
+        ]
+      },
+      {
+        "id": "A10",
+        "name": "숲길 갈림턱",
+        "xy_m": [
+          500,
+          -1030
+        ],
+        "regional_xy_km": [
+          137.5,
+          123.97
+        ]
+      }
+    ],
+    "R": [
+      {
+        "id": "B01",
+        "name": "공공 나루",
+        "xy_m": [
+          40,
+          90
+        ],
+        "regional_xy_km": [
+          110.04,
+          95.09
+        ]
+      },
+      {
+        "id": "B02",
+        "name": "조합·주거단",
+        "xy_m": [
+          -620,
+          400
+        ],
+        "regional_xy_km": [
+          109.38,
+          95.4
+        ]
+      },
+      {
+        "id": "B03",
+        "name": "작업구 입구",
+        "xy_m": [
+          -320,
+          760
+        ],
+        "regional_xy_km": [
+          109.68,
+          95.76
+        ]
+      },
+      {
+        "id": "B04",
+        "name": "바깥 목재길",
+        "xy_m": [
+          -700,
+          1120
+        ],
+        "regional_xy_km": [
+          109.3,
+          96.12
+        ]
+      },
+      {
+        "id": "B05",
+        "name": "배수굴 마른 턱",
+        "xy_m": [
+          -100,
+          950
+        ],
+        "regional_xy_km": [
+          109.9,
+          95.95
+        ]
+      },
+      {
+        "id": "B06",
+        "name": "배관 정비뜰",
+        "xy_m": [
+          100,
+          900
+        ],
+        "regional_xy_km": [
+          110.1,
+          95.9
+        ]
+      },
+      {
+        "id": "B07",
+        "name": "차단함·외곽길",
+        "xy_m": [
+          260,
+          800
+        ],
+        "regional_xy_km": [
+          110.26,
+          95.8
+        ]
+      },
+      {
+        "id": "B08",
+        "name": "부상자 대기단",
+        "xy_m": [
+          360,
+          690
+        ],
+        "regional_xy_km": [
+          110.36,
+          95.69
+        ]
+      },
+      {
+        "id": "B09",
+        "name": "철근지기 작업뜰",
+        "xy_m": [
+          430,
+          560
+        ],
+        "regional_xy_km": [
+          110.43,
+          95.56
+        ]
+      },
+      {
+        "id": "B10",
+        "name": "열린 구조 선착장",
+        "xy_m": [
+          660,
+          560
+        ],
+        "regional_xy_km": [
+          110.66,
+          95.56
+        ]
+      },
+      {
+        "id": "B11",
+        "name": "제방 귀환길",
+        "xy_m": [
+          120,
+          270
+        ],
+        "regional_xy_km": [
+          110.12,
+          95.27
+        ]
+      },
+      {
+        "id": "B12",
+        "name": "외곽 우회단",
+        "xy_m": [
+          110,
+          600
+        ],
+        "regional_xy_km": [
+          110.11,
+          95.6
+        ]
+      }
+    ]
+  },
+  "paths": {
+    "T_out": {
+      "node_ids": [
+        "A01",
+        "A02",
+        "A03",
+        "A10",
+        "A07",
+        "A08"
+      ],
+      "length_m": 2324.0
+    },
+    "T_back": {
+      "node_ids": [
+        "A08",
+        "A09",
+        "A04",
+        "A02",
+        "A01"
+      ],
+      "length_m": 2952.4
+    },
+    "T_short": {
+      "node_ids": [
+        "A08",
+        "A07",
+        "A10",
+        "A03",
+        "A02",
+        "A01"
+      ],
+      "length_m": 2324.0
+    },
+    "T_optional": {
+      "node_ids": [
+        "A04",
+        "A05",
+        "A06",
+        "A09"
+      ],
+      "length_m": 1304.9
+    },
+    "R_out": {
+      "node_ids": [
+        "B01",
+        "B02",
+        "B03",
+        "B04",
+        "B05",
+        "B06",
+        "B07",
+        "B08",
+        "B07",
+        "B12",
+        "B09",
+        "B10"
+      ],
+      "length_m": 3839.5
+    },
+    "R_back": {
+      "node_ids": [
+        "B10",
+        "B11",
+        "B01"
+      ],
+      "length_m": 809.9
+    },
+    "R_retreat": {
+      "node_ids": [
+        "B07",
+        "B05",
+        "B04",
+        "B03",
+        "B02",
+        "B01"
+      ],
+      "length_m": 2734.9
+    },
+    "R_haul": {
+      "node_ids": [
+        "B03",
+        "B06"
+      ],
+      "length_m": 442.7
+    },
+    "R_rescue": {
+      "node_ids": [
+        "B08",
+        "B09",
+        "B10"
+      ],
+      "length_m": 377.6
+    }
+  },
+  "groups": [
+    {
+      "id": "TG1",
+      "area": "T",
+      "name": "목재 회수조",
+      "members": [
+        {
+          "form": "MN01-A",
+          "count": 4,
+          "readiness": [
+            4,
+            6
+          ]
+        },
+        {
+          "form": "MN01-B",
+          "count": 2,
+          "readiness": [
+            5,
+            8
+          ]
+        }
+      ],
+      "home_xy_m": [
+        800,
+        -350
+      ],
+      "home_radius_m": 140,
+      "patrol_xy_m": [
+        [
+          1000,
+          -430
+        ],
+        [
+          900,
+          -850
+        ],
+        [
+          540,
+          -180
+        ]
+      ],
+      "patrol_halfwidth_m": 75
+    },
+    {
+      "id": "TG2",
+      "area": "T",
+      "name": "적토 운반·약탈조",
+      "members": [
+        {
+          "form": "MN01-C",
+          "count": 4,
+          "readiness": [
+            7,
+            10
+          ]
+        }
+      ],
+      "home_xy_m": [
+        1050,
+        -1300
+      ],
+      "home_radius_m": 150,
+      "patrol_xy_m": [
+        [
+          1050,
+          -1300
+        ],
+        [
+          720,
+          -1420
+        ],
+        [
+          100,
+          -1420
+        ],
+        [
+          500,
+          -1030
+        ]
+      ],
+      "patrol_halfwidth_m": 70
+    },
+    {
+      "id": "TW1",
+      "area": "T",
+      "name": "얕은 어살 사냥",
+      "members": [
+        {
+          "form": "MN04-A",
+          "count": 2,
+          "readiness": [
+            4,
+            6
+          ]
+        }
+      ],
+      "home_xy_m": [
+        -280,
+        -1100
+      ],
+      "home_radius_m": 130,
+      "patrol_xy_m": [],
+      "patrol_halfwidth_m": 0
+    },
+    {
+      "id": "TW2",
+      "area": "T",
+      "name": "깊은 그늘 사냥",
+      "members": [
+        {
+          "form": "MN04-B",
+          "count": 1,
+          "readiness": [
+            6,
+            8
+          ]
+        }
+      ],
+      "home_xy_m": [
+        -390,
+        -1390
+      ],
+      "home_radius_m": 100,
+      "patrol_xy_m": [],
+      "patrol_halfwidth_m": 0
+    },
+    {
+      "id": "TS1",
+      "area": "T",
+      "name": "수액 포획망",
+      "members": [
+        {
+          "form": "MN07-A",
+          "count": 2,
+          "readiness": [
+            8,
+            11
+          ]
+        }
+      ],
+      "home_xy_m": [
+        1240,
+        -940
+      ],
+      "home_radius_m": 170,
+      "patrol_xy_m": [],
+      "patrol_halfwidth_m": 0
+    },
+    {
+      "id": "TC1",
+      "area": "T",
+      "name": "고사목 바닥",
+      "members": [
+        {
+          "form": "MN35-A",
+          "count": 3,
+          "readiness": [
+            4,
+            8
+          ]
+        }
+      ],
+      "home_xy_m": [
+        410,
+        -660
+      ],
+      "home_radius_m": 110,
+      "patrol_xy_m": [],
+      "patrol_halfwidth_m": 0
+    },
+    {
+      "id": "TL1",
+      "area": "T",
+      "name": "샛개울 잔류물",
+      "members": [
+        {
+          "form": "MN38-A",
+          "count": 3,
+          "readiness": [
+            3,
+            6
+          ]
+        }
+      ],
+      "home_xy_m": [
+        -70,
+        -600
+      ],
+      "home_radius_m": 90,
+      "patrol_xy_m": [],
+      "patrol_halfwidth_m": 0
+    },
+    {
+      "id": "RG1",
+      "area": "R",
+      "name": "폐목 회수조",
+      "members": [
+        {
+          "form": "MN01-A",
+          "count": 2,
+          "readiness": [
+            4,
+            6
+          ]
+        },
+        {
+          "form": "MN01-B",
+          "count": 2,
+          "readiness": [
+            5,
+            8
+          ]
+        }
+      ],
+      "home_xy_m": [
+        -740,
+        1170
+      ],
+      "home_radius_m": 160,
+      "patrol_xy_m": [
+        [
+          -740,
+          1170
+        ],
+        [
+          -520,
+          900
+        ],
+        [
+          -320,
+          760
+        ]
+      ],
+      "patrol_halfwidth_m": 70
+    },
+    {
+      "id": "RK1",
+      "area": "R",
+      "name": "굴 채집·경보조",
+      "members": [
+        {
+          "form": "MN16-A",
+          "count": 4,
+          "readiness": [
+            5,
+            8
+          ]
+        }
+      ],
+      "home_xy_m": [
+        -100,
+        950
+      ],
+      "home_radius_m": 95,
+      "patrol_xy_m": [],
+      "patrol_halfwidth_m": 0
+    },
+    {
+      "id": "RK2",
+      "area": "R",
+      "name": "광물 저장조",
+      "members": [
+        {
+          "form": "MN16-B",
+          "count": 2,
+          "readiness": [
+            8,
+            10
+          ]
+        }
+      ],
+      "home_xy_m": [
+        150,
+        1080
+      ],
+      "home_radius_m": 100,
+      "patrol_xy_m": [],
+      "patrol_halfwidth_m": 0
+    },
+    {
+      "id": "RU1",
+      "area": "R",
+      "name": "외곽 피복 군체",
+      "members": [
+        {
+          "form": "MN05-A",
+          "count": 4,
+          "readiness": [
+            6,
+            8
+          ]
+        }
+      ],
+      "home_xy_m": [
+        100,
+        900
+      ],
+      "home_radius_m": 90,
+      "patrol_xy_m": [],
+      "patrol_halfwidth_m": 0
+    },
+    {
+      "id": "RU2",
+      "area": "R",
+      "name": "내측 피복 군체",
+      "members": [
+        {
+          "form": "MN05-A",
+          "count": 2,
+          "readiness": [
+            6,
+            8
+          ]
+        },
+        {
+          "form": "MN05-B",
+          "count": 2,
+          "readiness": [
+            8,
+            10
+          ]
+        }
+      ],
+      "home_xy_m": [
+        300,
+        810
+      ],
+      "home_radius_m": 80,
+      "patrol_xy_m": [
+        [
+          300,
+          810
+        ],
+        [
+          360,
+          690
+        ]
+      ],
+      "patrol_halfwidth_m": 45
+    },
+    {
+      "id": "RS1",
+      "area": "R",
+      "name": "폐수액 포획망",
+      "members": [
+        {
+          "form": "MN07-A",
+          "count": 2,
+          "readiness": [
+            8,
+            11
+          ]
+        }
+      ],
+      "home_xy_m": [
+        -530,
+        1290
+      ],
+      "home_radius_m": 140,
+      "patrol_xy_m": [],
+      "patrol_halfwidth_m": 0
+    },
+    {
+      "id": "RL1",
+      "area": "R",
+      "name": "배수 웅덩이",
+      "members": [
+        {
+          "form": "MN38-A",
+          "count": 3,
+          "readiness": [
+            3,
+            6
+          ]
+        }
+      ],
+      "home_xy_m": [
+        0,
+        600
+      ],
+      "home_radius_m": 110,
+      "patrol_xy_m": [],
+      "patrol_halfwidth_m": 0
+    },
+    {
+      "id": "RO1",
+      "area": "R",
+      "name": "곡물 잔여물 은신",
+      "members": [
+        {
+          "form": "MN22-A",
+          "count": 1,
+          "readiness": [
+            10,
+            13
+          ]
+        }
+      ],
+      "home_xy_m": [
+        -880,
+        680
+      ],
+      "home_radius_m": 160,
+      "patrol_xy_m": [],
+      "patrol_halfwidth_m": 0
+    }
+  ],
+  "constructs": [
+    {
+      "id": "RC1",
+      "model": "CT02-A",
+      "name": "견인 수레",
+      "xy": [
+        40,
+        90
+      ],
+      "count": 1,
+      "readiness": [
+        8,
+        8
+      ]
+    },
+    {
+      "id": "RC2",
+      "model": "CT02-A",
+      "name": "철근지기",
+      "xy": [
+        430,
+        560
+      ],
+      "count": 1,
+      "readiness": [
+        10,
+        10
+      ]
+    }
+  ],
+  "sampling": {
+    "step_m_max": 5,
+    "meaning": "route intersection with potential home/patrol envelopes, not actual encounters, visibility or spawn probability",
+    "cases": {
+      "T_out": {
+        "before": {
+          "length_m": 2324.0,
+          "max_empty_m": 568.3,
+          "max_overlapping_envelopes": 1,
+          "potential_groups": [
+            "TC1",
+            "TG1",
+            "TG2",
+            "TW1",
+            "TW2"
+          ],
+          "clusters": [
+            {
+              "start_m": 242.1,
+              "end_m": 395.4,
+              "groups": [
+                "TG1"
+              ]
+            },
+            {
+              "start_m": 707.3,
+              "end_m": 920.8,
+              "groups": [
+                "TC1"
+              ]
+            },
+            {
+              "start_m": 1090.1,
+              "end_m": 1294.3,
+              "groups": [
+                "TG2"
+              ]
+            },
+            {
+              "start_m": 1862.6,
+              "end_m": 2036.7,
+              "groups": [
+                "TW1"
+              ]
+            },
+            {
+              "start_m": 2135.7,
+              "end_m": 2299.2,
+              "groups": [
+                "TW2"
+              ]
+            }
+          ]
+        },
+        "after": {
+          "length_m": 2324.0,
+          "max_empty_m": 543.4,
+          "max_overlapping_envelopes": 1,
+          "potential_groups": [
+            "TC1",
+            "TG1",
+            "TG2",
+            "TW1",
+            "TW2"
+          ],
+          "clusters": [
+            {
+              "start_m": 242.1,
+              "end_m": 430.1,
+              "groups": [
+                "TG1"
+              ]
+            },
+            {
+              "start_m": 707.3,
+              "end_m": 920.8,
+              "groups": [
+                "TC1"
+              ]
+            },
+            {
+              "start_m": 1119.9,
+              "end_m": 1319.2,
+              "groups": [
+                "TG2"
+              ]
+            },
+            {
+              "start_m": 1862.6,
+              "end_m": 2036.7,
+              "groups": [
+                "TW1"
+              ]
+            },
+            {
+              "start_m": 2135.7,
+              "end_m": 2299.2,
+              "groups": [
+                "TW2"
+              ]
+            }
+          ]
+        }
+      },
+      "T_back": {
+        "before": {
+          "length_m": 2952.4,
+          "max_empty_m": 973.9,
+          "max_overlapping_envelopes": 1,
+          "potential_groups": [
+            "TG1",
+            "TG2"
+          ],
+          "clusters": [
+            {
+              "start_m": 973.9,
+              "end_m": 1228.6,
+              "groups": [
+                "TG2"
+              ]
+            },
+            {
+              "start_m": 2037.7,
+              "end_m": 2715.2,
+              "groups": [
+                "TG1"
+              ]
+            }
+          ]
+        },
+        "after": {
+          "length_m": 2952.4,
+          "max_empty_m": 439.5,
+          "max_overlapping_envelopes": 1,
+          "potential_groups": [
+            "TG1",
+            "TG2"
+          ],
+          "clusters": [
+            {
+              "start_m": 419.5,
+              "end_m": 1173.6,
+              "groups": [
+                "TG2"
+              ]
+            },
+            {
+              "start_m": 1613.1,
+              "end_m": 2466.6,
+              "groups": [
+                "TG1"
+              ]
+            },
+            {
+              "start_m": 2501.5,
+              "end_m": 2715.2,
+              "groups": [
+                "TG1"
+              ]
+            }
+          ]
+        }
+      },
+      "R_out": {
+        "before": {
+          "length_m": 3839.5,
+          "max_empty_m": 1128.0,
+          "max_overlapping_envelopes": 2,
+          "potential_groups": [
+            "RC2",
+            "RG1",
+            "RK1",
+            "RL1",
+            "RU1",
+            "RU2"
+          ],
+          "clusters": [
+            {
+              "start_m": 1128.0,
+              "end_m": 1846.0,
+              "groups": [
+                "RG1"
+              ]
+            },
+            {
+              "start_m": 2215.1,
+              "end_m": 3112.0,
+              "groups": [
+                "RK1",
+                "RU1",
+                "RU2"
+              ]
+            },
+            {
+              "start_m": 3287.0,
+              "end_m": 3292.0,
+              "groups": [
+                "RL1"
+              ]
+            },
+            {
+              "start_m": 3559.9,
+              "end_m": 3664.5,
+              "groups": [
+                "RC2"
+              ]
+            }
+          ]
+        },
+        "after": {
+          "length_m": 3839.5,
+          "max_empty_m": 1128.0,
+          "max_overlapping_envelopes": 1,
+          "potential_groups": [
+            "RC2",
+            "RG1",
+            "RK1",
+            "RL1",
+            "RU1",
+            "RU2"
+          ],
+          "clusters": [
+            {
+              "start_m": 1128.0,
+              "end_m": 1846.0,
+              "groups": [
+                "RG1"
+              ]
+            },
+            {
+              "start_m": 2250.1,
+              "end_m": 2443.0,
+              "groups": [
+                "RK1"
+              ]
+            },
+            {
+              "start_m": 2462.7,
+              "end_m": 2645.4,
+              "groups": [
+                "RU1"
+              ]
+            },
+            {
+              "start_m": 2695.0,
+              "end_m": 3082.0,
+              "groups": [
+                "RU2"
+              ]
+            },
+            {
+              "start_m": 3287.0,
+              "end_m": 3292.0,
+              "groups": [
+                "RL1"
+              ]
+            },
+            {
+              "start_m": 3559.9,
+              "end_m": 3664.5,
+              "groups": [
+                "RC2"
+              ]
+            }
+          ]
+        }
+      },
+      "R_back": {
+        "before": {
+          "length_m": 809.9,
+          "max_empty_m": 809.9,
+          "max_overlapping_envelopes": 0,
+          "potential_groups": [],
+          "clusters": []
+        },
+        "after": {
+          "length_m": 809.9,
+          "max_empty_m": 809.9,
+          "max_overlapping_envelopes": 0,
+          "potential_groups": [],
+          "clusters": []
+        }
+      }
+    }
+  },
+  "gates": [
+    {
+      "edge": [
+        "B06",
+        "B07"
+      ],
+      "state": "closed after stair collapse; B07-B05 outer bypass remains"
+    },
+    {
+      "edge": [
+        "B08",
+        "B09"
+      ],
+      "state": "stretcher gate opens through manual operation at B09 during boss response"
+    },
+    {
+      "edge": [
+        "B07",
+        "B08"
+      ],
+      "state": "1.5m service stair; people can pass, assembled stretcher cannot negotiate corner"
+    }
+  ],
+  "comparison_initial_groups": [
+    {
+      "id": "TG1",
+      "area": "T",
+      "home_xy_m": [
+        800,
+        -350
+      ],
+      "home_radius_m": 140,
+      "patrol_xy_m": [
+        [
+          1000,
+          -430
+        ],
+        [
+          540,
+          -180
+        ]
+      ],
+      "patrol_halfwidth_m": 75
+    },
+    {
+      "id": "TG2",
+      "area": "T",
+      "home_xy_m": [
+        1050,
+        -1300
+      ],
+      "home_radius_m": 150,
+      "patrol_xy_m": [
+        [
+          1050,
+          -1300
+        ],
+        [
+          720,
+          -1420
+        ],
+        [
+          500,
+          -1030
+        ]
+      ],
+      "patrol_halfwidth_m": 100
+    },
+    {
+      "id": "TW1",
+      "area": "T",
+      "home_xy_m": [
+        -280,
+        -1100
+      ],
+      "home_radius_m": 130,
+      "patrol_xy_m": [],
+      "patrol_halfwidth_m": 0
+    },
+    {
+      "id": "TW2",
+      "area": "T",
+      "home_xy_m": [
+        -390,
+        -1390
+      ],
+      "home_radius_m": 100,
+      "patrol_xy_m": [],
+      "patrol_halfwidth_m": 0
+    },
+    {
+      "id": "TS1",
+      "area": "T",
+      "home_xy_m": [
+        1240,
+        -940
+      ],
+      "home_radius_m": 170,
+      "patrol_xy_m": [],
+      "patrol_halfwidth_m": 0
+    },
+    {
+      "id": "TC1",
+      "area": "T",
+      "home_xy_m": [
+        410,
+        -660
+      ],
+      "home_radius_m": 110,
+      "patrol_xy_m": [],
+      "patrol_halfwidth_m": 0
+    },
+    {
+      "id": "TL1",
+      "area": "T",
+      "home_xy_m": [
+        -70,
+        -600
+      ],
+      "home_radius_m": 90,
+      "patrol_xy_m": [],
+      "patrol_halfwidth_m": 0
+    },
+    {
+      "id": "RG1",
+      "area": "R",
+      "home_xy_m": [
+        -740,
+        1170
+      ],
+      "home_radius_m": 160,
+      "patrol_xy_m": [
+        [
+          -740,
+          1170
+        ],
+        [
+          -520,
+          900
+        ],
+        [
+          -320,
+          760
+        ]
+      ],
+      "patrol_halfwidth_m": 70
+    },
+    {
+      "id": "RK1",
+      "area": "R",
+      "home_xy_m": [
+        -100,
+        950
+      ],
+      "home_radius_m": 130,
+      "patrol_xy_m": [],
+      "patrol_halfwidth_m": 0
+    },
+    {
+      "id": "RK2",
+      "area": "R",
+      "home_xy_m": [
+        150,
+        1080
+      ],
+      "home_radius_m": 100,
+      "patrol_xy_m": [],
+      "patrol_halfwidth_m": 0
+    },
+    {
+      "id": "RU1",
+      "area": "R",
+      "home_xy_m": [
+        100,
+        900
+      ],
+      "home_radius_m": 110,
+      "patrol_xy_m": [],
+      "patrol_halfwidth_m": 0
+    },
+    {
+      "id": "RU2",
+      "area": "R",
+      "home_xy_m": [
+        300,
+        810
+      ],
+      "home_radius_m": 110,
+      "patrol_xy_m": [
+        [
+          300,
+          810
+        ],
+        [
+          360,
+          690
+        ],
+        [
+          470,
+          650
+        ]
+      ],
+      "patrol_halfwidth_m": 60
+    },
+    {
+      "id": "RS1",
+      "area": "R",
+      "home_xy_m": [
+        -530,
+        1290
+      ],
+      "home_radius_m": 140,
+      "patrol_xy_m": [],
+      "patrol_halfwidth_m": 0
+    },
+    {
+      "id": "RL1",
+      "area": "R",
+      "home_xy_m": [
+        0,
+        600
+      ],
+      "home_radius_m": 110,
+      "patrol_xy_m": [],
+      "patrol_halfwidth_m": 0
+    },
+    {
+      "id": "RO1",
+      "area": "R",
+      "home_xy_m": [
+        -880,
+        680
+      ],
+      "home_radius_m": 160,
+      "patrol_xy_m": [],
+      "patrol_halfwidth_m": 0
+    }
+  ]
+}
