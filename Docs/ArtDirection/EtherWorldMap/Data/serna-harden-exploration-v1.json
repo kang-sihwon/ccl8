@@ -1,0 +1,1778 @@
+{
+  "status": "design_candidate_not_canon_or_gameplay_validation",
+  "source_georeference": "Docs/ArtDirection/EtherWorldMap/Data/ignis-continent-georeference-v1.json",
+  "source_sha256": "6db8af3cd42905181145fb26bd22793523428dcdd728b1d7d78c46e7acc773b0",
+  "anchors_xy_km": {
+    "transfer": [
+      28,
+      -12
+    ],
+    "kelba": [
+      -890.3430271555216,
+      200.3333881209349
+    ],
+    "harden": [
+      -1435.2733267209078,
+      454.34169769054535
+    ]
+  },
+  "coordinate_rule": "Original World Tree AEQD XY plus local meters/1000; grid north; no new survey or true north",
+  "corridors": {
+    "river_upstream": {
+      "mode": "river_vessel",
+      "source": "R1",
+      "xy_km": [
+        [
+          417.4518741058252,
+          -1063.9045819597554
+        ],
+        [
+          100,
+          -350
+        ],
+        [
+          50,
+          -180
+        ],
+        [
+          42,
+          -48
+        ],
+        [
+          31,
+          -30
+        ],
+        [
+          28,
+          -12
+        ]
+      ],
+      "planar_length_km": 1130.0896468519982
+    },
+    "public_access": {
+      "mode": "road",
+      "source": "R2",
+      "xy_km": [
+        [
+          28,
+          -12
+        ],
+        [
+          18,
+          -12
+        ]
+      ],
+      "planar_length_km": 10.0
+    },
+    "plateau_road": {
+      "mode": "road",
+      "source": "R4",
+      "xy_km": [
+        [
+          18,
+          -12
+        ],
+        [
+          -200,
+          0
+        ],
+        [
+          -650,
+          100
+        ],
+        [
+          -890.3430271555216,
+          200.3333881209349
+        ],
+        [
+          -1435.2733267209078,
+          454.34169769054535
+        ]
+      ],
+      "planar_length_km": 1540.975304830601
+    }
+  },
+  "preserved_rivers": {
+    "H01": [
+      [
+        544.5678274359643,
+        1206.8545374268083
+      ],
+      [
+        578.2526718176341,
+        704.8192494456285
+      ],
+      [
+        350,
+        400
+      ],
+      [
+        230,
+        260
+      ],
+      [
+        158,
+        157
+      ],
+      [
+        150,
+        145
+      ],
+      [
+        145,
+        140
+      ],
+      [
+        146,
+        130
+      ],
+      [
+        137,
+        125
+      ],
+      [
+        133,
+        112
+      ],
+      [
+        120,
+        110
+      ],
+      [
+        118,
+        101
+      ],
+      [
+        110,
+        95
+      ],
+      [
+        98,
+        88
+      ],
+      [
+        83,
+        75
+      ],
+      [
+        64,
+        60
+      ],
+      [
+        48,
+        42
+      ],
+      [
+        36,
+        20
+      ],
+      [
+        28,
+        -12
+      ],
+      [
+        31,
+        -30
+      ],
+      [
+        42,
+        -48
+      ],
+      [
+        50,
+        -180
+      ],
+      [
+        100,
+        -350
+      ],
+      [
+        417.4518741058252,
+        -1063.9045819597554
+      ],
+      [
+        416.4258136758482,
+        -1066.7236598221132
+      ]
+    ],
+    "H02": [
+      [
+        -1500.2733267209078,
+        524.3416976905453
+      ],
+      [
+        -1435.2733267209078,
+        454.34169769054535
+      ],
+      [
+        -890.3430271555216,
+        200.3333881209349
+      ],
+      [
+        -650,
+        100
+      ],
+      [
+        -300,
+        -60
+      ],
+      [
+        50,
+        -180
+      ]
+    ],
+    "H09": [
+      [
+        -940.3430271555216,
+        275.3333881209349
+      ],
+      [
+        -920.3430271555216,
+        235.3333881209349
+      ],
+      [
+        -890.3430271555216,
+        200.3333881209349
+      ]
+    ]
+  },
+  "frames": {
+    "transfer": {
+      "anchor": "transfer",
+      "bounds_m": [
+        -650,
+        -250,
+        450,
+        550
+      ],
+      "scale_px_per_m": 1.1,
+      "origin_px": [
+        90,
+        180
+      ],
+      "visible_river_segments_m": [
+        {
+          "river": "H01",
+          "xy_m": [
+            [
+              137.5,
+              550.0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        },
+        {
+          "river": "H01",
+          "xy_m": [
+            [
+              0,
+              0
+            ],
+            [
+              41.666666666666664,
+              -250.0
+            ]
+          ]
+        }
+      ]
+    },
+    "kelba": {
+      "anchor": "kelba",
+      "bounds_m": [
+        -2300,
+        -300,
+        1200,
+        2800
+      ],
+      "scale_px_per_m": 0.34,
+      "origin_px": [
+        90,
+        180
+      ],
+      "visible_river_segments_m": [
+        {
+          "river": "H02",
+          "xy_m": [
+            [
+              -2300.0,
+              1072.0987848832156
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ]
+        },
+        {
+          "river": "H02",
+          "xy_m": [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              718.6332435993154,
+              -300.0
+            ]
+          ]
+        },
+        {
+          "river": "H09",
+          "xy_m": [
+            [
+              -2300.0,
+              2683.333333333332
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ]
+        }
+      ]
+    },
+    "harden": {
+      "anchor": "harden",
+      "bounds_m": [
+        -2400,
+        -500,
+        2200,
+        3300
+      ],
+      "scale_px_per_m": 0.27,
+      "origin_px": [
+        90,
+        180
+      ],
+      "visible_river_segments_m": [
+        {
+          "river": "H02",
+          "xy_m": [
+            [
+              -2400.0,
+              2584.61538461539
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ]
+        },
+        {
+          "river": "H02",
+          "xy_m": [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              1072.6623481111928,
+              -500.0
+            ]
+          ]
+        }
+      ]
+    },
+    "boss": {
+      "anchor": "harden",
+      "bounds_m": [
+        -970,
+        1700,
+        -730,
+        1900
+      ],
+      "scale_px_per_m": 4.7,
+      "origin_px": [
+        90,
+        180
+      ],
+      "visible_river_segments_m": []
+    }
+  },
+  "nodes": [
+    {
+      "id": "P01",
+      "site": "transfer",
+      "name": "공동 강나루",
+      "xy_m": [
+        0,
+        0
+      ],
+      "ground_height_candidate_m": 8,
+      "regional_xy_km": [
+        28.0,
+        -12.0
+      ]
+    },
+    {
+      "id": "P02",
+      "site": "transfer",
+      "name": "공공 검수·인계뜰",
+      "xy_m": [
+        -180,
+        170
+      ],
+      "ground_height_candidate_m": 12,
+      "regional_xy_km": [
+        27.82,
+        -11.83
+      ]
+    },
+    {
+      "id": "P03",
+      "site": "transfer",
+      "name": "마차 배정·숙박",
+      "xy_m": [
+        -350,
+        320
+      ],
+      "ground_height_candidate_m": 16,
+      "regional_xy_km": [
+        27.65,
+        -11.68
+      ]
+    },
+    {
+      "id": "P04",
+      "site": "transfer",
+      "name": "R2 공공 도로 접속",
+      "xy_m": [
+        -500,
+        0
+      ],
+      "ground_height_candidate_m": 12,
+      "regional_xy_km": [
+        27.5,
+        -12.0
+      ]
+    },
+    {
+      "id": "K01",
+      "site": "kelba",
+      "name": "수문도시 공공 마당",
+      "xy_m": [
+        400,
+        100
+      ],
+      "ground_height_candidate_m": 870,
+      "regional_xy_km": [
+        -889.9430271555216,
+        200.4333881209349
+      ]
+    },
+    {
+      "id": "K02",
+      "site": "kelba",
+      "name": "주거·식수 저장단",
+      "xy_m": [
+        500,
+        650
+      ],
+      "ground_height_candidate_m": 890,
+      "regional_xy_km": [
+        -889.8430271555216,
+        200.9833881209349
+      ]
+    },
+    {
+      "id": "K03",
+      "site": "kelba",
+      "name": "물 배정 기록소",
+      "xy_m": [
+        -100,
+        600
+      ],
+      "ground_height_candidate_m": 880,
+      "regional_xy_km": [
+        -890.4430271555216,
+        200.9333881209349
+      ]
+    },
+    {
+      "id": "K04",
+      "site": "kelba",
+      "name": "폐보온관과 작은 작업터",
+      "xy_m": [
+        -500,
+        1200
+      ],
+      "ground_height_candidate_m": 895,
+      "regional_xy_km": [
+        -890.8430271555216,
+        201.5333881209349
+      ]
+    },
+    {
+      "id": "K05",
+      "site": "kelba",
+      "name": "하안 짐 분리터",
+      "xy_m": [
+        -900,
+        1600
+      ],
+      "ground_height_candidate_m": 906,
+      "regional_xy_km": [
+        -891.2430271555215,
+        201.9333881209349
+      ]
+    },
+    {
+      "id": "K06",
+      "site": "kelba",
+      "name": "윗샘 지류 취수 관리턱",
+      "xy_m": [
+        -1780,
+        2100
+      ],
+      "ground_height_candidate_m": 863,
+      "regional_xy_km": [
+        -892.1230271555215,
+        202.4333881209349
+      ]
+    },
+    {
+      "id": "K07",
+      "site": "kelba",
+      "name": "옛 돌 저장터",
+      "xy_m": [
+        -800,
+        2400
+      ],
+      "ground_height_candidate_m": 930,
+      "regional_xy_km": [
+        -891.1430271555215,
+        202.7333881209349
+      ]
+    },
+    {
+      "id": "K08",
+      "site": "kelba",
+      "name": "옛 장례단",
+      "xy_m": [
+        100,
+        2200
+      ],
+      "ground_height_candidate_m": 925,
+      "regional_xy_km": [
+        -890.2430271555215,
+        202.5333881209349
+      ]
+    },
+    {
+      "id": "K09",
+      "site": "kelba",
+      "name": "폐계약 공구대",
+      "xy_m": [
+        400,
+        1400
+      ],
+      "ground_height_candidate_m": 912,
+      "regional_xy_km": [
+        -889.9430271555216,
+        201.7333881209349
+      ]
+    },
+    {
+      "id": "K10",
+      "site": "kelba",
+      "name": "높은 농로 쉼터",
+      "xy_m": [
+        800,
+        850
+      ],
+      "ground_height_candidate_m": 900,
+      "regional_xy_km": [
+        -889.5430271555216,
+        201.1833881209349
+      ]
+    },
+    {
+      "id": "H01",
+      "site": "harden",
+      "name": "하단 시험 작업장",
+      "xy_m": [
+        400,
+        300
+      ],
+      "ground_height_candidate_m": 1353,
+      "regional_xy_km": [
+        -1434.8733267209077,
+        454.64169769054536
+      ]
+    },
+    {
+      "id": "H02",
+      "site": "harden",
+      "name": "공동 설계·숙박 마당",
+      "xy_m": [
+        800,
+        500
+      ],
+      "ground_height_candidate_m": 1362,
+      "regional_xy_km": [
+        -1434.4733267209078,
+        454.84169769054535
+      ]
+    },
+    {
+      "id": "H03",
+      "site": "harden",
+      "name": "잔열 운반 작업터",
+      "xy_m": [
+        1100,
+        900
+      ],
+      "ground_height_candidate_m": 1370,
+      "regional_xy_km": [
+        -1434.1733267209079,
+        455.2416976905453
+      ]
+    },
+    {
+      "id": "H04",
+      "site": "harden",
+      "name": "채석장 입구",
+      "xy_m": [
+        1200,
+        1450
+      ],
+      "ground_height_candidate_m": 1380,
+      "regional_xy_km": [
+        -1434.0733267209077,
+        455.79169769054533
+      ]
+    },
+    {
+      "id": "H05",
+      "site": "harden",
+      "name": "회색 채석 단",
+      "xy_m": [
+        600,
+        1800
+      ],
+      "ground_height_candidate_m": 1382,
+      "regional_xy_km": [
+        -1434.6733267209079,
+        456.14169769054536
+      ]
+    },
+    {
+      "id": "H06",
+      "site": "harden",
+      "name": "사냥꾼 관찰턱",
+      "xy_m": [
+        0,
+        2200
+      ],
+      "ground_height_candidate_m": 1400,
+      "regional_xy_km": [
+        -1435.2733267209078,
+        456.54169769054533
+      ]
+    },
+    {
+      "id": "H07",
+      "site": "harden",
+      "name": "북쪽 접근 능선",
+      "xy_m": [
+        -700,
+        2500
+      ],
+      "ground_height_candidate_m": 1410,
+      "regional_xy_km": [
+        -1435.9733267209078,
+        456.84169769054535
+      ]
+    },
+    {
+      "id": "H08",
+      "site": "harden",
+      "name": "상류 취수·측정턱",
+      "xy_m": [
+        -1270,
+        1400
+      ],
+      "ground_height_candidate_m": 1360,
+      "regional_xy_km": [
+        -1436.5433267209078,
+        455.7416976905453
+      ]
+    },
+    {
+      "id": "H09",
+      "site": "harden",
+      "name": "비룡 먹이 하역 단",
+      "xy_m": [
+        -850,
+        1800
+      ],
+      "ground_height_candidate_m": 1380,
+      "regional_xy_km": [
+        -1436.1233267209077,
+        456.14169769054536
+      ]
+    },
+    {
+      "id": "H10",
+      "site": "harden",
+      "name": "수로 바깥 정비길",
+      "xy_m": [
+        -500,
+        1300
+      ],
+      "ground_height_candidate_m": 1370,
+      "regional_xy_km": [
+        -1435.7733267209078,
+        455.64169769054536
+      ]
+    },
+    {
+      "id": "H11",
+      "site": "harden",
+      "name": "남쪽 바람 그늘길",
+      "xy_m": [
+        100,
+        850
+      ],
+      "ground_height_candidate_m": 1360,
+      "regional_xy_km": [
+        -1435.1733267209079,
+        455.19169769054537
+      ]
+    },
+    {
+      "id": "H12",
+      "site": "harden",
+      "name": "그리핀 초지 사냥턱",
+      "xy_m": [
+        500,
+        2600
+      ],
+      "ground_height_candidate_m": 1420,
+      "regional_xy_km": [
+        -1434.7733267209078,
+        456.94169769054537
+      ]
+    },
+    {
+      "id": "H13",
+      "site": "harden",
+      "name": "성체 트롤 저장굴",
+      "xy_m": [
+        1600,
+        1500
+      ],
+      "ground_height_candidate_m": 1390,
+      "regional_xy_km": [
+        -1433.6733267209079,
+        455.84169769054535
+      ]
+    },
+    {
+      "id": "H14",
+      "site": "harden",
+      "name": "폐축열 시험뜰",
+      "xy_m": [
+        1600,
+        300
+      ],
+      "ground_height_candidate_m": 1358,
+      "regional_xy_km": [
+        -1433.6733267209079,
+        454.64169769054536
+      ]
+    },
+    {
+      "id": "H15",
+      "site": "harden",
+      "name": "고원 견인 작업마당",
+      "xy_m": [
+        1100,
+        -100
+      ],
+      "ground_height_candidate_m": 1355,
+      "regional_xy_km": [
+        -1434.1733267209079,
+        454.2416976905453
+      ]
+    },
+    {
+      "id": "H16",
+      "site": "harden",
+      "name": "가는날개 번식 절벽",
+      "xy_m": [
+        -1400,
+        2300
+      ],
+      "ground_height_candidate_m": 1425,
+      "regional_xy_km": [
+        -1436.6733267209079,
+        456.64169769054536
+      ]
+    }
+  ],
+  "paths": {
+    "P_out": {
+      "node_ids": [
+        "P01",
+        "P02",
+        "P03",
+        "P04"
+      ],
+      "mode": "walk",
+      "length_m": 827.7
+    },
+    "P_back": {
+      "node_ids": [
+        "P04",
+        "P02",
+        "P01"
+      ],
+      "mode": "walk",
+      "length_m": 609.9
+    },
+    "K_out": {
+      "node_ids": [
+        "K01",
+        "K03",
+        "K04",
+        "K05",
+        "K06"
+      ],
+      "mode": "walk",
+      "length_m": 3006.0
+    },
+    "K_back": {
+      "node_ids": [
+        "K06",
+        "K07",
+        "K09",
+        "K10",
+        "K02",
+        "K01"
+      ],
+      "mode": "walk",
+      "length_m": 4186.6
+    },
+    "K_short": {
+      "node_ids": [
+        "K06",
+        "K05",
+        "K03",
+        "K01"
+      ],
+      "mode": "walk",
+      "length_m": 2999.9
+    },
+    "K_optional": {
+      "node_ids": [
+        "K07",
+        "K08",
+        "K09"
+      ],
+      "mode": "walk",
+      "length_m": 1776.4
+    },
+    "H_out": {
+      "node_ids": [
+        "H01",
+        "H02",
+        "H03",
+        "H04",
+        "H05",
+        "H06",
+        "H07",
+        "H09",
+        "H08"
+      ],
+      "mode": "walk",
+      "length_m": 4979.4
+    },
+    "H_back": {
+      "node_ids": [
+        "H08",
+        "H10",
+        "H11",
+        "H01"
+      ],
+      "mode": "walk",
+      "length_m": 2153.0
+    },
+    "H_bypass": {
+      "node_ids": [
+        "H02",
+        "H11",
+        "H06"
+      ],
+      "mode": "walk",
+      "length_m": 2136.3
+    },
+    "H_griffin": {
+      "node_ids": [
+        "H06",
+        "H12"
+      ],
+      "mode": "walk",
+      "length_m": 640.3
+    },
+    "H_troll": {
+      "node_ids": [
+        "H04",
+        "H13"
+      ],
+      "mode": "walk",
+      "length_m": 403.1
+    },
+    "H_heat": {
+      "node_ids": [
+        "H02",
+        "H14",
+        "H15",
+        "H01"
+      ],
+      "mode": "walk",
+      "length_m": 2271.2
+    },
+    "H_roost": {
+      "node_ids": [
+        "H07",
+        "H16"
+      ],
+      "mode": "walk",
+      "length_m": 728.0
+    },
+    "H_escape": {
+      "node_ids": [
+        "H09",
+        "H10"
+      ],
+      "mode": "walk",
+      "length_m": 610.3
+    }
+  },
+  "groups": [
+    {
+      "id": "KO1",
+      "site": "kelba",
+      "name": "협곡 수렵·운반조",
+      "members": [
+        {
+          "form": "MN02-A",
+          "count": 5,
+          "readiness": [
+            14,
+            16
+          ]
+        }
+      ],
+      "home_xy_m": [
+        -1320,
+        1900
+      ],
+      "home_radius_m": 140,
+      "patrol_xy_m": [
+        [
+          -1320,
+          1900
+        ],
+        [
+          -900,
+          1600
+        ],
+        [
+          -600,
+          1400
+        ]
+      ],
+      "patrol_halfwidth_m": 70
+    },
+    {
+      "id": "KT1",
+      "site": "kelba",
+      "name": "어린 트롤 돌 저장",
+      "members": [
+        {
+          "form": "MN03-C",
+          "count": 2,
+          "readiness": [
+            13,
+            15
+          ]
+        }
+      ],
+      "home_xy_m": [
+        -800,
+        2400
+      ],
+      "home_radius_m": 140,
+      "patrol_xy_m": [],
+      "patrol_halfwidth_m": 0
+    },
+    {
+      "id": "KS1",
+      "site": "kelba",
+      "name": "잔열 틈 도롱뇽",
+      "members": [
+        {
+          "form": "MN12-A",
+          "count": 4,
+          "readiness": [
+            8,
+            12
+          ]
+        }
+      ],
+      "home_xy_m": [
+        -500,
+        1200
+      ],
+      "home_radius_m": 100,
+      "patrol_xy_m": [],
+      "patrol_halfwidth_m": 0
+    },
+    {
+      "id": "KI1",
+      "site": "kelba",
+      "name": "유한 계약 공구 수거",
+      "members": [
+        {
+          "form": "MN63-A",
+          "count": 4,
+          "readiness": [
+            8,
+            12
+          ]
+        }
+      ],
+      "home_xy_m": [
+        400,
+        1400
+      ],
+      "home_radius_m": 100,
+      "patrol_xy_m": [
+        [
+          400,
+          1400
+        ],
+        [
+          500,
+          950
+        ]
+      ],
+      "patrol_halfwidth_m": 45
+    },
+    {
+      "id": "KD1",
+      "site": "kelba",
+      "name": "장례단 잔류 결속",
+      "members": [
+        {
+          "form": "MN44-A",
+          "count": 3,
+          "readiness": [
+            13,
+            17
+          ]
+        }
+      ],
+      "home_xy_m": [
+        100,
+        2200
+      ],
+      "home_radius_m": 100,
+      "patrol_xy_m": [],
+      "patrol_halfwidth_m": 0
+    },
+    {
+      "id": "HO1",
+      "site": "harden",
+      "name": "채석 잔재 운반조",
+      "members": [
+        {
+          "form": "MN02-A",
+          "count": 4,
+          "readiness": [
+            15,
+            18
+          ]
+        }
+      ],
+      "home_xy_m": [
+        1180,
+        1450
+      ],
+      "home_radius_m": 115,
+      "patrol_xy_m": [
+        [
+          1180,
+          1450
+        ],
+        [
+          900,
+          1600
+        ],
+        [
+          700,
+          1800
+        ]
+      ],
+      "patrol_halfwidth_m": 60
+    },
+    {
+      "id": "HO2",
+      "site": "harden",
+      "name": "남쪽 수렵·물 운반조",
+      "members": [
+        {
+          "form": "MN02-A",
+          "count": 3,
+          "readiness": [
+            14,
+            16
+          ]
+        }
+      ],
+      "home_xy_m": [
+        -100,
+        1050
+      ],
+      "home_radius_m": 100,
+      "patrol_xy_m": [
+        [
+          -100,
+          1050
+        ],
+        [
+          -500,
+          1300
+        ],
+        [
+          100,
+          1000
+        ],
+        [
+          450,
+          1100
+        ]
+      ],
+      "patrol_halfwidth_m": 55
+    },
+    {
+      "id": "HT1",
+      "site": "harden",
+      "name": "어린 트롤 채석 무리",
+      "members": [
+        {
+          "form": "MN03-C",
+          "count": 2,
+          "readiness": [
+            14,
+            16
+          ]
+        }
+      ],
+      "home_xy_m": [
+        500,
+        1820
+      ],
+      "home_radius_m": 110,
+      "patrol_xy_m": [],
+      "patrol_halfwidth_m": 0
+    },
+    {
+      "id": "HT2",
+      "site": "harden",
+      "name": "성체 저장굴",
+      "members": [
+        {
+          "form": "MN03-B",
+          "count": 2,
+          "readiness": [
+            17,
+            21
+          ]
+        }
+      ],
+      "home_xy_m": [
+        1600,
+        1500
+      ],
+      "home_radius_m": 140,
+      "patrol_xy_m": [],
+      "patrol_halfwidth_m": 0
+    },
+    {
+      "id": "HW1",
+      "site": "harden",
+      "name": "가는날개 번식 개체",
+      "members": [
+        {
+          "form": "MN09-A",
+          "count": 2,
+          "readiness": [
+            14,
+            17
+          ]
+        }
+      ],
+      "home_xy_m": [
+        -1400,
+        2300
+      ],
+      "home_radius_m": 180,
+      "patrol_xy_m": [
+        [
+          -1400,
+          2300
+        ],
+        [
+          -1050,
+          2500
+        ],
+        [
+          -350,
+          2400
+        ],
+        [
+          -200,
+          2600
+        ],
+        [
+          -1050,
+          2500
+        ]
+      ],
+      "patrol_halfwidth_m": 70
+    },
+    {
+      "id": "HW2",
+      "site": "harden",
+      "name": "칼능선 반복 습격 개체",
+      "members": [
+        {
+          "form": "MN09-B",
+          "count": 1,
+          "readiness": [
+            18,
+            18
+          ]
+        }
+      ],
+      "home_xy_m": [
+        -850,
+        1800
+      ],
+      "home_radius_m": 130,
+      "patrol_xy_m": [
+        [
+          -850,
+          1800
+        ],
+        [
+          -1000,
+          1550
+        ],
+        [
+          -1300,
+          1400
+        ],
+        [
+          -500,
+          1300
+        ]
+      ],
+      "patrol_halfwidth_m": 55
+    },
+    {
+      "id": "HW3",
+      "site": "harden",
+      "name": "동쪽 칼능선 개체",
+      "members": [
+        {
+          "form": "MN09-B",
+          "count": 1,
+          "readiness": [
+            17,
+            20
+          ]
+        }
+      ],
+      "home_xy_m": [
+        1750,
+        2550
+      ],
+      "home_radius_m": 200,
+      "patrol_xy_m": [
+        [
+          1750,
+          2550
+        ],
+        [
+          1450,
+          2150
+        ]
+      ],
+      "patrol_halfwidth_m": 70
+    },
+    {
+      "id": "HG1",
+      "site": "harden",
+      "name": "금목 초지 사냥",
+      "members": [
+        {
+          "form": "MN26-A",
+          "count": 1,
+          "readiness": [
+            17,
+            22
+          ]
+        }
+      ],
+      "home_xy_m": [
+        500,
+        2600
+      ],
+      "home_radius_m": 190,
+      "patrol_xy_m": [
+        [
+          500,
+          2600
+        ],
+        [
+          1100,
+          2950
+        ],
+        [
+          1450,
+          3000
+        ]
+      ],
+      "patrol_halfwidth_m": 100
+    },
+    {
+      "id": "HS1",
+      "site": "harden",
+      "name": "운반터 온기 틈",
+      "members": [
+        {
+          "form": "MN12-A",
+          "count": 3,
+          "readiness": [
+            8,
+            12
+          ]
+        }
+      ],
+      "home_xy_m": [
+        1080,
+        900
+      ],
+      "home_radius_m": 90,
+      "patrol_xy_m": [],
+      "patrol_halfwidth_m": 0
+    },
+    {
+      "id": "HE1",
+      "site": "harden",
+      "name": "축열 매개 열정령",
+      "members": [
+        {
+          "form": "MN55-D",
+          "count": 2,
+          "readiness": [
+            16,
+            21
+          ]
+        }
+      ],
+      "home_xy_m": [
+        1600,
+        300
+      ],
+      "home_radius_m": 110,
+      "patrol_xy_m": [],
+      "patrol_halfwidth_m": 0
+    },
+    {
+      "id": "HI1",
+      "site": "harden",
+      "name": "운반대 공구 수거",
+      "members": [
+        {
+          "form": "MN63-A",
+          "count": 3,
+          "readiness": [
+            8,
+            12
+          ]
+        }
+      ],
+      "home_xy_m": [
+        1230,
+        650
+      ],
+      "home_radius_m": 90,
+      "patrol_xy_m": [
+        [
+          1230,
+          650
+        ],
+        [
+          1080,
+          900
+        ]
+      ],
+      "patrol_halfwidth_m": 45
+    },
+    {
+      "id": "HD1",
+      "site": "harden",
+      "name": "폐운반대 잔류 결속",
+      "members": [
+        {
+          "form": "MN44-A",
+          "count": 3,
+          "readiness": [
+            13,
+            17
+          ]
+        }
+      ],
+      "home_xy_m": [
+        1400,
+        -150
+      ],
+      "home_radius_m": 100,
+      "patrol_xy_m": [],
+      "patrol_halfwidth_m": 0
+    }
+  ],
+  "structures": [
+    {
+      "id": "HC1",
+      "form": "CT02-B",
+      "count": 1,
+      "site": "harden",
+      "xy_m": [
+        1100,
+        -100
+      ],
+      "readiness": [
+        16,
+        19
+      ],
+      "power": "finite work reservoir; maintenance or mechanical disengagement alternative"
+    }
+  ],
+  "water_channel": {
+    "id": "water-test-channel",
+    "xy_m": [
+      [
+        -1300,
+        1400
+      ],
+      [
+        -1050,
+        1250
+      ],
+      [
+        -500,
+        1000
+      ],
+      [
+        0,
+        550
+      ],
+      [
+        400,
+        300
+      ],
+      [
+        450,
+        0
+      ],
+      [
+        600,
+        -279.6779438825812
+      ]
+    ],
+    "water_elevation_candidate_m": [
+      1357,
+      1356.8,
+      1356.1,
+      1355.4,
+      1354.5,
+      1350.5,
+      1349.45
+    ]
+  },
+  "boss_detail": {
+    "surface_xy_m": [
+      [
+        -910,
+        1760
+      ],
+      [
+        -790,
+        1760
+      ],
+      [
+        -790,
+        1840
+      ],
+      [
+        -910,
+        1840
+      ]
+    ],
+    "landing_xy_m": [
+      -850,
+      1800
+    ],
+    "covers": [
+      {
+        "id": "B1",
+        "bounds_m": [
+          -904,
+          1805,
+          -888,
+          1820
+        ],
+        "height_m": 3.5
+      },
+      {
+        "id": "B2",
+        "bounds_m": [
+          -818,
+          1775,
+          -800,
+          1790
+        ],
+        "height_m": 3
+      },
+      {
+        "id": "B3",
+        "bounds_m": [
+          -903,
+          1770,
+          -888,
+          1780
+        ],
+        "height_m": 1.2
+      }
+    ],
+    "routes": {
+      "approach": [
+        [
+          -828.5714285714286,
+          1900
+        ],
+        [
+          -850,
+          1800
+        ]
+      ],
+      "intake": [
+        [
+          -850,
+          1800
+        ],
+        [
+          -955,
+          1700
+        ]
+      ],
+      "escape": [
+        [
+          -850,
+          1800
+        ],
+        [
+          -780,
+          1700
+        ]
+      ]
+    },
+    "unverified": "cover blocking, camera, attack reach, movement and terrain collision"
+  },
+  "sampling": {
+    "max_step_m": 5,
+    "cases": {
+      "K_out": {
+        "length_m": 3006.0,
+        "max_empty_m": 1328.8,
+        "max_overlapping_envelopes": 1,
+        "potential_groups": [
+          "KO1",
+          "KS1"
+        ],
+        "empty_intervals_m": [
+          [
+            0.0,
+            1328.8
+          ],
+          [
+            1532.4,
+            1641.6
+          ],
+          [
+            2637.1,
+            3006.0
+          ]
+        ]
+      },
+      "K_back": {
+        "length_m": 4186.6,
+        "max_empty_m": 1485.5,
+        "max_overlapping_envelopes": 1,
+        "potential_groups": [
+          "KI1",
+          "KT1"
+        ],
+        "empty_intervals_m": [
+          [
+            0.0,
+            884.9
+          ],
+          [
+            1169.6,
+            2487.1
+          ],
+          [
+            2701.1,
+            4186.6
+          ]
+        ]
+      },
+      "K_short": {
+        "length_m": 2999.9,
+        "max_empty_m": 1344.9,
+        "max_overlapping_envelopes": 1,
+        "potential_groups": [
+          "KO1",
+          "KS1"
+        ],
+        "empty_intervals_m": [
+          [
+            0.0,
+            373.9
+          ],
+          [
+            1246.3,
+            1500.5
+          ],
+          [
+            1654.9,
+            2999.9
+          ]
+        ]
+      },
+      "H_out": {
+        "length_m": 4979.4,
+        "max_empty_m": 870.6,
+        "max_overlapping_envelopes": 2,
+        "potential_groups": [
+          "HI1",
+          "HO1",
+          "HS1",
+          "HT1",
+          "HW1",
+          "HW2"
+        ],
+        "empty_intervals_m": [
+          [
+            0.0,
+            847.2
+          ],
+          [
+            1032.1,
+            1391.4
+          ],
+          [
+            2150.9,
+            2195.9
+          ],
+          [
+            2399.8,
+            3270.4
+          ],
+          [
+            3807.8,
+            4270.2
+          ],
+          [
+            4609.4,
+            4749.4
+          ]
+        ]
+      },
+      "H_back": {
+        "length_m": 2153.0,
+        "max_empty_m": 811.5,
+        "max_overlapping_envelopes": 2,
+        "potential_groups": [
+          "HO2",
+          "HW2"
+        ],
+        "empty_intervals_m": [
+          [
+            1341.5,
+            2153.0
+          ]
+        ]
+      },
+      "H_bypass": {
+        "length_m": 2136.3,
+        "max_empty_m": 1128.9,
+        "max_overlapping_envelopes": 1,
+        "potential_groups": [
+          "HO2"
+        ],
+        "empty_intervals_m": [
+          [
+            0.0,
+            882.5
+          ],
+          [
+            1007.4,
+            2136.3
+          ]
+        ]
+      }
+    },
+    "meaning": "Potential activity envelope intersections, not live enemy counts or mandatory fights; aerial transit not necessarily ground aggro"
+  },
+  "progression": {
+    "start": 14,
+    "end": 18,
+    "field": 2,
+    "major_combat_rescue": 1,
+    "investigation_relations": 1
+  },
+  "closures": {
+    "high_wind": [
+      "H07-H09",
+      "H07-H16",
+      "H06-H12"
+    ],
+    "alternative": "H08-H10-H11-H01 lower maintenance path; travel deferred if lower path unsafe; no numeric wind threshold validated"
+  },
+  "corridor_frame": {
+    "bounds_km": [
+      -1600,
+      -1150,
+      600,
+      650
+    ],
+    "scale_px_per_km": 0.56,
+    "origin_px": [
+      80,
+      175
+    ]
+  },
+  "source_coast": "Docs/ArtDirection/EtherWorldMap/Data/ether-world-map-land35-precise-v3.json",
+  "source_coast_sha256": "7fb1ea5461708dadca67f46ba9dd6dd579ed2ae329c275edd0707a2f85a2c0f4"
+}

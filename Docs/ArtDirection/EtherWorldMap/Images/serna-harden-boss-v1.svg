@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2100" height="1550" viewBox="0 0 2100 1550">
+<rect width="2100" height="1550" fill="#f5f1e6"/>
+<text x="50.000" y="72.000" font-family="Malgun Gothic,sans-serif" font-size="40" fill="#263d43" font-weight="700">칼능선 개체 · 착지 단과 퇴로 확대</text>
+<text x="50.000" y="119.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#657a7a" font-weight="400">좌표 기반 후보 | 위쪽: 투영 격자 북쪽 | 파랑 진입 · 주황 귀환 · 초록 우회</text>
+<polygon points="90.000,1120.000 90.000,180.000 1218.000,180.000 1218.000,1120.000" fill="#f9f6ec" stroke="#b9c4b4"/>
+<polyline points="184.000,1120.000 184.000,180.000" fill="none" stroke="#d8ded5" stroke-width="1"/>
+<text x="168.000" y="1144.000" font-family="Malgun Gothic,sans-serif" font-size="16" fill="#657a7a" font-weight="400">-950</text>
+<polyline points="419.000,1120.000 419.000,180.000" fill="none" stroke="#d8ded5" stroke-width="1"/>
+<text x="403.000" y="1144.000" font-family="Malgun Gothic,sans-serif" font-size="16" fill="#657a7a" font-weight="400">-900</text>
+<polyline points="654.000,1120.000 654.000,180.000" fill="none" stroke="#d8ded5" stroke-width="1"/>
+<text x="638.000" y="1144.000" font-family="Malgun Gothic,sans-serif" font-size="16" fill="#657a7a" font-weight="400">-850</text>
+<polyline points="889.000,1120.000 889.000,180.000" fill="none" stroke="#d8ded5" stroke-width="1"/>
+<text x="873.000" y="1144.000" font-family="Malgun Gothic,sans-serif" font-size="16" fill="#657a7a" font-weight="400">-800</text>
+<polyline points="1124.000,1120.000 1124.000,180.000" fill="none" stroke="#d8ded5" stroke-width="1"/>
+<text x="1108.000" y="1144.000" font-family="Malgun Gothic,sans-serif" font-size="16" fill="#657a7a" font-weight="400">-750</text>
+<polyline points="90.000,1120.000 1218.000,1120.000" fill="none" stroke="#d8ded5" stroke-width="1"/>
+<text x="10.000" y="1126.000" font-family="Malgun Gothic,sans-serif" font-size="16" fill="#657a7a" font-weight="400">1700</text>
+<polyline points="90.000,885.000 1218.000,885.000" fill="none" stroke="#d8ded5" stroke-width="1"/>
+<text x="10.000" y="891.000" font-family="Malgun Gothic,sans-serif" font-size="16" fill="#657a7a" font-weight="400">1750</text>
+<polyline points="90.000,650.000 1218.000,650.000" fill="none" stroke="#d8ded5" stroke-width="1"/>
+<text x="10.000" y="656.000" font-family="Malgun Gothic,sans-serif" font-size="16" fill="#657a7a" font-weight="400">1800</text>
+<polyline points="90.000,415.000 1218.000,415.000" fill="none" stroke="#d8ded5" stroke-width="1"/>
+<text x="10.000" y="421.000" font-family="Malgun Gothic,sans-serif" font-size="16" fill="#657a7a" font-weight="400">1850</text>
+<polyline points="90.000,180.000 1218.000,180.000" fill="none" stroke="#d8ded5" stroke-width="1"/>
+<text x="10.000" y="186.000" font-family="Malgun Gothic,sans-serif" font-size="16" fill="#657a7a" font-weight="400">1900</text>
+<polygon id="boss-surface" points="372.000,838.000 936.000,838.000 936.000,462.000 372.000,462.000" fill="#e7ddc5" stroke="#a99b7b"/>
+<polygon id="cover-B1" points="400.200,626.500 475.400,626.500 475.400,556.000 400.200,556.000" fill="#9ba9a3" stroke="#263d43"/>
+<text x="400.200" y="552.500" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#263d43" font-weight="400">B1</text>
+<polygon id="cover-B2" points="804.400,767.500 889.000,767.500 889.000,697.000 804.400,697.000" fill="#9ba9a3" stroke="#263d43"/>
+<text x="804.400" y="693.500" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#263d43" font-weight="400">B2</text>
+<polygon id="cover-B3" points="404.900,791.000 475.400,791.000 475.400,744.000 404.900,744.000" fill="#9ba9a3" stroke="#263d43"/>
+<text x="404.900" y="740.500" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#263d43" font-weight="400">B3</text>
+<polyline id="boss-route-approach" points="754.714,180.000 654.000,650.000" fill="none" stroke="#277da3" stroke-width="5"/>
+<polyline id="boss-route-intake" points="654.000,650.000 160.500,1120.000" fill="none" stroke="#417c67" stroke-width="5"/>
+<polyline id="boss-route-escape" points="654.000,650.000 983.000,1120.000" fill="none" stroke="#c57032" stroke-width="5"/>
+<circle id="boss-landing" cx="654.000" cy="650.000" r="13.000" fill="none" stroke="#c57032"/>
+<text x="663.400" y="625.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#263d43" font-weight="400">착지 중심</text>
+<text x="1300.000" y="233.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#263d43" font-weight="400">120×80m 하역 단 / 착지 띠 30×24m 후보</text>
+<text x="1300.000" y="291.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#657a7a" font-weight="400">B1 3.5m·B2 3m 암석: 지상 직선 공격 엄폐</text>
+<text x="1300.000" y="349.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#657a7a" font-weight="400">B3 1.2m 낮은 돌: 이동 분리, 완전 엄폐 아님</text>
+<text x="1300.000" y="407.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#657a7a" font-weight="400">상단 접근 → 착지 옆면 → 취수장 또는 남쪽 철수</text>
+<text x="1300.000" y="465.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#657a7a" font-weight="400">최소 통행 폭 6m, 주 전투 띠 12m 이상 후보</text>
+<text x="1300.000" y="523.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#657a7a" font-weight="400">돌 뒤 대기를 안전지대나 무적 판정으로 삼지 않음</text>
+<text x="1300.000" y="581.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#657a7a" font-weight="400">배회·잠복·재상승에 맞춰 자리를 바꾼다.</text>
+<text x="1300.000" y="639.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#657a7a" font-weight="400">돌진 후 착지·먹이 옮김 때 모든 무기 접근 가능.</text>
+<text x="1300.000" y="697.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#657a7a" font-weight="400">비룡 크기·날개·카메라·충돌은 실행 미검증.</text>
+<polyline id="scale-bar" points="90.000,1400.000 184.000,1400.000" fill="none" stroke="#263d43" stroke-width="5"/>
+<text x="90.000" y="1434.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#263d43" font-weight="400">20 m · 투영 평면</text>
+<text x="520.000" y="1435.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#657a7a" font-weight="400">지형·시야·수리·전투 실행 미검증 | 일반 동물은 전투 목표가 아니다.</text>
+</svg>

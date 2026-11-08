@@ -1,0 +1,1189 @@
+{
+  "status": "PASS",
+  "count": 231,
+  "scope": "source preservation, exact SVG coordinates, ranges, route graph, boss clearance, water slope and envelope samples; not UE/gameplay/hydrology/ecology validation",
+  "checks": [
+    {
+      "check": "source_georeference_hash",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "source_georeference_HEAD_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "source_coast_hash",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "source_coast_HEAD_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "Docs/Narrative/World.md_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "Docs/Narrative/Scenario.md_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "36_settlements",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "anchors",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "river_upstream_source_route",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "river_upstream_length",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "public_access_source_route",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "public_access_length",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "plateau_road_source_route",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "plateau_road_length",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "corridor_endpoints_join",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "H01_source_preserved",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "H02_source_preserved",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "H09_source_preserved",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "counts",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "site_counts",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "all_and_only_current_S4_forms",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "KO1_ranges",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "KT1_ranges",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "KS1_ranges",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "KI1_ranges",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "KD1_ranges",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "HO1_ranges",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "HO2_ranges",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "HT1_ranges",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "HT2_ranges",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "HW1_ranges",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "HW2_ranges",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "HW3_ranges",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "HG1_ranges",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "HS1_ranges",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "HE1_ranges",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "HI1_ranges",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "HD1_ranges",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "separate_CT02_B",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "growth",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "P01_regional_coordinate",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "P02_regional_coordinate",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "P03_regional_coordinate",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "P04_regional_coordinate",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "K01_regional_coordinate",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "K02_regional_coordinate",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "K03_regional_coordinate",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "K04_regional_coordinate",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "K05_regional_coordinate",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "K06_regional_coordinate",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "K07_regional_coordinate",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "K08_regional_coordinate",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "K09_regional_coordinate",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "K10_regional_coordinate",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "H01_regional_coordinate",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "H02_regional_coordinate",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "H03_regional_coordinate",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "H04_regional_coordinate",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "H05_regional_coordinate",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "H06_regional_coordinate",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "H07_regional_coordinate",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "H08_regional_coordinate",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "H09_regional_coordinate",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "H10_regional_coordinate",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "H11_regional_coordinate",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "H12_regional_coordinate",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "H13_regional_coordinate",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "H14_regional_coordinate",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "H15_regional_coordinate",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "H16_regional_coordinate",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "P_out_length",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "P_back_length",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "K_out_length",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "K_back_length",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "K_short_length",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "K_optional_length",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "H_out_length",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "H_back_length",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "H_bypass_length",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "H_griffin_length",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "H_troll_length",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "H_heat_length",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "H_roost_length",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "H_escape_length",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_river-H01-17",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_river-H01-18",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_route-P_out",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_route-P_back",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_node-P01",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_node-P02",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_node-P03",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_node-P04",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_scale_bar",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_png_size",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "kelba_river-H02-1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "kelba_river-H02-2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "kelba_river-H09-1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "kelba_home-KO1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "kelba_patrol-KO1-0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "kelba_patrol-KO1-1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "kelba_home-KT1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "kelba_home-KS1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "kelba_home-KI1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "kelba_patrol-KI1-0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "kelba_home-KD1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "kelba_route-K_out",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "kelba_route-K_back",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "kelba_route-K_short",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "kelba_route-K_optional",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "kelba_node-K01",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "kelba_node-K02",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "kelba_node-K03",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "kelba_node-K04",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "kelba_node-K05",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "kelba_node-K06",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "kelba_node-K07",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "kelba_node-K08",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "kelba_node-K09",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "kelba_node-K10",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "kelba_scale_bar",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "kelba_png_size",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "harden_river-H02-0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "harden_river-H02-1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "harden_channel-0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "harden_channel-1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "harden_channel-2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "harden_channel-3",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "harden_channel-4",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "harden_channel-5",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "harden_home-HO1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "harden_patrol-HO1-0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "harden_patrol-HO1-1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "harden_home-HO2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "harden_patrol-HO2-0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "harden_patrol-HO2-1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "harden_patrol-HO2-2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "harden_home-HT1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "harden_home-HT2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "harden_home-HW1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "harden_patrol-HW1-0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "harden_patrol-HW1-1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "harden_patrol-HW1-2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "harden_patrol-HW1-3",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "harden_home-HW2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "harden_patrol-HW2-0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "harden_patrol-HW2-1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "harden_patrol-HW2-2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "harden_home-HW3",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "harden_patrol-HW3-0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "harden_home-HG1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "harden_patrol-HG1-0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "harden_patrol-HG1-1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "harden_home-HS1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "harden_home-HE1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "harden_home-HI1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "harden_patrol-HI1-0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "harden_home-HD1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "harden_route-H_out",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "harden_route-H_back",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "harden_route-H_bypass",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "harden_route-H_griffin",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "harden_route-H_troll",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "harden_route-H_heat",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "harden_route-H_roost",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "harden_route-H_escape",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "harden_node-H01",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "harden_node-H02",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "harden_node-H03",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "harden_node-H04",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "harden_node-H05",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "harden_node-H06",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "harden_node-H07",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "harden_node-H08",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "harden_node-H09",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "harden_node-H10",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "harden_node-H11",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "harden_node-H12",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "harden_node-H13",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "harden_node-H14",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "harden_node-H15",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "harden_node-H16",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "harden_scale_bar",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "harden_png_size",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "boss_scale_bar",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "boss_png_size",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "boss_approach_matches_main_route",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "boss_approach_B1_six_meter_centerline_clearance",
+      "pass": true,
+      "detail": "1 m samples; geometric candidate, no character or enemy collision validation"
+    },
+    {
+      "check": "boss_approach_B2_six_meter_centerline_clearance",
+      "pass": true,
+      "detail": "1 m samples; geometric candidate, no character or enemy collision validation"
+    },
+    {
+      "check": "boss_approach_B3_six_meter_centerline_clearance",
+      "pass": true,
+      "detail": "1 m samples; geometric candidate, no character or enemy collision validation"
+    },
+    {
+      "check": "boss_intake_matches_main_route",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "boss_intake_B1_six_meter_centerline_clearance",
+      "pass": true,
+      "detail": "1 m samples; geometric candidate, no character or enemy collision validation"
+    },
+    {
+      "check": "boss_intake_B2_six_meter_centerline_clearance",
+      "pass": true,
+      "detail": "1 m samples; geometric candidate, no character or enemy collision validation"
+    },
+    {
+      "check": "boss_intake_B3_six_meter_centerline_clearance",
+      "pass": true,
+      "detail": "1 m samples; geometric candidate, no character or enemy collision validation"
+    },
+    {
+      "check": "boss_escape_matches_main_route",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "boss_escape_B1_six_meter_centerline_clearance",
+      "pass": true,
+      "detail": "1 m samples; geometric candidate, no character or enemy collision validation"
+    },
+    {
+      "check": "boss_escape_B2_six_meter_centerline_clearance",
+      "pass": true,
+      "detail": "1 m samples; geometric candidate, no character or enemy collision validation"
+    },
+    {
+      "check": "boss_escape_B3_six_meter_centerline_clearance",
+      "pass": true,
+      "detail": "1 m samples; geometric candidate, no character or enemy collision validation"
+    },
+    {
+      "check": "all_nodes_rendered",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "boss_B1_surface_edge_clearance",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "boss_B2_surface_edge_clearance",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "boss_B3_surface_edge_clearance",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "kelba_intake_height_difference",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "overview_river_upstream",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "overview_public_access",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "overview_plateau_road",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "overview_M01",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "overview_M02",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "overview_M03",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "overview_M04",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "overview_T04",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "overview_V05",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "overview_V06",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "overview_V07",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "overview_scale",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "corridor_png_size",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "H08_high_wind_retreat",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "H09_high_wind_retreat",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "H10_high_wind_retreat",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "H07_high_wind_retreat",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "intake_access_without_boss_node",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "water_channel_downhill",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "channel_intake_on_source_river",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "channel_return_on_source_river",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "K_out_density_recomputed",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "K_back_density_recomputed",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "K_short_density_recomputed",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "H_out_density_recomputed",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "H_back_density_recomputed",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "H_bypass_density_recomputed",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "post_boss_return_group",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "optional_burial_not_main_return",
+      "pass": true,
+      "detail": null
+    }
+  ],
+  "post_boss_return": {
+    "max_empty_m": 811.5,
+    "max_overlapping_envelopes": 1,
+    "potential_groups": [
+      "HO2"
+    ]
+  },
+  "file_hashes": {
+    "serna-harden-transfer-v1": {
+      "png_sha256": "3776cc36e8eaea0762bb89ad76845ff06002661f56c5b9df90c1c7712be8c45e",
+      "svg_utf8_lf_sha256": "d19dbadac7f36705b3b860029213f6af9d6870ee90f1eadf4170a7124bbf33ec"
+    },
+    "serna-harden-kelba-v1": {
+      "png_sha256": "0d9a61ab0ca45d79afa542b3d30ea8e5156faaf020897ed97b6525cee3f9faf1",
+      "svg_utf8_lf_sha256": "a0d504b7e76cfa89f373cd96df0cb88550278d4967c6ff10afcef09482a83b8e"
+    },
+    "serna-harden-harden-v1": {
+      "png_sha256": "8ae84ff38381555c279769f33907d8d3eb8a2f1d576dcc1f2b0592b51e63010e",
+      "svg_utf8_lf_sha256": "c1217e93c78adc723050b36a210acd9701fa6aa15a4eb85a127926696a1666b9"
+    },
+    "serna-harden-boss-v1": {
+      "png_sha256": "7a7013c943485cd872578cf25deb23e00a0f5ebc0d09877f370e814e49fb38f2",
+      "svg_utf8_lf_sha256": "243af4a294557ffe63cf11f8123bb7713e374c5a8a79bb258598d6006315288c"
+    },
+    "corridor_png": "de1451f4834720994e952b8caa3c054a1c0eeb89a8940acbdd2d0da031a1db02",
+    "corridor_svg": "942a9136d0adc0a5bdfbb366daa7ac2c5120ddd610a9917df51ba8aef18caa5e"
+  }
+}

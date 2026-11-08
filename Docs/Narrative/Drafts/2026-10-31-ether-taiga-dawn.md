@@ -19,6 +19,7 @@
 
 | 읽는 때 | 문서·절 |
 |---|---|
+| 세르나에서 공공 환적장·켈바를 거쳐 하르덴의 고원 탐색·비룡 전투·시험 운용·왕복을 볼 때 | [S4 탐색 상세 후보와 지도](2026-10-31-ether-taiga-dawn/2026-11-08-serna-harden-exploration.md) |
 | 로덴–세르나의 하구·항만 탐색과 구조·반출·왕복·해금을 볼 때 | [S3 탐색 상세 후보와 지도](2026-10-31-ether-taiga-dawn/2026-11-08-roden-serna-exploration.md) |
 | 타르넬–로덴의 현행 탐색 장소·생활권·성장·구조·다른 귀환길을 볼 때 | [S2 탐색 상세 후보와 지도](2026-10-31-ether-taiga-dawn/2026-11-08-tarnel-roden-exploration.md) |
 | 레퍼런스를 바탕으로 등장 종·초자연 존재·구조체와 지역 연결을 비교할 때 | [몬스터 확장안](2026-10-31-ether-taiga-dawn/2026-11-08-expanded-monster-roster.md) |
