@@ -1,5 +1,7 @@
 # 이그니스의 나머지 28항목 파생형
 
+이 문서의 이름·외형·행동은 보존한다. 현행 후보의 대륙·권역·교전 범위는 [199형태 재배치](../2026-11-08-world-distribution-and-leveling/variant-distribution.md)를 따른다. 아래 이그니스 배치·수치는 이전안이다.
+
 이전에 기본형으로 남긴 28항목에 **56형태**를 추가한다. [전체안](../2026-11-08-worldwide-monster-variants.md)의 창작 후보이며, 아래 지역·권장 범위는 [기존 부모 배치](../2026-11-08-continent-ecology-progression-v2/roster-placement.md) 안에 둔다. A·B는 구분자이며 강함 순서를 강제하지 않는다. 교섭·관찰 대상의 숫자는 적대가 성립했을 때만 비교한다.
 
 ## 아인·거인·마수

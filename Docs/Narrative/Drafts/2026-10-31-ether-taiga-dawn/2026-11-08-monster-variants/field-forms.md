@@ -1,5 +1,7 @@
 # 생물 파생형의 외형·행동·생활권
 
+외형·행동은 보존 자료로 사용하며 현행 후보의 지역·수치는 [199형태 재배치](../2026-11-08-world-distribution-and-leveling/variant-distribution.md)를 따른다. 아래의 지역·수치는 이전안이다.
+
 [파생형 기준](../2026-11-08-monster-variants.md)에 따른 29개 기본 항목의 63개 후보다. 지역 코드는 [분포 v2](../2026-11-08-continent-ecology-progression-v2.md), 기본 정체는 [확장 종 목록](../2026-11-08-expanded-monster-roster/species.md)을 따른다. 이름·외형·행동은 ccl8용 창작이다. 숫자는 교전 권장 레벨이며 개체 수가 아니다. 교섭 가능한 종은 파생형이 강하다는 이유로 기본 적대가 되지 않는다.
 
 ## 아인·거인

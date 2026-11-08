@@ -21,7 +21,8 @@
 |---|---|
 | 레퍼런스를 바탕으로 등장 종·초자연 존재·구조체와 지역 연결을 비교할 때 | [몬스터 확장안](2026-10-31-ether-taiga-dawn/2026-11-08-expanded-monster-roster.md) |
 | 같은 종의 피부색·외모·행동과 파생형별 레벨 차이를 볼 때 | [몬스터 파생형 기준안](2026-10-31-ether-taiga-dawn/2026-11-08-monster-variants.md) |
-| 64항목 전체의 파생형과 다른 대륙까지 포함한 현행 분포를 볼 때 | [5대륙 파생형 전체안](2026-10-31-ether-taiga-dawn/2026-11-08-worldwide-monster-variants.md) |
+| 64항목·199형태의 이전 외형·배치와 원문을 찾을 때 | [5대륙 파생형 전체안](2026-10-31-ether-taiga-dawn/2026-11-08-worldwide-monster-variants.md) |
+| 현행 후보의 세계 공통·대륙 고유 분류와 199형태 분포·전체 레벨링을 볼 때 | [세계 분포·성장](2026-10-31-ether-taiga-dawn/2026-11-08-world-distribution-and-leveling.md) |
 | 이그니스 이야기 재검토와 대륙별 메인 여정·해금·나라·세력·전승을 볼 때 | [5대륙 메인 여정 후보](2026-10-31-ether-taiga-dawn/2026-11-08-five-continent-mainline.md) |
 | 몬스터 원형의 출처와 작품별 해석 차이를 확인할 때 | [소설·게임 레퍼런스 조사](../Research/2026-11-08-fantasy-monster-references.md) |
 | 최초 14종의 상세 생태·기능명 대응과 이전 추천을 비교할 때 | [종 기준안 보존본](2026-10-31-ether-taiga-dawn/2026-11-08-monster-roster.md) |
