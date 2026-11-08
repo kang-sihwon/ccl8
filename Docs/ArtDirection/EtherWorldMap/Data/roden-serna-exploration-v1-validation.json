@@ -1,0 +1,990 @@
+{
+  "status": "PASS",
+  "check_count": 188,
+  "scope": "Source and authored geometry/data consistency; not gameplay, ecology, hydrology, tide timing, collision, boat navigation or experience validation",
+  "svg_hash_mode": "UTF-8 normalized LF",
+  "hashes_sha256": {
+    "Docs/ArtDirection/EtherWorldMap/Images/roden-serna-corridor-v1.png": "581b372a0162eb12d9660d1572a9e7fb00e2b5248c4f5e59ec374cfd991e59a5",
+    "Docs/ArtDirection/EtherWorldMap/Images/roden-serna-corridor-v1.svg": "31764c7c0ce0e42df3917237e0dbf62a3a210677570c26ccabd83a2718dce8fe",
+    "Docs/ArtDirection/EtherWorldMap/Images/roden-serna-estuary-v1.png": "9125ffe54e6cb91d7c5a8221a81370c67376b4db61aefb70d1b803c3bc5776b5",
+    "Docs/ArtDirection/EtherWorldMap/Images/roden-serna-estuary-v1.svg": "d49cff41e7e2f51befbe7cf59d0a556f99ad5c399dbe7b0b2c6c416d982b77d2",
+    "Docs/ArtDirection/EtherWorldMap/Images/roden-serna-harbor-v1.png": "ac0a9ec421ac5397f577bf363cd50f6ef8bdb90b96e06dbda8b6f356760a7384",
+    "Docs/ArtDirection/EtherWorldMap/Images/roden-serna-harbor-v1.svg": "232ef9e7a7a4b14fc535bff7ddb5e6b9e5661248d9bfe2c9c99fdb1c0347e0b8",
+    "Docs/ArtDirection/EtherWorldMap/Images/roden-serna-rescue-v1.png": "0e09259e927dbbee35484e4b6d27f8e7426bd56e2237a48bd0445c51c73cf85d",
+    "Docs/ArtDirection/EtherWorldMap/Images/roden-serna-rescue-v1.svg": "584531918fca84fe4b592c8ffc7eb8a79493d3d372d251cb8a38b2652629cd99"
+  },
+  "checks": [
+    {
+      "check": "georeference_file_hash",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "georeference_unchanged_from_HEAD",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "coast_file_hash",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "coast_unchanged_from_HEAD",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "all_36_original_settlements_preserved",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "H01_preserved",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "R1_preserved",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "R1_planar_length",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "M03_three_original_points",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "local_coast_source_knots",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "counts",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "counts_by_area",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "all_and_only_current_S3_forms",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "form_ranges",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "growth_budget",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "human_group_separate",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "C01_regional_conversion",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "C02_regional_conversion",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "C03_regional_conversion",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "C04_regional_conversion",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "C05_regional_conversion",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "C06_regional_conversion",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "C07_regional_conversion",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "C08_regional_conversion",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "C09_regional_conversion",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "C10_regional_conversion",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "C11_regional_conversion",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "C12_regional_conversion",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "H01_regional_conversion",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "H02_regional_conversion",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "H03_regional_conversion",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "H04_regional_conversion",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "H05_regional_conversion",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "H06_regional_conversion",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "H07_regional_conversion",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "H08_regional_conversion",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "H09_regional_conversion",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "H10_regional_conversion",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "H11_regional_conversion",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "H12_regional_conversion",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "H13_regional_conversion",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "C_out_length",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "C_back_length",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "C_high_length",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "C_optional_length",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "C_escape_length",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "C_port_length",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "H_out_length",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "H_back_length",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "H_boat_out_length",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "H_rescue_length",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "H_boat_back_length",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "H_road_length",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "estuary_river-22",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "estuary_river-23",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "estuary_home-EC1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "estuary_home-EC2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "estuary_home-EU1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "estuary_home-EH1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "estuary_patrol-EH1-0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "estuary_patrol-EH1-1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "estuary_patrol-EH1-2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "estuary_patrol-EH1-3",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "estuary_home-ED1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "estuary_route-C_out-0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "estuary_route-C_out-1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "estuary_route-C_out-2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "estuary_route-C_out-3",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "estuary_route-C_back-0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "estuary_route-C_back-1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "estuary_route-C_back-2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "estuary_route-C_back-3",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "estuary_route-C_back-4",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "estuary_route-C_back-5",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "estuary_route-C_high-0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "estuary_route-C_high-1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "estuary_route-C_high-2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "estuary_route-C_optional-0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "estuary_route-C_optional-1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "estuary_route-C_escape-0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "estuary_route-C_port-0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "estuary_node-C01",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "estuary_node-C02",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "estuary_node-C03",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "estuary_node-C04",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "estuary_node-C05",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "estuary_node-C06",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "estuary_node-C07",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "estuary_node-C08",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "estuary_node-C09",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "estuary_node-C10",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "estuary_node-C11",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "estuary_node-C12",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "estuary_node-H03",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "estuary_river_data_on_source",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "estuary_coast_data_on_source",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "estuary_scale_bar",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "harbor_river-23",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "harbor_coast-2931",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "harbor_coast-2932",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "harbor_home-EC2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "harbor_home-HC1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "harbor_home-HC2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "harbor_home-HU1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "harbor_home-HH1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "harbor_patrol-HH1-0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "harbor_patrol-HH1-1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "harbor_home-HD1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "harbor_home-HS1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "harbor_patrol-HS1-0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "harbor_patrol-HS1-1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "harbor_home-HS2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "harbor_route-C_port-0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "harbor_route-H_out-0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "harbor_route-H_out-1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "harbor_route-H_out-2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "harbor_route-H_out-3",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "harbor_route-H_out-4",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "harbor_route-H_back-0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "harbor_route-H_back-1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "harbor_route-H_back-2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "harbor_route-H_back-3",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "harbor_route-H_boat_out-0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "harbor_route-H_boat_back-0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "harbor_route-H_rescue-0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "harbor_route-H_rescue-1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "harbor_route-H_road-0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "harbor_node-C10",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "harbor_node-C11",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "harbor_node-C12",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "harbor_node-H01",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "harbor_node-H02",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "harbor_node-H03",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "harbor_node-H04",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "harbor_node-H05",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "harbor_node-H06",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "harbor_node-H10",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "harbor_node-H11",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "harbor_node-H12",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "harbor_node-H13",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "harbor_river_data_on_source",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "harbor_coast_data_on_source",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "harbor_scale_bar",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "rescue_home-HC2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "rescue_home-HS1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "rescue_patrol-HS1-0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "rescue_patrol-HS1-1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "rescue_route-H_boat_out-0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "rescue_route-H_rescue-0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "rescue_route-H_rescue-1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "rescue_route-H_boat_back-0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "rescue_node-H07",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "rescue_node-H08",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "rescue_node-H09",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "rescue_river_data_on_source",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "rescue_coast_data_on_source",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "rescue_scale_bar",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "all_25_nodes_drawn",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "rescue_centerline_on_authored_deck_platform_rock",
+      "pass": true,
+      "detail": "0.25 m samples against actual SVG polygons; no collision or load validation"
+    },
+    {
+      "check": "overview_R1_svg",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "C11_high_water_retreat",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "no_walking_shortcut_to_wreck",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "H13_not_required_in_any_route",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "C_out_density_sample",
+      "pass": true,
+      "detail": {
+        "max_empty_m": 1106.5,
+        "max_overlapping_envelopes": 1,
+        "potential_groups": [
+          "EC1",
+          "EC2"
+        ]
+      }
+    },
+    {
+      "check": "C_back_density_sample",
+      "pass": true,
+      "detail": {
+        "max_empty_m": 1938.5,
+        "max_overlapping_envelopes": 1,
+        "potential_groups": [
+          "EH1"
+        ]
+      }
+    },
+    {
+      "check": "C_high_density_sample",
+      "pass": true,
+      "detail": {
+        "max_empty_m": 705.7,
+        "max_overlapping_envelopes": 1,
+        "potential_groups": [
+          "EH1",
+          "EU1"
+        ]
+      }
+    },
+    {
+      "check": "H_out_density_sample",
+      "pass": true,
+      "detail": {
+        "max_empty_m": 2758.1,
+        "max_overlapping_envelopes": 1,
+        "potential_groups": [
+          "HU1"
+        ]
+      }
+    },
+    {
+      "check": "H_back_density_sample",
+      "pass": true,
+      "detail": {
+        "max_empty_m": 3094.0,
+        "max_overlapping_envelopes": 1,
+        "potential_groups": [
+          "HH1"
+        ]
+      }
+    },
+    {
+      "check": "C_back_first_gap_comparison",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "C_out_mainland_and_water_mode",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "C_back_mainland_and_water_mode",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "C_high_mainland_and_water_mode",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "C_optional_mainland_and_water_mode",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "C_escape_mainland_and_water_mode",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "C_port_mainland_and_water_mode",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "H_out_mainland_and_water_mode",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "H_back_mainland_and_water_mode",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "H_boat_out_mainland_and_water_mode",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "H_boat_back_mainland_and_water_mode",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "H_road_mainland_and_water_mode",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "corridor_png_dimensions",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "corridor_svg_dimensions",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "estuary_png_dimensions",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "estuary_svg_dimensions",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "harbor_png_dimensions",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "harbor_svg_dimensions",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "rescue_png_dimensions",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "rescue_svg_dimensions",
+      "pass": true,
+      "detail": null
+    }
+  ]
+}

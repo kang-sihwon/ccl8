@@ -1,0 +1,1247 @@
+{
+  "status": "design_candidate_not_gameplay_validation",
+  "source_georeference": "Docs/ArtDirection/EtherWorldMap/Data/ignis-continent-georeference-v1.json",
+  "source_sha256": "6db8af3cd42905181145fb26bd22793523428dcdd728b1d7d78c46e7acc773b0",
+  "source_coast": "Docs/ArtDirection/EtherWorldMap/Data/ether-world-map-land35-precise-v3.json",
+  "source_coast_sha256": "7fb1ea5461708dadca67f46ba9dd6dd579ed2ae329c275edd0707a2f85a2c0f4",
+  "anchor_M03_xy_km": [
+    417.4518741058252,
+    -1063.9045819597554
+  ],
+  "shore_M03_xy_km": [
+    416.4258136758482,
+    -1066.7236598221132
+  ],
+  "offshore_M03_xy_km": [
+    412.32157195594016,
+    -1077.9999712715442
+  ],
+  "coordinate_rule": "Local meters added to original World Tree AEQD projection; grid north, not local true north or ground survey",
+  "preserved_R1_xy_km": [
+    [
+      110,
+      95
+    ],
+    [
+      98,
+      88
+    ],
+    [
+      83,
+      75
+    ],
+    [
+      64,
+      60
+    ],
+    [
+      48,
+      42
+    ],
+    [
+      36,
+      20
+    ],
+    [
+      28,
+      -12
+    ],
+    [
+      31,
+      -30
+    ],
+    [
+      42,
+      -48
+    ],
+    [
+      50,
+      -180
+    ],
+    [
+      100,
+      -350
+    ],
+    [
+      417.4518741058252,
+      -1063.9045819597554
+    ]
+  ],
+  "R1_planar_length_km": 1270.1669232913569,
+  "Roden_Serna_planar_direct_km": 1198.9939470149545,
+  "preserved_H01_xy_km": [
+    [
+      544.5678274359643,
+      1206.8545374268083
+    ],
+    [
+      578.2526718176341,
+      704.8192494456285
+    ],
+    [
+      350,
+      400
+    ],
+    [
+      230,
+      260
+    ],
+    [
+      158,
+      157
+    ],
+    [
+      150,
+      145
+    ],
+    [
+      145,
+      140
+    ],
+    [
+      146,
+      130
+    ],
+    [
+      137,
+      125
+    ],
+    [
+      133,
+      112
+    ],
+    [
+      120,
+      110
+    ],
+    [
+      118,
+      101
+    ],
+    [
+      110,
+      95
+    ],
+    [
+      98,
+      88
+    ],
+    [
+      83,
+      75
+    ],
+    [
+      64,
+      60
+    ],
+    [
+      48,
+      42
+    ],
+    [
+      36,
+      20
+    ],
+    [
+      28,
+      -12
+    ],
+    [
+      31,
+      -30
+    ],
+    [
+      42,
+      -48
+    ],
+    [
+      50,
+      -180
+    ],
+    [
+      100,
+      -350
+    ],
+    [
+      417.4518741058252,
+      -1063.9045819597554
+    ],
+    [
+      416.4258136758482,
+      -1066.7236598221132
+    ]
+  ],
+  "local_coast_vertices_2930_2934_m": [
+    [
+      -13904.173600734794,
+      10365.259723938607
+    ],
+    [
+      -7470.398686694523,
+      3760.9856018807477
+    ],
+    [
+      -1026.060429977008,
+      -2819.0778623577444
+    ],
+    [
+      10924.1776689488,
+      -1961.7184278367858
+    ],
+    [
+      22867.573227967627,
+      -1080.4603641045105
+    ]
+  ],
+  "local_river_knots_m": [
+    [
+      -317451.8741058252,
+      713904.5819597554
+    ],
+    [
+      0.0,
+      0.0
+    ],
+    [
+      -1026.060429977008,
+      -2819.0778623577444
+    ]
+  ],
+  "frames": {
+    "estuary": {
+      "bounds_m": [
+        -600,
+        -1900,
+        1750,
+        1000
+      ],
+      "scale_px_per_m": 0.42,
+      "origin_px": [
+        90,
+        180
+      ],
+      "visible_river_segments_m": [
+        [
+          [
+            -444.66989304701565,
+            1000.0
+          ],
+          [
+            0.0,
+            0.0
+          ]
+        ],
+        [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            -600.0,
+            -1648.4864516727816
+          ]
+        ]
+      ],
+      "visible_coast_segments_m": []
+    },
+    "harbor": {
+      "bounds_m": [
+        -1100,
+        -3800,
+        3200,
+        -1100
+      ],
+      "scale_px_per_m": 0.27,
+      "origin_px": [
+        90,
+        180
+      ],
+      "visible_river_segments_m": [
+        [
+          [
+            -400.36725769282054,
+            -1100.0
+          ],
+          [
+            -1026.060429977008,
+            -2819.0778623577444
+          ]
+        ]
+      ],
+      "visible_coast_segments_m": [
+        [
+          [
+            -1100.0,
+            -2743.5810395827066
+          ],
+          [
+            -1026.0604299770075,
+            -2819.0778623577444
+          ]
+        ],
+        [
+          [
+            -1026.060429977008,
+            -2819.0778623577444
+          ],
+          [
+            3199.9999999999995,
+            -2515.882833898673
+          ]
+        ]
+      ]
+    },
+    "rescue": {
+      "bounds_m": [
+        1340,
+        -3090,
+        1640,
+        -2790
+      ],
+      "scale_px_per_m": 3.5,
+      "origin_px": [
+        90,
+        180
+      ],
+      "visible_river_segments_m": [],
+      "visible_coast_segments_m": []
+    }
+  },
+  "nodes": [
+    {
+      "id": "C01",
+      "name": "내륙 환적나루",
+      "xy_m": [
+        220,
+        550
+      ],
+      "height_above_reference_m": 8,
+      "regional_xy_km": [
+        417.6718741058252,
+        -1063.3545819597555
+      ]
+    },
+    {
+      "id": "C02",
+      "name": "주거·식수단",
+      "xy_m": [
+        650,
+        650
+      ],
+      "height_above_reference_m": 18,
+      "regional_xy_km": [
+        418.1018741058252,
+        -1063.2545819597553
+      ]
+    },
+    {
+      "id": "C03",
+      "name": "송장·검수소",
+      "xy_m": [
+        750,
+        100
+      ],
+      "height_above_reference_m": 13,
+      "regional_xy_km": [
+        418.2018741058252,
+        -1063.8045819597555
+      ]
+    },
+    {
+      "id": "C04",
+      "name": "옛 물양장",
+      "xy_m": [
+        100,
+        -200
+      ],
+      "height_above_reference_m": 5,
+      "regional_xy_km": [
+        417.5518741058252,
+        -1064.1045819597555
+      ]
+    },
+    {
+      "id": "C05",
+      "name": "갈대 가장자리",
+      "xy_m": [
+        200,
+        -650
+      ],
+      "height_above_reference_m": 2,
+      "regional_xy_km": [
+        417.6518741058252,
+        -1064.5545819597555
+      ]
+    },
+    {
+      "id": "C06",
+      "name": "폐보온관 작업터",
+      "xy_m": [
+        600,
+        -850
+      ],
+      "height_above_reference_m": 7,
+      "regional_xy_km": [
+        418.0518741058252,
+        -1064.7545819597553
+      ]
+    },
+    {
+      "id": "C07",
+      "name": "어획물 회수턱",
+      "xy_m": [
+        1150,
+        -1000
+      ],
+      "height_above_reference_m": 9,
+      "regional_xy_km": [
+        418.6018741058252,
+        -1064.9045819597554
+      ]
+    },
+    {
+      "id": "C08",
+      "name": "높은 갈대길",
+      "xy_m": [
+        1250,
+        -450
+      ],
+      "height_above_reference_m": 12,
+      "regional_xy_km": [
+        418.7018741058252,
+        -1064.3545819597555
+      ]
+    },
+    {
+      "id": "C09",
+      "name": "침수 매장터 외곽",
+      "xy_m": [
+        1450,
+        50
+      ],
+      "height_above_reference_m": 8,
+      "regional_xy_km": [
+        418.9018741058252,
+        -1063.8545819597555
+      ]
+    },
+    {
+      "id": "C10",
+      "name": "상단 운반길",
+      "xy_m": [
+        650,
+        -1400
+      ],
+      "height_above_reference_m": 10,
+      "regional_xy_km": [
+        418.1018741058252,
+        -1065.3045819597555
+      ]
+    },
+    {
+      "id": "C11",
+      "name": "간조 잔해턱",
+      "xy_m": [
+        -250,
+        -1250
+      ],
+      "height_above_reference_m": 1,
+      "regional_xy_km": [
+        417.2018741058252,
+        -1065.1545819597554
+      ]
+    },
+    {
+      "id": "C12",
+      "name": "하구 인계마당",
+      "xy_m": [
+        150,
+        -1750
+      ],
+      "height_above_reference_m": 8,
+      "regional_xy_km": [
+        417.6018741058252,
+        -1065.6545819597554
+      ]
+    },
+    {
+      "id": "H01",
+      "name": "항만 연락나루",
+      "xy_m": [
+        -650,
+        -1900
+      ],
+      "height_above_reference_m": 7,
+      "regional_xy_km": [
+        416.8018741058252,
+        -1065.8045819597555
+      ]
+    },
+    {
+      "id": "H02",
+      "name": "선박 수리대",
+      "xy_m": [
+        -770,
+        -2250
+      ],
+      "height_above_reference_m": 6,
+      "regional_xy_km": [
+        416.6818741058252,
+        -1066.1545819597554
+      ]
+    },
+    {
+      "id": "H03",
+      "name": "창고·배정소",
+      "xy_m": [
+        1050,
+        -1750
+      ],
+      "height_above_reference_m": 14,
+      "regional_xy_km": [
+        418.5018741058252,
+        -1065.6545819597554
+      ]
+    },
+    {
+      "id": "H04",
+      "name": "인양품 검사뜰",
+      "xy_m": [
+        1200,
+        -2300
+      ],
+      "height_above_reference_m": 8,
+      "regional_xy_km": [
+        418.6518741058252,
+        -1066.2045819597554
+      ]
+    },
+    {
+      "id": "H05",
+      "name": "허가 화물부두",
+      "xy_m": [
+        750,
+        -2660
+      ],
+      "height_above_reference_m": 5,
+      "regional_xy_km": [
+        418.2018741058252,
+        -1066.5645819597555
+      ]
+    },
+    {
+      "id": "H06",
+      "name": "구조 출발잔교",
+      "xy_m": [
+        850,
+        -2720
+      ],
+      "height_above_reference_m": 4,
+      "regional_xy_km": [
+        418.3018741058252,
+        -1066.6245819597555
+      ]
+    },
+    {
+      "id": "H07",
+      "name": "좌초선 높은 선미",
+      "xy_m": [
+        1458,
+        -2905
+      ],
+      "height_above_reference_m": 3,
+      "regional_xy_km": [
+        418.9098741058252,
+        -1066.8095819597554
+      ]
+    },
+    {
+      "id": "H08",
+      "name": "바깥 암반턱",
+      "xy_m": [
+        1485,
+        -2910
+      ],
+      "height_above_reference_m": 2,
+      "regional_xy_km": [
+        418.9368741058252,
+        -1066.8145819597555
+      ]
+    },
+    {
+      "id": "H09",
+      "name": "안쪽 승선턱",
+      "xy_m": [
+        1505,
+        -2890
+      ],
+      "height_above_reference_m": 3,
+      "regional_xy_km": [
+        418.9568741058252,
+        -1066.7945819597555
+      ]
+    },
+    {
+      "id": "H10",
+      "name": "동쪽 구조잔교",
+      "xy_m": [
+        1900,
+        -2630
+      ],
+      "height_above_reference_m": 4,
+      "regional_xy_km": [
+        419.3518741058252,
+        -1066.5345819597555
+      ]
+    },
+    {
+      "id": "H11",
+      "name": "높은 제방·절벽길",
+      "xy_m": [
+        1900,
+        -1800
+      ],
+      "height_above_reference_m": 16,
+      "regional_xy_km": [
+        419.3518741058252,
+        -1065.7045819597554
+      ]
+    },
+    {
+      "id": "H12",
+      "name": "동쪽 육로 연락소",
+      "xy_m": [
+        2100,
+        -1300
+      ],
+      "height_above_reference_m": 18,
+      "regional_xy_km": [
+        419.5518741058252,
+        -1065.2045819597554
+      ]
+    },
+    {
+      "id": "H13",
+      "name": "바깥 깊은 홈",
+      "xy_m": [
+        2700,
+        -3350
+      ],
+      "height_above_reference_m": null,
+      "regional_xy_km": [
+        420.1518741058252,
+        -1067.2545819597553
+      ]
+    }
+  ],
+  "paths": {
+    "C_out": {
+      "node_ids": [
+        "C01",
+        "C04",
+        "C05",
+        "C11",
+        "C12"
+      ],
+      "mode": "walk",
+      "condition": "low_water_only:C05-C11-C12",
+      "length_m": 2610.8
+    },
+    "C_back": {
+      "node_ids": [
+        "C12",
+        "C10",
+        "C07",
+        "C08",
+        "C03",
+        "C02",
+        "C01"
+      ],
+      "mode": "walk",
+      "condition": "all_tides_design",
+      "length_m": 3553.5
+    },
+    "C_high": {
+      "node_ids": [
+        "C04",
+        "C06",
+        "C10",
+        "C12"
+      ],
+      "mode": "walk",
+      "condition": "all_tides_design",
+      "length_m": 1982.7
+    },
+    "C_optional": {
+      "node_ids": [
+        "C08",
+        "C09",
+        "C03"
+      ],
+      "mode": "walk",
+      "condition": "optional_burial_site",
+      "length_m": 1240.3
+    },
+    "C_escape": {
+      "node_ids": [
+        "C11",
+        "C10"
+      ],
+      "mode": "walk",
+      "condition": "existing_upper_stair_when_low_edges_close",
+      "length_m": 912.4
+    },
+    "C_port": {
+      "node_ids": [
+        "C12",
+        "H01"
+      ],
+      "mode": "walk",
+      "condition": "all_tides_design",
+      "length_m": 813.9
+    },
+    "H_out": {
+      "node_ids": [
+        "H01",
+        "H02",
+        "H03",
+        "H04",
+        "H05",
+        "H06"
+      ],
+      "mode": "walk",
+      "condition": "public_and_authorized_salvage_yards",
+      "length_m": 3520.4
+    },
+    "H_back": {
+      "node_ids": [
+        "H10",
+        "H11",
+        "H03",
+        "H02",
+        "H01"
+      ],
+      "mode": "walk",
+      "condition": "public_high_route",
+      "length_m": 3938.9
+    },
+    "H_boat_out": {
+      "node_ids": [
+        "H06",
+        "H07"
+      ],
+      "mode": "boat",
+      "condition": "crew_approved_rescue_window",
+      "length_m": 635.5
+    },
+    "H_rescue": {
+      "node_ids": [
+        "H07",
+        "H08",
+        "H09"
+      ],
+      "mode": "deck_and_rock",
+      "condition": "temporary_transfer_after_crew_check",
+      "length_m": 55.7
+    },
+    "H_boat_back": {
+      "node_ids": [
+        "H09",
+        "H10"
+      ],
+      "mode": "boat",
+      "condition": "crew_approved_pickup",
+      "length_m": 472.9
+    },
+    "H_road": {
+      "node_ids": [
+        "H03",
+        "H12"
+      ],
+      "mode": "walk",
+      "condition": "public_local_road_not_direct_Harden_route",
+      "length_m": 1142.4
+    }
+  },
+  "groups": [
+    {
+      "id": "EC1",
+      "name": "갈대 잔해 수거",
+      "members": [
+        {
+          "form": "MN06-A",
+          "count": 4,
+          "readiness": [
+            8,
+            11
+          ]
+        }
+      ],
+      "home_xy_m": [
+        220,
+        -650
+      ],
+      "home_radius_m": 120,
+      "patrol_xy_m": [],
+      "patrol_halfwidth_m": 0,
+      "medium": "land"
+    },
+    {
+      "id": "EC2",
+      "name": "간조 갑각 먹이터",
+      "members": [
+        {
+          "form": "MN06-A",
+          "count": 2,
+          "readiness": [
+            8,
+            11
+          ]
+        },
+        {
+          "form": "MN06-B",
+          "count": 1,
+          "readiness": [
+            11,
+            14
+          ]
+        }
+      ],
+      "home_xy_m": [
+        -240,
+        -1220
+      ],
+      "home_radius_m": 135,
+      "patrol_xy_m": [],
+      "patrol_halfwidth_m": 0,
+      "medium": "tidal"
+    },
+    {
+      "id": "EU1",
+      "name": "폐보온관 군체",
+      "members": [
+        {
+          "form": "MN05-X",
+          "count": 4,
+          "readiness": [
+            5,
+            9
+          ]
+        }
+      ],
+      "home_xy_m": [
+        600,
+        -840
+      ],
+      "home_radius_m": 110,
+      "patrol_xy_m": [],
+      "patrol_halfwidth_m": 0,
+      "medium": "land"
+    },
+    {
+      "id": "EH1",
+      "name": "어획물 채집조",
+      "members": [
+        {
+          "form": "MN21-A",
+          "count": 3,
+          "readiness": [
+            10,
+            14
+          ]
+        }
+      ],
+      "home_xy_m": [
+        1370,
+        -760
+      ],
+      "home_radius_m": 140,
+      "patrol_xy_m": [
+        [
+          1370,
+          -760
+        ],
+        [
+          1150,
+          -1000
+        ],
+        [
+          650,
+          -1400
+        ],
+        [
+          1150,
+          -1000
+        ],
+        [
+          1150,
+          -450
+        ]
+      ],
+      "patrol_halfwidth_m": 65,
+      "medium": "air_and_land"
+    },
+    {
+      "id": "ED1",
+      "name": "매장 연결 잔류",
+      "members": [
+        {
+          "form": "MN45-A",
+          "count": 3,
+          "readiness": [
+            10,
+            14
+          ]
+        }
+      ],
+      "home_xy_m": [
+        1460,
+        100
+      ],
+      "home_radius_m": 85,
+      "patrol_xy_m": [],
+      "patrol_halfwidth_m": 0,
+      "medium": "ritual_bound"
+    },
+    {
+      "id": "HC1",
+      "name": "해안 잔해 수거",
+      "members": [
+        {
+          "form": "MN06-A",
+          "count": 3,
+          "readiness": [
+            8,
+            11
+          ]
+        }
+      ],
+      "home_xy_m": [
+        420,
+        -2700
+      ],
+      "home_radius_m": 120,
+      "patrol_xy_m": [],
+      "patrol_halfwidth_m": 0,
+      "medium": "tidal"
+    },
+    {
+      "id": "HC2",
+      "name": "좌초선 그물 먹이터",
+      "members": [
+        {
+          "form": "MN06-A",
+          "count": 2,
+          "readiness": [
+            8,
+            11
+          ]
+        },
+        {
+          "form": "MN06-B",
+          "count": 2,
+          "readiness": [
+            11,
+            14
+          ]
+        }
+      ],
+      "home_xy_m": [
+        1435,
+        -2895
+      ],
+      "home_radius_m": 35,
+      "patrol_xy_m": [],
+      "patrol_halfwidth_m": 0,
+      "medium": "wreck"
+    },
+    {
+      "id": "HU1",
+      "name": "인양 배관 군체",
+      "members": [
+        {
+          "form": "MN05-X",
+          "count": 3,
+          "readiness": [
+            5,
+            9
+          ]
+        }
+      ],
+      "home_xy_m": [
+        1210,
+        -2310
+      ],
+      "home_radius_m": 85,
+      "patrol_xy_m": [],
+      "patrol_halfwidth_m": 0,
+      "medium": "land"
+    },
+    {
+      "id": "HH1",
+      "name": "절벽 먹이 운반",
+      "members": [
+        {
+          "form": "MN21-A",
+          "count": 2,
+          "readiness": [
+            10,
+            14
+          ]
+        }
+      ],
+      "home_xy_m": [
+        2230,
+        -2100
+      ],
+      "home_radius_m": 130,
+      "patrol_xy_m": [
+        [
+          2230,
+          -2100
+        ],
+        [
+          1920,
+          -2250
+        ],
+        [
+          1910,
+          -1850
+        ]
+      ],
+      "patrol_halfwidth_m": 55,
+      "medium": "air_and_land"
+    },
+    {
+      "id": "HD1",
+      "name": "봉인 인양물 연결",
+      "members": [
+        {
+          "form": "MN45-A",
+          "count": 2,
+          "readiness": [
+            10,
+            14
+          ]
+        }
+      ],
+      "home_xy_m": [
+        2350,
+        -1380
+      ],
+      "home_radius_m": 70,
+      "patrol_xy_m": [],
+      "patrol_halfwidth_m": 0,
+      "medium": "ritual_bound"
+    },
+    {
+      "id": "HS1",
+      "name": "청등 구조 사건 개체",
+      "members": [
+        {
+          "form": "MN10-A",
+          "count": 1,
+          "readiness": [
+            14,
+            14
+          ]
+        }
+      ],
+      "home_xy_m": [
+        1530,
+        -2980
+      ],
+      "home_radius_m": 85,
+      "patrol_xy_m": [
+        [
+          1390,
+          -2960
+        ],
+        [
+          1560,
+          -3000
+        ],
+        [
+          1490,
+          -2850
+        ]
+      ],
+      "patrol_halfwidth_m": 25,
+      "medium": "water"
+    },
+    {
+      "id": "HS2",
+      "name": "능갑 깊은 홈",
+      "members": [
+        {
+          "form": "MN10-B",
+          "count": 1,
+          "readiness": [
+            16,
+            20
+          ]
+        }
+      ],
+      "home_xy_m": [
+        2700,
+        -3350
+      ],
+      "home_radius_m": 180,
+      "patrol_xy_m": [],
+      "patrol_halfwidth_m": 0,
+      "medium": "water"
+    }
+  ],
+  "human_event_group": {
+    "commander": 1,
+    "guards": 5,
+    "readiness": [
+      10,
+      14
+    ],
+    "not_monster_species": true
+  },
+  "sampling": {
+    "step_m_max": 5,
+    "excluded": "water groups, human event, actual LOS, enemy positions, tide simulation",
+    "cases": {
+      "C_out": {
+        "max_empty_m": 1106.5,
+        "max_overlapping_envelopes": 1,
+        "potential_groups": [
+          "EC1",
+          "EC2"
+        ],
+        "empty_intervals_m": [
+          [
+            0.0,
+            1106.5
+          ],
+          [
+            1330.5,
+            1810.5
+          ],
+          [
+            2089.6,
+            2610.8
+          ]
+        ]
+      },
+      "C_back": {
+        "max_empty_m": 1938.5,
+        "max_overlapping_envelopes": 1,
+        "potential_groups": [
+          "EH1"
+        ],
+        "empty_intervals_m": [
+          [
+            0.0,
+            545.8
+          ],
+          [
+            1615.0,
+            3553.5
+          ]
+        ]
+      },
+      "C_high": {
+        "max_empty_m": 705.7,
+        "max_overlapping_envelopes": 1,
+        "potential_groups": [
+          "EH1",
+          "EU1"
+        ],
+        "empty_intervals_m": [
+          [
+            0.0,
+            705.7
+          ],
+          [
+            924.5,
+            1297.7
+          ],
+          [
+            1441.8,
+            1982.7
+          ]
+        ]
+      },
+      "H_out": {
+        "max_empty_m": 2758.1,
+        "max_overlapping_envelopes": 1,
+        "potential_groups": [
+          "HU1"
+        ],
+        "empty_intervals_m": [
+          [
+            0.0,
+            2758.1
+          ],
+          [
+            2912.0,
+            3520.4
+          ]
+        ]
+      },
+      "H_back": {
+        "max_empty_m": 3094.0,
+        "max_overlapping_envelopes": 1,
+        "potential_groups": [
+          "HH1"
+        ],
+        "empty_intervals_m": [
+          [
+            0.0,
+            330.0
+          ],
+          [
+            844.9,
+            3938.9
+          ]
+        ]
+      }
+    }
+  },
+  "tidal_closed_edges": [
+    [
+      "C05",
+      "C11"
+    ],
+    [
+      "C11",
+      "C12"
+    ]
+  ],
+  "candidate_offshore_surfaces": {
+    "wreck_center": "H07",
+    "rock_center": "H08",
+    "pickup_ledge": "H09",
+    "not_original_continent_coast": true
+  },
+  "progression": {
+    "start": 10,
+    "end": 14,
+    "field": 2,
+    "major_combat_rescue": 1,
+    "investigation_relations": 1
+  },
+  "comparison_initial_EH1_patrol_m": [
+    [
+      1370,
+      -760
+    ],
+    [
+      1150,
+      -1000
+    ],
+    [
+      1150,
+      -450
+    ]
+  ],
+  "comparison_C_back_first_gap_m": {
+    "before": 1186.1,
+    "after": 545.8,
+    "same_three_individuals": true
+  }
+}

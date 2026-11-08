@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2100" height="1550" viewBox="0 0 2100 1550">
+<rect width="2100" height="1550" fill="#f5f1e6"/>
+<text x="50.000" y="72.000" font-family="Malgun Gothic,sans-serif" font-size="40" fill="#263d43" font-weight="700">로덴 → 세르나 · 기존 테른 강 운송</text>
+<text x="50.000" y="119.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#657a7a" font-weight="400">기존 R1·해안·도시 유지 | 긴 하류 운송과 국소 탐색을 구분</text>
+<polygon points="90.000,1325.400 90.000,180.000 729.100,180.000 729.100,1325.400" fill="#c7e0e4" stroke="#c7e0e4"/>
+<polygon id="source-mainland" points="90.000,180.000 90.000,1170.538 91.506,1172.431 96.872,1179.133 96.763,1185.053 96.655,1190.959 96.547,1196.850 96.439,1202.727 96.332,1208.590 96.225,1214.438 96.118,1220.272 96.012,1226.091 101.104,1220.365 106.186,1214.618 111.258,1208.852 116.319,1203.067 126.262,1203.206 136.207,1203.325 146.155,1203.424 156.104,1203.502 161.046,1209.398 166.000,1215.273 170.967,1221.129 175.944,1226.966 175.927,1233.415 175.910,1239.846 175.893,1246.259 175.876,1252.654 175.859,1259.031 175.842,1265.388 175.825,1271.728 175.809,1278.048 175.792,1284.350 175.775,1290.633 175.759,1296.898 175.742,1303.143 175.726,1309.369 175.709,1315.576 175.693,1321.764 175.683,1325.400 338.812,1325.400 338.700,1321.420 338.542,1315.859 338.384,1310.282 338.226,1304.689 338.067,1299.081 337.907,1293.458 342.805,1287.666 347.691,1281.854 352.566,1276.022 357.428,1270.170 367.506,1269.818 377.583,1269.446 387.657,1269.054 397.728,1268.640 407.796,1268.207 417.862,1267.753 417.611,1262.056 417.359,1256.344 417.107,1250.617 416.854,1244.876 421.603,1238.885 426.340,1232.876 431.064,1226.847 435.775,1220.798 440.472,1214.731 445.157,1208.644 449.828,1202.538 454.486,1196.413 464.398,1195.863 474.306,1195.293 484.209,1194.704 494.108,1194.094 504.002,1193.464 513.891,1192.815 519.213,1198.336 524.545,1203.838 529.885,1209.319 535.233,1214.781 545.152,1214.069 555.065,1213.338 560.439,1218.758 565.822,1224.158 571.213,1229.537 576.612,1234.897 582.020,1240.236 587.436,1245.554 592.859,1250.852 598.291,1256.129 598.739,1261.801 599.185,1267.458 599.630,1273.100 600.073,1278.727 605.528,1283.921 610.991,1289.095 616.462,1294.247 621.940,1299.379 631.983,1298.498 642.019,1297.597 646.549,1291.578 651.064,1285.538 655.565,1279.479 660.052,1273.401 670.023,1272.445 679.985,1271.469 689.940,1270.473 699.886,1269.459 709.823,1268.425 719.752,1267.371 729.100,1266.361 729.100,180.000" fill="#f9f6ec" stroke="#8cadb0"/>
+<polyline id="R1" points="280.900,250.550 270.940,256.360 258.490,267.150 242.720,279.600 229.440,294.540 219.480,312.800 212.840,339.360 215.330,354.300 224.460,369.240 231.100,478.800 272.600,619.900 536.085,1212.441" fill="none" stroke="#277da3" stroke-width="5"/>
+<circle id="anchor-M02" cx="280.900" cy="250.550" r="7.000" fill="#263d43" stroke="#263d43"/>
+<text x="296.900" y="252.550" font-family="Malgun Gothic,sans-serif" font-size="24" fill="#263d43" font-weight="700">로덴</text>
+<circle id="anchor-landing" cx="212.840" cy="339.360" r="7.000" fill="#263d43" stroke="#263d43"/>
+<text x="228.840" y="341.360" font-family="Malgun Gothic,sans-serif" font-size="24" fill="#263d43" font-weight="700">공공 환적장</text>
+<circle id="anchor-M03" cx="536.085" cy="1212.441" r="7.000" fill="#263d43" stroke="#263d43"/>
+<text x="552.085" y="1214.441" font-family="Malgun Gothic,sans-serif" font-size="24" fill="#263d43" font-weight="700">세르나</text>
+<circle id="shore-M03" cx="535.233" cy="1214.781" r="5.000" fill="#c57032" stroke="#c57032"/>
+<text x="950.000" y="218.000" font-family="Malgun Gothic,sans-serif" font-size="28" fill="#263d43" font-weight="400">운송 거리를 유지한다</text>
+<text x="950.000" y="265.000" font-family="Malgun Gothic,sans-serif" font-size="25" fill="#657a7a" font-weight="400">R1 평면 절점 합 1,270.17 km</text>
+<text x="950.000" y="315.000" font-family="Malgun Gothic,sans-serif" font-size="25" fill="#657a7a" font-weight="400">도착 전 경유·환적·숙박이 필요하다</text>
+<text x="950.000" y="365.000" font-family="Malgun Gothic,sans-serif" font-size="25" fill="#657a7a" font-weight="400">항행 시간·수심·보급 일수는 미정</text>
+<text x="950.000" y="415.000" font-family="Malgun Gothic,sans-serif" font-size="25" fill="#657a7a" font-weight="400">중앙 경유는 S6 시설 조사 해금이 아님</text>
+<text x="950.000" y="465.000" font-family="Malgun Gothic,sans-serif" font-size="25" fill="#657a7a" font-weight="400"></text>
+<text x="950.000" y="515.000" font-family="Malgun Gothic,sans-serif" font-size="25" fill="#657a7a" font-weight="400">세르나의 세 확대도</text>
+<text x="950.000" y="565.000" font-family="Malgun Gothic,sans-serif" font-size="25" fill="#657a7a" font-weight="400">① 하구: 내륙 나루·갈대·잔해</text>
+<text x="950.000" y="615.000" font-family="Malgun Gothic,sans-serif" font-size="25" fill="#657a7a" font-weight="400">② 항만: 창고·수리·구조·반출</text>
+<text x="950.000" y="665.000" font-family="Malgun Gothic,sans-serif" font-size="25" fill="#657a7a" font-weight="400">③ 좌초선: 전투·선원·암반·승선</text>
+<text x="950.000" y="715.000" font-family="Malgun Gothic,sans-serif" font-size="25" fill="#657a7a" font-weight="400"></text>
+<text x="950.000" y="765.000" font-family="Malgun Gothic,sans-serif" font-size="25" fill="#657a7a" font-weight="400">출항과 다음 여정</text>
+<text x="950.000" y="815.000" font-family="Malgun Gothic,sans-serif" font-size="25" fill="#657a7a" font-weight="400">로덴 수령·비용 인계까지 확인</text>
+<text x="950.000" y="865.000" font-family="Malgun Gothic,sans-serif" font-size="25" fill="#657a7a" font-weight="400">G1: 계약 외항선으로 아르베나 왕래</text>
+<text x="950.000" y="915.000" font-family="Malgun Gothic,sans-serif" font-size="25" fill="#657a7a" font-weight="400">하르덴: R1 상행→공공 환적→R2·R4</text>
+<text x="950.000" y="965.000" font-family="Malgun Gothic,sans-serif" font-size="25" fill="#657a7a" font-weight="400">세르나에서 만을 가로지르는 새 육로 없음</text>
+<polyline points="90.000,1450.000 256.000,1450.000" fill="none" stroke="#263d43" stroke-width="5"/>
+<text x="90.000" y="1490.000" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#263d43" font-weight="400">0</text>
+<text x="221.000" y="1490.000" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#263d43" font-weight="400">200 km</text>
+</svg>
