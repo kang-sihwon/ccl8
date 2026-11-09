@@ -1,0 +1,1280 @@
+{
+  "status": "design_candidate_not_canon_or_execution_validation",
+  "source": "Docs/ArtDirection/EtherWorldMap/Data/ignis-continent-georeference-v1.json",
+  "source_sha256": "6db8af3cd42905181145fb26bd22793523428dcdd728b1d7d78c46e7acc773b0",
+  "anchors_xy_km": {
+    "nerva": [
+      -205.9529376219892,
+      909.001952106139
+    ],
+    "rescue": [
+      -240,
+      1467
+    ],
+    "archive": [
+      -240,
+      1482
+    ]
+  },
+  "new_pass_NP01_xy_km": [
+    -240,
+    1473.711654927687
+  ],
+  "new_pass_rule": "New candidate on existing D01 segment 2; not an original pass or settlement",
+  "corridors": {
+    "R4_return": {
+      "xy_km": [
+        [
+          -1435.2733267209078,
+          454.34169769054535
+        ],
+        [
+          -890.3430271555216,
+          200.3333881209349
+        ],
+        [
+          -650,
+          100
+        ],
+        [
+          -200,
+          0
+        ],
+        [
+          18,
+          -12
+        ]
+      ],
+      "planar_length_km": 1540.975304830601,
+      "new_candidate": false
+    },
+    "R3_north": {
+      "xy_km": [
+        [
+          18,
+          -12
+        ],
+        [
+          -140,
+          160
+        ],
+        [
+          -300,
+          550
+        ],
+        [
+          -205.9529376219892,
+          909.001952106139
+        ],
+        [
+          -230.9529376219892,
+          1069.001952106139
+        ]
+      ],
+      "planar_length_km": 1188.157482038706,
+      "new_candidate": false
+    },
+    "B03": {
+      "xy_km": [
+        [
+          -230.9529376219892,
+          1069.001952106139
+        ],
+        [
+          -255.95293762198924,
+          1189.001952106139
+        ]
+      ],
+      "planar_length_km": 122.57650672131264,
+      "new_candidate": false
+    },
+    "B04": {
+      "xy_km": [
+        [
+          -255.95293762198924,
+          1189.001952106139
+        ],
+        [
+          -265.95293762198924,
+          1219.001952106139
+        ]
+      ],
+      "planar_length_km": 31.622776601683793,
+      "new_candidate": false
+    },
+    "new_pass_approach": {
+      "xy_km": [
+        [
+          -265.95293762198924,
+          1219.001952106139
+        ],
+        [
+          -270,
+          1400
+        ],
+        [
+          -240,
+          1467
+        ],
+        [
+          -240,
+          1473.711654927687
+        ],
+        [
+          -240,
+          1482
+        ]
+      ],
+      "planar_length_km": 269.4530964029837,
+      "new_candidate": true
+    }
+  },
+  "preserved_H04": [
+    [
+      -285.95293762198924,
+      1289.001952106139
+    ],
+    [
+      -265.95293762198924,
+      1219.001952106139
+    ],
+    [
+      -230.9529376219892,
+      1069.001952106139
+    ],
+    [
+      -205.9529376219892,
+      909.001952106139
+    ],
+    [
+      -350,
+      600
+    ],
+    [
+      -180,
+      320
+    ],
+    [
+      -80,
+      120
+    ],
+    [
+      50,
+      -180
+    ]
+  ],
+  "preserved_D01": [
+    [
+      -1580.5458315526587,
+      1933.1885707401839
+    ],
+    [
+      -1151.5367726608229,
+      1699.483611376729
+    ],
+    [
+      -647.388699367114,
+      1533.935840927268
+    ],
+    [
+      -202.17987849122446,
+      1468.1207142957803
+    ],
+    [
+      329.64290081364817,
+      1479.7884780936288
+    ],
+    [
+      895.8418514036352,
+      1444.1334000419324
+    ],
+    [
+      1669.5725704636693,
+      1566.381035004673
+    ]
+  ],
+  "nodes": [
+    {
+      "id": "N01",
+      "site": "nerva",
+      "name": "도시 서안 하역뜰",
+      "xy_m": [
+        -400,
+        -200
+      ],
+      "regional_xy_km": [
+        -206.3529376219892,
+        908.801952106139
+      ]
+    },
+    {
+      "id": "N02",
+      "site": "nerva",
+      "name": "비축·공동 취사단",
+      "xy_m": [
+        -800,
+        300
+      ],
+      "regional_xy_km": [
+        -206.75293762198922,
+        909.301952106139
+      ]
+    },
+    {
+      "id": "N03",
+      "site": "nerva",
+      "name": "침엽림 짐 회수터",
+      "xy_m": [
+        -1200,
+        900
+      ],
+      "regional_xy_km": [
+        -207.1529376219892,
+        909.901952106139
+      ]
+    },
+    {
+      "id": "N04",
+      "site": "nerva",
+      "name": "옛 순찰 표식",
+      "xy_m": [
+        -1500,
+        1450
+      ],
+      "regional_xy_km": [
+        -207.4529376219892,
+        910.4519521061391
+      ]
+    },
+    {
+      "id": "N05",
+      "site": "nerva",
+      "name": "숲 가장자리 대피집",
+      "xy_m": [
+        -700,
+        1600
+      ],
+      "regional_xy_km": [
+        -206.6529376219892,
+        910.601952106139
+      ]
+    },
+    {
+      "id": "N06",
+      "site": "nerva",
+      "name": "높은 귀환 농로",
+      "xy_m": [
+        -350,
+        850
+      ],
+      "regional_xy_km": [
+        -206.3029376219892,
+        909.851952106139
+      ]
+    },
+    {
+      "id": "R01",
+      "site": "rescue",
+      "name": "남쪽 구조 전초",
+      "xy_m": [
+        400,
+        -500
+      ],
+      "regional_xy_km": [
+        -239.6,
+        1466.5
+      ]
+    },
+    {
+      "id": "R02",
+      "site": "rescue",
+      "name": "침엽림 굽이",
+      "xy_m": [
+        700,
+        0
+      ],
+      "regional_xy_km": [
+        -239.3,
+        1467.0
+      ]
+    },
+    {
+      "id": "R03",
+      "site": "rescue",
+      "name": "고립 조사대 쉼터",
+      "xy_m": [
+        600,
+        500
+      ],
+      "regional_xy_km": [
+        -239.4,
+        1467.5
+      ]
+    },
+    {
+      "id": "R04",
+      "site": "rescue",
+      "name": "피난민 대기 단",
+      "xy_m": [
+        100,
+        750
+      ],
+      "regional_xy_km": [
+        -239.9,
+        1467.75
+      ]
+    },
+    {
+      "id": "R05",
+      "site": "rescue",
+      "name": "거수 진로 분기",
+      "xy_m": [
+        -500,
+        900
+      ],
+      "regional_xy_km": [
+        -240.5,
+        1467.9
+      ]
+    },
+    {
+      "id": "R06",
+      "site": "rescue",
+      "name": "서쪽 식생 골짜기",
+      "xy_m": [
+        -1400,
+        1300
+      ],
+      "regional_xy_km": [
+        -241.4,
+        1468.3
+      ]
+    },
+    {
+      "id": "R07",
+      "site": "rescue",
+      "name": "높은 피난 보행로",
+      "xy_m": [
+        -350,
+        350
+      ],
+      "regional_xy_km": [
+        -240.35,
+        1467.35
+      ]
+    },
+    {
+      "id": "R08",
+      "site": "rescue",
+      "name": "풍하쪽 귀환 단",
+      "xy_m": [
+        -250,
+        -150
+      ],
+      "regional_xy_km": [
+        -240.25,
+        1466.85
+      ]
+    },
+    {
+      "id": "R09",
+      "site": "rescue",
+      "name": "북동 눈 계곡",
+      "xy_m": [
+        1300,
+        1200
+      ],
+      "regional_xy_km": [
+        -238.7,
+        1468.2
+      ]
+    },
+    {
+      "id": "R10",
+      "site": "rescue",
+      "name": "거인 목축 표식",
+      "xy_m": [
+        -1800,
+        400
+      ],
+      "regional_xy_km": [
+        -241.8,
+        1467.4
+      ]
+    },
+    {
+      "id": "A01",
+      "site": "archive",
+      "name": "북사면 대기·짐 검사",
+      "xy_m": [
+        200,
+        -700
+      ],
+      "regional_xy_km": [
+        -239.8,
+        1481.3
+      ]
+    },
+    {
+      "id": "A02",
+      "site": "archive",
+      "name": "정상 출입길 분기",
+      "xy_m": [
+        -150,
+        -200
+      ],
+      "regional_xy_km": [
+        -240.15,
+        1481.8
+      ]
+    },
+    {
+      "id": "A03",
+      "site": "archive",
+      "name": "보관소 정문",
+      "xy_m": [
+        -400,
+        700
+      ],
+      "regional_xy_km": [
+        -240.4,
+        1482.7
+      ]
+    },
+    {
+      "id": "A04",
+      "site": "archive",
+      "name": "동쪽 작업길",
+      "xy_m": [
+        700,
+        -100
+      ],
+      "regional_xy_km": [
+        -239.3,
+        1481.9
+      ]
+    },
+    {
+      "id": "A05",
+      "site": "archive",
+      "name": "난방실 바깥 정비뜰",
+      "xy_m": [
+        800,
+        500
+      ],
+      "regional_xy_km": [
+        -239.2,
+        1482.5
+      ]
+    },
+    {
+      "id": "A06",
+      "site": "archive",
+      "name": "겨울지기 방어 홀",
+      "xy_m": [
+        450,
+        1000
+      ],
+      "regional_xy_km": [
+        -239.55,
+        1483.0
+      ]
+    },
+    {
+      "id": "A07",
+      "site": "archive",
+      "name": "정지 기록 보관실",
+      "xy_m": [
+        50,
+        1300
+      ],
+      "regional_xy_km": [
+        -239.95,
+        1483.3
+      ]
+    },
+    {
+      "id": "A08",
+      "site": "archive",
+      "name": "서쪽 점검 복도",
+      "xy_m": [
+        -500,
+        1100
+      ],
+      "regional_xy_km": [
+        -240.5,
+        1483.1
+      ]
+    },
+    {
+      "id": "A09",
+      "site": "archive",
+      "name": "낮은 외벽 귀환길",
+      "xy_m": [
+        -850,
+        200
+      ],
+      "regional_xy_km": [
+        -240.85,
+        1482.2
+      ]
+    },
+    {
+      "id": "A10",
+      "site": "archive",
+      "name": "옛 군용로 봉인턱",
+      "xy_m": [
+        -1200,
+        1300
+      ],
+      "regional_xy_km": [
+        -241.2,
+        1483.3
+      ]
+    }
+  ],
+  "paths": {
+    "N_out": {
+      "node_ids": [
+        "N01",
+        "N02",
+        "N03",
+        "N04"
+      ],
+      "mode": "walk",
+      "length_m": 1987.9
+    },
+    "N_back": {
+      "node_ids": [
+        "N04",
+        "N06",
+        "N02",
+        "N01"
+      ],
+      "mode": "walk",
+      "length_m": 2648.1
+    },
+    "N_optional": {
+      "node_ids": [
+        "N04",
+        "N05",
+        "N06"
+      ],
+      "mode": "walk",
+      "length_m": 1641.6
+    },
+    "R_out": {
+      "node_ids": [
+        "R01",
+        "R02",
+        "R03",
+        "R04",
+        "R05"
+      ],
+      "mode": "walk",
+      "length_m": 2270.5
+    },
+    "R_herd": {
+      "node_ids": [
+        "R05",
+        "R06"
+      ],
+      "mode": "animal_movement",
+      "length_m": 984.9
+    },
+    "R_evac": {
+      "node_ids": [
+        "R04",
+        "R05",
+        "R07",
+        "R08",
+        "R01"
+      ],
+      "mode": "walk",
+      "length_m": 2436.7
+    },
+    "R_back": {
+      "node_ids": [
+        "R05",
+        "R07",
+        "R08",
+        "R01"
+      ],
+      "mode": "walk",
+      "length_m": 1818.2
+    },
+    "R_east": {
+      "node_ids": [
+        "R03",
+        "R09"
+      ],
+      "mode": "walk",
+      "length_m": 989.9
+    },
+    "R_giant": {
+      "node_ids": [
+        "R06",
+        "R10",
+        "R08"
+      ],
+      "mode": "walk",
+      "length_m": 2629.6
+    },
+    "A_main": {
+      "node_ids": [
+        "A01",
+        "A02",
+        "A03"
+      ],
+      "mode": "walk",
+      "length_m": 1544.4
+    },
+    "A_out": {
+      "node_ids": [
+        "A01",
+        "A04",
+        "A05",
+        "A06",
+        "A07"
+      ],
+      "mode": "walk",
+      "length_m": 2499.6
+    },
+    "A_back": {
+      "node_ids": [
+        "A07",
+        "A08",
+        "A09",
+        "A01"
+      ],
+      "mode": "walk",
+      "length_m": 2933.8
+    },
+    "A_military": {
+      "node_ids": [
+        "A08",
+        "A10"
+      ],
+      "mode": "walk",
+      "length_m": 728.0
+    },
+    "A_retreat": {
+      "node_ids": [
+        "A06",
+        "A05",
+        "A04",
+        "A01"
+      ],
+      "mode": "walk",
+      "length_m": 1999.6
+    }
+  },
+  "groups": [
+    {
+      "id": "NW1",
+      "site": "nerva",
+      "name": "숲 먹이 추적",
+      "members": [
+        {
+          "form": "MN11-A",
+          "count": 4,
+          "readiness": [
+            17,
+            19
+          ]
+        }
+      ],
+      "home_xy_m": [
+        -1200,
+        900
+      ],
+      "home_radius_m": 130,
+      "patrol_xy_m": [
+        [
+          -1200,
+          900
+        ],
+        [
+          -1050,
+          650
+        ],
+        [
+          -850,
+          850
+        ],
+        [
+          -500,
+          1050
+        ],
+        [
+          -350,
+          850
+        ]
+      ],
+      "patrol_halfwidth_m": 60
+    },
+    {
+      "id": "NP1",
+      "site": "nerva",
+      "name": "옛 순찰 결속",
+      "members": [
+        {
+          "form": "MN47-A",
+          "count": 3,
+          "readiness": [
+            16,
+            19
+          ]
+        }
+      ],
+      "home_xy_m": [
+        -1500,
+        1450
+      ],
+      "home_radius_m": 110,
+      "patrol_xy_m": [],
+      "patrol_halfwidth_m": 0
+    },
+    {
+      "id": "NL1",
+      "site": "nerva",
+      "name": "대피집 주변 변질자",
+      "members": [
+        {
+          "form": "MN57-A",
+          "count": 3,
+          "readiness": [
+            19,
+            24
+          ]
+        }
+      ],
+      "home_xy_m": [
+        -700,
+        1600
+      ],
+      "home_radius_m": 110,
+      "patrol_xy_m": [],
+      "patrol_halfwidth_m": 0
+    },
+    {
+      "id": "RW1",
+      "site": "rescue",
+      "name": "침엽림 추적조",
+      "members": [
+        {
+          "form": "MN11-A",
+          "count": 4,
+          "readiness": [
+            18,
+            20
+          ]
+        }
+      ],
+      "home_xy_m": [
+        700,
+        0
+      ],
+      "home_radius_m": 130,
+      "patrol_xy_m": [
+        [
+          700,
+          0
+        ],
+        [
+          600,
+          350
+        ],
+        [
+          300,
+          500
+        ]
+      ],
+      "patrol_halfwidth_m": 60
+    },
+    {
+      "id": "RW2",
+      "site": "rescue",
+      "name": "눈 계곡 포식쌍",
+      "members": [
+        {
+          "form": "MN11-B",
+          "count": 2,
+          "readiness": [
+            20,
+            24
+          ]
+        }
+      ],
+      "home_xy_m": [
+        1300,
+        1200
+      ],
+      "home_radius_m": 170,
+      "patrol_xy_m": [
+        [
+          1300,
+          1200
+        ],
+        [
+          1100,
+          750
+        ]
+      ],
+      "patrol_halfwidth_m": 75
+    },
+    {
+      "id": "RG1",
+      "site": "rescue",
+      "name": "분기 고립 거수",
+      "members": [
+        {
+          "form": "MN13-A",
+          "count": 1,
+          "readiness": [
+            20,
+            21
+          ]
+        }
+      ],
+      "home_xy_m": [
+        -500,
+        900
+      ],
+      "home_radius_m": 160,
+      "patrol_xy_m": [
+        [
+          -500,
+          900
+        ],
+        [
+          -950,
+          1100
+        ],
+        [
+          -1400,
+          1300
+        ]
+      ],
+      "patrol_halfwidth_m": 90
+    },
+    {
+      "id": "RG2",
+      "site": "rescue",
+      "name": "식생 골짜기 작은 무리",
+      "members": [
+        {
+          "form": "MN13-A",
+          "count": 3,
+          "readiness": [
+            18,
+            21
+          ]
+        }
+      ],
+      "home_xy_m": [
+        -1700,
+        1700
+      ],
+      "home_radius_m": 200,
+      "patrol_xy_m": [],
+      "patrol_halfwidth_m": 0
+    },
+    {
+      "id": "RG3",
+      "site": "rescue",
+      "name": "북동 넓은뿔 무리",
+      "members": [
+        {
+          "form": "MN13-B",
+          "count": 2,
+          "readiness": [
+            23,
+            27
+          ]
+        }
+      ],
+      "home_xy_m": [
+        100,
+        2050
+      ],
+      "home_radius_m": 220,
+      "patrol_xy_m": [],
+      "patrol_halfwidth_m": 0
+    },
+    {
+      "id": "RV1",
+      "site": "rescue",
+      "name": "백막 바람목",
+      "members": [
+        {
+          "form": "MN09-C",
+          "count": 1,
+          "readiness": [
+            19,
+            23
+          ]
+        }
+      ],
+      "home_xy_m": [
+        1500,
+        2100
+      ],
+      "home_radius_m": 180,
+      "patrol_xy_m": [
+        [
+          1500,
+          2100
+        ],
+        [
+          900,
+          1900
+        ],
+        [
+          300,
+          1700
+        ]
+      ],
+      "patrol_halfwidth_m": 75
+    },
+    {
+      "id": "RI1",
+      "site": "rescue",
+      "name": "돌 표식 목축조",
+      "members": [
+        {
+          "form": "MN25-A",
+          "count": 2,
+          "readiness": [
+            24,
+            30
+          ]
+        }
+      ],
+      "home_xy_m": [
+        -1800,
+        400
+      ],
+      "home_radius_m": 180,
+      "patrol_xy_m": [],
+      "patrol_halfwidth_m": 0
+    },
+    {
+      "id": "AP1",
+      "site": "archive",
+      "name": "작업길 순찰 잔류",
+      "members": [
+        {
+          "form": "MN47-A",
+          "count": 5,
+          "readiness": [
+            17,
+            21
+          ]
+        }
+      ],
+      "home_xy_m": [
+        700,
+        0
+      ],
+      "home_radius_m": 120,
+      "patrol_xy_m": [
+        [
+          700,
+          0
+        ],
+        [
+          800,
+          500
+        ]
+      ],
+      "patrol_halfwidth_m": 60
+    },
+    {
+      "id": "AP2",
+      "site": "archive",
+      "name": "외벽 순찰 잔류",
+      "members": [
+        {
+          "form": "MN47-A",
+          "count": 3,
+          "readiness": [
+            16,
+            20
+          ]
+        }
+      ],
+      "home_xy_m": [
+        -850,
+        350
+      ],
+      "home_radius_m": 120,
+      "patrol_xy_m": [
+        [
+          -850,
+          350
+        ],
+        [
+          -900,
+          650
+        ]
+      ],
+      "patrol_halfwidth_m": 50
+    },
+    {
+      "id": "AD1",
+      "site": "archive",
+      "name": "옛 군용로 명령",
+      "members": [
+        {
+          "form": "MN49-A",
+          "count": 1,
+          "readiness": [
+            24,
+            29
+          ]
+        }
+      ],
+      "home_xy_m": [
+        -1200,
+        1300
+      ],
+      "home_radius_m": 130,
+      "patrol_xy_m": [],
+      "patrol_halfwidth_m": 0
+    }
+  ],
+  "structures": [
+    {
+      "id": "CA1",
+      "site": "archive",
+      "form": "CT03-A",
+      "count": 2,
+      "xy_m": [
+        780,
+        480
+      ],
+      "readiness": [
+        16,
+        20
+      ]
+    },
+    {
+      "id": "CS1",
+      "site": "archive",
+      "form": "CT06-A",
+      "count": 3,
+      "xy_m": [
+        -500,
+        1050
+      ],
+      "readiness": [
+        17,
+        21
+      ]
+    },
+    {
+      "id": "CB1",
+      "site": "archive",
+      "form": "CT03-B",
+      "count": 1,
+      "xy_m": [
+        450,
+        1000
+      ],
+      "readiness": [
+        21,
+        21
+      ]
+    }
+  ],
+  "frames": {
+    "nerva": {
+      "bounds_m": [
+        -1900,
+        -600,
+        500,
+        2100
+      ],
+      "scale": 0.4,
+      "origin_px": [
+        90,
+        180
+      ]
+    },
+    "rescue": {
+      "bounds_m": [
+        -2200,
+        -800,
+        2000,
+        2500
+      ],
+      "scale": 0.31,
+      "origin_px": [
+        90,
+        180
+      ]
+    },
+    "archive": {
+      "bounds_m": [
+        -1500,
+        -1000,
+        1300,
+        1700
+      ],
+      "scale": 0.4,
+      "origin_px": [
+        90,
+        180
+      ]
+    }
+  },
+  "sampling": {
+    "step_m_max": 5,
+    "excluded": "structures, live enemy positions, wildlife, post-event states and actual combat",
+    "cases": {
+      "N_out": {
+        "length_m": 1987.9,
+        "potential_groups": [
+          "NP1",
+          "NW1"
+        ],
+        "max_empty_m": 1013.3,
+        "max_overlap": 1
+      },
+      "N_back": {
+        "length_m": 2648.1,
+        "potential_groups": [
+          "NP1",
+          "NW1"
+        ],
+        "max_empty_m": 1286.3,
+        "max_overlap": 1
+      },
+      "R_out": {
+        "length_m": 2270.5,
+        "potential_groups": [
+          "RG1",
+          "RW1"
+        ],
+        "max_empty_m": 1107.9,
+        "max_overlap": 1
+      },
+      "R_back": {
+        "length_m": 1818.2,
+        "potential_groups": [
+          "RG1"
+        ],
+        "max_empty_m": 1654.6,
+        "max_overlap": 1
+      },
+      "R_evac": {
+        "length_m": 2436.7,
+        "potential_groups": [
+          "RG1"
+        ],
+        "max_empty_m": 1654.6,
+        "max_overlap": 1
+      },
+      "A_out": {
+        "length_m": 2499.6,
+        "potential_groups": [
+          "AP1"
+        ],
+        "max_empty_m": 1045.8,
+        "max_overlap": 1
+      },
+      "A_back": {
+        "length_m": 2933.8,
+        "potential_groups": [
+          "AP2"
+        ],
+        "max_empty_m": 1412.8,
+        "max_overlap": 1
+      }
+    }
+  },
+  "progression": {
+    "start": 18,
+    "end": 21,
+    "field": 1,
+    "major_combat_rescue": 1,
+    "investigation_relations": 1
+  },
+  "stretcher_closed_edges": [
+    [
+      "R02",
+      "R03"
+    ]
+  ],
+  "beast_blocked_evac_edge": [
+    "R04",
+    "R05"
+  ],
+  "blocked_archive_edge": [
+    "A02",
+    "A03"
+  ],
+  "archive_states": {
+    "initial_closed_edges": [
+      [
+        "A02",
+        "A03"
+      ],
+      [
+        "A06",
+        "A07"
+      ],
+      [
+        "A07",
+        "A08"
+      ]
+    ],
+    "after_defense_isolation_closed_edges": [
+      [
+        "A02",
+        "A03"
+      ],
+      [
+        "A07",
+        "A08"
+      ]
+    ],
+    "after_inside_manual_release_closed_edges": [
+      [
+        "A02",
+        "A03"
+      ]
+    ]
+  },
+  "beast_separation": {
+    "evacuation": "R_evac",
+    "animal": "R_herd",
+    "rule": "RG1 clears shared R05 junction westward first; people then pass R05 and turn south; no simultaneous junction use"
+  },
+  "winterkeeper_hall": {
+    "bounds_m": [
+      410,
+      970,
+      490,
+      1030
+    ],
+    "main_lane_width_m": 12,
+    "side_lane_width_m": 6,
+    "service_heat_preserved": true,
+    "defense_reservoir_isolated_only": true
+  },
+  "overview_frame": {
+    "bounds_km": [
+      -1600,
+      -100,
+      200,
+      1700
+    ],
+    "scale": 0.63,
+    "origin_px": [
+      90,
+      180
+    ]
+  }
+}

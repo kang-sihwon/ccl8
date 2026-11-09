@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2100" height="1550" viewBox="0 0 2100 1550">
+<rect width="2100" height="1550" fill="#f3f4ee"/>
+<text x="50.000" y="72.000" font-family="Malgun Gothic,sans-serif" font-size="40" fill="#263d43" font-weight="700">하르덴 → 공공 복귀 → 네르바·관문 → 옛 겨울 분지</text>
+<text x="50.000" y="119.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#657a7a" font-weight="400">원본 R4·R3·B03·B04 보존 | NP01 고개와 유적 접근은 새 후보</text>
+<polygon points="90.000,1314.000 90.000,180.000 1224.000,180.000 1224.000,1314.000" fill="#fafaf5" stroke="#bcc7bb"/>
+<polyline id="ridge-D01-0" points="371.935,180.000 372.532,180.325" fill="none" stroke="#9faeab" stroke-width="10"/>
+<polyline id="ridge-D01-1" points="372.532,180.325 690.145,284.620" fill="none" stroke="#9faeab" stroke-width="10"/>
+<polyline id="ridge-D01-2" points="690.145,284.620 970.627,326.084" fill="none" stroke="#9faeab" stroke-width="10"/>
+<polyline id="ridge-D01-3" points="970.627,326.084 1224.000,320.525" fill="none" stroke="#9faeab" stroke-width="10"/>
+<polyline id="river-H04-0" points="917.850,438.929 930.450,483.029" fill="none" stroke="#92bcc6" stroke-width="5"/>
+<polyline id="river-H04-1" points="930.450,483.029 952.500,577.529" fill="none" stroke="#92bcc6" stroke-width="5"/>
+<polyline id="river-H04-2" points="952.500,577.529 968.250,678.329" fill="none" stroke="#92bcc6" stroke-width="5"/>
+<polyline id="river-H04-3" points="968.250,678.329 877.500,873.000" fill="none" stroke="#92bcc6" stroke-width="5"/>
+<polyline id="river-H04-4" points="877.500,873.000 984.600,1049.400" fill="none" stroke="#92bcc6" stroke-width="5"/>
+<polyline id="river-H04-5" points="984.600,1049.400 1047.600,1175.400" fill="none" stroke="#92bcc6" stroke-width="5"/>
+<polyline id="river-H04-6" points="1047.600,1175.400 1107.660,1314.000" fill="none" stroke="#92bcc6" stroke-width="5"/>
+<polyline id="corridor-R4_return" points="193.778,964.765 537.084,1124.790 688.500,1188.000 972.000,1251.000 1109.340,1258.560" fill="none" stroke="#c57032" stroke-width="4"/>
+<polyline id="corridor-R3_north" points="1109.340,1258.560 1009.800,1150.200 909.000,904.500 968.250,678.329 952.500,577.529" fill="none" stroke="#277da3" stroke-width="4"/>
+<polyline id="corridor-B03" points="952.500,577.529 936.750,501.929" fill="none" stroke="#277da3" stroke-width="4"/>
+<polyline id="corridor-B04" points="936.750,501.929 930.450,483.029" fill="none" stroke="#277da3" stroke-width="4"/>
+<polyline id="corridor-new_pass_approach" points="930.450,483.029 927.900,369.000 946.800,326.790 946.800,322.562 946.800,317.340" fill="none" stroke="#78668e" stroke-width="4"/>
+<circle id="anchor-M04" cx="193.778" cy="964.765" r="6.000" fill="#263d43" stroke="#263d43"/>
+<text x="205.778" y="1001.765" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#263d43" font-weight="400">하르덴</text>
+<circle id="anchor-T04" cx="537.084" cy="1124.790" r="6.000" fill="#263d43" stroke="#263d43"/>
+<text x="549.084" y="1161.790" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#263d43" font-weight="400">켈바</text>
+<circle id="anchor-M01" cx="1109.340" cy="1258.560" r="6.000" fill="#263d43" stroke="#263d43"/>
+<text x="1121.340" y="1245.560" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#263d43" font-weight="400">공공 도시권</text>
+<circle id="anchor-T10" cx="968.250" cy="678.329" r="6.000" fill="#263d43" stroke="#263d43"/>
+<text x="980.250" y="715.329" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#263d43" font-weight="400">네르바</text>
+<circle id="anchor-M07" cx="952.500" cy="577.529" r="6.000" fill="#263d43" stroke="#263d43"/>
+<text x="964.500" y="614.529" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#263d43" font-weight="400">관문도시 / 이르 합류</text>
+<circle id="anchor-V14" cx="936.750" cy="501.929" r="6.000" fill="#263d43" stroke="#263d43"/>
+<text x="948.750" y="541.929" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#263d43" font-weight="400">길목</text>
+<circle id="anchor-T11" cx="930.450" cy="483.029" r="6.000" fill="#263d43" stroke="#263d43"/>
+<text x="942.450" y="470.029" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#263d43" font-weight="400">케르딘</text>
+<circle id="anchor-rescue" cx="946.800" cy="326.790" r="6.000" fill="#78668e" stroke="#78668e"/>
+<text x="746.800" y="356.790" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#78668e" font-weight="400">남쪽 구조권</text>
+<circle id="anchor-archive" cx="946.800" cy="317.340" r="6.000" fill="#78668e" stroke="#78668e"/>
+<text x="956.800" y="289.340" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#78668e" font-weight="400">북쪽 보관소</text>
+<circle id="pass-NP01" cx="946.800" cy="322.562" r="5.000" fill="#417c67" stroke="#417c67"/>
+<text x="966.800" y="325.562" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#417c67" font-weight="400">NP01</text>
+<text x="1350.000" y="227.000" font-family="Malgun Gothic,sans-serif" font-size="27" fill="#263d43" font-weight="700">이어지는 이야기</text>
+<text x="1350.000" y="275.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#263d43" font-weight="400">1 하르덴 인계 → R4 공공 복귀</text>
+<text x="1350.000" y="328.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#263d43" font-weight="400">2 R3 네르바 비축·숲 탐색</text>
+<text x="1350.000" y="381.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#263d43" font-weight="400">3 관문에서 이르 합류 → 길목·케르딘</text>
+<text x="1350.000" y="434.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#263d43" font-weight="400">4 새 고개 접근 → 거수 유도·조사대 구조</text>
+<text x="1350.000" y="487.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#263d43" font-weight="400">5 기다림·재출발 → 겨울지기·기록 회수</text>
+<text x="1350.000" y="540.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#263d43" font-weight="400">6 인계 후 같은 회랑으로 중앙 복귀</text>
+<text x="1350.000" y="593.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#657a7a" font-weight="400"></text>
+<text x="1350.000" y="646.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#657a7a" font-weight="400">거주 도시는 모두 산맥 남쪽에 유지.</text>
+<text x="1350.000" y="699.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#657a7a" font-weight="400">북쪽 분지는 별도 유적·계절 탐사권.</text>
+<text x="1350.000" y="752.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#657a7a" font-weight="400">회색 굵은 선은 원본 백풍 산맥 D01.</text>
+<text x="1350.000" y="805.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#657a7a" font-weight="400">보라선·NP01은 미검증 접근 후보.</text>
+<text x="1350.000" y="858.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#657a7a" font-weight="400">지도 거리로 여행 시간을 확정하지 않음.</text>
+<text x="1350.000" y="911.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#657a7a" font-weight="400">R3/하천 겹침은 계곡 회랑, 수면 도보 아님.</text>
+<polyline id="scale-bar" points="90.000,1390.000 216.000,1390.000" fill="none" stroke="#263d43" stroke-width="5"/>
+<text x="90.000" y="1433.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#263d43" font-weight="400">200 km · 투영 격자 북쪽 ↑</text>
+</svg>

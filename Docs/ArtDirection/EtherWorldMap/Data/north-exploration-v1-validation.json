@@ -1,0 +1,983 @@
+{
+  "status": "PASS",
+  "count": 191,
+  "scope": "Source and SVG geometry, current form ranges, route lengths, temporal access states, sampled envelopes; no UE/gameplay/weather/ecology verification",
+  "checks": [
+    {
+      "check": "source_hash",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "source_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "36_settlements",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "Docs/Narrative/World.md_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "Docs/Narrative/Scenario.md_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "Docs/ArtDirection/EtherWorldMap/Data/ether-world-map-land35-precise-v3.json_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "R4_return_source",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "R3_north_source",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "B03_source",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "B04_source",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "H04_source",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "D01_source",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "NP01_on_D01",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "R4_return_length",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "R3_north_length",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "B03_length",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "B04_length",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "new_pass_approach_length",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "corridor_continuity",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "nerva_anchor",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "rescue_entire_frame_correct_side",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "archive_entire_frame_correct_side",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "counts",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "nerva_count",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "rescue_count",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "archive_count",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "current_S5_all_forms",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "NW1_readiness",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "NP1_readiness",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "NL1_readiness",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "RW1_readiness",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "RW2_readiness",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "RG1_readiness",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "RG2_readiness",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "RG3_readiness",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "RV1_readiness",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "RI1_readiness",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "AP1_readiness",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "AP2_readiness",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "AD1_readiness",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "structures",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "growth",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "N01_regional_coordinate",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "N02_regional_coordinate",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "N03_regional_coordinate",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "N04_regional_coordinate",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "N05_regional_coordinate",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "N06_regional_coordinate",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "R01_regional_coordinate",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "R02_regional_coordinate",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "R03_regional_coordinate",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "R04_regional_coordinate",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "R05_regional_coordinate",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "R06_regional_coordinate",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "R07_regional_coordinate",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "R08_regional_coordinate",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "R09_regional_coordinate",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "R10_regional_coordinate",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "A01_regional_coordinate",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "A02_regional_coordinate",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "A03_regional_coordinate",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "A04_regional_coordinate",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "A05_regional_coordinate",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "A06_regional_coordinate",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "A07_regional_coordinate",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "A08_regional_coordinate",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "A09_regional_coordinate",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "A10_regional_coordinate",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "N_out_length",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "N_back_length",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "N_optional_length",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "R_out_length",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "R_herd_length",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "R_evac_length",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "R_back_length",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "R_east_length",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "R_giant_length",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "A_main_length",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "A_out_length",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "A_back_length",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "A_military_length",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "A_retreat_length",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "nerva_river-H04-2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "nerva_river-H04-3",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "nerva_home-NW1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "nerva_patrol-NW1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "nerva_home-NP1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "nerva_home-NL1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "nerva_route-N_out",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "nerva_route-N_back",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "nerva_route-N_optional",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "nerva_node-N01",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "nerva_node-N02",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "nerva_node-N03",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "nerva_node-N04",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "nerva_node-N05",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "nerva_node-N06",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "nerva_scale",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "nerva_PNG_dimensions",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "rescue_home-RW1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "rescue_patrol-RW1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "rescue_home-RW2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "rescue_patrol-RW2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "rescue_home-RG1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "rescue_patrol-RG1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "rescue_home-RG2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "rescue_home-RG3",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "rescue_home-RV1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "rescue_patrol-RV1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "rescue_home-RI1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "rescue_route-R_out",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "rescue_route-R_herd",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "rescue_route-R_evac",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "rescue_route-R_back",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "rescue_route-R_east",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "rescue_route-R_giant",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "rescue_node-R01",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "rescue_node-R02",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "rescue_node-R03",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "rescue_node-R04",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "rescue_node-R05",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "rescue_node-R06",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "rescue_node-R07",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "rescue_node-R08",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "rescue_node-R09",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "rescue_node-R10",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "rescue_scale",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "rescue_PNG_dimensions",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "archive_home-AP1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "archive_patrol-AP1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "archive_home-AP2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "archive_patrol-AP2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "archive_home-AD1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "archive_route-A_main",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "archive_route-A_out",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "archive_route-A_back",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "archive_route-A_military",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "archive_route-A_retreat",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "archive_node-A01",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "archive_node-A02",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "archive_node-A03",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "archive_node-A04",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "archive_node-A05",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "archive_node-A06",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "archive_node-A07",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "archive_node-A08",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "archive_node-A09",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "archive_node-A10",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "archive_structure-CA1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "archive_structure-CS1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "archive_structure-CB1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "archive_scale",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "archive_PNG_dimensions",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "internal_gate_on_A07_A08",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "all_nodes_rendered",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "overview_R4_return",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "overview_R3_north",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "overview_B03",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "overview_B04",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "overview_new_pass_approach",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "overview_ridge-D01-0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "overview_ridge-D01-1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "overview_ridge-D01-2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "overview_ridge-D01-3",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "overview_river-H04-0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "overview_river-H04-1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "overview_river-H04-2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "overview_river-H04-3",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "overview_river-H04-4",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "overview_river-H04-5",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "overview_river-H04-6",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "overview_scale",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "initial_no_archive_backdoor",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "initial_defense_reachable",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "defense_isolation_opens_record_room",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "inside_release_opens_return",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "inside_release_still_requires_A06_until_manual_release",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "evacuation_uses_blocked_junction",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "animal_people_share_only_junction",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "no_unwritten_direct_evac_edge",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "stretcher_blocked_before_herd_clearance",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "stretcher_path_after_herd_clearance",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "scout_can_return_on_foot",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "N_out_density",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "N_back_density",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "R_out_density",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "R_back_density",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "R_evac_density",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "A_out_density",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "A_back_density",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "post_herd_evac_no_other_envelope",
+      "pass": true,
+      "detail": "Removes RG1 only after confirmed westward clearance; not live safety validation"
+    }
+  ],
+  "post_herd_evacuation": {
+    "potential_groups": [],
+    "max_empty_m": 2436.7,
+    "max_overlap": 0
+  },
+  "file_hashes": {
+    "north-nerva-v1": {
+      "png_sha256": "10defbe0b3f028efa907f89228f55d8e690c55639734fb67c24c90bdc4b34289",
+      "svg_utf8_lf_sha256": "f409597e8c37967dc2c748aa99238ea1847d5442cb22ec3f662e2e274a83590d"
+    },
+    "north-rescue-v1": {
+      "png_sha256": "7d72fb66711d18e474c0525931e105b89dc26c39a3b472f1cc8e3ce9abdf0fdb",
+      "svg_utf8_lf_sha256": "5bee1950f9bf532bdadac7c7b54c4eb91a85a5a3e36bb8d2136522cb79c76593"
+    },
+    "north-archive-v1": {
+      "png_sha256": "d341bddb56c0e3c2f56bd15e4b7b4f548284604852a8bdc95203f1d60f986936",
+      "svg_utf8_lf_sha256": "307d418288d1643b7628ba4bff1fa67acdb712661084836164f31d9551be49db"
+    },
+    "corridor_png": "d2c550277753f2067e30ddfce6b5f19204fb6bb3516cb44b82c8939bed035f96",
+    "corridor_svg": "f5a7da9cb49fc5ad19721bb1b8d05696eaa9487a983947c8f1dc49b261c00686"
+  }
+}

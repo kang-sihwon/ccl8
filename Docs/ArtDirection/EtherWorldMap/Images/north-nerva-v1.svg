@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2100" height="1550" viewBox="0 0 2100 1550">
+<rect width="2100" height="1550" fill="#f3f4ee"/>
+<text x="50.000" y="72.000" font-family="Malgun Gothic,sans-serif" font-size="40" fill="#263d43" font-weight="700">네르바 · 비축과 숲 가장자리 탐색</text>
+<text x="50.000" y="119.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#657a7a" font-weight="400">좌표 후보 | 투영 격자 북쪽 ↑ | 파랑 진입 · 주황 귀환 · 초록 선택/피난 · 보라 거수 이동</text>
+<polygon points="90.000,1260.000 90.000,180.000 1050.000,180.000 1050.000,1260.000" fill="#fafaf5" stroke="#b9c4b4"/>
+<polyline points="250.000,1260.000 250.000,180.000" fill="none" stroke="#d7dfdc" stroke-width="1"/>
+<text x="235.000" y="1285.000" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#657a7a" font-weight="400">-1500</text>
+<polyline points="450.000,1260.000 450.000,180.000" fill="none" stroke="#d7dfdc" stroke-width="1"/>
+<text x="435.000" y="1285.000" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#657a7a" font-weight="400">-1000</text>
+<polyline points="650.000,1260.000 650.000,180.000" fill="none" stroke="#d7dfdc" stroke-width="1"/>
+<text x="635.000" y="1285.000" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#657a7a" font-weight="400">-500</text>
+<polyline points="850.000,1260.000 850.000,180.000" fill="none" stroke="#d7dfdc" stroke-width="1"/>
+<text x="835.000" y="1285.000" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#657a7a" font-weight="400">0</text>
+<polyline points="1050.000,1260.000 1050.000,180.000" fill="none" stroke="#d7dfdc" stroke-width="1"/>
+<text x="1035.000" y="1285.000" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#657a7a" font-weight="400">500</text>
+<polyline points="90.000,1220.000 1050.000,1220.000" fill="none" stroke="#d7dfdc" stroke-width="1"/>
+<text x="10.000" y="1227.000" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#657a7a" font-weight="400">-500</text>
+<polyline points="90.000,1020.000 1050.000,1020.000" fill="none" stroke="#d7dfdc" stroke-width="1"/>
+<text x="10.000" y="1027.000" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#657a7a" font-weight="400">0</text>
+<polyline points="90.000,820.000 1050.000,820.000" fill="none" stroke="#d7dfdc" stroke-width="1"/>
+<text x="10.000" y="827.000" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#657a7a" font-weight="400">500</text>
+<polyline points="90.000,620.000 1050.000,620.000" fill="none" stroke="#d7dfdc" stroke-width="1"/>
+<text x="10.000" y="627.000" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#657a7a" font-weight="400">1000</text>
+<polyline points="90.000,420.000 1050.000,420.000" fill="none" stroke="#d7dfdc" stroke-width="1"/>
+<text x="10.000" y="427.000" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#657a7a" font-weight="400">1500</text>
+<polyline points="90.000,220.000 1050.000,220.000" fill="none" stroke="#d7dfdc" stroke-width="1"/>
+<text x="10.000" y="227.000" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#657a7a" font-weight="400">2000</text>
+<polyline id="river-H04-2" points="718.750,180.000 850.000,1020.000" fill="none" stroke="#80b5c1" stroke-width="10"/>
+<polyline id="river-H04-3" points="850.000,1020.000 738.119,1260.000" fill="none" stroke="#80b5c1" stroke-width="10"/>
+<circle id="home-NW1" cx="370.000" cy="660.000" r="52.000" fill="none" stroke="#b58c66"/>
+<polyline id="patrol-NW1" points="370.000,660.000 430.000,760.000 510.000,680.000 650.000,600.000 710.000,680.000" fill="none" stroke="#b394ac" stroke-width="3"/>
+<text x="355.000" y="602.000" font-family="Malgun Gothic,sans-serif" font-size="19" fill="#805b48" font-weight="700">NW1</text>
+<circle id="home-NP1" cx="250.000" cy="440.000" r="44.000" fill="none" stroke="#b58c66"/>
+<text x="235.000" y="390.000" font-family="Malgun Gothic,sans-serif" font-size="19" fill="#805b48" font-weight="700">NP1</text>
+<circle id="home-NL1" cx="570.000" cy="380.000" r="44.000" fill="none" stroke="#b58c66"/>
+<text x="555.000" y="330.000" font-family="Malgun Gothic,sans-serif" font-size="19" fill="#805b48" font-weight="700">NL1</text>
+<polyline id="route-N_out" points="690.000,1100.000 530.000,900.000 370.000,660.000 250.000,440.000" fill="none" stroke="#277da3" stroke-width="4"/>
+<polyline id="route-N_back" points="250.000,440.000 710.000,680.000 530.000,900.000 690.000,1100.000" fill="none" stroke="#c57032" stroke-width="4"/>
+<polyline id="route-N_optional" points="250.000,440.000 570.000,380.000 710.000,680.000" fill="none" stroke="#417c67" stroke-width="4"/>
+<circle id="node-N01" cx="690.000" cy="1100.000" r="6.000" fill="#263d43" stroke="#263d43"/>
+<text x="698.000" y="1097.000" font-family="Malgun Gothic,sans-serif" font-size="21" fill="#263d43" font-weight="700">N01</text>
+<circle id="node-N02" cx="530.000" cy="900.000" r="6.000" fill="#263d43" stroke="#263d43"/>
+<text x="538.000" y="897.000" font-family="Malgun Gothic,sans-serif" font-size="21" fill="#263d43" font-weight="700">N02</text>
+<circle id="node-N03" cx="370.000" cy="660.000" r="6.000" fill="#263d43" stroke="#263d43"/>
+<text x="378.000" y="657.000" font-family="Malgun Gothic,sans-serif" font-size="21" fill="#263d43" font-weight="700">N03</text>
+<circle id="node-N04" cx="250.000" cy="440.000" r="6.000" fill="#263d43" stroke="#263d43"/>
+<text x="258.000" y="437.000" font-family="Malgun Gothic,sans-serif" font-size="21" fill="#263d43" font-weight="700">N04</text>
+<circle id="node-N05" cx="570.000" cy="380.000" r="6.000" fill="#263d43" stroke="#263d43"/>
+<text x="578.000" y="377.000" font-family="Malgun Gothic,sans-serif" font-size="21" fill="#263d43" font-weight="700">N05</text>
+<circle id="node-N06" cx="710.000" cy="680.000" r="6.000" fill="#263d43" stroke="#263d43"/>
+<text x="718.000" y="677.000" font-family="Malgun Gothic,sans-serif" font-size="21" fill="#263d43" font-weight="700">N06</text>
+<text x="1450.000" y="208.000" font-family="Malgun Gothic,sans-serif" font-size="28" fill="#263d43" font-weight="700">장소와 역할</text>
+<text x="1450.000" y="252.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#263d43" font-weight="400">N01  도시 서안 하역뜰</text>
+<text x="1450.000" y="294.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#263d43" font-weight="400">N02  비축·공동 취사단</text>
+<text x="1450.000" y="336.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#263d43" font-weight="400">N03  침엽림 짐 회수터</text>
+<text x="1450.000" y="378.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#263d43" font-weight="400">N04  옛 순찰 표식</text>
+<text x="1450.000" y="420.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#263d43" font-weight="400">N05  숲 가장자리 대피집</text>
+<text x="1450.000" y="462.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#263d43" font-weight="400">N06  높은 귀환 농로</text>
+<text x="1450.000" y="528.000" font-family="Malgun Gothic,sans-serif" font-size="21" fill="#657a7a" font-weight="400">N01–N06은 서안의 국소 보행권.</text>
+<text x="1450.000" y="570.000" font-family="Malgun Gothic,sans-serif" font-size="21" fill="#657a7a" font-weight="400">R3의 본류 횡단은 별도 교량/나루 점검.</text>
+<text x="1450.000" y="612.000" font-family="Malgun Gothic,sans-serif" font-size="21" fill="#657a7a" font-weight="400">NL1은 사람의 변질·피난 문제도 다룬다.</text>
+<text x="1450.000" y="654.000" font-family="Malgun Gothic,sans-serif" font-size="21" fill="#657a7a" font-weight="400">다음 도시·마을은 이 확대도 밖에 있다.</text>
+<polyline id="scale-bar" points="90.000,1390.000 290.000,1390.000" fill="none" stroke="#263d43" stroke-width="5"/>
+<text x="90.000" y="1432.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#263d43" font-weight="400">500 m · 투영 평면</text>
+<text x="550.000" y="1433.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#657a7a" font-weight="400">일반 동물은 전투 배치에서 제외 | 실제 지형·기후·전투 미검증</text>
+</svg>
