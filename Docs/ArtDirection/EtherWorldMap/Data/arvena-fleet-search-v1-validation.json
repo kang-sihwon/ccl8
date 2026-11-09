@@ -1,0 +1,495 @@
+{
+  "status": "PASS",
+  "checks_passed": 116,
+  "checks_total": 116,
+  "counts": {
+    "new_nodes": 28,
+    "new_forms": 15,
+    "new_groups": 16,
+    "new_individuals": 36,
+    "new_structures": 1,
+    "human": 4,
+    "combined_nodes": 54,
+    "combined_forms": 22,
+    "combined_individuals": 56,
+    "combined_structures": 2
+  },
+  "rescue_corridor_clearance_m": {
+    "boss_home_center": 2163.3,
+    "boss_routine": 1484.1
+  },
+  "scope": "document arithmetic, preserved source hashes, local path and SVG geometry only",
+  "not_verified": [
+    "terrain and tides",
+    "navigation and boat capacity",
+    "combat density and weapon reach",
+    "AI and experience",
+    "UE runtime"
+  ],
+  "checks": [
+    {
+      "check": "source preserved Docs/ArtDirection/EtherWorldMap/Data/serna-arvena-passage-v1.json",
+      "pass": true
+    },
+    {
+      "check": "source preserved Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-08-world-distribution-and-leveling/variant-distribution.md",
+      "pass": true
+    },
+    {
+      "check": "source preserved Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-08-world-distribution-and-leveling/progression.md",
+      "pass": true
+    },
+    {
+      "check": "source preserved Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-08-five-continent-mainline/routes-and-unlocks.md",
+      "pass": true
+    },
+    {
+      "check": "source preserved Docs/Narrative/World.md",
+      "pass": true
+    },
+    {
+      "check": "source preserved Docs/Narrative/Scenario.md",
+      "pass": true
+    },
+    {
+      "check": "arrival object unchanged",
+      "pass": true
+    },
+    {
+      "check": "declared counts match actual entries",
+      "pass": true
+    },
+    {
+      "check": "unique new nodes and group ids",
+      "pass": true
+    },
+    {
+      "check": "SI1 existing form region and range",
+      "pass": true
+    },
+    {
+      "check": "SI1 finite pursuit and resident amount",
+      "pass": true
+    },
+    {
+      "check": "SI2 existing form region and range",
+      "pass": true
+    },
+    {
+      "check": "SI2 finite pursuit and resident amount",
+      "pass": true
+    },
+    {
+      "check": "SI3 existing form region and range",
+      "pass": true
+    },
+    {
+      "check": "SI3 finite pursuit and resident amount",
+      "pass": true
+    },
+    {
+      "check": "FO1 existing form region and range",
+      "pass": true
+    },
+    {
+      "check": "FO1 finite pursuit and resident amount",
+      "pass": true
+    },
+    {
+      "check": "FO2 existing form region and range",
+      "pass": true
+    },
+    {
+      "check": "FO2 finite pursuit and resident amount",
+      "pass": true
+    },
+    {
+      "check": "FO3 existing form region and range",
+      "pass": true
+    },
+    {
+      "check": "FO3 finite pursuit and resident amount",
+      "pass": true
+    },
+    {
+      "check": "FO4 existing form region and range",
+      "pass": true
+    },
+    {
+      "check": "FO4 finite pursuit and resident amount",
+      "pass": true
+    },
+    {
+      "check": "FO5 existing form region and range",
+      "pass": true
+    },
+    {
+      "check": "FO5 finite pursuit and resident amount",
+      "pass": true
+    },
+    {
+      "check": "FO6 existing form region and range",
+      "pass": true
+    },
+    {
+      "check": "FO6 finite pursuit and resident amount",
+      "pass": true
+    },
+    {
+      "check": "CO1 existing form region and range",
+      "pass": true
+    },
+    {
+      "check": "CO1 finite pursuit and resident amount",
+      "pass": true
+    },
+    {
+      "check": "CO2 existing form region and range",
+      "pass": true
+    },
+    {
+      "check": "CO2 finite pursuit and resident amount",
+      "pass": true
+    },
+    {
+      "check": "CO3 existing form region and range",
+      "pass": true
+    },
+    {
+      "check": "CO3 finite pursuit and resident amount",
+      "pass": true
+    },
+    {
+      "check": "CO4 existing form region and range",
+      "pass": true
+    },
+    {
+      "check": "CO4 finite pursuit and resident amount",
+      "pass": true
+    },
+    {
+      "check": "CO5 existing form region and range",
+      "pass": true
+    },
+    {
+      "check": "CO5 finite pursuit and resident amount",
+      "pass": true
+    },
+    {
+      "check": "CO6 existing form region and range",
+      "pass": true
+    },
+    {
+      "check": "CO6 finite pursuit and resident amount",
+      "pass": true
+    },
+    {
+      "check": "CO7 existing form region and range",
+      "pass": true
+    },
+    {
+      "check": "CO7 finite pursuit and resident amount",
+      "pass": true
+    },
+    {
+      "check": "conditional plant hostility",
+      "pass": true
+    },
+    {
+      "check": "structure local allowed range",
+      "pass": true
+    },
+    {
+      "check": "human range and separate count",
+      "pass": true
+    },
+    {
+      "check": "backlot_out references endpoints distance",
+      "pass": true
+    },
+    {
+      "check": "backlot_out transport matches terrain",
+      "pass": true
+    },
+    {
+      "check": "backlot_back references endpoints distance",
+      "pass": true
+    },
+    {
+      "check": "backlot_back transport matches terrain",
+      "pass": true
+    },
+    {
+      "check": "forest_out references endpoints distance",
+      "pass": true
+    },
+    {
+      "check": "forest_out transport matches terrain",
+      "pass": true
+    },
+    {
+      "check": "forest_back references endpoints distance",
+      "pass": true
+    },
+    {
+      "check": "forest_back transport matches terrain",
+      "pass": true
+    },
+    {
+      "check": "forest_bypass references endpoints distance",
+      "pass": true
+    },
+    {
+      "check": "forest_bypass transport matches terrain",
+      "pass": true
+    },
+    {
+      "check": "forest_optional references endpoints distance",
+      "pass": true
+    },
+    {
+      "check": "forest_optional transport matches terrain",
+      "pass": true
+    },
+    {
+      "check": "coast_link references endpoints distance",
+      "pass": true
+    },
+    {
+      "check": "coast_link transport matches terrain",
+      "pass": true
+    },
+    {
+      "check": "north_pier references endpoints distance",
+      "pass": true
+    },
+    {
+      "check": "north_pier transport matches terrain",
+      "pass": true
+    },
+    {
+      "check": "coast_land references endpoints distance",
+      "pass": true
+    },
+    {
+      "check": "coast_land transport matches terrain",
+      "pass": true
+    },
+    {
+      "check": "mid_pier_to_land references endpoints distance",
+      "pass": true
+    },
+    {
+      "check": "mid_pier_to_land transport matches terrain",
+      "pass": true
+    },
+    {
+      "check": "southern_land_return references endpoints distance",
+      "pass": true
+    },
+    {
+      "check": "southern_land_return transport matches terrain",
+      "pass": true
+    },
+    {
+      "check": "harbor_to_search references endpoints distance",
+      "pass": true
+    },
+    {
+      "check": "harbor_to_search transport matches terrain",
+      "pass": true
+    },
+    {
+      "check": "rescue_visits references endpoints distance",
+      "pass": true
+    },
+    {
+      "check": "rescue_visits transport matches terrain",
+      "pass": true
+    },
+    {
+      "check": "rescue_return references endpoints distance",
+      "pass": true
+    },
+    {
+      "check": "rescue_return transport matches terrain",
+      "pass": true
+    },
+    {
+      "check": "response_out references endpoints distance",
+      "pass": true
+    },
+    {
+      "check": "response_out transport matches terrain",
+      "pass": true
+    },
+    {
+      "check": "response_withdraw references endpoints distance",
+      "pass": true
+    },
+    {
+      "check": "response_withdraw transport matches terrain",
+      "pass": true
+    },
+    {
+      "check": "response_finish references endpoints distance",
+      "pass": true
+    },
+    {
+      "check": "response_finish transport matches terrain",
+      "pass": true
+    },
+    {
+      "check": "buoy_optional references endpoints distance",
+      "pass": true
+    },
+    {
+      "check": "buoy_optional transport matches terrain",
+      "pass": true
+    },
+    {
+      "check": "all visit nodes connect to harbor without victory path",
+      "pass": true
+    },
+    {
+      "check": "boss pre-victory withdrawal reverse",
+      "pass": true
+    },
+    {
+      "check": "different southern return remains connected",
+      "pass": true
+    },
+    {
+      "check": "forest bypass avoids root guardian radius",
+      "pass": true
+    },
+    {
+      "check": "FO5 off mandatory forest route",
+      "pass": true
+    },
+    {
+      "check": "FO6 off mandatory forest route",
+      "pass": true
+    },
+    {
+      "check": "rescue north corridor outside boss home plus pursuit",
+      "pass": true
+    },
+    {
+      "check": "rescue north corridor outside boss routine plus pursuit",
+      "pass": true
+    },
+    {
+      "check": "seven distinct survivors and three assisted",
+      "pass": true
+    },
+    {
+      "check": "C04 roster matches",
+      "pass": true
+    },
+    {
+      "check": "C05 roster matches",
+      "pass": true
+    },
+    {
+      "check": "survivor snapshot 0 unique conservation",
+      "pass": true
+    },
+    {
+      "check": "survivor snapshot 1 unique conservation",
+      "pass": true
+    },
+    {
+      "check": "survivor snapshot 2 unique conservation",
+      "pass": true
+    },
+    {
+      "check": "survivor snapshot 3 unique conservation",
+      "pass": true
+    },
+    {
+      "check": "survivor snapshot 4 unique conservation",
+      "pass": true
+    },
+    {
+      "check": "survivor state order",
+      "pass": true
+    },
+    {
+      "check": "final response after harbor handoff",
+      "pass": true
+    },
+    {
+      "check": "remaining budget original and +9",
+      "pass": true
+    },
+    {
+      "check": "arrival award matches previous +1",
+      "pass": true
+    },
+    {
+      "check": "growth contiguous and each allocation matches",
+      "pass": true
+    },
+    {
+      "check": "optional growth retained no scaling",
+      "pass": true
+    },
+    {
+      "check": "boss incident within major and form bands",
+      "pass": true
+    },
+    {
+      "check": "G3 complete bundle without circular unlock",
+      "pass": true
+    },
+    {
+      "check": "return and boss fate separate",
+      "pass": true
+    },
+    {
+      "check": "no global anchor invented",
+      "pass": true
+    },
+    {
+      "check": "overview all node positions",
+      "pass": true
+    },
+    {
+      "check": "overview resident radius positions",
+      "pass": true
+    },
+    {
+      "check": "preserved harbor paths rendered",
+      "pass": true
+    },
+    {
+      "check": "land all node positions",
+      "pass": true
+    },
+    {
+      "check": "land resident radius positions",
+      "pass": true
+    },
+    {
+      "check": "separate structure and human shown",
+      "pass": true
+    },
+    {
+      "check": "coast all node positions",
+      "pass": true
+    },
+    {
+      "check": "coast resident radius positions",
+      "pass": true
+    },
+    {
+      "check": "deck inset scale agrees with 60x24",
+      "pass": true
+    },
+    {
+      "check": "deck work markers agree with separation",
+      "pass": true
+    }
+  ]
+}

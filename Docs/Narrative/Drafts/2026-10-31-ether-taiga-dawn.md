@@ -19,6 +19,7 @@
 
 | 읽는 때 | 문서·절 |
 |---|---|
+| 아르베나 실종 선단 수색·구조·돛갈퀴 대응·G3 해금과 왕복을 볼 때 | [수색 상세 후보와 지도](2026-10-31-ether-taiga-dawn/2026-11-09-arvena-fleet-search.md) |
 | G1·G2에 따른 세르나 출항·아르베나 도착·공개 탐색·조사 준비를 볼 때 | [출항·도착 후보와 지도](2026-10-31-ether-taiga-dawn/2026-11-09-serna-arvena-passage.md) |
 | 이그니스 S1-S6의 사건·분포·성장·왕복·동료·설비 인계를 함께 볼 때 | [전체 여정 연결 점검과 지도](2026-10-31-ether-taiga-dawn/2026-11-09-ignis-journey-continuity.md) |
 | 북부 귀환 뒤 중앙 공급·뿌리권 탐색·설비·세력 갈등·최종 접근을 볼 때 | [S6 상세 후보와 지도](2026-10-31-ether-taiga-dawn/2026-11-09-central-exploration.md) |

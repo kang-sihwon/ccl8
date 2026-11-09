@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2000" height="1250" viewBox="0 0 2000 1250">
+<rect width="2000" height="1250" fill="#f0f3ef"/>
+<text x="50.000" y="72.000" font-family="Malgun Gothic,sans-serif" font-size="40" fill="#263d43" font-weight="700">아르베나 | 항만 배후와 낮은 숲</text>
+<text x="50.000" y="119.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#687b7b" font-weight="400">같은 AR-P01 국소 좌표 확장 / 세계 해안 미접속 / 실선은 이동 수단별 구분 / 지형·수심·시야는 후보</text>
+<polygon points="60.000,724.000 60.000,180.000 1148.000,180.000 1148.000,724.000" fill="#d0e0e5" stroke="#d0e0e5"/>
+<polygon points="60.000,724.000 60.000,180.000 1148.000,180.000 1148.000,724.000" fill="#dde6d7" stroke="#dde6d7"/>
+<polyline id="backlot_out-0" points="1077.600,218.400 1077.600,292.000" fill="none" stroke="#75698b" stroke-width="3"/>
+<polyline id="backlot_out-1" points="1077.600,292.000 956.000,365.600" fill="none" stroke="#75698b" stroke-width="3"/>
+<polyline id="backlot_out-2" points="956.000,365.600 844.000,356.000" fill="none" stroke="#75698b" stroke-width="3"/>
+<polyline id="backlot_out-3" points="844.000,356.000 796.000,269.600" fill="none" stroke="#75698b" stroke-width="3"/>
+<polyline id="backlot_back-0" points="796.000,269.600 924.000,244.000" fill="none" stroke="#75698b" stroke-width="3"/>
+<polyline id="backlot_back-1" points="924.000,244.000 1077.600,218.400" fill="none" stroke="#75698b" stroke-width="3"/>
+<polyline id="forest_out-0" points="796.000,269.600 604.000,212.000" fill="none" stroke="#ac663b" stroke-width="3"/>
+<polyline id="forest_out-1" points="604.000,212.000 476.000,340.000" fill="none" stroke="#ac663b" stroke-width="3"/>
+<polyline id="forest_out-2" points="476.000,340.000 316.000,324.000" fill="none" stroke="#ac663b" stroke-width="3"/>
+<polyline id="forest_out-3" points="316.000,324.000 252.000,484.000" fill="none" stroke="#ac663b" stroke-width="3"/>
+<polyline id="forest_out-4" points="252.000,484.000 412.000,628.000" fill="none" stroke="#ac663b" stroke-width="3"/>
+<polyline id="forest_back-0" points="412.000,628.000 604.000,532.000" fill="none" stroke="#75698b" stroke-width="3"/>
+<polyline id="forest_back-1" points="604.000,532.000 716.000,388.000" fill="none" stroke="#75698b" stroke-width="3"/>
+<polyline id="forest_back-2" points="716.000,388.000 796.000,269.600" fill="none" stroke="#75698b" stroke-width="3"/>
+<polyline id="forest_bypass-0" points="316.000,324.000 604.000,532.000" fill="none" stroke="#ac663b" stroke-width="3"/>
+<polyline id="forest_bypass-1" points="604.000,532.000 412.000,628.000" fill="none" stroke="#ac663b" stroke-width="3"/>
+<polyline id="forest_optional-0" points="252.000,484.000 156.000,644.000" fill="none" stroke="#ac663b" stroke-width="3"/>
+<polyline id="forest_optional-1" points="156.000,644.000 252.000,484.000" fill="none" stroke="#ac663b" stroke-width="3"/>
+<polyline id="coast_link-0" points="412.000,628.000 1020.000,724.000" fill="none" stroke="#ac663b" stroke-width="3"/>
+<polyline id="coast_link-1" points="1020.000,724.000 1020.000,724.000" fill="none" stroke="#ac663b" stroke-width="3"/>
+<circle id="group-SI1" cx="949.600" cy="368.800" r="19.200" fill="none" stroke="#ac663b"/>
+<text x="934.600" y="393.800" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#263d43" font-weight="400">SI1</text>
+<circle id="group-SI2" cx="860.000" cy="388.000" r="20.800" fill="none" stroke="#ac663b"/>
+<text x="845.000" y="413.000" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#263d43" font-weight="400">SI2</text>
+<circle id="group-SI3" cx="1020.000" cy="320.800" r="14.400" fill="none" stroke="#ac663b"/>
+<text x="1005.000" y="345.800" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#263d43" font-weight="400">SI3</text>
+<circle id="group-FO1" cx="492.000" cy="356.000" r="35.200" fill="none" stroke="#ac663b"/>
+<polyline id="routine-FO1" points="492.000,356.000 453.600,324.000 492.000,356.000" fill="none" stroke="#47715c" stroke-width="2"/>
+<text x="477.000" y="381.000" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#263d43" font-weight="400">FO1</text>
+<circle id="group-FO2" cx="316.000" cy="352.800" r="24.000" fill="none" stroke="#47715c"/>
+<text x="301.000" y="377.800" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#263d43" font-weight="400">FO2</text>
+<circle id="group-FO3" cx="373.600" cy="442.400" r="25.600" fill="none" stroke="#ac663b"/>
+<text x="358.600" y="467.400" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#263d43" font-weight="400">FO3</text>
+<circle id="group-FO4" cx="252.000" cy="500.000" r="41.600" fill="none" stroke="#47715c"/>
+<text x="237.000" y="525.000" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#263d43" font-weight="400">FO4</text>
+<circle id="group-FO5" cx="140.000" cy="596.000" r="22.400" fill="none" stroke="#ac663b"/>
+<text x="125.000" y="621.000" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#263d43" font-weight="400">FO5</text>
+<circle id="group-FO6" cx="140.000" cy="676.000" r="28.800" fill="none" stroke="#ac663b"/>
+<text x="125.000" y="701.000" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#263d43" font-weight="400">FO6</text>
+<circle id="node-A12" cx="1077.600" cy="218.400" r="4.000" fill="#263d43" stroke="#263d43"/>
+<text x="1086.600" y="213.400" font-family="Malgun Gothic,sans-serif" font-size="19" fill="#263d43" font-weight="400">A12</text>
+<circle id="node-Q01" cx="1077.600" cy="292.000" r="4.000" fill="#263d43" stroke="#263d43"/>
+<text x="1086.600" y="287.000" font-family="Malgun Gothic,sans-serif" font-size="19" fill="#263d43" font-weight="400">Q01</text>
+<circle id="node-Q02" cx="956.000" cy="365.600" r="4.000" fill="#263d43" stroke="#263d43"/>
+<text x="965.000" y="360.600" font-family="Malgun Gothic,sans-serif" font-size="19" fill="#263d43" font-weight="400">Q02</text>
+<circle id="node-Q03" cx="844.000" cy="356.000" r="4.000" fill="#263d43" stroke="#263d43"/>
+<text x="853.000" y="351.000" font-family="Malgun Gothic,sans-serif" font-size="19" fill="#263d43" font-weight="400">Q03</text>
+<circle id="node-Q04" cx="796.000" cy="269.600" r="4.000" fill="#263d43" stroke="#263d43"/>
+<text x="805.000" y="264.600" font-family="Malgun Gothic,sans-serif" font-size="19" fill="#263d43" font-weight="400">Q04</text>
+<circle id="node-Q05" cx="924.000" cy="244.000" r="4.000" fill="#263d43" stroke="#263d43"/>
+<text x="933.000" y="239.000" font-family="Malgun Gothic,sans-serif" font-size="19" fill="#263d43" font-weight="400">Q05</text>
+<circle id="node-W01" cx="604.000" cy="212.000" r="4.000" fill="#263d43" stroke="#263d43"/>
+<text x="613.000" y="207.000" font-family="Malgun Gothic,sans-serif" font-size="19" fill="#263d43" font-weight="400">W01</text>
+<circle id="node-W02" cx="476.000" cy="340.000" r="4.000" fill="#263d43" stroke="#263d43"/>
+<text x="485.000" y="335.000" font-family="Malgun Gothic,sans-serif" font-size="19" fill="#263d43" font-weight="400">W02</text>
+<circle id="node-W03" cx="316.000" cy="324.000" r="4.000" fill="#263d43" stroke="#263d43"/>
+<text x="325.000" y="319.000" font-family="Malgun Gothic,sans-serif" font-size="19" fill="#263d43" font-weight="400">W03</text>
+<circle id="node-W04" cx="252.000" cy="484.000" r="4.000" fill="#263d43" stroke="#263d43"/>
+<text x="261.000" y="479.000" font-family="Malgun Gothic,sans-serif" font-size="19" fill="#263d43" font-weight="400">W04</text>
+<circle id="node-W05" cx="412.000" cy="628.000" r="4.000" fill="#263d43" stroke="#263d43"/>
+<text x="421.000" y="623.000" font-family="Malgun Gothic,sans-serif" font-size="19" fill="#263d43" font-weight="400">W05</text>
+<circle id="node-W06" cx="604.000" cy="532.000" r="4.000" fill="#263d43" stroke="#263d43"/>
+<text x="613.000" y="527.000" font-family="Malgun Gothic,sans-serif" font-size="19" fill="#263d43" font-weight="400">W06</text>
+<circle id="node-W07" cx="716.000" cy="388.000" r="4.000" fill="#263d43" stroke="#263d43"/>
+<text x="725.000" y="383.000" font-family="Malgun Gothic,sans-serif" font-size="19" fill="#263d43" font-weight="400">W07</text>
+<circle id="node-W08" cx="156.000" cy="644.000" r="4.000" fill="#263d43" stroke="#263d43"/>
+<text x="165.000" y="639.000" font-family="Malgun Gothic,sans-serif" font-size="19" fill="#263d43" font-weight="400">W08</text>
+<circle id="separate-SC1" cx="831.200" cy="346.400" r="6.000" fill="#75698b" stroke="#263d43"/>
+<text x="771.200" y="319.400" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263d43" font-weight="400">SC1</text>
+<circle id="separate-SM1" cx="844.000" cy="356.000" r="6.000" fill="#75698b" stroke="#263d43"/>
+<text x="864.000" y="398.000" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263d43" font-weight="400">SM1</text>
+<text x="1193.000" y="208.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#263d43" font-weight="700">AR1 배후 → AR2 낮은 숲</text>
+<text x="1193.000" y="251.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#687b7b" font-weight="400">Q01 배후 진입 / Q02 봉인 적치</text>
+<text x="1193.000" y="294.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#687b7b" font-weight="400">Q03 분쟁 창고 / Q04 높은 뜰</text>
+<text x="1193.000" y="337.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#687b7b" font-weight="400">Q05 인수 증언과 다른 귀환</text>
+<text x="1193.000" y="380.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#687b7b" font-weight="400">W01 운반길 / W02 과수원</text>
+<text x="1193.000" y="423.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#687b7b" font-weight="400">W03 저수터 / W04 수액 숲</text>
+<text x="1193.000" y="466.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#687b7b" font-weight="400">W05 남쪽 관측 / W06 귀환</text>
+<text x="1193.000" y="509.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#687b7b" font-weight="400">W07 중간 창고 / W08 선택</text>
+<text x="1193.000" y="552.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#687b7b" font-weight="400">SI1 염막 3 / SI2 갯턱 2</text>
+<text x="1193.000" y="595.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#687b7b" font-weight="400">SI3 동테 임프 3</text>
+<text x="1193.000" y="638.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#687b7b" font-weight="400">FO1 붉은볏 2 / FO2 가는뿌리 3</text>
+<text x="1193.000" y="681.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#687b7b" font-weight="400">FO3 청환 2 / FO4 참나무결 2</text>
+<text x="1193.000" y="724.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#687b7b" font-weight="400">FO5 해그 1 / FO6 흑목 1</text>
+<text x="1193.000" y="767.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#687b7b" font-weight="400">별도 순찰갑주 1 · 인간조 4</text>
+<text x="1193.000" y="810.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#687b7b" font-weight="400">해그·흑목은 선택 곁길</text>
+<text x="1193.000" y="853.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#687b7b" font-weight="400">주민 운송은 계속된다</text>
+<text x="60.000" y="1144.000" font-family="Malgun Gothic,sans-serif" font-size="24" fill="#263d43" font-weight="400">주황 육상·잔교 / 보라 다른 귀환 / 파랑 배 이동. 바다 위 선은 도보 연결이 아니다.</text>
+<polyline points="60.000,1175.000 220.000,1175.000" fill="none" stroke="#263d43" stroke-width="4"/>
+<text x="60.000" y="1215.000" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#263d43" font-weight="400">500 m · 설계 평면</text>
+</svg>
