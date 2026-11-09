@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1510" viewBox="0 0 1800 1510">
+<rect width="1800" height="1510" fill="#f5f1e6"/>
+<text x="50.000" y="72.000" font-family="Malgun Gothic,sans-serif" font-size="40" fill="#263d43" font-weight="700">벨레스 숲 | 기존 14명의 파생형 배정 v3</text>
+<text x="50.000" y="119.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#657a7a" font-weight="400">v2 위치·생활권·물길·왕복 경로 유지 · A 잎빛 9명 / B 회등 5명 · 일반 동물은 별도 생태</text>
+<polyline id="preserved_river_m0" points="1014.000,574.000 774.000,894.000" fill="none" stroke="#277da3" stroke-width="6"/>
+<polyline id="preserved_river_m1" points="774.000,894.000 518.000,1246.000" fill="none" stroke="#277da3" stroke-width="6"/>
+<polyline id="preserved_river_m2" points="518.000,1246.000 509.000,1254.000" fill="none" stroke="#277da3" stroke-width="6"/>
+<polyline id="preserved_spring_water_m0" points="630.000,262.000 574.000,454.000" fill="none" stroke="#277da3" stroke-width="6"/>
+<polyline id="preserved_spring_water_m1" points="574.000,454.000 502.000,630.000" fill="none" stroke="#277da3" stroke-width="6"/>
+<polyline id="preserved_spring_water_m2" points="502.000,630.000 478.000,814.000" fill="none" stroke="#277da3" stroke-width="6"/>
+<polyline id="preserved_spring_water_m3" points="478.000,814.000 454.000,990.000" fill="none" stroke="#277da3" stroke-width="6"/>
+<polyline id="preserved_spring_water_m4" points="454.000,990.000 390.000,1142.000" fill="none" stroke="#277da3" stroke-width="6"/>
+<polyline id="preserved_spring_water_m5" points="390.000,1142.000 410.000,1234.000" fill="none" stroke="#277da3" stroke-width="6"/>
+<polyline id="preserved_spring_water_m6" points="410.000,1234.000 394.706,1254.000" fill="none" stroke="#277da3" stroke-width="6"/>
+<polygon id="routine-G01" points="390.000,846.000 462.000,846.000 462.000,706.000 390.000,706.000" fill="#e5e2da" stroke="#657a7a"/>
+<polygon id="routine-G02" points="246.000,774.000 342.000,774.000 342.000,670.000 246.000,670.000" fill="#e5e2da" stroke="#657a7a"/>
+<polygon id="routine-G03" points="478.000,518.000 542.000,518.000 542.000,422.000 478.000,422.000" fill="#e5e2da" stroke="#657a7a"/>
+<polygon id="routine-G04" points="526.000,430.000 574.000,430.000 574.000,382.000 526.000,382.000" fill="#e5e2da" stroke="#657a7a"/>
+<polygon id="routine-W01" points="142.000,750.000 310.000,750.000 310.000,590.000 142.000,590.000" fill="#e5e2da" stroke="#657a7a"/>
+<polygon id="routine-W02" points="554.000,602.000 682.000,602.000 710.000,510.000 610.000,462.000 578.000,478.000 554.000,534.000" fill="#e5e2da" stroke="#657a7a"/>
+<polygon id="routine-W03" points="294.000,574.000 498.000,574.000 498.000,430.000 294.000,430.000" fill="#e5e2da" stroke="#657a7a"/>
+<polygon id="routine-GB01" points="654.000,902.000 738.000,902.000 738.000,790.000 654.000,790.000" fill="#dce3ce" stroke="#657a7a"/>
+<polygon id="routine-GB02" points="550.000,1014.000 646.000,1014.000 662.000,942.000 638.000,894.000 550.000,910.000" fill="#dce3ce" stroke="#657a7a"/>
+<polygon id="routine-GB03" points="562.000,778.000 662.000,778.000 698.000,654.000 666.000,618.000 570.000,654.000" fill="#dce3ce" stroke="#657a7a"/>
+<polygon id="routine-GB04" points="206.000,886.000 302.000,886.000 302.000,802.000 206.000,802.000" fill="#dce3ce" stroke="#657a7a"/>
+<polyline id="outbound" points="446.000,1166.000 518.000,1022.000 614.000,958.000 638.000,798.000 654.000,646.000 550.000,542.000 560.455,487.109 582.000,374.000" fill="none" stroke="#c57032" stroke-width="4"/>
+<polyline id="return_G04_stopped_other_groups_present" points="582.000,374.000 570.000,378.000 546.000,378.000 530.000,391.600 510.000,391.600 490.000,407.600 462.000,418.000 430.000,430.000 398.000,442.800 342.000,462.000 198.000,614.000 174.000,790.000 205.985,789.031 234.166,794.580 262.153,793.732 289.947,786.486 321.932,785.517 350.162,792.665 378.149,791.817 405.894,782.973 438.000,782.000 469.484,876.452 518.000,1022.000 446.000,1166.000" fill="none" stroke="#78668e" stroke-width="4"/>
+<circle id="home-G01" cx="438.000" cy="782.000" r="7.000" fill="#657a7a" stroke="#263d43"/>
+<text x="448.000" y="787.000" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#263d43" font-weight="400">G01</text>
+<circle id="home-G02" cx="302.000" cy="718.000" r="7.000" fill="#657a7a" stroke="#263d43"/>
+<text x="312.000" y="723.000" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#263d43" font-weight="400">G02</text>
+<circle id="home-G03" cx="526.000" cy="462.000" r="7.000" fill="#657a7a" stroke="#263d43"/>
+<text x="536.000" y="467.000" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#263d43" font-weight="400">G03</text>
+<circle id="home-G04" cx="554.000" cy="406.000" r="7.000" fill="#657a7a" stroke="#263d43"/>
+<text x="564.000" y="411.000" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#263d43" font-weight="400">G04</text>
+<circle id="home-W01" cx="206.000" cy="678.000" r="7.000" fill="#657a7a" stroke="#263d43"/>
+<text x="216.000" y="683.000" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#263d43" font-weight="400">W01</text>
+<circle id="home-W02" cx="614.000" cy="542.000" r="7.000" fill="#657a7a" stroke="#263d43"/>
+<text x="624.000" y="547.000" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#263d43" font-weight="400">W02</text>
+<circle id="home-W03" cx="350.000" cy="518.000" r="7.000" fill="#657a7a" stroke="#263d43"/>
+<text x="360.000" y="523.000" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#263d43" font-weight="400">W03</text>
+<circle id="home-GB01" cx="686.000" cy="862.000" r="7.000" fill="#417c67" stroke="#263d43"/>
+<text x="696.000" y="867.000" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#263d43" font-weight="400">GB01</text>
+<circle id="home-GB02" cx="606.000" cy="958.000" r="7.000" fill="#417c67" stroke="#263d43"/>
+<text x="616.000" y="963.000" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#263d43" font-weight="400">GB02</text>
+<circle id="home-GB03" cx="638.000" cy="726.000" r="7.000" fill="#417c67" stroke="#263d43"/>
+<text x="648.000" y="731.000" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#263d43" font-weight="400">GB03</text>
+<circle id="home-GB04" cx="250.000" cy="830.000" r="7.000" fill="#417c67" stroke="#263d43"/>
+<text x="260.000" y="835.000" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#263d43" font-weight="400">GB04</text>
+<polyline id="GB05-route" points="686.000,862.000 666.000,814.000 638.000,798.000 469.484,876.452 286.000,950.000 250.000,830.000 174.000,790.000" fill="none" stroke="#417c67" stroke-width="4"/>
+<text x="470.000" y="820.000" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#417c67" font-weight="400">GB05 같은 2명 왕복</text>
+<circle cx="446.000" cy="1166.000" r="6.000" fill="#263d43" stroke="#263d43"/>
+<text x="456.000" y="1187.000" font-family="Malgun Gothic,sans-serif" font-size="21" fill="#263d43" font-weight="400">숲 진입</text>
+<circle cx="614.000" cy="286.000" r="6.000" fill="#263d43" stroke="#263d43"/>
+<text x="629.000" y="292.000" font-family="Malgun Gothic,sans-serif" font-size="21" fill="#263d43" font-weight="400">바르툴</text>
+<circle cx="582.000" cy="374.000" r="6.000" fill="#263d43" stroke="#263d43"/>
+<text x="597.000" y="400.000" font-family="Malgun Gothic,sans-serif" font-size="21" fill="#263d43" font-weight="400">동굴</text>
+<circle cx="630.000" cy="262.000" r="6.000" fill="#263d43" stroke="#263d43"/>
+<text x="650.000" y="258.000" font-family="Malgun Gothic,sans-serif" font-size="21" fill="#263d43" font-weight="400">수원</text>
+<text x="1100.000" y="229.000" font-family="Malgun Gothic,sans-serif" font-size="29" fill="#263d43" font-weight="700">기존 활동조에 형태를 연결</text>
+<text x="1100.000" y="307.000" font-family="Malgun Gothic,sans-serif" font-size="27" fill="#263d43" font-weight="700">GB01  4명</text>
+<text x="1100.000" y="351.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#263d43" font-weight="400">A 잎빛 3명  /  2–3</text>
+<text x="1100.000" y="389.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#263d43" font-weight="400">B 회등 1명  /  3–4</text>
+<text x="1100.000" y="457.000" font-family="Malgun Gothic,sans-serif" font-size="27" fill="#263d43" font-weight="700">GB02  2명</text>
+<text x="1100.000" y="501.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#263d43" font-weight="400">A 잎빛 2명  /  1–2</text>
+<text x="1100.000" y="607.000" font-family="Malgun Gothic,sans-serif" font-size="27" fill="#263d43" font-weight="700">GB03  3명</text>
+<text x="1100.000" y="651.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#263d43" font-weight="400">A 잎빛 1명  /  3–4</text>
+<text x="1100.000" y="689.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#263d43" font-weight="400">B 회등 2명  /  4–5</text>
+<text x="1100.000" y="757.000" font-family="Malgun Gothic,sans-serif" font-size="27" fill="#263d43" font-weight="700">GB04  3명</text>
+<text x="1100.000" y="801.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#263d43" font-weight="400">A 잎빛 2명  /  2–4</text>
+<text x="1100.000" y="839.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#263d43" font-weight="400">B 회등 1명  /  3–5</text>
+<text x="1100.000" y="907.000" font-family="Malgun Gothic,sans-serif" font-size="27" fill="#263d43" font-weight="700">GB05  2명</text>
+<text x="1100.000" y="951.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#263d43" font-weight="400">A 잎빛 1명  /  2–3</text>
+<text x="1100.000" y="989.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#263d43" font-weight="400">B 회등 1명  /  3–4</text>
+<text x="1100.000" y="1102.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#657a7a" font-weight="400">주황: 동굴까지 야외 왕로</text>
+<text x="1100.000" y="1147.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#657a7a" font-weight="400">보라: G04 정지 뒤 다른 길 귀환</text>
+<text x="1100.000" y="1192.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#657a7a" font-weight="400">초록: 고블린 생활권·운반 동선</text>
+<text x="1100.000" y="1237.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#657a7a" font-weight="400">회색 G/W: 수호체·늑대 기존 배치</text>
+<text x="1100.000" y="1282.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#657a7a" font-weight="400">29 = 생물 24 + 야외 수호체 5</text>
+<text x="1100.000" y="1327.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#657a7a" font-weight="400">바르툴·동굴 안·일반 동물 수는 제외</text>
+<text x="1100.000" y="1372.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#657a7a" font-weight="400">범위는 설계값, 자동 승급·필수 전투 아님</text>
+<text x="1100.000" y="1417.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#657a7a" font-weight="400">동굴 내부·보스 접근은 첫 장 상세 참조</text>
+<polyline points="70.000,1390.000 230.000,1390.000" fill="none" stroke="#263d43" stroke-width="4"/>
+<text x="70.000" y="1442.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#263d43" font-weight="400">200 m · 위쪽은 기존 지도 북쪽</text>
+</svg>

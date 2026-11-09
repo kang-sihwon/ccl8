@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2000" height="1230" viewBox="0 0 2000 1230">
+<rect width="2000" height="1230" fill="#f5f1e6"/>
+<text x="50.000" y="72.000" font-family="Malgun Gothic,sans-serif" font-size="40" fill="#263d43" font-weight="700">이그니스 S1–S6 | 사건과 인계</text>
+<text x="50.000" y="119.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#657a7a" font-weight="400">순서도 · 비축척 · 지역별 상세 지도의 위치·거리·생활권은 변경하지 않음</text>
+<polygon id="card-S1" points="60.000,190.000 650.000,190.000 650.000,460.000 60.000,460.000" fill="#e4eade" stroke="#263d43"/>
+<text x="80.000" y="241.000" font-family="Malgun Gothic,sans-serif" font-size="29" fill="#263d43" font-weight="700">S1  벨레스  1→6</text>
+<text x="80.000" y="302.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#263d43" font-weight="400">바르툴 해방 → 급수 복구 → 귀환</text>
+<text x="80.000" y="351.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#263d43" font-weight="400">마을 운영 인계 후 다음 날 출항</text>
+<text x="80.000" y="400.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#263d43" font-weight="400">린은 잔류, 후속 회차로 타르넬 합류</text>
+<polygon id="card-S2" points="700.000,190.000 1290.000,190.000 1290.000,460.000 700.000,460.000" fill="#e4eade" stroke="#263d43"/>
+<text x="720.000" y="241.000" font-family="Malgun Gothic,sans-serif" font-size="29" fill="#263d43" font-weight="700">S2  타르넬·로덴  6→10</text>
+<text x="720.000" y="302.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#263d43" font-weight="400">실수 인정 → 구조체 전투·5명 구조</text>
+<text x="720.000" y="351.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#263d43" font-weight="400">예비 공급·치료·대체 담당자 확보</text>
+<text x="720.000" y="400.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#263d43" font-weight="400">주인공·린·마렌이 세르나로</text>
+<polygon id="card-S3" points="1340.000,190.000 1930.000,190.000 1930.000,460.000 1340.000,460.000" fill="#e4eade" stroke="#263d43"/>
+<text x="1360.000" y="241.000" font-family="Malgun Gothic,sans-serif" font-size="29" fill="#263d43" font-weight="700">S3  세르나  10→14</text>
+<text x="1360.000" y="302.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#263d43" font-weight="400">해수전은 구조·승선 시간을 확보</text>
+<text x="1360.000" y="351.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#263d43" font-weight="400">첫 허가 화물: 다른 선주 예비선</text>
+<text x="1360.000" y="400.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#263d43" font-weight="400">로덴 수령 회신·수리비 인계 완료</text>
+<polygon id="card-S4" points="60.000,600.000 650.000,600.000 650.000,870.000 60.000,870.000" fill="#e4eade" stroke="#263d43"/>
+<text x="80.000" y="651.000" font-family="Malgun Gothic,sans-serif" font-size="29" fill="#263d43" font-weight="700">S4  켈바·하르덴  14→18</text>
+<text x="80.000" y="712.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#263d43" font-weight="400">후속 정기편 일반 화물과 상행</text>
+<text x="80.000" y="761.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#263d43" font-weight="400">특정 비룡 처치 → 제한 수리 시험</text>
+<text x="80.000" y="810.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#263d43" font-weight="400">로덴 인수 동의 ≠ 현지 적용 성공</text>
+<polygon id="card-S5" points="700.000,600.000 1290.000,600.000 1290.000,870.000 700.000,870.000" fill="#e4eade" stroke="#263d43"/>
+<text x="720.000" y="651.000" font-family="Malgun Gothic,sans-serif" font-size="29" fill="#263d43" font-weight="700">S5  북부  18→21</text>
+<text x="720.000" y="712.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#263d43" font-weight="400">구조·기상 대기 → 겨울지기·기록</text>
+<text x="720.000" y="761.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#263d43" font-weight="400">부상자·난방·기록·이르 업무 인계</text>
+<text x="720.000" y="810.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#263d43" font-weight="400">R4 복귀→R3 북행 / 린은 항만에</text>
+<polygon id="card-S6" points="1340.000,600.000 1930.000,600.000 1930.000,870.000 1340.000,870.000" fill="#e4eade" stroke="#263d43"/>
+<text x="1360.000" y="651.000" font-family="Malgun Gothic,sans-serif" font-size="29" fill="#263d43" font-weight="700">S6  중앙  21→24</text>
+<text x="1360.000" y="712.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#263d43" font-weight="400">조사 → 공급 시험 → 명령·대피</text>
+<text x="1360.000" y="761.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#263d43" font-weight="400">중앙 방어체 → 강제 채취 정지</text>
+<text x="1360.000" y="810.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#263d43" font-weight="400">필수 공급·현지 책임을 남기고 인계</text>
+<polyline points="652.000,325.000 695.000,325.000" fill="none" stroke="#c57032" stroke-width="5"/>
+<text x="660.000" y="315.000" font-family="Malgun Gothic,sans-serif" font-size="30" fill="#c57032" font-weight="400">→</text>
+<polyline points="1292.000,325.000 1335.000,325.000" fill="none" stroke="#c57032" stroke-width="5"/>
+<text x="1300.000" y="315.000" font-family="Malgun Gothic,sans-serif" font-size="30" fill="#c57032" font-weight="400">→</text>
+<polyline points="652.000,735.000 695.000,735.000" fill="none" stroke="#c57032" stroke-width="5"/>
+<text x="660.000" y="725.000" font-family="Malgun Gothic,sans-serif" font-size="30" fill="#c57032" font-weight="400">→</text>
+<polyline points="1292.000,735.000 1335.000,735.000" fill="none" stroke="#c57032" stroke-width="5"/>
+<text x="1300.000" y="725.000" font-family="Malgun Gothic,sans-serif" font-size="30" fill="#c57032" font-weight="400">→</text>
+<polyline points="1635.000,465.000 1635.000,530.000 355.000,530.000 355.000,595.000" fill="none" stroke="#c57032" stroke-width="5"/>
+<text x="650.000" y="514.000" font-family="Malgun Gothic,sans-serif" font-size="24" fill="#c57032" font-weight="400">S3 완료 뒤 S4 후속 정기편 / 해외 선택 탐색은 필수 아님</text>
+<text x="60.000" y="978.000" font-family="Malgun Gothic,sans-serif" font-size="28" fill="#263d43" font-weight="700">기본 성장 1 → 6 → 10 → 14 → 18 → 21 → 24  |  선택 성장 보존 · 적 자동 스케일링 없음</text>
+<text x="60.000" y="1034.000" font-family="Malgun Gothic,sans-serif" font-size="24" fill="#263d43" font-weight="400">G1 선택 탐색 +2 예시: S4 16→20 / S5 20→23 / S6 23→26. 실제 경험치 보장치 아님.</text>
+<text x="60.000" y="1096.000" font-family="Malgun Gothic,sans-serif" font-size="26" fill="#78668e" font-weight="400">G2: G1 + 강제 채취 정지 + 필수 공급·현지 인계 + 기술 교류·사고 조사 계약 수락</text>
+<text x="60.000" y="1153.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#657a7a" font-weight="400">동료·물류·회신은 실제 이동과 업무 인계를 거친다. 담당자 지정만으로 설비 복구 성공을 처리하지 않는다.</text>
+</svg>

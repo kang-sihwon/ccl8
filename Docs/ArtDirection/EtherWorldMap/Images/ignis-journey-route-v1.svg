@@ -1,0 +1,144 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1900" height="1630" viewBox="0 0 1900 1630">
+<rect width="1900" height="1630" fill="#f5f1e6"/>
+<text x="50.000" y="72.000" font-family="Malgun Gothic,sans-serif" font-size="40" fill="#263d43" font-weight="700">이그니스 S1–S6 | 전체 이동 연결</text>
+<text x="50.000" y="119.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#657a7a" font-weight="400">지리 검토 도면 · AEQD 원점은 세계수 · 해안 생략 · 수치는 설계 후보 / 인게임 UI 아님</text>
+<polyline id="H01-0" points="1025.164,360.553 1039.649,576.428" fill="none" stroke="#bed4dc" stroke-width="3"/>
+<polyline id="H01-1" points="1039.649,576.428 941.500,707.500" fill="none" stroke="#bed4dc" stroke-width="3"/>
+<polyline id="H01-2" points="941.500,707.500 889.900,767.700" fill="none" stroke="#bed4dc" stroke-width="3"/>
+<polyline id="H01-3" points="889.900,767.700 858.940,811.990" fill="none" stroke="#bed4dc" stroke-width="3"/>
+<polyline id="H01-4" points="858.940,811.990 855.500,817.150" fill="none" stroke="#bed4dc" stroke-width="3"/>
+<polyline id="H01-5" points="855.500,817.150 853.350,819.300" fill="none" stroke="#bed4dc" stroke-width="3"/>
+<polyline id="H01-6" points="853.350,819.300 853.780,823.600" fill="none" stroke="#bed4dc" stroke-width="3"/>
+<polyline id="H01-7" points="853.780,823.600 849.910,825.750" fill="none" stroke="#bed4dc" stroke-width="3"/>
+<polyline id="H01-8" points="849.910,825.750 848.190,831.340" fill="none" stroke="#bed4dc" stroke-width="3"/>
+<polyline id="H01-9" points="848.190,831.340 842.600,832.200" fill="none" stroke="#bed4dc" stroke-width="3"/>
+<polyline id="H01-10" points="842.600,832.200 841.740,836.070" fill="none" stroke="#bed4dc" stroke-width="3"/>
+<polyline id="H01-11" points="841.740,836.070 838.300,838.650" fill="none" stroke="#bed4dc" stroke-width="3"/>
+<polyline id="H01-12" points="838.300,838.650 833.140,841.660" fill="none" stroke="#bed4dc" stroke-width="3"/>
+<polyline id="H01-13" points="833.140,841.660 826.690,847.250" fill="none" stroke="#bed4dc" stroke-width="3"/>
+<polyline id="H01-14" points="826.690,847.250 818.520,853.700" fill="none" stroke="#bed4dc" stroke-width="3"/>
+<polyline id="H01-15" points="818.520,853.700 811.640,861.440" fill="none" stroke="#bed4dc" stroke-width="3"/>
+<polyline id="H01-16" points="811.640,861.440 806.480,870.900" fill="none" stroke="#bed4dc" stroke-width="3"/>
+<polyline id="H01-17" points="806.480,870.900 803.040,884.660" fill="none" stroke="#bed4dc" stroke-width="3"/>
+<polyline id="H01-18" points="803.040,884.660 804.330,892.400" fill="none" stroke="#bed4dc" stroke-width="3"/>
+<polyline id="H01-19" points="804.330,892.400 809.060,900.140" fill="none" stroke="#bed4dc" stroke-width="3"/>
+<polyline id="H01-20" points="809.060,900.140 812.500,956.900" fill="none" stroke="#bed4dc" stroke-width="3"/>
+<polyline id="H01-21" points="812.500,956.900 834.000,1030.000" fill="none" stroke="#bed4dc" stroke-width="3"/>
+<polyline id="H01-22" points="834.000,1030.000 970.504,1336.979" fill="none" stroke="#bed4dc" stroke-width="3"/>
+<polyline id="H01-23" points="970.504,1336.979 970.063,1338.191" fill="none" stroke="#bed4dc" stroke-width="3"/>
+<polyline id="H02-0" points="145.882,654.033 173.832,684.133" fill="none" stroke="#bed4dc" stroke-width="3"/>
+<polyline id="H02-1" points="173.832,684.133 408.152,793.357" fill="none" stroke="#bed4dc" stroke-width="3"/>
+<polyline id="H02-2" points="408.152,793.357 511.500,836.500" fill="none" stroke="#bed4dc" stroke-width="3"/>
+<polyline id="H02-3" points="511.500,836.500 662.000,905.300" fill="none" stroke="#bed4dc" stroke-width="3"/>
+<polyline id="H02-4" points="662.000,905.300 812.500,956.900" fill="none" stroke="#bed4dc" stroke-width="3"/>
+<polyline id="H04-0" points="668.040,325.229 676.640,355.329" fill="none" stroke="#bed4dc" stroke-width="3"/>
+<polyline id="H04-1" points="676.640,355.329 691.690,419.829" fill="none" stroke="#bed4dc" stroke-width="3"/>
+<polyline id="H04-2" points="691.690,419.829 702.440,488.629" fill="none" stroke="#bed4dc" stroke-width="3"/>
+<polyline id="H04-3" points="702.440,488.629 640.500,621.500" fill="none" stroke="#bed4dc" stroke-width="3"/>
+<polyline id="H04-4" points="640.500,621.500 713.600,741.900" fill="none" stroke="#bed4dc" stroke-width="3"/>
+<polyline id="H04-5" points="713.600,741.900 756.600,827.900" fill="none" stroke="#bed4dc" stroke-width="3"/>
+<polyline id="H04-6" points="756.600,827.900 812.500,956.900" fill="none" stroke="#bed4dc" stroke-width="3"/>
+<polyline id="H07-1" points="1092.000,1144.194 898.500,1094.500" fill="none" stroke="#bed4dc" stroke-width="3"/>
+<polyline id="H07-2" points="898.500,1094.500 970.504,1336.979" fill="none" stroke="#bed4dc" stroke-width="3"/>
+<polyline id="H08-0" points="541.190,346.729 554.090,389.729" fill="none" stroke="#bed4dc" stroke-width="3"/>
+<polyline id="H08-1" points="554.090,389.729 691.690,419.829" fill="none" stroke="#bed4dc" stroke-width="3"/>
+<polyline id="H09-0" points="386.652,761.107 395.252,778.307" fill="none" stroke="#bed4dc" stroke-width="3"/>
+<polyline id="H09-1" points="395.252,778.307 408.152,793.357" fill="none" stroke="#bed4dc" stroke-width="3"/>
+<polyline id="D01-1" points="360.638,170.000 512.623,219.908" fill="none" stroke="#b5a694" stroke-width="8"/>
+<polyline id="D01-2" points="512.623,219.908 704.063,248.208" fill="none" stroke="#b5a694" stroke-width="8"/>
+<polyline id="D01-3" points="704.063,248.208 932.746,243.191" fill="none" stroke="#b5a694" stroke-width="8"/>
+<polyline id="D01-4" points="932.746,243.191 1092.000,253.220" fill="none" stroke="#b5a694" stroke-width="8"/>
+<polyline id="D02a-0" points="284.237,170.000 170.270,379.008" fill="none" stroke="#b5a694" stroke-width="8"/>
+<polyline id="D02a-1" points="170.270,379.008 60.000,641.797" fill="none" stroke="#b5a694" stroke-width="8"/>
+<polyline id="S3-0" points="838.300,838.650 833.140,841.660" fill="none" stroke="#277da3" stroke-width="5"/>
+<polyline id="S3-1" points="833.140,841.660 826.690,847.250" fill="none" stroke="#277da3" stroke-width="5"/>
+<polyline id="S3-2" points="826.690,847.250 818.520,853.700" fill="none" stroke="#277da3" stroke-width="5"/>
+<polyline id="S3-3" points="818.520,853.700 811.640,861.440" fill="none" stroke="#277da3" stroke-width="5"/>
+<polyline id="S3-4" points="811.640,861.440 806.480,870.900" fill="none" stroke="#277da3" stroke-width="5"/>
+<polyline id="S3-5" points="806.480,870.900 803.040,884.660" fill="none" stroke="#277da3" stroke-width="5"/>
+<polyline id="S3-6" points="803.040,884.660 804.330,892.400" fill="none" stroke="#277da3" stroke-width="5"/>
+<polyline id="S3-7" points="804.330,892.400 809.060,900.140" fill="none" stroke="#277da3" stroke-width="5"/>
+<polyline id="S3-8" points="809.060,900.140 812.500,956.900" fill="none" stroke="#277da3" stroke-width="5"/>
+<polyline id="S3-9" points="812.500,956.900 834.000,1030.000" fill="none" stroke="#277da3" stroke-width="5"/>
+<polyline id="S3-10" points="834.000,1030.000 970.504,1336.979" fill="none" stroke="#277da3" stroke-width="5"/>
+<polyline id="S4_highland-0" points="798.740,884.660 705.000,879.500" fill="none" stroke="#c57032" stroke-width="5"/>
+<polyline id="S4_highland-1" points="705.000,879.500 511.500,836.500" fill="none" stroke="#c57032" stroke-width="5"/>
+<polyline id="S4_highland-2" points="511.500,836.500 408.152,793.357" fill="none" stroke="#c57032" stroke-width="5"/>
+<polyline id="S4_highland-3" points="408.152,793.357 173.832,684.133" fill="none" stroke="#c57032" stroke-width="5"/>
+<polyline id="S5_R3_north-0" points="798.740,884.660 730.800,810.700" fill="none" stroke="#78668e" stroke-width="5"/>
+<polyline id="S5_R3_north-1" points="730.800,810.700 662.000,643.000" fill="none" stroke="#78668e" stroke-width="5"/>
+<polyline id="S5_R3_north-2" points="662.000,643.000 702.440,488.629" fill="none" stroke="#78668e" stroke-width="5"/>
+<polyline id="S5_R3_north-3" points="702.440,488.629 691.690,419.829" fill="none" stroke="#78668e" stroke-width="5"/>
+<polyline id="S5_B03-0" points="691.690,419.829 680.940,368.229" fill="none" stroke="#78668e" stroke-width="5"/>
+<polyline id="S5_B04-0" points="680.940,368.229 676.640,355.329" fill="none" stroke="#78668e" stroke-width="5"/>
+<polyline id="S5_new_pass_approach-0" points="676.640,355.329 674.900,277.500" fill="none" stroke="#78668e" stroke-width="5"/>
+<polyline id="S5_new_pass_approach-1" points="674.900,277.500 687.800,248.690" fill="none" stroke="#78668e" stroke-width="5"/>
+<polyline id="S5_new_pass_approach-2" points="687.800,248.690 687.800,245.804" fill="none" stroke="#78668e" stroke-width="5"/>
+<polyline id="S5_new_pass_approach-3" points="687.800,245.804 687.800,242.240" fill="none" stroke="#78668e" stroke-width="5"/>
+<circle id="anchor-M04" cx="173.832" cy="684.133" r="7.000" fill="#263d43" stroke="#263d43"/>
+<text x="103.832" y="665.133" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#263d43" font-weight="400">하르덴 S4</text>
+<circle id="anchor-T04" cx="408.152" cy="793.357" r="7.000" fill="#263d43" stroke="#263d43"/>
+<text x="358.152" y="831.357" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#263d43" font-weight="400">켈바</text>
+<circle id="anchor-M03" cx="970.504" cy="1336.979" r="7.000" fill="#263d43" stroke="#263d43"/>
+<text x="985.504" y="1347.979" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#263d43" font-weight="400">세르나 S3</text>
+<circle id="anchor-T10" cx="702.440" cy="488.629" r="7.000" fill="#263d43" stroke="#263d43"/>
+<text x="572.440" y="499.629" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#263d43" font-weight="400">네르바</text>
+<circle id="anchor-M07" cx="691.690" cy="419.829" r="7.000" fill="#263d43" stroke="#263d43"/>
+<text x="707.690" y="447.829" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#263d43" font-weight="400">북부 관문</text>
+<circle id="anchor-T11" cx="676.640" cy="355.329" r="7.000" fill="#263d43" stroke="#263d43"/>
+<text x="526.640" y="358.329" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#263d43" font-weight="400">케르딘</text>
+<circle id="anchor-M01" cx="798.740" cy="884.660" r="7.000" fill="#263d43" stroke="#263d43"/>
+<text x="578.740" y="919.660" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#263d43" font-weight="400">공공 도시권 / S6</text>
+<circle id="archive" cx="687.800" cy="242.240" r="8.000" fill="#78668e" stroke="#263d43"/>
+<text x="707.800" y="231.240" font-family="Malgun Gothic,sans-serif" font-size="24" fill="#263d43" font-weight="400">기록 유적 S5</text>
+<circle cx="855.500" cy="817.150" r="8.000" fill="#417c67" stroke="#263d43"/>
+<text x="875.500" y="823.150" font-family="Malgun Gothic,sans-serif" font-size="21" fill="#263d43" font-weight="400">벨레스·타르넬·로덴 → 확대</text>
+<polyline points="146.000,1352.500 361.000,1352.500" fill="none" stroke="#263d43" stroke-width="4"/>
+<text x="146.000" y="1390.700" font-family="Malgun Gothic,sans-serif" font-size="21" fill="#263d43" font-weight="400">500 km (투영 평면)</text>
+<text x="60.000" y="1475.000" font-family="Malgun Gothic,sans-serif" font-size="25" fill="#263d43" font-weight="400">R4: S4 서행 → S5 동행 복귀   |   R3·고개: S5 북행 → S6 남행 귀환</text>
+<text x="60.000" y="1522.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#657a7a" font-weight="400">같은 길의 왕복을 겹쳐 표시. 지형·도시 이동이나 직선 지름길을 추가하지 않음.</text>
+<text x="1160.000" y="194.000" font-family="Malgun Gothic,sans-serif" font-size="29" fill="#263d43" font-weight="700">중앙·도입 구간 확대</text>
+<polyline id="inset-S1_transfer-0" points="1620.000,297.500 1607.500,310.000" fill="none" stroke="#417c67" stroke-width="4"/>
+<polyline id="inset-S1_transfer-1" points="1607.500,310.000 1610.000,335.000" fill="none" stroke="#417c67" stroke-width="4"/>
+<polyline id="inset-S1_transfer-2" points="1610.000,335.000 1587.500,347.500" fill="none" stroke="#417c67" stroke-width="4"/>
+<polyline id="inset-S2-0" points="1587.500,347.500 1577.500,380.000" fill="none" stroke="#417c67" stroke-width="4"/>
+<polyline id="inset-S2-1" points="1577.500,380.000 1545.000,385.000" fill="none" stroke="#417c67" stroke-width="4"/>
+<polyline id="inset-S2-2" points="1545.000,385.000 1540.000,407.500" fill="none" stroke="#417c67" stroke-width="4"/>
+<polyline id="inset-S2-3" points="1540.000,407.500 1520.000,422.500" fill="none" stroke="#417c67" stroke-width="4"/>
+<polyline id="inset-S3-0" points="1520.000,422.500 1490.000,440.000" fill="none" stroke="#277da3" stroke-width="4"/>
+<polyline id="inset-S3-1" points="1490.000,440.000 1452.500,472.500" fill="none" stroke="#277da3" stroke-width="4"/>
+<polyline id="inset-S3-2" points="1452.500,472.500 1405.000,510.000" fill="none" stroke="#277da3" stroke-width="4"/>
+<polyline id="inset-S3-3" points="1405.000,510.000 1365.000,555.000" fill="none" stroke="#277da3" stroke-width="4"/>
+<polyline id="inset-S3-4" points="1365.000,555.000 1335.000,610.000" fill="none" stroke="#277da3" stroke-width="4"/>
+<polyline id="inset-S3-5" points="1335.000,610.000 1315.000,690.000" fill="none" stroke="#277da3" stroke-width="4"/>
+<polyline id="inset-S3-6" points="1315.000,690.000 1322.500,735.000" fill="none" stroke="#277da3" stroke-width="4"/>
+<polyline id="inset-S3-7" points="1322.500,735.000 1337.778,760.000" fill="none" stroke="#277da3" stroke-width="4"/>
+<polyline id="inset-S4_public-0" points="1315.000,690.000 1290.000,690.000" fill="none" stroke="#c57032" stroke-width="4"/>
+<polyline id="inset-S6_city_to_outer-0" points="1287.750,689.000 1280.000,682.500" fill="none" stroke="#78668e" stroke-width="4"/>
+<polyline id="inset-S6_city_to_outer-1" points="1280.000,682.500 1270.000,677.500" fill="none" stroke="#78668e" stroke-width="4"/>
+<polyline id="inset-S6_city_to_outer-2" points="1270.000,677.500 1267.250,674.250" fill="none" stroke="#78668e" stroke-width="4"/>
+<polyline id="inset-S6_outer_to_inner-0" points="1262.875,669.000 1257.500,667.000" fill="none" stroke="#78668e" stroke-width="4"/>
+<polyline id="inset-S6_outer_to_inner-1" points="1257.500,667.000 1251.750,663.750" fill="none" stroke="#78668e" stroke-width="4"/>
+<circle cx="1620.000" cy="297.500" r="6.000" fill="#263d43" stroke="#263d43"/>
+<text x="1632.000" y="293.500" font-family="Malgun Gothic,sans-serif" font-size="21" fill="#263d43" font-weight="400">벨레스 S1</text>
+<circle cx="1587.500" cy="347.500" r="6.000" fill="#263d43" stroke="#263d43"/>
+<text x="1437.500" y="358.500" font-family="Malgun Gothic,sans-serif" font-size="21" fill="#263d43" font-weight="400">타르넬 S2</text>
+<circle cx="1520.000" cy="422.500" r="6.000" fill="#263d43" stroke="#263d43"/>
+<text x="1532.000" y="438.500" font-family="Malgun Gothic,sans-serif" font-size="21" fill="#263d43" font-weight="400">로덴</text>
+<circle cx="1290.000" cy="690.000" r="6.000" fill="#263d43" stroke="#263d43"/>
+<text x="1160.000" y="746.000" font-family="Malgun Gothic,sans-serif" font-size="21" fill="#263d43" font-weight="400">공공 관리도시</text>
+<circle cx="1315.000" cy="690.000" r="5.000" fill="#277da3" stroke="#263d43"/>
+<text x="1330.000" y="716.000" font-family="Malgun Gothic,sans-serif" font-size="21" fill="#263d43" font-weight="400">공공 환적장</text>
+<circle cx="1245.000" cy="660.000" r="9.000" fill="#417c67" stroke="#263d43"/>
+<text x="1190.000" y="641.000" font-family="Malgun Gothic,sans-serif" font-size="21" fill="#263d43" font-weight="400">세계수</text>
+<text x="1160.000" y="892.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#263d43" font-weight="400">S1 출항 → S2 도착: 첫 장 경계 유지</text>
+<text x="1160.000" y="941.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#657a7a" font-weight="400">S3 첫 화물 수령 회신 후 S4 후속 배</text>
+<text x="1160.000" y="990.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#263d43" font-weight="400">S4: R1 상행 1,130.1 km + R2 10 km</text>
+<text x="1160.000" y="1039.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#657a7a" font-weight="400">      R4 서행 1,541.0 km</text>
+<text x="1160.000" y="1088.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#263d43" font-weight="400">S5: R4 복귀 + R3 북행 + B03/B04</text>
+<text x="1160.000" y="1137.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#657a7a" font-weight="400">      새 고개 접근은 후보 회랑</text>
+<text x="1160.000" y="1186.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#263d43" font-weight="400">S6: 북부 길 역행 후 도시에서 준비</text>
+<text x="1160.000" y="1235.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#657a7a" font-weight="400">      공공 통과 ≠ 안쪽 설비 출입권</text>
+<text x="1160.000" y="1284.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#263d43" font-weight="400">린: 항만 잔류 / 마렌·이르: 중앙 귀환</text>
+<text x="1160.000" y="1333.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#657a7a" font-weight="400">이동 시간·보급량·실제 통행은 미검증</text>
+</svg>

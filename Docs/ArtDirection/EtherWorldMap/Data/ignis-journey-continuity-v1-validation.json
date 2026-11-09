@@ -1,0 +1,1224 @@
+{
+  "status": "PASS",
+  "checks_count": 302,
+  "passed": 302,
+  "checks": [
+    {
+      "check": "source hash Docs/ArtDirection/EtherWorldMap/Data/veles-forest-ecology-v2.json",
+      "pass": true
+    },
+    {
+      "check": "source unchanged against HEAD Docs/ArtDirection/EtherWorldMap/Data/veles-forest-ecology-v2.json",
+      "pass": true
+    },
+    {
+      "check": "source hash Docs/ArtDirection/EtherWorldMap/Data/tarnel-roden-exploration-v1.json",
+      "pass": true
+    },
+    {
+      "check": "source unchanged against HEAD Docs/ArtDirection/EtherWorldMap/Data/tarnel-roden-exploration-v1.json",
+      "pass": true
+    },
+    {
+      "check": "source hash Docs/ArtDirection/EtherWorldMap/Data/roden-serna-exploration-v1.json",
+      "pass": true
+    },
+    {
+      "check": "source unchanged against HEAD Docs/ArtDirection/EtherWorldMap/Data/roden-serna-exploration-v1.json",
+      "pass": true
+    },
+    {
+      "check": "source hash Docs/ArtDirection/EtherWorldMap/Data/serna-harden-exploration-v1.json",
+      "pass": true
+    },
+    {
+      "check": "source unchanged against HEAD Docs/ArtDirection/EtherWorldMap/Data/serna-harden-exploration-v1.json",
+      "pass": true
+    },
+    {
+      "check": "source hash Docs/ArtDirection/EtherWorldMap/Data/north-exploration-v1.json",
+      "pass": true
+    },
+    {
+      "check": "source unchanged against HEAD Docs/ArtDirection/EtherWorldMap/Data/north-exploration-v1.json",
+      "pass": true
+    },
+    {
+      "check": "source hash Docs/ArtDirection/EtherWorldMap/Data/central-exploration-v1.json",
+      "pass": true
+    },
+    {
+      "check": "source unchanged against HEAD Docs/ArtDirection/EtherWorldMap/Data/central-exploration-v1.json",
+      "pass": true
+    },
+    {
+      "check": "source hash Docs/ArtDirection/EtherWorldMap/Data/ignis-continent-georeference-v1.json",
+      "pass": true
+    },
+    {
+      "check": "source unchanged against HEAD Docs/ArtDirection/EtherWorldMap/Data/ignis-continent-georeference-v1.json",
+      "pass": true
+    },
+    {
+      "check": "source hash Docs/ArtDirection/EtherWorldMap/Data/ether-world-map-land35-precise-v3.json",
+      "pass": true
+    },
+    {
+      "check": "source unchanged against HEAD Docs/ArtDirection/EtherWorldMap/Data/ether-world-map-land35-precise-v3.json",
+      "pass": true
+    },
+    {
+      "check": "source hash Docs/Narrative/World.md",
+      "pass": true
+    },
+    {
+      "check": "source unchanged against HEAD Docs/Narrative/World.md",
+      "pass": true
+    },
+    {
+      "check": "source hash Docs/Narrative/Scenario.md",
+      "pass": true
+    },
+    {
+      "check": "source unchanged against HEAD Docs/Narrative/Scenario.md",
+      "pass": true
+    },
+    {
+      "check": "S2 exact form set",
+      "pass": true
+    },
+    {
+      "check": "S2 member range 0 MN01-A",
+      "pass": true
+    },
+    {
+      "check": "S2 member range 1 MN01-B",
+      "pass": true
+    },
+    {
+      "check": "S2 member range 2 MN01-C",
+      "pass": true
+    },
+    {
+      "check": "S2 member range 3 MN04-A",
+      "pass": true
+    },
+    {
+      "check": "S2 member range 4 MN04-B",
+      "pass": true
+    },
+    {
+      "check": "S2 member range 5 MN07-A",
+      "pass": true
+    },
+    {
+      "check": "S2 member range 6 MN35-A",
+      "pass": true
+    },
+    {
+      "check": "S2 member range 7 MN38-A",
+      "pass": true
+    },
+    {
+      "check": "S2 member range 8 MN01-A",
+      "pass": true
+    },
+    {
+      "check": "S2 member range 9 MN01-B",
+      "pass": true
+    },
+    {
+      "check": "S2 member range 10 MN16-A",
+      "pass": true
+    },
+    {
+      "check": "S2 member range 11 MN16-B",
+      "pass": true
+    },
+    {
+      "check": "S2 member range 12 MN05-A",
+      "pass": true
+    },
+    {
+      "check": "S2 member range 13 MN05-A",
+      "pass": true
+    },
+    {
+      "check": "S2 member range 14 MN05-B",
+      "pass": true
+    },
+    {
+      "check": "S2 member range 15 MN07-A",
+      "pass": true
+    },
+    {
+      "check": "S2 member range 16 MN38-A",
+      "pass": true
+    },
+    {
+      "check": "S2 member range 17 MN22-A",
+      "pass": true
+    },
+    {
+      "check": "S2 population sum",
+      "pass": true
+    },
+    {
+      "check": "S2 documented form count",
+      "pass": true
+    },
+    {
+      "check": "S2 structure sum",
+      "pass": true
+    },
+    {
+      "check": "S3 exact form set",
+      "pass": true
+    },
+    {
+      "check": "S3 member range 0 MN06-A",
+      "pass": true
+    },
+    {
+      "check": "S3 member range 1 MN06-A",
+      "pass": true
+    },
+    {
+      "check": "S3 member range 2 MN06-B",
+      "pass": true
+    },
+    {
+      "check": "S3 member range 3 MN05-X",
+      "pass": true
+    },
+    {
+      "check": "S3 member range 4 MN21-A",
+      "pass": true
+    },
+    {
+      "check": "S3 member range 5 MN45-A",
+      "pass": true
+    },
+    {
+      "check": "S3 member range 6 MN06-A",
+      "pass": true
+    },
+    {
+      "check": "S3 member range 7 MN06-A",
+      "pass": true
+    },
+    {
+      "check": "S3 member range 8 MN06-B",
+      "pass": true
+    },
+    {
+      "check": "S3 member range 9 MN05-X",
+      "pass": true
+    },
+    {
+      "check": "S3 member range 10 MN21-A",
+      "pass": true
+    },
+    {
+      "check": "S3 member range 11 MN45-A",
+      "pass": true
+    },
+    {
+      "check": "S3 member range 12 MN10-A",
+      "pass": true
+    },
+    {
+      "check": "S3 member range 13 MN10-B",
+      "pass": true
+    },
+    {
+      "check": "S3 population sum",
+      "pass": true
+    },
+    {
+      "check": "S3 documented form count",
+      "pass": true
+    },
+    {
+      "check": "S3 structure sum",
+      "pass": true
+    },
+    {
+      "check": "S3 original progression",
+      "pass": true
+    },
+    {
+      "check": "S4 exact form set",
+      "pass": true
+    },
+    {
+      "check": "S4 member range 0 MN02-A",
+      "pass": true
+    },
+    {
+      "check": "S4 member range 1 MN03-C",
+      "pass": true
+    },
+    {
+      "check": "S4 member range 2 MN12-A",
+      "pass": true
+    },
+    {
+      "check": "S4 member range 3 MN63-A",
+      "pass": true
+    },
+    {
+      "check": "S4 member range 4 MN44-A",
+      "pass": true
+    },
+    {
+      "check": "S4 member range 5 MN02-A",
+      "pass": true
+    },
+    {
+      "check": "S4 member range 6 MN02-A",
+      "pass": true
+    },
+    {
+      "check": "S4 member range 7 MN03-C",
+      "pass": true
+    },
+    {
+      "check": "S4 member range 8 MN03-B",
+      "pass": true
+    },
+    {
+      "check": "S4 member range 9 MN09-A",
+      "pass": true
+    },
+    {
+      "check": "S4 member range 10 MN09-B",
+      "pass": true
+    },
+    {
+      "check": "S4 member range 11 MN09-B",
+      "pass": true
+    },
+    {
+      "check": "S4 member range 12 MN26-A",
+      "pass": true
+    },
+    {
+      "check": "S4 member range 13 MN12-A",
+      "pass": true
+    },
+    {
+      "check": "S4 member range 14 MN55-D",
+      "pass": true
+    },
+    {
+      "check": "S4 member range 15 MN63-A",
+      "pass": true
+    },
+    {
+      "check": "S4 member range 16 MN44-A",
+      "pass": true
+    },
+    {
+      "check": "S4 population sum",
+      "pass": true
+    },
+    {
+      "check": "S4 documented form count",
+      "pass": true
+    },
+    {
+      "check": "S4 structure sum",
+      "pass": true
+    },
+    {
+      "check": "S4 original progression",
+      "pass": true
+    },
+    {
+      "check": "S5 exact form set",
+      "pass": true
+    },
+    {
+      "check": "S5 member range 0 MN11-A",
+      "pass": true
+    },
+    {
+      "check": "S5 member range 1 MN47-A",
+      "pass": true
+    },
+    {
+      "check": "S5 member range 2 MN57-A",
+      "pass": true
+    },
+    {
+      "check": "S5 member range 3 MN11-A",
+      "pass": true
+    },
+    {
+      "check": "S5 member range 4 MN11-B",
+      "pass": true
+    },
+    {
+      "check": "S5 member range 5 MN13-A",
+      "pass": true
+    },
+    {
+      "check": "S5 member range 6 MN13-A",
+      "pass": true
+    },
+    {
+      "check": "S5 member range 7 MN13-B",
+      "pass": true
+    },
+    {
+      "check": "S5 member range 8 MN09-C",
+      "pass": true
+    },
+    {
+      "check": "S5 member range 9 MN25-A",
+      "pass": true
+    },
+    {
+      "check": "S5 member range 10 MN47-A",
+      "pass": true
+    },
+    {
+      "check": "S5 member range 11 MN47-A",
+      "pass": true
+    },
+    {
+      "check": "S5 member range 12 MN49-A",
+      "pass": true
+    },
+    {
+      "check": "S5 population sum",
+      "pass": true
+    },
+    {
+      "check": "S5 documented form count",
+      "pass": true
+    },
+    {
+      "check": "S5 structure sum",
+      "pass": true
+    },
+    {
+      "check": "S5 original progression",
+      "pass": true
+    },
+    {
+      "check": "S6 exact form set",
+      "pass": true
+    },
+    {
+      "check": "S6 member range 0 MN14-A",
+      "pass": true
+    },
+    {
+      "check": "S6 member range 1 MN14-A",
+      "pass": true
+    },
+    {
+      "check": "S6 member range 2 MN14-B",
+      "pass": true
+    },
+    {
+      "check": "S6 member range 3 MN42-B",
+      "pass": true
+    },
+    {
+      "check": "S6 member range 4 MN40-A",
+      "pass": true
+    },
+    {
+      "check": "S6 member range 5 MN53-A",
+      "pass": true
+    },
+    {
+      "check": "S6 member range 6 MN54-A",
+      "pass": true
+    },
+    {
+      "check": "S6 member range 7 MN56-A",
+      "pass": true
+    },
+    {
+      "check": "S6 member range 8 MN14-A",
+      "pass": true
+    },
+    {
+      "check": "S6 member range 9 MN14-B",
+      "pass": true
+    },
+    {
+      "check": "S6 member range 10 MN42-B",
+      "pass": true
+    },
+    {
+      "check": "S6 member range 11 MN56-A",
+      "pass": true
+    },
+    {
+      "check": "S6 member range 12 MN56-B",
+      "pass": true
+    },
+    {
+      "check": "S6 population sum",
+      "pass": true
+    },
+    {
+      "check": "S6 documented form count",
+      "pass": true
+    },
+    {
+      "check": "S6 structure sum",
+      "pass": true
+    },
+    {
+      "check": "S6 original progression",
+      "pass": true
+    },
+    {
+      "check": "GB01 original count",
+      "pass": true
+    },
+    {
+      "check": "GB01 geometry home_m",
+      "pass": true
+    },
+    {
+      "check": "GB01 geometry route_m",
+      "pass": true
+    },
+    {
+      "check": "GB01 geometry routine_polygon_m",
+      "pass": true
+    },
+    {
+      "check": "GB01 range MN01-A",
+      "pass": true
+    },
+    {
+      "check": "GB01 range MN01-B",
+      "pass": true
+    },
+    {
+      "check": "GB02 original count",
+      "pass": true
+    },
+    {
+      "check": "GB02 geometry home_m",
+      "pass": true
+    },
+    {
+      "check": "GB02 geometry route_m",
+      "pass": true
+    },
+    {
+      "check": "GB02 geometry routine_polygon_m",
+      "pass": true
+    },
+    {
+      "check": "GB02 range MN01-A",
+      "pass": true
+    },
+    {
+      "check": "GB03 original count",
+      "pass": true
+    },
+    {
+      "check": "GB03 geometry home_m",
+      "pass": true
+    },
+    {
+      "check": "GB03 geometry route_m",
+      "pass": true
+    },
+    {
+      "check": "GB03 geometry routine_polygon_m",
+      "pass": true
+    },
+    {
+      "check": "GB03 range MN01-A",
+      "pass": true
+    },
+    {
+      "check": "GB03 range MN01-B",
+      "pass": true
+    },
+    {
+      "check": "GB04 original count",
+      "pass": true
+    },
+    {
+      "check": "GB04 geometry home_m",
+      "pass": true
+    },
+    {
+      "check": "GB04 geometry route_m",
+      "pass": true
+    },
+    {
+      "check": "GB04 geometry routine_polygon_m",
+      "pass": true
+    },
+    {
+      "check": "GB04 range MN01-A",
+      "pass": true
+    },
+    {
+      "check": "GB04 range MN01-B",
+      "pass": true
+    },
+    {
+      "check": "GB05 original count",
+      "pass": true
+    },
+    {
+      "check": "GB05 geometry home_m",
+      "pass": true
+    },
+    {
+      "check": "GB05 geometry route_m",
+      "pass": true
+    },
+    {
+      "check": "GB05 geometry routine_polygon_m",
+      "pass": true
+    },
+    {
+      "check": "GB05 range MN01-A",
+      "pass": true
+    },
+    {
+      "check": "GB05 range MN01-B",
+      "pass": true
+    },
+    {
+      "check": "S1 total 14",
+      "pass": true
+    },
+    {
+      "check": "S1 form total MN01-A",
+      "pass": true
+    },
+    {
+      "check": "S1 form total MN01-B",
+      "pass": true
+    },
+    {
+      "check": "S1 outdoor denominator",
+      "pass": true
+    },
+    {
+      "check": "S1 growth budget",
+      "pass": true
+    },
+    {
+      "check": "S2 growth budget",
+      "pass": true
+    },
+    {
+      "check": "S2 continuous level",
+      "pass": true
+    },
+    {
+      "check": "S3 growth budget",
+      "pass": true
+    },
+    {
+      "check": "S3 continuous level",
+      "pass": true
+    },
+    {
+      "check": "S4 growth budget",
+      "pass": true
+    },
+    {
+      "check": "S4 continuous level",
+      "pass": true
+    },
+    {
+      "check": "S5 growth budget",
+      "pass": true
+    },
+    {
+      "check": "S5 continuous level",
+      "pass": true
+    },
+    {
+      "check": "S6 growth budget",
+      "pass": true
+    },
+    {
+      "check": "S6 continuous level",
+      "pass": true
+    },
+    {
+      "check": "total growth 23",
+      "pass": true
+    },
+    {
+      "check": "optional growth retained",
+      "pass": true
+    },
+    {
+      "check": "no automatic scaling or reset",
+      "pass": true
+    },
+    {
+      "check": "S1 transfer original river slice",
+      "pass": true
+    },
+    {
+      "check": "S1 to S2 joins",
+      "pass": true
+    },
+    {
+      "check": "S2 to S3 joins",
+      "pass": true
+    },
+    {
+      "check": "S3 original path",
+      "pass": true
+    },
+    {
+      "check": "S4_river original path",
+      "pass": true
+    },
+    {
+      "check": "S4_public original path",
+      "pass": true
+    },
+    {
+      "check": "S4_highland original path",
+      "pass": true
+    },
+    {
+      "check": "S5 R4_return original path",
+      "pass": true
+    },
+    {
+      "check": "S5 R3_north original path",
+      "pass": true
+    },
+    {
+      "check": "S5 B03 original path",
+      "pass": true
+    },
+    {
+      "check": "S5 B04 original path",
+      "pass": true
+    },
+    {
+      "check": "S5 new_pass_approach original path",
+      "pass": true
+    },
+    {
+      "check": "S6 north_archive_to_kerdin original path",
+      "pass": true
+    },
+    {
+      "check": "S6 B04_return original path",
+      "pass": true
+    },
+    {
+      "check": "S6 B03_return original path",
+      "pass": true
+    },
+    {
+      "check": "S6 R3_return original path",
+      "pass": true
+    },
+    {
+      "check": "S6 city_to_outer original path",
+      "pass": true
+    },
+    {
+      "check": "S6 outer_to_inner original path",
+      "pass": true
+    },
+    {
+      "check": "S3 joins S4_river",
+      "pass": true
+    },
+    {
+      "check": "S4_river joins S4_public",
+      "pass": true
+    },
+    {
+      "check": "S4_public joins S4_highland",
+      "pass": true
+    },
+    {
+      "check": "S4_highland joins S5_R4_return",
+      "pass": true
+    },
+    {
+      "check": "S5_R4_return joins S5_R3_north",
+      "pass": true
+    },
+    {
+      "check": "S5_R3_north joins S5_B03",
+      "pass": true
+    },
+    {
+      "check": "S5_B03 joins S5_B04",
+      "pass": true
+    },
+    {
+      "check": "S5_B04 joins S5_new_pass_approach",
+      "pass": true
+    },
+    {
+      "check": "S5_new_pass_approach joins S6_north_archive_to_kerdin",
+      "pass": true
+    },
+    {
+      "check": "S6_north_archive_to_kerdin joins S6_B04_return",
+      "pass": true
+    },
+    {
+      "check": "S6_B04_return joins S6_B03_return",
+      "pass": true
+    },
+    {
+      "check": "S6_B03_return joins S6_R3_return",
+      "pass": true
+    },
+    {
+      "check": "S1_transfer measured distance",
+      "pass": true
+    },
+    {
+      "check": "S2 measured distance",
+      "pass": true
+    },
+    {
+      "check": "S3 measured distance",
+      "pass": true
+    },
+    {
+      "check": "S4_river measured distance",
+      "pass": true
+    },
+    {
+      "check": "S4_public measured distance",
+      "pass": true
+    },
+    {
+      "check": "S4_highland measured distance",
+      "pass": true
+    },
+    {
+      "check": "S5_R4_return measured distance",
+      "pass": true
+    },
+    {
+      "check": "S5_R3_north measured distance",
+      "pass": true
+    },
+    {
+      "check": "S5_B03 measured distance",
+      "pass": true
+    },
+    {
+      "check": "S5_B04 measured distance",
+      "pass": true
+    },
+    {
+      "check": "S5_new_pass_approach measured distance",
+      "pass": true
+    },
+    {
+      "check": "S6_north_archive_to_kerdin measured distance",
+      "pass": true
+    },
+    {
+      "check": "S6_B04_return measured distance",
+      "pass": true
+    },
+    {
+      "check": "S6_B03_return measured distance",
+      "pass": true
+    },
+    {
+      "check": "S6_R3_return measured distance",
+      "pass": true
+    },
+    {
+      "check": "S6_city_to_outer measured distance",
+      "pass": true
+    },
+    {
+      "check": "S6_outer_to_inner measured distance",
+      "pass": true
+    },
+    {
+      "check": "first cargo before later boat",
+      "pass": true
+    },
+    {
+      "check": "optional booking not S4 prerequisite",
+      "pass": true
+    },
+    {
+      "check": "acceptance distinct from success",
+      "pass": true
+    },
+    {
+      "check": "G2 all prerequisites",
+      "pass": true
+    },
+    {
+      "check": "first_cargo_dispatch no forward dependency",
+      "pass": true
+    },
+    {
+      "check": "first_cargo_receipt_return no forward dependency",
+      "pass": true
+    },
+    {
+      "check": "later_regular_boat_S4 no forward dependency",
+      "pass": true
+    },
+    {
+      "check": "north_departure no forward dependency",
+      "pass": true
+    },
+    {
+      "check": "central_return no forward dependency",
+      "pass": true
+    },
+    {
+      "check": "G2 no forward dependency",
+      "pass": true
+    },
+    {
+      "check": "SVG main S30",
+      "pass": true
+    },
+    {
+      "check": "SVG main S31",
+      "pass": true
+    },
+    {
+      "check": "SVG main S32",
+      "pass": true
+    },
+    {
+      "check": "SVG main S33",
+      "pass": true
+    },
+    {
+      "check": "SVG main S34",
+      "pass": true
+    },
+    {
+      "check": "SVG main S35",
+      "pass": true
+    },
+    {
+      "check": "SVG main S36",
+      "pass": true
+    },
+    {
+      "check": "SVG main S37",
+      "pass": true
+    },
+    {
+      "check": "SVG main S38",
+      "pass": true
+    },
+    {
+      "check": "SVG main S39",
+      "pass": true
+    },
+    {
+      "check": "SVG main S310",
+      "pass": true
+    },
+    {
+      "check": "SVG main S4_highland0",
+      "pass": true
+    },
+    {
+      "check": "SVG main S4_highland1",
+      "pass": true
+    },
+    {
+      "check": "SVG main S4_highland2",
+      "pass": true
+    },
+    {
+      "check": "SVG main S4_highland3",
+      "pass": true
+    },
+    {
+      "check": "SVG main S5_R3_north0",
+      "pass": true
+    },
+    {
+      "check": "SVG main S5_R3_north1",
+      "pass": true
+    },
+    {
+      "check": "SVG main S5_R3_north2",
+      "pass": true
+    },
+    {
+      "check": "SVG main S5_R3_north3",
+      "pass": true
+    },
+    {
+      "check": "SVG main S5_B030",
+      "pass": true
+    },
+    {
+      "check": "SVG main S5_B040",
+      "pass": true
+    },
+    {
+      "check": "SVG main S5_new_pass_approach0",
+      "pass": true
+    },
+    {
+      "check": "SVG main S5_new_pass_approach1",
+      "pass": true
+    },
+    {
+      "check": "SVG main S5_new_pass_approach2",
+      "pass": true
+    },
+    {
+      "check": "SVG main S5_new_pass_approach3",
+      "pass": true
+    },
+    {
+      "check": "SVG inset S1_transfer0",
+      "pass": true
+    },
+    {
+      "check": "SVG inset S1_transfer1",
+      "pass": true
+    },
+    {
+      "check": "SVG inset S1_transfer2",
+      "pass": true
+    },
+    {
+      "check": "SVG inset S20",
+      "pass": true
+    },
+    {
+      "check": "SVG inset S21",
+      "pass": true
+    },
+    {
+      "check": "SVG inset S22",
+      "pass": true
+    },
+    {
+      "check": "SVG inset S23",
+      "pass": true
+    },
+    {
+      "check": "SVG inset S30",
+      "pass": true
+    },
+    {
+      "check": "SVG inset S31",
+      "pass": true
+    },
+    {
+      "check": "SVG inset S32",
+      "pass": true
+    },
+    {
+      "check": "SVG inset S33",
+      "pass": true
+    },
+    {
+      "check": "SVG inset S34",
+      "pass": true
+    },
+    {
+      "check": "SVG inset S35",
+      "pass": true
+    },
+    {
+      "check": "SVG inset S36",
+      "pass": true
+    },
+    {
+      "check": "SVG inset S37",
+      "pass": true
+    },
+    {
+      "check": "SVG inset S4_public0",
+      "pass": true
+    },
+    {
+      "check": "SVG inset S6_city_to_outer0",
+      "pass": true
+    },
+    {
+      "check": "SVG inset S6_city_to_outer1",
+      "pass": true
+    },
+    {
+      "check": "SVG inset S6_city_to_outer2",
+      "pass": true
+    },
+    {
+      "check": "SVG inset S6_outer_to_inner0",
+      "pass": true
+    },
+    {
+      "check": "SVG inset S6_outer_to_inner1",
+      "pass": true
+    },
+    {
+      "check": "SVG forest home G01",
+      "pass": true
+    },
+    {
+      "check": "SVG forest territory G01",
+      "pass": true
+    },
+    {
+      "check": "SVG forest home G02",
+      "pass": true
+    },
+    {
+      "check": "SVG forest territory G02",
+      "pass": true
+    },
+    {
+      "check": "SVG forest home G03",
+      "pass": true
+    },
+    {
+      "check": "SVG forest territory G03",
+      "pass": true
+    },
+    {
+      "check": "SVG forest home G04",
+      "pass": true
+    },
+    {
+      "check": "SVG forest territory G04",
+      "pass": true
+    },
+    {
+      "check": "SVG forest home W01",
+      "pass": true
+    },
+    {
+      "check": "SVG forest territory W01",
+      "pass": true
+    },
+    {
+      "check": "SVG forest home W02",
+      "pass": true
+    },
+    {
+      "check": "SVG forest territory W02",
+      "pass": true
+    },
+    {
+      "check": "SVG forest home W03",
+      "pass": true
+    },
+    {
+      "check": "SVG forest territory W03",
+      "pass": true
+    },
+    {
+      "check": "SVG forest home GB01",
+      "pass": true
+    },
+    {
+      "check": "SVG forest territory GB01",
+      "pass": true
+    },
+    {
+      "check": "SVG forest home GB02",
+      "pass": true
+    },
+    {
+      "check": "SVG forest territory GB02",
+      "pass": true
+    },
+    {
+      "check": "SVG forest home GB03",
+      "pass": true
+    },
+    {
+      "check": "SVG forest territory GB03",
+      "pass": true
+    },
+    {
+      "check": "SVG forest home GB04",
+      "pass": true
+    },
+    {
+      "check": "SVG forest territory GB04",
+      "pass": true
+    },
+    {
+      "check": "SVG forest path outbound",
+      "pass": true
+    },
+    {
+      "check": "SVG forest path return_G04_stopped_other_groups_present",
+      "pass": true
+    },
+    {
+      "check": "SVG mobile same route",
+      "pass": true
+    },
+    {
+      "check": "six handoff cards",
+      "pass": true
+    },
+    {
+      "check": "S4 archived old passage 0",
+      "pass": true
+    },
+    {
+      "check": "S4 replacement 0",
+      "pass": true
+    },
+    {
+      "check": "S4 archived old passage 1",
+      "pass": true
+    },
+    {
+      "check": "S4 replacement 1",
+      "pass": true
+    },
+    {
+      "check": "S4 archived old passage 2",
+      "pass": true
+    },
+    {
+      "check": "S4 replacement 2",
+      "pass": true
+    },
+    {
+      "check": "S4 exact original reconstruction",
+      "pass": true
+    }
+  ],
+  "limitations": [
+    "No runtime, AI, encounter difficulty, travel time or supply-capacity proof",
+    "Narrative causality requires separate independent review"
+  ],
+  "artifact_sha256": {
+    "Docs/ArtDirection/EtherWorldMap/Images/ignis-journey-route-v1.svg": "178684f9524b980348cf8781a667b3b77c08dc60d792e41255989e431b7d82b4",
+    "Docs/ArtDirection/EtherWorldMap/Images/ignis-journey-handoffs-v1.svg": "4385bcfe8d46a91f008ce3a384d469c6b483cc6e0439c5a1f5de8adf431f796a",
+    "Docs/ArtDirection/EtherWorldMap/Images/veles-goblin-forms-v3.svg": "93ee8fe894288f47711c3f98f0b3925ec55a33765f6d75aa97b175fa8099b8cd"
+  }
+}

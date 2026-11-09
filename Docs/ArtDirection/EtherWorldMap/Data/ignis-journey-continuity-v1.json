@@ -1,0 +1,995 @@
+{
+  "status": "DISCUSSION_not_canon_or_runtime_validation",
+  "sources_sha256": {
+    "Docs/ArtDirection/EtherWorldMap/Data/veles-forest-ecology-v2.json": "56009a29f7ba55e1f1903ee8ced9b1132d4a972fda2e7d65e47af0005d2eba7c",
+    "Docs/ArtDirection/EtherWorldMap/Data/tarnel-roden-exploration-v1.json": "b5d997d91806b5de84dd52002f1b179727aff61be0292de64be3d6f2cbe3a53b",
+    "Docs/ArtDirection/EtherWorldMap/Data/roden-serna-exploration-v1.json": "c5c70146e7c0d74547a42ac2f074da6725262b432ccc258a90c2144d683e2776",
+    "Docs/ArtDirection/EtherWorldMap/Data/serna-harden-exploration-v1.json": "72335072a222293715b18045765c56892a6ba14d6213c83e44399c248ecd54c0",
+    "Docs/ArtDirection/EtherWorldMap/Data/north-exploration-v1.json": "7b9dad75cf46a406f2283a5e24cb5e4c9970c45fa85de0f2e13592735ed585a0",
+    "Docs/ArtDirection/EtherWorldMap/Data/central-exploration-v1.json": "283d6570fa97613d5e98e00181c7719300849e499feb76f24e11639d0d6e9738",
+    "Docs/ArtDirection/EtherWorldMap/Data/ignis-continent-georeference-v1.json": "6db8af3cd42905181145fb26bd22793523428dcdd728b1d7d78c46e7acc773b0",
+    "Docs/ArtDirection/EtherWorldMap/Data/ether-world-map-land35-precise-v3.json": "7fb1ea5461708dadca67f46ba9dd6dd579ed2ae329c275edd0707a2f85a2c0f4",
+    "Docs/Narrative/World.md": "020bed8d29fd25ac5c8a4346f6076426e52aff1335f52de4f1e6d7d7b38cde28",
+    "Docs/Narrative/Scenario.md": "55a8eb1da2a818d4c606d82e6d4fd2163458de96d22f27a340dda23b3c427e13"
+  },
+  "stages": [
+    {
+      "stage": "S1",
+      "baseline": [
+        1,
+        6
+      ],
+      "budget": {
+        "field": 3,
+        "major": 1,
+        "investigation": 1
+      },
+      "population": {
+        "goblin_forms": [
+          "MN01-A",
+          "MN01-B"
+        ],
+        "goblins": 14,
+        "wolves": 10,
+        "biological_individuals": 24,
+        "outdoor_structures": 5,
+        "outdoor_total": 29,
+        "excludes": [
+          "wildlife",
+          "indoor wardens",
+          "Bartul"
+        ]
+      }
+    },
+    {
+      "stage": "S2",
+      "baseline": [
+        6,
+        10
+      ],
+      "budget": {
+        "field": 2,
+        "major": 1,
+        "investigation": 1
+      },
+      "population": {
+        "forms": [
+          "MN01-A",
+          "MN01-B",
+          "MN01-C",
+          "MN04-A",
+          "MN04-B",
+          "MN05-A",
+          "MN05-B",
+          "MN07-A",
+          "MN16-A",
+          "MN16-B",
+          "MN22-A",
+          "MN35-A",
+          "MN38-A"
+        ],
+        "biological_or_supernatural_individuals": 45,
+        "structures": 2,
+        "human_event_count": null
+      }
+    },
+    {
+      "stage": "S3",
+      "baseline": [
+        10,
+        14
+      ],
+      "budget": {
+        "field": 2,
+        "major": 1,
+        "investigation": 1
+      },
+      "population": {
+        "forms": [
+          "MN05-X",
+          "MN06-A",
+          "MN06-B",
+          "MN10-A",
+          "MN10-B",
+          "MN21-A",
+          "MN45-A"
+        ],
+        "biological_or_supernatural_individuals": 33,
+        "structures": 0,
+        "human_event_count": 6
+      }
+    },
+    {
+      "stage": "S4",
+      "baseline": [
+        14,
+        18
+      ],
+      "budget": {
+        "field": 2,
+        "major": 1,
+        "investigation": 1
+      },
+      "population": {
+        "forms": [
+          "MN02-A",
+          "MN03-B",
+          "MN03-C",
+          "MN09-A",
+          "MN09-B",
+          "MN12-A",
+          "MN26-A",
+          "MN44-A",
+          "MN55-D",
+          "MN63-A"
+        ],
+        "biological_or_supernatural_individuals": 45,
+        "structures": 1,
+        "human_event_count": null
+      }
+    },
+    {
+      "stage": "S5",
+      "baseline": [
+        18,
+        21
+      ],
+      "budget": {
+        "field": 1,
+        "major": 1,
+        "investigation": 1
+      },
+      "population": {
+        "forms": [
+          "MN09-C",
+          "MN11-A",
+          "MN11-B",
+          "MN13-A",
+          "MN13-B",
+          "MN25-A",
+          "MN47-A",
+          "MN49-A",
+          "MN57-A"
+        ],
+        "biological_or_supernatural_individuals": 34,
+        "structures": 6,
+        "human_event_count": null
+      }
+    },
+    {
+      "stage": "S6",
+      "baseline": [
+        21,
+        24
+      ],
+      "budget": {
+        "field": 1,
+        "major": 1,
+        "investigation": 1
+      },
+      "population": {
+        "forms": [
+          "MN14-A",
+          "MN14-B",
+          "MN40-A",
+          "MN42-B",
+          "MN53-A",
+          "MN54-A",
+          "MN56-A",
+          "MN56-B"
+        ],
+        "biological_or_supernatural_individuals": 34,
+        "structures": 5,
+        "human_event_count": 5
+      }
+    }
+  ],
+  "route_parts": {
+    "S1_transfer": {
+      "xy_km": [
+        [
+          150,
+          145
+        ],
+        [
+          145,
+          140
+        ],
+        [
+          146,
+          130
+        ],
+        [
+          137,
+          125
+        ]
+      ],
+      "basis": "H01 Veles to Tarnel knots; regional transfer, not opening camera route",
+      "planar_length_km": 27.416573573973366
+    },
+    "S2": {
+      "xy_km": [
+        [
+          137,
+          125
+        ],
+        [
+          133,
+          112
+        ],
+        [
+          120,
+          110
+        ],
+        [
+          118,
+          101
+        ],
+        [
+          110,
+          95
+        ]
+      ],
+      "basis": "tarnel-roden-exploration-v1",
+      "planar_length_km": 45.97396140399424
+    },
+    "S3": {
+      "xy_km": [
+        [
+          110,
+          95
+        ],
+        [
+          98,
+          88
+        ],
+        [
+          83,
+          75
+        ],
+        [
+          64,
+          60
+        ],
+        [
+          48,
+          42
+        ],
+        [
+          36,
+          20
+        ],
+        [
+          28,
+          -12
+        ],
+        [
+          31,
+          -30
+        ],
+        [
+          42,
+          -48
+        ],
+        [
+          50,
+          -180
+        ],
+        [
+          100,
+          -350
+        ],
+        [
+          417.4518741058252,
+          -1063.9045819597554
+        ]
+      ],
+      "basis": "R1",
+      "planar_length_km": 1270.1669232913569
+    },
+    "S4_river": {
+      "xy_km": [
+        [
+          417.4518741058252,
+          -1063.9045819597554
+        ],
+        [
+          100,
+          -350
+        ],
+        [
+          50,
+          -180
+        ],
+        [
+          42,
+          -48
+        ],
+        [
+          31,
+          -30
+        ],
+        [
+          28,
+          -12
+        ]
+      ],
+      "basis": "R1 Serna to public landing",
+      "planar_length_km": 1130.0896468519982
+    },
+    "S4_public": {
+      "xy_km": [
+        [
+          28,
+          -12
+        ],
+        [
+          18,
+          -12
+        ]
+      ],
+      "basis": "R2",
+      "planar_length_km": 10.0
+    },
+    "S4_highland": {
+      "xy_km": [
+        [
+          18,
+          -12
+        ],
+        [
+          -200,
+          0
+        ],
+        [
+          -650,
+          100
+        ],
+        [
+          -890.3430271555216,
+          200.3333881209349
+        ],
+        [
+          -1435.2733267209078,
+          454.34169769054535
+        ]
+      ],
+      "basis": "R4",
+      "planar_length_km": 1540.975304830601
+    },
+    "S5_R4_return": {
+      "xy_km": [
+        [
+          -1435.2733267209078,
+          454.34169769054535
+        ],
+        [
+          -890.3430271555216,
+          200.3333881209349
+        ],
+        [
+          -650,
+          100
+        ],
+        [
+          -200,
+          0
+        ],
+        [
+          18,
+          -12
+        ]
+      ],
+      "basis": "north R4_return",
+      "planar_length_km": 1540.975304830601
+    },
+    "S5_R3_north": {
+      "xy_km": [
+        [
+          18,
+          -12
+        ],
+        [
+          -140,
+          160
+        ],
+        [
+          -300,
+          550
+        ],
+        [
+          -205.9529376219892,
+          909.001952106139
+        ],
+        [
+          -230.9529376219892,
+          1069.001952106139
+        ]
+      ],
+      "basis": "north R3_north",
+      "planar_length_km": 1188.157482038706
+    },
+    "S5_B03": {
+      "xy_km": [
+        [
+          -230.9529376219892,
+          1069.001952106139
+        ],
+        [
+          -255.95293762198924,
+          1189.001952106139
+        ]
+      ],
+      "basis": "north B03",
+      "planar_length_km": 122.57650672131264
+    },
+    "S5_B04": {
+      "xy_km": [
+        [
+          -255.95293762198924,
+          1189.001952106139
+        ],
+        [
+          -265.95293762198924,
+          1219.001952106139
+        ]
+      ],
+      "basis": "north B04",
+      "planar_length_km": 31.622776601683793
+    },
+    "S5_new_pass_approach": {
+      "xy_km": [
+        [
+          -265.95293762198924,
+          1219.001952106139
+        ],
+        [
+          -270,
+          1400
+        ],
+        [
+          -240,
+          1467
+        ],
+        [
+          -240,
+          1473.711654927687
+        ],
+        [
+          -240,
+          1482
+        ]
+      ],
+      "basis": "north new_pass_approach",
+      "planar_length_km": 269.4530964029837
+    },
+    "S6_north_archive_to_kerdin": {
+      "xy_km": [
+        [
+          -240,
+          1482
+        ],
+        [
+          -240,
+          1473.711654927687
+        ],
+        [
+          -240,
+          1467
+        ],
+        [
+          -270,
+          1400
+        ],
+        [
+          -265.95293762198924,
+          1219.001952106139
+        ]
+      ],
+      "basis": "central north_archive_to_kerdin",
+      "planar_length_km": 269.4530964029837
+    },
+    "S6_B04_return": {
+      "xy_km": [
+        [
+          -265.95293762198924,
+          1219.001952106139
+        ],
+        [
+          -255.95293762198924,
+          1189.001952106139
+        ]
+      ],
+      "basis": "central B04_return",
+      "planar_length_km": 31.622776601683793
+    },
+    "S6_B03_return": {
+      "xy_km": [
+        [
+          -255.95293762198924,
+          1189.001952106139
+        ],
+        [
+          -230.9529376219892,
+          1069.001952106139
+        ]
+      ],
+      "basis": "central B03_return",
+      "planar_length_km": 122.57650672131264
+    },
+    "S6_R3_return": {
+      "xy_km": [
+        [
+          -230.9529376219892,
+          1069.001952106139
+        ],
+        [
+          -205.9529376219892,
+          909.001952106139
+        ],
+        [
+          -300,
+          550
+        ],
+        [
+          -140,
+          160
+        ],
+        [
+          18,
+          -12
+        ]
+      ],
+      "basis": "central R3_return",
+      "planar_length_km": 1188.157482038706
+    },
+    "S6_city_to_outer": {
+      "xy_km": [
+        [
+          17.1,
+          -11.6
+        ],
+        [
+          14,
+          -9
+        ],
+        [
+          10,
+          -7
+        ],
+        [
+          8.9,
+          -5.7
+        ]
+      ],
+      "basis": "central city_to_outer",
+      "planar_length_km": 10.221060256421003
+    },
+    "S6_outer_to_inner": {
+      "xy_km": [
+        [
+          7.15,
+          -3.6
+        ],
+        [
+          5,
+          -2.8
+        ],
+        [
+          2.7,
+          -1.5
+        ]
+      ],
+      "basis": "central outer_to_inner",
+      "planar_length_km": 4.935982912115474
+    }
+  },
+  "s1_assignments": [
+    {
+      "group": "GB01",
+      "members": [
+        {
+          "form": "MN01-A",
+          "count": 3,
+          "readiness": [
+            2,
+            3
+          ]
+        },
+        {
+          "form": "MN01-B",
+          "count": 1,
+          "readiness": [
+            3,
+            4
+          ]
+        }
+      ],
+      "count": 4,
+      "home_m": [
+        390,
+        640
+      ],
+      "route_m": [
+        [
+          390,
+          640
+        ],
+        [
+          420,
+          620
+        ],
+        [
+          435,
+          680
+        ],
+        [
+          365,
+          700
+        ],
+        [
+          390,
+          640
+        ]
+      ],
+      "routine_polygon_m": [
+        [
+          350,
+          590
+        ],
+        [
+          455,
+          590
+        ],
+        [
+          455,
+          730
+        ],
+        [
+          350,
+          730
+        ]
+      ],
+      "same_existing_individuals": true
+    },
+    {
+      "group": "GB02",
+      "members": [
+        {
+          "form": "MN01-A",
+          "count": 2,
+          "readiness": [
+            1,
+            2
+          ]
+        }
+      ],
+      "count": 2,
+      "home_m": [
+        290,
+        520
+      ],
+      "route_m": [
+        [
+          290,
+          520
+        ],
+        [
+          250,
+          480
+        ],
+        [
+          230,
+          550
+        ],
+        [
+          300,
+          580
+        ],
+        [
+          340,
+          540
+        ],
+        [
+          290,
+          520
+        ]
+      ],
+      "routine_polygon_m": [
+        [
+          220,
+          450
+        ],
+        [
+          340,
+          450
+        ],
+        [
+          360,
+          540
+        ],
+        [
+          330,
+          600
+        ],
+        [
+          220,
+          580
+        ]
+      ],
+      "same_existing_individuals": true
+    },
+    {
+      "group": "GB03",
+      "members": [
+        {
+          "form": "MN01-A",
+          "count": 1,
+          "readiness": [
+            3,
+            4
+          ]
+        },
+        {
+          "form": "MN01-B",
+          "count": 2,
+          "readiness": [
+            4,
+            5
+          ]
+        }
+      ],
+      "count": 3,
+      "home_m": [
+        330,
+        810
+      ],
+      "route_m": [
+        [
+          330,
+          810
+        ],
+        [
+          270,
+          800
+        ],
+        [
+          255,
+          870
+        ],
+        [
+          350,
+          910
+        ],
+        [
+          380,
+          880
+        ],
+        [
+          330,
+          810
+        ]
+      ],
+      "routine_polygon_m": [
+        [
+          235,
+          745
+        ],
+        [
+          360,
+          745
+        ],
+        [
+          405,
+          900
+        ],
+        [
+          365,
+          945
+        ],
+        [
+          245,
+          900
+        ]
+      ],
+      "same_existing_individuals": true
+    },
+    {
+      "group": "GB04",
+      "members": [
+        {
+          "form": "MN01-A",
+          "count": 2,
+          "readiness": [
+            2,
+            4
+          ]
+        },
+        {
+          "form": "MN01-B",
+          "count": 1,
+          "readiness": [
+            3,
+            5
+          ]
+        }
+      ],
+      "count": 3,
+      "home_m": [
+        -155,
+        680
+      ],
+      "route_m": [
+        [
+          -155,
+          680
+        ],
+        [
+          -190,
+          650
+        ],
+        [
+          -110,
+          635
+        ],
+        [
+          -110,
+          700
+        ],
+        [
+          -155,
+          680
+        ]
+      ],
+      "routine_polygon_m": [
+        [
+          -210,
+          610
+        ],
+        [
+          -90,
+          610
+        ],
+        [
+          -90,
+          715
+        ],
+        [
+          -210,
+          715
+        ]
+      ],
+      "same_existing_individuals": true
+    },
+    {
+      "group": "GB05",
+      "members": [
+        {
+          "form": "MN01-A",
+          "count": 1,
+          "readiness": [
+            2,
+            3
+          ]
+        },
+        {
+          "form": "MN01-B",
+          "count": 1,
+          "readiness": [
+            3,
+            4
+          ]
+        }
+      ],
+      "count": 2,
+      "home_m": null,
+      "route_m": [
+        [
+          390,
+          640
+        ],
+        [
+          365,
+          700
+        ],
+        [
+          330,
+          720
+        ],
+        [
+          119.35483870967742,
+          621.9354838709678
+        ],
+        [
+          -110,
+          530
+        ],
+        [
+          -155,
+          680
+        ],
+        [
+          -250,
+          730
+        ]
+      ],
+      "routine_polygon_m": null,
+      "same_existing_individuals": true
+    }
+  ],
+  "optional_plus_two_example": [
+    [
+      16,
+      20
+    ],
+    [
+      20,
+      23
+    ],
+    [
+      23,
+      26
+    ]
+  ],
+  "auto_enemy_scaling": false,
+  "reset_player_on_return": false,
+  "handoffs": [
+    {
+      "id": "first_cargo_dispatch",
+      "requires": [
+        "permit",
+        "seals",
+        "other_owner_reserve_boat"
+      ]
+    },
+    {
+      "id": "first_cargo_receipt_return",
+      "requires": [
+        "first_cargo_dispatch",
+        "Roden_receipt",
+        "transported_return_message"
+      ]
+    },
+    {
+      "id": "later_regular_boat_S4",
+      "requires": [
+        "first_cargo_receipt_return",
+        "repair_cost_handoff"
+      ],
+      "cargo": "ordinary_later_cargo",
+      "does_not_require": "optional_overseas_booking"
+    },
+    {
+      "id": "north_departure",
+      "requires": [
+        "Harden_trial",
+        "Roden_receiver_acceptance",
+        "restricted_operation_and_replenishment"
+      ],
+      "not_proof_of": "Roden_local_trial_success"
+    },
+    {
+      "id": "central_return",
+      "requires": [
+        "north_record_copy",
+        "north_care_and_heat_handoff",
+        "Iru_replacement"
+      ]
+    },
+    {
+      "id": "G2",
+      "requires": [
+        "G1",
+        "central_forced_extraction_stopped",
+        "essential_supply_and_local_handoff",
+        "accepted_exchange_and_investigation_contract"
+      ]
+    }
+  ],
+  "limits": [
+    "Regional planar distance is not travel time",
+    "Counts are local design populations, not mandatory kills",
+    "Local forest form overlay preserves v2 geometry",
+    "Overview omits coast and is not an in-game UI replacement"
+  ]
+}
