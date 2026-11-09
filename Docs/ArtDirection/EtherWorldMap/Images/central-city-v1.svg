@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2100" height="1550" viewBox="0 0 2100 1550">
+<rect width="2100" height="1550" fill="#f3f4ee"/>
+<text x="50.000" y="72.000" font-family="Malgun Gothic,sans-serif" font-size="40" fill="#263d43" font-weight="700">관리도시 · 공급과 출입 준비</text>
+<text x="50.000" y="119.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#657a7a" font-weight="400">배치 검토용 좌표 도면 | 북쪽 ↑ | 파랑 조사·접근 · 주황 귀환 · 초록 선택로</text>
+<polygon points="90.000,1035.000 90.000,180.000 1170.000,180.000 1170.000,1035.000" fill="#fafaf5" stroke="#b9c4b4"/>
+<polyline points="225.000,1035.000 225.000,180.000" fill="none" stroke="#d7dfdc" stroke-width="1"/>
+<text x="210.000" y="1060.000" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#657a7a" font-weight="400">-1000</text>
+<polyline points="450.000,1035.000 450.000,180.000" fill="none" stroke="#d7dfdc" stroke-width="1"/>
+<text x="435.000" y="1060.000" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#657a7a" font-weight="400">-500</text>
+<polyline points="675.000,1035.000 675.000,180.000" fill="none" stroke="#d7dfdc" stroke-width="1"/>
+<text x="660.000" y="1060.000" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#657a7a" font-weight="400">0</text>
+<polyline points="900.000,1035.000 900.000,180.000" fill="none" stroke="#d7dfdc" stroke-width="1"/>
+<text x="885.000" y="1060.000" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#657a7a" font-weight="400">500</text>
+<polyline points="1125.000,1035.000 1125.000,180.000" fill="none" stroke="#d7dfdc" stroke-width="1"/>
+<text x="1110.000" y="1060.000" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#657a7a" font-weight="400">1000</text>
+<polyline points="90.000,1035.000 1170.000,1035.000" fill="none" stroke="#d7dfdc" stroke-width="1"/>
+<text x="12.000" y="1042.000" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#657a7a" font-weight="400">-1000</text>
+<polyline points="90.000,810.000 1170.000,810.000" fill="none" stroke="#d7dfdc" stroke-width="1"/>
+<text x="12.000" y="817.000" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#657a7a" font-weight="400">-500</text>
+<polyline points="90.000,585.000 1170.000,585.000" fill="none" stroke="#d7dfdc" stroke-width="1"/>
+<text x="12.000" y="592.000" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#657a7a" font-weight="400">0</text>
+<polyline points="90.000,360.000 1170.000,360.000" fill="none" stroke="#d7dfdc" stroke-width="1"/>
+<text x="12.000" y="367.000" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#657a7a" font-weight="400">500</text>
+<polygon id="terrain-0" points="112.500,270.000 450.000,225.000 1035.000,270.000 1035.000,337.500 112.500,337.500" fill="#d5ddca" stroke="#a4b395"/>
+<polyline id="path-C_prepare" points="675.000,360.000 675.000,585.000 990.000,697.500 855.000,900.000 450.000,855.000 270.000,405.000" fill="none" stroke="#277da3" stroke-width="4"/>
+<polyline id="path-C_return" points="270.000,405.000 270.000,765.000 675.000,585.000" fill="none" stroke="#c57032" stroke-width="4"/>
+<circle id="node-C01" cx="675.000" cy="360.000" r="5.000" fill="#263d43" stroke="#263d43"/>
+<text x="683.000" y="360.000" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#263d43" font-weight="700">C01</text>
+<circle id="node-C02" cx="675.000" cy="585.000" r="5.000" fill="#263d43" stroke="#263d43"/>
+<text x="683.000" y="585.000" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#263d43" font-weight="700">C02</text>
+<circle id="node-C03" cx="990.000" cy="697.500" r="5.000" fill="#263d43" stroke="#263d43"/>
+<text x="998.000" y="697.500" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#263d43" font-weight="700">C03</text>
+<circle id="node-C04" cx="855.000" cy="900.000" r="5.000" fill="#263d43" stroke="#263d43"/>
+<text x="863.000" y="900.000" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#263d43" font-weight="700">C04</text>
+<circle id="node-C05" cx="450.000" cy="855.000" r="5.000" fill="#263d43" stroke="#263d43"/>
+<text x="458.000" y="855.000" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#263d43" font-weight="700">C05</text>
+<circle id="node-C06" cx="270.000" cy="405.000" r="5.000" fill="#263d43" stroke="#263d43"/>
+<text x="278.000" y="405.000" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#263d43" font-weight="700">C06</text>
+<circle id="node-C07" cx="270.000" cy="765.000" r="5.000" fill="#263d43" stroke="#263d43"/>
+<text x="278.000" y="765.000" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#263d43" font-weight="700">C07</text>
+<text x="1350.000" y="209.000" font-family="Malgun Gothic,sans-serif" font-size="29" fill="#263d43" font-weight="700">장소와 역할</text>
+<text x="1350.000" y="263.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#263d43" font-weight="400">C01  북행편 귀환 마당</text>
+<text x="1350.000" y="308.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#263d43" font-weight="400">C02  공개 기록·심의뜰</text>
+<text x="1350.000" y="353.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#263d43" font-weight="400">C03  비축·수령 창고</text>
+<text x="1350.000" y="398.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#263d43" font-weight="400">C04  진료·필수 공급 인계</text>
+<text x="1350.000" y="443.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#263d43" font-weight="400">C05  정비조 배정소</text>
+<text x="1350.000" y="488.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#263d43" font-weight="400">C06  뿌리권 출입소</text>
+<text x="1350.000" y="533.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#263d43" font-weight="400">C07  귀환·시험 기록소</text>
+<text x="1350.000" y="612.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#657a7a" font-weight="400">주거·창고는 반경 20 km 밖 후보.</text>
+<text x="1350.000" y="660.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#657a7a" font-weight="400">기록 외에 공급 시험·대피도 확인.</text>
+<text x="1350.000" y="708.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#657a7a" font-weight="400">도시는 비전투 준비·인계 구간.</text>
+<polyline points="90.000,1390.000 315.000,1390.000" fill="none" stroke="#263d43" stroke-width="5"/>
+<text x="90.000" y="1437.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#263d43" font-weight="400">500 m · 투영 평면</text>
+<text x="550.000" y="1438.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#657a7a" font-weight="400">새 지형·시설·생활권 후보 | 실제 통행·전투·공급 미검증</text>
+</svg>

@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2100" height="1550" viewBox="0 0 2100 1550">
+<rect width="2100" height="1550" fill="#f3f4ee"/>
+<text x="50.000" y="72.000" font-family="Malgun Gothic,sans-serif" font-size="40" fill="#263d43" font-weight="700">세계수 바깥 뿌리권 · 조사와 생활권</text>
+<text x="50.000" y="119.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#657a7a" font-weight="400">배치 검토용 좌표 도면 | 북쪽 ↑ | 파랑 조사·접근 · 주황 귀환 · 초록 선택로</text>
+<polygon points="90.000,1188.000 90.000,180.000 1098.000,180.000 1098.000,1188.000" fill="#fafaf5" stroke="#b9c4b4"/>
+<polyline points="234.000,1188.000 234.000,180.000" fill="none" stroke="#d7dfdc" stroke-width="1"/>
+<text x="219.000" y="1213.000" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#657a7a" font-weight="400">-1000</text>
+<polyline points="414.000,1188.000 414.000,180.000" fill="none" stroke="#d7dfdc" stroke-width="1"/>
+<text x="399.000" y="1213.000" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#657a7a" font-weight="400">-500</text>
+<polyline points="594.000,1188.000 594.000,180.000" fill="none" stroke="#d7dfdc" stroke-width="1"/>
+<text x="579.000" y="1213.000" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#657a7a" font-weight="400">0</text>
+<polyline points="774.000,1188.000 774.000,180.000" fill="none" stroke="#d7dfdc" stroke-width="1"/>
+<text x="759.000" y="1213.000" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#657a7a" font-weight="400">500</text>
+<polyline points="954.000,1188.000 954.000,180.000" fill="none" stroke="#d7dfdc" stroke-width="1"/>
+<text x="939.000" y="1213.000" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#657a7a" font-weight="400">1000</text>
+<polyline points="90.000,1188.000 1098.000,1188.000" fill="none" stroke="#d7dfdc" stroke-width="1"/>
+<text x="12.000" y="1195.000" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#657a7a" font-weight="400">-1000</text>
+<polyline points="90.000,1008.000 1098.000,1008.000" fill="none" stroke="#d7dfdc" stroke-width="1"/>
+<text x="12.000" y="1015.000" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#657a7a" font-weight="400">-500</text>
+<polyline points="90.000,828.000 1098.000,828.000" fill="none" stroke="#d7dfdc" stroke-width="1"/>
+<text x="12.000" y="835.000" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#657a7a" font-weight="400">0</text>
+<polyline points="90.000,648.000 1098.000,648.000" fill="none" stroke="#d7dfdc" stroke-width="1"/>
+<text x="12.000" y="655.000" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#657a7a" font-weight="400">500</text>
+<polyline points="90.000,468.000 1098.000,468.000" fill="none" stroke="#d7dfdc" stroke-width="1"/>
+<text x="12.000" y="475.000" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#657a7a" font-weight="400">1000</text>
+<polyline points="90.000,288.000 1098.000,288.000" fill="none" stroke="#d7dfdc" stroke-width="1"/>
+<text x="12.000" y="295.000" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#657a7a" font-weight="400">1500</text>
+<polygon id="terrain-0" points="126.000,252.000 270.000,288.000 522.000,486.000 594.000,720.000 540.000,756.000 414.000,504.000" fill="#d5ddca" stroke="#a4b395"/>
+<polygon id="terrain-1" points="594.000,1152.000 738.000,1080.000 864.000,900.000 828.000,864.000 666.000,1044.000" fill="#d5ddca" stroke="#a4b395"/>
+<circle id="home-OW1" cx="792.000" cy="936.000" r="36.000" fill="none" stroke="#b58c66"/>
+<polyline id="patrol-OW1" points="792.000,936.000 666.000,792.000" fill="none" stroke="#b396ad" stroke-width="2"/>
+<text x="772.000" y="892.000" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#805e48" font-weight="700">OW1</text>
+<circle id="home-OW2" cx="468.000" cy="666.000" r="37.800" fill="none" stroke="#b58c66"/>
+<polyline id="patrol-OW2" points="468.000,666.000 558.000,1026.000" fill="none" stroke="#b396ad" stroke-width="2"/>
+<text x="448.000" y="620.200" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#805e48" font-weight="700">OW2</text>
+<circle id="home-OW3" cx="342.000" cy="486.000" r="39.600" fill="none" stroke="#b58c66"/>
+<text x="322.000" y="438.400" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#805e48" font-weight="700">OW3</text>
+<circle id="home-OF1" cx="234.000" cy="792.000" r="54.000" fill="none" stroke="#b58c66"/>
+<polyline id="patrol-OF1" points="234.000,792.000 360.000,792.000" fill="none" stroke="#b396ad" stroke-width="2"/>
+<text x="214.000" y="730.000" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#805e48" font-weight="700">OF1</text>
+<circle id="home-OT1" cx="702.000" cy="558.000" r="50.400" fill="none" stroke="#b58c66"/>
+<polyline id="patrol-OT1" points="702.000,558.000 810.000,522.000" fill="none" stroke="#b396ad" stroke-width="2"/>
+<text x="682.000" y="499.600" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#805e48" font-weight="700">OT1</text>
+<circle id="home-OD1" cx="810.000" cy="522.000" r="28.800" fill="none" stroke="#b58c66"/>
+<text x="790.000" y="485.200" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#805e48" font-weight="700">OD1</text>
+<circle id="home-OY1" cx="954.000" cy="666.000" r="36.000" fill="none" stroke="#b58c66"/>
+<text x="934.000" y="622.000" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#805e48" font-weight="700">OY1</text>
+<circle id="home-OS1" cx="288.000" cy="324.000" r="39.600" fill="none" stroke="#b58c66"/>
+<text x="268.000" y="276.400" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#805e48" font-weight="700">OS1</text>
+<polyline id="path-O_survey" points="918.000,1080.000 792.000,936.000 666.000,792.000 468.000,666.000 342.000,486.000 288.000,324.000" fill="none" stroke="#277da3" stroke-width="4"/>
+<polyline id="path-O_return" points="288.000,324.000 342.000,486.000 468.000,666.000 558.000,1026.000 918.000,1080.000" fill="none" stroke="#c57032" stroke-width="4"/>
+<polyline id="path-O_spring" points="666.000,792.000 810.000,522.000 954.000,666.000 918.000,1080.000" fill="none" stroke="#417c67" stroke-width="4"/>
+<polyline id="path-O_west" points="468.000,666.000 234.000,792.000 558.000,1026.000" fill="none" stroke="#417c67" stroke-width="4"/>
+<circle id="node-O01" cx="918.000" cy="1080.000" r="5.000" fill="#263d43" stroke="#263d43"/>
+<text x="926.000" y="1080.000" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#263d43" font-weight="700">O01</text>
+<circle id="node-O02" cx="792.000" cy="936.000" r="5.000" fill="#263d43" stroke="#263d43"/>
+<text x="800.000" y="936.000" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#263d43" font-weight="700">O02</text>
+<circle id="node-O03" cx="666.000" cy="792.000" r="5.000" fill="#263d43" stroke="#263d43"/>
+<text x="674.000" y="792.000" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#263d43" font-weight="700">O03</text>
+<circle id="node-O04" cx="468.000" cy="666.000" r="5.000" fill="#263d43" stroke="#263d43"/>
+<text x="476.000" y="666.000" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#263d43" font-weight="700">O04</text>
+<circle id="node-O05" cx="342.000" cy="486.000" r="5.000" fill="#263d43" stroke="#263d43"/>
+<text x="350.000" y="486.000" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#263d43" font-weight="700">O05</text>
+<circle id="node-O06" cx="234.000" cy="792.000" r="5.000" fill="#263d43" stroke="#263d43"/>
+<text x="242.000" y="792.000" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#263d43" font-weight="700">O06</text>
+<circle id="node-O07" cx="810.000" cy="522.000" r="5.000" fill="#263d43" stroke="#263d43"/>
+<text x="818.000" y="522.000" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#263d43" font-weight="700">O07</text>
+<circle id="node-O08" cx="954.000" cy="666.000" r="5.000" fill="#263d43" stroke="#263d43"/>
+<text x="962.000" y="666.000" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#263d43" font-weight="700">O08</text>
+<circle id="node-O09" cx="558.000" cy="1026.000" r="5.000" fill="#263d43" stroke="#263d43"/>
+<text x="566.000" y="1026.000" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#263d43" font-weight="700">O09</text>
+<circle id="node-O10" cx="288.000" cy="324.000" r="5.000" fill="#263d43" stroke="#263d43"/>
+<text x="296.000" y="324.000" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#263d43" font-weight="700">O10</text>
+<circle id="structure-OC1" cx="396.000" cy="576.000" r="10.000" fill="none" stroke="#78668e"/>
+<text x="411.000" y="610.000" font-family="Malgun Gothic,sans-serif" font-size="19" fill="#78668e" font-weight="700">OC1</text>
+<text x="1350.000" y="209.000" font-family="Malgun Gothic,sans-serif" font-size="29" fill="#263d43" font-weight="700">장소와 역할</text>
+<text x="1350.000" y="263.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#263d43" font-weight="400">O01  작업권 점검소</text>
+<text x="1350.000" y="308.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#263d43" font-weight="400">O02  분해목 운반골</text>
+<text x="1350.000" y="353.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#263d43" font-weight="400">O03  쓰러진 목질 표본터</text>
+<text x="1350.000" y="398.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#263d43" font-weight="400">O04  외측 유량·부하 관측</text>
+<text x="1350.000" y="443.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#263d43" font-weight="400">O05  잔근 사이 높은 횡단</text>
+<text x="1350.000" y="488.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#263d43" font-weight="400">O06  서쪽 균류 움푹터</text>
+<text x="1350.000" y="533.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#263d43" font-weight="400">O07  버드나무 샘</text>
+<text x="1350.000" y="578.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#263d43" font-weight="400">O08  꽃·씨앗 교환터</text>
+<text x="1350.000" y="623.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#263d43" font-weight="400">O09  건조 귀환 둔덕</text>
+<text x="1350.000" y="668.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#263d43" font-weight="400">O10  내측 정비로 인계</text>
+<text x="1350.000" y="747.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#657a7a" font-weight="400">OW: 천공충 / OF: 균류 / OT: 목본</text>
+<text x="1350.000" y="795.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#657a7a" font-weight="400">OD·OY: 교섭 우선 / OS: 수호령</text>
+<text x="1350.000" y="843.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#657a7a" font-weight="400">OC1: 잔근 정리형 2기, 별도 배치</text>
+<text x="1350.000" y="891.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#657a7a" font-weight="400">작업권은 상주 마을이 아님.</text>
+<polyline points="90.000,1390.000 270.000,1390.000" fill="none" stroke="#263d43" stroke-width="5"/>
+<text x="90.000" y="1437.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#263d43" font-weight="400">500 m · 투영 평면</text>
+<text x="550.000" y="1438.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#657a7a" font-weight="400">새 지형·시설·생활권 후보 | 실제 통행·전투·공급 미검증</text>
+</svg>

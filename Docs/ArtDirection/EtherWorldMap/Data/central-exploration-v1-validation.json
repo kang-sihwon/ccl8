@@ -1,0 +1,1229 @@
+{
+  "status": "PASS",
+  "check_count": 242,
+  "checks": [
+    {
+      "name": "source unchanged Docs/ArtDirection/EtherWorldMap/Data/ignis-continent-georeference-v1.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "source unchanged Docs/ArtDirection/EtherWorldMap/Data/worldtree-settlement-basis-v1.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "source unchanged Docs/ArtDirection/EtherWorldMap/Data/north-exploration-v1.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "source unchanged Docs/Narrative/World.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "source unchanged Docs/Narrative/Scenario.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "source unchanged Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-08-world-distribution-and-leveling/variant-distribution.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "source unchanged Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-08-world-distribution-and-leveling/progression.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "36 original settlements",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "M01 anchor",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "R3 exact return",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "B03 exact return",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "B04 exact return",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "NP01 return exact",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "return continuity north_archive_to_kerdin B04_return",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "return continuity B04_return B03_return",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "return continuity B03_return R3_return",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "corridor length north_archive_to_kerdin",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "corridor length B04_return",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "corridor length B03_return",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "corridor length R3_return",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "corridor length city_to_outer",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "corridor length outer_to_inner",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "zoom connector city_to_outer",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "city_to_outer avoids H04",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "city_to_outer avoids H01",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "zoom connector outer_to_inner",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "outer_to_inner avoids H04",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "outer_to_inner avoids H01",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "node count and unique IDs",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "groups and count",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "forms and parents",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "separate structures",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "separate human event",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "all current S6 forms represented",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "readiness OW1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "readiness OW2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "readiness OW3",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "readiness OF1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "readiness OT1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "readiness OD1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "readiness OY1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "readiness OS1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "readiness IW1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "readiness IW2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "readiness IF1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "readiness IS1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "readiness IS2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "structure readiness OC1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "structure readiness IC1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "structure readiness IB1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "growth budget",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "all readiness prerequisites",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "regional node C01",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "frame includes C01",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "residential/root/trunk bounds C01",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "SVG node C01",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "regional node C02",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "frame includes C02",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "residential/root/trunk bounds C02",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "SVG node C02",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "regional node C03",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "frame includes C03",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "residential/root/trunk bounds C03",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "SVG node C03",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "regional node C04",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "frame includes C04",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "residential/root/trunk bounds C04",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "SVG node C04",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "regional node C05",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "frame includes C05",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "residential/root/trunk bounds C05",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "SVG node C05",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "regional node C06",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "frame includes C06",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "residential/root/trunk bounds C06",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "SVG node C06",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "regional node C07",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "frame includes C07",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "residential/root/trunk bounds C07",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "SVG node C07",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "regional node O01",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "frame includes O01",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "residential/root/trunk bounds O01",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "SVG node O01",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "regional node O02",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "frame includes O02",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "residential/root/trunk bounds O02",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "SVG node O02",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "regional node O03",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "frame includes O03",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "residential/root/trunk bounds O03",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "SVG node O03",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "regional node O04",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "frame includes O04",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "residential/root/trunk bounds O04",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "SVG node O04",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "regional node O05",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "frame includes O05",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "residential/root/trunk bounds O05",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "SVG node O05",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "regional node O06",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "frame includes O06",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "residential/root/trunk bounds O06",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "SVG node O06",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "regional node O07",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "frame includes O07",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "residential/root/trunk bounds O07",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "SVG node O07",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "regional node O08",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "frame includes O08",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "residential/root/trunk bounds O08",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "SVG node O08",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "regional node O09",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "frame includes O09",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "residential/root/trunk bounds O09",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "SVG node O09",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "regional node O10",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "frame includes O10",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "residential/root/trunk bounds O10",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "SVG node O10",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "regional node F01",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "frame includes F01",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "residential/root/trunk bounds F01",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "SVG node F01",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "regional node F02",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "frame includes F02",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "residential/root/trunk bounds F02",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "SVG node F02",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "regional node F03",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "frame includes F03",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "residential/root/trunk bounds F03",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "SVG node F03",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "regional node F04",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "frame includes F04",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "residential/root/trunk bounds F04",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "SVG node F04",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "regional node F05",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "frame includes F05",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "residential/root/trunk bounds F05",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "SVG node F05",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "regional node F06",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "frame includes F06",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "residential/root/trunk bounds F06",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "SVG node F06",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "regional node F07",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "frame includes F07",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "residential/root/trunk bounds F07",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "SVG node F07",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "regional node F08",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "frame includes F08",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "residential/root/trunk bounds F08",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "SVG node F08",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "regional node F09",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "frame includes F09",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "residential/root/trunk bounds F09",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "SVG node F09",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "regional node F10",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "frame includes F10",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "residential/root/trunk bounds F10",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "SVG node F10",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "single site C_prepare",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "path length C_prepare",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "SVG path C_prepare",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "contact sampling C_prepare",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "single site C_return",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "path length C_return",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "SVG path C_return",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "contact sampling C_return",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "single site O_survey",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "path length O_survey",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "SVG path O_survey",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "contact sampling O_survey",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "single site O_return",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "path length O_return",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "SVG path O_return",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "contact sampling O_return",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "single site O_spring",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "path length O_spring",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "SVG path O_spring",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "contact sampling O_spring",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "single site O_west",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "path length O_west",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "SVG path O_west",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "contact sampling O_west",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "single site F_survey",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "path length F_survey",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "SVG path F_survey",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "contact sampling F_survey",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "single site F_relief",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "path length F_relief",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "SVG path F_relief",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "contact sampling F_relief",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "single site F_final",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "path length F_final",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "SVG path F_final",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "contact sampling F_final",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "single site F_return",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "path length F_return",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "SVG path F_return",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "contact sampling F_return",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "single site F_retreat",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "path length F_retreat",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "contact sampling F_retreat",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "strong optional form avoided",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "SVG home OW1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "SVG home OW2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "SVG home OW3",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "SVG home OF1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "SVG home OT1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "SVG home OD1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "SVG home OY1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "SVG home OS1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "SVG home IW1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "SVG home IW2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "SVG home IF1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "SVG home IS1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "SVG home IS2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "SVG structure OC1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "SVG structure IC1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "SVG structure IB1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "survey and retreat accessible survey",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "boss access survey",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "control access survey",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "inside return gate survey",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "survey and retreat accessible command_secured",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "boss access command_secured",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "control access command_secured",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "inside return gate command_secured",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "survey and retreat accessible defense_isolated",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "boss access defense_isolated",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "control access defense_isolated",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "inside return gate defense_isolated",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "survey and retreat accessible shutdown_and_inside_release",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "boss access shutdown_and_inside_release",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "control access shutdown_and_inside_release",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "inside return gate shutdown_and_inside_release",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "boss retreat after command",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "stop control not behind optional field",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "SVG gate F06 F07",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "SVG gate F07 F08",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "SVG gate F08 F09",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "hall size",
+      "pass": true,
+      "detail": null
+    }
+  ],
+  "svg_elements_checked": 56,
+  "figure_sha256": {
+    "Docs/ArtDirection/EtherWorldMap/Images/central-city-v1.png": "6e4304a60e4c2caaf7cdd4781a3c46ad40e56a035a88d437b4bb9a20c9155c85",
+    "Docs/ArtDirection/EtherWorldMap/Images/central-city-v1.svg": "3acb90ff05518115d8b43524eb45cd86445070137d5b2ac556d5cab0cfb6d1ae",
+    "Docs/ArtDirection/EtherWorldMap/Images/central-outer-v1.png": "08d372754958bc1ba4ab18cce17a4095cfb4d5fd82af8e0abff441bbe14a3083",
+    "Docs/ArtDirection/EtherWorldMap/Images/central-outer-v1.svg": "0c8da62471c0b3797e41fccc028e78f4c56533e1c1470adefc174ec8c1e43d8b",
+    "Docs/ArtDirection/EtherWorldMap/Images/central-inner-v1.png": "53a15c51bf6e1f8d5b291f28e435c50a5d89b9ea336d4366a1f7d546c9eeb5c7",
+    "Docs/ArtDirection/EtherWorldMap/Images/central-inner-v1.svg": "3840e0b8ddf19e2d03801d04db2ec7c74281b7797835d7c0782097a6d1e1e6ce",
+    "Docs/ArtDirection/EtherWorldMap/Images/central-corridor-v1.png": "0ffa6d15f6f894f065d4740d683bc6bd78cfe8b3ac28bf78fcf27aa4669a4391",
+    "Docs/ArtDirection/EtherWorldMap/Images/central-corridor-v1.svg": "304ff0d7fc5d745ab7e5334d13f649c4b0242b0bc4d98c4087fae0cdf349c923"
+  },
+  "hash_rule": "PNG raw bytes; SVG UTF-8 LF normalized",
+  "limits": "Design coordinates, envelopes and state graph only; no UE, terrain, AI, utility capacity, actual combat or canon approval"
+}

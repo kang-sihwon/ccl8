@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2100" height="1550" viewBox="0 0 2100 1550">
+<rect width="2100" height="1550" fill="#f3f4ee"/>
+<text x="50.000" y="72.000" font-family="Malgun Gothic,sans-serif" font-size="40" fill="#263d43" font-weight="700">북부 귀환과 중앙 접근 · 서로 다른 축척</text>
+<text x="50.000" y="119.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#657a7a" font-weight="400">좌표 검토 도면 | 기존 R3·도시·하천 유지 | 새 작업 회랑은 후보</text>
+<polyline id="corridor-north_archive_to_kerdin" points="173.200,210.720 173.200,216.025 173.200,220.320 154.000,263.200 156.590,379.039" fill="none" stroke="#277da3" stroke-width="4"/>
+<polyline id="corridor-B04_return" points="156.590,379.039 162.990,398.239" fill="none" stroke="#277da3" stroke-width="4"/>
+<polyline id="corridor-B03_return" points="162.990,398.239 178.990,475.039" fill="none" stroke="#277da3" stroke-width="4"/>
+<polyline id="corridor-R3_return" points="178.990,475.039 194.990,577.439 134.800,807.200 237.200,1056.800 338.320,1166.880" fill="none" stroke="#277da3" stroke-width="4"/>
+<circle id="settlement-M01" cx="338.320" cy="1166.880" r="5.000" fill="#263d43" stroke="#263d43"/>
+<text x="350.320" y="1175.880" font-family="Malgun Gothic,sans-serif" font-size="21" fill="#263d43" font-weight="400">M01</text>
+<circle id="settlement-T10" cx="194.990" cy="577.439" r="5.000" fill="#263d43" stroke="#263d43"/>
+<text x="206.990" y="586.439" font-family="Malgun Gothic,sans-serif" font-size="21" fill="#263d43" font-weight="400">T10</text>
+<circle id="settlement-M07" cx="178.990" cy="475.039" r="5.000" fill="#263d43" stroke="#263d43"/>
+<text x="190.990" y="484.039" font-family="Malgun Gothic,sans-serif" font-size="21" fill="#263d43" font-weight="400">M07</text>
+<circle id="settlement-V14" cx="162.990" cy="398.239" r="5.000" fill="#263d43" stroke="#263d43"/>
+<text x="174.990" y="407.239" font-family="Malgun Gothic,sans-serif" font-size="21" fill="#263d43" font-weight="400">V14</text>
+<circle id="settlement-T11" cx="156.590" cy="379.039" r="5.000" fill="#263d43" stroke="#263d43"/>
+<text x="168.590" y="388.039" font-family="Malgun Gothic,sans-serif" font-size="21" fill="#263d43" font-weight="400">T11</text>
+<text x="90.000" y="1273.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#657a7a" font-weight="400">북부 귀환: 여러 운송·휴식·기상 대기</text>
+<polyline id="river-H01-17" points="1540.000,351.000 1407.000,883.000" fill="none" stroke="#95c1ca" stroke-width="4"/>
+<polyline id="river-H01-18" points="1407.000,883.000 1448.167,1130.000" fill="none" stroke="#95c1ca" stroke-width="4"/>
+<circle id="tree-radius-6" cx="875.000" cy="655.000" r="114.000" fill="none" stroke="#b7bfb1"/>
+<circle id="tree-radius-9" cx="875.000" cy="655.000" r="171.000" fill="none" stroke="#b7bfb1"/>
+<circle id="tree-radius-12" cx="875.000" cy="655.000" r="228.000" fill="none" stroke="#b7bfb1"/>
+<circle id="tree-radius-20" cx="875.000" cy="655.000" r="380.000" fill="none" stroke="#b7bfb1"/>
+<circle id="tree-trunk" cx="875.000" cy="655.000" r="11.400" fill="#64705c" stroke="#263d43"/>
+<polyline id="corridor-city_to_outer" points="1199.900,875.400 1141.000,826.000 1065.000,788.000 1044.100,763.300" fill="none" stroke="#c57032" stroke-width="4"/>
+<polyline id="corridor-outer_to_inner" points="1010.850,723.400 970.000,708.200 926.300,683.500" fill="none" stroke="#c57032" stroke-width="4"/>
+<polygon id="frame-city" points="1192.300,902.000 1192.300,865.900 1237.900,865.900 1237.900,902.000" fill="#d8e1db" stroke="#417c67"/>
+<circle cx="1217.000" cy="883.000" r="5.000" fill="#263d43" stroke="#263d43"/>
+<text x="1227.000" y="914.000" font-family="Malgun Gothic,sans-serif" font-size="21" fill="#263d43" font-weight="400">M01 관리도시</text>
+<polygon id="frame-outer" points="1000.400,769.000 1000.400,715.800 1053.600,715.800 1053.600,769.000" fill="#d8e1db" stroke="#417c67"/>
+<circle cx="1027.000" cy="750.000" r="5.000" fill="#263d43" stroke="#263d43"/>
+<text x="1037.000" y="781.000" font-family="Malgun Gothic,sans-serif" font-size="21" fill="#263d43" font-weight="400">뿌리권 확대</text>
+<polygon id="frame-inner" points="884.500,689.200 884.500,640.750 933.900,640.750 933.900,689.200" fill="#d8e1db" stroke="#417c67"/>
+<circle cx="913.000" cy="674.000" r="5.000" fill="#263d43" stroke="#263d43"/>
+<text x="923.000" y="705.000" font-family="Malgun Gothic,sans-serif" font-size="21" fill="#263d43" font-weight="400">안쪽 설비 확대</text>
+<text x="775.000" y="628.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#263d43" font-weight="400">세계수</text>
+<text x="1560.000" y="247.000" font-family="Malgun Gothic,sans-serif" font-size="27" fill="#263d43" font-weight="700">세계수 반경 기준</text>
+<text x="1560.000" y="307.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#657a7a" font-weight="400">6 km 노출 뿌리 집중</text>
+<text x="1560.000" y="359.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#657a7a" font-weight="400">9 km 수관 최대</text>
+<text x="1560.000" y="411.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#657a7a" font-weight="400">12 km 일반 상주 제한</text>
+<text x="1560.000" y="463.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#657a7a" font-weight="400">20 km 생활권 전환 바깥</text>
+<text x="1560.000" y="515.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#657a7a" font-weight="400">정밀 안전 경계가 아닌 후보</text>
+<text x="1560.000" y="567.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#657a7a" font-weight="400">도시 M01 (18, -12) km</text>
+<text x="1560.000" y="619.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#657a7a" font-weight="400">본류 H01은 도시 동쪽</text>
+<text x="1560.000" y="671.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#657a7a" font-weight="400">O·F에는 한시 작업조만 배치</text>
+<polyline points="590.000,1390.000 780.000,1390.000" fill="none" stroke="#263d43" stroke-width="5"/>
+<text x="590.000" y="1437.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#263d43" font-weight="400">중앙 확대 10 km</text>
+<polyline points="90.000,1390.000 218.000,1390.000" fill="none" stroke="#263d43" stroke-width="5"/>
+<text x="90.000" y="1437.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#263d43" font-weight="400">북부 200 km</text>
+</svg>

@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2100" height="1550" viewBox="0 0 2100 1550">
+<rect width="2100" height="1550" fill="#f3f4ee"/>
+<text x="50.000" y="72.000" font-family="Malgun Gothic,sans-serif" font-size="40" fill="#263d43" font-weight="700">세계수 안쪽 설비 · 최종 접근과 귀환</text>
+<text x="50.000" y="119.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#657a7a" font-weight="400">배치 검토용 좌표 도면 | 북쪽 ↑ | 파랑 조사·접근 · 주황 귀환 · 초록 선택로</text>
+<polygon points="90.000,1174.500 90.000,180.000 1104.000,180.000 1104.000,1174.500" fill="#fafaf5" stroke="#b9c4b4"/>
+<polyline points="90.000,1174.500 90.000,180.000" fill="none" stroke="#d7dfdc" stroke-width="1"/>
+<text x="75.000" y="1199.500" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#657a7a" font-weight="400">-1500</text>
+<polyline points="285.000,1174.500 285.000,180.000" fill="none" stroke="#d7dfdc" stroke-width="1"/>
+<text x="270.000" y="1199.500" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#657a7a" font-weight="400">-1000</text>
+<polyline points="480.000,1174.500 480.000,180.000" fill="none" stroke="#d7dfdc" stroke-width="1"/>
+<text x="465.000" y="1199.500" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#657a7a" font-weight="400">-500</text>
+<polyline points="675.000,1174.500 675.000,180.000" fill="none" stroke="#d7dfdc" stroke-width="1"/>
+<text x="660.000" y="1199.500" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#657a7a" font-weight="400">0</text>
+<polyline points="870.000,1174.500 870.000,180.000" fill="none" stroke="#d7dfdc" stroke-width="1"/>
+<text x="855.000" y="1199.500" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#657a7a" font-weight="400">500</text>
+<polyline points="1065.000,1174.500 1065.000,180.000" fill="none" stroke="#d7dfdc" stroke-width="1"/>
+<text x="1050.000" y="1199.500" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#657a7a" font-weight="400">1000</text>
+<polyline points="90.000,1057.500 1104.000,1057.500" fill="none" stroke="#d7dfdc" stroke-width="1"/>
+<text x="12.000" y="1064.500" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#657a7a" font-weight="400">-500</text>
+<polyline points="90.000,862.500 1104.000,862.500" fill="none" stroke="#d7dfdc" stroke-width="1"/>
+<text x="12.000" y="869.500" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#657a7a" font-weight="400">0</text>
+<polyline points="90.000,667.500 1104.000,667.500" fill="none" stroke="#d7dfdc" stroke-width="1"/>
+<text x="12.000" y="674.500" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#657a7a" font-weight="400">500</text>
+<polyline points="90.000,472.500 1104.000,472.500" fill="none" stroke="#d7dfdc" stroke-width="1"/>
+<text x="12.000" y="479.500" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#657a7a" font-weight="400">1000</text>
+<polyline points="90.000,277.500 1104.000,277.500" fill="none" stroke="#d7dfdc" stroke-width="1"/>
+<text x="12.000" y="284.500" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#657a7a" font-weight="400">1500</text>
+<polygon id="terrain-0" points="129.000,219.000 324.000,238.500 480.000,492.000 441.000,511.500 285.000,297.000" fill="#d5ddca" stroke="#a4b395"/>
+<polygon id="terrain-1" points="909.000,258.000 1026.000,316.500 1026.000,745.500 967.500,745.500" fill="#d5ddca" stroke="#a4b395"/>
+<circle id="home-IW1" cx="831.000" cy="901.500" r="39.000" fill="none" stroke="#b58c66"/>
+<polyline id="patrol-IW1" points="831.000,901.500 714.000,784.500" fill="none" stroke="#b396ad" stroke-width="2"/>
+<text x="811.000" y="854.500" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#805e48" font-weight="700">IW1</text>
+<circle id="home-IW2" cx="421.500" cy="823.500" r="42.900" fill="none" stroke="#b58c66"/>
+<text x="401.500" y="772.600" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#805e48" font-weight="700">IW2</text>
+<circle id="home-IF1" cx="363.000" cy="940.500" r="39.000" fill="none" stroke="#b58c66"/>
+<polyline id="patrol-IF1" points="363.000,940.500 246.000,784.500" fill="none" stroke="#b396ad" stroke-width="2"/>
+<text x="343.000" y="893.500" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#805e48" font-weight="700">IF1</text>
+<circle id="home-IS1" cx="246.000" cy="609.000" r="39.000" fill="none" stroke="#b58c66"/>
+<text x="226.000" y="562.000" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#805e48" font-weight="700">IS1</text>
+<circle id="home-IS2" cx="168.000" cy="336.000" r="39.000" fill="none" stroke="#b58c66"/>
+<text x="148.000" y="289.000" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#805e48" font-weight="700">IS2</text>
+<polyline id="path-F_survey" points="948.000,1057.500 831.000,901.500 714.000,784.500 558.000,687.000 538.500,550.500" fill="none" stroke="#277da3" stroke-width="4"/>
+<polyline id="path-F_relief" points="714.000,784.500 421.500,823.500 538.500,550.500" fill="none" stroke="#417c67" stroke-width="4"/>
+<polyline id="path-F_final" points="538.500,550.500 402.000,414.000 285.000,297.000" fill="none" stroke="#277da3" stroke-width="4"/>
+<polyline id="path-F_return" points="285.000,297.000 246.000,609.000 363.000,940.500 948.000,1057.500" fill="none" stroke="#c57032" stroke-width="4"/>
+<circle id="node-F01" cx="948.000" cy="1057.500" r="5.000" fill="#263d43" stroke="#263d43"/>
+<text x="956.000" y="1057.500" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#263d43" font-weight="700">F01</text>
+<circle id="node-F02" cx="831.000" cy="901.500" r="5.000" fill="#263d43" stroke="#263d43"/>
+<text x="839.000" y="901.500" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#263d43" font-weight="700">F02</text>
+<circle id="node-F03" cx="714.000" cy="784.500" r="5.000" fill="#263d43" stroke="#263d43"/>
+<text x="722.000" y="784.500" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#263d43" font-weight="700">F03</text>
+<circle id="node-F04" cx="558.000" cy="687.000" r="5.000" fill="#263d43" stroke="#263d43"/>
+<text x="566.000" y="687.000" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#263d43" font-weight="700">F04</text>
+<circle id="node-F05" cx="421.500" cy="823.500" r="5.000" fill="#263d43" stroke="#263d43"/>
+<text x="429.500" y="823.500" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#263d43" font-weight="700">F05</text>
+<circle id="node-F06" cx="538.500" cy="550.500" r="5.000" fill="#263d43" stroke="#263d43"/>
+<text x="546.500" y="550.500" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#263d43" font-weight="700">F06</text>
+<circle id="node-F07" cx="402.000" cy="414.000" r="5.000" fill="#263d43" stroke="#263d43"/>
+<text x="410.000" y="414.000" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#263d43" font-weight="700">F07</text>
+<circle id="node-F08" cx="285.000" cy="297.000" r="5.000" fill="#263d43" stroke="#263d43"/>
+<text x="293.000" y="297.000" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#263d43" font-weight="700">F08</text>
+<circle id="node-F09" cx="246.000" cy="609.000" r="5.000" fill="#263d43" stroke="#263d43"/>
+<text x="254.000" y="609.000" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#263d43" font-weight="700">F09</text>
+<circle id="node-F10" cx="363.000" cy="940.500" r="5.000" fill="#263d43" stroke="#263d43"/>
+<text x="371.000" y="940.500" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#263d43" font-weight="700">F10</text>
+<circle id="structure-IC1" cx="714.000" cy="765.000" r="10.000" fill="none" stroke="#78668e"/>
+<text x="729.000" y="799.000" font-family="Malgun Gothic,sans-serif" font-size="19" fill="#78668e" font-weight="700">IC1</text>
+<circle id="structure-IB1" cx="402.000" cy="414.000" r="10.000" fill="none" stroke="#78668e"/>
+<text x="417.000" y="448.000" font-family="Malgun Gothic,sans-serif" font-size="19" fill="#78668e" font-weight="700">IB1</text>
+<circle id="gate-F06-F07" cx="470.250" cy="482.250" r="9.000" fill="none" stroke="#c57032"/>
+<circle id="gate-F07-F08" cx="343.500" cy="355.500" r="9.000" fill="none" stroke="#c57032"/>
+<circle id="gate-F08-F09" cx="265.500" cy="453.000" r="9.000" fill="none" stroke="#c57032"/>
+<polygon id="boss-hall" points="382.500,427.650 382.500,400.350 421.500,400.350 421.500,427.650" fill="#ded7cb" stroke="#78668e"/>
+<circle cx="402.000" cy="414.000" r="5.000" fill="#263d43" stroke="#263d43"/>
+<text x="1350.000" y="209.000" font-family="Malgun Gothic,sans-serif" font-size="29" fill="#263d43" font-weight="700">장소와 역할</text>
+<text x="1350.000" y="263.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#263d43" font-weight="400">F01  내측 정비조 대기단</text>
+<text x="1350.000" y="308.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#263d43" font-weight="400">F02  필수 공급 분기</text>
+<text x="1350.000" y="353.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#263d43" font-weight="400">F03  현장 부하 관측단</text>
+<text x="1350.000" y="398.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#263d43" font-weight="400">F04  명령·출입 대조실</text>
+<text x="1350.000" y="443.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#263d43" font-weight="400">F05  잔류 배출 점검뜰</text>
+<text x="1350.000" y="488.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#263d43" font-weight="400">F06  지휘부 통제 목</text>
+<text x="1350.000" y="533.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#263d43" font-weight="400">F07  중앙 방어체 작업문</text>
+<text x="1350.000" y="578.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#263d43" font-weight="400">F08  강제 채취 정지대</text>
+<text x="1350.000" y="623.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#263d43" font-weight="400">F09  서쪽 정비문</text>
+<text x="1350.000" y="668.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#263d43" font-weight="400">F10  배출로 위 귀환길</text>
+<text x="1350.000" y="747.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#657a7a" font-weight="400">IC1: 잔근 정리형 2기</text>
+<text x="1350.000" y="795.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#657a7a" font-weight="400">IB1: 중앙 방어체 1기</text>
+<text x="1350.000" y="843.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#657a7a" font-weight="400">주황 문: 준비·방어·안쪽 해제</text>
+<text x="1350.000" y="891.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#657a7a" font-weight="400">F06: 잔여 지휘부 5명</text>
+<text x="1350.000" y="939.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#657a7a" font-weight="400">F08 정지 후 필수 공급 유지.</text>
+<text x="1350.000" y="987.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#657a7a" font-weight="400">북서 IS2는 선택 강형.</text>
+<polyline points="90.000,1390.000 285.000,1390.000" fill="none" stroke="#263d43" stroke-width="5"/>
+<text x="90.000" y="1437.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#263d43" font-weight="400">500 m · 투영 평면</text>
+<text x="550.000" y="1438.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#657a7a" font-weight="400">새 지형·시설·생활권 후보 | 실제 통행·전투·공급 미검증</text>
+</svg>

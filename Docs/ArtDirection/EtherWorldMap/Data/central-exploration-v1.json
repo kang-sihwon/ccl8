@@ -1,0 +1,1217 @@
+{
+  "status": "design_candidate_not_canon_or_execution_validation",
+  "sources": {
+    "Docs/ArtDirection/EtherWorldMap/Data/ignis-continent-georeference-v1.json": "6db8af3cd42905181145fb26bd22793523428dcdd728b1d7d78c46e7acc773b0",
+    "Docs/ArtDirection/EtherWorldMap/Data/worldtree-settlement-basis-v1.json": "bd3881e02c533df5993a014d4b840253bd5c10262626ab22eb59ea35aac25431",
+    "Docs/ArtDirection/EtherWorldMap/Data/north-exploration-v1.json": "7b9dad75cf46a406f2283a5e24cb5e4c9970c45fa85de0f2e13592735ed585a0",
+    "Docs/Narrative/World.md": "020bed8d29fd25ac5c8a4346f6076426e52aff1335f52de4f1e6d7d7b38cde28",
+    "Docs/Narrative/Scenario.md": "55a8eb1da2a818d4c606d82e6d4fd2163458de96d22f27a340dda23b3c427e13",
+    "Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-08-world-distribution-and-leveling/variant-distribution.md": "a4ccc8ac9fdb937b1d637251bb78ce55eccde0a201753189b238a36d116c64e9",
+    "Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-08-world-distribution-and-leveling/progression.md": "a847c8417b972d74f4672a22067206827025f666f5daf39896cb8a73007450aa"
+  },
+  "coordinate_rule": "Existing World Tree AEQD km; local x east/y north in meters; no terrain survey",
+  "anchors_xy_km": {
+    "city": [
+      18,
+      -12
+    ],
+    "outer": [
+      8,
+      -5
+    ],
+    "inner": [
+      2,
+      -1
+    ]
+  },
+  "preserved_R3": [
+    [
+      18,
+      -12
+    ],
+    [
+      -140,
+      160
+    ],
+    [
+      -300,
+      550
+    ],
+    [
+      -205.9529376219892,
+      909.001952106139
+    ],
+    [
+      -230.9529376219892,
+      1069.001952106139
+    ]
+  ],
+  "tree_radii_km": {
+    "trunk": 0.6,
+    "exposed_roots": 6,
+    "crown": 9,
+    "residential_restriction": 12,
+    "transition": 20
+  },
+  "corridors": {
+    "north_archive_to_kerdin": {
+      "xy_km": [
+        [
+          -240,
+          1482
+        ],
+        [
+          -240,
+          1473.711654927687
+        ],
+        [
+          -240,
+          1467
+        ],
+        [
+          -270,
+          1400
+        ],
+        [
+          -265.95293762198924,
+          1219.001952106139
+        ]
+      ],
+      "planar_length_km": 269.4530964029837,
+      "new_candidate": false
+    },
+    "B04_return": {
+      "xy_km": [
+        [
+          -265.95293762198924,
+          1219.001952106139
+        ],
+        [
+          -255.95293762198924,
+          1189.001952106139
+        ]
+      ],
+      "planar_length_km": 31.622776601683793,
+      "new_candidate": false
+    },
+    "B03_return": {
+      "xy_km": [
+        [
+          -255.95293762198924,
+          1189.001952106139
+        ],
+        [
+          -230.9529376219892,
+          1069.001952106139
+        ]
+      ],
+      "planar_length_km": 122.57650672131264,
+      "new_candidate": false
+    },
+    "R3_return": {
+      "xy_km": [
+        [
+          -230.9529376219892,
+          1069.001952106139
+        ],
+        [
+          -205.9529376219892,
+          909.001952106139
+        ],
+        [
+          -300,
+          550
+        ],
+        [
+          -140,
+          160
+        ],
+        [
+          18,
+          -12
+        ]
+      ],
+      "planar_length_km": 1188.157482038706,
+      "new_candidate": false
+    },
+    "city_to_outer": {
+      "xy_km": [
+        [
+          17.1,
+          -11.6
+        ],
+        [
+          14,
+          -9
+        ],
+        [
+          10,
+          -7
+        ],
+        [
+          8.9,
+          -5.7
+        ]
+      ],
+      "planar_length_km": 10.221060256421003,
+      "new_candidate": true
+    },
+    "outer_to_inner": {
+      "xy_km": [
+        [
+          7.15,
+          -3.6
+        ],
+        [
+          5,
+          -2.8
+        ],
+        [
+          2.7,
+          -1.5
+        ]
+      ],
+      "planar_length_km": 4.935982912115474,
+      "new_candidate": true
+    }
+  },
+  "nodes": [
+    {
+      "id": "C01",
+      "site": "city",
+      "name": "북행편 귀환 마당",
+      "xy_m": [
+        0,
+        500
+      ],
+      "regional_xy_km": [
+        18.0,
+        -11.5
+      ]
+    },
+    {
+      "id": "C02",
+      "site": "city",
+      "name": "공개 기록·심의뜰",
+      "xy_m": [
+        0,
+        0
+      ],
+      "regional_xy_km": [
+        18.0,
+        -12.0
+      ]
+    },
+    {
+      "id": "C03",
+      "site": "city",
+      "name": "비축·수령 창고",
+      "xy_m": [
+        700,
+        -250
+      ],
+      "regional_xy_km": [
+        18.7,
+        -12.25
+      ]
+    },
+    {
+      "id": "C04",
+      "site": "city",
+      "name": "진료·필수 공급 인계",
+      "xy_m": [
+        400,
+        -700
+      ],
+      "regional_xy_km": [
+        18.4,
+        -12.7
+      ]
+    },
+    {
+      "id": "C05",
+      "site": "city",
+      "name": "정비조 배정소",
+      "xy_m": [
+        -500,
+        -600
+      ],
+      "regional_xy_km": [
+        17.5,
+        -12.6
+      ]
+    },
+    {
+      "id": "C06",
+      "site": "city",
+      "name": "뿌리권 출입소",
+      "xy_m": [
+        -900,
+        400
+      ],
+      "regional_xy_km": [
+        17.1,
+        -11.6
+      ]
+    },
+    {
+      "id": "C07",
+      "site": "city",
+      "name": "귀환·시험 기록소",
+      "xy_m": [
+        -900,
+        -400
+      ],
+      "regional_xy_km": [
+        17.1,
+        -12.4
+      ]
+    },
+    {
+      "id": "O01",
+      "site": "outer",
+      "name": "작업권 점검소",
+      "xy_m": [
+        900,
+        -700
+      ],
+      "regional_xy_km": [
+        8.9,
+        -5.7
+      ]
+    },
+    {
+      "id": "O02",
+      "site": "outer",
+      "name": "분해목 운반골",
+      "xy_m": [
+        550,
+        -300
+      ],
+      "regional_xy_km": [
+        8.55,
+        -5.3
+      ]
+    },
+    {
+      "id": "O03",
+      "site": "outer",
+      "name": "쓰러진 목질 표본터",
+      "xy_m": [
+        200,
+        100
+      ],
+      "regional_xy_km": [
+        8.2,
+        -4.9
+      ]
+    },
+    {
+      "id": "O04",
+      "site": "outer",
+      "name": "외측 유량·부하 관측",
+      "xy_m": [
+        -350,
+        450
+      ],
+      "regional_xy_km": [
+        7.65,
+        -4.55
+      ]
+    },
+    {
+      "id": "O05",
+      "site": "outer",
+      "name": "잔근 사이 높은 횡단",
+      "xy_m": [
+        -700,
+        950
+      ],
+      "regional_xy_km": [
+        7.3,
+        -4.05
+      ]
+    },
+    {
+      "id": "O06",
+      "site": "outer",
+      "name": "서쪽 균류 움푹터",
+      "xy_m": [
+        -1000,
+        100
+      ],
+      "regional_xy_km": [
+        7.0,
+        -4.9
+      ]
+    },
+    {
+      "id": "O07",
+      "site": "outer",
+      "name": "버드나무 샘",
+      "xy_m": [
+        600,
+        850
+      ],
+      "regional_xy_km": [
+        8.6,
+        -4.15
+      ]
+    },
+    {
+      "id": "O08",
+      "site": "outer",
+      "name": "꽃·씨앗 교환터",
+      "xy_m": [
+        1000,
+        450
+      ],
+      "regional_xy_km": [
+        9.0,
+        -4.55
+      ]
+    },
+    {
+      "id": "O09",
+      "site": "outer",
+      "name": "건조 귀환 둔덕",
+      "xy_m": [
+        -100,
+        -550
+      ],
+      "regional_xy_km": [
+        7.9,
+        -5.55
+      ]
+    },
+    {
+      "id": "O10",
+      "site": "outer",
+      "name": "내측 정비로 인계",
+      "xy_m": [
+        -850,
+        1400
+      ],
+      "regional_xy_km": [
+        7.15,
+        -3.6
+      ]
+    },
+    {
+      "id": "F01",
+      "site": "inner",
+      "name": "내측 정비조 대기단",
+      "xy_m": [
+        700,
+        -500
+      ],
+      "regional_xy_km": [
+        2.7,
+        -1.5
+      ]
+    },
+    {
+      "id": "F02",
+      "site": "inner",
+      "name": "필수 공급 분기",
+      "xy_m": [
+        400,
+        -100
+      ],
+      "regional_xy_km": [
+        2.4,
+        -1.1
+      ]
+    },
+    {
+      "id": "F03",
+      "site": "inner",
+      "name": "현장 부하 관측단",
+      "xy_m": [
+        100,
+        200
+      ],
+      "regional_xy_km": [
+        2.1,
+        -0.8
+      ]
+    },
+    {
+      "id": "F04",
+      "site": "inner",
+      "name": "명령·출입 대조실",
+      "xy_m": [
+        -300,
+        450
+      ],
+      "regional_xy_km": [
+        1.7,
+        -0.55
+      ]
+    },
+    {
+      "id": "F05",
+      "site": "inner",
+      "name": "잔류 배출 점검뜰",
+      "xy_m": [
+        -650,
+        100
+      ],
+      "regional_xy_km": [
+        1.35,
+        -0.9
+      ]
+    },
+    {
+      "id": "F06",
+      "site": "inner",
+      "name": "지휘부 통제 목",
+      "xy_m": [
+        -350,
+        800
+      ],
+      "regional_xy_km": [
+        1.65,
+        -0.19999999999999996
+      ]
+    },
+    {
+      "id": "F07",
+      "site": "inner",
+      "name": "중앙 방어체 작업문",
+      "xy_m": [
+        -700,
+        1150
+      ],
+      "regional_xy_km": [
+        1.3,
+        0.1499999999999999
+      ]
+    },
+    {
+      "id": "F08",
+      "site": "inner",
+      "name": "강제 채취 정지대",
+      "xy_m": [
+        -1000,
+        1450
+      ],
+      "regional_xy_km": [
+        1.0,
+        0.44999999999999996
+      ]
+    },
+    {
+      "id": "F09",
+      "site": "inner",
+      "name": "서쪽 정비문",
+      "xy_m": [
+        -1100,
+        650
+      ],
+      "regional_xy_km": [
+        0.8999999999999999,
+        -0.35
+      ]
+    },
+    {
+      "id": "F10",
+      "site": "inner",
+      "name": "배출로 위 귀환길",
+      "xy_m": [
+        -800,
+        -200
+      ],
+      "regional_xy_km": [
+        1.2,
+        -1.2
+      ]
+    }
+  ],
+  "paths": {
+    "C_prepare": {
+      "node_ids": [
+        "C01",
+        "C02",
+        "C03",
+        "C04",
+        "C05",
+        "C06"
+      ],
+      "length_m": 3766.7,
+      "mode": "walk"
+    },
+    "C_return": {
+      "node_ids": [
+        "C06",
+        "C07",
+        "C02"
+      ],
+      "length_m": 1784.9,
+      "mode": "walk"
+    },
+    "O_survey": {
+      "node_ids": [
+        "O01",
+        "O02",
+        "O03",
+        "O04",
+        "O05",
+        "O10"
+      ],
+      "length_m": 2799.6,
+      "mode": "walk"
+    },
+    "O_return": {
+      "node_ids": [
+        "O10",
+        "O05",
+        "O04",
+        "O09",
+        "O01"
+      ],
+      "length_m": 3126.6,
+      "mode": "walk"
+    },
+    "O_spring": {
+      "node_ids": [
+        "O03",
+        "O07",
+        "O08",
+        "O01"
+      ],
+      "length_m": 2570.0,
+      "mode": "walk"
+    },
+    "O_west": {
+      "node_ids": [
+        "O04",
+        "O06",
+        "O09"
+      ],
+      "length_m": 1848.4,
+      "mode": "walk"
+    },
+    "F_survey": {
+      "node_ids": [
+        "F01",
+        "F02",
+        "F03",
+        "F04",
+        "F06"
+      ],
+      "length_m": 1749.5,
+      "mode": "walk"
+    },
+    "F_relief": {
+      "node_ids": [
+        "F03",
+        "F05",
+        "F06"
+      ],
+      "length_m": 1518.2,
+      "mode": "walk"
+    },
+    "F_final": {
+      "node_ids": [
+        "F06",
+        "F07",
+        "F08"
+      ],
+      "length_m": 919.2,
+      "mode": "walk"
+    },
+    "F_return": {
+      "node_ids": [
+        "F08",
+        "F09",
+        "F10",
+        "F01"
+      ],
+      "length_m": 3237.3,
+      "mode": "walk"
+    },
+    "F_retreat": {
+      "node_ids": [
+        "F07",
+        "F06",
+        "F04",
+        "F03",
+        "F02",
+        "F01"
+      ],
+      "length_m": 2244.5,
+      "mode": "walk"
+    }
+  },
+  "groups": [
+    {
+      "id": "OW1",
+      "site": "outer",
+      "name": "분해목 굴조",
+      "form": "MN14-A",
+      "count": 4,
+      "readiness": [
+        19,
+        21
+      ],
+      "home_xy_m": [
+        550,
+        -300
+      ],
+      "home_radius_m": 100,
+      "patrol_xy_m": [
+        [
+          550,
+          -300
+        ],
+        [
+          200,
+          100
+        ]
+      ],
+      "patrol_halfwidth_m": 45,
+      "optional_or_negotiation": false
+    },
+    {
+      "id": "OW2",
+      "site": "outer",
+      "name": "관측관 주변 굴조",
+      "form": "MN14-A",
+      "count": 3,
+      "readiness": [
+        20,
+        22
+      ],
+      "home_xy_m": [
+        -350,
+        450
+      ],
+      "home_radius_m": 105,
+      "patrol_xy_m": [
+        [
+          -350,
+          450
+        ],
+        [
+          -100,
+          -550
+        ]
+      ],
+      "patrol_halfwidth_m": 45,
+      "optional_or_negotiation": false
+    },
+    {
+      "id": "OW3",
+      "site": "outer",
+      "name": "굵은 잔근 굴쌍",
+      "form": "MN14-B",
+      "count": 2,
+      "readiness": [
+        22,
+        24
+      ],
+      "home_xy_m": [
+        -700,
+        950
+      ],
+      "home_radius_m": 110,
+      "patrol_xy_m": [],
+      "patrol_halfwidth_m": 0,
+      "optional_or_negotiation": false
+    },
+    {
+      "id": "OF1",
+      "site": "outer",
+      "name": "분해목 균류군",
+      "form": "MN42-B",
+      "count": 4,
+      "readiness": [
+        19,
+        22
+      ],
+      "home_xy_m": [
+        -1000,
+        100
+      ],
+      "home_radius_m": 150,
+      "patrol_xy_m": [
+        [
+          -1000,
+          100
+        ],
+        [
+          -650,
+          100
+        ]
+      ],
+      "patrol_halfwidth_m": 40,
+      "optional_or_negotiation": false
+    },
+    {
+      "id": "OT1",
+      "site": "outer",
+      "name": "샘 경계 목본쌍",
+      "form": "MN40-A",
+      "count": 2,
+      "readiness": [
+        20,
+        23
+      ],
+      "home_xy_m": [
+        300,
+        750
+      ],
+      "home_radius_m": 140,
+      "patrol_xy_m": [
+        [
+          300,
+          750
+        ],
+        [
+          600,
+          850
+        ]
+      ],
+      "patrol_halfwidth_m": 45,
+      "optional_or_negotiation": true
+    },
+    {
+      "id": "OD1",
+      "site": "outer",
+      "name": "버드나무 현현",
+      "form": "MN53-A",
+      "count": 1,
+      "readiness": [
+        17,
+        22
+      ],
+      "home_xy_m": [
+        600,
+        850
+      ],
+      "home_radius_m": 80,
+      "patrol_xy_m": [],
+      "patrol_halfwidth_m": 0,
+      "optional_or_negotiation": true
+    },
+    {
+      "id": "OY1",
+      "site": "outer",
+      "name": "꽃씨 교환조",
+      "form": "MN54-A",
+      "count": 5,
+      "readiness": [
+        2,
+        5
+      ],
+      "home_xy_m": [
+        1000,
+        450
+      ],
+      "home_radius_m": 100,
+      "patrol_xy_m": [],
+      "patrol_halfwidth_m": 0,
+      "optional_or_negotiation": true
+    },
+    {
+      "id": "OS1",
+      "site": "outer",
+      "name": "정비 경계 잎몸",
+      "form": "MN56-A",
+      "count": 2,
+      "readiness": [
+        19,
+        22
+      ],
+      "home_xy_m": [
+        -850,
+        1400
+      ],
+      "home_radius_m": 110,
+      "patrol_xy_m": [],
+      "patrol_halfwidth_m": 0,
+      "optional_or_negotiation": false
+    },
+    {
+      "id": "IW1",
+      "site": "inner",
+      "name": "배관 밖 굴조",
+      "form": "MN14-A",
+      "count": 3,
+      "readiness": [
+        20,
+        22
+      ],
+      "home_xy_m": [
+        400,
+        -100
+      ],
+      "home_radius_m": 100,
+      "patrol_xy_m": [
+        [
+          400,
+          -100
+        ],
+        [
+          100,
+          200
+        ]
+      ],
+      "patrol_halfwidth_m": 40,
+      "optional_or_negotiation": false
+    },
+    {
+      "id": "IW2",
+      "site": "inner",
+      "name": "배출 단 굴쌍",
+      "form": "MN14-B",
+      "count": 2,
+      "readiness": [
+        22,
+        25
+      ],
+      "home_xy_m": [
+        -650,
+        100
+      ],
+      "home_radius_m": 110,
+      "patrol_xy_m": [],
+      "patrol_halfwidth_m": 0,
+      "optional_or_negotiation": false
+    },
+    {
+      "id": "IF1",
+      "site": "inner",
+      "name": "귀환 둔덕 분해군",
+      "form": "MN42-B",
+      "count": 3,
+      "readiness": [
+        20,
+        23
+      ],
+      "home_xy_m": [
+        -800,
+        -200
+      ],
+      "home_radius_m": 100,
+      "patrol_xy_m": [
+        [
+          -800,
+          -200
+        ],
+        [
+          -1100,
+          200
+        ]
+      ],
+      "patrol_halfwidth_m": 45,
+      "optional_or_negotiation": false
+    },
+    {
+      "id": "IS1",
+      "site": "inner",
+      "name": "외벽 경계 잎몸",
+      "form": "MN56-A",
+      "count": 2,
+      "readiness": [
+        21,
+        24
+      ],
+      "home_xy_m": [
+        -1100,
+        650
+      ],
+      "home_radius_m": 100,
+      "patrol_xy_m": [],
+      "patrol_halfwidth_m": 0,
+      "optional_or_negotiation": false
+    },
+    {
+      "id": "IS2",
+      "site": "inner",
+      "name": "북서 폐쇄 숲 경계",
+      "form": "MN56-B",
+      "count": 1,
+      "readiness": [
+        25,
+        30
+      ],
+      "home_xy_m": [
+        -1300,
+        1350
+      ],
+      "home_radius_m": 100,
+      "patrol_xy_m": [],
+      "patrol_halfwidth_m": 0,
+      "optional_or_negotiation": true
+    }
+  ],
+  "structures": [
+    {
+      "id": "OC1",
+      "site": "outer",
+      "form": "CT01-B",
+      "count": 2,
+      "readiness": [
+        21,
+        23
+      ],
+      "xy_m": [
+        -550,
+        700
+      ]
+    },
+    {
+      "id": "IC1",
+      "site": "inner",
+      "form": "CT01-B",
+      "count": 2,
+      "readiness": [
+        22,
+        24
+      ],
+      "xy_m": [
+        100,
+        250
+      ]
+    },
+    {
+      "id": "IB1",
+      "site": "inner",
+      "form": "CT03-B",
+      "count": 1,
+      "readiness": [
+        24,
+        24
+      ],
+      "xy_m": [
+        -700,
+        1150
+      ]
+    }
+  ],
+  "human_event": {
+    "site": "inner",
+    "node": "F06",
+    "commander": 1,
+    "remaining_guards": 4,
+    "readiness": [
+      21,
+      23
+    ],
+    "not_monster_species": true
+  },
+  "frames": {
+    "city": {
+      "bounds_m": [
+        -1300,
+        -1000,
+        1100,
+        900
+      ],
+      "scale": 0.45,
+      "origin_px": [
+        90,
+        180
+      ]
+    },
+    "outer": {
+      "bounds_m": [
+        -1400,
+        -1000,
+        1400,
+        1800
+      ],
+      "scale": 0.36,
+      "origin_px": [
+        90,
+        180
+      ]
+    },
+    "inner": {
+      "bounds_m": [
+        -1500,
+        -800,
+        1100,
+        1750
+      ],
+      "scale": 0.39,
+      "origin_px": [
+        90,
+        180
+      ]
+    }
+  },
+  "states": {
+    "survey": [
+      [
+        "F06",
+        "F07"
+      ],
+      [
+        "F07",
+        "F08"
+      ],
+      [
+        "F08",
+        "F09"
+      ]
+    ],
+    "command_secured": [
+      [
+        "F07",
+        "F08"
+      ],
+      [
+        "F08",
+        "F09"
+      ]
+    ],
+    "defense_isolated": [
+      [
+        "F08",
+        "F09"
+      ]
+    ],
+    "shutdown_and_inside_release": []
+  },
+  "progression": {
+    "start": 21,
+    "end": 24,
+    "field": 1,
+    "major_objectives_combined": 1,
+    "investigation_relations": 1
+  },
+  "sampling": {
+    "step_m_max": 5,
+    "excluded": "structure and human encounters, wildlife, actual AI and visibility",
+    "cases": {
+      "C_prepare": {
+        "length_m": 3766.7,
+        "potential_groups": [],
+        "max_empty_m": 3766.7,
+        "max_overlap": 0
+      },
+      "C_return": {
+        "length_m": 1784.9,
+        "potential_groups": [],
+        "max_empty_m": 1784.9,
+        "max_overlap": 0
+      },
+      "O_survey": {
+        "length_m": 2799.6,
+        "potential_groups": [
+          "OS1",
+          "OW1",
+          "OW2",
+          "OW3"
+        ],
+        "max_empty_m": 497.6,
+        "max_overlap": 1
+      },
+      "O_return": {
+        "length_m": 3126.6,
+        "potential_groups": [
+          "OS1",
+          "OW2",
+          "OW3"
+        ],
+        "max_empty_m": 961.4,
+        "max_overlap": 1
+      },
+      "O_spring": {
+        "length_m": 2570.0,
+        "potential_groups": [
+          "OD1",
+          "OT1",
+          "OW1",
+          "OY1"
+        ],
+        "max_empty_m": 1049.4,
+        "max_overlap": 2
+      },
+      "O_west": {
+        "length_m": 1848.4,
+        "potential_groups": [
+          "OF1",
+          "OW2"
+        ],
+        "max_empty_m": 886.2,
+        "max_overlap": 1
+      },
+      "F_survey": {
+        "length_m": 1749.5,
+        "potential_groups": [
+          "IW1"
+        ],
+        "max_empty_m": 780.6,
+        "max_overlap": 1
+      },
+      "F_relief": {
+        "length_m": 1518.2,
+        "potential_groups": [
+          "IW1",
+          "IW2"
+        ],
+        "max_empty_m": 647.1,
+        "max_overlap": 1
+      },
+      "F_final": {
+        "length_m": 919.2,
+        "potential_groups": [],
+        "max_empty_m": 919.2,
+        "max_overlap": 0
+      },
+      "F_return": {
+        "length_m": 3237.3,
+        "potential_groups": [
+          "IF1",
+          "IS1"
+        ],
+        "max_empty_m": 1424.7,
+        "max_overlap": 1
+      },
+      "F_retreat": {
+        "length_m": 2244.5,
+        "potential_groups": [
+          "IW1"
+        ],
+        "max_empty_m": 1280.5,
+        "max_overlap": 1
+      }
+    }
+  },
+  "final_gate_preconditions": [
+    "current_load_measured",
+    "priority_supply_trial_passed",
+    "evacuation_confirmed",
+    "joint_stop_order_issued",
+    "command_secured"
+  ],
+  "shutdown_preconditions": [
+    "final_gate_preconditions",
+    "defense_isolated",
+    "residual_drain_checked",
+    "technicians_at_F08"
+  ],
+  "boss_hall": {
+    "bounds_m": [
+      -750,
+      1115,
+      -650,
+      1185
+    ],
+    "main_lane_width_m": 12,
+    "side_lane_width_m": 6,
+    "retreat_to": "F06",
+    "maintenance_access_after_defense": "F08",
+    "limited_defense_reservoir": true
+  },
+  "utility_separation": {
+    "forced_extraction": "stop at F08",
+    "priority_supply": "F02 storage and approved reduced local operation",
+    "defense": "isolated after combat at F07",
+    "drain": "F05 enclosed return to containment; not river discharge"
+  }
+}
