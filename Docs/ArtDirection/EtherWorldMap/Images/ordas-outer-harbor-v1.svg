@@ -1,0 +1,176 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2000" height="1590" viewBox="0 0 2000 1590">
+<rect width="2000" height="1590" fill="#f0f3ef"/>
+<text x="50.000" y="72.000" font-family="Malgun Gothic,sans-serif" font-size="40" fill="#263d43" font-weight="700">오르다스 | 외항·저수지·봉쇄 조사</text>
+<text x="50.000" y="119.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#687b7b" font-weight="400">OR-P01 국소 배치 후보 / 같은 좌표의 확대 / 세계 해안 미접속 / 선박·물·통행 실행은 미검증</text>
+<polygon points="60.000,1430.000 1310.000,1430.000 1310.000,180.000 60.000,180.000" fill="#e2e0cc" stroke="#e2e0cc"/>
+<polygon points="60.000,380.000 1310.000,380.000 1310.000,180.000 60.000,180.000" fill="#cbdde4" stroke="#cbdde4"/>
+<polygon id="strait" points="1135.000,1430.000 1235.000,1430.000 1235.000,380.000 1135.000,380.000" fill="#cbdde4" stroke="#cbdde4"/>
+<polygon id="reservoir" points="335.000,955.000 535.000,955.000 535.000,755.000 335.000,755.000" fill="#b8d1d9" stroke="#b8d1d9"/>
+<polygon points="880.000,417.500 890.000,417.500 890.000,347.500 880.000,347.500" fill="#a6a391" stroke="#a6a391"/>
+<polygon points="1035.000,596.250 1185.000,596.250 1185.000,588.750 1035.000,588.750" fill="#a6a391" stroke="#a6a391"/>
+<polyline id="water_inlet-0" points="410.000,605.000 410.000,755.000" fill="none" stroke="#397c99" stroke-width="2"/>
+<polyline id="water_delivery-0" points="535.000,817.500 597.500,755.000" fill="none" stroke="#397c99" stroke-width="2"/>
+<polyline id="water_delivery-1" points="597.500,755.000 647.500,555.000" fill="none" stroke="#397c99" stroke-width="2"/>
+<polyline id="overflow-0" points="335.000,930.000 260.000,967.500" fill="none" stroke="#397c99" stroke-width="2"/>
+<polyline id="overflow-1" points="260.000,967.500 110.000,1080.000" fill="none" stroke="#397c99" stroke-width="2"/>
+<polyline id="arrival_tender-0" points="885.000,230.000 885.000,355.000" fill="none" stroke="#397c99" stroke-width="3"/>
+<polyline id="public_arrival-0" points="885.000,355.000 885.000,417.500" fill="none" stroke="#ac663b" stroke-width="3"/>
+<polyline id="public_arrival-1" points="885.000,417.500 760.000,467.500" fill="none" stroke="#ac663b" stroke-width="3"/>
+<polyline id="public_arrival-2" points="760.000,467.500 647.500,455.000" fill="none" stroke="#ac663b" stroke-width="3"/>
+<polyline id="public_arrival-3" points="647.500,455.000 647.500,555.000" fill="none" stroke="#ac663b" stroke-width="3"/>
+<polyline id="public_return-0" points="647.500,555.000 647.500,455.000" fill="none" stroke="#75698b" stroke-width="3"/>
+<polyline id="public_return-1" points="647.500,455.000 760.000,467.500" fill="none" stroke="#75698b" stroke-width="3"/>
+<polyline id="public_return-2" points="760.000,467.500 885.000,417.500" fill="none" stroke="#75698b" stroke-width="3"/>
+<polyline id="public_return-3" points="885.000,417.500 885.000,355.000" fill="none" stroke="#75698b" stroke-width="3"/>
+<polyline id="wall_route-0" points="760.000,467.500 872.500,542.500" fill="none" stroke="#ac663b" stroke-width="3"/>
+<polyline id="wall_route-1" points="872.500,542.500 1035.000,480.000" fill="none" stroke="#ac663b" stroke-width="3"/>
+<polyline id="wall_route-2" points="1035.000,480.000 1035.000,592.500" fill="none" stroke="#ac663b" stroke-width="3"/>
+<polyline id="observation_pier-0" points="1035.000,592.500 1180.000,592.500" fill="none" stroke="#ac663b" stroke-width="3"/>
+<polyline id="survey_out-0" points="1180.000,592.500 1185.000,705.000" fill="none" stroke="#397c99" stroke-width="3"/>
+<polyline id="survey_out-1" points="1185.000,705.000 1185.000,830.000" fill="none" stroke="#397c99" stroke-width="3"/>
+<polyline id="survey_back-0" points="1185.000,830.000 1185.000,705.000" fill="none" stroke="#397c99" stroke-width="3"/>
+<polyline id="survey_back-1" points="1185.000,705.000 1180.000,592.500" fill="none" stroke="#397c99" stroke-width="3"/>
+<polyline id="reservoir_out-0" points="647.500,555.000 610.000,642.500" fill="none" stroke="#ac663b" stroke-width="3"/>
+<polyline id="reservoir_out-1" points="610.000,642.500 485.000,692.500" fill="none" stroke="#ac663b" stroke-width="3"/>
+<polyline id="reservoir_out-2" points="485.000,692.500 272.500,780.000" fill="none" stroke="#ac663b" stroke-width="3"/>
+<polyline id="reservoir_out-3" points="272.500,780.000 260.000,967.500" fill="none" stroke="#ac663b" stroke-width="3"/>
+<polyline id="reservoir_back-0" points="260.000,967.500 460.000,1030.000" fill="none" stroke="#75698b" stroke-width="3"/>
+<polyline id="reservoir_back-1" points="460.000,1030.000 597.500,917.500" fill="none" stroke="#75698b" stroke-width="3"/>
+<polyline id="reservoir_back-2" points="597.500,917.500 597.500,755.000" fill="none" stroke="#75698b" stroke-width="3"/>
+<polyline id="reservoir_back-3" points="597.500,755.000 647.500,555.000" fill="none" stroke="#75698b" stroke-width="3"/>
+<polyline id="reservoir_bypass-0" points="485.000,692.500 597.500,755.000" fill="none" stroke="#ac663b" stroke-width="3"/>
+<polyline id="reservoir_bypass-1" points="597.500,755.000 597.500,917.500" fill="none" stroke="#ac663b" stroke-width="3"/>
+<polyline id="reservoir_bypass-2" points="597.500,917.500 460.000,1030.000" fill="none" stroke="#ac663b" stroke-width="3"/>
+<polyline id="reservoir_optional-0" points="272.500,780.000 185.000,905.000" fill="none" stroke="#ac663b" stroke-width="3"/>
+<polyline id="reservoir_optional-1" points="185.000,905.000 260.000,967.500" fill="none" stroke="#ac663b" stroke-width="3"/>
+<polyline id="eastern_out-0" points="872.500,542.500 810.000,705.000" fill="none" stroke="#ac663b" stroke-width="3"/>
+<polyline id="eastern_out-1" points="810.000,705.000 922.500,830.000" fill="none" stroke="#ac663b" stroke-width="3"/>
+<polyline id="eastern_out-2" points="922.500,830.000 1047.500,905.000" fill="none" stroke="#ac663b" stroke-width="3"/>
+<polyline id="eastern_out-3" points="1047.500,905.000 1097.500,1030.000" fill="none" stroke="#ac663b" stroke-width="3"/>
+<polyline id="eastern_out-4" points="1097.500,1030.000 1035.000,1155.000" fill="none" stroke="#ac663b" stroke-width="3"/>
+<polyline id="eastern_back-0" points="1035.000,1155.000 872.500,1167.500" fill="none" stroke="#75698b" stroke-width="3"/>
+<polyline id="eastern_back-1" points="872.500,1167.500 735.000,1030.000" fill="none" stroke="#75698b" stroke-width="3"/>
+<polyline id="eastern_back-2" points="735.000,1030.000 460.000,1030.000" fill="none" stroke="#75698b" stroke-width="3"/>
+<polyline id="crosslink-0" points="597.500,755.000 810.000,705.000" fill="none" stroke="#ac663b" stroke-width="3"/>
+<polyline id="handoff_return-0" points="735.000,1030.000 685.000,930.000" fill="none" stroke="#75698b" stroke-width="3"/>
+<polyline id="handoff_return-1" points="685.000,930.000 672.500,842.500" fill="none" stroke="#75698b" stroke-width="3"/>
+<polyline id="handoff_return-2" points="672.500,842.500 810.000,705.000" fill="none" stroke="#75698b" stroke-width="3"/>
+<polyline id="handoff_return-3" points="810.000,705.000 872.500,542.500" fill="none" stroke="#75698b" stroke-width="3"/>
+<polyline id="handoff_return-4" points="872.500,542.500 760.000,467.500" fill="none" stroke="#75698b" stroke-width="3"/>
+<polyline id="ruin_optional-0" points="735.000,1030.000 772.500,905.000" fill="none" stroke="#ac663b" stroke-width="3"/>
+<polyline id="ruin_optional-1" points="772.500,905.000 922.500,830.000" fill="none" stroke="#ac663b" stroke-width="3"/>
+<polyline id="future_plateau-0" points="872.500,1167.500 860.000,1355.000" fill="none" stroke="#687b7b" stroke-width="3"/>
+<polygon id="R04-covered-crossing" points="255.000,972.500 265.000,972.500 265.000,962.500 255.000,962.500" fill="#a6a391" stroke="#a6a391"/>
+<polyline id="blockade-line" points="1135.000,980.000 1235.000,980.000" fill="none" stroke="#993f3b" stroke-width="7"/>
+<circle id="group-OG1" cx="272.500" cy="780.000" r="40.000" fill="none" stroke="#ac663b"/>
+<polyline id="routine-OG1" points="272.500,780.000 285.000,867.500 272.500,780.000" fill="none" stroke="#47715c" stroke-width="2"/>
+<text x="252.500" y="809.000" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#263d43" font-weight="400">OG1</text>
+<circle id="group-OG2" cx="172.500" cy="705.000" r="40.000" fill="none" stroke="#ac663b"/>
+<text x="152.500" y="734.000" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#263d43" font-weight="400">OG2</text>
+<circle id="group-OG3" cx="585.000" cy="855.000" r="27.500" fill="none" stroke="#47715c"/>
+<text x="565.000" y="884.000" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#263d43" font-weight="400">OG3</text>
+<circle id="group-OG4" cx="147.500" cy="905.000" r="30.000" fill="none" stroke="#ac663b"/>
+<text x="127.500" y="934.000" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#263d43" font-weight="400">OG4</text>
+<circle id="group-OG5" cx="460.000" cy="1017.500" r="27.500" fill="none" stroke="#47715c"/>
+<text x="440.000" y="1046.500" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#263d43" font-weight="400">OG5</text>
+<circle id="group-OG6" cx="272.500" cy="975.000" r="25.000" fill="none" stroke="#ac663b"/>
+<polyline id="routine-OG6" points="272.500,975.000 322.500,1005.000 272.500,975.000" fill="none" stroke="#47715c" stroke-width="2"/>
+<text x="252.500" y="1004.000" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#263d43" font-weight="400">OG6</text>
+<circle id="group-OG7" cx="885.000" cy="805.000" r="25.000" fill="none" stroke="#47715c"/>
+<text x="865.000" y="834.000" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#263d43" font-weight="400">OG7</text>
+<circle id="group-OG8" cx="1060.000" cy="1005.000" r="25.000" fill="none" stroke="#ac663b"/>
+<polyline id="routine-OG8" points="1060.000,1005.000 1072.500,1055.000 1060.000,1005.000" fill="none" stroke="#47715c" stroke-width="2"/>
+<text x="1040.000" y="1034.000" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#263d43" font-weight="400">OG8</text>
+<circle id="group-OG9" cx="660.000" cy="730.000" r="20.000" fill="none" stroke="#47715c"/>
+<text x="640.000" y="759.000" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#263d43" font-weight="400">OG9</text>
+<circle id="group-OG10" cx="972.500" cy="897.500" r="23.750" fill="none" stroke="#ac663b"/>
+<polyline id="routine-OG10" points="972.500,897.500 1022.500,905.000 972.500,897.500" fill="none" stroke="#47715c" stroke-width="2"/>
+<text x="952.500" y="926.500" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#263d43" font-weight="400">OG10</text>
+<circle id="group-OG11" cx="847.500" cy="1130.000" r="30.000" fill="none" stroke="#ac663b"/>
+<polyline id="routine-OG11" points="847.500,1130.000 810.000,1092.500 847.500,1130.000" fill="none" stroke="#47715c" stroke-width="2"/>
+<text x="827.500" y="1159.000" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#263d43" font-weight="400">OG11</text>
+<circle id="group-OG12" cx="760.000" cy="1242.500" r="37.500" fill="none" stroke="#ac663b"/>
+<text x="740.000" y="1271.500" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#263d43" font-weight="400">OG12</text>
+<circle id="group-OG13" cx="772.500" cy="905.000" r="22.500" fill="none" stroke="#ac663b"/>
+<text x="752.500" y="934.000" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#263d43" font-weight="400">OG13</text>
+<circle id="group-OS1" cx="910.000" cy="592.500" r="16.250" fill="none" stroke="#ac663b"/>
+<text x="890.000" y="621.500" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#263d43" font-weight="400">OS1</text>
+<circle id="group-OS2" cx="1097.500" cy="1030.000" r="15.000" fill="none" stroke="#ac663b"/>
+<text x="1077.500" y="1059.000" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#263d43" font-weight="400">OS2</text>
+<circle id="node-P00" cx="885.000" cy="230.000" r="4.000" fill="#263d43" stroke="#263d43"/>
+<text x="893.000" y="223.000" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263d43" font-weight="400">P00</text>
+<circle id="node-P01" cx="885.000" cy="355.000" r="4.000" fill="#263d43" stroke="#263d43"/>
+<text x="893.000" y="348.000" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263d43" font-weight="400">P01</text>
+<circle id="node-P02" cx="885.000" cy="417.500" r="4.000" fill="#263d43" stroke="#263d43"/>
+<text x="893.000" y="410.500" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263d43" font-weight="400">P02</text>
+<circle id="node-P03" cx="760.000" cy="467.500" r="4.000" fill="#263d43" stroke="#263d43"/>
+<text x="768.000" y="460.500" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263d43" font-weight="400">P03</text>
+<circle id="node-P04" cx="647.500" cy="455.000" r="4.000" fill="#263d43" stroke="#263d43"/>
+<text x="655.500" y="448.000" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263d43" font-weight="400">P04</text>
+<circle id="node-P05" cx="647.500" cy="555.000" r="4.000" fill="#263d43" stroke="#263d43"/>
+<text x="655.500" y="548.000" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263d43" font-weight="400">P05</text>
+<circle id="node-P06" cx="872.500" cy="542.500" r="4.000" fill="#263d43" stroke="#263d43"/>
+<text x="880.500" y="535.500" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263d43" font-weight="400">P06</text>
+<circle id="node-P07" cx="1035.000" cy="480.000" r="4.000" fill="#263d43" stroke="#263d43"/>
+<text x="1043.000" y="473.000" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263d43" font-weight="400">P07</text>
+<circle id="node-P08" cx="1035.000" cy="592.500" r="4.000" fill="#263d43" stroke="#263d43"/>
+<text x="1043.000" y="585.500" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263d43" font-weight="400">P08</text>
+<circle id="node-P09" cx="1180.000" cy="592.500" r="4.000" fill="#263d43" stroke="#263d43"/>
+<text x="1188.000" y="585.500" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263d43" font-weight="400">P09</text>
+<circle id="node-R01" cx="610.000" cy="642.500" r="4.000" fill="#263d43" stroke="#263d43"/>
+<text x="618.000" y="635.500" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263d43" font-weight="400">R01</text>
+<circle id="node-R02" cx="485.000" cy="692.500" r="4.000" fill="#263d43" stroke="#263d43"/>
+<text x="493.000" y="685.500" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263d43" font-weight="400">R02</text>
+<circle id="node-R03" cx="272.500" cy="780.000" r="4.000" fill="#263d43" stroke="#263d43"/>
+<text x="280.500" y="773.000" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263d43" font-weight="400">R03</text>
+<circle id="node-R04" cx="260.000" cy="967.500" r="4.000" fill="#263d43" stroke="#263d43"/>
+<text x="268.000" y="960.500" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263d43" font-weight="400">R04</text>
+<circle id="node-R05" cx="460.000" cy="1030.000" r="4.000" fill="#263d43" stroke="#263d43"/>
+<text x="468.000" y="1023.000" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263d43" font-weight="400">R05</text>
+<circle id="node-R06" cx="597.500" cy="917.500" r="4.000" fill="#263d43" stroke="#263d43"/>
+<text x="605.500" y="910.500" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263d43" font-weight="400">R06</text>
+<circle id="node-R07" cx="597.500" cy="755.000" r="4.000" fill="#263d43" stroke="#263d43"/>
+<text x="605.500" y="748.000" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263d43" font-weight="400">R07</text>
+<circle id="node-R08" cx="185.000" cy="905.000" r="4.000" fill="#263d43" stroke="#263d43"/>
+<text x="193.000" y="898.000" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263d43" font-weight="400">R08</text>
+<circle id="node-E01" cx="810.000" cy="705.000" r="4.000" fill="#263d43" stroke="#263d43"/>
+<text x="818.000" y="698.000" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263d43" font-weight="400">E01</text>
+<circle id="node-E02" cx="922.500" cy="830.000" r="4.000" fill="#263d43" stroke="#263d43"/>
+<text x="930.500" y="823.000" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263d43" font-weight="400">E02</text>
+<circle id="node-E03" cx="1047.500" cy="905.000" r="4.000" fill="#263d43" stroke="#263d43"/>
+<text x="1055.500" y="898.000" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263d43" font-weight="400">E03</text>
+<circle id="node-E04" cx="1097.500" cy="1030.000" r="4.000" fill="#263d43" stroke="#263d43"/>
+<text x="1105.500" y="1023.000" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263d43" font-weight="400">E04</text>
+<circle id="node-E05" cx="1035.000" cy="1155.000" r="4.000" fill="#263d43" stroke="#263d43"/>
+<text x="1043.000" y="1148.000" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263d43" font-weight="400">E05</text>
+<circle id="node-E06" cx="872.500" cy="1167.500" r="4.000" fill="#263d43" stroke="#263d43"/>
+<text x="880.500" y="1160.500" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263d43" font-weight="400">E06</text>
+<circle id="node-E07" cx="735.000" cy="1030.000" r="4.000" fill="#263d43" stroke="#263d43"/>
+<text x="743.000" y="1023.000" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263d43" font-weight="400">E07</text>
+<circle id="node-E08" cx="772.500" cy="905.000" r="4.000" fill="#263d43" stroke="#263d43"/>
+<text x="780.500" y="898.000" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263d43" font-weight="400">E08</text>
+<circle id="node-E09" cx="860.000" cy="1355.000" r="4.000" fill="#263d43" stroke="#263d43"/>
+<text x="868.000" y="1348.000" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263d43" font-weight="400">E09</text>
+<circle id="node-B00" cx="1185.000" cy="830.000" r="4.000" fill="#263d43" stroke="#263d43"/>
+<text x="1193.000" y="823.000" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263d43" font-weight="400">B00</text>
+<text x="975.000" y="1186.000" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#75698b" font-weight="400">OH1</text>
+<text x="1355.000" y="207.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#263d43" font-weight="700">34 → 35 → 37 → 38</text>
+<text x="1355.000" y="245.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#687b7b" font-weight="400">P01 입항 / P03 자료·접근 동의</text>
+<text x="1355.000" y="283.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#687b7b" font-weight="400">P04 체류·귀환 / P05 생활 급수</text>
+<text x="1355.000" y="321.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#687b7b" font-weight="400">R02-R04 저수지 흔적 조사</text>
+<text x="1355.000" y="359.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#687b7b" font-weight="400">R05-R07 다른 귀환·수위 대조</text>
+<text x="1355.000" y="397.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#687b7b" font-weight="400">E02 목축 운반 / E03 관측</text>
+<text x="1355.000" y="435.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#687b7b" font-weight="400">E04 견인대 / E05 경계 연락</text>
+<text x="1355.000" y="473.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#687b7b" font-weight="400">E06-E07 높은 목축길 귀환</text>
+<text x="1355.000" y="511.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#687b7b" font-weight="400">B00는 봉쇄선 북쪽 회항점</text>
+<text x="1355.000" y="549.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#687b7b" font-weight="400">내해 통과·G4는 미완료</text>
+<text x="1355.000" y="587.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#687b7b" font-weight="400">E09 이후는 후속 통행 협상</text>
+<text x="1355.000" y="625.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#687b7b" font-weight="400">녹색 원: 기본 비적대 생활권</text>
+<text x="1355.000" y="663.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#687b7b" font-weight="400">OS1 가고일 2 / OS2 견인체 1</text>
+<text x="1355.000" y="701.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#687b7b" font-weight="400">OH1 계약 경비 6명</text>
+<text x="1355.000" y="739.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#687b7b" font-weight="400">물길·해협·국경은 정밀 측량 아님</text>
+<text x="60.000" y="1487.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#263d43" font-weight="400">주황 접근 / 보라 귀환 / 파랑 배·급수 시설 / 회색 후속 미개방 / 붉은 선 봉쇄</text>
+<text x="60.000" y="1520.000" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#687b7b" font-weight="400">급수 선은 관리 도수·매설관 개념선. 바다에서 식수를 끌어오는 선이 아니다.</text>
+<polyline points="60.000,1535.000 185.000,1535.000" fill="none" stroke="#263d43" stroke-width="4"/>
+<text x="197.000" y="1540.000" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#263d43" font-weight="400">500 m</text>
+</svg>

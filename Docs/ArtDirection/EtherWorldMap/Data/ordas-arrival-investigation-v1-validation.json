@@ -1,0 +1,1056 @@
+{
+  "status": "PASS",
+  "checks_passed": 247,
+  "checks_total": 247,
+  "svg_elements_compared": 154,
+  "counts": {
+    "nodes": 28,
+    "forms": 13,
+    "groups": 13,
+    "individuals": 32,
+    "structures": 3,
+    "humans": 6
+  },
+  "overflow_crossings": [
+    {
+      "path": "reservoir_out",
+      "xy_m": [
+        -2000.0,
+        -2350.0
+      ]
+    },
+    {
+      "path": "reservoir_out",
+      "xy_m": [
+        -2000.0,
+        -2350.0
+      ]
+    },
+    {
+      "path": "reservoir_back",
+      "xy_m": [
+        -2000.0,
+        -2350.0
+      ]
+    },
+    {
+      "path": "reservoir_back",
+      "xy_m": [
+        -2000.0,
+        -2350.0
+      ]
+    },
+    {
+      "path": "reservoir_optional",
+      "xy_m": [
+        -2000.0,
+        -2350.0
+      ]
+    },
+    {
+      "path": "reservoir_optional",
+      "xy_m": [
+        -2000.0,
+        -2350.0
+      ]
+    }
+  ],
+  "scope": "source preservation, counts, growth, local routes and SVG geometry",
+  "not_verified": [
+    "world attachment",
+    "hydrology and tides",
+    "navigation",
+    "actual combat and AI",
+    "experience and UE runtime"
+  ],
+  "checks": [
+    {
+      "check": "source preserved Docs/ArtDirection/EtherWorldMap/Data/arvena-fleet-search-v1.json",
+      "pass": true
+    },
+    {
+      "check": "source preserved Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-09-arvena-fleet-search/story-and-handoffs.md",
+      "pass": true
+    },
+    {
+      "check": "source preserved Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-08-world-distribution-and-leveling/variant-distribution.md",
+      "pass": true
+    },
+    {
+      "check": "source preserved Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-08-world-distribution-and-leveling/progression.md",
+      "pass": true
+    },
+    {
+      "check": "source preserved Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-08-five-continent-mainline/routes-and-unlocks.md",
+      "pass": true
+    },
+    {
+      "check": "source preserved Docs/Narrative/World.md",
+      "pass": true
+    },
+    {
+      "check": "source preserved Docs/Narrative/Scenario.md",
+      "pass": true
+    },
+    {
+      "check": "declared counts agree",
+      "pass": true
+    },
+    {
+      "check": "OG1 region and range",
+      "pass": true
+    },
+    {
+      "check": "OG1 bounded pursuit",
+      "pass": true
+    },
+    {
+      "check": "OG2 region and range",
+      "pass": true
+    },
+    {
+      "check": "OG2 bounded pursuit",
+      "pass": true
+    },
+    {
+      "check": "OG3 region and range",
+      "pass": true
+    },
+    {
+      "check": "OG3 bounded pursuit",
+      "pass": true
+    },
+    {
+      "check": "OG4 region and range",
+      "pass": true
+    },
+    {
+      "check": "OG4 bounded pursuit",
+      "pass": true
+    },
+    {
+      "check": "OG5 region and range",
+      "pass": true
+    },
+    {
+      "check": "OG5 bounded pursuit",
+      "pass": true
+    },
+    {
+      "check": "OG6 region and range",
+      "pass": true
+    },
+    {
+      "check": "OG6 bounded pursuit",
+      "pass": true
+    },
+    {
+      "check": "OG7 region and range",
+      "pass": true
+    },
+    {
+      "check": "OG7 bounded pursuit",
+      "pass": true
+    },
+    {
+      "check": "OG8 region and range",
+      "pass": true
+    },
+    {
+      "check": "OG8 bounded pursuit",
+      "pass": true
+    },
+    {
+      "check": "OG9 region and range",
+      "pass": true
+    },
+    {
+      "check": "OG9 bounded pursuit",
+      "pass": true
+    },
+    {
+      "check": "OG10 region and range",
+      "pass": true
+    },
+    {
+      "check": "OG10 bounded pursuit",
+      "pass": true
+    },
+    {
+      "check": "OG11 region and range",
+      "pass": true
+    },
+    {
+      "check": "OG11 bounded pursuit",
+      "pass": true
+    },
+    {
+      "check": "OG12 region and range",
+      "pass": true
+    },
+    {
+      "check": "OG12 bounded pursuit",
+      "pass": true
+    },
+    {
+      "check": "OG13 region and range",
+      "pass": true
+    },
+    {
+      "check": "OG13 bounded pursuit",
+      "pass": true
+    },
+    {
+      "check": "structures existing local model ranges",
+      "pass": true
+    },
+    {
+      "check": "humans within local band",
+      "pass": true
+    },
+    {
+      "check": "arrival_tender endpoints and length",
+      "pass": true
+    },
+    {
+      "check": "arrival_tender transport terrain",
+      "pass": true
+    },
+    {
+      "check": "public_arrival endpoints and length",
+      "pass": true
+    },
+    {
+      "check": "public_arrival transport terrain",
+      "pass": true
+    },
+    {
+      "check": "public_return endpoints and length",
+      "pass": true
+    },
+    {
+      "check": "public_return transport terrain",
+      "pass": true
+    },
+    {
+      "check": "wall_route endpoints and length",
+      "pass": true
+    },
+    {
+      "check": "wall_route transport terrain",
+      "pass": true
+    },
+    {
+      "check": "observation_pier endpoints and length",
+      "pass": true
+    },
+    {
+      "check": "observation_pier transport terrain",
+      "pass": true
+    },
+    {
+      "check": "survey_out endpoints and length",
+      "pass": true
+    },
+    {
+      "check": "survey_out transport terrain",
+      "pass": true
+    },
+    {
+      "check": "survey_back endpoints and length",
+      "pass": true
+    },
+    {
+      "check": "survey_back transport terrain",
+      "pass": true
+    },
+    {
+      "check": "reservoir_out endpoints and length",
+      "pass": true
+    },
+    {
+      "check": "reservoir_out transport terrain",
+      "pass": true
+    },
+    {
+      "check": "reservoir_back endpoints and length",
+      "pass": true
+    },
+    {
+      "check": "reservoir_back transport terrain",
+      "pass": true
+    },
+    {
+      "check": "reservoir_bypass endpoints and length",
+      "pass": true
+    },
+    {
+      "check": "reservoir_bypass transport terrain",
+      "pass": true
+    },
+    {
+      "check": "reservoir_optional endpoints and length",
+      "pass": true
+    },
+    {
+      "check": "reservoir_optional transport terrain",
+      "pass": true
+    },
+    {
+      "check": "eastern_out endpoints and length",
+      "pass": true
+    },
+    {
+      "check": "eastern_out transport terrain",
+      "pass": true
+    },
+    {
+      "check": "eastern_back endpoints and length",
+      "pass": true
+    },
+    {
+      "check": "eastern_back transport terrain",
+      "pass": true
+    },
+    {
+      "check": "crosslink endpoints and length",
+      "pass": true
+    },
+    {
+      "check": "crosslink transport terrain",
+      "pass": true
+    },
+    {
+      "check": "handoff_return endpoints and length",
+      "pass": true
+    },
+    {
+      "check": "handoff_return transport terrain",
+      "pass": true
+    },
+    {
+      "check": "ruin_optional endpoints and length",
+      "pass": true
+    },
+    {
+      "check": "ruin_optional transport terrain",
+      "pass": true
+    },
+    {
+      "check": "future_plateau endpoints and length",
+      "pass": true
+    },
+    {
+      "check": "future_plateau transport terrain",
+      "pass": true
+    },
+    {
+      "check": "survey stays 600m north of blockade",
+      "pass": true
+    },
+    {
+      "check": "survey return reverse",
+      "pass": true
+    },
+    {
+      "check": "land contact west of channel",
+      "pass": true
+    },
+    {
+      "check": "passenger arrival outside inner channel",
+      "pass": true
+    },
+    {
+      "check": "all current nodes return to passenger pier without future path",
+      "pass": true
+    },
+    {
+      "check": "future highland not opened",
+      "pass": true
+    },
+    {
+      "check": "report return avoids optional remnant home plus pursuit",
+      "pass": true
+    },
+    {
+      "check": "eastern reservoir bypass avoids western troll and toll homes",
+      "pass": true
+    },
+    {
+      "check": "OG2 not on required routes",
+      "pass": true
+    },
+    {
+      "check": "OG4 not on required routes",
+      "pass": true
+    },
+    {
+      "check": "OG12 not on required routes",
+      "pass": true
+    },
+    {
+      "check": "wall structure outside public and eastern access",
+      "pass": true
+    },
+    {
+      "check": "all overflow crossings use R04 covered deck",
+      "pass": true
+    },
+    {
+      "check": "stage budgets 34 to 38",
+      "pass": true
+    },
+    {
+      "check": "stage continuity",
+      "pass": true
+    },
+    {
+      "check": "whole OrdAS 6 2 2 preserved",
+      "pass": true
+    },
+    {
+      "check": "no automatic scaling; optional retained",
+      "pass": true
+    },
+    {
+      "check": "gates no circular first entry",
+      "pass": true
+    },
+    {
+      "check": "return independent",
+      "pass": true
+    },
+    {
+      "check": "Maren travels; 7 remain",
+      "pass": true
+    },
+    {
+      "check": "no world location or travel days invented",
+      "pass": true
+    },
+    {
+      "check": "ordas-outer-harbor-v1 P00",
+      "pass": true
+    },
+    {
+      "check": "ordas-outer-harbor-v1 P01",
+      "pass": true
+    },
+    {
+      "check": "ordas-outer-harbor-v1 P02",
+      "pass": true
+    },
+    {
+      "check": "ordas-outer-harbor-v1 P03",
+      "pass": true
+    },
+    {
+      "check": "ordas-outer-harbor-v1 P04",
+      "pass": true
+    },
+    {
+      "check": "ordas-outer-harbor-v1 P05",
+      "pass": true
+    },
+    {
+      "check": "ordas-outer-harbor-v1 P06",
+      "pass": true
+    },
+    {
+      "check": "ordas-outer-harbor-v1 P07",
+      "pass": true
+    },
+    {
+      "check": "ordas-outer-harbor-v1 P08",
+      "pass": true
+    },
+    {
+      "check": "ordas-outer-harbor-v1 P09",
+      "pass": true
+    },
+    {
+      "check": "ordas-outer-harbor-v1 R01",
+      "pass": true
+    },
+    {
+      "check": "ordas-outer-harbor-v1 R02",
+      "pass": true
+    },
+    {
+      "check": "ordas-outer-harbor-v1 R03",
+      "pass": true
+    },
+    {
+      "check": "ordas-outer-harbor-v1 R04",
+      "pass": true
+    },
+    {
+      "check": "ordas-outer-harbor-v1 R05",
+      "pass": true
+    },
+    {
+      "check": "ordas-outer-harbor-v1 R06",
+      "pass": true
+    },
+    {
+      "check": "ordas-outer-harbor-v1 R07",
+      "pass": true
+    },
+    {
+      "check": "ordas-outer-harbor-v1 R08",
+      "pass": true
+    },
+    {
+      "check": "ordas-outer-harbor-v1 E01",
+      "pass": true
+    },
+    {
+      "check": "ordas-outer-harbor-v1 E02",
+      "pass": true
+    },
+    {
+      "check": "ordas-outer-harbor-v1 E03",
+      "pass": true
+    },
+    {
+      "check": "ordas-outer-harbor-v1 E04",
+      "pass": true
+    },
+    {
+      "check": "ordas-outer-harbor-v1 E05",
+      "pass": true
+    },
+    {
+      "check": "ordas-outer-harbor-v1 E06",
+      "pass": true
+    },
+    {
+      "check": "ordas-outer-harbor-v1 E07",
+      "pass": true
+    },
+    {
+      "check": "ordas-outer-harbor-v1 E08",
+      "pass": true
+    },
+    {
+      "check": "ordas-outer-harbor-v1 E09",
+      "pass": true
+    },
+    {
+      "check": "ordas-outer-harbor-v1 B00",
+      "pass": true
+    },
+    {
+      "check": "ordas-outer-harbor-v1 OG1",
+      "pass": true
+    },
+    {
+      "check": "ordas-outer-harbor-v1 OG2",
+      "pass": true
+    },
+    {
+      "check": "ordas-outer-harbor-v1 OG3",
+      "pass": true
+    },
+    {
+      "check": "ordas-outer-harbor-v1 OG4",
+      "pass": true
+    },
+    {
+      "check": "ordas-outer-harbor-v1 OG5",
+      "pass": true
+    },
+    {
+      "check": "ordas-outer-harbor-v1 OG6",
+      "pass": true
+    },
+    {
+      "check": "ordas-outer-harbor-v1 OG7",
+      "pass": true
+    },
+    {
+      "check": "ordas-outer-harbor-v1 OG8",
+      "pass": true
+    },
+    {
+      "check": "ordas-outer-harbor-v1 OG9",
+      "pass": true
+    },
+    {
+      "check": "ordas-outer-harbor-v1 OG10",
+      "pass": true
+    },
+    {
+      "check": "ordas-outer-harbor-v1 OG11",
+      "pass": true
+    },
+    {
+      "check": "ordas-outer-harbor-v1 OG12",
+      "pass": true
+    },
+    {
+      "check": "ordas-outer-harbor-v1 OG13",
+      "pass": true
+    },
+    {
+      "check": "ordas-outer-harbor-v1 OS1",
+      "pass": true
+    },
+    {
+      "check": "ordas-outer-harbor-v1 OS2",
+      "pass": true
+    },
+    {
+      "check": "ordas-outer-harbor-v1 segment arrival_tender 0",
+      "pass": true
+    },
+    {
+      "check": "ordas-outer-harbor-v1 segment public_arrival 0",
+      "pass": true
+    },
+    {
+      "check": "ordas-outer-harbor-v1 segment public_arrival 1",
+      "pass": true
+    },
+    {
+      "check": "ordas-outer-harbor-v1 segment public_arrival 2",
+      "pass": true
+    },
+    {
+      "check": "ordas-outer-harbor-v1 segment public_arrival 3",
+      "pass": true
+    },
+    {
+      "check": "ordas-outer-harbor-v1 segment public_return 0",
+      "pass": true
+    },
+    {
+      "check": "ordas-outer-harbor-v1 segment public_return 1",
+      "pass": true
+    },
+    {
+      "check": "ordas-outer-harbor-v1 segment public_return 2",
+      "pass": true
+    },
+    {
+      "check": "ordas-outer-harbor-v1 segment public_return 3",
+      "pass": true
+    },
+    {
+      "check": "ordas-outer-harbor-v1 segment wall_route 0",
+      "pass": true
+    },
+    {
+      "check": "ordas-outer-harbor-v1 segment wall_route 1",
+      "pass": true
+    },
+    {
+      "check": "ordas-outer-harbor-v1 segment wall_route 2",
+      "pass": true
+    },
+    {
+      "check": "ordas-outer-harbor-v1 segment observation_pier 0",
+      "pass": true
+    },
+    {
+      "check": "ordas-outer-harbor-v1 segment survey_out 0",
+      "pass": true
+    },
+    {
+      "check": "ordas-outer-harbor-v1 segment survey_out 1",
+      "pass": true
+    },
+    {
+      "check": "ordas-outer-harbor-v1 segment survey_back 0",
+      "pass": true
+    },
+    {
+      "check": "ordas-outer-harbor-v1 segment survey_back 1",
+      "pass": true
+    },
+    {
+      "check": "ordas-outer-harbor-v1 segment reservoir_out 0",
+      "pass": true
+    },
+    {
+      "check": "ordas-outer-harbor-v1 segment reservoir_out 1",
+      "pass": true
+    },
+    {
+      "check": "ordas-outer-harbor-v1 segment reservoir_out 2",
+      "pass": true
+    },
+    {
+      "check": "ordas-outer-harbor-v1 segment reservoir_out 3",
+      "pass": true
+    },
+    {
+      "check": "ordas-outer-harbor-v1 segment reservoir_back 0",
+      "pass": true
+    },
+    {
+      "check": "ordas-outer-harbor-v1 segment reservoir_back 1",
+      "pass": true
+    },
+    {
+      "check": "ordas-outer-harbor-v1 segment reservoir_back 2",
+      "pass": true
+    },
+    {
+      "check": "ordas-outer-harbor-v1 segment reservoir_back 3",
+      "pass": true
+    },
+    {
+      "check": "ordas-outer-harbor-v1 segment reservoir_bypass 0",
+      "pass": true
+    },
+    {
+      "check": "ordas-outer-harbor-v1 segment reservoir_bypass 1",
+      "pass": true
+    },
+    {
+      "check": "ordas-outer-harbor-v1 segment reservoir_bypass 2",
+      "pass": true
+    },
+    {
+      "check": "ordas-outer-harbor-v1 segment reservoir_optional 0",
+      "pass": true
+    },
+    {
+      "check": "ordas-outer-harbor-v1 segment reservoir_optional 1",
+      "pass": true
+    },
+    {
+      "check": "ordas-outer-harbor-v1 segment eastern_out 0",
+      "pass": true
+    },
+    {
+      "check": "ordas-outer-harbor-v1 segment eastern_out 1",
+      "pass": true
+    },
+    {
+      "check": "ordas-outer-harbor-v1 segment eastern_out 2",
+      "pass": true
+    },
+    {
+      "check": "ordas-outer-harbor-v1 segment eastern_out 3",
+      "pass": true
+    },
+    {
+      "check": "ordas-outer-harbor-v1 segment eastern_out 4",
+      "pass": true
+    },
+    {
+      "check": "ordas-outer-harbor-v1 segment eastern_back 0",
+      "pass": true
+    },
+    {
+      "check": "ordas-outer-harbor-v1 segment eastern_back 1",
+      "pass": true
+    },
+    {
+      "check": "ordas-outer-harbor-v1 segment eastern_back 2",
+      "pass": true
+    },
+    {
+      "check": "ordas-outer-harbor-v1 segment crosslink 0",
+      "pass": true
+    },
+    {
+      "check": "ordas-outer-harbor-v1 segment handoff_return 0",
+      "pass": true
+    },
+    {
+      "check": "ordas-outer-harbor-v1 segment handoff_return 1",
+      "pass": true
+    },
+    {
+      "check": "ordas-outer-harbor-v1 segment handoff_return 2",
+      "pass": true
+    },
+    {
+      "check": "ordas-outer-harbor-v1 segment handoff_return 3",
+      "pass": true
+    },
+    {
+      "check": "ordas-outer-harbor-v1 segment handoff_return 4",
+      "pass": true
+    },
+    {
+      "check": "ordas-outer-harbor-v1 segment ruin_optional 0",
+      "pass": true
+    },
+    {
+      "check": "ordas-outer-harbor-v1 segment ruin_optional 1",
+      "pass": true
+    },
+    {
+      "check": "ordas-outer-harbor-v1 segment future_plateau 0",
+      "pass": true
+    },
+    {
+      "check": "ordas-outer-harbor-v1 covered overflow shown",
+      "pass": true
+    },
+    {
+      "check": "ordas-waterway-investigation-v1 R01",
+      "pass": true
+    },
+    {
+      "check": "ordas-waterway-investigation-v1 R02",
+      "pass": true
+    },
+    {
+      "check": "ordas-waterway-investigation-v1 R03",
+      "pass": true
+    },
+    {
+      "check": "ordas-waterway-investigation-v1 R04",
+      "pass": true
+    },
+    {
+      "check": "ordas-waterway-investigation-v1 R05",
+      "pass": true
+    },
+    {
+      "check": "ordas-waterway-investigation-v1 R06",
+      "pass": true
+    },
+    {
+      "check": "ordas-waterway-investigation-v1 R07",
+      "pass": true
+    },
+    {
+      "check": "ordas-waterway-investigation-v1 R08",
+      "pass": true
+    },
+    {
+      "check": "ordas-waterway-investigation-v1 E01",
+      "pass": true
+    },
+    {
+      "check": "ordas-waterway-investigation-v1 E02",
+      "pass": true
+    },
+    {
+      "check": "ordas-waterway-investigation-v1 E03",
+      "pass": true
+    },
+    {
+      "check": "ordas-waterway-investigation-v1 E04",
+      "pass": true
+    },
+    {
+      "check": "ordas-waterway-investigation-v1 E05",
+      "pass": true
+    },
+    {
+      "check": "ordas-waterway-investigation-v1 E06",
+      "pass": true
+    },
+    {
+      "check": "ordas-waterway-investigation-v1 E07",
+      "pass": true
+    },
+    {
+      "check": "ordas-waterway-investigation-v1 E08",
+      "pass": true
+    },
+    {
+      "check": "ordas-waterway-investigation-v1 B00",
+      "pass": true
+    },
+    {
+      "check": "ordas-waterway-investigation-v1 OG1",
+      "pass": true
+    },
+    {
+      "check": "ordas-waterway-investigation-v1 OG2",
+      "pass": true
+    },
+    {
+      "check": "ordas-waterway-investigation-v1 OG3",
+      "pass": true
+    },
+    {
+      "check": "ordas-waterway-investigation-v1 OG4",
+      "pass": true
+    },
+    {
+      "check": "ordas-waterway-investigation-v1 OG5",
+      "pass": true
+    },
+    {
+      "check": "ordas-waterway-investigation-v1 OG6",
+      "pass": true
+    },
+    {
+      "check": "ordas-waterway-investigation-v1 OG7",
+      "pass": true
+    },
+    {
+      "check": "ordas-waterway-investigation-v1 OG8",
+      "pass": true
+    },
+    {
+      "check": "ordas-waterway-investigation-v1 OG9",
+      "pass": true
+    },
+    {
+      "check": "ordas-waterway-investigation-v1 OG10",
+      "pass": true
+    },
+    {
+      "check": "ordas-waterway-investigation-v1 OG11",
+      "pass": true
+    },
+    {
+      "check": "ordas-waterway-investigation-v1 OG12",
+      "pass": true
+    },
+    {
+      "check": "ordas-waterway-investigation-v1 OG13",
+      "pass": true
+    },
+    {
+      "check": "ordas-waterway-investigation-v1 OS2",
+      "pass": true
+    },
+    {
+      "check": "ordas-waterway-investigation-v1 segment survey_out 0",
+      "pass": true
+    },
+    {
+      "check": "ordas-waterway-investigation-v1 segment survey_out 1",
+      "pass": true
+    },
+    {
+      "check": "ordas-waterway-investigation-v1 segment survey_back 0",
+      "pass": true
+    },
+    {
+      "check": "ordas-waterway-investigation-v1 segment survey_back 1",
+      "pass": true
+    },
+    {
+      "check": "ordas-waterway-investigation-v1 segment reservoir_out 0",
+      "pass": true
+    },
+    {
+      "check": "ordas-waterway-investigation-v1 segment reservoir_out 1",
+      "pass": true
+    },
+    {
+      "check": "ordas-waterway-investigation-v1 segment reservoir_out 2",
+      "pass": true
+    },
+    {
+      "check": "ordas-waterway-investigation-v1 segment reservoir_out 3",
+      "pass": true
+    },
+    {
+      "check": "ordas-waterway-investigation-v1 segment reservoir_back 0",
+      "pass": true
+    },
+    {
+      "check": "ordas-waterway-investigation-v1 segment reservoir_back 1",
+      "pass": true
+    },
+    {
+      "check": "ordas-waterway-investigation-v1 segment reservoir_back 2",
+      "pass": true
+    },
+    {
+      "check": "ordas-waterway-investigation-v1 segment reservoir_back 3",
+      "pass": true
+    },
+    {
+      "check": "ordas-waterway-investigation-v1 segment reservoir_bypass 0",
+      "pass": true
+    },
+    {
+      "check": "ordas-waterway-investigation-v1 segment reservoir_bypass 1",
+      "pass": true
+    },
+    {
+      "check": "ordas-waterway-investigation-v1 segment reservoir_bypass 2",
+      "pass": true
+    },
+    {
+      "check": "ordas-waterway-investigation-v1 segment reservoir_optional 0",
+      "pass": true
+    },
+    {
+      "check": "ordas-waterway-investigation-v1 segment reservoir_optional 1",
+      "pass": true
+    },
+    {
+      "check": "ordas-waterway-investigation-v1 segment eastern_out 0",
+      "pass": true
+    },
+    {
+      "check": "ordas-waterway-investigation-v1 segment eastern_out 1",
+      "pass": true
+    },
+    {
+      "check": "ordas-waterway-investigation-v1 segment eastern_out 2",
+      "pass": true
+    },
+    {
+      "check": "ordas-waterway-investigation-v1 segment eastern_out 3",
+      "pass": true
+    },
+    {
+      "check": "ordas-waterway-investigation-v1 segment eastern_out 4",
+      "pass": true
+    },
+    {
+      "check": "ordas-waterway-investigation-v1 segment eastern_back 0",
+      "pass": true
+    },
+    {
+      "check": "ordas-waterway-investigation-v1 segment eastern_back 1",
+      "pass": true
+    },
+    {
+      "check": "ordas-waterway-investigation-v1 segment eastern_back 2",
+      "pass": true
+    },
+    {
+      "check": "ordas-waterway-investigation-v1 segment crosslink 0",
+      "pass": true
+    },
+    {
+      "check": "ordas-waterway-investigation-v1 segment handoff_return 0",
+      "pass": true
+    },
+    {
+      "check": "ordas-waterway-investigation-v1 segment handoff_return 1",
+      "pass": true
+    },
+    {
+      "check": "ordas-waterway-investigation-v1 segment handoff_return 2",
+      "pass": true
+    },
+    {
+      "check": "ordas-waterway-investigation-v1 segment handoff_return 3",
+      "pass": true
+    },
+    {
+      "check": "ordas-waterway-investigation-v1 segment ruin_optional 0",
+      "pass": true
+    },
+    {
+      "check": "ordas-waterway-investigation-v1 segment ruin_optional 1",
+      "pass": true
+    },
+    {
+      "check": "ordas-waterway-investigation-v1 segment future_plateau 0",
+      "pass": true
+    },
+    {
+      "check": "ordas-waterway-investigation-v1 covered overflow shown",
+      "pass": true
+    }
+  ]
+}

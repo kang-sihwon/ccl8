@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1050" viewBox="0 0 1800 1050">
+<rect width="1800" height="1050" fill="#f0f3ef"/>
+<text x="50.000" y="72.000" font-family="Malgun Gothic,sans-serif" font-size="40" fill="#263d43" font-weight="700">T2 | 아르베나 인계에서 오르다스 외항까지</text>
+<text x="50.000" y="119.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#687b7b" font-weight="400">비축척 수송·진행 관계 / 세계 방위·해거리·소요일을 나타내지 않는다</text>
+<polygon id="transfer-0" points="60.000,220.000 460.000,220.000 460.000,410.000 60.000,410.000" fill="#dde6d7" stroke="#263d43"/>
+<text x="78.000" y="265.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#263d43" font-weight="700">AR-P01 동부 기항항</text>
+<text x="78.000" y="313.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#263d43" font-weight="400">A06 서류·운항 인계</text>
+<text x="78.000" y="361.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#263d43" font-weight="400">A01 여객 해선 / 7명 현지 돌봄</text>
+<polygon id="transfer-1" points="680.000,220.000 1120.000,220.000 1120.000,410.000 680.000,410.000" fill="#dde6d7" stroke="#263d43"/>
+<text x="698.000" y="265.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#263d43" font-weight="700">기존 남동부 교역 기항</text>
+<text x="698.000" y="313.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#263d43" font-weight="400">연안편 인계·환승 명부</text>
+<text x="698.000" y="361.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#263d43" font-weight="400">T2 해선·귀환 협약 재확인</text>
+<polygon id="transfer-2" points="1320.000,220.000 1730.000,220.000 1730.000,410.000 1320.000,410.000" fill="#dde6d7" stroke="#263d43"/>
+<text x="1338.000" y="265.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#263d43" font-weight="700">OR-P01 북부 외항</text>
+<text x="1338.000" y="313.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#263d43" font-weight="400">외항 도선 → P01 입항</text>
+<text x="1338.000" y="361.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#263d43" font-weight="400">봉쇄 해결을 요구하지 않음</text>
+<polyline points="460.000,315.000 680.000,315.000" fill="none" stroke="#397c99" stroke-width="5"/>
+<polyline points="1120.000,315.000 1320.000,315.000" fill="none" stroke="#397c99" stroke-width="5"/>
+<text x="80.000" y="498.000" font-family="Malgun Gothic,sans-serif" font-size="28" fill="#263d43" font-weight="700">G3 출항 준비: 구조·조건부 통행·물자 행선지·선주회 배편과 안내</text>
+<text x="80.000" y="559.000" font-family="Malgun Gothic,sans-serif" font-size="24" fill="#263d43" font-weight="400">주인공·마렌 동행 / 린: 세르나·로덴 / 이르: 중앙·북부 / 현지 도선사·수로 안내인 합류</text>
+<text x="80.000" y="632.000" font-family="Malgun Gothic,sans-serif" font-size="27" fill="#263d43" font-weight="700">외항 접수 → 저수지 탐색 → 점거 경계·제한 관측 → 증거 대조 → 고원 조사 조건 협의</text>
+<text x="80.000" y="704.000" font-family="Malgun Gothic,sans-serif" font-size="24" fill="#263d43" font-weight="400">원본·설비·생존자는 현지 인계. 필요한 사본·연락 창구·귀환 비용만 이어받는다.</text>
+<text x="80.000" y="769.000" font-family="Malgun Gothic,sans-serif" font-size="24" fill="#263d43" font-weight="400">조사 실패: 외항으로 철수하고 계약편 대기. 봉쇄 전투를 반복해 귀환권을 갱신하지 않는다.</text>
+<text x="80.000" y="851.000" font-family="Malgun Gothic,sans-serif" font-size="26" fill="#263d43" font-weight="700">이번 성장 +4 = 필드 3 + 조사 1 / 남은 +6 = 필드 3 + 주요 목표 2 + 조사 1</text>
+<text x="80.000" y="924.000" font-family="Malgun Gothic,sans-serif" font-size="24" fill="#263d43" font-weight="400">내해·고원 통행 회복, 흰침 만티코어, G4 원양 항해는 후속 후보에 남긴다.</text>
+</svg>
