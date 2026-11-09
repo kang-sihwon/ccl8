@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1950" height="1330" viewBox="0 0 1950 1330">
+<rect width="1950" height="1330" fill="#f0f3ef"/>
+<text x="50.000" y="72.000" font-family="Malgun Gothic,sans-serif" font-size="40" fill="#263d43" font-weight="700">세르나 → 아르베나 | G1·G2 출항과 귀환</text>
+<text x="50.000" y="119.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#687b7b" font-weight="400">진행·수송 관계도 / 비축척 / 세계 해안·해거리·항해 일수는 미확정</text>
+<polygon points="60.000,190.000 610.000,190.000 610.000,490.000 60.000,490.000" fill="#dfe7df" stroke="#263d43"/>
+<text x="78.000" y="243.000" font-family="Malgun Gothic,sans-serif" font-size="29" fill="#263d43" font-weight="700">G1  선택 왕래</text>
+<text x="78.000" y="312.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#263d43" font-weight="400">S3 완료·로덴 수령·수리비 인계</text>
+<text x="78.000" y="364.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#263d43" font-weight="400">세르나에서 왕복 선실 확보</text>
+<text x="78.000" y="416.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#263d43" font-weight="400">주인공·마렌 / 린은 항만 잔류</text>
+<polygon points="700.000,190.000 1250.000,190.000 1250.000,490.000 700.000,490.000" fill="#dfe7df" stroke="#263d43"/>
+<text x="718.000" y="243.000" font-family="Malgun Gothic,sans-serif" font-size="29" fill="#263d43" font-weight="700">G2  최초 방문 또는 재방문</text>
+<text x="718.000" y="312.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#263d43" font-weight="400">G1 준비 조건 + S6 정지·운용 인계</text>
+<text x="718.000" y="364.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#263d43" font-weight="400">세르나 위임 접수인과 조사 계약</text>
+<text x="718.000" y="416.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#263d43" font-weight="400">이전 아르베나 방문은 필요 없음</text>
+<polygon points="1340.000,190.000 1890.000,190.000 1890.000,490.000 1340.000,490.000" fill="#dfe7df" stroke="#263d43"/>
+<text x="1358.000" y="243.000" font-family="Malgun Gothic,sans-serif" font-size="29" fill="#263d43" font-weight="700">공통 출항</text>
+<text x="1358.000" y="312.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#263d43" font-weight="400">H03 서류·H11 높은 길·H10 잔교</text>
+<text x="1358.000" y="364.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#263d43" font-weight="400">항내 통선 → O01 계약 해선</text>
+<text x="1358.000" y="416.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#263d43" font-weight="400">린 강배와 원양 해선은 별개</text>
+<text x="630.000" y="340.000" font-family="Malgun Gothic,sans-serif" font-size="25" fill="#263d43" font-weight="400">또는</text>
+<text x="1275.000" y="350.000" font-family="Malgun Gothic,sans-serif" font-size="35" fill="#ac663b" font-weight="400">→</text>
+<polyline points="1615.000,500.000 1615.000,560.000 310.000,560.000 310.000,620.000" fill="none" stroke="#397c99" stroke-width="4"/>
+<text x="520.000" y="540.000" font-family="Malgun Gothic,sans-serif" font-size="25" fill="#397c99" font-weight="400">T1 정상 교역 항로 · 기상·보급 판단은 선장과 계약 선원</text>
+<polygon points="60.000,620.000 610.000,620.000 610.000,920.000 60.000,920.000" fill="#e3e8e8" stroke="#263d43"/>
+<text x="78.000" y="672.000" font-family="Malgun Gothic,sans-serif" font-size="28" fill="#263d43" font-weight="700">도착과 공개 탐색</text>
+<text x="78.000" y="742.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#263d43" font-weight="400">A16 통선 → A01 하선 → A03 통관</text>
+<text x="78.000" y="794.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#263d43" font-weight="400">A05 숙소·귀환 접수 → A06 조합</text>
+<text x="78.000" y="846.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#263d43" font-weight="400">AR1 수거장 ↔ AR2 곡창·낮은 숲</text>
+<polygon points="700.000,620.000 1250.000,620.000 1250.000,920.000 700.000,920.000" fill="#e3e8e8" stroke="#263d43"/>
+<text x="718.000" y="672.000" font-family="Malgun Gothic,sans-serif" font-size="28" fill="#263d43" font-weight="700">G2 조사 범위 추가</text>
+<text x="718.000" y="742.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#263d43" font-weight="400">A15 기록 → B01 → A11-A12 작업장</text>
+<text x="718.000" y="794.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#263d43" font-weight="400">별도 서쪽 퇴로 B02 → A06 인계</text>
+<text x="718.000" y="846.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#263d43" font-weight="400">A13 조사선 준비 / 수색 본편은 다음</text>
+<polygon points="1340.000,620.000 1890.000,620.000 1890.000,920.000 1340.000,920.000" fill="#e3e8e8" stroke="#263d43"/>
+<text x="1358.000" y="672.000" font-family="Malgun Gothic,sans-serif" font-size="28" fill="#263d43" font-weight="700">언제든 준비된 귀환</text>
+<text x="1358.000" y="742.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#263d43" font-weight="400">A06 → 숙소·통관 → A01 여객 잔교</text>
+<text x="1358.000" y="794.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#263d43" font-weight="400">항내 통선 → 계약 해선 → 세르나</text>
+<text x="1358.000" y="846.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#263d43" font-weight="400">G1 귀환 후 S4 후속 정기 상행편</text>
+<text x="60.000" y="1035.000" font-family="Malgun Gothic,sans-serif" font-size="25" fill="#263d43" font-weight="400">G1 공개 개체·발견 기록을 G2에서도 유지. 조사 계약은 몬스터 강화나 대륙 전체 통행권이 아니다.</text>
+<text x="60.000" y="1095.000" font-family="Malgun Gothic,sans-serif" font-size="25" fill="#263d43" font-weight="400">G1 선택 +1–2 / G2 첫 조사 +1은 아르베나 본편 +10 중 일부. 중복 발견 보상 없음.</text>
+<text x="60.000" y="1155.000" font-family="Malgun Gothic,sans-serif" font-size="25" fill="#263d43" font-weight="400">조사 중단·전투 실패와 왕복 귀환권은 분리. 돛갈퀴 해수전·G3 오르다스 해금은 이번 범위 밖.</text>
+<text x="60.000" y="1223.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#687b7b" font-weight="400">동료·설비 원본은 책임자에게 남기고 비교 사본·정상 부품을 가져간다. 인수 동의는 공급 용량 검증이 아니다.</text>
+</svg>

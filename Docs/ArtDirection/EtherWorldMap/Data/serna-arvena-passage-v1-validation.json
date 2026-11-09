@@ -1,0 +1,785 @@
+{
+  "status": "PASS",
+  "checks_count": 192,
+  "passed": 192,
+  "checks": [
+    {
+      "check": "preserved source Docs/ArtDirection/EtherWorldMap/Data/roden-serna-exploration-v1.json",
+      "pass": true
+    },
+    {
+      "check": "preserved source Docs/ArtDirection/EtherWorldMap/Data/ignis-continent-georeference-v1.json",
+      "pass": true
+    },
+    {
+      "check": "preserved source Docs/ArtDirection/EtherWorldMap/Data/ether-world-map-land35-precise-v3.json",
+      "pass": true
+    },
+    {
+      "check": "preserved source Docs/Narrative/World.md",
+      "pass": true
+    },
+    {
+      "check": "preserved source Docs/Narrative/Scenario.md",
+      "pass": true
+    },
+    {
+      "check": "preserved source Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-08-five-continent-mainline/routes-and-unlocks.md",
+      "pass": true
+    },
+    {
+      "check": "preserved source Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-08-world-distribution-and-leveling/variant-distribution.md",
+      "pass": true
+    },
+    {
+      "check": "preserved source Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-08-world-distribution-and-leveling/progression.md",
+      "pass": true
+    },
+    {
+      "check": "26 unique nodes",
+      "pass": true
+    },
+    {
+      "check": "7 forms",
+      "pass": true
+    },
+    {
+      "check": "8 groups",
+      "pass": true
+    },
+    {
+      "check": "20 individuals",
+      "pass": true
+    },
+    {
+      "check": "one structure",
+      "pass": true
+    },
+    {
+      "check": "P01 region",
+      "pass": true
+    },
+    {
+      "check": "P01 range",
+      "pass": true
+    },
+    {
+      "check": "P01 pursuit finite",
+      "pass": true
+    },
+    {
+      "check": "P02 region",
+      "pass": true
+    },
+    {
+      "check": "P02 range",
+      "pass": true
+    },
+    {
+      "check": "P02 pursuit finite",
+      "pass": true
+    },
+    {
+      "check": "P03 region",
+      "pass": true
+    },
+    {
+      "check": "P03 range",
+      "pass": true
+    },
+    {
+      "check": "P03 pursuit finite",
+      "pass": true
+    },
+    {
+      "check": "P04 region",
+      "pass": true
+    },
+    {
+      "check": "P04 range",
+      "pass": true
+    },
+    {
+      "check": "P04 pursuit finite",
+      "pass": true
+    },
+    {
+      "check": "P05 region",
+      "pass": true
+    },
+    {
+      "check": "P05 range",
+      "pass": true
+    },
+    {
+      "check": "P05 pursuit finite",
+      "pass": true
+    },
+    {
+      "check": "P06 region",
+      "pass": true
+    },
+    {
+      "check": "P06 range",
+      "pass": true
+    },
+    {
+      "check": "P06 pursuit finite",
+      "pass": true
+    },
+    {
+      "check": "P07 region",
+      "pass": true
+    },
+    {
+      "check": "P07 range",
+      "pass": true
+    },
+    {
+      "check": "P07 pursuit finite",
+      "pass": true
+    },
+    {
+      "check": "P08 region",
+      "pass": true
+    },
+    {
+      "check": "P08 range",
+      "pass": true
+    },
+    {
+      "check": "P08 pursuit finite",
+      "pass": true
+    },
+    {
+      "check": "CT02-A range from progression",
+      "pass": true
+    },
+    {
+      "check": "fairies not default hostile",
+      "pass": true
+    },
+    {
+      "check": "goblins not default hostile",
+      "pass": true
+    },
+    {
+      "check": "arrival node references",
+      "pass": true
+    },
+    {
+      "check": "arrival endpoint joins",
+      "pass": true
+    },
+    {
+      "check": "arrival length",
+      "pass": true
+    },
+    {
+      "check": "arrival no water walking",
+      "pass": true
+    },
+    {
+      "check": "arrival canal uses bridges",
+      "pass": true
+    },
+    {
+      "check": "public_out node references",
+      "pass": true
+    },
+    {
+      "check": "public_out endpoint joins",
+      "pass": true
+    },
+    {
+      "check": "public_out length",
+      "pass": true
+    },
+    {
+      "check": "public_out no water walking",
+      "pass": true
+    },
+    {
+      "check": "public_out canal uses bridges",
+      "pass": true
+    },
+    {
+      "check": "public_back node references",
+      "pass": true
+    },
+    {
+      "check": "public_back endpoint joins",
+      "pass": true
+    },
+    {
+      "check": "public_back length",
+      "pass": true
+    },
+    {
+      "check": "public_back no water walking",
+      "pass": true
+    },
+    {
+      "check": "public_back canal uses bridges",
+      "pass": true
+    },
+    {
+      "check": "public_north_bypass node references",
+      "pass": true
+    },
+    {
+      "check": "public_north_bypass endpoint joins",
+      "pass": true
+    },
+    {
+      "check": "public_north_bypass length",
+      "pass": true
+    },
+    {
+      "check": "public_north_bypass no water walking",
+      "pass": true
+    },
+    {
+      "check": "public_north_bypass canal uses bridges",
+      "pass": true
+    },
+    {
+      "check": "drain_spur node references",
+      "pass": true
+    },
+    {
+      "check": "drain_spur endpoint joins",
+      "pass": true
+    },
+    {
+      "check": "drain_spur length",
+      "pass": true
+    },
+    {
+      "check": "drain_spur no water walking",
+      "pass": true
+    },
+    {
+      "check": "drain_spur canal uses bridges",
+      "pass": true
+    },
+    {
+      "check": "G2_records node references",
+      "pass": true
+    },
+    {
+      "check": "G2_records endpoint joins",
+      "pass": true
+    },
+    {
+      "check": "G2_records length",
+      "pass": true
+    },
+    {
+      "check": "G2_records no water walking",
+      "pass": true
+    },
+    {
+      "check": "G2_records canal uses bridges",
+      "pass": true
+    },
+    {
+      "check": "G2_out node references",
+      "pass": true
+    },
+    {
+      "check": "G2_out endpoint joins",
+      "pass": true
+    },
+    {
+      "check": "G2_out length",
+      "pass": true
+    },
+    {
+      "check": "G2_out no water walking",
+      "pass": true
+    },
+    {
+      "check": "G2_out canal uses bridges",
+      "pass": true
+    },
+    {
+      "check": "G2_back node references",
+      "pass": true
+    },
+    {
+      "check": "G2_back endpoint joins",
+      "pass": true
+    },
+    {
+      "check": "G2_back length",
+      "pass": true
+    },
+    {
+      "check": "G2_back no water walking",
+      "pass": true
+    },
+    {
+      "check": "G2_back canal uses bridges",
+      "pass": true
+    },
+    {
+      "check": "boat_preparation node references",
+      "pass": true
+    },
+    {
+      "check": "boat_preparation endpoint joins",
+      "pass": true
+    },
+    {
+      "check": "boat_preparation length",
+      "pass": true
+    },
+    {
+      "check": "boat_preparation no water walking",
+      "pass": true
+    },
+    {
+      "check": "boat_preparation canal uses bridges",
+      "pass": true
+    },
+    {
+      "check": "public_lookout node references",
+      "pass": true
+    },
+    {
+      "check": "public_lookout endpoint joins",
+      "pass": true
+    },
+    {
+      "check": "public_lookout length",
+      "pass": true
+    },
+    {
+      "check": "public_lookout no water walking",
+      "pass": true
+    },
+    {
+      "check": "public_lookout canal uses bridges",
+      "pass": true
+    },
+    {
+      "check": "return_to_passenger node references",
+      "pass": true
+    },
+    {
+      "check": "return_to_passenger endpoint joins",
+      "pass": true
+    },
+    {
+      "check": "return_to_passenger length",
+      "pass": true
+    },
+    {
+      "check": "return_to_passenger no water walking",
+      "pass": true
+    },
+    {
+      "check": "return_to_passenger canal uses bridges",
+      "pass": true
+    },
+    {
+      "check": "arrival_tender node references",
+      "pass": true
+    },
+    {
+      "check": "arrival_tender endpoint joins",
+      "pass": true
+    },
+    {
+      "check": "arrival_tender length",
+      "pass": true
+    },
+    {
+      "check": "arrival_tender water transit",
+      "pass": true
+    },
+    {
+      "check": "public loop closes",
+      "pass": true
+    },
+    {
+      "check": "G2 loop closes",
+      "pass": true
+    },
+    {
+      "check": "G2 uses distinct bridges",
+      "pass": true
+    },
+    {
+      "check": "north bypass avoids wasp home",
+      "pass": true
+    },
+    {
+      "check": "arrival public avoids restricted",
+      "pass": true
+    },
+    {
+      "check": "public_out public avoids restricted",
+      "pass": true
+    },
+    {
+      "check": "public_back public avoids restricted",
+      "pass": true
+    },
+    {
+      "check": "public_north_bypass public avoids restricted",
+      "pass": true
+    },
+    {
+      "check": "public_lookout public avoids restricted",
+      "pass": true
+    },
+    {
+      "check": "return_to_passenger public avoids restricted",
+      "pass": true
+    },
+    {
+      "check": "all public exploration nodes return to passenger pier",
+      "pass": true
+    },
+    {
+      "check": "G2 no previous visit prerequisite",
+      "pass": true
+    },
+    {
+      "check": "G1 records count",
+      "pass": true
+    },
+    {
+      "check": "G2 has all original conditions",
+      "pass": true
+    },
+    {
+      "check": "return independent of investigation",
+      "pass": true
+    },
+    {
+      "check": "G3 not completed",
+      "pass": true
+    },
+    {
+      "check": "first investigation plus remaining budget is 10",
+      "pass": true
+    },
+    {
+      "check": "no repeated discovery reward",
+      "pass": true
+    },
+    {
+      "check": "no enemy scaling",
+      "pass": true
+    },
+    {
+      "check": "Lin stays",
+      "pass": true
+    },
+    {
+      "check": "Maren travels",
+      "pass": true
+    },
+    {
+      "check": "T1 not invented distance",
+      "pass": true
+    },
+    {
+      "check": "arrival not georeferenced",
+      "pass": true
+    },
+    {
+      "check": "Serna original H nodes",
+      "pass": true
+    },
+    {
+      "check": "Serna coast unchanged",
+      "pass": true
+    },
+    {
+      "check": "central R2 source",
+      "pass": true
+    },
+    {
+      "check": "central R1 source",
+      "pass": true
+    },
+    {
+      "check": "central road to river join",
+      "pass": true
+    },
+    {
+      "check": "original O01",
+      "pass": true
+    },
+    {
+      "check": "tender starts at H10",
+      "pass": true
+    },
+    {
+      "check": "walk and reverse",
+      "pass": true
+    },
+    {
+      "check": "tender stays on sea side of source segment",
+      "pass": true
+    },
+    {
+      "check": "SVG node A01",
+      "pass": true
+    },
+    {
+      "check": "SVG node A02",
+      "pass": true
+    },
+    {
+      "check": "SVG node A03",
+      "pass": true
+    },
+    {
+      "check": "SVG node A04",
+      "pass": true
+    },
+    {
+      "check": "SVG node A05",
+      "pass": true
+    },
+    {
+      "check": "SVG node A06",
+      "pass": true
+    },
+    {
+      "check": "SVG node A07",
+      "pass": true
+    },
+    {
+      "check": "SVG node A08",
+      "pass": true
+    },
+    {
+      "check": "SVG node A09",
+      "pass": true
+    },
+    {
+      "check": "SVG node A10",
+      "pass": true
+    },
+    {
+      "check": "SVG node A11",
+      "pass": true
+    },
+    {
+      "check": "SVG node A12",
+      "pass": true
+    },
+    {
+      "check": "SVG node A13",
+      "pass": true
+    },
+    {
+      "check": "SVG node A14",
+      "pass": true
+    },
+    {
+      "check": "SVG node A15",
+      "pass": true
+    },
+    {
+      "check": "SVG node A16",
+      "pass": true
+    },
+    {
+      "check": "SVG node B01",
+      "pass": true
+    },
+    {
+      "check": "SVG node B02",
+      "pass": true
+    },
+    {
+      "check": "SVG node F01",
+      "pass": true
+    },
+    {
+      "check": "SVG node F02",
+      "pass": true
+    },
+    {
+      "check": "SVG node F03",
+      "pass": true
+    },
+    {
+      "check": "SVG node F04",
+      "pass": true
+    },
+    {
+      "check": "SVG node F05",
+      "pass": true
+    },
+    {
+      "check": "SVG node F06",
+      "pass": true
+    },
+    {
+      "check": "SVG node F07",
+      "pass": true
+    },
+    {
+      "check": "SVG node J01",
+      "pass": true
+    },
+    {
+      "check": "SVG home P01",
+      "pass": true
+    },
+    {
+      "check": "SVG routine P01",
+      "pass": true
+    },
+    {
+      "check": "SVG home P02",
+      "pass": true
+    },
+    {
+      "check": "SVG routine P02",
+      "pass": true
+    },
+    {
+      "check": "SVG home P03",
+      "pass": true
+    },
+    {
+      "check": "SVG home P04",
+      "pass": true
+    },
+    {
+      "check": "SVG home P05",
+      "pass": true
+    },
+    {
+      "check": "SVG routine P05",
+      "pass": true
+    },
+    {
+      "check": "SVG home P06",
+      "pass": true
+    },
+    {
+      "check": "SVG home P07",
+      "pass": true
+    },
+    {
+      "check": "SVG home P08",
+      "pass": true
+    },
+    {
+      "check": "SVG path arrival",
+      "pass": true
+    },
+    {
+      "check": "SVG path public_out",
+      "pass": true
+    },
+    {
+      "check": "SVG path public_back",
+      "pass": true
+    },
+    {
+      "check": "SVG path public_north_bypass",
+      "pass": true
+    },
+    {
+      "check": "SVG path drain_spur",
+      "pass": true
+    },
+    {
+      "check": "SVG path G2_records",
+      "pass": true
+    },
+    {
+      "check": "SVG path G2_out",
+      "pass": true
+    },
+    {
+      "check": "SVG path G2_back",
+      "pass": true
+    },
+    {
+      "check": "SVG path boat_preparation",
+      "pass": true
+    },
+    {
+      "check": "SVG path public_lookout",
+      "pass": true
+    },
+    {
+      "check": "SVG path arrival_tender",
+      "pass": true
+    },
+    {
+      "check": "SVG all departure and investigation spurs rendered",
+      "pass": true
+    },
+    {
+      "check": "SVG bridge B01",
+      "pass": true
+    },
+    {
+      "check": "SVG bridge B02",
+      "pass": true
+    },
+    {
+      "check": "SVG harbor walk",
+      "pass": true
+    },
+    {
+      "check": "SVG harbor tender 0",
+      "pass": true
+    },
+    {
+      "check": "SVG harbor tender 1",
+      "pass": true
+    },
+    {
+      "check": "SVG outer walk",
+      "pass": true
+    },
+    {
+      "check": "SVG outer tender 0",
+      "pass": true
+    },
+    {
+      "check": "SVG outer tender 1",
+      "pass": true
+    },
+    {
+      "check": "SVG outer tender 2",
+      "pass": true
+    },
+    {
+      "check": "serna-arvena-gates-v1 labels not empty",
+      "pass": true
+    },
+    {
+      "check": "serna-ocean-departure-v1 labels not empty",
+      "pass": true
+    },
+    {
+      "check": "arvena-arrival-exploration-v1 labels not empty",
+      "pass": true
+    }
+  ],
+  "limits": [
+    "No gameplay, capacity, navigation, weather or LOS validation",
+    "Canal checks sample design lines every 2m; local water geometry is a proposal",
+    "Narrative meaning reviewed separately"
+  ],
+  "artifact_sha256": {
+    "Docs/ArtDirection/EtherWorldMap/Images/serna-arvena-gates-v1.svg": "98a5511b4582a8ac933c7a16296f42f4cb108555e076245c0543ea708af89b6e",
+    "Docs/ArtDirection/EtherWorldMap/Images/serna-ocean-departure-v1.svg": "c9357a5aa6e94b66cec8770fabb1d797b6930647aca17581c570f49d7d3b854e",
+    "Docs/ArtDirection/EtherWorldMap/Images/arvena-arrival-exploration-v1.svg": "b1cef57cb7420f757e82f8e85f8beb77ac20f7d7f12e54d017527ffda36aad6c"
+  }
+}

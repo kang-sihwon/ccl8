@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1950" height="1550" viewBox="0 0 1950 1550">
+<rect width="1950" height="1550" fill="#f0f3ef"/>
+<text x="50.000" y="72.000" font-family="Malgun Gothic,sans-serif" font-size="40" fill="#263d43" font-weight="700">세르나 | 출항 준비와 항내 환승</text>
+<text x="50.000" y="119.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#687b7b" font-weight="400">기존 M03·H01-H13·해안 유지 / 원양선은 O01 계약 해선 / 접안·흘수·기상은 미검증</text>
+<polygon points="60.000,939.000 60.000,210.000 1032.000,210.000 1032.000,939.000" fill="#cddfe4" stroke="#cddfe4"/>
+<polygon points="60.000,680.767 79.964,701.151 1032.000,632.848 1032.000,210.000 60.000,210.000" fill="#dce5d4" stroke="#dce5d4"/>
+<polyline id="harbor-coast-1" points="60.000,680.767 79.964,701.151" fill="none" stroke="#687b7b" stroke-width="3"/>
+<polyline id="harbor-coast-2" points="79.964,701.151 1032.000,632.848" fill="none" stroke="#687b7b" stroke-width="3"/>
+<polygon points="1190.000,1062.500 1190.000,210.000 1795.000,210.000 1795.000,1062.500" fill="#cddfe4" stroke="#cddfe4"/>
+<polygon points="1366.716,210.000 1518.567,365.049 1795.000,345.217 1795.000,210.000" fill="#dce5d4" stroke="#dce5d4"/>
+<polyline id="outer-coast-1" points="1366.716,210.000 1518.567,365.049" fill="none" stroke="#687b7b" stroke-width="3"/>
+<polyline id="outer-coast-2" points="1518.567,365.049 1795.000,345.217" fill="none" stroke="#687b7b" stroke-width="3"/>
+<text x="60.000" y="182.000" font-family="Malgun Gothic,sans-serif" font-size="27" fill="#263d43" font-weight="700">항만 준비·승선 확대</text>
+<text x="1190.000" y="182.000" font-family="Malgun Gothic,sans-serif" font-size="27" fill="#263d43" font-weight="700">외항 계약 해선 연결</text>
+<polyline id="harbor-walk" points="181.500,453.000 149.100,547.500 640.500,412.500 870.000,426.000 870.000,650.100" fill="none" stroke="#ac663b" stroke-width="4"/>
+<polyline id="harbor-tender-0" points="870.000,650.100 870.000,912.000" fill="none" stroke="#397c99" stroke-width="4"/>
+<polyline id="harbor-tender-1" points="870.000,912.000 785.143,939.000" fill="none" stroke="#397c99" stroke-width="4"/>
+<polyline id="outer-walk" points="1539.250,314.500 1532.650,333.750 1632.750,306.250 1679.500,309.000 1679.500,354.650" fill="none" stroke="#ac663b" stroke-width="4"/>
+<polyline id="outer-tender-0" points="1679.500,354.650 1679.500,408.000" fill="none" stroke="#397c99" stroke-width="4"/>
+<polyline id="outer-tender-1" points="1679.500,408.000 1437.500,485.000" fill="none" stroke="#397c99" stroke-width="4"/>
+<polyline id="outer-tender-2" points="1437.500,485.000 1292.833,985.246" fill="none" stroke="#397c99" stroke-width="4"/>
+<circle id="departure-H01" cx="181.500" cy="453.000" r="7.000" fill="#263d43" stroke="#263d43"/>
+<text x="121.500" y="440.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#263d43" font-weight="400">H01 항만 연락나루</text>
+<circle id="departure-H02" cx="149.100" cy="547.500" r="7.000" fill="#263d43" stroke="#263d43"/>
+<text x="89.100" y="581.500" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#263d43" font-weight="400">H02 선박 수리대</text>
+<circle id="departure-H03" cx="640.500" cy="412.500" r="7.000" fill="#263d43" stroke="#263d43"/>
+<text x="600.500" y="394.500" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#263d43" font-weight="400">H03 창고·배정소</text>
+<circle id="departure-H11" cx="870.000" cy="426.000" r="7.000" fill="#263d43" stroke="#263d43"/>
+<text x="885.000" y="438.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#263d43" font-weight="400">H11 높은 제방·절벽길</text>
+<circle id="departure-H10" cx="870.000" cy="650.100" r="7.000" fill="#263d43" stroke="#263d43"/>
+<text x="820.000" y="687.100" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#263d43" font-weight="400">H10 동쪽 구조잔교</text>
+<circle id="O01" cx="1292.833" cy="985.246" r="8.000" fill="#397c99" stroke="#263d43"/>
+<text x="1310.833" y="994.246" font-family="Malgun Gothic,sans-serif" font-size="24" fill="#263d43" font-weight="400">O01 계약 해선</text>
+<text x="1220.000" y="1144.000" font-family="Malgun Gothic,sans-serif" font-size="24" fill="#263d43" font-weight="400">통선은 항내 환승만 담당</text>
+<text x="1220.000" y="1194.000" font-family="Malgun Gothic,sans-serif" font-size="24" fill="#263d43" font-weight="400">T1은 이 점 이후의 수송 관계</text>
+<text x="1220.000" y="1242.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#687b7b" font-weight="400">아르베나까지 직선을 그리지 않음</text>
+<text x="60.000" y="1064.000" font-family="Malgun Gothic,sans-serif" font-size="24" fill="#263d43" font-weight="400">주황: H01 → H02 → H03 → H11 → H10. 귀환은 같은 높은 공공길을 이용한다.</text>
+<text x="60.000" y="1129.000" font-family="Malgun Gothic,sans-serif" font-size="24" fill="#263d43" font-weight="400">파랑: H10 → 항내 통선 → 기존 외항 대기점 O01. 실제 항행을 보증하지 않는다.</text>
+<text x="60.000" y="1194.000" font-family="Malgun Gothic,sans-serif" font-size="24" fill="#687b7b" font-weight="400">H10은 구조 잔교다. 구조 출동·허가 시간·조수 조건이 우선이며 지연 때 H03으로 돌아간다.</text>
+<text x="60.000" y="1259.000" font-family="Malgun Gothic,sans-serif" font-size="24" fill="#687b7b" font-weight="400">G2의 중앙 귀환은 기존 R2 → 공공 환적장 → R1 하행. 세르나 사건을 다시 완료하지 않는다.</text>
+<text x="60.000" y="1324.000" font-family="Malgun Gothic,sans-serif" font-size="24" fill="#687b7b" font-weight="400">새 승객선·통선은 린의 강배 및 S3 첫 허가 화물 예비선과 별도의 계약으로 준비한다.</text>
+<polyline points="60.000,1435.000 330.000,1435.000" fill="none" stroke="#263d43" stroke-width="4"/>
+<text x="60.000" y="1483.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#263d43" font-weight="400">왼쪽 1 km / 오른쪽은 별도 축척</text>
+</svg>
