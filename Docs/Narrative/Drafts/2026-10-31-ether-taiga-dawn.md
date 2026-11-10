@@ -19,6 +19,7 @@
 
 | 읽는 때 | 문서·절 |
 |---|---|
+| T3/T4 환승·G4 원양 계약·T5 세라디온 입항과 첫 탐색을 볼 때 | [세라디온 진입 후보와 지도](2026-10-31-ether-taiga-dawn/2026-11-10-seradion-arrival.md) |
 | 오르다스 점거 수로·고원 협약·흰침 전투·38→44와 G4 준비를 볼 때 | [고원 상세 후보와 지도](2026-10-31-ether-taiga-dawn/2026-11-10-ordas-highlands.md) |
 | G3·T2 출항·오르다스 외항·저수지·봉쇄 조사와 왕복을 볼 때 | [오르다스 첫 조사 후보와 지도](2026-10-31-ether-taiga-dawn/2026-11-09-ordas-arrival-investigation.md) |
 | 아르베나 실종 선단 수색·구조·돛갈퀴 대응·G3 해금과 왕복을 볼 때 | [수색 상세 후보와 지도](2026-10-31-ether-taiga-dawn/2026-11-09-arvena-fleet-search.md) |

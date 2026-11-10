@@ -1,0 +1,823 @@
+{
+  "status": "PASS",
+  "checks_passed": 201,
+  "checks_total": 201,
+  "land_samples_2m_max": 6738,
+  "hydra_clearance_m": {
+    "survey_out": 644.0,
+    "survey_back": 317.3,
+    "retreat": 644.0,
+    "east_shelter": 1263.8
+  },
+  "checks": [
+    {
+      "name": "source Docs/ArtDirection/EtherWorldMap/Data/ignis-continent-georeference-v1.json",
+      "pass": true
+    },
+    {
+      "name": "source Docs/ArtDirection/EtherWorldMap/Data/ether-world-map-land35-precise-v3.json",
+      "pass": true
+    },
+    {
+      "name": "source Docs/ArtDirection/EtherWorldMap/Data/ordas-highlands-v1.json",
+      "pass": true
+    },
+    {
+      "name": "source Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-10-ordas-highlands/story-and-handoffs.md",
+      "pass": true
+    },
+    {
+      "name": "source Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-08-five-continent-mainline/routes-and-unlocks.md",
+      "pass": true
+    },
+    {
+      "name": "source Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-08-world-distribution-and-leveling/variant-distribution.md",
+      "pass": true
+    },
+    {
+      "name": "source Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-08-world-distribution-and-leveling/progression.md",
+      "pass": true
+    },
+    {
+      "name": "source Docs/Narrative/World.md",
+      "pass": true
+    },
+    {
+      "name": "source Docs/Narrative/Scenario.md",
+      "pass": true
+    },
+    {
+      "name": "R9 whole preserved",
+      "pass": true
+    },
+    {
+      "name": "T4 exact subsection",
+      "pass": true
+    },
+    {
+      "name": "T4 length",
+      "pass": true
+    },
+    {
+      "name": "port T09",
+      "pass": true
+    },
+    {
+      "name": "port M06",
+      "pass": true
+    },
+    {
+      "name": "T3 connects existing T09 candidate",
+      "pass": true
+    },
+    {
+      "name": "unique nodes",
+      "pass": true
+    },
+    {
+      "name": "unique groups",
+      "pass": true
+    },
+    {
+      "name": "forms",
+      "pass": true
+    },
+    {
+      "name": "individuals",
+      "pass": true
+    },
+    {
+      "name": "no new structures or human combatants",
+      "pass": true
+    },
+    {
+      "name": "form exists SG1",
+      "pass": true
+    },
+    {
+      "name": "range SG1",
+      "pass": true
+    },
+    {
+      "name": "SE1 SG1",
+      "pass": true
+    },
+    {
+      "name": "name SG1",
+      "pass": true
+    },
+    {
+      "name": "routine starts at home SG1",
+      "pass": true
+    },
+    {
+      "name": "positive group SG1",
+      "pass": true
+    },
+    {
+      "name": "form exists SG2",
+      "pass": true
+    },
+    {
+      "name": "range SG2",
+      "pass": true
+    },
+    {
+      "name": "SE1 SG2",
+      "pass": true
+    },
+    {
+      "name": "name SG2",
+      "pass": true
+    },
+    {
+      "name": "routine starts at home SG2",
+      "pass": true
+    },
+    {
+      "name": "positive group SG2",
+      "pass": true
+    },
+    {
+      "name": "form exists SG3",
+      "pass": true
+    },
+    {
+      "name": "range SG3",
+      "pass": true
+    },
+    {
+      "name": "SE1 SG3",
+      "pass": true
+    },
+    {
+      "name": "name SG3",
+      "pass": true
+    },
+    {
+      "name": "routine starts at home SG3",
+      "pass": true
+    },
+    {
+      "name": "positive group SG3",
+      "pass": true
+    },
+    {
+      "name": "form exists SG4",
+      "pass": true
+    },
+    {
+      "name": "range SG4",
+      "pass": true
+    },
+    {
+      "name": "SE1 SG4",
+      "pass": true
+    },
+    {
+      "name": "name SG4",
+      "pass": true
+    },
+    {
+      "name": "routine starts at home SG4",
+      "pass": true
+    },
+    {
+      "name": "positive group SG4",
+      "pass": true
+    },
+    {
+      "name": "form exists SG5",
+      "pass": true
+    },
+    {
+      "name": "range SG5",
+      "pass": true
+    },
+    {
+      "name": "SE1 SG5",
+      "pass": true
+    },
+    {
+      "name": "name SG5",
+      "pass": true
+    },
+    {
+      "name": "routine starts at home SG5",
+      "pass": true
+    },
+    {
+      "name": "positive group SG5",
+      "pass": true
+    },
+    {
+      "name": "form exists SG6",
+      "pass": true
+    },
+    {
+      "name": "range SG6",
+      "pass": true
+    },
+    {
+      "name": "SE1 SG6",
+      "pass": true
+    },
+    {
+      "name": "name SG6",
+      "pass": true
+    },
+    {
+      "name": "routine starts at home SG6",
+      "pass": true
+    },
+    {
+      "name": "positive group SG6",
+      "pass": true
+    },
+    {
+      "name": "form exists SG7",
+      "pass": true
+    },
+    {
+      "name": "range SG7",
+      "pass": true
+    },
+    {
+      "name": "SE1 SG7",
+      "pass": true
+    },
+    {
+      "name": "name SG7",
+      "pass": true
+    },
+    {
+      "name": "routine starts at home SG7",
+      "pass": true
+    },
+    {
+      "name": "positive group SG7",
+      "pass": true
+    },
+    {
+      "name": "form exists SG8",
+      "pass": true
+    },
+    {
+      "name": "range SG8",
+      "pass": true
+    },
+    {
+      "name": "SE1 SG8",
+      "pass": true
+    },
+    {
+      "name": "name SG8",
+      "pass": true
+    },
+    {
+      "name": "routine starts at home SG8",
+      "pass": true
+    },
+    {
+      "name": "positive group SG8",
+      "pass": true
+    },
+    {
+      "name": "hydra path in pool",
+      "pass": true
+    },
+    {
+      "name": "refs landing",
+      "pass": true
+    },
+    {
+      "name": "xy landing",
+      "pass": true
+    },
+    {
+      "name": "length landing",
+      "pass": true
+    },
+    {
+      "name": "refs public",
+      "pass": true
+    },
+    {
+      "name": "xy public",
+      "pass": true
+    },
+    {
+      "name": "length public",
+      "pass": true
+    },
+    {
+      "name": "water crossings use bridges public",
+      "pass": true
+    },
+    {
+      "name": "refs survey_out",
+      "pass": true
+    },
+    {
+      "name": "xy survey_out",
+      "pass": true
+    },
+    {
+      "name": "length survey_out",
+      "pass": true
+    },
+    {
+      "name": "water crossings use bridges survey_out",
+      "pass": true
+    },
+    {
+      "name": "refs survey_back",
+      "pass": true
+    },
+    {
+      "name": "xy survey_back",
+      "pass": true
+    },
+    {
+      "name": "length survey_back",
+      "pass": true
+    },
+    {
+      "name": "water crossings use bridges survey_back",
+      "pass": true
+    },
+    {
+      "name": "refs retreat",
+      "pass": true
+    },
+    {
+      "name": "xy retreat",
+      "pass": true
+    },
+    {
+      "name": "length retreat",
+      "pass": true
+    },
+    {
+      "name": "water crossings use bridges retreat",
+      "pass": true
+    },
+    {
+      "name": "refs work_loop",
+      "pass": true
+    },
+    {
+      "name": "xy work_loop",
+      "pass": true
+    },
+    {
+      "name": "length work_loop",
+      "pass": true
+    },
+    {
+      "name": "water crossings use bridges work_loop",
+      "pass": true
+    },
+    {
+      "name": "refs east_shelter",
+      "pass": true
+    },
+    {
+      "name": "xy east_shelter",
+      "pass": true
+    },
+    {
+      "name": "length east_shelter",
+      "pass": true
+    },
+    {
+      "name": "water crossings use bridges east_shelter",
+      "pass": true
+    },
+    {
+      "name": "refs west_optional",
+      "pass": true
+    },
+    {
+      "name": "xy west_optional",
+      "pass": true
+    },
+    {
+      "name": "length west_optional",
+      "pass": true
+    },
+    {
+      "name": "water crossings use bridges west_optional",
+      "pass": true
+    },
+    {
+      "name": "refs pool_optional",
+      "pass": true
+    },
+    {
+      "name": "xy pool_optional",
+      "pass": true
+    },
+    {
+      "name": "length pool_optional",
+      "pass": true
+    },
+    {
+      "name": "water crossings use bridges pool_optional",
+      "pass": true
+    },
+    {
+      "name": "refs future_upstream",
+      "pass": true
+    },
+    {
+      "name": "xy future_upstream",
+      "pass": true
+    },
+    {
+      "name": "length future_upstream",
+      "pass": true
+    },
+    {
+      "name": "water crossings use bridges future_upstream",
+      "pass": true
+    },
+    {
+      "name": "landing boat then pier",
+      "pass": true
+    },
+    {
+      "name": "boat ends at water berth",
+      "pass": true
+    },
+    {
+      "name": "walk starts at berth",
+      "pass": true
+    },
+    {
+      "name": "pier covers water walking",
+      "pass": true
+    },
+    {
+      "name": "return is different",
+      "pass": true
+    },
+    {
+      "name": "retreat reverses same route",
+      "pass": true
+    },
+    {
+      "name": "current land all return",
+      "pass": true
+    },
+    {
+      "name": "future boundary closed",
+      "pass": true
+    },
+    {
+      "name": "north closure south return",
+      "pass": true
+    },
+    {
+      "name": "south closure north return",
+      "pass": true
+    },
+    {
+      "name": "both bridges shelter reachable",
+      "pass": true
+    },
+    {
+      "name": "both bridges no false land return",
+      "pass": true
+    },
+    {
+      "name": "bridge declared width south",
+      "pass": true
+    },
+    {
+      "name": "bridge declared width north",
+      "pass": true
+    },
+    {
+      "name": "A05 bank offset",
+      "pass": true
+    },
+    {
+      "name": "A10 bank offset",
+      "pass": true
+    },
+    {
+      "name": "main path avoids hydra survey_out",
+      "pass": true
+    },
+    {
+      "name": "main path avoids hydra survey_back",
+      "pass": true
+    },
+    {
+      "name": "main path avoids hydra retreat",
+      "pass": true
+    },
+    {
+      "name": "main path avoids hydra east_shelter",
+      "pass": true
+    },
+    {
+      "name": "optional observation warning justified",
+      "pass": true
+    },
+    {
+      "name": "G4 not complete at start",
+      "pass": true
+    },
+    {
+      "name": "G4 complete after contracts",
+      "pass": true
+    },
+    {
+      "name": "T3 T4 before G4",
+      "pass": true
+    },
+    {
+      "name": "T5 requires G4",
+      "pass": true
+    },
+    {
+      "name": "G5 G6 not completed",
+      "pass": true
+    },
+    {
+      "name": "missing condition blocks departure G3",
+      "pass": true
+    },
+    {
+      "name": "missing condition blocks departure inner_sea_highland_restored",
+      "pass": true
+    },
+    {
+      "name": "missing condition blocks departure seradion_invitation_verified",
+      "pass": true
+    },
+    {
+      "name": "missing condition blocks departure navigation_documents_verified",
+      "pass": true
+    },
+    {
+      "name": "missing condition blocks departure ocean_ship_accepted",
+      "pass": true
+    },
+    {
+      "name": "missing condition blocks departure crew_contract",
+      "pass": true
+    },
+    {
+      "name": "missing condition blocks departure roundtrip_stores_loaded",
+      "pass": true
+    },
+    {
+      "name": "missing condition blocks departure return_agreement",
+      "pass": true
+    },
+    {
+      "name": "transfer unchanged",
+      "pass": true
+    },
+    {
+      "name": "arrival budget",
+      "pass": true
+    },
+    {
+      "name": "remaining budget",
+      "pass": true
+    },
+    {
+      "name": "whole budget retained",
+      "pass": true
+    },
+    {
+      "name": "optional offset no scale",
+      "pass": true
+    },
+    {
+      "name": "travel roster",
+      "pass": true
+    },
+    {
+      "name": "records copied not removed",
+      "pass": true
+    },
+    {
+      "name": "SVG node A00",
+      "pass": true
+    },
+    {
+      "name": "SVG node A01",
+      "pass": true
+    },
+    {
+      "name": "SVG node A02",
+      "pass": true
+    },
+    {
+      "name": "SVG node A03",
+      "pass": true
+    },
+    {
+      "name": "SVG node A04",
+      "pass": true
+    },
+    {
+      "name": "SVG node A05",
+      "pass": true
+    },
+    {
+      "name": "SVG node A06",
+      "pass": true
+    },
+    {
+      "name": "SVG node A07",
+      "pass": true
+    },
+    {
+      "name": "SVG node A08",
+      "pass": true
+    },
+    {
+      "name": "SVG node A09",
+      "pass": true
+    },
+    {
+      "name": "SVG node A10",
+      "pass": true
+    },
+    {
+      "name": "SVG node A11",
+      "pass": true
+    },
+    {
+      "name": "SVG node A12",
+      "pass": true
+    },
+    {
+      "name": "SVG node A13",
+      "pass": true
+    },
+    {
+      "name": "SVG node A14",
+      "pass": true
+    },
+    {
+      "name": "SVG node A15",
+      "pass": true
+    },
+    {
+      "name": "SVG node A16",
+      "pass": true
+    },
+    {
+      "name": "SVG node A17",
+      "pass": true
+    },
+    {
+      "name": "SVG node A18",
+      "pass": true
+    },
+    {
+      "name": "SVG node A19",
+      "pass": true
+    },
+    {
+      "name": "SVG node A20",
+      "pass": true
+    },
+    {
+      "name": "SVG node A21",
+      "pass": true
+    },
+    {
+      "name": "SVG landing boat",
+      "pass": true
+    },
+    {
+      "name": "SVG landing pier",
+      "pass": true
+    },
+    {
+      "name": "SVG route public",
+      "pass": true
+    },
+    {
+      "name": "SVG route survey_out",
+      "pass": true
+    },
+    {
+      "name": "SVG route survey_back",
+      "pass": true
+    },
+    {
+      "name": "SVG route retreat",
+      "pass": true
+    },
+    {
+      "name": "SVG route work_loop",
+      "pass": true
+    },
+    {
+      "name": "SVG route east_shelter",
+      "pass": true
+    },
+    {
+      "name": "SVG route west_optional",
+      "pass": true
+    },
+    {
+      "name": "SVG route pool_optional",
+      "pass": true
+    },
+    {
+      "name": "SVG route future_upstream",
+      "pass": true
+    },
+    {
+      "name": "SVG home SG1",
+      "pass": true
+    },
+    {
+      "name": "SVG routine SG1",
+      "pass": true
+    },
+    {
+      "name": "SVG home SG2",
+      "pass": true
+    },
+    {
+      "name": "SVG routine SG2",
+      "pass": true
+    },
+    {
+      "name": "SVG home SG3",
+      "pass": true
+    },
+    {
+      "name": "SVG routine SG3",
+      "pass": true
+    },
+    {
+      "name": "SVG home SG4",
+      "pass": true
+    },
+    {
+      "name": "SVG routine SG4",
+      "pass": true
+    },
+    {
+      "name": "SVG home SG5",
+      "pass": true
+    },
+    {
+      "name": "SVG routine SG5",
+      "pass": true
+    },
+    {
+      "name": "SVG home SG6",
+      "pass": true
+    },
+    {
+      "name": "SVG routine SG6",
+      "pass": true
+    },
+    {
+      "name": "SVG home SG7",
+      "pass": true
+    },
+    {
+      "name": "SVG routine SG7",
+      "pass": true
+    },
+    {
+      "name": "SVG home SG8",
+      "pass": true
+    },
+    {
+      "name": "SVG routine SG8",
+      "pass": true
+    },
+    {
+      "name": "SVG existing R9",
+      "pass": true
+    },
+    {
+      "name": "SVG all transfer stages",
+      "pass": true
+    },
+    {
+      "name": "SVG all transfer legs",
+      "pass": true
+    }
+  ],
+  "limitations": [
+    "design logic only",
+    "SVG geometry checked against JSON",
+    "no actual terrain hydrology sailing combat AI or UE execution"
+  ]
+}

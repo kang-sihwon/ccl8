@@ -1,0 +1,1126 @@
+{
+  "status": "design_candidate_not_canon",
+  "sources_sha256": {
+    "Docs/ArtDirection/EtherWorldMap/Data/ignis-continent-georeference-v1.json": "6db8af3cd42905181145fb26bd22793523428dcdd728b1d7d78c46e7acc773b0",
+    "Docs/ArtDirection/EtherWorldMap/Data/ether-world-map-land35-precise-v3.json": "7fb1ea5461708dadca67f46ba9dd6dd579ed2ae329c275edd0707a2f85a2c0f4",
+    "Docs/ArtDirection/EtherWorldMap/Data/ordas-highlands-v1.json": "fac486d4e69fd49dd78d76499abb62f35584d1aca30d5d6f718a27c50af81eef",
+    "Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-10-ordas-highlands/story-and-handoffs.md": "bf5e88a5dee53996893c27dc2aef179b1752af88e23bbc7cc69c4d6399fcdb0c",
+    "Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-08-five-continent-mainline/routes-and-unlocks.md": "b209df5b3c6d131a886e3269340d072d044a022ee389daf1fbc88de8bf1c3d35",
+    "Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-08-world-distribution-and-leveling/variant-distribution.md": "a4ccc8ac9fdb937b1d637251bb78ce55eccde0a201753189b238a36d116c64e9",
+    "Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-08-world-distribution-and-leveling/progression.md": "a847c8417b972d74f4672a22067206827025f666f5daf39896cb8a73007450aa",
+    "Docs/Narrative/World.md": "020bed8d29fd25ac5c8a4346f6076426e52aff1335f52de4f1e6d7d7b38cde28",
+    "Docs/Narrative/Scenario.md": "55a8eb1da2a818d4c606d82e6d4fd2163458de96d22f27a340dda23b3c427e13"
+  },
+  "transport": {
+    "T3_terminus_candidate": "T09",
+    "T4_R9_source": {
+      "id": "R9",
+      "mode": "sea",
+      "xy_km": [
+        [
+          412.32157195594016,
+          -1077.9999712715442
+        ],
+        [
+          770.0,
+          -1820.0
+        ],
+        [
+          1050.0,
+          -1890.0
+        ],
+        [
+          2870.0,
+          -1820.0
+        ],
+        [
+          3010.0,
+          -1750.0
+        ],
+        [
+          3004.0653615724295,
+          -1736.9728339916967
+        ],
+        [
+          3045.0,
+          -1715.0
+        ],
+        [
+          3360.0,
+          -1400.0
+        ],
+        [
+          3850.0,
+          -840.0
+        ],
+        [
+          3815.0,
+          -350.0
+        ],
+        [
+          3675.0,
+          0.0
+        ],
+        [
+          3430.0,
+          385.0
+        ],
+        [
+          2685.67212824987,
+          1041.5935111734775
+        ]
+      ],
+      "stops": [
+        "M03",
+        "T09",
+        "M06"
+      ],
+      "notes": "Offshore polyline and separately recorded harbor approach. Depth, hazards and seasons unverified."
+    },
+    "T4_xy_km": [
+      [
+        3004.0653615724295,
+        -1736.9728339916967
+      ],
+      [
+        3045.0,
+        -1715.0
+      ],
+      [
+        3360.0,
+        -1400.0
+      ],
+      [
+        3850.0,
+        -840.0
+      ],
+      [
+        3815.0,
+        -350.0
+      ],
+      [
+        3675.0,
+        0.0
+      ],
+      [
+        3430.0,
+        385.0
+      ],
+      [
+        2685.67212824987,
+        1041.5935111734775
+      ]
+    ],
+    "T4_planar_length_km": 3553.14,
+    "preserved_ports": {
+      "T09": {
+        "coast_vertex": 3447,
+        "shore_xy_km": [
+          2998.0653615724295,
+          -1726.5805291462834
+        ],
+        "settlement_xy_km": [
+          2996.5653615724295,
+          -1723.98245293493
+        ],
+        "offshore_xy_km": [
+          3004.0653615724295,
+          -1736.9728339916967
+        ]
+      },
+      "M06": {
+        "coast_vertex": 4241,
+        "shore_xy_km": [
+          2675.279823404457,
+          1035.5935111734775
+        ],
+        "settlement_xy_km": [
+          2672.681747193104,
+          1034.0935111734775
+        ],
+        "offshore_xy_km": [
+          2685.67212824987,
+          1041.5935111734775
+        ]
+      }
+    },
+    "diagram_nodes": [
+      {
+        "id": "O",
+        "name": "오르다스 외항",
+        "xy_px": [
+          60,
+          220
+        ]
+      },
+      {
+        "id": "L",
+        "name": "T09 루세아",
+        "xy_px": [
+          420,
+          220
+        ]
+      },
+      {
+        "id": "D",
+        "name": "M06 동안항",
+        "xy_px": [
+          780,
+          220
+        ]
+      },
+      {
+        "id": "G",
+        "name": "G4 출항 판단",
+        "xy_px": [
+          1140,
+          220
+        ]
+      },
+      {
+        "id": "S",
+        "name": "SE-P01 기항항",
+        "xy_px": [
+          1500,
+          220
+        ]
+      }
+    ],
+    "diagram_edges": [
+      [
+        "O",
+        "L",
+        "T3"
+      ],
+      [
+        "L",
+        "D",
+        "T4"
+      ],
+      [
+        "D",
+        "G",
+        "contract"
+      ],
+      [
+        "G",
+        "S",
+        "T5"
+      ]
+    ]
+  },
+  "gates": {
+    "G4_required": [
+      "G3",
+      "inner_sea_highland_restored",
+      "seradion_invitation_verified",
+      "navigation_documents_verified",
+      "ocean_ship_accepted",
+      "crew_contract",
+      "roundtrip_stores_loaded",
+      "return_agreement"
+    ],
+    "T3_T4_require_G4": false,
+    "T5_requires_G4": true,
+    "at_start": {
+      "G3": true,
+      "inner_sea_highland_restored": true,
+      "seradion_invitation_verified": true,
+      "navigation_documents_verified": true,
+      "ocean_ship_accepted": false,
+      "crew_contract": false,
+      "roundtrip_stores_loaded": false,
+      "return_agreement": false
+    },
+    "after_contract": {
+      "G3": true,
+      "inner_sea_highland_restored": true,
+      "seradion_invitation_verified": true,
+      "navigation_documents_verified": true,
+      "ocean_ship_accepted": true,
+      "crew_contract": true,
+      "roundtrip_stores_loaded": true,
+      "return_agreement": true
+    },
+    "G5_complete": false,
+    "G6_complete": false
+  },
+  "handoffs": {
+    "travel": [
+      "protagonist",
+      "Maren"
+    ],
+    "remain": [
+      "Lin",
+      "Iru"
+    ],
+    "local_guides_travel": false,
+    "original_records_travel": false,
+    "evidence_copies_travel": true
+  },
+  "growth": {
+    "transfer_start": 44,
+    "transfer_end": 44,
+    "arrival_start": 44,
+    "arrival_end": 45,
+    "arrival_budget": {
+      "field": 0,
+      "major": 0,
+      "investigation": 1
+    },
+    "remaining_budget": {
+      "field": 4,
+      "major": 2,
+      "investigation": 1
+    },
+    "seradion_first_end": 52,
+    "optional_offset_example": 2,
+    "auto_scale": false
+  },
+  "coordinate_system": "SE-P01 local candidate meters; x east y north; not anchored to world coastline",
+  "nodes": [
+    {
+      "id": "A00",
+      "name": "계약선 대기",
+      "xy_m": [
+        300,
+        -300
+      ],
+      "region": "SE1",
+      "candidate": true
+    },
+    {
+      "id": "A01",
+      "name": "공개 접안",
+      "xy_m": [
+        300,
+        80
+      ],
+      "region": "SE1",
+      "candidate": true
+    },
+    {
+      "id": "A02",
+      "name": "입항·귀환 접수",
+      "xy_m": [
+        300,
+        300
+      ],
+      "region": "SE1",
+      "candidate": true
+    },
+    {
+      "id": "A03",
+      "name": "숙소·보급",
+      "xy_m": [
+        100,
+        550
+      ],
+      "region": "SE1",
+      "candidate": true
+    },
+    {
+      "id": "A04",
+      "name": "수원관리회 창구",
+      "xy_m": [
+        600,
+        450
+      ],
+      "region": "SE1",
+      "candidate": true
+    },
+    {
+      "id": "A05",
+      "name": "하류 비교 채수",
+      "xy_m": [
+        890,
+        250
+      ],
+      "region": "SE1",
+      "candidate": true
+    },
+    {
+      "id": "A06",
+      "name": "남교 서단",
+      "xy_m": [
+        850,
+        600
+      ],
+      "region": "SE1",
+      "candidate": true
+    },
+    {
+      "id": "A07",
+      "name": "남교 동단",
+      "xy_m": [
+        1150,
+        600
+      ],
+      "region": "SE1",
+      "candidate": true
+    },
+    {
+      "id": "A08",
+      "name": "수지림 갈림",
+      "xy_m": [
+        1450,
+        700
+      ],
+      "region": "SE1",
+      "candidate": true
+    },
+    {
+      "id": "A09",
+      "name": "갈대 작업턱",
+      "xy_m": [
+        1700,
+        1000
+      ],
+      "region": "SE1",
+      "candidate": true
+    },
+    {
+      "id": "A10",
+      "name": "상류 비교 채수",
+      "xy_m": [
+        1110,
+        1400
+      ],
+      "region": "SE1",
+      "candidate": true
+    },
+    {
+      "id": "A11",
+      "name": "높은 제방 귀환",
+      "xy_m": [
+        1350,
+        1650
+      ],
+      "region": "SE1",
+      "candidate": true
+    },
+    {
+      "id": "A12",
+      "name": "북교 동단",
+      "xy_m": [
+        1150,
+        1600
+      ],
+      "region": "SE1",
+      "candidate": true
+    },
+    {
+      "id": "A13",
+      "name": "북교 서단",
+      "xy_m": [
+        850,
+        1600
+      ],
+      "region": "SE1",
+      "candidate": true
+    },
+    {
+      "id": "A14",
+      "name": "관리 제방문",
+      "xy_m": [
+        650,
+        1450
+      ],
+      "region": "SE1",
+      "candidate": true
+    },
+    {
+      "id": "A15",
+      "name": "분해물 정비길",
+      "xy_m": [
+        450,
+        1000
+      ],
+      "region": "SE1",
+      "candidate": true
+    },
+    {
+      "id": "A16",
+      "name": "밭둑 기록소",
+      "xy_m": [
+        650,
+        850
+      ],
+      "region": "SE1",
+      "candidate": true
+    },
+    {
+      "id": "A17",
+      "name": "상류 조사 경계",
+      "xy_m": [
+        700,
+        2050
+      ],
+      "region": "SE1",
+      "candidate": true
+    },
+    {
+      "id": "A18",
+      "name": "옛 웅덩이 관찰턱",
+      "xy_m": [
+        1450,
+        2200
+      ],
+      "region": "SE1",
+      "candidate": true
+    },
+    {
+      "id": "A19",
+      "name": "약초 거래 샛길",
+      "xy_m": [
+        150,
+        1400
+      ],
+      "region": "SE1",
+      "candidate": true
+    },
+    {
+      "id": "A20",
+      "name": "청관 어장 마당",
+      "xy_m": [
+        2100,
+        550
+      ],
+      "region": "SE1",
+      "candidate": true
+    },
+    {
+      "id": "A21",
+      "name": "동쪽 대피 마당",
+      "xy_m": [
+        1300,
+        350
+      ],
+      "region": "SE1",
+      "candidate": true
+    }
+  ],
+  "paths": {
+    "landing": {
+      "nodes": [
+        "A00",
+        "A01"
+      ],
+      "xy_m": [
+        [
+          300,
+          -300
+        ],
+        [
+          300,
+          -100
+        ],
+        [
+          300,
+          80
+        ]
+      ],
+      "length_m": 380.0,
+      "condition": "G4_and_arrival_pilot",
+      "mode": "boat_then_pier",
+      "handoff_xy_m": [
+        300,
+        -100
+      ],
+      "boat_xy_m": [
+        [
+          300,
+          -300
+        ],
+        [
+          300,
+          -100
+        ]
+      ],
+      "pier_walk_xy_m": [
+        [
+          300,
+          -100
+        ],
+        [
+          300,
+          80
+        ]
+      ]
+    },
+    "public": {
+      "nodes": [
+        "A01",
+        "A02",
+        "A03",
+        "A04",
+        "A05"
+      ],
+      "xy_m": [
+        [
+          300,
+          80
+        ],
+        [
+          300,
+          300
+        ],
+        [
+          100,
+          550
+        ],
+        [
+          600,
+          450
+        ],
+        [
+          890,
+          250
+        ]
+      ],
+      "length_m": 1402.3,
+      "condition": "public",
+      "mode": "walk"
+    },
+    "survey_out": {
+      "nodes": [
+        "A04",
+        "A06",
+        "A07",
+        "A08",
+        "A09",
+        "A10"
+      ],
+      "xy_m": [
+        [
+          600,
+          450
+        ],
+        [
+          850,
+          600
+        ],
+        [
+          1150,
+          600
+        ],
+        [
+          1450,
+          700
+        ],
+        [
+          1700,
+          1000
+        ],
+        [
+          1110,
+          1400
+        ]
+      ],
+      "length_m": 2011.1,
+      "condition": "local_survey_permission_and_water_check",
+      "mode": "walk"
+    },
+    "survey_back": {
+      "nodes": [
+        "A10",
+        "A11",
+        "A12",
+        "A13",
+        "A14",
+        "A16",
+        "A04"
+      ],
+      "xy_m": [
+        [
+          1110,
+          1400
+        ],
+        [
+          1350,
+          1650
+        ],
+        [
+          1150,
+          1600
+        ],
+        [
+          850,
+          1600
+        ],
+        [
+          650,
+          1450
+        ],
+        [
+          650,
+          850
+        ],
+        [
+          600,
+          450
+        ]
+      ],
+      "length_m": 2105.8,
+      "condition": "north_bridge_inspected",
+      "mode": "walk"
+    },
+    "retreat": {
+      "nodes": [
+        "A10",
+        "A09",
+        "A08",
+        "A07",
+        "A06",
+        "A04"
+      ],
+      "xy_m": [
+        [
+          1110,
+          1400
+        ],
+        [
+          1700,
+          1000
+        ],
+        [
+          1450,
+          700
+        ],
+        [
+          1150,
+          600
+        ],
+        [
+          850,
+          600
+        ],
+        [
+          600,
+          450
+        ]
+      ],
+      "length_m": 2011.1,
+      "condition": "same_open_south_bridge",
+      "mode": "walk"
+    },
+    "work_loop": {
+      "nodes": [
+        "A14",
+        "A15",
+        "A03",
+        "A04",
+        "A16",
+        "A14"
+      ],
+      "xy_m": [
+        [
+          650,
+          1450
+        ],
+        [
+          450,
+          1000
+        ],
+        [
+          100,
+          550
+        ],
+        [
+          600,
+          450
+        ],
+        [
+          650,
+          850
+        ],
+        [
+          650,
+          1450
+        ]
+      ],
+      "length_m": 2575.5,
+      "condition": "local_survey_permission_and_water_check",
+      "mode": "walk"
+    },
+    "east_shelter": {
+      "nodes": [
+        "A07",
+        "A21",
+        "A20"
+      ],
+      "xy_m": [
+        [
+          1150,
+          600
+        ],
+        [
+          1300,
+          350
+        ],
+        [
+          2100,
+          550
+        ]
+      ],
+      "length_m": 1116.2,
+      "condition": "fishery_consent",
+      "mode": "walk"
+    },
+    "west_optional": {
+      "nodes": [
+        "A14",
+        "A19",
+        "A15"
+      ],
+      "xy_m": [
+        [
+          650,
+          1450
+        ],
+        [
+          150,
+          1400
+        ],
+        [
+          450,
+          1000
+        ]
+      ],
+      "length_m": 1002.5,
+      "condition": "trade_consent",
+      "mode": "walk"
+    },
+    "pool_optional": {
+      "nodes": [
+        "A11",
+        "A18"
+      ],
+      "xy_m": [
+        [
+          1350,
+          1650
+        ],
+        [
+          1450,
+          2200
+        ]
+      ],
+      "length_m": 559.0,
+      "condition": "high_risk_observation_optional",
+      "mode": "walk"
+    },
+    "future_upstream": {
+      "nodes": [
+        "A14",
+        "A17"
+      ],
+      "xy_m": [
+        [
+          650,
+          1450
+        ],
+        [
+          700,
+          2050
+        ]
+      ],
+      "length_m": 602.1,
+      "condition": "future_joint_upstream_plan",
+      "mode": "walk"
+    }
+  },
+  "groups": [
+    {
+      "id": "SG1",
+      "name": "청관 리자드맨",
+      "form": "MN17-X",
+      "count": 4,
+      "readiness": [
+        16,
+        19
+      ],
+      "home_xy_m": [
+        2050,
+        650
+      ],
+      "home_radius_m": 100,
+      "pursuit_extra_m": 40,
+      "hostile_default": false,
+      "routine_xy_m": [
+        [
+          2050,
+          650
+        ],
+        [
+          1950,
+          550
+        ],
+        [
+          2050,
+          650
+        ]
+      ]
+    },
+    {
+      "id": "SG2",
+      "name": "돌볏 리자드맨",
+      "form": "MN17-B",
+      "count": 3,
+      "readiness": [
+        34,
+        37
+      ],
+      "home_xy_m": [
+        1740,
+        1020
+      ],
+      "home_radius_m": 90,
+      "pursuit_extra_m": 60,
+      "hostile_default": false,
+      "routine_xy_m": [
+        [
+          1740,
+          1020
+        ],
+        [
+          1840,
+          1140
+        ],
+        [
+          1740,
+          1020
+        ]
+      ]
+    },
+    {
+      "id": "SG3",
+      "name": "백사 수지거미",
+      "form": "MN07-X",
+      "count": 3,
+      "readiness": [
+        13,
+        16
+      ],
+      "home_xy_m": [
+        1350,
+        750
+      ],
+      "home_radius_m": 80,
+      "pursuit_extra_m": 50,
+      "hostile_default": true,
+      "routine_xy_m": [
+        [
+          1350,
+          750
+        ],
+        [
+          1450,
+          850
+        ],
+        [
+          1350,
+          750
+        ]
+      ]
+    },
+    {
+      "id": "SG4",
+      "name": "주머니 식인덩굴",
+      "form": "MN41-X",
+      "count": 2,
+      "readiness": [
+        18,
+        21
+      ],
+      "home_xy_m": [
+        1230,
+        1380
+      ],
+      "home_radius_m": 75,
+      "pursuit_extra_m": 0,
+      "hostile_default": true,
+      "routine_xy_m": [
+        [
+          1230,
+          1380
+        ]
+      ]
+    },
+    {
+      "id": "SG5",
+      "name": "갈대몸 균류보행체",
+      "form": "MN42-A",
+      "count": 4,
+      "readiness": [
+        9,
+        12
+      ],
+      "home_xy_m": [
+        480,
+        1000
+      ],
+      "home_radius_m": 70,
+      "pursuit_extra_m": 25,
+      "hostile_default": true,
+      "routine_xy_m": [
+        [
+          480,
+          1000
+        ]
+      ]
+    },
+    {
+      "id": "SG6",
+      "name": "갈대부적 해그",
+      "form": "MN59-X",
+      "count": 1,
+      "readiness": [
+        27,
+        30
+      ],
+      "home_xy_m": [
+        150,
+        1400
+      ],
+      "home_radius_m": 90,
+      "pursuit_extra_m": 0,
+      "hostile_default": false,
+      "routine_xy_m": [
+        [
+          150,
+          1400
+        ]
+      ]
+    },
+    {
+      "id": "SG7",
+      "name": "청류 나가",
+      "form": "MN62-A",
+      "count": 1,
+      "readiness": [
+        30,
+        33
+      ],
+      "home_xy_m": [
+        1170,
+        1750
+      ],
+      "home_radius_m": 50,
+      "pursuit_extra_m": 0,
+      "hostile_default": false,
+      "routine_xy_m": [
+        [
+          1170,
+          1750
+        ]
+      ]
+    },
+    {
+      "id": "SG8",
+      "name": "판갑목 히드라",
+      "form": "MN34-B",
+      "count": 1,
+      "readiness": [
+        45,
+        47
+      ],
+      "home_xy_m": [
+        1700,
+        2200
+      ],
+      "home_radius_m": 150,
+      "pursuit_extra_m": 120,
+      "hostile_default": true,
+      "routine_xy_m": [
+        [
+          1700,
+          2200
+        ],
+        [
+          1780,
+          2050
+        ],
+        [
+          1700,
+          2200
+        ]
+      ]
+    }
+  ],
+  "structures": [],
+  "hostile_humans": [],
+  "water": {
+    "sea_y_below": 0,
+    "channel_rect_m": [
+      900,
+      0,
+      1100,
+      2600
+    ],
+    "pool_rect_m": [
+      1520,
+      2010,
+      1880,
+      2390
+    ],
+    "bridges": [
+      {
+        "id": "south",
+        "rect_m": [
+          850,
+          592,
+          1150,
+          608
+        ],
+        "width_m": 16
+      },
+      {
+        "id": "north",
+        "rect_m": [
+          850,
+          1594,
+          1150,
+          1606
+        ],
+        "width_m": 12
+      }
+    ],
+    "pier_rect_m": [
+      290,
+      -100,
+      310,
+      80
+    ]
+  },
+  "frame": {
+    "bounds_m": [
+      -200,
+      -400,
+      2400,
+      2600
+    ],
+    "origin_px": [
+      70,
+      180
+    ],
+    "scale_px_per_m": 0.4
+  },
+  "animals": [
+    "갈매기",
+    "제비",
+    "물총새",
+    "개구리",
+    "어류",
+    "토끼",
+    "작은 사슴",
+    "수달"
+  ],
+  "limitations": [
+    "no_world_coast_join",
+    "no_terrain_or_navigation_simulation",
+    "no_actual_AI_or_combat",
+    "no_XP_implementation",
+    "no_forced_boss_in_transit"
+  ]
+}
