@@ -1,0 +1,14 @@
+{
+  "status": "review_candidate",
+  "scope": "M01 central city and approaches, 12 L10 tiles; not the whole original M01 extent or Ignis",
+  "reviewed": ["12 generated tile images", "assembled overview", "16 internal boundaries in m01-seams.png", "full-height city boundary strips", "UI overview, city view and close view", "same-extent source versus detailed candidate"],
+  "findings": [
+    {"item": "Individual roofs, dirt lanes, courtyards and field strips", "result": "Readable in generated detail and city view; source enlargement remains visibly blurred in comparison"},
+    {"item": "Double-exposed city roofs at atlas x=4096, 6144, 8192 in the north row", "result": "Joint strips edited with image_gen, registered onto both sides, and split back into final tiles"},
+    {"item": "Main east-west entrance road and southbound field tracks", "result": "No major interruption identified in the inspected views across the 16 internal boundaries"},
+    {"item": "Projection", "result": "Roof-only nadir correction substantially reduces facade bands; not a surveyed orthophoto"}
+  ],
+  "remaining": ["Softened texture in blended border areas", "Small generated objects and roof surfaces may differ from the original drawing", "All facility markers retain their candidate coordinates, but correspondence with individual generated buildings is not fully verified", "Physical building sizes, original M01 north and west outskirts, other settlements and inter-region detail connections remain unfinished", "No UE or gameplay validation"],
+  "pixelChecks": "assembly-verification.json",
+  "viewerChecks": "viewer-verification.json"
+}

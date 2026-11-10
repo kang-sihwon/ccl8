@@ -55,6 +55,31 @@ L0는 대륙 지형용이다. 벨레스처럼 지붕과 시설을 보는 화면�
 
 합본은 내보낸 타일 50장을 10열×5행의 원래 위치에 붙인 결과다. 전체 대륙 이미지를 새로 생성한 후 분할한 결과가 아니다. 생성 원본·좌표 안내 이미지·해안 마스크와 합성 스크립트는 로컬 작업 폴더 `output/imagegen/ignis-sectors-20261110/`에 보존하며 Git에는 포함하지 않는다. 공유 생성 기록의 기기별 경로는 [경로 정리 기록](Atlas/path-portability.json)에 따라 자리표시자로 바꿨다. 기존 정착지 상세 시안 36장은 시설·화풍 참고로 보존하며 이번 50개 타일에 포함하지 않았다.
 
+## 관리도시 상세 제작본
+
+관리도시 M01의 중심 시가지와 진입로를 **L10 타일 12장, 12,288×4,096px 합본**으로 제작했다. [상세 도안 뷰어](Atlas/IgnisM01Details-v1/index.html)에서 전체 보기, 시가지 확대, 휠 확대·축소, 드래그 이동, 구역 경계와 시설 이름 표시를 사용할 수 있다. [결정 47](../../decisions/0047-map-working-drawing-detail.md)의 건물·골목 식별 기준을 적용한 첫 제작 범위이며, 이그니스 전체 상세도의 완료를 뜻하지 않는다.
+
+![관리도시 시가지 확대](Atlas/IgnisM01Details-v1/previews/m01-ui-city.png)
+
+| 자료 | 용도 |
+|---|---|
+| [같은 위치의 전후 비교](Atlas/IgnisM01Details-v1/previews/m01-detail-comparison.png) | 기존 M01을 확대했을 때와 새로 상세화한 지붕·골목·마당을 비교한다 |
+| [12칸 조립 UI](Atlas/IgnisM01Details-v1/previews/m01-ui-overview.png), [경계 표시](Atlas/IgnisM01Details-v1/previews/m01-ui-grid.png) | 이번 제작 범위와 타일 배치를 함께 확인한다 |
+| [확대 화면](Atlas/IgnisM01Details-v1/previews/m01-ui-close.png) | 지붕과 작은 길을 크게 확인한다 |
+| [지형 합본 PNG](Atlas/IgnisM01Details-v1/previews/m01-assembled.png) | UI 없는 12,288×4,096px 지형을 사용한다 |
+| [분할·표식 좌표](Atlas/IgnisM01Details-v1/records/plan.json) | 세계 격자 주소와 기존 시설 후보 7곳의 좌표를 읽는다 |
+| [생성 입력](Atlas/IgnisM01Details-v1/records/generation.json), [접합부 보정 입력](Atlas/IgnisM01Details-v1/records/repairs.json) | 생성 도구, 참조 이미지와 수정 범위를 확인한다 |
+
+범위는 세계 격자 L10의 C16316–C16321, R3286–R3287이다. 상위 L0-C15-R03 안에 있으며, 원자료의 국지 좌표로 북서쪽 약 `(16.559, −11.201)km`, 남동쪽 약 `(20.885, −13.625)km`에 해당한다. [기존 M01 지형](Atlas/Ignis-v1/M01-terrain.png)과 [시설 후보 좌표](Atlas/Ignis-v1/provenance/detail-plans.json)를 같은 세계 격자로 변환해 각 칸의 안내 이미지를 만들었다. M01의 기존 7×3.5km 범위 전체를 덮지는 않는다. 이 범위와 축척은 제작용 좌표이며 개별 건물의 실제 치수를 확정하지 않는다.
+
+각 안내 이미지를 내장 `image_gen`으로 상세화했다. 신규 타일 원본 12장은 각각 1,254×1,254px이다. 지붕 재질·마당·경작지의 세부를 새로 만들었으며, 기존 이미지를 확대하는 처리만으로 완성하지 않았다. 2,304px 작업 영역에 정렬하고 중첩 영역을 합성한 뒤 2,048px 타일로 출력했다. 시가지의 세로 접합부 세 곳에서 지붕 중복을 발견해 양쪽을 포함한 띠를 함께 수정했다. 보정 원본은 각각 887×1,774px이며, 같은 좌표에 반영한 후 영향을 받는 타일에 다시 나눴다.
+
+뷰어는 시설 이름과 실선 연결선을 지형 위에 별도로 표시한다. 저장 좌표는 세계 격자를 유지하며, 화면의 가로 길이에 중심 위도 53.89°의 코사인을 적용해 이 지역의 가로 늘어짐을 줄였다. 이는 화면 비율 보정이며 지도 위치를 바꾸는 처리가 아니다.
+
+[조립 검사](Atlas/IgnisM01Details-v1/records/assembly-verification.json) 53개와 [뷰어 검사](Atlas/IgnisM01Details-v1/records/viewer-verification.json) 8개가 통과했다. 검사 범위는 타일 누락·중복, 정수 세계 주소, 타일과 합본의 RGB 일치, 시설 표식 범위, 파일 로딩, 드래그 이동량, 휠 확대와 표시 전환·전체 복귀다. [접합부 비교판](Atlas/IgnisM01Details-v1/previews/m01-seams.png)으로 내부 경계 16곳을 검토했다. 시가지의 중복 지붕 세 곳을 보정했으며 검토 화면에서 주 진입로의 단절은 발견하지 못했다. 합성 경계의 질감이 부드러워지는 부분과 작은 시설의 배치 후보는 남아 있다. 픽셀 일치 검사를 모든 길·건물의 지리적 정확성 판정으로 사용하지 않는다.
+
+원본 생성 이미지, 좌표 안내 이미지, 경계 보정 띠와 재조립 스크립트를 상세 도안 폴더에 함께 보관한다. 기존 M01과 채택된 v2는 보존한다. 새 건물 세부는 검토 후보이며, 모든 시설 표식과 개별 건물의 일치, 실거리·시설 치수, 실제 플레이 지도와 UE 실행은 미검증이다. 다음 제작 범위는 관리도시의 북·서쪽 외곽과 나머지 정착지 및 연결 구간이다.
+
 ## 확인 결과와 남은 작업
 
 [분할 검사](Atlas/WorldSectorPlan-v1/verification.json)에서 50개 ID 중복 없음, 정착지 36곳 배정, 이그니스 해안 전체 포함, 정수 픽셀 경계, 누락·중복 없는 분할, 인접 경계 85곳과 교차 위치 범위를 확인했다.
@@ -63,4 +88,4 @@ L0는 대륙 지형용이다. 벨레스처럼 지붕과 시설을 보는 화면�
 
 전체 미리보기와 85개 경계를 담은 확대 비교판 [1](Atlas/IgnisSectors-v1/previews/seams-1.png), [2](Atlas/IgnisSectors-v1/previews/seams-2.png), [3](Atlas/IgnisSectors-v1/previews/seams-3.png), [4](Atlas/IgnisSectors-v1/previews/seams-4.png), [5](Atlas/IgnisSectors-v1/previews/seams-5.png), [6](Atlas/IgnisSectors-v1/previews/seams-6.png)을 화면으로 확인했다. 이 검토 범위에서 큰 물길·해안·산맥의 단절은 발견하지 못했다. 중첩 합성부에는 질감이 부드러워지는 부분이 있으며, 작은 길과 개별 지형 전부를 정밀 대조한 것은 아니다.
 
-[뷰어 검사](Atlas/IgnisSectors-v1/records/viewer-verification.json)에서 파일 로딩, 경계·정착지 표시 전환, 확대 시 고해상도 타일 로딩, Esc 전체 복귀와 실행 오류 없음을 확인했다. 마우스 드래그 입력도 전달했지만 카메라 이동량은 수치로 판정하지 않았다. 시설 상세 확대 단계와 UE 실행은 이번 범위에 포함하지 않았다. 남은 제작은 최소 상세 기준을 충족하는 하위 도안과 그 연결 검증이다. 대륙 조립본의 제작 완료와 상세 도안의 미완료 상태를 구분한다.
+[대륙 뷰어 검사](Atlas/IgnisSectors-v1/records/viewer-verification.json)에서 파일 로딩, 경계·정착지 표시 전환, 확대 시 고해상도 타일 로딩, Esc 전체 복귀와 실행 오류 없음을 확인했다. 이 검사에서는 마우스 드래그 입력도 전달했지만 카메라 이동량은 수치로 판정하지 않았다. 관리도시 하위 도안 12칸과 그 뷰어의 검사는 위 절에서 별도로 다룬다. 나머지 하위 도안 제작과 지역 간 연결 검증, UE 실행은 남아 있다. 대륙 조립본과 일부 상세 도안의 제작 완료를 전체 상세 지도의 완성으로 해석하지 않는다.

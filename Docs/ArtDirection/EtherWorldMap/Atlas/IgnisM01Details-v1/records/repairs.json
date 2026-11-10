@@ -1,0 +1,41 @@
+{
+  "method": "builtin image_gen joint boundary correction; paste registered strip with 128px outer feather, split back into affected tiles",
+  "records": [
+    {
+      "x": 4096,
+      "atlasBounds": [
+        3584,
+        0,
+        4608,
+        2048
+      ],
+      "prompt": "Precise map seam repair. This image is a 1:2 vertical strip across two registered RPG aerial map tiles. The central vertical band (x 38% to 62%) has transparent double-exposed ghosted roofs, duplicated roof ridges, conflicting yards and blurry road joins from stitching. Fix ONLY this central band to create single physically coherent roof outlines and continuous dirt streets/stone garden boundaries. Use the left and right sides as fixed anchors. Keep every street entry and exit, roof endpoint outside the central band, map framing, orientation and tone unchanged. Everything outside central 30%-70% width should remain visually unchanged, especially the outermost 25% on each side. Resolve doubled roofs to ONE crisp roof with consistent gray slate shingles, roof-only VERTICAL NADIR view, no facades, no doorways or miniature isometric buildings. Maintain exact road course and width; never bridge a road with a new roof. Keep existing gray-brown/olive muted natural aerial-photo materials. Do not invent landmarks, rivers, text, UI or grid. Do NOT zoom or recenter. Full-height continuous image at same 1:2 portrait ratio, high native resolution. This is a coordinate-preserving localized repair, not a new town.",
+      "source": "repairs/seam-4096-after.png",
+      "input": "repairs/seam-4096-before.png"
+    },
+    {
+      "x": 6144,
+      "atlasBounds": [
+        5632,
+        0,
+        6656,
+        2048
+      ],
+      "prompt": "Precise map seam repair. This image is a 1:2 vertical strip across two registered RPG aerial map tiles. The central vertical band (x 38% to 62%) has transparent double-exposed ghosted roofs, duplicated roof ridges, conflicting yards and blurry road joins from stitching. Fix ONLY this central band to create single physically coherent roof outlines and continuous dirt streets/stone garden boundaries. Use the left and right sides as fixed anchors. Keep every street entry and exit, roof endpoint outside the central band, map framing, orientation and tone unchanged. Everything outside central 30%-70% width should remain visually unchanged, especially the outermost 25% on each side. Resolve doubled roofs to ONE crisp roof with consistent gray slate shingles, roof-only VERTICAL NADIR view, no facades, no doorways or miniature isometric buildings. Maintain exact road course and width; never bridge a road with a new roof. Keep existing gray-brown/olive muted natural aerial-photo materials. Do not invent landmarks, rivers, text, UI or grid. Do NOT zoom or recenter. Full-height continuous image at same 1:2 portrait ratio, high native resolution. This is a coordinate-preserving localized repair, not a new town.",
+      "source": "repairs/seam-6144-after.png",
+      "input": "repairs/seam-6144-before.png"
+    },
+    {
+      "x": 8192,
+      "atlasBounds": [
+        7680,
+        0,
+        8704,
+        2048
+      ],
+      "prompt": "Precise map seam repair. This image is a 1:2 vertical strip across two registered RPG aerial map tiles. The central vertical band (x 38% to 62%) has transparent double-exposed ghosted roofs, duplicated roof ridges, conflicting yards and blurry road joins from stitching. Fix ONLY this central band to create single physically coherent roof outlines and continuous dirt streets/stone garden boundaries. Use the left and right sides as fixed anchors. Keep every street entry and exit, roof endpoint outside the central band, map framing, orientation and tone unchanged. Everything outside central 30%-70% width should remain visually unchanged, especially the outermost 25% on each side. Resolve doubled roofs to ONE crisp roof with consistent gray slate shingles, roof-only VERTICAL NADIR view, no facades, no doorways or miniature isometric buildings. Maintain exact road course and width; never bridge a road with a new roof. Keep existing gray-brown/olive muted natural aerial-photo materials. Do not invent landmarks, rivers, text, UI or grid. Do NOT zoom or recenter. Full-height continuous image at same 1:2 portrait ratio, high native resolution. This is a coordinate-preserving localized repair, not a new town.",
+      "source": "repairs/seam-8192-after.png",
+      "input": "repairs/seam-8192-before.png"
+    }
+  ]
+}

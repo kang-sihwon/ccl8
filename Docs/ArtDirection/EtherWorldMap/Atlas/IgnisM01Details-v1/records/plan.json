@@ -1,0 +1,325 @@
+{
+  "version": 1,
+  "date": "2026-11-11",
+  "subject": "M01 central city and approaches",
+  "status": "visual_candidate_not_gameplay_asset",
+  "level": 10,
+  "worldSize": [
+    67108864,
+    33554432
+  ],
+  "core": 2048,
+  "margin": 128,
+  "workingSize": 2304,
+  "columns": [
+    16316,
+    16321
+  ],
+  "rows": [
+    3286,
+    3287
+  ],
+  "atlasSize": [
+    12288,
+    4096
+  ],
+  "worldPixelBounds": [
+    33415168,
+    6729728,
+    33427456,
+    6733824
+  ],
+  "northWestLocalKm": [
+    16.558760330589028,
+    -11.200912606400209
+  ],
+  "southEastLocalKm": [
+    20.885222360293124,
+    -13.624885314988688
+  ],
+  "tiles": [
+    {
+      "id": "L10-C16316-R3286",
+      "column": 16316,
+      "row": 3286,
+      "worldPixelBounds": [
+        33415168,
+        6729728,
+        33417216,
+        6731776
+      ],
+      "parentL0": "L0-C15-R3"
+    },
+    {
+      "id": "L10-C16317-R3286",
+      "column": 16317,
+      "row": 3286,
+      "worldPixelBounds": [
+        33417216,
+        6729728,
+        33419264,
+        6731776
+      ],
+      "parentL0": "L0-C15-R3"
+    },
+    {
+      "id": "L10-C16318-R3286",
+      "column": 16318,
+      "row": 3286,
+      "worldPixelBounds": [
+        33419264,
+        6729728,
+        33421312,
+        6731776
+      ],
+      "parentL0": "L0-C15-R3"
+    },
+    {
+      "id": "L10-C16319-R3286",
+      "column": 16319,
+      "row": 3286,
+      "worldPixelBounds": [
+        33421312,
+        6729728,
+        33423360,
+        6731776
+      ],
+      "parentL0": "L0-C15-R3"
+    },
+    {
+      "id": "L10-C16320-R3286",
+      "column": 16320,
+      "row": 3286,
+      "worldPixelBounds": [
+        33423360,
+        6729728,
+        33425408,
+        6731776
+      ],
+      "parentL0": "L0-C15-R3"
+    },
+    {
+      "id": "L10-C16321-R3286",
+      "column": 16321,
+      "row": 3286,
+      "worldPixelBounds": [
+        33425408,
+        6729728,
+        33427456,
+        6731776
+      ],
+      "parentL0": "L0-C15-R3"
+    },
+    {
+      "id": "L10-C16316-R3287",
+      "column": 16316,
+      "row": 3287,
+      "worldPixelBounds": [
+        33415168,
+        6731776,
+        33417216,
+        6733824
+      ],
+      "parentL0": "L0-C15-R3"
+    },
+    {
+      "id": "L10-C16317-R3287",
+      "column": 16317,
+      "row": 3287,
+      "worldPixelBounds": [
+        33417216,
+        6731776,
+        33419264,
+        6733824
+      ],
+      "parentL0": "L0-C15-R3"
+    },
+    {
+      "id": "L10-C16318-R3287",
+      "column": 16318,
+      "row": 3287,
+      "worldPixelBounds": [
+        33419264,
+        6731776,
+        33421312,
+        6733824
+      ],
+      "parentL0": "L0-C15-R3"
+    },
+    {
+      "id": "L10-C16319-R3287",
+      "column": 16319,
+      "row": 3287,
+      "worldPixelBounds": [
+        33421312,
+        6731776,
+        33423360,
+        6733824
+      ],
+      "parentL0": "L0-C15-R3"
+    },
+    {
+      "id": "L10-C16320-R3287",
+      "column": 16320,
+      "row": 3287,
+      "worldPixelBounds": [
+        33423360,
+        6731776,
+        33425408,
+        6733824
+      ],
+      "parentL0": "L0-C15-R3"
+    },
+    {
+      "id": "L10-C16321-R3287",
+      "column": 16321,
+      "row": 3287,
+      "worldPixelBounds": [
+        33425408,
+        6731776,
+        33427456,
+        6733824
+      ],
+      "parentL0": "L0-C15-R3"
+    }
+  ],
+  "points": [
+    {
+      "id": "C01",
+      "name": "북행편 귀환 마당",
+      "xy_km": [
+        18,
+        -11.5
+      ],
+      "worldPixel": [
+        33419268.451655224,
+        6730238.78844139
+      ],
+      "atlasPixel": [
+        4100.451655223966,
+        510.7884413897991
+      ],
+      "status": "existing_detail_candidate_not_canon"
+    },
+    {
+      "id": "C02",
+      "name": "공개 기록·심의뜰",
+      "xy_km": [
+        18,
+        -12
+      ],
+      "worldPixel": [
+        33419262.930833925,
+        6731077.641815055
+      ],
+      "atlasPixel": [
+        4094.9308339245617,
+        1349.6418150551617
+      ],
+      "status": "existing_detail_candidate_not_canon"
+    },
+    {
+      "id": "C03",
+      "name": "비축·수령 창고",
+      "xy_km": [
+        18.7,
+        -12.25
+      ],
+      "worldPixel": [
+        33421252.881862033,
+        6731501.7132088095
+      ],
+      "atlasPixel": [
+        6084.8818620331585,
+        1773.713208809495
+      ],
+      "status": "existing_detail_candidate_not_canon"
+    },
+    {
+      "id": "C04",
+      "name": "진료·필수 공급 인계",
+      "xy_km": [
+        18.4,
+        -12.7
+      ],
+      "worldPixel": [
+        33420393.78590539,
+        6732254.668663494
+      ],
+      "atlasPixel": [
+        5225.785905390978,
+        2526.668663494289
+      ],
+      "status": "existing_detail_candidate_not_canon"
+    },
+    {
+      "id": "C05",
+      "name": "정비조 배정소",
+      "xy_km": [
+        17.5,
+        -12.6
+      ],
+      "worldPixel": [
+        33417833.048633214,
+        6732081.05698029
+      ],
+      "atlasPixel": [
+        2665.0486332140863,
+        2353.05698029045
+      ],
+      "status": "existing_detail_candidate_not_canon"
+    },
+    {
+      "id": "C06",
+      "name": "뿌리권 출입소",
+      "xy_km": [
+        17.1,
+        -11.6
+      ],
+      "worldPixel": [
+        33416704.928266563,
+        6730400.846754592
+      ],
+      "atlasPixel": [
+        1536.9282665625215,
+        672.846754591912
+      ],
+      "status": "existing_detail_candidate_not_canon"
+    },
+    {
+      "id": "C07",
+      "name": "귀환·시험 기록소",
+      "xy_km": [
+        17.1,
+        -12.4
+      ],
+      "worldPixel": [
+        33416696.537667334,
+        6731743.0133122755
+      ],
+      "atlasPixel": [
+        1528.5376673340797,
+        2015.0133122755215
+      ],
+      "status": "existing_detail_candidate_not_canon"
+    }
+  ],
+  "source": "../Ignis-v1/M01-terrain.png",
+  "sourceSize": [
+    1774,
+    887
+  ],
+  "sourceBoundsLocalKm": [
+    14.5,
+    -13.85,
+    21.5,
+    -10.35
+  ],
+  "projection": "World equirectangular L10; source spherical AEQD at lon -1 lat 54 radius 6366.197723675814 km",
+  "limitations": [
+    "M01 drawing is a layout candidate; not measured building dimensions",
+    "L0 parent has no settlement detail to validate building continuity against",
+    "Equirectangular chart stretches east-west near latitude 54"
+  ],
+  "pathBase": "artifact root"
+}

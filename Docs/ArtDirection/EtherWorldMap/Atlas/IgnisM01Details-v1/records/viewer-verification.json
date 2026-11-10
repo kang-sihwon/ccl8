@@ -1,0 +1,98 @@
+{
+  "status": "PASS",
+  "checks": [
+    {
+      "name": "12 tiles loaded",
+      "pass": true,
+      "detail": {
+        "ready": true,
+        "zoom": 0.205322265625,
+        "ox": 92.55090873323286,
+        "oy": 0,
+        "grid": false,
+        "labels": true,
+        "loaded": 12,
+        "tiles": 12
+      }
+    },
+    {
+      "name": "grid toggles",
+      "pass": true
+    },
+    {
+      "name": "city zoom persists in captured view",
+      "pass": true,
+      "detail": {
+        "beforeCapture": 0.3650173611111111,
+        "afterCapture": 0.3650173611111111
+      }
+    },
+    {
+      "name": "drag moves camera by delivered input",
+      "pass": true,
+      "detail": {
+        "pre": {
+          "ready": true,
+          "zoom": 0.3650173611111111,
+          "ox": -282.61553084120055,
+          "oy": 0.7300347222222285,
+          "grid": false,
+          "labels": true,
+          "loaded": 12,
+          "tiles": 12
+        },
+        "post": {
+          "ready": true,
+          "zoom": 0.3650173611111111,
+          "ox": -162.61553084120055,
+          "oy": 60.73003472222223,
+          "grid": false,
+          "labels": true,
+          "loaded": 12,
+          "tiles": 12
+        }
+      }
+    },
+    {
+      "name": "wheel zoom changes scale",
+      "pass": true,
+      "detail": {
+        "state": {
+          "ready": true,
+          "zoom": 0.7727417595361369,
+          "ox": -1237.8570947824403,
+          "oy": -318.2345221292371,
+          "grid": false,
+          "labels": true,
+          "loaded": 12,
+          "tiles": 12
+        },
+        "scrollY": 0,
+        "rect": {
+          "x": 0,
+          "y": 50,
+          "width": 1672,
+          "height": 841,
+          "top": 50,
+          "right": 1672,
+          "bottom": 891,
+          "left": 0
+        },
+        "target": "CANVAS"
+      }
+    },
+    {
+      "name": "labels toggle off",
+      "pass": true
+    },
+    {
+      "name": "Escape returns to fit",
+      "pass": true
+    },
+    {
+      "name": "no runtime exceptions",
+      "pass": true,
+      "detail": []
+    }
+  ]
+}

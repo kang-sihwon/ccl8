@@ -1,0 +1,322 @@
+{
+  "status": "PASS",
+  "checks": [
+    {
+      "name": "atlas size equals plan",
+      "pass": true
+    },
+    {
+      "name": "unique IDs",
+      "pass": true
+    },
+    {
+      "name": "complete 6 by 2 coverage",
+      "pass": true
+    },
+    {
+      "name": "L10-C16316-R3286 core size",
+      "pass": true
+    },
+    {
+      "name": "L10-C16316-R3286 assembly RGB equality",
+      "pass": true
+    },
+    {
+      "name": "L10-C16316-R3286 world address",
+      "pass": true
+    },
+    {
+      "name": "L10-C16317-R3286 core size",
+      "pass": true
+    },
+    {
+      "name": "L10-C16317-R3286 assembly RGB equality",
+      "pass": true
+    },
+    {
+      "name": "L10-C16317-R3286 world address",
+      "pass": true
+    },
+    {
+      "name": "L10-C16318-R3286 core size",
+      "pass": true
+    },
+    {
+      "name": "L10-C16318-R3286 assembly RGB equality",
+      "pass": true
+    },
+    {
+      "name": "L10-C16318-R3286 world address",
+      "pass": true
+    },
+    {
+      "name": "L10-C16319-R3286 core size",
+      "pass": true
+    },
+    {
+      "name": "L10-C16319-R3286 assembly RGB equality",
+      "pass": true
+    },
+    {
+      "name": "L10-C16319-R3286 world address",
+      "pass": true
+    },
+    {
+      "name": "L10-C16320-R3286 core size",
+      "pass": true
+    },
+    {
+      "name": "L10-C16320-R3286 assembly RGB equality",
+      "pass": true
+    },
+    {
+      "name": "L10-C16320-R3286 world address",
+      "pass": true
+    },
+    {
+      "name": "L10-C16321-R3286 core size",
+      "pass": true
+    },
+    {
+      "name": "L10-C16321-R3286 assembly RGB equality",
+      "pass": true
+    },
+    {
+      "name": "L10-C16321-R3286 world address",
+      "pass": true
+    },
+    {
+      "name": "L10-C16316-R3287 core size",
+      "pass": true
+    },
+    {
+      "name": "L10-C16316-R3287 assembly RGB equality",
+      "pass": true
+    },
+    {
+      "name": "L10-C16316-R3287 world address",
+      "pass": true
+    },
+    {
+      "name": "L10-C16317-R3287 core size",
+      "pass": true
+    },
+    {
+      "name": "L10-C16317-R3287 assembly RGB equality",
+      "pass": true
+    },
+    {
+      "name": "L10-C16317-R3287 world address",
+      "pass": true
+    },
+    {
+      "name": "L10-C16318-R3287 core size",
+      "pass": true
+    },
+    {
+      "name": "L10-C16318-R3287 assembly RGB equality",
+      "pass": true
+    },
+    {
+      "name": "L10-C16318-R3287 world address",
+      "pass": true
+    },
+    {
+      "name": "L10-C16319-R3287 core size",
+      "pass": true
+    },
+    {
+      "name": "L10-C16319-R3287 assembly RGB equality",
+      "pass": true
+    },
+    {
+      "name": "L10-C16319-R3287 world address",
+      "pass": true
+    },
+    {
+      "name": "L10-C16320-R3287 core size",
+      "pass": true
+    },
+    {
+      "name": "L10-C16320-R3287 assembly RGB equality",
+      "pass": true
+    },
+    {
+      "name": "L10-C16320-R3287 world address",
+      "pass": true
+    },
+    {
+      "name": "L10-C16321-R3287 core size",
+      "pass": true
+    },
+    {
+      "name": "L10-C16321-R3287 assembly RGB equality",
+      "pass": true
+    },
+    {
+      "name": "L10-C16321-R3287 world address",
+      "pass": true
+    },
+    {
+      "name": "C01 inside atlas",
+      "pass": true
+    },
+    {
+      "name": "C01 world to atlas offset",
+      "pass": true
+    },
+    {
+      "name": "C02 inside atlas",
+      "pass": true
+    },
+    {
+      "name": "C02 world to atlas offset",
+      "pass": true
+    },
+    {
+      "name": "C03 inside atlas",
+      "pass": true
+    },
+    {
+      "name": "C03 world to atlas offset",
+      "pass": true
+    },
+    {
+      "name": "C04 inside atlas",
+      "pass": true
+    },
+    {
+      "name": "C04 world to atlas offset",
+      "pass": true
+    },
+    {
+      "name": "C05 inside atlas",
+      "pass": true
+    },
+    {
+      "name": "C05 world to atlas offset",
+      "pass": true
+    },
+    {
+      "name": "C06 inside atlas",
+      "pass": true
+    },
+    {
+      "name": "C06 world to atlas offset",
+      "pass": true
+    },
+    {
+      "name": "C07 inside atlas",
+      "pass": true
+    },
+    {
+      "name": "C07 world to atlas offset",
+      "pass": true
+    }
+  ],
+  "sourceImages": [
+    {
+      "id": "L10-C16316-R3286",
+      "nativeSize": [
+        1254,
+        1254
+      ],
+      "sha256": "906fc2cdfe164c2bfe459d0130c334027f45ff80b02f46bb519ffbdd385dfbef"
+    },
+    {
+      "id": "L10-C16317-R3286",
+      "nativeSize": [
+        1254,
+        1254
+      ],
+      "sha256": "8e0131a04240397163ae9c34379c841de63ed5732bc4b7c77ec36a67d4f0d9cc"
+    },
+    {
+      "id": "L10-C16318-R3286",
+      "nativeSize": [
+        1254,
+        1254
+      ],
+      "sha256": "cbb629432f23f7c8d45e5955d8082d62d80901ab0e5a11345159ce7aa529bbae"
+    },
+    {
+      "id": "L10-C16319-R3286",
+      "nativeSize": [
+        1254,
+        1254
+      ],
+      "sha256": "99789bb1fe9a1a37256a45a7e2a68a6c2762a03a85b51f1b9855b0fdb17ae34f"
+    },
+    {
+      "id": "L10-C16320-R3286",
+      "nativeSize": [
+        1254,
+        1254
+      ],
+      "sha256": "281663c4b3da5a6c50079ec7bc0b5310bbe10329b13c6330f852b88b619e519d"
+    },
+    {
+      "id": "L10-C16321-R3286",
+      "nativeSize": [
+        1254,
+        1254
+      ],
+      "sha256": "98608fefa8b423050b207c106354f2e1990e1f7d84826da59436931fd99dd34e"
+    },
+    {
+      "id": "L10-C16316-R3287",
+      "nativeSize": [
+        1254,
+        1254
+      ],
+      "sha256": "0b7f2493ae1314c45d644d06678b109b920683abce7aa10a7fef32699eefd8ff"
+    },
+    {
+      "id": "L10-C16317-R3287",
+      "nativeSize": [
+        1254,
+        1254
+      ],
+      "sha256": "624f5cc949155b3f672866ef3db41eab17457fbde40d39103cb85a768d4565e8"
+    },
+    {
+      "id": "L10-C16318-R3287",
+      "nativeSize": [
+        1254,
+        1254
+      ],
+      "sha256": "aaa7972d51426ba04ec195164f451d01e181be1f78f7cc52fd30de3e123cb61f"
+    },
+    {
+      "id": "L10-C16319-R3287",
+      "nativeSize": [
+        1254,
+        1254
+      ],
+      "sha256": "0ab68e22ebf36aae23ece56838ad3258a9aabdee4db37bb7867bc9c20230b57f"
+    },
+    {
+      "id": "L10-C16320-R3287",
+      "nativeSize": [
+        1254,
+        1254
+      ],
+      "sha256": "b10c4b499bb0ff63ade5d623981f3efb75cdc64090d62ab483312e5c749e71aa"
+    },
+    {
+      "id": "L10-C16321-R3287",
+      "nativeSize": [
+        1254,
+        1254
+      ],
+      "sha256": "3b4197139af3e983d09a82c3f7e337a664ae5e3f584b52ee6fb393f1ac0ef879"
+    }
+  ],
+  "internalSharedEdges": 16,
+  "sourceSizeIsNotOutputSize": true,
+  "limitations": [
+    "Pixel equality verifies assembly only, not road or roof semantic continuity.",
+    "World coordinate registration preserves map addresses; generated microgeometry is a visual candidate.",
+    "No UE execution or gameplay scale verification."
+  ]
+}
