@@ -1,0 +1,166 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1750" height="1480" viewBox="0 0 1750 1480">
+<rect width="1750" height="1480" fill="#f0f3ef"/>
+<text x="50.000" y="72.000" font-family="Malgun Gothic,sans-serif" font-size="40" fill="#263d43" font-weight="700">관리교와 동쪽 제방 귀환</text>
+<text x="50.000" y="119.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#687b7b" font-weight="400">SE-P01 국소 후보 · m · 위쪽 북 | 파랑 접근 · 주황 귀환 · 녹색 사전 확인 · 보라 선택 / 후속</text>
+<polygon id="land" points="60.000,1350.000 60.000,180.000 384.000,180.000 384.000,1350.000" fill="#e8eadb" stroke="#e8eadb"/>
+<polygon id="preserved-channel" points="150.000,1350.000 150.000,882.000 186.000,882.000 186.000,1350.000" fill="#b9d9e1" stroke="#b9d9e1"/>
+<polygon id="preserved-pool" points="261.600,988.200 261.600,919.800 326.400,919.800 326.400,988.200" fill="#b9d9e1" stroke="#b9d9e1"/>
+<polygon id="new-channel" points="150.000,882.000 150.000,180.000 186.000,180.000 186.000,882.000" fill="#b9d9e1" stroke="#b9d9e1"/>
+<polygon id="old-bridge-south" points="141.000,1243.440 141.000,1240.560 195.000,1240.560 195.000,1243.440" fill="#b8a482" stroke="#b8a482"/>
+<polygon id="old-bridge-north" points="141.000,1063.080 141.000,1060.920 195.000,1060.920 195.000,1063.080" fill="#b8a482" stroke="#b8a482"/>
+<polygon id="new-bridge" points="141.000,325.080 141.000,322.920 195.000,322.920 195.000,325.080" fill="#b8a482" stroke="#b8a482"/>
+<polyline points="78.000,1350.000 78.000,180.000" fill="none" stroke="#d3d9ce" stroke-width="1"/>
+<polyline points="168.000,1350.000 168.000,180.000" fill="none" stroke="#d3d9ce" stroke-width="1"/>
+<polyline points="258.000,1350.000 258.000,180.000" fill="none" stroke="#d3d9ce" stroke-width="1"/>
+<polyline points="348.000,1350.000 348.000,180.000" fill="none" stroke="#d3d9ce" stroke-width="1"/>
+<polyline points="60.000,1350.000 384.000,1350.000" fill="none" stroke="#d3d9ce" stroke-width="1"/>
+<polyline points="60.000,1260.000 384.000,1260.000" fill="none" stroke="#d3d9ce" stroke-width="1"/>
+<polyline points="60.000,1170.000 384.000,1170.000" fill="none" stroke="#d3d9ce" stroke-width="1"/>
+<polyline points="60.000,1080.000 384.000,1080.000" fill="none" stroke="#d3d9ce" stroke-width="1"/>
+<polyline points="60.000,990.000 384.000,990.000" fill="none" stroke="#d3d9ce" stroke-width="1"/>
+<polyline points="60.000,900.000 384.000,900.000" fill="none" stroke="#d3d9ce" stroke-width="1"/>
+<polyline points="60.000,810.000 384.000,810.000" fill="none" stroke="#d3d9ce" stroke-width="1"/>
+<polyline points="60.000,720.000 384.000,720.000" fill="none" stroke="#d3d9ce" stroke-width="1"/>
+<polyline points="60.000,630.000 384.000,630.000" fill="none" stroke="#d3d9ce" stroke-width="1"/>
+<polyline points="60.000,540.000 384.000,540.000" fill="none" stroke="#d3d9ce" stroke-width="1"/>
+<polyline points="60.000,450.000 384.000,450.000" fill="none" stroke="#d3d9ce" stroke-width="1"/>
+<polyline points="60.000,360.000 384.000,360.000" fill="none" stroke="#d3d9ce" stroke-width="1"/>
+<polyline points="60.000,270.000 384.000,270.000" fill="none" stroke="#d3d9ce" stroke-width="1"/>
+<polyline points="60.000,180.000 384.000,180.000" fill="none" stroke="#d3d9ce" stroke-width="1"/>
+<polyline id="old-path-public-2" points="60.000,1261.800 96.000,1269.000" fill="none" stroke="#a9b2b0" stroke-width="2"/>
+<polyline id="old-path-public-3" points="96.000,1269.000 148.200,1305.000" fill="none" stroke="#a9b2b0" stroke-width="2"/>
+<polyline id="old-path-survey_out-0" points="96.000,1269.000 141.000,1242.000" fill="none" stroke="#a9b2b0" stroke-width="2"/>
+<polyline id="old-path-survey_out-1" points="141.000,1242.000 195.000,1242.000" fill="none" stroke="#a9b2b0" stroke-width="2"/>
+<polyline id="old-path-survey_out-2" points="195.000,1242.000 249.000,1224.000" fill="none" stroke="#a9b2b0" stroke-width="2"/>
+<polyline id="old-path-survey_out-3" points="249.000,1224.000 294.000,1170.000" fill="none" stroke="#a9b2b0" stroke-width="2"/>
+<polyline id="old-path-survey_out-4" points="294.000,1170.000 187.800,1098.000" fill="none" stroke="#a9b2b0" stroke-width="2"/>
+<polyline id="old-path-survey_back-0" points="187.800,1098.000 231.000,1053.000" fill="none" stroke="#a9b2b0" stroke-width="2"/>
+<polyline id="old-path-survey_back-1" points="231.000,1053.000 195.000,1062.000" fill="none" stroke="#a9b2b0" stroke-width="2"/>
+<polyline id="old-path-survey_back-2" points="195.000,1062.000 141.000,1062.000" fill="none" stroke="#a9b2b0" stroke-width="2"/>
+<polyline id="old-path-survey_back-3" points="141.000,1062.000 105.000,1089.000" fill="none" stroke="#a9b2b0" stroke-width="2"/>
+<polyline id="old-path-survey_back-4" points="105.000,1089.000 105.000,1197.000" fill="none" stroke="#a9b2b0" stroke-width="2"/>
+<polyline id="old-path-survey_back-5" points="105.000,1197.000 96.000,1269.000" fill="none" stroke="#a9b2b0" stroke-width="2"/>
+<polyline id="old-path-retreat-0" points="187.800,1098.000 294.000,1170.000" fill="none" stroke="#a9b2b0" stroke-width="2"/>
+<polyline id="old-path-retreat-1" points="294.000,1170.000 249.000,1224.000" fill="none" stroke="#a9b2b0" stroke-width="2"/>
+<polyline id="old-path-retreat-2" points="249.000,1224.000 195.000,1242.000" fill="none" stroke="#a9b2b0" stroke-width="2"/>
+<polyline id="old-path-retreat-3" points="195.000,1242.000 141.000,1242.000" fill="none" stroke="#a9b2b0" stroke-width="2"/>
+<polyline id="old-path-retreat-4" points="141.000,1242.000 96.000,1269.000" fill="none" stroke="#a9b2b0" stroke-width="2"/>
+<polyline id="old-path-work_loop-0" points="105.000,1089.000 69.000,1170.000" fill="none" stroke="#a9b2b0" stroke-width="2"/>
+<polyline id="old-path-work_loop-1" points="69.000,1170.000 60.000,1181.571" fill="none" stroke="#a9b2b0" stroke-width="2"/>
+<polyline id="old-path-work_loop-2" points="60.000,1261.800 96.000,1269.000" fill="none" stroke="#a9b2b0" stroke-width="2"/>
+<polyline id="old-path-work_loop-3" points="96.000,1269.000 105.000,1197.000" fill="none" stroke="#a9b2b0" stroke-width="2"/>
+<polyline id="old-path-work_loop-4" points="105.000,1197.000 105.000,1089.000" fill="none" stroke="#a9b2b0" stroke-width="2"/>
+<polyline id="old-path-east_shelter-0" points="195.000,1242.000 222.000,1287.000" fill="none" stroke="#a9b2b0" stroke-width="2"/>
+<polyline id="old-path-east_shelter-1" points="222.000,1287.000 366.000,1251.000" fill="none" stroke="#a9b2b0" stroke-width="2"/>
+<polyline id="old-path-west_optional-0" points="105.000,1089.000 60.000,1093.500" fill="none" stroke="#a9b2b0" stroke-width="2"/>
+<polyline id="old-path-west_optional-1" points="60.000,1158.000 69.000,1170.000" fill="none" stroke="#a9b2b0" stroke-width="2"/>
+<polyline id="old-path-pool_optional-0" points="231.000,1053.000 249.000,954.000" fill="none" stroke="#a9b2b0" stroke-width="2"/>
+<polyline id="old-path-future_upstream-0" points="105.000,1089.000 114.000,981.000" fill="none" stroke="#a9b2b0" stroke-width="2"/>
+<circle id="home-SG1" cx="357.000" cy="1233.000" r="18.000" fill="none" stroke="#47715c"/>
+<polyline id="routine-SG1-0" points="357.000,1233.000 339.000,1251.000" fill="none" stroke="#687b7b" stroke-width="2"/>
+<polyline id="routine-SG1-1" points="339.000,1251.000 357.000,1233.000" fill="none" stroke="#687b7b" stroke-width="2"/>
+<text x="365.000" y="1223.000" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#47715c" font-weight="700">SG1</text>
+<circle id="home-SG2" cx="301.200" cy="1166.400" r="16.200" fill="none" stroke="#47715c"/>
+<polyline id="routine-SG2-0" points="301.200,1166.400 319.200,1144.800" fill="none" stroke="#687b7b" stroke-width="2"/>
+<polyline id="routine-SG2-1" points="319.200,1144.800 301.200,1166.400" fill="none" stroke="#687b7b" stroke-width="2"/>
+<text x="309.200" y="1156.400" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#47715c" font-weight="700">SG2</text>
+<circle id="home-SG3" cx="231.000" cy="1215.000" r="14.400" fill="none" stroke="#ac663b"/>
+<polyline id="routine-SG3-0" points="231.000,1215.000 249.000,1197.000" fill="none" stroke="#687b7b" stroke-width="2"/>
+<polyline id="routine-SG3-1" points="249.000,1197.000 231.000,1215.000" fill="none" stroke="#687b7b" stroke-width="2"/>
+<text x="239.000" y="1205.000" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#ac663b" font-weight="700">SG3</text>
+<circle id="home-SG4" cx="209.400" cy="1101.600" r="13.500" fill="none" stroke="#ac663b"/>
+<text x="234.400" y="1123.600" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#ac663b" font-weight="700">SG4</text>
+<circle id="home-SG5" cx="74.400" cy="1170.000" r="12.600" fill="none" stroke="#ac663b"/>
+<text x="82.400" y="1160.000" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#ac663b" font-weight="700">SG5</text>
+<circle id="home-SG7" cx="198.600" cy="1035.000" r="9.000" fill="none" stroke="#47715c"/>
+<text x="206.600" y="1025.000" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#47715c" font-weight="700">SG7</text>
+<circle id="home-SG8" cx="294.000" cy="954.000" r="27.000" fill="none" stroke="#ac663b"/>
+<polyline id="routine-SG8-0" points="294.000,954.000 308.400,981.000" fill="none" stroke="#687b7b" stroke-width="2"/>
+<polyline id="routine-SG8-1" points="308.400,981.000 294.000,954.000" fill="none" stroke="#687b7b" stroke-width="2"/>
+<text x="302.000" y="944.000" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#ac663b" font-weight="700">SG8</text>
+<circle id="home-FG1" cx="105.000" cy="810.000" r="18.000" fill="none" stroke="#ac663b"/>
+<text x="113.000" y="800.000" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#ac663b" font-weight="700">FG1</text>
+<circle id="home-FG14" cx="223.800" cy="558.000" r="18.000" fill="none" stroke="#ac663b"/>
+<text x="241.800" y="580.000" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#ac663b" font-weight="700">FG14</text>
+<circle id="home-FG15" cx="227.400" cy="684.000" r="18.000" fill="none" stroke="#ac663b"/>
+<text x="235.400" y="674.000" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#ac663b" font-weight="700">FG15</text>
+<circle id="home-FG16" cx="225.600" cy="873.000" r="19.800" fill="none" stroke="#ac663b"/>
+<text x="233.600" y="863.000" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#ac663b" font-weight="700">FG16</text>
+<polyline id="route-activate_A17-0" points="105.000,1089.000 114.000,981.000" fill="none" stroke="#397c99" stroke-width="3"/>
+<polyline id="route-activate_A17-1" points="114.000,981.000 105.000,909.000" fill="none" stroke="#397c99" stroke-width="3"/>
+<polyline id="route-activate_A17-2" points="105.000,909.000 78.000,846.000" fill="none" stroke="#397c99" stroke-width="3"/>
+<polyline id="route-activate_A17-3" points="78.000,846.000 60.000,817.200" fill="none" stroke="#397c99" stroke-width="3"/>
+<polyline id="route-source_approach-0" points="60.000,423.818 96.000,414.000" fill="none" stroke="#397c99" stroke-width="3"/>
+<polyline id="route-source_approach-1" points="96.000,414.000 141.000,324.000" fill="none" stroke="#397c99" stroke-width="3"/>
+<polyline id="route-source_approach-2" points="141.000,324.000 195.000,324.000" fill="none" stroke="#397c99" stroke-width="3"/>
+<polyline id="route-source_approach-3" points="195.000,324.000 258.000,342.000" fill="none" stroke="#397c99" stroke-width="3"/>
+<polyline id="route-river_return-0" points="258.000,342.000 231.000,540.000" fill="none" stroke="#ac663b" stroke-width="3"/>
+<polyline id="route-river_return-1" points="231.000,540.000 222.000,774.000" fill="none" stroke="#ac663b" stroke-width="3"/>
+<polyline id="route-river_return-2" points="222.000,774.000 231.000,1053.000" fill="none" stroke="#ac663b" stroke-width="3"/>
+<polyline id="route-source_retreat-0" points="258.000,342.000 195.000,324.000" fill="none" stroke="#47715c" stroke-width="1"/>
+<polyline id="route-source_retreat-1" points="195.000,324.000 141.000,324.000" fill="none" stroke="#47715c" stroke-width="1"/>
+<polyline id="route-source_retreat-2" points="141.000,324.000 96.000,414.000" fill="none" stroke="#47715c" stroke-width="1"/>
+<polyline id="route-source_retreat-3" points="96.000,414.000 60.000,423.818" fill="none" stroke="#47715c" stroke-width="1"/>
+<polyline id="route-waterlook_optional-0" points="141.000,324.000 96.000,234.000" fill="none" stroke="#75698b" stroke-width="3"/>
+<polyline id="route-future_facility-0" points="258.000,342.000 330.000,270.000" fill="none" stroke="#75698b" stroke-width="3"/>
+<circle id="node-A04" cx="96.000" cy="1269.000" r="4.000" fill="#ffffff" stroke="#263d43"/>
+<circle id="node-A05" cx="148.200" cy="1305.000" r="4.000" fill="#ffffff" stroke="#263d43"/>
+<circle id="node-A06" cx="141.000" cy="1242.000" r="4.000" fill="#ffffff" stroke="#263d43"/>
+<text x="149.000" y="1240.000" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263d43" font-weight="700">A06</text>
+<circle id="node-A07" cx="195.000" cy="1242.000" r="4.000" fill="#ffffff" stroke="#263d43"/>
+<text x="203.000" y="1240.000" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263d43" font-weight="700">A07</text>
+<circle id="node-A08" cx="249.000" cy="1224.000" r="4.000" fill="#ffffff" stroke="#263d43"/>
+<circle id="node-A09" cx="294.000" cy="1170.000" r="4.000" fill="#ffffff" stroke="#263d43"/>
+<circle id="node-A10" cx="187.800" cy="1098.000" r="4.000" fill="#ffffff" stroke="#263d43"/>
+<circle id="node-A11" cx="231.000" cy="1053.000" r="4.000" fill="#ffffff" stroke="#263d43"/>
+<text x="239.000" y="1079.000" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263d43" font-weight="700">A11</text>
+<circle id="node-A12" cx="195.000" cy="1062.000" r="4.000" fill="#ffffff" stroke="#263d43"/>
+<text x="190.000" y="1090.000" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263d43" font-weight="700">A12</text>
+<circle id="node-A13" cx="141.000" cy="1062.000" r="4.000" fill="#ffffff" stroke="#263d43"/>
+<text x="96.000" y="1090.000" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263d43" font-weight="700">A13</text>
+<circle id="node-A14" cx="105.000" cy="1089.000" r="4.000" fill="#ffffff" stroke="#263d43"/>
+<circle id="node-A15" cx="69.000" cy="1170.000" r="4.000" fill="#ffffff" stroke="#263d43"/>
+<circle id="node-A16" cx="105.000" cy="1197.000" r="4.000" fill="#ffffff" stroke="#263d43"/>
+<circle id="node-A17" cx="114.000" cy="981.000" r="4.000" fill="#ffffff" stroke="#263d43"/>
+<text x="122.000" y="979.000" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263d43" font-weight="700">A17</text>
+<circle id="node-A18" cx="249.000" cy="954.000" r="4.000" fill="#ffffff" stroke="#263d43"/>
+<text x="257.000" y="952.000" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263d43" font-weight="700">A18</text>
+<circle id="node-A20" cx="366.000" cy="1251.000" r="4.000" fill="#ffffff" stroke="#263d43"/>
+<circle id="node-A21" cx="222.000" cy="1287.000" r="4.000" fill="#ffffff" stroke="#263d43"/>
+<circle id="node-B01" cx="105.000" cy="909.000" r="4.000" fill="#ffffff" stroke="#263d43"/>
+<circle id="node-B02" cx="78.000" cy="846.000" r="4.000" fill="#ffffff" stroke="#263d43"/>
+<circle id="node-F01" cx="141.000" cy="324.000" r="4.000" fill="#ffffff" stroke="#263d43"/>
+<text x="96.000" y="317.000" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263d43" font-weight="700">F01</text>
+<circle id="node-F02" cx="195.000" cy="324.000" r="4.000" fill="#ffffff" stroke="#263d43"/>
+<text x="203.000" y="350.000" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263d43" font-weight="700">F02</text>
+<circle id="node-F03" cx="258.000" cy="342.000" r="4.000" fill="#ffffff" stroke="#263d43"/>
+<text x="266.000" y="340.000" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263d43" font-weight="700">F03</text>
+<circle id="node-F04" cx="330.000" cy="270.000" r="4.000" fill="#ffffff" stroke="#263d43"/>
+<text x="338.000" y="268.000" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263d43" font-weight="700">F04</text>
+<circle id="node-F05" cx="231.000" cy="540.000" r="4.000" fill="#ffffff" stroke="#263d43"/>
+<text x="239.000" y="538.000" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263d43" font-weight="700">F05</text>
+<circle id="node-F06" cx="222.000" cy="774.000" r="4.000" fill="#ffffff" stroke="#263d43"/>
+<text x="230.000" y="772.000" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263d43" font-weight="700">F06</text>
+<circle id="node-F07" cx="96.000" cy="414.000" r="4.000" fill="#ffffff" stroke="#263d43"/>
+<text x="104.000" y="412.000" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263d43" font-weight="700">F07</text>
+<circle id="node-F08" cx="96.000" cy="234.000" r="4.000" fill="#ffffff" stroke="#263d43"/>
+<text x="104.000" y="232.000" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263d43" font-weight="700">F08</text>
+<text x="570.000" y="223.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#263d43" font-weight="400">F01 관리교 서단</text>
+<text x="570.000" y="268.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#263d43" font-weight="400">F02 관리교 동단</text>
+<text x="570.000" y="313.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#263d43" font-weight="400">F03 현용 수원 접수</text>
+<text x="570.000" y="358.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#263d43" font-weight="400">F04 설비 내부 경계</text>
+<text x="570.000" y="403.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#263d43" font-weight="400">F05 동쪽 강둑길</text>
+<text x="570.000" y="448.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#263d43" font-weight="400">F06 하류 제방 연결</text>
+<text x="570.000" y="493.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#263d43" font-weight="400">F07 교량 점검 마당</text>
+<text x="570.000" y="538.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#263d43" font-weight="400">F08 상류 수면 전망</text>
+<text x="570.000" y="673.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#687b7b" font-weight="400">북쪽 물길은 기존 수로 경계에 이어지는 후보다.</text>
+<text x="570.000" y="743.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#687b7b" font-weight="400">수원 전체의 기원·수량·고도를 확정하지 않는다.</text>
+<text x="570.000" y="813.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#687b7b" font-weight="400">관리교: 양안 접근면 포함 300m, 폭 12m 후보.</text>
+<text x="570.000" y="883.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#687b7b" font-weight="400">관리교 사용 전 지지·하중·수위·동의를 확인한다.</text>
+<text x="570.000" y="953.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#687b7b" font-weight="400">동쪽 제방은 기존 A11·북교·A14로 돌아간다.</text>
+<text x="570.000" y="1023.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#687b7b" font-weight="400">FG14·FG16 늪트롤 / FG15 가는잎 군락</text>
+<text x="570.000" y="1093.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#687b7b" font-weight="400">기존 SG8 판갑목은 별도 선택 위험으로 유지한다.</text>
+<text x="570.000" y="1163.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#687b7b" font-weight="400">F04 내부·F08 상류 물자리의 본편은 후속이다.</text>
+<polyline points="60.000,1405.000 150.000,1405.000" fill="none" stroke="#263d43" stroke-width="4"/>
+<text x="60.000" y="1444.000" font-family="Malgun Gothic,sans-serif" font-size="19" fill="#263d43" font-weight="400">500 m · 국소 설계 축척</text>
+</svg>

@@ -1,0 +1,1878 @@
+{
+  "status": "PASS",
+  "checks_passed": 455,
+  "checks_total": 455,
+  "land_samples_max_2m": 14458,
+  "svg_id_elements": 356,
+  "pressure_margin_m": {
+    "pre_boss_exit": 239.92,
+    "blackback_bypass": 88.2,
+    "lower_hydra_return": 97.55,
+    "optional_drake_main": 624.4
+  },
+  "contact_sampling_5m_max": {
+    "forest_out": {
+      "longest_no_hostile_envelope_m": 682.2,
+      "max_overlapping_envelopes": 1,
+      "potential_groups": [
+        "FG2",
+        "FG3",
+        "FG4"
+      ]
+    },
+    "forest_loop": {
+      "longest_no_hostile_envelope_m": 1230.1,
+      "max_overlapping_envelopes": 1,
+      "potential_groups": [
+        "FG12"
+      ]
+    },
+    "boss_return": {
+      "longest_no_hostile_envelope_m": 922.9,
+      "max_overlapping_envelopes": 1,
+      "potential_groups": [
+        "FG11"
+      ]
+    },
+    "elite_bypass": {
+      "longest_no_hostile_envelope_m": 1140.2,
+      "max_overlapping_envelopes": 0,
+      "potential_groups": []
+    },
+    "river_return": {
+      "longest_no_hostile_envelope_m": 1120.1,
+      "max_overlapping_envelopes": 1,
+      "potential_groups": [
+        "FG14",
+        "FG15",
+        "FG16"
+      ]
+    }
+  },
+  "checks": [
+    {
+      "name": "source Docs/ArtDirection/EtherWorldMap/Data/seradion-arrival-v1.json",
+      "pass": true
+    },
+    {
+      "name": "source Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-10-seradion-arrival/story-and-handoffs.md",
+      "pass": true
+    },
+    {
+      "name": "source Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-08-five-continent-mainline/routes-and-unlocks.md",
+      "pass": true
+    },
+    {
+      "name": "source Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-08-five-continent-mainline/continent-arcs.md",
+      "pass": true
+    },
+    {
+      "name": "source Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-08-world-distribution-and-leveling/variant-distribution.md",
+      "pass": true
+    },
+    {
+      "name": "source Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-08-world-distribution-and-leveling/progression.md",
+      "pass": true
+    },
+    {
+      "name": "source Docs/Narrative/World.md",
+      "pass": true
+    },
+    {
+      "name": "source Docs/Narrative/Scenario.md",
+      "pass": true
+    },
+    {
+      "name": "arrival entire object",
+      "pass": true
+    },
+    {
+      "name": "new nodes unique",
+      "pass": true
+    },
+    {
+      "name": "combined nodes unique",
+      "pass": true
+    },
+    {
+      "name": "groups",
+      "pass": true
+    },
+    {
+      "name": "new forms",
+      "pass": true
+    },
+    {
+      "name": "new individuals",
+      "pass": true
+    },
+    {
+      "name": "combined forms",
+      "pass": true
+    },
+    {
+      "name": "combined individuals",
+      "pass": true
+    },
+    {
+      "name": "form source FG1",
+      "pass": true
+    },
+    {
+      "name": "range FG1",
+      "pass": true
+    },
+    {
+      "name": "region FG1",
+      "pass": true
+    },
+    {
+      "name": "name FG1",
+      "pass": true
+    },
+    {
+      "name": "home routine FG1",
+      "pass": true
+    },
+    {
+      "name": "form source FG2",
+      "pass": true
+    },
+    {
+      "name": "range FG2",
+      "pass": true
+    },
+    {
+      "name": "region FG2",
+      "pass": true
+    },
+    {
+      "name": "name FG2",
+      "pass": true
+    },
+    {
+      "name": "home routine FG2",
+      "pass": true
+    },
+    {
+      "name": "form source FG3",
+      "pass": true
+    },
+    {
+      "name": "range FG3",
+      "pass": true
+    },
+    {
+      "name": "region FG3",
+      "pass": true
+    },
+    {
+      "name": "name FG3",
+      "pass": true
+    },
+    {
+      "name": "home routine FG3",
+      "pass": true
+    },
+    {
+      "name": "form source FG4",
+      "pass": true
+    },
+    {
+      "name": "range FG4",
+      "pass": true
+    },
+    {
+      "name": "region FG4",
+      "pass": true
+    },
+    {
+      "name": "name FG4",
+      "pass": true
+    },
+    {
+      "name": "home routine FG4",
+      "pass": true
+    },
+    {
+      "name": "form source FG5",
+      "pass": true
+    },
+    {
+      "name": "range FG5",
+      "pass": true
+    },
+    {
+      "name": "region FG5",
+      "pass": true
+    },
+    {
+      "name": "name FG5",
+      "pass": true
+    },
+    {
+      "name": "home routine FG5",
+      "pass": true
+    },
+    {
+      "name": "form source FG6",
+      "pass": true
+    },
+    {
+      "name": "range FG6",
+      "pass": true
+    },
+    {
+      "name": "region FG6",
+      "pass": true
+    },
+    {
+      "name": "name FG6",
+      "pass": true
+    },
+    {
+      "name": "home routine FG6",
+      "pass": true
+    },
+    {
+      "name": "form source FG7",
+      "pass": true
+    },
+    {
+      "name": "range FG7",
+      "pass": true
+    },
+    {
+      "name": "region FG7",
+      "pass": true
+    },
+    {
+      "name": "name FG7",
+      "pass": true
+    },
+    {
+      "name": "home routine FG7",
+      "pass": true
+    },
+    {
+      "name": "form source FG8",
+      "pass": true
+    },
+    {
+      "name": "range FG8",
+      "pass": true
+    },
+    {
+      "name": "region FG8",
+      "pass": true
+    },
+    {
+      "name": "name FG8",
+      "pass": true
+    },
+    {
+      "name": "home routine FG8",
+      "pass": true
+    },
+    {
+      "name": "form source FG9",
+      "pass": true
+    },
+    {
+      "name": "range FG9",
+      "pass": true
+    },
+    {
+      "name": "region FG9",
+      "pass": true
+    },
+    {
+      "name": "name FG9",
+      "pass": true
+    },
+    {
+      "name": "home routine FG9",
+      "pass": true
+    },
+    {
+      "name": "form source FG10",
+      "pass": true
+    },
+    {
+      "name": "range FG10",
+      "pass": true
+    },
+    {
+      "name": "region FG10",
+      "pass": true
+    },
+    {
+      "name": "name FG10",
+      "pass": true
+    },
+    {
+      "name": "home routine FG10",
+      "pass": true
+    },
+    {
+      "name": "form source FG11",
+      "pass": true
+    },
+    {
+      "name": "range FG11",
+      "pass": true
+    },
+    {
+      "name": "region FG11",
+      "pass": true
+    },
+    {
+      "name": "name FG11",
+      "pass": true
+    },
+    {
+      "name": "home routine FG11",
+      "pass": true
+    },
+    {
+      "name": "form source FG12",
+      "pass": true
+    },
+    {
+      "name": "range FG12",
+      "pass": true
+    },
+    {
+      "name": "region FG12",
+      "pass": true
+    },
+    {
+      "name": "name FG12",
+      "pass": true
+    },
+    {
+      "name": "home routine FG12",
+      "pass": true
+    },
+    {
+      "name": "form source FG13",
+      "pass": true
+    },
+    {
+      "name": "range FG13",
+      "pass": true
+    },
+    {
+      "name": "region FG13",
+      "pass": true
+    },
+    {
+      "name": "name FG13",
+      "pass": true
+    },
+    {
+      "name": "home routine FG13",
+      "pass": true
+    },
+    {
+      "name": "form source FG14",
+      "pass": true
+    },
+    {
+      "name": "range FG14",
+      "pass": true
+    },
+    {
+      "name": "region FG14",
+      "pass": true
+    },
+    {
+      "name": "name FG14",
+      "pass": true
+    },
+    {
+      "name": "home routine FG14",
+      "pass": true
+    },
+    {
+      "name": "form source FG15",
+      "pass": true
+    },
+    {
+      "name": "range FG15",
+      "pass": true
+    },
+    {
+      "name": "region FG15",
+      "pass": true
+    },
+    {
+      "name": "name FG15",
+      "pass": true
+    },
+    {
+      "name": "home routine FG15",
+      "pass": true
+    },
+    {
+      "name": "form source FG16",
+      "pass": true
+    },
+    {
+      "name": "range FG16",
+      "pass": true
+    },
+    {
+      "name": "region FG16",
+      "pass": true
+    },
+    {
+      "name": "name FG16",
+      "pass": true
+    },
+    {
+      "name": "home routine FG16",
+      "pass": true
+    },
+    {
+      "name": "no added construct or combatant",
+      "pass": true
+    },
+    {
+      "name": "references activate_A17",
+      "pass": true
+    },
+    {
+      "name": "coordinates activate_A17",
+      "pass": true
+    },
+    {
+      "name": "length activate_A17",
+      "pass": true
+    },
+    {
+      "name": "no unbridged water activate_A17",
+      "pass": true
+    },
+    {
+      "name": "references forest_out",
+      "pass": true
+    },
+    {
+      "name": "coordinates forest_out",
+      "pass": true
+    },
+    {
+      "name": "length forest_out",
+      "pass": true
+    },
+    {
+      "name": "no unbridged water forest_out",
+      "pass": true
+    },
+    {
+      "name": "references forest_loop",
+      "pass": true
+    },
+    {
+      "name": "coordinates forest_loop",
+      "pass": true
+    },
+    {
+      "name": "length forest_loop",
+      "pass": true
+    },
+    {
+      "name": "no unbridged water forest_loop",
+      "pass": true
+    },
+    {
+      "name": "references basin_out",
+      "pass": true
+    },
+    {
+      "name": "coordinates basin_out",
+      "pass": true
+    },
+    {
+      "name": "length basin_out",
+      "pass": true
+    },
+    {
+      "name": "no unbridged water basin_out",
+      "pass": true
+    },
+    {
+      "name": "references boss_retreat",
+      "pass": true
+    },
+    {
+      "name": "coordinates boss_retreat",
+      "pass": true
+    },
+    {
+      "name": "length boss_retreat",
+      "pass": true
+    },
+    {
+      "name": "no unbridged water boss_retreat",
+      "pass": true
+    },
+    {
+      "name": "references boss_return",
+      "pass": true
+    },
+    {
+      "name": "coordinates boss_return",
+      "pass": true
+    },
+    {
+      "name": "length boss_return",
+      "pass": true
+    },
+    {
+      "name": "no unbridged water boss_return",
+      "pass": true
+    },
+    {
+      "name": "references north_scout",
+      "pass": true
+    },
+    {
+      "name": "coordinates north_scout",
+      "pass": true
+    },
+    {
+      "name": "length north_scout",
+      "pass": true
+    },
+    {
+      "name": "no unbridged water north_scout",
+      "pass": true
+    },
+    {
+      "name": "references elite_bypass",
+      "pass": true
+    },
+    {
+      "name": "coordinates elite_bypass",
+      "pass": true
+    },
+    {
+      "name": "length elite_bypass",
+      "pass": true
+    },
+    {
+      "name": "no unbridged water elite_bypass",
+      "pass": true
+    },
+    {
+      "name": "references east_setup",
+      "pass": true
+    },
+    {
+      "name": "coordinates east_setup",
+      "pass": true
+    },
+    {
+      "name": "length east_setup",
+      "pass": true
+    },
+    {
+      "name": "no unbridged water east_setup",
+      "pass": true
+    },
+    {
+      "name": "references source_approach",
+      "pass": true
+    },
+    {
+      "name": "coordinates source_approach",
+      "pass": true
+    },
+    {
+      "name": "length source_approach",
+      "pass": true
+    },
+    {
+      "name": "no unbridged water source_approach",
+      "pass": true
+    },
+    {
+      "name": "references river_return",
+      "pass": true
+    },
+    {
+      "name": "coordinates river_return",
+      "pass": true
+    },
+    {
+      "name": "length river_return",
+      "pass": true
+    },
+    {
+      "name": "no unbridged water river_return",
+      "pass": true
+    },
+    {
+      "name": "references source_retreat",
+      "pass": true
+    },
+    {
+      "name": "coordinates source_retreat",
+      "pass": true
+    },
+    {
+      "name": "length source_retreat",
+      "pass": true
+    },
+    {
+      "name": "no unbridged water source_retreat",
+      "pass": true
+    },
+    {
+      "name": "references dry_optional",
+      "pass": true
+    },
+    {
+      "name": "coordinates dry_optional",
+      "pass": true
+    },
+    {
+      "name": "length dry_optional",
+      "pass": true
+    },
+    {
+      "name": "no unbridged water dry_optional",
+      "pass": true
+    },
+    {
+      "name": "references lair_optional",
+      "pass": true
+    },
+    {
+      "name": "coordinates lair_optional",
+      "pass": true
+    },
+    {
+      "name": "length lair_optional",
+      "pass": true
+    },
+    {
+      "name": "no unbridged water lair_optional",
+      "pass": true
+    },
+    {
+      "name": "references waterlook_optional",
+      "pass": true
+    },
+    {
+      "name": "coordinates waterlook_optional",
+      "pass": true
+    },
+    {
+      "name": "length waterlook_optional",
+      "pass": true
+    },
+    {
+      "name": "no unbridged water waterlook_optional",
+      "pass": true
+    },
+    {
+      "name": "references future_facility",
+      "pass": true
+    },
+    {
+      "name": "coordinates future_facility",
+      "pass": true
+    },
+    {
+      "name": "length future_facility",
+      "pass": true
+    },
+    {
+      "name": "no unbridged water future_facility",
+      "pass": true
+    },
+    {
+      "name": "water joins original",
+      "pass": true
+    },
+    {
+      "name": "bridge width",
+      "pass": true
+    },
+    {
+      "name": "all current land connected",
+      "pass": true
+    },
+    {
+      "name": "north exit before boss",
+      "pass": true
+    },
+    {
+      "name": "outer intake before boss",
+      "pass": true
+    },
+    {
+      "name": "outer intake without upper bridge",
+      "pass": true
+    },
+    {
+      "name": "west return without bridge",
+      "pass": true
+    },
+    {
+      "name": "all bridges closed shelter",
+      "pass": true
+    },
+    {
+      "name": "all bridges closed no waterwalk",
+      "pass": true
+    },
+    {
+      "name": "no future internal access",
+      "pass": true
+    },
+    {
+      "name": "pressure margin pre_boss_exit",
+      "pass": true
+    },
+    {
+      "name": "pressure margin blackback_bypass",
+      "pass": true
+    },
+    {
+      "name": "pressure margin lower_hydra_return",
+      "pass": true
+    },
+    {
+      "name": "pressure margin optional_drake_main",
+      "pass": true
+    },
+    {
+      "name": "same incident",
+      "pass": true
+    },
+    {
+      "name": "not respawn",
+      "pass": true
+    },
+    {
+      "name": "cover distance",
+      "pass": true
+    },
+    {
+      "name": "stage totals",
+      "pass": true
+    },
+    {
+      "name": "remaining three",
+      "pass": true
+    },
+    {
+      "name": "whole seradion budget",
+      "pass": true
+    },
+    {
+      "name": "optional growth retained",
+      "pass": true
+    },
+    {
+      "name": "still pending G5_complete",
+      "pass": true
+    },
+    {
+      "name": "still pending G6_complete",
+      "pass": true
+    },
+    {
+      "name": "still pending F04_open",
+      "pass": true
+    },
+    {
+      "name": "still pending resident_water_isolated",
+      "pass": true
+    },
+    {
+      "name": "still pending expanded_trial_stopped",
+      "pass": true
+    },
+    {
+      "name": "roster retained",
+      "pass": true
+    },
+    {
+      "name": "SVG node overview A00",
+      "pass": true
+    },
+    {
+      "name": "SVG node overview A01",
+      "pass": true
+    },
+    {
+      "name": "SVG node overview A02",
+      "pass": true
+    },
+    {
+      "name": "SVG node overview A03",
+      "pass": true
+    },
+    {
+      "name": "SVG node overview A04",
+      "pass": true
+    },
+    {
+      "name": "SVG node overview A05",
+      "pass": true
+    },
+    {
+      "name": "SVG node overview A06",
+      "pass": true
+    },
+    {
+      "name": "SVG node overview A07",
+      "pass": true
+    },
+    {
+      "name": "SVG node overview A08",
+      "pass": true
+    },
+    {
+      "name": "SVG node overview A09",
+      "pass": true
+    },
+    {
+      "name": "SVG node overview A10",
+      "pass": true
+    },
+    {
+      "name": "SVG node overview A11",
+      "pass": true
+    },
+    {
+      "name": "SVG node overview A12",
+      "pass": true
+    },
+    {
+      "name": "SVG node overview A13",
+      "pass": true
+    },
+    {
+      "name": "SVG node overview A14",
+      "pass": true
+    },
+    {
+      "name": "SVG node overview A15",
+      "pass": true
+    },
+    {
+      "name": "SVG node overview A16",
+      "pass": true
+    },
+    {
+      "name": "SVG node overview A17",
+      "pass": true
+    },
+    {
+      "name": "SVG node overview A18",
+      "pass": true
+    },
+    {
+      "name": "SVG node overview A19",
+      "pass": true
+    },
+    {
+      "name": "SVG node overview A20",
+      "pass": true
+    },
+    {
+      "name": "SVG node overview A21",
+      "pass": true
+    },
+    {
+      "name": "SVG node overview B01",
+      "pass": true
+    },
+    {
+      "name": "SVG node overview B02",
+      "pass": true
+    },
+    {
+      "name": "SVG node overview B03",
+      "pass": true
+    },
+    {
+      "name": "SVG node overview B04",
+      "pass": true
+    },
+    {
+      "name": "SVG node overview B05",
+      "pass": true
+    },
+    {
+      "name": "SVG node overview B06",
+      "pass": true
+    },
+    {
+      "name": "SVG node overview B07",
+      "pass": true
+    },
+    {
+      "name": "SVG node overview B08",
+      "pass": true
+    },
+    {
+      "name": "SVG node overview B09",
+      "pass": true
+    },
+    {
+      "name": "SVG node overview B10",
+      "pass": true
+    },
+    {
+      "name": "SVG node overview B11",
+      "pass": true
+    },
+    {
+      "name": "SVG node overview B12",
+      "pass": true
+    },
+    {
+      "name": "SVG node overview B13",
+      "pass": true
+    },
+    {
+      "name": "SVG node overview B14",
+      "pass": true
+    },
+    {
+      "name": "SVG node overview B15",
+      "pass": true
+    },
+    {
+      "name": "SVG node overview B16",
+      "pass": true
+    },
+    {
+      "name": "SVG node overview F01",
+      "pass": true
+    },
+    {
+      "name": "SVG node overview F02",
+      "pass": true
+    },
+    {
+      "name": "SVG node overview F03",
+      "pass": true
+    },
+    {
+      "name": "SVG node overview F04",
+      "pass": true
+    },
+    {
+      "name": "SVG node overview F05",
+      "pass": true
+    },
+    {
+      "name": "SVG node overview F06",
+      "pass": true
+    },
+    {
+      "name": "SVG node overview F07",
+      "pass": true
+    },
+    {
+      "name": "SVG node overview F08",
+      "pass": true
+    },
+    {
+      "name": "SVG segment overview route-activate_A17-0",
+      "pass": true
+    },
+    {
+      "name": "SVG segment overview route-activate_A17-1",
+      "pass": true
+    },
+    {
+      "name": "SVG segment overview route-activate_A17-2",
+      "pass": true
+    },
+    {
+      "name": "SVG segment overview route-activate_A17-3",
+      "pass": true
+    },
+    {
+      "name": "SVG segment overview route-forest_out-0",
+      "pass": true
+    },
+    {
+      "name": "SVG segment overview route-forest_out-1",
+      "pass": true
+    },
+    {
+      "name": "SVG segment overview route-forest_out-2",
+      "pass": true
+    },
+    {
+      "name": "SVG segment overview route-forest_out-3",
+      "pass": true
+    },
+    {
+      "name": "SVG segment overview route-forest_out-4",
+      "pass": true
+    },
+    {
+      "name": "SVG segment overview route-forest_loop-0",
+      "pass": true
+    },
+    {
+      "name": "SVG segment overview route-forest_loop-1",
+      "pass": true
+    },
+    {
+      "name": "SVG segment overview route-forest_loop-2",
+      "pass": true
+    },
+    {
+      "name": "SVG segment overview route-basin_out-0",
+      "pass": true
+    },
+    {
+      "name": "SVG segment overview route-boss_retreat-0",
+      "pass": true
+    },
+    {
+      "name": "SVG segment overview route-boss_retreat-1",
+      "pass": true
+    },
+    {
+      "name": "SVG segment overview route-boss_retreat-2",
+      "pass": true
+    },
+    {
+      "name": "SVG segment overview route-boss_return-0",
+      "pass": true
+    },
+    {
+      "name": "SVG segment overview route-boss_return-1",
+      "pass": true
+    },
+    {
+      "name": "SVG segment overview route-boss_return-2",
+      "pass": true
+    },
+    {
+      "name": "SVG segment overview route-north_scout-0",
+      "pass": true
+    },
+    {
+      "name": "SVG segment overview route-elite_bypass-0",
+      "pass": true
+    },
+    {
+      "name": "SVG segment overview route-east_setup-0",
+      "pass": true
+    },
+    {
+      "name": "SVG segment overview route-east_setup-1",
+      "pass": true
+    },
+    {
+      "name": "SVG segment overview route-source_approach-0",
+      "pass": true
+    },
+    {
+      "name": "SVG segment overview route-source_approach-1",
+      "pass": true
+    },
+    {
+      "name": "SVG segment overview route-source_approach-2",
+      "pass": true
+    },
+    {
+      "name": "SVG segment overview route-source_approach-3",
+      "pass": true
+    },
+    {
+      "name": "SVG segment overview route-river_return-0",
+      "pass": true
+    },
+    {
+      "name": "SVG segment overview route-river_return-1",
+      "pass": true
+    },
+    {
+      "name": "SVG segment overview route-river_return-2",
+      "pass": true
+    },
+    {
+      "name": "SVG segment overview route-source_retreat-0",
+      "pass": true
+    },
+    {
+      "name": "SVG segment overview route-source_retreat-1",
+      "pass": true
+    },
+    {
+      "name": "SVG segment overview route-source_retreat-2",
+      "pass": true
+    },
+    {
+      "name": "SVG segment overview route-source_retreat-3",
+      "pass": true
+    },
+    {
+      "name": "SVG segment overview route-source_retreat-4",
+      "pass": true
+    },
+    {
+      "name": "SVG segment overview route-source_retreat-5",
+      "pass": true
+    },
+    {
+      "name": "SVG segment overview route-source_retreat-6",
+      "pass": true
+    },
+    {
+      "name": "SVG segment overview route-dry_optional-0",
+      "pass": true
+    },
+    {
+      "name": "SVG segment overview route-dry_optional-1",
+      "pass": true
+    },
+    {
+      "name": "SVG segment overview route-lair_optional-0",
+      "pass": true
+    },
+    {
+      "name": "SVG segment overview route-lair_optional-1",
+      "pass": true
+    },
+    {
+      "name": "SVG segment overview route-waterlook_optional-0",
+      "pass": true
+    },
+    {
+      "name": "SVG segment overview route-future_facility-0",
+      "pass": true
+    },
+    {
+      "name": "SVG home overview SG1",
+      "pass": true
+    },
+    {
+      "name": "SVG home overview SG2",
+      "pass": true
+    },
+    {
+      "name": "SVG home overview SG3",
+      "pass": true
+    },
+    {
+      "name": "SVG home overview SG4",
+      "pass": true
+    },
+    {
+      "name": "SVG home overview SG5",
+      "pass": true
+    },
+    {
+      "name": "SVG home overview SG6",
+      "pass": true
+    },
+    {
+      "name": "SVG home overview SG7",
+      "pass": true
+    },
+    {
+      "name": "SVG home overview SG8",
+      "pass": true
+    },
+    {
+      "name": "SVG home overview FG1",
+      "pass": true
+    },
+    {
+      "name": "SVG home overview FG2",
+      "pass": true
+    },
+    {
+      "name": "SVG home overview FG3",
+      "pass": true
+    },
+    {
+      "name": "SVG home overview FG4",
+      "pass": true
+    },
+    {
+      "name": "SVG home overview FG5",
+      "pass": true
+    },
+    {
+      "name": "SVG home overview FG6",
+      "pass": true
+    },
+    {
+      "name": "SVG home overview FG7",
+      "pass": true
+    },
+    {
+      "name": "SVG home overview FG8",
+      "pass": true
+    },
+    {
+      "name": "SVG home overview FG9",
+      "pass": true
+    },
+    {
+      "name": "SVG home overview FG10",
+      "pass": true
+    },
+    {
+      "name": "SVG home overview FG11",
+      "pass": true
+    },
+    {
+      "name": "SVG home overview FG12",
+      "pass": true
+    },
+    {
+      "name": "SVG home overview FG13",
+      "pass": true
+    },
+    {
+      "name": "SVG home overview FG14",
+      "pass": true
+    },
+    {
+      "name": "SVG home overview FG15",
+      "pass": true
+    },
+    {
+      "name": "SVG home overview FG16",
+      "pass": true
+    },
+    {
+      "name": "SVG node forest B03",
+      "pass": true
+    },
+    {
+      "name": "SVG node forest B04",
+      "pass": true
+    },
+    {
+      "name": "SVG node forest B05",
+      "pass": true
+    },
+    {
+      "name": "SVG node forest B06",
+      "pass": true
+    },
+    {
+      "name": "SVG node forest B07",
+      "pass": true
+    },
+    {
+      "name": "SVG node forest B08",
+      "pass": true
+    },
+    {
+      "name": "SVG node forest B09",
+      "pass": true
+    },
+    {
+      "name": "SVG node forest B10",
+      "pass": true
+    },
+    {
+      "name": "SVG node forest B11",
+      "pass": true
+    },
+    {
+      "name": "SVG node forest B12",
+      "pass": true
+    },
+    {
+      "name": "SVG node forest B13",
+      "pass": true
+    },
+    {
+      "name": "SVG node forest B14",
+      "pass": true
+    },
+    {
+      "name": "SVG node forest B15",
+      "pass": true
+    },
+    {
+      "name": "SVG node forest B16",
+      "pass": true
+    },
+    {
+      "name": "SVG node forest F07",
+      "pass": true
+    },
+    {
+      "name": "SVG segment forest route-activate_A17-0",
+      "pass": true
+    },
+    {
+      "name": "SVG segment forest route-activate_A17-1",
+      "pass": true
+    },
+    {
+      "name": "SVG segment forest route-activate_A17-2",
+      "pass": true
+    },
+    {
+      "name": "SVG segment forest route-activate_A17-3",
+      "pass": true
+    },
+    {
+      "name": "SVG segment forest route-forest_out-0",
+      "pass": true
+    },
+    {
+      "name": "SVG segment forest route-forest_out-1",
+      "pass": true
+    },
+    {
+      "name": "SVG segment forest route-forest_out-2",
+      "pass": true
+    },
+    {
+      "name": "SVG segment forest route-forest_out-3",
+      "pass": true
+    },
+    {
+      "name": "SVG segment forest route-forest_out-4",
+      "pass": true
+    },
+    {
+      "name": "SVG segment forest route-forest_loop-0",
+      "pass": true
+    },
+    {
+      "name": "SVG segment forest route-forest_loop-1",
+      "pass": true
+    },
+    {
+      "name": "SVG segment forest route-forest_loop-2",
+      "pass": true
+    },
+    {
+      "name": "SVG segment forest route-basin_out-0",
+      "pass": true
+    },
+    {
+      "name": "SVG segment forest route-boss_retreat-0",
+      "pass": true
+    },
+    {
+      "name": "SVG segment forest route-boss_retreat-1",
+      "pass": true
+    },
+    {
+      "name": "SVG segment forest route-boss_retreat-2",
+      "pass": true
+    },
+    {
+      "name": "SVG segment forest route-boss_return-0",
+      "pass": true
+    },
+    {
+      "name": "SVG segment forest route-boss_return-1",
+      "pass": true
+    },
+    {
+      "name": "SVG segment forest route-boss_return-2",
+      "pass": true
+    },
+    {
+      "name": "SVG segment forest route-north_scout-0",
+      "pass": true
+    },
+    {
+      "name": "SVG segment forest route-elite_bypass-0",
+      "pass": true
+    },
+    {
+      "name": "SVG segment forest route-east_setup-0",
+      "pass": true
+    },
+    {
+      "name": "SVG segment forest route-east_setup-1",
+      "pass": true
+    },
+    {
+      "name": "SVG segment forest route-source_approach-0",
+      "pass": true
+    },
+    {
+      "name": "SVG segment forest route-source_approach-1",
+      "pass": true
+    },
+    {
+      "name": "SVG segment forest route-source_approach-2",
+      "pass": true
+    },
+    {
+      "name": "SVG segment forest route-source_approach-3",
+      "pass": true
+    },
+    {
+      "name": "SVG segment forest route-river_return-0",
+      "pass": true
+    },
+    {
+      "name": "SVG segment forest route-river_return-1",
+      "pass": true
+    },
+    {
+      "name": "SVG segment forest route-river_return-2",
+      "pass": true
+    },
+    {
+      "name": "SVG segment forest route-source_retreat-0",
+      "pass": true
+    },
+    {
+      "name": "SVG segment forest route-source_retreat-1",
+      "pass": true
+    },
+    {
+      "name": "SVG segment forest route-source_retreat-2",
+      "pass": true
+    },
+    {
+      "name": "SVG segment forest route-source_retreat-3",
+      "pass": true
+    },
+    {
+      "name": "SVG segment forest route-source_retreat-4",
+      "pass": true
+    },
+    {
+      "name": "SVG segment forest route-source_retreat-5",
+      "pass": true
+    },
+    {
+      "name": "SVG segment forest route-source_retreat-6",
+      "pass": true
+    },
+    {
+      "name": "SVG segment forest route-dry_optional-0",
+      "pass": true
+    },
+    {
+      "name": "SVG segment forest route-dry_optional-1",
+      "pass": true
+    },
+    {
+      "name": "SVG segment forest route-lair_optional-0",
+      "pass": true
+    },
+    {
+      "name": "SVG segment forest route-lair_optional-1",
+      "pass": true
+    },
+    {
+      "name": "SVG segment forest route-waterlook_optional-0",
+      "pass": true
+    },
+    {
+      "name": "SVG segment forest route-future_facility-0",
+      "pass": true
+    },
+    {
+      "name": "SVG home forest FG1",
+      "pass": true
+    },
+    {
+      "name": "SVG home forest FG2",
+      "pass": true
+    },
+    {
+      "name": "SVG home forest FG3",
+      "pass": true
+    },
+    {
+      "name": "SVG home forest FG4",
+      "pass": true
+    },
+    {
+      "name": "SVG home forest FG5",
+      "pass": true
+    },
+    {
+      "name": "SVG home forest FG6",
+      "pass": true
+    },
+    {
+      "name": "SVG home forest FG7",
+      "pass": true
+    },
+    {
+      "name": "SVG home forest FG8",
+      "pass": true
+    },
+    {
+      "name": "SVG home forest FG9",
+      "pass": true
+    },
+    {
+      "name": "SVG home forest FG10",
+      "pass": true
+    },
+    {
+      "name": "SVG home forest FG11",
+      "pass": true
+    },
+    {
+      "name": "SVG home forest FG12",
+      "pass": true
+    },
+    {
+      "name": "SVG home forest FG13",
+      "pass": true
+    },
+    {
+      "name": "arena 120 by 90",
+      "pass": true
+    },
+    {
+      "name": "cover 70m",
+      "pass": true
+    },
+    {
+      "name": "SVG node river A04",
+      "pass": true
+    },
+    {
+      "name": "SVG node river A05",
+      "pass": true
+    },
+    {
+      "name": "SVG node river A06",
+      "pass": true
+    },
+    {
+      "name": "SVG node river A07",
+      "pass": true
+    },
+    {
+      "name": "SVG node river A08",
+      "pass": true
+    },
+    {
+      "name": "SVG node river A09",
+      "pass": true
+    },
+    {
+      "name": "SVG node river A10",
+      "pass": true
+    },
+    {
+      "name": "SVG node river A11",
+      "pass": true
+    },
+    {
+      "name": "SVG node river A12",
+      "pass": true
+    },
+    {
+      "name": "SVG node river A13",
+      "pass": true
+    },
+    {
+      "name": "SVG node river A14",
+      "pass": true
+    },
+    {
+      "name": "SVG node river A15",
+      "pass": true
+    },
+    {
+      "name": "SVG node river A16",
+      "pass": true
+    },
+    {
+      "name": "SVG node river A17",
+      "pass": true
+    },
+    {
+      "name": "SVG node river A18",
+      "pass": true
+    },
+    {
+      "name": "SVG node river A20",
+      "pass": true
+    },
+    {
+      "name": "SVG node river A21",
+      "pass": true
+    },
+    {
+      "name": "SVG node river B01",
+      "pass": true
+    },
+    {
+      "name": "SVG node river B02",
+      "pass": true
+    },
+    {
+      "name": "SVG node river F01",
+      "pass": true
+    },
+    {
+      "name": "SVG node river F02",
+      "pass": true
+    },
+    {
+      "name": "SVG node river F03",
+      "pass": true
+    },
+    {
+      "name": "SVG node river F04",
+      "pass": true
+    },
+    {
+      "name": "SVG node river F05",
+      "pass": true
+    },
+    {
+      "name": "SVG node river F06",
+      "pass": true
+    },
+    {
+      "name": "SVG node river F07",
+      "pass": true
+    },
+    {
+      "name": "SVG node river F08",
+      "pass": true
+    },
+    {
+      "name": "SVG segment river route-activate_A17-0",
+      "pass": true
+    },
+    {
+      "name": "SVG segment river route-activate_A17-1",
+      "pass": true
+    },
+    {
+      "name": "SVG segment river route-activate_A17-2",
+      "pass": true
+    },
+    {
+      "name": "SVG segment river route-activate_A17-3",
+      "pass": true
+    },
+    {
+      "name": "SVG segment river route-forest_out-0",
+      "pass": true
+    },
+    {
+      "name": "SVG segment river route-forest_out-1",
+      "pass": true
+    },
+    {
+      "name": "SVG segment river route-forest_out-2",
+      "pass": true
+    },
+    {
+      "name": "SVG segment river route-forest_out-3",
+      "pass": true
+    },
+    {
+      "name": "SVG segment river route-forest_out-4",
+      "pass": true
+    },
+    {
+      "name": "SVG segment river route-forest_loop-0",
+      "pass": true
+    },
+    {
+      "name": "SVG segment river route-forest_loop-1",
+      "pass": true
+    },
+    {
+      "name": "SVG segment river route-forest_loop-2",
+      "pass": true
+    },
+    {
+      "name": "SVG segment river route-basin_out-0",
+      "pass": true
+    },
+    {
+      "name": "SVG segment river route-boss_retreat-0",
+      "pass": true
+    },
+    {
+      "name": "SVG segment river route-boss_retreat-1",
+      "pass": true
+    },
+    {
+      "name": "SVG segment river route-boss_retreat-2",
+      "pass": true
+    },
+    {
+      "name": "SVG segment river route-boss_return-0",
+      "pass": true
+    },
+    {
+      "name": "SVG segment river route-boss_return-1",
+      "pass": true
+    },
+    {
+      "name": "SVG segment river route-boss_return-2",
+      "pass": true
+    },
+    {
+      "name": "SVG segment river route-north_scout-0",
+      "pass": true
+    },
+    {
+      "name": "SVG segment river route-elite_bypass-0",
+      "pass": true
+    },
+    {
+      "name": "SVG segment river route-east_setup-0",
+      "pass": true
+    },
+    {
+      "name": "SVG segment river route-east_setup-1",
+      "pass": true
+    },
+    {
+      "name": "SVG segment river route-source_approach-0",
+      "pass": true
+    },
+    {
+      "name": "SVG segment river route-source_approach-1",
+      "pass": true
+    },
+    {
+      "name": "SVG segment river route-source_approach-2",
+      "pass": true
+    },
+    {
+      "name": "SVG segment river route-source_approach-3",
+      "pass": true
+    },
+    {
+      "name": "SVG segment river route-river_return-0",
+      "pass": true
+    },
+    {
+      "name": "SVG segment river route-river_return-1",
+      "pass": true
+    },
+    {
+      "name": "SVG segment river route-river_return-2",
+      "pass": true
+    },
+    {
+      "name": "SVG segment river route-source_retreat-0",
+      "pass": true
+    },
+    {
+      "name": "SVG segment river route-source_retreat-1",
+      "pass": true
+    },
+    {
+      "name": "SVG segment river route-source_retreat-2",
+      "pass": true
+    },
+    {
+      "name": "SVG segment river route-source_retreat-3",
+      "pass": true
+    },
+    {
+      "name": "SVG segment river route-source_retreat-4",
+      "pass": true
+    },
+    {
+      "name": "SVG segment river route-source_retreat-5",
+      "pass": true
+    },
+    {
+      "name": "SVG segment river route-source_retreat-6",
+      "pass": true
+    },
+    {
+      "name": "SVG segment river route-dry_optional-0",
+      "pass": true
+    },
+    {
+      "name": "SVG segment river route-dry_optional-1",
+      "pass": true
+    },
+    {
+      "name": "SVG segment river route-lair_optional-0",
+      "pass": true
+    },
+    {
+      "name": "SVG segment river route-lair_optional-1",
+      "pass": true
+    },
+    {
+      "name": "SVG segment river route-waterlook_optional-0",
+      "pass": true
+    },
+    {
+      "name": "SVG segment river route-future_facility-0",
+      "pass": true
+    },
+    {
+      "name": "SVG home river SG1",
+      "pass": true
+    },
+    {
+      "name": "SVG home river SG2",
+      "pass": true
+    },
+    {
+      "name": "SVG home river SG3",
+      "pass": true
+    },
+    {
+      "name": "SVG home river SG4",
+      "pass": true
+    },
+    {
+      "name": "SVG home river SG5",
+      "pass": true
+    },
+    {
+      "name": "SVG home river SG7",
+      "pass": true
+    },
+    {
+      "name": "SVG home river SG8",
+      "pass": true
+    },
+    {
+      "name": "SVG home river FG1",
+      "pass": true
+    },
+    {
+      "name": "SVG home river FG14",
+      "pass": true
+    },
+    {
+      "name": "SVG home river FG15",
+      "pass": true
+    },
+    {
+      "name": "SVG home river FG16",
+      "pass": true
+    }
+  ],
+  "limitations": [
+    "contact envelopes are not gameplay encounters",
+    "no actual terrain hydrology nav AI combat XP or UE validation"
+  ]
+}
