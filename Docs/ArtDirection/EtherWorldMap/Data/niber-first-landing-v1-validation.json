@@ -1,0 +1,618 @@
+{
+  "result": "PASS",
+  "checks_passed": 146,
+  "checks": [
+    {
+      "name": "preserved Docs/ArtDirection/EtherWorldMap/Data/seradion-polar-departure-v1.json",
+      "passed": true
+    },
+    {
+      "name": "preserved Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-10-seradion-polar-departure/readiness-and-return.md",
+      "passed": true
+    },
+    {
+      "name": "preserved Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-08-five-continent-mainline/routes-and-unlocks.md",
+      "passed": true
+    },
+    {
+      "name": "preserved Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-08-world-distribution-and-leveling/progression.md",
+      "passed": true
+    },
+    {
+      "name": "preserved Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-08-world-distribution-and-leveling/variant-distribution.md",
+      "passed": true
+    },
+    {
+      "name": "preserved Docs/Narrative/World.md",
+      "passed": true
+    },
+    {
+      "name": "preserved Docs/Narrative/Scenario.md",
+      "passed": true
+    },
+    {
+      "name": "counts",
+      "passed": true
+    },
+    {
+      "name": "form NG1",
+      "passed": true
+    },
+    {
+      "name": "form NG2",
+      "passed": true
+    },
+    {
+      "name": "form NG3",
+      "passed": true
+    },
+    {
+      "name": "form NG4",
+      "passed": true
+    },
+    {
+      "name": "form NG5",
+      "passed": true
+    },
+    {
+      "name": "form NG6",
+      "passed": true
+    },
+    {
+      "name": "length landing_setup",
+      "passed": true
+    },
+    {
+      "name": "avoids rejected ice landing_setup:0",
+      "passed": true
+    },
+    {
+      "name": "land landing_setup:0",
+      "passed": true
+    },
+    {
+      "name": "facility clearance landing_setup:0",
+      "passed": true
+    },
+    {
+      "name": "avoids rejected ice landing_setup:1",
+      "passed": true
+    },
+    {
+      "name": "land landing_setup:1",
+      "passed": true
+    },
+    {
+      "name": "facility clearance landing_setup:1",
+      "passed": true
+    },
+    {
+      "name": "avoids rejected ice landing_setup:2",
+      "passed": true
+    },
+    {
+      "name": "land landing_setup:2",
+      "passed": true
+    },
+    {
+      "name": "facility clearance landing_setup:2",
+      "passed": true
+    },
+    {
+      "name": "length coast_out",
+      "passed": true
+    },
+    {
+      "name": "avoids rejected ice coast_out:0",
+      "passed": true
+    },
+    {
+      "name": "land coast_out:0",
+      "passed": true
+    },
+    {
+      "name": "facility clearance coast_out:0",
+      "passed": true
+    },
+    {
+      "name": "avoids rejected ice coast_out:1",
+      "passed": true
+    },
+    {
+      "name": "land coast_out:1",
+      "passed": true
+    },
+    {
+      "name": "facility clearance coast_out:1",
+      "passed": true
+    },
+    {
+      "name": "avoids rejected ice coast_out:2",
+      "passed": true
+    },
+    {
+      "name": "land coast_out:2",
+      "passed": true
+    },
+    {
+      "name": "facility clearance coast_out:2",
+      "passed": true
+    },
+    {
+      "name": "avoids rejected ice coast_out:3",
+      "passed": true
+    },
+    {
+      "name": "land coast_out:3",
+      "passed": true
+    },
+    {
+      "name": "facility clearance coast_out:3",
+      "passed": true
+    },
+    {
+      "name": "length predator_bypass",
+      "passed": true
+    },
+    {
+      "name": "avoids rejected ice predator_bypass:0",
+      "passed": true
+    },
+    {
+      "name": "land predator_bypass:0",
+      "passed": true
+    },
+    {
+      "name": "facility clearance predator_bypass:0",
+      "passed": true
+    },
+    {
+      "name": "avoids rejected ice predator_bypass:1",
+      "passed": true
+    },
+    {
+      "name": "land predator_bypass:1",
+      "passed": true
+    },
+    {
+      "name": "facility clearance predator_bypass:1",
+      "passed": true
+    },
+    {
+      "name": "length other_return",
+      "passed": true
+    },
+    {
+      "name": "avoids rejected ice other_return:0",
+      "passed": true
+    },
+    {
+      "name": "land other_return:0",
+      "passed": true
+    },
+    {
+      "name": "facility clearance other_return:0",
+      "passed": true
+    },
+    {
+      "name": "avoids rejected ice other_return:1",
+      "passed": true
+    },
+    {
+      "name": "land other_return:1",
+      "passed": true
+    },
+    {
+      "name": "facility clearance other_return:1",
+      "passed": true
+    },
+    {
+      "name": "avoids rejected ice other_return:2",
+      "passed": true
+    },
+    {
+      "name": "land other_return:2",
+      "passed": true
+    },
+    {
+      "name": "facility clearance other_return:2",
+      "passed": true
+    },
+    {
+      "name": "avoids rejected ice other_return:3",
+      "passed": true
+    },
+    {
+      "name": "land other_return:3",
+      "passed": true
+    },
+    {
+      "name": "facility clearance other_return:3",
+      "passed": true
+    },
+    {
+      "name": "length return_bypass",
+      "passed": true
+    },
+    {
+      "name": "avoids rejected ice return_bypass:0",
+      "passed": true
+    },
+    {
+      "name": "land return_bypass:0",
+      "passed": true
+    },
+    {
+      "name": "facility clearance return_bypass:0",
+      "passed": true
+    },
+    {
+      "name": "avoids rejected ice return_bypass:1",
+      "passed": true
+    },
+    {
+      "name": "land return_bypass:1",
+      "passed": true
+    },
+    {
+      "name": "facility clearance return_bypass:1",
+      "passed": true
+    },
+    {
+      "name": "avoids rejected ice return_bypass:2",
+      "passed": true
+    },
+    {
+      "name": "land return_bypass:2",
+      "passed": true
+    },
+    {
+      "name": "facility clearance return_bypass:2",
+      "passed": true
+    },
+    {
+      "name": "avoids rejected ice return_bypass:3",
+      "passed": true
+    },
+    {
+      "name": "land return_bypass:3",
+      "passed": true
+    },
+    {
+      "name": "facility clearance return_bypass:3",
+      "passed": true
+    },
+    {
+      "name": "length primary_fallback",
+      "passed": true
+    },
+    {
+      "name": "avoids rejected ice primary_fallback:0",
+      "passed": true
+    },
+    {
+      "name": "land primary_fallback:0",
+      "passed": true
+    },
+    {
+      "name": "facility clearance primary_fallback:0",
+      "passed": true
+    },
+    {
+      "name": "avoids rejected ice primary_fallback:1",
+      "passed": true
+    },
+    {
+      "name": "land primary_fallback:1",
+      "passed": true
+    },
+    {
+      "name": "facility clearance primary_fallback:1",
+      "passed": true
+    },
+    {
+      "name": "avoids rejected ice primary_fallback:2",
+      "passed": true
+    },
+    {
+      "name": "land primary_fallback:2",
+      "passed": true
+    },
+    {
+      "name": "facility clearance primary_fallback:2",
+      "passed": true
+    },
+    {
+      "name": "length hound_optional",
+      "passed": true
+    },
+    {
+      "name": "avoids rejected ice hound_optional:0",
+      "passed": true
+    },
+    {
+      "name": "land hound_optional:0",
+      "passed": true
+    },
+    {
+      "name": "facility clearance hound_optional:0",
+      "passed": true
+    },
+    {
+      "name": "avoids rejected ice hound_optional:1",
+      "passed": true
+    },
+    {
+      "name": "land hound_optional:1",
+      "passed": true
+    },
+    {
+      "name": "facility clearance hound_optional:1",
+      "passed": true
+    },
+    {
+      "name": "length memory_optional",
+      "passed": true
+    },
+    {
+      "name": "avoids rejected ice memory_optional:0",
+      "passed": true
+    },
+    {
+      "name": "land memory_optional:0",
+      "passed": true
+    },
+    {
+      "name": "facility clearance memory_optional:0",
+      "passed": true
+    },
+    {
+      "name": "length future_search",
+      "passed": true
+    },
+    {
+      "name": "avoids rejected ice future_search:0",
+      "passed": true
+    },
+    {
+      "name": "length boat_primary",
+      "passed": true
+    },
+    {
+      "name": "avoids rejected ice boat_primary:0",
+      "passed": true
+    },
+    {
+      "name": "water boat_primary:0",
+      "passed": true
+    },
+    {
+      "name": "avoids rejected ice boat_primary:1",
+      "passed": true
+    },
+    {
+      "name": "water boat_primary:1",
+      "passed": true
+    },
+    {
+      "name": "length boat_west",
+      "passed": true
+    },
+    {
+      "name": "avoids rejected ice boat_west:0",
+      "passed": true
+    },
+    {
+      "name": "water boat_west:0",
+      "passed": true
+    },
+    {
+      "name": "avoids rejected ice boat_west:1",
+      "passed": true
+    },
+    {
+      "name": "water boat_west:1",
+      "passed": true
+    },
+    {
+      "name": "predator_bypass margin",
+      "passed": true
+    },
+    {
+      "name": "return_bypass margin",
+      "passed": true
+    },
+    {
+      "name": "crew conservation",
+      "passed": true
+    },
+    {
+      "name": "boat capacity",
+      "passed": true
+    },
+    {
+      "name": "growth",
+      "passed": true
+    },
+    {
+      "name": "gates",
+      "passed": true
+    },
+    {
+      "name": "svg coast N00",
+      "passed": true
+    },
+    {
+      "name": "svg coast N01",
+      "passed": true
+    },
+    {
+      "name": "svg coast N02",
+      "passed": true
+    },
+    {
+      "name": "svg coast N03",
+      "passed": true
+    },
+    {
+      "name": "svg coast N04",
+      "passed": true
+    },
+    {
+      "name": "svg coast N05",
+      "passed": true
+    },
+    {
+      "name": "svg coast N06",
+      "passed": true
+    },
+    {
+      "name": "svg coast N07",
+      "passed": true
+    },
+    {
+      "name": "svg coast N08",
+      "passed": true
+    },
+    {
+      "name": "svg coast N09",
+      "passed": true
+    },
+    {
+      "name": "svg coast N10",
+      "passed": true
+    },
+    {
+      "name": "svg coast N11",
+      "passed": true
+    },
+    {
+      "name": "svg coast N12",
+      "passed": true
+    },
+    {
+      "name": "svg coast N13",
+      "passed": true
+    },
+    {
+      "name": "svg coast N14",
+      "passed": true
+    },
+    {
+      "name": "svg coast N15",
+      "passed": true
+    },
+    {
+      "name": "svg coast N16",
+      "passed": true
+    },
+    {
+      "name": "svg coast N17",
+      "passed": true
+    },
+    {
+      "name": "svg coast N18",
+      "passed": true
+    },
+    {
+      "name": "svg coast N19",
+      "passed": true
+    },
+    {
+      "name": "svg radius coast NG1",
+      "passed": true
+    },
+    {
+      "name": "svg radius coast NG2",
+      "passed": true
+    },
+    {
+      "name": "svg radius coast NG3",
+      "passed": true
+    },
+    {
+      "name": "svg radius coast NG4",
+      "passed": true
+    },
+    {
+      "name": "svg radius coast NG5",
+      "passed": true
+    },
+    {
+      "name": "svg radius coast NG6",
+      "passed": true
+    },
+    {
+      "name": "svg landing N00",
+      "passed": true
+    },
+    {
+      "name": "svg landing N01",
+      "passed": true
+    },
+    {
+      "name": "svg landing N02",
+      "passed": true
+    },
+    {
+      "name": "svg landing N03",
+      "passed": true
+    },
+    {
+      "name": "svg landing N04",
+      "passed": true
+    },
+    {
+      "name": "svg landing N06",
+      "passed": true
+    },
+    {
+      "name": "svg landing N12",
+      "passed": true
+    },
+    {
+      "name": "svg landing N13",
+      "passed": true
+    },
+    {
+      "name": "svg landing N14",
+      "passed": true
+    },
+    {
+      "name": "svg landing N15",
+      "passed": true
+    },
+    {
+      "name": "svg landing N17",
+      "passed": true
+    }
+  ],
+  "walk_segments": 23,
+  "boat_segments": 4,
+  "svg_elements_checked": 37,
+  "bypass_margins_m": {
+    "predator_bypass": 35.23,
+    "return_bypass": 54.3
+  },
+  "density": {
+    "coast_out": {
+      "contacts": [
+        "NG1",
+        "NG3",
+        "NG4"
+      ],
+      "max_overlap": 1,
+      "longest_gap_m": 196.9,
+      "length_m": 1070.3
+    },
+    "other_return": {
+      "contacts": [
+        "NG2"
+      ],
+      "max_overlap": 1,
+      "longest_gap_m": 682.5,
+      "length_m": 1489.7
+    }
+  },
+  "method": "Exact rectangle interval splitting for water/land; expanded facilities for 6m paths; density sampled <=2m; shoreline boarding width unverified"
+}

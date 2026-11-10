@@ -1,0 +1,812 @@
+{
+  "status": "design_candidate_not_canon",
+  "coordinate_system": "NI-L01 local metres north +Y; no world coastal projection",
+  "sources_sha256": {
+    "Docs/ArtDirection/EtherWorldMap/Data/seradion-polar-departure-v1.json": "4cd305f538e21c8d4281d730278fbd36a70b7171c7cfe3d0ae636e7af5b47dc9",
+    "Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-10-seradion-polar-departure/readiness-and-return.md": "116f668da4586a7c1c7a241281906653267a1bc45a896937f358c0957de3cafe",
+    "Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-08-five-continent-mainline/routes-and-unlocks.md": "b209df5b3c6d131a886e3269340d072d044a022ee389daf1fbc88de8bf1c3d35",
+    "Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-08-world-distribution-and-leveling/progression.md": "a847c8417b972d74f4672a22067206827025f666f5daf39896cb8a73007450aa",
+    "Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-08-world-distribution-and-leveling/variant-distribution.md": "a4ccc8ac9fdb937b1d637251bb78ce55eccde0a201753189b238a36d116c64e9",
+    "Docs/Narrative/World.md": "020bed8d29fd25ac5c8a4346f6076426e52aff1335f52de4f1e6d7d7b38cde28",
+    "Docs/Narrative/Scenario.md": "55a8eb1da2a818d4c606d82e6d4fd2163458de96d22f27a340dda23b3c427e13"
+  },
+  "nodes": [
+    {
+      "id": "N00",
+      "name": "본선 관측·회수 대기",
+      "xy_m": [
+        -500,
+        -450
+      ],
+      "region": "sea"
+    },
+    {
+      "id": "N01",
+      "name": "소형정 대기 수면",
+      "xy_m": [
+        0,
+        -160
+      ],
+      "region": "sea"
+    },
+    {
+      "id": "N02",
+      "name": "첫 상륙 바위 해안",
+      "xy_m": [
+        0,
+        0
+      ],
+      "region": "NI1"
+    },
+    {
+      "id": "N03",
+      "name": "해안 위 눈턱",
+      "xy_m": [
+        120,
+        160
+      ],
+      "region": "NI1"
+    },
+    {
+      "id": "N04",
+      "name": "첫 회수 표지",
+      "xy_m": [
+        280,
+        260
+      ],
+      "region": "NI1"
+    },
+    {
+      "id": "N05",
+      "name": "설원아귀 먹이 굽이",
+      "xy_m": [
+        520,
+        340
+      ],
+      "region": "NI1"
+    },
+    {
+      "id": "N06",
+      "name": "높은 사면 우회",
+      "xy_m": [
+        340,
+        500
+      ],
+      "region": "NI1"
+    },
+    {
+      "id": "N07",
+      "name": "옛 외곽 보급소",
+      "xy_m": [
+        700,
+        600
+      ],
+      "region": "NI3"
+    },
+    {
+      "id": "N08",
+      "name": "순찰 기록 벽",
+      "xy_m": [
+        860,
+        740
+      ],
+      "region": "NI3"
+    },
+    {
+      "id": "N09",
+      "name": "첫 조사 종료 표식",
+      "xy_m": [
+        1100,
+        900
+      ],
+      "region": "NI3"
+    },
+    {
+      "id": "N10",
+      "name": "북쪽 바람그늘 턱",
+      "xy_m": [
+        700,
+        950
+      ],
+      "region": "NI1"
+    },
+    {
+      "id": "N11",
+      "name": "귀환 먹이턱",
+      "xy_m": [
+        380,
+        850
+      ],
+      "region": "NI1"
+    },
+    {
+      "id": "N12",
+      "name": "서쪽 대체 승선점",
+      "xy_m": [
+        -200,
+        400
+      ],
+      "region": "NI1"
+    },
+    {
+      "id": "N13",
+      "name": "대체 해안 확인점",
+      "xy_m": [
+        -80,
+        420
+      ],
+      "region": "NI1"
+    },
+    {
+      "id": "N14",
+      "name": "바위 해안 연결",
+      "xy_m": [
+        -100,
+        160
+      ],
+      "region": "NI1"
+    },
+    {
+      "id": "N15",
+      "name": "가져온 비상 대기처",
+      "xy_m": [
+        -40,
+        120
+      ],
+      "region": "NI1"
+    },
+    {
+      "id": "N16",
+      "name": "봉인 짐 선택 경계",
+      "xy_m": [
+        1120,
+        580
+      ],
+      "region": "NI3"
+    },
+    {
+      "id": "N17",
+      "name": "제외한 옛 접근점",
+      "xy_m": [
+        300,
+        -80
+      ],
+      "region": "sea"
+    },
+    {
+      "id": "N18",
+      "name": "내륙 후속 수색 방향",
+      "xy_m": [
+        1200,
+        1140
+      ],
+      "region": "NI3"
+    },
+    {
+      "id": "N19",
+      "name": "기억 물건 선택 턱",
+      "xy_m": [
+        980,
+        1000
+      ],
+      "region": "NI3"
+    }
+  ],
+  "paths": {
+    "landing_setup": {
+      "nodes": [
+        "N02",
+        "N15",
+        "N03",
+        "N04"
+      ],
+      "xy_m": [
+        [
+          0,
+          0
+        ],
+        [
+          -40,
+          120
+        ],
+        [
+          120,
+          160
+        ],
+        [
+          280,
+          260
+        ]
+      ],
+      "mode": "walk",
+      "condition": "after_landing_acceptance",
+      "width_m": 6,
+      "length_m": 480.1
+    },
+    "coast_out": {
+      "nodes": [
+        "N04",
+        "N05",
+        "N07",
+        "N08",
+        "N09"
+      ],
+      "xy_m": [
+        [
+          280,
+          260
+        ],
+        [
+          520,
+          340
+        ],
+        [
+          700,
+          600
+        ],
+        [
+          860,
+          740
+        ],
+        [
+          1100,
+          900
+        ]
+      ],
+      "mode": "walk",
+      "condition": "first_survey",
+      "width_m": 6,
+      "length_m": 1070.3
+    },
+    "predator_bypass": {
+      "nodes": [
+        "N04",
+        "N06",
+        "N07"
+      ],
+      "xy_m": [
+        [
+          280,
+          260
+        ],
+        [
+          340,
+          500
+        ],
+        [
+          700,
+          600
+        ]
+      ],
+      "mode": "walk",
+      "condition": "scouted_slope",
+      "width_m": 6,
+      "length_m": 621.0
+    },
+    "other_return": {
+      "nodes": [
+        "N09",
+        "N10",
+        "N11",
+        "N13",
+        "N12"
+      ],
+      "xy_m": [
+        [
+          1100,
+          900
+        ],
+        [
+          700,
+          950
+        ],
+        [
+          380,
+          850
+        ],
+        [
+          -80,
+          420
+        ],
+        [
+          -200,
+          400
+        ]
+      ],
+      "mode": "walk",
+      "condition": "west_pickup_rechecked",
+      "width_m": 6,
+      "length_m": 1489.7
+    },
+    "return_bypass": {
+      "nodes": [
+        "N10",
+        "N06",
+        "N14",
+        "N13",
+        "N12"
+      ],
+      "xy_m": [
+        [
+          700,
+          950
+        ],
+        [
+          340,
+          500
+        ],
+        [
+          -100,
+          160
+        ],
+        [
+          -80,
+          420
+        ],
+        [
+          -200,
+          400
+        ]
+      ],
+      "mode": "walk",
+      "condition": "scouted_slope",
+      "width_m": 6,
+      "length_m": 1514.8
+    },
+    "primary_fallback": {
+      "nodes": [
+        "N13",
+        "N14",
+        "N15",
+        "N02"
+      ],
+      "xy_m": [
+        [
+          -80,
+          420
+        ],
+        [
+          -100,
+          160
+        ],
+        [
+          -40,
+          120
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "mode": "walk",
+      "condition": "primary_pickup_rechecked",
+      "width_m": 6,
+      "length_m": 459.4
+    },
+    "hound_optional": {
+      "nodes": [
+        "N08",
+        "N16",
+        "N09"
+      ],
+      "xy_m": [
+        [
+          860,
+          740
+        ],
+        [
+          1120,
+          580
+        ],
+        [
+          1100,
+          900
+        ]
+      ],
+      "mode": "walk",
+      "condition": "optional_sealed_cargo",
+      "width_m": 6,
+      "length_m": 625.9
+    },
+    "memory_optional": {
+      "nodes": [
+        "N09",
+        "N19"
+      ],
+      "xy_m": [
+        [
+          1100,
+          900
+        ],
+        [
+          980,
+          1000
+        ]
+      ],
+      "mode": "walk",
+      "condition": "optional_memento",
+      "width_m": 6,
+      "length_m": 156.2
+    },
+    "future_search": {
+      "nodes": [
+        "N09",
+        "N18"
+      ],
+      "xy_m": [
+        [
+          1100,
+          900
+        ],
+        [
+          1200,
+          1140
+        ]
+      ],
+      "mode": "future",
+      "condition": "not_opened_this_segment",
+      "width_m": null,
+      "length_m": 260.0
+    },
+    "boat_primary": {
+      "nodes": [
+        "N00",
+        "N01",
+        "N02"
+      ],
+      "xy_m": [
+        [
+          -500,
+          -450
+        ],
+        [
+          0,
+          -160
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "mode": "boat",
+      "condition": "captain_and_boat_crew_acceptance",
+      "width_m": null,
+      "length_m": 738.0
+    },
+    "boat_west": {
+      "nodes": [
+        "N00",
+        "N12"
+      ],
+      "xy_m": [
+        [
+          -500,
+          -450
+        ],
+        [
+          -500,
+          400
+        ],
+        [
+          -200,
+          400
+        ]
+      ],
+      "mode": "boat",
+      "condition": "west_water_rechecked",
+      "width_m": null,
+      "length_m": 1150.0
+    }
+  },
+  "groups": [
+    {
+      "id": "NG1",
+      "form": "MN11-X",
+      "name": "흰배 설원아귀",
+      "count": 2,
+      "readiness": [
+        51,
+        52
+      ],
+      "region": "NI1",
+      "home_xy_m": [
+        520,
+        340
+      ],
+      "radius_m": 70,
+      "pursuit_m": 50,
+      "routine_xy_m": [
+        [
+          520,
+          340
+        ],
+        [
+          560,
+          400
+        ],
+        [
+          520,
+          340
+        ]
+      ],
+      "hostile_default": true
+    },
+    {
+      "id": "NG2",
+      "form": "MN11-X",
+      "name": "별도 흰배 설원아귀",
+      "count": 1,
+      "readiness": [
+        50,
+        51
+      ],
+      "region": "NI1",
+      "home_xy_m": [
+        360,
+        780
+      ],
+      "radius_m": 65,
+      "pursuit_m": 40,
+      "routine_xy_m": [
+        [
+          360,
+          780
+        ],
+        [
+          340,
+          820
+        ],
+        [
+          360,
+          780
+        ]
+      ],
+      "hostile_default": true
+    },
+    {
+      "id": "NG3",
+      "form": "MN42-X",
+      "name": "섬유몸 균류보행체",
+      "count": 3,
+      "readiness": [
+        10,
+        12
+      ],
+      "region": "NI3",
+      "home_xy_m": [
+        700,
+        620
+      ],
+      "radius_m": 55,
+      "pursuit_m": 0,
+      "routine_xy_m": [
+        [
+          700,
+          620
+        ]
+      ],
+      "hostile_default": true
+    },
+    {
+      "id": "NG4",
+      "form": "MN47-X",
+      "name": "빙무 망령",
+      "count": 2,
+      "readiness": [
+        30,
+        32
+      ],
+      "region": "NI3",
+      "home_xy_m": [
+        850,
+        740
+      ],
+      "radius_m": 70,
+      "pursuit_m": 30,
+      "routine_xy_m": [
+        [
+          850,
+          740
+        ]
+      ],
+      "hostile_default": true
+    },
+    {
+      "id": "NG5",
+      "form": "MN48-X",
+      "name": "바람울음 밴시",
+      "count": 1,
+      "readiness": [
+        44,
+        46
+      ],
+      "region": "NI3",
+      "home_xy_m": [
+        1020,
+        1080
+      ],
+      "radius_m": 60,
+      "pursuit_m": 30,
+      "routine_xy_m": [
+        [
+          1020,
+          1080
+        ]
+      ],
+      "hostile_default": true
+    },
+    {
+      "id": "NG6",
+      "form": "MN64-X",
+      "name": "창백화 지옥사냥개",
+      "count": 2,
+      "readiness": [
+        48,
+        50
+      ],
+      "region": "NI3",
+      "home_xy_m": [
+        1120,
+        580
+      ],
+      "radius_m": 70,
+      "pursuit_m": 40,
+      "routine_xy_m": [
+        [
+          1120,
+          580
+        ]
+      ],
+      "hostile_default": true
+    }
+  ],
+  "land_rect_m": [
+    -200,
+    0,
+    1400,
+    1300
+  ],
+  "rejected_ice_rect_m": [
+    200,
+    -120,
+    400,
+    20
+  ],
+  "structures": [
+    {
+      "id": "L1",
+      "name": "휴면 보급소",
+      "rect_m": [
+        610,
+        610,
+        680,
+        650
+      ]
+    },
+    {
+      "id": "L2",
+      "name": "옛 기록 가림벽",
+      "rect_m": [
+        790,
+        750,
+        840,
+        780
+      ]
+    },
+    {
+      "id": "L3",
+      "name": "가져온 덮개",
+      "rect_m": [
+        -67,
+        72,
+        -63,
+        78
+      ]
+    },
+    {
+      "id": "L4",
+      "name": "보온품 덮개",
+      "rect_m": [
+        -17,
+        153,
+        -14,
+        157
+      ]
+    }
+  ],
+  "new_constructs": [],
+  "hostile_humans": [],
+  "crew": {
+    "total": 16,
+    "ship": 10,
+    "boat": 2,
+    "shore": 4,
+    "shore_protagonists": 2,
+    "shore_crew": 2,
+    "crew_total": 14,
+    "tender_capacity": 12,
+    "current_transfer": 6,
+    "current_rescued": 0,
+    "rescue_berths_reserved": 8,
+    "simultaneous_rescue8_transfer_allowed": false
+  },
+  "conditions": {
+    "G5_retained": true,
+    "G6": false,
+    "niber_arrived": true,
+    "landed_after_local_acceptance": true,
+    "first_ship_return": true,
+    "returned_to_seradion": false,
+    "inner_failure_cause_known": false,
+    "primary_and_alternate_pickup_require_recheck": true
+  },
+  "growth": {
+    "start": 52,
+    "steps": [
+      53,
+      54
+    ],
+    "field": 1,
+    "major": 0,
+    "investigation": 1,
+    "remaining": [
+      2,
+      1,
+      1
+    ],
+    "continent_total": [
+      3,
+      1,
+      2
+    ],
+    "end_target": 58,
+    "optional_offset": 2,
+    "auto_scale": false
+  },
+  "frames": {
+    "coast": {
+      "bounds_m": [
+        -650,
+        -550,
+        1500,
+        1400
+      ],
+      "scale": 0.5,
+      "origin": [
+        60,
+        150
+      ],
+      "size": [
+        1800,
+        1320
+      ]
+    },
+    "landing": {
+      "bounds_m": [
+        -600,
+        -550,
+        500,
+        750
+      ],
+      "scale": 0.8,
+      "origin": [
+        60,
+        150
+      ],
+      "size": [
+        1700,
+        1400
+      ]
+    }
+  },
+  "animals": [
+    "해안 조류",
+    "바다표범류",
+    "어류"
+  ],
+  "limits": [
+    "No real hydrology ice weather line-of-sight navigation or UE validation",
+    "No rescue success, failure cause or G6 completion",
+    "Local plotting only; no surveyed global coast"
+  ]
+}

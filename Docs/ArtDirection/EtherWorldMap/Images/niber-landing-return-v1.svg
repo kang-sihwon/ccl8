@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1700" height="1400" viewBox="0 0 1700 1400"><rect width="100%" height="100%" fill="#edf0eb"/>
+<text x="55" y="59" font-family="Malgun Gothic,sans-serif" font-size="34" fill="#293d42">첫 상륙·대체 승선 · 본선으로 돌아오는 길</text>
+<text x="55" y="104" font-family="Malgun Gothic,sans-serif" font-size="21" fill="#293d42">NI-L01 국소 후보 · 북쪽 위 · m · 물길은 운항 가능성이 확인된 경우의 연결</text>
+<rect id="sea" x="60.00" y="150.00" width="880.00" height="1040.00" fill="#aec4cc" stroke="#6c7771"/>
+<rect id="land" x="380.00" y="150.00" width="560.00" height="600.00" fill="#d8ddd6" stroke="#6c7771"/>
+<rect id="rejected-ice" x="700.00" y="734.00" width="160.00" height="112.00" fill="#c3d9dc" stroke="#6c7771"/>
+<rect id="rock-0" x="588.00" y="150.00" width="80.00" height="24.00" fill="#a9b2af" stroke="#6c7771"/>
+<rect id="L3" x="486.40" y="687.60" width="3.20" height="4.80" fill="#888d87" stroke="#6c7771"/>
+<rect id="L4" x="526.40" y="624.40" width="2.40" height="3.20" fill="#888d87" stroke="#6c7771"/>
+<polyline id="landing_setup-0" points="540.00,750.00 508.00,654.00" stroke="#456f80" stroke-width="3" fill="none"/>
+<polyline id="landing_setup-1" points="508.00,654.00 636.00,622.00" stroke="#456f80" stroke-width="3" fill="none"/>
+<polyline id="landing_setup-2" points="636.00,622.00 764.00,542.00" stroke="#456f80" stroke-width="3" fill="none"/>
+<polyline id="coast_out-0" points="764.00,542.00 940.00,483.33" stroke="#456f80" stroke-width="3" fill="none"/>
+<polyline id="predator_bypass-0" points="764.00,542.00 812.00,350.00" stroke="#718c65" stroke-width="3" fill="none"/>
+<polyline id="predator_bypass-1" points="812.00,350.00 940.00,314.44" stroke="#718c65" stroke-width="3" fill="none"/>
+<polyline id="other_return-2" points="758.42,150.00 476.00,414.00" stroke="#ad744a" stroke-width="3" fill="none"/>
+<polyline id="other_return-3" points="476.00,414.00 380.00,430.00" stroke="#ad744a" stroke-width="3" fill="none"/>
+<polyline id="return_bypass-0" points="940.00,190.00 812.00,350.00" stroke="#718c65" stroke-width="3" fill="none"/>
+<polyline id="return_bypass-1" points="812.00,350.00 460.00,622.00" stroke="#718c65" stroke-width="3" fill="none"/>
+<polyline id="return_bypass-2" points="460.00,622.00 476.00,414.00" stroke="#718c65" stroke-width="3" fill="none"/>
+<polyline id="return_bypass-3" points="476.00,414.00 380.00,430.00" stroke="#718c65" stroke-width="3" fill="none"/>
+<polyline id="primary_fallback-0" points="476.00,414.00 460.00,622.00" stroke="#82739a" stroke-width="3" fill="none"/>
+<polyline id="primary_fallback-1" points="460.00,622.00 508.00,654.00" stroke="#82739a" stroke-width="3" fill="none"/>
+<polyline id="primary_fallback-2" points="508.00,654.00 540.00,750.00" stroke="#82739a" stroke-width="3" fill="none"/>
+<polyline id="boat_primary-0" points="140.00,1110.00 540.00,878.00" stroke="#386a88" stroke-width="3" fill="none"/>
+<polyline id="boat_primary-1" points="540.00,878.00 540.00,750.00" stroke="#386a88" stroke-width="3" fill="none"/>
+<polyline id="boat_west-0" points="140.00,1110.00 140.00,430.00" stroke="#ad744a" stroke-width="3" fill="none"/>
+<polyline id="boat_west-1" points="140.00,430.00 380.00,430.00" stroke="#ad744a" stroke-width="3" fill="none"/>
+<ellipse id="N00" cx="140.00" cy="1110.00" rx="4.00" ry="4.00" fill="#334d55" stroke="#667b66"/>
+<polyline id="N00-leader" points="140.00,1110.00 150.00,1100.00 158.00,1100.00" stroke="#66767a" stroke-width="1" fill="none"/>
+<text x="160.0" y="1102.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#293d42">N00</text>
+<ellipse id="N01" cx="540.00" cy="878.00" rx="4.00" ry="4.00" fill="#334d55" stroke="#667b66"/>
+<polyline id="N01-leader" points="540.00,878.00 550.00,868.00 558.00,868.00" stroke="#66767a" stroke-width="1" fill="none"/>
+<text x="560.0" y="870.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#293d42">N01</text>
+<ellipse id="N02" cx="540.00" cy="750.00" rx="4.00" ry="4.00" fill="#334d55" stroke="#667b66"/>
+<polyline id="N02-leader" points="540.00,750.00 550.00,740.00 558.00,740.00" stroke="#66767a" stroke-width="1" fill="none"/>
+<text x="560.0" y="742.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#293d42">N02</text>
+<ellipse id="N03" cx="636.00" cy="622.00" rx="4.00" ry="4.00" fill="#334d55" stroke="#667b66"/>
+<polyline id="N03-leader" points="636.00,622.00 646.00,612.00 654.00,612.00" stroke="#66767a" stroke-width="1" fill="none"/>
+<text x="656.0" y="614.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#293d42">N03</text>
+<ellipse id="N04" cx="764.00" cy="542.00" rx="4.00" ry="4.00" fill="#334d55" stroke="#667b66"/>
+<polyline id="N04-leader" points="764.00,542.00 774.00,532.00 782.00,532.00" stroke="#66767a" stroke-width="1" fill="none"/>
+<text x="784.0" y="534.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#293d42">N04</text>
+<ellipse id="N06" cx="812.00" cy="350.00" rx="4.00" ry="4.00" fill="#334d55" stroke="#667b66"/>
+<polyline id="N06-leader" points="812.00,350.00 822.00,340.00 830.00,340.00" stroke="#66767a" stroke-width="1" fill="none"/>
+<text x="832.0" y="342.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#293d42">N06</text>
+<ellipse id="N12" cx="380.00" cy="430.00" rx="4.00" ry="4.00" fill="#334d55" stroke="#667b66"/>
+<polyline id="N12-leader" points="380.00,430.00 390.00,420.00 398.00,420.00" stroke="#66767a" stroke-width="1" fill="none"/>
+<text x="400.0" y="422.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#293d42">N12</text>
+<ellipse id="N13" cx="476.00" cy="414.00" rx="4.00" ry="4.00" fill="#334d55" stroke="#667b66"/>
+<polyline id="N13-leader" points="476.00,414.00 486.00,404.00 494.00,404.00" stroke="#66767a" stroke-width="1" fill="none"/>
+<text x="496.0" y="406.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#293d42">N13</text>
+<ellipse id="N14" cx="460.00" cy="622.00" rx="4.00" ry="4.00" fill="#334d55" stroke="#667b66"/>
+<polyline id="N14-leader" points="460.00,622.00 470.00,612.00 478.00,612.00" stroke="#66767a" stroke-width="1" fill="none"/>
+<text x="480.0" y="614.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#293d42">N14</text>
+<ellipse id="N15" cx="508.00" cy="654.00" rx="4.00" ry="4.00" fill="#334d55" stroke="#667b66"/>
+<polyline id="N15-leader" points="508.00,654.00 518.00,644.00 526.00,644.00" stroke="#66767a" stroke-width="1" fill="none"/>
+<text x="528.0" y="646.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#293d42">N15</text>
+<ellipse id="N17" cx="780.00" cy="814.00" rx="4.00" ry="4.00" fill="#334d55" stroke="#667b66"/>
+<polyline id="N17-leader" points="780.00,814.00 790.00,804.00 798.00,804.00" stroke="#66767a" stroke-width="1" fill="none"/>
+<text x="800.0" y="806.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#293d42">N17</text>
+<text x="1000" y="170" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#293d42">N00 본선 관측·회수 대기</text>
+<text x="1000" y="204" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#293d42">N01 소형정 대기 수면</text>
+<text x="1000" y="238" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#293d42">N02 첫 상륙 바위 해안</text>
+<text x="1000" y="272" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#293d42">N03 해안 위 눈턱</text>
+<text x="1000" y="306" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#293d42">N04 첫 회수 표지</text>
+<text x="1000" y="340" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#293d42">N06 높은 사면 우회</text>
+<text x="1000" y="374" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#293d42">N12 서쪽 대체 승선점</text>
+<text x="1000" y="408" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#293d42">N13 대체 해안 확인점</text>
+<text x="1000" y="442" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#293d42">N14 바위 해안 연결</text>
+<text x="1000" y="476" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#293d42">N15 가져온 비상 대기처</text>
+<text x="1000" y="510" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#293d42">N17 제외한 옛 접근점</text>
+<text x="1000" y="669" font-family="Malgun Gothic,sans-serif" font-size="19" fill="#293d42">파랑: 접근 / 주황: 다른 귀환</text>
+<text x="1000" y="704" font-family="Malgun Gothic,sans-serif" font-size="19" fill="#293d42">녹색: 포식권 우회 / 보라: 선택·대체</text>
+<text x="1000" y="739" font-family="Malgun Gothic,sans-serif" font-size="19" fill="#293d42">N17 해빙 접근은 이번에 제외</text>
+<text x="1000" y="774" font-family="Malgun Gothic,sans-serif" font-size="19" fill="#293d42">물길의 끝은 접안 인수 지점</text>
+<text x="1000" y="809" font-family="Malgun Gothic,sans-serif" font-size="19" fill="#293d42">해안조 4 · 소형정 2 · 본선 10</text>
+<text x="1000" y="844" font-family="Malgun Gothic,sans-serif" font-size="19" fill="#293d42">본선 복귀 ≠ 세라디온 귀항</text>
+<text x="1000" y="879" font-family="Malgun Gothic,sans-serif" font-size="19" fill="#293d42">52→54 / G5 유지 / G6 미완료</text>
+<text x="1000" y="914" font-family="Malgun Gothic,sans-serif" font-size="19" fill="#293d42">실제 지형·시야·해빙·전투 미검증</text>
+<polyline id="scale-200m" points="60.00,1225.00 220.00,1225.00" stroke="#334d55" stroke-width="4" fill="none"/>
+<text x="60" y="1255.0" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#293d42">200m · 국소 설계 축척</text>
+</svg>

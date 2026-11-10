@@ -1,0 +1,147 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1320" viewBox="0 0 1800 1320"><rect width="100%" height="100%" fill="#edf0eb"/>
+<text x="55" y="59" font-family="Malgun Gothic,sans-serif" font-size="34" fill="#293d42">니베르 첫 탐색 · 포식권과 보급소 왕복</text>
+<text x="55" y="104" font-family="Malgun Gothic,sans-serif" font-size="21" fill="#293d42">NI-L01 국소 후보 · 북쪽 위 · m · 물길은 운항 가능성이 확인된 경우의 연결</text>
+<rect id="sea" x="60.00" y="150.00" width="1075.00" height="975.00" fill="#aec4cc" stroke="#6c7771"/>
+<rect id="land" x="285.00" y="200.00" width="800.00" height="650.00" fill="#d8ddd6" stroke="#6c7771"/>
+<rect id="rejected-ice" x="485.00" y="840.00" width="100.00" height="70.00" fill="#c3d9dc" stroke="#6c7771"/>
+<rect id="rock-0" x="415.00" y="460.00" width="50.00" height="30.00" fill="#a9b2af" stroke="#6c7771"/>
+<rect id="rock-1" x="615.00" y="340.00" width="45.00" height="35.00" fill="#a9b2af" stroke="#6c7771"/>
+<rect id="rock-2" x="860.00" y="695.00" width="75.00" height="30.00" fill="#a9b2af" stroke="#6c7771"/>
+<rect id="rock-3" x="995.00" y="340.00" width="50.00" height="35.00" fill="#a9b2af" stroke="#6c7771"/>
+<rect id="L1" x="690.00" y="525.00" width="35.00" height="20.00" fill="#888d87" stroke="#6c7771"/>
+<rect id="L2" x="780.00" y="460.00" width="25.00" height="15.00" fill="#888d87" stroke="#6c7771"/>
+<rect id="L3" x="351.50" y="811.00" width="2.00" height="3.00" fill="#888d87" stroke="#6c7771"/>
+<rect id="L4" x="376.50" y="771.50" width="1.50" height="2.00" fill="#888d87" stroke="#6c7771"/>
+<polyline id="landing_setup-0" points="385.00,850.00 365.00,790.00" stroke="#456f80" stroke-width="3" fill="none"/>
+<polyline id="landing_setup-1" points="365.00,790.00 445.00,770.00" stroke="#456f80" stroke-width="3" fill="none"/>
+<polyline id="landing_setup-2" points="445.00,770.00 525.00,720.00" stroke="#456f80" stroke-width="3" fill="none"/>
+<polyline id="coast_out-0" points="525.00,720.00 645.00,680.00" stroke="#456f80" stroke-width="3" fill="none"/>
+<polyline id="coast_out-1" points="645.00,680.00 735.00,550.00" stroke="#456f80" stroke-width="3" fill="none"/>
+<polyline id="coast_out-2" points="735.00,550.00 815.00,480.00" stroke="#456f80" stroke-width="3" fill="none"/>
+<polyline id="coast_out-3" points="815.00,480.00 935.00,400.00" stroke="#456f80" stroke-width="3" fill="none"/>
+<polyline id="predator_bypass-0" points="525.00,720.00 555.00,600.00" stroke="#718c65" stroke-width="3" fill="none"/>
+<polyline id="predator_bypass-1" points="555.00,600.00 735.00,550.00" stroke="#718c65" stroke-width="3" fill="none"/>
+<polyline id="other_return-0" points="935.00,400.00 735.00,375.00" stroke="#ad744a" stroke-width="3" fill="none"/>
+<polyline id="other_return-1" points="735.00,375.00 575.00,425.00" stroke="#ad744a" stroke-width="3" fill="none"/>
+<polyline id="other_return-2" points="575.00,425.00 345.00,640.00" stroke="#ad744a" stroke-width="3" fill="none"/>
+<polyline id="other_return-3" points="345.00,640.00 285.00,650.00" stroke="#ad744a" stroke-width="3" fill="none"/>
+<polyline id="return_bypass-0" points="735.00,375.00 555.00,600.00" stroke="#718c65" stroke-width="3" fill="none"/>
+<polyline id="return_bypass-1" points="555.00,600.00 335.00,770.00" stroke="#718c65" stroke-width="3" fill="none"/>
+<polyline id="return_bypass-2" points="335.00,770.00 345.00,640.00" stroke="#718c65" stroke-width="3" fill="none"/>
+<polyline id="return_bypass-3" points="345.00,640.00 285.00,650.00" stroke="#718c65" stroke-width="3" fill="none"/>
+<polyline id="primary_fallback-0" points="345.00,640.00 335.00,770.00" stroke="#82739a" stroke-width="3" fill="none"/>
+<polyline id="primary_fallback-1" points="335.00,770.00 365.00,790.00" stroke="#82739a" stroke-width="3" fill="none"/>
+<polyline id="primary_fallback-2" points="365.00,790.00 385.00,850.00" stroke="#82739a" stroke-width="3" fill="none"/>
+<polyline id="hound_optional-0" points="815.00,480.00 945.00,560.00" stroke="#82739a" stroke-width="3" fill="none"/>
+<polyline id="hound_optional-1" points="945.00,560.00 935.00,400.00" stroke="#82739a" stroke-width="3" fill="none"/>
+<polyline id="memory_optional-0" points="935.00,400.00 875.00,350.00" stroke="#82739a" stroke-width="3" fill="none"/>
+<polyline id="future_search-0" points="935.00,400.00 985.00,280.00" stroke="#959f9a" stroke-width="3" fill="none"/>
+<polyline id="boat_primary-0" points="135.00,1075.00 385.00,930.00" stroke="#386a88" stroke-width="3" fill="none"/>
+<polyline id="boat_primary-1" points="385.00,930.00 385.00,850.00" stroke="#386a88" stroke-width="3" fill="none"/>
+<polyline id="boat_west-0" points="135.00,1075.00 135.00,650.00" stroke="#ad744a" stroke-width="3" fill="none"/>
+<polyline id="boat_west-1" points="135.00,650.00 285.00,650.00" stroke="#ad744a" stroke-width="3" fill="none"/>
+<ellipse id="NG1" cx="645.00" cy="680.00" rx="35.00" ry="35.00" fill="#c7c3b2" stroke="#a5744d"/>
+<text x="585.0" y="657.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#8f5739">NG1</text>
+<polyline id="NG1-routine" points="645.00,680.00 665.00,650.00 645.00,680.00" stroke="#a5744d" stroke-width="2" fill="none"/>
+<ellipse id="NG2" cx="565.00" cy="460.00" rx="32.50" ry="32.50" fill="#c7c3b2" stroke="#a5744d"/>
+<text x="505.0" y="437.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#8f5739">NG2</text>
+<polyline id="NG2-routine" points="565.00,460.00 555.00,440.00 565.00,460.00" stroke="#a5744d" stroke-width="2" fill="none"/>
+<ellipse id="NG3" cx="735.00" cy="540.00" rx="27.50" ry="27.50" fill="#c7c3b2" stroke="#a5744d"/>
+<text x="675.0" y="517.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#8f5739">NG3</text>
+<ellipse id="NG4" cx="810.00" cy="480.00" rx="35.00" ry="35.00" fill="#c7c3b2" stroke="#a5744d"/>
+<text x="750.0" y="457.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#8f5739">NG4</text>
+<ellipse id="NG5" cx="895.00" cy="310.00" rx="30.00" ry="30.00" fill="#c7c3b2" stroke="#a5744d"/>
+<text x="835.0" y="287.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#8f5739">NG5</text>
+<ellipse id="NG6" cx="945.00" cy="560.00" rx="35.00" ry="35.00" fill="#c7c3b2" stroke="#a5744d"/>
+<text x="885.0" y="537.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#8f5739">NG6</text>
+<ellipse id="N00" cx="135.00" cy="1075.00" rx="4.00" ry="4.00" fill="#334d55" stroke="#667b66"/>
+<polyline id="N00-leader" points="135.00,1075.00 145.00,1065.00 153.00,1065.00" stroke="#66767a" stroke-width="1" fill="none"/>
+<text x="155.0" y="1067.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#293d42">N00</text>
+<ellipse id="N01" cx="385.00" cy="930.00" rx="4.00" ry="4.00" fill="#334d55" stroke="#667b66"/>
+<polyline id="N01-leader" points="385.00,930.00 395.00,920.00 403.00,920.00" stroke="#66767a" stroke-width="1" fill="none"/>
+<text x="405.0" y="922.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#293d42">N01</text>
+<ellipse id="N02" cx="385.00" cy="850.00" rx="4.00" ry="4.00" fill="#334d55" stroke="#667b66"/>
+<polyline id="N02-leader" points="385.00,850.00 395.00,840.00 403.00,840.00" stroke="#66767a" stroke-width="1" fill="none"/>
+<text x="405.0" y="842.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#293d42">N02</text>
+<ellipse id="N03" cx="445.00" cy="770.00" rx="4.00" ry="4.00" fill="#334d55" stroke="#667b66"/>
+<polyline id="N03-leader" points="445.00,770.00 455.00,760.00 463.00,760.00" stroke="#66767a" stroke-width="1" fill="none"/>
+<text x="465.0" y="762.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#293d42">N03</text>
+<ellipse id="N04" cx="525.00" cy="720.00" rx="4.00" ry="4.00" fill="#334d55" stroke="#667b66"/>
+<polyline id="N04-leader" points="525.00,720.00 535.00,710.00 543.00,710.00" stroke="#66767a" stroke-width="1" fill="none"/>
+<text x="545.0" y="712.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#293d42">N04</text>
+<ellipse id="N05" cx="645.00" cy="680.00" rx="4.00" ry="4.00" fill="#334d55" stroke="#667b66"/>
+<polyline id="N05-leader" points="645.00,680.00 655.00,670.00 663.00,670.00" stroke="#66767a" stroke-width="1" fill="none"/>
+<text x="665.0" y="672.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#293d42">N05</text>
+<ellipse id="N06" cx="555.00" cy="600.00" rx="4.00" ry="4.00" fill="#334d55" stroke="#667b66"/>
+<polyline id="N06-leader" points="555.00,600.00 565.00,590.00 573.00,590.00" stroke="#66767a" stroke-width="1" fill="none"/>
+<text x="575.0" y="592.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#293d42">N06</text>
+<ellipse id="N07" cx="735.00" cy="550.00" rx="4.00" ry="4.00" fill="#334d55" stroke="#667b66"/>
+<polyline id="N07-leader" points="735.00,550.00 745.00,540.00 753.00,540.00" stroke="#66767a" stroke-width="1" fill="none"/>
+<text x="755.0" y="542.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#293d42">N07</text>
+<ellipse id="N08" cx="815.00" cy="480.00" rx="4.00" ry="4.00" fill="#334d55" stroke="#667b66"/>
+<polyline id="N08-leader" points="815.00,480.00 825.00,470.00 833.00,470.00" stroke="#66767a" stroke-width="1" fill="none"/>
+<text x="835.0" y="472.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#293d42">N08</text>
+<ellipse id="N09" cx="935.00" cy="400.00" rx="4.00" ry="4.00" fill="#334d55" stroke="#667b66"/>
+<polyline id="N09-leader" points="935.00,400.00 945.00,390.00 953.00,390.00" stroke="#66767a" stroke-width="1" fill="none"/>
+<text x="955.0" y="392.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#293d42">N09</text>
+<ellipse id="N10" cx="735.00" cy="375.00" rx="4.00" ry="4.00" fill="#334d55" stroke="#667b66"/>
+<polyline id="N10-leader" points="735.00,375.00 745.00,365.00 753.00,365.00" stroke="#66767a" stroke-width="1" fill="none"/>
+<text x="755.0" y="367.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#293d42">N10</text>
+<ellipse id="N11" cx="575.00" cy="425.00" rx="4.00" ry="4.00" fill="#334d55" stroke="#667b66"/>
+<polyline id="N11-leader" points="575.00,425.00 585.00,415.00 593.00,415.00" stroke="#66767a" stroke-width="1" fill="none"/>
+<text x="595.0" y="417.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#293d42">N11</text>
+<ellipse id="N12" cx="285.00" cy="650.00" rx="4.00" ry="4.00" fill="#334d55" stroke="#667b66"/>
+<polyline id="N12-leader" points="285.00,650.00 295.00,640.00 303.00,640.00" stroke="#66767a" stroke-width="1" fill="none"/>
+<text x="305.0" y="642.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#293d42">N12</text>
+<ellipse id="N13" cx="345.00" cy="640.00" rx="4.00" ry="4.00" fill="#334d55" stroke="#667b66"/>
+<polyline id="N13-leader" points="345.00,640.00 355.00,630.00 363.00,630.00" stroke="#66767a" stroke-width="1" fill="none"/>
+<text x="365.0" y="632.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#293d42">N13</text>
+<ellipse id="N14" cx="335.00" cy="770.00" rx="4.00" ry="4.00" fill="#334d55" stroke="#667b66"/>
+<polyline id="N14-leader" points="335.00,770.00 345.00,760.00 353.00,760.00" stroke="#66767a" stroke-width="1" fill="none"/>
+<text x="355.0" y="762.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#293d42">N14</text>
+<ellipse id="N15" cx="365.00" cy="790.00" rx="4.00" ry="4.00" fill="#334d55" stroke="#667b66"/>
+<polyline id="N15-leader" points="365.00,790.00 375.00,780.00 383.00,780.00" stroke="#66767a" stroke-width="1" fill="none"/>
+<text x="385.0" y="782.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#293d42">N15</text>
+<ellipse id="N16" cx="945.00" cy="560.00" rx="4.00" ry="4.00" fill="#334d55" stroke="#667b66"/>
+<polyline id="N16-leader" points="945.00,560.00 955.00,550.00 963.00,550.00" stroke="#66767a" stroke-width="1" fill="none"/>
+<text x="965.0" y="552.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#293d42">N16</text>
+<ellipse id="N17" cx="535.00" cy="890.00" rx="4.00" ry="4.00" fill="#334d55" stroke="#667b66"/>
+<polyline id="N17-leader" points="535.00,890.00 545.00,880.00 553.00,880.00" stroke="#66767a" stroke-width="1" fill="none"/>
+<text x="555.0" y="882.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#293d42">N17</text>
+<ellipse id="N18" cx="985.00" cy="280.00" rx="4.00" ry="4.00" fill="#334d55" stroke="#667b66"/>
+<polyline id="N18-leader" points="985.00,280.00 995.00,270.00 1003.00,270.00" stroke="#66767a" stroke-width="1" fill="none"/>
+<text x="1005.0" y="272.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#293d42">N18</text>
+<ellipse id="N19" cx="875.00" cy="350.00" rx="4.00" ry="4.00" fill="#334d55" stroke="#667b66"/>
+<polyline id="N19-leader" points="875.00,350.00 885.00,340.00 893.00,340.00" stroke="#66767a" stroke-width="1" fill="none"/>
+<text x="895.0" y="342.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#293d42">N19</text>
+<text x="1190" y="170" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#293d42">N00 본선 관측·회수 대기</text>
+<text x="1190" y="204" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#293d42">N01 소형정 대기 수면</text>
+<text x="1190" y="238" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#293d42">N02 첫 상륙 바위 해안</text>
+<text x="1190" y="272" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#293d42">N03 해안 위 눈턱</text>
+<text x="1190" y="306" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#293d42">N04 첫 회수 표지</text>
+<text x="1190" y="340" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#293d42">N05 설원아귀 먹이 굽이</text>
+<text x="1190" y="374" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#293d42">N06 높은 사면 우회</text>
+<text x="1190" y="408" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#293d42">N07 옛 외곽 보급소</text>
+<text x="1190" y="442" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#293d42">N08 순찰 기록 벽</text>
+<text x="1190" y="476" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#293d42">N09 첫 조사 종료 표식</text>
+<text x="1190" y="510" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#293d42">N10 북쪽 바람그늘 턱</text>
+<text x="1190" y="544" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#293d42">N11 귀환 먹이턱</text>
+<text x="1190" y="578" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#293d42">N12 서쪽 대체 승선점</text>
+<text x="1190" y="612" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#293d42">N13 대체 해안 확인점</text>
+<text x="1190" y="646" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#293d42">N14 바위 해안 연결</text>
+<text x="1190" y="680" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#293d42">N15 가져온 비상 대기처</text>
+<text x="1190" y="714" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#293d42">N16 봉인 짐 선택 경계</text>
+<text x="1190" y="748" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#293d42">N17 제외한 옛 접근점</text>
+<text x="1190" y="782" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#293d42">N18 내륙 후속 수색 방향</text>
+<text x="1190" y="816" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#293d42">N19 기억 물건 선택 턱</text>
+<text x="1190" y="909" font-family="Malgun Gothic,sans-serif" font-size="19" fill="#293d42">파랑: 접근 / 주황: 다른 귀환</text>
+<text x="1190" y="944" font-family="Malgun Gothic,sans-serif" font-size="19" fill="#293d42">녹색: 포식권 우회 / 보라: 선택·대체</text>
+<text x="1190" y="979" font-family="Malgun Gothic,sans-serif" font-size="19" fill="#293d42">N17 해빙 접근은 이번에 제외</text>
+<text x="1190" y="1014" font-family="Malgun Gothic,sans-serif" font-size="19" fill="#293d42">물길의 끝은 접안 인수 지점</text>
+<text x="1190" y="1049" font-family="Malgun Gothic,sans-serif" font-size="19" fill="#293d42">해안조 4 · 소형정 2 · 본선 10</text>
+<text x="1190" y="1084" font-family="Malgun Gothic,sans-serif" font-size="19" fill="#293d42">본선 복귀 ≠ 세라디온 귀항</text>
+<text x="1190" y="1119" font-family="Malgun Gothic,sans-serif" font-size="19" fill="#293d42">52→54 / G5 유지 / G6 미완료</text>
+<text x="1190" y="1154" font-family="Malgun Gothic,sans-serif" font-size="19" fill="#293d42">실제 지형·시야·해빙·전투 미검증</text>
+<polyline id="scale-200m" points="60.00,1160.00 160.00,1160.00" stroke="#334d55" stroke-width="4" fill="none"/>
+<text x="60" y="1190.0" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#293d42">200m · 국소 설계 축척</text>
+</svg>
