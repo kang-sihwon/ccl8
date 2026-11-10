@@ -1,0 +1,537 @@
+{
+  "result": "PASS",
+  "checks_passed": 126,
+  "checks": [
+    {
+      "check": "source Docs/ArtDirection/EtherWorldMap/Data/seradion-forest-v1.json",
+      "pass_": true
+    },
+    {
+      "check": "source Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-08-five-continent-mainline/routes-and-unlocks.md",
+      "pass_": true
+    },
+    {
+      "check": "source Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-08-five-continent-mainline/continent-arcs.md",
+      "pass_": true
+    },
+    {
+      "check": "source Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-08-world-distribution-and-leveling/variant-distribution.md",
+      "pass_": true
+    },
+    {
+      "check": "source Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-08-world-distribution-and-leveling/progression.md",
+      "pass_": true
+    },
+    {
+      "check": "source Docs/Narrative/World.md",
+      "pass_": true
+    },
+    {
+      "check": "source Docs/Narrative/Scenario.md",
+      "pass_": true
+    },
+    {
+      "check": "anchor F03",
+      "pass_": true
+    },
+    {
+      "check": "anchor F04",
+      "pass_": true
+    },
+    {
+      "check": "18 new nodes",
+      "pass_": true
+    },
+    {
+      "check": "8 forms and groups",
+      "pass_": true
+    },
+    {
+      "check": "20 monster individuals",
+      "pass_": true
+    },
+    {
+      "check": "2 constructs",
+      "pass_": true
+    },
+    {
+      "check": "form range WG1",
+      "pass_": true
+    },
+    {
+      "check": "form region WG1",
+      "pass_": true
+    },
+    {
+      "check": "form range WG2",
+      "pass_": true
+    },
+    {
+      "check": "form region WG2",
+      "pass_": true
+    },
+    {
+      "check": "form range WG3",
+      "pass_": true
+    },
+    {
+      "check": "form region WG3",
+      "pass_": true
+    },
+    {
+      "check": "form range WG4",
+      "pass_": true
+    },
+    {
+      "check": "form region WG4",
+      "pass_": true
+    },
+    {
+      "check": "form range WG5",
+      "pass_": true
+    },
+    {
+      "check": "form region WG5",
+      "pass_": true
+    },
+    {
+      "check": "form range WG6",
+      "pass_": true
+    },
+    {
+      "check": "form region WG6",
+      "pass_": true
+    },
+    {
+      "check": "form range WG7",
+      "pass_": true
+    },
+    {
+      "check": "form region WG7",
+      "pass_": true
+    },
+    {
+      "check": "form range WG8",
+      "pass_": true
+    },
+    {
+      "check": "form region WG8",
+      "pass_": true
+    },
+    {
+      "check": "coordinates entry",
+      "pass_": true
+    },
+    {
+      "check": "length entry",
+      "pass_": true
+    },
+    {
+      "check": "dry segment entry:0",
+      "pass_": true
+    },
+    {
+      "check": "dry segment entry:1",
+      "pass_": true
+    },
+    {
+      "check": "dry segment entry:2",
+      "pass_": true
+    },
+    {
+      "check": "coordinates field_out",
+      "pass_": true
+    },
+    {
+      "check": "length field_out",
+      "pass_": true
+    },
+    {
+      "check": "dry segment field_out:0",
+      "pass_": true
+    },
+    {
+      "check": "dry segment field_out:1",
+      "pass_": true
+    },
+    {
+      "check": "dry segment field_out:2",
+      "pass_": true
+    },
+    {
+      "check": "dry segment field_out:3",
+      "pass_": true
+    },
+    {
+      "check": "coordinates boss_approach",
+      "pass_": true
+    },
+    {
+      "check": "length boss_approach",
+      "pass_": true
+    },
+    {
+      "check": "dry segment boss_approach:0",
+      "pass_": true
+    },
+    {
+      "check": "coordinates north_scout",
+      "pass_": true
+    },
+    {
+      "check": "length north_scout",
+      "pass_": true
+    },
+    {
+      "check": "dry segment north_scout:0",
+      "pass_": true
+    },
+    {
+      "check": "dry segment north_scout:1",
+      "pass_": true
+    },
+    {
+      "check": "dry segment north_scout:2",
+      "pass_": true
+    },
+    {
+      "check": "dry segment north_scout:3",
+      "pass_": true
+    },
+    {
+      "check": "dry segment north_scout:4",
+      "pass_": true
+    },
+    {
+      "check": "dry segment north_scout:5",
+      "pass_": true
+    },
+    {
+      "check": "coordinates north_look_optional",
+      "pass_": true
+    },
+    {
+      "check": "length north_look_optional",
+      "pass_": true
+    },
+    {
+      "check": "dry segment north_look_optional:0",
+      "pass_": true
+    },
+    {
+      "check": "dry segment north_look_optional:1",
+      "pass_": true
+    },
+    {
+      "check": "coordinates boss_retreat",
+      "pass_": true
+    },
+    {
+      "check": "length boss_retreat",
+      "pass_": true
+    },
+    {
+      "check": "dry segment boss_retreat:0",
+      "pass_": true
+    },
+    {
+      "check": "dry segment boss_retreat:1",
+      "pass_": true
+    },
+    {
+      "check": "dry segment boss_retreat:2",
+      "pass_": true
+    },
+    {
+      "check": "coordinates other_return",
+      "pass_": true
+    },
+    {
+      "check": "length other_return",
+      "pass_": true
+    },
+    {
+      "check": "dry segment other_return:0",
+      "pass_": true
+    },
+    {
+      "check": "dry segment other_return:1",
+      "pass_": true
+    },
+    {
+      "check": "dry segment other_return:2",
+      "pass_": true
+    },
+    {
+      "check": "dry segment other_return:3",
+      "pass_": true
+    },
+    {
+      "check": "dry segment other_return:4",
+      "pass_": true
+    },
+    {
+      "check": "dry segment other_return:5",
+      "pass_": true
+    },
+    {
+      "check": "dry segment other_return:6",
+      "pass_": true
+    },
+    {
+      "check": "dry segment other_return:7",
+      "pass_": true
+    },
+    {
+      "check": "coordinates naga_visit",
+      "pass_": true
+    },
+    {
+      "check": "length naga_visit",
+      "pass_": true
+    },
+    {
+      "check": "dry segment naga_visit:0",
+      "pass_": true
+    },
+    {
+      "check": "dry segment naga_visit:1",
+      "pass_": true
+    },
+    {
+      "check": "coordinates old_service_optional",
+      "pass_": true
+    },
+    {
+      "check": "length old_service_optional",
+      "pass_": true
+    },
+    {
+      "check": "dry segment old_service_optional:0",
+      "pass_": true
+    },
+    {
+      "check": "dry segment old_service_optional:1",
+      "pass_": true
+    },
+    {
+      "check": "dry segment old_service_optional:2",
+      "pass_": true
+    },
+    {
+      "check": "coordinates resident_service",
+      "pass_": true
+    },
+    {
+      "check": "length resident_service",
+      "pass_": true
+    },
+    {
+      "check": "dry segment resident_service:0",
+      "pass_": true
+    },
+    {
+      "check": "dry segment resident_service:1",
+      "pass_": true
+    },
+    {
+      "check": "dry segment resident_service:2",
+      "pass_": true
+    },
+    {
+      "check": "dry segment resident_service:3",
+      "pass_": true
+    },
+    {
+      "check": "scout avoids arena node",
+      "pass_": true
+    },
+    {
+      "check": "G5/G6 remain false",
+      "pass_": true
+    },
+    {
+      "check": "growth budget",
+      "pass_": true
+    },
+    {
+      "check": "total continent budget",
+      "pass_": true
+    },
+    {
+      "check": "optional offset",
+      "pass_": true
+    },
+    {
+      "check": "boss separate and no return respawn",
+      "pass_": true
+    },
+    {
+      "check": "north scout outside boss potential envelope",
+      "pass_": true
+    },
+    {
+      "check": "overview point C01",
+      "pass_": true
+    },
+    {
+      "check": "overview point C02",
+      "pass_": true
+    },
+    {
+      "check": "overview point C03",
+      "pass_": true
+    },
+    {
+      "check": "overview point C04",
+      "pass_": true
+    },
+    {
+      "check": "overview point C05",
+      "pass_": true
+    },
+    {
+      "check": "overview point C06",
+      "pass_": true
+    },
+    {
+      "check": "overview point C07",
+      "pass_": true
+    },
+    {
+      "check": "overview point C08",
+      "pass_": true
+    },
+    {
+      "check": "overview point C09",
+      "pass_": true
+    },
+    {
+      "check": "overview point C10",
+      "pass_": true
+    },
+    {
+      "check": "overview point C11",
+      "pass_": true
+    },
+    {
+      "check": "overview point C12",
+      "pass_": true
+    },
+    {
+      "check": "overview point C13",
+      "pass_": true
+    },
+    {
+      "check": "overview point C14",
+      "pass_": true
+    },
+    {
+      "check": "overview point C15",
+      "pass_": true
+    },
+    {
+      "check": "overview point C16",
+      "pass_": true
+    },
+    {
+      "check": "overview point C17",
+      "pass_": true
+    },
+    {
+      "check": "overview point C18",
+      "pass_": true
+    },
+    {
+      "check": "overview point F03",
+      "pass_": true
+    },
+    {
+      "check": "overview point F04",
+      "pass_": true
+    },
+    {
+      "check": "overview radius WG1",
+      "pass_": true
+    },
+    {
+      "check": "overview radius WG2",
+      "pass_": true
+    },
+    {
+      "check": "overview radius WG3",
+      "pass_": true
+    },
+    {
+      "check": "overview radius WG4",
+      "pass_": true
+    },
+    {
+      "check": "overview radius WG5",
+      "pass_": true
+    },
+    {
+      "check": "overview radius WG6",
+      "pass_": true
+    },
+    {
+      "check": "overview radius WG7",
+      "pass_": true
+    },
+    {
+      "check": "overview radius WG8",
+      "pass_": true
+    },
+    {
+      "check": "hydra point C06",
+      "pass_": true
+    },
+    {
+      "check": "hydra point C07",
+      "pass_": true
+    },
+    {
+      "check": "hydra point C08",
+      "pass_": true
+    },
+    {
+      "check": "hydra point C16",
+      "pass_": true
+    },
+    {
+      "check": "hydra radius WG6",
+      "pass_": true
+    },
+    {
+      "check": "hydra radius WG8",
+      "pass_": true
+    }
+  ],
+  "walk_segments": 36,
+  "water_test": "exact split at all rectangle boundary intersections",
+  "svg_elements_checked": 34,
+  "north_scout_boss_margin_m": 242.31,
+  "density": {
+    "field_out": {
+      "length_m": 1364.5,
+      "contacts": [
+        "WG1",
+        "WG3",
+        "WG4"
+      ],
+      "max_potential_overlap": 1,
+      "longest_no_hostile_envelope_m": 211.2
+    },
+    "other_return": {
+      "length_m": 3839.0,
+      "contacts": [
+        "WG7"
+      ],
+      "max_potential_overlap": 1,
+      "longest_no_hostile_envelope_m": 2926.1
+    }
+  },
+  "limits": [
+    "Geometry only, not AI or gameplay validation"
+  ]
+}

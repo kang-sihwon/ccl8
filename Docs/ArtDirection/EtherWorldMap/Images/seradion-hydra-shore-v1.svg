@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="1320" viewBox="0 0 1500 1320"><rect width="100%" height="100%" fill="#f1f3ef"/>
+<text x="55" y="58" font-family="Malgun Gothic,sans-serif" font-size="33" fill="#263e45">녹관 히드라 · 마른 정비턱과 다른 귀환</text>
+<text x="55" y="100" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#263e45">SE-P01 국소 후보 · 위쪽 북 · 단위 m · 좌표 검토 도면 / 지형 아트 아님</text>
+<rect id="" x="60.00" y="150.00" width="644.00" height="910.00" fill="#e5e9dc" stroke="#6d8584"/>
+<polyline id="grid-x-3500" points="235.00,1060.00 235.00,150.00" fill="none" stroke="#cbd2c7" stroke-width="1"/>
+<polyline id="grid-x-4000" points="585.00,1060.00 585.00,150.00" fill="none" stroke="#cbd2c7" stroke-width="1"/>
+<polyline id="grid-y-7500" points="60.00,815.00 704.00,815.00" fill="none" stroke="#cbd2c7" stroke-width="1"/>
+<polyline id="grid-y-8000" points="60.00,465.00 704.00,465.00" fill="none" stroke="#cbd2c7" stroke-width="1"/>
+<rect id="local_lake" x="305.00" y="395.00" width="350.00" height="630.00" fill="#b5d8df" stroke="#6d8584"/>
+<polyline id="boss_approach" points="95.00,955.00 235.00,815.00" fill="none" stroke="#386d87" stroke-width="4"/>
+<polyline id="other_return" points="235.00,815.00 165.00,535.00" fill="none" stroke="#b26b38" stroke-width="4"/>
+<polyline id="north_scout_clipped" points="60.00,465.00 165.00,535.00" fill="none" stroke="#53866b" stroke-width="4"/>
+<text x="66" y="454.0" font-family="Malgun Gothic,sans-serif" font-size="16" fill="#53866b">C09 방면</text>
+<polyline id="north_look_optional" points="130.00,185.00 165.00,535.00" fill="none" stroke="#75638e" stroke-width="4"/>
+<rect id="arena" x="179.00" y="773.00" width="112.00" height="84.00" fill="#ded0b4" stroke="#977b54"/>
+<rect id="cover-0" x="202.80" y="812.20" width="8.40" height="5.60" fill="#696f6b" stroke="#6d8584"/>
+<rect id="cover-1" x="258.80" y="812.20" width="8.40" height="5.60" fill="#696f6b" stroke="#6d8584"/>
+<circle id="WG6" cx="445.00" cy="605.00" r="70.00" fill="none" stroke="#ae6643"/>
+<polyline id="WG6-routine" points="445.00,605.00 410.00,815.00 235.00,815.00 410.00,815.00 445.00,605.00" fill="none" stroke="#ae6643" stroke-width="2"/>
+<text x="455.0" y="595.0" font-family="Malgun Gothic,sans-serif" font-size="16" fill="#ae6643">WG6</text>
+<circle id="WG8" cx="130.00" cy="430.00" r="42.00" fill="none" stroke="#ae6643"/>
+<text x="140.0" y="420.0" font-family="Malgun Gothic,sans-serif" font-size="16" fill="#ae6643">WG8</text>
+<circle id="C06" cx="95.00" cy="955.00" r="6.30" fill="none" stroke="#263e45"/>
+<text x="103.0" y="976.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#263e45">C06</text>
+<circle id="C07" cx="235.00" cy="815.00" r="6.30" fill="none" stroke="#263e45"/>
+<text x="243.0" y="836.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#263e45">C07</text>
+<circle id="C08" cx="165.00" cy="535.00" r="6.30" fill="none" stroke="#263e45"/>
+<text x="173.0" y="556.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#263e45">C08</text>
+<circle id="C16" cx="130.00" cy="185.00" r="6.30" fill="none" stroke="#263e45"/>
+<text x="138.0" y="206.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#263e45">C16</text>
+<text x="960" y="188" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263e45">C06 남쪽 관측·철수</text>
+<text x="960" y="223" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263e45">C07 마른 정비턱 전장</text>
+<text x="960" y="258" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263e45">C08 북쪽 마른 턱·귀환</text>
+<text x="960" y="293" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263e45">C16 선택 북쪽 관측</text>
+<text x="960" y="328" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263e45">WG6 녹관 1개체 / 권장 51</text>
+<text x="960" y="363" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263e45">같은 개체의 물자리·정비턱 왕복</text>
+<text x="960" y="398" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263e45">전장 160×120m / 차폐물 12×8m</text>
+<text x="960" y="433" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263e45">차폐물 중심 간 80m</text>
+<text x="960" y="468" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263e45">파랑 접근 / 주황 귀환 / 보라 선택</text>
+<text x="960" y="503" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263e45">물속 추격·즉시 무한 재생 없음</text>
+<text x="960" y="538" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263e45">WG8 덩굴은 C16 선택 관측길의 위험</text>
+<text x="960" y="573" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263e45">시야·높이·충돌·전투 체감 미검증</text>
+<path id="scale-bar" d="M 60,1100.0 h 140.0" stroke="#263e45" stroke-width="4"/>
+<text x="60" y="1130.0" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263e45">200m · 설계 축척 후보</text>
+<text x="55" y="1255" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#263e45">실제 지형·수문·AI·경험치·UE 실행은 미검증. 기존 도면과 정본은 보존한다.</text>
+</svg>

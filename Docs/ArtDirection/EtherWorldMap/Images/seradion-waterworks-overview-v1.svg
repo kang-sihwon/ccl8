@@ -1,0 +1,120 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="1320" viewBox="0 0 1500 1320"><rect width="100%" height="100%" fill="#f1f3ef"/>
+<text x="55" y="58" font-family="Malgun Gothic,sans-serif" font-size="33" fill="#263e45">현용 수원 조사와 호수 정비길</text>
+<text x="55" y="100" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#263e45">SE-P01 국소 후보 · 위쪽 북 · 단위 m · 좌표 검토 도면 / 지형 아트 아님</text>
+<rect id="" x="60.00" y="150.00" width="841.00" height="928.00" fill="#e5e9dc" stroke="#6d8584"/>
+<polyline id="grid-x-1500" points="89.00,1078.00 89.00,150.00" fill="none" stroke="#cbd2c7" stroke-width="1"/>
+<polyline id="grid-x-2000" points="234.00,1078.00 234.00,150.00" fill="none" stroke="#cbd2c7" stroke-width="1"/>
+<polyline id="grid-x-2500" points="379.00,1078.00 379.00,150.00" fill="none" stroke="#cbd2c7" stroke-width="1"/>
+<polyline id="grid-x-3000" points="524.00,1078.00 524.00,150.00" fill="none" stroke="#cbd2c7" stroke-width="1"/>
+<polyline id="grid-x-3500" points="669.00,1078.00 669.00,150.00" fill="none" stroke="#cbd2c7" stroke-width="1"/>
+<polyline id="grid-x-4000" points="814.00,1078.00 814.00,150.00" fill="none" stroke="#cbd2c7" stroke-width="1"/>
+<polyline id="grid-y-5500" points="60.00,1078.00 901.00,1078.00" fill="none" stroke="#cbd2c7" stroke-width="1"/>
+<polyline id="grid-y-6000" points="60.00,933.00 901.00,933.00" fill="none" stroke="#cbd2c7" stroke-width="1"/>
+<polyline id="grid-y-6500" points="60.00,788.00 901.00,788.00" fill="none" stroke="#cbd2c7" stroke-width="1"/>
+<polyline id="grid-y-7000" points="60.00,643.00 901.00,643.00" fill="none" stroke="#cbd2c7" stroke-width="1"/>
+<polyline id="grid-y-7500" points="60.00,498.00 901.00,498.00" fill="none" stroke="#cbd2c7" stroke-width="1"/>
+<polyline id="grid-y-8000" points="60.00,353.00 901.00,353.00" fill="none" stroke="#cbd2c7" stroke-width="1"/>
+<polyline id="grid-y-8500" points="60.00,208.00 901.00,208.00" fill="none" stroke="#cbd2c7" stroke-width="1"/>
+<rect id="local_lake" x="698.00" y="324.00" width="145.00" height="261.00" fill="#b5d8df" stroke="#6d8584"/>
+<polyline id="entry" points="89.00,1049.00 205.00,933.00 263.00,875.00 321.00,817.00" fill="none" stroke="#386d87" stroke-width="3"/>
+<polyline id="field_out" points="321.00,817.00 379.00,759.00 466.00,701.00 524.00,614.00 611.00,556.00" fill="none" stroke="#386d87" stroke-width="3"/>
+<polyline id="boss_approach" points="611.00,556.00 669.00,498.00" fill="none" stroke="#386d87" stroke-width="3"/>
+<polyline id="north_scout" points="205.00,933.00 205.00,701.00 277.50,614.00 350.00,527.00 437.00,411.00 553.00,324.00 640.00,382.00" fill="none" stroke="#53866b" stroke-width="3"/>
+<polyline id="other_return" points="669.00,498.00 640.00,382.00 553.00,324.00 437.00,411.00 350.00,527.00 277.50,614.00 205.00,701.00 103.50,904.00 89.00,1049.00" fill="none" stroke="#b26b38" stroke-width="3"/>
+<polyline id="naga_visit" points="321.00,817.00 321.00,672.00 350.00,527.00" fill="none" stroke="#75638e" stroke-width="3"/>
+<polyline id="old_service_optional" points="379.00,759.00 437.00,904.00 553.00,817.00 466.00,701.00" fill="none" stroke="#75638e" stroke-width="3"/>
+<polyline id="north_look_optional" points="553.00,324.00 625.50,237.00 640.00,382.00" fill="none" stroke="#75638e" stroke-width="3"/>
+<polyline id="buried-pipe-schematic" points="350.00,527.00 277.50,614.00 321.00,817.00" fill="none" stroke="#449cac" stroke-width="2"/>
+<circle id="WG1" cx="379.00" cy="759.00" r="26.10" fill="none" stroke="#ae6643"/>
+<text x="389.0" y="749.0" font-family="Malgun Gothic,sans-serif" font-size="16" fill="#ae6643">WG1</text>
+<circle id="WG2" cx="437.00" cy="904.00" r="23.20" fill="none" stroke="#ae6643"/>
+<text x="447.0" y="894.0" font-family="Malgun Gothic,sans-serif" font-size="16" fill="#ae6643">WG2</text>
+<circle id="WG3" cx="466.00" cy="701.00" r="29.00" fill="none" stroke="#ae6643"/>
+<text x="476.0" y="691.0" font-family="Malgun Gothic,sans-serif" font-size="16" fill="#ae6643">WG3</text>
+<circle id="WG4" cx="524.00" cy="614.00" r="31.90" fill="none" stroke="#ae6643"/>
+<text x="534.0" y="604.0" font-family="Malgun Gothic,sans-serif" font-size="16" fill="#ae6643">WG4</text>
+<circle id="WG5" cx="321.00" cy="672.00" r="26.10" fill="none" stroke="#56856d"/>
+<text x="331.0" y="662.0" font-family="Malgun Gothic,sans-serif" font-size="16" fill="#56856d">WG5</text>
+<circle id="WG6" cx="756.00" cy="411.00" r="29.00" fill="none" stroke="#ae6643"/>
+<polyline id="WG6-routine" points="756.00,411.00 741.50,498.00 669.00,498.00 741.50,498.00 756.00,411.00" fill="none" stroke="#ae6643" stroke-width="2"/>
+<text x="766.0" y="401.0" font-family="Malgun Gothic,sans-serif" font-size="16" fill="#ae6643">WG6</text>
+<circle id="WG7" cx="553.00" cy="324.00" r="29.00" fill="none" stroke="#ae6643"/>
+<text x="563.0" y="314.0" font-family="Malgun Gothic,sans-serif" font-size="16" fill="#ae6643">WG7</text>
+<circle id="WG8" cx="625.50" cy="338.50" r="17.40" fill="none" stroke="#ae6643"/>
+<text x="635.5" y="328.5" font-family="Malgun Gothic,sans-serif" font-size="16" fill="#ae6643">WG8</text>
+<rect id="WC1" x="532.70" y="782.20" width="11.60" height="11.60" fill="#a29ab0" stroke="#6d8584"/>
+<text x="560.5" y="788.0" font-family="Malgun Gothic,sans-serif" font-size="15" fill="#75638e">WC1</text>
+<rect id="WC2" x="561.70" y="825.70" width="11.60" height="11.60" fill="#a29ab0" stroke="#6d8584"/>
+<text x="589.5" y="856.5" font-family="Malgun Gothic,sans-serif" font-size="15" fill="#75638e">WC2</text>
+<circle id="C01" cx="263.00" cy="875.00" r="2.61" fill="none" stroke="#263e45"/>
+<text x="271.0" y="896.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#263e45">C01</text>
+<circle id="C02" cx="321.00" cy="817.00" r="2.61" fill="none" stroke="#263e45"/>
+<text x="329.0" y="838.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#263e45">C02</text>
+<circle id="C03" cx="379.00" cy="759.00" r="2.61" fill="none" stroke="#263e45"/>
+<text x="387.0" y="780.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#263e45">C03</text>
+<circle id="C04" cx="466.00" cy="701.00" r="2.61" fill="none" stroke="#263e45"/>
+<text x="474.0" y="722.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#263e45">C04</text>
+<circle id="C05" cx="524.00" cy="614.00" r="2.61" fill="none" stroke="#263e45"/>
+<text x="532.0" y="635.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#263e45">C05</text>
+<circle id="C06" cx="611.00" cy="556.00" r="2.61" fill="none" stroke="#263e45"/>
+<text x="619.0" y="577.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#263e45">C06</text>
+<circle id="C07" cx="669.00" cy="498.00" r="2.61" fill="none" stroke="#263e45"/>
+<text x="677.0" y="519.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#263e45">C07</text>
+<circle id="C08" cx="640.00" cy="382.00" r="2.61" fill="none" stroke="#263e45"/>
+<text x="648.0" y="403.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#263e45">C08</text>
+<circle id="C09" cx="553.00" cy="324.00" r="2.61" fill="none" stroke="#263e45"/>
+<text x="561.0" y="345.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#263e45">C09</text>
+<circle id="C10" cx="437.00" cy="411.00" r="2.61" fill="none" stroke="#263e45"/>
+<text x="445.0" y="432.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#263e45">C10</text>
+<circle id="C11" cx="350.00" cy="527.00" r="2.61" fill="none" stroke="#263e45"/>
+<text x="358.0" y="548.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#263e45">C11</text>
+<circle id="C12" cx="277.50" cy="614.00" r="2.61" fill="none" stroke="#263e45"/>
+<text x="285.5" y="635.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#263e45">C12</text>
+<circle id="C13" cx="205.00" cy="701.00" r="2.61" fill="none" stroke="#263e45"/>
+<text x="213.0" y="722.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#263e45">C13</text>
+<circle id="C14" cx="437.00" cy="904.00" r="2.61" fill="none" stroke="#263e45"/>
+<text x="445.0" y="925.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#263e45">C14</text>
+<circle id="C15" cx="553.00" cy="817.00" r="2.61" fill="none" stroke="#263e45"/>
+<text x="561.0" y="838.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#263e45">C15</text>
+<circle id="C16" cx="625.50" cy="237.00" r="2.61" fill="none" stroke="#263e45"/>
+<text x="633.5" y="258.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#263e45">C16</text>
+<circle id="C17" cx="321.00" cy="672.00" r="2.61" fill="none" stroke="#263e45"/>
+<text x="329.0" y="693.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#263e45">C17</text>
+<circle id="C18" cx="103.50" cy="904.00" r="2.61" fill="none" stroke="#263e45"/>
+<text x="111.5" y="925.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#263e45">C18</text>
+<circle id="F03" cx="89.00" cy="1049.00" r="2.61" fill="none" stroke="#263e45"/>
+<text x="97.0" y="1070.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#263e45">F03</text>
+<circle id="F04" cx="205.00" cy="933.00" r="2.61" fill="none" stroke="#263e45"/>
+<text x="213.0" y="954.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#263e45">F04</text>
+<text x="960" y="173" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263e45">C01 동행 조사 접수</text>
+<text x="960" y="203" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263e45">C02 주민·시험 분기</text>
+<text x="960" y="233" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263e45">C03 시험 격리 회랑</text>
+<text x="960" y="263" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263e45">C04 옛 정비 굽이</text>
+<text x="960" y="293" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263e45">C05 마른 정비 부두</text>
+<text x="960" y="323" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263e45">C06 남쪽 관측턱</text>
+<text x="960" y="353" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263e45">C07 녹관 정비 전장</text>
+<text x="960" y="383" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263e45">C08 북쪽 마른 턱</text>
+<text x="960" y="413" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263e45">C09 높은 둑 귀환</text>
+<text x="960" y="443" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263e45">C10 운전 기록 마당</text>
+<text x="960" y="473" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263e45">C11 기존 샘 취수실</text>
+<text x="960" y="503" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263e45">C12 주민 비축조</text>
+<text x="960" y="533" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263e45">C13 정비 인수 마당</text>
+<text x="960" y="563" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263e45">C14 온수 찌꺼기터</text>
+<text x="960" y="593" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263e45">C15 옛 의식 경계</text>
+<text x="960" y="623" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263e45">C16 호수 북쪽 관측</text>
+<text x="960" y="653" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263e45">C17 나가 협의 경계</text>
+<text x="960" y="683" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263e45">C18 외곽 복귀길</text>
+<text x="960" y="713" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263e45">F03 현용 수원 접수</text>
+<text x="960" y="743" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263e45">F04 설비 내부 경계</text>
+<text x="960" y="838" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263e45">파랑: 조사·보스 접근</text>
+<text x="960" y="873" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263e45">주황: 다른 귀환 / 녹색: 사전 정찰</text>
+<text x="960" y="908" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263e45">보라: 협의·선택 경계</text>
+<text x="960" y="943" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263e45">청록 가는 선: 매설 급수관 관계</text>
+<text x="960" y="978" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263e45">WG: 생활권 / WC: 구조체</text>
+<text x="960" y="1013" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263e45">F03·F04 기존 좌표 유지</text>
+<text x="960" y="1048" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263e45">호수는 기존 강과 별도인 국소 물자리</text>
+<text x="960" y="1083" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263e45">급수 인수 뒤에도 G5 준비는 남는다</text>
+<path id="scale-bar" d="M 60,1118.0 h 57.99999999999999" stroke="#263e45" stroke-width="4"/>
+<text x="60" y="1148.0" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263e45">200m · 설계 축척 후보</text>
+<text x="55" y="1255" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#263e45">실제 지형·수문·AI·경험치·UE 실행은 미검증. 기존 도면과 정본은 보존한다.</text>
+</svg>

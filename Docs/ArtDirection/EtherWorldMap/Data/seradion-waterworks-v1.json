@@ -1,0 +1,871 @@
+{
+  "status": "design_candidate_not_canon",
+  "coordinate_system": "SE-P01 north +Y, metres, local candidate",
+  "sources_sha256": {
+    "Docs/ArtDirection/EtherWorldMap/Data/seradion-forest-v1.json": "424f14cbfebcee13ee8d7efe498ab7103073d9d1c3a7c71aeff2dc42bfd6e6b9",
+    "Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-08-five-continent-mainline/routes-and-unlocks.md": "b209df5b3c6d131a886e3269340d072d044a022ee389daf1fbc88de8bf1c3d35",
+    "Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-08-five-continent-mainline/continent-arcs.md": "0af6e0b3fc5bc48e397e4ce08004824aab3611f09ca4a2760458f4f5ababda17",
+    "Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-08-world-distribution-and-leveling/variant-distribution.md": "a4ccc8ac9fdb937b1d637251bb78ce55eccde0a201753189b238a36d116c64e9",
+    "Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-08-world-distribution-and-leveling/progression.md": "a847c8417b972d74f4672a22067206827025f666f5daf39896cb8a73007450aa",
+    "Docs/Narrative/World.md": "020bed8d29fd25ac5c8a4346f6076426e52aff1335f52de4f1e6d7d7b38cde28",
+    "Docs/Narrative/Scenario.md": "55a8eb1da2a818d4c606d82e6d4fd2163458de96d22f27a340dda23b3c427e13"
+  },
+  "anchors": [
+    {
+      "id": "F03",
+      "name": "현용 수원 접수",
+      "xy_m": [
+        1500,
+        5600
+      ],
+      "region": "SE3",
+      "candidate": true
+    },
+    {
+      "id": "F04",
+      "name": "설비 내부 경계",
+      "xy_m": [
+        1900,
+        6000
+      ],
+      "region": "SE3",
+      "candidate": true
+    }
+  ],
+  "new_nodes": [
+    {
+      "id": "C01",
+      "name": "동행 조사 접수",
+      "xy_m": [
+        2100,
+        6200
+      ],
+      "region": "SE3"
+    },
+    {
+      "id": "C02",
+      "name": "주민·시험 분기",
+      "xy_m": [
+        2300,
+        6400
+      ],
+      "region": "SE3"
+    },
+    {
+      "id": "C03",
+      "name": "시험 격리 회랑",
+      "xy_m": [
+        2500,
+        6600
+      ],
+      "region": "SE3"
+    },
+    {
+      "id": "C04",
+      "name": "옛 정비 굽이",
+      "xy_m": [
+        2800,
+        6800
+      ],
+      "region": "SE3"
+    },
+    {
+      "id": "C05",
+      "name": "마른 정비 부두",
+      "xy_m": [
+        3000,
+        7100
+      ],
+      "region": "SE3"
+    },
+    {
+      "id": "C06",
+      "name": "남쪽 관측턱",
+      "xy_m": [
+        3300,
+        7300
+      ],
+      "region": "SE1"
+    },
+    {
+      "id": "C07",
+      "name": "녹관 정비 전장",
+      "xy_m": [
+        3500,
+        7500
+      ],
+      "region": "SE1"
+    },
+    {
+      "id": "C08",
+      "name": "북쪽 마른 턱",
+      "xy_m": [
+        3400,
+        7900
+      ],
+      "region": "SE1"
+    },
+    {
+      "id": "C09",
+      "name": "높은 둑 귀환",
+      "xy_m": [
+        3100,
+        8100
+      ],
+      "region": "SE1"
+    },
+    {
+      "id": "C10",
+      "name": "운전 기록 마당",
+      "xy_m": [
+        2700,
+        7800
+      ],
+      "region": "SE3"
+    },
+    {
+      "id": "C11",
+      "name": "기존 샘 취수실",
+      "xy_m": [
+        2400,
+        7400
+      ],
+      "region": "SE3"
+    },
+    {
+      "id": "C12",
+      "name": "주민 비축조",
+      "xy_m": [
+        2150,
+        7100
+      ],
+      "region": "SE3"
+    },
+    {
+      "id": "C13",
+      "name": "정비 인수 마당",
+      "xy_m": [
+        1900,
+        6800
+      ],
+      "region": "SE3"
+    },
+    {
+      "id": "C14",
+      "name": "온수 찌꺼기터",
+      "xy_m": [
+        2700,
+        6100
+      ],
+      "region": "SE3"
+    },
+    {
+      "id": "C15",
+      "name": "옛 의식 경계",
+      "xy_m": [
+        3100,
+        6400
+      ],
+      "region": "SE3"
+    },
+    {
+      "id": "C16",
+      "name": "호수 북쪽 관측",
+      "xy_m": [
+        3350,
+        8400
+      ],
+      "region": "SE1"
+    },
+    {
+      "id": "C17",
+      "name": "나가 협의 경계",
+      "xy_m": [
+        2300,
+        6900
+      ],
+      "region": "SE3"
+    },
+    {
+      "id": "C18",
+      "name": "외곽 복귀길",
+      "xy_m": [
+        1550,
+        6100
+      ],
+      "region": "SE3"
+    }
+  ],
+  "paths": {
+    "entry": {
+      "nodes": [
+        "F03",
+        "F04",
+        "C01",
+        "C02"
+      ],
+      "xy_m": [
+        [
+          1500,
+          5600
+        ],
+        [
+          1900,
+          6000
+        ],
+        [
+          2100,
+          6200
+        ],
+        [
+          2300,
+          6400
+        ]
+      ],
+      "condition": "local_joint_access",
+      "length_m": 1131.4
+    },
+    "field_out": {
+      "nodes": [
+        "C02",
+        "C03",
+        "C04",
+        "C05",
+        "C06"
+      ],
+      "xy_m": [
+        [
+          2300,
+          6400
+        ],
+        [
+          2500,
+          6600
+        ],
+        [
+          2800,
+          6800
+        ],
+        [
+          3000,
+          7100
+        ],
+        [
+          3300,
+          7300
+        ]
+      ],
+      "condition": "local_joint_access",
+      "length_m": 1364.5
+    },
+    "boss_approach": {
+      "nodes": [
+        "C06",
+        "C07"
+      ],
+      "xy_m": [
+        [
+          3300,
+          7300
+        ],
+        [
+          3500,
+          7500
+        ]
+      ],
+      "condition": "retreat_scouted",
+      "length_m": 282.8
+    },
+    "north_scout": {
+      "nodes": [
+        "F04",
+        "C13",
+        "C12",
+        "C11",
+        "C10",
+        "C09",
+        "C08"
+      ],
+      "xy_m": [
+        [
+          1900,
+          6000
+        ],
+        [
+          1900,
+          6800
+        ],
+        [
+          2150,
+          7100
+        ],
+        [
+          2400,
+          7400
+        ],
+        [
+          2700,
+          7800
+        ],
+        [
+          3100,
+          8100
+        ],
+        [
+          3400,
+          7900
+        ]
+      ],
+      "condition": "local_joint_access",
+      "length_m": 2941.6
+    },
+    "north_look_optional": {
+      "nodes": [
+        "C09",
+        "C16",
+        "C08"
+      ],
+      "xy_m": [
+        [
+          3100,
+          8100
+        ],
+        [
+          3350,
+          8400
+        ],
+        [
+          3400,
+          7900
+        ]
+      ],
+      "condition": "optional_reed_edge",
+      "length_m": 893.0
+    },
+    "boss_retreat": {
+      "nodes": [
+        "C07",
+        "C06",
+        "C05",
+        "C04"
+      ],
+      "xy_m": [
+        [
+          3500,
+          7500
+        ],
+        [
+          3300,
+          7300
+        ],
+        [
+          3000,
+          7100
+        ],
+        [
+          2800,
+          6800
+        ]
+      ],
+      "condition": "always_retreat",
+      "length_m": 1004.0
+    },
+    "other_return": {
+      "nodes": [
+        "C07",
+        "C08",
+        "C09",
+        "C10",
+        "C11",
+        "C12",
+        "C13",
+        "C18",
+        "F03"
+      ],
+      "xy_m": [
+        [
+          3500,
+          7500
+        ],
+        [
+          3400,
+          7900
+        ],
+        [
+          3100,
+          8100
+        ],
+        [
+          2700,
+          7800
+        ],
+        [
+          2400,
+          7400
+        ],
+        [
+          2150,
+          7100
+        ],
+        [
+          1900,
+          6800
+        ],
+        [
+          1550,
+          6100
+        ],
+        [
+          1500,
+          5600
+        ]
+      ],
+      "condition": "north_route_scouted",
+      "length_m": 3839.0
+    },
+    "naga_visit": {
+      "nodes": [
+        "C02",
+        "C17",
+        "C11"
+      ],
+      "xy_m": [
+        [
+          2300,
+          6400
+        ],
+        [
+          2300,
+          6900
+        ],
+        [
+          2400,
+          7400
+        ]
+      ],
+      "condition": "negotiation_access",
+      "length_m": 1009.9
+    },
+    "old_service_optional": {
+      "nodes": [
+        "C03",
+        "C14",
+        "C15",
+        "C04"
+      ],
+      "xy_m": [
+        [
+          2500,
+          6600
+        ],
+        [
+          2700,
+          6100
+        ],
+        [
+          3100,
+          6400
+        ],
+        [
+          2800,
+          6800
+        ]
+      ],
+      "condition": "restricted_boundary_no_forced_clear",
+      "length_m": 1538.5
+    },
+    "resident_service": {
+      "nodes": [
+        "C13",
+        "C12",
+        "C11",
+        "C17",
+        "C02"
+      ],
+      "xy_m": [
+        [
+          1900,
+          6800
+        ],
+        [
+          2150,
+          7100
+        ],
+        [
+          2400,
+          7400
+        ],
+        [
+          2300,
+          6900
+        ],
+        [
+          2300,
+          6400
+        ]
+      ],
+      "condition": "resident_supply_agreement",
+      "length_m": 1790.9
+    }
+  },
+  "new_groups": [
+    {
+      "id": "WG1",
+      "name": "황탁 슬라임",
+      "form": "MN38-B",
+      "count": 4,
+      "readiness": [
+        9,
+        12
+      ],
+      "home_xy_m": [
+        2500,
+        6600
+      ],
+      "home_radius_m": 90,
+      "pursuit_extra_m": 0,
+      "region": "SE3",
+      "hostile_default": true,
+      "routine_xy_m": [
+        [
+          2500,
+          6600
+        ]
+      ]
+    },
+    {
+      "id": "WG2",
+      "name": "황등 불씨도롱뇽",
+      "form": "MN12-B",
+      "count": 2,
+      "readiness": [
+        14,
+        16
+      ],
+      "home_xy_m": [
+        2700,
+        6100
+      ],
+      "home_radius_m": 80,
+      "pursuit_extra_m": 40,
+      "region": "SE3",
+      "hostile_default": true,
+      "routine_xy_m": [
+        [
+          2700,
+          6100
+        ]
+      ]
+    },
+    {
+      "id": "WG3",
+      "name": "도편골 해골병",
+      "form": "MN44-X",
+      "count": 3,
+      "readiness": [
+        20,
+        23
+      ],
+      "home_xy_m": [
+        2800,
+        6800
+      ],
+      "home_radius_m": 100,
+      "pursuit_extra_m": 40,
+      "region": "SE3",
+      "hostile_default": true,
+      "routine_xy_m": [
+        [
+          2800,
+          6800
+        ]
+      ]
+    },
+    {
+      "id": "WG4",
+      "name": "겹형 순찰망령",
+      "form": "MN47-B",
+      "count": 2,
+      "readiness": [
+        42,
+        45
+      ],
+      "home_xy_m": [
+        3000,
+        7100
+      ],
+      "home_radius_m": 110,
+      "pursuit_extra_m": 40,
+      "region": "SE3",
+      "hostile_default": true,
+      "routine_xy_m": [
+        [
+          3000,
+          7100
+        ]
+      ]
+    },
+    {
+      "id": "WG5",
+      "name": "녹석비늘 나가",
+      "form": "MN62-X",
+      "count": 3,
+      "readiness": [
+        37,
+        41
+      ],
+      "home_xy_m": [
+        2300,
+        6900
+      ],
+      "home_radius_m": 90,
+      "pursuit_extra_m": 30,
+      "region": "SE3",
+      "hostile_default": false,
+      "routine_xy_m": [
+        [
+          2300,
+          6900
+        ]
+      ]
+    },
+    {
+      "id": "WG6",
+      "name": "녹관 히드라",
+      "form": "MN34-X",
+      "count": 1,
+      "readiness": [
+        51,
+        51
+      ],
+      "home_xy_m": [
+        3800,
+        7800
+      ],
+      "home_radius_m": 100,
+      "pursuit_extra_m": 70,
+      "region": "SE1",
+      "hostile_default": true,
+      "routine_xy_m": [
+        [
+          3800,
+          7800
+        ],
+        [
+          3750,
+          7500
+        ],
+        [
+          3500,
+          7500
+        ],
+        [
+          3750,
+          7500
+        ],
+        [
+          3800,
+          7800
+        ]
+      ]
+    },
+    {
+      "id": "WG7",
+      "name": "늪트롤",
+      "form": "MN03-A",
+      "count": 2,
+      "readiness": [
+        25,
+        28
+      ],
+      "home_xy_m": [
+        3100,
+        8100
+      ],
+      "home_radius_m": 100,
+      "pursuit_extra_m": 40,
+      "region": "SE1",
+      "hostile_default": true,
+      "routine_xy_m": [
+        [
+          3100,
+          8100
+        ]
+      ]
+    },
+    {
+      "id": "WG8",
+      "name": "가는잎 식인덩굴",
+      "form": "MN41-A",
+      "count": 3,
+      "readiness": [
+        11,
+        14
+      ],
+      "home_xy_m": [
+        3350,
+        8050
+      ],
+      "home_radius_m": 60,
+      "pursuit_extra_m": 0,
+      "region": "SE1",
+      "hostile_default": true,
+      "routine_xy_m": [
+        [
+          3350,
+          8050
+        ]
+      ]
+    }
+  ],
+  "new_structures": [
+    {
+      "id": "WC1",
+      "model": "CT03-A",
+      "name": "순찰 방어형",
+      "count": 1,
+      "readiness": [
+        46,
+        46
+      ],
+      "xy_m": [
+        3050,
+        6500
+      ],
+      "default": "restricted_patrol"
+    },
+    {
+      "id": "WC2",
+      "model": "CT05-B",
+      "name": "중량 수문갑주",
+      "count": 1,
+      "readiness": [
+        47,
+        47
+      ],
+      "xy_m": [
+        3150,
+        6350
+      ],
+      "default": "restricted_guard"
+    }
+  ],
+  "new_hostile_humans": [],
+  "water": [
+    {
+      "id": "local_lake",
+      "rect_m": [
+        3600,
+        7200,
+        4100,
+        8100
+      ],
+      "kind": "external_flood_lake_not_potable_source",
+      "world_connection_unverified": true
+    }
+  ],
+  "resident_pipes": {
+    "nodes": [
+      "C11",
+      "C12",
+      "C02"
+    ],
+    "buried_schematic_not_walkway": true
+  },
+  "boss": {
+    "group": "WG6",
+    "level": 51,
+    "arena_center": "C07",
+    "arena_size_m": [
+      160,
+      120
+    ],
+    "cover_centers_xy_m": [
+      [
+        3460,
+        7500
+      ],
+      [
+        3540,
+        7500
+      ]
+    ],
+    "cover_size_m": [
+      12,
+      8
+    ],
+    "initial_individuals": 1,
+    "recommended_end_active": 0,
+    "respawn_on_return": false
+  },
+  "conditions": {
+    "F04_access": "joint_access_not_unlimited_operation",
+    "G4_retained": true,
+    "G5_complete": false,
+    "G6_complete": false,
+    "resident_water_isolated": "after_local_acceptance",
+    "expanded_trial_stopped": "after_local_acceptance",
+    "polar_refit_complete": false,
+    "return_stock_verified": false
+  },
+  "growth": {
+    "start": 49,
+    "end": 52,
+    "field": 1,
+    "major": 1,
+    "investigation": 1,
+    "prior": [
+      3,
+      1,
+      1
+    ],
+    "total": [
+      4,
+      2,
+      2
+    ],
+    "optional_offset": 2,
+    "auto_scale": false
+  },
+  "frames": {
+    "overview": {
+      "bounds_m": [
+        1400,
+        5500,
+        4300,
+        8700
+      ],
+      "scale": 0.29,
+      "size": [
+        1500,
+        1320
+      ],
+      "origin": [
+        60,
+        150
+      ]
+    },
+    "hydra": {
+      "bounds_m": [
+        3250,
+        7150,
+        4170,
+        8450
+      ],
+      "scale": 0.7,
+      "size": [
+        1500,
+        1320
+      ],
+      "origin": [
+        60,
+        150
+      ]
+    }
+  },
+  "limits": [
+    "No terrain elevation hydrology AI combat XP UE validation",
+    "No world coastline changes",
+    "No G5 completion or departure claim"
+  ]
+}
