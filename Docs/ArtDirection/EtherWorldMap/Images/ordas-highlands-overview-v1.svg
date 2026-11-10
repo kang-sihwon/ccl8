@@ -1,0 +1,221 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2000" height="1720" viewBox="0 0 2000 1720">
+<rect width="2000" height="1720" fill="#f0f3ef"/>
+<text x="50.000" y="72.000" font-family="Malgun Gothic,sans-serif" font-size="40" fill="#263d43" font-weight="700">오르다스 | 점거 수로에서 흰침 고개까지</text>
+<text x="50.000" y="119.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#687b7b" font-weight="400">기존 OR-P01 좌표를 남쪽·서쪽으로 확장 / 국소 지형 후보 / 세계 해안·고도·수문 미검증</text>
+<polygon points="60.000,1545.000 945.000,1545.000 945.000,180.000 60.000,180.000" fill="#e2e0cc" stroke="#e2e0cc"/>
+<polygon points="60.000,300.000 945.000,300.000 945.000,180.000 60.000,180.000" fill="#cbdde4" stroke="#cbdde4"/>
+<polygon id="preserved-strait" points="840.000,930.000 900.000,930.000 900.000,300.000 840.000,300.000" fill="#cbdde4" stroke="#cbdde4"/>
+<polygon points="360.000,645.000 480.000,645.000 480.000,525.000 360.000,525.000" fill="#b8d1d9" stroke="#b8d1d9"/>
+<polygon id="C08-pier" points="829.500,887.250 873.000,887.250 873.000,882.750 829.500,882.750" fill="#a6a391" stroke="#a6a391"/>
+<polyline id="covered-water-0" points="367.500,1110.000 457.500,1035.000" fill="none" stroke="#397c99" stroke-width="2"/>
+<polyline id="covered-water-1" points="457.500,1035.000 540.000,1005.000" fill="none" stroke="#397c99" stroke-width="2"/>
+<polyline id="covered-water-2" points="540.000,1005.000 750.000,960.000" fill="none" stroke="#397c99" stroke-width="2"/>
+<polyline id="old-arrival_tender-0" points="690.000,210.000 690.000,285.000" fill="none" stroke="#687b7b" stroke-width="2"/>
+<polyline id="old-public_arrival-0" points="690.000,285.000 690.000,322.500" fill="none" stroke="#687b7b" stroke-width="2"/>
+<polyline id="old-public_arrival-1" points="690.000,322.500 615.000,352.500" fill="none" stroke="#687b7b" stroke-width="2"/>
+<polyline id="old-public_arrival-2" points="615.000,352.500 547.500,345.000" fill="none" stroke="#687b7b" stroke-width="2"/>
+<polyline id="old-public_arrival-3" points="547.500,345.000 547.500,405.000" fill="none" stroke="#687b7b" stroke-width="2"/>
+<polyline id="old-public_return-0" points="547.500,405.000 547.500,345.000" fill="none" stroke="#687b7b" stroke-width="2"/>
+<polyline id="old-public_return-1" points="547.500,345.000 615.000,352.500" fill="none" stroke="#687b7b" stroke-width="2"/>
+<polyline id="old-public_return-2" points="615.000,352.500 690.000,322.500" fill="none" stroke="#687b7b" stroke-width="2"/>
+<polyline id="old-public_return-3" points="690.000,322.500 690.000,285.000" fill="none" stroke="#687b7b" stroke-width="2"/>
+<polyline id="old-wall_route-0" points="615.000,352.500 682.500,397.500" fill="none" stroke="#687b7b" stroke-width="2"/>
+<polyline id="old-wall_route-1" points="682.500,397.500 780.000,360.000" fill="none" stroke="#687b7b" stroke-width="2"/>
+<polyline id="old-wall_route-2" points="780.000,360.000 780.000,427.500" fill="none" stroke="#687b7b" stroke-width="2"/>
+<polyline id="old-observation_pier-0" points="780.000,427.500 867.000,427.500" fill="none" stroke="#687b7b" stroke-width="2"/>
+<polyline id="old-survey_out-0" points="867.000,427.500 870.000,495.000" fill="none" stroke="#687b7b" stroke-width="2"/>
+<polyline id="old-survey_out-1" points="870.000,495.000 870.000,570.000" fill="none" stroke="#687b7b" stroke-width="2"/>
+<polyline id="old-survey_back-0" points="870.000,570.000 870.000,495.000" fill="none" stroke="#687b7b" stroke-width="2"/>
+<polyline id="old-survey_back-1" points="870.000,495.000 867.000,427.500" fill="none" stroke="#687b7b" stroke-width="2"/>
+<polyline id="old-reservoir_out-0" points="547.500,405.000 525.000,457.500" fill="none" stroke="#687b7b" stroke-width="2"/>
+<polyline id="old-reservoir_out-1" points="525.000,457.500 450.000,487.500" fill="none" stroke="#687b7b" stroke-width="2"/>
+<polyline id="old-reservoir_out-2" points="450.000,487.500 322.500,540.000" fill="none" stroke="#687b7b" stroke-width="2"/>
+<polyline id="old-reservoir_out-3" points="322.500,540.000 315.000,652.500" fill="none" stroke="#687b7b" stroke-width="2"/>
+<polyline id="old-reservoir_back-0" points="315.000,652.500 435.000,690.000" fill="none" stroke="#687b7b" stroke-width="2"/>
+<polyline id="old-reservoir_back-1" points="435.000,690.000 517.500,622.500" fill="none" stroke="#687b7b" stroke-width="2"/>
+<polyline id="old-reservoir_back-2" points="517.500,622.500 517.500,525.000" fill="none" stroke="#687b7b" stroke-width="2"/>
+<polyline id="old-reservoir_back-3" points="517.500,525.000 547.500,405.000" fill="none" stroke="#687b7b" stroke-width="2"/>
+<polyline id="old-reservoir_bypass-0" points="450.000,487.500 517.500,525.000" fill="none" stroke="#687b7b" stroke-width="2"/>
+<polyline id="old-reservoir_bypass-1" points="517.500,525.000 517.500,622.500" fill="none" stroke="#687b7b" stroke-width="2"/>
+<polyline id="old-reservoir_bypass-2" points="517.500,622.500 435.000,690.000" fill="none" stroke="#687b7b" stroke-width="2"/>
+<polyline id="old-reservoir_optional-0" points="322.500,540.000 270.000,615.000" fill="none" stroke="#687b7b" stroke-width="2"/>
+<polyline id="old-reservoir_optional-1" points="270.000,615.000 315.000,652.500" fill="none" stroke="#687b7b" stroke-width="2"/>
+<polyline id="old-eastern_out-0" points="682.500,397.500 645.000,495.000" fill="none" stroke="#687b7b" stroke-width="2"/>
+<polyline id="old-eastern_out-1" points="645.000,495.000 712.500,570.000" fill="none" stroke="#687b7b" stroke-width="2"/>
+<polyline id="old-eastern_out-2" points="712.500,570.000 787.500,615.000" fill="none" stroke="#687b7b" stroke-width="2"/>
+<polyline id="old-eastern_out-3" points="787.500,615.000 817.500,690.000" fill="none" stroke="#687b7b" stroke-width="2"/>
+<polyline id="old-eastern_out-4" points="817.500,690.000 780.000,765.000" fill="none" stroke="#687b7b" stroke-width="2"/>
+<polyline id="old-eastern_back-0" points="780.000,765.000 682.500,772.500" fill="none" stroke="#687b7b" stroke-width="2"/>
+<polyline id="old-eastern_back-1" points="682.500,772.500 600.000,690.000" fill="none" stroke="#687b7b" stroke-width="2"/>
+<polyline id="old-eastern_back-2" points="600.000,690.000 435.000,690.000" fill="none" stroke="#687b7b" stroke-width="2"/>
+<polyline id="old-crosslink-0" points="517.500,525.000 645.000,495.000" fill="none" stroke="#687b7b" stroke-width="2"/>
+<polyline id="old-handoff_return-0" points="600.000,690.000 570.000,630.000" fill="none" stroke="#687b7b" stroke-width="2"/>
+<polyline id="old-handoff_return-1" points="570.000,630.000 562.500,577.500" fill="none" stroke="#687b7b" stroke-width="2"/>
+<polyline id="old-handoff_return-2" points="562.500,577.500 645.000,495.000" fill="none" stroke="#687b7b" stroke-width="2"/>
+<polyline id="old-handoff_return-3" points="645.000,495.000 682.500,397.500" fill="none" stroke="#687b7b" stroke-width="2"/>
+<polyline id="old-handoff_return-4" points="682.500,397.500 615.000,352.500" fill="none" stroke="#687b7b" stroke-width="2"/>
+<polyline id="old-ruin_optional-0" points="600.000,690.000 622.500,615.000" fill="none" stroke="#687b7b" stroke-width="2"/>
+<polyline id="old-ruin_optional-1" points="622.500,615.000 712.500,570.000" fill="none" stroke="#687b7b" stroke-width="2"/>
+<polyline id="works_out-0" points="780.000,765.000 802.500,795.000" fill="none" stroke="#ac663b" stroke-width="3"/>
+<polyline id="works_out-1" points="802.500,795.000 817.500,855.000" fill="none" stroke="#ac663b" stroke-width="3"/>
+<polyline id="works_out-2" points="817.500,855.000 783.000,915.000" fill="none" stroke="#ac663b" stroke-width="3"/>
+<polyline id="works_out-3" points="783.000,915.000 750.000,960.000" fill="none" stroke="#ac663b" stroke-width="3"/>
+<polyline id="works_return-0" points="750.000,960.000 705.000,960.000" fill="none" stroke="#75698b" stroke-width="3"/>
+<polyline id="works_return-1" points="705.000,960.000 727.500,870.000" fill="none" stroke="#75698b" stroke-width="3"/>
+<polyline id="works_return-2" points="727.500,870.000 780.000,765.000" fill="none" stroke="#75698b" stroke-width="3"/>
+<polyline id="works_retreat-0" points="817.500,855.000 727.500,870.000" fill="none" stroke="#75698b" stroke-width="3"/>
+<polyline id="works_retreat-1" points="727.500,870.000 780.000,765.000" fill="none" stroke="#75698b" stroke-width="3"/>
+<polyline id="works_pier-0" points="817.500,855.000 832.500,885.000" fill="none" stroke="#ac663b" stroke-width="3"/>
+<polyline id="works_pier-1" points="832.500,885.000 870.000,885.000" fill="none" stroke="#ac663b" stroke-width="3"/>
+<polyline id="controlled_trial-0" points="870.000,885.000 870.000,750.000" fill="none" stroke="#397c99" stroke-width="3"/>
+<polyline id="controlled_trial-1" points="870.000,750.000 870.000,570.000" fill="none" stroke="#397c99" stroke-width="3"/>
+<polyline id="controlled_trial-2" points="870.000,570.000 870.000,495.000" fill="none" stroke="#397c99" stroke-width="3"/>
+<polyline id="controlled_trial-3" points="870.000,495.000 867.000,427.500" fill="none" stroke="#397c99" stroke-width="3"/>
+<polyline id="activated_E09-0" points="682.500,772.500 675.000,885.000" fill="none" stroke="#ac663b" stroke-width="3"/>
+<polyline id="activated_E09-1" points="675.000,885.000 637.500,960.000" fill="none" stroke="#ac663b" stroke-width="3"/>
+<polyline id="works_highland-0" points="750.000,960.000 705.000,960.000" fill="none" stroke="#ac663b" stroke-width="3"/>
+<polyline id="works_highland-1" points="705.000,960.000 637.500,960.000" fill="none" stroke="#ac663b" stroke-width="3"/>
+<polyline id="highland_out-0" points="637.500,960.000 540.000,1005.000" fill="none" stroke="#ac663b" stroke-width="3"/>
+<polyline id="highland_out-1" points="540.000,1005.000 457.500,1035.000" fill="none" stroke="#ac663b" stroke-width="3"/>
+<polyline id="highland_out-2" points="457.500,1035.000 367.500,1110.000" fill="none" stroke="#ac663b" stroke-width="3"/>
+<polyline id="highland_out-3" points="367.500,1110.000 427.500,1200.000" fill="none" stroke="#ac663b" stroke-width="3"/>
+<polyline id="highland_return-0" points="427.500,1200.000 555.000,1155.000" fill="none" stroke="#75698b" stroke-width="3"/>
+<polyline id="highland_return-1" points="555.000,1155.000 630.000,1080.000" fill="none" stroke="#75698b" stroke-width="3"/>
+<polyline id="highland_return-2" points="630.000,1080.000 637.500,960.000" fill="none" stroke="#75698b" stroke-width="3"/>
+<polyline id="highland_bypass-0" points="540.000,1005.000 630.000,1080.000" fill="none" stroke="#ac663b" stroke-width="3"/>
+<polyline id="highland_bypass-1" points="630.000,1080.000 555.000,1155.000" fill="none" stroke="#ac663b" stroke-width="3"/>
+<polyline id="highland_bypass-2" points="555.000,1155.000 427.500,1200.000" fill="none" stroke="#ac663b" stroke-width="3"/>
+<polyline id="old_post_optional-0" points="367.500,1110.000 285.000,1065.000" fill="none" stroke="#ac663b" stroke-width="3"/>
+<polyline id="old_post_optional-1" points="285.000,1065.000 457.500,1035.000" fill="none" stroke="#ac663b" stroke-width="3"/>
+<polyline id="wind_out-0" points="427.500,1200.000 352.500,1245.000" fill="none" stroke="#ac663b" stroke-width="3"/>
+<polyline id="wind_out-1" points="352.500,1245.000 255.000,1312.500" fill="none" stroke="#ac663b" stroke-width="3"/>
+<polyline id="wind_out-2" points="255.000,1312.500 187.500,1380.000" fill="none" stroke="#ac663b" stroke-width="3"/>
+<polyline id="wind_out-3" points="187.500,1380.000 270.000,1447.500" fill="none" stroke="#ac663b" stroke-width="3"/>
+<polyline id="wind_retreat-0" points="270.000,1447.500 187.500,1380.000" fill="none" stroke="#75698b" stroke-width="3"/>
+<polyline id="wind_retreat-1" points="187.500,1380.000 255.000,1312.500" fill="none" stroke="#75698b" stroke-width="3"/>
+<polyline id="wind_retreat-2" points="255.000,1312.500 352.500,1245.000" fill="none" stroke="#75698b" stroke-width="3"/>
+<polyline id="wind_retreat-3" points="352.500,1245.000 427.500,1200.000" fill="none" stroke="#75698b" stroke-width="3"/>
+<polyline id="wind_return-0" points="270.000,1447.500 367.500,1455.000" fill="none" stroke="#75698b" stroke-width="3"/>
+<polyline id="wind_return-1" points="367.500,1455.000 450.000,1350.000" fill="none" stroke="#75698b" stroke-width="3"/>
+<polyline id="wind_return-2" points="450.000,1350.000 457.500,1267.500" fill="none" stroke="#75698b" stroke-width="3"/>
+<polyline id="wind_return-3" points="457.500,1267.500 555.000,1155.000" fill="none" stroke="#75698b" stroke-width="3"/>
+<polyline id="wind_setup-0" points="352.500,1245.000 457.500,1267.500" fill="none" stroke="#ac663b" stroke-width="3"/>
+<polyline id="wind_setup-1" points="457.500,1267.500 555.000,1155.000" fill="none" stroke="#ac663b" stroke-width="3"/>
+<polyline id="east_ledge_check-0" points="555.000,1155.000 457.500,1267.500" fill="none" stroke="#ac663b" stroke-width="3"/>
+<polyline id="east_ledge_check-1" points="457.500,1267.500 450.000,1350.000" fill="none" stroke="#ac663b" stroke-width="3"/>
+<polyline id="east_ledge_check-2" points="450.000,1350.000 367.500,1455.000" fill="none" stroke="#ac663b" stroke-width="3"/>
+<polyline id="lair_optional-0" points="187.500,1380.000 142.500,1470.000" fill="none" stroke="#ac663b" stroke-width="3"/>
+<polyline id="lair_optional-1" points="142.500,1470.000 270.000,1447.500" fill="none" stroke="#ac663b" stroke-width="3"/>
+<polyline id="western_optional-0" points="255.000,1312.500 112.500,1335.000" fill="none" stroke="#ac663b" stroke-width="3"/>
+<polyline id="western_optional-1" points="112.500,1335.000 187.500,1380.000" fill="none" stroke="#ac663b" stroke-width="3"/>
+<polyline id="eastern_optional-0" points="367.500,1455.000 517.500,1425.000" fill="none" stroke="#ac663b" stroke-width="3"/>
+<polyline id="eastern_optional-1" points="517.500,1425.000 450.000,1350.000" fill="none" stroke="#ac663b" stroke-width="3"/>
+<polyline id="controlled-boom" points="840.000,660.000 900.000,660.000" fill="none" stroke="#47715c" stroke-width="5"/>
+<text x="800.000" y="647.000" font-family="Malgun Gothic,sans-serif" font-size="19" fill="#47715c" font-weight="400">조건부 운항</text>
+<circle id="node-P00" cx="690.000" cy="210.000" r="4.000" fill="#263d43" stroke="#263d43"/>
+<circle id="node-P01" cx="690.000" cy="285.000" r="4.000" fill="#263d43" stroke="#263d43"/>
+<text x="698.000" y="278.000" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263d43" font-weight="400">P01</text>
+<circle id="node-P02" cx="690.000" cy="322.500" r="4.000" fill="#263d43" stroke="#263d43"/>
+<circle id="node-P03" cx="615.000" cy="352.500" r="4.000" fill="#263d43" stroke="#263d43"/>
+<text x="623.000" y="345.500" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263d43" font-weight="400">P03</text>
+<circle id="node-P04" cx="547.500" cy="345.000" r="4.000" fill="#263d43" stroke="#263d43"/>
+<circle id="node-P05" cx="547.500" cy="405.000" r="4.000" fill="#263d43" stroke="#263d43"/>
+<circle id="node-P06" cx="682.500" cy="397.500" r="4.000" fill="#263d43" stroke="#263d43"/>
+<circle id="node-P07" cx="780.000" cy="360.000" r="4.000" fill="#263d43" stroke="#263d43"/>
+<circle id="node-P08" cx="780.000" cy="427.500" r="4.000" fill="#263d43" stroke="#263d43"/>
+<circle id="node-P09" cx="867.000" cy="427.500" r="4.000" fill="#263d43" stroke="#263d43"/>
+<text x="875.000" y="420.500" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263d43" font-weight="400">P09</text>
+<circle id="node-R01" cx="525.000" cy="457.500" r="4.000" fill="#263d43" stroke="#263d43"/>
+<circle id="node-R02" cx="450.000" cy="487.500" r="4.000" fill="#263d43" stroke="#263d43"/>
+<circle id="node-R03" cx="322.500" cy="540.000" r="4.000" fill="#263d43" stroke="#263d43"/>
+<circle id="node-R04" cx="315.000" cy="652.500" r="4.000" fill="#263d43" stroke="#263d43"/>
+<circle id="node-R05" cx="435.000" cy="690.000" r="4.000" fill="#263d43" stroke="#263d43"/>
+<circle id="node-R06" cx="517.500" cy="622.500" r="4.000" fill="#263d43" stroke="#263d43"/>
+<circle id="node-R07" cx="517.500" cy="525.000" r="4.000" fill="#263d43" stroke="#263d43"/>
+<circle id="node-R08" cx="270.000" cy="615.000" r="4.000" fill="#263d43" stroke="#263d43"/>
+<circle id="node-E01" cx="645.000" cy="495.000" r="4.000" fill="#263d43" stroke="#263d43"/>
+<circle id="node-E02" cx="712.500" cy="570.000" r="4.000" fill="#263d43" stroke="#263d43"/>
+<circle id="node-E03" cx="787.500" cy="615.000" r="4.000" fill="#263d43" stroke="#263d43"/>
+<circle id="node-E04" cx="817.500" cy="690.000" r="4.000" fill="#263d43" stroke="#263d43"/>
+<circle id="node-E05" cx="780.000" cy="765.000" r="4.000" fill="#263d43" stroke="#263d43"/>
+<text x="788.000" y="758.000" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263d43" font-weight="400">E05</text>
+<circle id="node-E06" cx="682.500" cy="772.500" r="4.000" fill="#263d43" stroke="#263d43"/>
+<text x="690.500" y="765.500" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263d43" font-weight="400">E06</text>
+<circle id="node-E07" cx="600.000" cy="690.000" r="4.000" fill="#263d43" stroke="#263d43"/>
+<text x="608.000" y="683.000" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263d43" font-weight="400">E07</text>
+<circle id="node-E08" cx="622.500" cy="615.000" r="4.000" fill="#263d43" stroke="#263d43"/>
+<circle id="node-E09" cx="675.000" cy="885.000" r="4.000" fill="#263d43" stroke="#263d43"/>
+<text x="683.000" y="878.000" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263d43" font-weight="400">E09</text>
+<circle id="node-B00" cx="870.000" cy="570.000" r="4.000" fill="#263d43" stroke="#263d43"/>
+<text x="878.000" y="563.000" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263d43" font-weight="400">B00</text>
+<circle id="node-C01" cx="802.500" cy="795.000" r="4.000" fill="#263d43" stroke="#263d43"/>
+<text x="810.500" y="788.000" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263d43" font-weight="400">C01</text>
+<circle id="node-C02" cx="817.500" cy="855.000" r="4.000" fill="#263d43" stroke="#263d43"/>
+<text x="825.500" y="848.000" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263d43" font-weight="400">C02</text>
+<circle id="node-C03" cx="783.000" cy="915.000" r="4.000" fill="#263d43" stroke="#263d43"/>
+<text x="791.000" y="908.000" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263d43" font-weight="400">C03</text>
+<circle id="node-C04" cx="750.000" cy="960.000" r="4.000" fill="#263d43" stroke="#263d43"/>
+<text x="758.000" y="953.000" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263d43" font-weight="400">C04</text>
+<circle id="node-C05" cx="705.000" cy="960.000" r="4.000" fill="#263d43" stroke="#263d43"/>
+<text x="713.000" y="953.000" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263d43" font-weight="400">C05</text>
+<circle id="node-C06" cx="727.500" cy="870.000" r="4.000" fill="#263d43" stroke="#263d43"/>
+<text x="735.500" y="863.000" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263d43" font-weight="400">C06</text>
+<circle id="node-C07" cx="832.500" cy="885.000" r="4.000" fill="#263d43" stroke="#263d43"/>
+<text x="840.500" y="878.000" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263d43" font-weight="400">C07</text>
+<circle id="node-C08" cx="870.000" cy="885.000" r="4.000" fill="#263d43" stroke="#263d43"/>
+<text x="878.000" y="878.000" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263d43" font-weight="400">C08</text>
+<circle id="node-H01" cx="637.500" cy="960.000" r="4.000" fill="#263d43" stroke="#263d43"/>
+<text x="645.500" y="953.000" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263d43" font-weight="400">H01</text>
+<circle id="node-H02" cx="540.000" cy="1005.000" r="4.000" fill="#263d43" stroke="#263d43"/>
+<text x="548.000" y="998.000" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263d43" font-weight="400">H02</text>
+<circle id="node-H03" cx="457.500" cy="1035.000" r="4.000" fill="#263d43" stroke="#263d43"/>
+<text x="465.500" y="1028.000" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263d43" font-weight="400">H03</text>
+<circle id="node-H04" cx="367.500" cy="1110.000" r="4.000" fill="#263d43" stroke="#263d43"/>
+<text x="375.500" y="1103.000" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263d43" font-weight="400">H04</text>
+<circle id="node-H05" cx="427.500" cy="1200.000" r="4.000" fill="#263d43" stroke="#263d43"/>
+<text x="435.500" y="1193.000" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263d43" font-weight="400">H05</text>
+<circle id="node-H06" cx="555.000" cy="1155.000" r="4.000" fill="#263d43" stroke="#263d43"/>
+<text x="563.000" y="1148.000" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263d43" font-weight="400">H06</text>
+<circle id="node-H07" cx="630.000" cy="1080.000" r="4.000" fill="#263d43" stroke="#263d43"/>
+<text x="638.000" y="1073.000" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263d43" font-weight="400">H07</text>
+<circle id="node-H08" cx="285.000" cy="1065.000" r="4.000" fill="#263d43" stroke="#263d43"/>
+<text x="293.000" y="1058.000" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263d43" font-weight="400">H08</text>
+<circle id="node-F01" cx="352.500" cy="1245.000" r="4.000" fill="#263d43" stroke="#263d43"/>
+<text x="360.500" y="1238.000" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263d43" font-weight="400">F01</text>
+<circle id="node-F02" cx="255.000" cy="1312.500" r="4.000" fill="#263d43" stroke="#263d43"/>
+<text x="263.000" y="1305.500" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263d43" font-weight="400">F02</text>
+<circle id="node-F03" cx="187.500" cy="1380.000" r="4.000" fill="#263d43" stroke="#263d43"/>
+<text x="195.500" y="1373.000" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263d43" font-weight="400">F03</text>
+<circle id="node-F04" cx="270.000" cy="1447.500" r="4.000" fill="#263d43" stroke="#263d43"/>
+<text x="278.000" y="1440.500" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263d43" font-weight="400">F04</text>
+<circle id="node-F05" cx="367.500" cy="1455.000" r="4.000" fill="#263d43" stroke="#263d43"/>
+<text x="375.500" y="1448.000" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263d43" font-weight="400">F05</text>
+<circle id="node-F06" cx="450.000" cy="1350.000" r="4.000" fill="#263d43" stroke="#263d43"/>
+<text x="458.000" y="1343.000" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263d43" font-weight="400">F06</text>
+<circle id="node-F07" cx="457.500" cy="1267.500" r="4.000" fill="#263d43" stroke="#263d43"/>
+<text x="465.500" y="1260.500" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263d43" font-weight="400">F07</text>
+<circle id="node-F08" cx="142.500" cy="1470.000" r="4.000" fill="#263d43" stroke="#263d43"/>
+<text x="150.500" y="1463.000" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263d43" font-weight="400">F08</text>
+<circle id="node-F09" cx="112.500" cy="1335.000" r="4.000" fill="#263d43" stroke="#263d43"/>
+<text x="120.500" y="1328.000" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263d43" font-weight="400">F09</text>
+<circle id="node-F10" cx="517.500" cy="1425.000" r="4.000" fill="#263d43" stroke="#263d43"/>
+<text x="525.500" y="1418.000" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263d43" font-weight="400">F10</text>
+<text x="990.000" y="208.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#263d43" font-weight="700">38 → 40 → 42 → 43 → 44</text>
+<text x="990.000" y="247.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#687b7b" font-weight="400">기존 28 + 새 26 = 54장소</text>
+<text x="990.000" y="286.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#687b7b" font-weight="400">E05 합동 진입 / C02 점거 해제</text>
+<text x="990.000" y="325.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#687b7b" font-weight="400">C03 필수 급수 / C04 운용 인수</text>
+<text x="990.000" y="364.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#687b7b" font-weight="400">C08 시험 도선 → 기존 P09</text>
+<text x="990.000" y="403.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#687b7b" font-weight="400">E07 예비 합의 뒤 E09 개방</text>
+<text x="990.000" y="442.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#687b7b" font-weight="400">H01 협약 / H04 목축 샘터</text>
+<text x="990.000" y="481.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#687b7b" font-weight="400">H07 장인 작업과 자료 대조</text>
+<text x="990.000" y="520.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#687b7b" font-weight="400">F01-F03 풍구 접근·엄폐</text>
+<text x="990.000" y="559.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#687b7b" font-weight="400">F04 흰침 사건 개체 43</text>
+<text x="990.000" y="598.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#687b7b" font-weight="400">F05-F07 동쪽 다른 귀환</text>
+<text x="990.000" y="637.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#687b7b" font-weight="400">마렌 동행 / 현지 운영자는 잔류</text>
+<text x="990.000" y="676.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#687b7b" font-weight="400">세라디온 발주처·초청 확인</text>
+<text x="990.000" y="715.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#687b7b" font-weight="400">G4 원양 계약은 동안항 후속</text>
+<text x="990.000" y="754.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#687b7b" font-weight="400">T3·T4 환승은 비축척 관계</text>
+<text x="60.000" y="1637.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#263d43" font-weight="400">주황 접근 / 보라 다른 귀환·철수 / 파랑 선박·덮개 도수 / 회색 기존 길</text>
+<polyline points="60.000,1665.000 135.000,1665.000" fill="none" stroke="#263d43" stroke-width="4"/>
+<text x="147.000" y="1670.000" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#263d43" font-weight="400">500 m · 평면 설계</text>
+</svg>

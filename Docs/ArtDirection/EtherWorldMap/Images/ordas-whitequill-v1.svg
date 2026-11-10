@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2050" height="1370" viewBox="0 0 2050 1370">
+<rect width="2050" height="1370" fill="#f0f3ef"/>
+<text x="50.000" y="72.000" font-family="Malgun Gothic,sans-serif" font-size="40" fill="#263d43" font-weight="700">오르다스 | 풍구 탐색과 흰침 사냥</text>
+<text x="50.000" y="119.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#687b7b" font-weight="400">기존 OR-P01 좌표를 남쪽·서쪽으로 확장 / 국소 지형 후보 / 세계 해안·고도·수문 미검증</text>
+<polygon points="60.000,906.000 1215.000,906.000 1215.000,180.000 60.000,180.000" fill="#e2e0cc" stroke="#e2e0cc"/>
+<polyline id="highland_out-3" points="868.500,180.000 868.500,180.000" fill="none" stroke="#ac663b" stroke-width="3"/>
+<polyline id="highland_return-0" points="868.500,180.000 868.500,180.000" fill="none" stroke="#75698b" stroke-width="3"/>
+<polyline id="highland_bypass-2" points="868.500,180.000 868.500,180.000" fill="none" stroke="#ac663b" stroke-width="3"/>
+<polyline id="wind_out-0" points="868.500,180.000 703.500,279.000" fill="none" stroke="#ac663b" stroke-width="3"/>
+<polyline id="wind_out-1" points="703.500,279.000 489.000,427.500" fill="none" stroke="#ac663b" stroke-width="3"/>
+<polyline id="wind_out-2" points="489.000,427.500 340.500,576.000" fill="none" stroke="#ac663b" stroke-width="3"/>
+<polyline id="wind_out-3" points="340.500,576.000 522.000,724.500" fill="none" stroke="#ac663b" stroke-width="3"/>
+<polyline id="wind_retreat-0" points="522.000,724.500 340.500,576.000" fill="none" stroke="#75698b" stroke-width="3"/>
+<polyline id="wind_retreat-1" points="340.500,576.000 489.000,427.500" fill="none" stroke="#75698b" stroke-width="3"/>
+<polyline id="wind_retreat-2" points="489.000,427.500 703.500,279.000" fill="none" stroke="#75698b" stroke-width="3"/>
+<polyline id="wind_retreat-3" points="703.500,279.000 868.500,180.000" fill="none" stroke="#75698b" stroke-width="3"/>
+<polyline id="wind_return-0" points="522.000,724.500 736.500,741.000" fill="none" stroke="#75698b" stroke-width="3"/>
+<polyline id="wind_return-1" points="736.500,741.000 918.000,510.000" fill="none" stroke="#75698b" stroke-width="3"/>
+<polyline id="wind_return-2" points="918.000,510.000 934.500,328.500" fill="none" stroke="#75698b" stroke-width="3"/>
+<polyline id="wind_return-3" points="934.500,328.500 1063.200,180.000" fill="none" stroke="#75698b" stroke-width="3"/>
+<polyline id="wind_setup-0" points="703.500,279.000 934.500,328.500" fill="none" stroke="#ac663b" stroke-width="3"/>
+<polyline id="wind_setup-1" points="934.500,328.500 1063.200,180.000" fill="none" stroke="#ac663b" stroke-width="3"/>
+<polyline id="east_ledge_check-0" points="1063.200,180.000 934.500,328.500" fill="none" stroke="#ac663b" stroke-width="3"/>
+<polyline id="east_ledge_check-1" points="934.500,328.500 918.000,510.000" fill="none" stroke="#ac663b" stroke-width="3"/>
+<polyline id="east_ledge_check-2" points="918.000,510.000 736.500,741.000" fill="none" stroke="#ac663b" stroke-width="3"/>
+<polyline id="lair_optional-0" points="340.500,576.000 241.500,774.000" fill="none" stroke="#ac663b" stroke-width="3"/>
+<polyline id="lair_optional-1" points="241.500,774.000 522.000,724.500" fill="none" stroke="#ac663b" stroke-width="3"/>
+<polyline id="western_optional-0" points="489.000,427.500 175.500,477.000" fill="none" stroke="#ac663b" stroke-width="3"/>
+<polyline id="western_optional-1" points="175.500,477.000 340.500,576.000" fill="none" stroke="#ac663b" stroke-width="3"/>
+<polyline id="eastern_optional-0" points="736.500,741.000 1066.500,675.000" fill="none" stroke="#ac663b" stroke-width="3"/>
+<polyline id="eastern_optional-1" points="1066.500,675.000 918.000,510.000" fill="none" stroke="#ac663b" stroke-width="3"/>
+<circle id="group-NH9" cx="489.000" cy="427.500" r="39.600" fill="none" stroke="#ac663b"/>
+<text x="474.000" y="457.500" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263d43" font-weight="400">NH9</text>
+<circle id="group-NH10" cx="357.000" cy="543.000" r="36.300" fill="none" stroke="#ac663b"/>
+<text x="377.000" y="526.000" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263d43" font-weight="400">NH10</text>
+<circle id="group-NH11" cx="720.000" cy="312.000" r="49.500" fill="none" stroke="#ac663b"/>
+<text x="705.000" y="342.000" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263d43" font-weight="400">NH11</text>
+<polyline id="routine-NH11" points="720.000,312.000 637.500,345.000 720.000,312.000" fill="none" stroke="#47715c" stroke-width="2"/>
+<circle id="group-NH12" cx="885.000" cy="510.000" r="36.300" fill="none" stroke="#ac663b"/>
+<text x="870.000" y="540.000" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263d43" font-weight="400">NH12</text>
+<polyline id="routine-NH12" points="885.000,510.000 918.000,510.000 885.000,510.000" fill="none" stroke="#47715c" stroke-width="2"/>
+<circle id="group-NH13" cx="934.500" cy="328.500" r="33.000" fill="none" stroke="#ac663b"/>
+<text x="919.500" y="358.500" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263d43" font-weight="400">NH13</text>
+<circle id="group-NH14" cx="241.500" cy="774.000" r="46.200" fill="none" stroke="#ac663b"/>
+<text x="226.500" y="804.000" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263d43" font-weight="400">NH14</text>
+<polyline id="routine-NH14" points="241.500,774.000 423.000,774.000 522.000,724.500 456.000,675.000 241.500,774.000" fill="none" stroke="#47715c" stroke-width="2"/>
+<circle id="group-NH15" cx="175.500" cy="477.000" r="36.300" fill="none" stroke="#47715c"/>
+<text x="160.500" y="507.000" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263d43" font-weight="400">NH15</text>
+<circle id="group-NS3" cx="1066.500" cy="675.000" r="29.700" fill="none" stroke="#ac663b"/>
+<text x="1051.500" y="705.000" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263d43" font-weight="400">NS3</text>
+<circle id="node-H05" cx="868.500" cy="180.000" r="4.000" fill="#263d43" stroke="#263d43"/>
+<text x="876.500" y="173.000" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263d43" font-weight="400">H05</text>
+<circle id="node-F01" cx="703.500" cy="279.000" r="4.000" fill="#263d43" stroke="#263d43"/>
+<text x="711.500" y="272.000" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263d43" font-weight="400">F01</text>
+<circle id="node-F02" cx="489.000" cy="427.500" r="4.000" fill="#263d43" stroke="#263d43"/>
+<text x="497.000" y="420.500" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263d43" font-weight="400">F02</text>
+<circle id="node-F03" cx="340.500" cy="576.000" r="4.000" fill="#263d43" stroke="#263d43"/>
+<text x="348.500" y="569.000" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263d43" font-weight="400">F03</text>
+<circle id="node-F04" cx="522.000" cy="724.500" r="4.000" fill="#263d43" stroke="#263d43"/>
+<text x="530.000" y="717.500" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263d43" font-weight="400">F04</text>
+<circle id="node-F05" cx="736.500" cy="741.000" r="4.000" fill="#263d43" stroke="#263d43"/>
+<text x="744.500" y="734.000" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263d43" font-weight="400">F05</text>
+<circle id="node-F06" cx="918.000" cy="510.000" r="4.000" fill="#263d43" stroke="#263d43"/>
+<text x="926.000" y="503.000" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263d43" font-weight="400">F06</text>
+<circle id="node-F07" cx="934.500" cy="328.500" r="4.000" fill="#263d43" stroke="#263d43"/>
+<text x="942.500" y="321.500" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263d43" font-weight="400">F07</text>
+<circle id="node-F08" cx="241.500" cy="774.000" r="4.000" fill="#263d43" stroke="#263d43"/>
+<text x="249.500" y="767.000" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263d43" font-weight="400">F08</text>
+<circle id="node-F09" cx="175.500" cy="477.000" r="4.000" fill="#263d43" stroke="#263d43"/>
+<text x="183.500" y="470.000" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263d43" font-weight="400">F09</text>
+<circle id="node-F10" cx="1066.500" cy="675.000" r="4.000" fill="#263d43" stroke="#263d43"/>
+<text x="1074.500" y="668.000" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#263d43" font-weight="400">F10</text>
+<text x="1260.000" y="208.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#263d43" font-weight="700">기본 접근·전투 전 철수</text>
+<text x="1260.000" y="247.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#687b7b" font-weight="400">H05-F01-F02-F03-F04</text>
+<text x="1260.000" y="286.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#687b7b" font-weight="400">다른 귀환 F04-F05-F06-F07-H06</text>
+<text x="1260.000" y="325.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#687b7b" font-weight="400">F08 먹이굴은 같은 사건 개체</text>
+<text x="1260.000" y="364.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#687b7b" font-weight="400">NH14 1개체·권장 43</text>
+<text x="1260.000" y="403.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#687b7b" font-weight="400">측풍 → 낮은 착지 → 가시 회수</text>
+<text x="1260.000" y="442.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#687b7b" font-weight="400">유한 가시·먹이 보충·쉼터</text>
+<text x="1260.000" y="481.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#687b7b" font-weight="400">이번 추천: 사건 개체 처치</text>
+<text x="1260.000" y="520.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#687b7b" font-weight="400">원종 전멸·귀환권 갱신 아님</text>
+<text x="1260.000" y="559.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#687b7b" font-weight="400">F09 넓은관 메두사 선택</text>
+<text x="1260.000" y="598.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#687b7b" font-weight="400">F10 압착 골렘 선택</text>
+<text x="1260.000" y="637.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#687b7b" font-weight="400">F07 암정령과 낮은 노출 창</text>
+<text x="1260.000" y="676.000" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#687b7b" font-weight="400">원은 생활 반경, 감지 원 아님</text>
+<text x="1260.000" y="865.000" font-family="Malgun Gothic,sans-serif" font-size="25" fill="#263d43" font-weight="700">F04 교전면 · 100 × 70m 후보</text>
+<polygon id="boss-arena" points="1320.000,900.000 1620.000,900.000 1620.000,1110.000 1320.000,1110.000" fill="#d2cdb7" stroke="#263d43"/>
+<circle id="boss-cover-0" cx="1365.000" cy="1005.000" r="9.000" fill="#263d43" stroke="#263d43"/>
+<circle id="boss-cover-1" cx="1575.000" cy="1005.000" r="9.000" fill="#263d43" stroke="#263d43"/>
+<text x="1260.000" y="1170.000" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#687b7b" font-weight="400">두 엄폐 중심 간 70m / 실제 시야·사거리 미검증</text>
+<text x="60.000" y="1287.000" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#263d43" font-weight="400">주황 접근 / 보라 다른 귀환·철수 / 파랑 선박·덮개 도수 / 회색 기존 길</text>
+<polyline points="60.000,1315.000 225.000,1315.000" fill="none" stroke="#263d43" stroke-width="4"/>
+<text x="237.000" y="1320.000" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#263d43" font-weight="400">500 m · 평면 설계</text>
+</svg>
