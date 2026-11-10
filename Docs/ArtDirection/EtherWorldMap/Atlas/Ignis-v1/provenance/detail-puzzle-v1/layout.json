@@ -1,0 +1,1090 @@
+{
+  "status": "raw_assembly_for_seam_review",
+  "sources": "36 original settlement detail PNGs only",
+  "layout": "6x6 north-up placement using rank-based source-coordinate assignment; geographic order approximation, not georeferenced tiles",
+  "newTerrain": false,
+  "edgeRepair": false,
+  "rotation": false,
+  "tiles": [
+    {
+      "id": "V15",
+      "name": "여름뜰",
+      "kind": "village",
+      "xy_km": [
+        -590.9529376219892,
+        1194.001952106139
+      ],
+      "lon_lat_deg": [
+        -13.252440461798525,
+        64.26409991605608
+      ],
+      "polity": "north_treaty",
+      "parent": "T12",
+      "terrain": "seasonal_summer_assembly",
+      "position_source": "outer_candidate",
+      "pixels": [
+        1432.5539140487901,
+        632.1250605588567
+      ],
+      "file": "V15.png",
+      "column": 0,
+      "row": 0,
+      "crop": [
+        0,
+        52.5,
+        1672,
+        836
+      ]
+    },
+    {
+      "id": "T12",
+      "name": "울렌",
+      "kind": "town",
+      "xy_km": [
+        -550.9529376219892,
+        1139.001952106139
+      ],
+      "lon_lat_deg": [
+        -12.245021357605813,
+        63.8396248638379
+      ],
+      "polity": "north_treaty",
+      "parent": "M07",
+      "terrain": "sheltered_branch_valley",
+      "position_source": "outer_candidate",
+      "pixels": [
+        1469.608409835188,
+        647.7379360427436
+      ],
+      "file": "T12.png",
+      "column": 1,
+      "row": 0,
+      "crop": [
+        0,
+        52.5,
+        1672,
+        836
+      ]
+    },
+    {
+      "id": "T11",
+      "name": "케르딘",
+      "kind": "town",
+      "xy_km": [
+        -265.95293762198924,
+        1219.001952106139
+      ],
+      "lon_lat_deg": [
+        -6.609589811325755,
+        64.87177674492295
+      ],
+      "polity": "north",
+      "parent": "M07",
+      "terrain": "valley_below_high_pass",
+      "position_source": "outer_candidate",
+      "pixels": [
+        1676.8886506179035,
+        609.773728922374
+      ],
+      "file": "T11.png",
+      "column": 2,
+      "row": 0,
+      "crop": [
+        0,
+        52.5,
+        1672,
+        836
+      ]
+    },
+    {
+      "id": "V14",
+      "name": "길목",
+      "kind": "village",
+      "xy_km": [
+        -255.95293762198924,
+        1189.001952106139
+      ],
+      "lon_lat_deg": [
+        -6.347582093595765,
+        64.61007285689391
+      ],
+      "polity": "north",
+      "parent": "T11",
+      "terrain": "lower_approach",
+      "position_source": "outer_candidate",
+      "pixels": [
+        1686.5257160976266,
+        619.3996190567757
+      ],
+      "file": "V14.png",
+      "column": 3,
+      "row": 0,
+      "crop": [
+        0,
+        52.5,
+        1672,
+        836
+      ]
+    },
+    {
+      "id": "V13",
+      "name": "돌곡",
+      "kind": "village",
+      "xy_km": [
+        -180.9529376219892,
+        924.001952106139
+      ],
+      "lon_lat_deg": [
+        -4.489944497305906,
+        62.27447275816613
+      ],
+      "polity": "north",
+      "parent": "T10",
+      "terrain": "storage_terrace",
+      "position_source": "outer_candidate",
+      "pixels": [
+        1754.8526161910468,
+        705.3067491249241
+      ],
+      "file": "V13.png",
+      "column": 4,
+      "row": 0,
+      "crop": [
+        0,
+        52.5,
+        1672,
+        836
+      ]
+    },
+    {
+      "id": "V02",
+      "name": "솔숨",
+      "kind": "village",
+      "xy_km": [
+        154,
+        151
+      ],
+      "lon_lat_deg": [
+        1.4370761310058986,
+        55.33501461125799
+      ],
+      "polity": "tern",
+      "parent": null,
+      "terrain": "central",
+      "position_source": "V02",
+      "pixels": [
+        1972.8579726347007,
+        960.5511867123496
+      ],
+      "file": "V02.png",
+      "column": 5,
+      "row": 0,
+      "crop": [
+        0,
+        52.5,
+        1672,
+        836
+      ]
+    },
+    {
+      "id": "V06",
+      "name": "누마",
+      "kind": "village",
+      "xy_km": [
+        -1460.2733267209078,
+        489.34169769054535
+      ],
+      "lon_lat_deg": [
+        -25.045776589604543,
+        56.11930812329781
+      ],
+      "polity": "west",
+      "parent": "M04",
+      "terrain": "sheltered_plateau",
+      "position_source": "outer_candidate",
+      "pixels": [
+        998.7760334858096,
+        931.703609258012
+      ],
+      "file": "V06.png",
+      "column": 0,
+      "row": 1,
+      "crop": [
+        0,
+        52.5,
+        1672,
+        836
+      ]
+    },
+    {
+      "id": "V07",
+      "name": "바람재",
+      "kind": "village",
+      "xy_km": [
+        -1405.2733267209078,
+        469.34169769054535
+      ],
+      "lon_lat_deg": [
+        -24.10104873326338,
+        56.11422932722882
+      ],
+      "polity": "west",
+      "parent": "M04",
+      "terrain": "sheltered_below_windmills",
+      "position_source": "outer_candidate",
+      "pixels": [
+        1033.5246442937607,
+        931.8904155502041
+      ],
+      "file": "V07.png",
+      "column": 1,
+      "row": 1,
+      "crop": [
+        0,
+        52.5,
+        1672,
+        836
+      ]
+    },
+    {
+      "id": "M07",
+      "name": "북부 관문도시",
+      "kind": "major",
+      "xy_km": [
+        -230.9529376219892,
+        1069.001952106139
+      ],
+      "lon_lat_deg": [
+        -5.648767617812353,
+        63.550000000000004
+      ],
+      "polity": "north",
+      "parent": null,
+      "terrain": "south_foothill_valley",
+      "position_source": "outer_candidate",
+      "pixels": [
+        1712.2292370459827,
+        658.3908045977012
+      ],
+      "file": "M07.png",
+      "column": 2,
+      "row": 1,
+      "crop": [
+        0,
+        52.5,
+        1672,
+        836
+      ]
+    },
+    {
+      "id": "V16",
+      "name": "새불",
+      "kind": "village",
+      "xy_km": [
+        -220.9529376219892,
+        994.001952106139
+      ],
+      "lon_lat_deg": [
+        -5.348282022182241,
+        62.88264420132198
+      ],
+      "polity": "north",
+      "parent": "M07",
+      "terrain": "roadside_terrace",
+      "position_source": "outer_candidate",
+      "pixels": [
+        1723.2815807932966,
+        682.9372247789616
+      ],
+      "file": "V16.png",
+      "column": 3,
+      "row": 1,
+      "crop": [
+        0,
+        52.5,
+        1672,
+        836
+      ]
+    },
+    {
+      "id": "V04",
+      "name": "숲곁",
+      "kind": "village",
+      "xy_km": [
+        143,
+        143
+      ],
+      "lon_lat_deg": [
+        1.259042825035169,
+        55.26636127485317
+      ],
+      "polity": "tern",
+      "parent": null,
+      "terrain": "central",
+      "position_source": "V04",
+      "pixels": [
+        1966.309621150719,
+        963.0763669019523
+      ],
+      "file": "V04.png",
+      "column": 4,
+      "row": 1,
+      "crop": [
+        0,
+        52.5,
+        1672,
+        836
+      ]
+    },
+    {
+      "id": "V01",
+      "name": "벨레스",
+      "kind": "village",
+      "xy_km": [
+        150,
+        145
+      ],
+      "lon_lat_deg": [
+        1.3706119778145285,
+        55.28227997171035
+      ],
+      "polity": "trade_agreement_unsettled",
+      "parent": null,
+      "terrain": "central",
+      "position_source": "veles",
+      "pixels": [
+        1970.4133141265115,
+        962.4908516152512
+      ],
+      "file": "V01.png",
+      "column": 5,
+      "row": 1,
+      "crop": [
+        0,
+        52.5,
+        1672,
+        836
+      ]
+    },
+    {
+      "id": "M04",
+      "name": "하르덴",
+      "kind": "major",
+      "xy_km": [
+        -1435.2733267209078,
+        454.34169769054535
+      ],
+      "lon_lat_deg": [
+        -24.47799301052021,
+        55.900000000000006
+      ],
+      "polity": "west",
+      "parent": null,
+      "terrain": "east_draining_plateau",
+      "position_source": "outer_candidate",
+      "pixels": [
+        1019.6600271992567,
+        939.7701149425286
+      ],
+      "file": "M04.png",
+      "column": 0,
+      "row": 2,
+      "crop": [
+        0,
+        52.5,
+        1672,
+        836
+      ]
+    },
+    {
+      "id": "V05",
+      "name": "윗샘",
+      "kind": "village",
+      "xy_km": [
+        -920.3430271555216,
+        235.3333881209349
+      ],
+      "lon_lat_deg": [
+        -15.637661903169494,
+        55.25276270512722
+      ],
+      "polity": "west",
+      "parent": "T04",
+      "terrain": "upper_intake",
+      "position_source": "outer_candidate",
+      "pixels": [
+        1344.8216311477895,
+        963.5765441792286
+      ],
+      "file": "V05.png",
+      "column": 1,
+      "row": 2,
+      "crop": [
+        0,
+        52.5,
+        1672,
+        836
+      ]
+    },
+    {
+      "id": "T10",
+      "name": "네르바",
+      "kind": "town",
+      "xy_km": [
+        -205.9529376219892,
+        909.001952106139
+      ],
+      "lon_lat_deg": [
+        -4.953807396066772,
+        62.12747582849426
+      ],
+      "polity": "north",
+      "parent": "M07",
+      "terrain": "lower_valley",
+      "position_source": "outer_candidate",
+      "pixels": [
+        1737.790992328579,
+        710.7135327450388
+      ],
+      "file": "T10.png",
+      "column": 2,
+      "row": 2,
+      "crop": [
+        0,
+        52.5,
+        1672,
+        836
+      ]
+    },
+    {
+      "id": "T01",
+      "name": "타르넬",
+      "kind": "town",
+      "xy_km": [
+        137,
+        125
+      ],
+      "lon_lat_deg": [
+        1.1555798656151361,
+        55.10614574650333
+      ],
+      "polity": "tern",
+      "parent": null,
+      "terrain": "central",
+      "position_source": "T01",
+      "pixels": [
+        1962.5040870111316,
+        968.9693518527508
+      ],
+      "file": "T01.png",
+      "column": 3,
+      "row": 2,
+      "crop": [
+        0,
+        52.5,
+        1672,
+        836
+      ]
+    },
+    {
+      "id": "V03",
+      "name": "들보리",
+      "kind": "village",
+      "xy_km": [
+        140,
+        137
+      ],
+      "lon_lat_deg": [
+        1.208695864179934,
+        55.21324910240429
+      ],
+      "polity": "tern",
+      "parent": null,
+      "terrain": "central",
+      "position_source": "V03",
+      "pixels": [
+        1964.4577789123648,
+        965.0299180724857
+      ],
+      "file": "V03.png",
+      "column": 4,
+      "row": 2,
+      "crop": [
+        0,
+        52.5,
+        1672,
+        836
+      ]
+    },
+    {
+      "id": "M06",
+      "name": "동안항",
+      "kind": "major",
+      "xy_km": [
+        2672.681747193104,
+        1034.0935111734775
+      ],
+      "lon_lat_deg": [
+        44.25363823324935,
+        55.15575585493094
+      ],
+      "polity": "east",
+      "parent": null,
+      "terrain": "coastal_terrace",
+      "position_source": "outer_candidate",
+      "pixels": [
+        3547.7200269700907,
+        967.1446122324253
+      ],
+      "file": "M06.png",
+      "column": 5,
+      "row": 2,
+      "crop": [
+        0,
+        52.5,
+        1672,
+        836
+      ]
+    },
+    {
+      "id": "M05",
+      "name": "서안항",
+      "kind": "major",
+      "xy_km": [
+        -2688.9679063549847,
+        1019.6143362075417
+      ],
+      "lon_lat_deg": [
+        -46.32089721446472,
+        54.96872110581616
+      ],
+      "polity": "west",
+      "parent": null,
+      "terrain": "coastal_terrace",
+      "position_source": "outer_candidate",
+      "pixels": [
+        216.24286107715926,
+        974.024051280325
+      ],
+      "file": "M05.png",
+      "column": 0,
+      "row": 3,
+      "crop": [
+        0,
+        52.5,
+        1672,
+        836
+      ]
+    },
+    {
+      "id": "T04",
+      "name": "켈바",
+      "kind": "town",
+      "xy_km": [
+        -890.3430271555216,
+        200.3333881209349
+      ],
+      "lon_lat_deg": [
+        -15.0633803141663,
+        55
+      ],
+      "polity": "west",
+      "parent": null,
+      "terrain": "east_valley_entry",
+      "position_source": "outer_candidate",
+      "pixels": [
+        1365.944632122619,
+        972.8735632183907
+      ],
+      "file": "T04.png",
+      "column": 1,
+      "row": 3,
+      "crop": [
+        0,
+        52.5,
+        1672,
+        836
+      ]
+    },
+    {
+      "id": "T02",
+      "name": "미레바",
+      "kind": "town",
+      "xy_km": [
+        37,
+        10
+      ],
+      "lon_lat_deg": [
+        -0.4322507620916614,
+        54.08866472076582
+      ],
+      "polity": "tern",
+      "parent": null,
+      "terrain": "central",
+      "position_source": "T02",
+      "pixels": [
+        1904.1011213943298,
+        1006.393941305165
+      ],
+      "file": "T02.png",
+      "column": 2,
+      "row": 3,
+      "crop": [
+        0,
+        52.5,
+        1672,
+        836
+      ]
+    },
+    {
+      "id": "M02",
+      "name": "로덴",
+      "kind": "major",
+      "xy_km": [
+        110,
+        95
+      ],
+      "lon_lat_deg": [
+        0.7193966689101895,
+        54.842938715676794
+      ],
+      "polity": "tern",
+      "parent": null,
+      "terrain": "central",
+      "position_source": "roden",
+      "pixels": [
+        1946.460567132329,
+        978.6505299980947
+      ],
+      "file": "M02.png",
+      "column": 3,
+      "row": 3,
+      "crop": [
+        0,
+        52.5,
+        1672,
+        836
+      ]
+    },
+    {
+      "id": "V09",
+      "name": "씨앗골",
+      "kind": "village",
+      "xy_km": [
+        1269.242555079002,
+        -727.7680848574923
+      ],
+      "lon_lat_deg": [
+        15.574135752495177,
+        46.14879855775064
+      ],
+      "polity": "east",
+      "parent": "T07",
+      "terrain": "seed_fields",
+      "position_source": "outer_candidate",
+      "pixels": [
+        2492.8417748044208,
+        1298.4349955769878
+      ],
+      "file": "V09.png",
+      "column": 4,
+      "row": 3,
+      "crop": [
+        0,
+        52.5,
+        1672,
+        836
+      ]
+    },
+    {
+      "id": "V11",
+      "name": "긴솔",
+      "kind": "village",
+      "xy_km": [
+        2193.776414958394,
+        505.8503179346188
+      ],
+      "lon_lat_deg": [
+        33.63921372920631,
+        53.58042228672045
+      ],
+      "polity": "east",
+      "parent": "T08",
+      "terrain": "upper_ship_forest",
+      "position_source": "outer_candidate",
+      "pixels": [
+        3157.3044130282788,
+        1025.087915890742
+      ],
+      "file": "V11.png",
+      "column": 5,
+      "row": 3,
+      "crop": [
+        0,
+        52.5,
+        1672,
+        836
+      ]
+    },
+    {
+      "id": "T05",
+      "name": "드라벤",
+      "kind": "town",
+      "xy_km": [
+        -2042.566363225762,
+        550.0494071750638
+      ],
+      "lon_lat_deg": [
+        -33.89260570687415,
+        54.550000000000004
+      ],
+      "polity": "west",
+      "parent": null,
+      "terrain": "west_valley_below_pass",
+      "position_source": "outer_candidate",
+      "pixels": [
+        673.3754222758936,
+        989.4252873563216
+      ],
+      "file": "T05.png",
+      "column": 0,
+      "row": 4,
+      "crop": [
+        0,
+        52.5,
+        1672,
+        836
+      ]
+    },
+    {
+      "id": "M01",
+      "name": "세계수 관리도시",
+      "kind": "major",
+      "xy_km": [
+        18,
+        -12
+      ],
+      "lon_lat_deg": [
+        -0.7251033917037691,
+        53.89168573836356
+      ],
+      "polity": "tern",
+      "parent": null,
+      "terrain": "central",
+      "position_source": "management_city",
+      "pixels": [
+        1893.3295304200904,
+        1013.639145255593
+      ],
+      "file": "M01.png",
+      "column": 1,
+      "row": 4,
+      "crop": [
+        0,
+        52.5,
+        1672,
+        836
+      ]
+    },
+    {
+      "id": "T03",
+      "name": "오르센",
+      "kind": "town",
+      "xy_km": [
+        45,
+        -35
+      ],
+      "lon_lat_deg": [
+        -0.31616192376838015,
+        53.68304729673721
+      ],
+      "polity": "tern",
+      "parent": null,
+      "terrain": "central",
+      "position_source": "T03",
+      "pixels": [
+        1908.3710556774845,
+        1021.3132028786312
+      ],
+      "file": "T03.png",
+      "column": 2,
+      "row": 4,
+      "crop": [
+        0,
+        52.5,
+        1672,
+        836
+      ]
+    },
+    {
+      "id": "T07",
+      "name": "메르사",
+      "kind": "town",
+      "xy_km": [
+        1234.242555079002,
+        -752.7680848574923
+      ],
+      "lon_lat_deg": [
+        15.063380314166269,
+        46.000000000000014
+      ],
+      "polity": "east",
+      "parent": null,
+      "terrain": "grain_road",
+      "position_source": "outer_candidate",
+      "pixels": [
+        2474.0553678773804,
+        1303.9080459770107
+      ],
+      "file": "T07.png",
+      "column": 3,
+      "row": 4,
+      "crop": [
+        0,
+        52.5,
+        1672,
+        836
+      ]
+    },
+    {
+      "id": "M08",
+      "name": "남동 평야도시",
+      "kind": "major",
+      "xy_km": [
+        2016.8396215333198,
+        -786.0727062591023
+      ],
+      "lon_lat_deg": [
+        24.47799301052021,
+        43.750000000000014
+      ],
+      "polity": "east",
+      "parent": null,
+      "terrain": "inland_plain",
+      "position_source": "outer_candidate",
+      "pixels": [
+        2820.339972800743,
+        1386.666666666666
+      ],
+      "file": "M08.png",
+      "column": 4,
+      "row": 4,
+      "crop": [
+        0,
+        52.5,
+        1672,
+        836
+      ]
+    },
+    {
+      "id": "T08",
+      "name": "에스칼",
+      "kind": "town",
+      "xy_km": [
+        2228.776414958394,
+        475.8503179346188
+      ],
+      "lon_lat_deg": [
+        33.89260570687415,
+        53.20000000000001
+      ],
+      "polity": "east",
+      "parent": null,
+      "terrain": "east_draining_forest",
+      "position_source": "outer_candidate",
+      "pixels": [
+        3166.6245777241065,
+        1039.0804597701144
+      ],
+      "file": "T08.png",
+      "column": 5,
+      "row": 4,
+      "crop": [
+        0,
+        52.5,
+        1672,
+        836
+      ]
+    },
+    {
+      "id": "V08",
+      "name": "갈매",
+      "kind": "village",
+      "xy_km": [
+        -3263.0058320556363,
+        -414.54620476072546
+      ],
+      "lon_lat_deg": [
+        -42.11649810923252,
+        41.82211786936417
+      ],
+      "polity": "west_treaty",
+      "parent": null,
+      "terrain": "coastal_terrace",
+      "position_source": "outer_candidate",
+      "pixels": [
+        370.8874258673101,
+        1457.577273770513
+      ],
+      "file": "V08.png",
+      "column": 0,
+      "row": 5,
+      "crop": [
+        0,
+        52.5,
+        1672,
+        836
+      ]
+    },
+    {
+      "id": "T06",
+      "name": "살레크",
+      "kind": "town",
+      "xy_km": [
+        -3276.6510507913813,
+        -452.11380244250523
+      ],
+      "lon_lat_deg": [
+        -42.03442301644434,
+        41.48028530137359
+      ],
+      "polity": "west_treaty",
+      "parent": null,
+      "terrain": "coastal_terrace",
+      "position_source": "outer_candidate",
+      "pixels": [
+        373.90627985492074,
+        1470.1504256966036
+      ],
+      "file": "T06.png",
+      "column": 1,
+      "row": 5,
+      "crop": [
+        0,
+        52.5,
+        1672,
+        836
+      ]
+    },
+    {
+      "id": "M03",
+      "name": "세르나",
+      "kind": "major",
+      "xy_km": [
+        417.4518741058252,
+        -1063.9045819597554
+      ],
+      "lon_lat_deg": [
+        4.227923014539118,
+        44.291798181644374
+      ],
+      "polity": "tern",
+      "parent": null,
+      "terrain": "coastal_terrace",
+      "position_source": "outer_candidate",
+      "pixels": [
+        2075.509812029025,
+        1366.7384576866436
+      ],
+      "file": "M03.png",
+      "column": 2,
+      "row": 5,
+      "crop": [
+        0,
+        52.5,
+        1672,
+        836
+      ]
+    },
+    {
+      "id": "V10",
+      "name": "물나래",
+      "kind": "village",
+      "xy_km": [
+        2041.8396215333198,
+        -811.0727062591023
+      ],
+      "lon_lat_deg": [
+        24.669687768233537,
+        43.46475804727837
+      ],
+      "polity": "east",
+      "parent": "M08",
+      "terrain": "irrigated_terrace",
+      "position_source": "outer_candidate",
+      "pixels": [
+        2827.390814463762,
+        1397.1583246978068
+      ],
+      "file": "V10.png",
+      "column": 3,
+      "row": 5,
+      "crop": [
+        0,
+        52.5,
+        1672,
+        836
+      ]
+    },
+    {
+      "id": "T09",
+      "name": "루세아",
+      "kind": "town",
+      "xy_km": [
+        2996.5653615724295,
+        -1723.98245293493
+      ],
+      "lon_lat_deg": [
+        31.18394484039485,
+        32.763206968188406
+      ],
+      "polity": "east",
+      "parent": null,
+      "terrain": "coastal_terrace",
+      "position_source": "outer_candidate",
+      "pixels": [
+        3066.9956722903853,
+        1790.7785942735297
+      ],
+      "file": "T09.png",
+      "column": 4,
+      "row": 5,
+      "crop": [
+        0,
+        52.5,
+        1672,
+        836
+      ]
+    },
+    {
+      "id": "V12",
+      "name": "청그물",
+      "kind": "village",
+      "xy_km": [
+        3708.3977467602954,
+        -106.39942917938025
+      ],
+      "lon_lat_deg": [
+        46.530141124596376,
+        41.775378231192484
+      ],
+      "polity": "east",
+      "parent": null,
+      "terrain": "coastal_terrace",
+      "position_source": "outer_candidate",
+      "pixels": [
+        3631.4534666518216,
+        1459.2964328756789
+      ],
+      "file": "V12.png",
+      "column": 5,
+      "row": 5,
+      "crop": [
+        0,
+        52.5,
+        1672,
+        836
+      ]
+    }
+  ]
+}

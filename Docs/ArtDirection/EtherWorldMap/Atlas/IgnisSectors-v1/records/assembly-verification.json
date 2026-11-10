@@ -1,0 +1,778 @@
+{
+  "scope": "file coverage, output sizes, exact assembly, fixed coast masks, seam color discontinuity screening",
+  "checks": {
+    "generated_land_ids": true,
+    "output_tile_ids": true,
+    "tile_dimensions": true,
+    "atlas_dimensions": true,
+    "assembled_pixels_equal_exported_tiles": true,
+    "shared_coast_mask_overlap": true,
+    "no_abrupt_color_seam_flags": true,
+    "all_settlements_in_atlas": true
+  },
+  "passed": true,
+  "generated_count": 39,
+  "native_generation_sizes": {
+    "L0-C11-R01": [
+      1254,
+      1254
+    ],
+    "L0-C11-R02": [
+      1254,
+      1254
+    ],
+    "L0-C11-R03": [
+      1254,
+      1254
+    ],
+    "L0-C12-R01": [
+      1254,
+      1254
+    ],
+    "L0-C12-R02": [
+      1254,
+      1254
+    ],
+    "L0-C12-R03": [
+      1254,
+      1254
+    ],
+    "L0-C12-R04": [
+      1254,
+      1254
+    ],
+    "L0-C13-R01": [
+      1254,
+      1254
+    ],
+    "L0-C13-R02": [
+      1254,
+      1254
+    ],
+    "L0-C13-R03": [
+      1254,
+      1254
+    ],
+    "L0-C13-R04": [
+      1254,
+      1254
+    ],
+    "L0-C14-R01": [
+      1254,
+      1254
+    ],
+    "L0-C14-R02": [
+      1254,
+      1254
+    ],
+    "L0-C14-R03": [
+      1254,
+      1254
+    ],
+    "L0-C15-R01": [
+      1254,
+      1254
+    ],
+    "L0-C15-R02": [
+      1254,
+      1254
+    ],
+    "L0-C15-R03": [
+      1254,
+      1254
+    ],
+    "L0-C15-R04": [
+      1254,
+      1254
+    ],
+    "L0-C16-R01": [
+      1254,
+      1254
+    ],
+    "L0-C16-R02": [
+      1254,
+      1254
+    ],
+    "L0-C16-R03": [
+      1254,
+      1254
+    ],
+    "L0-C16-R04": [
+      1254,
+      1254
+    ],
+    "L0-C17-R01": [
+      1254,
+      1254
+    ],
+    "L0-C17-R02": [
+      1254,
+      1254
+    ],
+    "L0-C17-R03": [
+      1254,
+      1254
+    ],
+    "L0-C17-R04": [
+      1254,
+      1254
+    ],
+    "L0-C18-R01": [
+      1254,
+      1254
+    ],
+    "L0-C18-R02": [
+      1254,
+      1254
+    ],
+    "L0-C18-R03": [
+      1254,
+      1254
+    ],
+    "L0-C18-R04": [
+      1254,
+      1254
+    ],
+    "L0-C18-R05": [
+      1254,
+      1254
+    ],
+    "L0-C19-R01": [
+      1254,
+      1254
+    ],
+    "L0-C19-R02": [
+      1254,
+      1254
+    ],
+    "L0-C19-R03": [
+      1254,
+      1254
+    ],
+    "L0-C19-R04": [
+      1254,
+      1254
+    ],
+    "L0-C20-R01": [
+      1254,
+      1254
+    ],
+    "L0-C20-R02": [
+      1254,
+      1254
+    ],
+    "L0-C20-R03": [
+      1254,
+      1254
+    ],
+    "L0-C20-R04": [
+      1254,
+      1254
+    ]
+  },
+  "tile_count": 50,
+  "atlas_pixels_matched_tiles": 50,
+  "shared_coast_mask_edges_matched": 85,
+  "seams": [
+    {
+      "id": "L0-C11-R01:east",
+      "mean_rgb_jump": 1.6482747395833333,
+      "nearby_mean_rgb_jump": 1.6017252604166667,
+      "ratio": 1.0290620871862615,
+      "needs_visual_review": false
+    },
+    {
+      "id": "L0-C11-R01:south",
+      "mean_rgb_jump": 0.10009765625,
+      "nearby_mean_rgb_jump": 0.10546875,
+      "ratio": 0.9490740740740741,
+      "needs_visual_review": false
+    },
+    {
+      "id": "L0-C12-R01:east",
+      "mean_rgb_jump": 2.2766927083333335,
+      "nearby_mean_rgb_jump": 2.2164713541666665,
+      "ratio": 1.0271699221618447,
+      "needs_visual_review": false
+    },
+    {
+      "id": "L0-C12-R01:south",
+      "mean_rgb_jump": 3.8330078125,
+      "nearby_mean_rgb_jump": 3.8533528645833335,
+      "ratio": 0.9947201689545934,
+      "needs_visual_review": false
+    },
+    {
+      "id": "L0-C13-R01:east",
+      "mean_rgb_jump": 0.68359375,
+      "nearby_mean_rgb_jump": 0.6569010416666666,
+      "ratio": 1.0406342913776017,
+      "needs_visual_review": false
+    },
+    {
+      "id": "L0-C13-R01:south",
+      "mean_rgb_jump": 3.45458984375,
+      "nearby_mean_rgb_jump": 3.4678548177083335,
+      "ratio": 0.9961748762114847,
+      "needs_visual_review": false
+    },
+    {
+      "id": "L0-C14-R01:east",
+      "mean_rgb_jump": 1.3048502604166667,
+      "nearby_mean_rgb_jump": 1.2655436197916667,
+      "ratio": 1.0310590958780785,
+      "needs_visual_review": false
+    },
+    {
+      "id": "L0-C14-R01:south",
+      "mean_rgb_jump": 4.551595052083333,
+      "nearby_mean_rgb_jump": 4.650634765625,
+      "ratio": 0.9787040439568131,
+      "needs_visual_review": false
+    },
+    {
+      "id": "L0-C15-R01:east",
+      "mean_rgb_jump": 1.2470703125,
+      "nearby_mean_rgb_jump": 1.2275390625,
+      "ratio": 1.0159108989657917,
+      "needs_visual_review": false
+    },
+    {
+      "id": "L0-C15-R01:south",
+      "mean_rgb_jump": 3.9549153645833335,
+      "nearby_mean_rgb_jump": 3.9080403645833335,
+      "ratio": 1.0119945025196784,
+      "needs_visual_review": false
+    },
+    {
+      "id": "L0-C16-R01:east",
+      "mean_rgb_jump": 1.7688802083333333,
+      "nearby_mean_rgb_jump": 1.644287109375,
+      "ratio": 1.0757733234347933,
+      "needs_visual_review": false
+    },
+    {
+      "id": "L0-C16-R01:south",
+      "mean_rgb_jump": 3.4889322916666665,
+      "nearby_mean_rgb_jump": 3.5655110677083335,
+      "ratio": 0.9785223563782438,
+      "needs_visual_review": false
+    },
+    {
+      "id": "L0-C17-R01:east",
+      "mean_rgb_jump": 3.2262369791666665,
+      "nearby_mean_rgb_jump": 3.1315104166666665,
+      "ratio": 1.0302494802494802,
+      "needs_visual_review": false
+    },
+    {
+      "id": "L0-C17-R01:south",
+      "mean_rgb_jump": 4.589192708333333,
+      "nearby_mean_rgb_jump": 4.8076171875,
+      "ratio": 0.9545669984426839,
+      "needs_visual_review": false
+    },
+    {
+      "id": "L0-C18-R01:east",
+      "mean_rgb_jump": 1.5675455729166667,
+      "nearby_mean_rgb_jump": 1.5313313802083333,
+      "ratio": 1.0236488281872775,
+      "needs_visual_review": false
+    },
+    {
+      "id": "L0-C18-R01:south",
+      "mean_rgb_jump": 4.162923177083333,
+      "nearby_mean_rgb_jump": 4.037841796875,
+      "ratio": 1.030977286010843,
+      "needs_visual_review": false
+    },
+    {
+      "id": "L0-C19-R01:east",
+      "mean_rgb_jump": 1.8958333333333333,
+      "nearby_mean_rgb_jump": 2.1652018229166665,
+      "ratio": 0.8755919717356987,
+      "needs_visual_review": false
+    },
+    {
+      "id": "L0-C19-R01:south",
+      "mean_rgb_jump": 2.7576497395833335,
+      "nearby_mean_rgb_jump": 2.873291015625,
+      "ratio": 0.9597530234797633,
+      "needs_visual_review": false
+    },
+    {
+      "id": "L0-C20-R01:south",
+      "mean_rgb_jump": 0.4729817708333333,
+      "nearby_mean_rgb_jump": 0.4755859375,
+      "ratio": 0.9945242984257358,
+      "needs_visual_review": false
+    },
+    {
+      "id": "L0-C11-R02:east",
+      "mean_rgb_jump": 3.4484049479166665,
+      "nearby_mean_rgb_jump": 3.25,
+      "ratio": 1.0610476762820513,
+      "needs_visual_review": false
+    },
+    {
+      "id": "L0-C11-R02:south",
+      "mean_rgb_jump": 0.57666015625,
+      "nearby_mean_rgb_jump": 0.5843912760416666,
+      "ratio": 0.9867706447569977,
+      "needs_visual_review": false
+    },
+    {
+      "id": "L0-C12-R02:east",
+      "mean_rgb_jump": 2.755859375,
+      "nearby_mean_rgb_jump": 2.5970052083333335,
+      "ratio": 1.0611682125846076,
+      "needs_visual_review": false
+    },
+    {
+      "id": "L0-C12-R02:south",
+      "mean_rgb_jump": 3.1292317708333335,
+      "nearby_mean_rgb_jump": 3.1396484375,
+      "ratio": 0.9966822187662001,
+      "needs_visual_review": false
+    },
+    {
+      "id": "L0-C13-R02:east",
+      "mean_rgb_jump": 2.7356770833333335,
+      "nearby_mean_rgb_jump": 2.6774088541666665,
+      "ratio": 1.021762917933131,
+      "needs_visual_review": false
+    },
+    {
+      "id": "L0-C13-R02:south",
+      "mean_rgb_jump": 3.37451171875,
+      "nearby_mean_rgb_jump": 3.3396809895833335,
+      "ratio": 1.0104293581558554,
+      "needs_visual_review": false
+    },
+    {
+      "id": "L0-C14-R02:east",
+      "mean_rgb_jump": 2.7483723958333335,
+      "nearby_mean_rgb_jump": 2.5868326822916665,
+      "ratio": 1.0624469122597289,
+      "needs_visual_review": false
+    },
+    {
+      "id": "L0-C14-R02:south",
+      "mean_rgb_jump": 2.9586588541666665,
+      "nearby_mean_rgb_jump": 2.86572265625,
+      "ratio": 1.0324302834100074,
+      "needs_visual_review": false
+    },
+    {
+      "id": "L0-C15-R02:east",
+      "mean_rgb_jump": 2.6984049479166665,
+      "nearby_mean_rgb_jump": 2.6002604166666665,
+      "ratio": 1.0377441161742613,
+      "needs_visual_review": false
+    },
+    {
+      "id": "L0-C15-R02:south",
+      "mean_rgb_jump": 3.3453776041666665,
+      "nearby_mean_rgb_jump": 3.3317057291666665,
+      "ratio": 1.0041035661944309,
+      "needs_visual_review": false
+    },
+    {
+      "id": "L0-C16-R02:east",
+      "mean_rgb_jump": 2.8243815104166665,
+      "nearby_mean_rgb_jump": 2.6490071614583335,
+      "ratio": 1.0662038032625725,
+      "needs_visual_review": false
+    },
+    {
+      "id": "L0-C16-R02:south",
+      "mean_rgb_jump": 3.1536458333333335,
+      "nearby_mean_rgb_jump": 3.0349934895833335,
+      "ratio": 1.039094760551295,
+      "needs_visual_review": false
+    },
+    {
+      "id": "L0-C17-R02:east",
+      "mean_rgb_jump": 3.8562825520833335,
+      "nearby_mean_rgb_jump": 3.8286946614583335,
+      "ratio": 1.0072055603970498,
+      "needs_visual_review": false
+    },
+    {
+      "id": "L0-C17-R02:south",
+      "mean_rgb_jump": 2.8570963541666665,
+      "nearby_mean_rgb_jump": 2.928955078125,
+      "ratio": 0.9754660887444083,
+      "needs_visual_review": false
+    },
+    {
+      "id": "L0-C18-R02:east",
+      "mean_rgb_jump": 2.81689453125,
+      "nearby_mean_rgb_jump": 2.6266276041666665,
+      "ratio": 1.0724377246251084,
+      "needs_visual_review": false
+    },
+    {
+      "id": "L0-C18-R02:south",
+      "mean_rgb_jump": 3.1487630208333335,
+      "nearby_mean_rgb_jump": 3.2315266927083335,
+      "ratio": 0.9743886776297565,
+      "needs_visual_review": false
+    },
+    {
+      "id": "L0-C19-R02:east",
+      "mean_rgb_jump": 2.6564127604166665,
+      "nearby_mean_rgb_jump": 2.60302734375,
+      "ratio": 1.0205089726755454,
+      "needs_visual_review": false
+    },
+    {
+      "id": "L0-C19-R02:south",
+      "mean_rgb_jump": 3.20751953125,
+      "nearby_mean_rgb_jump": 3.1631673177083335,
+      "ratio": 1.014021456687849,
+      "needs_visual_review": false
+    },
+    {
+      "id": "L0-C20-R02:south",
+      "mean_rgb_jump": 0.0,
+      "nearby_mean_rgb_jump": 0.0,
+      "ratio": 0.0,
+      "needs_visual_review": false
+    },
+    {
+      "id": "L0-C11-R03:east",
+      "mean_rgb_jump": 1.279296875,
+      "nearby_mean_rgb_jump": 1.2049153645833333,
+      "ratio": 1.061731730379576,
+      "needs_visual_review": false
+    },
+    {
+      "id": "L0-C11-R03:south",
+      "mean_rgb_jump": 0.0,
+      "nearby_mean_rgb_jump": 0.0,
+      "ratio": 0.0,
+      "needs_visual_review": false
+    },
+    {
+      "id": "L0-C12-R03:east",
+      "mean_rgb_jump": 3.1168619791666665,
+      "nearby_mean_rgb_jump": 3.017333984375,
+      "ratio": 1.0329854087439652,
+      "needs_visual_review": false
+    },
+    {
+      "id": "L0-C12-R03:south",
+      "mean_rgb_jump": 2.8343098958333335,
+      "nearby_mean_rgb_jump": 2.96533203125,
+      "ratio": 0.9558153575937209,
+      "needs_visual_review": false
+    },
+    {
+      "id": "L0-C13-R03:east",
+      "mean_rgb_jump": 2.3277994791666665,
+      "nearby_mean_rgb_jump": 2.2037760416666665,
+      "ratio": 1.056277695716396,
+      "needs_visual_review": false
+    },
+    {
+      "id": "L0-C13-R03:south",
+      "mean_rgb_jump": 3.1461588541666665,
+      "nearby_mean_rgb_jump": 3.173583984375,
+      "ratio": 0.99135830961356,
+      "needs_visual_review": false
+    },
+    {
+      "id": "L0-C14-R03:east",
+      "mean_rgb_jump": 2.4363606770833335,
+      "nearby_mean_rgb_jump": 2.286376953125,
+      "ratio": 1.0655988610072968,
+      "needs_visual_review": false
+    },
+    {
+      "id": "L0-C14-R03:south",
+      "mean_rgb_jump": 0.0,
+      "nearby_mean_rgb_jump": 0.0,
+      "ratio": 0.0,
+      "needs_visual_review": false
+    },
+    {
+      "id": "L0-C15-R03:east",
+      "mean_rgb_jump": 3.1451822916666665,
+      "nearby_mean_rgb_jump": 2.87353515625,
+      "ratio": 1.0945341263098272,
+      "needs_visual_review": false
+    },
+    {
+      "id": "L0-C15-R03:south",
+      "mean_rgb_jump": 1.2208658854166667,
+      "nearby_mean_rgb_jump": 1.1666666666666667,
+      "ratio": 1.0464564732142858,
+      "needs_visual_review": false
+    },
+    {
+      "id": "L0-C16-R03:east",
+      "mean_rgb_jump": 2.7994791666666665,
+      "nearby_mean_rgb_jump": 2.6712239583333335,
+      "ratio": 1.0480136485498415,
+      "needs_visual_review": false
+    },
+    {
+      "id": "L0-C16-R03:south",
+      "mean_rgb_jump": 3.3430989583333335,
+      "nearby_mean_rgb_jump": 3.33203125,
+      "ratio": 1.0033216100039077,
+      "needs_visual_review": false
+    },
+    {
+      "id": "L0-C17-R03:east",
+      "mean_rgb_jump": 2.97607421875,
+      "nearby_mean_rgb_jump": 2.79345703125,
+      "ratio": 1.0653731865058556,
+      "needs_visual_review": false
+    },
+    {
+      "id": "L0-C17-R03:south",
+      "mean_rgb_jump": 3.9347330729166665,
+      "nearby_mean_rgb_jump": 3.833740234375,
+      "ratio": 1.0263431616039398,
+      "needs_visual_review": false
+    },
+    {
+      "id": "L0-C18-R03:east",
+      "mean_rgb_jump": 2.95556640625,
+      "nearby_mean_rgb_jump": 2.8135579427083335,
+      "ratio": 1.05047291238828,
+      "needs_visual_review": false
+    },
+    {
+      "id": "L0-C18-R03:south",
+      "mean_rgb_jump": 3.0387369791666665,
+      "nearby_mean_rgb_jump": 2.9229329427083335,
+      "ratio": 1.039619121864298,
+      "needs_visual_review": false
+    },
+    {
+      "id": "L0-C19-R03:east",
+      "mean_rgb_jump": 1.1354166666666667,
+      "nearby_mean_rgb_jump": 1.11376953125,
+      "ratio": 1.0194359199181646,
+      "needs_visual_review": false
+    },
+    {
+      "id": "L0-C19-R03:south",
+      "mean_rgb_jump": 3.5823567708333335,
+      "nearby_mean_rgb_jump": 3.6036783854166665,
+      "ratio": 0.9940833747346552,
+      "needs_visual_review": false
+    },
+    {
+      "id": "L0-C20-R03:south",
+      "mean_rgb_jump": 0.6805013020833334,
+      "nearby_mean_rgb_jump": 0.6783854166666666,
+      "ratio": 1.0031190019193859,
+      "needs_visual_review": false
+    },
+    {
+      "id": "L0-C11-R04:east",
+      "mean_rgb_jump": 0.0,
+      "nearby_mean_rgb_jump": 0.0,
+      "ratio": 0.0,
+      "needs_visual_review": false
+    },
+    {
+      "id": "L0-C11-R04:south",
+      "mean_rgb_jump": 0.0,
+      "nearby_mean_rgb_jump": 0.0,
+      "ratio": 0.0,
+      "needs_visual_review": false
+    },
+    {
+      "id": "L0-C12-R04:east",
+      "mean_rgb_jump": 3.6438802083333335,
+      "nearby_mean_rgb_jump": 3.58447265625,
+      "ratio": 1.0165735821641013,
+      "needs_visual_review": false
+    },
+    {
+      "id": "L0-C12-R04:south",
+      "mean_rgb_jump": 0.0,
+      "nearby_mean_rgb_jump": 0.0,
+      "ratio": 0.0,
+      "needs_visual_review": false
+    },
+    {
+      "id": "L0-C13-R04:east",
+      "mean_rgb_jump": 0.0,
+      "nearby_mean_rgb_jump": 0.0,
+      "ratio": 0.0,
+      "needs_visual_review": false
+    },
+    {
+      "id": "L0-C13-R04:south",
+      "mean_rgb_jump": 0.0,
+      "nearby_mean_rgb_jump": 0.0,
+      "ratio": 0.0,
+      "needs_visual_review": false
+    },
+    {
+      "id": "L0-C14-R04:east",
+      "mean_rgb_jump": 0.0,
+      "nearby_mean_rgb_jump": 0.0,
+      "ratio": 0.0,
+      "needs_visual_review": false
+    },
+    {
+      "id": "L0-C14-R04:south",
+      "mean_rgb_jump": 0.0,
+      "nearby_mean_rgb_jump": 0.0,
+      "ratio": 0.0,
+      "needs_visual_review": false
+    },
+    {
+      "id": "L0-C15-R04:east",
+      "mean_rgb_jump": 0.9318033854166666,
+      "nearby_mean_rgb_jump": 0.8301595052083334,
+      "ratio": 1.1224389765709244,
+      "needs_visual_review": false
+    },
+    {
+      "id": "L0-C15-R04:south",
+      "mean_rgb_jump": 0.0,
+      "nearby_mean_rgb_jump": 0.0,
+      "ratio": 0.0,
+      "needs_visual_review": false
+    },
+    {
+      "id": "L0-C16-R04:east",
+      "mean_rgb_jump": 2.4788411458333335,
+      "nearby_mean_rgb_jump": 2.326416015625,
+      "ratio": 1.0655192919858678,
+      "needs_visual_review": false
+    },
+    {
+      "id": "L0-C16-R04:south",
+      "mean_rgb_jump": 0.0,
+      "nearby_mean_rgb_jump": 0.0,
+      "ratio": 0.0,
+      "needs_visual_review": false
+    },
+    {
+      "id": "L0-C17-R04:east",
+      "mean_rgb_jump": 2.42919921875,
+      "nearby_mean_rgb_jump": 2.2384440104166665,
+      "ratio": 1.085217770668218,
+      "needs_visual_review": false
+    },
+    {
+      "id": "L0-C17-R04:south",
+      "mean_rgb_jump": 0.0,
+      "nearby_mean_rgb_jump": 0.0,
+      "ratio": 0.0,
+      "needs_visual_review": false
+    },
+    {
+      "id": "L0-C18-R04:east",
+      "mean_rgb_jump": 2.9978841145833335,
+      "nearby_mean_rgb_jump": 2.8763834635416665,
+      "ratio": 1.0422407695572218,
+      "needs_visual_review": false
+    },
+    {
+      "id": "L0-C18-R04:south",
+      "mean_rgb_jump": 2.6764322916666665,
+      "nearby_mean_rgb_jump": 2.7488606770833335,
+      "ratio": 0.9736514891349398,
+      "needs_visual_review": false
+    },
+    {
+      "id": "L0-C19-R04:east",
+      "mean_rgb_jump": 1.4345703125,
+      "nearby_mean_rgb_jump": 1.3273111979166667,
+      "ratio": 1.0808093194359287,
+      "needs_visual_review": false
+    },
+    {
+      "id": "L0-C19-R04:south",
+      "mean_rgb_jump": 0.0,
+      "nearby_mean_rgb_jump": 0.0,
+      "ratio": 0.0,
+      "needs_visual_review": false
+    },
+    {
+      "id": "L0-C20-R04:south",
+      "mean_rgb_jump": 0.0,
+      "nearby_mean_rgb_jump": 0.0,
+      "ratio": 0.0,
+      "needs_visual_review": false
+    },
+    {
+      "id": "L0-C11-R05:east",
+      "mean_rgb_jump": 0.0,
+      "nearby_mean_rgb_jump": 0.0,
+      "ratio": 0.0,
+      "needs_visual_review": false
+    },
+    {
+      "id": "L0-C12-R05:east",
+      "mean_rgb_jump": 0.0,
+      "nearby_mean_rgb_jump": 0.0,
+      "ratio": 0.0,
+      "needs_visual_review": false
+    },
+    {
+      "id": "L0-C13-R05:east",
+      "mean_rgb_jump": 0.0,
+      "nearby_mean_rgb_jump": 0.0,
+      "ratio": 0.0,
+      "needs_visual_review": false
+    },
+    {
+      "id": "L0-C14-R05:east",
+      "mean_rgb_jump": 0.0,
+      "nearby_mean_rgb_jump": 0.0,
+      "ratio": 0.0,
+      "needs_visual_review": false
+    },
+    {
+      "id": "L0-C15-R05:east",
+      "mean_rgb_jump": 0.0,
+      "nearby_mean_rgb_jump": 0.0,
+      "ratio": 0.0,
+      "needs_visual_review": false
+    },
+    {
+      "id": "L0-C16-R05:east",
+      "mean_rgb_jump": 0.0,
+      "nearby_mean_rgb_jump": 0.0,
+      "ratio": 0.0,
+      "needs_visual_review": false
+    },
+    {
+      "id": "L0-C17-R05:east",
+      "mean_rgb_jump": 0.0,
+      "nearby_mean_rgb_jump": 0.0,
+      "ratio": 0.0,
+      "needs_visual_review": false
+    },
+    {
+      "id": "L0-C18-R05:east",
+      "mean_rgb_jump": 0.0,
+      "nearby_mean_rgb_jump": 0.0,
+      "ratio": 0.0,
+      "needs_visual_review": false
+    },
+    {
+      "id": "L0-C19-R05:east",
+      "mean_rgb_jump": 0.0,
+      "nearby_mean_rgb_jump": 0.0,
+      "ratio": 0.0,
+      "needs_visual_review": false
+    }
+  ],
+  "limitations": [
+    "Pixel and color checks do not prove every river, road or geologic feature is semantically continuous.",
+    "Generated native images are resampled to the registered 2304px work canvas; 2048px export does not imply native 2048px generation.",
+    "No local-settlement LOD or UE runtime verification."
+  ]
+}

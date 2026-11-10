@@ -1,0 +1,60 @@
+{
+  "date": "2026-11-09",
+  "kind": "selected_visual_references_not_runtime_assets",
+  "artifacts": [
+    {
+      "source": "output/imagegen/veles-map-ui-20261108/04-aerial-nadir-minimal-ui.png",
+      "archived": "Docs/ArtDirection/EtherWorldMap/Images/veles-map-ui-approved-v1.png",
+      "sha256": "fb96688c1f80be89c7fa413c699d1474ea65a3bcba6d9a328c6f39e3aacd8ca1",
+      "bytes": 3399222
+    },
+    {
+      "source": "output/imagegen/veles-map-ui-20261108/04-prompt.json",
+      "archived": "Docs/ArtDirection/EtherWorldMap/Data/veles-map-ui-approved-v1-prompt.json",
+      "sha256": "d8db6e25bba5518e7350ea172c8155ed8f0320d31bbf4bcdfd4e6dd355154e23",
+      "bytes": 4179
+    },
+    {
+      "source": "output/imagegen/ignis-city-correction-20261109/ignis-cities-registered.png",
+      "archived": "Docs/ArtDirection/EtherWorldMap/Images/ignis-map-ui-approved-v1.png",
+      "sha256": "c38b618e8ff22ae993972e91829690ad594efbda316c60cbf44aab60330a3e2e",
+      "bytes": 2535799
+    },
+    {
+      "source": "output/imagegen/ignis-city-correction-20261109/ignis-cities-registered.svg",
+      "archived": "Docs/ArtDirection/EtherWorldMap/Images/ignis-map-ui-approved-v1.svg",
+      "sha256": "ceb4103b38940e62ea9106b560aa257acdc5effb247ffa879821115b8718cbae",
+      "bytes": 7294128
+    },
+    {
+      "source": "output/imagegen/ignis-city-correction-20261109/selected-original.png",
+      "archived": "Docs/ArtDirection/EtherWorldMap/Images/ignis-map-ui-selected-terrain-v1.png",
+      "sha256": "fa2c4e6e566222da3dca461831c8ea79c5c751b79d0c4e0bfdc6fc9add6bd41b",
+      "bytes": 2818381
+    },
+    {
+      "source": "output/imagegen/ignis-map-ui-20261108/prompts.json",
+      "archived": "Docs/ArtDirection/EtherWorldMap/Data/ignis-map-ui-generation-v1-prompts.json",
+      "sha256": "5b64c806f68b9dfa4fca7933063e14ee1158f705384541990cde0753fb000620",
+      "bytes": 13296
+    },
+    {
+      "source": "output/imagegen/ignis-city-correction-20261109/prompts.json",
+      "archived": "Docs/ArtDirection/EtherWorldMap/Data/ignis-map-ui-approved-v1-prompts.json",
+      "sha256": "a853f380dae904fff827b5ae82eab13b769891aef34b871a5e38a0936c012ec6",
+      "bytes": 6153
+    },
+    {
+      "source": "output/imagegen/ignis-city-correction-20261109/layout.json",
+      "archived": "Docs/ArtDirection/EtherWorldMap/Data/ignis-map-ui-approved-v1-layout.json",
+      "sha256": "de4783576fd7ba26fbb2c3c275413fcfb8270c4b8441683c2358bebdad4b39e3",
+      "bytes": 7270
+    },
+    {
+      "source": "output/imagegen/ignis-city-correction-20261109/verification.json",
+      "archived": "Docs/ArtDirection/EtherWorldMap/Data/ignis-map-ui-approved-v1-verification.json",
+      "sha256": "d4ad9493ff66f39324979ad20a5fe114f58649646be49481ae8dc1f58d25f087",
+      "bytes": 490
+    }
+  ]
+}

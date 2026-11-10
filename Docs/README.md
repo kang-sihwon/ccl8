@@ -8,7 +8,7 @@
 |---|---|
 | 제작 목표, 확정 범위, 역할 분담을 확인할 때 | [Direction](Direction.md) |
 | 플레이 흐름, 전투, 콘텐츠 기획을 다룰 때 | [GameDesign](GameDesign.md) |
-| 그래픽 스타일과 아트 제작 기준을 다룰 때 | [ArtDirection](ArtDirection.md) |
+| 그래픽 스타일, 지도 제작 기준과 채택 시안을 다룰 때 | [ArtDirection](ArtDirection.md) |
 | 세계관과 시나리오를 다룰 때 | [NarrativeConcept](NarrativeConcept.md) |
 
 ## 시스템

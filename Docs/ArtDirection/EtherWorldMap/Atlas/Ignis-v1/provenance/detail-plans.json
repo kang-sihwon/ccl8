@@ -1,0 +1,2336 @@
+[
+  {
+    "id": "M01",
+    "name": "세계수 관리도시",
+    "kind": "major",
+    "xy_km": [
+      18,
+      -12
+    ],
+    "lon_lat_deg": [
+      -0.7251033917037691,
+      53.89168573836356
+    ],
+    "polity": "tern",
+    "parent": null,
+    "terrain": "central",
+    "position_source": "management_city",
+    "status": "visual_detail_candidate_not_canon",
+    "role": "civic records and skilled maintenance city on an upland terrace; no enormous world tree inside this city; tree is over 20 km away",
+    "bounds_xy_km": [
+      14.5,
+      -13.85,
+      21.5,
+      -10.35
+    ],
+    "center_xy_km": [
+      18,
+      -12.1
+    ],
+    "width_km": 7,
+    "height_km": 3.5,
+    "guide": "<repository>/output/imagegen/ignis-connected-atlas-20261109/guides/M01.png",
+    "details": [
+      {
+        "id": "C01",
+        "name": "북행편 귀환 마당",
+        "xy_km": [
+          18,
+          -11.5
+        ],
+        "pixels": [
+          836,
+          274.68571428571437
+        ],
+        "status": "existing_detail_candidate"
+      },
+      {
+        "id": "C02",
+        "name": "공개 기록·심의뜰",
+        "xy_km": [
+          18,
+          -12
+        ],
+        "pixels": [
+          836,
+          394.1142857142858
+        ],
+        "status": "existing_detail_candidate"
+      },
+      {
+        "id": "C03",
+        "name": "비축·수령 창고",
+        "xy_km": [
+          18.7,
+          -12.25
+        ],
+        "pixels": [
+          1003.1999999999998,
+          453.8285714285715
+        ],
+        "status": "existing_detail_candidate"
+      },
+      {
+        "id": "C04",
+        "name": "진료·필수 공급 인계",
+        "xy_km": [
+          18.4,
+          -12.7
+        ],
+        "pixels": [
+          931.5428571428567,
+          561.3142857142857
+        ],
+        "status": "existing_detail_candidate"
+      },
+      {
+        "id": "C05",
+        "name": "정비조 배정소",
+        "xy_km": [
+          17.5,
+          -12.6
+        ],
+        "pixels": [
+          716.5714285714286,
+          537.4285714285714
+        ],
+        "status": "existing_detail_candidate"
+      },
+      {
+        "id": "C06",
+        "name": "뿌리권 출입소",
+        "xy_km": [
+          17.1,
+          -11.6
+        ],
+        "pixels": [
+          621.0285714285717,
+          298.57142857142856
+        ],
+        "status": "existing_detail_candidate"
+      },
+      {
+        "id": "C07",
+        "name": "귀환·시험 기록소",
+        "xy_km": [
+          17.1,
+          -12.4
+        ],
+        "pixels": [
+          621.0285714285717,
+          489.65714285714307
+        ],
+        "status": "existing_detail_candidate"
+      }
+    ],
+    "prompt": "Use case: sketch-to-render. Make ONE realistic straight-down aerial local game map terrain plate for 세계수 관리도시 (M01), a civic records and skilled maintenance city on an upland terrace; no enormous world tree inside this city; tree is over 20 km away. Input 1 is the local geographic guide, exact north-up framing: green is land, blue is sea and river; the wide gray-brown oval is a proposed built-up neighborhood, NOT an oval wall or ring road; tan fine lines are route corridors; small beige squares indicate existing facility locations. Transform all schematic marks into natural terrain and actual rooftops. Keep coastline and main river centerlines and road entries at precisely the shown positions; no extra river through the town if none exists in the guide. Input 2 is Veles approved STYLE ONLY: maintain its strict vertical nadir overhead view, muted olive canopy, gray-brown rock, dark teal water, grounded rural medieval timber/stone construction and realistic scale. The scene covers 7.00 km horizontally; show a lived-in city with numerous tightly grouped small rooftops, streets and outlying fields without making buildings giant. No perspective, horizon, facades, trunks, cave-front arches, dollhouse or miniature models. Read roofs and forest canopy only. Add plausible paths, natural vegetation, subtle relief and practical land use appropriate to the described role. Keep the water/land configuration from input1, do not copy Veles river bend if different. No text, labels, letters, numbers, map symbols, dots, leader lines, legend, border or UI. Wide 2:1 image. This is a new visual layout proposal; known facility markers will be overlaid separately from source coordinates."
+  },
+  {
+    "id": "M02",
+    "name": "로덴",
+    "kind": "major",
+    "xy_km": [
+      110,
+      95
+    ],
+    "lon_lat_deg": [
+      0.7193966689101895,
+      54.842938715676794
+    ],
+    "polity": "tern",
+    "parent": null,
+    "terrain": "central",
+    "position_source": "roden",
+    "status": "visual_detail_candidate_not_canon",
+    "role": "artisan guild river city with timber workshops and loading quays",
+    "bounds_xy_km": [
+      106.5,
+      93.81,
+      113.5,
+      97.31
+    ],
+    "center_xy_km": [
+      110,
+      95.56
+    ],
+    "width_km": 7,
+    "height_km": 3.5,
+    "guide": "<repository>/output/imagegen/ignis-connected-atlas-20261109/guides/M02.png",
+    "details": [
+      {
+        "id": "B01",
+        "name": "공공 나루",
+        "xy_km": [
+          110.04,
+          95.09
+        ],
+        "pixels": [
+          845.5542857142872,
+          530.2628571428569
+        ],
+        "status": "existing_detail_candidate"
+      },
+      {
+        "id": "B02",
+        "name": "조합·주거단",
+        "xy_km": [
+          109.38,
+          95.4
+        ],
+        "pixels": [
+          687.9085714285703,
+          456.217142857142
+        ],
+        "status": "existing_detail_candidate"
+      },
+      {
+        "id": "B03",
+        "name": "작업구 입구",
+        "xy_km": [
+          109.68,
+          95.76
+        ],
+        "pixels": [
+          759.5657142857159,
+          370.2285714285708
+        ],
+        "status": "existing_detail_candidate"
+      },
+      {
+        "id": "B04",
+        "name": "바깥 목재길",
+        "xy_km": [
+          109.3,
+          96.12
+        ],
+        "pixels": [
+          668.7999999999993,
+          284.23999999999944
+        ],
+        "status": "existing_detail_candidate"
+      },
+      {
+        "id": "B05",
+        "name": "배수굴 마른 턱",
+        "xy_km": [
+          109.9,
+          95.95
+        ],
+        "pixels": [
+          812.1142857142871,
+          324.84571428571417
+        ],
+        "status": "existing_detail_candidate"
+      },
+      {
+        "id": "B06",
+        "name": "배관 정비뜰",
+        "xy_km": [
+          110.1,
+          95.9
+        ],
+        "pixels": [
+          859.8857142857129,
+          336.7885714285706
+        ],
+        "status": "existing_detail_candidate"
+      },
+      {
+        "id": "B07",
+        "name": "차단함·외곽길",
+        "xy_km": [
+          110.26,
+          95.8
+        ],
+        "pixels": [
+          898.1028571428584,
+          360.67428571428695
+        ],
+        "status": "existing_detail_candidate"
+      },
+      {
+        "id": "B08",
+        "name": "부상자 대기단",
+        "xy_km": [
+          110.36,
+          95.69
+        ],
+        "pixels": [
+          921.9885714285714,
+          386.9485714285725
+        ],
+        "status": "existing_detail_candidate"
+      },
+      {
+        "id": "B09",
+        "name": "철근지기 작업뜰",
+        "xy_km": [
+          110.43,
+          95.56
+        ],
+        "pixels": [
+          938.708571428573,
+          418
+        ],
+        "status": "existing_detail_candidate"
+      },
+      {
+        "id": "B10",
+        "name": "열린 구조 선착장",
+        "xy_km": [
+          110.66,
+          95.56
+        ],
+        "pixels": [
+          993.6457142857134,
+          418
+        ],
+        "status": "existing_detail_candidate"
+      },
+      {
+        "id": "B11",
+        "name": "제방 귀환길",
+        "xy_km": [
+          110.12,
+          95.27
+        ],
+        "pixels": [
+          864.6628571428582,
+          487.2685714285729
+        ],
+        "status": "existing_detail_candidate"
+      },
+      {
+        "id": "B12",
+        "name": "외곽 우회단",
+        "xy_km": [
+          110.11,
+          95.6
+        ],
+        "pixels": [
+          862.2742857142856,
+          408.4457142857162
+        ],
+        "status": "existing_detail_candidate"
+      }
+    ],
+    "prompt": "Use case: sketch-to-render. Make ONE realistic straight-down aerial local game map terrain plate for 로덴 (M02), a artisan guild river city with timber workshops and loading quays. Input 1 is the local geographic guide, exact north-up framing: green is land, blue is sea and river; the wide gray-brown oval is a proposed built-up neighborhood, NOT an oval wall or ring road; tan fine lines are route corridors; small beige squares indicate existing facility locations. Transform all schematic marks into natural terrain and actual rooftops. Keep coastline and main river centerlines and road entries at precisely the shown positions; no extra river through the town if none exists in the guide. Input 2 is Veles approved STYLE ONLY: maintain its strict vertical nadir overhead view, muted olive canopy, gray-brown rock, dark teal water, grounded rural medieval timber/stone construction and realistic scale. The scene covers 7.00 km horizontally; show a lived-in city with numerous tightly grouped small rooftops, streets and outlying fields without making buildings giant. No perspective, horizon, facades, trunks, cave-front arches, dollhouse or miniature models. Read roofs and forest canopy only. Add plausible paths, natural vegetation, subtle relief and practical land use appropriate to the described role. Keep the water/land configuration from input1, do not copy Veles river bend if different. No text, labels, letters, numbers, map symbols, dots, leader lines, legend, border or UI. Wide 2:1 image. This is a new visual layout proposal; known facility markers will be overlaid separately from source coordinates."
+  },
+  {
+    "id": "M03",
+    "name": "세르나",
+    "kind": "major",
+    "xy_km": [
+      417.4518741058252,
+      -1063.9045819597554
+    ],
+    "lon_lat_deg": [
+      4.227923014539118,
+      44.291798181644374
+    ],
+    "polity": "tern",
+    "parent": null,
+    "terrain": "coastal_terrace",
+    "position_source": "outer_candidate",
+    "status": "visual_detail_candidate_not_canon",
+    "role": "estuary sea port with inland freight transfer, warehouses, customs yards and residential terrace",
+    "bounds_xy_km": [
+      411.63884389083665,
+      -1067.9045819597554,
+      422.2388438908367,
+      -1062.6045819597553
+    ],
+    "center_xy_km": [
+      416.93884389083667,
+      -1065.2545819597553
+    ],
+    "width_km": 10.6,
+    "height_km": 5.3,
+    "guide": "<repository>/output/imagegen/ignis-connected-atlas-20261109/guides/M03.png",
+    "details": [
+      {
+        "id": "C01",
+        "name": "내륙 환적나루",
+        "xy_km": [
+          417.6718741058252,
+          -1063.3545819597555
+        ],
+        "pixels": [
+          951.6251433453672,
+          118.3018867924887
+        ],
+        "status": "existing_detail_candidate"
+      },
+      {
+        "id": "C02",
+        "name": "주거·식수단",
+        "xy_km": [
+          418.1018741058252,
+          -1063.2545819597553
+        ],
+        "pixels": [
+          1019.4515584396988,
+          102.5283018868068
+        ],
+        "status": "existing_detail_candidate"
+      },
+      {
+        "id": "C03",
+        "name": "송장·검수소",
+        "xy_km": [
+          418.2018741058252,
+          -1063.8045819597555
+        ],
+        "pixels": [
+          1035.2251433453628,
+          189.28301886796757
+        ],
+        "status": "existing_detail_candidate"
+      },
+      {
+        "id": "C04",
+        "name": "옛 물양장",
+        "xy_km": [
+          417.5518741058252,
+          -1064.1045819597555
+        ],
+        "pixels": [
+          932.696841458574,
+          236.60377358494154
+        ],
+        "status": "existing_detail_candidate"
+      },
+      {
+        "id": "C05",
+        "name": "갈대 가장자리",
+        "xy_km": [
+          417.6518741058252,
+          -1064.5545819597555
+        ],
+        "pixels": [
+          948.470426364229,
+          307.5849056604204
+        ],
+        "status": "existing_detail_candidate"
+      },
+      {
+        "id": "C06",
+        "name": "폐보온관 작업터",
+        "xy_km": [
+          418.0518741058252,
+          -1064.7545819597553
+        ],
+        "pixels": [
+          1011.5647659868758,
+          339.1320754717125
+        ],
+        "status": "existing_detail_candidate"
+      },
+      {
+        "id": "C07",
+        "name": "어획물 회수턱",
+        "xy_km": [
+          418.6018741058252,
+          -1064.9045819597554
+        ],
+        "pixels": [
+          1098.3194829680008,
+          362.79245283021737
+        ],
+        "status": "existing_detail_candidate"
+      },
+      {
+        "id": "C08",
+        "name": "높은 갈대길",
+        "xy_km": [
+          418.7018741058252,
+          -1064.3545819597555
+        ],
+        "pixels": [
+          1114.0930678736647,
+          276.0377358490925
+        ],
+        "status": "existing_detail_candidate"
+      },
+      {
+        "id": "C09",
+        "name": "침수 매장터 외곽",
+        "xy_km": [
+          418.9018741058252,
+          -1063.8545819597555
+        ],
+        "pixels": [
+          1145.6402376849837,
+          197.1698113207906
+        ],
+        "status": "existing_detail_candidate"
+      },
+      {
+        "id": "C10",
+        "name": "상단 운반길",
+        "xy_km": [
+          418.1018741058252,
+          -1065.3045819597555
+        ],
+        "pixels": [
+          1019.4515584396988,
+          425.88679245287324
+        ],
+        "status": "existing_detail_candidate"
+      },
+      {
+        "id": "C11",
+        "name": "간조 잔해턱",
+        "xy_km": [
+          417.2018741058252,
+          -1065.1545819597554
+        ],
+        "pixels": [
+          877.4892942887591,
+          402.2264150943683
+        ],
+        "status": "existing_detail_candidate"
+      },
+      {
+        "id": "C12",
+        "name": "하구 인계마당",
+        "xy_km": [
+          417.6018741058252,
+          -1065.6545819597554
+        ],
+        "pixels": [
+          940.583633911397,
+          481.0943396226702
+        ],
+        "status": "existing_detail_candidate"
+      },
+      {
+        "id": "H01",
+        "name": "항만 연락나루",
+        "xy_km": [
+          416.8018741058252,
+          -1065.8045819597555
+        ],
+        "pixels": [
+          814.3949546661211,
+          504.75471698117514
+        ],
+        "status": "existing_detail_candidate"
+      },
+      {
+        "id": "H02",
+        "name": "선박 수리대",
+        "xy_km": [
+          416.6818741058252,
+          -1066.1545819597554
+        ],
+        "pixels": [
+          795.4666527793279,
+          559.9622641509721
+        ],
+        "status": "existing_detail_candidate"
+      },
+      {
+        "id": "H03",
+        "name": "창고·배정소",
+        "xy_km": [
+          418.5018741058252,
+          -1065.6545819597554
+        ],
+        "pixels": [
+          1082.5458980623457,
+          481.0943396226702
+        ],
+        "status": "existing_detail_candidate"
+      },
+      {
+        "id": "H04",
+        "name": "인양품 검사뜰",
+        "xy_km": [
+          418.6518741058252,
+          -1066.2045819597554
+        ],
+        "pixels": [
+          1106.2062754208328,
+          567.8490566037951
+        ],
+        "status": "existing_detail_candidate"
+      },
+      {
+        "id": "H05",
+        "name": "허가 화물부두",
+        "xy_km": [
+          418.2018741058252,
+          -1066.5645819597555
+        ],
+        "pixels": [
+          1035.2251433453628,
+          624.6339622641925
+        ],
+        "status": "existing_detail_candidate"
+      },
+      {
+        "id": "H06",
+        "name": "구조 출발잔교",
+        "xy_km": [
+          418.3018741058252,
+          -1066.6245819597555
+        ],
+        "pixels": [
+          1050.9987282510267,
+          634.0981132075801
+        ],
+        "status": "existing_detail_candidate"
+      },
+      {
+        "id": "H07",
+        "name": "좌초선 높은 선미",
+        "xy_km": [
+          418.9098741058252,
+          -1066.8095819597554
+        ],
+        "pixels": [
+          1146.9021244774424,
+          663.2792452830432
+        ],
+        "status": "existing_detail_candidate"
+      },
+      {
+        "id": "H08",
+        "name": "바깥 암반턱",
+        "xy_km": [
+          418.9368741058252,
+          -1066.8145819597555
+        ],
+        "pixels": [
+          1151.1609924019688,
+          664.0679245283435
+        ],
+        "status": "existing_detail_candidate"
+      },
+      {
+        "id": "H09",
+        "name": "안쪽 승선턱",
+        "xy_km": [
+          418.9568741058252,
+          -1066.7945819597555
+        ],
+        "pixels": [
+          1154.315709383098,
+          660.9132075472143
+        ],
+        "status": "existing_detail_candidate"
+      },
+      {
+        "id": "H10",
+        "name": "동쪽 구조잔교",
+        "xy_km": [
+          419.3518741058252,
+          -1066.5345819597555
+        ],
+        "pixels": [
+          1216.6213697604535,
+          619.9018867924988
+        ],
+        "status": "existing_detail_candidate"
+      },
+      {
+        "id": "H11",
+        "name": "높은 제방·절벽길",
+        "xy_km": [
+          419.3518741058252,
+          -1065.7045819597554
+        ],
+        "pixels": [
+          1216.6213697604535,
+          488.98113207549324
+        ],
+        "status": "existing_detail_candidate"
+      },
+      {
+        "id": "H12",
+        "name": "동쪽 육로 연락소",
+        "xy_km": [
+          419.5518741058252,
+          -1065.2045819597554
+        ],
+        "pixels": [
+          1248.1685395717814,
+          410.11320754719134
+        ],
+        "status": "existing_detail_candidate"
+      },
+      {
+        "id": "H13",
+        "name": "바깥 깊은 홈",
+        "xy_km": [
+          420.1518741058252,
+          -1067.2545819597553
+        ],
+        "pixels": [
+          1342.8100490057384,
+          733.4716981132219
+        ],
+        "status": "existing_detail_candidate"
+      }
+    ],
+    "prompt": "Use case: sketch-to-render. Make ONE realistic straight-down aerial local game map terrain plate for 세르나 (M03), a estuary sea port with inland freight transfer, warehouses, customs yards and residential terrace. Input 1 is the local geographic guide, exact north-up framing: green is land, blue is sea and river; the wide gray-brown oval is a proposed built-up neighborhood, NOT an oval wall or ring road; tan fine lines are route corridors; small beige squares indicate existing facility locations. Transform all schematic marks into natural terrain and actual rooftops. Keep coastline and main river centerlines and road entries at precisely the shown positions; no extra river through the town if none exists in the guide. Input 2 is Veles approved STYLE ONLY: maintain its strict vertical nadir overhead view, muted olive canopy, gray-brown rock, dark teal water, grounded rural medieval timber/stone construction and realistic scale. The scene covers 10.60 km horizontally; show a lived-in city with numerous tightly grouped small rooftops, streets and outlying fields without making buildings giant. No perspective, horizon, facades, trunks, cave-front arches, dollhouse or miniature models. Read roofs and forest canopy only. Add plausible paths, natural vegetation, subtle relief and practical land use appropriate to the described role. Keep the water/land configuration from input1, do not copy Veles river bend if different. No text, labels, letters, numbers, map symbols, dots, leader lines, legend, border or UI. Wide 2:1 image. This is a new visual layout proposal; known facility markers will be overlaid separately from source coordinates."
+  },
+  {
+    "id": "M04",
+    "name": "하르덴",
+    "kind": "major",
+    "xy_km": [
+      -1435.2733267209078,
+      454.34169769054535
+    ],
+    "lon_lat_deg": [
+      -24.47799301052021,
+      55.900000000000006
+    ],
+    "polity": "west",
+    "parent": null,
+    "terrain": "east_draining_plateau",
+    "position_source": "outer_candidate",
+    "status": "visual_detail_candidate_not_canon",
+    "role": "rocky highland workshop city with quarry terraces, modest wind-powered and water-powered workshops",
+    "bounds_xy_km": [
+      -1439.2733267209078,
+      453.59169769054535,
+      -1431.2733267209078,
+      457.59169769054535
+    ],
+    "center_xy_km": [
+      -1435.2733267209078,
+      455.59169769054535
+    ],
+    "width_km": 8.00000000000009,
+    "height_km": 4.000000000000045,
+    "guide": "<repository>/output/imagegen/ignis-connected-atlas-20261109/guides/M04.png",
+    "details": [
+      {
+        "id": "H01",
+        "name": "하단 시험 작업장",
+        "xy_km": [
+          -1434.8733267209077,
+          454.64169769054536
+        ],
+        "pixels": [
+          919.6000000000087,
+          616.5499999999906
+        ],
+        "status": "existing_detail_candidate"
+      },
+      {
+        "id": "H02",
+        "name": "공동 설계·숙박 마당",
+        "xy_km": [
+          -1434.4733267209078,
+          454.84169769054535
+        ],
+        "pixels": [
+          1003.1999999999791,
+          574.7499999999935
+        ],
+        "status": "existing_detail_candidate"
+      },
+      {
+        "id": "H03",
+        "name": "잔열 운반 작업터",
+        "xy_km": [
+          -1434.1733267209079,
+          455.2416976905453
+        ],
+        "pixels": [
+          1065.899999999969,
+          491.1499999999992
+        ],
+        "status": "existing_detail_candidate"
+      },
+      {
+        "id": "H04",
+        "name": "채석장 입구",
+        "xy_km": [
+          -1434.0733267209077,
+          455.79169769054533
+        ],
+        "pixels": [
+          1086.7999999999972,
+          376.1999999999981
+        ],
+        "status": "existing_detail_candidate"
+      },
+      {
+        "id": "H05",
+        "name": "회색 채석 단",
+        "xy_km": [
+          -1434.6733267209079,
+          456.14169769054536
+        ],
+        "pixels": [
+          961.3999999999701,
+          303.0499999999942
+        ],
+        "status": "existing_detail_candidate"
+      },
+      {
+        "id": "H06",
+        "name": "사냥꾼 관찰턱",
+        "xy_km": [
+          -1435.2733267209078,
+          456.54169769054533
+        ],
+        "pixels": [
+          835.9999999999906,
+          219.44999999999987
+        ],
+        "status": "existing_detail_candidate"
+      },
+      {
+        "id": "H07",
+        "name": "북쪽 접근 능선",
+        "xy_km": [
+          -1435.9733267209078,
+          456.84169769054535
+        ],
+        "pixels": [
+          689.6999999999827,
+          156.74999999999824
+        ],
+        "status": "existing_detail_candidate"
+      },
+      {
+        "id": "H08",
+        "name": "상류 취수·측정턱",
+        "xy_km": [
+          -1436.5433267209078,
+          455.7416976905453
+        ],
+        "pixels": [
+          570.5699999999973,
+          386.6500000000004
+        ],
+        "status": "existing_detail_candidate"
+      },
+      {
+        "id": "H09",
+        "name": "비룡 먹이 하역 단",
+        "xy_km": [
+          -1436.1233267209077,
+          456.14169769054536
+        ],
+        "pixels": [
+          658.3500000000116,
+          303.0499999999942
+        ],
+        "status": "existing_detail_candidate"
+      },
+      {
+        "id": "H10",
+        "name": "수로 바깥 정비길",
+        "xy_km": [
+          -1435.7733267209078,
+          455.64169769054536
+        ],
+        "pixels": [
+          731.4999999999917,
+          407.549999999993
+        ],
+        "status": "existing_detail_candidate"
+      },
+      {
+        "id": "H11",
+        "name": "남쪽 바람 그늘길",
+        "xy_km": [
+          -1435.1733267209079,
+          455.19169769054537
+        ],
+        "pixels": [
+          856.8999999999713,
+          501.59999999998956
+        ],
+        "status": "existing_detail_candidate"
+      },
+      {
+        "id": "H12",
+        "name": "그리핀 초지 사냥턱",
+        "xy_km": [
+          -1434.7733267209078,
+          456.94169769054537
+        ],
+        "pixels": [
+          940.4999999999894,
+          135.8499999999937
+        ],
+        "status": "existing_detail_candidate"
+      },
+      {
+        "id": "H13",
+        "name": "성체 트롤 저장굴",
+        "xy_km": [
+          -1433.6733267209079,
+          455.84169769054535
+        ],
+        "pixels": [
+          1170.3999999999678,
+          365.74999999999585
+        ],
+        "status": "existing_detail_candidate"
+      },
+      {
+        "id": "H14",
+        "name": "폐축열 시험뜰",
+        "xy_km": [
+          -1433.6733267209079,
+          454.64169769054536
+        ],
+        "pixels": [
+          1170.3999999999678,
+          616.5499999999906
+        ],
+        "status": "existing_detail_candidate"
+      },
+      {
+        "id": "H15",
+        "name": "고원 견인 작업마당",
+        "xy_km": [
+          -1434.1733267209079,
+          454.2416976905453
+        ],
+        "pixels": [
+          1065.899999999969,
+          700.1499999999969
+        ],
+        "status": "existing_detail_candidate"
+      },
+      {
+        "id": "H16",
+        "name": "가는날개 번식 절벽",
+        "xy_km": [
+          -1436.6733267209079,
+          456.64169769054536
+        ],
+        "pixels": [
+          543.3999999999749,
+          198.54999999999538
+        ],
+        "status": "existing_detail_candidate"
+      }
+    ],
+    "prompt": "Use case: sketch-to-render. Make ONE realistic straight-down aerial local game map terrain plate for 하르덴 (M04), a rocky highland workshop city with quarry terraces, modest wind-powered and water-powered workshops. Input 1 is the local geographic guide, exact north-up framing: green is land, blue is sea and river; the wide gray-brown oval is a proposed built-up neighborhood, NOT an oval wall or ring road; tan fine lines are route corridors; small beige squares indicate existing facility locations. Transform all schematic marks into natural terrain and actual rooftops. Keep coastline and main river centerlines and road entries at precisely the shown positions; no extra river through the town if none exists in the guide. Input 2 is Veles approved STYLE ONLY: maintain its strict vertical nadir overhead view, muted olive canopy, gray-brown rock, dark teal water, grounded rural medieval timber/stone construction and realistic scale. The scene covers 8.00 km horizontally; show a lived-in city with numerous tightly grouped small rooftops, streets and outlying fields without making buildings giant. No perspective, horizon, facades, trunks, cave-front arches, dollhouse or miniature models. Read roofs and forest canopy only. Add plausible paths, natural vegetation, subtle relief and practical land use appropriate to the described role. Keep the water/land configuration from input1, do not copy Veles river bend if different. No text, labels, letters, numbers, map symbols, dots, leader lines, legend, border or UI. Wide 2:1 image. This is a new visual layout proposal; known facility markers will be overlaid separately from source coordinates."
+  },
+  {
+    "id": "M05",
+    "name": "서안항",
+    "kind": "major",
+    "xy_km": [
+      -2688.9679063549847,
+      1019.6143362075417
+    ],
+    "lon_lat_deg": [
+      -46.32089721446472,
+      54.96872110581616
+    ],
+    "polity": "west",
+    "parent": null,
+    "terrain": "coastal_terrace",
+    "position_source": "outer_candidate",
+    "status": "visual_detail_candidate_not_canon",
+    "role": "western sea port trading highland produce, stone quays, warehouses and coastal shipping",
+    "bounds_xy_km": [
+      -2695.1169730196634,
+      1018.0785176220716,
+      -2685.1169730196634,
+      1023.0785176220716
+    ],
+    "center_xy_km": [
+      -2690.1169730196634,
+      1020.5785176220716
+    ],
+    "width_km": 10,
+    "height_km": 5,
+    "guide": "<repository>/output/imagegen/ignis-connected-atlas-20261109/guides/M05.png",
+    "details": [],
+    "prompt": "Use case: sketch-to-render. Make ONE realistic straight-down aerial local game map terrain plate for 서안항 (M05), a western sea port trading highland produce, stone quays, warehouses and coastal shipping. Input 1 is the local geographic guide, exact north-up framing: green is land, blue is sea and river; the wide gray-brown oval is a proposed built-up neighborhood, NOT an oval wall or ring road; tan fine lines are route corridors; small beige squares indicate existing facility locations. Transform all schematic marks into natural terrain and actual rooftops. Keep coastline and main river centerlines and road entries at precisely the shown positions; no extra river through the town if none exists in the guide. Input 2 is Veles approved STYLE ONLY: maintain its strict vertical nadir overhead view, muted olive canopy, gray-brown rock, dark teal water, grounded rural medieval timber/stone construction and realistic scale. The scene covers 10.00 km horizontally; show a lived-in city with numerous tightly grouped small rooftops, streets and outlying fields without making buildings giant. No perspective, horizon, facades, trunks, cave-front arches, dollhouse or miniature models. Read roofs and forest canopy only. Add plausible paths, natural vegetation, subtle relief and practical land use appropriate to the described role. Keep the water/land configuration from input1, do not copy Veles river bend if different. No text, labels, letters, numbers, map symbols, dots, leader lines, legend, border or UI. Wide 2:1 image. This is a new visual layout proposal; known facility markers will be overlaid separately from source coordinates."
+  },
+  {
+    "id": "M06",
+    "name": "동안항",
+    "kind": "major",
+    "xy_km": [
+      2672.681747193104,
+      1034.0935111734775
+    ],
+    "lon_lat_deg": [
+      44.25363823324935,
+      55.15575585493094
+    ],
+    "polity": "east",
+    "parent": null,
+    "terrain": "coastal_terrace",
+    "position_source": "outer_candidate",
+    "status": "visual_detail_candidate_not_canon",
+    "role": "eastern sea port with timber shipyards, fishing quays and small wooden vessels",
+    "bounds_xy_km": [
+      2668.9807852987806,
+      1032.3435111734775,
+      2678.9807852987806,
+      1037.3435111734775
+    ],
+    "center_xy_km": [
+      2673.9807852987806,
+      1034.8435111734775
+    ],
+    "width_km": 10,
+    "height_km": 5,
+    "guide": "<repository>/output/imagegen/ignis-connected-atlas-20261109/guides/M06.png",
+    "details": [],
+    "prompt": "Use case: sketch-to-render. Make ONE realistic straight-down aerial local game map terrain plate for 동안항 (M06), a eastern sea port with timber shipyards, fishing quays and small wooden vessels. Input 1 is the local geographic guide, exact north-up framing: green is land, blue is sea and river; the wide gray-brown oval is a proposed built-up neighborhood, NOT an oval wall or ring road; tan fine lines are route corridors; small beige squares indicate existing facility locations. Transform all schematic marks into natural terrain and actual rooftops. Keep coastline and main river centerlines and road entries at precisely the shown positions; no extra river through the town if none exists in the guide. Input 2 is Veles approved STYLE ONLY: maintain its strict vertical nadir overhead view, muted olive canopy, gray-brown rock, dark teal water, grounded rural medieval timber/stone construction and realistic scale. The scene covers 10.00 km horizontally; show a lived-in city with numerous tightly grouped small rooftops, streets and outlying fields without making buildings giant. No perspective, horizon, facades, trunks, cave-front arches, dollhouse or miniature models. Read roofs and forest canopy only. Add plausible paths, natural vegetation, subtle relief and practical land use appropriate to the described role. Keep the water/land configuration from input1, do not copy Veles river bend if different. No text, labels, letters, numbers, map symbols, dots, leader lines, legend, border or UI. Wide 2:1 image. This is a new visual layout proposal; known facility markers will be overlaid separately from source coordinates."
+  },
+  {
+    "id": "M07",
+    "name": "북부 관문도시",
+    "kind": "major",
+    "xy_km": [
+      -230.9529376219892,
+      1069.001952106139
+    ],
+    "lon_lat_deg": [
+      -5.648767617812353,
+      63.550000000000004
+    ],
+    "polity": "north",
+    "parent": null,
+    "terrain": "south_foothill_valley",
+    "position_source": "outer_candidate",
+    "status": "visual_detail_candidate_not_canon",
+    "role": "inhabited northern foothill supply city, winter barns and repair yards; NOT a ruined city on a snowy summit",
+    "bounds_xy_km": [
+      -234.4529376219892,
+      1067.251952106139,
+      -227.4529376219892,
+      1070.751952106139
+    ],
+    "center_xy_km": [
+      -230.9529376219892,
+      1069.001952106139
+    ],
+    "width_km": 7,
+    "height_km": 3.5,
+    "guide": "<repository>/output/imagegen/ignis-connected-atlas-20261109/guides/M07.png",
+    "details": [],
+    "prompt": "Use case: sketch-to-render. Make ONE realistic straight-down aerial local game map terrain plate for 북부 관문도시 (M07), a inhabited northern foothill supply city, winter barns and repair yards; NOT a ruined city on a snowy summit. Input 1 is the local geographic guide, exact north-up framing: green is land, blue is sea and river; the wide gray-brown oval is a proposed built-up neighborhood, NOT an oval wall or ring road; tan fine lines are route corridors; small beige squares indicate existing facility locations. Transform all schematic marks into natural terrain and actual rooftops. Keep coastline and main river centerlines and road entries at precisely the shown positions; no extra river through the town if none exists in the guide. Input 2 is Veles approved STYLE ONLY: maintain its strict vertical nadir overhead view, muted olive canopy, gray-brown rock, dark teal water, grounded rural medieval timber/stone construction and realistic scale. The scene covers 7.00 km horizontally; show a lived-in city with numerous tightly grouped small rooftops, streets and outlying fields without making buildings giant. No perspective, horizon, facades, trunks, cave-front arches, dollhouse or miniature models. Read roofs and forest canopy only. Add plausible paths, natural vegetation, subtle relief and practical land use appropriate to the described role. Keep the water/land configuration from input1, do not copy Veles river bend if different. No text, labels, letters, numbers, map symbols, dots, leader lines, legend, border or UI. Wide 2:1 image. This is a new visual layout proposal; known facility markers will be overlaid separately from source coordinates."
+  },
+  {
+    "id": "M08",
+    "name": "남동 평야도시",
+    "kind": "major",
+    "xy_km": [
+      2016.8396215333198,
+      -786.0727062591023
+    ],
+    "lon_lat_deg": [
+      24.47799301052021,
+      43.750000000000014
+    ],
+    "polity": "east",
+    "parent": null,
+    "terrain": "inland_plain",
+    "position_source": "outer_candidate",
+    "status": "visual_detail_candidate_not_canon",
+    "role": "inland grain market city on a fertile plain, granaries, shared irrigation and fields, NO sea",
+    "bounds_xy_km": [
+      2013.3396215333198,
+      -787.8227062591023,
+      2020.3396215333198,
+      -784.3227062591023
+    ],
+    "center_xy_km": [
+      2016.8396215333198,
+      -786.0727062591023
+    ],
+    "width_km": 7,
+    "height_km": 3.5,
+    "guide": "<repository>/output/imagegen/ignis-connected-atlas-20261109/guides/M08.png",
+    "details": [],
+    "prompt": "Use case: sketch-to-render. Make ONE realistic straight-down aerial local game map terrain plate for 남동 평야도시 (M08), a inland grain market city on a fertile plain, granaries, shared irrigation and fields, NO sea. Input 1 is the local geographic guide, exact north-up framing: green is land, blue is sea and river; the wide gray-brown oval is a proposed built-up neighborhood, NOT an oval wall or ring road; tan fine lines are route corridors; small beige squares indicate existing facility locations. Transform all schematic marks into natural terrain and actual rooftops. Keep coastline and main river centerlines and road entries at precisely the shown positions; no extra river through the town if none exists in the guide. Input 2 is Veles approved STYLE ONLY: maintain its strict vertical nadir overhead view, muted olive canopy, gray-brown rock, dark teal water, grounded rural medieval timber/stone construction and realistic scale. The scene covers 7.00 km horizontally; show a lived-in city with numerous tightly grouped small rooftops, streets and outlying fields without making buildings giant. No perspective, horizon, facades, trunks, cave-front arches, dollhouse or miniature models. Read roofs and forest canopy only. Add plausible paths, natural vegetation, subtle relief and practical land use appropriate to the described role. Keep the water/land configuration from input1, do not copy Veles river bend if different. No text, labels, letters, numbers, map symbols, dots, leader lines, legend, border or UI. Wide 2:1 image. This is a new visual layout proposal; known facility markers will be overlaid separately from source coordinates."
+  },
+  {
+    "id": "T01",
+    "name": "타르넬",
+    "kind": "town",
+    "xy_km": [
+      137,
+      125
+    ],
+    "lon_lat_deg": [
+      1.1555798656151361,
+      55.10614574650333
+    ],
+    "polity": "tern",
+    "parent": null,
+    "terrain": "central",
+    "position_source": "T01",
+    "status": "visual_detail_candidate_not_canon",
+    "role": "river timber assembly town, lumber drying yards and loading wharves",
+    "bounds_xy_km": [
+      134.10999999999999,
+      122.83999999999999,
+      139.89000000000001,
+      125.73
+    ],
+    "center_xy_km": [
+      137,
+      124.285
+    ],
+    "width_km": 5.7800000000000065,
+    "height_km": 2.8900000000000032,
+    "guide": "<repository>/output/imagegen/ignis-connected-atlas-20261109/guides/T01.png",
+    "details": [
+      {
+        "id": "A01",
+        "name": "공동 나루",
+        "xy_km": [
+          137.36,
+          125.08
+        ],
+        "pixels": [
+          940.1384083045054,
+          188.0276816609011
+        ],
+        "status": "existing_detail_candidate"
+      },
+      {
+        "id": "A02",
+        "name": "목재 검사길",
+        "xy_km": [
+          137.54,
+          124.82
+        ],
+        "pixels": [
+          992.2076124567483,
+          263.23875432526233
+        ],
+        "status": "existing_detail_candidate"
+      },
+      {
+        "id": "A03",
+        "name": "샛개울 다리",
+        "xy_km": [
+          137.42,
+          124.35
+        ],
+        "pixels": [
+          957.494809688581,
+          399.1972318339124
+        ],
+        "status": "existing_detail_candidate"
+      },
+      {
+        "id": "A04",
+        "name": "옛 적재장",
+        "xy_km": [
+          138,
+          124.57
+        ],
+        "pixels": [
+          1125.273356401387,
+          335.5570934256083
+        ],
+        "status": "existing_detail_candidate"
+      },
+      {
+        "id": "A05",
+        "name": "수액 숲",
+        "xy_km": [
+          138.22,
+          124.05
+        ],
+        "pixels": [
+          1188.9134948096912,
+          485.9792387543267
+        ],
+        "status": "existing_detail_candidate"
+      },
+      {
+        "id": "A06",
+        "name": "적토 저장굴",
+        "xy_km": [
+          138.05,
+          123.7
+        ],
+        "pixels": [
+          1139.7370242214597,
+          587.2249134948094
+        ],
+        "status": "existing_detail_candidate"
+      },
+      {
+        "id": "A07",
+        "name": "어살·여울 관찰턱",
+        "xy_km": [
+          136.73,
+          123.83
+        ],
+        "pixels": [
+          757.8961937716268,
+          549.6193771626307
+        ],
+        "status": "existing_detail_candidate"
+      },
+      {
+        "id": "A08",
+        "name": "하류 쉼나루",
+        "xy_km": [
+          136.64,
+          123.49
+        ],
+        "pixels": [
+          731.8615916955013,
+          647.9723183391023
+        ],
+        "status": "existing_detail_candidate"
+      },
+      {
+        "id": "A09",
+        "name": "높은 운반길",
+        "xy_km": [
+          137.72,
+          123.58
+        ],
+        "pixels": [
+          1044.2768166089993,
+          621.9377162629768
+        ],
+        "status": "existing_detail_candidate"
+      },
+      {
+        "id": "A10",
+        "name": "숲길 갈림턱",
+        "xy_km": [
+          137.5,
+          123.97
+        ],
+        "pixels": [
+          980.6366782006952,
+          509.1211072664369
+        ],
+        "status": "existing_detail_candidate"
+      }
+    ],
+    "prompt": "Use case: sketch-to-render. Make ONE realistic straight-down aerial local game map terrain plate for 타르넬 (T01), a river timber assembly town, lumber drying yards and loading wharves. Input 1 is the local geographic guide, exact north-up framing: green is land, blue is sea and river; the wide gray-brown oval is a proposed built-up neighborhood, NOT an oval wall or ring road; tan fine lines are route corridors; small beige squares indicate existing facility locations. Transform all schematic marks into natural terrain and actual rooftops. Keep coastline and main river centerlines and road entries at precisely the shown positions; no extra river through the town if none exists in the guide. Input 2 is Veles approved STYLE ONLY: maintain its strict vertical nadir overhead view, muted olive canopy, gray-brown rock, dark teal water, grounded rural medieval timber/stone construction and realistic scale. The scene covers 5.78 km horizontally; show a modest market town with many small roofs, yards and surrounding fields without making buildings giant. No perspective, horizon, facades, trunks, cave-front arches, dollhouse or miniature models. Read roofs and forest canopy only. Add plausible paths, natural vegetation, subtle relief and practical land use appropriate to the described role. Keep the water/land configuration from input1, do not copy Veles river bend if different. No text, labels, letters, numbers, map symbols, dots, leader lines, legend, border or UI. Wide 2:1 image. This is a new visual layout proposal; known facility markers will be overlaid separately from source coordinates."
+  },
+  {
+    "id": "T02",
+    "name": "미레바",
+    "kind": "town",
+    "xy_km": [
+      37,
+      10
+    ],
+    "lon_lat_deg": [
+      -0.4322507620916614,
+      54.08866472076582
+    ],
+    "polity": "tern",
+    "parent": null,
+    "terrain": "central",
+    "position_source": "T02",
+    "status": "visual_detail_candidate_not_canon",
+    "role": "basin market town, produce yards and repair workshops",
+    "bounds_xy_km": [
+      34.2,
+      8.6,
+      39.8,
+      11.4
+    ],
+    "center_xy_km": [
+      37,
+      10
+    ],
+    "width_km": 5.6,
+    "height_km": 2.8,
+    "guide": "<repository>/output/imagegen/ignis-connected-atlas-20261109/guides/T02.png",
+    "details": [],
+    "prompt": "Use case: sketch-to-render. Make ONE realistic straight-down aerial local game map terrain plate for 미레바 (T02), a basin market town, produce yards and repair workshops. Input 1 is the local geographic guide, exact north-up framing: green is land, blue is sea and river; the wide gray-brown oval is a proposed built-up neighborhood, NOT an oval wall or ring road; tan fine lines are route corridors; small beige squares indicate existing facility locations. Transform all schematic marks into natural terrain and actual rooftops. Keep coastline and main river centerlines and road entries at precisely the shown positions; no extra river through the town if none exists in the guide. Input 2 is Veles approved STYLE ONLY: maintain its strict vertical nadir overhead view, muted olive canopy, gray-brown rock, dark teal water, grounded rural medieval timber/stone construction and realistic scale. The scene covers 5.60 km horizontally; show a modest market town with many small roofs, yards and surrounding fields without making buildings giant. No perspective, horizon, facades, trunks, cave-front arches, dollhouse or miniature models. Read roofs and forest canopy only. Add plausible paths, natural vegetation, subtle relief and practical land use appropriate to the described role. Keep the water/land configuration from input1, do not copy Veles river bend if different. No text, labels, letters, numbers, map symbols, dots, leader lines, legend, border or UI. Wide 2:1 image. This is a new visual layout proposal; known facility markers will be overlaid separately from source coordinates."
+  },
+  {
+    "id": "T03",
+    "name": "오르센",
+    "kind": "town",
+    "xy_km": [
+      45,
+      -35
+    ],
+    "lon_lat_deg": [
+      -0.31616192376838015,
+      53.68304729673721
+    ],
+    "polity": "tern",
+    "parent": null,
+    "terrain": "central",
+    "position_source": "T03",
+    "status": "visual_detail_candidate_not_canon",
+    "role": "downriver grain storage town with granaries and cultivated fields",
+    "bounds_xy_km": [
+      42.2,
+      -36.4,
+      47.8,
+      -33.6
+    ],
+    "center_xy_km": [
+      45,
+      -35
+    ],
+    "width_km": 5.6,
+    "height_km": 2.8,
+    "guide": "<repository>/output/imagegen/ignis-connected-atlas-20261109/guides/T03.png",
+    "details": [],
+    "prompt": "Use case: sketch-to-render. Make ONE realistic straight-down aerial local game map terrain plate for 오르센 (T03), a downriver grain storage town with granaries and cultivated fields. Input 1 is the local geographic guide, exact north-up framing: green is land, blue is sea and river; the wide gray-brown oval is a proposed built-up neighborhood, NOT an oval wall or ring road; tan fine lines are route corridors; small beige squares indicate existing facility locations. Transform all schematic marks into natural terrain and actual rooftops. Keep coastline and main river centerlines and road entries at precisely the shown positions; no extra river through the town if none exists in the guide. Input 2 is Veles approved STYLE ONLY: maintain its strict vertical nadir overhead view, muted olive canopy, gray-brown rock, dark teal water, grounded rural medieval timber/stone construction and realistic scale. The scene covers 5.60 km horizontally; show a modest market town with many small roofs, yards and surrounding fields without making buildings giant. No perspective, horizon, facades, trunks, cave-front arches, dollhouse or miniature models. Read roofs and forest canopy only. Add plausible paths, natural vegetation, subtle relief and practical land use appropriate to the described role. Keep the water/land configuration from input1, do not copy Veles river bend if different. No text, labels, letters, numbers, map symbols, dots, leader lines, legend, border or UI. Wide 2:1 image. This is a new visual layout proposal; known facility markers will be overlaid separately from source coordinates."
+  },
+  {
+    "id": "T04",
+    "name": "켈바",
+    "kind": "town",
+    "xy_km": [
+      -890.3430271555216,
+      200.3333881209349
+    ],
+    "lon_lat_deg": [
+      -15.0633803141663,
+      55
+    ],
+    "polity": "west",
+    "parent": null,
+    "terrain": "east_valley_entry",
+    "position_source": "outer_candidate",
+    "status": "visual_detail_candidate_not_canon",
+    "role": "valley water-management town at tributary junction with modest sluices and repair yards",
+    "bounds_xy_km": [
+      -894.0430271555216,
+      199.6833881209349,
+      -886.6430271555215,
+      203.38338812093488
+    ],
+    "center_xy_km": [
+      -890.3430271555216,
+      201.5333881209349
+    ],
+    "width_km": 7.400000000000011,
+    "height_km": 3.7000000000000055,
+    "guide": "<repository>/output/imagegen/ignis-connected-atlas-20261109/guides/T04.png",
+    "details": [
+      {
+        "id": "K01",
+        "name": "수문도시 공공 마당",
+        "xy_km": [
+          -889.9430271555216,
+          200.4333881209349
+        ],
+        "pixels": [
+          926.3783783783821,
+          666.540540540537
+        ],
+        "status": "existing_detail_candidate"
+      },
+      {
+        "id": "K02",
+        "name": "주거·식수 저장단",
+        "xy_km": [
+          -889.8430271555216,
+          200.9833881209349
+        ],
+        "pixels": [
+          948.9729729729819,
+          542.2702702702644
+        ],
+        "status": "existing_detail_candidate"
+      },
+      {
+        "id": "K03",
+        "name": "물 배정 기록소",
+        "xy_km": [
+          -890.4430271555216,
+          200.9333881209349
+        ],
+        "pixels": [
+          813.4054054054094,
+          553.5675675675642
+        ],
+        "status": "existing_detail_candidate"
+      },
+      {
+        "id": "K04",
+        "name": "폐보온관과 작은 작업터",
+        "xy_km": [
+          -890.8430271555216,
+          201.5333881209349
+        ],
+        "pixels": [
+          723.0270270270363,
+          417.9999999999981
+        ],
+        "status": "existing_detail_candidate"
+      },
+      {
+        "id": "K05",
+        "name": "하안 짐 분리터",
+        "xy_km": [
+          -891.2430271555215,
+          201.9333881209349
+        ],
+        "pixels": [
+          632.6486486486632,
+          327.62162162161854
+        ],
+        "status": "existing_detail_candidate"
+      },
+      {
+        "id": "K06",
+        "name": "윗샘 지류 취수 관리턱",
+        "xy_km": [
+          -892.1230271555215,
+          202.4333881209349
+        ],
+        "pixels": [
+          433.816216216232,
+          214.64864864864575
+        ],
+        "status": "existing_detail_candidate"
+      },
+      {
+        "id": "K07",
+        "name": "옛 돌 저장터",
+        "xy_km": [
+          -891.1430271555215,
+          202.7333881209349
+        ],
+        "pixels": [
+          655.2432432432628,
+          146.86486486485953
+        ],
+        "status": "existing_detail_candidate"
+      },
+      {
+        "id": "K08",
+        "name": "옛 장례단",
+        "xy_km": [
+          -890.2430271555215,
+          202.5333881209349
+        ],
+        "pixels": [
+          858.5945945946087,
+          192.0540540540525
+        ],
+        "status": "existing_detail_candidate"
+      },
+      {
+        "id": "K09",
+        "name": "폐계약 공구대",
+        "xy_km": [
+          -889.9430271555216,
+          201.7333881209349
+        ],
+        "pixels": [
+          926.3783783783821,
+          372.8108108108051
+        ],
+        "status": "existing_detail_candidate"
+      },
+      {
+        "id": "K10",
+        "name": "높은 농로 쉼터",
+        "xy_km": [
+          -889.5430271555216,
+          201.1833881209349
+        ],
+        "pixels": [
+          1016.7567567567553,
+          497.08108108107774
+        ],
+        "status": "existing_detail_candidate"
+      }
+    ],
+    "prompt": "Use case: sketch-to-render. Make ONE realistic straight-down aerial local game map terrain plate for 켈바 (T04), a valley water-management town at tributary junction with modest sluices and repair yards. Input 1 is the local geographic guide, exact north-up framing: green is land, blue is sea and river; the wide gray-brown oval is a proposed built-up neighborhood, NOT an oval wall or ring road; tan fine lines are route corridors; small beige squares indicate existing facility locations. Transform all schematic marks into natural terrain and actual rooftops. Keep coastline and main river centerlines and road entries at precisely the shown positions; no extra river through the town if none exists in the guide. Input 2 is Veles approved STYLE ONLY: maintain its strict vertical nadir overhead view, muted olive canopy, gray-brown rock, dark teal water, grounded rural medieval timber/stone construction and realistic scale. The scene covers 7.40 km horizontally; show a modest market town with many small roofs, yards and surrounding fields without making buildings giant. No perspective, horizon, facades, trunks, cave-front arches, dollhouse or miniature models. Read roofs and forest canopy only. Add plausible paths, natural vegetation, subtle relief and practical land use appropriate to the described role. Keep the water/land configuration from input1, do not copy Veles river bend if different. No text, labels, letters, numbers, map symbols, dots, leader lines, legend, border or UI. Wide 2:1 image. This is a new visual layout proposal; known facility markers will be overlaid separately from source coordinates."
+  },
+  {
+    "id": "T05",
+    "name": "드라벤",
+    "kind": "town",
+    "xy_km": [
+      -2042.566363225762,
+      550.0494071750638
+    ],
+    "lon_lat_deg": [
+      -33.89260570687415,
+      54.550000000000004
+    ],
+    "polity": "west",
+    "parent": null,
+    "terrain": "west_valley_below_pass",
+    "position_source": "outer_candidate",
+    "status": "visual_detail_candidate_not_canon",
+    "role": "highland wagon-transfer market town, pack-animal yards and cart workshops",
+    "bounds_xy_km": [
+      -2045.366363225762,
+      548.6494071750639,
+      -2039.766363225762,
+      551.4494071750638
+    ],
+    "center_xy_km": [
+      -2042.566363225762,
+      550.0494071750638
+    ],
+    "width_km": 5.6,
+    "height_km": 2.8,
+    "guide": "<repository>/output/imagegen/ignis-connected-atlas-20261109/guides/T05.png",
+    "details": [],
+    "prompt": "Use case: sketch-to-render. Make ONE realistic straight-down aerial local game map terrain plate for 드라벤 (T05), a highland wagon-transfer market town, pack-animal yards and cart workshops. Input 1 is the local geographic guide, exact north-up framing: green is land, blue is sea and river; the wide gray-brown oval is a proposed built-up neighborhood, NOT an oval wall or ring road; tan fine lines are route corridors; small beige squares indicate existing facility locations. Transform all schematic marks into natural terrain and actual rooftops. Keep coastline and main river centerlines and road entries at precisely the shown positions; no extra river through the town if none exists in the guide. Input 2 is Veles approved STYLE ONLY: maintain its strict vertical nadir overhead view, muted olive canopy, gray-brown rock, dark teal water, grounded rural medieval timber/stone construction and realistic scale. The scene covers 5.60 km horizontally; show a modest market town with many small roofs, yards and surrounding fields without making buildings giant. No perspective, horizon, facades, trunks, cave-front arches, dollhouse or miniature models. Read roofs and forest canopy only. Add plausible paths, natural vegetation, subtle relief and practical land use appropriate to the described role. Keep the water/land configuration from input1, do not copy Veles river bend if different. No text, labels, letters, numbers, map symbols, dots, leader lines, legend, border or UI. Wide 2:1 image. This is a new visual layout proposal; known facility markers will be overlaid separately from source coordinates."
+  },
+  {
+    "id": "T06",
+    "name": "살레크",
+    "kind": "town",
+    "xy_km": [
+      -3276.6510507913813,
+      -452.11380244250523
+    ],
+    "lon_lat_deg": [
+      -42.03442301644434,
+      41.48028530137359
+    ],
+    "polity": "west_treaty",
+    "parent": null,
+    "terrain": "coastal_terrace",
+    "position_source": "outer_candidate",
+    "status": "visual_detail_candidate_not_canon",
+    "role": "southwest coastal fishing-market town with fish-drying yards",
+    "bounds_xy_km": [
+      -3280.173839161863,
+      -454.8742747090056,
+      -3270.173839161863,
+      -449.8742747090056
+    ],
+    "center_xy_km": [
+      -3275.173839161863,
+      -452.3742747090056
+    ],
+    "width_km": 10,
+    "height_km": 5,
+    "guide": "<repository>/output/imagegen/ignis-connected-atlas-20261109/guides/T06.png",
+    "details": [],
+    "prompt": "Use case: sketch-to-render. Make ONE realistic straight-down aerial local game map terrain plate for 살레크 (T06), a southwest coastal fishing-market town with fish-drying yards. Input 1 is the local geographic guide, exact north-up framing: green is land, blue is sea and river; the wide gray-brown oval is a proposed built-up neighborhood, NOT an oval wall or ring road; tan fine lines are route corridors; small beige squares indicate existing facility locations. Transform all schematic marks into natural terrain and actual rooftops. Keep coastline and main river centerlines and road entries at precisely the shown positions; no extra river through the town if none exists in the guide. Input 2 is Veles approved STYLE ONLY: maintain its strict vertical nadir overhead view, muted olive canopy, gray-brown rock, dark teal water, grounded rural medieval timber/stone construction and realistic scale. The scene covers 10.00 km horizontally; show a modest market town with many small roofs, yards and surrounding fields without making buildings giant. No perspective, horizon, facades, trunks, cave-front arches, dollhouse or miniature models. Read roofs and forest canopy only. Add plausible paths, natural vegetation, subtle relief and practical land use appropriate to the described role. Keep the water/land configuration from input1, do not copy Veles river bend if different. No text, labels, letters, numbers, map symbols, dots, leader lines, legend, border or UI. Wide 2:1 image. This is a new visual layout proposal; known facility markers will be overlaid separately from source coordinates."
+  },
+  {
+    "id": "T07",
+    "name": "메르사",
+    "kind": "town",
+    "xy_km": [
+      1234.242555079002,
+      -752.7680848574923
+    ],
+    "lon_lat_deg": [
+      15.063380314166269,
+      46.000000000000014
+    ],
+    "polity": "east",
+    "parent": null,
+    "terrain": "grain_road",
+    "position_source": "outer_candidate",
+    "status": "visual_detail_candidate_not_canon",
+    "role": "inland seed and grain collection town at edge of fertile plain",
+    "bounds_xy_km": [
+      1231.442555079002,
+      -754.1680848574923,
+      1237.0425550790019,
+      -751.3680848574924
+    ],
+    "center_xy_km": [
+      1234.242555079002,
+      -752.7680848574923
+    ],
+    "width_km": 5.6,
+    "height_km": 2.8,
+    "guide": "<repository>/output/imagegen/ignis-connected-atlas-20261109/guides/T07.png",
+    "details": [],
+    "prompt": "Use case: sketch-to-render. Make ONE realistic straight-down aerial local game map terrain plate for 메르사 (T07), a inland seed and grain collection town at edge of fertile plain. Input 1 is the local geographic guide, exact north-up framing: green is land, blue is sea and river; the wide gray-brown oval is a proposed built-up neighborhood, NOT an oval wall or ring road; tan fine lines are route corridors; small beige squares indicate existing facility locations. Transform all schematic marks into natural terrain and actual rooftops. Keep coastline and main river centerlines and road entries at precisely the shown positions; no extra river through the town if none exists in the guide. Input 2 is Veles approved STYLE ONLY: maintain its strict vertical nadir overhead view, muted olive canopy, gray-brown rock, dark teal water, grounded rural medieval timber/stone construction and realistic scale. The scene covers 5.60 km horizontally; show a modest market town with many small roofs, yards and surrounding fields without making buildings giant. No perspective, horizon, facades, trunks, cave-front arches, dollhouse or miniature models. Read roofs and forest canopy only. Add plausible paths, natural vegetation, subtle relief and practical land use appropriate to the described role. Keep the water/land configuration from input1, do not copy Veles river bend if different. No text, labels, letters, numbers, map symbols, dots, leader lines, legend, border or UI. Wide 2:1 image. This is a new visual layout proposal; known facility markers will be overlaid separately from source coordinates."
+  },
+  {
+    "id": "T08",
+    "name": "에스칼",
+    "kind": "town",
+    "xy_km": [
+      2228.776414958394,
+      475.8503179346188
+    ],
+    "lon_lat_deg": [
+      33.89260570687415,
+      53.20000000000001
+    ],
+    "polity": "east",
+    "parent": null,
+    "terrain": "east_draining_forest",
+    "position_source": "outer_candidate",
+    "status": "visual_detail_candidate_not_canon",
+    "role": "eastern forest timber processing town with lumber seasoning yards",
+    "bounds_xy_km": [
+      2225.976414958394,
+      474.4503179346188,
+      2231.5764149583943,
+      477.25031793461875
+    ],
+    "center_xy_km": [
+      2228.776414958394,
+      475.8503179346188
+    ],
+    "width_km": 5.6,
+    "height_km": 2.8,
+    "guide": "<repository>/output/imagegen/ignis-connected-atlas-20261109/guides/T08.png",
+    "details": [],
+    "prompt": "Use case: sketch-to-render. Make ONE realistic straight-down aerial local game map terrain plate for 에스칼 (T08), a eastern forest timber processing town with lumber seasoning yards. Input 1 is the local geographic guide, exact north-up framing: green is land, blue is sea and river; the wide gray-brown oval is a proposed built-up neighborhood, NOT an oval wall or ring road; tan fine lines are route corridors; small beige squares indicate existing facility locations. Transform all schematic marks into natural terrain and actual rooftops. Keep coastline and main river centerlines and road entries at precisely the shown positions; no extra river through the town if none exists in the guide. Input 2 is Veles approved STYLE ONLY: maintain its strict vertical nadir overhead view, muted olive canopy, gray-brown rock, dark teal water, grounded rural medieval timber/stone construction and realistic scale. The scene covers 5.60 km horizontally; show a modest market town with many small roofs, yards and surrounding fields without making buildings giant. No perspective, horizon, facades, trunks, cave-front arches, dollhouse or miniature models. Read roofs and forest canopy only. Add plausible paths, natural vegetation, subtle relief and practical land use appropriate to the described role. Keep the water/land configuration from input1, do not copy Veles river bend if different. No text, labels, letters, numbers, map symbols, dots, leader lines, legend, border or UI. Wide 2:1 image. This is a new visual layout proposal; known facility markers will be overlaid separately from source coordinates."
+  },
+  {
+    "id": "T09",
+    "name": "루세아",
+    "kind": "town",
+    "xy_km": [
+      2996.5653615724295,
+      -1723.98245293493
+    ],
+    "lon_lat_deg": [
+      31.18394484039485,
+      32.763206968188406
+    ],
+    "polity": "east",
+    "parent": null,
+    "terrain": "coastal_terrace",
+    "position_source": "outer_candidate",
+    "status": "visual_detail_candidate_not_canon",
+    "role": "southeast coastal supply and boat-repair town",
+    "bounds_xy_km": [
+      2992.3153615724295,
+      -1727.7814910406069,
+      3002.3153615724295,
+      -1722.7814910406069
+    ],
+    "center_xy_km": [
+      2997.3153615724295,
+      -1725.2814910406069
+    ],
+    "width_km": 10,
+    "height_km": 5,
+    "guide": "<repository>/output/imagegen/ignis-connected-atlas-20261109/guides/T09.png",
+    "details": [],
+    "prompt": "Use case: sketch-to-render. Make ONE realistic straight-down aerial local game map terrain plate for 루세아 (T09), a southeast coastal supply and boat-repair town. Input 1 is the local geographic guide, exact north-up framing: green is land, blue is sea and river; the wide gray-brown oval is a proposed built-up neighborhood, NOT an oval wall or ring road; tan fine lines are route corridors; small beige squares indicate existing facility locations. Transform all schematic marks into natural terrain and actual rooftops. Keep coastline and main river centerlines and road entries at precisely the shown positions; no extra river through the town if none exists in the guide. Input 2 is Veles approved STYLE ONLY: maintain its strict vertical nadir overhead view, muted olive canopy, gray-brown rock, dark teal water, grounded rural medieval timber/stone construction and realistic scale. The scene covers 10.00 km horizontally; show a modest market town with many small roofs, yards and surrounding fields without making buildings giant. No perspective, horizon, facades, trunks, cave-front arches, dollhouse or miniature models. Read roofs and forest canopy only. Add plausible paths, natural vegetation, subtle relief and practical land use appropriate to the described role. Keep the water/land configuration from input1, do not copy Veles river bend if different. No text, labels, letters, numbers, map symbols, dots, leader lines, legend, border or UI. Wide 2:1 image. This is a new visual layout proposal; known facility markers will be overlaid separately from source coordinates."
+  },
+  {
+    "id": "T10",
+    "name": "네르바",
+    "kind": "town",
+    "xy_km": [
+      -205.9529376219892,
+      909.001952106139
+    ],
+    "lon_lat_deg": [
+      -4.953807396066772,
+      62.12747582849426
+    ],
+    "polity": "north",
+    "parent": "M07",
+    "terrain": "lower_valley",
+    "position_source": "outer_candidate",
+    "status": "visual_detail_candidate_not_canon",
+    "role": "northern valley winter-storage town with barns and sheltered houses",
+    "bounds_xy_km": [
+      -209.0529376219893,
+      908.151952106139,
+      -202.85293762198913,
+      911.2519521061391
+    ],
+    "center_xy_km": [
+      -205.9529376219892,
+      909.7019521061391
+    ],
+    "width_km": 6.200000000000136,
+    "height_km": 3.100000000000068,
+    "guide": "<repository>/output/imagegen/ignis-connected-atlas-20261109/guides/T10.png",
+    "details": [
+      {
+        "id": "N01",
+        "name": "도시 서안 하역뜰",
+        "xy_km": [
+          -206.3529376219892,
+          908.801952106139
+        ],
+        "pixels": [
+          728.1290322580685,
+          660.7096774193833
+        ],
+        "status": "existing_detail_candidate"
+      },
+      {
+        "id": "N02",
+        "name": "비축·공동 취사단",
+        "xy_km": [
+          -206.75293762198922,
+          909.301952106139
+        ],
+        "pixels": [
+          620.2580645161338,
+          525.8709677419669
+        ],
+        "status": "existing_detail_candidate"
+      },
+      {
+        "id": "N03",
+        "name": "침엽림 짐 회수터",
+        "xy_km": [
+          -207.1529376219892,
+          909.901952106139
+        ],
+        "pixels": [
+          512.3870967742068,
+          364.0645161290611
+        ],
+        "status": "existing_detail_candidate"
+      },
+      {
+        "id": "N04",
+        "name": "옛 순찰 표식",
+        "xy_km": [
+          -207.4529376219892,
+          910.4519521061391
+        ],
+        "pixels": [
+          431.4838709677539,
+          215.74193548388462
+        ],
+        "status": "existing_detail_candidate"
+      },
+      {
+        "id": "N05",
+        "name": "숲 가장자리 대피집",
+        "xy_km": [
+          -206.6529376219892,
+          910.601952106139
+        ],
+        "pixels": [
+          647.2258064516232,
+          175.29032258066584
+        ],
+        "status": "existing_detail_candidate"
+      },
+      {
+        "id": "N06",
+        "name": "높은 귀환 농로",
+        "xy_km": [
+          -206.3029376219892,
+          909.851952106139
+        ],
+        "pixels": [
+          741.6129032258132,
+          377.5483870967904
+        ],
+        "status": "existing_detail_candidate"
+      }
+    ],
+    "prompt": "Use case: sketch-to-render. Make ONE realistic straight-down aerial local game map terrain plate for 네르바 (T10), a northern valley winter-storage town with barns and sheltered houses. Input 1 is the local geographic guide, exact north-up framing: green is land, blue is sea and river; the wide gray-brown oval is a proposed built-up neighborhood, NOT an oval wall or ring road; tan fine lines are route corridors; small beige squares indicate existing facility locations. Transform all schematic marks into natural terrain and actual rooftops. Keep coastline and main river centerlines and road entries at precisely the shown positions; no extra river through the town if none exists in the guide. Input 2 is Veles approved STYLE ONLY: maintain its strict vertical nadir overhead view, muted olive canopy, gray-brown rock, dark teal water, grounded rural medieval timber/stone construction and realistic scale. The scene covers 6.20 km horizontally; show a modest market town with many small roofs, yards and surrounding fields without making buildings giant. No perspective, horizon, facades, trunks, cave-front arches, dollhouse or miniature models. Read roofs and forest canopy only. Add plausible paths, natural vegetation, subtle relief and practical land use appropriate to the described role. Keep the water/land configuration from input1, do not copy Veles river bend if different. No text, labels, letters, numbers, map symbols, dots, leader lines, legend, border or UI. Wide 2:1 image. This is a new visual layout proposal; known facility markers will be overlaid separately from source coordinates."
+  },
+  {
+    "id": "T11",
+    "name": "케르딘",
+    "kind": "town",
+    "xy_km": [
+      -265.95293762198924,
+      1219.001952106139
+    ],
+    "lon_lat_deg": [
+      -6.609589811325755,
+      64.87177674492295
+    ],
+    "polity": "north",
+    "parent": "M07",
+    "terrain": "valley_below_high_pass",
+    "position_source": "outer_candidate",
+    "status": "visual_detail_candidate_not_canon",
+    "role": "inhabited pass-market town with guide lodges and pack-animal yards, below snowline",
+    "bounds_xy_km": [
+      -268.75293762198925,
+      1217.601952106139,
+      -263.1529376219892,
+      1220.401952106139
+    ],
+    "center_xy_km": [
+      -265.95293762198924,
+      1219.001952106139
+    ],
+    "width_km": 5.6,
+    "height_km": 2.8,
+    "guide": "<repository>/output/imagegen/ignis-connected-atlas-20261109/guides/T11.png",
+    "details": [],
+    "prompt": "Use case: sketch-to-render. Make ONE realistic straight-down aerial local game map terrain plate for 케르딘 (T11), a inhabited pass-market town with guide lodges and pack-animal yards, below snowline. Input 1 is the local geographic guide, exact north-up framing: green is land, blue is sea and river; the wide gray-brown oval is a proposed built-up neighborhood, NOT an oval wall or ring road; tan fine lines are route corridors; small beige squares indicate existing facility locations. Transform all schematic marks into natural terrain and actual rooftops. Keep coastline and main river centerlines and road entries at precisely the shown positions; no extra river through the town if none exists in the guide. Input 2 is Veles approved STYLE ONLY: maintain its strict vertical nadir overhead view, muted olive canopy, gray-brown rock, dark teal water, grounded rural medieval timber/stone construction and realistic scale. The scene covers 5.60 km horizontally; show a modest market town with many small roofs, yards and surrounding fields without making buildings giant. No perspective, horizon, facades, trunks, cave-front arches, dollhouse or miniature models. Read roofs and forest canopy only. Add plausible paths, natural vegetation, subtle relief and practical land use appropriate to the described role. Keep the water/land configuration from input1, do not copy Veles river bend if different. No text, labels, letters, numbers, map symbols, dots, leader lines, legend, border or UI. Wide 2:1 image. This is a new visual layout proposal; known facility markers will be overlaid separately from source coordinates."
+  },
+  {
+    "id": "T12",
+    "name": "울렌",
+    "kind": "town",
+    "xy_km": [
+      -550.9529376219892,
+      1139.001952106139
+    ],
+    "lon_lat_deg": [
+      -12.245021357605813,
+      63.8396248638379
+    ],
+    "polity": "north_treaty",
+    "parent": "M07",
+    "terrain": "sheltered_branch_valley",
+    "position_source": "outer_candidate",
+    "status": "visual_detail_candidate_not_canon",
+    "role": "northwestern pastoral market town with wool yards and meadows",
+    "bounds_xy_km": [
+      -553.7529376219892,
+      1137.601952106139,
+      -548.1529376219893,
+      1140.401952106139
+    ],
+    "center_xy_km": [
+      -550.9529376219892,
+      1139.001952106139
+    ],
+    "width_km": 5.6,
+    "height_km": 2.8,
+    "guide": "<repository>/output/imagegen/ignis-connected-atlas-20261109/guides/T12.png",
+    "details": [],
+    "prompt": "Use case: sketch-to-render. Make ONE realistic straight-down aerial local game map terrain plate for 울렌 (T12), a northwestern pastoral market town with wool yards and meadows. Input 1 is the local geographic guide, exact north-up framing: green is land, blue is sea and river; the wide gray-brown oval is a proposed built-up neighborhood, NOT an oval wall or ring road; tan fine lines are route corridors; small beige squares indicate existing facility locations. Transform all schematic marks into natural terrain and actual rooftops. Keep coastline and main river centerlines and road entries at precisely the shown positions; no extra river through the town if none exists in the guide. Input 2 is Veles approved STYLE ONLY: maintain its strict vertical nadir overhead view, muted olive canopy, gray-brown rock, dark teal water, grounded rural medieval timber/stone construction and realistic scale. The scene covers 5.60 km horizontally; show a modest market town with many small roofs, yards and surrounding fields without making buildings giant. No perspective, horizon, facades, trunks, cave-front arches, dollhouse or miniature models. Read roofs and forest canopy only. Add plausible paths, natural vegetation, subtle relief and practical land use appropriate to the described role. Keep the water/land configuration from input1, do not copy Veles river bend if different. No text, labels, letters, numbers, map symbols, dots, leader lines, legend, border or UI. Wide 2:1 image. This is a new visual layout proposal; known facility markers will be overlaid separately from source coordinates."
+  },
+  {
+    "id": "V01",
+    "name": "벨레스",
+    "kind": "village",
+    "xy_km": [
+      150,
+      145
+    ],
+    "lon_lat_deg": [
+      1.3706119778145285,
+      55.28227997171035
+    ],
+    "polity": "trade_agreement_unsettled",
+    "parent": null,
+    "terrain": "central",
+    "position_source": "veles",
+    "reuse": "Docs/ArtDirection/EtherWorldMap/Images/veles-map-ui-unified-v2.png",
+    "status": "approved_v2_reference"
+  },
+  {
+    "id": "V02",
+    "name": "솔숨",
+    "kind": "village",
+    "xy_km": [
+      154,
+      151
+    ],
+    "lon_lat_deg": [
+      1.4370761310058986,
+      55.33501461125799
+    ],
+    "polity": "tern",
+    "parent": null,
+    "terrain": "central",
+    "position_source": "V02",
+    "status": "visual_detail_candidate_not_canon",
+    "role": "small woodland settlement tending ancient trees and sorting natural ether, small plots, no giant fantasy crystal",
+    "bounds_xy_km": [
+      152.2,
+      150.1,
+      155.8,
+      151.9
+    ],
+    "center_xy_km": [
+      154,
+      151
+    ],
+    "width_km": 3.6,
+    "height_km": 1.8,
+    "guide": "<repository>/output/imagegen/ignis-connected-atlas-20261109/guides/V02.png",
+    "details": [],
+    "prompt": "Use case: sketch-to-render. Make ONE realistic straight-down aerial local game map terrain plate for 솔숨 (V02), a small woodland settlement tending ancient trees and sorting natural ether, small plots, no giant fantasy crystal. Input 1 is the local geographic guide, exact north-up framing: green is land, blue is sea and river; the wide gray-brown oval is a proposed built-up neighborhood, NOT an oval wall or ring road; tan fine lines are route corridors; small beige squares indicate existing facility locations. Transform all schematic marks into natural terrain and actual rooftops. Keep coastline and main river centerlines and road entries at precisely the shown positions; no extra river through the town if none exists in the guide. Input 2 is Veles approved STYLE ONLY: maintain its strict vertical nadir overhead view, muted olive canopy, gray-brown rock, dark teal water, grounded rural medieval timber/stone construction and realistic scale. The scene covers 3.60 km horizontally; show a small village or hamlet with a few dozen small roofs and a large surrounding landscape without making buildings giant. No perspective, horizon, facades, trunks, cave-front arches, dollhouse or miniature models. Read roofs and forest canopy only. Add plausible paths, natural vegetation, subtle relief and practical land use appropriate to the described role. Keep the water/land configuration from input1, do not copy Veles river bend if different. No text, labels, letters, numbers, map symbols, dots, leader lines, legend, border or UI. Wide 2:1 image. This is a new visual layout proposal; known facility markers will be overlaid separately from source coordinates."
+  },
+  {
+    "id": "V03",
+    "name": "들보리",
+    "kind": "village",
+    "xy_km": [
+      140,
+      137
+    ],
+    "lon_lat_deg": [
+      1.208695864179934,
+      55.21324910240429
+    ],
+    "polity": "tern",
+    "parent": null,
+    "terrain": "central",
+    "position_source": "V03",
+    "status": "visual_detail_candidate_not_canon",
+    "role": "small barley farming village, vegetable gardens and seed storage",
+    "bounds_xy_km": [
+      138.2,
+      136.1,
+      141.8,
+      137.9
+    ],
+    "center_xy_km": [
+      140,
+      137
+    ],
+    "width_km": 3.6,
+    "height_km": 1.8,
+    "guide": "<repository>/output/imagegen/ignis-connected-atlas-20261109/guides/V03.png",
+    "details": [],
+    "prompt": "Use case: sketch-to-render. Make ONE realistic straight-down aerial local game map terrain plate for 들보리 (V03), a small barley farming village, vegetable gardens and seed storage. Input 1 is the local geographic guide, exact north-up framing: green is land, blue is sea and river; the wide gray-brown oval is a proposed built-up neighborhood, NOT an oval wall or ring road; tan fine lines are route corridors; small beige squares indicate existing facility locations. Transform all schematic marks into natural terrain and actual rooftops. Keep coastline and main river centerlines and road entries at precisely the shown positions; no extra river through the town if none exists in the guide. Input 2 is Veles approved STYLE ONLY: maintain its strict vertical nadir overhead view, muted olive canopy, gray-brown rock, dark teal water, grounded rural medieval timber/stone construction and realistic scale. The scene covers 3.60 km horizontally; show a small village or hamlet with a few dozen small roofs and a large surrounding landscape without making buildings giant. No perspective, horizon, facades, trunks, cave-front arches, dollhouse or miniature models. Read roofs and forest canopy only. Add plausible paths, natural vegetation, subtle relief and practical land use appropriate to the described role. Keep the water/land configuration from input1, do not copy Veles river bend if different. No text, labels, letters, numbers, map symbols, dots, leader lines, legend, border or UI. Wide 2:1 image. This is a new visual layout proposal; known facility markers will be overlaid separately from source coordinates."
+  },
+  {
+    "id": "V04",
+    "name": "숲곁",
+    "kind": "village",
+    "xy_km": [
+      143,
+      143
+    ],
+    "lon_lat_deg": [
+      1.259042825035169,
+      55.26636127485317
+    ],
+    "polity": "tern",
+    "parent": null,
+    "terrain": "central",
+    "position_source": "V04",
+    "status": "visual_detail_candidate_not_canon",
+    "role": "small sustainable woodland logging village with timber yard and small fields",
+    "bounds_xy_km": [
+      141.2,
+      142.1,
+      144.8,
+      143.9
+    ],
+    "center_xy_km": [
+      143,
+      143
+    ],
+    "width_km": 3.6,
+    "height_km": 1.8,
+    "guide": "<repository>/output/imagegen/ignis-connected-atlas-20261109/guides/V04.png",
+    "details": [],
+    "prompt": "Use case: sketch-to-render. Make ONE realistic straight-down aerial local game map terrain plate for 숲곁 (V04), a small sustainable woodland logging village with timber yard and small fields. Input 1 is the local geographic guide, exact north-up framing: green is land, blue is sea and river; the wide gray-brown oval is a proposed built-up neighborhood, NOT an oval wall or ring road; tan fine lines are route corridors; small beige squares indicate existing facility locations. Transform all schematic marks into natural terrain and actual rooftops. Keep coastline and main river centerlines and road entries at precisely the shown positions; no extra river through the town if none exists in the guide. Input 2 is Veles approved STYLE ONLY: maintain its strict vertical nadir overhead view, muted olive canopy, gray-brown rock, dark teal water, grounded rural medieval timber/stone construction and realistic scale. The scene covers 3.60 km horizontally; show a small village or hamlet with a few dozen small roofs and a large surrounding landscape without making buildings giant. No perspective, horizon, facades, trunks, cave-front arches, dollhouse or miniature models. Read roofs and forest canopy only. Add plausible paths, natural vegetation, subtle relief and practical land use appropriate to the described role. Keep the water/land configuration from input1, do not copy Veles river bend if different. No text, labels, letters, numbers, map symbols, dots, leader lines, legend, border or UI. Wide 2:1 image. This is a new visual layout proposal; known facility markers will be overlaid separately from source coordinates."
+  },
+  {
+    "id": "V05",
+    "name": "윗샘",
+    "kind": "village",
+    "xy_km": [
+      -920.3430271555216,
+      235.3333881209349
+    ],
+    "lon_lat_deg": [
+      -15.637661903169494,
+      55.25276270512722
+    ],
+    "polity": "west",
+    "parent": "T04",
+    "terrain": "upper_intake",
+    "position_source": "outer_candidate",
+    "status": "visual_detail_candidate_not_canon",
+    "role": "small upstream water-maintenance village with pasture and terraced gardens",
+    "bounds_xy_km": [
+      -922.1430271555215,
+      234.4333881209349,
+      -918.5430271555216,
+      236.2333881209349
+    ],
+    "center_xy_km": [
+      -920.3430271555216,
+      235.3333881209349
+    ],
+    "width_km": 3.6,
+    "height_km": 1.8,
+    "guide": "<repository>/output/imagegen/ignis-connected-atlas-20261109/guides/V05.png",
+    "details": [],
+    "prompt": "Use case: sketch-to-render. Make ONE realistic straight-down aerial local game map terrain plate for 윗샘 (V05), a small upstream water-maintenance village with pasture and terraced gardens. Input 1 is the local geographic guide, exact north-up framing: green is land, blue is sea and river; the wide gray-brown oval is a proposed built-up neighborhood, NOT an oval wall or ring road; tan fine lines are route corridors; small beige squares indicate existing facility locations. Transform all schematic marks into natural terrain and actual rooftops. Keep coastline and main river centerlines and road entries at precisely the shown positions; no extra river through the town if none exists in the guide. Input 2 is Veles approved STYLE ONLY: maintain its strict vertical nadir overhead view, muted olive canopy, gray-brown rock, dark teal water, grounded rural medieval timber/stone construction and realistic scale. The scene covers 3.60 km horizontally; show a small village or hamlet with a few dozen small roofs and a large surrounding landscape without making buildings giant. No perspective, horizon, facades, trunks, cave-front arches, dollhouse or miniature models. Read roofs and forest canopy only. Add plausible paths, natural vegetation, subtle relief and practical land use appropriate to the described role. Keep the water/land configuration from input1, do not copy Veles river bend if different. No text, labels, letters, numbers, map symbols, dots, leader lines, legend, border or UI. Wide 2:1 image. This is a new visual layout proposal; known facility markers will be overlaid separately from source coordinates."
+  },
+  {
+    "id": "V06",
+    "name": "누마",
+    "kind": "village",
+    "xy_km": [
+      -1460.2733267209078,
+      489.34169769054535
+    ],
+    "lon_lat_deg": [
+      -25.045776589604543,
+      56.11930812329781
+    ],
+    "polity": "west",
+    "parent": "M04",
+    "terrain": "sheltered_plateau",
+    "position_source": "outer_candidate",
+    "status": "visual_detail_candidate_not_canon",
+    "role": "small highland dairy and wool village with fenced pasture",
+    "bounds_xy_km": [
+      -1462.0733267209077,
+      488.44169769054537,
+      -1458.4733267209078,
+      490.2416976905453
+    ],
+    "center_xy_km": [
+      -1460.2733267209078,
+      489.34169769054535
+    ],
+    "width_km": 3.6,
+    "height_km": 1.8,
+    "guide": "<repository>/output/imagegen/ignis-connected-atlas-20261109/guides/V06.png",
+    "details": [],
+    "prompt": "Use case: sketch-to-render. Make ONE realistic straight-down aerial local game map terrain plate for 누마 (V06), a small highland dairy and wool village with fenced pasture. Input 1 is the local geographic guide, exact north-up framing: green is land, blue is sea and river; the wide gray-brown oval is a proposed built-up neighborhood, NOT an oval wall or ring road; tan fine lines are route corridors; small beige squares indicate existing facility locations. Transform all schematic marks into natural terrain and actual rooftops. Keep coastline and main river centerlines and road entries at precisely the shown positions; no extra river through the town if none exists in the guide. Input 2 is Veles approved STYLE ONLY: maintain its strict vertical nadir overhead view, muted olive canopy, gray-brown rock, dark teal water, grounded rural medieval timber/stone construction and realistic scale. The scene covers 3.60 km horizontally; show a small village or hamlet with a few dozen small roofs and a large surrounding landscape without making buildings giant. No perspective, horizon, facades, trunks, cave-front arches, dollhouse or miniature models. Read roofs and forest canopy only. Add plausible paths, natural vegetation, subtle relief and practical land use appropriate to the described role. Keep the water/land configuration from input1, do not copy Veles river bend if different. No text, labels, letters, numbers, map symbols, dots, leader lines, legend, border or UI. Wide 2:1 image. This is a new visual layout proposal; known facility markers will be overlaid separately from source coordinates."
+  },
+  {
+    "id": "V07",
+    "name": "바람재",
+    "kind": "village",
+    "xy_km": [
+      -1405.2733267209078,
+      469.34169769054535
+    ],
+    "lon_lat_deg": [
+      -24.10104873326338,
+      56.11422932722882
+    ],
+    "polity": "west",
+    "parent": "M04",
+    "terrain": "sheltered_below_windmills",
+    "position_source": "outer_candidate",
+    "status": "visual_detail_candidate_not_canon",
+    "role": "small windy upland woodworking village with modest windmill roofs and repair sheds",
+    "bounds_xy_km": [
+      -1407.0733267209077,
+      468.44169769054537,
+      -1403.4733267209078,
+      470.2416976905453
+    ],
+    "center_xy_km": [
+      -1405.2733267209078,
+      469.34169769054535
+    ],
+    "width_km": 3.6,
+    "height_km": 1.8,
+    "guide": "<repository>/output/imagegen/ignis-connected-atlas-20261109/guides/V07.png",
+    "details": [],
+    "prompt": "Use case: sketch-to-render. Make ONE realistic straight-down aerial local game map terrain plate for 바람재 (V07), a small windy upland woodworking village with modest windmill roofs and repair sheds. Input 1 is the local geographic guide, exact north-up framing: green is land, blue is sea and river; the wide gray-brown oval is a proposed built-up neighborhood, NOT an oval wall or ring road; tan fine lines are route corridors; small beige squares indicate existing facility locations. Transform all schematic marks into natural terrain and actual rooftops. Keep coastline and main river centerlines and road entries at precisely the shown positions; no extra river through the town if none exists in the guide. Input 2 is Veles approved STYLE ONLY: maintain its strict vertical nadir overhead view, muted olive canopy, gray-brown rock, dark teal water, grounded rural medieval timber/stone construction and realistic scale. The scene covers 3.60 km horizontally; show a small village or hamlet with a few dozen small roofs and a large surrounding landscape without making buildings giant. No perspective, horizon, facades, trunks, cave-front arches, dollhouse or miniature models. Read roofs and forest canopy only. Add plausible paths, natural vegetation, subtle relief and practical land use appropriate to the described role. Keep the water/land configuration from input1, do not copy Veles river bend if different. No text, labels, letters, numbers, map symbols, dots, leader lines, legend, border or UI. Wide 2:1 image. This is a new visual layout proposal; known facility markers will be overlaid separately from source coordinates."
+  },
+  {
+    "id": "V08",
+    "name": "갈매",
+    "kind": "village",
+    "xy_km": [
+      -3263.0058320556363,
+      -414.54620476072546
+    ],
+    "lon_lat_deg": [
+      -42.11649810923252,
+      41.82211786936417
+    ],
+    "polity": "west_treaty",
+    "parent": null,
+    "terrain": "coastal_terrace",
+    "position_source": "outer_candidate",
+    "status": "visual_detail_candidate_not_canon",
+    "role": "small west coast fishing hamlet with drying racks and vegetable plots",
+    "bounds_xy_km": [
+      -3265.3067939499597,
+      -417.09620476072547,
+      -3258.10679394996,
+      -413.49620476072545
+    ],
+    "center_xy_km": [
+      -3261.70679394996,
+      -415.29620476072546
+    ],
+    "width_km": 7.2,
+    "height_km": 3.6,
+    "guide": "<repository>/output/imagegen/ignis-connected-atlas-20261109/guides/V08.png",
+    "details": [],
+    "prompt": "Use case: sketch-to-render. Make ONE realistic straight-down aerial local game map terrain plate for 갈매 (V08), a small west coast fishing hamlet with drying racks and vegetable plots. Input 1 is the local geographic guide, exact north-up framing: green is land, blue is sea and river; the wide gray-brown oval is a proposed built-up neighborhood, NOT an oval wall or ring road; tan fine lines are route corridors; small beige squares indicate existing facility locations. Transform all schematic marks into natural terrain and actual rooftops. Keep coastline and main river centerlines and road entries at precisely the shown positions; no extra river through the town if none exists in the guide. Input 2 is Veles approved STYLE ONLY: maintain its strict vertical nadir overhead view, muted olive canopy, gray-brown rock, dark teal water, grounded rural medieval timber/stone construction and realistic scale. The scene covers 7.20 km horizontally; show a small village or hamlet with a few dozen small roofs and a large surrounding landscape without making buildings giant. No perspective, horizon, facades, trunks, cave-front arches, dollhouse or miniature models. Read roofs and forest canopy only. Add plausible paths, natural vegetation, subtle relief and practical land use appropriate to the described role. Keep the water/land configuration from input1, do not copy Veles river bend if different. No text, labels, letters, numbers, map symbols, dots, leader lines, legend, border or UI. Wide 2:1 image. This is a new visual layout proposal; known facility markers will be overlaid separately from source coordinates."
+  },
+  {
+    "id": "V09",
+    "name": "씨앗골",
+    "kind": "village",
+    "xy_km": [
+      1269.242555079002,
+      -727.7680848574923
+    ],
+    "lon_lat_deg": [
+      15.574135752495177,
+      46.14879855775064
+    ],
+    "polity": "east",
+    "parent": "T07",
+    "terrain": "seed_fields",
+    "position_source": "outer_candidate",
+    "status": "visual_detail_candidate_not_canon",
+    "role": "small seed-keeping farming village with diverse small plots and communal granary",
+    "bounds_xy_km": [
+      1267.442555079002,
+      -728.6680848574923,
+      1271.0425550790019,
+      -726.8680848574924
+    ],
+    "center_xy_km": [
+      1269.242555079002,
+      -727.7680848574923
+    ],
+    "width_km": 3.6,
+    "height_km": 1.8,
+    "guide": "<repository>/output/imagegen/ignis-connected-atlas-20261109/guides/V09.png",
+    "details": [],
+    "prompt": "Use case: sketch-to-render. Make ONE realistic straight-down aerial local game map terrain plate for 씨앗골 (V09), a small seed-keeping farming village with diverse small plots and communal granary. Input 1 is the local geographic guide, exact north-up framing: green is land, blue is sea and river; the wide gray-brown oval is a proposed built-up neighborhood, NOT an oval wall or ring road; tan fine lines are route corridors; small beige squares indicate existing facility locations. Transform all schematic marks into natural terrain and actual rooftops. Keep coastline and main river centerlines and road entries at precisely the shown positions; no extra river through the town if none exists in the guide. Input 2 is Veles approved STYLE ONLY: maintain its strict vertical nadir overhead view, muted olive canopy, gray-brown rock, dark teal water, grounded rural medieval timber/stone construction and realistic scale. The scene covers 3.60 km horizontally; show a small village or hamlet with a few dozen small roofs and a large surrounding landscape without making buildings giant. No perspective, horizon, facades, trunks, cave-front arches, dollhouse or miniature models. Read roofs and forest canopy only. Add plausible paths, natural vegetation, subtle relief and practical land use appropriate to the described role. Keep the water/land configuration from input1, do not copy Veles river bend if different. No text, labels, letters, numbers, map symbols, dots, leader lines, legend, border or UI. Wide 2:1 image. This is a new visual layout proposal; known facility markers will be overlaid separately from source coordinates."
+  },
+  {
+    "id": "V10",
+    "name": "물나래",
+    "kind": "village",
+    "xy_km": [
+      2041.8396215333198,
+      -811.0727062591023
+    ],
+    "lon_lat_deg": [
+      24.669687768233537,
+      43.46475804727837
+    ],
+    "polity": "east",
+    "parent": "M08",
+    "terrain": "irrigated_terrace",
+    "position_source": "outer_candidate",
+    "status": "visual_detail_candidate_not_canon",
+    "role": "small inland irrigation farming village with narrow canals and communal waterworks",
+    "bounds_xy_km": [
+      2040.0396215333199,
+      -811.9727062591023,
+      2043.6396215333198,
+      -810.1727062591024
+    ],
+    "center_xy_km": [
+      2041.8396215333198,
+      -811.0727062591023
+    ],
+    "width_km": 3.6,
+    "height_km": 1.8,
+    "guide": "<repository>/output/imagegen/ignis-connected-atlas-20261109/guides/V10.png",
+    "details": [],
+    "prompt": "Use case: sketch-to-render. Make ONE realistic straight-down aerial local game map terrain plate for 물나래 (V10), a small inland irrigation farming village with narrow canals and communal waterworks. Input 1 is the local geographic guide, exact north-up framing: green is land, blue is sea and river; the wide gray-brown oval is a proposed built-up neighborhood, NOT an oval wall or ring road; tan fine lines are route corridors; small beige squares indicate existing facility locations. Transform all schematic marks into natural terrain and actual rooftops. Keep coastline and main river centerlines and road entries at precisely the shown positions; no extra river through the town if none exists in the guide. Input 2 is Veles approved STYLE ONLY: maintain its strict vertical nadir overhead view, muted olive canopy, gray-brown rock, dark teal water, grounded rural medieval timber/stone construction and realistic scale. The scene covers 3.60 km horizontally; show a small village or hamlet with a few dozen small roofs and a large surrounding landscape without making buildings giant. No perspective, horizon, facades, trunks, cave-front arches, dollhouse or miniature models. Read roofs and forest canopy only. Add plausible paths, natural vegetation, subtle relief and practical land use appropriate to the described role. Keep the water/land configuration from input1, do not copy Veles river bend if different. No text, labels, letters, numbers, map symbols, dots, leader lines, legend, border or UI. Wide 2:1 image. This is a new visual layout proposal; known facility markers will be overlaid separately from source coordinates."
+  },
+  {
+    "id": "V11",
+    "name": "긴솔",
+    "kind": "village",
+    "xy_km": [
+      2193.776414958394,
+      505.8503179346188
+    ],
+    "lon_lat_deg": [
+      33.63921372920631,
+      53.58042228672045
+    ],
+    "polity": "east",
+    "parent": "T08",
+    "terrain": "upper_ship_forest",
+    "position_source": "outer_candidate",
+    "status": "visual_detail_candidate_not_canon",
+    "role": "small ship-timber woodland village, young managed forest, sawpits and wood stacks",
+    "bounds_xy_km": [
+      2191.976414958394,
+      504.9503179346188,
+      2195.5764149583943,
+      506.75031793461875
+    ],
+    "center_xy_km": [
+      2193.776414958394,
+      505.8503179346188
+    ],
+    "width_km": 3.6,
+    "height_km": 1.8,
+    "guide": "<repository>/output/imagegen/ignis-connected-atlas-20261109/guides/V11.png",
+    "details": [],
+    "prompt": "Use case: sketch-to-render. Make ONE realistic straight-down aerial local game map terrain plate for 긴솔 (V11), a small ship-timber woodland village, young managed forest, sawpits and wood stacks. Input 1 is the local geographic guide, exact north-up framing: green is land, blue is sea and river; the wide gray-brown oval is a proposed built-up neighborhood, NOT an oval wall or ring road; tan fine lines are route corridors; small beige squares indicate existing facility locations. Transform all schematic marks into natural terrain and actual rooftops. Keep coastline and main river centerlines and road entries at precisely the shown positions; no extra river through the town if none exists in the guide. Input 2 is Veles approved STYLE ONLY: maintain its strict vertical nadir overhead view, muted olive canopy, gray-brown rock, dark teal water, grounded rural medieval timber/stone construction and realistic scale. The scene covers 3.60 km horizontally; show a small village or hamlet with a few dozen small roofs and a large surrounding landscape without making buildings giant. No perspective, horizon, facades, trunks, cave-front arches, dollhouse or miniature models. Read roofs and forest canopy only. Add plausible paths, natural vegetation, subtle relief and practical land use appropriate to the described role. Keep the water/land configuration from input1, do not copy Veles river bend if different. No text, labels, letters, numbers, map symbols, dots, leader lines, legend, border or UI. Wide 2:1 image. This is a new visual layout proposal; known facility markers will be overlaid separately from source coordinates."
+  },
+  {
+    "id": "V12",
+    "name": "청그물",
+    "kind": "village",
+    "xy_km": [
+      3708.3977467602954,
+      -106.39942917938025
+    ],
+    "lon_lat_deg": [
+      46.530141124596376,
+      41.775378231192484
+    ],
+    "polity": "east",
+    "parent": null,
+    "terrain": "coastal_terrace",
+    "position_source": "outer_candidate",
+    "status": "visual_detail_candidate_not_canon",
+    "role": "small east coast fishing and net-making hamlet",
+    "bounds_xy_km": [
+      3706.207285691474,
+      -107.68639896439174,
+      3713.407285691474,
+      -104.08639896439175
+    ],
+    "center_xy_km": [
+      3709.807285691474,
+      -105.88639896439174
+    ],
+    "width_km": 7.2,
+    "height_km": 3.6,
+    "guide": "<repository>/output/imagegen/ignis-connected-atlas-20261109/guides/V12.png",
+    "details": [],
+    "prompt": "Use case: sketch-to-render. Make ONE realistic straight-down aerial local game map terrain plate for 청그물 (V12), a small east coast fishing and net-making hamlet. Input 1 is the local geographic guide, exact north-up framing: green is land, blue is sea and river; the wide gray-brown oval is a proposed built-up neighborhood, NOT an oval wall or ring road; tan fine lines are route corridors; small beige squares indicate existing facility locations. Transform all schematic marks into natural terrain and actual rooftops. Keep coastline and main river centerlines and road entries at precisely the shown positions; no extra river through the town if none exists in the guide. Input 2 is Veles approved STYLE ONLY: maintain its strict vertical nadir overhead view, muted olive canopy, gray-brown rock, dark teal water, grounded rural medieval timber/stone construction and realistic scale. The scene covers 7.20 km horizontally; show a small village or hamlet with a few dozen small roofs and a large surrounding landscape without making buildings giant. No perspective, horizon, facades, trunks, cave-front arches, dollhouse or miniature models. Read roofs and forest canopy only. Add plausible paths, natural vegetation, subtle relief and practical land use appropriate to the described role. Keep the water/land configuration from input1, do not copy Veles river bend if different. No text, labels, letters, numbers, map symbols, dots, leader lines, legend, border or UI. Wide 2:1 image. This is a new visual layout proposal; known facility markers will be overlaid separately from source coordinates."
+  },
+  {
+    "id": "V13",
+    "name": "돌곡",
+    "kind": "village",
+    "xy_km": [
+      -180.9529376219892,
+      924.001952106139
+    ],
+    "lon_lat_deg": [
+      -4.489944497305906,
+      62.27447275816613
+    ],
+    "polity": "north",
+    "parent": "T10",
+    "terrain": "storage_terrace",
+    "position_source": "outer_candidate",
+    "status": "visual_detail_candidate_not_canon",
+    "role": "small northern valley farming and winter-storage village",
+    "bounds_xy_km": [
+      -182.75293762198922,
+      923.101952106139,
+      -179.1529376219892,
+      924.901952106139
+    ],
+    "center_xy_km": [
+      -180.9529376219892,
+      924.001952106139
+    ],
+    "width_km": 3.6,
+    "height_km": 1.8,
+    "guide": "<repository>/output/imagegen/ignis-connected-atlas-20261109/guides/V13.png",
+    "details": [],
+    "prompt": "Use case: sketch-to-render. Make ONE realistic straight-down aerial local game map terrain plate for 돌곡 (V13), a small northern valley farming and winter-storage village. Input 1 is the local geographic guide, exact north-up framing: green is land, blue is sea and river; the wide gray-brown oval is a proposed built-up neighborhood, NOT an oval wall or ring road; tan fine lines are route corridors; small beige squares indicate existing facility locations. Transform all schematic marks into natural terrain and actual rooftops. Keep coastline and main river centerlines and road entries at precisely the shown positions; no extra river through the town if none exists in the guide. Input 2 is Veles approved STYLE ONLY: maintain its strict vertical nadir overhead view, muted olive canopy, gray-brown rock, dark teal water, grounded rural medieval timber/stone construction and realistic scale. The scene covers 3.60 km horizontally; show a small village or hamlet with a few dozen small roofs and a large surrounding landscape without making buildings giant. No perspective, horizon, facades, trunks, cave-front arches, dollhouse or miniature models. Read roofs and forest canopy only. Add plausible paths, natural vegetation, subtle relief and practical land use appropriate to the described role. Keep the water/land configuration from input1, do not copy Veles river bend if different. No text, labels, letters, numbers, map symbols, dots, leader lines, legend, border or UI. Wide 2:1 image. This is a new visual layout proposal; known facility markers will be overlaid separately from source coordinates."
+  },
+  {
+    "id": "V14",
+    "name": "길목",
+    "kind": "village",
+    "xy_km": [
+      -255.95293762198924,
+      1189.001952106139
+    ],
+    "lon_lat_deg": [
+      -6.347582093595765,
+      64.61007285689391
+    ],
+    "polity": "north",
+    "parent": "T11",
+    "terrain": "lower_approach",
+    "position_source": "outer_candidate",
+    "status": "visual_detail_candidate_not_canon",
+    "role": "small foothill guide and rescue village with animal shelters",
+    "bounds_xy_km": [
+      -257.75293762198925,
+      1188.101952106139,
+      -254.15293762198922,
+      1189.901952106139
+    ],
+    "center_xy_km": [
+      -255.95293762198924,
+      1189.001952106139
+    ],
+    "width_km": 3.6,
+    "height_km": 1.8,
+    "guide": "<repository>/output/imagegen/ignis-connected-atlas-20261109/guides/V14.png",
+    "details": [],
+    "prompt": "Use case: sketch-to-render. Make ONE realistic straight-down aerial local game map terrain plate for 길목 (V14), a small foothill guide and rescue village with animal shelters. Input 1 is the local geographic guide, exact north-up framing: green is land, blue is sea and river; the wide gray-brown oval is a proposed built-up neighborhood, NOT an oval wall or ring road; tan fine lines are route corridors; small beige squares indicate existing facility locations. Transform all schematic marks into natural terrain and actual rooftops. Keep coastline and main river centerlines and road entries at precisely the shown positions; no extra river through the town if none exists in the guide. Input 2 is Veles approved STYLE ONLY: maintain its strict vertical nadir overhead view, muted olive canopy, gray-brown rock, dark teal water, grounded rural medieval timber/stone construction and realistic scale. The scene covers 3.60 km horizontally; show a small village or hamlet with a few dozen small roofs and a large surrounding landscape without making buildings giant. No perspective, horizon, facades, trunks, cave-front arches, dollhouse or miniature models. Read roofs and forest canopy only. Add plausible paths, natural vegetation, subtle relief and practical land use appropriate to the described role. Keep the water/land configuration from input1, do not copy Veles river bend if different. No text, labels, letters, numbers, map symbols, dots, leader lines, legend, border or UI. Wide 2:1 image. This is a new visual layout proposal; known facility markers will be overlaid separately from source coordinates."
+  },
+  {
+    "id": "V15",
+    "name": "여름뜰",
+    "kind": "village",
+    "xy_km": [
+      -590.9529376219892,
+      1194.001952106139
+    ],
+    "lon_lat_deg": [
+      -13.252440461798525,
+      64.26409991605608
+    ],
+    "polity": "north_treaty",
+    "parent": "T12",
+    "terrain": "seasonal_summer_assembly",
+    "position_source": "outer_candidate",
+    "status": "visual_detail_candidate_not_canon",
+    "role": "seasonal summer pasture encampment with a few temporary shelters, grazing meadow, NO dense permanent town",
+    "bounds_xy_km": [
+      -592.7529376219892,
+      1193.101952106139,
+      -589.1529376219893,
+      1194.901952106139
+    ],
+    "center_xy_km": [
+      -590.9529376219892,
+      1194.001952106139
+    ],
+    "width_km": 3.6,
+    "height_km": 1.8,
+    "guide": "<repository>/output/imagegen/ignis-connected-atlas-20261109/guides/V15.png",
+    "details": [],
+    "prompt": "Use case: sketch-to-render. Make ONE realistic straight-down aerial local game map terrain plate for 여름뜰 (V15), a seasonal summer pasture encampment with a few temporary shelters, grazing meadow, NO dense permanent town. Input 1 is the local geographic guide, exact north-up framing: green is land, blue is sea and river; the wide gray-brown oval is a proposed built-up neighborhood, NOT an oval wall or ring road; tan fine lines are route corridors; small beige squares indicate existing facility locations. Transform all schematic marks into natural terrain and actual rooftops. Keep coastline and main river centerlines and road entries at precisely the shown positions; no extra river through the town if none exists in the guide. Input 2 is Veles approved STYLE ONLY: maintain its strict vertical nadir overhead view, muted olive canopy, gray-brown rock, dark teal water, grounded rural medieval timber/stone construction and realistic scale. The scene covers 3.60 km horizontally; show a small village or hamlet with a few dozen small roofs and a large surrounding landscape without making buildings giant. No perspective, horizon, facades, trunks, cave-front arches, dollhouse or miniature models. Read roofs and forest canopy only. Add plausible paths, natural vegetation, subtle relief and practical land use appropriate to the described role. Keep the water/land configuration from input1, do not copy Veles river bend if different. No text, labels, letters, numbers, map symbols, dots, leader lines, legend, border or UI. Wide 2:1 image. This is a new visual layout proposal; known facility markers will be overlaid separately from source coordinates."
+  },
+  {
+    "id": "V16",
+    "name": "새불",
+    "kind": "village",
+    "xy_km": [
+      -220.9529376219892,
+      994.001952106139
+    ],
+    "lon_lat_deg": [
+      -5.348282022182241,
+      62.88264420132198
+    ],
+    "polity": "north",
+    "parent": "M07",
+    "terrain": "roadside_terrace",
+    "position_source": "outer_candidate",
+    "status": "visual_detail_candidate_not_canon",
+    "role": "small northern heating-equipment and transport-tool repair village",
+    "bounds_xy_km": [
+      -222.75293762198922,
+      993.101952106139,
+      -219.1529376219892,
+      994.901952106139
+    ],
+    "center_xy_km": [
+      -220.9529376219892,
+      994.001952106139
+    ],
+    "width_km": 3.6,
+    "height_km": 1.8,
+    "guide": "<repository>/output/imagegen/ignis-connected-atlas-20261109/guides/V16.png",
+    "details": [],
+    "prompt": "Use case: sketch-to-render. Make ONE realistic straight-down aerial local game map terrain plate for 새불 (V16), a small northern heating-equipment and transport-tool repair village. Input 1 is the local geographic guide, exact north-up framing: green is land, blue is sea and river; the wide gray-brown oval is a proposed built-up neighborhood, NOT an oval wall or ring road; tan fine lines are route corridors; small beige squares indicate existing facility locations. Transform all schematic marks into natural terrain and actual rooftops. Keep coastline and main river centerlines and road entries at precisely the shown positions; no extra river through the town if none exists in the guide. Input 2 is Veles approved STYLE ONLY: maintain its strict vertical nadir overhead view, muted olive canopy, gray-brown rock, dark teal water, grounded rural medieval timber/stone construction and realistic scale. The scene covers 3.60 km horizontally; show a small village or hamlet with a few dozen small roofs and a large surrounding landscape without making buildings giant. No perspective, horizon, facades, trunks, cave-front arches, dollhouse or miniature models. Read roofs and forest canopy only. Add plausible paths, natural vegetation, subtle relief and practical land use appropriate to the described role. Keep the water/land configuration from input1, do not copy Veles river bend if different. No text, labels, letters, numbers, map symbols, dots, leader lines, legend, border or UI. Wide 2:1 image. This is a new visual layout proposal; known facility markers will be overlaid separately from source coordinates."
+  }
+]

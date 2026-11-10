@@ -1,0 +1,29 @@
+{
+  "canvas": [
+    1672,
+    941
+  ],
+  "barHeight": 50,
+  "font": "Malgun Gothic, sans-serif",
+  "pointFont": 18,
+  "areaFont": 20,
+  "titleFont": 26,
+  "uiFont": 16,
+  "bar": "#1e2020",
+  "text": "#efefea",
+  "leader": "#c4ccc6",
+  "leaderWidth": 1,
+  "leaderOpacity": 0.85,
+  "pointRadius": 3.5,
+  "point": "#e0e2de",
+  "current": "#92e7ef",
+  "special": "#d7b56b",
+  "specialSize": 6,
+  "leaderRule": "Every named point uses one solid two-segment leader; all area names have no point or leader. Length varies with displacement; stroke, opacity and terminal gap are shared. No dashed lines.",
+  "worldViewport": [
+    0,
+    52.5,
+    1672,
+    836
+  ]
+}

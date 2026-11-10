@@ -1,0 +1,36 @@
+{
+  "date": "2026-11-09",
+  "kind": "selected_visual_references_not_runtime_assets",
+  "artifacts": [
+    {
+      "source": "output/imagegen/ether-world-ui-20261109/ether-world-ui-v1.png",
+      "archived": "Docs/ArtDirection/EtherWorldMap/Images/ether-world-map-ui-approved-v1.png",
+      "sha256": "429f396f2705d151d1039feb98723b6544b655201ebd163eb017283caeb57bdf",
+      "bytes": 4837237
+    },
+    {
+      "source": "output/imagegen/ether-world-ui-20261109/ether-world-ui-v1.svg",
+      "archived": "Docs/ArtDirection/EtherWorldMap/Images/ether-world-map-ui-approved-v1.svg",
+      "sha256": "4ff4af250006f69d14dbb8777f9e633f440852ac9bd4cd6fe11859380a0c34d4",
+      "bytes": 6242606
+    },
+    {
+      "source": "output/imagegen/ether-world-ui-20261109/prompt.json",
+      "archived": "Docs/ArtDirection/EtherWorldMap/Data/ether-world-map-ui-approved-v1-prompt.json",
+      "sha256": "aec74d87f287240fcc690c09033087e70fd3ed97f00a9b74b1ee58d6975f3f17",
+      "bytes": 5198
+    },
+    {
+      "source": "output/imagegen/ether-world-ui-20261109/layout.json",
+      "archived": "Docs/ArtDirection/EtherWorldMap/Data/ether-world-map-ui-approved-v1-layout.json",
+      "sha256": "d9bef57d37d914f45bd2d1812388e1a57a4e7f11be8f22974ea45ca0a44c2b84",
+      "bytes": 1883
+    },
+    {
+      "source": "output/imagegen/ether-world-ui-20261109/verification.json",
+      "archived": "Docs/ArtDirection/EtherWorldMap/Data/ether-world-map-ui-approved-v1-verification.json",
+      "sha256": "db823fb14db58ee0603e85d821dc0dcb07d4cba108f17a4aa9b89b2f3a088467",
+      "bytes": 1271
+    }
+  ]
+}

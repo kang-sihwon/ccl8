@@ -1,0 +1,13 @@
+{
+  "dimensions": [
+    1672,
+    941
+  ],
+  "registered_settlement_markers_checked": 21,
+  "visible_names_checked": 10,
+  "marker_or_name_errors": [],
+  "original_pixels_identical_fraction": 0.9709022520071796,
+  "top_ui_identical": true,
+  "bottom_ui_identical": true,
+  "limits": "Display anchors are an affine fit of existing coordinates to three illustrated coastal anchors. The artwork is not a surveyed basemap. Local cleanup rectangles use image-generated inpainting."
+}

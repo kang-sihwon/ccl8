@@ -1,0 +1,89 @@
+{
+  "coastlineSource": "Docs\\ArtDirection\\EtherWorldMap\\Data\\ether-world-map-land35-precise-v3.json",
+  "coastlineSha256": "7fb1ea5461708dadca67f46ba9dd6dd579ed2ae329c275edd0707a2f85a2c0f4",
+  "canvas": [
+    3200,
+    1800
+  ],
+  "mapViewport": [
+    0,
+    96,
+    3200,
+    1600
+  ],
+  "continents": [
+    {
+      "id": 1,
+      "name": "이그니스 타이가",
+      "vertices": 6156,
+      "bounds": [
+        0.36924149032841763,
+        0.06944444444444445,
+        0.6307585096715823,
+        0.3194444444444444
+      ]
+    },
+    {
+      "id": 2,
+      "name": "아르베나",
+      "vertices": 7104,
+      "bounds": [
+        0.07041109346302189,
+        0.2111111111111111,
+        0.3462555732036448,
+        0.5111111111111111
+      ]
+    },
+    {
+      "id": 3,
+      "name": "오르다스",
+      "vertices": 6372,
+      "bounds": [
+        0.18210730320878063,
+        0.5319444444444444,
+        0.4567815856801083,
+        0.8569444444444444
+      ]
+    },
+    {
+      "id": 4,
+      "name": "세라디온",
+      "vertices": 10720,
+      "bounds": [
+        0.6814192167822342,
+        0.20277777777777778,
+        0.9574696721066548,
+        0.8527777777777776
+      ]
+    },
+    {
+      "id": 5,
+      "name": "니베르",
+      "vertices": 1777,
+      "bounds": [
+        0,
+        0.89,
+        1,
+        1
+      ]
+    }
+  ],
+  "player": {
+    "settlement": "V01",
+    "mockup": true,
+    "lonLat": [
+      1.3706119778145285,
+      55.28227997171035
+    ],
+    "mapXY": [
+      1612.1832175805735,
+      308.60195580701907
+    ]
+  },
+  "limits": [
+    "Generated inland terrain is a visual proposal, not measured geography.",
+    "Original coastline polygons and continent placement are reused without simplification.",
+    "Rivers and inland surface details are generated, not canonical.",
+    "Visual mockup only; no runtime UI implementation."
+  ]
+}

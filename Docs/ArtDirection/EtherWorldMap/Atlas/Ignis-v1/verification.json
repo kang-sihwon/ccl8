@@ -1,0 +1,83 @@
+{
+  "date": "2026-11-09",
+  "status": "PASS",
+  "checks": {
+    "static": {
+      "mapCount": 54,
+      "settlementCount": 36,
+      "sharedSeams": [
+        [
+          "S1",
+          "S2"
+        ],
+        [
+          "S1",
+          "S4"
+        ],
+        [
+          "S2",
+          "S3"
+        ],
+        [
+          "S2",
+          "S5"
+        ],
+        [
+          "S3",
+          "S6"
+        ],
+        [
+          "S4",
+          "S5"
+        ],
+        [
+          "S4",
+          "S7"
+        ],
+        [
+          "S5",
+          "S6"
+        ],
+        [
+          "S5",
+          "S8"
+        ],
+        [
+          "S6",
+          "S9"
+        ],
+        [
+          "S7",
+          "S8"
+        ],
+        [
+          "S8",
+          "S9"
+        ]
+      ],
+      "approvedAssetsVerified": 12,
+      "commonFooterVariants": 1
+    },
+    "browserLabels": {
+      "maps": 54,
+      "labels": 210
+    },
+    "viewer": {
+      "count": 54,
+      "details": 36,
+      "search": 1,
+      "detail": "M03",
+      "parent": "R-M03",
+      "zoom": 1.25,
+      "escape": "overview",
+      "compare": "R-M02-registered.png"
+    }
+  },
+  "errors": [],
+  "limitations": [
+    "Overview and nine sectors share exactly one continuous surface.",
+    "Eight regional maps have separately generated detail refinement; registered companion maps preserve the continuous surface for coordinate comparison.",
+    "Local detail plates are separately generated candidates linked by settlement coordinates; not a surveyed continuous land surface.",
+    "Source facility anchors are exact, raster buildings may differ; no in-engine traversal or scale validation."
+  ]
+}

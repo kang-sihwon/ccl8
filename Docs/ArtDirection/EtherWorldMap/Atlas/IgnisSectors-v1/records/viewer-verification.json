@@ -1,0 +1,42 @@
+{
+  "passed": true,
+  "initial": {
+    "tileCount": 50,
+    "settlementCount": 36,
+    "scale": 0.081640625,
+    "grid": false,
+    "allPlaces": false,
+    "loadedTiles": 0,
+    "ready": true
+  },
+  "zoomed": {
+    "tileCount": 50,
+    "settlementCount": 36,
+    "scale": 0.275537109375,
+    "grid": true,
+    "allPlaces": true,
+    "loadedTiles": 18,
+    "ready": true
+  },
+  "restored": {
+    "tileCount": 50,
+    "settlementCount": 36,
+    "scale": 0.081640625,
+    "grid": true,
+    "allPlaces": true,
+    "loadedTiles": 18,
+    "ready": true
+  },
+  "errors": [],
+  "checks": [
+    "local atlas load",
+    "grid toggle",
+    "all settlements toggle",
+    "zoom and high resolution tile load",
+    "pointer drag delivery",
+    "Escape fit"
+  ],
+  "limitations": [
+    "Pointer events were delivered; actual camera displacement was not asserted."
+  ]
+}

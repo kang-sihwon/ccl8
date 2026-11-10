@@ -1,0 +1,47 @@
+{
+  "continents": [
+    {
+      "id": 1,
+      "vertices": 6156,
+      "max_normalized_coordinate_error": 0.0
+    },
+    {
+      "id": 2,
+      "vertices": 7104,
+      "max_normalized_coordinate_error": 0.0
+    },
+    {
+      "id": 3,
+      "vertices": 6372,
+      "max_normalized_coordinate_error": 0.0
+    },
+    {
+      "id": 4,
+      "vertices": 10720,
+      "max_normalized_coordinate_error": 0.0
+    },
+    {
+      "id": 5,
+      "vertices": 1777,
+      "max_normalized_coordinate_error": 0.0
+    }
+  ],
+  "map_aspect_ratio": 2,
+  "coastline_source_sha256": "7fb1ea5461708dadca67f46ba9dd6dd579ed2ae329c275edd0707a2f85a2c0f4",
+  "errors": [],
+  "all_original_coast_vertices_preserved": 32129,
+  "coast_clip_references_checked": 5,
+  "labels": [
+    "이그니스 타이가",
+    "아르베나",
+    "오르다스",
+    "세라디온",
+    "니베르"
+  ],
+  "output_dimensions": [
+    3200,
+    1800
+  ],
+  "final_png_sha256": "429f396f2705d151d1039feb98723b6544b655201ebd163eb017283caeb57bdf",
+  "scope": "Original coastline vertex identity, five direct land clip references, five continent labels, 2:1 map viewport and rendered PNG dimensions. Generated interior terrain and climate are unverified visual proposals."
+}

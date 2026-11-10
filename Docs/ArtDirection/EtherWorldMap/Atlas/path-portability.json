@@ -1,0 +1,16 @@
+{
+  "purpose": "Portable publication copy of generation metadata",
+  "normalization": {
+    "repository_absolute_prefix": "<repository>",
+    "local_generated_images_prefix": "<CodexGeneratedImages>"
+  },
+  "original_records": "Preserved locally under .local/map-push-original-records-20261110; excluded from Git.",
+  "files": [
+    "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSectors-v1/records/generation-final.json",
+    "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSectors-v1/records/generation-records.json",
+    "Docs/ArtDirection/EtherWorldMap/Atlas/Ignis-v1/provenance/detail-plans.json",
+    "Docs/ArtDirection/EtherWorldMap/Atlas/Ignis-v1/provenance/generation-records.json",
+    "Docs/ArtDirection/EtherWorldMap/Atlas/Ignis-v1/provenance/region-generation-records.json"
+  ],
+  "meaning": "Placeholder paths identify local provenance; they are not downloadable links."
+}

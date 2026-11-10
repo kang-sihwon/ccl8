@@ -1,0 +1,54 @@
+{
+  "date": "2026-11-09",
+  "maps": [
+    {
+      "map": "veles",
+      "named_points": 5,
+      "solid_leaders": 5,
+      "area_names": 2,
+      "png_dimensions": [
+        1672,
+        941
+      ],
+      "png_sha256": "327b193097e1a4d93e6887b0cb4ec88468fcf0a9fd1761f80bf0616c1d4055ea"
+    },
+    {
+      "map": "ignis",
+      "named_points": 10,
+      "solid_leaders": 10,
+      "area_names": 0,
+      "png_dimensions": [
+        1672,
+        941
+      ],
+      "png_sha256": "4654e689a42ba0dcf9f51415c20299d9b67b5b1316c8c55113b6add50de7f2e9"
+    },
+    {
+      "map": "ether",
+      "named_points": 0,
+      "solid_leaders": 0,
+      "area_names": 5,
+      "png_dimensions": [
+        1672,
+        941
+      ],
+      "png_sha256": "3bcf0d06cb2d5aada6b4a5162782f78cf84b48578e0e99ae44655b95df52deb2"
+    }
+  ],
+  "common_css_identical": true,
+  "footer_pixels_identical": true,
+  "north_close_pixels_identical": true,
+  "footer_sha256": "bda7e6665c11962c524c25f352a3c67135126a1fa17ac3be0840842ef2a1d506",
+  "ignis_original_terrain_layer_unchanged": true,
+  "ignis_named_point_positions_unchanged": 10,
+  "coastline_vertices_preserved": 32129,
+  "coastline_source_sha256": "7fb1ea5461708dadca67f46ba9dd6dd579ed2ae329c275edd0707a2f85a2c0f4",
+  "world_map_aspect_ratio": 2,
+  "errors": [],
+  "limits": [
+    "Veles generated surface details are visually reviewed, not pixel-identical or surveyed.",
+    "World interior terrain changed stylistically; only coastline polygons are geometrically preserved.",
+    "Leader line lengths vary with label displacement; shared stroke and topology are fixed.",
+    "Visual mockups only, not runtime UI tests."
+  ]
+}

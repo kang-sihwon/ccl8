@@ -1,0 +1,8 @@
+<!doctype html><meta charset="utf-8"><title>이그니스 9구역 실제 연결 합본</title><style>html,body{margin:0;background:#1e2020;color:#efefea;font-family:'Malgun Gothic',sans-serif}canvas{display:block;width:100%;height:auto}button{position:fixed;right:12px;top:8px;z-index:2;padding:8px;background:#292e30;color:white;border:1px solid #747e80}</style><button onclick="grid=!grid;paint()">접합선 표시 / 숨김</button><canvas id="map"></canvas><script>
+const canvas=document.querySelector('canvas'),ctx=canvas.getContext('2d');canvas.width=5016;canvas.height=2608;let grid=false;let tiles=[];
+function paint(){ctx.fillStyle='#1e2020';ctx.fillRect(0,0,5016,2608);ctx.fillStyle='#efefea';ctx.font='26px Malgun Gothic';ctx.fillText('이그니스 타이가   >   9개 분할 구역 연결 합본',30,35);ctx.font='18px Malgun Gothic';ctx.fillText('N ↑',4915,34);
+tiles.forEach((im,i)=>ctx.drawImage(im,0,52.5,1672,836,(i%3)*1672,50+Math.floor(i/3)*836,1672,836));
+if(grid){ctx.strokeStyle='#92e7ef';ctx.lineWidth=2;ctx.beginPath();for(let i=1;i<3;i++){ctx.moveTo(i*1672,50);ctx.lineTo(i*1672,2558);ctx.moveTo(0,50+i*836);ctx.lineTo(5016,50+i*836)}ctx.stroke();ctx.font='28px Malgun Gothic';tiles.forEach((_,i)=>{const x=(i%3)*1672+12,y=50+Math.floor(i/3)*836+12;ctx.fillStyle='#1e2020';ctx.fillRect(x,y,52,38);ctx.fillStyle='#92e7ef';ctx.fillText('S'+(i+1),x+5,y+29)})}
+ctx.fillStyle='#efefea';ctx.font='18px Malgun Gothic';ctx.fillText('S1–S9 원본 지도 영역 연결 · 지형 보정 / 경계 혼합 없음',30,2590)}
+window.ready=Promise.all(Array.from({length:9},(_,i)=>new Promise((resolve,reject)=>{const im=new Image();im.onload=()=>resolve(im);im.onerror=reject;im.src='S'+(i+1)+'.png'}))).then(ims=>{tiles=ims;paint();return true});
+</script>

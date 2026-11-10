@@ -1,0 +1,17 @@
+{
+  "scope": "layout arithmetic and source coordinate coverage only",
+  "tests": {
+    "uniqueSectorIds": true,
+    "uniqueSettlementIds": true,
+    "allSettlementsAssigned": true,
+    "coastContained": true,
+    "integerTileBounds": true,
+    "sharedEdgeCount": true,
+    "fullRectangleCoverage": true,
+    "edgeCrossingsInsideSharedEdge": true,
+    "allSharedEdgesHaveExactlyTwoExistingTiles": true
+  },
+  "passed": true,
+  "terrainContinuity": "not tested; no new terrain generated",
+  "sharedFeatureCrossings": 90
+}

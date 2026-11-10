@@ -1,0 +1,80 @@
+{
+  "date": "2026-11-09",
+  "status": "approved_final_visual_reference",
+  "approved_date": "2026-11-09",
+  "approval_decision": "Docs/decisions/0046-unified-map-v2-adoption.md",
+  "artifacts": [
+    {
+      "source": "output/imagegen/map-unified-20261109/veles-map-ui-unified-v2.png",
+      "archived": "Docs/ArtDirection/EtherWorldMap/Images/veles-map-ui-unified-v2.png",
+      "sha256": "327b193097e1a4d93e6887b0cb4ec88468fcf0a9fd1761f80bf0616c1d4055ea",
+      "bytes": 2794912
+    },
+    {
+      "source": "output/imagegen/map-unified-20261109/veles-map-ui-unified-v2.svg",
+      "archived": "Docs/ArtDirection/EtherWorldMap/Images/veles-map-ui-unified-v2.svg",
+      "sha256": "a605cae328d4be2297205e5f6e234958d9e4d33d85cdee58c6eaae033dd76016",
+      "bytes": 4595308
+    },
+    {
+      "source": "output/imagegen/map-unified-20261109/ignis-map-ui-unified-v2.png",
+      "archived": "Docs/ArtDirection/EtherWorldMap/Images/ignis-map-ui-unified-v2.png",
+      "sha256": "4654e689a42ba0dcf9f51415c20299d9b67b5b1316c8c55113b6add50de7f2e9",
+      "bytes": 2427444
+    },
+    {
+      "source": "output/imagegen/map-unified-20261109/ignis-map-ui-unified-v2.svg",
+      "archived": "Docs/ArtDirection/EtherWorldMap/Images/ignis-map-ui-unified-v2.svg",
+      "sha256": "f6dea7056d362814d36176f1a6f1853f2d483c621e3f5b98759549e94e0ae966",
+      "bytes": 7295742
+    },
+    {
+      "source": "output/imagegen/map-unified-20261109/ether-map-ui-unified-v2.png",
+      "archived": "Docs/ArtDirection/EtherWorldMap/Images/ether-map-ui-unified-v2.png",
+      "sha256": "3bcf0d06cb2d5aada6b4a5162782f78cf84b48578e0e99ae44655b95df52deb2",
+      "bytes": 1423299
+    },
+    {
+      "source": "output/imagegen/map-unified-20261109/ether-map-ui-unified-v2.svg",
+      "archived": "Docs/ArtDirection/EtherWorldMap/Images/ether-map-ui-unified-v2.svg",
+      "sha256": "f53a4862af6f4be9b0583b8b7123cd2cbe77eb93739fcf79c3203815da532379",
+      "bytes": 5959492
+    },
+    {
+      "source": "output/imagegen/map-unified-20261109/comparison-v2.png",
+      "archived": "Docs/ArtDirection/EtherWorldMap/Images/map-ui-unified-v2-comparison.png",
+      "sha256": "206ad4c1a1c6483bb55aa5f80a061752fc445a00eda2c8c3208f75b115c9183a",
+      "bytes": 2494245
+    },
+    {
+      "source": "output/imagegen/map-unified-20261109/comparison.html",
+      "archived": "Docs/ArtDirection/EtherWorldMap/Images/map-ui-unified-v2-comparison.html",
+      "sha256": "befb679a1a2be6f5646a211a2c70ce7b8208c40ec2bfb710451400e7a8925005",
+      "bytes": 23802065
+    },
+    {
+      "source": "output/imagegen/map-unified-20261109/layout.json",
+      "archived": "Docs/ArtDirection/EtherWorldMap/Data/map-ui-unified-v2-layout.json",
+      "sha256": "746fd3e1b5000ffd2af0357993421f4acdb5abcefa6fae9fba94fde639f45c43",
+      "bytes": 7788
+    },
+    {
+      "source": "output/imagegen/map-unified-20261109/tokens.json",
+      "archived": "Docs/ArtDirection/EtherWorldMap/Data/map-ui-unified-v2-tokens.json",
+      "sha256": "2e7cfb5f9d24e35ba229978b3b830bcc91dc4a7dacf74e4c9b07ed4816d3f6e6",
+      "bytes": 658
+    },
+    {
+      "source": "output/imagegen/map-unified-20261109/prompts.json",
+      "archived": "Docs/ArtDirection/EtherWorldMap/Data/map-ui-unified-v2-prompts.json",
+      "sha256": "0fba2d1107136746eae6c384642953efb26a02a923555e56ffb3068fa0ecace9",
+      "bytes": 2487
+    },
+    {
+      "source": "output/imagegen/map-unified-20261109/verification.json",
+      "archived": "Docs/ArtDirection/EtherWorldMap/Data/map-ui-unified-v2-verification.json",
+      "sha256": "b8dd87cae070bcb216ad1f1a65c110cace3b81149b9b6b33d22da10de45bf5c1",
+      "bytes": 1708
+    }
+  ]
+}

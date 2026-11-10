@@ -1,6 +1,6 @@
 # 아트 방향 초안
 
-Orbis의 그래픽 스타일을 ccl8의 마을, 전투 구간, 보스 공간에 적용한다. 이 문서는 그 방향을 구체화한 시각 기준 제안, 제작 방식 제안, 검토할 산출물을 소유한다. Orbis와 스타일을 공유하는 근거는 [결정 1](decisions/0001-production-scope.md)이다. 지도는 [결정 34](decisions/0034-concept-and-ingame-map-roles.md)에 따라 개념 지도와 평면 도면형 인게임 지도 UI의 용도를 구분한다. 그 밖의 세부 제안은 AI 해석이며 최종 룩과 캐릭터 디자인은 사용자 검토가 필요하다.
+Orbis의 그래픽 스타일을 ccl8의 마을, 전투 구간, 보스 공간에 적용한다. 이 문서는 그 방향을 구체화한 시각 기준 제안, 제작 방식 제안, 검토할 산출물을 소유한다. Orbis와 스타일을 공유하는 근거는 [결정 1](decisions/0001-production-scope.md)이다. 지도는 [결정 34](decisions/0034-concept-and-ingame-map-roles.md)에 따라 개념 지도와 인게임 지도 UI의 용도를 구분하고, [결정 43](decisions/0043-map-art-and-ui-standard.md)의 화풍을 구체화해 [결정 46](decisions/0046-unified-map-v2-adoption.md)으로 확정한 v2의 화풍·공통 UI·지명 표기를 제작 기준으로 사용한다. 그 밖의 세부 제안은 AI 해석이며 게임 장면의 최종 룩과 캐릭터 디자인은 사용자 검토가 필요하다.
 
 ## 하위 문서
 
@@ -8,6 +8,7 @@ Orbis의 그래픽 스타일을 ccl8의 마을, 전투 구간, 보스 공간에 
 |---|---|
 | [에테르 첫 장 MJ 시안 목록](ArtDirection/EtherFirstChapter.md) | 도입부터 바르툴전 이후 출항까지 YouArt에서 만들 디자인과 장면 시안을 고를 때 |
 | [에테르 세계지도 시안](ArtDirection/EtherWorldMap.md) | 육지 35%·이그니스 2,000만 km²의 계산 보정 지도와 대륙·벨레스 지역 확대를 볼 때 |
+| [지도 제작 기준과 채택 시안](ArtDirection/EtherWorldMap/MapPresentation.md) | 벨레스·이그니스·에테르 최종 시안 v2와 이후 지도의 화풍·UI·지명 표기 기준을 적용할 때 |
 
 ## 참고 근거
 
