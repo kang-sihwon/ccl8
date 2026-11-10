@@ -1,0 +1,840 @@
+{
+  "status": "design_candidate_not_canon",
+  "coordinate_system": "SE-S01 local metres north +Y; not georeferenced to SE-P01 or world coast",
+  "sources_sha256": {
+    "Docs/ArtDirection/EtherWorldMap/Data/seradion-waterworks-v1.json": "55f527398f31c3e26addec08beb18bb35773889007cf1c7e919d2eb358fff22c",
+    "Docs/ArtDirection/EtherWorldMap/Data/seradion-arrival-v1.json": "6e4a80ea07053e5b90221e88f52a8605cc09bcec5bf515d85f6d818f58296448",
+    "Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-08-five-continent-mainline/routes-and-unlocks.md": "b209df5b3c6d131a886e3269340d072d044a022ee389daf1fbc88de8bf1c3d35",
+    "Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-08-world-distribution-and-leveling/progression.md": "a847c8417b972d74f4672a22067206827025f666f5daf39896cb8a73007450aa",
+    "Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-08-world-distribution-and-leveling/variant-distribution.md": "a4ccc8ac9fdb937b1d637251bb78ce55eccde0a201753189b238a36d116c64e9",
+    "Docs/Narrative/World.md": "020bed8d29fd25ac5c8a4346f6076426e52aff1335f52de4f1e6d7d7b38cde28",
+    "Docs/Narrative/Scenario.md": "55a8eb1da2a818d4c606d82e6d4fd2163458de96d22f27a340dda23b3c427e13"
+  },
+  "nodes": [
+    {
+      "id": "P01",
+      "name": "연안편 도착 부두",
+      "xy_m": [
+        185,
+        40
+      ]
+    },
+    {
+      "id": "P02",
+      "name": "하역·환승 마당",
+      "xy_m": [
+        185,
+        110
+      ]
+    },
+    {
+      "id": "P03",
+      "name": "원정 접수소",
+      "xy_m": [
+        260,
+        140
+      ]
+    },
+    {
+      "id": "P04",
+      "name": "개조 작업 마당",
+      "xy_m": [
+        470,
+        140
+      ]
+    },
+    {
+      "id": "P05",
+      "name": "본선 시험·출항 부두",
+      "xy_m": [
+        485,
+        40
+      ]
+    },
+    {
+      "id": "P06",
+      "name": "현지 수리 공방",
+      "xy_m": [
+        550,
+        260
+      ]
+    },
+    {
+      "id": "P07",
+      "name": "장비·귀환 비축 창고",
+      "xy_m": [
+        360,
+        260
+      ]
+    },
+    {
+      "id": "P08",
+      "name": "급수 인수대",
+      "xy_m": [
+        280,
+        340
+      ]
+    },
+    {
+      "id": "P09",
+      "name": "식량 검수 창고",
+      "xy_m": [
+        180,
+        260
+      ]
+    },
+    {
+      "id": "P10",
+      "name": "난방·의무 대기실",
+      "xy_m": [
+        480,
+        360
+      ]
+    },
+    {
+      "id": "P11",
+      "name": "원정 집결지",
+      "xy_m": [
+        350,
+        430
+      ]
+    },
+    {
+      "id": "P12",
+      "name": "언덕 피난소",
+      "xy_m": [
+        180,
+        500
+      ]
+    },
+    {
+      "id": "P13",
+      "name": "연락·관측소",
+      "xy_m": [
+        610,
+        470
+      ]
+    },
+    {
+      "id": "P14",
+      "name": "승선 대기장",
+      "xy_m": [
+        485,
+        100
+      ]
+    },
+    {
+      "id": "P15",
+      "name": "서쪽 육상 출입구",
+      "xy_m": [
+        80,
+        370
+      ]
+    },
+    {
+      "id": "P16",
+      "name": "습지 바깥 관찰길",
+      "xy_m": [
+        80,
+        220
+      ]
+    }
+  ],
+  "junctions": [
+    {
+      "id": "J01",
+      "xy_m": [
+        320,
+        140
+      ]
+    },
+    {
+      "id": "J02",
+      "xy_m": [
+        320,
+        340
+      ]
+    },
+    {
+      "id": "J03",
+      "xy_m": [
+        420,
+        340
+      ]
+    },
+    {
+      "id": "J04",
+      "xy_m": [
+        420,
+        430
+      ]
+    },
+    {
+      "id": "J05",
+      "xy_m": [
+        120,
+        430
+      ]
+    },
+    {
+      "id": "J06",
+      "xy_m": [
+        120,
+        240
+      ]
+    },
+    {
+      "id": "J07",
+      "xy_m": [
+        580,
+        430
+      ]
+    }
+  ],
+  "paths": {
+    "arrival": {
+      "nodes": [
+        "P01",
+        "P02",
+        "P03"
+      ],
+      "xy_m": [
+        [
+          185,
+          40
+        ],
+        [
+          185,
+          110
+        ],
+        [
+          260,
+          140
+        ]
+      ],
+      "mode": "walk",
+      "width_m": 8,
+      "length_m": 150.8
+    },
+    "refit": {
+      "nodes": [
+        "P03",
+        "P04",
+        "P14",
+        "P05"
+      ],
+      "xy_m": [
+        [
+          260,
+          140
+        ],
+        [
+          470,
+          140
+        ],
+        [
+          485,
+          100
+        ],
+        [
+          485,
+          40
+        ]
+      ],
+      "mode": "walk",
+      "width_m": 8,
+      "length_m": 312.7
+    },
+    "supplies": {
+      "nodes": [
+        "P04",
+        "J01",
+        "P07",
+        "P06"
+      ],
+      "xy_m": [
+        [
+          470,
+          140
+        ],
+        [
+          320,
+          140
+        ],
+        [
+          360,
+          260
+        ],
+        [
+          550,
+          260
+        ]
+      ],
+      "mode": "walk",
+      "width_m": 8,
+      "length_m": 466.5
+    },
+    "food": {
+      "nodes": [
+        "P03",
+        "P02",
+        "J06",
+        "P09"
+      ],
+      "xy_m": [
+        [
+          260,
+          140
+        ],
+        [
+          185,
+          110
+        ],
+        [
+          120,
+          240
+        ],
+        [
+          180,
+          260
+        ]
+      ],
+      "mode": "walk",
+      "width_m": 8,
+      "length_m": 289.4
+    },
+    "water": {
+      "nodes": [
+        "P07",
+        "J01",
+        "J02",
+        "P08"
+      ],
+      "xy_m": [
+        [
+          360,
+          260
+        ],
+        [
+          320,
+          140
+        ],
+        [
+          320,
+          340
+        ],
+        [
+          280,
+          340
+        ]
+      ],
+      "mode": "walk",
+      "width_m": 8,
+      "length_m": 366.5
+    },
+    "evacuate": {
+      "nodes": [
+        "P05",
+        "P14",
+        "P04",
+        "J01",
+        "J02",
+        "J03",
+        "P10",
+        "J03",
+        "J04",
+        "P11",
+        "J05",
+        "P12"
+      ],
+      "xy_m": [
+        [
+          485,
+          40
+        ],
+        [
+          485,
+          100
+        ],
+        [
+          470,
+          140
+        ],
+        [
+          320,
+          140
+        ],
+        [
+          320,
+          340
+        ],
+        [
+          420,
+          340
+        ],
+        [
+          480,
+          360
+        ],
+        [
+          420,
+          340
+        ],
+        [
+          420,
+          430
+        ],
+        [
+          350,
+          430
+        ],
+        [
+          120,
+          430
+        ],
+        [
+          180,
+          500
+        ]
+      ],
+      "mode": "walk",
+      "width_m": 8,
+      "length_m": 1161.4
+    },
+    "signal": {
+      "nodes": [
+        "P11",
+        "J04",
+        "J07",
+        "P13"
+      ],
+      "xy_m": [
+        [
+          350,
+          430
+        ],
+        [
+          420,
+          430
+        ],
+        [
+          580,
+          430
+        ],
+        [
+          610,
+          470
+        ]
+      ],
+      "mode": "walk",
+      "width_m": 8,
+      "length_m": 280.0
+    },
+    "embark": {
+      "nodes": [
+        "P11",
+        "J04",
+        "J03",
+        "J02",
+        "J01",
+        "P04",
+        "P14",
+        "P05"
+      ],
+      "xy_m": [
+        [
+          350,
+          430
+        ],
+        [
+          420,
+          430
+        ],
+        [
+          420,
+          340
+        ],
+        [
+          320,
+          340
+        ],
+        [
+          320,
+          140
+        ],
+        [
+          470,
+          140
+        ],
+        [
+          485,
+          100
+        ],
+        [
+          485,
+          40
+        ]
+      ],
+      "mode": "walk",
+      "width_m": 8,
+      "length_m": 712.7
+    },
+    "land_return": {
+      "nodes": [
+        "P11",
+        "J05",
+        "P15"
+      ],
+      "xy_m": [
+        [
+          350,
+          430
+        ],
+        [
+          120,
+          430
+        ],
+        [
+          80,
+          370
+        ]
+      ],
+      "mode": "walk",
+      "width_m": 8,
+      "length_m": 302.1
+    },
+    "wetland_optional": {
+      "nodes": [
+        "P15",
+        "P16",
+        "J06",
+        "P09"
+      ],
+      "xy_m": [
+        [
+          80,
+          370
+        ],
+        [
+          80,
+          220
+        ],
+        [
+          120,
+          240
+        ],
+        [
+          180,
+          260
+        ]
+      ],
+      "mode": "walk",
+      "width_m": 4,
+      "length_m": 258.0
+    }
+  },
+  "buildings": [
+    {
+      "id": "R01",
+      "name": "접수소",
+      "rect_m": [
+        250,
+        150,
+        310,
+        190
+      ],
+      "entrance_node": "P03"
+    },
+    {
+      "id": "R02",
+      "name": "수리 공방",
+      "rect_m": [
+        540,
+        270,
+        600,
+        320
+      ],
+      "entrance_node": "P06"
+    },
+    {
+      "id": "R03",
+      "name": "장비 창고",
+      "rect_m": [
+        330,
+        270,
+        400,
+        320
+      ],
+      "entrance_node": "P07"
+    },
+    {
+      "id": "R04",
+      "name": "식량 창고",
+      "rect_m": [
+        150,
+        270,
+        220,
+        320
+      ],
+      "entrance_node": "P09"
+    },
+    {
+      "id": "R05",
+      "name": "난방 의무실",
+      "rect_m": [
+        450,
+        370,
+        520,
+        410
+      ],
+      "entrance_node": "P10"
+    },
+    {
+      "id": "R06",
+      "name": "피난소",
+      "rect_m": [
+        150,
+        510,
+        220,
+        550
+      ],
+      "entrance_node": "P12"
+    },
+    {
+      "id": "R07",
+      "name": "연락탑",
+      "rect_m": [
+        600,
+        480,
+        620,
+        500
+      ],
+      "entrance_node": "P13"
+    },
+    {
+      "id": "R08",
+      "name": "항만 숙소",
+      "rect_m": [
+        30,
+        440,
+        65,
+        470
+      ],
+      "entrance_node": null
+    },
+    {
+      "id": "R09",
+      "name": "주민 주택",
+      "rect_m": [
+        75,
+        485,
+        105,
+        515
+      ],
+      "entrance_node": null
+    },
+    {
+      "id": "R10",
+      "name": "주민 주택",
+      "rect_m": [
+        230,
+        480,
+        265,
+        510
+      ],
+      "entrance_node": null
+    }
+  ],
+  "land_rect_m": [
+    0,
+    80,
+    700,
+    600
+  ],
+  "docks_m": [
+    [
+      160,
+      0,
+      210,
+      90
+    ],
+    [
+      460,
+      0,
+      510,
+      90
+    ]
+  ],
+  "wetland_water_rect_m": [
+    0,
+    160,
+    35,
+    240
+  ],
+  "groups": [
+    {
+      "id": "PG1",
+      "form": "MN03-A",
+      "name": "늪트롤",
+      "count": 1,
+      "readiness": [
+        24,
+        26
+      ],
+      "region": "SE1",
+      "home_xy_m": [
+        75,
+        300
+      ],
+      "home_radius_m": 18,
+      "pursuit_extra_m": 10
+    },
+    {
+      "id": "PG2",
+      "form": "MN41-A",
+      "name": "가는잎 식인덩굴",
+      "count": 3,
+      "readiness": [
+        10,
+        13
+      ],
+      "region": "SE1",
+      "home_xy_m": [
+        60,
+        220
+      ],
+      "home_radius_m": 20,
+      "pursuit_extra_m": 0
+    }
+  ],
+  "water_tank_rect_m": [
+    260,
+    350,
+    300,
+    390
+  ],
+  "work_yard_rect_m": [
+    430,
+    150,
+    510,
+    240
+  ],
+  "assembly_rect_m": [
+    310,
+    410,
+    390,
+    450
+  ],
+  "ship_exit_xy_m": [
+    [
+      520,
+      40
+    ],
+    [
+      520,
+      -60
+    ],
+    [
+      600,
+      -160
+    ]
+  ],
+  "frames": {
+    "harbor": {
+      "bounds_m": [
+        0,
+        -180,
+        700,
+        600
+      ],
+      "scale": 1.6,
+      "origin": [
+        60,
+        150
+      ],
+      "size": [
+        1850,
+        1550
+      ]
+    }
+  },
+  "crew": {
+    "crew": 14,
+    "protagonists": 2,
+    "rescue_reserve": 8,
+    "max_plan": 24,
+    "lifeboats": [
+      12,
+      12
+    ]
+  },
+  "ration_example": {
+    "outbound_days": 7,
+    "search_days": 3,
+    "return_days": 7,
+    "delay_days": 4,
+    "departing_people": 16,
+    "rescue_people": 8,
+    "departing_person_days": 336,
+    "rescue_person_days": 112,
+    "total_person_days": 448,
+    "not_actual_voyage_duration": true
+  },
+  "gates": {
+    "G4_retained": true,
+    "G5_before": false,
+    "G5_after_acceptance": true,
+    "departure_weather_separate": true,
+    "G6": false,
+    "niber_arrived": false,
+    "niber_landed": false
+  },
+  "growth": {
+    "start": 52,
+    "end": 52,
+    "optional_offset": 2,
+    "added_budget": [
+      0,
+      0,
+      0
+    ],
+    "niber_remaining": [
+      3,
+      1,
+      2
+    ],
+    "auto_scale": false
+  },
+  "transport_edges": [
+    [
+      "A02",
+      "P01",
+      "coastal_transfer"
+    ],
+    [
+      "P05",
+      "T6",
+      "depart_after_G5_and_weather"
+    ],
+    [
+      "T6",
+      "NI_APPROACH",
+      "future_not_completed"
+    ],
+    [
+      "T6",
+      "P05",
+      "return_without_G6"
+    ],
+    [
+      "P01",
+      "A02",
+      "coastal_return"
+    ]
+  ],
+  "limits": [
+    "No surveyed coastline, distances between ports, navigation or engineering verification",
+    "Local harbor blocking layout, not final map art approval",
+    "No UE execution or NPC simulation"
+  ]
+}

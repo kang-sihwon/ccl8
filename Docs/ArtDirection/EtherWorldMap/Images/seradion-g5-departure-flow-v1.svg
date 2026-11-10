@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1700" height="950" viewBox="0 0 1700 950"><rect width="100%" height="100%" fill="#edf0eb"/>
+<text x="55" y="60" font-family="Malgun Gothic,sans-serif" font-size="35" fill="#293d42">G5 충족과 T6 출항 · 인계·귀환 관계</text>
+<text x="55" y="107" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#293d42">축척·방향 없는 관계도 · 실제 해안선·항해 일수·상륙 성공을 표시하지 않는다</text>
+<rect id="waterworks" x="60.00" y="180.00" width="380.00" height="120.00" fill="#dce2d8" stroke="#6c7771"/>
+<rect id="A02" x="60.00" y="400.00" width="380.00" height="120.00" fill="#dce2d8" stroke="#6c7771"/>
+<rect id="P01" x="610.00" y="400.00" width="380.00" height="120.00" fill="#dce2d8" stroke="#6c7771"/>
+<rect id="acceptance" x="610.00" y="180.00" width="380.00" height="120.00" fill="#dce2d8" stroke="#6c7771"/>
+<rect id="T6" x="1190.00" y="400.00" width="430.00" height="120.00" fill="#dce2d8" stroke="#6c7771"/>
+<rect id="NI" x="1190.00" y="650.00" width="430.00" height="120.00" fill="#dce2d8" stroke="#6c7771"/>
+<text x="80" y="225" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#293d42">수원 인수·시험 확대 중지</text>
+<text x="80" y="265" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#293d42">원본·운영 권한은 현지에 유지</text>
+<text x="80" y="445" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#293d42">기존 세라디온 기항항 A02</text>
+<text x="80" y="485" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#293d42">T5 귀환 계약 유지</text>
+<text x="630" y="445" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#293d42">남부 원정항 P01-P16</text>
+<text x="630" y="485" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#293d42">연안 환승·개조·보급·피난</text>
+<text x="630" y="225" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#293d42">G5: 모든 실물 인수 완료</text>
+<text x="630" y="265" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#293d42">당일 기상·해빙 판단은 별도</text>
+<text x="1210" y="445" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#293d42">본선 출항 → T6 시작</text>
+<text x="1210" y="485" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#293d42">수색 실패에도 귀환 가능</text>
+<text x="1210" y="695" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#293d42">니베르 접근·상륙 후보</text>
+<text x="1210" y="735" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#293d42">이번 범위에서는 아직 미도착</text>
+<polyline id="handoff" points="250.00,300.00 250.00,400.00" stroke="#4a7884" stroke-width="3" fill="none"/>
+<polyline id="coastal" points="440.00,450.00 610.00,450.00" stroke="#4a7884" stroke-width="3" fill="none"/>
+<polyline id="accept" points="800.00,400.00 800.00,300.00" stroke="#4a7884" stroke-width="3" fill="none"/>
+<polyline id="depart" points="990.00,450.00 1190.00,450.00" stroke="#4a7884" stroke-width="3" fill="none"/>
+<polyline id="future" points="1410.00,520.00 1410.00,650.00" stroke="#4a7884" stroke-width="3" fill="none"/>
+<polyline id="return" points="1300.00,520.00 1300.00,570.00 1000.00,600.00 800.00,600.00 800.00,520.00" stroke="#4a7884" stroke-width="3" fill="none"/>
+<text x="470" y="430" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#293d42">연안편</text>
+<text x="1010" y="428" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#293d42">G5+운항 판단</text>
+<text x="950" y="640" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#293d42">귀환에 G6 불필요</text>
+<text x="60" y="743" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#293d42">52 유지 / 선택 성장 +2 유지 / 니베르의 3·1·2 성장 예산은 남긴다</text>
+<text x="60" y="813" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#293d42">승무원 14 + 주인공·마렌 2 + 구조자 여유 8 = 계획 최대 24명</text>
+<text x="60" y="872" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#293d42">실물 인수는 후보 플롯의 사건이다. 현실의 선박 인증·항해 검증이 아니다.</text>
+</svg>

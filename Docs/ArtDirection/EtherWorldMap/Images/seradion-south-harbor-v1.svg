@@ -1,0 +1,185 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1850" height="1550" viewBox="0 0 1850 1550"><rect width="100%" height="100%" fill="#edf0eb"/>
+<text x="60" y="61" font-family="Malgun Gothic,sans-serif" font-size="36" fill="#293d42">남부 원정항 · 개조와 구조·귀환 준비</text>
+<text x="60" y="107" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#293d42">SE-S01 국소 배치 후보 · 북쪽 위 · 건물·길·토지 이용 검토 / 세계 해안 접속 미정</text>
+<rect id="sea" x="60.00" y="150.00" width="1120.00" height="1248.00" fill="#abc6cb" stroke="#6c7771"/>
+<rect id="land" x="60.00" y="150.00" width="1120.00" height="832.00" fill="#bfc7b4" stroke="#6c7771"/>
+<rect id="marsh-water" x="60.00" y="726.00" width="56.00" height="128.00" fill="#8dafb3" stroke="#6c7771"/>
+<rect id="orchard" x="92.00" y="174.00" width="160.00" height="104.00" fill="#a0b199" stroke="#6c7771"/>
+<rect id="rocky-shore" x="908.00" y="838.00" width="256.00" height="144.00" fill="#b8b1a4" stroke="#6c7771"/>
+<ellipse id="canopy-0" cx="933.85" cy="192.56" rx="15.68" ry="15.68" fill="#91a38d" stroke="#667b66"/>
+<ellipse id="canopy-1" cx="829.75" cy="196.45" rx="13.63" ry="13.63" fill="#91a38d" stroke="#667b66"/>
+<ellipse id="canopy-2" cx="996.30" cy="259.42" rx="8.22" ry="8.22" fill="#91a38d" stroke="#667b66"/>
+<ellipse id="canopy-3" cx="872.11" cy="198.35" rx="10.02" ry="10.02" fill="#91a38d" stroke="#667b66"/>
+<ellipse id="canopy-4" cx="924.72" cy="239.53" rx="14.77" ry="14.77" fill="#91a38d" stroke="#667b66"/>
+<ellipse id="canopy-5" cx="1123.45" cy="231.45" rx="15.99" ry="15.99" fill="#91a38d" stroke="#667b66"/>
+<ellipse id="canopy-6" cx="727.86" cy="191.99" rx="15.00" ry="15.00" fill="#91a38d" stroke="#667b66"/>
+<ellipse id="canopy-7" cx="767.61" cy="202.27" rx="12.47" ry="12.47" fill="#91a38d" stroke="#667b66"/>
+<ellipse id="canopy-8" cx="1127.92" cy="249.84" rx="12.32" ry="12.32" fill="#91a38d" stroke="#667b66"/>
+<ellipse id="canopy-9" cx="1095.34" cy="208.68" rx="10.47" ry="10.47" fill="#91a38d" stroke="#667b66"/>
+<ellipse id="canopy-10" cx="736.68" cy="179.78" rx="11.79" ry="11.79" fill="#91a38d" stroke="#667b66"/>
+<ellipse id="canopy-11" cx="1146.35" cy="256.41" rx="14.50" ry="14.50" fill="#91a38d" stroke="#667b66"/>
+<ellipse id="canopy-12" cx="1064.39" cy="181.68" rx="8.14" ry="8.14" fill="#91a38d" stroke="#667b66"/>
+<ellipse id="canopy-13" cx="866.74" cy="265.04" rx="14.02" ry="14.02" fill="#91a38d" stroke="#667b66"/>
+<ellipse id="canopy-14" cx="858.88" cy="177.89" rx="11.00" ry="11.00" fill="#91a38d" stroke="#667b66"/>
+<ellipse id="canopy-15" cx="1046.92" cy="186.69" rx="9.91" ry="9.91" fill="#91a38d" stroke="#667b66"/>
+<ellipse id="canopy-16" cx="949.45" cy="178.09" rx="12.22" ry="12.22" fill="#91a38d" stroke="#667b66"/>
+<ellipse id="canopy-17" cx="861.15" cy="244.35" rx="14.29" ry="14.29" fill="#91a38d" stroke="#667b66"/>
+<ellipse id="canopy-18" cx="786.35" cy="212.03" rx="12.44" ry="12.44" fill="#91a38d" stroke="#667b66"/>
+<ellipse id="canopy-19" cx="947.96" cy="257.57" rx="13.27" ry="13.27" fill="#91a38d" stroke="#667b66"/>
+<ellipse id="canopy-20" cx="1110.61" cy="239.39" rx="10.66" ry="10.66" fill="#91a38d" stroke="#667b66"/>
+<ellipse id="canopy-21" cx="1107.25" cy="214.48" rx="10.18" ry="10.18" fill="#91a38d" stroke="#667b66"/>
+<ellipse id="canopy-22" cx="704.37" cy="197.69" rx="10.78" ry="10.78" fill="#91a38d" stroke="#667b66"/>
+<ellipse id="canopy-23" cx="909.29" cy="243.84" rx="13.06" ry="13.06" fill="#91a38d" stroke="#667b66"/>
+<ellipse id="canopy-24" cx="1026.59" cy="240.26" rx="8.60" ry="8.60" fill="#91a38d" stroke="#667b66"/>
+<ellipse id="canopy-25" cx="1142.08" cy="182.64" rx="8.17" ry="8.17" fill="#91a38d" stroke="#667b66"/>
+<ellipse id="canopy-26" cx="952.75" cy="204.14" rx="11.22" ry="11.22" fill="#91a38d" stroke="#667b66"/>
+<ellipse id="canopy-27" cx="1027.77" cy="177.86" rx="12.72" ry="12.72" fill="#91a38d" stroke="#667b66"/>
+<ellipse id="canopy-28" cx="875.43" cy="251.22" rx="10.01" ry="10.01" fill="#91a38d" stroke="#667b66"/>
+<ellipse id="canopy-29" cx="767.56" cy="259.40" rx="9.70" ry="9.70" fill="#91a38d" stroke="#667b66"/>
+<ellipse id="canopy-30" cx="1077.23" cy="218.45" rx="14.44" ry="14.44" fill="#91a38d" stroke="#667b66"/>
+<ellipse id="canopy-31" cx="1112.24" cy="192.16" rx="8.40" ry="8.40" fill="#91a38d" stroke="#667b66"/>
+<ellipse id="canopy-32" cx="1114.83" cy="261.09" rx="14.17" ry="14.17" fill="#91a38d" stroke="#667b66"/>
+<ellipse id="canopy-33" cx="1075.85" cy="206.88" rx="11.23" ry="11.23" fill="#91a38d" stroke="#667b66"/>
+<ellipse id="canopy-34" cx="733.61" cy="261.83" rx="13.09" ry="13.09" fill="#91a38d" stroke="#667b66"/>
+<ellipse id="canopy-35" cx="808.28" cy="218.90" rx="10.12" ry="10.12" fill="#91a38d" stroke="#667b66"/>
+<ellipse id="canopy-36" cx="773.21" cy="241.66" rx="13.80" ry="13.80" fill="#91a38d" stroke="#667b66"/>
+<ellipse id="canopy-37" cx="918.09" cy="232.29" rx="11.89" ry="11.89" fill="#91a38d" stroke="#667b66"/>
+<ellipse id="canopy-38" cx="948.18" cy="220.50" rx="11.56" ry="11.56" fill="#91a38d" stroke="#667b66"/>
+<ellipse id="canopy-39" cx="1133.39" cy="197.83" rx="9.83" ry="9.83" fill="#91a38d" stroke="#667b66"/>
+<ellipse id="canopy-40" cx="842.57" cy="251.88" rx="10.91" ry="10.91" fill="#91a38d" stroke="#667b66"/>
+<ellipse id="canopy-41" cx="712.71" cy="198.53" rx="12.54" ry="12.54" fill="#91a38d" stroke="#667b66"/>
+<rect id="dock-0" x="316.00" y="966.00" width="80.00" height="144.00" fill="#b4b2a2" stroke="#6c7771"/>
+<rect id="dock-1" x="796.00" y="966.00" width="80.00" height="144.00" fill="#b4b2a2" stroke="#6c7771"/>
+<rect id="work-yard" x="748.00" y="726.00" width="128.00" height="144.00" fill="#c4bca8" stroke="#6c7771"/>
+<rect id="assembly" x="556.00" y="390.00" width="128.00" height="64.00" fill="#d0cab7" stroke="#6c7771"/>
+<polyline id="road-arrival" points="356.00,1046.00 356.00,934.00 476.00,886.00" stroke="#dcd5c2" stroke-width="13" fill="none"/>
+<polyline id="road-refit" points="476.00,886.00 812.00,886.00 836.00,950.00 836.00,1046.00" stroke="#dcd5c2" stroke-width="13" fill="none"/>
+<polyline id="road-supplies" points="812.00,886.00 572.00,886.00 636.00,694.00 940.00,694.00" stroke="#dcd5c2" stroke-width="13" fill="none"/>
+<polyline id="road-food" points="476.00,886.00 356.00,934.00 252.00,726.00 348.00,694.00" stroke="#dcd5c2" stroke-width="13" fill="none"/>
+<polyline id="road-water" points="636.00,694.00 572.00,886.00 572.00,566.00 508.00,566.00" stroke="#dcd5c2" stroke-width="13" fill="none"/>
+<polyline id="road-evacuate" points="836.00,1046.00 836.00,950.00 812.00,886.00 572.00,886.00 572.00,566.00 732.00,566.00 828.00,534.00 732.00,566.00 732.00,422.00 620.00,422.00 252.00,422.00 348.00,310.00" stroke="#dcd5c2" stroke-width="13" fill="none"/>
+<polyline id="road-signal" points="620.00,422.00 732.00,422.00 988.00,422.00 1036.00,358.00" stroke="#dcd5c2" stroke-width="13" fill="none"/>
+<polyline id="road-embark" points="620.00,422.00 732.00,422.00 732.00,566.00 572.00,566.00 572.00,886.00 812.00,886.00 836.00,950.00 836.00,1046.00" stroke="#dcd5c2" stroke-width="13" fill="none"/>
+<polyline id="road-land_return" points="620.00,422.00 252.00,422.00 188.00,518.00" stroke="#dcd5c2" stroke-width="13" fill="none"/>
+<polyline id="road-wetland_optional" points="188.00,518.00 188.00,758.00 252.00,726.00 348.00,694.00" stroke="#dcd5c2" stroke-width="6" fill="none"/>
+<polyline id="house-lane-0" points="132.00,406.00 132.00,422.00 252.00,422.00" stroke="#dcd5c2" stroke-width="6" fill="none"/>
+<polyline id="house-lane-1" points="204.00,286.00 204.00,278.00 252.00,278.00 252.00,422.00" stroke="#dcd5c2" stroke-width="6" fill="none"/>
+<polyline id="house-lane-2" points="452.00,342.00 452.00,358.00 620.00,422.00" stroke="#dcd5c2" stroke-width="6" fill="none"/>
+<rect id="R01" x="460.00" y="806.00" width="96.00" height="64.00" fill="#847c6c" stroke="#6c7771"/>
+<polyline id="R01-ridge" points="460.00,838.00 556.00,838.00" stroke="#a39987" stroke-width="2" fill="none"/>
+<polyline id="R01-door" points="476.00,886.00 476.00,870.00" stroke="#dcd5c2" stroke-width="7" fill="none"/>
+<rect id="R02" x="924.00" y="598.00" width="96.00" height="80.00" fill="#847c6c" stroke="#6c7771"/>
+<polyline id="R02-ridge" points="924.00,638.00 1020.00,638.00" stroke="#a39987" stroke-width="2" fill="none"/>
+<polyline id="R02-door" points="940.00,694.00 940.00,678.00" stroke="#dcd5c2" stroke-width="7" fill="none"/>
+<rect id="R03" x="588.00" y="598.00" width="112.00" height="80.00" fill="#847c6c" stroke="#6c7771"/>
+<polyline id="R03-ridge" points="588.00,638.00 700.00,638.00" stroke="#a39987" stroke-width="2" fill="none"/>
+<polyline id="R03-door" points="636.00,694.00 636.00,678.00" stroke="#dcd5c2" stroke-width="7" fill="none"/>
+<rect id="R04" x="300.00" y="598.00" width="112.00" height="80.00" fill="#847c6c" stroke="#6c7771"/>
+<polyline id="R04-ridge" points="300.00,638.00 412.00,638.00" stroke="#a39987" stroke-width="2" fill="none"/>
+<polyline id="R04-door" points="348.00,694.00 348.00,678.00" stroke="#dcd5c2" stroke-width="7" fill="none"/>
+<rect id="R05" x="780.00" y="454.00" width="112.00" height="64.00" fill="#847c6c" stroke="#6c7771"/>
+<polyline id="R05-ridge" points="780.00,486.00 892.00,486.00" stroke="#a39987" stroke-width="2" fill="none"/>
+<polyline id="R05-door" points="828.00,534.00 828.00,518.00" stroke="#dcd5c2" stroke-width="7" fill="none"/>
+<rect id="R06" x="300.00" y="230.00" width="112.00" height="64.00" fill="#847c6c" stroke="#6c7771"/>
+<polyline id="R06-ridge" points="300.00,262.00 412.00,262.00" stroke="#a39987" stroke-width="2" fill="none"/>
+<polyline id="R06-door" points="348.00,310.00 348.00,294.00" stroke="#dcd5c2" stroke-width="7" fill="none"/>
+<rect id="R07" x="1020.00" y="310.00" width="32.00" height="32.00" fill="#847c6c" stroke="#6c7771"/>
+<polyline id="R07-ridge" points="1020.00,326.00 1052.00,326.00" stroke="#a39987" stroke-width="2" fill="none"/>
+<polyline id="R07-door" points="1036.00,358.00 1036.00,342.00" stroke="#dcd5c2" stroke-width="7" fill="none"/>
+<rect id="R08" x="108.00" y="358.00" width="56.00" height="48.00" fill="#847c6c" stroke="#6c7771"/>
+<polyline id="R08-ridge" points="108.00,382.00 164.00,382.00" stroke="#a39987" stroke-width="2" fill="none"/>
+<rect id="R09" x="180.00" y="286.00" width="48.00" height="48.00" fill="#847c6c" stroke="#6c7771"/>
+<polyline id="R09-ridge" points="180.00,310.00 228.00,310.00" stroke="#a39987" stroke-width="2" fill="none"/>
+<rect id="R10" x="428.00" y="294.00" width="56.00" height="48.00" fill="#847c6c" stroke="#6c7771"/>
+<polyline id="R10-ridge" points="428.00,318.00 484.00,318.00" stroke="#a39987" stroke-width="2" fill="none"/>
+<ellipse id="water-tank" cx="508.00" cy="518.00" rx="32.00" ry="32.00" fill="#a6c3c5" stroke="#667b66"/>
+<polyline id="route-arrival" points="356.00,1046.00 356.00,934.00 476.00,886.00" stroke="#446e7d" stroke-width="3" fill="none"/>
+<polyline id="route-evacuate" points="836.00,1046.00 836.00,950.00 812.00,886.00 572.00,886.00 572.00,566.00 732.00,566.00 828.00,534.00 732.00,566.00 732.00,422.00 620.00,422.00 252.00,422.00 348.00,310.00" stroke="#ad704b" stroke-width="3" fill="none"/>
+<polyline id="route-embark" points="620.00,422.00 732.00,422.00 732.00,566.00 572.00,566.00 572.00,886.00 812.00,886.00 836.00,950.00 836.00,1046.00" stroke="#4c8177" stroke-width="3" fill="none"/>
+<polyline id="ship-exit" points="892.00,1046.00 892.00,1206.00 1020.00,1366.00" stroke="#466b89" stroke-width="4" fill="none"/>
+<rect id="vessel-symbol" x="879.20" y="1006.00" width="25.60" height="80.00" fill="#666f70" stroke="#6c7771"/>
+<text x="924.0" y="1065.0" font-family="Malgun Gothic,sans-serif" font-size="19" fill="#293d42">원정 본선</text>
+<ellipse id="PG1" cx="180.00" cy="630.00" rx="28.80" ry="28.80" fill="#b9b494" stroke="#9a6746"/>
+<text x="215.0" y="632.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#8f5739">PG1</text>
+<ellipse id="PG2" cx="156.00" cy="758.00" rx="32.00" ry="32.00" fill="#b9b494" stroke="#9a6746"/>
+<text x="118.0" y="815.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#8f5739">PG2</text>
+<ellipse id="P01" cx="356.00" cy="1046.00" rx="4.00" ry="4.00" fill="#344b4f" stroke="#667b66"/>
+<polyline id="P01-leader" points="356.00,1046.00 368.00,1034.00 376.00,1034.00" stroke="#57686a" stroke-width="1" fill="none"/>
+<text x="378.0" y="1036.0" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#293d42">P01</text>
+<ellipse id="P02" cx="356.00" cy="934.00" rx="4.00" ry="4.00" fill="#344b4f" stroke="#667b66"/>
+<polyline id="P02-leader" points="356.00,934.00 368.00,922.00 376.00,922.00" stroke="#57686a" stroke-width="1" fill="none"/>
+<text x="378.0" y="924.0" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#293d42">P02</text>
+<ellipse id="P03" cx="476.00" cy="886.00" rx="4.00" ry="4.00" fill="#344b4f" stroke="#667b66"/>
+<polyline id="P03-leader" points="476.00,886.00 488.00,874.00 496.00,874.00" stroke="#57686a" stroke-width="1" fill="none"/>
+<text x="498.0" y="876.0" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#293d42">P03</text>
+<ellipse id="P04" cx="812.00" cy="886.00" rx="4.00" ry="4.00" fill="#344b4f" stroke="#667b66"/>
+<polyline id="P04-leader" points="812.00,886.00 824.00,874.00 832.00,874.00" stroke="#57686a" stroke-width="1" fill="none"/>
+<text x="834.0" y="876.0" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#293d42">P04</text>
+<ellipse id="P05" cx="836.00" cy="1046.00" rx="4.00" ry="4.00" fill="#344b4f" stroke="#667b66"/>
+<polyline id="P05-leader" points="836.00,1046.00 848.00,1034.00 856.00,1034.00" stroke="#57686a" stroke-width="1" fill="none"/>
+<text x="858.0" y="1036.0" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#293d42">P05</text>
+<ellipse id="P06" cx="940.00" cy="694.00" rx="4.00" ry="4.00" fill="#344b4f" stroke="#667b66"/>
+<polyline id="P06-leader" points="940.00,694.00 952.00,682.00 960.00,682.00" stroke="#57686a" stroke-width="1" fill="none"/>
+<text x="962.0" y="684.0" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#293d42">P06</text>
+<ellipse id="P07" cx="636.00" cy="694.00" rx="4.00" ry="4.00" fill="#344b4f" stroke="#667b66"/>
+<polyline id="P07-leader" points="636.00,694.00 648.00,682.00 656.00,682.00" stroke="#57686a" stroke-width="1" fill="none"/>
+<text x="658.0" y="684.0" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#293d42">P07</text>
+<ellipse id="P08" cx="508.00" cy="566.00" rx="4.00" ry="4.00" fill="#344b4f" stroke="#667b66"/>
+<polyline id="P08-leader" points="508.00,566.00 520.00,554.00 528.00,554.00" stroke="#57686a" stroke-width="1" fill="none"/>
+<text x="530.0" y="556.0" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#293d42">P08</text>
+<ellipse id="P09" cx="348.00" cy="694.00" rx="4.00" ry="4.00" fill="#344b4f" stroke="#667b66"/>
+<polyline id="P09-leader" points="348.00,694.00 360.00,682.00 368.00,682.00" stroke="#57686a" stroke-width="1" fill="none"/>
+<text x="370.0" y="684.0" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#293d42">P09</text>
+<ellipse id="P10" cx="828.00" cy="534.00" rx="4.00" ry="4.00" fill="#344b4f" stroke="#667b66"/>
+<polyline id="P10-leader" points="828.00,534.00 840.00,522.00 848.00,522.00" stroke="#57686a" stroke-width="1" fill="none"/>
+<text x="850.0" y="524.0" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#293d42">P10</text>
+<ellipse id="P11" cx="620.00" cy="422.00" rx="4.00" ry="4.00" fill="#344b4f" stroke="#667b66"/>
+<polyline id="P11-leader" points="620.00,422.00 632.00,410.00 640.00,410.00" stroke="#57686a" stroke-width="1" fill="none"/>
+<text x="642.0" y="412.0" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#293d42">P11</text>
+<ellipse id="P12" cx="348.00" cy="310.00" rx="4.00" ry="4.00" fill="#344b4f" stroke="#667b66"/>
+<polyline id="P12-leader" points="348.00,310.00 360.00,298.00 368.00,298.00" stroke="#57686a" stroke-width="1" fill="none"/>
+<text x="370.0" y="300.0" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#293d42">P12</text>
+<ellipse id="P13" cx="1036.00" cy="358.00" rx="4.00" ry="4.00" fill="#344b4f" stroke="#667b66"/>
+<polyline id="P13-leader" points="1036.00,358.00 1048.00,346.00 1056.00,346.00" stroke="#57686a" stroke-width="1" fill="none"/>
+<text x="1058.0" y="348.0" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#293d42">P13</text>
+<ellipse id="P14" cx="836.00" cy="950.00" rx="4.00" ry="4.00" fill="#344b4f" stroke="#667b66"/>
+<polyline id="P14-leader" points="836.00,950.00 848.00,938.00 856.00,938.00" stroke="#57686a" stroke-width="1" fill="none"/>
+<text x="858.0" y="940.0" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#293d42">P14</text>
+<ellipse id="P15" cx="188.00" cy="518.00" rx="4.00" ry="4.00" fill="#344b4f" stroke="#667b66"/>
+<polyline id="P15-leader" points="188.00,518.00 200.00,506.00 208.00,506.00" stroke="#57686a" stroke-width="1" fill="none"/>
+<text x="210.0" y="508.0" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#293d42">P15</text>
+<ellipse id="P16" cx="188.00" cy="758.00" rx="4.00" ry="4.00" fill="#344b4f" stroke="#667b66"/>
+<polyline id="P16-leader" points="188.00,758.00 200.00,746.00 208.00,746.00" stroke="#57686a" stroke-width="1" fill="none"/>
+<text x="210.0" y="748.0" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#293d42">P16</text>
+<text x="1240" y="182" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#293d42">P01 연안편 도착 부두</text>
+<text x="1240" y="224" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#293d42">P02 하역·환승 마당</text>
+<text x="1240" y="266" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#293d42">P03 원정 접수소</text>
+<text x="1240" y="308" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#293d42">P04 개조 작업 마당</text>
+<text x="1240" y="350" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#293d42">P05 본선 시험·출항 부두</text>
+<text x="1240" y="392" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#293d42">P06 현지 수리 공방</text>
+<text x="1240" y="434" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#293d42">P07 장비·귀환 비축 창고</text>
+<text x="1240" y="476" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#293d42">P08 급수 인수대</text>
+<text x="1240" y="518" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#293d42">P09 식량 검수 창고</text>
+<text x="1240" y="560" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#293d42">P10 난방·의무 대기실</text>
+<text x="1240" y="602" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#293d42">P11 원정 집결지</text>
+<text x="1240" y="644" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#293d42">P12 언덕 피난소</text>
+<text x="1240" y="686" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#293d42">P13 연락·관측소</text>
+<text x="1240" y="728" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#293d42">P14 승선 대기장</text>
+<text x="1240" y="770" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#293d42">P15 서쪽 육상 출입구</text>
+<text x="1240" y="812" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#293d42">P16 습지 바깥 관찰길</text>
+<text x="1240" y="921" font-family="Malgun Gothic,sans-serif" font-size="21" fill="#293d42">8m 주 동선 / 4m 습지 선택길</text>
+<text x="1240" y="961" font-family="Malgun Gothic,sans-serif" font-size="21" fill="#293d42">주황: 피난 / 청록: 최종 승선</text>
+<text x="1240" y="1001" font-family="Malgun Gothic,sans-serif" font-size="21" fill="#293d42">지붕 10동·물탱크·마당·부두 구분</text>
+<text x="1240" y="1041" font-family="Malgun Gothic,sans-serif" font-size="21" fill="#293d42">PG1 늪트롤 1 / PG2 덩굴 3</text>
+<text x="1240" y="1081" font-family="Malgun Gothic,sans-serif" font-size="21" fill="#293d42">선택 생활권 처치는 G5 조건 아님</text>
+<text x="1240" y="1121" font-family="Malgun Gothic,sans-serif" font-size="21" fill="#293d42">본선: 16명 출항 + 구조자 여유 8</text>
+<text x="1240" y="1161" font-family="Malgun Gothic,sans-serif" font-size="21" fill="#293d42">G5 인수 뒤 기상 판단 후 T6 출항</text>
+<text x="1240" y="1201" font-family="Malgun Gothic,sans-serif" font-size="21" fill="#293d42">항내 시험·선박 적합성은 플롯 후보</text>
+<text x="1240" y="1241" font-family="Malgun Gothic,sans-serif" font-size="21" fill="#293d42">실제 항해·건축·UE 실행 미검증</text>
+<text x="700.0" y="217.0" font-family="Malgun Gothic,sans-serif" font-size="19" fill="#293d42">완충 숲</text>
+<text x="84.0" y="207.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#293d42">과수·텃밭</text>
+<text x="932.0" y="888.0" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#293d42">암반 연안</text>
+<text x="316.0" y="1293.0" font-family="Malgun Gothic,sans-serif" font-size="23" fill="#293d42">항내 수면 · 남쪽 외해</text>
+<polyline id="scale-100m" points="60.00,1455.00 220.00,1455.00" stroke="#293d42" stroke-width="4" fill="none"/>
+<text x="60" y="1494" font-family="Malgun Gothic,sans-serif" font-size="19" fill="#293d42">100m · 국소 설계 축척</text>
+</svg>

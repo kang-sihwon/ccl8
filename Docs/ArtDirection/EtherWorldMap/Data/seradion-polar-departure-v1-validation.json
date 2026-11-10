@@ -1,0 +1,2134 @@
+{
+  "result": "PASS",
+  "checks_passed": 531,
+  "checks": [
+    {
+      "name": "preserve Docs/ArtDirection/EtherWorldMap/Data/seradion-waterworks-v1.json",
+      "passed": true
+    },
+    {
+      "name": "preserve Docs/ArtDirection/EtherWorldMap/Data/seradion-arrival-v1.json",
+      "passed": true
+    },
+    {
+      "name": "preserve Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-08-five-continent-mainline/routes-and-unlocks.md",
+      "passed": true
+    },
+    {
+      "name": "preserve Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-08-world-distribution-and-leveling/progression.md",
+      "passed": true
+    },
+    {
+      "name": "preserve Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-08-world-distribution-and-leveling/variant-distribution.md",
+      "passed": true
+    },
+    {
+      "name": "preserve Docs/Narrative/World.md",
+      "passed": true
+    },
+    {
+      "name": "preserve Docs/Narrative/Scenario.md",
+      "passed": true
+    },
+    {
+      "name": "counts",
+      "passed": true
+    },
+    {
+      "name": "population",
+      "passed": true
+    },
+    {
+      "name": "population level PG1",
+      "passed": true
+    },
+    {
+      "name": "population level PG2",
+      "passed": true
+    },
+    {
+      "name": "path coordinates arrival",
+      "passed": true
+    },
+    {
+      "name": "length arrival",
+      "passed": true
+    },
+    {
+      "name": "building clearance arrival:0:R01",
+      "passed": true
+    },
+    {
+      "name": "building clearance arrival:0:R02",
+      "passed": true
+    },
+    {
+      "name": "building clearance arrival:0:R03",
+      "passed": true
+    },
+    {
+      "name": "building clearance arrival:0:R04",
+      "passed": true
+    },
+    {
+      "name": "building clearance arrival:0:R05",
+      "passed": true
+    },
+    {
+      "name": "building clearance arrival:0:R06",
+      "passed": true
+    },
+    {
+      "name": "building clearance arrival:0:R07",
+      "passed": true
+    },
+    {
+      "name": "building clearance arrival:0:R08",
+      "passed": true
+    },
+    {
+      "name": "building clearance arrival:0:R09",
+      "passed": true
+    },
+    {
+      "name": "building clearance arrival:0:R10",
+      "passed": true
+    },
+    {
+      "name": "land width arrival:0",
+      "passed": true
+    },
+    {
+      "name": "building clearance arrival:1:R01",
+      "passed": true
+    },
+    {
+      "name": "building clearance arrival:1:R02",
+      "passed": true
+    },
+    {
+      "name": "building clearance arrival:1:R03",
+      "passed": true
+    },
+    {
+      "name": "building clearance arrival:1:R04",
+      "passed": true
+    },
+    {
+      "name": "building clearance arrival:1:R05",
+      "passed": true
+    },
+    {
+      "name": "building clearance arrival:1:R06",
+      "passed": true
+    },
+    {
+      "name": "building clearance arrival:1:R07",
+      "passed": true
+    },
+    {
+      "name": "building clearance arrival:1:R08",
+      "passed": true
+    },
+    {
+      "name": "building clearance arrival:1:R09",
+      "passed": true
+    },
+    {
+      "name": "building clearance arrival:1:R10",
+      "passed": true
+    },
+    {
+      "name": "land width arrival:1",
+      "passed": true
+    },
+    {
+      "name": "path coordinates refit",
+      "passed": true
+    },
+    {
+      "name": "length refit",
+      "passed": true
+    },
+    {
+      "name": "building clearance refit:0:R01",
+      "passed": true
+    },
+    {
+      "name": "building clearance refit:0:R02",
+      "passed": true
+    },
+    {
+      "name": "building clearance refit:0:R03",
+      "passed": true
+    },
+    {
+      "name": "building clearance refit:0:R04",
+      "passed": true
+    },
+    {
+      "name": "building clearance refit:0:R05",
+      "passed": true
+    },
+    {
+      "name": "building clearance refit:0:R06",
+      "passed": true
+    },
+    {
+      "name": "building clearance refit:0:R07",
+      "passed": true
+    },
+    {
+      "name": "building clearance refit:0:R08",
+      "passed": true
+    },
+    {
+      "name": "building clearance refit:0:R09",
+      "passed": true
+    },
+    {
+      "name": "building clearance refit:0:R10",
+      "passed": true
+    },
+    {
+      "name": "land width refit:0",
+      "passed": true
+    },
+    {
+      "name": "building clearance refit:1:R01",
+      "passed": true
+    },
+    {
+      "name": "building clearance refit:1:R02",
+      "passed": true
+    },
+    {
+      "name": "building clearance refit:1:R03",
+      "passed": true
+    },
+    {
+      "name": "building clearance refit:1:R04",
+      "passed": true
+    },
+    {
+      "name": "building clearance refit:1:R05",
+      "passed": true
+    },
+    {
+      "name": "building clearance refit:1:R06",
+      "passed": true
+    },
+    {
+      "name": "building clearance refit:1:R07",
+      "passed": true
+    },
+    {
+      "name": "building clearance refit:1:R08",
+      "passed": true
+    },
+    {
+      "name": "building clearance refit:1:R09",
+      "passed": true
+    },
+    {
+      "name": "building clearance refit:1:R10",
+      "passed": true
+    },
+    {
+      "name": "land width refit:1",
+      "passed": true
+    },
+    {
+      "name": "building clearance refit:2:R01",
+      "passed": true
+    },
+    {
+      "name": "building clearance refit:2:R02",
+      "passed": true
+    },
+    {
+      "name": "building clearance refit:2:R03",
+      "passed": true
+    },
+    {
+      "name": "building clearance refit:2:R04",
+      "passed": true
+    },
+    {
+      "name": "building clearance refit:2:R05",
+      "passed": true
+    },
+    {
+      "name": "building clearance refit:2:R06",
+      "passed": true
+    },
+    {
+      "name": "building clearance refit:2:R07",
+      "passed": true
+    },
+    {
+      "name": "building clearance refit:2:R08",
+      "passed": true
+    },
+    {
+      "name": "building clearance refit:2:R09",
+      "passed": true
+    },
+    {
+      "name": "building clearance refit:2:R10",
+      "passed": true
+    },
+    {
+      "name": "land width refit:2",
+      "passed": true
+    },
+    {
+      "name": "path coordinates supplies",
+      "passed": true
+    },
+    {
+      "name": "length supplies",
+      "passed": true
+    },
+    {
+      "name": "building clearance supplies:0:R01",
+      "passed": true
+    },
+    {
+      "name": "building clearance supplies:0:R02",
+      "passed": true
+    },
+    {
+      "name": "building clearance supplies:0:R03",
+      "passed": true
+    },
+    {
+      "name": "building clearance supplies:0:R04",
+      "passed": true
+    },
+    {
+      "name": "building clearance supplies:0:R05",
+      "passed": true
+    },
+    {
+      "name": "building clearance supplies:0:R06",
+      "passed": true
+    },
+    {
+      "name": "building clearance supplies:0:R07",
+      "passed": true
+    },
+    {
+      "name": "building clearance supplies:0:R08",
+      "passed": true
+    },
+    {
+      "name": "building clearance supplies:0:R09",
+      "passed": true
+    },
+    {
+      "name": "building clearance supplies:0:R10",
+      "passed": true
+    },
+    {
+      "name": "land width supplies:0",
+      "passed": true
+    },
+    {
+      "name": "building clearance supplies:1:R01",
+      "passed": true
+    },
+    {
+      "name": "building clearance supplies:1:R02",
+      "passed": true
+    },
+    {
+      "name": "building clearance supplies:1:R03",
+      "passed": true
+    },
+    {
+      "name": "building clearance supplies:1:R04",
+      "passed": true
+    },
+    {
+      "name": "building clearance supplies:1:R05",
+      "passed": true
+    },
+    {
+      "name": "building clearance supplies:1:R06",
+      "passed": true
+    },
+    {
+      "name": "building clearance supplies:1:R07",
+      "passed": true
+    },
+    {
+      "name": "building clearance supplies:1:R08",
+      "passed": true
+    },
+    {
+      "name": "building clearance supplies:1:R09",
+      "passed": true
+    },
+    {
+      "name": "building clearance supplies:1:R10",
+      "passed": true
+    },
+    {
+      "name": "land width supplies:1",
+      "passed": true
+    },
+    {
+      "name": "building clearance supplies:2:R01",
+      "passed": true
+    },
+    {
+      "name": "building clearance supplies:2:R02",
+      "passed": true
+    },
+    {
+      "name": "building clearance supplies:2:R03",
+      "passed": true
+    },
+    {
+      "name": "building clearance supplies:2:R04",
+      "passed": true
+    },
+    {
+      "name": "building clearance supplies:2:R05",
+      "passed": true
+    },
+    {
+      "name": "building clearance supplies:2:R06",
+      "passed": true
+    },
+    {
+      "name": "building clearance supplies:2:R07",
+      "passed": true
+    },
+    {
+      "name": "building clearance supplies:2:R08",
+      "passed": true
+    },
+    {
+      "name": "building clearance supplies:2:R09",
+      "passed": true
+    },
+    {
+      "name": "building clearance supplies:2:R10",
+      "passed": true
+    },
+    {
+      "name": "land width supplies:2",
+      "passed": true
+    },
+    {
+      "name": "path coordinates food",
+      "passed": true
+    },
+    {
+      "name": "length food",
+      "passed": true
+    },
+    {
+      "name": "building clearance food:0:R01",
+      "passed": true
+    },
+    {
+      "name": "building clearance food:0:R02",
+      "passed": true
+    },
+    {
+      "name": "building clearance food:0:R03",
+      "passed": true
+    },
+    {
+      "name": "building clearance food:0:R04",
+      "passed": true
+    },
+    {
+      "name": "building clearance food:0:R05",
+      "passed": true
+    },
+    {
+      "name": "building clearance food:0:R06",
+      "passed": true
+    },
+    {
+      "name": "building clearance food:0:R07",
+      "passed": true
+    },
+    {
+      "name": "building clearance food:0:R08",
+      "passed": true
+    },
+    {
+      "name": "building clearance food:0:R09",
+      "passed": true
+    },
+    {
+      "name": "building clearance food:0:R10",
+      "passed": true
+    },
+    {
+      "name": "land width food:0",
+      "passed": true
+    },
+    {
+      "name": "building clearance food:1:R01",
+      "passed": true
+    },
+    {
+      "name": "building clearance food:1:R02",
+      "passed": true
+    },
+    {
+      "name": "building clearance food:1:R03",
+      "passed": true
+    },
+    {
+      "name": "building clearance food:1:R04",
+      "passed": true
+    },
+    {
+      "name": "building clearance food:1:R05",
+      "passed": true
+    },
+    {
+      "name": "building clearance food:1:R06",
+      "passed": true
+    },
+    {
+      "name": "building clearance food:1:R07",
+      "passed": true
+    },
+    {
+      "name": "building clearance food:1:R08",
+      "passed": true
+    },
+    {
+      "name": "building clearance food:1:R09",
+      "passed": true
+    },
+    {
+      "name": "building clearance food:1:R10",
+      "passed": true
+    },
+    {
+      "name": "land width food:1",
+      "passed": true
+    },
+    {
+      "name": "building clearance food:2:R01",
+      "passed": true
+    },
+    {
+      "name": "building clearance food:2:R02",
+      "passed": true
+    },
+    {
+      "name": "building clearance food:2:R03",
+      "passed": true
+    },
+    {
+      "name": "building clearance food:2:R04",
+      "passed": true
+    },
+    {
+      "name": "building clearance food:2:R05",
+      "passed": true
+    },
+    {
+      "name": "building clearance food:2:R06",
+      "passed": true
+    },
+    {
+      "name": "building clearance food:2:R07",
+      "passed": true
+    },
+    {
+      "name": "building clearance food:2:R08",
+      "passed": true
+    },
+    {
+      "name": "building clearance food:2:R09",
+      "passed": true
+    },
+    {
+      "name": "building clearance food:2:R10",
+      "passed": true
+    },
+    {
+      "name": "land width food:2",
+      "passed": true
+    },
+    {
+      "name": "path coordinates water",
+      "passed": true
+    },
+    {
+      "name": "length water",
+      "passed": true
+    },
+    {
+      "name": "building clearance water:0:R01",
+      "passed": true
+    },
+    {
+      "name": "building clearance water:0:R02",
+      "passed": true
+    },
+    {
+      "name": "building clearance water:0:R03",
+      "passed": true
+    },
+    {
+      "name": "building clearance water:0:R04",
+      "passed": true
+    },
+    {
+      "name": "building clearance water:0:R05",
+      "passed": true
+    },
+    {
+      "name": "building clearance water:0:R06",
+      "passed": true
+    },
+    {
+      "name": "building clearance water:0:R07",
+      "passed": true
+    },
+    {
+      "name": "building clearance water:0:R08",
+      "passed": true
+    },
+    {
+      "name": "building clearance water:0:R09",
+      "passed": true
+    },
+    {
+      "name": "building clearance water:0:R10",
+      "passed": true
+    },
+    {
+      "name": "land width water:0",
+      "passed": true
+    },
+    {
+      "name": "building clearance water:1:R01",
+      "passed": true
+    },
+    {
+      "name": "building clearance water:1:R02",
+      "passed": true
+    },
+    {
+      "name": "building clearance water:1:R03",
+      "passed": true
+    },
+    {
+      "name": "building clearance water:1:R04",
+      "passed": true
+    },
+    {
+      "name": "building clearance water:1:R05",
+      "passed": true
+    },
+    {
+      "name": "building clearance water:1:R06",
+      "passed": true
+    },
+    {
+      "name": "building clearance water:1:R07",
+      "passed": true
+    },
+    {
+      "name": "building clearance water:1:R08",
+      "passed": true
+    },
+    {
+      "name": "building clearance water:1:R09",
+      "passed": true
+    },
+    {
+      "name": "building clearance water:1:R10",
+      "passed": true
+    },
+    {
+      "name": "land width water:1",
+      "passed": true
+    },
+    {
+      "name": "building clearance water:2:R01",
+      "passed": true
+    },
+    {
+      "name": "building clearance water:2:R02",
+      "passed": true
+    },
+    {
+      "name": "building clearance water:2:R03",
+      "passed": true
+    },
+    {
+      "name": "building clearance water:2:R04",
+      "passed": true
+    },
+    {
+      "name": "building clearance water:2:R05",
+      "passed": true
+    },
+    {
+      "name": "building clearance water:2:R06",
+      "passed": true
+    },
+    {
+      "name": "building clearance water:2:R07",
+      "passed": true
+    },
+    {
+      "name": "building clearance water:2:R08",
+      "passed": true
+    },
+    {
+      "name": "building clearance water:2:R09",
+      "passed": true
+    },
+    {
+      "name": "building clearance water:2:R10",
+      "passed": true
+    },
+    {
+      "name": "land width water:2",
+      "passed": true
+    },
+    {
+      "name": "path coordinates evacuate",
+      "passed": true
+    },
+    {
+      "name": "length evacuate",
+      "passed": true
+    },
+    {
+      "name": "building clearance evacuate:0:R01",
+      "passed": true
+    },
+    {
+      "name": "building clearance evacuate:0:R02",
+      "passed": true
+    },
+    {
+      "name": "building clearance evacuate:0:R03",
+      "passed": true
+    },
+    {
+      "name": "building clearance evacuate:0:R04",
+      "passed": true
+    },
+    {
+      "name": "building clearance evacuate:0:R05",
+      "passed": true
+    },
+    {
+      "name": "building clearance evacuate:0:R06",
+      "passed": true
+    },
+    {
+      "name": "building clearance evacuate:0:R07",
+      "passed": true
+    },
+    {
+      "name": "building clearance evacuate:0:R08",
+      "passed": true
+    },
+    {
+      "name": "building clearance evacuate:0:R09",
+      "passed": true
+    },
+    {
+      "name": "building clearance evacuate:0:R10",
+      "passed": true
+    },
+    {
+      "name": "land width evacuate:0",
+      "passed": true
+    },
+    {
+      "name": "building clearance evacuate:1:R01",
+      "passed": true
+    },
+    {
+      "name": "building clearance evacuate:1:R02",
+      "passed": true
+    },
+    {
+      "name": "building clearance evacuate:1:R03",
+      "passed": true
+    },
+    {
+      "name": "building clearance evacuate:1:R04",
+      "passed": true
+    },
+    {
+      "name": "building clearance evacuate:1:R05",
+      "passed": true
+    },
+    {
+      "name": "building clearance evacuate:1:R06",
+      "passed": true
+    },
+    {
+      "name": "building clearance evacuate:1:R07",
+      "passed": true
+    },
+    {
+      "name": "building clearance evacuate:1:R08",
+      "passed": true
+    },
+    {
+      "name": "building clearance evacuate:1:R09",
+      "passed": true
+    },
+    {
+      "name": "building clearance evacuate:1:R10",
+      "passed": true
+    },
+    {
+      "name": "land width evacuate:1",
+      "passed": true
+    },
+    {
+      "name": "building clearance evacuate:2:R01",
+      "passed": true
+    },
+    {
+      "name": "building clearance evacuate:2:R02",
+      "passed": true
+    },
+    {
+      "name": "building clearance evacuate:2:R03",
+      "passed": true
+    },
+    {
+      "name": "building clearance evacuate:2:R04",
+      "passed": true
+    },
+    {
+      "name": "building clearance evacuate:2:R05",
+      "passed": true
+    },
+    {
+      "name": "building clearance evacuate:2:R06",
+      "passed": true
+    },
+    {
+      "name": "building clearance evacuate:2:R07",
+      "passed": true
+    },
+    {
+      "name": "building clearance evacuate:2:R08",
+      "passed": true
+    },
+    {
+      "name": "building clearance evacuate:2:R09",
+      "passed": true
+    },
+    {
+      "name": "building clearance evacuate:2:R10",
+      "passed": true
+    },
+    {
+      "name": "land width evacuate:2",
+      "passed": true
+    },
+    {
+      "name": "building clearance evacuate:3:R01",
+      "passed": true
+    },
+    {
+      "name": "building clearance evacuate:3:R02",
+      "passed": true
+    },
+    {
+      "name": "building clearance evacuate:3:R03",
+      "passed": true
+    },
+    {
+      "name": "building clearance evacuate:3:R04",
+      "passed": true
+    },
+    {
+      "name": "building clearance evacuate:3:R05",
+      "passed": true
+    },
+    {
+      "name": "building clearance evacuate:3:R06",
+      "passed": true
+    },
+    {
+      "name": "building clearance evacuate:3:R07",
+      "passed": true
+    },
+    {
+      "name": "building clearance evacuate:3:R08",
+      "passed": true
+    },
+    {
+      "name": "building clearance evacuate:3:R09",
+      "passed": true
+    },
+    {
+      "name": "building clearance evacuate:3:R10",
+      "passed": true
+    },
+    {
+      "name": "land width evacuate:3",
+      "passed": true
+    },
+    {
+      "name": "building clearance evacuate:4:R01",
+      "passed": true
+    },
+    {
+      "name": "building clearance evacuate:4:R02",
+      "passed": true
+    },
+    {
+      "name": "building clearance evacuate:4:R03",
+      "passed": true
+    },
+    {
+      "name": "building clearance evacuate:4:R04",
+      "passed": true
+    },
+    {
+      "name": "building clearance evacuate:4:R05",
+      "passed": true
+    },
+    {
+      "name": "building clearance evacuate:4:R06",
+      "passed": true
+    },
+    {
+      "name": "building clearance evacuate:4:R07",
+      "passed": true
+    },
+    {
+      "name": "building clearance evacuate:4:R08",
+      "passed": true
+    },
+    {
+      "name": "building clearance evacuate:4:R09",
+      "passed": true
+    },
+    {
+      "name": "building clearance evacuate:4:R10",
+      "passed": true
+    },
+    {
+      "name": "land width evacuate:4",
+      "passed": true
+    },
+    {
+      "name": "building clearance evacuate:5:R01",
+      "passed": true
+    },
+    {
+      "name": "building clearance evacuate:5:R02",
+      "passed": true
+    },
+    {
+      "name": "building clearance evacuate:5:R03",
+      "passed": true
+    },
+    {
+      "name": "building clearance evacuate:5:R04",
+      "passed": true
+    },
+    {
+      "name": "building clearance evacuate:5:R05",
+      "passed": true
+    },
+    {
+      "name": "building clearance evacuate:5:R06",
+      "passed": true
+    },
+    {
+      "name": "building clearance evacuate:5:R07",
+      "passed": true
+    },
+    {
+      "name": "building clearance evacuate:5:R08",
+      "passed": true
+    },
+    {
+      "name": "building clearance evacuate:5:R09",
+      "passed": true
+    },
+    {
+      "name": "building clearance evacuate:5:R10",
+      "passed": true
+    },
+    {
+      "name": "land width evacuate:5",
+      "passed": true
+    },
+    {
+      "name": "building clearance evacuate:6:R01",
+      "passed": true
+    },
+    {
+      "name": "building clearance evacuate:6:R02",
+      "passed": true
+    },
+    {
+      "name": "building clearance evacuate:6:R03",
+      "passed": true
+    },
+    {
+      "name": "building clearance evacuate:6:R04",
+      "passed": true
+    },
+    {
+      "name": "building clearance evacuate:6:R05",
+      "passed": true
+    },
+    {
+      "name": "building clearance evacuate:6:R06",
+      "passed": true
+    },
+    {
+      "name": "building clearance evacuate:6:R07",
+      "passed": true
+    },
+    {
+      "name": "building clearance evacuate:6:R08",
+      "passed": true
+    },
+    {
+      "name": "building clearance evacuate:6:R09",
+      "passed": true
+    },
+    {
+      "name": "building clearance evacuate:6:R10",
+      "passed": true
+    },
+    {
+      "name": "land width evacuate:6",
+      "passed": true
+    },
+    {
+      "name": "building clearance evacuate:7:R01",
+      "passed": true
+    },
+    {
+      "name": "building clearance evacuate:7:R02",
+      "passed": true
+    },
+    {
+      "name": "building clearance evacuate:7:R03",
+      "passed": true
+    },
+    {
+      "name": "building clearance evacuate:7:R04",
+      "passed": true
+    },
+    {
+      "name": "building clearance evacuate:7:R05",
+      "passed": true
+    },
+    {
+      "name": "building clearance evacuate:7:R06",
+      "passed": true
+    },
+    {
+      "name": "building clearance evacuate:7:R07",
+      "passed": true
+    },
+    {
+      "name": "building clearance evacuate:7:R08",
+      "passed": true
+    },
+    {
+      "name": "building clearance evacuate:7:R09",
+      "passed": true
+    },
+    {
+      "name": "building clearance evacuate:7:R10",
+      "passed": true
+    },
+    {
+      "name": "land width evacuate:7",
+      "passed": true
+    },
+    {
+      "name": "building clearance evacuate:8:R01",
+      "passed": true
+    },
+    {
+      "name": "building clearance evacuate:8:R02",
+      "passed": true
+    },
+    {
+      "name": "building clearance evacuate:8:R03",
+      "passed": true
+    },
+    {
+      "name": "building clearance evacuate:8:R04",
+      "passed": true
+    },
+    {
+      "name": "building clearance evacuate:8:R05",
+      "passed": true
+    },
+    {
+      "name": "building clearance evacuate:8:R06",
+      "passed": true
+    },
+    {
+      "name": "building clearance evacuate:8:R07",
+      "passed": true
+    },
+    {
+      "name": "building clearance evacuate:8:R08",
+      "passed": true
+    },
+    {
+      "name": "building clearance evacuate:8:R09",
+      "passed": true
+    },
+    {
+      "name": "building clearance evacuate:8:R10",
+      "passed": true
+    },
+    {
+      "name": "land width evacuate:8",
+      "passed": true
+    },
+    {
+      "name": "building clearance evacuate:9:R01",
+      "passed": true
+    },
+    {
+      "name": "building clearance evacuate:9:R02",
+      "passed": true
+    },
+    {
+      "name": "building clearance evacuate:9:R03",
+      "passed": true
+    },
+    {
+      "name": "building clearance evacuate:9:R04",
+      "passed": true
+    },
+    {
+      "name": "building clearance evacuate:9:R05",
+      "passed": true
+    },
+    {
+      "name": "building clearance evacuate:9:R06",
+      "passed": true
+    },
+    {
+      "name": "building clearance evacuate:9:R07",
+      "passed": true
+    },
+    {
+      "name": "building clearance evacuate:9:R08",
+      "passed": true
+    },
+    {
+      "name": "building clearance evacuate:9:R09",
+      "passed": true
+    },
+    {
+      "name": "building clearance evacuate:9:R10",
+      "passed": true
+    },
+    {
+      "name": "land width evacuate:9",
+      "passed": true
+    },
+    {
+      "name": "building clearance evacuate:10:R01",
+      "passed": true
+    },
+    {
+      "name": "building clearance evacuate:10:R02",
+      "passed": true
+    },
+    {
+      "name": "building clearance evacuate:10:R03",
+      "passed": true
+    },
+    {
+      "name": "building clearance evacuate:10:R04",
+      "passed": true
+    },
+    {
+      "name": "building clearance evacuate:10:R05",
+      "passed": true
+    },
+    {
+      "name": "building clearance evacuate:10:R06",
+      "passed": true
+    },
+    {
+      "name": "building clearance evacuate:10:R07",
+      "passed": true
+    },
+    {
+      "name": "building clearance evacuate:10:R08",
+      "passed": true
+    },
+    {
+      "name": "building clearance evacuate:10:R09",
+      "passed": true
+    },
+    {
+      "name": "building clearance evacuate:10:R10",
+      "passed": true
+    },
+    {
+      "name": "land width evacuate:10",
+      "passed": true
+    },
+    {
+      "name": "path coordinates signal",
+      "passed": true
+    },
+    {
+      "name": "length signal",
+      "passed": true
+    },
+    {
+      "name": "building clearance signal:0:R01",
+      "passed": true
+    },
+    {
+      "name": "building clearance signal:0:R02",
+      "passed": true
+    },
+    {
+      "name": "building clearance signal:0:R03",
+      "passed": true
+    },
+    {
+      "name": "building clearance signal:0:R04",
+      "passed": true
+    },
+    {
+      "name": "building clearance signal:0:R05",
+      "passed": true
+    },
+    {
+      "name": "building clearance signal:0:R06",
+      "passed": true
+    },
+    {
+      "name": "building clearance signal:0:R07",
+      "passed": true
+    },
+    {
+      "name": "building clearance signal:0:R08",
+      "passed": true
+    },
+    {
+      "name": "building clearance signal:0:R09",
+      "passed": true
+    },
+    {
+      "name": "building clearance signal:0:R10",
+      "passed": true
+    },
+    {
+      "name": "land width signal:0",
+      "passed": true
+    },
+    {
+      "name": "building clearance signal:1:R01",
+      "passed": true
+    },
+    {
+      "name": "building clearance signal:1:R02",
+      "passed": true
+    },
+    {
+      "name": "building clearance signal:1:R03",
+      "passed": true
+    },
+    {
+      "name": "building clearance signal:1:R04",
+      "passed": true
+    },
+    {
+      "name": "building clearance signal:1:R05",
+      "passed": true
+    },
+    {
+      "name": "building clearance signal:1:R06",
+      "passed": true
+    },
+    {
+      "name": "building clearance signal:1:R07",
+      "passed": true
+    },
+    {
+      "name": "building clearance signal:1:R08",
+      "passed": true
+    },
+    {
+      "name": "building clearance signal:1:R09",
+      "passed": true
+    },
+    {
+      "name": "building clearance signal:1:R10",
+      "passed": true
+    },
+    {
+      "name": "land width signal:1",
+      "passed": true
+    },
+    {
+      "name": "building clearance signal:2:R01",
+      "passed": true
+    },
+    {
+      "name": "building clearance signal:2:R02",
+      "passed": true
+    },
+    {
+      "name": "building clearance signal:2:R03",
+      "passed": true
+    },
+    {
+      "name": "building clearance signal:2:R04",
+      "passed": true
+    },
+    {
+      "name": "building clearance signal:2:R05",
+      "passed": true
+    },
+    {
+      "name": "building clearance signal:2:R06",
+      "passed": true
+    },
+    {
+      "name": "building clearance signal:2:R07",
+      "passed": true
+    },
+    {
+      "name": "building clearance signal:2:R08",
+      "passed": true
+    },
+    {
+      "name": "building clearance signal:2:R09",
+      "passed": true
+    },
+    {
+      "name": "building clearance signal:2:R10",
+      "passed": true
+    },
+    {
+      "name": "land width signal:2",
+      "passed": true
+    },
+    {
+      "name": "path coordinates embark",
+      "passed": true
+    },
+    {
+      "name": "length embark",
+      "passed": true
+    },
+    {
+      "name": "building clearance embark:0:R01",
+      "passed": true
+    },
+    {
+      "name": "building clearance embark:0:R02",
+      "passed": true
+    },
+    {
+      "name": "building clearance embark:0:R03",
+      "passed": true
+    },
+    {
+      "name": "building clearance embark:0:R04",
+      "passed": true
+    },
+    {
+      "name": "building clearance embark:0:R05",
+      "passed": true
+    },
+    {
+      "name": "building clearance embark:0:R06",
+      "passed": true
+    },
+    {
+      "name": "building clearance embark:0:R07",
+      "passed": true
+    },
+    {
+      "name": "building clearance embark:0:R08",
+      "passed": true
+    },
+    {
+      "name": "building clearance embark:0:R09",
+      "passed": true
+    },
+    {
+      "name": "building clearance embark:0:R10",
+      "passed": true
+    },
+    {
+      "name": "land width embark:0",
+      "passed": true
+    },
+    {
+      "name": "building clearance embark:1:R01",
+      "passed": true
+    },
+    {
+      "name": "building clearance embark:1:R02",
+      "passed": true
+    },
+    {
+      "name": "building clearance embark:1:R03",
+      "passed": true
+    },
+    {
+      "name": "building clearance embark:1:R04",
+      "passed": true
+    },
+    {
+      "name": "building clearance embark:1:R05",
+      "passed": true
+    },
+    {
+      "name": "building clearance embark:1:R06",
+      "passed": true
+    },
+    {
+      "name": "building clearance embark:1:R07",
+      "passed": true
+    },
+    {
+      "name": "building clearance embark:1:R08",
+      "passed": true
+    },
+    {
+      "name": "building clearance embark:1:R09",
+      "passed": true
+    },
+    {
+      "name": "building clearance embark:1:R10",
+      "passed": true
+    },
+    {
+      "name": "land width embark:1",
+      "passed": true
+    },
+    {
+      "name": "building clearance embark:2:R01",
+      "passed": true
+    },
+    {
+      "name": "building clearance embark:2:R02",
+      "passed": true
+    },
+    {
+      "name": "building clearance embark:2:R03",
+      "passed": true
+    },
+    {
+      "name": "building clearance embark:2:R04",
+      "passed": true
+    },
+    {
+      "name": "building clearance embark:2:R05",
+      "passed": true
+    },
+    {
+      "name": "building clearance embark:2:R06",
+      "passed": true
+    },
+    {
+      "name": "building clearance embark:2:R07",
+      "passed": true
+    },
+    {
+      "name": "building clearance embark:2:R08",
+      "passed": true
+    },
+    {
+      "name": "building clearance embark:2:R09",
+      "passed": true
+    },
+    {
+      "name": "building clearance embark:2:R10",
+      "passed": true
+    },
+    {
+      "name": "land width embark:2",
+      "passed": true
+    },
+    {
+      "name": "building clearance embark:3:R01",
+      "passed": true
+    },
+    {
+      "name": "building clearance embark:3:R02",
+      "passed": true
+    },
+    {
+      "name": "building clearance embark:3:R03",
+      "passed": true
+    },
+    {
+      "name": "building clearance embark:3:R04",
+      "passed": true
+    },
+    {
+      "name": "building clearance embark:3:R05",
+      "passed": true
+    },
+    {
+      "name": "building clearance embark:3:R06",
+      "passed": true
+    },
+    {
+      "name": "building clearance embark:3:R07",
+      "passed": true
+    },
+    {
+      "name": "building clearance embark:3:R08",
+      "passed": true
+    },
+    {
+      "name": "building clearance embark:3:R09",
+      "passed": true
+    },
+    {
+      "name": "building clearance embark:3:R10",
+      "passed": true
+    },
+    {
+      "name": "land width embark:3",
+      "passed": true
+    },
+    {
+      "name": "building clearance embark:4:R01",
+      "passed": true
+    },
+    {
+      "name": "building clearance embark:4:R02",
+      "passed": true
+    },
+    {
+      "name": "building clearance embark:4:R03",
+      "passed": true
+    },
+    {
+      "name": "building clearance embark:4:R04",
+      "passed": true
+    },
+    {
+      "name": "building clearance embark:4:R05",
+      "passed": true
+    },
+    {
+      "name": "building clearance embark:4:R06",
+      "passed": true
+    },
+    {
+      "name": "building clearance embark:4:R07",
+      "passed": true
+    },
+    {
+      "name": "building clearance embark:4:R08",
+      "passed": true
+    },
+    {
+      "name": "building clearance embark:4:R09",
+      "passed": true
+    },
+    {
+      "name": "building clearance embark:4:R10",
+      "passed": true
+    },
+    {
+      "name": "land width embark:4",
+      "passed": true
+    },
+    {
+      "name": "building clearance embark:5:R01",
+      "passed": true
+    },
+    {
+      "name": "building clearance embark:5:R02",
+      "passed": true
+    },
+    {
+      "name": "building clearance embark:5:R03",
+      "passed": true
+    },
+    {
+      "name": "building clearance embark:5:R04",
+      "passed": true
+    },
+    {
+      "name": "building clearance embark:5:R05",
+      "passed": true
+    },
+    {
+      "name": "building clearance embark:5:R06",
+      "passed": true
+    },
+    {
+      "name": "building clearance embark:5:R07",
+      "passed": true
+    },
+    {
+      "name": "building clearance embark:5:R08",
+      "passed": true
+    },
+    {
+      "name": "building clearance embark:5:R09",
+      "passed": true
+    },
+    {
+      "name": "building clearance embark:5:R10",
+      "passed": true
+    },
+    {
+      "name": "land width embark:5",
+      "passed": true
+    },
+    {
+      "name": "building clearance embark:6:R01",
+      "passed": true
+    },
+    {
+      "name": "building clearance embark:6:R02",
+      "passed": true
+    },
+    {
+      "name": "building clearance embark:6:R03",
+      "passed": true
+    },
+    {
+      "name": "building clearance embark:6:R04",
+      "passed": true
+    },
+    {
+      "name": "building clearance embark:6:R05",
+      "passed": true
+    },
+    {
+      "name": "building clearance embark:6:R06",
+      "passed": true
+    },
+    {
+      "name": "building clearance embark:6:R07",
+      "passed": true
+    },
+    {
+      "name": "building clearance embark:6:R08",
+      "passed": true
+    },
+    {
+      "name": "building clearance embark:6:R09",
+      "passed": true
+    },
+    {
+      "name": "building clearance embark:6:R10",
+      "passed": true
+    },
+    {
+      "name": "land width embark:6",
+      "passed": true
+    },
+    {
+      "name": "path coordinates land_return",
+      "passed": true
+    },
+    {
+      "name": "length land_return",
+      "passed": true
+    },
+    {
+      "name": "building clearance land_return:0:R01",
+      "passed": true
+    },
+    {
+      "name": "building clearance land_return:0:R02",
+      "passed": true
+    },
+    {
+      "name": "building clearance land_return:0:R03",
+      "passed": true
+    },
+    {
+      "name": "building clearance land_return:0:R04",
+      "passed": true
+    },
+    {
+      "name": "building clearance land_return:0:R05",
+      "passed": true
+    },
+    {
+      "name": "building clearance land_return:0:R06",
+      "passed": true
+    },
+    {
+      "name": "building clearance land_return:0:R07",
+      "passed": true
+    },
+    {
+      "name": "building clearance land_return:0:R08",
+      "passed": true
+    },
+    {
+      "name": "building clearance land_return:0:R09",
+      "passed": true
+    },
+    {
+      "name": "building clearance land_return:0:R10",
+      "passed": true
+    },
+    {
+      "name": "land width land_return:0",
+      "passed": true
+    },
+    {
+      "name": "building clearance land_return:1:R01",
+      "passed": true
+    },
+    {
+      "name": "building clearance land_return:1:R02",
+      "passed": true
+    },
+    {
+      "name": "building clearance land_return:1:R03",
+      "passed": true
+    },
+    {
+      "name": "building clearance land_return:1:R04",
+      "passed": true
+    },
+    {
+      "name": "building clearance land_return:1:R05",
+      "passed": true
+    },
+    {
+      "name": "building clearance land_return:1:R06",
+      "passed": true
+    },
+    {
+      "name": "building clearance land_return:1:R07",
+      "passed": true
+    },
+    {
+      "name": "building clearance land_return:1:R08",
+      "passed": true
+    },
+    {
+      "name": "building clearance land_return:1:R09",
+      "passed": true
+    },
+    {
+      "name": "building clearance land_return:1:R10",
+      "passed": true
+    },
+    {
+      "name": "land width land_return:1",
+      "passed": true
+    },
+    {
+      "name": "path coordinates wetland_optional",
+      "passed": true
+    },
+    {
+      "name": "length wetland_optional",
+      "passed": true
+    },
+    {
+      "name": "building clearance wetland_optional:0:R01",
+      "passed": true
+    },
+    {
+      "name": "building clearance wetland_optional:0:R02",
+      "passed": true
+    },
+    {
+      "name": "building clearance wetland_optional:0:R03",
+      "passed": true
+    },
+    {
+      "name": "building clearance wetland_optional:0:R04",
+      "passed": true
+    },
+    {
+      "name": "building clearance wetland_optional:0:R05",
+      "passed": true
+    },
+    {
+      "name": "building clearance wetland_optional:0:R06",
+      "passed": true
+    },
+    {
+      "name": "building clearance wetland_optional:0:R07",
+      "passed": true
+    },
+    {
+      "name": "building clearance wetland_optional:0:R08",
+      "passed": true
+    },
+    {
+      "name": "building clearance wetland_optional:0:R09",
+      "passed": true
+    },
+    {
+      "name": "building clearance wetland_optional:0:R10",
+      "passed": true
+    },
+    {
+      "name": "land width wetland_optional:0",
+      "passed": true
+    },
+    {
+      "name": "building clearance wetland_optional:1:R01",
+      "passed": true
+    },
+    {
+      "name": "building clearance wetland_optional:1:R02",
+      "passed": true
+    },
+    {
+      "name": "building clearance wetland_optional:1:R03",
+      "passed": true
+    },
+    {
+      "name": "building clearance wetland_optional:1:R04",
+      "passed": true
+    },
+    {
+      "name": "building clearance wetland_optional:1:R05",
+      "passed": true
+    },
+    {
+      "name": "building clearance wetland_optional:1:R06",
+      "passed": true
+    },
+    {
+      "name": "building clearance wetland_optional:1:R07",
+      "passed": true
+    },
+    {
+      "name": "building clearance wetland_optional:1:R08",
+      "passed": true
+    },
+    {
+      "name": "building clearance wetland_optional:1:R09",
+      "passed": true
+    },
+    {
+      "name": "building clearance wetland_optional:1:R10",
+      "passed": true
+    },
+    {
+      "name": "land width wetland_optional:1",
+      "passed": true
+    },
+    {
+      "name": "building clearance wetland_optional:2:R01",
+      "passed": true
+    },
+    {
+      "name": "building clearance wetland_optional:2:R02",
+      "passed": true
+    },
+    {
+      "name": "building clearance wetland_optional:2:R03",
+      "passed": true
+    },
+    {
+      "name": "building clearance wetland_optional:2:R04",
+      "passed": true
+    },
+    {
+      "name": "building clearance wetland_optional:2:R05",
+      "passed": true
+    },
+    {
+      "name": "building clearance wetland_optional:2:R06",
+      "passed": true
+    },
+    {
+      "name": "building clearance wetland_optional:2:R07",
+      "passed": true
+    },
+    {
+      "name": "building clearance wetland_optional:2:R08",
+      "passed": true
+    },
+    {
+      "name": "building clearance wetland_optional:2:R09",
+      "passed": true
+    },
+    {
+      "name": "building clearance wetland_optional:2:R10",
+      "passed": true
+    },
+    {
+      "name": "land width wetland_optional:2",
+      "passed": true
+    },
+    {
+      "name": "ship water 0",
+      "passed": true
+    },
+    {
+      "name": "ship water 1",
+      "passed": true
+    },
+    {
+      "name": "main route outside arrival PG1",
+      "passed": true
+    },
+    {
+      "name": "main route outside arrival PG2",
+      "passed": true
+    },
+    {
+      "name": "main route outside refit PG1",
+      "passed": true
+    },
+    {
+      "name": "main route outside refit PG2",
+      "passed": true
+    },
+    {
+      "name": "main route outside supplies PG1",
+      "passed": true
+    },
+    {
+      "name": "main route outside supplies PG2",
+      "passed": true
+    },
+    {
+      "name": "main route outside food PG1",
+      "passed": true
+    },
+    {
+      "name": "main route outside food PG2",
+      "passed": true
+    },
+    {
+      "name": "main route outside water PG1",
+      "passed": true
+    },
+    {
+      "name": "main route outside water PG2",
+      "passed": true
+    },
+    {
+      "name": "main route outside evacuate PG1",
+      "passed": true
+    },
+    {
+      "name": "main route outside evacuate PG2",
+      "passed": true
+    },
+    {
+      "name": "main route outside embark PG1",
+      "passed": true
+    },
+    {
+      "name": "main route outside embark PG2",
+      "passed": true
+    },
+    {
+      "name": "main route outside land_return PG1",
+      "passed": true
+    },
+    {
+      "name": "main route outside land_return PG2",
+      "passed": true
+    },
+    {
+      "name": "crew and rescue",
+      "passed": true
+    },
+    {
+      "name": "ration departing",
+      "passed": true
+    },
+    {
+      "name": "ration rescue first search day",
+      "passed": true
+    },
+    {
+      "name": "ration total",
+      "passed": true
+    },
+    {
+      "name": "gates",
+      "passed": true
+    },
+    {
+      "name": "growth unchanged",
+      "passed": true
+    },
+    {
+      "name": "svg node P01",
+      "passed": true
+    },
+    {
+      "name": "svg node P02",
+      "passed": true
+    },
+    {
+      "name": "svg node P03",
+      "passed": true
+    },
+    {
+      "name": "svg node P04",
+      "passed": true
+    },
+    {
+      "name": "svg node P05",
+      "passed": true
+    },
+    {
+      "name": "svg node P06",
+      "passed": true
+    },
+    {
+      "name": "svg node P07",
+      "passed": true
+    },
+    {
+      "name": "svg node P08",
+      "passed": true
+    },
+    {
+      "name": "svg node P09",
+      "passed": true
+    },
+    {
+      "name": "svg node P10",
+      "passed": true
+    },
+    {
+      "name": "svg node P11",
+      "passed": true
+    },
+    {
+      "name": "svg node P12",
+      "passed": true
+    },
+    {
+      "name": "svg node P13",
+      "passed": true
+    },
+    {
+      "name": "svg node P14",
+      "passed": true
+    },
+    {
+      "name": "svg node P15",
+      "passed": true
+    },
+    {
+      "name": "svg node P16",
+      "passed": true
+    },
+    {
+      "name": "svg roof R01",
+      "passed": true
+    },
+    {
+      "name": "svg roof R02",
+      "passed": true
+    },
+    {
+      "name": "svg roof R03",
+      "passed": true
+    },
+    {
+      "name": "svg roof R04",
+      "passed": true
+    },
+    {
+      "name": "svg roof R05",
+      "passed": true
+    },
+    {
+      "name": "svg roof R06",
+      "passed": true
+    },
+    {
+      "name": "svg roof R07",
+      "passed": true
+    },
+    {
+      "name": "svg roof R08",
+      "passed": true
+    },
+    {
+      "name": "svg roof R09",
+      "passed": true
+    },
+    {
+      "name": "svg roof R10",
+      "passed": true
+    },
+    {
+      "name": "svg road arrival",
+      "passed": true
+    },
+    {
+      "name": "svg road refit",
+      "passed": true
+    },
+    {
+      "name": "svg road supplies",
+      "passed": true
+    },
+    {
+      "name": "svg road food",
+      "passed": true
+    },
+    {
+      "name": "svg road water",
+      "passed": true
+    },
+    {
+      "name": "svg road evacuate",
+      "passed": true
+    },
+    {
+      "name": "svg road signal",
+      "passed": true
+    },
+    {
+      "name": "svg road embark",
+      "passed": true
+    },
+    {
+      "name": "svg road land_return",
+      "passed": true
+    },
+    {
+      "name": "svg road wetland_optional",
+      "passed": true
+    }
+  ],
+  "walk_segments": 40,
+  "land_samples_1m": 4348,
+  "svg_elements": 36,
+  "method": "expanded rectangles for building clearance; road corners sampled <=1m for land/docks; plot assumptions only"
+}
