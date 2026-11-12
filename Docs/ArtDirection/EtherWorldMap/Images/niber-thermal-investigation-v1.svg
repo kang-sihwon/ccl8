@@ -1,0 +1,175 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1650" height="1510" viewBox="0 0 1650 1510"><rect width="100%" height="100%" fill="#edf0eb"/>
+<text x="55" y="59" font-family="Malgun Gothic,sans-serif" font-size="34" fill="#293d42">니베르 · 피난처와 온열권 조사·다른 귀환</text>
+<text x="55" y="102" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#293d42">NI-L01 좌표 후보 · 북쪽 위 · 기존 해안 보존 / 최종 아트·실제 지형 검증 아님</text>
+<rect id="sea" x="60.00" y="150.00" width="930.00" height="1260.00" fill="#adc4cd" stroke="#6c7771"/>
+<rect id="land" x="60.00" y="150.00" width="900.00" height="1260.00" fill="#d8ddd6" stroke="#6c7771"/>
+<rect id="zone-0" x="270.00" y="210.00" width="630.00" height="594.00" fill="#ced4c0" stroke="#6c7771"/>
+<rect id="zone-1" x="390.00" y="816.00" width="546.00" height="492.00" fill="#cdd3d1" stroke="#6c7771"/>
+<ellipse id="IG01" cx="744.00" cy="1200.00" rx="27.00" ry="27.00" fill="#d6cbbb" stroke="#a8754c"/>
+<ellipse id="IG02" cx="804.00" cy="1038.00" rx="33.00" ry="33.00" fill="#d6cbbb" stroke="#a8754c"/>
+<ellipse id="IG03" cx="432.00" cy="1200.00" rx="42.00" ry="42.00" fill="#d6cbbb" stroke="#a8754c"/>
+<polyline id="IG03-routine-0" points="432.00,1200.00 456.00,1158.00" stroke="#b78861" stroke-width="2" fill="none"/>
+<polyline id="IG03-routine-1" points="456.00,1158.00 432.00,1200.00" stroke="#b78861" stroke-width="2" fill="none"/>
+<ellipse id="IG04" cx="462.00" cy="780.00" rx="21.00" ry="21.00" fill="#d6cbbb" stroke="#a8754c"/>
+<ellipse id="IG05" cx="342.00" cy="618.00" rx="21.00" ry="21.00" fill="#d6cbbb" stroke="#a8754c"/>
+<ellipse id="IG06" cx="552.00" cy="642.00" rx="24.00" ry="24.00" fill="#d6cbbb" stroke="#a8754c"/>
+<ellipse id="IG07" cx="378.00" cy="594.00" rx="36.00" ry="36.00" fill="#d6cbbb" stroke="#a8754c"/>
+<polyline id="IG07-routine-0" points="378.00,594.00 384.00,618.00" stroke="#b78861" stroke-width="2" fill="none"/>
+<polyline id="IG07-routine-1" points="384.00,618.00 378.00,594.00" stroke="#b78861" stroke-width="2" fill="none"/>
+<ellipse id="IG08" cx="630.00" cy="372.00" rx="42.00" ry="42.00" fill="#d6cbbb" stroke="#a8754c"/>
+<ellipse id="IG09" cx="774.00" cy="696.00" rx="39.00" ry="39.00" fill="#d6cbbb" stroke="#a8754c"/>
+<ellipse id="IG10" cx="180.00" cy="690.00" rx="54.00" ry="54.00" fill="#d6cbbb" stroke="#a8754c"/>
+<rect id="pool-0" x="270.00" y="582.00" width="60.00" height="78.00" fill="#8fb9bf" stroke="#6c7771"/>
+<rect id="pool-1" x="612.00" y="258.00" width="84.00" height="90.00" fill="#8fb9bf" stroke="#6c7771"/>
+<rect id="pool-2" x="474.00" y="774.00" width="12.00" height="12.00" fill="#8fb9bf" stroke="#6c7771"/>
+<rect id="pool-3" x="561.00" y="624.00" width="12.00" height="15.00" fill="#8fb9bf" stroke="#6c7771"/>
+<rect id="R1" x="564.00" y="886.80" width="10.80" height="7.20" fill="#7c847a" stroke="#6c7771"/>
+<rect id="R2" x="528.00" y="957.60" width="3.60" height="2.40" fill="#7c847a" stroke="#6c7771"/>
+<rect id="R3" x="744.00" y="301.20" width="3.60" height="4.80" fill="#7c847a" stroke="#6c7771"/>
+<rect id="R4" x="864.00" y="760.80" width="1.20" height="1.20" fill="#7c847a" stroke="#6c7771"/>
+<rect id="R5" x="639.60" y="379.20" width="4.80" height="4.80" fill="#7c847a" stroke="#6c7771"/>
+<text x="657.0" y="416.6" font-family="Malgun Gothic,sans-serif" font-size="15" fill="#293d42">R5</text>
+<text x="694.0" y="1230.0" font-family="Malgun Gothic,sans-serif" font-size="15" fill="#965b39">IG01</text>
+<text x="754.0" y="1068.0" font-family="Malgun Gothic,sans-serif" font-size="15" fill="#965b39">IG02</text>
+<text x="382.0" y="1230.0" font-family="Malgun Gothic,sans-serif" font-size="15" fill="#965b39">IG03</text>
+<text x="412.0" y="810.0" font-family="Malgun Gothic,sans-serif" font-size="15" fill="#965b39">IG04</text>
+<text x="267.0" y="623.0" font-family="Malgun Gothic,sans-serif" font-size="15" fill="#965b39">IG05</text>
+<text x="502.0" y="672.0" font-family="Malgun Gothic,sans-serif" font-size="15" fill="#965b39">IG06</text>
+<text x="388.0" y="564.0" font-family="Malgun Gothic,sans-serif" font-size="15" fill="#965b39">IG07</text>
+<text x="580.0" y="402.0" font-family="Malgun Gothic,sans-serif" font-size="15" fill="#965b39">IG08</text>
+<text x="724.0" y="726.0" font-family="Malgun Gothic,sans-serif" font-size="15" fill="#965b39">IG09</text>
+<text x="130.0" y="720.0" font-family="Malgun Gothic,sans-serif" font-size="15" fill="#965b39">IG10</text>
+<polyline id="search-0" points="839.33,1410.00 828.00,1308.00" stroke="#406f8b" stroke-width="3" fill="none"/>
+<polyline id="search-1" points="828.00,1308.00 744.00,1200.00" stroke="#406f8b" stroke-width="3" fill="none"/>
+<polyline id="search-2" points="744.00,1200.00 804.00,1038.00" stroke="#406f8b" stroke-width="3" fill="none"/>
+<polyline id="search-3" points="804.00,1038.00 648.00,942.00" stroke="#406f8b" stroke-width="3" fill="none"/>
+<polyline id="search-4" points="648.00,942.00 600.00,912.00" stroke="#406f8b" stroke-width="3" fill="none"/>
+<polyline id="supply-0" points="600.00,912.00 540.00,966.00" stroke="#406f8b" stroke-width="3" fill="none"/>
+<polyline id="supply-1" points="540.00,966.00 492.00,1032.00" stroke="#406f8b" stroke-width="3" fill="none"/>
+<polyline id="rescue_return-0" points="492.00,1032.00 432.00,1200.00" stroke="#ac6f40" stroke-width="3" fill="none"/>
+<polyline id="rescue_return-1" points="432.00,1200.00 510.00,1368.00" stroke="#ac6f40" stroke-width="3" fill="none"/>
+<polyline id="rescue_return-2" points="510.00,1368.00 517.78,1410.00" stroke="#ac6f40" stroke-width="3" fill="none"/>
+<polyline id="cargo_bypass-0" points="492.00,1032.00 300.00,1170.00" stroke="#5e8758" stroke-width="3" fill="none"/>
+<polyline id="cargo_bypass-1" points="300.00,1170.00 318.00,1356.00" stroke="#5e8758" stroke-width="3" fill="none"/>
+<polyline id="cargo_bypass-2" points="318.00,1356.00 386.90,1410.00" stroke="#5e8758" stroke-width="3" fill="none"/>
+<polyline id="thermal_entry-0" points="492.00,1032.00 462.00,780.00" stroke="#406f8b" stroke-width="3" fill="none"/>
+<polyline id="thermal_entry-1" points="462.00,780.00 378.00,630.00" stroke="#406f8b" stroke-width="3" fill="none"/>
+<polyline id="thermal_entry-2" points="378.00,630.00 552.00,666.00" stroke="#406f8b" stroke-width="3" fill="none"/>
+<polyline id="thermal_entry-3" points="552.00,666.00 576.00,504.00" stroke="#406f8b" stroke-width="3" fill="none"/>
+<polyline id="thermal_entry-4" points="576.00,504.00 630.00,372.00" stroke="#406f8b" stroke-width="3" fill="none"/>
+<polyline id="grazer_bypass-0" points="462.00,780.00 552.00,666.00" stroke="#5e8758" stroke-width="3" fill="none"/>
+<polyline id="apparatus-0" points="630.00,372.00 720.00,372.00" stroke="#406f8b" stroke-width="3" fill="none"/>
+<polyline id="apparatus-1" points="720.00,372.00 744.00,312.00" stroke="#406f8b" stroke-width="3" fill="none"/>
+<polyline id="apparatus-2" points="744.00,312.00 816.00,378.00" stroke="#406f8b" stroke-width="3" fill="none"/>
+<polyline id="trial_return-0" points="816.00,378.00 864.00,504.00" stroke="#ac6f40" stroke-width="3" fill="none"/>
+<polyline id="trial_return-1" points="864.00,504.00 768.00,696.00" stroke="#ac6f40" stroke-width="3" fill="none"/>
+<polyline id="trial_return-2" points="768.00,696.00 642.00,828.00" stroke="#ac6f40" stroke-width="3" fill="none"/>
+<polyline id="trial_return-3" points="642.00,828.00 492.00,1032.00" stroke="#ac6f40" stroke-width="3" fill="none"/>
+<polyline id="memento_bypass-0" points="864.00,504.00 678.00,588.00" stroke="#5e8758" stroke-width="3" fill="none"/>
+<polyline id="memento_bypass-1" points="678.00,588.00 552.00,666.00" stroke="#5e8758" stroke-width="3" fill="none"/>
+<polyline id="memento_bypass-2" points="552.00,666.00 462.00,780.00" stroke="#5e8758" stroke-width="3" fill="none"/>
+<polyline id="memento_bypass-3" points="462.00,780.00 492.00,1032.00" stroke="#5e8758" stroke-width="3" fill="none"/>
+<polyline id="record_optional-0" points="768.00,696.00 864.00,768.00" stroke="#9277a5" stroke-width="3" fill="none"/>
+<polyline id="giant_optional-0" points="378.00,630.00 378.00,696.00" stroke="#9277a5" stroke-width="3" fill="none"/>
+<polyline id="giant_optional-1" points="378.00,696.00 180.00,690.00" stroke="#9277a5" stroke-width="3" fill="none"/>
+<polyline id="refuge_observe-0" points="600.00,912.00 642.00,828.00" stroke="#9277a5" stroke-width="3" fill="none"/>
+<ellipse id="I00" cx="828.00" cy="1308.00" rx="3.00" ry="3.00" fill="#314e58" stroke="#667b66"/>
+<polyline id="I00-leader" points="828.00,1308.00 835.50,1297.00 843.00,1297.00" stroke="#65777a" stroke-width="1" fill="none"/>
+<text x="843.0" y="1303.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#293d42">I00</text>
+<ellipse id="I01" cx="744.00" cy="1200.00" rx="3.00" ry="3.00" fill="#314e58" stroke="#667b66"/>
+<polyline id="I01-leader" points="744.00,1200.00 751.50,1189.00 759.00,1189.00" stroke="#65777a" stroke-width="1" fill="none"/>
+<text x="759.0" y="1195.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#293d42">I01</text>
+<ellipse id="I02" cx="804.00" cy="1038.00" rx="3.00" ry="3.00" fill="#314e58" stroke="#667b66"/>
+<polyline id="I02-leader" points="804.00,1038.00 811.50,1027.00 819.00,1027.00" stroke="#65777a" stroke-width="1" fill="none"/>
+<text x="819.0" y="1033.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#293d42">I02</text>
+<ellipse id="I03" cx="648.00" cy="942.00" rx="3.00" ry="3.00" fill="#314e58" stroke="#667b66"/>
+<polyline id="I03-leader" points="648.00,942.00 655.50,931.00 663.00,931.00" stroke="#65777a" stroke-width="1" fill="none"/>
+<text x="663.0" y="937.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#293d42">I03</text>
+<ellipse id="I04" cx="600.00" cy="912.00" rx="3.00" ry="3.00" fill="#314e58" stroke="#667b66"/>
+<polyline id="I04-leader" points="600.00,912.00 567.50,900.50 535.00,900.50" stroke="#65777a" stroke-width="1" fill="none"/>
+<text x="535.0" y="906.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#293d42">I04</text>
+<ellipse id="I05" cx="540.00" cy="966.00" rx="3.00" ry="3.00" fill="#314e58" stroke="#667b66"/>
+<polyline id="I05-leader" points="540.00,966.00 509.00,972.00 478.00,972.00" stroke="#65777a" stroke-width="1" fill="none"/>
+<text x="478.0" y="995.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#293d42">I05</text>
+<ellipse id="I06" cx="492.00" cy="1032.00" rx="3.00" ry="3.00" fill="#314e58" stroke="#667b66"/>
+<polyline id="I06-leader" points="492.00,1032.00 499.50,1021.00 507.00,1021.00" stroke="#65777a" stroke-width="1" fill="none"/>
+<text x="507.0" y="1027.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#293d42">I06</text>
+<ellipse id="I07" cx="432.00" cy="1200.00" rx="3.00" ry="3.00" fill="#314e58" stroke="#667b66"/>
+<polyline id="I07-leader" points="432.00,1200.00 439.50,1189.00 447.00,1189.00" stroke="#65777a" stroke-width="1" fill="none"/>
+<text x="447.0" y="1195.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#293d42">I07</text>
+<ellipse id="I08" cx="510.00" cy="1368.00" rx="3.00" ry="3.00" fill="#314e58" stroke="#667b66"/>
+<polyline id="I08-leader" points="510.00,1368.00 517.50,1357.00 525.00,1357.00" stroke="#65777a" stroke-width="1" fill="none"/>
+<text x="525.0" y="1363.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#293d42">I08</text>
+<ellipse id="I09" cx="462.00" cy="780.00" rx="3.00" ry="3.00" fill="#314e58" stroke="#667b66"/>
+<polyline id="I09-leader" points="462.00,780.00 469.50,769.00 477.00,769.00" stroke="#65777a" stroke-width="1" fill="none"/>
+<text x="477.0" y="775.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#293d42">I09</text>
+<ellipse id="I10" cx="378.00" cy="630.00" rx="3.00" ry="3.00" fill="#314e58" stroke="#667b66"/>
+<polyline id="I10-leader" points="378.00,630.00 385.50,619.00 393.00,619.00" stroke="#65777a" stroke-width="1" fill="none"/>
+<text x="393.0" y="625.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#293d42">I10</text>
+<ellipse id="I11" cx="552.00" cy="666.00" rx="3.00" ry="3.00" fill="#314e58" stroke="#667b66"/>
+<polyline id="I11-leader" points="552.00,666.00 559.50,655.00 567.00,655.00" stroke="#65777a" stroke-width="1" fill="none"/>
+<text x="567.0" y="661.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#293d42">I11</text>
+<ellipse id="I12" cx="576.00" cy="504.00" rx="3.00" ry="3.00" fill="#314e58" stroke="#667b66"/>
+<polyline id="I12-leader" points="576.00,504.00 583.50,493.00 591.00,493.00" stroke="#65777a" stroke-width="1" fill="none"/>
+<text x="591.0" y="499.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#293d42">I12</text>
+<ellipse id="I13" cx="630.00" cy="372.00" rx="3.00" ry="3.00" fill="#314e58" stroke="#667b66"/>
+<polyline id="I13-leader" points="630.00,372.00 637.50,361.00 645.00,361.00" stroke="#65777a" stroke-width="1" fill="none"/>
+<text x="645.0" y="367.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#293d42">I13</text>
+<ellipse id="I14" cx="744.00" cy="312.00" rx="3.00" ry="3.00" fill="#314e58" stroke="#667b66"/>
+<polyline id="I14-leader" points="744.00,312.00 751.50,301.00 759.00,301.00" stroke="#65777a" stroke-width="1" fill="none"/>
+<text x="759.0" y="307.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#293d42">I14</text>
+<ellipse id="I15" cx="816.00" cy="378.00" rx="3.00" ry="3.00" fill="#314e58" stroke="#667b66"/>
+<polyline id="I15-leader" points="816.00,378.00 823.50,367.00 831.00,367.00" stroke="#65777a" stroke-width="1" fill="none"/>
+<text x="831.0" y="373.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#293d42">I15</text>
+<ellipse id="I16" cx="864.00" cy="504.00" rx="3.00" ry="3.00" fill="#314e58" stroke="#667b66"/>
+<polyline id="I16-leader" points="864.00,504.00 871.50,493.00 879.00,493.00" stroke="#65777a" stroke-width="1" fill="none"/>
+<text x="879.0" y="499.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#293d42">I16</text>
+<ellipse id="I17" cx="768.00" cy="696.00" rx="3.00" ry="3.00" fill="#314e58" stroke="#667b66"/>
+<polyline id="I17-leader" points="768.00,696.00 775.50,685.00 783.00,685.00" stroke="#65777a" stroke-width="1" fill="none"/>
+<text x="783.0" y="691.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#293d42">I17</text>
+<ellipse id="I18" cx="864.00" cy="768.00" rx="3.00" ry="3.00" fill="#314e58" stroke="#667b66"/>
+<polyline id="I18-leader" points="864.00,768.00 871.50,757.00 879.00,757.00" stroke="#65777a" stroke-width="1" fill="none"/>
+<text x="879.0" y="763.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#293d42">I18</text>
+<ellipse id="I19" cx="678.00" cy="588.00" rx="3.00" ry="3.00" fill="#314e58" stroke="#667b66"/>
+<polyline id="I19-leader" points="678.00,588.00 685.50,577.00 693.00,577.00" stroke="#65777a" stroke-width="1" fill="none"/>
+<text x="693.0" y="583.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#293d42">I19</text>
+<ellipse id="I20" cx="180.00" cy="690.00" rx="3.00" ry="3.00" fill="#314e58" stroke="#667b66"/>
+<polyline id="I20-leader" points="180.00,690.00 187.50,679.00 195.00,679.00" stroke="#65777a" stroke-width="1" fill="none"/>
+<text x="195.0" y="685.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#293d42">I20</text>
+<ellipse id="I21" cx="642.00" cy="828.00" rx="3.00" ry="3.00" fill="#314e58" stroke="#667b66"/>
+<polyline id="I21-leader" points="642.00,828.00 649.50,817.00 657.00,817.00" stroke="#65777a" stroke-width="1" fill="none"/>
+<text x="657.0" y="823.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#293d42">I21</text>
+<text x="1040" y="169" font-family="Malgun Gothic,sans-serif" font-size="19" fill="#293d42">I00 운반 표지</text>
+<text x="1040" y="201" font-family="Malgun Gothic,sans-serif" font-size="19" fill="#293d42">I01 유실 포장재</text>
+<text x="1040" y="233" font-family="Malgun Gothic,sans-serif" font-size="19" fill="#293d42">I02 순찰 물건</text>
+<text x="1040" y="265" font-family="Malgun Gothic,sans-serif" font-size="19" fill="#293d42">I03 피난처 앞마당</text>
+<text x="1040" y="297" font-family="Malgun Gothic,sans-serif" font-size="19" fill="#293d42">I04 시험대 피난처</text>
+<text x="1040" y="329" font-family="Malgun Gothic,sans-serif" font-size="19" fill="#293d42">I05 남은 보온품</text>
+<text x="1040" y="361" font-family="Malgun Gothic,sans-serif" font-size="19" fill="#293d42">I06 구조·조사 분기</text>
+<text x="1040" y="393" font-family="Malgun Gothic,sans-serif" font-size="19" fill="#293d42">I07 계약 짐 경계</text>
+<text x="1040" y="425" font-family="Malgun Gothic,sans-serif" font-size="19" fill="#293d42">I08 귀환 사면</text>
+<text x="1040" y="457" font-family="Malgun Gothic,sans-serif" font-size="19" fill="#293d42">I09 온열 외곽</text>
+<text x="1040" y="489" font-family="Malgun Gothic,sans-serif" font-size="19" fill="#293d42">I10 작은 먹이장</text>
+<text x="1040" y="521" font-family="Malgun Gothic,sans-serif" font-size="19" fill="#293d42">I11 마른 우회턱</text>
+<text x="1040" y="553" font-family="Malgun Gothic,sans-serif" font-size="19" fill="#293d42">I12 정령 관측턱</text>
+<text x="1040" y="585" font-family="Malgun Gothic,sans-serif" font-size="19" fill="#293d42">I13 빙편·잔류 연결 작업턱</text>
+<text x="1040" y="617" font-family="Malgun Gothic,sans-serif" font-size="19" fill="#293d42">I14 남은 시험 접속부</text>
+<text x="1040" y="649" font-family="Malgun Gothic,sans-serif" font-size="19" fill="#293d42">I15 분리 작업턱</text>
+<text x="1040" y="681" font-family="Malgun Gothic,sans-serif" font-size="19" fill="#293d42">I16 외곽 관찰점</text>
+<text x="1040" y="713" font-family="Malgun Gothic,sans-serif" font-size="19" fill="#293d42">I17 기억 매개 귀환턱</text>
+<text x="1040" y="745" font-family="Malgun Gothic,sans-serif" font-size="19" fill="#293d42">I18 남은 기록함</text>
+<text x="1040" y="777" font-family="Malgun Gothic,sans-serif" font-size="19" fill="#293d42">I19 동쪽 마른 우회</text>
+<text x="1040" y="809" font-family="Malgun Gothic,sans-serif" font-size="19" fill="#293d42">I20 능선거인 선택 경계</text>
+<text x="1040" y="841" font-family="Malgun Gothic,sans-serif" font-size="19" fill="#293d42">I21 피난처 위 관찰턱</text>
+<text x="1040" y="913" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#293d42">파랑: 수색·조사 / 주황: 다른 귀환</text>
+<text x="1040" y="945" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#293d42">녹색: 생활권 우회 / 보라: 선택 접근</text>
+<text x="1040" y="977" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#293d42">회색: 이전안 경로·개체, 상태 승계</text>
+<text x="1040" y="1009" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#293d42">동그라미: 생활 반경, 감지 확정 아님</text>
+<text x="1040" y="1041" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#293d42">N18부터 신규 I00-I21로 이어짐</text>
+<text x="1040" y="1073" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#293d42">구조 왕복 → 별도 보스·장치 조사</text>
+<text x="1040" y="1105" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#293d42">본선 16 → 생존자 8 회수 후 24</text>
+<text x="1040" y="1137" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#293d42">소형정 첫 회수 8 / 둘째 회수 10</text>
+<text x="1040" y="1169" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#293d42">54→58 / G6·세라디온 귀항 미완료</text>
+<polyline id="scale-200m" points="60.00,1435.00 180.00,1435.00" stroke="#314e58" stroke-width="4" fill="none"/>
+<text x="60" y="1462.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#293d42">200m</text>
+</svg>

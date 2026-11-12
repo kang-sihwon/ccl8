@@ -1,0 +1,1056 @@
+{
+  "result": "PASS",
+  "checks_passed": 251,
+  "walk_segments": 34,
+  "svg_elements": 90,
+  "bypass_margins_m": {
+    "cargo_bypass": 25.51,
+    "grazer_bypass": 174.34,
+    "memento_bypass": 134.9
+  },
+  "density": {
+    "search": {
+      "contacts": [
+        "IG01",
+        "IG02"
+      ],
+      "max_overlap": 1,
+      "longest_gap_m": 363.5,
+      "length_m": 1096.7
+    },
+    "rescue_return": {
+      "contacts": [
+        "IG03"
+      ],
+      "max_overlap": 1,
+      "longest_gap_m": 473.8,
+      "length_m": 880.6
+    },
+    "thermal_entry": {
+      "contacts": [
+        "IG04",
+        "IG06",
+        "IG07",
+        "IG08"
+      ],
+      "max_overlap": 1,
+      "longest_gap_m": 387.1,
+      "length_m": 1516.3
+    },
+    "trial_return": {
+      "contacts": [
+        "IG09"
+      ],
+      "max_overlap": 1,
+      "longest_gap_m": 638.7,
+      "length_m": 1308.7
+    }
+  },
+  "checks": [
+    {
+      "name": "source Docs/ArtDirection/EtherWorldMap/Data/niber-first-landing-v1.json",
+      "passed": true
+    },
+    {
+      "name": "source Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-11-niber-first-landing/story-and-handoffs.md",
+      "passed": true
+    },
+    {
+      "name": "source Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-08-world-distribution-and-leveling/progression.md",
+      "passed": true
+    },
+    {
+      "name": "source Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-08-world-distribution-and-leveling/variant-distribution.md",
+      "passed": true
+    },
+    {
+      "name": "source Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-08-five-continent-mainline/routes-and-unlocks.md",
+      "passed": true
+    },
+    {
+      "name": "source Docs/Narrative/World.md",
+      "passed": true
+    },
+    {
+      "name": "source Docs/Narrative/Scenario.md",
+      "passed": true
+    },
+    {
+      "name": "prior data exact",
+      "passed": true
+    },
+    {
+      "name": "new counts",
+      "passed": true
+    },
+    {
+      "name": "combined counts",
+      "passed": true
+    },
+    {
+      "name": "form IG01",
+      "passed": true
+    },
+    {
+      "name": "form IG02",
+      "passed": true
+    },
+    {
+      "name": "form IG03",
+      "passed": true
+    },
+    {
+      "name": "form IG04",
+      "passed": true
+    },
+    {
+      "name": "form IG05",
+      "passed": true
+    },
+    {
+      "name": "form IG06",
+      "passed": true
+    },
+    {
+      "name": "form IG07",
+      "passed": true
+    },
+    {
+      "name": "form IG08",
+      "passed": true
+    },
+    {
+      "name": "form IG09",
+      "passed": true
+    },
+    {
+      "name": "form IG10",
+      "passed": true
+    },
+    {
+      "name": "water habitat IG04",
+      "passed": true
+    },
+    {
+      "name": "water habitat IG06",
+      "passed": true
+    },
+    {
+      "name": "required evidence within boss home",
+      "passed": true
+    },
+    {
+      "name": "node binding search",
+      "passed": true
+    },
+    {
+      "name": "length search",
+      "passed": true
+    },
+    {
+      "name": "land search:0",
+      "passed": true
+    },
+    {
+      "name": "water clearance search:0",
+      "passed": true
+    },
+    {
+      "name": "facility clearance search:0",
+      "passed": true
+    },
+    {
+      "name": "land search:1",
+      "passed": true
+    },
+    {
+      "name": "water clearance search:1",
+      "passed": true
+    },
+    {
+      "name": "facility clearance search:1",
+      "passed": true
+    },
+    {
+      "name": "land search:2",
+      "passed": true
+    },
+    {
+      "name": "water clearance search:2",
+      "passed": true
+    },
+    {
+      "name": "facility clearance search:2",
+      "passed": true
+    },
+    {
+      "name": "land search:3",
+      "passed": true
+    },
+    {
+      "name": "water clearance search:3",
+      "passed": true
+    },
+    {
+      "name": "facility clearance search:3",
+      "passed": true
+    },
+    {
+      "name": "land search:4",
+      "passed": true
+    },
+    {
+      "name": "water clearance search:4",
+      "passed": true
+    },
+    {
+      "name": "facility clearance search:4",
+      "passed": true
+    },
+    {
+      "name": "node binding supply",
+      "passed": true
+    },
+    {
+      "name": "length supply",
+      "passed": true
+    },
+    {
+      "name": "land supply:0",
+      "passed": true
+    },
+    {
+      "name": "water clearance supply:0",
+      "passed": true
+    },
+    {
+      "name": "facility clearance supply:0",
+      "passed": true
+    },
+    {
+      "name": "land supply:1",
+      "passed": true
+    },
+    {
+      "name": "water clearance supply:1",
+      "passed": true
+    },
+    {
+      "name": "facility clearance supply:1",
+      "passed": true
+    },
+    {
+      "name": "node binding rescue_return",
+      "passed": true
+    },
+    {
+      "name": "length rescue_return",
+      "passed": true
+    },
+    {
+      "name": "land rescue_return:0",
+      "passed": true
+    },
+    {
+      "name": "water clearance rescue_return:0",
+      "passed": true
+    },
+    {
+      "name": "facility clearance rescue_return:0",
+      "passed": true
+    },
+    {
+      "name": "land rescue_return:1",
+      "passed": true
+    },
+    {
+      "name": "water clearance rescue_return:1",
+      "passed": true
+    },
+    {
+      "name": "facility clearance rescue_return:1",
+      "passed": true
+    },
+    {
+      "name": "land rescue_return:2",
+      "passed": true
+    },
+    {
+      "name": "water clearance rescue_return:2",
+      "passed": true
+    },
+    {
+      "name": "facility clearance rescue_return:2",
+      "passed": true
+    },
+    {
+      "name": "node binding cargo_bypass",
+      "passed": true
+    },
+    {
+      "name": "length cargo_bypass",
+      "passed": true
+    },
+    {
+      "name": "land cargo_bypass:0",
+      "passed": true
+    },
+    {
+      "name": "water clearance cargo_bypass:0",
+      "passed": true
+    },
+    {
+      "name": "facility clearance cargo_bypass:0",
+      "passed": true
+    },
+    {
+      "name": "land cargo_bypass:1",
+      "passed": true
+    },
+    {
+      "name": "water clearance cargo_bypass:1",
+      "passed": true
+    },
+    {
+      "name": "facility clearance cargo_bypass:1",
+      "passed": true
+    },
+    {
+      "name": "land cargo_bypass:2",
+      "passed": true
+    },
+    {
+      "name": "water clearance cargo_bypass:2",
+      "passed": true
+    },
+    {
+      "name": "facility clearance cargo_bypass:2",
+      "passed": true
+    },
+    {
+      "name": "node binding thermal_entry",
+      "passed": true
+    },
+    {
+      "name": "length thermal_entry",
+      "passed": true
+    },
+    {
+      "name": "land thermal_entry:0",
+      "passed": true
+    },
+    {
+      "name": "water clearance thermal_entry:0",
+      "passed": true
+    },
+    {
+      "name": "facility clearance thermal_entry:0",
+      "passed": true
+    },
+    {
+      "name": "land thermal_entry:1",
+      "passed": true
+    },
+    {
+      "name": "water clearance thermal_entry:1",
+      "passed": true
+    },
+    {
+      "name": "facility clearance thermal_entry:1",
+      "passed": true
+    },
+    {
+      "name": "land thermal_entry:2",
+      "passed": true
+    },
+    {
+      "name": "water clearance thermal_entry:2",
+      "passed": true
+    },
+    {
+      "name": "facility clearance thermal_entry:2",
+      "passed": true
+    },
+    {
+      "name": "land thermal_entry:3",
+      "passed": true
+    },
+    {
+      "name": "water clearance thermal_entry:3",
+      "passed": true
+    },
+    {
+      "name": "facility clearance thermal_entry:3",
+      "passed": true
+    },
+    {
+      "name": "land thermal_entry:4",
+      "passed": true
+    },
+    {
+      "name": "water clearance thermal_entry:4",
+      "passed": true
+    },
+    {
+      "name": "facility clearance thermal_entry:4",
+      "passed": true
+    },
+    {
+      "name": "node binding grazer_bypass",
+      "passed": true
+    },
+    {
+      "name": "length grazer_bypass",
+      "passed": true
+    },
+    {
+      "name": "land grazer_bypass:0",
+      "passed": true
+    },
+    {
+      "name": "water clearance grazer_bypass:0",
+      "passed": true
+    },
+    {
+      "name": "facility clearance grazer_bypass:0",
+      "passed": true
+    },
+    {
+      "name": "node binding apparatus",
+      "passed": true
+    },
+    {
+      "name": "length apparatus",
+      "passed": true
+    },
+    {
+      "name": "land apparatus:0",
+      "passed": true
+    },
+    {
+      "name": "water clearance apparatus:0",
+      "passed": true
+    },
+    {
+      "name": "facility clearance apparatus:0",
+      "passed": true
+    },
+    {
+      "name": "land apparatus:1",
+      "passed": true
+    },
+    {
+      "name": "water clearance apparatus:1",
+      "passed": true
+    },
+    {
+      "name": "facility clearance apparatus:1",
+      "passed": true
+    },
+    {
+      "name": "land apparatus:2",
+      "passed": true
+    },
+    {
+      "name": "water clearance apparatus:2",
+      "passed": true
+    },
+    {
+      "name": "facility clearance apparatus:2",
+      "passed": true
+    },
+    {
+      "name": "node binding trial_return",
+      "passed": true
+    },
+    {
+      "name": "length trial_return",
+      "passed": true
+    },
+    {
+      "name": "land trial_return:0",
+      "passed": true
+    },
+    {
+      "name": "water clearance trial_return:0",
+      "passed": true
+    },
+    {
+      "name": "facility clearance trial_return:0",
+      "passed": true
+    },
+    {
+      "name": "land trial_return:1",
+      "passed": true
+    },
+    {
+      "name": "water clearance trial_return:1",
+      "passed": true
+    },
+    {
+      "name": "facility clearance trial_return:1",
+      "passed": true
+    },
+    {
+      "name": "land trial_return:2",
+      "passed": true
+    },
+    {
+      "name": "water clearance trial_return:2",
+      "passed": true
+    },
+    {
+      "name": "facility clearance trial_return:2",
+      "passed": true
+    },
+    {
+      "name": "land trial_return:3",
+      "passed": true
+    },
+    {
+      "name": "water clearance trial_return:3",
+      "passed": true
+    },
+    {
+      "name": "facility clearance trial_return:3",
+      "passed": true
+    },
+    {
+      "name": "node binding memento_bypass",
+      "passed": true
+    },
+    {
+      "name": "length memento_bypass",
+      "passed": true
+    },
+    {
+      "name": "land memento_bypass:0",
+      "passed": true
+    },
+    {
+      "name": "water clearance memento_bypass:0",
+      "passed": true
+    },
+    {
+      "name": "facility clearance memento_bypass:0",
+      "passed": true
+    },
+    {
+      "name": "land memento_bypass:1",
+      "passed": true
+    },
+    {
+      "name": "water clearance memento_bypass:1",
+      "passed": true
+    },
+    {
+      "name": "facility clearance memento_bypass:1",
+      "passed": true
+    },
+    {
+      "name": "land memento_bypass:2",
+      "passed": true
+    },
+    {
+      "name": "water clearance memento_bypass:2",
+      "passed": true
+    },
+    {
+      "name": "facility clearance memento_bypass:2",
+      "passed": true
+    },
+    {
+      "name": "land memento_bypass:3",
+      "passed": true
+    },
+    {
+      "name": "water clearance memento_bypass:3",
+      "passed": true
+    },
+    {
+      "name": "facility clearance memento_bypass:3",
+      "passed": true
+    },
+    {
+      "name": "node binding record_optional",
+      "passed": true
+    },
+    {
+      "name": "length record_optional",
+      "passed": true
+    },
+    {
+      "name": "land record_optional:0",
+      "passed": true
+    },
+    {
+      "name": "water clearance record_optional:0",
+      "passed": true
+    },
+    {
+      "name": "facility clearance record_optional:0",
+      "passed": true
+    },
+    {
+      "name": "node binding giant_optional",
+      "passed": true
+    },
+    {
+      "name": "length giant_optional",
+      "passed": true
+    },
+    {
+      "name": "land giant_optional:0",
+      "passed": true
+    },
+    {
+      "name": "water clearance giant_optional:0",
+      "passed": true
+    },
+    {
+      "name": "facility clearance giant_optional:0",
+      "passed": true
+    },
+    {
+      "name": "land giant_optional:1",
+      "passed": true
+    },
+    {
+      "name": "water clearance giant_optional:1",
+      "passed": true
+    },
+    {
+      "name": "facility clearance giant_optional:1",
+      "passed": true
+    },
+    {
+      "name": "node binding refuge_observe",
+      "passed": true
+    },
+    {
+      "name": "length refuge_observe",
+      "passed": true
+    },
+    {
+      "name": "land refuge_observe:0",
+      "passed": true
+    },
+    {
+      "name": "water clearance refuge_observe:0",
+      "passed": true
+    },
+    {
+      "name": "facility clearance refuge_observe:0",
+      "passed": true
+    },
+    {
+      "name": "bypass cargo_bypass",
+      "passed": true
+    },
+    {
+      "name": "bypass grazer_bypass",
+      "passed": true
+    },
+    {
+      "name": "bypass memento_bypass",
+      "passed": true
+    },
+    {
+      "name": "crew 합류",
+      "passed": true
+    },
+    {
+      "name": "crew 첫 회수",
+      "passed": true
+    },
+    {
+      "name": "crew 첫 인계",
+      "passed": true
+    },
+    {
+      "name": "crew 재접근",
+      "passed": true
+    },
+    {
+      "name": "crew 둘째 회수",
+      "passed": true
+    },
+    {
+      "name": "crew 인계 완료",
+      "passed": true
+    },
+    {
+      "name": "crew 조사 재상륙",
+      "passed": true
+    },
+    {
+      "name": "growth",
+      "passed": true
+    },
+    {
+      "name": "gates",
+      "passed": true
+    },
+    {
+      "name": "svg overall N00",
+      "passed": true
+    },
+    {
+      "name": "svg overall N01",
+      "passed": true
+    },
+    {
+      "name": "svg overall N02",
+      "passed": true
+    },
+    {
+      "name": "svg overall N03",
+      "passed": true
+    },
+    {
+      "name": "svg overall N04",
+      "passed": true
+    },
+    {
+      "name": "svg overall N05",
+      "passed": true
+    },
+    {
+      "name": "svg overall N06",
+      "passed": true
+    },
+    {
+      "name": "svg overall N07",
+      "passed": true
+    },
+    {
+      "name": "svg overall N08",
+      "passed": true
+    },
+    {
+      "name": "svg overall N09",
+      "passed": true
+    },
+    {
+      "name": "svg overall N10",
+      "passed": true
+    },
+    {
+      "name": "svg overall N11",
+      "passed": true
+    },
+    {
+      "name": "svg overall N12",
+      "passed": true
+    },
+    {
+      "name": "svg overall N13",
+      "passed": true
+    },
+    {
+      "name": "svg overall N14",
+      "passed": true
+    },
+    {
+      "name": "svg overall N15",
+      "passed": true
+    },
+    {
+      "name": "svg overall N16",
+      "passed": true
+    },
+    {
+      "name": "svg overall N17",
+      "passed": true
+    },
+    {
+      "name": "svg overall N18",
+      "passed": true
+    },
+    {
+      "name": "svg overall N19",
+      "passed": true
+    },
+    {
+      "name": "svg overall I00",
+      "passed": true
+    },
+    {
+      "name": "svg overall I01",
+      "passed": true
+    },
+    {
+      "name": "svg overall I02",
+      "passed": true
+    },
+    {
+      "name": "svg overall I03",
+      "passed": true
+    },
+    {
+      "name": "svg overall I04",
+      "passed": true
+    },
+    {
+      "name": "svg overall I05",
+      "passed": true
+    },
+    {
+      "name": "svg overall I06",
+      "passed": true
+    },
+    {
+      "name": "svg overall I07",
+      "passed": true
+    },
+    {
+      "name": "svg overall I08",
+      "passed": true
+    },
+    {
+      "name": "svg overall I09",
+      "passed": true
+    },
+    {
+      "name": "svg overall I10",
+      "passed": true
+    },
+    {
+      "name": "svg overall I11",
+      "passed": true
+    },
+    {
+      "name": "svg overall I12",
+      "passed": true
+    },
+    {
+      "name": "svg overall I13",
+      "passed": true
+    },
+    {
+      "name": "svg overall I14",
+      "passed": true
+    },
+    {
+      "name": "svg overall I15",
+      "passed": true
+    },
+    {
+      "name": "svg overall I16",
+      "passed": true
+    },
+    {
+      "name": "svg overall I17",
+      "passed": true
+    },
+    {
+      "name": "svg overall I18",
+      "passed": true
+    },
+    {
+      "name": "svg overall I19",
+      "passed": true
+    },
+    {
+      "name": "svg overall I20",
+      "passed": true
+    },
+    {
+      "name": "svg overall I21",
+      "passed": true
+    },
+    {
+      "name": "svg radius overallNG1",
+      "passed": true
+    },
+    {
+      "name": "svg radius overallNG2",
+      "passed": true
+    },
+    {
+      "name": "svg radius overallNG3",
+      "passed": true
+    },
+    {
+      "name": "svg radius overallNG4",
+      "passed": true
+    },
+    {
+      "name": "svg radius overallNG5",
+      "passed": true
+    },
+    {
+      "name": "svg radius overallNG6",
+      "passed": true
+    },
+    {
+      "name": "svg radius overallIG01",
+      "passed": true
+    },
+    {
+      "name": "svg radius overallIG02",
+      "passed": true
+    },
+    {
+      "name": "svg radius overallIG03",
+      "passed": true
+    },
+    {
+      "name": "svg radius overallIG04",
+      "passed": true
+    },
+    {
+      "name": "svg radius overallIG05",
+      "passed": true
+    },
+    {
+      "name": "svg radius overallIG06",
+      "passed": true
+    },
+    {
+      "name": "svg radius overallIG07",
+      "passed": true
+    },
+    {
+      "name": "svg radius overallIG08",
+      "passed": true
+    },
+    {
+      "name": "svg radius overallIG09",
+      "passed": true
+    },
+    {
+      "name": "svg radius overallIG10",
+      "passed": true
+    },
+    {
+      "name": "svg inland I00",
+      "passed": true
+    },
+    {
+      "name": "svg inland I01",
+      "passed": true
+    },
+    {
+      "name": "svg inland I02",
+      "passed": true
+    },
+    {
+      "name": "svg inland I03",
+      "passed": true
+    },
+    {
+      "name": "svg inland I04",
+      "passed": true
+    },
+    {
+      "name": "svg inland I05",
+      "passed": true
+    },
+    {
+      "name": "svg inland I06",
+      "passed": true
+    },
+    {
+      "name": "svg inland I07",
+      "passed": true
+    },
+    {
+      "name": "svg inland I08",
+      "passed": true
+    },
+    {
+      "name": "svg inland I09",
+      "passed": true
+    },
+    {
+      "name": "svg inland I10",
+      "passed": true
+    },
+    {
+      "name": "svg inland I11",
+      "passed": true
+    },
+    {
+      "name": "svg inland I12",
+      "passed": true
+    },
+    {
+      "name": "svg inland I13",
+      "passed": true
+    },
+    {
+      "name": "svg inland I14",
+      "passed": true
+    },
+    {
+      "name": "svg inland I15",
+      "passed": true
+    },
+    {
+      "name": "svg inland I16",
+      "passed": true
+    },
+    {
+      "name": "svg inland I17",
+      "passed": true
+    },
+    {
+      "name": "svg inland I18",
+      "passed": true
+    },
+    {
+      "name": "svg inland I19",
+      "passed": true
+    },
+    {
+      "name": "svg inland I20",
+      "passed": true
+    },
+    {
+      "name": "svg inland I21",
+      "passed": true
+    },
+    {
+      "name": "svg radius inlandIG01",
+      "passed": true
+    },
+    {
+      "name": "svg radius inlandIG02",
+      "passed": true
+    },
+    {
+      "name": "svg radius inlandIG03",
+      "passed": true
+    },
+    {
+      "name": "svg radius inlandIG04",
+      "passed": true
+    },
+    {
+      "name": "svg radius inlandIG05",
+      "passed": true
+    },
+    {
+      "name": "svg radius inlandIG06",
+      "passed": true
+    },
+    {
+      "name": "svg radius inlandIG07",
+      "passed": true
+    },
+    {
+      "name": "svg radius inlandIG08",
+      "passed": true
+    },
+    {
+      "name": "svg radius inlandIG09",
+      "passed": true
+    },
+    {
+      "name": "svg radius inlandIG10",
+      "passed": true
+    }
+  ],
+  "limits": "Geometric design only; no actual terrain navigation AI combat or maritime verification"
+}
