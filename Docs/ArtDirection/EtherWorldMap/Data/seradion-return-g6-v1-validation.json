@@ -1,0 +1,741 @@
+{
+  "result": "PASS",
+  "checks_passed": 172,
+  "checks": [
+    {
+      "name": "source Docs/ArtDirection/EtherWorldMap/Data/niber-expedition-rescue-v1.json",
+      "passed": true
+    },
+    {
+      "name": "source Docs/ArtDirection/EtherWorldMap/Data/seradion-waterworks-v1.json",
+      "passed": true
+    },
+    {
+      "name": "source Docs/ArtDirection/EtherWorldMap/Data/seradion-polar-departure-v1.json",
+      "passed": true
+    },
+    {
+      "name": "source Docs/ArtDirection/EtherWorldMap/Data/seradion-arrival-v1.json",
+      "passed": true
+    },
+    {
+      "name": "source Docs/ArtDirection/EtherWorldMap/Data/seradion-forest-v1.json",
+      "passed": true
+    },
+    {
+      "name": "source Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-08-world-distribution-and-leveling/progression.md",
+      "passed": true
+    },
+    {
+      "name": "source Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-08-world-distribution-and-leveling/variant-distribution.md",
+      "passed": true
+    },
+    {
+      "name": "source Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-08-five-continent-mainline/routes-and-unlocks.md",
+      "passed": true
+    },
+    {
+      "name": "source Docs/Narrative/World.md",
+      "passed": true
+    },
+    {
+      "name": "source Docs/Narrative/Scenario.md",
+      "passed": true
+    },
+    {
+      "name": "preserved_waterworks",
+      "passed": true
+    },
+    {
+      "name": "preserved_harbor",
+      "passed": true
+    },
+    {
+      "name": "counts",
+      "passed": true
+    },
+    {
+      "name": "form RG1",
+      "passed": true
+    },
+    {
+      "name": "form RG2",
+      "passed": true
+    },
+    {
+      "name": "form RG3",
+      "passed": true
+    },
+    {
+      "name": "guard readiness",
+      "passed": true
+    },
+    {
+      "name": "CT03-B readiness",
+      "passed": true
+    },
+    {
+      "name": "binding evidence",
+      "passed": true
+    },
+    {
+      "name": "length evidence",
+      "passed": true
+    },
+    {
+      "name": "water evidence:0",
+      "passed": true
+    },
+    {
+      "name": "building evidence:0",
+      "passed": true
+    },
+    {
+      "name": "outside occupied area evidence:0",
+      "passed": true
+    },
+    {
+      "name": "water evidence:1",
+      "passed": true
+    },
+    {
+      "name": "building evidence:1",
+      "passed": true
+    },
+    {
+      "name": "outside occupied area evidence:1",
+      "passed": true
+    },
+    {
+      "name": "water evidence:2",
+      "passed": true
+    },
+    {
+      "name": "building evidence:2",
+      "passed": true
+    },
+    {
+      "name": "outside occupied area evidence:2",
+      "passed": true
+    },
+    {
+      "name": "binding supply",
+      "passed": true
+    },
+    {
+      "name": "length supply",
+      "passed": true
+    },
+    {
+      "name": "water supply:0",
+      "passed": true
+    },
+    {
+      "name": "building supply:0",
+      "passed": true
+    },
+    {
+      "name": "outside occupied area supply:0",
+      "passed": true
+    },
+    {
+      "name": "water supply:1",
+      "passed": true
+    },
+    {
+      "name": "building supply:1",
+      "passed": true
+    },
+    {
+      "name": "outside occupied area supply:1",
+      "passed": true
+    },
+    {
+      "name": "binding evacuation",
+      "passed": true
+    },
+    {
+      "name": "length evacuation",
+      "passed": true
+    },
+    {
+      "name": "water evacuation:0",
+      "passed": true
+    },
+    {
+      "name": "building evacuation:0",
+      "passed": true
+    },
+    {
+      "name": "outside occupied area evacuation:0",
+      "passed": true
+    },
+    {
+      "name": "civilian avoids new monsters evacuation:0",
+      "passed": true
+    },
+    {
+      "name": "civilian avoids previous monsters evacuation:0",
+      "passed": true
+    },
+    {
+      "name": "water evacuation:1",
+      "passed": true
+    },
+    {
+      "name": "building evacuation:1",
+      "passed": true
+    },
+    {
+      "name": "outside occupied area evacuation:1",
+      "passed": true
+    },
+    {
+      "name": "civilian avoids new monsters evacuation:1",
+      "passed": true
+    },
+    {
+      "name": "civilian avoids previous monsters evacuation:1",
+      "passed": true
+    },
+    {
+      "name": "water evacuation:2",
+      "passed": true
+    },
+    {
+      "name": "building evacuation:2",
+      "passed": true
+    },
+    {
+      "name": "outside occupied area evacuation:2",
+      "passed": true
+    },
+    {
+      "name": "civilian avoids new monsters evacuation:2",
+      "passed": true
+    },
+    {
+      "name": "civilian avoids previous monsters evacuation:2",
+      "passed": true
+    },
+    {
+      "name": "binding evacuation_alternate",
+      "passed": true
+    },
+    {
+      "name": "length evacuation_alternate",
+      "passed": true
+    },
+    {
+      "name": "water evacuation_alternate:0",
+      "passed": true
+    },
+    {
+      "name": "building evacuation_alternate:0",
+      "passed": true
+    },
+    {
+      "name": "outside occupied area evacuation_alternate:0",
+      "passed": true
+    },
+    {
+      "name": "civilian avoids new monsters evacuation_alternate:0",
+      "passed": true
+    },
+    {
+      "name": "civilian avoids previous monsters evacuation_alternate:0",
+      "passed": true
+    },
+    {
+      "name": "water evacuation_alternate:1",
+      "passed": true
+    },
+    {
+      "name": "building evacuation_alternate:1",
+      "passed": true
+    },
+    {
+      "name": "outside occupied area evacuation_alternate:1",
+      "passed": true
+    },
+    {
+      "name": "civilian avoids new monsters evacuation_alternate:1",
+      "passed": true
+    },
+    {
+      "name": "civilian avoids previous monsters evacuation_alternate:1",
+      "passed": true
+    },
+    {
+      "name": "water evacuation_alternate:2",
+      "passed": true
+    },
+    {
+      "name": "building evacuation_alternate:2",
+      "passed": true
+    },
+    {
+      "name": "outside occupied area evacuation_alternate:2",
+      "passed": true
+    },
+    {
+      "name": "civilian avoids new monsters evacuation_alternate:2",
+      "passed": true
+    },
+    {
+      "name": "civilian avoids previous monsters evacuation_alternate:2",
+      "passed": true
+    },
+    {
+      "name": "binding assembly",
+      "passed": true
+    },
+    {
+      "name": "length assembly",
+      "passed": true
+    },
+    {
+      "name": "water assembly:0",
+      "passed": true
+    },
+    {
+      "name": "building assembly:0",
+      "passed": true
+    },
+    {
+      "name": "outside occupied area assembly:0",
+      "passed": true
+    },
+    {
+      "name": "water assembly:1",
+      "passed": true
+    },
+    {
+      "name": "building assembly:1",
+      "passed": true
+    },
+    {
+      "name": "outside occupied area assembly:1",
+      "passed": true
+    },
+    {
+      "name": "binding approach_look",
+      "passed": true
+    },
+    {
+      "name": "length approach_look",
+      "passed": true
+    },
+    {
+      "name": "water approach_look:0",
+      "passed": true
+    },
+    {
+      "name": "building approach_look:0",
+      "passed": true
+    },
+    {
+      "name": "outside occupied area approach_look:0",
+      "passed": true
+    },
+    {
+      "name": "binding scout_return",
+      "passed": true
+    },
+    {
+      "name": "length scout_return",
+      "passed": true
+    },
+    {
+      "name": "water scout_return:0",
+      "passed": true
+    },
+    {
+      "name": "building scout_return:0",
+      "passed": true
+    },
+    {
+      "name": "outside occupied area scout_return:0",
+      "passed": true
+    },
+    {
+      "name": "water scout_return:1",
+      "passed": true
+    },
+    {
+      "name": "building scout_return:1",
+      "passed": true
+    },
+    {
+      "name": "outside occupied area scout_return:1",
+      "passed": true
+    },
+    {
+      "name": "binding north_optional",
+      "passed": true
+    },
+    {
+      "name": "length north_optional",
+      "passed": true
+    },
+    {
+      "name": "water north_optional:0",
+      "passed": true
+    },
+    {
+      "name": "building north_optional:0",
+      "passed": true
+    },
+    {
+      "name": "water north_optional:1",
+      "passed": true
+    },
+    {
+      "name": "building north_optional:1",
+      "passed": true
+    },
+    {
+      "name": "binding hound_optional",
+      "passed": true
+    },
+    {
+      "name": "length hound_optional",
+      "passed": true
+    },
+    {
+      "name": "water hound_optional:0",
+      "passed": true
+    },
+    {
+      "name": "building hound_optional:0",
+      "passed": true
+    },
+    {
+      "name": "binding final_entry",
+      "passed": true
+    },
+    {
+      "name": "length final_entry",
+      "passed": true
+    },
+    {
+      "name": "water final_entry:0",
+      "passed": true
+    },
+    {
+      "name": "building final_entry:0",
+      "passed": true
+    },
+    {
+      "name": "water final_entry:1",
+      "passed": true
+    },
+    {
+      "name": "building final_entry:1",
+      "passed": true
+    },
+    {
+      "name": "water final_entry:2",
+      "passed": true
+    },
+    {
+      "name": "building final_entry:2",
+      "passed": true
+    },
+    {
+      "name": "binding final_retreat",
+      "passed": true
+    },
+    {
+      "name": "length final_retreat",
+      "passed": true
+    },
+    {
+      "name": "water final_retreat:0",
+      "passed": true
+    },
+    {
+      "name": "building final_retreat:0",
+      "passed": true
+    },
+    {
+      "name": "water final_retreat:1",
+      "passed": true
+    },
+    {
+      "name": "building final_retreat:1",
+      "passed": true
+    },
+    {
+      "name": "water final_retreat:2",
+      "passed": true
+    },
+    {
+      "name": "building final_retreat:2",
+      "passed": true
+    },
+    {
+      "name": "binding east_future",
+      "passed": true
+    },
+    {
+      "name": "length east_future",
+      "passed": true
+    },
+    {
+      "name": "water east_future:0",
+      "passed": true
+    },
+    {
+      "name": "building east_future:0",
+      "passed": true
+    },
+    {
+      "name": "water east_future:1",
+      "passed": true
+    },
+    {
+      "name": "building east_future:1",
+      "passed": true
+    },
+    {
+      "name": "resident pipes",
+      "passed": true
+    },
+    {
+      "name": "people",
+      "passed": true
+    },
+    {
+      "name": "growth",
+      "passed": true
+    },
+    {
+      "name": "gates",
+      "passed": true
+    },
+    {
+      "name": "hydra state",
+      "passed": true
+    },
+    {
+      "name": "transfer edges",
+      "passed": true
+    },
+    {
+      "name": "svg F04",
+      "passed": true
+    },
+    {
+      "name": "svg C01",
+      "passed": true
+    },
+    {
+      "name": "svg C02",
+      "passed": true
+    },
+    {
+      "name": "svg C03",
+      "passed": true
+    },
+    {
+      "name": "svg C04",
+      "passed": true
+    },
+    {
+      "name": "svg C05",
+      "passed": true
+    },
+    {
+      "name": "svg C06",
+      "passed": true
+    },
+    {
+      "name": "svg C07",
+      "passed": true
+    },
+    {
+      "name": "svg C08",
+      "passed": true
+    },
+    {
+      "name": "svg C09",
+      "passed": true
+    },
+    {
+      "name": "svg C10",
+      "passed": true
+    },
+    {
+      "name": "svg C11",
+      "passed": true
+    },
+    {
+      "name": "svg C12",
+      "passed": true
+    },
+    {
+      "name": "svg C13",
+      "passed": true
+    },
+    {
+      "name": "svg C14",
+      "passed": true
+    },
+    {
+      "name": "svg C15",
+      "passed": true
+    },
+    {
+      "name": "svg C16",
+      "passed": true
+    },
+    {
+      "name": "svg C17",
+      "passed": true
+    },
+    {
+      "name": "svg C18",
+      "passed": true
+    },
+    {
+      "name": "svg Q01",
+      "passed": true
+    },
+    {
+      "name": "svg Q02",
+      "passed": true
+    },
+    {
+      "name": "svg Q03",
+      "passed": true
+    },
+    {
+      "name": "svg Q04",
+      "passed": true
+    },
+    {
+      "name": "svg Q05",
+      "passed": true
+    },
+    {
+      "name": "svg Q06",
+      "passed": true
+    },
+    {
+      "name": "svg Q07",
+      "passed": true
+    },
+    {
+      "name": "svg Q08",
+      "passed": true
+    },
+    {
+      "name": "svg Q09",
+      "passed": true
+    },
+    {
+      "name": "svg Q10",
+      "passed": true
+    },
+    {
+      "name": "svg Q11",
+      "passed": true
+    },
+    {
+      "name": "svg Q12",
+      "passed": true
+    },
+    {
+      "name": "svg Q13",
+      "passed": true
+    },
+    {
+      "name": "svg Q14",
+      "passed": true
+    },
+    {
+      "name": "svg Q15",
+      "passed": true
+    },
+    {
+      "name": "svg Q16",
+      "passed": true
+    },
+    {
+      "name": "svg radius RG1",
+      "passed": true
+    },
+    {
+      "name": "svg radius RG2",
+      "passed": true
+    },
+    {
+      "name": "svg radius RG3",
+      "passed": true
+    },
+    {
+      "name": "svg radius HG1",
+      "passed": true
+    },
+    {
+      "name": "svg radius HG2",
+      "passed": true
+    },
+    {
+      "name": "svg radius RC1",
+      "passed": true
+    },
+    {
+      "name": "transfer svg",
+      "passed": true
+    }
+  ],
+  "new_segments": 27,
+  "svg_elements": 41,
+  "density": {
+    "assembly": {
+      "length_m": 860.6,
+      "new_contacts": [],
+      "max_overlap": 0,
+      "longest_gap_m": 860.6
+    },
+    "scout_return": {
+      "length_m": 1202.5,
+      "new_contacts": [
+        "RG1"
+      ],
+      "max_overlap": 1,
+      "longest_gap_m": 718.5
+    },
+    "north_optional": {
+      "length_m": 932.7,
+      "new_contacts": [
+        "RG2"
+      ],
+      "max_overlap": 1,
+      "longest_gap_m": 361.8
+    },
+    "hound_optional": {
+      "length_m": 206.2,
+      "new_contacts": [
+        "RG3"
+      ],
+      "max_overlap": 1,
+      "longest_gap_m": 97.1
+    },
+    "evacuation": {
+      "length_m": 1484.4,
+      "new_contacts": [],
+      "max_overlap": 0,
+      "longest_gap_m": 1484.4
+    },
+    "evacuation_alternate": {
+      "length_m": 1806.2,
+      "new_contacts": [],
+      "max_overlap": 0,
+      "longest_gap_m": 1806.2
+    }
+  },
+  "limits": "Draft geometry and narrative states only; no engineering, navigation, AI, crowd movement or UE verification"
+}

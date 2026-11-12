@@ -1,0 +1,218 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1750" height="1600" viewBox="0 0 1750 1600"><rect width="100%" height="100%" fill="#edf0eb"/>
+<text x="55" y="57" font-family="Malgun Gothic,sans-serif" font-size="32" fill="#293d42">세라디온 귀항 · 공급·대피 준비와 결말 경계</text>
+<text x="55" y="102" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#293d42">SE-P01 국소 후보 · 북쪽 위 · 세계 해안/최종 제작 아트·실제 지형 검증 아님</text>
+<rect id="ground" x="60.00" y="150.00" width="855.00" height="1350.00" fill="#dce2d7" stroke="#6c7771"/>
+<ellipse id="WG1" cx="405.00" cy="1290.00" rx="27.00" ry="27.00" fill="#c6d0c4" stroke="#9ba89b"/>
+<ellipse id="WG2" cx="465.00" cy="1440.00" rx="24.00" ry="24.00" fill="#c6d0c4" stroke="#9ba89b"/>
+<ellipse id="WG3" cx="495.00" cy="1230.00" rx="30.00" ry="30.00" fill="#c6d0c4" stroke="#9ba89b"/>
+<ellipse id="WG4" cx="555.00" cy="1140.00" rx="33.00" ry="33.00" fill="#c6d0c4" stroke="#9ba89b"/>
+<ellipse id="WG5" cx="345.00" cy="1200.00" rx="27.00" ry="27.00" fill="#c6d0c4" stroke="#9ba89b"/>
+<ellipse id="WG6" cx="795.00" cy="930.00" rx="30.00" ry="30.00" fill="#c6d0c4" stroke="#9ba89b"/>
+<ellipse id="WG7" cx="585.00" cy="840.00" rx="30.00" ry="30.00" fill="#c6d0c4" stroke="#9ba89b"/>
+<ellipse id="WG8" cx="660.00" cy="855.00" rx="18.00" ry="18.00" fill="#c6d0c4" stroke="#9ba89b"/>
+<ellipse id="RG1" cx="420.00" cy="705.00" rx="18.00" ry="18.00" fill="#d5c7b5" stroke="#a5794e"/>
+<ellipse id="RG2" cx="480.00" cy="510.00" rx="21.00" ry="21.00" fill="#d5c7b5" stroke="#a5794e"/>
+<ellipse id="RG3" cx="603.00" cy="684.00" rx="21.00" ry="21.00" fill="#d5c7b5" stroke="#a5794e"/>
+<ellipse id="HG1" cx="615.00" cy="570.00" rx="18.00" ry="18.00" fill="#d2baba" stroke="#9a6868"/>
+<ellipse id="HG2" cx="690.00" cy="480.00" rx="21.00" ry="21.00" fill="#d2baba" stroke="#9a6868"/>
+<ellipse id="RC1" cx="690.00" cy="315.00" rx="30.00" ry="30.00" fill="#d2baba" stroke="#9a6868"/>
+<rect id="local_lake" x="735.00" y="840.00" width="150.00" height="270.00" fill="#9cbfc5" stroke="#6c7771"/>
+<rect id="service_bin_water" x="427.50" y="693.00" width="12.00" height="9.00" fill="#9cbfc5" stroke="#6c7771"/>
+<rect id="B1" x="396.00" y="831.60" width="3.60" height="2.40" fill="#7e877c" stroke="#6c7771"/>
+<rect id="B2" x="87.00" y="1218.00" width="9.00" height="6.00" fill="#7e877c" stroke="#6c7771"/>
+<rect id="B3" x="237.00" y="980.40" width="6.00" height="3.60" fill="#7e877c" stroke="#6c7771"/>
+<rect id="B4" x="492.00" y="711.60" width="3.60" height="2.40" fill="#7e877c" stroke="#6c7771"/>
+<polyline id="old-entry-0" points="195.00,1500.00 225.00,1470.00" stroke="#aeb7aa" stroke-width="2" fill="none"/>
+<polyline id="old-entry-1" points="225.00,1470.00 285.00,1410.00" stroke="#aeb7aa" stroke-width="2" fill="none"/>
+<polyline id="old-entry-2" points="285.00,1410.00 345.00,1350.00" stroke="#aeb7aa" stroke-width="2" fill="none"/>
+<polyline id="old-field_out-0" points="345.00,1350.00 405.00,1290.00" stroke="#aeb7aa" stroke-width="2" fill="none"/>
+<polyline id="old-field_out-1" points="405.00,1290.00 495.00,1230.00" stroke="#aeb7aa" stroke-width="2" fill="none"/>
+<polyline id="old-field_out-2" points="495.00,1230.00 555.00,1140.00" stroke="#aeb7aa" stroke-width="2" fill="none"/>
+<polyline id="old-field_out-3" points="555.00,1140.00 645.00,1080.00" stroke="#aeb7aa" stroke-width="2" fill="none"/>
+<polyline id="old-boss_approach-0" points="645.00,1080.00 705.00,1020.00" stroke="#aeb7aa" stroke-width="2" fill="none"/>
+<polyline id="old-north_scout-0" points="225.00,1470.00 225.00,1230.00" stroke="#aeb7aa" stroke-width="2" fill="none"/>
+<polyline id="old-north_scout-1" points="225.00,1230.00 300.00,1140.00" stroke="#aeb7aa" stroke-width="2" fill="none"/>
+<polyline id="old-north_scout-2" points="300.00,1140.00 375.00,1050.00" stroke="#aeb7aa" stroke-width="2" fill="none"/>
+<polyline id="old-north_scout-3" points="375.00,1050.00 465.00,930.00" stroke="#aeb7aa" stroke-width="2" fill="none"/>
+<polyline id="old-north_scout-4" points="465.00,930.00 585.00,840.00" stroke="#aeb7aa" stroke-width="2" fill="none"/>
+<polyline id="old-north_scout-5" points="585.00,840.00 675.00,900.00" stroke="#aeb7aa" stroke-width="2" fill="none"/>
+<polyline id="old-north_look_optional-0" points="585.00,840.00 660.00,750.00" stroke="#aeb7aa" stroke-width="2" fill="none"/>
+<polyline id="old-north_look_optional-1" points="660.00,750.00 675.00,900.00" stroke="#aeb7aa" stroke-width="2" fill="none"/>
+<polyline id="old-boss_retreat-0" points="705.00,1020.00 645.00,1080.00" stroke="#aeb7aa" stroke-width="2" fill="none"/>
+<polyline id="old-boss_retreat-1" points="645.00,1080.00 555.00,1140.00" stroke="#aeb7aa" stroke-width="2" fill="none"/>
+<polyline id="old-boss_retreat-2" points="555.00,1140.00 495.00,1230.00" stroke="#aeb7aa" stroke-width="2" fill="none"/>
+<polyline id="old-other_return-0" points="705.00,1020.00 675.00,900.00" stroke="#aeb7aa" stroke-width="2" fill="none"/>
+<polyline id="old-other_return-1" points="675.00,900.00 585.00,840.00" stroke="#aeb7aa" stroke-width="2" fill="none"/>
+<polyline id="old-other_return-2" points="585.00,840.00 465.00,930.00" stroke="#aeb7aa" stroke-width="2" fill="none"/>
+<polyline id="old-other_return-3" points="465.00,930.00 375.00,1050.00" stroke="#aeb7aa" stroke-width="2" fill="none"/>
+<polyline id="old-other_return-4" points="375.00,1050.00 300.00,1140.00" stroke="#aeb7aa" stroke-width="2" fill="none"/>
+<polyline id="old-other_return-5" points="300.00,1140.00 225.00,1230.00" stroke="#aeb7aa" stroke-width="2" fill="none"/>
+<polyline id="old-other_return-6" points="225.00,1230.00 120.00,1440.00" stroke="#aeb7aa" stroke-width="2" fill="none"/>
+<polyline id="old-other_return-7" points="120.00,1440.00 114.00,1500.00" stroke="#aeb7aa" stroke-width="2" fill="none"/>
+<polyline id="old-naga_visit-0" points="345.00,1350.00 345.00,1200.00" stroke="#aeb7aa" stroke-width="2" fill="none"/>
+<polyline id="old-naga_visit-1" points="345.00,1200.00 375.00,1050.00" stroke="#aeb7aa" stroke-width="2" fill="none"/>
+<polyline id="old-old_service_optional-0" points="405.00,1290.00 465.00,1440.00" stroke="#aeb7aa" stroke-width="2" fill="none"/>
+<polyline id="old-old_service_optional-1" points="465.00,1440.00 585.00,1350.00" stroke="#aeb7aa" stroke-width="2" fill="none"/>
+<polyline id="old-old_service_optional-2" points="585.00,1350.00 495.00,1230.00" stroke="#aeb7aa" stroke-width="2" fill="none"/>
+<polyline id="old-resident_service-0" points="225.00,1230.00 300.00,1140.00" stroke="#aeb7aa" stroke-width="2" fill="none"/>
+<polyline id="old-resident_service-1" points="300.00,1140.00 375.00,1050.00" stroke="#aeb7aa" stroke-width="2" fill="none"/>
+<polyline id="old-resident_service-2" points="375.00,1050.00 345.00,1200.00" stroke="#aeb7aa" stroke-width="2" fill="none"/>
+<polyline id="old-resident_service-3" points="345.00,1200.00 345.00,1350.00" stroke="#aeb7aa" stroke-width="2" fill="none"/>
+<polyline id="evidence-0" points="465.00,930.00 405.00,840.00" stroke="#3d7289" stroke-width="3" fill="none"/>
+<polyline id="evidence-1" points="405.00,840.00 315.00,900.00" stroke="#3d7289" stroke-width="3" fill="none"/>
+<polyline id="evidence-2" points="315.00,900.00 375.00,1050.00" stroke="#3d7289" stroke-width="3" fill="none"/>
+<polyline id="supply-0" points="225.00,1230.00 225.00,990.00" stroke="#3d7289" stroke-width="3" fill="none"/>
+<polyline id="supply-1" points="225.00,990.00 315.00,900.00" stroke="#3d7289" stroke-width="3" fill="none"/>
+<polyline id="evacuation-0" points="225.00,1230.00 180.00,1320.00" stroke="#54815b" stroke-width="3" fill="none"/>
+<polyline id="evacuation-1" points="180.00,1320.00 165.00,1110.00" stroke="#54815b" stroke-width="3" fill="none"/>
+<polyline id="evacuation-2" points="165.00,1110.00 105.00,1230.00" stroke="#54815b" stroke-width="3" fill="none"/>
+<polyline id="evacuation_alternate-0" points="165.00,1110.00 165.00,870.00" stroke="#54815b" stroke-width="3" fill="none"/>
+<polyline id="evacuation_alternate-1" points="165.00,870.00 225.00,990.00" stroke="#54815b" stroke-width="3" fill="none"/>
+<polyline id="evacuation_alternate-2" points="225.00,990.00 300.00,1140.00" stroke="#54815b" stroke-width="3" fill="none"/>
+<polyline id="assembly-0" points="465.00,930.00 405.00,840.00" stroke="#3d7289" stroke-width="3" fill="none"/>
+<polyline id="assembly-1" points="405.00,840.00 495.00,720.00" stroke="#3d7289" stroke-width="3" fill="none"/>
+<polyline id="approach_look-0" points="495.00,720.00 555.00,645.00" stroke="#3d7289" stroke-width="3" fill="none"/>
+<polyline id="scout_return-0" points="555.00,645.00 405.00,630.00" stroke="#b37b48" stroke-width="3" fill="none"/>
+<polyline id="scout_return-1" points="405.00,630.00 405.00,840.00" stroke="#b37b48" stroke-width="3" fill="none"/>
+<polyline id="north_optional-0" points="405.00,630.00 480.00,510.00" stroke="#8b8f65" stroke-width="3" fill="none"/>
+<polyline id="north_optional-1" points="480.00,510.00 585.00,420.00" stroke="#8b8f65" stroke-width="3" fill="none"/>
+<polyline id="hound_optional-0" points="555.00,645.00 603.00,684.00" stroke="#8b8f65" stroke-width="3" fill="none"/>
+<polyline id="final_entry-0" points="555.00,645.00 615.00,570.00" stroke="#8b6a91" stroke-width="3" fill="none"/>
+<polyline id="final_entry-1" points="615.00,570.00 690.00,480.00" stroke="#8b6a91" stroke-width="3" fill="none"/>
+<polyline id="final_entry-2" points="690.00,480.00 690.00,315.00" stroke="#8b6a91" stroke-width="3" fill="none"/>
+<polyline id="final_retreat-0" points="690.00,480.00 585.00,420.00" stroke="#8b6a91" stroke-width="3" fill="none"/>
+<polyline id="final_retreat-1" points="585.00,420.00 480.00,510.00" stroke="#8b6a91" stroke-width="3" fill="none"/>
+<polyline id="final_retreat-2" points="480.00,510.00 405.00,630.00" stroke="#8b6a91" stroke-width="3" fill="none"/>
+<polyline id="east_future-0" points="690.00,480.00 780.00,495.00" stroke="#8b6a91" stroke-width="3" fill="none"/>
+<polyline id="east_future-1" points="780.00,495.00 690.00,315.00" stroke="#8b6a91" stroke-width="3" fill="none"/>
+<polyline id="shared-optional-0" points="405.00,630.00 480.00,510.00" stroke="#8b8f65" stroke-width="7" fill="none"/>
+<polyline id="shared-optional-1" points="480.00,510.00 585.00,420.00" stroke="#8b8f65" stroke-width="7" fill="none"/>
+<polyline id="shared-future-0-0" points="405.00,630.00 409.24,623.22" stroke="#8b6a91" stroke-width="3" fill="none"/>
+<polyline id="shared-future-0-1" points="413.48,616.43 417.72,609.65" stroke="#8b6a91" stroke-width="3" fill="none"/>
+<polyline id="shared-future-0-2" points="421.96,602.86 426.20,596.08" stroke="#8b6a91" stroke-width="3" fill="none"/>
+<polyline id="shared-future-0-3" points="430.44,589.30 434.68,582.51" stroke="#8b6a91" stroke-width="3" fill="none"/>
+<polyline id="shared-future-0-4" points="438.92,575.73 443.16,568.94" stroke="#8b6a91" stroke-width="3" fill="none"/>
+<polyline id="shared-future-0-5" points="447.40,562.16 451.64,555.38" stroke="#8b6a91" stroke-width="3" fill="none"/>
+<polyline id="shared-future-0-6" points="455.88,548.59 460.12,541.81" stroke="#8b6a91" stroke-width="3" fill="none"/>
+<polyline id="shared-future-0-7" points="464.36,535.02 468.60,528.24" stroke="#8b6a91" stroke-width="3" fill="none"/>
+<polyline id="shared-future-0-8" points="472.84,521.46 477.08,514.67" stroke="#8b6a91" stroke-width="3" fill="none"/>
+<polyline id="shared-future-1-0" points="480.00,510.00 486.07,504.79" stroke="#8b6a91" stroke-width="3" fill="none"/>
+<polyline id="shared-future-1-1" points="492.15,499.59 498.22,494.38" stroke="#8b6a91" stroke-width="3" fill="none"/>
+<polyline id="shared-future-1-2" points="504.30,489.17 510.37,483.97" stroke="#8b6a91" stroke-width="3" fill="none"/>
+<polyline id="shared-future-1-3" points="516.44,478.76 522.52,473.56" stroke="#8b6a91" stroke-width="3" fill="none"/>
+<polyline id="shared-future-1-4" points="528.59,468.35 534.67,463.14" stroke="#8b6a91" stroke-width="3" fill="none"/>
+<polyline id="shared-future-1-5" points="540.74,457.94 546.81,452.73" stroke="#8b6a91" stroke-width="3" fill="none"/>
+<polyline id="shared-future-1-6" points="552.89,447.52 558.96,442.32" stroke="#8b6a91" stroke-width="3" fill="none"/>
+<polyline id="shared-future-1-7" points="565.04,437.11 571.11,431.91" stroke="#8b6a91" stroke-width="3" fill="none"/>
+<polyline id="shared-future-1-8" points="577.18,426.70 583.26,421.49" stroke="#8b6a91" stroke-width="3" fill="none"/>
+<polyline id="buried-pipes-0" points="375.00,1050.00 300.00,1140.00" stroke="#739caa" stroke-width="2" fill="none"/>
+<polyline id="buried-pipes-1" points="300.00,1140.00 345.00,1350.00" stroke="#739caa" stroke-width="2" fill="none"/>
+<ellipse id="F04" cx="225.00" cy="1470.00" rx="3.00" ry="3.00" fill="#304f54" stroke="#667b66"/>
+<text x="235.0" y="1466.0" font-family="Malgun Gothic,sans-serif" font-size="16" fill="#293d42">F04</text>
+<ellipse id="C01" cx="285.00" cy="1410.00" rx="3.00" ry="3.00" fill="#304f54" stroke="#667b66"/>
+<text x="295.0" y="1406.0" font-family="Malgun Gothic,sans-serif" font-size="16" fill="#293d42">C01</text>
+<ellipse id="C02" cx="345.00" cy="1350.00" rx="3.00" ry="3.00" fill="#304f54" stroke="#667b66"/>
+<text x="355.0" y="1346.0" font-family="Malgun Gothic,sans-serif" font-size="16" fill="#293d42">C02</text>
+<ellipse id="C03" cx="405.00" cy="1290.00" rx="3.00" ry="3.00" fill="#304f54" stroke="#667b66"/>
+<text x="415.0" y="1286.0" font-family="Malgun Gothic,sans-serif" font-size="16" fill="#293d42">C03</text>
+<ellipse id="C04" cx="495.00" cy="1230.00" rx="3.00" ry="3.00" fill="#304f54" stroke="#667b66"/>
+<text x="505.0" y="1226.0" font-family="Malgun Gothic,sans-serif" font-size="16" fill="#293d42">C04</text>
+<ellipse id="C05" cx="555.00" cy="1140.00" rx="3.00" ry="3.00" fill="#304f54" stroke="#667b66"/>
+<text x="565.0" y="1136.0" font-family="Malgun Gothic,sans-serif" font-size="16" fill="#293d42">C05</text>
+<ellipse id="C06" cx="645.00" cy="1080.00" rx="3.00" ry="3.00" fill="#304f54" stroke="#667b66"/>
+<text x="655.0" y="1076.0" font-family="Malgun Gothic,sans-serif" font-size="16" fill="#293d42">C06</text>
+<ellipse id="C07" cx="705.00" cy="1020.00" rx="3.00" ry="3.00" fill="#304f54" stroke="#667b66"/>
+<text x="715.0" y="1016.0" font-family="Malgun Gothic,sans-serif" font-size="16" fill="#293d42">C07</text>
+<ellipse id="C08" cx="675.00" cy="900.00" rx="3.00" ry="3.00" fill="#304f54" stroke="#667b66"/>
+<text x="685.0" y="896.0" font-family="Malgun Gothic,sans-serif" font-size="16" fill="#293d42">C08</text>
+<ellipse id="C09" cx="585.00" cy="840.00" rx="3.00" ry="3.00" fill="#304f54" stroke="#667b66"/>
+<text x="595.0" y="836.0" font-family="Malgun Gothic,sans-serif" font-size="16" fill="#293d42">C09</text>
+<ellipse id="C10" cx="465.00" cy="930.00" rx="3.00" ry="3.00" fill="#304f54" stroke="#667b66"/>
+<text x="475.0" y="926.0" font-family="Malgun Gothic,sans-serif" font-size="16" fill="#293d42">C10</text>
+<ellipse id="C11" cx="375.00" cy="1050.00" rx="3.00" ry="3.00" fill="#304f54" stroke="#667b66"/>
+<text x="385.0" y="1046.0" font-family="Malgun Gothic,sans-serif" font-size="16" fill="#293d42">C11</text>
+<ellipse id="C12" cx="300.00" cy="1140.00" rx="3.00" ry="3.00" fill="#304f54" stroke="#667b66"/>
+<text x="310.0" y="1136.0" font-family="Malgun Gothic,sans-serif" font-size="16" fill="#293d42">C12</text>
+<ellipse id="C13" cx="225.00" cy="1230.00" rx="3.00" ry="3.00" fill="#304f54" stroke="#667b66"/>
+<text x="235.0" y="1226.0" font-family="Malgun Gothic,sans-serif" font-size="16" fill="#293d42">C13</text>
+<ellipse id="C14" cx="465.00" cy="1440.00" rx="3.00" ry="3.00" fill="#304f54" stroke="#667b66"/>
+<text x="475.0" y="1436.0" font-family="Malgun Gothic,sans-serif" font-size="16" fill="#293d42">C14</text>
+<ellipse id="C15" cx="585.00" cy="1350.00" rx="3.00" ry="3.00" fill="#304f54" stroke="#667b66"/>
+<text x="595.0" y="1346.0" font-family="Malgun Gothic,sans-serif" font-size="16" fill="#293d42">C15</text>
+<ellipse id="C16" cx="660.00" cy="750.00" rx="3.00" ry="3.00" fill="#304f54" stroke="#667b66"/>
+<text x="670.0" y="746.0" font-family="Malgun Gothic,sans-serif" font-size="16" fill="#293d42">C16</text>
+<ellipse id="C17" cx="345.00" cy="1200.00" rx="3.00" ry="3.00" fill="#304f54" stroke="#667b66"/>
+<text x="355.0" y="1196.0" font-family="Malgun Gothic,sans-serif" font-size="16" fill="#293d42">C17</text>
+<ellipse id="C18" cx="120.00" cy="1440.00" rx="3.00" ry="3.00" fill="#304f54" stroke="#667b66"/>
+<text x="130.0" y="1436.0" font-family="Malgun Gothic,sans-serif" font-size="16" fill="#293d42">C18</text>
+<ellipse id="Q01" cx="405.00" cy="840.00" rx="3.00" ry="3.00" fill="#304f54" stroke="#667b66"/>
+<text x="415.0" y="836.0" font-family="Malgun Gothic,sans-serif" font-size="16" fill="#293d42">Q01</text>
+<ellipse id="Q02" cx="315.00" cy="900.00" rx="3.00" ry="3.00" fill="#304f54" stroke="#667b66"/>
+<text x="325.0" y="896.0" font-family="Malgun Gothic,sans-serif" font-size="16" fill="#293d42">Q02</text>
+<ellipse id="Q03" cx="225.00" cy="990.00" rx="3.00" ry="3.00" fill="#304f54" stroke="#667b66"/>
+<text x="235.0" y="986.0" font-family="Malgun Gothic,sans-serif" font-size="16" fill="#293d42">Q03</text>
+<ellipse id="Q04" cx="165.00" cy="1110.00" rx="3.00" ry="3.00" fill="#304f54" stroke="#667b66"/>
+<text x="175.0" y="1106.0" font-family="Malgun Gothic,sans-serif" font-size="16" fill="#293d42">Q04</text>
+<ellipse id="Q05" cx="105.00" cy="1230.00" rx="3.00" ry="3.00" fill="#304f54" stroke="#667b66"/>
+<text x="115.0" y="1226.0" font-family="Malgun Gothic,sans-serif" font-size="16" fill="#293d42">Q05</text>
+<ellipse id="Q06" cx="180.00" cy="1320.00" rx="3.00" ry="3.00" fill="#304f54" stroke="#667b66"/>
+<text x="190.0" y="1316.0" font-family="Malgun Gothic,sans-serif" font-size="16" fill="#293d42">Q06</text>
+<ellipse id="Q07" cx="495.00" cy="720.00" rx="3.00" ry="3.00" fill="#304f54" stroke="#667b66"/>
+<text x="505.0" y="716.0" font-family="Malgun Gothic,sans-serif" font-size="16" fill="#293d42">Q07</text>
+<ellipse id="Q08" cx="555.00" cy="645.00" rx="3.00" ry="3.00" fill="#304f54" stroke="#667b66"/>
+<text x="565.0" y="641.0" font-family="Malgun Gothic,sans-serif" font-size="16" fill="#293d42">Q08</text>
+<ellipse id="Q09" cx="615.00" cy="570.00" rx="3.00" ry="3.00" fill="#304f54" stroke="#667b66"/>
+<text x="625.0" y="566.0" font-family="Malgun Gothic,sans-serif" font-size="16" fill="#293d42">Q09</text>
+<ellipse id="Q10" cx="690.00" cy="480.00" rx="3.00" ry="3.00" fill="#304f54" stroke="#667b66"/>
+<text x="700.0" y="476.0" font-family="Malgun Gothic,sans-serif" font-size="16" fill="#293d42">Q10</text>
+<ellipse id="Q11" cx="585.00" cy="420.00" rx="3.00" ry="3.00" fill="#304f54" stroke="#667b66"/>
+<text x="595.0" y="416.0" font-family="Malgun Gothic,sans-serif" font-size="16" fill="#293d42">Q11</text>
+<ellipse id="Q12" cx="480.00" cy="510.00" rx="3.00" ry="3.00" fill="#304f54" stroke="#667b66"/>
+<text x="490.0" y="506.0" font-family="Malgun Gothic,sans-serif" font-size="16" fill="#293d42">Q12</text>
+<ellipse id="Q13" cx="405.00" cy="630.00" rx="3.00" ry="3.00" fill="#304f54" stroke="#667b66"/>
+<text x="415.0" y="626.0" font-family="Malgun Gothic,sans-serif" font-size="16" fill="#293d42">Q13</text>
+<ellipse id="Q14" cx="165.00" cy="870.00" rx="3.00" ry="3.00" fill="#304f54" stroke="#667b66"/>
+<text x="175.0" y="866.0" font-family="Malgun Gothic,sans-serif" font-size="16" fill="#293d42">Q14</text>
+<ellipse id="Q15" cx="690.00" cy="315.00" rx="3.00" ry="3.00" fill="#304f54" stroke="#667b66"/>
+<text x="700.0" y="311.0" font-family="Malgun Gothic,sans-serif" font-size="16" fill="#293d42">Q15</text>
+<ellipse id="Q16" cx="780.00" cy="495.00" rx="3.00" ry="3.00" fill="#304f54" stroke="#667b66"/>
+<text x="790.0" y="491.0" font-family="Malgun Gothic,sans-serif" font-size="16" fill="#293d42">Q16</text>
+<text x="375.0" y="737.0" font-family="Malgun Gothic,sans-serif" font-size="16" fill="#885239">RG1</text>
+<text x="435.0" y="542.0" font-family="Malgun Gothic,sans-serif" font-size="16" fill="#885239">RG2</text>
+<text x="558.0" y="716.0" font-family="Malgun Gothic,sans-serif" font-size="16" fill="#885239">RG3</text>
+<text x="570.0" y="602.0" font-family="Malgun Gothic,sans-serif" font-size="16" fill="#885239">HG1</text>
+<text x="645.0" y="512.0" font-family="Malgun Gothic,sans-serif" font-size="16" fill="#885239">HG2</text>
+<text x="645.0" y="347.0" font-family="Malgun Gothic,sans-serif" font-size="16" fill="#885239">RC1</text>
+<text x="980" y="170" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#293d42">Q01 현지 대조대</text>
+<text x="980" y="204" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#293d42">Q02 주민 공급 관측</text>
+<text x="980" y="238" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#293d42">Q03 배급 준비 마당</text>
+<text x="980" y="272" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#293d42">Q04 주민 집결</text>
+<text x="980" y="306" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#293d42">Q05 임시 대피</text>
+<text x="980" y="340" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#293d42">Q06 대피 연락</text>
+<text x="980" y="374" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#293d42">Q07 정비조 집결</text>
+<text x="980" y="408" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#293d42">Q08 심부 외곽 관측</text>
+<text x="980" y="442" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#293d42">Q09 서측 접근턱</text>
+<text x="980" y="476" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#293d42">Q10 결말 진입 경계</text>
+<text x="980" y="510" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#293d42">Q11 예비 철수 분기</text>
+<text x="980" y="544" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#293d42">Q12 북측 귀환턱</text>
+<text x="980" y="578" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#293d42">Q13 자재 반입 관측</text>
+<text x="980" y="612" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#293d42">Q14 뒤쪽 대피 연결</text>
+<text x="980" y="646" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#293d42">Q15 수문 중추 후속 전장</text>
+<text x="980" y="680" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#293d42">Q16 동쪽 후속 관측</text>
+<text x="980" y="769" font-family="Malgun Gothic,sans-serif" font-size="19" fill="#293d42">파랑: 현지 확인·정찰 / 녹색: 대피</text>
+<text x="980" y="807" font-family="Malgun Gothic,sans-serif" font-size="19" fill="#293d42">주황: 다른 귀환 / 올리브: 선택</text>
+<text x="980" y="845" font-family="Malgun Gothic,sans-serif" font-size="19" fill="#293d42">보라: 후속 돌파·철수 후보, 아직 미완료</text>
+<text x="980" y="883" font-family="Malgun Gothic,sans-serif" font-size="19" fill="#293d42">회색: 기존 수원 경로·생활권 보존</text>
+<text x="980" y="921" font-family="Malgun Gothic,sans-serif" font-size="19" fill="#293d42">WG6 녹관: 추천 처치 유지, 부활 없음</text>
+<text x="980" y="959" font-family="Malgun Gothic,sans-serif" font-size="19" fill="#293d42">RG1-RG3: 새 생물·현현 7개체</text>
+<text x="980" y="997" font-family="Malgun Gothic,sans-serif" font-size="19" fill="#293d42">HG1/HG2: 공개 후 점거 경비 총 8명</text>
+<text x="980" y="1035" font-family="Malgun Gothic,sans-serif" font-size="19" fill="#293d42">RC1: 후속 중추 방어체 1기, 미격파</text>
+<text x="980" y="1073" font-family="Malgun Gothic,sans-serif" font-size="19" fill="#293d42">G6 인수 → 공개 → 점거 → Q08 정찰</text>
+<text x="980" y="1111" font-family="Malgun Gothic,sans-serif" font-size="19" fill="#293d42">58 유지 / 결말 주요 1·조사 1 남음</text>
+<text x="980" y="1149" font-family="Malgun Gothic,sans-serif" font-size="19" fill="#293d42">남부항 P계 좌표는 이 지도와 합치지 않음</text>
+<text x="980" y="1187" font-family="Malgun Gothic,sans-serif" font-size="19" fill="#293d42">배관선은 지하 도식이며 보행로가 아님</text>
+<text x="980" y="1225" font-family="Malgun Gothic,sans-serif" font-size="19" fill="#293d42">Q13-Q12-Q11: 현재 선택·후속 철수 공용</text>
+<text x="980" y="1263" font-family="Malgun Gothic,sans-serif" font-size="19" fill="#293d42">공용 구간: 올리브 실선 위 보라 점선</text>
+<polyline id="scale-200m" points="60.00,1528.00 120.00,1528.00" stroke="#304f54" stroke-width="4" fill="none"/>
+<text x="60" y="1555.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#293d42">200m · 국소 배치 축척</text>
+</svg>
