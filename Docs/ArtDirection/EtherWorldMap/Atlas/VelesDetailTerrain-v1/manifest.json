@@ -1,0 +1,577 @@
+{
+  "schema_version": 1,
+  "status": "detail_terrain_and_layout_candidate",
+  "origin_regional_xy_m": [
+    150000,
+    145000
+  ],
+  "bounds_local_m": [
+    -2048,
+    -2560,
+    2048,
+    3584
+  ],
+  "extent_m": [
+    4096,
+    6144
+  ],
+  "height": {
+    "file": "height/master16.png",
+    "width": 2049,
+    "height": 3073,
+    "spacing_m": 2,
+    "meters_per_unit": 0.125,
+    "offset_m": -1024,
+    "range_m": [
+      582.625,
+      630.375
+    ]
+  },
+  "parent": {
+    "manifest": "../IgnisTerrainMaster-v1/manifest.json",
+    "height_sha256": "0dc8f90551a9e4b6acfda64fbf2919f6ab6d59d4df95e586827a4e079a122a90",
+    "basis_sha256": "bd3881e02c533df5993a014d4b840253bd5c10262626ab22eb59ea35aac25431",
+    "ecology_sha256": "56009a29f7ba55e1f1903ee8ced9b1132d4a972fda2e7d65e47af0005d2eba7c",
+    "inheritance": "parent lattice vertices preserved; outer 256m residual fades to parent; .125m encoding"
+  },
+  "tile_layout": {
+    "columns": 4,
+    "rows": 6,
+    "tile_m": 1024,
+    "shared_height_samples": 1,
+    "tiles": [
+      {
+        "id": "C0-R0",
+        "bounds": [
+          -2048,
+          2560,
+          -1024,
+          3584
+        ],
+        "height": "height/tiles/C0-R0.png",
+        "texture": "tiles/C0-R0.png",
+        "height_sha256": "d5a0129e66c37261b0e60444a081dfc0d6f958d6183481ce7dfea245720a8574",
+        "texture_spec": {
+          "size": 2112,
+          "core_size": 2048,
+          "margin_pixels": 32,
+          "meters_per_pixel": 0.5
+        }
+      },
+      {
+        "id": "C1-R0",
+        "bounds": [
+          -1024,
+          2560,
+          0,
+          3584
+        ],
+        "height": "height/tiles/C1-R0.png",
+        "texture": "tiles/C1-R0.png",
+        "height_sha256": "fb5f769cc6232bbade25dd0d3c5727a57dd7d5814c803d98d8cc0e48330dfb88",
+        "texture_spec": {
+          "size": 2112,
+          "core_size": 2048,
+          "margin_pixels": 32,
+          "meters_per_pixel": 0.5
+        }
+      },
+      {
+        "id": "C2-R0",
+        "bounds": [
+          0,
+          2560,
+          1024,
+          3584
+        ],
+        "height": "height/tiles/C2-R0.png",
+        "texture": "tiles/C2-R0.png",
+        "height_sha256": "f6d3b8f0766356a161c3b7e5e40c64763dffc3fdf70319a5655f0dca7ce5aaf4",
+        "texture_spec": {
+          "size": 2112,
+          "core_size": 2048,
+          "margin_pixels": 32,
+          "meters_per_pixel": 0.5
+        }
+      },
+      {
+        "id": "C3-R0",
+        "bounds": [
+          1024,
+          2560,
+          2048,
+          3584
+        ],
+        "height": "height/tiles/C3-R0.png",
+        "texture": "tiles/C3-R0.png",
+        "height_sha256": "71153c5f10e2b4c7c69586949fb04ee2562b354fd3a94838629f5c8b4f8fad46",
+        "texture_spec": {
+          "size": 2112,
+          "core_size": 2048,
+          "margin_pixels": 32,
+          "meters_per_pixel": 0.5
+        }
+      },
+      {
+        "id": "C0-R1",
+        "bounds": [
+          -2048,
+          1536,
+          -1024,
+          2560
+        ],
+        "height": "height/tiles/C0-R1.png",
+        "texture": "tiles/C0-R1.png",
+        "height_sha256": "f1848425c9f71a1d9c1c6093d8661faf5789d67484ab13f5cd4a306ac76bcc38",
+        "texture_spec": {
+          "size": 2112,
+          "core_size": 2048,
+          "margin_pixels": 32,
+          "meters_per_pixel": 0.5
+        }
+      },
+      {
+        "id": "C1-R1",
+        "bounds": [
+          -1024,
+          1536,
+          0,
+          2560
+        ],
+        "height": "height/tiles/C1-R1.png",
+        "texture": "tiles/C1-R1.png",
+        "height_sha256": "6add7d21978f3c19dfb41e4e50bbbe7771e4d0d99d5b6c105d3ce398da04d7f6",
+        "texture_spec": {
+          "size": 2112,
+          "core_size": 2048,
+          "margin_pixels": 32,
+          "meters_per_pixel": 0.5
+        }
+      },
+      {
+        "id": "C2-R1",
+        "bounds": [
+          0,
+          1536,
+          1024,
+          2560
+        ],
+        "height": "height/tiles/C2-R1.png",
+        "texture": "tiles/C2-R1.png",
+        "height_sha256": "941e362760f5a22c0a412fba399d755fd11efc53b1572c35fc0a1159346bbfac",
+        "texture_spec": {
+          "size": 2112,
+          "core_size": 2048,
+          "margin_pixels": 32,
+          "meters_per_pixel": 0.5
+        }
+      },
+      {
+        "id": "C3-R1",
+        "bounds": [
+          1024,
+          1536,
+          2048,
+          2560
+        ],
+        "height": "height/tiles/C3-R1.png",
+        "texture": "tiles/C3-R1.png",
+        "height_sha256": "304f7f4f5e42f842e67a010a102d7d4d5fbf63864cebca28e4ab5100c9abb0ab",
+        "texture_spec": {
+          "size": 2112,
+          "core_size": 2048,
+          "margin_pixels": 32,
+          "meters_per_pixel": 0.5
+        }
+      },
+      {
+        "id": "C0-R2",
+        "bounds": [
+          -2048,
+          512,
+          -1024,
+          1536
+        ],
+        "height": "height/tiles/C0-R2.png",
+        "texture": "tiles/C0-R2.png",
+        "height_sha256": "7883ccb4adbb7795f3efc83c01a3f1eebe427d64c879eb99a5da01060db1e848",
+        "texture_spec": {
+          "size": 2112,
+          "core_size": 2048,
+          "margin_pixels": 32,
+          "meters_per_pixel": 0.5
+        }
+      },
+      {
+        "id": "C1-R2",
+        "bounds": [
+          -1024,
+          512,
+          0,
+          1536
+        ],
+        "height": "height/tiles/C1-R2.png",
+        "texture": "tiles/C1-R2.png",
+        "height_sha256": "eb60d4d68ae9262b2b4bf2a2fa4c6a0416e86f465a32fab7016a90d003c620c1",
+        "texture_spec": {
+          "size": 2112,
+          "core_size": 2048,
+          "margin_pixels": 32,
+          "meters_per_pixel": 0.5
+        }
+      },
+      {
+        "id": "C2-R2",
+        "bounds": [
+          0,
+          512,
+          1024,
+          1536
+        ],
+        "height": "height/tiles/C2-R2.png",
+        "texture": "tiles/C2-R2.png",
+        "height_sha256": "4c4f84570b96a423c1ab9dee3db14ea145a068b929257462ca8a6a9a81eaa488",
+        "texture_spec": {
+          "size": 2112,
+          "core_size": 2048,
+          "margin_pixels": 32,
+          "meters_per_pixel": 0.5
+        }
+      },
+      {
+        "id": "C3-R2",
+        "bounds": [
+          1024,
+          512,
+          2048,
+          1536
+        ],
+        "height": "height/tiles/C3-R2.png",
+        "texture": "tiles/C3-R2.png",
+        "height_sha256": "acfded93c0fa0ebfc19e6f694b649233e798a9e0a82cdab27a5724b5349fe23b",
+        "texture_spec": {
+          "size": 2112,
+          "core_size": 2048,
+          "margin_pixels": 32,
+          "meters_per_pixel": 0.5
+        }
+      },
+      {
+        "id": "C0-R3",
+        "bounds": [
+          -2048,
+          -512,
+          -1024,
+          512
+        ],
+        "height": "height/tiles/C0-R3.png",
+        "texture": "tiles/C0-R3.png",
+        "height_sha256": "95653cd33160673d888b55b79842df64335a133520326aabe6155e65bdf19019",
+        "texture_spec": {
+          "size": 2112,
+          "core_size": 2048,
+          "margin_pixels": 32,
+          "meters_per_pixel": 0.5
+        }
+      },
+      {
+        "id": "C1-R3",
+        "bounds": [
+          -1024,
+          -512,
+          0,
+          512
+        ],
+        "height": "height/tiles/C1-R3.png",
+        "texture": "tiles/C1-R3.png",
+        "height_sha256": "fe4c584883ba565f4b8a46c63df12ed4665c54c7ee76f3152e7cf1f31c404488",
+        "texture_spec": {
+          "size": 2112,
+          "core_size": 2048,
+          "margin_pixels": 32,
+          "meters_per_pixel": 0.5
+        }
+      },
+      {
+        "id": "C2-R3",
+        "bounds": [
+          0,
+          -512,
+          1024,
+          512
+        ],
+        "height": "height/tiles/C2-R3.png",
+        "texture": "tiles/C2-R3.png",
+        "height_sha256": "c82bf582cd90ffb263f6f68d576f949a4c3d7558f0d684b5c0e2487e42131bb7",
+        "texture_spec": {
+          "size": 2112,
+          "core_size": 2048,
+          "margin_pixels": 32,
+          "meters_per_pixel": 0.5
+        }
+      },
+      {
+        "id": "C3-R3",
+        "bounds": [
+          1024,
+          -512,
+          2048,
+          512
+        ],
+        "height": "height/tiles/C3-R3.png",
+        "texture": "tiles/C3-R3.png",
+        "height_sha256": "a25857eba0b044e43dd8755d8b7003a6bcb496358199e4d94629c52f5231900c",
+        "texture_spec": {
+          "size": 2112,
+          "core_size": 2048,
+          "margin_pixels": 32,
+          "meters_per_pixel": 0.5
+        }
+      },
+      {
+        "id": "C0-R4",
+        "bounds": [
+          -2048,
+          -1536,
+          -1024,
+          -512
+        ],
+        "height": "height/tiles/C0-R4.png",
+        "texture": "tiles/C0-R4.png",
+        "height_sha256": "3e74c2be8150baf47502dec02799c48fe93c978ad54120ce4e4485b894ea0b45",
+        "texture_spec": {
+          "size": 2112,
+          "core_size": 2048,
+          "margin_pixels": 32,
+          "meters_per_pixel": 0.5
+        }
+      },
+      {
+        "id": "C1-R4",
+        "bounds": [
+          -1024,
+          -1536,
+          0,
+          -512
+        ],
+        "height": "height/tiles/C1-R4.png",
+        "texture": "tiles/C1-R4.png",
+        "height_sha256": "8e1c862ef232d8f2ef45a58c8a066cbaaa79ae259fe5d69789f31417ddf5653c",
+        "texture_spec": {
+          "size": 2112,
+          "core_size": 2048,
+          "margin_pixels": 32,
+          "meters_per_pixel": 0.5
+        }
+      },
+      {
+        "id": "C2-R4",
+        "bounds": [
+          0,
+          -1536,
+          1024,
+          -512
+        ],
+        "height": "height/tiles/C2-R4.png",
+        "texture": "tiles/C2-R4.png",
+        "height_sha256": "e71fb9a1638309ee6b59f92ab01725721f18ec70445a5f9f37daee88e05082fb",
+        "texture_spec": {
+          "size": 2112,
+          "core_size": 2048,
+          "margin_pixels": 32,
+          "meters_per_pixel": 0.5
+        }
+      },
+      {
+        "id": "C3-R4",
+        "bounds": [
+          1024,
+          -1536,
+          2048,
+          -512
+        ],
+        "height": "height/tiles/C3-R4.png",
+        "texture": "tiles/C3-R4.png",
+        "height_sha256": "d8dab916f0e95866cb2754dfd69e048ca729aec918c4f6e54f06ab7e971f2d93",
+        "texture_spec": {
+          "size": 2112,
+          "core_size": 2048,
+          "margin_pixels": 32,
+          "meters_per_pixel": 0.5
+        }
+      },
+      {
+        "id": "C0-R5",
+        "bounds": [
+          -2048,
+          -2560,
+          -1024,
+          -1536
+        ],
+        "height": "height/tiles/C0-R5.png",
+        "texture": "tiles/C0-R5.png",
+        "height_sha256": "b4d1ffed837cb3da9f512a7875535cade46f4a0dde791d79acf2157789a1ac58",
+        "texture_spec": {
+          "size": 2112,
+          "core_size": 2048,
+          "margin_pixels": 32,
+          "meters_per_pixel": 0.5
+        }
+      },
+      {
+        "id": "C1-R5",
+        "bounds": [
+          -1024,
+          -2560,
+          0,
+          -1536
+        ],
+        "height": "height/tiles/C1-R5.png",
+        "texture": "tiles/C1-R5.png",
+        "height_sha256": "e746941bae1dcac924cdb9cff2ba616059211fc80f3fbe223a0a565810375212",
+        "texture_spec": {
+          "size": 2112,
+          "core_size": 2048,
+          "margin_pixels": 32,
+          "meters_per_pixel": 0.5
+        }
+      },
+      {
+        "id": "C2-R5",
+        "bounds": [
+          0,
+          -2560,
+          1024,
+          -1536
+        ],
+        "height": "height/tiles/C2-R5.png",
+        "texture": "tiles/C2-R5.png",
+        "height_sha256": "580355adb0cda92e756da9ddc9ec0206569939b9b955d4286195176061fe8227",
+        "texture_spec": {
+          "size": 2112,
+          "core_size": 2048,
+          "margin_pixels": 32,
+          "meters_per_pixel": 0.5
+        }
+      },
+      {
+        "id": "C3-R5",
+        "bounds": [
+          1024,
+          -2560,
+          2048,
+          -1536
+        ],
+        "height": "height/tiles/C3-R5.png",
+        "texture": "tiles/C3-R5.png",
+        "height_sha256": "f8f78ebb48b92525449534463847557f5b1187581c1c84451d113a0019fdd28e",
+        "texture_spec": {
+          "size": 2112,
+          "core_size": 2048,
+          "margin_pixels": 32,
+          "meters_per_pixel": 0.5
+        }
+      }
+    ]
+  },
+  "boundaries": [
+    {
+      "kind": "road",
+      "id": "C-W",
+      "edge": "west",
+      "point": [
+        -2048,
+        -454.29090909090905
+      ],
+      "width": 6,
+      "global_xy_m": [
+        147952,
+        144545.70909090908
+      ],
+      "direction": [
+        1100,
+        390
+      ]
+    },
+    {
+      "kind": "road",
+      "id": "C-SW",
+      "edge": "west",
+      "point": [
+        -2048,
+        -1233.6
+      ],
+      "width": 6,
+      "global_xy_m": [
+        147952,
+        143766.4
+      ],
+      "direction": [
+        1000,
+        700
+      ]
+    },
+    {
+      "kind": "road",
+      "id": "C-N",
+      "edge": "north",
+      "point": [
+        1280.7692307692307,
+        3584
+      ],
+      "width": 5,
+      "global_xy_m": [
+        151280.76923076922,
+        148584
+      ],
+      "direction": [
+        2500,
+        2600
+      ]
+    },
+    {
+      "kind": "river",
+      "id": "H01-V01",
+      "edge": "east",
+      "point": [
+        2048,
+        3072
+      ],
+      "width": 180,
+      "global_xy_m": [
+        152048,
+        148072
+      ],
+      "status": "matches_parent_H01_centerline_and_width"
+    },
+    {
+      "kind": "river",
+      "id": "H01-V01",
+      "edge": "west",
+      "point": [
+        -2048,
+        -2048
+      ],
+      "width": 180,
+      "global_xy_m": [
+        147952,
+        142952
+      ],
+      "status": "matches_parent_H01_centerline_and_width"
+    }
+  ],
+  "counts": {
+    "buildings": 86,
+    "roads": 103,
+    "bridges": 7,
+    "trees": 131740,
+    "source_pois": 15
+  },
+  "limitations": [
+    "Detailed patch covers Veles and approaches only, not neighboring settlement centers.",
+    "New building footprints, dimensions, lanes, fields and regional approach corridors are candidates.",
+    "Local river refinement uses existing local reference and returns to master H01 at outer boundaries; local width narrows to 55m.",
+    "Cave interior nodes retained as underground; no surface building substitutes.",
+    "No UE import, collision, navigation, structural bridge or full drainage validation."
+  ]
+}

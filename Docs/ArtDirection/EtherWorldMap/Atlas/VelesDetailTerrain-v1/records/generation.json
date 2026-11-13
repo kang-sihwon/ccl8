@@ -1,0 +1,13 @@
+{
+  "tool": "built-in image_gen",
+  "purpose": "Photographic nadir canopy and roof materials used by coordinate-driven renderer",
+  "native_file": "../assets/vegetation-roofs.png",
+  "native_size": [
+    1254,
+    1254
+  ],
+  "transparent": true,
+  "prompt": "Production asset sheet for a realistic strictly vertical nadir aerial RPG map. Generate ONE square 2048 x 2048 transparent RGBA atlas, an exact 4 by 4 grid of sixteen independent overhead objects, evenly spaced in equal cells with generous fully transparent padding around EACH object. NO grid lines, labels, letters, numbers, borders, ground planes, or contact sheet decorations. Each object is centered in its cell and fits within the middle 72 percent of that cell. Orthographic camera pointing exactly straight down, no visible building facades, no visible tree trunks, no isometric sides. Photorealistic weathered materials and natural irregularity, restrained desaturated olive, gray, brown palette; absolutely not miniature, cartoon, toy-like, painterly or JRPG. Soft neutral daylight, subtle ambient occlusion, no long cast shadows. First row, four different irregular broadleaf tree crowns seen straight down (oak, beech, alder, mixed deciduous), individual crowns only. Second row, four different conifer/mixed tree crowns seen exactly straight down (fir, pine, spruce, small clustered canopy); rich fine leaf detail. Third row, four isolated rectangular cottage ROOFS, each with its LONG axis HORIZONTAL, approximate 3:2 proportions: gray slate gable roof; brown weathered wood shingle gable; muted gray tile hipped roof; pale weathered thatch gable roof. Small realistic chimneys on two only. Fourth row, four more isolated HORIZONTAL 3:2 rectangular overhead roofs: larger workshop dark shingle roof with discreet chimney; storage barn timber roof; small shed rough plank roof; rustic muted slate house roof. Only the roof footprint, no gardens or people. Transparent background essential including between all sixteen cells. Preserve natural fine material detail suitable for mapping actual 8-18 meter buildings and 6-14 meter tree crowns at high zoom.",
+  "geometry_source": "Shared terrain and explicit placements, not inferred from generated imagery",
+  "note": "Requested 2048 square; actual native output is 1254 square. No upscale claimed."
+}

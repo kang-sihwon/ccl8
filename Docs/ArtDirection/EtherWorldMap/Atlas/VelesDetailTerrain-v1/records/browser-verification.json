@@ -1,0 +1,62 @@
+{
+  "status": "PASS",
+  "scope": "browser asset rendering and actual input, not UE",
+  "checks": [
+    {
+      "name": "assets and renderer load",
+      "pass": true,
+      "detail": {
+        "ready": true,
+        "view": "village",
+        "cx": -120,
+        "cy": 130,
+        "zoom": 2.473529411764706,
+        "bounds": [
+          -457.97859690844234,
+          -40,
+          217.97859690844234,
+          300
+        ],
+        "labels": true,
+        "grid": false,
+        "footprints": false,
+        "errors": [],
+        "buildings": 86,
+        "trees": 131740
+      }
+    },
+    {
+      "name": "forest view renders",
+      "pass": true
+    },
+    {
+      "name": "west view renders",
+      "pass": true
+    },
+    {
+      "name": "north view renders",
+      "pass": true
+    },
+    {
+      "name": "all view renders",
+      "pass": true
+    },
+    {
+      "name": "footprint overlay toggles",
+      "pass": true
+    },
+    {
+      "name": "real wheel zoom",
+      "pass": true
+    },
+    {
+      "name": "real pointer drag",
+      "pass": true
+    },
+    {
+      "name": "no JavaScript errors",
+      "pass": true,
+      "detail": []
+    }
+  ]
+}

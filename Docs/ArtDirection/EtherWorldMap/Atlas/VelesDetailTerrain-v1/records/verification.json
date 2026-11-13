@@ -1,0 +1,466 @@
+{
+  "status": "PASS",
+  "scope": "parent inheritance, encoded terrain seams, placement clearance, preserved anchors, exported texture overlaps; not gameplay or structural verification",
+  "checks": [
+    {
+      "name": "parent height source unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Veles origin preserved",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "all 15 local reference points preserved",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "local river and stream anchors preserved",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "all existing forest paths preserved",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "2m 16-bit child terrain",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "entire outer edge equals encoded parent",
+      "pass": true,
+      "detail": {
+        "samples": 10244,
+        "mismatches": 0
+      }
+    },
+    {
+      "name": "every inherited parent lattice vertex exact",
+      "pass": true,
+      "detail": {
+        "vertices": 9
+      }
+    },
+    {
+      "name": "all 24 height tiles reconstruct master exactly",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "all 38 interior height borders exact",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "two river exits match parent H01",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "three approach exits keep shared coordinates",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "neighbor settlement anchors preserved",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "building footprints do not overlap",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "roads and other entrances clear every building",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "every building entrance joins an existing lane",
+      "pass": true,
+      "detail": {
+        "buildings": 86
+      }
+    },
+    {
+      "name": "four original stream crossings retained",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "building footprints clear both watercourses",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "underground locations not replaced by surface buildings",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "24 native rendered detail tiles exported",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "all 38 independently rendered texture overlaps consistent",
+      "pass": true,
+      "detail": {
+        "maximum": 9,
+        "mean_max": 0.016350023674242424,
+        "tolerance": "minor rasterization rounding only, not semantic seam repair"
+      }
+    }
+  ],
+  "texture_overlaps": [
+    {
+      "tile": [
+        0,
+        0
+      ],
+      "direction": "east",
+      "maximum_rgb_delta": 3,
+      "mean_rgb_delta": 0.0033365885416666665
+    },
+    {
+      "tile": [
+        0,
+        0
+      ],
+      "direction": "south",
+      "maximum_rgb_delta": 2,
+      "mean_rgb_delta": 0.003043126578282828
+    },
+    {
+      "tile": [
+        1,
+        0
+      ],
+      "direction": "east",
+      "maximum_rgb_delta": 3,
+      "mean_rgb_delta": 0.0032453440656565655
+    },
+    {
+      "tile": [
+        1,
+        0
+      ],
+      "direction": "south",
+      "maximum_rgb_delta": 2,
+      "mean_rgb_delta": 0.003117108585858586
+    },
+    {
+      "tile": [
+        2,
+        0
+      ],
+      "direction": "east",
+      "maximum_rgb_delta": 3,
+      "mean_rgb_delta": 0.005385890151515152
+    },
+    {
+      "tile": [
+        2,
+        0
+      ],
+      "direction": "south",
+      "maximum_rgb_delta": 4,
+      "mean_rgb_delta": 0.005777994791666667
+    },
+    {
+      "tile": [
+        3,
+        0
+      ],
+      "direction": "south",
+      "maximum_rgb_delta": 2,
+      "mean_rgb_delta": 0.0027767913510101014
+    },
+    {
+      "tile": [
+        0,
+        1
+      ],
+      "direction": "east",
+      "maximum_rgb_delta": 2,
+      "mean_rgb_delta": 0.0027619949494949495
+    },
+    {
+      "tile": [
+        0,
+        1
+      ],
+      "direction": "south",
+      "maximum_rgb_delta": 2,
+      "mean_rgb_delta": 0.0034648240214646465
+    },
+    {
+      "tile": [
+        1,
+        1
+      ],
+      "direction": "east",
+      "maximum_rgb_delta": 5,
+      "mean_rgb_delta": 0.008720012626262626
+    },
+    {
+      "tile": [
+        1,
+        1
+      ],
+      "direction": "south",
+      "maximum_rgb_delta": 2,
+      "mean_rgb_delta": 0.003832267992424242
+    },
+    {
+      "tile": [
+        2,
+        1
+      ],
+      "direction": "east",
+      "maximum_rgb_delta": 2,
+      "mean_rgb_delta": 0.0037484217171717175
+    },
+    {
+      "tile": [
+        2,
+        1
+      ],
+      "direction": "south",
+      "maximum_rgb_delta": 2,
+      "mean_rgb_delta": 0.0027348682133838385
+    },
+    {
+      "tile": [
+        3,
+        1
+      ],
+      "direction": "south",
+      "maximum_rgb_delta": 2,
+      "mean_rgb_delta": 0.0028310448232323235
+    },
+    {
+      "tile": [
+        0,
+        2
+      ],
+      "direction": "east",
+      "maximum_rgb_delta": 2,
+      "mean_rgb_delta": 0.003297131470959596
+    },
+    {
+      "tile": [
+        0,
+        2
+      ],
+      "direction": "south",
+      "maximum_rgb_delta": 2,
+      "mean_rgb_delta": 0.0031565656565656565
+    },
+    {
+      "tile": [
+        1,
+        2
+      ],
+      "direction": "east",
+      "maximum_rgb_delta": 8,
+      "mean_rgb_delta": 0.016350023674242424
+    },
+    {
+      "tile": [
+        1,
+        2
+      ],
+      "direction": "south",
+      "maximum_rgb_delta": 3,
+      "mean_rgb_delta": 0.004377268781565657
+    },
+    {
+      "tile": [
+        2,
+        2
+      ],
+      "direction": "east",
+      "maximum_rgb_delta": 2,
+      "mean_rgb_delta": 0.0024956597222222225
+    },
+    {
+      "tile": [
+        2,
+        2
+      ],
+      "direction": "south",
+      "maximum_rgb_delta": 5,
+      "mean_rgb_delta": 0.004120797821969697
+    },
+    {
+      "tile": [
+        3,
+        2
+      ],
+      "direction": "south",
+      "maximum_rgb_delta": 2,
+      "mean_rgb_delta": 0.002927221433080808
+    },
+    {
+      "tile": [
+        0,
+        3
+      ],
+      "direction": "east",
+      "maximum_rgb_delta": 7,
+      "mean_rgb_delta": 0.009015940656565656
+    },
+    {
+      "tile": [
+        0,
+        3
+      ],
+      "direction": "south",
+      "maximum_rgb_delta": 2,
+      "mean_rgb_delta": 0.003657177241161616
+    },
+    {
+      "tile": [
+        1,
+        3
+      ],
+      "direction": "east",
+      "maximum_rgb_delta": 6,
+      "mean_rgb_delta": 0.009943181818181818
+    },
+    {
+      "tile": [
+        1,
+        3
+      ],
+      "direction": "south",
+      "maximum_rgb_delta": 2,
+      "mean_rgb_delta": 0.00343029908459596
+    },
+    {
+      "tile": [
+        2,
+        3
+      ],
+      "direction": "east",
+      "maximum_rgb_delta": 2,
+      "mean_rgb_delta": 0.0033834438131313135
+    },
+    {
+      "tile": [
+        2,
+        3
+      ],
+      "direction": "south",
+      "maximum_rgb_delta": 2,
+      "mean_rgb_delta": 0.0031442353219696974
+    },
+    {
+      "tile": [
+        3,
+        3
+      ],
+      "direction": "south",
+      "maximum_rgb_delta": 3,
+      "mean_rgb_delta": 0.0032157512626262625
+    },
+    {
+      "tile": [
+        0,
+        4
+      ],
+      "direction": "east",
+      "maximum_rgb_delta": 2,
+      "mean_rgb_delta": 0.0028532394255050505
+    },
+    {
+      "tile": [
+        0,
+        4
+      ],
+      "direction": "south",
+      "maximum_rgb_delta": 9,
+      "mean_rgb_delta": 0.0033809777462121215
+    },
+    {
+      "tile": [
+        1,
+        4
+      ],
+      "direction": "east",
+      "maximum_rgb_delta": 2,
+      "mean_rgb_delta": 0.0031540995896464645
+    },
+    {
+      "tile": [
+        1,
+        4
+      ],
+      "direction": "south",
+      "maximum_rgb_delta": 2,
+      "mean_rgb_delta": 0.0033735795454545455
+    },
+    {
+      "tile": [
+        2,
+        4
+      ],
+      "direction": "east",
+      "maximum_rgb_delta": 2,
+      "mean_rgb_delta": 0.00335385101010101
+    },
+    {
+      "tile": [
+        2,
+        4
+      ],
+      "direction": "south",
+      "maximum_rgb_delta": 2,
+      "mean_rgb_delta": 0.0036103219696969695
+    },
+    {
+      "tile": [
+        3,
+        4
+      ],
+      "direction": "south",
+      "maximum_rgb_delta": 2,
+      "mean_rgb_delta": 0.0034648240214646465
+    },
+    {
+      "tile": [
+        0,
+        5
+      ],
+      "direction": "east",
+      "maximum_rgb_delta": 2,
+      "mean_rgb_delta": 0.003368647411616162
+    },
+    {
+      "tile": [
+        1,
+        5
+      ],
+      "direction": "east",
+      "maximum_rgb_delta": 2,
+      "mean_rgb_delta": 0.0030135337752525255
+    },
+    {
+      "tile": [
+        2,
+        5
+      ],
+      "direction": "east",
+      "maximum_rgb_delta": 2,
+      "mean_rgb_delta": 0.003176294191919192
+    }
+  ]
+}
