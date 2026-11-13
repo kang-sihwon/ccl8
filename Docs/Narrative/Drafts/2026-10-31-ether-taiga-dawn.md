@@ -1,5 +1,7 @@
 # 에테르: 타이가의 서광
 
+[5대륙 핵심 플롯 선택표](2026-10-31-ether-taiga-dawn/2026-11-13-world-plot-options.md)의 WP01-WP10은 [결정 48](../../decisions/0048-five-continent-core-plot.md)로 채택했다. 아래 상세 원고 전체의 승격은 아니며 대안·보류는 보존한다. [대표 전투와 인물 선택 비교](2026-10-31-ether-taiga-dawn/2026-11-13-regional-combat-and-choices.md)는 지역별 판단·대가·반복 위험을 검토할 때 읽는다.
+
 [5대륙 여정 통합 점검](2026-10-31-ether-taiga-dawn/2026-11-13-world-journey-continuity.md)은 이그니스 시작부터 세라디온 결말까지 사건·성장·해금·동료·운영 인계와 미검증 범위를 함께 볼 때 읽는다. 정본 채택과 실제 제작 검증은 별도다.
 
 [세라디온 중추 돌파·결말](2026-10-31-ether-taiga-dawn/2026-11-13-seradion-finale.md)은 G6 이후 직접 전투·동료와 현지 기술자 역할·분리·운영 인계와 남은 세계 문제를 볼 때 읽는다. 이전 후보와 정본은 보존한다.
