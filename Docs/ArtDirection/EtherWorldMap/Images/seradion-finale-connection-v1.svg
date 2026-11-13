@@ -1,0 +1,130 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1780" height="1320" viewBox="0 0 1780 1320"><rect width="100%" height="100%" fill="#edf0eb"/>
+<text x="55" y="57" font-family="Malgun Gothic,sans-serif" font-size="32" fill="#293d42">세라디온 결말 · 접근과 철수 연결</text>
+<text x="55" y="101" font-family="Malgun Gothic,sans-serif" font-size="19" fill="#293d42">SE-P01 · 북쪽 위 · 좌표 검토 후보 / 실제 지형·시야·UE·최종 제작 아트 미검증</text>
+<rect id="ground" x="60.00" y="160.00" width="720.00" height="984.00" fill="#dce2d7" stroke="#6c7771"/>
+<ellipse id="RG1" cx="132.00" cy="928.00" rx="28.80" ry="28.80" fill="#d5c7b5" stroke="#a5794e"/>
+<text x="144.0" y="958.0" font-family="Malgun Gothic,sans-serif" font-size="16" fill="#293d42">RG1</text>
+<ellipse id="RG2" cx="228.00" cy="616.00" rx="33.60" ry="33.60" fill="#d5c7b5" stroke="#a5794e"/>
+<text x="240.0" y="646.0" font-family="Malgun Gothic,sans-serif" font-size="16" fill="#293d42">RG2</text>
+<ellipse id="RG3" cx="424.80" cy="894.40" rx="33.60" ry="33.60" fill="#d5c7b5" stroke="#a5794e"/>
+<text x="436.8" y="924.4" font-family="Malgun Gothic,sans-serif" font-size="16" fill="#293d42">RG3</text>
+<polyline id="prior-assembly-0" points="108.00,1144.00 108.00,1144.00" stroke="#aab4a5" stroke-width="2" fill="none"/>
+<polyline id="prior-assembly-1" points="108.00,1144.00 252.00,952.00" stroke="#aab4a5" stroke-width="2" fill="none"/>
+<polyline id="prior-scout_return-0" points="348.00,832.00 108.00,808.00" stroke="#aab4a5" stroke-width="2" fill="none"/>
+<polyline id="prior-scout_return-1" points="108.00,808.00 108.00,1144.00" stroke="#aab4a5" stroke-width="2" fill="none"/>
+<polyline id="prior-north_optional-0" points="108.00,808.00 228.00,616.00" stroke="#aab4a5" stroke-width="2" fill="none"/>
+<polyline id="prior-north_optional-1" points="228.00,616.00 396.00,472.00" stroke="#aab4a5" stroke-width="2" fill="none"/>
+<polyline id="prior-final_retreat-0" points="564.00,568.00 396.00,472.00" stroke="#aab4a5" stroke-width="2" fill="none"/>
+<polyline id="prior-final_retreat-1" points="396.00,472.00 228.00,616.00" stroke="#aab4a5" stroke-width="2" fill="none"/>
+<polyline id="prior-final_retreat-2" points="228.00,616.00 108.00,808.00" stroke="#aab4a5" stroke-width="2" fill="none"/>
+<ellipse id="HG1" cx="444.00" cy="712.00" rx="28.80" ry="28.80" fill="#d7beba" stroke="#9a6868"/>
+<text x="458.0" y="745.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#774c43">HG1</text>
+<ellipse id="HG2" cx="564.00" cy="568.00" rx="33.60" ry="33.60" fill="#d7beba" stroke="#9a6868"/>
+<text x="578.0" y="601.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#774c43">HG2</text>
+<ellipse id="RC1" cx="564.00" cy="304.00" rx="48.00" ry="48.00" fill="#d7beba" stroke="#9a6868"/>
+<text x="578.0" y="337.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#774c43">RC1</text>
+<rect id="W1" x="501.60" y="251.20" width="9.60" height="96.00" fill="#9cbfc5" stroke="#6c7771"/>
+<rect id="W2" x="616.80" y="304.00" width="9.60" height="43.20" fill="#9cbfc5" stroke="#6c7771"/>
+<rect id="M1" x="556.80" y="296.80" width="14.40" height="14.40" fill="#99968d" stroke="#6c7771"/>
+<rect id="M2" x="518.40" y="328.00" width="7.20" height="9.60" fill="#99968d" stroke="#6c7771"/>
+<rect id="M3" x="600.00" y="294.40" width="7.20" height="7.20" fill="#99968d" stroke="#6c7771"/>
+<rect id="M4" x="506.40" y="366.40" width="9.60" height="7.20" fill="#99968d" stroke="#6c7771"/>
+<rect id="M5" x="633.60" y="275.20" width="12.00" height="9.60" fill="#99968d" stroke="#6c7771"/>
+<polyline id="west_retreat-0" points="535.20,328.00 530.40,361.60" stroke="#b37b48" stroke-width="7" fill="none"/>
+<polyline id="west_retreat-1" points="530.40,361.60 482.40,419.20" stroke="#b37b48" stroke-width="7" fill="none"/>
+<polyline id="west_retreat-2" points="482.40,419.20 520.80,500.80" stroke="#b37b48" stroke-width="7" fill="none"/>
+<polyline id="west_retreat-3" points="520.80,500.80 564.00,568.00" stroke="#b37b48" stroke-width="7" fill="none"/>
+<polyline id="west_retreat-4" points="564.00,568.00 444.00,712.00" stroke="#b37b48" stroke-width="7" fill="none"/>
+<polyline id="west_retreat-5" points="444.00,712.00 348.00,832.00" stroke="#b37b48" stroke-width="7" fill="none"/>
+<polyline id="west_retreat-6" points="348.00,832.00 252.00,952.00" stroke="#b37b48" stroke-width="7" fill="none"/>
+<polyline id="east_return-0" points="631.20,289.60 636.00,390.40" stroke="#b37b48" stroke-width="7" fill="none"/>
+<polyline id="east_return-1" points="636.00,390.40 708.00,592.00" stroke="#b37b48" stroke-width="7" fill="none"/>
+<polyline id="east_return-2" points="708.00,592.00 564.00,568.00" stroke="#b37b48" stroke-width="7" fill="none"/>
+<polyline id="guard_main-0" points="348.00,832.00 444.00,712.00" stroke="#3d7289" stroke-width="3" fill="none"/>
+<polyline id="guard_main-1" points="444.00,712.00 564.00,568.00" stroke="#3d7289" stroke-width="3" fill="none"/>
+<polyline id="guard_flank-0" points="444.00,712.00 458.40,649.60" stroke="#3d7289" stroke-width="3" fill="none"/>
+<polyline id="guard_flank-1" points="458.40,649.60 492.00,582.40" stroke="#3d7289" stroke-width="3" fill="none"/>
+<polyline id="guard_flank-2" points="492.00,582.40 564.00,568.00" stroke="#3d7289" stroke-width="3" fill="none"/>
+<polyline id="west_approach-0" points="564.00,568.00 520.80,500.80" stroke="#3d7289" stroke-width="3" fill="none"/>
+<polyline id="west_approach-1" points="520.80,500.80 482.40,419.20" stroke="#3d7289" stroke-width="3" fill="none"/>
+<polyline id="west_approach-2" points="482.40,419.20 530.40,361.60" stroke="#3d7289" stroke-width="3" fill="none"/>
+<polyline id="west_approach-3" points="530.40,361.60 535.20,328.00" stroke="#3d7289" stroke-width="3" fill="none"/>
+<polyline id="east_approach-0" points="564.00,568.00 708.00,592.00" stroke="#3d7289" stroke-width="3" fill="none"/>
+<polyline id="east_approach-1" points="708.00,592.00 636.00,390.40" stroke="#3d7289" stroke-width="3" fill="none"/>
+<polyline id="east_approach-2" points="636.00,390.40 592.80,328.00" stroke="#3d7289" stroke-width="3" fill="none"/>
+<polyline id="arena_loop-0" points="535.20,328.00 592.80,328.00" stroke="#3d7289" stroke-width="3" fill="none"/>
+<polyline id="arena_loop-1" points="592.80,328.00 592.80,280.00" stroke="#3d7289" stroke-width="3" fill="none"/>
+<polyline id="arena_loop-2" points="592.80,280.00 535.20,280.00" stroke="#3d7289" stroke-width="3" fill="none"/>
+<polyline id="arena_loop-3" points="535.20,280.00 535.20,328.00" stroke="#3d7289" stroke-width="3" fill="none"/>
+<polyline id="deep_service-0" points="535.20,280.00 564.00,275.20" stroke="#54815b" stroke-width="3" fill="none"/>
+<polyline id="deep_service-1" points="564.00,275.20 592.80,280.00" stroke="#54815b" stroke-width="3" fill="none"/>
+<polyline id="quarantine-0" points="592.80,280.00 631.20,289.60" stroke="#54815b" stroke-width="3" fill="none"/>
+<polyline id="HG1-patrol-0" points="444.00,712.00 458.40,702.40" stroke="#954c49" stroke-width="3" fill="none"/>
+<polyline id="HG1-patrol-1" points="458.40,702.40 434.40,726.40" stroke="#954c49" stroke-width="3" fill="none"/>
+<polyline id="HG2-patrol-0" points="564.00,568.00 540.00,558.40" stroke="#954c49" stroke-width="3" fill="none"/>
+<polyline id="HG2-patrol-1" points="540.00,558.40 583.20,553.60" stroke="#954c49" stroke-width="3" fill="none"/>
+<ellipse id="Q01" cx="108.00" cy="1144.00" rx="3.00" ry="3.00" fill="#304f54" stroke="#667b66"/>
+<text x="117.0" y="1138.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#293d42">Q01</text>
+<ellipse id="Q07" cx="252.00" cy="952.00" rx="3.00" ry="3.00" fill="#304f54" stroke="#667b66"/>
+<text x="261.0" y="946.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#293d42">Q07</text>
+<ellipse id="Q08" cx="348.00" cy="832.00" rx="3.00" ry="3.00" fill="#304f54" stroke="#667b66"/>
+<text x="357.0" y="826.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#293d42">Q08</text>
+<ellipse id="Q09" cx="444.00" cy="712.00" rx="3.00" ry="3.00" fill="#304f54" stroke="#667b66"/>
+<text x="453.0" y="706.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#293d42">Q09</text>
+<ellipse id="Q10" cx="564.00" cy="568.00" rx="3.00" ry="3.00" fill="#304f54" stroke="#667b66"/>
+<text x="573.0" y="562.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#293d42">Q10</text>
+<ellipse id="Q11" cx="396.00" cy="472.00" rx="3.00" ry="3.00" fill="#304f54" stroke="#667b66"/>
+<text x="405.0" y="466.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#293d42">Q11</text>
+<ellipse id="Q12" cx="228.00" cy="616.00" rx="3.00" ry="3.00" fill="#304f54" stroke="#667b66"/>
+<text x="237.0" y="610.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#293d42">Q12</text>
+<ellipse id="Q13" cx="108.00" cy="808.00" rx="3.00" ry="3.00" fill="#304f54" stroke="#667b66"/>
+<text x="117.0" y="802.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#293d42">Q13</text>
+<ellipse id="Q15" cx="564.00" cy="304.00" rx="3.00" ry="3.00" fill="#304f54" stroke="#667b66"/>
+<text x="573.0" y="298.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#293d42">Q15</text>
+<ellipse id="Q16" cx="708.00" cy="592.00" rx="3.00" ry="3.00" fill="#304f54" stroke="#667b66"/>
+<text x="717.0" y="586.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#293d42">Q16</text>
+<ellipse id="E01" cx="458.40" cy="649.60" rx="3.00" ry="3.00" fill="#304f54" stroke="#667b66"/>
+<text x="467.4" y="643.5999999999999" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#293d42">E01</text>
+<ellipse id="E02" cx="492.00" cy="582.40" rx="3.00" ry="3.00" fill="#304f54" stroke="#667b66"/>
+<text x="501.0" y="576.4" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#293d42">E02</text>
+<ellipse id="E03" cx="520.80" cy="500.80" rx="3.00" ry="3.00" fill="#304f54" stroke="#667b66"/>
+<text x="529.8" y="494.8" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#293d42">E03</text>
+<ellipse id="E04" cx="530.40" cy="361.60" rx="3.00" ry="3.00" fill="#304f54" stroke="#667b66"/>
+<text x="539.4" y="355.6" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#293d42">E04</text>
+<ellipse id="E05" cx="535.20" cy="328.00" rx="3.00" ry="3.00" fill="#304f54" stroke="#667b66"/>
+<ellipse id="E06" cx="592.80" cy="328.00" rx="3.00" ry="3.00" fill="#304f54" stroke="#667b66"/>
+<ellipse id="E07" cx="592.80" cy="280.00" rx="3.00" ry="3.00" fill="#304f54" stroke="#667b66"/>
+<ellipse id="E08" cx="535.20" cy="280.00" rx="3.00" ry="3.00" fill="#304f54" stroke="#667b66"/>
+<ellipse id="E09" cx="564.00" cy="275.20" rx="3.00" ry="3.00" fill="#304f54" stroke="#667b66"/>
+<ellipse id="E10" cx="631.20" cy="289.60" rx="3.00" ry="3.00" fill="#304f54" stroke="#667b66"/>
+<ellipse id="E11" cx="636.00" cy="390.40" rx="3.00" ry="3.00" fill="#304f54" stroke="#667b66"/>
+<text x="645.0" y="384.4" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#293d42">E11</text>
+<ellipse id="E12" cx="482.40" cy="419.20" rx="3.00" ry="3.00" fill="#304f54" stroke="#667b66"/>
+<text x="491.4" y="413.2" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#293d42">E12</text>
+<text x="860" y="175" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#293d42">E01 경계 뒤쪽 관측</text>
+<text x="860" y="209" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#293d42">E02 통로 측면 마당</text>
+<text x="860" y="243" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#293d42">E03 정비 진입턱</text>
+<text x="860" y="277" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#293d42">E04 외부 정지·대기</text>
+<text x="860" y="311" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#293d42">E05 서측 전투 발판</text>
+<text x="860" y="345" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#293d42">E06 동측 전투 발판</text>
+<text x="860" y="379" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#293d42">E07 북동 회수 발판</text>
+<text x="860" y="413" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#293d42">E08 북서 작업 발판</text>
+<text x="860" y="447" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#293d42">E09 심부 잔류 연결</text>
+<text x="860" y="481" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#293d42">E10 파편 격리 대기</text>
+<text x="860" y="515" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#293d42">E11 동쪽 철수턱</text>
+<text x="860" y="549" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#293d42">E12 서쪽 철수턱</text>
+<text x="860" y="628" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#293d42">파랑: 접근·전투 / 초록: RC1 무력화 뒤 작업</text>
+<text x="860" y="664" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#293d42">주황 바깥선: 같은 길로 철수 가능</text>
+<text x="860" y="700" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#293d42">Q15는 적 중심이며 보행 종점이 아님</text>
+<text x="860" y="736" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#293d42">HG1 4명·54 / HG2 4명·56 / RC1 1기·60</text>
+<text x="860" y="772" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#293d42">RG1-RG3 기존 생활권·수치 유지</text>
+<text x="860" y="808" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#293d42">E09는 RC1 100m 범위 안: 전투 전 작업 불가</text>
+<text x="860" y="844" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#293d42">E04 외부 대기: 범위 밖, 실제 안전은 미검증</text>
+<text x="860" y="880" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#293d42">M1 구동 몸체 / M2·M3 낮은 엄폐 후보</text>
+<text x="860" y="916" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#293d42">W1·W2 작업 배수로: 주민 급수 계통 아님</text>
+<text x="860" y="952" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#293d42">경비 해제 → RC1 → 분리 → C13 인계</text>
+<text x="860" y="988" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#293d42">58 → 59 → 60 / 선택 +2 경로 60 → 62</text>
+<text x="860" y="1024" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#293d42">북측 Q12 망령길은 기본 철수로 아님</text>
+<polyline id="scale" points="60.00,1174.00 108.00,1174.00" stroke="#304f54" stroke-width="4" fill="none"/>
+<text x="60" y="1201.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#293d42">100m · 수치 후보</text>
+</svg>

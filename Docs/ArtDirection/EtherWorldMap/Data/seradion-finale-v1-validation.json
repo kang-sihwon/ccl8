@@ -1,0 +1,855 @@
+{
+  "result": "PASS",
+  "checks_passed": 194,
+  "checks_total": 194,
+  "checks": [
+    {
+      "name": "source Docs/ArtDirection/EtherWorldMap/Data/seradion-return-g6-v1.json",
+      "passed": true
+    },
+    {
+      "name": "source Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-12-seradion-return-g6/story-and-handoffs.md",
+      "passed": true
+    },
+    {
+      "name": "source Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-12-seradion-return-g6/supply-and-gates.md",
+      "passed": true
+    },
+    {
+      "name": "source Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-12-seradion-return-g6/spaces-and-approach.md",
+      "passed": true
+    },
+    {
+      "name": "source Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-08-world-distribution-and-leveling/progression.md",
+      "passed": true
+    },
+    {
+      "name": "source Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-08-five-continent-mainline/continent-arcs.md",
+      "passed": true
+    },
+    {
+      "name": "source Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-08-five-continent-mainline/routes-and-unlocks.md",
+      "passed": true
+    },
+    {
+      "name": "source Docs/Narrative/World.md",
+      "passed": true
+    },
+    {
+      "name": "source Docs/Narrative/Scenario.md",
+      "passed": true
+    },
+    {
+      "name": "exact inherited",
+      "passed": true
+    },
+    {
+      "name": "12 new places",
+      "passed": true
+    },
+    {
+      "name": "binding guard_main",
+      "passed": true
+    },
+    {
+      "name": "length guard_main",
+      "passed": true
+    },
+    {
+      "name": "water clearance guard_main:0",
+      "passed": true
+    },
+    {
+      "name": "structure clearance guard_main:0",
+      "passed": true
+    },
+    {
+      "name": "previous ecology guard_main:0",
+      "passed": true
+    },
+    {
+      "name": "water clearance guard_main:1",
+      "passed": true
+    },
+    {
+      "name": "structure clearance guard_main:1",
+      "passed": true
+    },
+    {
+      "name": "previous ecology guard_main:1",
+      "passed": true
+    },
+    {
+      "name": "binding guard_flank",
+      "passed": true
+    },
+    {
+      "name": "length guard_flank",
+      "passed": true
+    },
+    {
+      "name": "water clearance guard_flank:0",
+      "passed": true
+    },
+    {
+      "name": "structure clearance guard_flank:0",
+      "passed": true
+    },
+    {
+      "name": "previous ecology guard_flank:0",
+      "passed": true
+    },
+    {
+      "name": "water clearance guard_flank:1",
+      "passed": true
+    },
+    {
+      "name": "structure clearance guard_flank:1",
+      "passed": true
+    },
+    {
+      "name": "previous ecology guard_flank:1",
+      "passed": true
+    },
+    {
+      "name": "water clearance guard_flank:2",
+      "passed": true
+    },
+    {
+      "name": "structure clearance guard_flank:2",
+      "passed": true
+    },
+    {
+      "name": "previous ecology guard_flank:2",
+      "passed": true
+    },
+    {
+      "name": "binding west_approach",
+      "passed": true
+    },
+    {
+      "name": "length west_approach",
+      "passed": true
+    },
+    {
+      "name": "water clearance west_approach:0",
+      "passed": true
+    },
+    {
+      "name": "structure clearance west_approach:0",
+      "passed": true
+    },
+    {
+      "name": "previous ecology west_approach:0",
+      "passed": true
+    },
+    {
+      "name": "water clearance west_approach:1",
+      "passed": true
+    },
+    {
+      "name": "structure clearance west_approach:1",
+      "passed": true
+    },
+    {
+      "name": "previous ecology west_approach:1",
+      "passed": true
+    },
+    {
+      "name": "water clearance west_approach:2",
+      "passed": true
+    },
+    {
+      "name": "structure clearance west_approach:2",
+      "passed": true
+    },
+    {
+      "name": "previous ecology west_approach:2",
+      "passed": true
+    },
+    {
+      "name": "water clearance west_approach:3",
+      "passed": true
+    },
+    {
+      "name": "structure clearance west_approach:3",
+      "passed": true
+    },
+    {
+      "name": "previous ecology west_approach:3",
+      "passed": true
+    },
+    {
+      "name": "binding east_approach",
+      "passed": true
+    },
+    {
+      "name": "length east_approach",
+      "passed": true
+    },
+    {
+      "name": "water clearance east_approach:0",
+      "passed": true
+    },
+    {
+      "name": "structure clearance east_approach:0",
+      "passed": true
+    },
+    {
+      "name": "previous ecology east_approach:0",
+      "passed": true
+    },
+    {
+      "name": "water clearance east_approach:1",
+      "passed": true
+    },
+    {
+      "name": "structure clearance east_approach:1",
+      "passed": true
+    },
+    {
+      "name": "previous ecology east_approach:1",
+      "passed": true
+    },
+    {
+      "name": "water clearance east_approach:2",
+      "passed": true
+    },
+    {
+      "name": "structure clearance east_approach:2",
+      "passed": true
+    },
+    {
+      "name": "previous ecology east_approach:2",
+      "passed": true
+    },
+    {
+      "name": "binding arena_loop",
+      "passed": true
+    },
+    {
+      "name": "length arena_loop",
+      "passed": true
+    },
+    {
+      "name": "water clearance arena_loop:0",
+      "passed": true
+    },
+    {
+      "name": "structure clearance arena_loop:0",
+      "passed": true
+    },
+    {
+      "name": "previous ecology arena_loop:0",
+      "passed": true
+    },
+    {
+      "name": "water clearance arena_loop:1",
+      "passed": true
+    },
+    {
+      "name": "structure clearance arena_loop:1",
+      "passed": true
+    },
+    {
+      "name": "previous ecology arena_loop:1",
+      "passed": true
+    },
+    {
+      "name": "water clearance arena_loop:2",
+      "passed": true
+    },
+    {
+      "name": "structure clearance arena_loop:2",
+      "passed": true
+    },
+    {
+      "name": "previous ecology arena_loop:2",
+      "passed": true
+    },
+    {
+      "name": "water clearance arena_loop:3",
+      "passed": true
+    },
+    {
+      "name": "structure clearance arena_loop:3",
+      "passed": true
+    },
+    {
+      "name": "previous ecology arena_loop:3",
+      "passed": true
+    },
+    {
+      "name": "binding deep_service",
+      "passed": true
+    },
+    {
+      "name": "length deep_service",
+      "passed": true
+    },
+    {
+      "name": "water clearance deep_service:0",
+      "passed": true
+    },
+    {
+      "name": "structure clearance deep_service:0",
+      "passed": true
+    },
+    {
+      "name": "previous ecology deep_service:0",
+      "passed": true
+    },
+    {
+      "name": "water clearance deep_service:1",
+      "passed": true
+    },
+    {
+      "name": "structure clearance deep_service:1",
+      "passed": true
+    },
+    {
+      "name": "previous ecology deep_service:1",
+      "passed": true
+    },
+    {
+      "name": "binding quarantine",
+      "passed": true
+    },
+    {
+      "name": "length quarantine",
+      "passed": true
+    },
+    {
+      "name": "water clearance quarantine:0",
+      "passed": true
+    },
+    {
+      "name": "structure clearance quarantine:0",
+      "passed": true
+    },
+    {
+      "name": "previous ecology quarantine:0",
+      "passed": true
+    },
+    {
+      "name": "binding east_return",
+      "passed": true
+    },
+    {
+      "name": "length east_return",
+      "passed": true
+    },
+    {
+      "name": "water clearance east_return:0",
+      "passed": true
+    },
+    {
+      "name": "structure clearance east_return:0",
+      "passed": true
+    },
+    {
+      "name": "previous ecology east_return:0",
+      "passed": true
+    },
+    {
+      "name": "water clearance east_return:1",
+      "passed": true
+    },
+    {
+      "name": "structure clearance east_return:1",
+      "passed": true
+    },
+    {
+      "name": "previous ecology east_return:1",
+      "passed": true
+    },
+    {
+      "name": "water clearance east_return:2",
+      "passed": true
+    },
+    {
+      "name": "structure clearance east_return:2",
+      "passed": true
+    },
+    {
+      "name": "previous ecology east_return:2",
+      "passed": true
+    },
+    {
+      "name": "binding staff_approach",
+      "passed": true
+    },
+    {
+      "name": "length staff_approach",
+      "passed": true
+    },
+    {
+      "name": "water clearance staff_approach:0",
+      "passed": true
+    },
+    {
+      "name": "structure clearance staff_approach:0",
+      "passed": true
+    },
+    {
+      "name": "previous ecology staff_approach:0",
+      "passed": true
+    },
+    {
+      "name": "water clearance staff_approach:1",
+      "passed": true
+    },
+    {
+      "name": "structure clearance staff_approach:1",
+      "passed": true
+    },
+    {
+      "name": "previous ecology staff_approach:1",
+      "passed": true
+    },
+    {
+      "name": "water clearance staff_approach:2",
+      "passed": true
+    },
+    {
+      "name": "structure clearance staff_approach:2",
+      "passed": true
+    },
+    {
+      "name": "previous ecology staff_approach:2",
+      "passed": true
+    },
+    {
+      "name": "water clearance staff_approach:3",
+      "passed": true
+    },
+    {
+      "name": "structure clearance staff_approach:3",
+      "passed": true
+    },
+    {
+      "name": "previous ecology staff_approach:3",
+      "passed": true
+    },
+    {
+      "name": "water clearance staff_approach:4",
+      "passed": true
+    },
+    {
+      "name": "structure clearance staff_approach:4",
+      "passed": true
+    },
+    {
+      "name": "previous ecology staff_approach:4",
+      "passed": true
+    },
+    {
+      "name": "water clearance staff_approach:5",
+      "passed": true
+    },
+    {
+      "name": "structure clearance staff_approach:5",
+      "passed": true
+    },
+    {
+      "name": "previous ecology staff_approach:5",
+      "passed": true
+    },
+    {
+      "name": "binding west_retreat",
+      "passed": true
+    },
+    {
+      "name": "length west_retreat",
+      "passed": true
+    },
+    {
+      "name": "water clearance west_retreat:0",
+      "passed": true
+    },
+    {
+      "name": "structure clearance west_retreat:0",
+      "passed": true
+    },
+    {
+      "name": "previous ecology west_retreat:0",
+      "passed": true
+    },
+    {
+      "name": "water clearance west_retreat:1",
+      "passed": true
+    },
+    {
+      "name": "structure clearance west_retreat:1",
+      "passed": true
+    },
+    {
+      "name": "previous ecology west_retreat:1",
+      "passed": true
+    },
+    {
+      "name": "water clearance west_retreat:2",
+      "passed": true
+    },
+    {
+      "name": "structure clearance west_retreat:2",
+      "passed": true
+    },
+    {
+      "name": "previous ecology west_retreat:2",
+      "passed": true
+    },
+    {
+      "name": "water clearance west_retreat:3",
+      "passed": true
+    },
+    {
+      "name": "structure clearance west_retreat:3",
+      "passed": true
+    },
+    {
+      "name": "previous ecology west_retreat:3",
+      "passed": true
+    },
+    {
+      "name": "water clearance west_retreat:4",
+      "passed": true
+    },
+    {
+      "name": "structure clearance west_retreat:4",
+      "passed": true
+    },
+    {
+      "name": "previous ecology west_retreat:4",
+      "passed": true
+    },
+    {
+      "name": "water clearance west_retreat:5",
+      "passed": true
+    },
+    {
+      "name": "structure clearance west_retreat:5",
+      "passed": true
+    },
+    {
+      "name": "previous ecology west_retreat:5",
+      "passed": true
+    },
+    {
+      "name": "water clearance west_retreat:6",
+      "passed": true
+    },
+    {
+      "name": "structure clearance west_retreat:6",
+      "passed": true
+    },
+    {
+      "name": "previous ecology west_retreat:6",
+      "passed": true
+    },
+    {
+      "name": "patrol HG1",
+      "passed": true
+    },
+    {
+      "name": "patrol HG2",
+      "passed": true
+    },
+    {
+      "name": "guard conservation HG1",
+      "passed": true
+    },
+    {
+      "name": "guard conservation HG2",
+      "passed": true
+    },
+    {
+      "name": "preserved core",
+      "passed": true
+    },
+    {
+      "name": "E09 in active core area",
+      "passed": true
+    },
+    {
+      "name": "E04 outside radius",
+      "passed": true
+    },
+    {
+      "name": "staff path outside core",
+      "passed": true
+    },
+    {
+      "name": "growth",
+      "passed": true
+    },
+    {
+      "name": "people unchanged",
+      "passed": true
+    },
+    {
+      "name": "no forced home voyage",
+      "passed": true
+    },
+    {
+      "name": "core no respawn",
+      "passed": true
+    },
+    {
+      "name": "resident system preserved",
+      "passed": true
+    },
+    {
+      "name": "svg connection Q01",
+      "passed": true
+    },
+    {
+      "name": "svg connection Q07",
+      "passed": true
+    },
+    {
+      "name": "svg connection Q08",
+      "passed": true
+    },
+    {
+      "name": "svg connection Q09",
+      "passed": true
+    },
+    {
+      "name": "svg connection Q10",
+      "passed": true
+    },
+    {
+      "name": "svg connection Q11",
+      "passed": true
+    },
+    {
+      "name": "svg connection Q12",
+      "passed": true
+    },
+    {
+      "name": "svg connection Q13",
+      "passed": true
+    },
+    {
+      "name": "svg connection Q15",
+      "passed": true
+    },
+    {
+      "name": "svg connection Q16",
+      "passed": true
+    },
+    {
+      "name": "svg connection E01",
+      "passed": true
+    },
+    {
+      "name": "svg connection E02",
+      "passed": true
+    },
+    {
+      "name": "svg connection E03",
+      "passed": true
+    },
+    {
+      "name": "svg connection E04",
+      "passed": true
+    },
+    {
+      "name": "svg connection E05",
+      "passed": true
+    },
+    {
+      "name": "svg connection E06",
+      "passed": true
+    },
+    {
+      "name": "svg connection E07",
+      "passed": true
+    },
+    {
+      "name": "svg connection E08",
+      "passed": true
+    },
+    {
+      "name": "svg connection E09",
+      "passed": true
+    },
+    {
+      "name": "svg connection E10",
+      "passed": true
+    },
+    {
+      "name": "svg connection E11",
+      "passed": true
+    },
+    {
+      "name": "svg connection E12",
+      "passed": true
+    },
+    {
+      "name": "svg rectangle connection M1",
+      "passed": true
+    },
+    {
+      "name": "svg rectangle connection M2",
+      "passed": true
+    },
+    {
+      "name": "svg rectangle connection M3",
+      "passed": true
+    },
+    {
+      "name": "svg rectangle connection M4",
+      "passed": true
+    },
+    {
+      "name": "svg rectangle connection M5",
+      "passed": true
+    },
+    {
+      "name": "svg rectangle connection W1",
+      "passed": true
+    },
+    {
+      "name": "svg rectangle connection W2",
+      "passed": true
+    },
+    {
+      "name": "svg arena Q15",
+      "passed": true
+    },
+    {
+      "name": "svg arena E04",
+      "passed": true
+    },
+    {
+      "name": "svg arena E05",
+      "passed": true
+    },
+    {
+      "name": "svg arena E06",
+      "passed": true
+    },
+    {
+      "name": "svg arena E07",
+      "passed": true
+    },
+    {
+      "name": "svg arena E08",
+      "passed": true
+    },
+    {
+      "name": "svg arena E09",
+      "passed": true
+    },
+    {
+      "name": "svg arena E10",
+      "passed": true
+    },
+    {
+      "name": "svg arena E11",
+      "passed": true
+    },
+    {
+      "name": "svg rectangle arena M1",
+      "passed": true
+    },
+    {
+      "name": "svg rectangle arena M2",
+      "passed": true
+    },
+    {
+      "name": "svg rectangle arena M3",
+      "passed": true
+    },
+    {
+      "name": "svg rectangle arena M4",
+      "passed": true
+    },
+    {
+      "name": "svg rectangle arena M5",
+      "passed": true
+    },
+    {
+      "name": "svg rectangle arena W1",
+      "passed": true
+    },
+    {
+      "name": "svg rectangle arena W2",
+      "passed": true
+    }
+  ],
+  "segments": 35,
+  "svg_elements": 45,
+  "route_contacts": {
+    "guard_main": {
+      "length_m": 710.7,
+      "potential_combat_contacts": [
+        "HG1",
+        "HG2"
+      ]
+    },
+    "guard_flank": {
+      "length_m": 442.9,
+      "potential_combat_contacts": [
+        "HG1",
+        "HG2"
+      ]
+    },
+    "west_approach": {
+      "length_m": 581.2,
+      "potential_combat_contacts": [
+        "HG2",
+        "RC1"
+      ]
+    },
+    "east_approach": {
+      "length_m": 908.2,
+      "potential_combat_contacts": [
+        "HG2",
+        "RC1"
+      ]
+    },
+    "arena_loop": {
+      "length_m": 440.0,
+      "potential_combat_contacts": [
+        "RC1"
+      ]
+    },
+    "deep_service": {
+      "length_m": 121.7,
+      "potential_combat_contacts": [
+        "RC1"
+      ]
+    },
+    "quarantine": {
+      "length_m": 82.5,
+      "potential_combat_contacts": [
+        "RC1"
+      ]
+    },
+    "east_return": {
+      "length_m": 960.4,
+      "potential_combat_contacts": [
+        "HG2"
+      ]
+    },
+    "staff_approach": {
+      "length_m": 1541.3,
+      "potential_combat_contacts": [
+        "HG1",
+        "HG2"
+      ]
+    },
+    "west_retreat": {
+      "length_m": 1612.1,
+      "potential_combat_contacts": [
+        "HG1",
+        "HG2",
+        "RC1"
+      ]
+    }
+  },
+  "limits": "Candidate geometry and source preservation; not combat timing, hydraulic, terrain, crowd, AI or UE verification"
+}

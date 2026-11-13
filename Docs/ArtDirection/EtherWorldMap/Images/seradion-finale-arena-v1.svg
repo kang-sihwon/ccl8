@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1810" height="1230" viewBox="0 0 1810 1230"><rect width="100%" height="100%" fill="#edf0eb"/>
+<text x="55" y="57" font-family="Malgun Gothic,sans-serif" font-size="32" fill="#293d42">수문 중추 전장 · 직접 전투와 분리 작업</text>
+<text x="55" y="101" font-family="Malgun Gothic,sans-serif" font-size="19" fill="#293d42">SE-P01 · 북쪽 위 · 좌표 검토 후보 / 실제 지형·시야·UE·최종 제작 아트 미검증</text>
+<rect id="ground" x="60.00" y="150.00" width="920.00" height="943.00" fill="#dce2d7" stroke="#6c7771"/>
+<rect id="arena-deck" x="290.00" y="334.00" width="460.00" height="460.00" fill="#ded7c3" stroke="#6c7771"/>
+<ellipse id="RC1" cx="520.00" cy="564.00" rx="230.00" ry="230.00" fill="#d7beba" stroke="#9a6868"/>
+<rect id="W1" x="221.00" y="311.00" width="46.00" height="460.00" fill="#9cbfc5" stroke="#6c7771"/>
+<rect id="W2" x="773.00" y="564.00" width="46.00" height="207.00" fill="#9cbfc5" stroke="#6c7771"/>
+<rect id="M1" x="485.50" y="529.50" width="69.00" height="69.00" fill="#99968d" stroke="#6c7771"/>
+<rect id="M2" x="301.50" y="679.00" width="34.50" height="46.00" fill="#99968d" stroke="#6c7771"/>
+<rect id="M3" x="692.50" y="518.00" width="34.50" height="34.50" fill="#99968d" stroke="#6c7771"/>
+<rect id="M4" x="244.00" y="863.00" width="46.00" height="34.50" fill="#99968d" stroke="#6c7771"/>
+<rect id="M5" x="853.50" y="426.00" width="57.50" height="46.00" fill="#99968d" stroke="#6c7771"/>
+<text x="221.0" y="304.0" font-family="Malgun Gothic,sans-serif" font-size="16" fill="#293d42">W1</text>
+<text x="773.0" y="557.0" font-family="Malgun Gothic,sans-serif" font-size="16" fill="#293d42">W2</text>
+<text x="485.49999999999994" y="522.5" font-family="Malgun Gothic,sans-serif" font-size="16" fill="#293d42">M1</text>
+<text x="301.5" y="672.0" font-family="Malgun Gothic,sans-serif" font-size="16" fill="#293d42">M2</text>
+<text x="692.5" y="511.0" font-family="Malgun Gothic,sans-serif" font-size="16" fill="#293d42">M3</text>
+<text x="244.0" y="856.0" font-family="Malgun Gothic,sans-serif" font-size="16" fill="#293d42">M4</text>
+<text x="853.4999999999999" y="419.0" font-family="Malgun Gothic,sans-serif" font-size="16" fill="#293d42">M5</text>
+<text x="565.0" y="597.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#774c43">RC1</text>
+<polyline id="west_retreat-0" points="382.00,679.00 359.00,840.00" stroke="#b37b48" stroke-width="7" fill="none"/>
+<polyline id="west_retreat-1" points="359.00,840.00 148.17,1093.00" stroke="#b37b48" stroke-width="7" fill="none"/>
+<polyline id="east_return-0" points="842.00,495.00 865.00,978.00" stroke="#b37b48" stroke-width="7" fill="none"/>
+<polyline id="east_return-1" points="865.00,978.00 906.07,1093.00" stroke="#b37b48" stroke-width="7" fill="none"/>
+<polyline id="west_approach-2" points="148.17,1093.00 359.00,840.00" stroke="#3d7289" stroke-width="3" fill="none"/>
+<polyline id="west_approach-3" points="359.00,840.00 382.00,679.00" stroke="#3d7289" stroke-width="3" fill="none"/>
+<polyline id="east_approach-1" points="906.07,1093.00 865.00,978.00" stroke="#3d7289" stroke-width="3" fill="none"/>
+<polyline id="east_approach-2" points="865.00,978.00 658.00,679.00" stroke="#3d7289" stroke-width="3" fill="none"/>
+<polyline id="arena_loop-0" points="382.00,679.00 658.00,679.00" stroke="#3d7289" stroke-width="3" fill="none"/>
+<polyline id="arena_loop-1" points="658.00,679.00 658.00,449.00" stroke="#3d7289" stroke-width="3" fill="none"/>
+<polyline id="arena_loop-2" points="658.00,449.00 382.00,449.00" stroke="#3d7289" stroke-width="3" fill="none"/>
+<polyline id="arena_loop-3" points="382.00,449.00 382.00,679.00" stroke="#3d7289" stroke-width="3" fill="none"/>
+<polyline id="deep_service-0" points="382.00,449.00 520.00,426.00" stroke="#54815b" stroke-width="3" fill="none"/>
+<polyline id="deep_service-1" points="520.00,426.00 658.00,449.00" stroke="#54815b" stroke-width="3" fill="none"/>
+<polyline id="quarantine-0" points="658.00,449.00 842.00,495.00" stroke="#54815b" stroke-width="3" fill="none"/>
+<ellipse id="Q15" cx="520.00" cy="564.00" rx="3.00" ry="3.00" fill="#304f54" stroke="#667b66"/>
+<text x="529.0" y="558.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#293d42">Q15</text>
+<ellipse id="E04" cx="359.00" cy="840.00" rx="3.00" ry="3.00" fill="#304f54" stroke="#667b66"/>
+<text x="368.0" y="834.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#293d42">E04</text>
+<ellipse id="E05" cx="382.00" cy="679.00" rx="3.00" ry="3.00" fill="#304f54" stroke="#667b66"/>
+<text x="391.0" y="673.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#293d42">E05</text>
+<ellipse id="E06" cx="658.00" cy="679.00" rx="3.00" ry="3.00" fill="#304f54" stroke="#667b66"/>
+<text x="667.0" y="673.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#293d42">E06</text>
+<ellipse id="E07" cx="658.00" cy="449.00" rx="3.00" ry="3.00" fill="#304f54" stroke="#667b66"/>
+<text x="667.0" y="443.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#293d42">E07</text>
+<ellipse id="E08" cx="382.00" cy="449.00" rx="3.00" ry="3.00" fill="#304f54" stroke="#667b66"/>
+<text x="391.0" y="443.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#293d42">E08</text>
+<ellipse id="E09" cx="520.00" cy="426.00" rx="3.00" ry="3.00" fill="#304f54" stroke="#667b66"/>
+<text x="529.0" y="420.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#293d42">E09</text>
+<ellipse id="E10" cx="842.00" cy="495.00" rx="3.00" ry="3.00" fill="#304f54" stroke="#667b66"/>
+<text x="850.9999999999999" y="489.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#293d42">E10</text>
+<ellipse id="E11" cx="865.00" cy="978.00" rx="3.00" ry="3.00" fill="#304f54" stroke="#667b66"/>
+<text x="873.9999999999999" y="971.9999999999999" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#293d42">E11</text>
+<text x="1050" y="175" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#293d42">E01 경계 뒤쪽 관측</text>
+<text x="1050" y="209" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#293d42">E02 통로 측면 마당</text>
+<text x="1050" y="243" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#293d42">E03 정비 진입턱</text>
+<text x="1050" y="277" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#293d42">E04 외부 정지·대기</text>
+<text x="1050" y="311" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#293d42">E05 서측 전투 발판</text>
+<text x="1050" y="345" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#293d42">E06 동측 전투 발판</text>
+<text x="1050" y="379" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#293d42">E07 북동 회수 발판</text>
+<text x="1050" y="413" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#293d42">E08 북서 작업 발판</text>
+<text x="1050" y="447" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#293d42">E09 심부 잔류 연결</text>
+<text x="1050" y="481" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#293d42">E10 파편 격리 대기</text>
+<text x="1050" y="515" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#293d42">E11 동쪽 철수턱</text>
+<text x="1050" y="549" font-family="Malgun Gothic,sans-serif" font-size="20" fill="#293d42">E12 서쪽 철수턱</text>
+<text x="1050" y="628" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#293d42">파랑: 접근·전투 / 초록: RC1 무력화 뒤 작업</text>
+<text x="1050" y="664" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#293d42">주황 바깥선: 같은 길로 철수 가능</text>
+<text x="1050" y="700" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#293d42">Q15는 적 중심이며 보행 종점이 아님</text>
+<text x="1050" y="736" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#293d42">HG1 4명·54 / HG2 4명·56 / RC1 1기·60</text>
+<text x="1050" y="772" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#293d42">RG1-RG3 기존 생활권·수치 유지</text>
+<text x="1050" y="808" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#293d42">E09는 RC1 100m 범위 안: 전투 전 작업 불가</text>
+<text x="1050" y="844" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#293d42">E04 외부 대기: 범위 밖, 실제 안전은 미검증</text>
+<text x="1050" y="880" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#293d42">M1 구동 몸체 / M2·M3 낮은 엄폐 후보</text>
+<text x="1050" y="916" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#293d42">W1·W2 작업 배수로: 주민 급수 계통 아님</text>
+<text x="1050" y="952" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#293d42">경비 해제 → RC1 → 분리 → C13 인계</text>
+<text x="1050" y="988" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#293d42">58 → 59 → 60 / 선택 +2 경로 60 → 62</text>
+<text x="1050" y="1024" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#293d42">북측 Q12 망령길은 기본 철수로 아님</text>
+<polyline id="scale" points="60.00,1123.00 106.00,1123.00" stroke="#304f54" stroke-width="4" fill="none"/>
+<text x="60" y="1150.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#293d42">20m · 수치 후보</text>
+</svg>
