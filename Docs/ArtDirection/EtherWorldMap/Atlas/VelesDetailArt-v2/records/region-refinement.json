@@ -1,0 +1,6 @@
+{
+  "tool": "built-in image_gen",
+  "input": "../assets/region.png",
+  "output": "../assets/region-refined.png",
+  "prompt": "Targeted edit of this exact georeferenced aerial map. Fix ONLY the scale of the forest vegetation: its individual tree crowns are currently about FOUR TIMES TOO LARGE for this 4096-meter-wide region. Replace the forest with fine-grained natural high-altitude aerial canopy containing approximately 130000 small crowns across the frame, not thousands of giant trees. At 1024 pixels image width, typical tree crowns should be only 2 to 4 PIXELS in diameter, natural irregular clusters with broad subtle green variation. Each individual tree crown should be visibly MUCH smaller than a house roof in the small village. Keep realistic aerial photographic texture, NO tiled stamps, no painted noise. ABSOLUTELY PRESERVE all river banks, roads, junctions, village houses, fields, cave area, clearings, crop/framing and orientation in their exact current places and scale. DO NOT zoom the camera, move village or redraw road/river paths. Same soft lighting and muted olive/gray/brown palette, same strict nadir. This is a regional orthophoto, not a close-up of giant trees. 2:3 portrait same framing. No labels or UI."
+}

@@ -1,0 +1,60 @@
+{
+  "data_and_assembly_status": "PASS",
+  "checks": [
+    {
+      "name": "unchanged source manifest.json",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "unchanged source data/placements.json",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "unchanged source data/connections.json",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "unchanged source height/master16.png",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "unchanged source scene.js",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "original region footprint and export dimensions",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "all four outer border strips match original preview exactly",
+      "passed": true,
+      "detail": {
+        "width_pixels": 3,
+        "meters_per_pixel": 2
+      }
+    },
+    {
+      "name": "24 art tile cores reconstruct the common composite exactly",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "38 shared art margins are pixel-identical",
+      "passed": true,
+      "detail": null
+    }
+  ],
+  "visual_registration_status": "PARTIAL",
+  "visual_observations": [
+    "Natural integrated roofs, vegetation clusters and yards replace repeated sprites.",
+    "Original building/road overlay reveals local roof outline and path-edge drift. Source geometry remains authoritative.",
+    "Four image generations are appearance candidates, not photogrammetry. Art tile identity does not prove painted building geometry.",
+    "Core/forest transitions are blended in global coordinates; regional terrain remains lower native resolution."
+  ]
+}

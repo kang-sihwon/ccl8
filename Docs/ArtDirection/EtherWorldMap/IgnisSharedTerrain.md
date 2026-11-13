@@ -4,6 +4,22 @@
 
 ## 벨레스와 주변 연결 구간
 
+### 항공사진 화풍 보정 v2
+
+사용자가 v1의 반복 지붕·수관 표현을 지적해, 채택한 벨레스 v2를 참조한 **항공사진 화풍 보정 후보**를 만들었다. [보정 뷰어](Atlas/VelesDetailArt-v2/index.html)의 `수정 전`, `배치선`, `경계`로 원본과 대조한다. [마을 확대](Atlas/VelesDetailArt-v2/previews/village.png), [숲·동굴 연결로](Atlas/VelesDetailArt-v2/previews/forest.png), [전체 조립본](Atlas/VelesDetailArt-v2/previews/assembled-grid.png)을 함께 둔다. v1의 수치 원본과 타일은 보존한다.
+
+지붕의 마모·수리 흔적과 마당·텃밭·흙길을 개별적으로 표현하고, 식생은 겹치는 수관과 밀도가 다른 군락으로 보정했다. 내장 `image_gen`을 사용한 [생성 입력문](Atlas/VelesDetailArt-v2/records/generation.json)과 [광역 수관 축척 보정](Atlas/VelesDetailArt-v2/records/region-refinement.json)을 보관한다. 마을·숲의 확대 보정본과 광역 배경을 동일한 전역 좌표에 놓고 겹치는 가장자리를 혼합한다. UI·표식은 기존 좌표에서 별도로 그린다.
+
+**보존한 것은 수치 좌표·고도·분할 경계이며, 생성된 모든 지붕 윤곽의 정확한 일치까지 완료한 것은 아니다.** [배치선 비교](Atlas/VelesDetailArt-v2/previews/geometry.png)에서 일부 지붕 윤곽과 길 가장자리의 어긋남이 남아 있다. [검사 기록](Atlas/VelesDetailArt-v2/records/verification.json)의 수치·조립 상태는 `PASS`, 시각적 좌표 정합은 `PARTIAL`이다. 건물 배치의 기준은 계속 v1의 외곽·출입구 데이터다. 생성 그림으로 좌표나 건물 수를 다시 정의하지 않는다.
+
+[규격](Atlas/VelesDetailArt-v2/manifest.json)에 기록한 원본 파일 5개의 해시가 유지됐고, 합성 화면의 바깥 3px 띠는 기존 조립본과 동일하다. [아트 타일 24개](Atlas/VelesDetailArt-v2/tiles.json)는 하나의 공통 합성 화면을 같은 1,024m 구역으로 잘랐다. 38개 중첩 여백은 픽셀 단위로 일치하고, 타일을 다시 붙이면 합성 화면과 정확히 같다. 이 검사는 상세 그림과 원본 건물 외곽의 일치를 대신하지 않는다. 수치·조립 검사 9개와 실제 확대·이동·비교 버튼을 포함한 [뷰어 검사 7개](Atlas/VelesDetailArt-v2/records/browser-verification.json)를 통과했다.
+
+보정 이미지의 실제 해상도는 광역 1,024×1,536px, 마을 1,573×1,000px, 숲 1,254×1,254px다. 각각 약 4m/px, 0.7m/px, 0.96m/px이며, 2m/px의 전체 조립 출력은 검토용이다. 확대할수록 광역 배경과 상세 보정 영역 사이의 선명도 차이가 보인다. v1의 전체 0.5m/px 렌더링을 같은 밀도의 사진 정보로 교체한 결과는 아니다. 다음 보정은 일부 지붕·길 윤곽의 정합과 상세 영역 밖의 해상도 차이를 줄이는 일이다.
+
+재출력은 `node Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v2/prepare.cjs`, `node Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v2/capture.cjs`, `python Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v2/verify.py` 순서다. 캡처는 포트 9448의 별도 Chromium 디버깅 세션을 사용하며 Python에는 Pillow가 필요하다. 생성된 아트 원본을 다시 만들지는 않는다.
+
+### 좌표 기반 상세 원본 v1
+
 **벨레스 중심부와 숲·동굴 접근로, 서쪽·북쪽 연결 구간을 공통 원본의 상세 자식 지형으로 제작했다.** [상세 뷰어](Atlas/VelesDetailTerrain-v1/index.html)에서 건물·골목, 숲·동굴, 서쪽 연결, 북쪽 연결을 선택하고 휠로 확대한다. 건물 외곽 버튼은 실제 배치 데이터의 외곽과 출입구를 보여 준다. 확정 아트가 아닌 상세 제작 후보이며, 이웃 마을 중심부는 이번 범위에 포함하지 않는다.
 
 | 자료 | 확인할 것 |

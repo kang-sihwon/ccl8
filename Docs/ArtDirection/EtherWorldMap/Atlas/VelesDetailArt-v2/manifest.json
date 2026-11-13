@@ -1,0 +1,69 @@
+{
+  "status": "photographic_art_revision_candidate",
+  "origin": [
+    150000,
+    145000
+  ],
+  "bounds": [
+    -2048,
+    -2560,
+    2048,
+    3584
+  ],
+  "core_bounds": [
+    -800,
+    -250,
+    300,
+    450
+  ],
+  "source_geometry": "../VelesDetailTerrain-v1/manifest.json",
+  "geometry_sha256": {
+    "manifest.json": "3ba7ea2d92435768194f0baff003760bb5e04b31f381d06ab9fe0b948c36a186",
+    "data/placements.json": "4cd70eefcf1449e543468a29ea6bb395a477c5c4c57f752d768b36ac8b308ec3",
+    "data/connections.json": "523a15e8f6caadc6dcf8d4ad36e02f95cfff7946ff3d309b2f8a37c948315388",
+    "height/master16.png": "0cf6e53fcfd3c1d3b14c85ef449c1e94057d0f282a9a35f6db5925db8068ee04",
+    "scene.js": "e9eb6039ec1cdcbb9420c0758f3795d8558f95b7fb42aa041ae3303f52021a1d"
+  },
+  "images": {
+    "base": {
+      "file": "../VelesDetailTerrain-v1/previews/assembled.png",
+      "width": 2048,
+      "height": 3072,
+      "sha256": "5bb9ab9350af6466c065e413c684ce43d9536d94c2a75f33063ca4056639b284"
+    },
+    "region": {
+      "file": "assets/region-refined.png",
+      "width": 1024,
+      "height": 1536,
+      "sha256": "23516207820bff76ff49543c991fd703c25dd12dcbdeb49dd9ccfebab05b45d1"
+    },
+    "forest": {
+      "file": "assets/forest.png",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "ecfe309c574d16133dda19b5c1fa0e7e6b82aabe0a519f75f19d699c5e69c627"
+    },
+    "core": {
+      "file": "assets/core.png",
+      "width": 1573,
+      "height": 1000,
+      "sha256": "032b1f171ab39ddeffb9a23f03d0b057a746af103cd3641063f1beec7753dc47"
+    }
+  },
+  "region_edge_lock_m": 8,
+  "region_transition_m": 96,
+  "core_transition_m": 70,
+  "limitations": [
+    "Source coordinates and height files are unchanged; painted roof silhouettes are not exact surveyed geometry.",
+    "The regional image is 4m per native pixel; core image is approximately 0.7m per native pixel. Export resolution does not create new photographic detail.",
+    "Outer regional image edge is inherited from the original assembled preview. Internal tiles are crops of one common composite.",
+    "No UE or gameplay validation; no new neighboring settlement centers."
+  ],
+  "forest_bounds": [
+    -600,
+    350,
+    600,
+    1550
+  ],
+  "forest_transition_m": 90
+}

@@ -1,0 +1,33 @@
+{
+  "status": "PASS",
+  "checks": [
+    {
+      "name": "renderer loads",
+      "pass": true
+    },
+    {
+      "name": "geometry overlay toggles",
+      "pass": true
+    },
+    {
+      "name": "tile boundary overlay toggles",
+      "pass": true
+    },
+    {
+      "name": "before comparison toggles",
+      "pass": true
+    },
+    {
+      "name": "actual wheel zoom",
+      "pass": true
+    },
+    {
+      "name": "actual pointer pan",
+      "pass": true
+    },
+    {
+      "name": "no JavaScript errors",
+      "pass": true
+    }
+  ]
+}
