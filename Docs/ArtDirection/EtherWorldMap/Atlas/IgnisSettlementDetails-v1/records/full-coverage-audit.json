@@ -1,0 +1,59 @@
+{
+  "status": "capacity_audited_individual_png_coverage_not_feasible_here",
+  "requestedScope": "all_ignis_land_at_existing_settlement_detail_density",
+  "terrainGeneratedByAudit": 0,
+  "source": "../WorldSectorPlan-v1/sector-plan.json",
+  "method": "even-odd tile-center scan plus conservative coast boundary cells",
+  "polygonPoints": 6156,
+  "levels": [
+    {
+      "level": 0,
+      "tileCount": 39,
+      "equivalentAreaTiles": 23.498680375662616
+    },
+    {
+      "level": 4,
+      "tileCount": 6346,
+      "equivalentAreaTiles": 6015.66217616963
+    },
+    {
+      "level": 6,
+      "tileCount": 97625,
+      "equivalentAreaTiles": 96250.59481871407
+    },
+    {
+      "level": 8,
+      "tileCount": 1545425,
+      "equivalentAreaTiles": 1540009.5170994252
+    },
+    {
+      "level": 10,
+      "tileCount": 24662273,
+      "equivalentAreaTiles": 24640152.273590803
+    }
+  ],
+  "current": {
+    "files": 150,
+    "l10EquivalentAreaTiles": 102,
+    "meanOutputBytes": 10399488.873333333
+  },
+  "l10": {
+    "rectanglePixels": [
+      20971520,
+      10485760
+    ],
+    "rectangleTiles": 52428800,
+    "landIncludingCoastTiles": 24662273,
+    "currentAreaFractionUpperBound": 0.00000413958480724663,
+    "estimatedOutputBytes": 256475033654609.1,
+    "lowerBoundUniqueLandPixelRGBABytes": 413393156966924
+  },
+  "limitations": [
+    "Counts apply to the existing drawn coast, not surveyed game geography.",
+    "Coverage includes coast-touching cells conservatively.",
+    "File size is extrapolated from the current 150 settlement cores, not measured wilderness output.",
+    "Estimate excludes source images, overlap, repairs, mipmaps and LFS duplicates.",
+    "L10 is the city density; L11 village density requires approximately four times the area tiles.",
+    "No production time estimate or whole-continent completion claim is made."
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "tool": "image_gen.imagegen",
+  "mode": "built_in",
+  "asset": "materials/aerial-material-atlas.png",
+  "nativePixelSize": [1254, 1254],
+  "sourceBasename": "exec-87b87c84-d19d-4a82-97f7-070238c37a12.png",
+  "referencedImages": [],
+  "prompt": "Generate a production texture atlas for a realistic vertical aerial RPG terrain map. Square canvas divided into exactly FOUR equal square quadrants, edge-to-edge without gutters, frames, text or UI. ALL views perfectly vertical nadir, no tree sides, trunks, horizon or miniature/isometric look. Top left: continuous dry muted olive meadow grass, patchy soil, tiny stones, irregular subtle organic variation. Top right: densely packed realistic mixed temperate forest crowns seen from directly above, individual irregular leafy crowns 4-10m diameter and dark gaps, muted dark olive greens, no uniform balls or toy trees. Bottom left: weathered gray and brown limestone bedrock, cracks, rough fractured slabs, some sparse moss and grass, flat aerial surface material, no cliffs seen from side. Bottom right: compacted dusty gray-brown soil and fine gravel, subtle ruts without an actual road crossing, no buildings. Each quadrant should have homogeneous material coverage reaching all its edges, compatible opposite edges for repeatable texture use. Soft diffuse daylight from above, restrained low saturation, natural photographic detail, no cartoon outlines, no stylization, no buildings, water, landmarks, lettering or sharp boundary shadows. Forest footprint should show around 10-15 crowns across its quadrant. These are base surface materials for a shared-coordinate procedural terrain renderer, not a new continent map.",
+  "inspection": "Four requested surface materials present; aerial canopy view; no labels. Opposite edges are not asserted pixel-seamless. Stochastic overlap and explicit texture LOD are applied by terrain.js.",
+  "originalPreserved": true
+}

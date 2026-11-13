@@ -1,0 +1,69 @@
+{
+  "status": "PASS",
+  "scope": "source_coordinates_and_one_sample_split_render_not_all_continent_art_quality",
+  "checks": [
+    {
+      "name": "36 settlement IDs and world anchors preserved",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "All original coast, river and route vertices preserved",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "150 existing detail image references resolve",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Source, guide, generated and display image references resolve",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "150 detail bounds preserved",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Independently rendered left tile matches combined render RGB exactly",
+      "passed": true,
+      "detail": {
+        "maxRGBDifference": 0
+      }
+    },
+    {
+      "name": "Independently rendered right tile matches combined render RGB exactly",
+      "passed": true,
+      "detail": {
+        "maxRGBDifference": 0
+      }
+    },
+    {
+      "name": "Same coordinates render identically after different views",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "B04 endpoints agree with settlement anchors within projection rounding",
+      "passed": true,
+      "detail": {
+        "maxPixelError": 3.725290298461914e-09,
+        "tolerancePixels": 1e-06
+      }
+    },
+    {
+      "name": "No measured elevation is claimed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Browser render and input checks pass",
+      "passed": true,
+      "detail": null
+    }
+  ],
+  "materialSHA256": "a798a862d9cef43e2847c15f253bea99460a5f959150d87b58c4d74cd864f7e4"
+}

@@ -1,5 +1,7 @@
 # 이그니스 정착지 상세 도안
 
+정착지 사이와 외곽의 후속 제작은 [공통 지형 상세 배경](IgnisSharedTerrain.md)이 소유한다. [결정 50](../../decisions/0050-shared-coordinate-map-terrain.md)에 따라 기존 좌표를 유지한 재질·식생 방식으로 전환하고 먼저 연결 구간을 검증한다. 아래 정착지 중심부 제작본과 원본은 보존한다.
+
 이그니스 대륙 배경과 정착지 36곳을 하나의 [확대 뷰어](Atlas/IgnisSettlementDetails-v1/index.html)에서 확인한다. 정착지를 선택하면 해당 위치로 확대하고, `일대`는 기존 범위, `상세`는 새로 제작한 중심부를 보여 준다. `원본 비교`는 카메라 위치를 유지한 채 새 상세 타일을 숨긴다. 휠 확대·축소, 드래그 이동, 격자·이름·이동로 표시와 `Esc` 대륙 복귀를 지원한다.
 
 이번 범위는 **대륙 전체의 정착지 중심부 1차 상세화**다. [관리도시 제작본](Atlas/IgnisM01Details-v1/index.html)의 기존 12칸을 재사용하고, 다른 35곳에 신규 138칸을 제작해 총 150칸을 조립했다. [36곳 비교 이미지](Atlas/IgnisSettlementDetails-v1/previews/settlements-36.png)와 [납품 목록](Atlas/IgnisSettlementDetails-v1/records/delivery.json)에서 범위를 확인한다. 외곽 전체와 정착지 사이의 모든 길을 같은 상세도로 완성했다는 뜻은 아니다.

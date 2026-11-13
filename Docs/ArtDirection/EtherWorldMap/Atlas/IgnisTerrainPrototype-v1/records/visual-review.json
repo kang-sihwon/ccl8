@@ -1,0 +1,19 @@
+{
+  "status": "prototype_partial_quality_gate_not_final_art",
+  "reviewed": ["B04-overview", "B04-middle", "B04-close", "T11-junction", "T11-core", "V14-core", "V14-junction", "B04-quarter", "B04-three-quarter"],
+  "corrected": [
+    "Implicit texture derivatives produced visible grid lines at stochastic patch edges; explicit LOD removes those observed grid lines.",
+    "Projection-stretched material crowns were narrowed; fixed reference-latitude scaling makes the pilot crowns less elongated.",
+    "Flat canvas road strokes were replaced by shared-coordinate dirt and rut shading.",
+    "Rectangular context feathering was replaced by feathering along the projected source boundary.",
+    "Local road and river width transitions reduce the abrupt change at T11. V14 approach width is a candidate transition."
+  ],
+  "remaining": [
+    "Existing settlement drawings and synthesized vegetation differ in density, crown shapes and local colors.",
+    "Straight coarse route/river centerlines do not reproduce all fine bends in the existing art.",
+    "Material reuse remains recognizable in homogeneous areas; no unique whole-continent terrain detail is claimed.",
+    "B04 endpoint and quarter-route samples were inspected; fine approach alignment and other terrain regions still require art work.",
+    "No measured elevation, slope, hydrology, bridge clearance or UE traversal validation."
+  ],
+  "wholeContinentArtComplete": false
+}

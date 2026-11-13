@@ -1,0 +1,134 @@
+{
+  "status": "PASS",
+  "scope": "prototype_render_input_and_texture_determinism_inputs_only",
+  "checks": [
+    {
+      "name": "terrain textures and WebGL compile",
+      "pass": true,
+      "detail": {
+        "loaded": true,
+        "error": null,
+        "frameMs": 98.10000000149012,
+        "edgeCache": 2,
+        "pilot": "B04",
+        "scope": "connection_quality_prototype"
+      }
+    },
+    {
+      "name": "B04-middle renders without terrain error",
+      "pass": true,
+      "detail": {
+        "loaded": true,
+        "error": null,
+        "frameMs": 1.0999999940395355,
+        "edgeCache": 2,
+        "pilot": "B04",
+        "scope": "connection_quality_prototype"
+      }
+    },
+    {
+      "name": "B04-close renders without terrain error",
+      "pass": true,
+      "detail": {
+        "loaded": true,
+        "error": null,
+        "frameMs": 1.1999999955296516,
+        "edgeCache": 2,
+        "pilot": "B04",
+        "scope": "connection_quality_prototype"
+      }
+    },
+    {
+      "name": "T11-junction renders without terrain error",
+      "pass": true,
+      "detail": {
+        "loaded": true,
+        "error": null,
+        "frameMs": 1,
+        "edgeCache": 6,
+        "pilot": "B04",
+        "scope": "connection_quality_prototype"
+      }
+    },
+    {
+      "name": "T11-core renders without terrain error",
+      "pass": true,
+      "detail": {
+        "loaded": true,
+        "error": null,
+        "frameMs": 1.0999999940395355,
+        "edgeCache": 6,
+        "pilot": "B04",
+        "scope": "connection_quality_prototype"
+      }
+    },
+    {
+      "name": "V14-core renders without terrain error",
+      "pass": true,
+      "detail": {
+        "loaded": true,
+        "error": null,
+        "frameMs": 1.5,
+        "edgeCache": 10,
+        "pilot": "B04",
+        "scope": "connection_quality_prototype"
+      }
+    },
+    {
+      "name": "V14-junction renders without terrain error",
+      "pass": true,
+      "detail": {
+        "loaded": true,
+        "error": null,
+        "frameMs": 1,
+        "edgeCache": 10,
+        "pilot": "B04",
+        "scope": "connection_quality_prototype"
+      }
+    },
+    {
+      "name": "B04-quarter renders without terrain error",
+      "pass": true,
+      "detail": {
+        "loaded": true,
+        "error": null,
+        "frameMs": 1.0999999940395355,
+        "edgeCache": 10,
+        "pilot": "B04",
+        "scope": "connection_quality_prototype"
+      }
+    },
+    {
+      "name": "B04-three-quarter renders without terrain error",
+      "pass": true,
+      "detail": {
+        "loaded": true,
+        "error": null,
+        "frameMs": 1.3999999985098839,
+        "edgeCache": 10,
+        "pilot": "B04",
+        "scope": "connection_quality_prototype"
+      }
+    },
+    {
+      "name": "drag preserves world-space coordinates",
+      "pass": true
+    },
+    {
+      "name": "wheel zoom works",
+      "pass": true
+    },
+    {
+      "name": "reference comparison toggle",
+      "pass": true
+    },
+    {
+      "name": "no JavaScript, image or GPU errors",
+      "pass": true,
+      "detail": {
+        "errors": [],
+        "images": []
+      }
+    }
+  ]
+}
