@@ -2,7 +2,7 @@
 
 **앞에서 배운 판단을 다음 지역에서 먼저 실행하고, 새 위협과 관계에 맞게 응용하는 연결을 추천한다.** 전투 뒤에는 구한 사람의 생활, 남은 손실, 현지 담당자의 실제 행동을 보여 준다. 그러면 전투의 성취와 주인공의 성장이 이어지면서도 지역마다 다른 결과가 남는다.
 
-상태는 `DISCUSSION`이며 [선택표 독립 검토 PASS](../../Reviews/2026-11-13-combat-connection-options-review.md)다. [통합 연결 후보](2026-11-13-combat-learning-continuity.md)의 보완을 선택 가능한 단위로 정리했다. 연결 채택 추천 CL01-CL12, 비교 대안 CA01-CA06, 세부 보류 CH01-CH08은 이 문서에서 처음 부여한 식별자다. 아직 사용자 채택이나 정본 반영은 이루어지지 않았다. 앞선 [연결 검토 PASS](../../Reviews/2026-11-13-combat-learning-continuity-review.md)와 이번 선택표 검토는 각각의 정합성 판정이며 사용자 승인을 대신하지 않는다.
+사용자가 2026-11-13 CL01-CL12 추천안을 채택해 `CLOSED`이며 [결정 49](../../../decisions/0049-combat-connection-adoption.md)와 [Scenario](../../Scenario.md#전투-판단의-연결)에 반영했다. CA01-CA06은 미채택 대안, CH01-CH08은 세부 보류로 그대로 남긴다. 아래 추천·반영 예정·미채택 표현은 선택 당시 비교 자료다. [선택표 독립 검토 PASS](../../Reviews/2026-11-13-combat-connection-options-review.md)와 사용자 채택은 별개 사실이다. [통합 연결 원문](2026-11-13-combat-learning-continuity.md) 전체가 아니라 CL의 연결·선택·결과 장면 중심만 확정했다.
 
 ## 고를 범위와 기존 기준
 
