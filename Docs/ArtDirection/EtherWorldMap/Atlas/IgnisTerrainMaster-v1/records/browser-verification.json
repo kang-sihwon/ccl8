@@ -1,0 +1,50 @@
+{
+  "status": "PASS",
+  "scope": "local-file viewer, layer rendering, all settlement selections, wheel and drag; not UE validation",
+  "checks": [
+    {
+      "name": "terrain loaded and all 36 settlements selectable",
+      "pass": true,
+      "detail": {
+        "loaded": true,
+        "zoom": 0.7511111111111111,
+        "ox": 20,
+        "oy": 137.5,
+        "selected": null,
+        "errors": [],
+        "settlements": 36,
+        "rivers": 14,
+        "roads": 20
+      }
+    },
+    {
+      "name": "river and road inventory",
+      "pass": true
+    },
+    {
+      "name": "grid overlay changes rendered image",
+      "pass": true
+    },
+    {
+      "name": "all 36 settlement selection targets work",
+      "pass": true
+    },
+    {
+      "name": "real wheel zoom changes scale",
+      "pass": true
+    },
+    {
+      "name": "real drag pans by pointer displacement",
+      "pass": true
+    },
+    {
+      "name": "home restores overall view",
+      "pass": true
+    },
+    {
+      "name": "no JavaScript or asset errors",
+      "pass": true,
+      "detail": []
+    }
+  ]
+}

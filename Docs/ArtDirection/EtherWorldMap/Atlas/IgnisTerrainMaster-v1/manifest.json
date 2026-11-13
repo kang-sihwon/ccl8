@@ -1,0 +1,810 @@
+{
+  "schema_version": 1,
+  "status": "design_master_candidate",
+  "coordinate_system": {
+    "type": "spherical_azimuthal_equidistant",
+    "radius_km": 6366.197723675814,
+    "origin_lon_lat_deg": [
+      -1,
+      54
+    ],
+    "axes": "x east and y north at origin",
+    "rotation_deg": 0,
+    "units": "meters",
+    "limitations": "Distances from origin are true great-circle distances. Other planar distances and areas are distorted. No WGS84 or DEM.",
+    "axis": "x east; y north; z up",
+    "vertical_datum": "fictional sea level = 0 m",
+    "geographic_warning": "Fictional sphere, not Earth WGS84"
+  },
+  "source_files": [
+    {
+      "path": "../../Data/ignis-continent-georeference-v1.json",
+      "sha256": "6db8af3cd42905181145fb26bd22793523428dcdd728b1d7d78c46e7acc773b0"
+    },
+    {
+      "path": "../../Data/ether-world-map-land35-precise-v3.json",
+      "sha256": "7fb1ea5461708dadca67f46ba9dd6dd579ed2ae329c275edd0707a2f85a2c0f4"
+    },
+    {
+      "path": "../IgnisSettlementDetails-v1/records/plan.json",
+      "sha256": "3de9eba471afe88772cb849c1d26fcdb694db2801ed1f0e19038f1ddaaa8ac27"
+    }
+  ],
+  "source_status": "design_candidate_not_canon",
+  "grid": {
+    "width": 4097,
+    "height": 2561,
+    "spacing_m": 2000,
+    "origin_xy_m": [
+      -3412000,
+      2866000
+    ],
+    "row_axis": "south",
+    "sample_registration": "grid_vertices",
+    "bounds_xy_m": [
+      -3412000,
+      -2254000,
+      4780000,
+      2866000
+    ],
+    "coastline_bounds_xy_m": [
+      -3394873.7092745607,
+      -1874927.315671664,
+      3838481.4091666895,
+      2848581.1312375846
+    ]
+  },
+  "height": {
+    "file": "terrain/height16.png",
+    "encoding": "unsigned 16-bit grayscale PNG; lossless, no color transform",
+    "meters_per_unit": 0.125,
+    "offset_m": -1024,
+    "formula": "elevation_m = sample * 0.125 - 1024",
+    "range_m": [
+      0,
+      4346.375
+    ],
+    "ocean": "zero placeholder; use land-mask; no bathymetry",
+    "spatial_limit": "2 km regional form only; no building, alley, river-bank or road-grade resolution"
+  },
+  "layers": {
+    "land": {
+      "file": "terrain/land-mask.png",
+      "values": {
+        "0": "ocean",
+        "255": "land"
+      }
+    },
+    "biome": {
+      "file": "terrain/biome.png",
+      "status": "rule_candidate_not_climate_simulation",
+      "values": {
+        "0": "ocean",
+        "1": "mixed_forest_grass",
+        "2": "river_corridor",
+        "3": "western_dryland",
+        "4": "rock_upland",
+        "5": "alpine"
+      }
+    },
+    "vegetation": {
+      "file": "terrain/vegetation-density.png",
+      "status": "relative_candidate_0_to_255_not_trees_per_m2",
+      "exclusions": "Apply vector roads, rivers, world-tree exclusion and future settlement footprints during detail placement."
+    },
+    "slope": {
+      "file": "terrain/slope.png",
+      "formula": "degrees = sample * 90 / 255",
+      "status": "macro_slope_not_walkability"
+    }
+  },
+  "tile_layout": {
+    "columns": 8,
+    "rows": 5,
+    "cells_per_tile": 512,
+    "shared_border_samples": 1,
+    "tiles": [
+      {
+        "id": "C0-R0",
+        "file": "terrain/tiles/C00-R00.png",
+        "sample_origin": [
+          0,
+          0
+        ],
+        "origin_xy_m": [
+          -3412000,
+          2866000
+        ],
+        "size": [
+          513,
+          513
+        ],
+        "sha256": "10c8d9e457a808fad214e77dbceeb4ccb62bf9cc79cf2941b50dc548f30981c5"
+      },
+      {
+        "id": "C1-R0",
+        "file": "terrain/tiles/C01-R00.png",
+        "sample_origin": [
+          512,
+          0
+        ],
+        "origin_xy_m": [
+          -2388000,
+          2866000
+        ],
+        "size": [
+          513,
+          513
+        ],
+        "sha256": "abe12d61c2bf80a38c31f262c2883ada106bb22a1a9031e217b3c56cbdbf00ce"
+      },
+      {
+        "id": "C2-R0",
+        "file": "terrain/tiles/C02-R00.png",
+        "sample_origin": [
+          1024,
+          0
+        ],
+        "origin_xy_m": [
+          -1364000,
+          2866000
+        ],
+        "size": [
+          513,
+          513
+        ],
+        "sha256": "058f863e2c6a63dc495bd376f10c1ea625f373fd49b52ac244e2afa9002c2a0d"
+      },
+      {
+        "id": "C3-R0",
+        "file": "terrain/tiles/C03-R00.png",
+        "sample_origin": [
+          1536,
+          0
+        ],
+        "origin_xy_m": [
+          -340000,
+          2866000
+        ],
+        "size": [
+          513,
+          513
+        ],
+        "sha256": "acba7b6f45837d039c8509c75462550eecc3b6a93b3104da8e37fa031e8c18a5"
+      },
+      {
+        "id": "C4-R0",
+        "file": "terrain/tiles/C04-R00.png",
+        "sample_origin": [
+          2048,
+          0
+        ],
+        "origin_xy_m": [
+          684000,
+          2866000
+        ],
+        "size": [
+          513,
+          513
+        ],
+        "sha256": "935404d60e92bb00b6dbedc721068cc317859fbe260d96414e55dd2bc79ae14d"
+      },
+      {
+        "id": "C5-R0",
+        "file": "terrain/tiles/C05-R00.png",
+        "sample_origin": [
+          2560,
+          0
+        ],
+        "origin_xy_m": [
+          1708000,
+          2866000
+        ],
+        "size": [
+          513,
+          513
+        ],
+        "sha256": "1b125800d299bb50f0905244e11fb0dd48faaf94a44dbfbc71209b59a8169ffb"
+      },
+      {
+        "id": "C6-R0",
+        "file": "terrain/tiles/C06-R00.png",
+        "sample_origin": [
+          3072,
+          0
+        ],
+        "origin_xy_m": [
+          2732000,
+          2866000
+        ],
+        "size": [
+          513,
+          513
+        ],
+        "sha256": "10c8d9e457a808fad214e77dbceeb4ccb62bf9cc79cf2941b50dc548f30981c5"
+      },
+      {
+        "id": "C7-R0",
+        "file": "terrain/tiles/C07-R00.png",
+        "sample_origin": [
+          3584,
+          0
+        ],
+        "origin_xy_m": [
+          3756000,
+          2866000
+        ],
+        "size": [
+          513,
+          513
+        ],
+        "sha256": "10c8d9e457a808fad214e77dbceeb4ccb62bf9cc79cf2941b50dc548f30981c5"
+      },
+      {
+        "id": "C0-R1",
+        "file": "terrain/tiles/C00-R01.png",
+        "sample_origin": [
+          0,
+          512
+        ],
+        "origin_xy_m": [
+          -3412000,
+          1842000
+        ],
+        "size": [
+          513,
+          513
+        ],
+        "sha256": "dd0c91644031d798d893c47aace4a0023b908e0380d918b0b77d63bb646cf87f"
+      },
+      {
+        "id": "C1-R1",
+        "file": "terrain/tiles/C01-R01.png",
+        "sample_origin": [
+          512,
+          512
+        ],
+        "origin_xy_m": [
+          -2388000,
+          1842000
+        ],
+        "size": [
+          513,
+          513
+        ],
+        "sha256": "e4de2f54eed781005a0177b68dcd5d5d12f2858a39c2998dd4dd083cc7028fec"
+      },
+      {
+        "id": "C2-R1",
+        "file": "terrain/tiles/C02-R01.png",
+        "sample_origin": [
+          1024,
+          512
+        ],
+        "origin_xy_m": [
+          -1364000,
+          1842000
+        ],
+        "size": [
+          513,
+          513
+        ],
+        "sha256": "5428fd6232103118e124e87266e56bd4904296c0f103e1fa9c114b1d581496de"
+      },
+      {
+        "id": "C3-R1",
+        "file": "terrain/tiles/C03-R01.png",
+        "sample_origin": [
+          1536,
+          512
+        ],
+        "origin_xy_m": [
+          -340000,
+          1842000
+        ],
+        "size": [
+          513,
+          513
+        ],
+        "sha256": "1bab45a30c2ebb886a6004aec535fb21e360452366417ba037035ef3c01b5f32"
+      },
+      {
+        "id": "C4-R1",
+        "file": "terrain/tiles/C04-R01.png",
+        "sample_origin": [
+          2048,
+          512
+        ],
+        "origin_xy_m": [
+          684000,
+          1842000
+        ],
+        "size": [
+          513,
+          513
+        ],
+        "sha256": "10f91ccfabb551d923f363cc06a5285a09ab772e8a1d5f78749c5d46798df14a"
+      },
+      {
+        "id": "C5-R1",
+        "file": "terrain/tiles/C05-R01.png",
+        "sample_origin": [
+          2560,
+          512
+        ],
+        "origin_xy_m": [
+          1708000,
+          1842000
+        ],
+        "size": [
+          513,
+          513
+        ],
+        "sha256": "eedb32ebdaaadfb70e5e1860fbda9b8248ab754ab18e286b779ed83c0dc6b42c"
+      },
+      {
+        "id": "C6-R1",
+        "file": "terrain/tiles/C06-R01.png",
+        "sample_origin": [
+          3072,
+          512
+        ],
+        "origin_xy_m": [
+          2732000,
+          1842000
+        ],
+        "size": [
+          513,
+          513
+        ],
+        "sha256": "5f39d54ee3f04590461de394a36603eaaa114fcfc86fbbc8d5f1bfc4080b9fa4"
+      },
+      {
+        "id": "C7-R1",
+        "file": "terrain/tiles/C07-R01.png",
+        "sample_origin": [
+          3584,
+          512
+        ],
+        "origin_xy_m": [
+          3756000,
+          1842000
+        ],
+        "size": [
+          513,
+          513
+        ],
+        "sha256": "10c8d9e457a808fad214e77dbceeb4ccb62bf9cc79cf2941b50dc548f30981c5"
+      },
+      {
+        "id": "C0-R2",
+        "file": "terrain/tiles/C00-R02.png",
+        "sample_origin": [
+          0,
+          1024
+        ],
+        "origin_xy_m": [
+          -3412000,
+          818000
+        ],
+        "size": [
+          513,
+          513
+        ],
+        "sha256": "fb4c03723caf6d9b68c78aad416db598ae9f5739e01e6746d62c1c34f25bb850"
+      },
+      {
+        "id": "C1-R2",
+        "file": "terrain/tiles/C01-R02.png",
+        "sample_origin": [
+          512,
+          1024
+        ],
+        "origin_xy_m": [
+          -2388000,
+          818000
+        ],
+        "size": [
+          513,
+          513
+        ],
+        "sha256": "275c98b0bca257d15d44797da7875d2650ebdc5f2b0336116143755ff9430354"
+      },
+      {
+        "id": "C2-R2",
+        "file": "terrain/tiles/C02-R02.png",
+        "sample_origin": [
+          1024,
+          1024
+        ],
+        "origin_xy_m": [
+          -1364000,
+          818000
+        ],
+        "size": [
+          513,
+          513
+        ],
+        "sha256": "fa97e551707dacf399201f50e6768c5e12e0da6a1cb05688e1f98209362b1380"
+      },
+      {
+        "id": "C3-R2",
+        "file": "terrain/tiles/C03-R02.png",
+        "sample_origin": [
+          1536,
+          1024
+        ],
+        "origin_xy_m": [
+          -340000,
+          818000
+        ],
+        "size": [
+          513,
+          513
+        ],
+        "sha256": "65765ba00911ea09a5a90da01a76370723c7db1ed84d81aaaddfb87d92383d3e"
+      },
+      {
+        "id": "C4-R2",
+        "file": "terrain/tiles/C04-R02.png",
+        "sample_origin": [
+          2048,
+          1024
+        ],
+        "origin_xy_m": [
+          684000,
+          818000
+        ],
+        "size": [
+          513,
+          513
+        ],
+        "sha256": "9f5b9dd7627228cd8ba3f769bf786729f213f177d19baff6221d2d43b72583cd"
+      },
+      {
+        "id": "C5-R2",
+        "file": "terrain/tiles/C05-R02.png",
+        "sample_origin": [
+          2560,
+          1024
+        ],
+        "origin_xy_m": [
+          1708000,
+          818000
+        ],
+        "size": [
+          513,
+          513
+        ],
+        "sha256": "8d8841eb49dbfe55a93ac9bcea5833ba7c57e0457399f9ee9b0e6f4e46ce7cea"
+      },
+      {
+        "id": "C6-R2",
+        "file": "terrain/tiles/C06-R02.png",
+        "sample_origin": [
+          3072,
+          1024
+        ],
+        "origin_xy_m": [
+          2732000,
+          818000
+        ],
+        "size": [
+          513,
+          513
+        ],
+        "sha256": "79b65a80cf08b6294ddf5ecec1521beddb6073ba3f1db3af8396b5d1de8b9374"
+      },
+      {
+        "id": "C7-R2",
+        "file": "terrain/tiles/C07-R02.png",
+        "sample_origin": [
+          3584,
+          1024
+        ],
+        "origin_xy_m": [
+          3756000,
+          818000
+        ],
+        "size": [
+          513,
+          513
+        ],
+        "sha256": "10c8d9e457a808fad214e77dbceeb4ccb62bf9cc79cf2941b50dc548f30981c5"
+      },
+      {
+        "id": "C0-R3",
+        "file": "terrain/tiles/C00-R03.png",
+        "sample_origin": [
+          0,
+          1536
+        ],
+        "origin_xy_m": [
+          -3412000,
+          -206000
+        ],
+        "size": [
+          513,
+          513
+        ],
+        "sha256": "6f5cf1dccbb8633a8dbee0f47d391cecbb7cd0d98f9be7424ebf4b92e4ee59b9"
+      },
+      {
+        "id": "C1-R3",
+        "file": "terrain/tiles/C01-R03.png",
+        "sample_origin": [
+          512,
+          1536
+        ],
+        "origin_xy_m": [
+          -2388000,
+          -206000
+        ],
+        "size": [
+          513,
+          513
+        ],
+        "sha256": "3150b6e225b2b4b2787f8207cc996456b1b72f25282e029f316715d270480fe0"
+      },
+      {
+        "id": "C2-R3",
+        "file": "terrain/tiles/C02-R03.png",
+        "sample_origin": [
+          1024,
+          1536
+        ],
+        "origin_xy_m": [
+          -1364000,
+          -206000
+        ],
+        "size": [
+          513,
+          513
+        ],
+        "sha256": "9c870f08926c4d508830cefe05cb6fb3ffc4df446a3c18ca560316bedd46e0c6"
+      },
+      {
+        "id": "C3-R3",
+        "file": "terrain/tiles/C03-R03.png",
+        "sample_origin": [
+          1536,
+          1536
+        ],
+        "origin_xy_m": [
+          -340000,
+          -206000
+        ],
+        "size": [
+          513,
+          513
+        ],
+        "sha256": "979b2982c943c74ddb03c63860c8cb029d35c4e527cd0183910fb0565cab2e2c"
+      },
+      {
+        "id": "C4-R3",
+        "file": "terrain/tiles/C04-R03.png",
+        "sample_origin": [
+          2048,
+          1536
+        ],
+        "origin_xy_m": [
+          684000,
+          -206000
+        ],
+        "size": [
+          513,
+          513
+        ],
+        "sha256": "d37af8feb9d0e74b62d6028f00e4ca5f7e2724941cd219787ae21a9d7cb36ee4"
+      },
+      {
+        "id": "C5-R3",
+        "file": "terrain/tiles/C05-R03.png",
+        "sample_origin": [
+          2560,
+          1536
+        ],
+        "origin_xy_m": [
+          1708000,
+          -206000
+        ],
+        "size": [
+          513,
+          513
+        ],
+        "sha256": "a1c0670d93f39976e35068b267966f0de2204c99f0a8e62c1142360809ceebde"
+      },
+      {
+        "id": "C6-R3",
+        "file": "terrain/tiles/C06-R03.png",
+        "sample_origin": [
+          3072,
+          1536
+        ],
+        "origin_xy_m": [
+          2732000,
+          -206000
+        ],
+        "size": [
+          513,
+          513
+        ],
+        "sha256": "7fcf8cd9c4da02e8f79f45a1efeddfa4ef7d64fef9184b9d18cdb74aeb4894fe"
+      },
+      {
+        "id": "C7-R3",
+        "file": "terrain/tiles/C07-R03.png",
+        "sample_origin": [
+          3584,
+          1536
+        ],
+        "origin_xy_m": [
+          3756000,
+          -206000
+        ],
+        "size": [
+          513,
+          513
+        ],
+        "sha256": "60278460c188cf66ec223fadc87fa969ecd32110beee188fc3849f63f097fefb"
+      },
+      {
+        "id": "C0-R4",
+        "file": "terrain/tiles/C00-R04.png",
+        "sample_origin": [
+          0,
+          2048
+        ],
+        "origin_xy_m": [
+          -3412000,
+          -1230000
+        ],
+        "size": [
+          513,
+          513
+        ],
+        "sha256": "2612579c4bfdb79bec7e454ce2fc8ae0b3c4e7fe47a2c6bb09881b7ad541ff73"
+      },
+      {
+        "id": "C1-R4",
+        "file": "terrain/tiles/C01-R04.png",
+        "sample_origin": [
+          512,
+          2048
+        ],
+        "origin_xy_m": [
+          -2388000,
+          -1230000
+        ],
+        "size": [
+          513,
+          513
+        ],
+        "sha256": "706876f8df54d43ac45b1a6aa9b97b59b6b8410f34483706827a6c29f8990a0d"
+      },
+      {
+        "id": "C2-R4",
+        "file": "terrain/tiles/C02-R04.png",
+        "sample_origin": [
+          1024,
+          2048
+        ],
+        "origin_xy_m": [
+          -1364000,
+          -1230000
+        ],
+        "size": [
+          513,
+          513
+        ],
+        "sha256": "10c8d9e457a808fad214e77dbceeb4ccb62bf9cc79cf2941b50dc548f30981c5"
+      },
+      {
+        "id": "C3-R4",
+        "file": "terrain/tiles/C03-R04.png",
+        "sample_origin": [
+          1536,
+          2048
+        ],
+        "origin_xy_m": [
+          -340000,
+          -1230000
+        ],
+        "size": [
+          513,
+          513
+        ],
+        "sha256": "10d3c3e59bcc93806253250590d21040a405c4bbe242ebe40bad223351ca4d9f"
+      },
+      {
+        "id": "C4-R4",
+        "file": "terrain/tiles/C04-R04.png",
+        "sample_origin": [
+          2048,
+          2048
+        ],
+        "origin_xy_m": [
+          684000,
+          -1230000
+        ],
+        "size": [
+          513,
+          513
+        ],
+        "sha256": "fee90ac86062d7792dc1dc767064a41232a036fbea417c21a72800d4236a9b74"
+      },
+      {
+        "id": "C5-R4",
+        "file": "terrain/tiles/C05-R04.png",
+        "sample_origin": [
+          2560,
+          2048
+        ],
+        "origin_xy_m": [
+          1708000,
+          -1230000
+        ],
+        "size": [
+          513,
+          513
+        ],
+        "sha256": "419e93190be551f07415cd07305b346b4ecf79c87791340256145b31f7add853"
+      },
+      {
+        "id": "C6-R4",
+        "file": "terrain/tiles/C06-R04.png",
+        "sample_origin": [
+          3072,
+          2048
+        ],
+        "origin_xy_m": [
+          2732000,
+          -1230000
+        ],
+        "size": [
+          513,
+          513
+        ],
+        "sha256": "449963a5fe72413abdd140254eaefa5773016aa5f63dfb028f4232bfa945d6ac"
+      },
+      {
+        "id": "C7-R4",
+        "file": "terrain/tiles/C07-R04.png",
+        "sample_origin": [
+          3584,
+          2048
+        ],
+        "origin_xy_m": [
+          3756000,
+          -1230000
+        ],
+        "size": [
+          513,
+          513
+        ],
+        "sha256": "10c8d9e457a808fad214e77dbceeb4ccb62bf9cc79cf2941b50dc548f30981c5"
+      }
+    ]
+  },
+  "refinement": {
+    "rule": "Child grids inherit parent vertices and a common global-coordinate detail function; never independently generate tile boundaries.",
+    "implemented": "coarse master and exact shared-border exports",
+    "not_implemented": [
+      "meter-scale child DEM",
+      "hydraulic erosion/basin simulation",
+      "road grading/bridges/bank alignment",
+      "building footprints/dimensions",
+      "UE import/traversal"
+    ]
+  },
+  "counts": {
+    "coast_vertices": 6156,
+    "settlements": 36,
+    "facilities": 86,
+    "rivers": 14,
+    "roads": 20,
+    "navigation_routes": 4,
+    "ridges": 5,
+    "tiles": 40
+  }
+}

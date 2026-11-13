@@ -1,0 +1,2653 @@
+{
+  "schema_version": 1,
+  "status": "design_master_candidate",
+  "coordinate_system": {
+    "type": "spherical_azimuthal_equidistant",
+    "radius_km": 6366.197723675814,
+    "origin_lon_lat_deg": [
+      -1,
+      54
+    ],
+    "axes": "x east and y north at origin",
+    "rotation_deg": 0,
+    "units": "meters",
+    "limitations": "Distances from origin are true great-circle distances. Other planar distances and areas are distorted. No WGS84 or DEM.",
+    "axis": "x east; y north; z up",
+    "vertical_datum": "fictional sea level = 0 m",
+    "geographic_warning": "Fictional sphere, not Earth WGS84"
+  },
+  "settlements": [
+    {
+      "id": "M01",
+      "name": "세계수 관리도시",
+      "kind": "major",
+      "xy_km": [
+        18,
+        -12
+      ],
+      "lon_lat_deg": [
+        -0.7251033917037691,
+        53.89168573836356
+      ],
+      "polity": "tern",
+      "parent": null,
+      "terrain": "central",
+      "position_source": "management_city",
+      "xy_m": [
+        18000,
+        -12000
+      ],
+      "world_pixel_L10": [
+        33419262.930833925,
+        6731077.641815055
+      ],
+      "terrain_elevation_m": 316.125,
+      "source_context_bounds_xy_km": [
+        14.5,
+        -13.85,
+        21.5,
+        -10.35
+      ],
+      "context_bounds_meaning": "illustration coverage, not settlement footprint",
+      "footprint_status": "not_inferred_from_image",
+      "facilities": [
+        {
+          "id": "C01",
+          "name": "북행편 귀환 마당",
+          "xy_km": [
+            18,
+            -11.5
+          ],
+          "xy_m": [
+            18000,
+            -11500
+          ],
+          "status": "existing_detail_candidate",
+          "terrain_elevation_m": 316.34375
+        },
+        {
+          "id": "C02",
+          "name": "공개 기록·심의뜰",
+          "xy_km": [
+            18,
+            -12
+          ],
+          "xy_m": [
+            18000,
+            -12000
+          ],
+          "status": "existing_detail_candidate",
+          "terrain_elevation_m": 316.125
+        },
+        {
+          "id": "C03",
+          "name": "비축·수령 창고",
+          "xy_km": [
+            18.7,
+            -12.25
+          ],
+          "xy_m": [
+            18700,
+            -12250
+          ],
+          "status": "existing_detail_candidate",
+          "terrain_elevation_m": 313.1242187500008
+        },
+        {
+          "id": "C04",
+          "name": "진료·필수 공급 인계",
+          "xy_km": [
+            18.4,
+            -12.7
+          ],
+          "xy_m": [
+            18400,
+            -12700
+          ],
+          "status": "existing_detail_candidate",
+          "terrain_elevation_m": 314.56749999999954
+        },
+        {
+          "id": "C05",
+          "name": "정비조 배정소",
+          "xy_km": [
+            17.5,
+            -12.6
+          ],
+          "xy_m": [
+            17500,
+            -12600
+          ],
+          "status": "existing_detail_candidate",
+          "terrain_elevation_m": 318.39374999999995
+        },
+        {
+          "id": "C06",
+          "name": "뿌리권 출입소",
+          "xy_km": [
+            17.1,
+            -11.6
+          ],
+          "xy_m": [
+            17100,
+            -11600
+          ],
+          "status": "existing_detail_candidate",
+          "terrain_elevation_m": 319.9900000000004
+        },
+        {
+          "id": "C07",
+          "name": "귀환·시험 기록소",
+          "xy_km": [
+            17.1,
+            -12.4
+          ],
+          "xy_m": [
+            17100,
+            -12400
+          ],
+          "status": "existing_detail_candidate",
+          "terrain_elevation_m": 319.9850000000004
+        }
+      ]
+    },
+    {
+      "id": "M02",
+      "name": "로덴",
+      "kind": "major",
+      "xy_km": [
+        110,
+        95
+      ],
+      "lon_lat_deg": [
+        0.7193966689101895,
+        54.842938715676794
+      ],
+      "polity": "tern",
+      "parent": null,
+      "terrain": "central",
+      "position_source": "roden",
+      "xy_m": [
+        110000,
+        95000
+      ],
+      "world_pixel_L10": [
+        33688537.25893319,
+        6553751.234359198
+      ],
+      "terrain_elevation_m": 420,
+      "source_context_bounds_xy_km": [
+        106.5,
+        93.81,
+        113.5,
+        97.31
+      ],
+      "context_bounds_meaning": "illustration coverage, not settlement footprint",
+      "footprint_status": "not_inferred_from_image",
+      "facilities": [
+        {
+          "id": "B01",
+          "name": "공공 나루",
+          "xy_km": [
+            110.04,
+            95.09
+          ],
+          "xy_m": [
+            110040,
+            95090
+          ],
+          "status": "existing_detail_candidate",
+          "terrain_elevation_m": 420.15886250000005
+        },
+        {
+          "id": "B02",
+          "name": "조합·주거단",
+          "xy_km": [
+            109.38,
+            95.4
+          ],
+          "xy_m": [
+            109380,
+            95400
+          ],
+          "status": "existing_detail_candidate",
+          "terrain_elevation_m": 419.74125000000026
+        },
+        {
+          "id": "B03",
+          "name": "작업구 입구",
+          "xy_km": [
+            109.68,
+            95.76
+          ],
+          "xy_m": [
+            109680,
+            95760
+          ],
+          "status": "existing_detail_candidate",
+          "terrain_elevation_m": 420.4200000000001
+        },
+        {
+          "id": "B04",
+          "name": "바깥 목재길",
+          "xy_km": [
+            109.3,
+            96.12
+          ],
+          "xy_m": [
+            109300,
+            96120
+          ],
+          "status": "existing_detail_candidate",
+          "terrain_elevation_m": 420.37700000000007
+        },
+        {
+          "id": "B05",
+          "name": "배수굴 마른 턱",
+          "xy_km": [
+            109.9,
+            95.95
+          ],
+          "xy_m": [
+            109900,
+            95950
+          ],
+          "status": "existing_detail_candidate",
+          "terrain_elevation_m": 420.8437499999999
+        },
+        {
+          "id": "B06",
+          "name": "배관 정비뜰",
+          "xy_km": [
+            110.1,
+            95.9
+          ],
+          "xy_m": [
+            110100,
+            95900
+          ],
+          "status": "existing_detail_candidate",
+          "terrain_elevation_m": 421.0746874999999
+        },
+        {
+          "id": "B07",
+          "name": "차단함·외곽길",
+          "xy_km": [
+            110.26,
+            95.8
+          ],
+          "xy_m": [
+            110260,
+            95800
+          ],
+          "status": "existing_detail_candidate",
+          "terrain_elevation_m": 421.2533750000006
+        },
+        {
+          "id": "B08",
+          "name": "부상자 대기단",
+          "xy_km": [
+            110.36,
+            95.69
+          ],
+          "xy_m": [
+            110360,
+            95690
+          ],
+          "status": "existing_detail_candidate",
+          "terrain_elevation_m": 421.3165125000003
+        },
+        {
+          "id": "B09",
+          "name": "철근지기 작업뜰",
+          "xy_km": [
+            110.43,
+            95.56
+          ],
+          "xy_m": [
+            110430,
+            95560
+          ],
+          "status": "existing_detail_candidate",
+          "terrain_elevation_m": 421.3065874999997
+        },
+        {
+          "id": "B10",
+          "name": "열린 구조 선착장",
+          "xy_km": [
+            110.66,
+            95.56
+          ],
+          "xy_m": [
+            110660,
+            95560
+          ],
+          "status": "existing_detail_candidate",
+          "terrain_elevation_m": 421.70592499999964
+        },
+        {
+          "id": "B11",
+          "name": "제방 귀환길",
+          "xy_km": [
+            110.12,
+            95.27
+          ],
+          "xy_m": [
+            110120,
+            95270
+          ],
+          "status": "existing_detail_candidate",
+          "terrain_elevation_m": 420.4772624999998
+        },
+        {
+          "id": "B12",
+          "name": "외곽 우회단",
+          "xy_km": [
+            110.11,
+            95.6
+          ],
+          "xy_m": [
+            110110,
+            95600
+          ],
+          "status": "existing_detail_candidate",
+          "terrain_elevation_m": 420.79112500000014
+        }
+      ]
+    },
+    {
+      "id": "M03",
+      "name": "세르나",
+      "kind": "major",
+      "xy_km": [
+        417.4518741058252,
+        -1063.9045819597554
+      ],
+      "lon_lat_deg": [
+        4.227923014539118,
+        44.291798181644374
+      ],
+      "polity": "tern",
+      "parent": null,
+      "terrain": "coastal_terrace",
+      "position_source": "outer_candidate",
+      "xy_m": [
+        417451.8741058252,
+        -1063904.5819597554
+      ],
+      "world_pixel_L10": [
+        34342573.97384771,
+        8520626.387534944
+      ],
+      "terrain_elevation_m": 7.925618560112814,
+      "source_context_bounds_xy_km": [
+        411.63884389083665,
+        -1067.9045819597554,
+        422.2388438908367,
+        -1062.6045819597553
+      ],
+      "context_bounds_meaning": "illustration coverage, not settlement footprint",
+      "footprint_status": "not_inferred_from_image",
+      "facilities": [
+        {
+          "id": "C01",
+          "name": "내륙 환적나루",
+          "xy_km": [
+            417.6718741058252,
+            -1063.3545819597555
+          ],
+          "xy_m": [
+            417671.8741058252,
+            -1063354.5819597554
+          ],
+          "status": "existing_detail_candidate",
+          "terrain_elevation_m": 7.886259895333278
+        },
+        {
+          "id": "C02",
+          "name": "주거·식수단",
+          "xy_km": [
+            418.1018741058252,
+            -1063.2545819597553
+          ],
+          "xy_m": [
+            418101.87410582515,
+            -1063254.5819597554
+          ],
+          "status": "existing_detail_candidate",
+          "terrain_elevation_m": 7.806949803358561
+        },
+        {
+          "id": "C03",
+          "name": "송장·검수소",
+          "xy_km": [
+            418.2018741058252,
+            -1063.8045819597555
+          ],
+          "xy_m": [
+            418201.8741058252,
+            -1063804.5819597556
+          ],
+          "status": "existing_detail_candidate",
+          "terrain_elevation_m": 7.786215083176645
+        },
+        {
+          "id": "C04",
+          "name": "옛 물양장",
+          "xy_km": [
+            417.5518741058252,
+            -1064.1045819597555
+          ],
+          "xy_m": [
+            417551.8741058252,
+            -1064104.5819597554
+          ],
+          "status": "existing_detail_candidate",
+          "terrain_elevation_m": 7.6245440479402316
+        },
+        {
+          "id": "C05",
+          "name": "갈대 가장자리",
+          "xy_km": [
+            417.6518741058252,
+            -1064.5545819597555
+          ],
+          "xy_m": [
+            417651.8741058252,
+            -1064554.5819597556
+          ],
+          "status": "existing_detail_candidate",
+          "terrain_elevation_m": 6.5098331880112115
+        },
+        {
+          "id": "C06",
+          "name": "폐보온관 작업터",
+          "xy_km": [
+            418.0518741058252,
+            -1064.7545819597553
+          ],
+          "xy_m": [
+            418051.8741058252,
+            -1064754.5819597554
+          ],
+          "status": "existing_detail_candidate",
+          "terrain_elevation_m": 6.21239124136833
+        },
+        {
+          "id": "C07",
+          "name": "어획물 회수턱",
+          "xy_km": [
+            418.6018741058252,
+            -1064.9045819597554
+          ],
+          "xy_m": [
+            418601.87410582515,
+            -1064904.5819597554
+          ],
+          "status": "existing_detail_candidate",
+          "terrain_elevation_m": 6.129672864412579
+        },
+        {
+          "id": "C08",
+          "name": "높은 갈대길",
+          "xy_km": [
+            418.7018741058252,
+            -1064.3545819597555
+          ],
+          "xy_m": [
+            418701.8741058252,
+            -1064354.5819597554
+          ],
+          "status": "existing_detail_candidate",
+          "terrain_elevation_m": 7.184181438715705
+        },
+        {
+          "id": "C09",
+          "name": "침수 매장터 외곽",
+          "xy_km": [
+            418.9018741058252,
+            -1063.8545819597555
+          ],
+          "xy_m": [
+            418901.8741058252,
+            -1063854.5819597554
+          ],
+          "status": "existing_detail_candidate",
+          "terrain_elevation_m": 7.86772449183669
+        },
+        {
+          "id": "C10",
+          "name": "상단 운반길",
+          "xy_km": [
+            418.1018741058252,
+            -1065.3045819597555
+          ],
+          "xy_m": [
+            418101.87410582515,
+            -1065304.5819597556
+          ],
+          "status": "existing_detail_candidate",
+          "terrain_elevation_m": 5.113566196427895
+        },
+        {
+          "id": "C11",
+          "name": "간조 잔해턱",
+          "xy_km": [
+            417.2018741058252,
+            -1065.1545819597554
+          ],
+          "xy_m": [
+            417201.8741058252,
+            -1065154.5819597554
+          ],
+          "status": "existing_detail_candidate",
+          "terrain_elevation_m": 4.638993430968069
+        },
+        {
+          "id": "C12",
+          "name": "하구 인계마당",
+          "xy_km": [
+            417.6018741058252,
+            -1065.6545819597554
+          ],
+          "xy_m": [
+            417601.87410582515,
+            -1065654.5819597554
+          ],
+          "status": "existing_detail_candidate",
+          "terrain_elevation_m": 3.761936382583612
+        },
+        {
+          "id": "H01",
+          "name": "항만 연락나루",
+          "xy_km": [
+            416.8018741058252,
+            -1065.8045819597555
+          ],
+          "xy_m": [
+            416801.8741058252,
+            -1065804.5819597556
+          ],
+          "status": "existing_detail_candidate",
+          "terrain_elevation_m": 2.105215402405647
+        },
+        {
+          "id": "H02",
+          "name": "선박 수리대",
+          "xy_km": [
+            416.6818741058252,
+            -1066.1545819597554
+          ],
+          "xy_m": [
+            416681.8741058252,
+            -1066154.5819597554
+          ],
+          "status": "existing_detail_candidate",
+          "terrain_elevation_m": 1.140373140809343
+        },
+        {
+          "id": "H03",
+          "name": "창고·배정소",
+          "xy_km": [
+            418.5018741058252,
+            -1065.6545819597554
+          ],
+          "xy_m": [
+            418501.8741058252,
+            -1065654.5819597554
+          ],
+          "status": "existing_detail_candidate",
+          "terrain_elevation_m": 4.6596564217230565
+        },
+        {
+          "id": "H04",
+          "name": "인양품 검사뜰",
+          "xy_km": [
+            418.6518741058252,
+            -1066.2045819597554
+          ],
+          "xy_m": [
+            418651.8741058252,
+            -1066204.5819597554
+          ],
+          "status": "existing_detail_candidate",
+          "terrain_elevation_m": 3.693090146531479
+        },
+        {
+          "id": "H05",
+          "name": "허가 화물부두",
+          "xy_km": [
+            418.2018741058252,
+            -1066.5645819597555
+          ],
+          "xy_m": [
+            418201.8741058252,
+            -1066564.5819597556
+          ],
+          "status": "existing_detail_candidate",
+          "terrain_elevation_m": 2.710360347952501
+        },
+        {
+          "id": "H06",
+          "name": "구조 출발잔교",
+          "xy_km": [
+            418.3018741058252,
+            -1066.6245819597555
+          ],
+          "xy_m": [
+            418301.8741058252,
+            -1066624.5819597554
+          ],
+          "status": "existing_detail_candidate",
+          "terrain_elevation_m": 2.6486463570815313
+        },
+        {
+          "id": "H07",
+          "name": "좌초선 높은 선미",
+          "xy_km": [
+            418.9098741058252,
+            -1066.8095819597554
+          ],
+          "xy_m": [
+            418909.8741058252,
+            -1066809.5819597554
+          ],
+          "status": "existing_detail_candidate",
+          "terrain_elevation_m": 2.563806654165929
+        },
+        {
+          "id": "H08",
+          "name": "바깥 암반턱",
+          "xy_km": [
+            418.9368741058252,
+            -1066.8145819597555
+          ],
+          "xy_m": [
+            418936.8741058252,
+            -1066814.5819597556
+          ],
+          "status": "existing_detail_candidate",
+          "terrain_elevation_m": 2.565040497873785
+        },
+        {
+          "id": "H09",
+          "name": "안쪽 승선턱",
+          "xy_km": [
+            418.9568741058252,
+            -1066.7945819597555
+          ],
+          "xy_m": [
+            418956.8741058252,
+            -1066794.5819597556
+          ],
+          "status": "existing_detail_candidate",
+          "terrain_elevation_m": 2.617357688969258
+        },
+        {
+          "id": "H10",
+          "name": "동쪽 구조잔교",
+          "xy_km": [
+            419.3518741058252,
+            -1066.5345819597555
+          ],
+          "xy_m": [
+            419351.87410582515,
+            -1066534.5819597556
+          ],
+          "status": "existing_detail_candidate",
+          "terrain_elevation_m": 3.398967961498883
+        },
+        {
+          "id": "H11",
+          "name": "높은 제방·절벽길",
+          "xy_km": [
+            419.3518741058252,
+            -1065.7045819597554
+          ],
+          "xy_m": [
+            419351.87410582515,
+            -1065704.5819597554
+          ],
+          "status": "existing_detail_candidate",
+          "terrain_elevation_m": 5.123402787686134
+        },
+        {
+          "id": "H12",
+          "name": "동쪽 육로 연락소",
+          "xy_km": [
+            419.5518741058252,
+            -1065.2045819597554
+          ],
+          "xy_m": [
+            419551.8741058252,
+            -1065204.5819597554
+          ],
+          "status": "existing_detail_candidate",
+          "terrain_elevation_m": 6.0437088311355645
+        },
+        {
+          "id": "H13",
+          "name": "바깥 깊은 홈",
+          "xy_km": [
+            420.1518741058252,
+            -1067.2545819597553
+          ],
+          "xy_m": [
+            420151.8741058252,
+            -1067254.5819597554
+          ],
+          "status": "existing_detail_candidate",
+          "terrain_elevation_m": 2.072872669473731
+        }
+      ]
+    },
+    {
+      "id": "M04",
+      "name": "하르덴",
+      "kind": "major",
+      "xy_km": [
+        -1435.2733267209078,
+        454.34169769054535
+      ],
+      "lon_lat_deg": [
+        -24.47799301052021,
+        55.900000000000006
+      ],
+      "polity": "west",
+      "parent": null,
+      "terrain": "east_draining_plateau",
+      "position_source": "outer_candidate",
+      "xy_m": [
+        -1435273.3267209078,
+        454341.69769054535
+      ],
+      "world_pixel_L10": [
+        28991403.37795569,
+        6356700.728888889
+      ],
+      "terrain_elevation_m": 1350.0294132336376,
+      "source_context_bounds_xy_km": [
+        -1439.2733267209078,
+        453.59169769054535,
+        -1431.2733267209078,
+        457.59169769054535
+      ],
+      "context_bounds_meaning": "illustration coverage, not settlement footprint",
+      "footprint_status": "not_inferred_from_image",
+      "facilities": [
+        {
+          "id": "H01",
+          "name": "하단 시험 작업장",
+          "xy_km": [
+            -1434.8733267209077,
+            454.64169769054536
+          ],
+          "xy_m": [
+            -1434873.3267209076,
+            454641.69769054535
+          ],
+          "status": "existing_detail_candidate",
+          "terrain_elevation_m": 1349.920044366896
+        },
+        {
+          "id": "H02",
+          "name": "공동 설계·숙박 마당",
+          "xy_km": [
+            -1434.4733267209078,
+            454.84169769054535
+          ],
+          "xy_m": [
+            -1434473.3267209078,
+            454841.69769054535
+          ],
+          "status": "existing_detail_candidate",
+          "terrain_elevation_m": 1349.207572965931
+        },
+        {
+          "id": "H03",
+          "name": "잔열 운반 작업터",
+          "xy_km": [
+            -1434.1733267209079,
+            455.2416976905453
+          ],
+          "xy_m": [
+            -1434173.3267209078,
+            455241.69769054535
+          ],
+          "status": "existing_detail_candidate",
+          "terrain_elevation_m": 1348.2553507507669
+        },
+        {
+          "id": "H04",
+          "name": "채석장 입구",
+          "xy_km": [
+            -1434.0733267209077,
+            455.79169769054533
+          ],
+          "xy_m": [
+            -1434073.3267209078,
+            455791.69769054535
+          ],
+          "status": "existing_detail_candidate",
+          "terrain_elevation_m": 1347.4389955716456
+        },
+        {
+          "id": "H05",
+          "name": "회색 채석 단",
+          "xy_km": [
+            -1434.6733267209079,
+            456.14169769054536
+          ],
+          "xy_m": [
+            -1434673.3267209078,
+            456141.69769054535
+          ],
+          "status": "existing_detail_candidate",
+          "terrain_elevation_m": 1350.957286712201
+        },
+        {
+          "id": "H06",
+          "name": "사냥꾼 관찰턱",
+          "xy_km": [
+            -1435.2733267209078,
+            456.54169769054533
+          ],
+          "xy_m": [
+            -1435273.3267209078,
+            456541.69769054535
+          ],
+          "status": "existing_detail_candidate",
+          "terrain_elevation_m": 1355.3882905780924
+        },
+        {
+          "id": "H07",
+          "name": "북쪽 접근 능선",
+          "xy_km": [
+            -1435.9733267209078,
+            456.84169769054535
+          ],
+          "xy_m": [
+            -1435973.3267209078,
+            456841.69769054535
+          ],
+          "status": "existing_detail_candidate",
+          "terrain_elevation_m": 1359.450155028459
+        },
+        {
+          "id": "H08",
+          "name": "상류 취수·측정턱",
+          "xy_km": [
+            -1436.5433267209078,
+            455.7416976905453
+          ],
+          "xy_m": [
+            -1436543.3267209078,
+            455741.69769054535
+          ],
+          "status": "existing_detail_candidate",
+          "terrain_elevation_m": 1357.1342399056252
+        },
+        {
+          "id": "H09",
+          "name": "비룡 먹이 하역 단",
+          "xy_km": [
+            -1436.1233267209077,
+            456.14169769054536
+          ],
+          "xy_m": [
+            -1436123.3267209076,
+            456141.69769054535
+          ],
+          "status": "existing_detail_candidate",
+          "terrain_elevation_m": 1357.8306657999524
+        },
+        {
+          "id": "H10",
+          "name": "수로 바깥 정비길",
+          "xy_km": [
+            -1435.7733267209078,
+            455.64169769054536
+          ],
+          "xy_m": [
+            -1435773.3267209078,
+            455641.69769054535
+          ],
+          "status": "existing_detail_candidate",
+          "terrain_elevation_m": 1354.8862167653185
+        },
+        {
+          "id": "H11",
+          "name": "남쪽 바람 그늘길",
+          "xy_km": [
+            -1435.1733267209079,
+            455.19169769054537
+          ],
+          "xy_m": [
+            -1435173.3267209078,
+            455191.69769054535
+          ],
+          "status": "existing_detail_candidate",
+          "terrain_elevation_m": 1351.479084407189
+        },
+        {
+          "id": "H12",
+          "name": "그리핀 초지 사냥턱",
+          "xy_km": [
+            -1434.7733267209078,
+            456.94169769054537
+          ],
+          "xy_m": [
+            -1434773.3267209078,
+            456941.69769054535
+          ],
+          "status": "existing_detail_candidate",
+          "terrain_elevation_m": 1354.7036536198075
+        },
+        {
+          "id": "H13",
+          "name": "성체 트롤 저장굴",
+          "xy_km": [
+            -1433.6733267209079,
+            455.84169769054535
+          ],
+          "xy_m": [
+            -1433673.3267209078,
+            455841.69769054535
+          ],
+          "status": "existing_detail_candidate",
+          "terrain_elevation_m": 1347.2101981877934
+        },
+        {
+          "id": "H14",
+          "name": "폐축열 시험뜰",
+          "xy_km": [
+            -1433.6733267209079,
+            454.64169769054536
+          ],
+          "xy_m": [
+            -1433673.3267209078,
+            454641.69769054535
+          ],
+          "status": "existing_detail_candidate",
+          "terrain_elevation_m": 1348.2034424845765
+        },
+        {
+          "id": "H15",
+          "name": "고원 견인 작업마당",
+          "xy_km": [
+            -1434.1733267209079,
+            454.2416976905453
+          ],
+          "xy_m": [
+            -1434173.3267209078,
+            454241.69769054535
+          ],
+          "status": "existing_detail_candidate",
+          "terrain_elevation_m": 1348.8899504085257
+        },
+        {
+          "id": "H16",
+          "name": "가는날개 번식 절벽",
+          "xy_km": [
+            -1436.6733267209079,
+            456.64169769054536
+          ],
+          "xy_m": [
+            -1436673.3267209078,
+            456641.69769054535
+          ],
+          "status": "existing_detail_candidate",
+          "terrain_elevation_m": 1360.1731835497276
+        }
+      ]
+    },
+    {
+      "id": "M05",
+      "name": "서안항",
+      "kind": "major",
+      "xy_km": [
+        -2688.9679063549847,
+        1019.6143362075417
+      ],
+      "lon_lat_deg": [
+        -46.32089721446472,
+        54.96872110581616
+      ],
+      "polity": "west",
+      "parent": null,
+      "terrain": "coastal_terrace",
+      "position_source": "outer_candidate",
+      "xy_m": [
+        -2688967.9063549847,
+        1019614.3362075416
+      ],
+      "world_pixel_L10": [
+        24919590.91243474,
+        6530303.697377372
+      ],
+      "terrain_elevation_m": 7.932073033238378,
+      "source_context_bounds_xy_km": [
+        -2695.1169730196634,
+        1018.0785176220716,
+        -2685.1169730196634,
+        1023.0785176220716
+      ],
+      "context_bounds_meaning": "illustration coverage, not settlement footprint",
+      "footprint_status": "not_inferred_from_image",
+      "facilities": []
+    },
+    {
+      "id": "M06",
+      "name": "동안항",
+      "kind": "major",
+      "xy_km": [
+        2672.681747193104,
+        1034.0935111734775
+      ],
+      "lon_lat_deg": [
+        44.25363823324935,
+        55.15575585493094
+      ],
+      "polity": "east",
+      "parent": null,
+      "terrain": "coastal_terrace",
+      "position_source": "outer_candidate",
+      "xy_m": [
+        2672681.747193104,
+        1034093.5111734775
+      ],
+      "world_pixel_L10": [
+        41803908.08250092,
+        6495437.8930951
+      ],
+      "terrain_elevation_m": 7.941968001153027,
+      "source_context_bounds_xy_km": [
+        2668.9807852987806,
+        1032.3435111734775,
+        2678.9807852987806,
+        1037.3435111734775
+      ],
+      "context_bounds_meaning": "illustration coverage, not settlement footprint",
+      "footprint_status": "not_inferred_from_image",
+      "facilities": []
+    },
+    {
+      "id": "M07",
+      "name": "북부 관문도시",
+      "kind": "major",
+      "xy_km": [
+        -230.9529376219892,
+        1069.001952106139
+      ],
+      "lon_lat_deg": [
+        -5.648767617812353,
+        63.550000000000004
+      ],
+      "polity": "north",
+      "parent": null,
+      "terrain": "south_foothill_valley",
+      "position_source": "outer_candidate",
+      "xy_m": [
+        -230952.9376219892,
+        1069001.952106139
+      ],
+      "world_pixel_L10": [
+        32501425.39491285,
+        4930637.3688888885
+      ],
+      "terrain_elevation_m": 1000.0217406243414,
+      "source_context_bounds_xy_km": [
+        -234.4529376219892,
+        1067.251952106139,
+        -227.4529376219892,
+        1070.751952106139
+      ],
+      "context_bounds_meaning": "illustration coverage, not settlement footprint",
+      "footprint_status": "not_inferred_from_image",
+      "facilities": []
+    },
+    {
+      "id": "M08",
+      "name": "남동 평야도시",
+      "kind": "major",
+      "xy_km": [
+        2016.8396215333198,
+        -786.0727062591023
+      ],
+      "lon_lat_deg": [
+        24.47799301052021,
+        43.750000000000014
+      ],
+      "polity": "east",
+      "parent": null,
+      "terrain": "inland_plain",
+      "position_source": "outer_candidate",
+      "xy_m": [
+        2016839.6215333198,
+        -786072.7062591023
+      ],
+      "world_pixel_L10": [
+        38117460.62204431,
+        8621624.888888886
+      ],
+      "terrain_elevation_m": 179.98040073200917,
+      "source_context_bounds_xy_km": [
+        2013.3396215333198,
+        -787.8227062591023,
+        2020.3396215333198,
+        -784.3227062591023
+      ],
+      "context_bounds_meaning": "illustration coverage, not settlement footprint",
+      "footprint_status": "not_inferred_from_image",
+      "facilities": []
+    },
+    {
+      "id": "T01",
+      "name": "타르넬",
+      "kind": "town",
+      "xy_km": [
+        137,
+        125
+      ],
+      "lon_lat_deg": [
+        1.1555798656151361,
+        55.10614574650333
+      ],
+      "polity": "tern",
+      "parent": null,
+      "terrain": "central",
+      "position_source": "T01",
+      "xy_m": [
+        137000,
+        125000
+      ],
+      "world_pixel_L10": [
+        33769847.70011862,
+        6504685.887593693
+      ],
+      "terrain_elevation_m": 520,
+      "source_context_bounds_xy_km": [
+        134.10999999999999,
+        122.83999999999999,
+        139.89000000000001,
+        125.73
+      ],
+      "context_bounds_meaning": "illustration coverage, not settlement footprint",
+      "footprint_status": "not_inferred_from_image",
+      "facilities": [
+        {
+          "id": "A01",
+          "name": "공동 나루",
+          "xy_km": [
+            137.36,
+            125.08
+          ],
+          "xy_m": [
+            137360,
+            125080
+          ],
+          "status": "existing_detail_candidate",
+          "terrain_elevation_m": 520.9333000000001
+        },
+        {
+          "id": "A02",
+          "name": "목재 검사길",
+          "xy_km": [
+            137.54,
+            124.82
+          ],
+          "xy_m": [
+            137540,
+            124820
+          ],
+          "status": "existing_detail_candidate",
+          "terrain_elevation_m": 520.8410500000003
+        },
+        {
+          "id": "A03",
+          "name": "샛개울 다리",
+          "xy_km": [
+            137.42,
+            124.35
+          ],
+          "xy_m": [
+            137420,
+            124350
+          ],
+          "status": "existing_detail_candidate",
+          "terrain_elevation_m": 519.7194999999999
+        },
+        {
+          "id": "A04",
+          "name": "옛 적재장",
+          "xy_km": [
+            138,
+            124.57
+          ],
+          "xy_m": [
+            138000,
+            124570
+          ],
+          "status": "existing_detail_candidate",
+          "terrain_elevation_m": 521.3006250000003
+        },
+        {
+          "id": "A05",
+          "name": "수액 숲",
+          "xy_km": [
+            138.22,
+            124.05
+          ],
+          "xy_m": [
+            138220,
+            124050
+          ],
+          "status": "existing_detail_candidate",
+          "terrain_elevation_m": 520.8571874999999
+        },
+        {
+          "id": "A06",
+          "name": "적토 저장굴",
+          "xy_km": [
+            138.05,
+            123.7
+          ],
+          "xy_m": [
+            138050,
+            123700
+          ],
+          "status": "existing_detail_candidate",
+          "terrain_elevation_m": 519.535625
+        },
+        {
+          "id": "A07",
+          "name": "어살·여울 관찰턱",
+          "xy_km": [
+            136.73,
+            123.83
+          ],
+          "xy_m": [
+            136730,
+            123830
+          ],
+          "status": "existing_detail_candidate",
+          "terrain_elevation_m": 517.4868437499999
+        },
+        {
+          "id": "A08",
+          "name": "하류 쉼나루",
+          "xy_km": [
+            136.64,
+            123.49
+          ],
+          "xy_m": [
+            136640,
+            123490
+          ],
+          "status": "existing_detail_candidate",
+          "terrain_elevation_m": 516.6654999999994
+        },
+        {
+          "id": "A09",
+          "name": "높은 운반길",
+          "xy_km": [
+            137.72,
+            123.58
+          ],
+          "xy_m": [
+            137720,
+            123580
+          ],
+          "status": "existing_detail_candidate",
+          "terrain_elevation_m": 518.6567499999994
+        },
+        {
+          "id": "A10",
+          "name": "숲길 갈림턱",
+          "xy_km": [
+            137.5,
+            123.97
+          ],
+          "xy_m": [
+            137500,
+            123970
+          ],
+          "status": "existing_detail_candidate",
+          "terrain_elevation_m": 519.1521874999995
+        }
+      ]
+    },
+    {
+      "id": "T02",
+      "name": "미레바",
+      "kind": "town",
+      "xy_km": [
+        37,
+        10
+      ],
+      "lon_lat_deg": [
+        -0.4322507620916614,
+        54.08866472076582
+      ],
+      "polity": "tern",
+      "parent": null,
+      "terrain": "central",
+      "position_source": "T02",
+      "xy_m": [
+        37000,
+        10000
+      ],
+      "world_pixel_L10": [
+        33473854.617758043,
+        6694358.098090358
+      ],
+      "terrain_elevation_m": 312.125,
+      "source_context_bounds_xy_km": [
+        34.2,
+        8.6,
+        39.8,
+        11.4
+      ],
+      "context_bounds_meaning": "illustration coverage, not settlement footprint",
+      "footprint_status": "not_inferred_from_image",
+      "facilities": []
+    },
+    {
+      "id": "T03",
+      "name": "오르센",
+      "kind": "town",
+      "xy_km": [
+        45,
+        -35
+      ],
+      "lon_lat_deg": [
+        -0.31616192376838015,
+        53.68304729673721
+      ],
+      "polity": "tern",
+      "parent": null,
+      "terrain": "central",
+      "position_source": "T03",
+      "xy_m": [
+        45000,
+        -35000
+      ],
+      "world_pixel_L10": [
+        33495495.14571069,
+        6769970.666271375
+      ],
+      "terrain_elevation_m": 286.5625,
+      "source_context_bounds_xy_km": [
+        42.2,
+        -36.4,
+        47.8,
+        -33.6
+      ],
+      "context_bounds_meaning": "illustration coverage, not settlement footprint",
+      "footprint_status": "not_inferred_from_image",
+      "facilities": []
+    },
+    {
+      "id": "T04",
+      "name": "켈바",
+      "kind": "town",
+      "xy_km": [
+        -890.3430271555216,
+        200.3333881209349
+      ],
+      "lon_lat_deg": [
+        -15.0633803141663,
+        55
+      ],
+      "polity": "west",
+      "parent": null,
+      "terrain": "east_valley_entry",
+      "position_source": "outer_candidate",
+      "xy_m": [
+        -890343.0271555216,
+        200333.3881209349
+      ],
+      "world_pixel_L10": [
+        30746414.38643427,
+        6524472.888888889
+      ],
+      "terrain_elevation_m": 850.0517730884618,
+      "source_context_bounds_xy_km": [
+        -894.0430271555216,
+        199.6833881209349,
+        -886.6430271555215,
+        203.38338812093488
+      ],
+      "context_bounds_meaning": "illustration coverage, not settlement footprint",
+      "footprint_status": "not_inferred_from_image",
+      "facilities": [
+        {
+          "id": "K01",
+          "name": "수문도시 공공 마당",
+          "xy_km": [
+            -889.9430271555216,
+            200.4333881209349
+          ],
+          "xy_m": [
+            -889943.0271555216,
+            200433.3881209349
+          ],
+          "status": "existing_detail_candidate",
+          "terrain_elevation_m": 851.1565250784882
+        },
+        {
+          "id": "K02",
+          "name": "주거·식수 저장단",
+          "xy_km": [
+            -889.8430271555216,
+            200.9833881209349
+          ],
+          "xy_m": [
+            -889843.0271555216,
+            200983.3881209349
+          ],
+          "status": "existing_detail_candidate",
+          "terrain_elevation_m": 853.7780469179559
+        },
+        {
+          "id": "K03",
+          "name": "물 배정 기록소",
+          "xy_km": [
+            -890.4430271555216,
+            200.9333881209349
+          ],
+          "xy_m": [
+            -890443.0271555216,
+            200933.3881209349
+          ],
+          "status": "existing_detail_candidate",
+          "terrain_elevation_m": 853.1953118648155
+        },
+        {
+          "id": "K04",
+          "name": "폐보온관과 작은 작업터",
+          "xy_km": [
+            -890.8430271555216,
+            201.5333881209349
+          ],
+          "xy_m": [
+            -890843.0271555216,
+            201533.3881209349
+          ],
+          "status": "existing_detail_candidate",
+          "terrain_elevation_m": 855.9026047502366
+        },
+        {
+          "id": "K05",
+          "name": "하안 짐 분리터",
+          "xy_km": [
+            -891.2430271555215,
+            201.9333881209349
+          ],
+          "xy_m": [
+            -891243.0271555216,
+            201933.3881209349
+          ],
+          "status": "existing_detail_candidate",
+          "terrain_elevation_m": 857.5802462778826
+        },
+        {
+          "id": "K06",
+          "name": "윗샘 지류 취수 관리턱",
+          "xy_km": [
+            -892.1230271555215,
+            202.4333881209349
+          ],
+          "xy_m": [
+            -892123.0271555216,
+            202433.3881209349
+          ],
+          "status": "existing_detail_candidate",
+          "terrain_elevation_m": 859.0844402866408
+        },
+        {
+          "id": "K07",
+          "name": "옛 돌 저장터",
+          "xy_km": [
+            -891.1430271555215,
+            202.7333881209349
+          ],
+          "xy_m": [
+            -891143.0271555216,
+            202733.3881209349
+          ],
+          "status": "existing_detail_candidate",
+          "terrain_elevation_m": 860.2485233906168
+        },
+        {
+          "id": "K08",
+          "name": "옛 장례단",
+          "xy_km": [
+            -890.2430271555215,
+            202.5333881209349
+          ],
+          "xy_m": [
+            -890243.0271555216,
+            202533.3881209349
+          ],
+          "status": "existing_detail_candidate",
+          "terrain_elevation_m": 859.4430818676635
+        },
+        {
+          "id": "K09",
+          "name": "폐계약 공구대",
+          "xy_km": [
+            -889.9430271555216,
+            201.7333881209349
+          ],
+          "xy_m": [
+            -889943.0271555216,
+            201733.3881209349
+          ],
+          "status": "existing_detail_candidate",
+          "terrain_elevation_m": 858.0215971594748
+        },
+        {
+          "id": "K10",
+          "name": "높은 농로 쉼터",
+          "xy_km": [
+            -889.5430271555216,
+            201.1833881209349
+          ],
+          "xy_m": [
+            -889543.0271555216,
+            201183.3881209349
+          ],
+          "status": "existing_detail_candidate",
+          "terrain_elevation_m": 853.7654166537234
+        }
+      ]
+    },
+    {
+      "id": "T05",
+      "name": "드라벤",
+      "kind": "town",
+      "xy_km": [
+        -2042.566363225762,
+        550.0494071750638
+      ],
+      "lon_lat_deg": [
+        -33.89260570687415,
+        54.550000000000004
+      ],
+      "polity": "west",
+      "parent": null,
+      "terrain": "west_valley_below_pass",
+      "position_source": "outer_candidate",
+      "xy_m": [
+        -2042566.363225762,
+        550049.4071750639
+      ],
+      "world_pixel_L10": [
+        27236392.369477108,
+        6608358.968888888
+      ],
+      "terrain_elevation_m": 850.0159329719511,
+      "source_context_bounds_xy_km": [
+        -2045.366363225762,
+        548.6494071750639,
+        -2039.766363225762,
+        551.4494071750638
+      ],
+      "context_bounds_meaning": "illustration coverage, not settlement footprint",
+      "footprint_status": "not_inferred_from_image",
+      "facilities": []
+    },
+    {
+      "id": "T06",
+      "name": "살레크",
+      "kind": "town",
+      "xy_km": [
+        -3276.6510507913813,
+        -452.11380244250523
+      ],
+      "lon_lat_deg": [
+        -42.03442301644434,
+        41.48028530137359
+      ],
+      "polity": "west_treaty",
+      "parent": null,
+      "terrain": "coastal_terrace",
+      "position_source": "outer_candidate",
+      "xy_m": [
+        -3276651.0507913814,
+        -452113.80244250526
+      ],
+      "world_pixel_L10": [
+        25718647.617974907,
+        9044730.375080336
+      ],
+      "terrain_elevation_m": 8.070324576483685,
+      "source_context_bounds_xy_km": [
+        -3280.173839161863,
+        -454.8742747090056,
+        -3270.173839161863,
+        -449.8742747090056
+      ],
+      "context_bounds_meaning": "illustration coverage, not settlement footprint",
+      "footprint_status": "not_inferred_from_image",
+      "facilities": []
+    },
+    {
+      "id": "T07",
+      "name": "메르사",
+      "kind": "town",
+      "xy_km": [
+        1234.242555079002,
+        -752.7680848574923
+      ],
+      "lon_lat_deg": [
+        15.063380314166269,
+        46.000000000000014
+      ],
+      "polity": "east",
+      "parent": null,
+      "terrain": "grain_road",
+      "position_source": "outer_candidate",
+      "xy_m": [
+        1234242.555079002,
+        -752768.0848574924
+      ],
+      "world_pixel_L10": [
+        36362449.61356573,
+        8202194.488888886
+      ],
+      "terrain_elevation_m": 179.98058748520128,
+      "source_context_bounds_xy_km": [
+        1231.442555079002,
+        -754.1680848574923,
+        1237.0425550790019,
+        -751.3680848574924
+      ],
+      "context_bounds_meaning": "illustration coverage, not settlement footprint",
+      "footprint_status": "not_inferred_from_image",
+      "facilities": []
+    },
+    {
+      "id": "T08",
+      "name": "에스칼",
+      "kind": "town",
+      "xy_km": [
+        2228.776414958394,
+        475.8503179346188
+      ],
+      "lon_lat_deg": [
+        33.89260570687415,
+        53.20000000000001
+      ],
+      "polity": "east",
+      "parent": null,
+      "terrain": "east_draining_forest",
+      "position_source": "outer_candidate",
+      "xy_m": [
+        2228776.414958394,
+        475850.3179346188
+      ],
+      "world_pixel_L10": [
+        39872471.63052289,
+        6860017.2088888865
+      ],
+      "terrain_elevation_m": 649.9456870845819,
+      "source_context_bounds_xy_km": [
+        2225.976414958394,
+        474.4503179346188,
+        2231.5764149583943,
+        477.25031793461875
+      ],
+      "context_bounds_meaning": "illustration coverage, not settlement footprint",
+      "footprint_status": "not_inferred_from_image",
+      "facilities": []
+    },
+    {
+      "id": "T09",
+      "name": "루세아",
+      "kind": "town",
+      "xy_km": [
+        2996.5653615724295,
+        -1723.98245293493
+      ],
+      "lon_lat_deg": [
+        31.18394484039485,
+        32.763206968188406
+      ],
+      "polity": "east",
+      "parent": null,
+      "terrain": "coastal_terrace",
+      "position_source": "outer_candidate",
+      "xy_m": [
+        2996565.3615724295,
+        -1723982.45293493
+      ],
+      "world_pixel_L10": [
+        39367540.64799322,
+        10669711.553799978
+      ],
+      "terrain_elevation_m": 7.8748770281128015,
+      "source_context_bounds_xy_km": [
+        2992.3153615724295,
+        -1727.7814910406069,
+        3002.3153615724295,
+        -1722.7814910406069
+      ],
+      "context_bounds_meaning": "illustration coverage, not settlement footprint",
+      "footprint_status": "not_inferred_from_image",
+      "facilities": []
+    },
+    {
+      "id": "T10",
+      "name": "네르바",
+      "kind": "town",
+      "xy_km": [
+        -205.9529376219892,
+        909.001952106139
+      ],
+      "lon_lat_deg": [
+        -4.953807396066772,
+        62.12747582849426
+      ],
+      "polity": "north",
+      "parent": "M07",
+      "terrain": "lower_valley",
+      "position_source": "outer_candidate",
+      "xy_m": [
+        -205952.9376219892,
+        909001.952106139
+      ],
+      "world_pixel_L10": [
+        32630975.369931,
+        5195815.094339699
+      ],
+      "terrain_elevation_m": 750.0024056811402,
+      "source_context_bounds_xy_km": [
+        -209.0529376219893,
+        908.151952106139,
+        -202.85293762198913,
+        911.2519521061391
+      ],
+      "context_bounds_meaning": "illustration coverage, not settlement footprint",
+      "footprint_status": "not_inferred_from_image",
+      "facilities": [
+        {
+          "id": "N01",
+          "name": "도시 서안 하역뜰",
+          "xy_km": [
+            -206.3529376219892,
+            908.801952106139
+          ],
+          "xy_m": [
+            -206352.9376219892,
+            908801.9521061389
+          ],
+          "status": "existing_detail_candidate",
+          "terrain_elevation_m": 750.2332530515375
+        },
+        {
+          "id": "N02",
+          "name": "비축·공동 취사단",
+          "xy_km": [
+            -206.75293762198922,
+            909.301952106139
+          ],
+          "xy_m": [
+            -206752.93762198923,
+            909301.9521061389
+          ],
+          "status": "existing_detail_candidate",
+          "terrain_elevation_m": 751.3678858965261
+        },
+        {
+          "id": "N03",
+          "name": "침엽림 짐 회수터",
+          "xy_km": [
+            -207.1529376219892,
+            909.901952106139
+          ],
+          "xy_m": [
+            -207152.9376219892,
+            909901.952106139
+          ],
+          "status": "existing_detail_candidate",
+          "terrain_elevation_m": 752.5792099513094
+        },
+        {
+          "id": "N04",
+          "name": "옛 순찰 표식",
+          "xy_km": [
+            -207.4529376219892,
+            910.4519521061391
+          ],
+          "xy_m": [
+            -207452.9376219892,
+            910451.952106139
+          ],
+          "status": "existing_detail_candidate",
+          "terrain_elevation_m": 753.438950389453
+        },
+        {
+          "id": "N05",
+          "name": "숲 가장자리 대피집",
+          "xy_km": [
+            -206.6529376219892,
+            910.601952106139
+          ],
+          "xy_m": [
+            -206652.9376219892,
+            910601.952106139
+          ],
+          "status": "existing_detail_candidate",
+          "terrain_elevation_m": 752.8486003829105
+        },
+        {
+          "id": "N06",
+          "name": "높은 귀환 농로",
+          "xy_km": [
+            -206.3029376219892,
+            909.851952106139
+          ],
+          "xy_m": [
+            -206302.9376219892,
+            909851.952106139
+          ],
+          "status": "existing_detail_candidate",
+          "terrain_elevation_m": 751.4478167798705
+        }
+      ]
+    },
+    {
+      "id": "T11",
+      "name": "케르딘",
+      "kind": "town",
+      "xy_km": [
+        -265.95293762198924,
+        1219.001952106139
+      ],
+      "lon_lat_deg": [
+        -6.609589811325755,
+        64.87177674492295
+      ],
+      "polity": "north",
+      "parent": "M07",
+      "terrain": "valley_below_high_pass",
+      "position_source": "outer_candidate",
+      "xy_m": [
+        -265952.93762198923,
+        1219001.952106139
+      ],
+      "world_pixel_L10": [
+        32322315.15626654,
+        4684240.324962786
+      ],
+      "terrain_elevation_m": 1400.169122313945,
+      "source_context_bounds_xy_km": [
+        -268.75293762198925,
+        1217.601952106139,
+        -263.1529376219892,
+        1220.401952106139
+      ],
+      "context_bounds_meaning": "illustration coverage, not settlement footprint",
+      "footprint_status": "not_inferred_from_image",
+      "facilities": []
+    },
+    {
+      "id": "T12",
+      "name": "울렌",
+      "kind": "town",
+      "xy_km": [
+        -550.9529376219892,
+        1139.001952106139
+      ],
+      "lon_lat_deg": [
+        -12.245021357605813,
+        63.8396248638379
+      ],
+      "polity": "north_treaty",
+      "parent": "M07",
+      "terrain": "sheltered_branch_valley",
+      "position_source": "outer_candidate",
+      "xy_m": [
+        -550952.9376219893,
+        1139001.952106139
+      ],
+      "world_pixel_L10": [
+        31271794.575098157,
+        4876647.381115789
+      ],
+      "terrain_elevation_m": 1200.0244764552453,
+      "source_context_bounds_xy_km": [
+        -553.7529376219892,
+        1137.601952106139,
+        -548.1529376219893,
+        1140.401952106139
+      ],
+      "context_bounds_meaning": "illustration coverage, not settlement footprint",
+      "footprint_status": "not_inferred_from_image",
+      "facilities": []
+    },
+    {
+      "id": "V01",
+      "name": "벨레스",
+      "kind": "village",
+      "xy_km": [
+        150,
+        145
+      ],
+      "lon_lat_deg": [
+        1.3706119778145285,
+        55.28227997171035
+      ],
+      "polity": "trade_agreement_unsettled",
+      "parent": null,
+      "terrain": "central",
+      "position_source": "veles",
+      "xy_m": [
+        150000,
+        145000
+      ],
+      "world_pixel_L10": [
+        33809932.59115535,
+        6471852.088246018
+      ],
+      "terrain_elevation_m": 600,
+      "source_context_bounds_xy_km": [
+        148.6448484848485,
+        144.14945652173913,
+        151.27951515151514,
+        146.43478260869566
+      ],
+      "context_bounds_meaning": "illustration coverage, not settlement footprint",
+      "footprint_status": "not_inferred_from_image",
+      "facilities": []
+    },
+    {
+      "id": "V02",
+      "name": "솔숨",
+      "kind": "village",
+      "xy_km": [
+        154,
+        151
+      ],
+      "lon_lat_deg": [
+        1.4370761310058986,
+        55.33501461125799
+      ],
+      "polity": "tern",
+      "parent": null,
+      "terrain": "central",
+      "position_source": "V02",
+      "xy_m": [
+        154000,
+        151000
+      ],
+      "world_pixel_L10": [
+        33822322.407314785,
+        6462021.638930763
+      ],
+      "terrain_elevation_m": 625,
+      "source_context_bounds_xy_km": [
+        152.2,
+        150.1,
+        155.8,
+        151.9
+      ],
+      "context_bounds_meaning": "illustration coverage, not settlement footprint",
+      "footprint_status": "not_inferred_from_image",
+      "facilities": []
+    },
+    {
+      "id": "V03",
+      "name": "들보리",
+      "kind": "village",
+      "xy_km": [
+        140,
+        137
+      ],
+      "lon_lat_deg": [
+        1.208695864179934,
+        55.21324910240429
+      ],
+      "polity": "tern",
+      "parent": null,
+      "terrain": "central",
+      "position_source": "V03",
+      "xy_m": [
+        140000,
+        137000
+      ],
+      "world_pixel_L10": [
+        33779749.239907265,
+        6484720.374968412
+      ],
+      "terrain_elevation_m": 573.3125,
+      "source_context_bounds_xy_km": [
+        138.2,
+        136.1,
+        141.8,
+        137.9
+      ],
+      "context_bounds_meaning": "illustration coverage, not settlement footprint",
+      "footprint_status": "not_inferred_from_image",
+      "facilities": []
+    },
+    {
+      "id": "V04",
+      "name": "숲곁",
+      "kind": "village",
+      "xy_km": [
+        143,
+        143
+      ],
+      "lon_lat_deg": [
+        1.259042825035169,
+        55.26636127485317
+      ],
+      "polity": "tern",
+      "parent": null,
+      "terrain": "central",
+      "position_source": "V04",
+      "xy_m": [
+        143000,
+        143000
+      ],
+      "world_pixel_L10": [
+        33789134.59365406,
+        6474819.548419477
+      ],
+      "terrain_elevation_m": 579.15625,
+      "source_context_bounds_xy_km": [
+        141.2,
+        142.1,
+        144.8,
+        143.9
+      ],
+      "context_bounds_meaning": "illustration coverage, not settlement footprint",
+      "footprint_status": "not_inferred_from_image",
+      "facilities": []
+    },
+    {
+      "id": "V05",
+      "name": "윗샘",
+      "kind": "village",
+      "xy_km": [
+        -920.3430271555216,
+        235.3333881209349
+      ],
+      "lon_lat_deg": [
+        -15.637661903169494,
+        55.25276270512722
+      ],
+      "polity": "west",
+      "parent": "T04",
+      "terrain": "upper_intake",
+      "position_source": "outer_candidate",
+      "xy_m": [
+        -920343.0271555216,
+        235333.3881209349
+      ],
+      "world_pixel_L10": [
+        30639360.539061714,
+        6477354.505548182
+      ],
+      "terrain_elevation_m": 1000.0734865672366,
+      "source_context_bounds_xy_km": [
+        -922.1430271555215,
+        234.4333881209349,
+        -918.5430271555216,
+        236.2333881209349
+      ],
+      "context_bounds_meaning": "illustration coverage, not settlement footprint",
+      "footprint_status": "not_inferred_from_image",
+      "facilities": []
+    },
+    {
+      "id": "V06",
+      "name": "누마",
+      "kind": "village",
+      "xy_km": [
+        -1460.2733267209078,
+        489.34169769054535
+      ],
+      "lon_lat_deg": [
+        -25.045776589604543,
+        56.11930812329781
+      ],
+      "polity": "west",
+      "parent": "M04",
+      "terrain": "sheltered_plateau",
+      "position_source": "outer_candidate",
+      "xy_m": [
+        -1460273.3267209078,
+        489341.69769054535
+      ],
+      "world_pixel_L10": [
+        28885560.847427346,
+        6315818.731609758
+      ],
+      "terrain_elevation_m": 1507.5716600779037,
+      "source_context_bounds_xy_km": [
+        -1462.0733267209077,
+        488.44169769054537,
+        -1458.4733267209078,
+        490.2416976905453
+      ],
+      "context_bounds_meaning": "illustration coverage, not settlement footprint",
+      "footprint_status": "not_inferred_from_image",
+      "facilities": []
+    },
+    {
+      "id": "V07",
+      "name": "바람재",
+      "kind": "village",
+      "xy_km": [
+        -1405.2733267209078,
+        469.34169769054535
+      ],
+      "lon_lat_deg": [
+        -24.10104873326338,
+        56.11422932722882
+      ],
+      "polity": "west",
+      "parent": "M04",
+      "terrain": "sheltered_below_windmills",
+      "position_source": "outer_candidate",
+      "xy_m": [
+        -1405273.3267209078,
+        469341.69769054535
+      ],
+      "world_pixel_L10": [
+        29061670.88417238,
+        6316765.487817193
+      ],
+      "terrain_elevation_m": 876.6913529294098,
+      "source_context_bounds_xy_km": [
+        -1407.0733267209077,
+        468.44169769054537,
+        -1403.4733267209078,
+        470.2416976905453
+      ],
+      "context_bounds_meaning": "illustration coverage, not settlement footprint",
+      "footprint_status": "not_inferred_from_image",
+      "facilities": []
+    },
+    {
+      "id": "V08",
+      "name": "갈매",
+      "kind": "village",
+      "xy_km": [
+        -3263.0058320556363,
+        -414.54620476072546
+      ],
+      "lon_lat_deg": [
+        -42.11649810923252,
+        41.82211786936417
+      ],
+      "polity": "west_treaty",
+      "parent": null,
+      "terrain": "coastal_terrace",
+      "position_source": "outer_candidate",
+      "xy_m": [
+        -3263005.832055636,
+        -414546.20476072544
+      ],
+      "world_pixel_L10": [
+        25703347.711753495,
+        8981008.165869083
+      ],
+      "terrain_elevation_m": 8.15099116866588,
+      "source_context_bounds_xy_km": [
+        -3265.3067939499597,
+        -417.09620476072547,
+        -3258.10679394996,
+        -413.49620476072545
+      ],
+      "context_bounds_meaning": "illustration coverage, not settlement footprint",
+      "footprint_status": "not_inferred_from_image",
+      "facilities": []
+    },
+    {
+      "id": "V09",
+      "name": "씨앗골",
+      "kind": "village",
+      "xy_km": [
+        1269.242555079002,
+        -727.7680848574923
+      ],
+      "lon_lat_deg": [
+        15.574135752495177,
+        46.14879855775064
+      ],
+      "polity": "east",
+      "parent": "T07",
+      "terrain": "seed_fields",
+      "position_source": "outer_candidate",
+      "xy_m": [
+        1269242.555079002,
+        -727768.0848574924
+      ],
+      "world_pixel_L10": [
+        36457661.328143716,
+        8174456.427290322
+      ],
+      "terrain_elevation_m": 442.08775860249597,
+      "source_context_bounds_xy_km": [
+        1267.442555079002,
+        -728.6680848574923,
+        1271.0425550790019,
+        -726.8680848574924
+      ],
+      "context_bounds_meaning": "illustration coverage, not settlement footprint",
+      "footprint_status": "not_inferred_from_image",
+      "facilities": []
+    },
+    {
+      "id": "V10",
+      "name": "물나래",
+      "kind": "village",
+      "xy_km": [
+        2041.8396215333198,
+        -811.0727062591023
+      ],
+      "lon_lat_deg": [
+        24.669687768233537,
+        43.46475804727837
+      ],
+      "polity": "east",
+      "parent": "M08",
+      "terrain": "irrigated_terrace",
+      "position_source": "outer_candidate",
+      "xy_m": [
+        2041839.6215333198,
+        -811072.7062591023
+      ],
+      "world_pixel_L10": [
+        38153195.114891246,
+        8674797.842811918
+      ],
+      "terrain_elevation_m": 159.98421609080603,
+      "source_context_bounds_xy_km": [
+        2040.0396215333199,
+        -811.9727062591023,
+        2043.6396215333198,
+        -810.1727062591024
+      ],
+      "context_bounds_meaning": "illustration coverage, not settlement footprint",
+      "footprint_status": "not_inferred_from_image",
+      "facilities": []
+    },
+    {
+      "id": "V11",
+      "name": "긴솔",
+      "kind": "village",
+      "xy_km": [
+        2193.776414958394,
+        505.8503179346188
+      ],
+      "lon_lat_deg": [
+        33.63921372920631,
+        53.58042228672045
+      ],
+      "polity": "east",
+      "parent": "T08",
+      "terrain": "upper_ship_forest",
+      "position_source": "outer_candidate",
+      "xy_m": [
+        2193776.414958394,
+        505850.3179346188
+      ],
+      "world_pixel_L10": [
+        39825235.942278445,
+        6789101.354716412
+      ],
+      "terrain_elevation_m": 899.9217390208776,
+      "source_context_bounds_xy_km": [
+        2191.976414958394,
+        504.9503179346188,
+        2195.5764149583943,
+        506.75031793461875
+      ],
+      "context_bounds_meaning": "illustration coverage, not settlement footprint",
+      "footprint_status": "not_inferred_from_image",
+      "facilities": []
+    },
+    {
+      "id": "V12",
+      "name": "청그물",
+      "kind": "village",
+      "xy_km": [
+        3708.3977467602954,
+        -106.39942917938025
+      ],
+      "lon_lat_deg": [
+        46.530141124596376,
+        41.775378231192484
+      ],
+      "polity": "east",
+      "parent": null,
+      "terrain": "coastal_terrace",
+      "position_source": "outer_candidate",
+      "xy_m": [
+        3708397.7467602952,
+        -106399.42917938025
+      ],
+      "world_pixel_L10": [
+        42228278.97953151,
+        8989721.065928731
+      ],
+      "terrain_elevation_m": 8.435586734884598,
+      "source_context_bounds_xy_km": [
+        3706.207285691474,
+        -107.68639896439174,
+        3713.407285691474,
+        -104.08639896439175
+      ],
+      "context_bounds_meaning": "illustration coverage, not settlement footprint",
+      "footprint_status": "not_inferred_from_image",
+      "facilities": []
+    },
+    {
+      "id": "V13",
+      "name": "돌곡",
+      "kind": "village",
+      "xy_km": [
+        -180.9529376219892,
+        924.001952106139
+      ],
+      "lon_lat_deg": [
+        -4.489944497305906,
+        62.27447275816613
+      ],
+      "polity": "north",
+      "parent": "T10",
+      "terrain": "storage_terrace",
+      "position_source": "outer_candidate",
+      "xy_m": [
+        -180952.9376219892,
+        924001.952106139
+      ],
+      "world_pixel_L10": [
+        32717445.68156319,
+        5168412.880557013
+      ],
+      "terrain_elevation_m": 661.7006807685303,
+      "source_context_bounds_xy_km": [
+        -182.75293762198922,
+        923.101952106139,
+        -179.1529376219892,
+        924.901952106139
+      ],
+      "context_bounds_meaning": "illustration coverage, not settlement footprint",
+      "footprint_status": "not_inferred_from_image",
+      "facilities": []
+    },
+    {
+      "id": "V14",
+      "name": "길목",
+      "kind": "village",
+      "xy_km": [
+        -255.95293762198924,
+        1189.001952106139
+      ],
+      "lon_lat_deg": [
+        -6.347582093595765,
+        64.61007285689391
+      ],
+      "polity": "north",
+      "parent": "T11",
+      "terrain": "lower_approach",
+      "position_source": "outer_candidate",
+      "xy_m": [
+        -255952.93762198923,
+        1189001.952106139
+      ],
+      "world_pixel_L10": [
+        32371156.934866797,
+        4733025.46560171
+      ],
+      "terrain_elevation_m": 1318.275481539572,
+      "source_context_bounds_xy_km": [
+        -257.75293762198925,
+        1188.101952106139,
+        -254.15293762198922,
+        1189.901952106139
+      ],
+      "context_bounds_meaning": "illustration coverage, not settlement footprint",
+      "footprint_status": "not_inferred_from_image",
+      "facilities": []
+    },
+    {
+      "id": "V15",
+      "name": "여름뜰",
+      "kind": "village",
+      "xy_km": [
+        -590.9529376219892,
+        1194.001952106139
+      ],
+      "lon_lat_deg": [
+        -13.252440461798525,
+        64.26409991605608
+      ],
+      "polity": "north_treaty",
+      "parent": "T12",
+      "terrain": "seasonal_summer_assembly",
+      "position_source": "outer_candidate",
+      "xy_m": [
+        -590952.9376219893,
+        1194001.952106139
+      ],
+      "world_pixel_L10": [
+        31083998.042725183,
+        4797519.496252726
+      ],
+      "terrain_elevation_m": 1047.929169705311,
+      "source_context_bounds_xy_km": [
+        -592.7529376219892,
+        1193.101952106139,
+        -589.1529376219893,
+        1194.901952106139
+      ],
+      "context_bounds_meaning": "illustration coverage, not settlement footprint",
+      "footprint_status": "not_inferred_from_image",
+      "facilities": []
+    },
+    {
+      "id": "V16",
+      "name": "새불",
+      "kind": "village",
+      "xy_km": [
+        -220.9529376219892,
+        994.001952106139
+      ],
+      "lon_lat_deg": [
+        -5.348282022182241,
+        62.88264420132198
+      ],
+      "polity": "north",
+      "parent": "M07",
+      "terrain": "roadside_terrace",
+      "position_source": "outer_candidate",
+      "xy_m": [
+        -220952.9376219892,
+        994001.952106139
+      ],
+      "world_pixel_L10": [
+        32557439.969832577,
+        5055041.506480819
+      ],
+      "terrain_elevation_m": 883.2411625647062,
+      "source_context_bounds_xy_km": [
+        -222.75293762198922,
+        993.101952106139,
+        -219.1529376219892,
+        994.901952106139
+      ],
+      "context_bounds_meaning": "illustration coverage, not settlement footprint",
+      "footprint_status": "not_inferred_from_image",
+      "facilities": []
+    }
+  ],
+  "ports": {
+    "M03": {
+      "coast_vertex": 2932,
+      "shore_xy_km": [
+        416.4258136758482,
+        -1066.7236598221132
+      ],
+      "settlement_xy_km": [
+        417.4518741058252,
+        -1063.9045819597554
+      ],
+      "offshore_xy_km": [
+        412.32157195594016,
+        -1077.9999712715442
+      ]
+    },
+    "M05": {
+      "coast_vertex": 1634,
+      "shore_xy_km": [
+        -2691.2660396843416,
+        1021.5426990366013
+      ],
+      "settlement_xy_km": [
+        -2688.9679063549847,
+        1019.6143362075417
+      ],
+      "offshore_xy_km": [
+        -2700.4585730017693,
+        1029.2561503528398
+      ]
+    },
+    "M06": {
+      "coast_vertex": 4241,
+      "shore_xy_km": [
+        2675.279823404457,
+        1035.5935111734775
+      ],
+      "settlement_xy_km": [
+        2672.681747193104,
+        1034.0935111734775
+      ],
+      "offshore_xy_km": [
+        2685.67212824987,
+        1041.5935111734775
+      ]
+    },
+    "T06": {
+      "coast_vertex": 1926,
+      "shore_xy_km": [
+        -3273.696627532345,
+        -452.634746975506
+      ],
+      "settlement_xy_km": [
+        -3276.6510507913813,
+        -452.11380244250523
+      ],
+      "offshore_xy_km": [
+        -3261.8789344961983,
+        -454.71852510750915
+      ]
+    },
+    "T09": {
+      "coast_vertex": 3447,
+      "shore_xy_km": [
+        2998.0653615724295,
+        -1726.5805291462834
+      ],
+      "settlement_xy_km": [
+        2996.5653615724295,
+        -1723.98245293493
+      ],
+      "offshore_xy_km": [
+        3004.0653615724295,
+        -1736.9728339916967
+      ]
+    },
+    "V08": {
+      "coast_vertex": 1932,
+      "shore_xy_km": [
+        -3260.407755844283,
+        -416.04620476072546
+      ],
+      "settlement_xy_km": [
+        -3263.0058320556363,
+        -414.54620476072546
+      ],
+      "offshore_xy_km": [
+        -3250.0154509988697,
+        -422.04620476072546
+      ]
+    },
+    "V12": {
+      "coast_vertex": 3991,
+      "shore_xy_km": [
+        3711.216824622653,
+        -105.37336874940324
+      ],
+      "settlement_xy_km": [
+        3708.3977467602954,
+        -106.39942917938025
+      ],
+      "offshore_xy_km": [
+        3722.493136072084,
+        -101.26912702949522
+      ]
+    },
+    "plain_mouth": {
+      "coast_vertex": 3205,
+      "shore_xy_km": [
+        1775.3479059282918,
+        -1700.8915031896872
+      ],
+      "settlement_xy_km": [
+        1773.0497725989349,
+        -1698.9631403606277
+      ],
+      "offshore_xy_km": [
+        1784.5404392457194,
+        -1708.6049545059257
+      ]
+    },
+    "north_mouth": {
+      "coast_vertex": 41,
+      "shore_xy_km": [
+        -198.7813152474704,
+        2267.0124244441017
+      ],
+      "settlement_xy_km": [
+        -201.3793914588237,
+        2265.5124244441017
+      ],
+      "offshore_xy_km": [
+        -188.38901040205712,
+        2273.0124244441017
+      ]
+    }
+  },
+  "world_tree": {
+    "xy_km": [
+      0,
+      0
+    ],
+    "lon_lat_deg": [
+      -1,
+      54
+    ],
+    "crown_radius_km": 9,
+    "residential_exclusion_radius_km": 12
+  },
+  "exclusions": [
+    {
+      "id": "world-tree-residential-exclusion",
+      "center_xy_m": [
+        0,
+        0
+      ],
+      "radius_m": 12000,
+      "source": "existing_world_tree_basis",
+      "affected": "residential_placement"
+    }
+  ]
+}

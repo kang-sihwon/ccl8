@@ -1,0 +1,1413 @@
+{
+  "schema_version": 1,
+  "status": "design_master_candidate",
+  "coordinate_system": {
+    "type": "spherical_azimuthal_equidistant",
+    "radius_km": 6366.197723675814,
+    "origin_lon_lat_deg": [
+      -1,
+      54
+    ],
+    "axes": "x east and y north at origin",
+    "rotation_deg": 0,
+    "units": "meters",
+    "limitations": "Distances from origin are true great-circle distances. Other planar distances and areas are distorted. No WGS84 or DEM.",
+    "axis": "x east; y north; z up",
+    "vertical_datum": "fictional sea level = 0 m",
+    "geographic_warning": "Fictional sphere, not Earth WGS84"
+  },
+  "road_river": [
+    {
+      "id": "X1",
+      "road": "R2",
+      "river": "H01",
+      "road_segment": 0,
+      "river_segment": 17,
+      "type": "intersection",
+      "xy_m": [
+        28000,
+        -12000
+      ],
+      "t": 1,
+      "u": 1,
+      "required_review": "bridge_ford_ferry_or_shared_anchor",
+      "resolved": false
+    },
+    {
+      "id": "X2",
+      "road": "R2",
+      "river": "H01",
+      "road_segment": 0,
+      "river_segment": 18,
+      "type": "intersection",
+      "xy_m": [
+        28000,
+        -12000
+      ],
+      "t": 1,
+      "u": 0,
+      "required_review": "bridge_ford_ferry_or_shared_anchor",
+      "resolved": false
+    },
+    {
+      "id": "X3",
+      "road": "R3",
+      "river": "H04",
+      "road_segment": 0,
+      "river_segment": 6,
+      "type": "intersection",
+      "xy_m": [
+        -59233.226837060705,
+        72076.67731629394
+      ],
+      "t": 0.48881789137380194,
+      "u": 0.1597444089456869,
+      "required_review": "bridge_ford_ferry_or_shared_anchor",
+      "resolved": false
+    },
+    {
+      "id": "X4",
+      "road": "R3",
+      "river": "H04",
+      "road_segment": 1,
+      "river_segment": 4,
+      "type": "intersection",
+      "xy_m": [
+        -259069.76744186046,
+        450232.5581395349
+      ],
+      "t": 0.7441860465116279,
+      "u": 0.5348837209302325,
+      "required_review": "bridge_ford_ferry_or_shared_anchor",
+      "resolved": false
+    },
+    {
+      "id": "X5",
+      "road": "R3",
+      "river": "H04",
+      "road_segment": 2,
+      "river_segment": 2,
+      "type": "intersection",
+      "xy_m": [
+        -205952.9376219892,
+        909001.952106139
+      ],
+      "t": 1,
+      "u": 1.0000000000000002,
+      "required_review": "bridge_ford_ferry_or_shared_anchor",
+      "resolved": false
+    },
+    {
+      "id": "X6",
+      "road": "R3",
+      "river": "H04",
+      "road_segment": 2,
+      "river_segment": 3,
+      "type": "intersection",
+      "xy_m": [
+        -205952.9376219892,
+        909001.952106139
+      ],
+      "t": 1,
+      "u": 0,
+      "required_review": "bridge_ford_ferry_or_shared_anchor",
+      "resolved": false
+    },
+    {
+      "id": "X7",
+      "road": "R3",
+      "river": "H04",
+      "road_segment": 3,
+      "river_segment": 1,
+      "type": "intersection",
+      "xy_m": [
+        -230952.9376219892,
+        1069001.952106139
+      ],
+      "t": 1.0000000000000004,
+      "u": 1,
+      "required_review": "bridge_ford_ferry_or_shared_anchor",
+      "resolved": false
+    },
+    {
+      "id": "X8",
+      "road": "R3",
+      "river": "H04",
+      "road_segment": 3,
+      "river_segment": 2,
+      "type": "collinear_overlap",
+      "xy_m": [
+        -218452.9376219892,
+        989001.9521061389
+      ],
+      "overlap_m": 161941.34740701635,
+      "required_review": "choose_bank_alignment",
+      "resolved": false
+    },
+    {
+      "id": "X9",
+      "road": "R3",
+      "river": "H04",
+      "road_segment": 3,
+      "river_segment": 3,
+      "type": "intersection",
+      "xy_m": [
+        -205952.9376219892,
+        909001.952106139
+      ],
+      "t": 0,
+      "u": 0,
+      "required_review": "bridge_ford_ferry_or_shared_anchor",
+      "resolved": false
+    },
+    {
+      "id": "X10",
+      "road": "R3",
+      "river": "H08",
+      "road_segment": 3,
+      "river_segment": 1,
+      "type": "intersection",
+      "xy_m": [
+        -230952.9376219892,
+        1069001.952106139
+      ],
+      "t": 0.9999999999999999,
+      "u": 0.9999999999999999,
+      "required_review": "bridge_ford_ferry_or_shared_anchor",
+      "resolved": false
+    },
+    {
+      "id": "X11",
+      "road": "R4",
+      "river": "H02",
+      "road_segment": 1,
+      "river_segment": 2,
+      "type": "intersection",
+      "xy_m": [
+        -650000,
+        100000
+      ],
+      "t": 1,
+      "u": 1,
+      "required_review": "bridge_ford_ferry_or_shared_anchor",
+      "resolved": false
+    },
+    {
+      "id": "X12",
+      "road": "R4",
+      "river": "H02",
+      "road_segment": 1,
+      "river_segment": 3,
+      "type": "intersection",
+      "xy_m": [
+        -650000,
+        100000
+      ],
+      "t": 1,
+      "u": 0,
+      "required_review": "bridge_ford_ferry_or_shared_anchor",
+      "resolved": false
+    },
+    {
+      "id": "X13",
+      "road": "R4",
+      "river": "H02",
+      "road_segment": 2,
+      "river_segment": 1,
+      "type": "intersection",
+      "xy_m": [
+        -890343.0271555213,
+        200333.38812093477
+      ],
+      "t": 0.9999999999999988,
+      "u": 0.9999999999999988,
+      "required_review": "bridge_ford_ferry_or_shared_anchor",
+      "resolved": false
+    },
+    {
+      "id": "X14",
+      "road": "R4",
+      "river": "H02",
+      "road_segment": 2,
+      "river_segment": 2,
+      "type": "collinear_overlap",
+      "xy_m": [
+        -770171.5135777608,
+        150166.69406046745
+      ],
+      "overlap_m": 260444.9259903251,
+      "required_review": "choose_bank_alignment",
+      "resolved": false
+    },
+    {
+      "id": "X15",
+      "road": "R4",
+      "river": "H02",
+      "road_segment": 2,
+      "river_segment": 3,
+      "type": "intersection",
+      "xy_m": [
+        -650000,
+        100000
+      ],
+      "t": 0,
+      "u": 0,
+      "required_review": "bridge_ford_ferry_or_shared_anchor",
+      "resolved": false
+    },
+    {
+      "id": "X16",
+      "road": "R4",
+      "river": "H02",
+      "road_segment": 3,
+      "river_segment": 0,
+      "type": "intersection",
+      "xy_m": [
+        -1435273.3267209078,
+        454341.69769054535
+      ],
+      "t": 1,
+      "u": 1.0000000000000007,
+      "required_review": "bridge_ford_ferry_or_shared_anchor",
+      "resolved": false
+    },
+    {
+      "id": "X17",
+      "road": "R4",
+      "river": "H02",
+      "road_segment": 3,
+      "river_segment": 1,
+      "type": "collinear_overlap",
+      "xy_m": [
+        -1162808.1769382148,
+        327337.5429057401
+      ],
+      "overlap_m": 601223.1305553976,
+      "required_review": "choose_bank_alignment",
+      "resolved": false
+    },
+    {
+      "id": "X18",
+      "road": "R4",
+      "river": "H02",
+      "road_segment": 3,
+      "river_segment": 2,
+      "type": "intersection",
+      "xy_m": [
+        -890343.0271555216,
+        200333.3881209349
+      ],
+      "t": 0,
+      "u": 0,
+      "required_review": "bridge_ford_ferry_or_shared_anchor",
+      "resolved": false
+    },
+    {
+      "id": "X19",
+      "road": "R4",
+      "river": "H04",
+      "road_segment": 0,
+      "river_segment": 6,
+      "type": "intersection",
+      "xy_m": [
+        -23796.992481203008,
+        -9699.248120300752
+      ],
+      "t": 0.19172932330827067,
+      "u": 0.4323308270676692,
+      "required_review": "bridge_ford_ferry_or_shared_anchor",
+      "resolved": false
+    },
+    {
+      "id": "X20",
+      "road": "R4",
+      "river": "H09",
+      "road_segment": 2,
+      "river_segment": 1,
+      "type": "intersection",
+      "xy_m": [
+        -890343.0271555216,
+        200333.3881209349
+      ],
+      "t": 1,
+      "u": 1,
+      "required_review": "bridge_ford_ferry_or_shared_anchor",
+      "resolved": false
+    },
+    {
+      "id": "X21",
+      "road": "R4",
+      "river": "H09",
+      "road_segment": 3,
+      "river_segment": 1,
+      "type": "intersection",
+      "xy_m": [
+        -890343.0271555216,
+        200333.3881209349
+      ],
+      "t": 0,
+      "u": 1,
+      "required_review": "bridge_ford_ferry_or_shared_anchor",
+      "resolved": false
+    },
+    {
+      "id": "X22",
+      "road": "R5",
+      "river": "H02",
+      "road_segment": 0,
+      "river_segment": 0,
+      "type": "intersection",
+      "xy_m": [
+        -1435273.3267209078,
+        454341.69769054535
+      ],
+      "t": 0,
+      "u": 1,
+      "required_review": "bridge_ford_ferry_or_shared_anchor",
+      "resolved": false
+    },
+    {
+      "id": "X23",
+      "road": "R5",
+      "river": "H02",
+      "road_segment": 0,
+      "river_segment": 1,
+      "type": "intersection",
+      "xy_m": [
+        -1435273.3267209078,
+        454341.69769054535
+      ],
+      "t": 0,
+      "u": 0,
+      "required_review": "bridge_ford_ferry_or_shared_anchor",
+      "resolved": false
+    },
+    {
+      "id": "X24",
+      "road": "R5",
+      "river": "H03",
+      "road_segment": 1,
+      "river_segment": 0,
+      "type": "intersection",
+      "xy_m": [
+        -2042566.363225762,
+        550049.4071750639
+      ],
+      "t": 1,
+      "u": 1,
+      "required_review": "bridge_ford_ferry_or_shared_anchor",
+      "resolved": false
+    },
+    {
+      "id": "X25",
+      "road": "R5",
+      "river": "H03",
+      "road_segment": 1,
+      "river_segment": 1,
+      "type": "intersection",
+      "xy_m": [
+        -2042566.363225762,
+        550049.4071750639
+      ],
+      "t": 1,
+      "u": 0,
+      "required_review": "bridge_ford_ferry_or_shared_anchor",
+      "resolved": false
+    },
+    {
+      "id": "X26",
+      "road": "R5",
+      "river": "H03",
+      "road_segment": 2,
+      "river_segment": 0,
+      "type": "intersection",
+      "xy_m": [
+        -2042566.363225762,
+        550049.4071750639
+      ],
+      "t": 0,
+      "u": 1,
+      "required_review": "bridge_ford_ferry_or_shared_anchor",
+      "resolved": false
+    },
+    {
+      "id": "X27",
+      "road": "R5",
+      "river": "H03",
+      "road_segment": 2,
+      "river_segment": 1,
+      "type": "intersection",
+      "xy_m": [
+        -2042566.363225762,
+        550049.4071750639
+      ],
+      "t": 0,
+      "u": 0,
+      "required_review": "bridge_ford_ferry_or_shared_anchor",
+      "resolved": false
+    },
+    {
+      "id": "X28",
+      "road": "R5",
+      "river": "H03",
+      "road_segment": 2,
+      "river_segment": 3,
+      "type": "intersection",
+      "xy_m": [
+        -2688967.9063549847,
+        1019614.3362075416
+      ],
+      "t": 1,
+      "u": 0,
+      "required_review": "bridge_ford_ferry_or_shared_anchor",
+      "resolved": false
+    },
+    {
+      "id": "X29",
+      "road": "R6",
+      "river": "H01",
+      "road_segment": 0,
+      "river_segment": 22,
+      "type": "intersection",
+      "xy_m": [
+        417451.8741058252,
+        -1063904.5819597554
+      ],
+      "t": 0,
+      "u": 1,
+      "required_review": "bridge_ford_ferry_or_shared_anchor",
+      "resolved": false
+    },
+    {
+      "id": "X30",
+      "road": "R6",
+      "river": "H01",
+      "road_segment": 0,
+      "river_segment": 23,
+      "type": "intersection",
+      "xy_m": [
+        417451.8741058252,
+        -1063904.5819597554
+      ],
+      "t": 0,
+      "u": 0,
+      "required_review": "bridge_ford_ferry_or_shared_anchor",
+      "resolved": false
+    },
+    {
+      "id": "X31",
+      "road": "R6",
+      "river": "H06",
+      "road_segment": 2,
+      "river_segment": 1,
+      "type": "intersection",
+      "xy_m": [
+        2016839.6215333198,
+        -786072.7062591023
+      ],
+      "t": 1,
+      "u": 1.0000000000000002,
+      "required_review": "bridge_ford_ferry_or_shared_anchor",
+      "resolved": false
+    },
+    {
+      "id": "X32",
+      "road": "R6",
+      "river": "H06",
+      "road_segment": 2,
+      "river_segment": 2,
+      "type": "intersection",
+      "xy_m": [
+        2016839.6215333198,
+        -786072.7062591023
+      ],
+      "t": 1,
+      "u": 0,
+      "required_review": "bridge_ford_ferry_or_shared_anchor",
+      "resolved": false
+    },
+    {
+      "id": "X33",
+      "road": "R6",
+      "river": "H07",
+      "road_segment": 0,
+      "river_segment": 2,
+      "type": "intersection",
+      "xy_m": [
+        417451.8741058252,
+        -1063904.5819597554
+      ],
+      "t": 0,
+      "u": 1,
+      "required_review": "bridge_ford_ferry_or_shared_anchor",
+      "resolved": false
+    },
+    {
+      "id": "X34",
+      "road": "R6",
+      "river": "H07",
+      "road_segment": 1,
+      "river_segment": 0,
+      "type": "intersection",
+      "xy_m": [
+        1234242.555079002,
+        -752768.0848574924
+      ],
+      "t": 1,
+      "u": 1,
+      "required_review": "bridge_ford_ferry_or_shared_anchor",
+      "resolved": false
+    },
+    {
+      "id": "X35",
+      "road": "R6",
+      "river": "H07",
+      "road_segment": 1,
+      "river_segment": 1,
+      "type": "intersection",
+      "xy_m": [
+        1234242.555079002,
+        -752768.0848574924
+      ],
+      "t": 1,
+      "u": 0,
+      "required_review": "bridge_ford_ferry_or_shared_anchor",
+      "resolved": false
+    },
+    {
+      "id": "X36",
+      "road": "R6",
+      "river": "H07",
+      "road_segment": 2,
+      "river_segment": 0,
+      "type": "intersection",
+      "xy_m": [
+        1234242.555079002,
+        -752768.0848574924
+      ],
+      "t": 0,
+      "u": 1,
+      "required_review": "bridge_ford_ferry_or_shared_anchor",
+      "resolved": false
+    },
+    {
+      "id": "X37",
+      "road": "R6",
+      "river": "H07",
+      "road_segment": 2,
+      "river_segment": 1,
+      "type": "intersection",
+      "xy_m": [
+        1234242.555079002,
+        -752768.0848574924
+      ],
+      "t": 0,
+      "u": 0,
+      "required_review": "bridge_ford_ferry_or_shared_anchor",
+      "resolved": false
+    },
+    {
+      "id": "X38",
+      "road": "R7",
+      "river": "H05",
+      "road_segment": 2,
+      "river_segment": 3,
+      "type": "intersection",
+      "xy_m": [
+        2672681.747193104,
+        1034093.5111734775
+      ],
+      "t": 1,
+      "u": 1,
+      "required_review": "bridge_ford_ferry_or_shared_anchor",
+      "resolved": false
+    },
+    {
+      "id": "X39",
+      "road": "R7",
+      "river": "H05",
+      "road_segment": 2,
+      "river_segment": 4,
+      "type": "intersection",
+      "xy_m": [
+        2672681.747193104,
+        1034093.5111734775
+      ],
+      "t": 1,
+      "u": 0,
+      "required_review": "bridge_ford_ferry_or_shared_anchor",
+      "resolved": false
+    },
+    {
+      "id": "X40",
+      "road": "R7",
+      "river": "H06",
+      "road_segment": 0,
+      "river_segment": 1,
+      "type": "intersection",
+      "xy_m": [
+        2016839.6215333198,
+        -786072.7062591023
+      ],
+      "t": 0,
+      "u": 1,
+      "required_review": "bridge_ford_ferry_or_shared_anchor",
+      "resolved": false
+    },
+    {
+      "id": "X41",
+      "road": "R7",
+      "river": "H06",
+      "road_segment": 0,
+      "river_segment": 2,
+      "type": "intersection",
+      "xy_m": [
+        2016839.6215333198,
+        -786072.7062591023
+      ],
+      "t": 0,
+      "u": 0,
+      "required_review": "bridge_ford_ferry_or_shared_anchor",
+      "resolved": false
+    },
+    {
+      "id": "X42",
+      "road": "B01",
+      "river": "H04",
+      "road_segment": 0,
+      "river_segment": 2,
+      "type": "intersection",
+      "xy_m": [
+        -205952.9376219892,
+        909001.952106139
+      ],
+      "t": 0,
+      "u": 1,
+      "required_review": "bridge_ford_ferry_or_shared_anchor",
+      "resolved": false
+    },
+    {
+      "id": "X43",
+      "road": "B01",
+      "river": "H04",
+      "road_segment": 0,
+      "river_segment": 3,
+      "type": "intersection",
+      "xy_m": [
+        -205952.9376219892,
+        909001.952106139
+      ],
+      "t": 0,
+      "u": 0,
+      "required_review": "bridge_ford_ferry_or_shared_anchor",
+      "resolved": false
+    },
+    {
+      "id": "X44",
+      "road": "B02",
+      "river": "H04",
+      "road_segment": 0,
+      "river_segment": 1,
+      "type": "intersection",
+      "xy_m": [
+        -230952.9376219892,
+        1069001.952106139
+      ],
+      "t": 0,
+      "u": 1,
+      "required_review": "bridge_ford_ferry_or_shared_anchor",
+      "resolved": false
+    },
+    {
+      "id": "X45",
+      "road": "B02",
+      "river": "H04",
+      "road_segment": 0,
+      "river_segment": 2,
+      "type": "intersection",
+      "xy_m": [
+        -230952.9376219892,
+        1069001.952106139
+      ],
+      "t": 0,
+      "u": 0,
+      "required_review": "bridge_ford_ferry_or_shared_anchor",
+      "resolved": false
+    },
+    {
+      "id": "X46",
+      "road": "B02",
+      "river": "H08",
+      "road_segment": 0,
+      "river_segment": 1,
+      "type": "intersection",
+      "xy_m": [
+        -230952.9376219892,
+        1069001.952106139
+      ],
+      "t": 0,
+      "u": 1,
+      "required_review": "bridge_ford_ferry_or_shared_anchor",
+      "resolved": false
+    },
+    {
+      "id": "X47",
+      "road": "B03",
+      "river": "H04",
+      "road_segment": 0,
+      "river_segment": 1,
+      "type": "intersection",
+      "xy_m": [
+        -230952.9376219892,
+        1069001.952106139
+      ],
+      "t": 0,
+      "u": 1,
+      "required_review": "bridge_ford_ferry_or_shared_anchor",
+      "resolved": false
+    },
+    {
+      "id": "X48",
+      "road": "B03",
+      "river": "H04",
+      "road_segment": 0,
+      "river_segment": 2,
+      "type": "intersection",
+      "xy_m": [
+        -230952.9376219892,
+        1069001.952106139
+      ],
+      "t": 0,
+      "u": 0,
+      "required_review": "bridge_ford_ferry_or_shared_anchor",
+      "resolved": false
+    },
+    {
+      "id": "X49",
+      "road": "B03",
+      "river": "H08",
+      "road_segment": 0,
+      "river_segment": 1,
+      "type": "intersection",
+      "xy_m": [
+        -230952.9376219892,
+        1069001.952106139
+      ],
+      "t": 0,
+      "u": 1,
+      "required_review": "bridge_ford_ferry_or_shared_anchor",
+      "resolved": false
+    },
+    {
+      "id": "X50",
+      "road": "B04",
+      "river": "H04",
+      "road_segment": 0,
+      "river_segment": 0,
+      "type": "intersection",
+      "xy_m": [
+        -265952.93762198923,
+        1219001.952106139
+      ],
+      "t": 1,
+      "u": 1,
+      "required_review": "bridge_ford_ferry_or_shared_anchor",
+      "resolved": false
+    },
+    {
+      "id": "X51",
+      "road": "B04",
+      "river": "H04",
+      "road_segment": 0,
+      "river_segment": 1,
+      "type": "intersection",
+      "xy_m": [
+        -265952.93762198923,
+        1219001.952106139
+      ],
+      "t": 1,
+      "u": 0,
+      "required_review": "bridge_ford_ferry_or_shared_anchor",
+      "resolved": false
+    },
+    {
+      "id": "X52",
+      "road": "B05",
+      "river": "H04",
+      "road_segment": 0,
+      "river_segment": 1,
+      "type": "intersection",
+      "xy_m": [
+        -230952.9376219892,
+        1069001.952106139
+      ],
+      "t": 0,
+      "u": 1,
+      "required_review": "bridge_ford_ferry_or_shared_anchor",
+      "resolved": false
+    },
+    {
+      "id": "X53",
+      "road": "B05",
+      "river": "H04",
+      "road_segment": 0,
+      "river_segment": 2,
+      "type": "intersection",
+      "xy_m": [
+        -230952.9376219892,
+        1069001.952106139
+      ],
+      "t": 0,
+      "u": 0,
+      "required_review": "bridge_ford_ferry_or_shared_anchor",
+      "resolved": false
+    },
+    {
+      "id": "X54",
+      "road": "B05",
+      "river": "H08",
+      "road_segment": 0,
+      "river_segment": 0,
+      "type": "intersection",
+      "xy_m": [
+        -550952.9376219894,
+        1139001.952106139
+      ],
+      "t": 1.0000000000000002,
+      "u": 1.0000000000000002,
+      "required_review": "bridge_ford_ferry_or_shared_anchor",
+      "resolved": false
+    },
+    {
+      "id": "X55",
+      "road": "B05",
+      "river": "H08",
+      "road_segment": 0,
+      "river_segment": 1,
+      "type": "collinear_overlap",
+      "xy_m": [
+        -390952.9376219893,
+        1104001.952106139
+      ],
+      "overlap_m": 327566.7870831841,
+      "required_review": "choose_bank_alignment",
+      "resolved": false
+    },
+    {
+      "id": "X56",
+      "road": "B06",
+      "river": "H08",
+      "road_segment": 0,
+      "river_segment": 0,
+      "type": "intersection",
+      "xy_m": [
+        -550952.9376219893,
+        1139001.952106139
+      ],
+      "t": 0,
+      "u": 1,
+      "required_review": "bridge_ford_ferry_or_shared_anchor",
+      "resolved": false
+    },
+    {
+      "id": "X57",
+      "road": "B06",
+      "river": "H08",
+      "road_segment": 0,
+      "river_segment": 1,
+      "type": "intersection",
+      "xy_m": [
+        -550952.9376219893,
+        1139001.952106139
+      ],
+      "t": 0,
+      "u": 0,
+      "required_review": "bridge_ford_ferry_or_shared_anchor",
+      "resolved": false
+    },
+    {
+      "id": "X58",
+      "road": "B07",
+      "river": "H02",
+      "road_segment": 0,
+      "river_segment": 1,
+      "type": "intersection",
+      "xy_m": [
+        -890343.0271555216,
+        200333.3881209349
+      ],
+      "t": 0,
+      "u": 1,
+      "required_review": "bridge_ford_ferry_or_shared_anchor",
+      "resolved": false
+    },
+    {
+      "id": "X59",
+      "road": "B07",
+      "river": "H02",
+      "road_segment": 0,
+      "river_segment": 2,
+      "type": "intersection",
+      "xy_m": [
+        -890343.0271555216,
+        200333.3881209349
+      ],
+      "t": 0,
+      "u": 0,
+      "required_review": "bridge_ford_ferry_or_shared_anchor",
+      "resolved": false
+    },
+    {
+      "id": "X60",
+      "road": "B07",
+      "river": "H09",
+      "road_segment": 0,
+      "river_segment": 0,
+      "type": "intersection",
+      "xy_m": [
+        -920343.0271555216,
+        235333.3881209349
+      ],
+      "t": 1,
+      "u": 1,
+      "required_review": "bridge_ford_ferry_or_shared_anchor",
+      "resolved": false
+    },
+    {
+      "id": "X61",
+      "road": "B07",
+      "river": "H09",
+      "road_segment": 0,
+      "river_segment": 1,
+      "type": "collinear_overlap",
+      "xy_m": [
+        -905343.0271555216,
+        217833.3881209349
+      ],
+      "overlap_m": 46097.722286464435,
+      "required_review": "choose_bank_alignment",
+      "resolved": false
+    },
+    {
+      "id": "X62",
+      "road": "B08",
+      "river": "H02",
+      "road_segment": 0,
+      "river_segment": 0,
+      "type": "intersection",
+      "xy_m": [
+        -1435273.3267209078,
+        454341.69769054535
+      ],
+      "t": 0,
+      "u": 1,
+      "required_review": "bridge_ford_ferry_or_shared_anchor",
+      "resolved": false
+    },
+    {
+      "id": "X63",
+      "road": "B08",
+      "river": "H02",
+      "road_segment": 0,
+      "river_segment": 1,
+      "type": "intersection",
+      "xy_m": [
+        -1435273.3267209078,
+        454341.69769054535
+      ],
+      "t": 0,
+      "u": 0,
+      "required_review": "bridge_ford_ferry_or_shared_anchor",
+      "resolved": false
+    },
+    {
+      "id": "X64",
+      "road": "B09",
+      "river": "H02",
+      "road_segment": 0,
+      "river_segment": 0,
+      "type": "intersection",
+      "xy_m": [
+        -1435273.3267209078,
+        454341.69769054535
+      ],
+      "t": 0,
+      "u": 1,
+      "required_review": "bridge_ford_ferry_or_shared_anchor",
+      "resolved": false
+    },
+    {
+      "id": "X65",
+      "road": "B09",
+      "river": "H02",
+      "road_segment": 0,
+      "river_segment": 1,
+      "type": "intersection",
+      "xy_m": [
+        -1435273.3267209078,
+        454341.69769054535
+      ],
+      "t": 0,
+      "u": 0,
+      "required_review": "bridge_ford_ferry_or_shared_anchor",
+      "resolved": false
+    },
+    {
+      "id": "X66",
+      "road": "B10",
+      "river": "H07",
+      "road_segment": 0,
+      "river_segment": 0,
+      "type": "intersection",
+      "xy_m": [
+        1234242.555079002,
+        -752768.0848574924
+      ],
+      "t": 0,
+      "u": 1,
+      "required_review": "bridge_ford_ferry_or_shared_anchor",
+      "resolved": false
+    },
+    {
+      "id": "X67",
+      "road": "B10",
+      "river": "H07",
+      "road_segment": 0,
+      "river_segment": 1,
+      "type": "intersection",
+      "xy_m": [
+        1234242.555079002,
+        -752768.0848574924
+      ],
+      "t": 0,
+      "u": 0,
+      "required_review": "bridge_ford_ferry_or_shared_anchor",
+      "resolved": false
+    },
+    {
+      "id": "X68",
+      "road": "B11",
+      "river": "H06",
+      "road_segment": 0,
+      "river_segment": 1,
+      "type": "intersection",
+      "xy_m": [
+        2016839.6215333198,
+        -786072.7062591023
+      ],
+      "t": 0,
+      "u": 1,
+      "required_review": "bridge_ford_ferry_or_shared_anchor",
+      "resolved": false
+    },
+    {
+      "id": "X69",
+      "road": "B11",
+      "river": "H06",
+      "road_segment": 0,
+      "river_segment": 2,
+      "type": "collinear_overlap",
+      "xy_m": [
+        2029339.6215333198,
+        -798572.7062591023
+      ],
+      "overlap_m": 35355.33905932738,
+      "required_review": "choose_bank_alignment",
+      "resolved": false
+    },
+    {
+      "id": "X70",
+      "road": "B11",
+      "river": "H06",
+      "road_segment": 0,
+      "river_segment": 3,
+      "type": "intersection",
+      "xy_m": [
+        2041839.6215333198,
+        -811072.7062591023
+      ],
+      "t": 1,
+      "u": 0,
+      "required_review": "bridge_ford_ferry_or_shared_anchor",
+      "resolved": false
+    },
+    {
+      "id": "X71",
+      "road": "B12",
+      "river": "H05",
+      "road_segment": 0,
+      "river_segment": 0,
+      "type": "intersection",
+      "xy_m": [
+        2193776.414958394,
+        505850.3179346188
+      ],
+      "t": 1.0000000000000009,
+      "u": 1,
+      "required_review": "bridge_ford_ferry_or_shared_anchor",
+      "resolved": false
+    },
+    {
+      "id": "X72",
+      "road": "B12",
+      "river": "H05",
+      "road_segment": 0,
+      "river_segment": 1,
+      "type": "collinear_overlap",
+      "xy_m": [
+        2211276.414958394,
+        490850.3179346188
+      ],
+      "overlap_m": 46097.722286464435,
+      "required_review": "choose_bank_alignment",
+      "resolved": false
+    },
+    {
+      "id": "X73",
+      "road": "B12",
+      "river": "H05",
+      "road_segment": 0,
+      "river_segment": 2,
+      "type": "intersection",
+      "xy_m": [
+        2228776.414958394,
+        475850.3179346188
+      ],
+      "t": 0,
+      "u": 0,
+      "required_review": "bridge_ford_ferry_or_shared_anchor",
+      "resolved": false
+    },
+    {
+      "id": "X74",
+      "road": "B13",
+      "river": "H11",
+      "road_segment": 0,
+      "river_segment": 0,
+      "type": "intersection",
+      "xy_m": [
+        -3276651.0507913814,
+        -452113.80244250526
+      ],
+      "t": 0,
+      "u": 1,
+      "required_review": "bridge_ford_ferry_or_shared_anchor",
+      "resolved": false
+    },
+    {
+      "id": "X75",
+      "road": "B13",
+      "river": "H11",
+      "road_segment": 0,
+      "river_segment": 1,
+      "type": "intersection",
+      "xy_m": [
+        -3276651.0507913814,
+        -452113.80244250526
+      ],
+      "t": 0,
+      "u": 0,
+      "required_review": "bridge_ford_ferry_or_shared_anchor",
+      "resolved": false
+    },
+    {
+      "id": "X76",
+      "road": "B13",
+      "river": "H13",
+      "road_segment": 1,
+      "river_segment": 0,
+      "type": "intersection",
+      "xy_m": [
+        -3263005.832055636,
+        -414546.20476072544
+      ],
+      "t": 1,
+      "u": 0.9999999999999999,
+      "required_review": "bridge_ford_ferry_or_shared_anchor",
+      "resolved": false
+    },
+    {
+      "id": "X77",
+      "road": "B13",
+      "river": "H13",
+      "road_segment": 1,
+      "river_segment": 1,
+      "type": "intersection",
+      "xy_m": [
+        -3263005.832055636,
+        -414546.20476072544
+      ],
+      "t": 1,
+      "u": 0,
+      "required_review": "bridge_ford_ferry_or_shared_anchor",
+      "resolved": false
+    },
+    {
+      "id": "X78",
+      "road": "B15",
+      "river": "H05",
+      "road_segment": 0,
+      "river_segment": 1,
+      "type": "intersection",
+      "xy_m": [
+        2228776.414958394,
+        475850.3179346188
+      ],
+      "t": 0,
+      "u": 1,
+      "required_review": "bridge_ford_ferry_or_shared_anchor",
+      "resolved": false
+    },
+    {
+      "id": "X79",
+      "road": "B15",
+      "river": "H05",
+      "road_segment": 0,
+      "river_segment": 2,
+      "type": "intersection",
+      "xy_m": [
+        2228776.414958394,
+        475850.3179346188
+      ],
+      "t": 0,
+      "u": 0,
+      "required_review": "bridge_ford_ferry_or_shared_anchor",
+      "resolved": false
+    }
+  ],
+  "river_river": [
+    {
+      "rivers": [
+        "H01",
+        "H02"
+      ],
+      "xy_m": [
+        50000,
+        -180000
+      ],
+      "bed_delta_m": 0,
+      "status": "same_bed_elevation"
+    },
+    {
+      "rivers": [
+        "H01",
+        "H02"
+      ],
+      "xy_m": [
+        50000,
+        -180000
+      ],
+      "bed_delta_m": 0,
+      "status": "same_bed_elevation"
+    },
+    {
+      "rivers": [
+        "H01",
+        "H04"
+      ],
+      "xy_m": [
+        50000,
+        -180000
+      ],
+      "bed_delta_m": 0,
+      "status": "same_bed_elevation"
+    },
+    {
+      "rivers": [
+        "H01",
+        "H04"
+      ],
+      "xy_m": [
+        50000,
+        -180000
+      ],
+      "bed_delta_m": 0,
+      "status": "same_bed_elevation"
+    },
+    {
+      "rivers": [
+        "H01",
+        "H07"
+      ],
+      "xy_m": [
+        417451.87410582515,
+        -1063904.5819597552
+      ],
+      "bed_delta_m": 1.2434497875801753e-14,
+      "status": "same_bed_elevation"
+    },
+    {
+      "rivers": [
+        "H01",
+        "H07"
+      ],
+      "xy_m": [
+        417451.8741058252,
+        -1063904.5819597554
+      ],
+      "bed_delta_m": 0,
+      "status": "same_bed_elevation"
+    },
+    {
+      "rivers": [
+        "H02",
+        "H04"
+      ],
+      "xy_m": [
+        50000,
+        -180000
+      ],
+      "bed_delta_m": 0,
+      "status": "same_bed_elevation"
+    },
+    {
+      "rivers": [
+        "H02",
+        "H09"
+      ],
+      "xy_m": [
+        -890343.0271555216,
+        200333.3881209349
+      ],
+      "bed_delta_m": 1.1368683772161603e-13,
+      "status": "same_bed_elevation"
+    },
+    {
+      "rivers": [
+        "H02",
+        "H09"
+      ],
+      "xy_m": [
+        -890343.0271555216,
+        200333.3881209349
+      ],
+      "bed_delta_m": 0,
+      "status": "same_bed_elevation"
+    },
+    {
+      "rivers": [
+        "H04",
+        "H08"
+      ],
+      "xy_m": [
+        -230952.9376219892,
+        1069001.952106139
+      ],
+      "bed_delta_m": 0,
+      "status": "same_bed_elevation"
+    },
+    {
+      "rivers": [
+        "H04",
+        "H08"
+      ],
+      "xy_m": [
+        -230952.9376219892,
+        1069001.952106139
+      ],
+      "bed_delta_m": 0,
+      "status": "same_bed_elevation"
+    }
+  ],
+  "note": "Segment records may repeat at shared vertices; not unique bridge count."
+}

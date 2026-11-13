@@ -1,0 +1,1199 @@
+{
+  "schema_version": 1,
+  "status": "design_master_candidate",
+  "coordinate_system": {
+    "type": "spherical_azimuthal_equidistant",
+    "radius_km": 6366.197723675814,
+    "origin_lon_lat_deg": [
+      -1,
+      54
+    ],
+    "axes": "x east and y north at origin",
+    "rotation_deg": 0,
+    "units": "meters",
+    "limitations": "Distances from origin are true great-circle distances. Other planar distances and areas are distorted. No WGS84 or DEM.",
+    "axis": "x east; y north; z up",
+    "vertical_datum": "fictional sea level = 0 m",
+    "geographic_warning": "Fictional sphere, not Earth WGS84"
+  },
+  "graph_scope": "source vertices; interior intersections require explicit splitting and are not automatically connected",
+  "nodes": [
+    {
+      "id": "N0001",
+      "xy_m": [
+        110000,
+        95000
+      ],
+      "settlements": [
+        "M02"
+      ]
+    },
+    {
+      "id": "N0002",
+      "xy_m": [
+        98000,
+        88000
+      ],
+      "settlements": []
+    },
+    {
+      "id": "N0003",
+      "xy_m": [
+        83000,
+        75000
+      ],
+      "settlements": []
+    },
+    {
+      "id": "N0004",
+      "xy_m": [
+        64000,
+        60000
+      ],
+      "settlements": []
+    },
+    {
+      "id": "N0005",
+      "xy_m": [
+        48000,
+        42000
+      ],
+      "settlements": []
+    },
+    {
+      "id": "N0006",
+      "xy_m": [
+        36000,
+        20000
+      ],
+      "settlements": []
+    },
+    {
+      "id": "N0007",
+      "xy_m": [
+        28000,
+        -12000
+      ],
+      "settlements": []
+    },
+    {
+      "id": "N0008",
+      "xy_m": [
+        31000,
+        -30000
+      ],
+      "settlements": []
+    },
+    {
+      "id": "N0009",
+      "xy_m": [
+        42000,
+        -48000
+      ],
+      "settlements": []
+    },
+    {
+      "id": "N0010",
+      "xy_m": [
+        50000,
+        -180000
+      ],
+      "settlements": []
+    },
+    {
+      "id": "N0011",
+      "xy_m": [
+        100000,
+        -350000
+      ],
+      "settlements": []
+    },
+    {
+      "id": "N0012",
+      "xy_m": [
+        417451.8741058252,
+        -1063904.5819597554
+      ],
+      "settlements": [
+        "M03"
+      ]
+    },
+    {
+      "id": "N0013",
+      "xy_m": [
+        18000,
+        -12000
+      ],
+      "settlements": [
+        "M01"
+      ]
+    },
+    {
+      "id": "N0014",
+      "xy_m": [
+        -140000,
+        160000
+      ],
+      "settlements": []
+    },
+    {
+      "id": "N0015",
+      "xy_m": [
+        -300000,
+        550000
+      ],
+      "settlements": []
+    },
+    {
+      "id": "N0016",
+      "xy_m": [
+        -205952.9376219892,
+        909001.952106139
+      ],
+      "settlements": [
+        "T10"
+      ]
+    },
+    {
+      "id": "N0017",
+      "xy_m": [
+        -230952.9376219892,
+        1069001.952106139
+      ],
+      "settlements": [
+        "M07"
+      ]
+    },
+    {
+      "id": "N0018",
+      "xy_m": [
+        -200000,
+        0
+      ],
+      "settlements": []
+    },
+    {
+      "id": "N0019",
+      "xy_m": [
+        -650000,
+        100000
+      ],
+      "settlements": []
+    },
+    {
+      "id": "N0020",
+      "xy_m": [
+        -890343.0271555216,
+        200333.3881209349
+      ],
+      "settlements": [
+        "T04"
+      ]
+    },
+    {
+      "id": "N0021",
+      "xy_m": [
+        -1435273.3267209078,
+        454341.69769054535
+      ],
+      "settlements": [
+        "M04"
+      ]
+    },
+    {
+      "id": "N0022",
+      "xy_m": [
+        -1708555.1931480924,
+        497410.16695857863
+      ],
+      "settlements": []
+    },
+    {
+      "id": "N0023",
+      "xy_m": [
+        -2042566.363225762,
+        550049.4071750639
+      ],
+      "settlements": [
+        "T05"
+      ]
+    },
+    {
+      "id": "N0024",
+      "xy_m": [
+        -2688967.9063549847,
+        1019614.3362075416
+      ],
+      "settlements": [
+        "M05"
+      ]
+    },
+    {
+      "id": "N0025",
+      "xy_m": [
+        550000,
+        -600000
+      ],
+      "settlements": []
+    },
+    {
+      "id": "N0026",
+      "xy_m": [
+        1234242.555079002,
+        -752768.0848574924
+      ],
+      "settlements": [
+        "T07"
+      ]
+    },
+    {
+      "id": "N0027",
+      "xy_m": [
+        2016839.6215333198,
+        -786072.7062591023
+      ],
+      "settlements": [
+        "M08"
+      ]
+    },
+    {
+      "id": "N0028",
+      "xy_m": [
+        2579541.951958239,
+        -204101.7141357631
+      ],
+      "settlements": []
+    },
+    {
+      "id": "N0029",
+      "xy_m": [
+        2600000,
+        400000
+      ],
+      "settlements": []
+    },
+    {
+      "id": "N0030",
+      "xy_m": [
+        2672681.747193104,
+        1034093.5111734775
+      ],
+      "settlements": [
+        "M06"
+      ]
+    },
+    {
+      "id": "N0031",
+      "xy_m": [
+        -2700458.5730017694,
+        1029256.1503528397
+      ],
+      "settlements": []
+    },
+    {
+      "id": "N0032",
+      "xy_m": [
+        -2905000,
+        700000
+      ],
+      "settlements": []
+    },
+    {
+      "id": "N0033",
+      "xy_m": [
+        -3395000,
+        -350000
+      ],
+      "settlements": []
+    },
+    {
+      "id": "N0034",
+      "xy_m": [
+        -3395000,
+        -525000
+      ],
+      "settlements": []
+    },
+    {
+      "id": "N0035",
+      "xy_m": [
+        -3360000,
+        -560000
+      ],
+      "settlements": []
+    },
+    {
+      "id": "N0036",
+      "xy_m": [
+        -3261878.9344961983,
+        -454718.52510750917
+      ],
+      "settlements": []
+    },
+    {
+      "id": "N0037",
+      "xy_m": [
+        -3255000,
+        -1085000
+      ],
+      "settlements": []
+    },
+    {
+      "id": "N0038",
+      "xy_m": [
+        -3045000,
+        -1470000
+      ],
+      "settlements": []
+    },
+    {
+      "id": "N0039",
+      "xy_m": [
+        -2905000,
+        -1540000
+      ],
+      "settlements": []
+    },
+    {
+      "id": "N0040",
+      "xy_m": [
+        -2275000,
+        -1610000
+      ],
+      "settlements": []
+    },
+    {
+      "id": "N0041",
+      "xy_m": [
+        140000,
+        -1295000
+      ],
+      "settlements": []
+    },
+    {
+      "id": "N0042",
+      "xy_m": [
+        412321.57195594016,
+        -1077999.9712715442
+      ],
+      "settlements": []
+    },
+    {
+      "id": "N0043",
+      "xy_m": [
+        770000,
+        -1820000
+      ],
+      "settlements": []
+    },
+    {
+      "id": "N0044",
+      "xy_m": [
+        1050000,
+        -1890000
+      ],
+      "settlements": []
+    },
+    {
+      "id": "N0045",
+      "xy_m": [
+        2870000,
+        -1820000
+      ],
+      "settlements": []
+    },
+    {
+      "id": "N0046",
+      "xy_m": [
+        3010000,
+        -1750000
+      ],
+      "settlements": []
+    },
+    {
+      "id": "N0047",
+      "xy_m": [
+        3004065.3615724295,
+        -1736972.8339916966
+      ],
+      "settlements": []
+    },
+    {
+      "id": "N0048",
+      "xy_m": [
+        3045000,
+        -1715000
+      ],
+      "settlements": []
+    },
+    {
+      "id": "N0049",
+      "xy_m": [
+        3360000,
+        -1400000
+      ],
+      "settlements": []
+    },
+    {
+      "id": "N0050",
+      "xy_m": [
+        3850000,
+        -840000
+      ],
+      "settlements": []
+    },
+    {
+      "id": "N0051",
+      "xy_m": [
+        3815000,
+        -350000
+      ],
+      "settlements": []
+    },
+    {
+      "id": "N0052",
+      "xy_m": [
+        3675000,
+        0
+      ],
+      "settlements": []
+    },
+    {
+      "id": "N0053",
+      "xy_m": [
+        3430000,
+        385000
+      ],
+      "settlements": []
+    },
+    {
+      "id": "N0054",
+      "xy_m": [
+        2685672.12824987,
+        1041593.5111734775
+      ],
+      "settlements": []
+    },
+    {
+      "id": "N0055",
+      "xy_m": [
+        -180952.9376219892,
+        924001.952106139
+      ],
+      "settlements": [
+        "V13"
+      ]
+    },
+    {
+      "id": "N0056",
+      "xy_m": [
+        -220952.9376219892,
+        994001.952106139
+      ],
+      "settlements": [
+        "V16"
+      ]
+    },
+    {
+      "id": "N0057",
+      "xy_m": [
+        -255952.93762198923,
+        1189001.952106139
+      ],
+      "settlements": [
+        "V14"
+      ]
+    },
+    {
+      "id": "N0058",
+      "xy_m": [
+        -265952.93762198923,
+        1219001.952106139
+      ],
+      "settlements": [
+        "T11"
+      ]
+    },
+    {
+      "id": "N0059",
+      "xy_m": [
+        -550952.9376219893,
+        1139001.952106139
+      ],
+      "settlements": [
+        "T12"
+      ]
+    },
+    {
+      "id": "N0060",
+      "xy_m": [
+        -590952.9376219893,
+        1194001.952106139
+      ],
+      "settlements": [
+        "V15"
+      ]
+    },
+    {
+      "id": "N0061",
+      "xy_m": [
+        -920343.0271555216,
+        235333.3881209349
+      ],
+      "settlements": [
+        "V05"
+      ]
+    },
+    {
+      "id": "N0062",
+      "xy_m": [
+        -1460273.3267209078,
+        489341.69769054535
+      ],
+      "settlements": [
+        "V06"
+      ]
+    },
+    {
+      "id": "N0063",
+      "xy_m": [
+        -1405273.3267209078,
+        469341.69769054535
+      ],
+      "settlements": [
+        "V07"
+      ]
+    },
+    {
+      "id": "N0064",
+      "xy_m": [
+        1269242.555079002,
+        -727768.0848574924
+      ],
+      "settlements": [
+        "V09"
+      ]
+    },
+    {
+      "id": "N0065",
+      "xy_m": [
+        2041839.6215333198,
+        -811072.7062591023
+      ],
+      "settlements": [
+        "V10"
+      ]
+    },
+    {
+      "id": "N0066",
+      "xy_m": [
+        2228776.414958394,
+        475850.3179346188
+      ],
+      "settlements": [
+        "T08"
+      ]
+    },
+    {
+      "id": "N0067",
+      "xy_m": [
+        2193776.414958394,
+        505850.3179346188
+      ],
+      "settlements": [
+        "V11"
+      ]
+    },
+    {
+      "id": "N0068",
+      "xy_m": [
+        -3276651.0507913814,
+        -452113.80244250526
+      ],
+      "settlements": [
+        "T06"
+      ]
+    },
+    {
+      "id": "N0069",
+      "xy_m": [
+        -3290000,
+        -420000
+      ],
+      "settlements": []
+    },
+    {
+      "id": "N0070",
+      "xy_m": [
+        -3263005.832055636,
+        -414546.20476072544
+      ],
+      "settlements": [
+        "V08"
+      ]
+    },
+    {
+      "id": "N0071",
+      "xy_m": [
+        3605000,
+        210000
+      ],
+      "settlements": []
+    },
+    {
+      "id": "N0072",
+      "xy_m": [
+        3722493.136072084,
+        -101269.12702949523
+      ],
+      "settlements": []
+    },
+    {
+      "id": "N0073",
+      "xy_m": [
+        3815000,
+        -420000
+      ],
+      "settlements": []
+    },
+    {
+      "id": "N0074",
+      "xy_m": [
+        3255000,
+        -1505000
+      ],
+      "settlements": []
+    }
+  ],
+  "edges": [
+    {
+      "id": "R1:0",
+      "route": "R1",
+      "mode": "river",
+      "from": "N0001",
+      "to": "N0002"
+    },
+    {
+      "id": "R1:1",
+      "route": "R1",
+      "mode": "river",
+      "from": "N0002",
+      "to": "N0003"
+    },
+    {
+      "id": "R1:2",
+      "route": "R1",
+      "mode": "river",
+      "from": "N0003",
+      "to": "N0004"
+    },
+    {
+      "id": "R1:3",
+      "route": "R1",
+      "mode": "river",
+      "from": "N0004",
+      "to": "N0005"
+    },
+    {
+      "id": "R1:4",
+      "route": "R1",
+      "mode": "river",
+      "from": "N0005",
+      "to": "N0006"
+    },
+    {
+      "id": "R1:5",
+      "route": "R1",
+      "mode": "river",
+      "from": "N0006",
+      "to": "N0007"
+    },
+    {
+      "id": "R1:6",
+      "route": "R1",
+      "mode": "river",
+      "from": "N0007",
+      "to": "N0008"
+    },
+    {
+      "id": "R1:7",
+      "route": "R1",
+      "mode": "river",
+      "from": "N0008",
+      "to": "N0009"
+    },
+    {
+      "id": "R1:8",
+      "route": "R1",
+      "mode": "river",
+      "from": "N0009",
+      "to": "N0010"
+    },
+    {
+      "id": "R1:9",
+      "route": "R1",
+      "mode": "river",
+      "from": "N0010",
+      "to": "N0011"
+    },
+    {
+      "id": "R1:10",
+      "route": "R1",
+      "mode": "river",
+      "from": "N0011",
+      "to": "N0012"
+    },
+    {
+      "id": "R2:0",
+      "route": "R2",
+      "mode": "road",
+      "from": "N0013",
+      "to": "N0007"
+    },
+    {
+      "id": "R3:0",
+      "route": "R3",
+      "mode": "road",
+      "from": "N0013",
+      "to": "N0014"
+    },
+    {
+      "id": "R3:1",
+      "route": "R3",
+      "mode": "road",
+      "from": "N0014",
+      "to": "N0015"
+    },
+    {
+      "id": "R3:2",
+      "route": "R3",
+      "mode": "road",
+      "from": "N0015",
+      "to": "N0016"
+    },
+    {
+      "id": "R3:3",
+      "route": "R3",
+      "mode": "road",
+      "from": "N0016",
+      "to": "N0017"
+    },
+    {
+      "id": "R4:0",
+      "route": "R4",
+      "mode": "road",
+      "from": "N0013",
+      "to": "N0018"
+    },
+    {
+      "id": "R4:1",
+      "route": "R4",
+      "mode": "road",
+      "from": "N0018",
+      "to": "N0019"
+    },
+    {
+      "id": "R4:2",
+      "route": "R4",
+      "mode": "road",
+      "from": "N0019",
+      "to": "N0020"
+    },
+    {
+      "id": "R4:3",
+      "route": "R4",
+      "mode": "road",
+      "from": "N0020",
+      "to": "N0021"
+    },
+    {
+      "id": "R5:0",
+      "route": "R5",
+      "mode": "road",
+      "from": "N0021",
+      "to": "N0022"
+    },
+    {
+      "id": "R5:1",
+      "route": "R5",
+      "mode": "road",
+      "from": "N0022",
+      "to": "N0023"
+    },
+    {
+      "id": "R5:2",
+      "route": "R5",
+      "mode": "road",
+      "from": "N0023",
+      "to": "N0024"
+    },
+    {
+      "id": "R6:0",
+      "route": "R6",
+      "mode": "road",
+      "from": "N0012",
+      "to": "N0025"
+    },
+    {
+      "id": "R6:1",
+      "route": "R6",
+      "mode": "road",
+      "from": "N0025",
+      "to": "N0026"
+    },
+    {
+      "id": "R6:2",
+      "route": "R6",
+      "mode": "road",
+      "from": "N0026",
+      "to": "N0027"
+    },
+    {
+      "id": "R7:0",
+      "route": "R7",
+      "mode": "road",
+      "from": "N0027",
+      "to": "N0028"
+    },
+    {
+      "id": "R7:1",
+      "route": "R7",
+      "mode": "road",
+      "from": "N0028",
+      "to": "N0029"
+    },
+    {
+      "id": "R7:2",
+      "route": "R7",
+      "mode": "road",
+      "from": "N0029",
+      "to": "N0030"
+    },
+    {
+      "id": "R8:0",
+      "route": "R8",
+      "mode": "sea",
+      "from": "N0031",
+      "to": "N0032"
+    },
+    {
+      "id": "R8:1",
+      "route": "R8",
+      "mode": "sea",
+      "from": "N0032",
+      "to": "N0033"
+    },
+    {
+      "id": "R8:2",
+      "route": "R8",
+      "mode": "sea",
+      "from": "N0033",
+      "to": "N0034"
+    },
+    {
+      "id": "R8:3",
+      "route": "R8",
+      "mode": "sea",
+      "from": "N0034",
+      "to": "N0035"
+    },
+    {
+      "id": "R8:4",
+      "route": "R8",
+      "mode": "sea",
+      "from": "N0035",
+      "to": "N0036"
+    },
+    {
+      "id": "R8:5",
+      "route": "R8",
+      "mode": "sea",
+      "from": "N0036",
+      "to": "N0037"
+    },
+    {
+      "id": "R8:6",
+      "route": "R8",
+      "mode": "sea",
+      "from": "N0037",
+      "to": "N0038"
+    },
+    {
+      "id": "R8:7",
+      "route": "R8",
+      "mode": "sea",
+      "from": "N0038",
+      "to": "N0039"
+    },
+    {
+      "id": "R8:8",
+      "route": "R8",
+      "mode": "sea",
+      "from": "N0039",
+      "to": "N0040"
+    },
+    {
+      "id": "R8:9",
+      "route": "R8",
+      "mode": "sea",
+      "from": "N0040",
+      "to": "N0041"
+    },
+    {
+      "id": "R8:10",
+      "route": "R8",
+      "mode": "sea",
+      "from": "N0041",
+      "to": "N0042"
+    },
+    {
+      "id": "R9:0",
+      "route": "R9",
+      "mode": "sea",
+      "from": "N0042",
+      "to": "N0043"
+    },
+    {
+      "id": "R9:1",
+      "route": "R9",
+      "mode": "sea",
+      "from": "N0043",
+      "to": "N0044"
+    },
+    {
+      "id": "R9:2",
+      "route": "R9",
+      "mode": "sea",
+      "from": "N0044",
+      "to": "N0045"
+    },
+    {
+      "id": "R9:3",
+      "route": "R9",
+      "mode": "sea",
+      "from": "N0045",
+      "to": "N0046"
+    },
+    {
+      "id": "R9:4",
+      "route": "R9",
+      "mode": "sea",
+      "from": "N0046",
+      "to": "N0047"
+    },
+    {
+      "id": "R9:5",
+      "route": "R9",
+      "mode": "sea",
+      "from": "N0047",
+      "to": "N0048"
+    },
+    {
+      "id": "R9:6",
+      "route": "R9",
+      "mode": "sea",
+      "from": "N0048",
+      "to": "N0049"
+    },
+    {
+      "id": "R9:7",
+      "route": "R9",
+      "mode": "sea",
+      "from": "N0049",
+      "to": "N0050"
+    },
+    {
+      "id": "R9:8",
+      "route": "R9",
+      "mode": "sea",
+      "from": "N0050",
+      "to": "N0051"
+    },
+    {
+      "id": "R9:9",
+      "route": "R9",
+      "mode": "sea",
+      "from": "N0051",
+      "to": "N0052"
+    },
+    {
+      "id": "R9:10",
+      "route": "R9",
+      "mode": "sea",
+      "from": "N0052",
+      "to": "N0053"
+    },
+    {
+      "id": "R9:11",
+      "route": "R9",
+      "mode": "sea",
+      "from": "N0053",
+      "to": "N0054"
+    },
+    {
+      "id": "B01:0",
+      "route": "B01",
+      "mode": "road",
+      "from": "N0016",
+      "to": "N0055"
+    },
+    {
+      "id": "B02:0",
+      "route": "B02",
+      "mode": "road",
+      "from": "N0017",
+      "to": "N0056"
+    },
+    {
+      "id": "B03:0",
+      "route": "B03",
+      "mode": "road",
+      "from": "N0017",
+      "to": "N0057"
+    },
+    {
+      "id": "B04:0",
+      "route": "B04",
+      "mode": "road",
+      "from": "N0057",
+      "to": "N0058"
+    },
+    {
+      "id": "B05:0",
+      "route": "B05",
+      "mode": "road",
+      "from": "N0017",
+      "to": "N0059"
+    },
+    {
+      "id": "B06:0",
+      "route": "B06",
+      "mode": "road",
+      "from": "N0059",
+      "to": "N0060"
+    },
+    {
+      "id": "B07:0",
+      "route": "B07",
+      "mode": "road",
+      "from": "N0020",
+      "to": "N0061"
+    },
+    {
+      "id": "B08:0",
+      "route": "B08",
+      "mode": "road",
+      "from": "N0021",
+      "to": "N0062"
+    },
+    {
+      "id": "B09:0",
+      "route": "B09",
+      "mode": "road",
+      "from": "N0021",
+      "to": "N0063"
+    },
+    {
+      "id": "B10:0",
+      "route": "B10",
+      "mode": "road",
+      "from": "N0026",
+      "to": "N0064"
+    },
+    {
+      "id": "B11:0",
+      "route": "B11",
+      "mode": "road",
+      "from": "N0027",
+      "to": "N0065"
+    },
+    {
+      "id": "B12:0",
+      "route": "B12",
+      "mode": "road",
+      "from": "N0066",
+      "to": "N0067"
+    },
+    {
+      "id": "B13:0",
+      "route": "B13",
+      "mode": "road",
+      "from": "N0068",
+      "to": "N0069"
+    },
+    {
+      "id": "B13:1",
+      "route": "B13",
+      "mode": "road",
+      "from": "N0069",
+      "to": "N0070"
+    },
+    {
+      "id": "B14:0",
+      "route": "B14",
+      "mode": "sea",
+      "from": "N0054",
+      "to": "N0071"
+    },
+    {
+      "id": "B14:1",
+      "route": "B14",
+      "mode": "sea",
+      "from": "N0071",
+      "to": "N0072"
+    },
+    {
+      "id": "B14:2",
+      "route": "B14",
+      "mode": "sea",
+      "from": "N0072",
+      "to": "N0073"
+    },
+    {
+      "id": "B14:3",
+      "route": "B14",
+      "mode": "sea",
+      "from": "N0073",
+      "to": "N0050"
+    },
+    {
+      "id": "B14:4",
+      "route": "B14",
+      "mode": "sea",
+      "from": "N0050",
+      "to": "N0074"
+    },
+    {
+      "id": "B14:5",
+      "route": "B14",
+      "mode": "sea",
+      "from": "N0074",
+      "to": "N0046"
+    },
+    {
+      "id": "B14:6",
+      "route": "B14",
+      "mode": "sea",
+      "from": "N0046",
+      "to": "N0047"
+    },
+    {
+      "id": "B15:0",
+      "route": "B15",
+      "mode": "road",
+      "from": "N0066",
+      "to": "N0029"
+    }
+  ],
+  "settlements_without_exact_route_vertex": [
+    "T01",
+    "T02",
+    "T03",
+    "T09",
+    "V01",
+    "V02",
+    "V03",
+    "V04",
+    "V12"
+  ]
+}

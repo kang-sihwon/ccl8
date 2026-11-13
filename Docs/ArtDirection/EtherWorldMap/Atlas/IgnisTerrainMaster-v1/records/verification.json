@@ -1,0 +1,212 @@
+{
+  "status": "PASS",
+  "scope": "coordinate preservation, numeric artifacts, full shared-border reconstruction; not final terrain art or UE validation",
+  "checks": [
+    {
+      "name": "source file hashes unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "all source coastline vertices exact",
+      "pass": true,
+      "detail": 6156
+    },
+    {
+      "name": "independent coastline projection",
+      "pass": true,
+      "detail": {
+        "maximum_m": 2.4750236917134956e-09
+      }
+    },
+    {
+      "name": "all 36 names and anchors exact",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "meter conversion and L10 reference",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "independent inverse projection",
+      "pass": true,
+      "detail": {
+        "maximum_degrees": 1.5888218580782548e-14
+      }
+    },
+    {
+      "name": "86 facility candidates preserved",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "all source routes exact and modes separated",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "all source river positions and bed heights exact",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "authored bed profiles descend",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "declared confluences have matching XY and height",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "16-bit height header and complete shape",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "land elevations valid and ocean explicit zero",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "40 tile interiors equal whole master exactly",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "all 67 adjoining tile borders exactly equal",
+      "pass": true,
+      "detail": {
+        "pairs": 67,
+        "failures": []
+      }
+    },
+    {
+      "name": "all masks share the same grid",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "macro river control residual within 1m",
+      "pass": true,
+      "detail": {
+        "maximum_m": 0.6751568598710946,
+        "tolerance_reason": "2km grid interpolation; vector bed profiles govern later channel refinement"
+      }
+    },
+    {
+      "name": "road profiles contain no sea samples",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "river intersections have consistent source beds",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "source geometry within master bounds",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "specified river centerlines descend at 2km sampling",
+      "pass": true,
+      "detail": {
+        "uphill_tolerance_m": 0.125,
+        "scope": "sampled centerlines only, not full basin hydrology"
+      }
+    }
+  ],
+  "observations": {
+    "river_grid_uphill_intervals": [
+      {
+        "id": "H01",
+        "rising_sample_intervals": 0,
+        "maximum_rise_m": 0
+      },
+      {
+        "id": "H02",
+        "rising_sample_intervals": 0,
+        "maximum_rise_m": 0
+      },
+      {
+        "id": "H03",
+        "rising_sample_intervals": 0,
+        "maximum_rise_m": 0
+      },
+      {
+        "id": "H04",
+        "rising_sample_intervals": 0,
+        "maximum_rise_m": 0
+      },
+      {
+        "id": "H05",
+        "rising_sample_intervals": 0,
+        "maximum_rise_m": 0
+      },
+      {
+        "id": "H06",
+        "rising_sample_intervals": 0,
+        "maximum_rise_m": 0
+      },
+      {
+        "id": "H07",
+        "rising_sample_intervals": 0,
+        "maximum_rise_m": 0
+      },
+      {
+        "id": "H08",
+        "rising_sample_intervals": 0,
+        "maximum_rise_m": 0
+      },
+      {
+        "id": "H09",
+        "rising_sample_intervals": 0,
+        "maximum_rise_m": 0
+      },
+      {
+        "id": "H10",
+        "rising_sample_intervals": 0,
+        "maximum_rise_m": 0
+      },
+      {
+        "id": "H11",
+        "rising_sample_intervals": 0,
+        "maximum_rise_m": 0
+      },
+      {
+        "id": "H12",
+        "rising_sample_intervals": 0,
+        "maximum_rise_m": 0
+      },
+      {
+        "id": "H13",
+        "rising_sample_intervals": 0,
+        "maximum_rise_m": 0
+      },
+      {
+        "id": "H14",
+        "rising_sample_intervals": 0,
+        "maximum_rise_m": 0
+      }
+    ],
+    "road_river_segment_contacts": 79,
+    "road_river_collinear_overlaps": 7,
+    "unattached_route_vertices": [
+      "T01",
+      "T02",
+      "T03",
+      "T09",
+      "V01",
+      "V02",
+      "V03",
+      "V04",
+      "V12"
+    ],
+    "lakes": "two symbolic lake centers retained; physical shorelines and bed/surface inconsistency unresolved"
+  }
+}

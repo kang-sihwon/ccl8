@@ -1,0 +1,37 @@
+<!doctype html><html lang="ko"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>이그니스 공통 지형 원본</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#142e37;color:#e5e8e7;font:14px 'Malgun Gothic',sans-serif;overflow:hidden}header,footer{position:fixed;z-index:2;left:0;right:0;background:#1c2123;display:flex;align-items:center;gap:16px;padding:12px 20px}header{top:0;height:55px}header strong{font-size:18px;font-weight:500}footer{bottom:0;min-height:42px;color:#bfc8c9;font-size:12px}button,select{background:#30383b;color:#e5e8e7;border:1px solid #526165;border-radius:2px;padding:6px 10px;font:inherit}button{cursor:pointer}aside{position:fixed;right:18px;top:72px;background:#1c2123ed;padding:16px;width:240px;z-index:2;line-height:1.7;border:1px solid #485a60}label{display:block}label input{accent-color:#8bd2da}aside p{font-size:12px;color:#b8c3c6;margin:12px 0 0}aside a{color:#8bd2da}canvas{display:block;touch-action:none}#info{border-top:1px solid #485a60;margin-top:12px;padding-top:10px;font-size:12px;overflow-wrap:anywhere}.spacer{flex:1}#error{color:#ffb39c}
+</style>
+<header><span>이그니스 타이가</span><span>›</span><strong>공통 지형 원본</strong><span class="spacer"></span><select id="place" aria-label="정착지 선택"><option value="">정착지 36곳</option></select><button id="home">전체 보기</button><span>N ↑</span></header>
+<canvas id="map"></canvas><aside><strong>배치 데이터</strong><label><input id="coast" type="checkbox" checked> 기존 해안선</label><label><input id="rivers" type="checkbox" checked> 하천 14개</label><label><input id="roads" type="checkbox" checked> 육로 회랑 20개</label><label><input id="settlements" type="checkbox" checked> 정착지 36곳</label><label><input id="tiles" type="checkbox"> 공통 고도 격자 40칸</label><label><input id="contacts" type="checkbox"> 도로·하천 접촉 검토</label><p>2km 간격의 광역 고도 설계안.<br>확대해도 건물·골목 상세가 추가되지는 않는다. 청록은 하천, 황토는 육로다.</p><div id="info">기존 해안·도시 좌표 보존<br>상세 지형 제작의 공통 기준</div><p><a href="manifest.json">원본 규격</a> · <a href="data/settlements.json">정착지 데이터</a><br><a href="records/verification.json">검증 결과</a></p></aside>
+<footer><span>휠 확대·축소 / 드래그 이동 / 정착지 선택</span><span class="spacer"></span><span id="status"></span><span id="error"></span></footer>
+<script src="viewer-data.js"></script><script>
+'use strict';
+const canvas=document.querySelector('#map'),ctx=canvas.getContext('2d'),img=new Image(),errors=[];
+const UB=[22528/65536,2048/32768,43008/65536,12288/32768],BASE=[1800,900],R=6366197.723675814,P0=54*Math.PI/180,L0=-Math.PI/180;
+let zoom=1,ox=0,oy=0,width=0,height=0,selected=null,loaded=false,drag=null;
+function world([x,y]){const r=Math.hypot(x,y),c=r/R;let p=P0,l=L0;if(r){p=Math.asin(Math.cos(c)*Math.sin(P0)+y*Math.sin(c)*Math.cos(P0)/r);l=L0+Math.atan2(x*Math.sin(c),r*Math.cos(P0)*Math.cos(c)-y*Math.sin(P0)*Math.sin(c));}return[((l+Math.PI)/(2*Math.PI)-UB[0])/(UB[2]-UB[0])*1799,((Math.PI/2-p)/Math.PI-UB[1])/(UB[3]-UB[1])*899];}
+const pos=p=>{const a=world(p);return[ox+a[0]*zoom,oy+a[1]*zoom];};
+function lines(points,color,lineWidth=1){ctx.strokeStyle=color;ctx.lineWidth=lineWidth;ctx.beginPath();points.forEach((p,i)=>{const [x,y]=pos(p);i?ctx.lineTo(x,y):ctx.moveTo(x,y);});ctx.stroke();}
+function enabled(id){return document.getElementById(id).checked;}
+function draw(){
+  ctx.fillStyle='#142e37';ctx.fillRect(0,0,width,height);if(loaded)ctx.drawImage(img,ox,oy,BASE[0]*zoom,BASE[1]*zoom);
+  if(enabled('coast'))for(const r of DATA.coast)lines(r,'#9db8b388');
+  if(enabled('rivers'))for(const r of DATA.rivers)lines(r.points,'#6fc2d1',1.5);
+  if(enabled('roads'))for(const r of DATA.roads)lines(r.points,'#e5bf77',1.5);
+  if(enabled('tiles')){const g=DATA.grid,[x0,y0]=g.origin_xy_m,s=g.spacing_m;for(let x=0;x<g.width;x+=512){const pts=[];for(let y=0;y<g.height;y+=32)pts.push([x0+x*s,y0-y*s]);lines(pts,'#d8dfdf66');}for(let y=0;y<g.height;y+=512){const pts=[];for(let x=0;x<g.width;x+=32)pts.push([x0+x*s,y0-y*s]);lines(pts,'#d8dfdf66');}}
+  if(enabled('contacts'))for(const p of DATA.interactions){const[x,y]=pos(p.xy_m);ctx.strokeStyle='#f1a67c';ctx.strokeRect(x-3,y-3,6,6);}
+  if(enabled('settlements'))for(const s of DATA.settlements){const[x,y]=pos(s.xy_m);if(x<0||y<55||x>width||y>height-42)continue;ctx.beginPath();ctx.arc(x,y,s.id===selected?5:3,0,Math.PI*2);ctx.fillStyle=s.id===selected?'#7de0e5':'#e8e9df';ctx.fill();if(zoom>1.8||s.id.startsWith('M')||s.id===selected){ctx.font='14px "Malgun Gothic",sans-serif';const text=s.id+' '+s.name,dx=zoom<1.8&&(s.id==='M01'||s.id==='M02')?28:8,dy=zoom<1.8&&s.id==='M01'?28:zoom<1.8&&s.id==='M02'?-20:-8;if(dx===28){ctx.strokeStyle='#c1d0cb';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(x+dx-4,y+dy-5);ctx.stroke();}ctx.lineWidth=3;ctx.strokeStyle='#192e32';ctx.strokeText(text,x+dx,y+dy);ctx.fillStyle='#eff2ee';ctx.fillText(text,x+dx,y+dy);}}
+  document.querySelector('#status').textContent='세계지도 투영 · 확대 '+zoom.toFixed(2)+'배 · 수치 고도 4,097 × 2,561';
+}
+function home(){const available=width>900?width-280:width;zoom=Math.min((available-40)/1800,(height-120)/900);ox=(available-1800*zoom)/2;oy=65+(height-120-900*zoom)/2;draw();}
+function focus(id){const s=DATA.settlements.find(s=>s.id===id);if(!s)return;selected=id;zoom=Math.max(zoom,8);const p=world(s.xy_m);ox=width*.43-p[0]*zoom;oy=height*.5-p[1]*zoom;document.querySelector('#info').textContent=s.id+' '+s.name+' | X '+(s.xy_m[0]/1000).toFixed(3)+'km / Y '+(s.xy_m[1]/1000).toFixed(3)+'km | 광역 고도 '+s.elevation.toFixed(1)+'m (후보)';draw();}
+for(const s of DATA.settlements){const option=document.createElement('option');option.value=s.id;option.textContent=s.id+' '+s.name;document.querySelector('#place').append(option);}
+document.querySelector('#place').onchange=e=>focus(e.target.value);document.querySelector('#home').onclick=home;document.querySelectorAll('input').forEach(e=>e.onchange=draw);
+canvas.onwheel=e=>{e.preventDefault();const next=Math.max(.15,Math.min(150,zoom*Math.exp(-e.deltaY*.0015))),k=next/zoom;ox=e.clientX-(e.clientX-ox)*k;oy=e.clientY-(e.clientY-oy)*k;zoom=next;draw();};
+canvas.onpointerdown=e=>{drag=[e.clientX,e.clientY,ox,oy];canvas.setPointerCapture(e.pointerId);};canvas.onpointermove=e=>{if(drag){ox=drag[2]+e.clientX-drag[0];oy=drag[3]+e.clientY-drag[1];draw();}};canvas.onpointerup=()=>drag=null;canvas.onpointercancel=()=>drag=null;
+function resize(){width=innerWidth;height=innerHeight;canvas.width=width;canvas.height=height;home();}window.onresize=resize;
+window.onerror=e=>{errors.push(String(e));document.querySelector('#error').textContent='오류: '+e;};img.onload=()=>{loaded=true;draw();};img.onerror=()=>{errors.push('terrain image failed');document.querySelector('#error').textContent='지형 이미지 로딩 실패';};img.src='previews/geographic-terrain.png';resize();
+window.masterDebug=()=>({loaded,zoom,ox,oy,selected,errors,settlements:DATA.settlements.length,rivers:DATA.rivers.length,roads:DATA.roads.length});window.masterFocus=focus;
+</script></html>

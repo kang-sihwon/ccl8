@@ -1,0 +1,272 @@
+{
+  "schema_version": 1,
+  "status": "design_master_candidate",
+  "coordinate_system": {
+    "type": "spherical_azimuthal_equidistant",
+    "radius_km": 6366.197723675814,
+    "origin_lon_lat_deg": [
+      -1,
+      54
+    ],
+    "axes": "x east and y north at origin",
+    "rotation_deg": 0,
+    "units": "meters",
+    "limitations": "Distances from origin are true great-circle distances. Other planar distances and areas are distorted. No WGS84 or DEM.",
+    "axis": "x east; y north; z up",
+    "vertical_datum": "fictional sea level = 0 m",
+    "geographic_warning": "Fictional sphere, not Earth WGS84"
+  },
+  "ridges": [
+    {
+      "id": "D01",
+      "name": "백풍 산맥",
+      "xy_km": [
+        [
+          -1580.5458315526587,
+          1933.1885707401839
+        ],
+        [
+          -1151.5367726608229,
+          1699.483611376729
+        ],
+        [
+          -647.388699367114,
+          1533.935840927268
+        ],
+        [
+          -202.17987849122446,
+          1468.1207142957803
+        ],
+        [
+          329.64290081364817,
+          1479.7884780936288
+        ],
+        [
+          895.8418514036352,
+          1444.1334000419324
+        ],
+        [
+          1669.5725704636693,
+          1566.381035004673
+        ]
+      ],
+      "role": "north_south_divide",
+      "geometry_xy_m": [
+        [
+          -1580545.8315526587,
+          1933188.5707401838
+        ],
+        [
+          -1151536.7726608228,
+          1699483.6113767289
+        ],
+        [
+          -647388.699367114,
+          1533935.840927268
+        ],
+        [
+          -202179.87849122446,
+          1468120.7142957803
+        ],
+        [
+          329642.9008136482,
+          1479788.4780936288
+        ],
+        [
+          895841.8514036352,
+          1444133.4000419325
+        ],
+        [
+          1669572.5704636693,
+          1566381.035004673
+        ]
+      ],
+      "ridge_amplitude_m_candidate": 3100,
+      "influence_radius_m_candidate": 330000
+    },
+    {
+      "id": "D02a",
+      "name": "서부 분수계 북부",
+      "xy_km": [
+        [
+          -1151.5367726608229,
+          1699.483611376729
+        ],
+        [
+          -1443.557051828598,
+          1163.9359794832399
+        ],
+        [
+          -1708.5551931480923,
+          532.4101669585787
+        ]
+      ],
+      "role": "west_east_divide",
+      "geometry_xy_m": [
+        [
+          -1151536.7726608228,
+          1699483.6113767289
+        ],
+        [
+          -1443557.0518285981,
+          1163935.9794832398
+        ],
+        [
+          -1708555.1931480924,
+          532410.1669585786
+        ]
+      ],
+      "ridge_amplitude_m_candidate": 2350,
+      "influence_radius_m_candidate": 330000
+    },
+    {
+      "id": "D02b",
+      "name": "서부 분수계 남부",
+      "xy_km": [
+        [
+          -1708.5551931480923,
+          462.41016695857866
+        ],
+        [
+          -1999.6453661232413,
+          -141.1149073189828
+        ],
+        [
+          -2411.7440987653167,
+          -570.1693433445884
+        ]
+      ],
+      "role": "west_east_divide",
+      "geometry_xy_m": [
+        [
+          -1708555.1931480924,
+          462410.16695857863
+        ],
+        [
+          -1999645.3661232414,
+          -141114.9073189828
+        ],
+        [
+          -2411744.098765317,
+          -570169.3433445883
+        ]
+      ],
+      "ridge_amplitude_m_candidate": 2350,
+      "influence_radius_m_candidate": 330000
+    },
+    {
+      "id": "D03a",
+      "name": "동부 분수계 북부",
+      "xy_km": [
+        [
+          895.8418514036352,
+          1444.1334000419324
+        ],
+        [
+          1405.6862429979926,
+          874.2013591186784
+        ],
+        [
+          1833.9392848598509,
+          283.92870623179664
+        ],
+        [
+          2564.541951958239,
+          -164.1017141357631
+        ]
+      ],
+      "role": "east_plain_divide",
+      "geometry_xy_m": [
+        [
+          895841.8514036352,
+          1444133.4000419325
+        ],
+        [
+          1405686.2429979926,
+          874201.3591186784
+        ],
+        [
+          1833939.284859851,
+          283928.70623179665
+        ],
+        [
+          2564541.951958239,
+          -164101.7141357631
+        ]
+      ],
+      "ridge_amplitude_m_candidate": 2350,
+      "influence_radius_m_candidate": 330000
+    },
+    {
+      "id": "D03b",
+      "name": "동부 분수계 남부",
+      "xy_km": [
+        [
+          2594.541951958239,
+          -244.1017141357631
+        ],
+        [
+          2965.3826291613223,
+          -633.9276734399988
+        ]
+      ],
+      "role": "east_plain_divide",
+      "geometry_xy_m": [
+        [
+          2594541.951958239,
+          -244101.7141357631
+        ],
+        [
+          2965382.6291613225,
+          -633927.6734399988
+        ]
+      ],
+      "ridge_amplitude_m_candidate": 2350,
+      "influence_radius_m_candidate": 330000
+    }
+  ],
+  "passes": [
+    {
+      "id": "P01",
+      "xy_km": [
+        -1708.5551931480923,
+        497.41016695857866
+      ],
+      "role": "R5 low pass, west/east watershed",
+      "xy_m": [
+        -1708555.1931480924,
+        497410.16695857863
+      ],
+      "saddle_cap_m_candidate": 1100
+    },
+    {
+      "id": "P02",
+      "xy_km": [
+        2579.541951958239,
+        -204.1017141357631
+      ],
+      "role": "R7 low pass, east/plain watershed",
+      "xy_m": [
+        2579541.951958239,
+        -204101.7141357631
+      ],
+      "saddle_cap_m_candidate": 1100
+    }
+  ],
+  "parameters": {
+    "seed": 9127,
+    "river_valley_radius_m": 45000,
+    "river_profile_interpolation_core_m": 4000,
+    "core_is_not_physical_river_width": true,
+    "valley_side_slope": 0.004,
+    "coast_ramp_m": 85000,
+    "channel_fit": {
+      "spacing_m": 1000,
+      "iterations": 120,
+      "relaxation": 0.75,
+      "scope": "authored channels only; not whole catchments"
+    },
+    "method": "value noise + ridge envelopes + nearest-river valley constraints + bilinear channel profile fitting",
+    "hydraulic_erosion": false
+  }
+}
