@@ -1,5 +1,7 @@
 # 시험대 구조에서 실패 원인 대조까지
 
+빙편 정령의 낙하 판·재진입·철수와 작업 공간 확보를 비교할 때는 [세 전투 상세 후보](../2026-11-13-predator-and-ice-combat-arcs.md)를 읽는다. 아래 기존 구조 인계·증거·성장·귀환 조건은 보존한다.
+
 **생존자를 먼저 회수한 뒤 잔존 장치를 조사한다.** [후보 개요](../2026-11-12-niber-expedition-rescue.md)는 [니베르 큰 흐름](../2026-11-08-five-continent-mainline/continent-arcs.md#니베르)과 [G6 조건](../2026-11-08-five-continent-mainline/routes-and-unlocks.md#이동이야기-시작-조건)을 상세화한다. 아래 사건은 창작 후보이며 새로운 자연 법칙을 확정하지 않는다.
 
 ## 피난처를 찾는 탐색
