@@ -4,6 +4,7 @@
 
 | 읽는 때 | 문서 |
 |---|---|
+| 핵심 플롯의 채택 추천·대안·보류를 고를 때 | [5대륙 핵심 플롯 선택안](2026-11-13-world-plot-options.md) |
 | 각 구간의 성과와 다음 출발 조건·동료 위치를 볼 때 | [해금과 인계](2026-11-13-world-journey-continuity/gates-and-handoffs.md) |
 | 자연환경·생활권과 성장 수치를 비교할 때 | [생태와 성장](2026-11-13-world-journey-continuity/ecology-and-growth.md) |
 | 이번 확인 범위·보완 사항·남은 선택을 볼 때 | [점검 결과와 미정](2026-11-13-world-journey-continuity/findings-and-open-questions.md) |
