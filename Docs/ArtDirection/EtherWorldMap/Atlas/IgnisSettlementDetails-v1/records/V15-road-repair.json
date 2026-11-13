@@ -1,0 +1,15 @@
+{
+  "settlement": "V15",
+  "reference": "repairs/V15-road-patch-guide.png",
+  "output": "repairs/V15-road-patch.png",
+  "atlasBounds": [
+    3852,
+    2578,
+    4492,
+    3218
+  ],
+  "feather": 48,
+  "prompt": "Precise local image repair. The attached square aerial grass terrain patch has a single twin-rut dirt cart track that is accidentally broken and offset at the center. Repair only that central discontinuity: join the two existing sections into ONE smooth continuous gently curving twin-rut track with two parallel wheel ruts and a grassy center. Keep the existing left-edge and right-edge road endpoints, width, direction and all outer-edge pixels exactly fixed. Blend the correction across the middle third without a hard splice, missing segment, fork or abrupt step. Retain the exact overhead camera, muted olive grass texture, scattered stones, lighting, scale and crop. Do not add buildings, trees, rivers, text, symbols or other features. This is a surgical seam repair, not a new composition. Preserve all vegetation and rock positions outside the narrow road repair. Full-bleed square output.",
+  "status": "generated_road_connection_visually_confirmed",
+  "note": "Localized patch after deterministic assembly; core tiles are recut from patched atlas."
+}

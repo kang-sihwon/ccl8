@@ -1,0 +1,15 @@
+{
+  "id": "L10-C16449-R3199",
+  "settlement": "M02",
+  "name": "로덴",
+  "guide": "guides/L10-C16449-R3199.png",
+  "output": "generated/L10-C16449-R3199.png",
+  "tool": "image_gen",
+  "prompt": "Correct this map's camera projection only. Current image wrongly shows building facades/front walls/doors and upright sides. Reconstruct a TRUE VERTICAL NADIR orthographic aerial photograph looking exactly straight down 90 degrees. Zero wall or facade area on every building; remove all door/window bands below eaves and replace those bands with ground/yard. Preserve each existing roof's outer footprint and ridge at identical pixel positions. Roofs only, flat overhead polygons. Keep river bank, bridge, docks, road junctions, forest perimeter and every crop edge in exactly the same position; no additions, zooming, recentering or rotation. Input2 is correct overhead style only. Keep muted roof material and natural canopy texture, tiny soft shadows, uniform focus, no UI or text.",
+  "status": "generated_candidate",
+  "correction": "Roof-only nadir correction; prior candidate retained outside deliverable.",
+  "projectContext": [
+    "guides/L10-C16449-R3199.png",
+    "../IgnisM01Details-v1/generated/L10-C16318-R3286.png"
+  ]
+}

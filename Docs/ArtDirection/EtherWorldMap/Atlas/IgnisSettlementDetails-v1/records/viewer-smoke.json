@@ -1,0 +1,190 @@
+{
+  "status": "PASS",
+  "scope": "first_four_settlements",
+  "checks": [
+    {
+      "name": "continent preview loads",
+      "pass": true
+    },
+    {
+      "name": "36 settlement selector entries",
+      "pass": true
+    },
+    {
+      "name": "M01 context and detail tiles render",
+      "pass": true,
+      "detail": {
+        "expected": 12,
+        "planned": 12,
+        "state": {
+          "ready": true,
+          "zoom": 0.188232421875,
+          "cx": 33421312,
+          "cy": 6731776,
+          "aspect": 0.5893664231414988,
+          "selected": "M01",
+          "grid": false,
+          "labels": true,
+          "routes": false,
+          "compare": false,
+          "loaded": 15,
+          "painted": [
+            "../IgnisSectors-v1/previews/ignis-assembled-preview.png",
+            "../IgnisSectors-v1/tiles/L0-C15-R03.png",
+            "contexts/M01.png",
+            "../IgnisM01Details-v1/tiles/L10-C16316-R3286.png",
+            "../IgnisM01Details-v1/tiles/L10-C16317-R3286.png",
+            "../IgnisM01Details-v1/tiles/L10-C16318-R3286.png",
+            "../IgnisM01Details-v1/tiles/L10-C16319-R3286.png",
+            "../IgnisM01Details-v1/tiles/L10-C16320-R3286.png",
+            "../IgnisM01Details-v1/tiles/L10-C16321-R3286.png",
+            "../IgnisM01Details-v1/tiles/L10-C16316-R3287.png",
+            "../IgnisM01Details-v1/tiles/L10-C16317-R3287.png",
+            "../IgnisM01Details-v1/tiles/L10-C16318-R3287.png",
+            "../IgnisM01Details-v1/tiles/L10-C16319-R3287.png",
+            "../IgnisM01Details-v1/tiles/L10-C16320-R3287.png",
+            "../IgnisM01Details-v1/tiles/L10-C16321-R3287.png"
+          ],
+          "errors": [],
+          "availableTiles": 24
+        }
+      }
+    },
+    {
+      "name": "M02 context and detail tiles render",
+      "pass": true,
+      "detail": {
+        "expected": 4,
+        "planned": 4,
+        "state": {
+          "ready": true,
+          "zoom": 0.3396673914240332,
+          "cx": 33689600,
+          "cy": 6552576,
+          "aspect": 0.5757298038093727,
+          "selected": "M02",
+          "grid": false,
+          "labels": true,
+          "routes": false,
+          "compare": false,
+          "loaded": 21,
+          "painted": [
+            "../IgnisSectors-v1/previews/ignis-assembled-preview.png",
+            "../IgnisSectors-v1/tiles/L0-C16-R03.png",
+            "contexts/M02.png",
+            "tiles/L10-C16449-R3199.png",
+            "tiles/L10-C16450-R3199.png",
+            "tiles/L10-C16448-R3199.png",
+            "tiles/L10-C16451-R3199.png"
+          ],
+          "errors": [],
+          "availableTiles": 24
+        }
+      }
+    },
+    {
+      "name": "M03 context and detail tiles render",
+      "pass": true,
+      "detail": {
+        "expected": 4,
+        "planned": 4,
+        "state": {
+          "ready": true,
+          "zoom": 0.12548828125,
+          "cx": 34340864,
+          "cy": 8522752,
+          "aspect": 0.7159316636292462,
+          "selected": "M03",
+          "grid": false,
+          "labels": true,
+          "routes": false,
+          "compare": false,
+          "loaded": 27,
+          "painted": [
+            "../IgnisSectors-v1/previews/ignis-assembled-preview.png",
+            "../IgnisSectors-v1/tiles/L0-C16-R04.png",
+            "contexts/M03.png",
+            "tiles/L10-C16768-R4161.png",
+            "tiles/L10-C16767-R4161.png",
+            "tiles/L10-C16768-R4162.png",
+            "tiles/L10-C16768-R4160.png"
+          ],
+          "errors": [],
+          "availableTiles": 24
+        }
+      }
+    },
+    {
+      "name": "M04 context and detail tiles render",
+      "pass": true,
+      "detail": {
+        "expected": 4,
+        "planned": 4,
+        "state": {
+          "ready": true,
+          "zoom": 0.188232421875,
+          "cx": 28989440,
+          "cy": 6354944,
+          "aspect": 0.5605027902424811,
+          "selected": "M04",
+          "grid": false,
+          "labels": true,
+          "routes": false,
+          "compare": false,
+          "loaded": 33,
+          "painted": [
+            "../IgnisSectors-v1/previews/ignis-assembled-preview.png",
+            "../IgnisSectors-v1/tiles/L0-C13-R03.png",
+            "contexts/M04.png",
+            "tiles/L10-C14155-R3102.png",
+            "tiles/L10-C14155-R3103.png",
+            "tiles/L10-C14154-R3102.png",
+            "tiles/L10-C14154-R3103.png"
+          ],
+          "errors": [],
+          "availableTiles": 24
+        }
+      }
+    },
+    {
+      "name": "drag applies exact pixel displacement",
+      "pass": true
+    },
+    {
+      "name": "wheel zoom",
+      "pass": true
+    },
+    {
+      "name": "capture preserves zoom",
+      "pass": true
+    },
+    {
+      "name": "comparison hides new tiles",
+      "pass": true
+    },
+    {
+      "name": "grid toggle",
+      "pass": true
+    },
+    {
+      "name": "labels toggle",
+      "pass": true
+    },
+    {
+      "name": "Escape fits continent",
+      "pass": true
+    },
+    {
+      "name": "route toggle",
+      "pass": true
+    },
+    {
+      "name": "no runtime or image errors",
+      "pass": true,
+      "detail": {
+        "runtime": [],
+        "images": []
+      }
+    }
+  ]
+}

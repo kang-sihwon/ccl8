@@ -1,0 +1,1212 @@
+{
+  "status": "PASS",
+  "scope": "all_36_settlements",
+  "checks": [
+    {
+      "name": "continent preview loads",
+      "pass": true
+    },
+    {
+      "name": "36 settlement selector entries",
+      "pass": true
+    },
+    {
+      "name": "M01 context and detail tiles render",
+      "pass": true,
+      "detail": {
+        "expected": 12,
+        "planned": 12,
+        "state": {
+          "ready": true,
+          "zoom": 0.188232421875,
+          "cx": 33421312,
+          "cy": 6731776,
+          "aspect": 0.5893664231414988,
+          "selected": "M01",
+          "grid": false,
+          "labels": true,
+          "routes": false,
+          "compare": false,
+          "loaded": 15,
+          "painted": [
+            "../IgnisSectors-v1/previews/ignis-assembled-preview.png",
+            "../IgnisSectors-v1/tiles/L0-C15-R03.png",
+            "contexts/M01.png",
+            "../IgnisM01Details-v1/tiles/L10-C16316-R3286.png",
+            "../IgnisM01Details-v1/tiles/L10-C16317-R3286.png",
+            "../IgnisM01Details-v1/tiles/L10-C16318-R3286.png",
+            "../IgnisM01Details-v1/tiles/L10-C16319-R3286.png",
+            "../IgnisM01Details-v1/tiles/L10-C16320-R3286.png",
+            "../IgnisM01Details-v1/tiles/L10-C16321-R3286.png",
+            "../IgnisM01Details-v1/tiles/L10-C16316-R3287.png",
+            "../IgnisM01Details-v1/tiles/L10-C16317-R3287.png",
+            "../IgnisM01Details-v1/tiles/L10-C16318-R3287.png",
+            "../IgnisM01Details-v1/tiles/L10-C16319-R3287.png",
+            "../IgnisM01Details-v1/tiles/L10-C16320-R3287.png",
+            "../IgnisM01Details-v1/tiles/L10-C16321-R3287.png"
+          ],
+          "errors": [],
+          "availableTiles": 150
+        }
+      }
+    },
+    {
+      "name": "M02 context and detail tiles render",
+      "pass": true,
+      "detail": {
+        "expected": 4,
+        "planned": 4,
+        "state": {
+          "ready": true,
+          "zoom": 0.3396673914240332,
+          "cx": 33689600,
+          "cy": 6552576,
+          "aspect": 0.5757298038093727,
+          "selected": "M02",
+          "grid": false,
+          "labels": true,
+          "routes": false,
+          "compare": false,
+          "loaded": 21,
+          "painted": [
+            "../IgnisSectors-v1/previews/ignis-assembled-preview.png",
+            "../IgnisSectors-v1/tiles/L0-C16-R03.png",
+            "contexts/M02.png",
+            "tiles/L10-C16449-R3199.png",
+            "tiles/L10-C16450-R3199.png",
+            "tiles/L10-C16448-R3199.png",
+            "tiles/L10-C16451-R3199.png"
+          ],
+          "errors": [],
+          "availableTiles": 150
+        }
+      }
+    },
+    {
+      "name": "M03 context and detail tiles render",
+      "pass": true,
+      "detail": {
+        "expected": 4,
+        "planned": 4,
+        "state": {
+          "ready": true,
+          "zoom": 0.12548828125,
+          "cx": 34340864,
+          "cy": 8522752,
+          "aspect": 0.7159316636292462,
+          "selected": "M03",
+          "grid": false,
+          "labels": true,
+          "routes": false,
+          "compare": false,
+          "loaded": 27,
+          "painted": [
+            "../IgnisSectors-v1/previews/ignis-assembled-preview.png",
+            "../IgnisSectors-v1/tiles/L0-C16-R04.png",
+            "contexts/M03.png",
+            "tiles/L10-C16768-R4161.png",
+            "tiles/L10-C16767-R4161.png",
+            "tiles/L10-C16768-R4162.png",
+            "tiles/L10-C16768-R4160.png"
+          ],
+          "errors": [],
+          "availableTiles": 150
+        }
+      }
+    },
+    {
+      "name": "M04 context and detail tiles render",
+      "pass": true,
+      "detail": {
+        "expected": 4,
+        "planned": 4,
+        "state": {
+          "ready": true,
+          "zoom": 0.188232421875,
+          "cx": 28989440,
+          "cy": 6354944,
+          "aspect": 0.5605027902424811,
+          "selected": "M04",
+          "grid": false,
+          "labels": true,
+          "routes": false,
+          "compare": false,
+          "loaded": 33,
+          "painted": [
+            "../IgnisSectors-v1/previews/ignis-assembled-preview.png",
+            "../IgnisSectors-v1/tiles/L0-C13-R03.png",
+            "contexts/M04.png",
+            "tiles/L10-C14155-R3102.png",
+            "tiles/L10-C14155-R3103.png",
+            "tiles/L10-C14154-R3102.png",
+            "tiles/L10-C14154-R3103.png"
+          ],
+          "errors": [],
+          "availableTiles": 150
+        }
+      }
+    },
+    {
+      "name": "M05 context and detail tiles render",
+      "pass": true,
+      "detail": {
+        "expected": 4,
+        "planned": 4,
+        "state": {
+          "ready": true,
+          "zoom": 0.188232421875,
+          "cx": 24919040,
+          "cy": 6529024,
+          "aspect": 0.5739254296856507,
+          "selected": "M05",
+          "grid": false,
+          "labels": true,
+          "routes": false,
+          "compare": false,
+          "loaded": 39,
+          "painted": [
+            "../IgnisSectors-v1/previews/ignis-assembled-preview.png",
+            "../IgnisSectors-v1/tiles/L0-C11-R03.png",
+            "contexts/M05.png",
+            "tiles/L10-C12167-R3188.png",
+            "tiles/L10-C12168-R3188.png",
+            "tiles/L10-C12167-R3187.png",
+            "tiles/L10-C12166-R3188.png"
+          ],
+          "errors": [],
+          "availableTiles": 150
+        }
+      }
+    },
+    {
+      "name": "M06 context and detail tiles render",
+      "pass": true,
+      "detail": {
+        "expected": 4,
+        "planned": 4,
+        "state": {
+          "ready": true,
+          "zoom": 0.12548828125,
+          "cx": 41803776,
+          "cy": 6495232,
+          "aspect": 0.571331672830261,
+          "selected": "M06",
+          "grid": false,
+          "labels": true,
+          "routes": false,
+          "compare": false,
+          "loaded": 45,
+          "painted": [
+            "../IgnisSectors-v1/previews/ignis-assembled-preview.png",
+            "../IgnisSectors-v1/tiles/L0-C19-R03.png",
+            "contexts/M06.png",
+            "tiles/L10-C20412-R3171.png",
+            "tiles/L10-C20411-R3171.png",
+            "tiles/L10-C20412-R3172.png",
+            "tiles/L10-C20412-R3170.png"
+          ],
+          "errors": [],
+          "availableTiles": 150
+        }
+      }
+    },
+    {
+      "name": "M07 context and detail tiles render",
+      "pass": true,
+      "detail": {
+        "expected": 4,
+        "planned": 4,
+        "state": {
+          "ready": true,
+          "zoom": 0.37646484375,
+          "cx": 32501760,
+          "cy": 4930560,
+          "aspect": 0.4454101801957503,
+          "selected": "M07",
+          "grid": false,
+          "labels": true,
+          "routes": false,
+          "compare": false,
+          "loaded": 51,
+          "painted": [
+            "../IgnisSectors-v1/previews/ignis-assembled-preview.png",
+            "../IgnisSectors-v1/tiles/L0-C15-R02.png",
+            "contexts/M07.png",
+            "tiles/L10-C15869-R2407.png",
+            "tiles/L10-C15870-R2407.png",
+            "tiles/L10-C15868-R2407.png",
+            "tiles/L10-C15871-R2407.png"
+          ],
+          "errors": [],
+          "availableTiles": 150
+        }
+      }
+    },
+    {
+      "name": "M08 context and detail tiles render",
+      "pass": true,
+      "detail": {
+        "expected": 4,
+        "planned": 4,
+        "state": {
+          "ready": true,
+          "zoom": 0.188232421875,
+          "cx": 38118400,
+          "cy": 8622080,
+          "aspect": 0.7223934271745776,
+          "selected": "M08",
+          "grid": false,
+          "labels": true,
+          "routes": false,
+          "compare": false,
+          "loaded": 57,
+          "painted": [
+            "../IgnisSectors-v1/previews/ignis-assembled-preview.png",
+            "../IgnisSectors-v1/tiles/L0-C18-R04.png",
+            "contexts/M08.png",
+            "tiles/L10-C18612-R4209.png",
+            "tiles/L10-C18611-R4209.png",
+            "tiles/L10-C18612-R4210.png",
+            "tiles/L10-C18613-R4209.png"
+          ],
+          "errors": [],
+          "availableTiles": 150
+        }
+      }
+    },
+    {
+      "name": "T01 context and detail tiles render",
+      "pass": true,
+      "detail": {
+        "expected": 4,
+        "planned": 4,
+        "state": {
+          "ready": true,
+          "zoom": 0.34181156699675447,
+          "cx": 33769472,
+          "cy": 6505472,
+          "aspect": 0.5721182648767905,
+          "selected": "T01",
+          "grid": false,
+          "labels": true,
+          "routes": false,
+          "compare": false,
+          "loaded": 62,
+          "painted": [
+            "../IgnisSectors-v1/previews/ignis-assembled-preview.png",
+            "../IgnisSectors-v1/tiles/L0-C16-R03.png",
+            "contexts/T01.png",
+            "tiles/L10-C16489-R3176.png",
+            "tiles/L10-C16488-R3176.png",
+            "tiles/L10-C16490-R3176.png",
+            "tiles/L10-C16487-R3176.png"
+          ],
+          "errors": [],
+          "availableTiles": 150
+        }
+      }
+    },
+    {
+      "name": "T02 context and detail tiles render",
+      "pass": true,
+      "detail": {
+        "expected": 4,
+        "planned": 4,
+        "state": {
+          "ready": true,
+          "zoom": 0.33343163909099954,
+          "cx": 33474560,
+          "cy": 6693888,
+          "aspect": 0.5864969537927655,
+          "selected": "T02",
+          "grid": false,
+          "labels": true,
+          "routes": false,
+          "compare": false,
+          "loaded": 67,
+          "painted": [
+            "../IgnisSectors-v1/previews/ignis-assembled-preview.png",
+            "../IgnisSectors-v1/tiles/L0-C15-R03.png",
+            "contexts/T02.png",
+            "tiles/L10-C16344-R3268.png",
+            "tiles/L10-C16345-R3268.png",
+            "tiles/L10-C16343-R3268.png",
+            "tiles/L10-C16346-R3268.png"
+          ],
+          "errors": [],
+          "availableTiles": 150
+        }
+      }
+    },
+    {
+      "name": "T03 context and detail tiles render",
+      "pass": true,
+      "detail": {
+        "expected": 4,
+        "planned": 4,
+        "state": {
+          "ready": true,
+          "zoom": 0.3302047241775108,
+          "cx": 33495040,
+          "cy": 6769664,
+          "aspect": 0.5922284761736875,
+          "selected": "T03",
+          "grid": false,
+          "labels": true,
+          "routes": false,
+          "compare": false,
+          "loaded": 60,
+          "painted": [
+            "../IgnisSectors-v1/previews/ignis-assembled-preview.png",
+            "../IgnisSectors-v1/tiles/L0-C15-R03.png",
+            "contexts/T03.png",
+            "tiles/L10-C16355-R3305.png",
+            "tiles/L10-C16354-R3305.png",
+            "tiles/L10-C16356-R3305.png",
+            "tiles/L10-C16353-R3305.png"
+          ],
+          "errors": [],
+          "availableTiles": 150
+        }
+      }
+    },
+    {
+      "name": "T04 context and detail tiles render",
+      "pass": true,
+      "detail": {
+        "expected": 4,
+        "planned": 4,
+        "state": {
+          "ready": true,
+          "zoom": 0.188232421875,
+          "cx": 30745600,
+          "cy": 6522880,
+          "aspect": 0.5734542640771304,
+          "selected": "T04",
+          "grid": false,
+          "labels": true,
+          "routes": false,
+          "compare": false,
+          "loaded": 66,
+          "painted": [
+            "../IgnisSectors-v1/previews/ignis-assembled-preview.png",
+            "../IgnisSectors-v1/tiles/L0-C14-R03.png",
+            "contexts/T04.png",
+            "tiles/L10-C15012-R3184.png",
+            "tiles/L10-C15012-R3185.png",
+            "tiles/L10-C15013-R3184.png",
+            "tiles/L10-C15011-R3184.png"
+          ],
+          "errors": [],
+          "availableTiles": 150
+        }
+      }
+    },
+    {
+      "name": "T05 context and detail tiles render",
+      "pass": true,
+      "detail": {
+        "expected": 4,
+        "planned": 4,
+        "state": {
+          "ready": true,
+          "zoom": 0.3371927001632456,
+          "cx": 27238400,
+          "cy": 6607872,
+          "aspect": 0.5799551429503809,
+          "selected": "T05",
+          "grid": false,
+          "labels": true,
+          "routes": false,
+          "compare": false,
+          "loaded": 60,
+          "painted": [
+            "../IgnisSectors-v1/previews/ignis-assembled-preview.png",
+            "../IgnisSectors-v1/tiles/L0-C12-R03.png",
+            "contexts/T05.png",
+            "tiles/L10-C13299-R3226.png",
+            "tiles/L10-C13298-R3226.png",
+            "tiles/L10-C13300-R3226.png",
+            "tiles/L10-C13301-R3226.png"
+          ],
+          "errors": [],
+          "availableTiles": 150
+        }
+      }
+    },
+    {
+      "name": "T06 context and detail tiles render",
+      "pass": true,
+      "detail": {
+        "expected": 4,
+        "planned": 4,
+        "state": {
+          "ready": true,
+          "zoom": 0.188232421875,
+          "cx": 25718784,
+          "cy": 9043968,
+          "aspect": 0.7491363945234594,
+          "selected": "T06",
+          "grid": false,
+          "labels": true,
+          "routes": false,
+          "compare": false,
+          "loaded": 66,
+          "painted": [
+            "../IgnisSectors-v1/previews/ignis-assembled-preview.png",
+            "../IgnisSectors-v1/tiles/L0-C12-R04.png",
+            "contexts/T06.png",
+            "tiles/L10-C12557-R4416.png",
+            "tiles/L10-C12558-R4416.png",
+            "tiles/L10-C12557-R4415.png",
+            "tiles/L10-C12558-R4415.png"
+          ],
+          "errors": [],
+          "availableTiles": 150
+        }
+      }
+    },
+    {
+      "name": "T07 context and detail tiles render",
+      "pass": true,
+      "detail": {
+        "expected": 3,
+        "planned": 3,
+        "state": {
+          "ready": true,
+          "zoom": 0.37531420571785634,
+          "cx": 36365312,
+          "cy": 8203264,
+          "aspect": 0.6947303979642427,
+          "selected": "T07",
+          "grid": false,
+          "labels": true,
+          "routes": false,
+          "compare": false,
+          "loaded": 60,
+          "painted": [
+            "../IgnisSectors-v1/previews/ignis-assembled-preview.png",
+            "../IgnisSectors-v1/tiles/L0-C17-R03.png",
+            "contexts/T07.png",
+            "tiles/L10-C17755-R4005.png",
+            "tiles/L10-C17756-R4005.png",
+            "tiles/L10-C17757-R4005.png"
+          ],
+          "errors": [],
+          "availableTiles": 150
+        }
+      }
+    },
+    {
+      "name": "T08 context and detail tiles render",
+      "pass": true,
+      "detail": {
+        "expected": 3,
+        "planned": 3,
+        "state": {
+          "ready": true,
+          "zoom": 0.37646484375,
+          "cx": 39871488,
+          "cy": 6859776,
+          "aspect": 0.5990055149610022,
+          "selected": "T08",
+          "grid": false,
+          "labels": true,
+          "routes": false,
+          "compare": false,
+          "loaded": 64,
+          "painted": [
+            "../IgnisSectors-v1/previews/ignis-assembled-preview.png",
+            "../IgnisSectors-v1/tiles/L0-C19-R03.png",
+            "contexts/T08.png",
+            "tiles/L10-C19468-R3349.png",
+            "tiles/L10-C19469-R3349.png",
+            "tiles/L10-C19467-R3349.png"
+          ],
+          "errors": [],
+          "availableTiles": 150
+        }
+      }
+    },
+    {
+      "name": "T09 context and detail tiles render",
+      "pass": true,
+      "detail": {
+        "expected": 4,
+        "planned": 4,
+        "state": {
+          "ready": true,
+          "zoom": 0.188232421875,
+          "cx": 39367680,
+          "cy": 10670080,
+          "aspect": 0.8409329611297798,
+          "selected": "T09",
+          "grid": false,
+          "labels": true,
+          "routes": false,
+          "compare": false,
+          "loaded": 70,
+          "painted": [
+            "../IgnisSectors-v1/previews/ignis-assembled-preview.png",
+            "../IgnisSectors-v1/tiles/L0-C18-R05.png",
+            "contexts/T09.png",
+            "tiles/L10-C19222-R5210.png",
+            "tiles/L10-C19221-R5210.png",
+            "tiles/L10-C19221-R5209.png",
+            "tiles/L10-C19223-R5210.png"
+          ],
+          "errors": [],
+          "availableTiles": 150
+        }
+      }
+    },
+    {
+      "name": "T10 context and detail tiles render",
+      "pass": true,
+      "detail": {
+        "expected": 4,
+        "planned": 4,
+        "state": {
+          "ready": true,
+          "zoom": 0.37646484375,
+          "cx": 32630784,
+          "cy": 5194752,
+          "aspect": 0.46741796682315745,
+          "selected": "T10",
+          "grid": false,
+          "labels": true,
+          "routes": false,
+          "compare": false,
+          "loaded": 60,
+          "painted": [
+            "../IgnisSectors-v1/previews/ignis-assembled-preview.png",
+            "../IgnisSectors-v1/tiles/L0-C15-R02.png",
+            "contexts/T10.png",
+            "tiles/L10-C15933-R2536.png",
+            "tiles/L10-C15932-R2536.png",
+            "tiles/L10-C15934-R2536.png",
+            "tiles/L10-C15931-R2536.png"
+          ],
+          "errors": [],
+          "availableTiles": 150
+        }
+      }
+    },
+    {
+      "name": "T11 context and detail tiles render",
+      "pass": true,
+      "detail": {
+        "expected": 4,
+        "planned": 4,
+        "state": {
+          "ready": true,
+          "zoom": 0.37646484375,
+          "cx": 32321536,
+          "cy": 4684800,
+          "aspect": 0.42469288501724206,
+          "selected": "T11",
+          "grid": false,
+          "labels": true,
+          "routes": false,
+          "compare": false,
+          "loaded": 65,
+          "painted": [
+            "../IgnisSectors-v1/previews/ignis-assembled-preview.png",
+            "../IgnisSectors-v1/tiles/L0-C15-R02.png",
+            "contexts/T11.png",
+            "tiles/L10-C15782-R2287.png",
+            "tiles/L10-C15781-R2287.png",
+            "tiles/L10-C15783-R2287.png",
+            "tiles/L10-C15780-R2287.png"
+          ],
+          "errors": [],
+          "availableTiles": 150
+        }
+      }
+    },
+    {
+      "name": "T12 context and detail tiles render",
+      "pass": true,
+      "detail": {
+        "expected": 4,
+        "planned": 4,
+        "state": {
+          "ready": true,
+          "zoom": 0.37646484375,
+          "cx": 31270912,
+          "cy": 4877312,
+          "aspect": 0.4409410684522862,
+          "selected": "T12",
+          "grid": false,
+          "labels": true,
+          "routes": false,
+          "compare": false,
+          "loaded": 60,
+          "painted": [
+            "../IgnisSectors-v1/previews/ignis-assembled-preview.png",
+            "../IgnisSectors-v1/tiles/L0-C14-R02.png",
+            "contexts/T12.png",
+            "tiles/L10-C15269-R2381.png",
+            "tiles/L10-C15268-R2381.png",
+            "tiles/L10-C15270-R2381.png",
+            "tiles/L10-C15267-R2381.png"
+          ],
+          "errors": [],
+          "availableTiles": 150
+        }
+      }
+    },
+    {
+      "name": "V01 context and detail tiles render",
+      "pass": true,
+      "detail": {
+        "expected": 4,
+        "planned": 4,
+        "state": {
+          "ready": true,
+          "zoom": 0.37646484375,
+          "cx": 33809920,
+          "cy": 6471680,
+          "aspect": 0.5695205193469473,
+          "selected": "V01",
+          "grid": false,
+          "labels": true,
+          "routes": false,
+          "compare": false,
+          "loaded": 66,
+          "painted": [
+            "../IgnisSectors-v1/previews/ignis-assembled-preview.png",
+            "../IgnisSectors-v1/tiles/L0-C16-R03.png",
+            "contexts/V01.png",
+            "tiles/L11-C33017-R6320.png",
+            "tiles/L11-C33017-R6319.png",
+            "tiles/L11-C33018-R6320.png",
+            "tiles/L11-C33016-R6320.png"
+          ],
+          "errors": [],
+          "availableTiles": 150
+        }
+      }
+    },
+    {
+      "name": "V02 context and detail tiles render",
+      "pass": true,
+      "detail": {
+        "expected": 4,
+        "planned": 4,
+        "state": {
+          "ready": true,
+          "zoom": 0.6876455569629506,
+          "cx": 33822720,
+          "cy": 6461952,
+          "aspect": 0.5687716255702829,
+          "selected": "V02",
+          "grid": false,
+          "labels": true,
+          "routes": false,
+          "compare": false,
+          "loaded": 60,
+          "painted": [
+            "../IgnisSectors-v1/previews/ignis-assembled-preview.png",
+            "../IgnisSectors-v1/tiles/L0-C16-R03.png",
+            "contexts/V02.png",
+            "tiles/L11-C33029-R6310.png",
+            "tiles/L11-C33030-R6310.png",
+            "tiles/L11-C33028-R6310.png",
+            "tiles/L11-C33031-R6310.png"
+          ],
+          "errors": [],
+          "availableTiles": 150
+        }
+      }
+    },
+    {
+      "name": "V03 context and detail tiles render",
+      "pass": true,
+      "detail": {
+        "expected": 4,
+        "planned": 4,
+        "state": {
+          "ready": true,
+          "zoom": 0.37646484375,
+          "cx": 33779712,
+          "cy": 6484992,
+          "aspect": 0.5705445556279599,
+          "selected": "V03",
+          "grid": false,
+          "labels": true,
+          "routes": false,
+          "compare": false,
+          "loaded": 65,
+          "painted": [
+            "../IgnisSectors-v1/previews/ignis-assembled-preview.png",
+            "../IgnisSectors-v1/tiles/L0-C16-R03.png",
+            "contexts/V03.png",
+            "tiles/L11-C32988-R6332.png",
+            "tiles/L11-C32987-R6332.png",
+            "tiles/L11-C32988-R6333.png",
+            "tiles/L11-C32987-R6333.png"
+          ],
+          "errors": [],
+          "availableTiles": 150
+        }
+      }
+    },
+    {
+      "name": "V04 context and detail tiles render",
+      "pass": true,
+      "detail": {
+        "expected": 4,
+        "planned": 4,
+        "state": {
+          "ready": true,
+          "zoom": 0.37646484375,
+          "cx": 33788928,
+          "cy": 6474752,
+          "aspect": 0.5697569139933885,
+          "selected": "V04",
+          "grid": false,
+          "labels": true,
+          "routes": false,
+          "compare": false,
+          "loaded": 70,
+          "painted": [
+            "../IgnisSectors-v1/previews/ignis-assembled-preview.png",
+            "../IgnisSectors-v1/tiles/L0-C16-R03.png",
+            "contexts/V04.png",
+            "tiles/L11-C32997-R6323.png",
+            "tiles/L11-C32997-R6322.png",
+            "tiles/L11-C32996-R6323.png",
+            "tiles/L11-C32996-R6322.png"
+          ],
+          "errors": [],
+          "availableTiles": 150
+        }
+      }
+    },
+    {
+      "name": "V05 context and detail tiles render",
+      "pass": true,
+      "detail": {
+        "expected": 4,
+        "planned": 4,
+        "state": {
+          "ready": true,
+          "zoom": 0.37646484375,
+          "cx": 30639616,
+          "cy": 6477824,
+          "aspect": 0.5699932615060807,
+          "selected": "V05",
+          "grid": false,
+          "labels": true,
+          "routes": false,
+          "compare": false,
+          "loaded": 60,
+          "painted": [
+            "../IgnisSectors-v1/previews/ignis-assembled-preview.png",
+            "../IgnisSectors-v1/tiles/L0-C14-R03.png",
+            "contexts/V05.png",
+            "tiles/L11-C29921-R6325.png",
+            "tiles/L11-C29920-R6325.png",
+            "tiles/L11-C29920-R6326.png",
+            "tiles/L11-C29922-R6325.png"
+          ],
+          "errors": [],
+          "availableTiles": 150
+        }
+      }
+    },
+    {
+      "name": "V06 context and detail tiles render",
+      "pass": true,
+      "detail": {
+        "expected": 4,
+        "planned": 4,
+        "state": {
+          "ready": true,
+          "zoom": 0.37646484375,
+          "cx": 28885504,
+          "cy": 6316032,
+          "aspect": 0.5574819482239917,
+          "selected": "V06",
+          "grid": false,
+          "labels": true,
+          "routes": false,
+          "compare": false,
+          "loaded": 66,
+          "painted": [
+            "../IgnisSectors-v1/previews/ignis-assembled-preview.png",
+            "../IgnisSectors-v1/tiles/L0-C13-R03.png",
+            "contexts/V06.png",
+            "tiles/L11-C28208-R6167.png",
+            "tiles/L11-C28208-R6168.png",
+            "tiles/L11-C28209-R6167.png",
+            "tiles/L11-C28207-R6167.png"
+          ],
+          "errors": [],
+          "availableTiles": 150
+        }
+      }
+    },
+    {
+      "name": "V07 context and detail tiles render",
+      "pass": true,
+      "detail": {
+        "expected": 4,
+        "planned": 4,
+        "state": {
+          "ready": true,
+          "zoom": 0.37646484375,
+          "cx": 29061632,
+          "cy": 6317056,
+          "aspect": 0.5575615390411335,
+          "selected": "V07",
+          "grid": false,
+          "labels": true,
+          "routes": false,
+          "compare": false,
+          "loaded": 60,
+          "painted": [
+            "../IgnisSectors-v1/previews/ignis-assembled-preview.png",
+            "../IgnisSectors-v1/tiles/L0-C13-R03.png",
+            "contexts/V07.png",
+            "tiles/L11-C28380-R6168.png",
+            "tiles/L11-C28380-R6169.png",
+            "tiles/L11-C28381-R6168.png",
+            "tiles/L11-C28379-R6168.png"
+          ],
+          "errors": [],
+          "availableTiles": 150
+        }
+      }
+    },
+    {
+      "name": "V08 context and detail tiles render",
+      "pass": true,
+      "detail": {
+        "expected": 4,
+        "planned": 4,
+        "state": {
+          "ready": true,
+          "zoom": 0.37646484375,
+          "cx": 25703424,
+          "cy": 8981504,
+          "aspect": 0.7452495980709083,
+          "selected": "V08",
+          "grid": false,
+          "labels": true,
+          "routes": false,
+          "compare": false,
+          "loaded": 66,
+          "painted": [
+            "../IgnisSectors-v1/previews/ignis-assembled-preview.png",
+            "../IgnisSectors-v1/tiles/L0-C12-R04.png",
+            "contexts/V08.png",
+            "tiles/L11-C25100-R8770.png",
+            "tiles/L11-C25101-R8770.png",
+            "tiles/L11-C25100-R8771.png",
+            "tiles/L11-C25101-R8771.png"
+          ],
+          "errors": [],
+          "availableTiles": 150
+        }
+      }
+    },
+    {
+      "name": "V09 context and detail tiles render",
+      "pass": true,
+      "detail": {
+        "expected": 4,
+        "planned": 4,
+        "state": {
+          "ready": true,
+          "zoom": 0.37646484375,
+          "cx": 36457472,
+          "cy": 8174592,
+          "aspect": 0.692797040277158,
+          "selected": "V09",
+          "grid": false,
+          "labels": true,
+          "routes": false,
+          "compare": false,
+          "loaded": 60,
+          "painted": [
+            "../IgnisSectors-v1/previews/ignis-assembled-preview.png",
+            "../IgnisSectors-v1/tiles/L0-C17-R03.png",
+            "contexts/V09.png",
+            "tiles/L11-C35603-R7982.png",
+            "tiles/L11-C35603-R7983.png",
+            "tiles/L11-C35602-R7982.png",
+            "tiles/L11-C35602-R7983.png"
+          ],
+          "errors": [],
+          "availableTiles": 150
+        }
+      }
+    },
+    {
+      "name": "V10 context and detail tiles render",
+      "pass": true,
+      "detail": {
+        "expected": 4,
+        "planned": 4,
+        "state": {
+          "ready": true,
+          "zoom": 0.5388728669876633,
+          "cx": 38153216,
+          "cy": 8674816,
+          "aspect": 0.7257988019258611,
+          "selected": "V10",
+          "grid": false,
+          "labels": true,
+          "routes": false,
+          "compare": false,
+          "loaded": 66,
+          "painted": [
+            "../IgnisSectors-v1/previews/ignis-assembled-preview.png",
+            "../IgnisSectors-v1/tiles/L0-C18-R04.png",
+            "contexts/V10.png",
+            "tiles/L11-C37258-R8471.png",
+            "tiles/L11-C37259-R8471.png",
+            "tiles/L11-C37257-R8471.png",
+            "tiles/L11-C37260-R8471.png"
+          ],
+          "errors": [],
+          "availableTiles": 150
+        }
+      }
+    },
+    {
+      "name": "V11 context and detail tiles render",
+      "pass": true,
+      "detail": {
+        "expected": 4,
+        "planned": 4,
+        "state": {
+          "ready": true,
+          "zoom": 0.37646484375,
+          "cx": 39825408,
+          "cy": 6789120,
+          "aspect": 0.5936952853360693,
+          "selected": "V11",
+          "grid": false,
+          "labels": true,
+          "routes": false,
+          "compare": false,
+          "loaded": 60,
+          "painted": [
+            "../IgnisSectors-v1/previews/ignis-assembled-preview.png",
+            "../IgnisSectors-v1/tiles/L0-C18-R03.png",
+            "contexts/V11.png",
+            "tiles/L11-C38891-R6629.png",
+            "tiles/L11-C38891-R6630.png",
+            "tiles/L11-C38892-R6629.png",
+            "tiles/L11-C38892-R6630.png"
+          ],
+          "errors": [],
+          "availableTiles": 150
+        }
+      }
+    },
+    {
+      "name": "V12 context and detail tiles render",
+      "pass": true,
+      "detail": {
+        "expected": 4,
+        "planned": 4,
+        "state": {
+          "ready": true,
+          "zoom": 0.37646484375,
+          "cx": 42228736,
+          "cy": 8989696,
+          "aspect": 0.745760796965336,
+          "selected": "V12",
+          "grid": false,
+          "labels": true,
+          "routes": false,
+          "compare": false,
+          "loaded": 66,
+          "painted": [
+            "../IgnisSectors-v1/previews/ignis-assembled-preview.png",
+            "../IgnisSectors-v1/tiles/L0-C20-R04.png",
+            "contexts/V12.png",
+            "tiles/L11-C41238-R8779.png",
+            "tiles/L11-C41238-R8778.png",
+            "tiles/L11-C41239-R8779.png",
+            "tiles/L11-C41239-R8778.png"
+          ],
+          "errors": [],
+          "availableTiles": 150
+        }
+      }
+    },
+    {
+      "name": "V13 context and detail tiles render",
+      "pass": true,
+      "detail": {
+        "expected": 4,
+        "planned": 4,
+        "state": {
+          "ready": true,
+          "zoom": 0.37646484375,
+          "cx": 32717312,
+          "cy": 5168128,
+          "aspect": 0.4652128626604277,
+          "selected": "V13",
+          "grid": false,
+          "labels": true,
+          "routes": false,
+          "compare": false,
+          "loaded": 60,
+          "painted": [
+            "../IgnisSectors-v1/previews/ignis-assembled-preview.png",
+            "../IgnisSectors-v1/tiles/L0-C15-R02.png",
+            "contexts/V13.png",
+            "tiles/L11-C31950-R5047.png",
+            "tiles/L11-C31950-R5046.png",
+            "tiles/L11-C31951-R5047.png",
+            "tiles/L11-C31949-R5047.png"
+          ],
+          "errors": [],
+          "availableTiles": 150
+        }
+      }
+    },
+    {
+      "name": "V14 context and detail tiles render",
+      "pass": true,
+      "detail": {
+        "expected": 4,
+        "planned": 4,
+        "state": {
+          "ready": true,
+          "zoom": 0.37646484375,
+          "cx": 32371200,
+          "cy": 4732928,
+          "aspect": 0.4287680723586251,
+          "selected": "V14",
+          "grid": false,
+          "labels": true,
+          "routes": false,
+          "compare": false,
+          "loaded": 65,
+          "painted": [
+            "../IgnisSectors-v1/previews/ignis-assembled-preview.png",
+            "../IgnisSectors-v1/tiles/L0-C15-R02.png",
+            "contexts/V14.png",
+            "tiles/L11-C31612-R4622.png",
+            "tiles/L11-C31612-R4621.png",
+            "tiles/L11-C31611-R4622.png",
+            "tiles/L11-C31613-R4622.png"
+          ],
+          "errors": [],
+          "availableTiles": 150
+        }
+      }
+    },
+    {
+      "name": "V15 context and detail tiles render",
+      "pass": true,
+      "detail": {
+        "expected": 4,
+        "planned": 4,
+        "state": {
+          "ready": true,
+          "zoom": 0.37646484375,
+          "cx": 31084032,
+          "cy": 4797440,
+          "aspect": 0.4342168867751579,
+          "selected": "V15",
+          "grid": false,
+          "labels": true,
+          "routes": false,
+          "compare": false,
+          "loaded": 60,
+          "painted": [
+            "../IgnisSectors-v1/previews/ignis-assembled-preview.png",
+            "../IgnisSectors-v1/tiles/L0-C14-R02.png",
+            "contexts/V15.png",
+            "tiles/L11-C30355-R4685.png",
+            "tiles/L11-C30355-R4684.png",
+            "tiles/L11-C30354-R4685.png",
+            "tiles/L11-C30356-R4685.png"
+          ],
+          "errors": [],
+          "availableTiles": 150
+        }
+      }
+    },
+    {
+      "name": "V16 context and detail tiles render",
+      "pass": true,
+      "detail": {
+        "expected": 4,
+        "planned": 4,
+        "state": {
+          "ready": true,
+          "zoom": 0.7529296875,
+          "cx": 32557056,
+          "cy": 5054976,
+          "aspect": 0.45580908690214283,
+          "selected": "V16",
+          "grid": false,
+          "labels": true,
+          "routes": false,
+          "compare": false,
+          "loaded": 65,
+          "painted": [
+            "../IgnisSectors-v1/previews/ignis-assembled-preview.png",
+            "../IgnisSectors-v1/tiles/L0-C15-R02.png",
+            "contexts/V16.png",
+            "tiles/L11-C31794-R4936.png",
+            "tiles/L11-C31793-R4936.png",
+            "tiles/L11-C31795-R4936.png",
+            "tiles/L11-C31792-R4936.png"
+          ],
+          "errors": [],
+          "availableTiles": 150
+        }
+      }
+    },
+    {
+      "name": "drag applies exact pixel displacement",
+      "pass": true
+    },
+    {
+      "name": "wheel zoom",
+      "pass": true
+    },
+    {
+      "name": "capture preserves zoom",
+      "pass": true
+    },
+    {
+      "name": "comparison hides new tiles",
+      "pass": true
+    },
+    {
+      "name": "grid toggle",
+      "pass": true
+    },
+    {
+      "name": "labels toggle",
+      "pass": true
+    },
+    {
+      "name": "Escape fits continent",
+      "pass": true
+    },
+    {
+      "name": "route toggle",
+      "pass": true
+    },
+    {
+      "name": "no runtime or image errors",
+      "pass": true,
+      "detail": {
+        "runtime": [],
+        "images": []
+      }
+    }
+  ]
+}

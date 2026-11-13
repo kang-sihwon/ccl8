@@ -1,0 +1,12 @@
+{
+  "id": "L10-C15270-R2381",
+  "settlement": "T12",
+  "prompt": "Use case: precise-object-edit. Input1 is an exact georeferenced CROP to rebuild in high detail, NOT a whole-town composition. Input2 is the required camera projection and material quality ONLY. REPLACE input1's WRONG oblique miniature camera with EXACTLY VERTICAL orthographic aerial NADIR. Every building must have ZERO visible wall/facade/window/door/gable-triangle area. Keep roof footprint and ridge at the same normalized pixel positions, but replace all facade bands below eaves with ground paving/yard. Roofs are flat overhead polygons, roofs ONLY, as in input2. Trees are irregular overhead canopy, no trunks or upright tree profiles. Keep all street junctions, roof footprints, river/sea banks, field boundaries, bridges, docks, paths and all 4 cropped edges EXACTLY registered. Do not rotate, zoom, recenter, rescale or add a town/river/bridge/landmark. Preserve outer 12% boundary geometry especially carefully. Reconstruct detailed roof materials, small stone alleys, courtyard surfaces, timber stacks and footpaths; don't just sharpen blurry pixels. Natural muted olive foliage, subdued gray/brown roofs, realistic dark teal water if present; no stylization, giant trees, fantasy towers, people, markers, text, UI or border. Tiny soft contact shadows only, diffuse neutral daylight, uniform focus. One square tile with the exact framing of input1. Local setting (keep this fragment only): Use case: sketch-to-render. Make ONE realistic straight-down aerial local game map terrain plate for 울렌 (T12), a northwestern pastoral market town with wool yards and meadows. ",
+  "tool": "built-in image_gen",
+  "reference": [
+    "guides/L10-C15270-R2381.png",
+    "generated/L10-C16450-R3199.png"
+  ],
+  "generated": "generated/L10-C15270-R2381.png",
+  "status": "generated_pending_visual_review"
+}

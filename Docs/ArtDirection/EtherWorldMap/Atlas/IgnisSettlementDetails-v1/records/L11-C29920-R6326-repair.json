@@ -1,0 +1,10 @@
+{
+  "id": "L11-C29920-R6326",
+  "output": "generated/L11-C29920-R6326.png",
+  "references": [
+    "guides/L11-C29920-R6326.png"
+  ],
+  "prompt": "Use case: precise-object-edit. Rebuild ONLY the attached square georeferenced terrain crop in realistic fine aerial detail. The attached image is the sole and exact layout authority: preserve its crop, scale, orientation, patch boundaries and all edge crossing positions. This crop contains ONLY natural woodland, grassy clearings, exposed gray rock strips and any faint existing footpaths. NO buildings, no settlement, no warehouse, no docks, no boats, no wide river or lake. Do not import any composition from other conversation images. Camera perfectly vertical orthographic nadir. Dense small natural olive green tree crowns viewed directly from above, varied crown sizes, subdued mossy grass and weathered gray-brown rocks. No tree trunks or side faces, no cartoon or miniature or isometric view. Diffuse daylight, restrained saturation, very short shadows, realistic aerial terrain material. Add sharp natural surface detail without inventing new landmarks or major roads. Keep ALL low-frequency landcover and rocky-band geometry from the attached guide, especially the outer 12 percent, exactly fixed in normalized image coordinates. Full-bleed square plate, no text, UI, labels, symbols or border. Tile L11-C29920-R6326.",
+  "reason": "Rejected candidate copied the harbor style reference layout over forest. Regenerated from sole geometry guide; visually inspected against guide.",
+  "status": "visual_layout_corrected_pending_final_assembly_checks"
+}

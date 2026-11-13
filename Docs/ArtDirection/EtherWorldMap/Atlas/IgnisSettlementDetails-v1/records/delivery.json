@@ -1,0 +1,259 @@
+{
+  "status": "settlement_core_candidates_ready",
+  "coverage": "settlement_cores_only",
+  "continentTerrainComplete": false,
+  "settlements": [
+    {
+      "id": "M01",
+      "name": "세계수 관리도시",
+      "planned": 12,
+      "available": 12,
+      "registration": "source_bounds_candidate"
+    },
+    {
+      "id": "M02",
+      "name": "로덴",
+      "planned": 4,
+      "available": 4,
+      "registration": "source_bounds_candidate"
+    },
+    {
+      "id": "M03",
+      "name": "세르나",
+      "planned": 4,
+      "available": 4,
+      "registration": "source_bounds_candidate"
+    },
+    {
+      "id": "M04",
+      "name": "하르덴",
+      "planned": 4,
+      "available": 4,
+      "registration": "source_bounds_candidate"
+    },
+    {
+      "id": "M05",
+      "name": "서안항",
+      "planned": 4,
+      "available": 4,
+      "registration": "source_bounds_candidate"
+    },
+    {
+      "id": "M06",
+      "name": "동안항",
+      "planned": 4,
+      "available": 4,
+      "registration": "source_bounds_candidate"
+    },
+    {
+      "id": "M07",
+      "name": "북부 관문도시",
+      "planned": 4,
+      "available": 4,
+      "registration": "source_bounds_candidate"
+    },
+    {
+      "id": "M08",
+      "name": "남동 평야도시",
+      "planned": 4,
+      "available": 4,
+      "registration": "source_bounds_candidate"
+    },
+    {
+      "id": "T01",
+      "name": "타르넬",
+      "planned": 4,
+      "available": 4,
+      "registration": "source_bounds_candidate"
+    },
+    {
+      "id": "T02",
+      "name": "미레바",
+      "planned": 4,
+      "available": 4,
+      "registration": "source_bounds_candidate"
+    },
+    {
+      "id": "T03",
+      "name": "오르센",
+      "planned": 4,
+      "available": 4,
+      "registration": "source_bounds_candidate"
+    },
+    {
+      "id": "T04",
+      "name": "켈바",
+      "planned": 4,
+      "available": 4,
+      "registration": "source_bounds_candidate"
+    },
+    {
+      "id": "T05",
+      "name": "드라벤",
+      "planned": 4,
+      "available": 4,
+      "registration": "source_bounds_candidate"
+    },
+    {
+      "id": "T06",
+      "name": "살레크",
+      "planned": 4,
+      "available": 4,
+      "registration": "source_bounds_candidate"
+    },
+    {
+      "id": "T07",
+      "name": "메르사",
+      "planned": 3,
+      "available": 3,
+      "registration": "source_bounds_candidate"
+    },
+    {
+      "id": "T08",
+      "name": "에스칼",
+      "planned": 3,
+      "available": 3,
+      "registration": "source_bounds_candidate"
+    },
+    {
+      "id": "T09",
+      "name": "루세아",
+      "planned": 4,
+      "available": 4,
+      "registration": "source_bounds_candidate"
+    },
+    {
+      "id": "T10",
+      "name": "네르바",
+      "planned": 4,
+      "available": 4,
+      "registration": "source_bounds_candidate"
+    },
+    {
+      "id": "T11",
+      "name": "케르딘",
+      "planned": 4,
+      "available": 4,
+      "registration": "source_bounds_candidate"
+    },
+    {
+      "id": "T12",
+      "name": "울렌",
+      "planned": 4,
+      "available": 4,
+      "registration": "source_bounds_candidate"
+    },
+    {
+      "id": "V01",
+      "name": "벨레스",
+      "planned": 4,
+      "available": 4,
+      "registration": "approximate_quay_cave_two_anchor; forest gate residual about 140 m; other facilities not aligned"
+    },
+    {
+      "id": "V02",
+      "name": "솔숨",
+      "planned": 4,
+      "available": 4,
+      "registration": "source_bounds_candidate"
+    },
+    {
+      "id": "V03",
+      "name": "들보리",
+      "planned": 4,
+      "available": 4,
+      "registration": "source_bounds_candidate"
+    },
+    {
+      "id": "V04",
+      "name": "숲곁",
+      "planned": 4,
+      "available": 4,
+      "registration": "source_bounds_candidate"
+    },
+    {
+      "id": "V05",
+      "name": "윗샘",
+      "planned": 4,
+      "available": 4,
+      "registration": "source_bounds_candidate"
+    },
+    {
+      "id": "V06",
+      "name": "누마",
+      "planned": 4,
+      "available": 4,
+      "registration": "source_bounds_candidate"
+    },
+    {
+      "id": "V07",
+      "name": "바람재",
+      "planned": 4,
+      "available": 4,
+      "registration": "source_bounds_candidate"
+    },
+    {
+      "id": "V08",
+      "name": "갈매",
+      "planned": 4,
+      "available": 4,
+      "registration": "source_bounds_candidate"
+    },
+    {
+      "id": "V09",
+      "name": "씨앗골",
+      "planned": 4,
+      "available": 4,
+      "registration": "source_bounds_candidate"
+    },
+    {
+      "id": "V10",
+      "name": "물나래",
+      "planned": 4,
+      "available": 4,
+      "registration": "source_bounds_candidate"
+    },
+    {
+      "id": "V11",
+      "name": "긴솔",
+      "planned": 4,
+      "available": 4,
+      "registration": "source_bounds_candidate"
+    },
+    {
+      "id": "V12",
+      "name": "청그물",
+      "planned": 4,
+      "available": 4,
+      "registration": "source_bounds_candidate"
+    },
+    {
+      "id": "V13",
+      "name": "돌곡",
+      "planned": 4,
+      "available": 4,
+      "registration": "source_bounds_candidate"
+    },
+    {
+      "id": "V14",
+      "name": "길목",
+      "planned": 4,
+      "available": 4,
+      "registration": "source_bounds_candidate"
+    },
+    {
+      "id": "V15",
+      "name": "여름뜰",
+      "planned": 4,
+      "available": 4,
+      "registration": "source_bounds_candidate"
+    },
+    {
+      "id": "V16",
+      "name": "새불",
+      "planned": 4,
+      "available": 4,
+      "registration": "source_bounds_candidate"
+    }
+  ]
+}

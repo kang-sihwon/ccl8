@@ -1,0 +1,15 @@
+{
+  "id": "L10-C16450-R3199",
+  "settlement": "M02",
+  "name": "로덴",
+  "guide": "guides/L10-C16450-R3199.png",
+  "output": "generated/L10-C16450-R3199.png",
+  "tool": "image_gen",
+  "prompt": "Correct this map's camera projection. The current image is WRONG: it shows every warehouse facade, front wall, windows and vertical support posts, like an oblique miniature. Reconstruct it as a true orthographic vertical nadir aerial photograph. Camera at EXACTLY 90 degrees looking straight DOWN. Absolutely ZERO visible wall or facade area on any building, no windows, doors, or posts below roof eaves. Each roof plan must be a flat rectangle/polygon seen from above, its outer roof footprint and ridge line remain at the same pixel positions. Replace ALL facade bands immediately below roof eaves with ground, paving or yard appropriate to that exact location. Remove oblique end gable triangles too. Keep the exact river bank, docks, timber stacks, forest area, roads and building footprint locations and this exact crop; do not zoom, rotate, move or add things. Make trees canopy-only, no upright profiles. Flatten all projection depth cues. Do not merely change lighting or sharpen. Neutral diffuse light, no long shadows, photorealistic overhead roof material, no text, no UI. Same square image bounds. Input2 is the correct roof-only overhead example.",
+  "status": "generated_candidate",
+  "correction": "Roof-only nadir correction; prior candidate retained outside deliverable.",
+  "projectContext": [
+    "guides/L10-C16450-R3199.png",
+    "../IgnisM01Details-v1/generated/L10-C16318-R3286.png"
+  ]
+}

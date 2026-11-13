@@ -1,0 +1,29 @@
+{
+  "status": "candidate_reviewed_with_limitations",
+  "date": "2026-11-13",
+  "newNativePlatesReviewed": 138,
+  "newSettlementSeamSheetsReviewed": 35,
+  "newInternalSeamsReviewed": 111,
+  "method": "Visual inspection of every native plate in contact sheets and all local seam strips; full-resolution guide comparison for suspected layout substitution.",
+  "corrections": {
+    "roofOnlyM02": [
+      "L10-C16449-R3199",
+      "L10-C16450-R3199"
+    ],
+    "wrongHarborLayout": [
+      "L10-C16487-R3176",
+      "L10-C15780-R2287",
+      "L11-C29920-R6326"
+    ],
+    "roadSeam": "V15: L11-C30355-R4685 / L11-C30356-R4685",
+    "assembly": "Minimum-difference seam paths with 16px transition replaced broad overlap blend."
+  },
+  "limitations": [
+    "Reviewed candidates, not user-approved final art.",
+    "Small roof/fence/field geometry and material differences remain; not a measured terrain reconstruction.",
+    "Outer transition to older context imagery remains visible at large zoom.",
+    "Veles registration is approximate; forest gate differs by about 140m.",
+    "Settlement outskirts and inter-settlement terrain are not complete.",
+    "No UE runtime or collision/walkability validation."
+  ]
+}
