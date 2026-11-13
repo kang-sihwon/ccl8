@@ -1,5 +1,7 @@
 # 핵심 인물 동기·관계 사건의 채택 추천·대안·보류
 
+CP01-CP12 핵심은 사용자가 2026-11-13 채택해 [결정 51](../../../decisions/0051-core-character-motivations-adoption.md)·[Scenario](../../Scenario.md#네-인물의-개인-동기)에 반영했다. 해당 핵심의 상태는 `CLOSED`이며 PA01-PA06 대안·PH01-PH08 보류는 그대로 남긴다. 아래의 추천·미채택·선택 예정 표현은 선택표 작성 당시의 비교 기록이다. 표 본문과 이전 선택 절차를 보존하며 현재 확정 범위는 결정 51이 소유한다.
+
 **CP01-CP12의 개인 동기와 관계 변화 중심을 채택하고, PA01-PA06은 비교 대안, PH01-PH08은 세부 보류로 남기는 안을 추천한다.** 네 사람에게 독립된 삶을 주고 기존 사건에서 그 욕망이 충돌하고 변하도록 한다. 별도 개인 의뢰나 긴 고백 장면을 추가할 필요는 없다.
 
 상태는 `DISCUSSION`이며 [독립 검토](../../Reviews/2026-11-13-core-character-options-review.md)는 PASS다. 사용자는 선택표 작성을 요청했으며 아직 CP를 채택하지 않았다. [인물 상세 후보](2026-11-13-core-character-motivations.md)의 내면과 CE01-CE12를 선택 가능한 단위로 묶었다. [Scenario](../../Scenario.md)와 [결정 48](../../../decisions/0048-five-continent-core-plot.md)·[결정 49](../../../decisions/0049-combat-connection-adoption.md)의 사건·동행·결과는 기준으로 유지한다. 새로 고를 것은 그 사건이 각 인물에게 갖는 의미와 관계 변화의 중심이다.
