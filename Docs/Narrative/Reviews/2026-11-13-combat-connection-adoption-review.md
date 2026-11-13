@@ -24,3 +24,5 @@ BLOCKER는 승인·근거·필수 규칙 위반, WARNING은 논리·구조 보�
 작성자 검사에서 `node Tools/Agent/decisions.cjs check`는 결정 49개·오류 0건, `node Tools/Agent/docs.cjs check`는 문서 553개·오류 0건으로 통과했다. `git diff --check`도 통과했다.
 
 정본 반영 커밋 뒤 재확인에서는 별도 지도 작업의 미추적 `Docs/decisions/0049-shared-coordinate-map-terrain.md`가 추가되어 전체 결정 검사에 번호 중복과 생성 목록 불일치 2건이 발생했다. 앞의 통과는 해당 파일 생성 전 검사 결과다. 지도 작업 파일은 수정하거나 커밋하지 않았으며 번호 조정과 목록 재생성이 남아 있다. 이 동시 작업 충돌은 CL 승인 범위에 대한 독립 검토 판정과 구분한다.
+
+사용자의 번호 정리 요청에 따라 서사 결정 49는 유지하고 지도 결정의 파일명·번호·제목을 [결정 50](../../decisions/0050-shared-coordinate-map-terrain.md)으로 맞췄다. 지도 문서·작업 지도의 참조를 수정하고 Decisions를 생성기로 다시 만들었다. 재검사에서 결정 50개·오류 0건, 문서 555개·오류 0건, `git diff --check` 통과를 확인했다. 다음 결정 번호는 51이며 이전 지도 파일명은 위 충돌 당시 기록에만 남는다.
