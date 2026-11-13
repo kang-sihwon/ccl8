@@ -1,0 +1,2571 @@
+{
+  "status": "integration_candidate_not_canon",
+  "sources_sha256": {
+    "Docs/ArtDirection/EtherWorldMap/Data/ignis-journey-continuity-v1.json": "79eb83154d8f37feb50827aa6a42ade9a674711d67543f4eced2737a1c55a39b",
+    "Docs/ArtDirection/EtherWorldMap/Data/serna-arvena-passage-v1.json": "28ce3276d30986c9527772ce1029af9b915d16fd1e7dfb43d29871ef699f5659",
+    "Docs/ArtDirection/EtherWorldMap/Data/arvena-fleet-search-v1.json": "f6a83106fe0883df6b89665737956fe7538fb5c74d87710ed9bcfaf1954afd7d",
+    "Docs/ArtDirection/EtherWorldMap/Data/ordas-arrival-investigation-v1.json": "982116a94925f6029fa1d718e512411e59d905a90706ed9f6f41fd7f21604a7b",
+    "Docs/ArtDirection/EtherWorldMap/Data/ordas-highlands-v1.json": "fac486d4e69fd49dd78d76499abb62f35584d1aca30d5d6f718a27c50af81eef",
+    "Docs/ArtDirection/EtherWorldMap/Data/seradion-arrival-v1.json": "6e4a80ea07053e5b90221e88f52a8605cc09bcec5bf515d85f6d818f58296448",
+    "Docs/ArtDirection/EtherWorldMap/Data/seradion-forest-v1.json": "424f14cbfebcee13ee8d7efe498ab7103073d9d1c3a7c71aeff2dc42bfd6e6b9",
+    "Docs/ArtDirection/EtherWorldMap/Data/seradion-waterworks-v1.json": "55f527398f31c3e26addec08beb18bb35773889007cf1c7e919d2eb358fff22c",
+    "Docs/ArtDirection/EtherWorldMap/Data/seradion-polar-departure-v1.json": "4cd305f538e21c8d4281d730278fbd36a70b7171c7cfe3d0ae636e7af5b47dc9",
+    "Docs/ArtDirection/EtherWorldMap/Data/niber-first-landing-v1.json": "2e07de7b946a07e3c89beea2be577013879007b0b077eef2ee1491a7bf0bd140",
+    "Docs/ArtDirection/EtherWorldMap/Data/niber-expedition-rescue-v1.json": "5e8ebc24962b85c6211c5a62643915f097923b5a256fc9853d83421595b714cf",
+    "Docs/ArtDirection/EtherWorldMap/Data/seradion-return-g6-v1.json": "70db07dac1d448a5dae77be54ece0b71775f52848ed5295b27655d78c93802b5",
+    "Docs/ArtDirection/EtherWorldMap/Data/seradion-finale-v1.json": "e88397eec6af1fc72b9116698dca4e250a8cb90ac622ace3f92221f72896af13",
+    "Docs/ArtDirection/EtherWorldMap/Data/tarnel-roden-exploration-v1.json": "b5d997d91806b5de84dd52002f1b179727aff61be0292de64be3d6f2cbe3a53b",
+    "Docs/ArtDirection/EtherWorldMap/Data/roden-serna-exploration-v1.json": "c5c70146e7c0d74547a42ac2f074da6725262b432ccc258a90c2144d683e2776",
+    "Docs/ArtDirection/EtherWorldMap/Data/serna-harden-exploration-v1.json": "72335072a222293715b18045765c56892a6ba14d6213c83e44399c248ecd54c0",
+    "Docs/ArtDirection/EtherWorldMap/Data/north-exploration-v1.json": "7b9dad75cf46a406f2283a5e24cb5e4c9970c45fa85de0f2e13592735ed585a0",
+    "Docs/ArtDirection/EtherWorldMap/Data/central-exploration-v1.json": "283d6570fa97613d5e98e00181c7719300849e499feb76f24e11639d0d6e9738",
+    "Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-08-world-distribution-and-leveling/variant-distribution.md": "a4ccc8ac9fdb937b1d637251bb78ce55eccde0a201753189b238a36d116c64e9",
+    "Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-08-world-distribution-and-leveling/progression.md": "a847c8417b972d74f4672a22067206827025f666f5daf39896cb8a73007450aa",
+    "Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-08-world-distribution-and-leveling/species-distribution.md": "56ba80969db81b8ddd9caf690a777ecc7358943c727008d82d923997e943c225",
+    "Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-08-five-continent-mainline/routes-and-unlocks.md": "b209df5b3c6d131a886e3269340d072d044a022ee389daf1fbc88de8bf1c3d35",
+    "Docs/Narrative/World.md": "020bed8d29fd25ac5c8a4346f6076426e52aff1335f52de4f1e6d7d7b38cde28",
+    "Docs/Narrative/Scenario.md": "55a8eb1da2a818d4c606d82e6d4fd2163458de96d22f27a340dda23b3c427e13"
+  },
+  "checkpoints": [
+    {
+      "id": "S1",
+      "name": "S1",
+      "level": [
+        1,
+        6
+      ],
+      "budget": [
+        3,
+        1,
+        1
+      ],
+      "source": "ignis-journey-continuity-v1.json",
+      "pointer": "/stages/0"
+    },
+    {
+      "id": "S2",
+      "name": "S2",
+      "level": [
+        6,
+        10
+      ],
+      "budget": [
+        2,
+        1,
+        1
+      ],
+      "source": "ignis-journey-continuity-v1.json",
+      "pointer": "/stages/1"
+    },
+    {
+      "id": "S3",
+      "name": "S3",
+      "level": [
+        10,
+        14
+      ],
+      "budget": [
+        2,
+        1,
+        1
+      ],
+      "source": "ignis-journey-continuity-v1.json",
+      "pointer": "/stages/2"
+    },
+    {
+      "id": "S4",
+      "name": "S4",
+      "level": [
+        14,
+        18
+      ],
+      "budget": [
+        2,
+        1,
+        1
+      ],
+      "source": "ignis-journey-continuity-v1.json",
+      "pointer": "/stages/3"
+    },
+    {
+      "id": "S5",
+      "name": "S5",
+      "level": [
+        18,
+        21
+      ],
+      "budget": [
+        1,
+        1,
+        1
+      ],
+      "source": "ignis-journey-continuity-v1.json",
+      "pointer": "/stages/4"
+    },
+    {
+      "id": "S6",
+      "name": "S6",
+      "level": [
+        21,
+        24
+      ],
+      "budget": [
+        1,
+        1,
+        1
+      ],
+      "source": "ignis-journey-continuity-v1.json",
+      "pointer": "/stages/5"
+    },
+    {
+      "id": "A0",
+      "name": "아르베나 첫 조사",
+      "level": [
+        24,
+        25
+      ],
+      "budget": [
+        0,
+        0,
+        1
+      ],
+      "source": "serna-arvena-passage-v1.json",
+      "pointer": "/growth"
+    },
+    {
+      "id": "A1",
+      "name": "항만 배후",
+      "level": [
+        25,
+        27
+      ],
+      "budget": [
+        1,
+        0,
+        1
+      ],
+      "source": "arvena-fleet-search-v1.json",
+      "pointer": "/growth/stages/0"
+    },
+    {
+      "id": "A2",
+      "name": "곡창·낮은 숲",
+      "level": [
+        27,
+        29
+      ],
+      "budget": [
+        2,
+        0,
+        0
+      ],
+      "source": "arvena-fleet-search-v1.json",
+      "pointer": "/growth/stages/1"
+    },
+    {
+      "id": "A3",
+      "name": "난파선 구조",
+      "level": [
+        29,
+        31
+      ],
+      "budget": [
+        1,
+        1,
+        0
+      ],
+      "source": "arvena-fleet-search-v1.json",
+      "pointer": "/growth/stages/2"
+    },
+    {
+      "id": "A4",
+      "name": "깊은 연안",
+      "level": [
+        31,
+        34
+      ],
+      "budget": [
+        2,
+        1,
+        0
+      ],
+      "source": "arvena-fleet-search-v1.json",
+      "pointer": "/growth/stages/3"
+    },
+    {
+      "id": "O1",
+      "name": "O1",
+      "level": [
+        34,
+        35
+      ],
+      "budget": [
+        0,
+        0,
+        1
+      ],
+      "source": "ordas-arrival-investigation-v1.json",
+      "pointer": "/growth/stages/0"
+    },
+    {
+      "id": "O2",
+      "name": "O2",
+      "level": [
+        35,
+        37
+      ],
+      "budget": [
+        2,
+        0,
+        0
+      ],
+      "source": "ordas-arrival-investigation-v1.json",
+      "pointer": "/growth/stages/1"
+    },
+    {
+      "id": "O3",
+      "name": "O3",
+      "level": [
+        37,
+        38
+      ],
+      "budget": [
+        1,
+        0,
+        0
+      ],
+      "source": "ordas-arrival-investigation-v1.json",
+      "pointer": "/growth/stages/2"
+    },
+    {
+      "id": "O4",
+      "name": "O4",
+      "level": [
+        38,
+        40
+      ],
+      "budget": [
+        1,
+        1,
+        0
+      ],
+      "source": "ordas-highlands-v1.json",
+      "pointer": "/growth/stages/0"
+    },
+    {
+      "id": "O5",
+      "name": "O5",
+      "level": [
+        40,
+        42
+      ],
+      "budget": [
+        2,
+        0,
+        0
+      ],
+      "source": "ordas-highlands-v1.json",
+      "pointer": "/growth/stages/1"
+    },
+    {
+      "id": "O6",
+      "name": "O6",
+      "level": [
+        42,
+        43
+      ],
+      "budget": [
+        0,
+        1,
+        0
+      ],
+      "source": "ordas-highlands-v1.json",
+      "pointer": "/growth/stages/2"
+    },
+    {
+      "id": "O7",
+      "name": "O7",
+      "level": [
+        43,
+        44
+      ],
+      "budget": [
+        0,
+        0,
+        1
+      ],
+      "source": "ordas-highlands-v1.json",
+      "pointer": "/growth/stages/3"
+    },
+    {
+      "id": "T345",
+      "name": "이그니스 환승",
+      "level": [
+        44,
+        44
+      ],
+      "budget": [
+        0,
+        0,
+        0
+      ],
+      "source": "seradion-arrival-v1.json",
+      "pointer": "/growth"
+    },
+    {
+      "id": "SE1",
+      "name": "세라디온 하구",
+      "level": [
+        44,
+        45
+      ],
+      "budget": [
+        0,
+        0,
+        1
+      ],
+      "source": "seradion-arrival-v1.json",
+      "pointer": "/growth"
+    },
+    {
+      "id": "SE2",
+      "name": "성숙림·키메라",
+      "level": [
+        45,
+        49
+      ],
+      "budget": [
+        3,
+        1,
+        0
+      ],
+      "source": "seradion-forest-v1.json",
+      "pointer": "/growth"
+    },
+    {
+      "id": "SE3",
+      "name": "현용 수원",
+      "level": [
+        49,
+        52
+      ],
+      "budget": [
+        1,
+        1,
+        1
+      ],
+      "source": "seradion-waterworks-v1.json",
+      "pointer": "/growth"
+    },
+    {
+      "id": "G5P",
+      "name": "남부항 준비",
+      "level": [
+        52,
+        52
+      ],
+      "budget": [
+        0,
+        0,
+        0
+      ],
+      "source": "seradion-polar-departure-v1.json",
+      "pointer": "/growth"
+    },
+    {
+      "id": "NI1",
+      "name": "니베르 첫 상륙",
+      "level": [
+        52,
+        54
+      ],
+      "budget": [
+        1,
+        0,
+        1
+      ],
+      "source": "niber-first-landing-v1.json",
+      "pointer": "/growth"
+    },
+    {
+      "id": "NI2",
+      "name": "구조·온열권 조사",
+      "level": [
+        54,
+        58
+      ],
+      "budget": [
+        2,
+        1,
+        1
+      ],
+      "source": "niber-expedition-rescue-v1.json",
+      "pointer": "/growth"
+    },
+    {
+      "id": "G6P",
+      "name": "귀항·G6 준비",
+      "level": [
+        58,
+        58
+      ],
+      "budget": [
+        0,
+        0,
+        0
+      ],
+      "source": "seradion-return-g6-v1.json",
+      "pointer": "/growth"
+    },
+    {
+      "id": "END1",
+      "name": "중추 전투",
+      "level": [
+        58,
+        59
+      ],
+      "budget": [
+        0,
+        1,
+        0
+      ],
+      "source": "seradion-finale-v1.json",
+      "pointer": "/growth"
+    },
+    {
+      "id": "END2",
+      "name": "분리·교대 인수",
+      "level": [
+        59,
+        60
+      ],
+      "budget": [
+        0,
+        0,
+        1
+      ],
+      "source": "seradion-finale-v1.json",
+      "pointer": "/growth"
+    }
+  ],
+  "growth_total": [
+    30,
+    14,
+    15
+  ],
+  "baseline": [
+    1,
+    60
+  ],
+  "optional_example": {
+    "acquired_after": "S3",
+    "offset": 2,
+    "ending": 62,
+    "not_cap": true
+  },
+  "catalog_counts": {
+    "이그니스": 59,
+    "아르베나": 32,
+    "오르다스": 44,
+    "세라디온": 47,
+    "니베르": 17
+  },
+  "catalog_forms": 199,
+  "species_count": 64,
+  "placement_scope": "S1 goblin assignments, S2-S6 and overseas explicit new MN groups; inherited copies excluded; ordinary animals, Bartul and CT units not counted as MN placements",
+  "placements": [
+    {
+      "source": "ignis-journey-continuity-v1.json",
+      "group": "GB01",
+      "form": "MN01-A",
+      "count": 3,
+      "readiness": [
+        2,
+        3
+      ],
+      "continent": "이그니스"
+    },
+    {
+      "source": "ignis-journey-continuity-v1.json",
+      "group": "GB01",
+      "form": "MN01-B",
+      "count": 1,
+      "readiness": [
+        3,
+        4
+      ],
+      "continent": "이그니스"
+    },
+    {
+      "source": "ignis-journey-continuity-v1.json",
+      "group": "GB02",
+      "form": "MN01-A",
+      "count": 2,
+      "readiness": [
+        1,
+        2
+      ],
+      "continent": "이그니스"
+    },
+    {
+      "source": "ignis-journey-continuity-v1.json",
+      "group": "GB03",
+      "form": "MN01-A",
+      "count": 1,
+      "readiness": [
+        3,
+        4
+      ],
+      "continent": "이그니스"
+    },
+    {
+      "source": "ignis-journey-continuity-v1.json",
+      "group": "GB03",
+      "form": "MN01-B",
+      "count": 2,
+      "readiness": [
+        4,
+        5
+      ],
+      "continent": "이그니스"
+    },
+    {
+      "source": "ignis-journey-continuity-v1.json",
+      "group": "GB04",
+      "form": "MN01-A",
+      "count": 2,
+      "readiness": [
+        2,
+        4
+      ],
+      "continent": "이그니스"
+    },
+    {
+      "source": "ignis-journey-continuity-v1.json",
+      "group": "GB04",
+      "form": "MN01-B",
+      "count": 1,
+      "readiness": [
+        3,
+        5
+      ],
+      "continent": "이그니스"
+    },
+    {
+      "source": "ignis-journey-continuity-v1.json",
+      "group": "GB05",
+      "form": "MN01-A",
+      "count": 1,
+      "readiness": [
+        2,
+        3
+      ],
+      "continent": "이그니스"
+    },
+    {
+      "source": "ignis-journey-continuity-v1.json",
+      "group": "GB05",
+      "form": "MN01-B",
+      "count": 1,
+      "readiness": [
+        3,
+        4
+      ],
+      "continent": "이그니스"
+    },
+    {
+      "source": "tarnel-roden-exploration-v1.json",
+      "group": "TG1",
+      "form": "MN01-A",
+      "count": 4,
+      "readiness": [
+        4,
+        6
+      ],
+      "continent": "이그니스"
+    },
+    {
+      "source": "tarnel-roden-exploration-v1.json",
+      "group": "TG1",
+      "form": "MN01-B",
+      "count": 2,
+      "readiness": [
+        5,
+        8
+      ],
+      "continent": "이그니스"
+    },
+    {
+      "source": "tarnel-roden-exploration-v1.json",
+      "group": "TG2",
+      "form": "MN01-C",
+      "count": 4,
+      "readiness": [
+        7,
+        10
+      ],
+      "continent": "이그니스"
+    },
+    {
+      "source": "tarnel-roden-exploration-v1.json",
+      "group": "TW1",
+      "form": "MN04-A",
+      "count": 2,
+      "readiness": [
+        4,
+        6
+      ],
+      "continent": "이그니스"
+    },
+    {
+      "source": "tarnel-roden-exploration-v1.json",
+      "group": "TW2",
+      "form": "MN04-B",
+      "count": 1,
+      "readiness": [
+        6,
+        8
+      ],
+      "continent": "이그니스"
+    },
+    {
+      "source": "tarnel-roden-exploration-v1.json",
+      "group": "TS1",
+      "form": "MN07-A",
+      "count": 2,
+      "readiness": [
+        8,
+        11
+      ],
+      "continent": "이그니스"
+    },
+    {
+      "source": "tarnel-roden-exploration-v1.json",
+      "group": "TC1",
+      "form": "MN35-A",
+      "count": 3,
+      "readiness": [
+        4,
+        8
+      ],
+      "continent": "이그니스"
+    },
+    {
+      "source": "tarnel-roden-exploration-v1.json",
+      "group": "TL1",
+      "form": "MN38-A",
+      "count": 3,
+      "readiness": [
+        3,
+        6
+      ],
+      "continent": "이그니스"
+    },
+    {
+      "source": "tarnel-roden-exploration-v1.json",
+      "group": "RG1",
+      "form": "MN01-A",
+      "count": 2,
+      "readiness": [
+        4,
+        6
+      ],
+      "continent": "이그니스"
+    },
+    {
+      "source": "tarnel-roden-exploration-v1.json",
+      "group": "RG1",
+      "form": "MN01-B",
+      "count": 2,
+      "readiness": [
+        5,
+        8
+      ],
+      "continent": "이그니스"
+    },
+    {
+      "source": "tarnel-roden-exploration-v1.json",
+      "group": "RK1",
+      "form": "MN16-A",
+      "count": 4,
+      "readiness": [
+        5,
+        8
+      ],
+      "continent": "이그니스"
+    },
+    {
+      "source": "tarnel-roden-exploration-v1.json",
+      "group": "RK2",
+      "form": "MN16-B",
+      "count": 2,
+      "readiness": [
+        8,
+        10
+      ],
+      "continent": "이그니스"
+    },
+    {
+      "source": "tarnel-roden-exploration-v1.json",
+      "group": "RU1",
+      "form": "MN05-A",
+      "count": 4,
+      "readiness": [
+        6,
+        8
+      ],
+      "continent": "이그니스"
+    },
+    {
+      "source": "tarnel-roden-exploration-v1.json",
+      "group": "RU2",
+      "form": "MN05-A",
+      "count": 2,
+      "readiness": [
+        6,
+        8
+      ],
+      "continent": "이그니스"
+    },
+    {
+      "source": "tarnel-roden-exploration-v1.json",
+      "group": "RU2",
+      "form": "MN05-B",
+      "count": 2,
+      "readiness": [
+        8,
+        10
+      ],
+      "continent": "이그니스"
+    },
+    {
+      "source": "tarnel-roden-exploration-v1.json",
+      "group": "RS1",
+      "form": "MN07-A",
+      "count": 2,
+      "readiness": [
+        8,
+        11
+      ],
+      "continent": "이그니스"
+    },
+    {
+      "source": "tarnel-roden-exploration-v1.json",
+      "group": "RL1",
+      "form": "MN38-A",
+      "count": 3,
+      "readiness": [
+        3,
+        6
+      ],
+      "continent": "이그니스"
+    },
+    {
+      "source": "tarnel-roden-exploration-v1.json",
+      "group": "RO1",
+      "form": "MN22-A",
+      "count": 1,
+      "readiness": [
+        10,
+        13
+      ],
+      "continent": "이그니스"
+    },
+    {
+      "source": "roden-serna-exploration-v1.json",
+      "group": "EC1",
+      "form": "MN06-A",
+      "count": 4,
+      "readiness": [
+        8,
+        11
+      ],
+      "continent": "이그니스"
+    },
+    {
+      "source": "roden-serna-exploration-v1.json",
+      "group": "EC2",
+      "form": "MN06-A",
+      "count": 2,
+      "readiness": [
+        8,
+        11
+      ],
+      "continent": "이그니스"
+    },
+    {
+      "source": "roden-serna-exploration-v1.json",
+      "group": "EC2",
+      "form": "MN06-B",
+      "count": 1,
+      "readiness": [
+        11,
+        14
+      ],
+      "continent": "이그니스"
+    },
+    {
+      "source": "roden-serna-exploration-v1.json",
+      "group": "EU1",
+      "form": "MN05-X",
+      "count": 4,
+      "readiness": [
+        5,
+        9
+      ],
+      "continent": "이그니스"
+    },
+    {
+      "source": "roden-serna-exploration-v1.json",
+      "group": "EH1",
+      "form": "MN21-A",
+      "count": 3,
+      "readiness": [
+        10,
+        14
+      ],
+      "continent": "이그니스"
+    },
+    {
+      "source": "roden-serna-exploration-v1.json",
+      "group": "ED1",
+      "form": "MN45-A",
+      "count": 3,
+      "readiness": [
+        10,
+        14
+      ],
+      "continent": "이그니스"
+    },
+    {
+      "source": "roden-serna-exploration-v1.json",
+      "group": "HC1",
+      "form": "MN06-A",
+      "count": 3,
+      "readiness": [
+        8,
+        11
+      ],
+      "continent": "이그니스"
+    },
+    {
+      "source": "roden-serna-exploration-v1.json",
+      "group": "HC2",
+      "form": "MN06-A",
+      "count": 2,
+      "readiness": [
+        8,
+        11
+      ],
+      "continent": "이그니스"
+    },
+    {
+      "source": "roden-serna-exploration-v1.json",
+      "group": "HC2",
+      "form": "MN06-B",
+      "count": 2,
+      "readiness": [
+        11,
+        14
+      ],
+      "continent": "이그니스"
+    },
+    {
+      "source": "roden-serna-exploration-v1.json",
+      "group": "HU1",
+      "form": "MN05-X",
+      "count": 3,
+      "readiness": [
+        5,
+        9
+      ],
+      "continent": "이그니스"
+    },
+    {
+      "source": "roden-serna-exploration-v1.json",
+      "group": "HH1",
+      "form": "MN21-A",
+      "count": 2,
+      "readiness": [
+        10,
+        14
+      ],
+      "continent": "이그니스"
+    },
+    {
+      "source": "roden-serna-exploration-v1.json",
+      "group": "HD1",
+      "form": "MN45-A",
+      "count": 2,
+      "readiness": [
+        10,
+        14
+      ],
+      "continent": "이그니스"
+    },
+    {
+      "source": "roden-serna-exploration-v1.json",
+      "group": "HS1",
+      "form": "MN10-A",
+      "count": 1,
+      "readiness": [
+        14,
+        14
+      ],
+      "continent": "이그니스"
+    },
+    {
+      "source": "roden-serna-exploration-v1.json",
+      "group": "HS2",
+      "form": "MN10-B",
+      "count": 1,
+      "readiness": [
+        16,
+        20
+      ],
+      "continent": "이그니스"
+    },
+    {
+      "source": "serna-harden-exploration-v1.json",
+      "group": "KO1",
+      "form": "MN02-A",
+      "count": 5,
+      "readiness": [
+        14,
+        16
+      ],
+      "continent": "이그니스"
+    },
+    {
+      "source": "serna-harden-exploration-v1.json",
+      "group": "KT1",
+      "form": "MN03-C",
+      "count": 2,
+      "readiness": [
+        13,
+        15
+      ],
+      "continent": "이그니스"
+    },
+    {
+      "source": "serna-harden-exploration-v1.json",
+      "group": "KS1",
+      "form": "MN12-A",
+      "count": 4,
+      "readiness": [
+        8,
+        12
+      ],
+      "continent": "이그니스"
+    },
+    {
+      "source": "serna-harden-exploration-v1.json",
+      "group": "KI1",
+      "form": "MN63-A",
+      "count": 4,
+      "readiness": [
+        8,
+        12
+      ],
+      "continent": "이그니스"
+    },
+    {
+      "source": "serna-harden-exploration-v1.json",
+      "group": "KD1",
+      "form": "MN44-A",
+      "count": 3,
+      "readiness": [
+        13,
+        17
+      ],
+      "continent": "이그니스"
+    },
+    {
+      "source": "serna-harden-exploration-v1.json",
+      "group": "HO1",
+      "form": "MN02-A",
+      "count": 4,
+      "readiness": [
+        15,
+        18
+      ],
+      "continent": "이그니스"
+    },
+    {
+      "source": "serna-harden-exploration-v1.json",
+      "group": "HO2",
+      "form": "MN02-A",
+      "count": 3,
+      "readiness": [
+        14,
+        16
+      ],
+      "continent": "이그니스"
+    },
+    {
+      "source": "serna-harden-exploration-v1.json",
+      "group": "HT1",
+      "form": "MN03-C",
+      "count": 2,
+      "readiness": [
+        14,
+        16
+      ],
+      "continent": "이그니스"
+    },
+    {
+      "source": "serna-harden-exploration-v1.json",
+      "group": "HT2",
+      "form": "MN03-B",
+      "count": 2,
+      "readiness": [
+        17,
+        21
+      ],
+      "continent": "이그니스"
+    },
+    {
+      "source": "serna-harden-exploration-v1.json",
+      "group": "HW1",
+      "form": "MN09-A",
+      "count": 2,
+      "readiness": [
+        14,
+        17
+      ],
+      "continent": "이그니스"
+    },
+    {
+      "source": "serna-harden-exploration-v1.json",
+      "group": "HW2",
+      "form": "MN09-B",
+      "count": 1,
+      "readiness": [
+        18,
+        18
+      ],
+      "continent": "이그니스"
+    },
+    {
+      "source": "serna-harden-exploration-v1.json",
+      "group": "HW3",
+      "form": "MN09-B",
+      "count": 1,
+      "readiness": [
+        17,
+        20
+      ],
+      "continent": "이그니스"
+    },
+    {
+      "source": "serna-harden-exploration-v1.json",
+      "group": "HG1",
+      "form": "MN26-A",
+      "count": 1,
+      "readiness": [
+        17,
+        22
+      ],
+      "continent": "이그니스"
+    },
+    {
+      "source": "serna-harden-exploration-v1.json",
+      "group": "HS1",
+      "form": "MN12-A",
+      "count": 3,
+      "readiness": [
+        8,
+        12
+      ],
+      "continent": "이그니스"
+    },
+    {
+      "source": "serna-harden-exploration-v1.json",
+      "group": "HE1",
+      "form": "MN55-D",
+      "count": 2,
+      "readiness": [
+        16,
+        21
+      ],
+      "continent": "이그니스"
+    },
+    {
+      "source": "serna-harden-exploration-v1.json",
+      "group": "HI1",
+      "form": "MN63-A",
+      "count": 3,
+      "readiness": [
+        8,
+        12
+      ],
+      "continent": "이그니스"
+    },
+    {
+      "source": "serna-harden-exploration-v1.json",
+      "group": "HD1",
+      "form": "MN44-A",
+      "count": 3,
+      "readiness": [
+        13,
+        17
+      ],
+      "continent": "이그니스"
+    },
+    {
+      "source": "north-exploration-v1.json",
+      "group": "NW1",
+      "form": "MN11-A",
+      "count": 4,
+      "readiness": [
+        17,
+        19
+      ],
+      "continent": "이그니스"
+    },
+    {
+      "source": "north-exploration-v1.json",
+      "group": "NP1",
+      "form": "MN47-A",
+      "count": 3,
+      "readiness": [
+        16,
+        19
+      ],
+      "continent": "이그니스"
+    },
+    {
+      "source": "north-exploration-v1.json",
+      "group": "NL1",
+      "form": "MN57-A",
+      "count": 3,
+      "readiness": [
+        19,
+        24
+      ],
+      "continent": "이그니스"
+    },
+    {
+      "source": "north-exploration-v1.json",
+      "group": "RW1",
+      "form": "MN11-A",
+      "count": 4,
+      "readiness": [
+        18,
+        20
+      ],
+      "continent": "이그니스"
+    },
+    {
+      "source": "north-exploration-v1.json",
+      "group": "RW2",
+      "form": "MN11-B",
+      "count": 2,
+      "readiness": [
+        20,
+        24
+      ],
+      "continent": "이그니스"
+    },
+    {
+      "source": "north-exploration-v1.json",
+      "group": "RG1",
+      "form": "MN13-A",
+      "count": 1,
+      "readiness": [
+        20,
+        21
+      ],
+      "continent": "이그니스"
+    },
+    {
+      "source": "north-exploration-v1.json",
+      "group": "RG2",
+      "form": "MN13-A",
+      "count": 3,
+      "readiness": [
+        18,
+        21
+      ],
+      "continent": "이그니스"
+    },
+    {
+      "source": "north-exploration-v1.json",
+      "group": "RG3",
+      "form": "MN13-B",
+      "count": 2,
+      "readiness": [
+        23,
+        27
+      ],
+      "continent": "이그니스"
+    },
+    {
+      "source": "north-exploration-v1.json",
+      "group": "RV1",
+      "form": "MN09-C",
+      "count": 1,
+      "readiness": [
+        19,
+        23
+      ],
+      "continent": "이그니스"
+    },
+    {
+      "source": "north-exploration-v1.json",
+      "group": "RI1",
+      "form": "MN25-A",
+      "count": 2,
+      "readiness": [
+        24,
+        30
+      ],
+      "continent": "이그니스"
+    },
+    {
+      "source": "north-exploration-v1.json",
+      "group": "AP1",
+      "form": "MN47-A",
+      "count": 5,
+      "readiness": [
+        17,
+        21
+      ],
+      "continent": "이그니스"
+    },
+    {
+      "source": "north-exploration-v1.json",
+      "group": "AP2",
+      "form": "MN47-A",
+      "count": 3,
+      "readiness": [
+        16,
+        20
+      ],
+      "continent": "이그니스"
+    },
+    {
+      "source": "north-exploration-v1.json",
+      "group": "AD1",
+      "form": "MN49-A",
+      "count": 1,
+      "readiness": [
+        24,
+        29
+      ],
+      "continent": "이그니스"
+    },
+    {
+      "source": "central-exploration-v1.json",
+      "group": "OW1",
+      "form": "MN14-A",
+      "count": 4,
+      "readiness": [
+        19,
+        21
+      ],
+      "continent": "이그니스"
+    },
+    {
+      "source": "central-exploration-v1.json",
+      "group": "OW2",
+      "form": "MN14-A",
+      "count": 3,
+      "readiness": [
+        20,
+        22
+      ],
+      "continent": "이그니스"
+    },
+    {
+      "source": "central-exploration-v1.json",
+      "group": "OW3",
+      "form": "MN14-B",
+      "count": 2,
+      "readiness": [
+        22,
+        24
+      ],
+      "continent": "이그니스"
+    },
+    {
+      "source": "central-exploration-v1.json",
+      "group": "OF1",
+      "form": "MN42-B",
+      "count": 4,
+      "readiness": [
+        19,
+        22
+      ],
+      "continent": "이그니스"
+    },
+    {
+      "source": "central-exploration-v1.json",
+      "group": "OT1",
+      "form": "MN40-A",
+      "count": 2,
+      "readiness": [
+        20,
+        23
+      ],
+      "continent": "이그니스"
+    },
+    {
+      "source": "central-exploration-v1.json",
+      "group": "OD1",
+      "form": "MN53-A",
+      "count": 1,
+      "readiness": [
+        17,
+        22
+      ],
+      "continent": "이그니스"
+    },
+    {
+      "source": "central-exploration-v1.json",
+      "group": "OY1",
+      "form": "MN54-A",
+      "count": 5,
+      "readiness": [
+        2,
+        5
+      ],
+      "continent": "이그니스"
+    },
+    {
+      "source": "central-exploration-v1.json",
+      "group": "OS1",
+      "form": "MN56-A",
+      "count": 2,
+      "readiness": [
+        19,
+        22
+      ],
+      "continent": "이그니스"
+    },
+    {
+      "source": "central-exploration-v1.json",
+      "group": "IW1",
+      "form": "MN14-A",
+      "count": 3,
+      "readiness": [
+        20,
+        22
+      ],
+      "continent": "이그니스"
+    },
+    {
+      "source": "central-exploration-v1.json",
+      "group": "IW2",
+      "form": "MN14-B",
+      "count": 2,
+      "readiness": [
+        22,
+        25
+      ],
+      "continent": "이그니스"
+    },
+    {
+      "source": "central-exploration-v1.json",
+      "group": "IF1",
+      "form": "MN42-B",
+      "count": 3,
+      "readiness": [
+        20,
+        23
+      ],
+      "continent": "이그니스"
+    },
+    {
+      "source": "central-exploration-v1.json",
+      "group": "IS1",
+      "form": "MN56-A",
+      "count": 2,
+      "readiness": [
+        21,
+        24
+      ],
+      "continent": "이그니스"
+    },
+    {
+      "source": "central-exploration-v1.json",
+      "group": "IS2",
+      "form": "MN56-B",
+      "count": 1,
+      "readiness": [
+        25,
+        30
+      ],
+      "continent": "이그니스"
+    },
+    {
+      "source": "serna-arvena-passage-v1.json",
+      "group": "P01",
+      "form": "MN01-X",
+      "count": 4,
+      "readiness": [
+        3,
+        6
+      ],
+      "continent": "아르베나"
+    },
+    {
+      "source": "serna-arvena-passage-v1.json",
+      "group": "P02",
+      "form": "MN01-X",
+      "count": 2,
+      "readiness": [
+        5,
+        7
+      ],
+      "continent": "아르베나"
+    },
+    {
+      "source": "serna-arvena-passage-v1.json",
+      "group": "P03",
+      "form": "MN38-C",
+      "count": 3,
+      "readiness": [
+        6,
+        10
+      ],
+      "continent": "아르베나"
+    },
+    {
+      "source": "serna-arvena-passage-v1.json",
+      "group": "P04",
+      "form": "MN39-A",
+      "count": 1,
+      "readiness": [
+        12,
+        17
+      ],
+      "continent": "아르베나"
+    },
+    {
+      "source": "serna-arvena-passage-v1.json",
+      "group": "P05",
+      "form": "MN31-X",
+      "count": 3,
+      "readiness": [
+        7,
+        11
+      ],
+      "continent": "아르베나"
+    },
+    {
+      "source": "serna-arvena-passage-v1.json",
+      "group": "P06",
+      "form": "MN37-A",
+      "count": 4,
+      "readiness": [
+        8,
+        12
+      ],
+      "continent": "아르베나"
+    },
+    {
+      "source": "serna-arvena-passage-v1.json",
+      "group": "P07",
+      "form": "MN54-X",
+      "count": 2,
+      "readiness": [
+        5,
+        9
+      ],
+      "continent": "아르베나"
+    },
+    {
+      "source": "serna-arvena-passage-v1.json",
+      "group": "P08",
+      "form": "MN39-B",
+      "count": 1,
+      "readiness": [
+        25,
+        28
+      ],
+      "continent": "아르베나"
+    },
+    {
+      "source": "arvena-fleet-search-v1.json",
+      "group": "SI1",
+      "form": "MN45-X",
+      "count": 3,
+      "readiness": [
+        15,
+        20
+      ],
+      "continent": "아르베나"
+    },
+    {
+      "source": "arvena-fleet-search-v1.json",
+      "group": "SI2",
+      "form": "MN46-X",
+      "count": 2,
+      "readiness": [
+        16,
+        22
+      ],
+      "continent": "아르베나"
+    },
+    {
+      "source": "arvena-fleet-search-v1.json",
+      "group": "SI3",
+      "form": "MN63-X",
+      "count": 3,
+      "readiness": [
+        9,
+        14
+      ],
+      "continent": "아르베나"
+    },
+    {
+      "source": "arvena-fleet-search-v1.json",
+      "group": "FO1",
+      "form": "MN31-B",
+      "count": 2,
+      "readiness": [
+        17,
+        22
+      ],
+      "continent": "아르베나"
+    },
+    {
+      "source": "arvena-fleet-search-v1.json",
+      "group": "FO2",
+      "form": "MN43-A",
+      "count": 3,
+      "readiness": [
+        6,
+        11
+      ],
+      "continent": "아르베나"
+    },
+    {
+      "source": "arvena-fleet-search-v1.json",
+      "group": "FO3",
+      "form": "MN52-B",
+      "count": 2,
+      "readiness": [
+        12,
+        18
+      ],
+      "continent": "아르베나"
+    },
+    {
+      "source": "arvena-fleet-search-v1.json",
+      "group": "FO4",
+      "form": "MN53-B",
+      "count": 2,
+      "readiness": [
+        25,
+        28
+      ],
+      "continent": "아르베나"
+    },
+    {
+      "source": "arvena-fleet-search-v1.json",
+      "group": "FO5",
+      "form": "MN59-A",
+      "count": 1,
+      "readiness": [
+        25,
+        27
+      ],
+      "continent": "아르베나"
+    },
+    {
+      "source": "arvena-fleet-search-v1.json",
+      "group": "FO6",
+      "form": "MN57-B",
+      "count": 1,
+      "readiness": [
+        33,
+        35
+      ],
+      "continent": "아르베나"
+    },
+    {
+      "source": "arvena-fleet-search-v1.json",
+      "group": "CO1",
+      "form": "MN06-X",
+      "count": 5,
+      "readiness": [
+        10,
+        14
+      ],
+      "continent": "아르베나"
+    },
+    {
+      "source": "arvena-fleet-search-v1.json",
+      "group": "CO2",
+      "form": "MN21-X",
+      "count": 3,
+      "readiness": [
+        12,
+        17
+      ],
+      "continent": "아르베나"
+    },
+    {
+      "source": "arvena-fleet-search-v1.json",
+      "group": "CO3",
+      "form": "MN39-X",
+      "count": 2,
+      "readiness": [
+        18,
+        24
+      ],
+      "continent": "아르베나"
+    },
+    {
+      "source": "arvena-fleet-search-v1.json",
+      "group": "CO4",
+      "form": "MN21-B",
+      "count": 2,
+      "readiness": [
+        25,
+        28
+      ],
+      "continent": "아르베나"
+    },
+    {
+      "source": "arvena-fleet-search-v1.json",
+      "group": "CO5",
+      "form": "MN21-B",
+      "count": 2,
+      "readiness": [
+        28,
+        30
+      ],
+      "continent": "아르베나"
+    },
+    {
+      "source": "arvena-fleet-search-v1.json",
+      "group": "CO6",
+      "form": "MN55-C",
+      "count": 2,
+      "readiness": [
+        27,
+        31
+      ],
+      "continent": "아르베나"
+    },
+    {
+      "source": "arvena-fleet-search-v1.json",
+      "group": "CO7",
+      "form": "MN10-X",
+      "count": 1,
+      "readiness": [
+        33,
+        33
+      ],
+      "continent": "아르베나"
+    },
+    {
+      "source": "ordas-arrival-investigation-v1.json",
+      "group": "OG1",
+      "form": "MN03-X",
+      "count": 3,
+      "readiness": [
+        27,
+        30
+      ],
+      "continent": "오르다스"
+    },
+    {
+      "source": "ordas-arrival-investigation-v1.json",
+      "group": "OG2",
+      "form": "MN23-X",
+      "count": 1,
+      "readiness": [
+        28,
+        30
+      ],
+      "continent": "오르다스"
+    },
+    {
+      "source": "ordas-arrival-investigation-v1.json",
+      "group": "OG3",
+      "form": "MN60-A",
+      "count": 1,
+      "readiness": [
+        29,
+        32
+      ],
+      "continent": "오르다스"
+    },
+    {
+      "source": "ordas-arrival-investigation-v1.json",
+      "group": "OG4",
+      "form": "MN60-X",
+      "count": 1,
+      "readiness": [
+        36,
+        38
+      ],
+      "continent": "오르다스"
+    },
+    {
+      "source": "ordas-arrival-investigation-v1.json",
+      "group": "OG5",
+      "form": "MN61-X",
+      "count": 3,
+      "readiness": [
+        23,
+        26
+      ],
+      "continent": "오르다스"
+    },
+    {
+      "source": "ordas-arrival-investigation-v1.json",
+      "group": "OG6",
+      "form": "MN61-B",
+      "count": 2,
+      "readiness": [
+        32,
+        35
+      ],
+      "continent": "오르다스"
+    },
+    {
+      "source": "ordas-arrival-investigation-v1.json",
+      "group": "OG7",
+      "form": "MN02-X",
+      "count": 4,
+      "readiness": [
+        18,
+        22
+      ],
+      "continent": "오르다스"
+    },
+    {
+      "source": "ordas-arrival-investigation-v1.json",
+      "group": "OG8",
+      "form": "MN02-B",
+      "count": 3,
+      "readiness": [
+        33,
+        36
+      ],
+      "continent": "오르다스"
+    },
+    {
+      "source": "ordas-arrival-investigation-v1.json",
+      "group": "OG9",
+      "form": "MN16-X",
+      "count": 4,
+      "readiness": [
+        9,
+        13
+      ],
+      "continent": "오르다스"
+    },
+    {
+      "source": "ordas-arrival-investigation-v1.json",
+      "group": "OG10",
+      "form": "MN16-C",
+      "count": 3,
+      "readiness": [
+        32,
+        35
+      ],
+      "continent": "오르다스"
+    },
+    {
+      "source": "ordas-arrival-investigation-v1.json",
+      "group": "OG11",
+      "form": "MN18-B",
+      "count": 3,
+      "readiness": [
+        26,
+        29
+      ],
+      "continent": "오르다스"
+    },
+    {
+      "source": "ordas-arrival-investigation-v1.json",
+      "group": "OG12",
+      "form": "MN22-B",
+      "count": 1,
+      "readiness": [
+        35,
+        37
+      ],
+      "continent": "오르다스"
+    },
+    {
+      "source": "ordas-arrival-investigation-v1.json",
+      "group": "OG13",
+      "form": "MN44-B",
+      "count": 3,
+      "readiness": [
+        32,
+        35
+      ],
+      "continent": "오르다스"
+    },
+    {
+      "source": "ordas-highlands-v1.json",
+      "group": "NH1",
+      "form": "MN20-B",
+      "count": 4,
+      "readiness": [
+        32,
+        35
+      ],
+      "continent": "오르다스"
+    },
+    {
+      "source": "ordas-highlands-v1.json",
+      "group": "NH2",
+      "form": "MN27-B",
+      "count": 3,
+      "readiness": [
+        32,
+        35
+      ],
+      "continent": "오르다스"
+    },
+    {
+      "source": "ordas-highlands-v1.json",
+      "group": "NH3",
+      "form": "MN25-X",
+      "count": 1,
+      "readiness": [
+        37,
+        40
+      ],
+      "continent": "오르다스"
+    },
+    {
+      "source": "ordas-highlands-v1.json",
+      "group": "NH4",
+      "form": "MN49-B",
+      "count": 1,
+      "readiness": [
+        40,
+        43
+      ],
+      "continent": "오르다스"
+    },
+    {
+      "source": "ordas-highlands-v1.json",
+      "group": "NH5",
+      "form": "MN19-A",
+      "count": 2,
+      "readiness": [
+        25,
+        28
+      ],
+      "continent": "오르다스"
+    },
+    {
+      "source": "ordas-highlands-v1.json",
+      "group": "NH6",
+      "form": "MN29-A",
+      "count": 1,
+      "readiness": [
+        33,
+        35
+      ],
+      "continent": "오르다스"
+    },
+    {
+      "source": "ordas-highlands-v1.json",
+      "group": "NH7",
+      "form": "MN44-B",
+      "count": 3,
+      "readiness": [
+        33,
+        36
+      ],
+      "continent": "오르다스"
+    },
+    {
+      "source": "ordas-highlands-v1.json",
+      "group": "NH8",
+      "form": "MN02-B",
+      "count": 3,
+      "readiness": [
+        34,
+        36
+      ],
+      "continent": "오르다스"
+    },
+    {
+      "source": "ordas-highlands-v1.json",
+      "group": "NH9",
+      "form": "MN36-B",
+      "count": 4,
+      "readiness": [
+        33,
+        36
+      ],
+      "continent": "오르다스"
+    },
+    {
+      "source": "ordas-highlands-v1.json",
+      "group": "NH10",
+      "form": "MN30-B",
+      "count": 1,
+      "readiness": [
+        37,
+        40
+      ],
+      "continent": "오르다스"
+    },
+    {
+      "source": "ordas-highlands-v1.json",
+      "group": "NH11",
+      "form": "MN26-B",
+      "count": 2,
+      "readiness": [
+        36,
+        39
+      ],
+      "continent": "오르다스"
+    },
+    {
+      "source": "ordas-highlands-v1.json",
+      "group": "NH12",
+      "form": "MN08-X",
+      "count": 3,
+      "readiness": [
+        28,
+        31
+      ],
+      "continent": "오르다스"
+    },
+    {
+      "source": "ordas-highlands-v1.json",
+      "group": "NH13",
+      "form": "MN55-A",
+      "count": 2,
+      "readiness": [
+        39,
+        42
+      ],
+      "continent": "오르다스"
+    },
+    {
+      "source": "ordas-highlands-v1.json",
+      "group": "NH14",
+      "form": "MN29-X",
+      "count": 1,
+      "readiness": [
+        43,
+        43
+      ],
+      "continent": "오르다스"
+    },
+    {
+      "source": "ordas-highlands-v1.json",
+      "group": "NH15",
+      "form": "MN60-B",
+      "count": 1,
+      "readiness": [
+        43,
+        45
+      ],
+      "continent": "오르다스"
+    },
+    {
+      "source": "seradion-arrival-v1.json",
+      "group": "SG1",
+      "form": "MN17-X",
+      "count": 4,
+      "readiness": [
+        16,
+        19
+      ],
+      "continent": "세라디온"
+    },
+    {
+      "source": "seradion-arrival-v1.json",
+      "group": "SG2",
+      "form": "MN17-B",
+      "count": 3,
+      "readiness": [
+        34,
+        37
+      ],
+      "continent": "세라디온"
+    },
+    {
+      "source": "seradion-arrival-v1.json",
+      "group": "SG3",
+      "form": "MN07-X",
+      "count": 3,
+      "readiness": [
+        13,
+        16
+      ],
+      "continent": "세라디온"
+    },
+    {
+      "source": "seradion-arrival-v1.json",
+      "group": "SG4",
+      "form": "MN41-X",
+      "count": 2,
+      "readiness": [
+        18,
+        21
+      ],
+      "continent": "세라디온"
+    },
+    {
+      "source": "seradion-arrival-v1.json",
+      "group": "SG5",
+      "form": "MN42-A",
+      "count": 4,
+      "readiness": [
+        9,
+        12
+      ],
+      "continent": "세라디온"
+    },
+    {
+      "source": "seradion-arrival-v1.json",
+      "group": "SG6",
+      "form": "MN59-X",
+      "count": 1,
+      "readiness": [
+        27,
+        30
+      ],
+      "continent": "세라디온"
+    },
+    {
+      "source": "seradion-arrival-v1.json",
+      "group": "SG7",
+      "form": "MN62-A",
+      "count": 1,
+      "readiness": [
+        30,
+        33
+      ],
+      "continent": "세라디온"
+    },
+    {
+      "source": "seradion-arrival-v1.json",
+      "group": "SG8",
+      "form": "MN34-B",
+      "count": 1,
+      "readiness": [
+        45,
+        47
+      ],
+      "continent": "세라디온"
+    },
+    {
+      "source": "seradion-forest-v1.json",
+      "group": "FG1",
+      "form": "MN03-A",
+      "count": 1,
+      "readiness": [
+        25,
+        27
+      ],
+      "continent": "세라디온"
+    },
+    {
+      "source": "seradion-forest-v1.json",
+      "group": "FG2",
+      "form": "MN07-B",
+      "count": 3,
+      "readiness": [
+        33,
+        36
+      ],
+      "continent": "세라디온"
+    },
+    {
+      "source": "seradion-forest-v1.json",
+      "group": "FG3",
+      "form": "MN37-B",
+      "count": 4,
+      "readiness": [
+        31,
+        34
+      ],
+      "continent": "세라디온"
+    },
+    {
+      "source": "seradion-forest-v1.json",
+      "group": "FG4",
+      "form": "MN35-B",
+      "count": 3,
+      "readiness": [
+        23,
+        26
+      ],
+      "continent": "세라디온"
+    },
+    {
+      "source": "seradion-forest-v1.json",
+      "group": "FG5",
+      "form": "MN41-B",
+      "count": 2,
+      "readiness": [
+        33,
+        36
+      ],
+      "continent": "세라디온"
+    },
+    {
+      "source": "seradion-forest-v1.json",
+      "group": "FG6",
+      "form": "MN40-B",
+      "count": 1,
+      "readiness": [
+        41,
+        44
+      ],
+      "continent": "세라디온"
+    },
+    {
+      "source": "seradion-forest-v1.json",
+      "group": "FG7",
+      "form": "MN53-X",
+      "count": 1,
+      "readiness": [
+        29,
+        32
+      ],
+      "continent": "세라디온"
+    },
+    {
+      "source": "seradion-forest-v1.json",
+      "group": "FG8",
+      "form": "MN56-X",
+      "count": 1,
+      "readiness": [
+        39,
+        42
+      ],
+      "continent": "세라디온"
+    },
+    {
+      "source": "seradion-forest-v1.json",
+      "group": "FG9",
+      "form": "MN28-X",
+      "count": 1,
+      "readiness": [
+        48,
+        48
+      ],
+      "continent": "세라디온"
+    },
+    {
+      "source": "seradion-forest-v1.json",
+      "group": "FG10",
+      "form": "MN32-B",
+      "count": 1,
+      "readiness": [
+        43,
+        46
+      ],
+      "continent": "세라디온"
+    },
+    {
+      "source": "seradion-forest-v1.json",
+      "group": "FG11",
+      "form": "MN28-B",
+      "count": 1,
+      "readiness": [
+        42,
+        44
+      ],
+      "continent": "세라디온"
+    },
+    {
+      "source": "seradion-forest-v1.json",
+      "group": "FG12",
+      "form": "MN46-B",
+      "count": 2,
+      "readiness": [
+        30,
+        33
+      ],
+      "continent": "세라디온"
+    },
+    {
+      "source": "seradion-forest-v1.json",
+      "group": "FG13",
+      "form": "MN54-B",
+      "count": 3,
+      "readiness": [
+        12,
+        15
+      ],
+      "continent": "세라디온"
+    },
+    {
+      "source": "seradion-forest-v1.json",
+      "group": "FG14",
+      "form": "MN03-A",
+      "count": 1,
+      "readiness": [
+        24,
+        26
+      ],
+      "continent": "세라디온"
+    },
+    {
+      "source": "seradion-forest-v1.json",
+      "group": "FG15",
+      "form": "MN41-A",
+      "count": 3,
+      "readiness": [
+        11,
+        14
+      ],
+      "continent": "세라디온"
+    },
+    {
+      "source": "seradion-forest-v1.json",
+      "group": "FG16",
+      "form": "MN03-A",
+      "count": 2,
+      "readiness": [
+        23,
+        26
+      ],
+      "continent": "세라디온"
+    },
+    {
+      "source": "seradion-waterworks-v1.json",
+      "group": "WG1",
+      "form": "MN38-B",
+      "count": 4,
+      "readiness": [
+        9,
+        12
+      ],
+      "continent": "세라디온"
+    },
+    {
+      "source": "seradion-waterworks-v1.json",
+      "group": "WG2",
+      "form": "MN12-B",
+      "count": 2,
+      "readiness": [
+        14,
+        16
+      ],
+      "continent": "세라디온"
+    },
+    {
+      "source": "seradion-waterworks-v1.json",
+      "group": "WG3",
+      "form": "MN44-X",
+      "count": 3,
+      "readiness": [
+        20,
+        23
+      ],
+      "continent": "세라디온"
+    },
+    {
+      "source": "seradion-waterworks-v1.json",
+      "group": "WG4",
+      "form": "MN47-B",
+      "count": 2,
+      "readiness": [
+        42,
+        45
+      ],
+      "continent": "세라디온"
+    },
+    {
+      "source": "seradion-waterworks-v1.json",
+      "group": "WG5",
+      "form": "MN62-X",
+      "count": 3,
+      "readiness": [
+        37,
+        41
+      ],
+      "continent": "세라디온"
+    },
+    {
+      "source": "seradion-waterworks-v1.json",
+      "group": "WG6",
+      "form": "MN34-X",
+      "count": 1,
+      "readiness": [
+        51,
+        51
+      ],
+      "continent": "세라디온"
+    },
+    {
+      "source": "seradion-waterworks-v1.json",
+      "group": "WG7",
+      "form": "MN03-A",
+      "count": 2,
+      "readiness": [
+        25,
+        28
+      ],
+      "continent": "세라디온"
+    },
+    {
+      "source": "seradion-waterworks-v1.json",
+      "group": "WG8",
+      "form": "MN41-A",
+      "count": 3,
+      "readiness": [
+        11,
+        14
+      ],
+      "continent": "세라디온"
+    },
+    {
+      "source": "seradion-polar-departure-v1.json",
+      "group": "PG1",
+      "form": "MN03-A",
+      "count": 1,
+      "readiness": [
+        24,
+        26
+      ],
+      "continent": "세라디온"
+    },
+    {
+      "source": "seradion-polar-departure-v1.json",
+      "group": "PG2",
+      "form": "MN41-A",
+      "count": 3,
+      "readiness": [
+        10,
+        13
+      ],
+      "continent": "세라디온"
+    },
+    {
+      "source": "niber-first-landing-v1.json",
+      "group": "NG1",
+      "form": "MN11-X",
+      "count": 2,
+      "readiness": [
+        51,
+        52
+      ],
+      "continent": "니베르"
+    },
+    {
+      "source": "niber-first-landing-v1.json",
+      "group": "NG2",
+      "form": "MN11-X",
+      "count": 1,
+      "readiness": [
+        50,
+        51
+      ],
+      "continent": "니베르"
+    },
+    {
+      "source": "niber-first-landing-v1.json",
+      "group": "NG3",
+      "form": "MN42-X",
+      "count": 3,
+      "readiness": [
+        10,
+        12
+      ],
+      "continent": "니베르"
+    },
+    {
+      "source": "niber-first-landing-v1.json",
+      "group": "NG4",
+      "form": "MN47-X",
+      "count": 2,
+      "readiness": [
+        30,
+        32
+      ],
+      "continent": "니베르"
+    },
+    {
+      "source": "niber-first-landing-v1.json",
+      "group": "NG5",
+      "form": "MN48-X",
+      "count": 1,
+      "readiness": [
+        44,
+        46
+      ],
+      "continent": "니베르"
+    },
+    {
+      "source": "niber-first-landing-v1.json",
+      "group": "NG6",
+      "form": "MN64-X",
+      "count": 2,
+      "readiness": [
+        48,
+        50
+      ],
+      "continent": "니베르"
+    },
+    {
+      "source": "niber-expedition-rescue-v1.json",
+      "group": "IG01",
+      "form": "MN42-X",
+      "count": 3,
+      "readiness": [
+        12,
+        14
+      ],
+      "continent": "니베르"
+    },
+    {
+      "source": "niber-expedition-rescue-v1.json",
+      "group": "IG02",
+      "form": "MN47-X",
+      "count": 2,
+      "readiness": [
+        32,
+        35
+      ],
+      "continent": "니베르"
+    },
+    {
+      "source": "niber-expedition-rescue-v1.json",
+      "group": "IG03",
+      "form": "MN64-X",
+      "count": 2,
+      "readiness": [
+        50,
+        52
+      ],
+      "continent": "니베르"
+    },
+    {
+      "source": "niber-expedition-rescue-v1.json",
+      "group": "IG04",
+      "form": "MN12-X",
+      "count": 3,
+      "readiness": [
+        7,
+        9
+      ],
+      "continent": "니베르"
+    },
+    {
+      "source": "niber-expedition-rescue-v1.json",
+      "group": "IG05",
+      "form": "MN38-X",
+      "count": 4,
+      "readiness": [
+        5,
+        7
+      ],
+      "continent": "니베르"
+    },
+    {
+      "source": "niber-expedition-rescue-v1.json",
+      "group": "IG06",
+      "form": "MN52-X",
+      "count": 2,
+      "readiness": [
+        14,
+        17
+      ],
+      "continent": "니베르"
+    },
+    {
+      "source": "niber-expedition-rescue-v1.json",
+      "group": "IG07",
+      "form": "MN13-X",
+      "count": 2,
+      "readiness": [
+        34,
+        37
+      ],
+      "continent": "니베르"
+    },
+    {
+      "source": "niber-expedition-rescue-v1.json",
+      "group": "IG08",
+      "form": "MN55-X",
+      "count": 1,
+      "readiness": [
+        58,
+        58
+      ],
+      "continent": "니베르"
+    },
+    {
+      "source": "niber-expedition-rescue-v1.json",
+      "group": "IG09",
+      "form": "MN48-B",
+      "count": 1,
+      "readiness": [
+        55,
+        57
+      ],
+      "continent": "니베르"
+    },
+    {
+      "source": "niber-expedition-rescue-v1.json",
+      "group": "IG10",
+      "form": "MN25-B",
+      "count": 1,
+      "readiness": [
+        52,
+        55
+      ],
+      "continent": "니베르"
+    },
+    {
+      "source": "seradion-return-g6-v1.json",
+      "group": "RG1",
+      "form": "MN38-B",
+      "count": 3,
+      "readiness": [
+        10,
+        12
+      ],
+      "continent": "세라디온"
+    },
+    {
+      "source": "seradion-return-g6-v1.json",
+      "group": "RG2",
+      "form": "MN47-B",
+      "count": 2,
+      "readiness": [
+        43,
+        46
+      ],
+      "continent": "세라디온"
+    },
+    {
+      "source": "seradion-return-g6-v1.json",
+      "group": "RG3",
+      "form": "MN64-A",
+      "count": 2,
+      "readiness": [
+        31,
+        34
+      ],
+      "continent": "세라디온"
+    }
+  ],
+  "transport": [
+    "T1",
+    "T2",
+    "T3",
+    "T4",
+    "T5",
+    "T6"
+  ],
+  "limits": [
+    "No full local geometry revalidation",
+    "No combat pacing or gameplay validation",
+    "No navigation distance or georeference",
+    "No claim all 199 forms are encountered or hostile"
+  ]
+}

@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2200" height="1250" viewBox="0 0 2200 1250"><rect width="100%" height="100%" fill="#edf0eb"/>
+<text x="60" y="61" font-family="Malgun Gothic,sans-serif" font-size="36" fill="#293d42">5대륙 메인 여정 · 해금과 귀환 인계</text>
+<text x="60" y="107" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#293d42">진행 관계도 · 거리·방위·세계 해안 표현 아님 / 레벨은 해금 조건이 아님</text>
+<polyline id="I-A" points="490.00,242.50 600.00,242.50" stroke="#5e7e84" stroke-width="4" fill="none"/>
+<polyline id="I-A-arrow" points="586.00,235.50 600.00,242.50 586.00,249.50" stroke="#5e7e84" stroke-width="3" fill="none"/>
+<text x="497.0" y="214.5" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#293d42">G1+G2 / T1</text>
+<polyline id="A-O" points="1030.00,242.50 1140.00,242.50" stroke="#5e7e84" stroke-width="4" fill="none"/>
+<polyline id="A-O-arrow" points="1126.00,235.50 1140.00,242.50 1126.00,249.50" stroke="#5e7e84" stroke-width="3" fill="none"/>
+<text x="1037.0" y="214.5" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#293d42">G3 / T2</text>
+<polyline id="O-T" points="1570.00,242.50 1680.00,242.50" stroke="#5e7e84" stroke-width="4" fill="none"/>
+<polyline id="O-T-arrow" points="1666.00,235.50 1680.00,242.50 1666.00,249.50" stroke="#5e7e84" stroke-width="3" fill="none"/>
+<text x="1577.0" y="214.5" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#293d42">T3·T4</text>
+<polyline id="T-S" points="1895.00,320.00 1895.00,500.00" stroke="#5e7e84" stroke-width="4" fill="none"/>
+<polyline id="T-S-arrow" points="1902.00,486.00 1895.00,500.00 1888.00,486.00" stroke="#5e7e84" stroke-width="3" fill="none"/>
+<text x="1915.0" y="382.0" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#293d42">G4 / T5</text>
+<polyline id="S-N" points="1680.00,577.50 1570.00,577.50" stroke="#5e7e84" stroke-width="4" fill="none"/>
+<polyline id="S-N-arrow" points="1584.00,584.50 1570.00,577.50 1584.00,570.50" stroke="#5e7e84" stroke-width="3" fill="none"/>
+<text x="1577.0" y="549.5" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#293d42">G5 / T6</text>
+<polyline id="N-R" points="1140.00,577.50 1030.00,577.50" stroke="#5e7e84" stroke-width="4" fill="none"/>
+<polyline id="N-R-arrow" points="1044.00,584.50 1030.00,577.50 1044.00,570.50" stroke="#5e7e84" stroke-width="3" fill="none"/>
+<text x="1037.0" y="549.5" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#293d42">T6 귀항</text>
+<polyline id="R-E" points="600.00,577.50 490.00,577.50" stroke="#5e7e84" stroke-width="4" fill="none"/>
+<polyline id="R-E-arrow" points="504.00,584.50 490.00,577.50 504.00,570.50" stroke="#5e7e84" stroke-width="3" fill="none"/>
+<text x="497.0" y="549.5" font-family="Malgun Gothic,sans-serif" font-size="17" fill="#293d42">G6</text>
+<rect id="I" x="60.00" y="165.00" width="430.00" height="155.00" fill="#d5e0d3" stroke="#6c7771"/>
+<text x="78" y="204" font-family="Malgun Gothic,sans-serif" font-size="25" fill="#293d42">이그니스 S1-S6</text>
+<text x="78" y="249" font-family="Malgun Gothic,sans-serif" font-size="27" fill="#293d42">1 → 24</text>
+<text x="78" y="290" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#293d42">공급·현지 책임 인수</text>
+<rect id="A" x="600.00" y="165.00" width="430.00" height="155.00" fill="#d5e0d3" stroke="#6c7771"/>
+<text x="618" y="204" font-family="Malgun Gothic,sans-serif" font-size="25" fill="#293d42">아르베나 본편</text>
+<text x="618" y="249" font-family="Malgun Gothic,sans-serif" font-size="27" fill="#293d42">24 → 34</text>
+<text x="618" y="290" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#293d42">구조 7명 항만 인계</text>
+<rect id="O" x="1140.00" y="165.00" width="430.00" height="155.00" fill="#d5e0d3" stroke="#6c7771"/>
+<text x="1158" y="204" font-family="Malgun Gothic,sans-serif" font-size="25" fill="#293d42">오르다스</text>
+<text x="1158" y="249" font-family="Malgun Gothic,sans-serif" font-size="27" fill="#293d42">34 → 44</text>
+<text x="1158" y="290" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#293d42">수로·고개 시험 / 초청 확인</text>
+<rect id="T" x="1680.00" y="165.00" width="430.00" height="155.00" fill="#d5e0d3" stroke="#6c7771"/>
+<text x="1698" y="204" font-family="Malgun Gothic,sans-serif" font-size="25" fill="#293d42">이그니스 연안 환승</text>
+<text x="1698" y="249" font-family="Malgun Gothic,sans-serif" font-size="27" fill="#293d42">44 유지</text>
+<text x="1698" y="290" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#293d42">루세아 → 동안항 원양 계약</text>
+<rect id="S" x="1680.00" y="500.00" width="430.00" height="155.00" fill="#d5e0d3" stroke="#6c7771"/>
+<text x="1698" y="539" font-family="Malgun Gothic,sans-serif" font-size="25" fill="#293d42">세라디온 전반</text>
+<text x="1698" y="584" font-family="Malgun Gothic,sans-serif" font-size="27" fill="#293d42">44 → 52</text>
+<text x="1698" y="625" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#293d42">주민 수원 분리·시험 확대 중지</text>
+<rect id="N" x="1140.00" y="500.00" width="430.00" height="155.00" fill="#d5e0d3" stroke="#6c7771"/>
+<text x="1158" y="539" font-family="Malgun Gothic,sans-serif" font-size="25" fill="#293d42">니베르</text>
+<text x="1158" y="584" font-family="Malgun Gothic,sans-serif" font-size="27" fill="#293d42">52 → 58</text>
+<text x="1158" y="625" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#293d42">구조 8명 본선 인계·근거 확보</text>
+<rect id="R" x="600.00" y="500.00" width="430.00" height="155.00" fill="#d5e0d3" stroke="#6c7771"/>
+<text x="618" y="539" font-family="Malgun Gothic,sans-serif" font-size="25" fill="#293d42">세라디온 귀항·준비</text>
+<text x="618" y="584" font-family="Malgun Gothic,sans-serif" font-size="27" fill="#293d42">58 유지</text>
+<text x="618" y="625" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#293d42">남부항 22명 / 현지 이동 2명</text>
+<rect id="E" x="60.00" y="500.00" width="430.00" height="155.00" fill="#d5e0d3" stroke="#6c7771"/>
+<text x="78" y="539" font-family="Malgun Gothic,sans-serif" font-size="25" fill="#293d42">세라디온 결말</text>
+<text x="78" y="584" font-family="Malgun Gothic,sans-serif" font-size="27" fill="#293d42">58 → 59 → 60</text>
+<text x="78" y="625" font-family="Malgun Gothic,sans-serif" font-size="18" fill="#293d42">전투 → 심부 분리 → 교대 확인</text>
+<text x="60" y="745" font-family="Malgun Gothic,sans-serif" font-size="25" fill="#293d42">G1 선행 방문은 선택: S3 세르나 → 아르베나 공개 탐색(+1-2) → 세르나·S4 복귀</text>
+<text x="60" y="792" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#293d42">처음 해외로 가는 경우도 S6 뒤 출항지에서 G1·G2 준비 가능. 선행 방문을 의무화하지 않음.</text>
+<text x="60" y="857" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#293d42">G4: 오르다스 초청만으로 미완료 → 동안항에서 원양선·선원·왕복 보급 계약 후 충족</text>
+<text x="60" y="902" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#293d42">G5: 세라디온 기항항 → 별도 연안편 → 남부항 개조·보급·피난 인수 → T6 출항</text>
+<text x="60" y="947" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#293d42">귀항은 G6와 독립. G6 준비 인수 뒤 공개·점거가 이어지며, 보스 격파 뒤 실제 분리·급수 인수.</text>
+<text x="60" y="1019" font-family="Malgun Gothic,sans-serif" font-size="24" fill="#293d42">성장 예산: 필드 30 + 주요 목표 14 + 조사·관계 15 = 59 / 시작 1 → 기준 60</text>
+<text x="60" y="1062" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#293d42">선택 +2 비교 경로는 결말 62. 전체 선택 +4-8 가정·최고 레벨·실제 경험치와 구분.</text>
+<text x="60" y="1122" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#293d42">마렌: S2 이후 동행 / 린: 세르나·로덴 운송 / 이르: S6 이후 중앙·북부 연락</text>
+<text x="60" y="1172" font-family="Malgun Gothic,sans-serif" font-size="22" fill="#293d42">기존 지역 레벨·생활권 유지 / 일반 동물 사냥·선택 용·리치 처치는 필수 조건이 아님</text>
+</svg>
