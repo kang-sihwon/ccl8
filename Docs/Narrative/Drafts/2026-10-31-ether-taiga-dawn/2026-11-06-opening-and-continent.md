@@ -6,6 +6,7 @@
 
 | 순서 | 읽는 문서 | 산출물 |
 |---|---|---|
+| 장면 행동 선택 | [VS01-VS12 추천·대안·보류](2026-11-06-opening-and-continent/2026-11-14-veles-scene-options.md) | 확정 사건을 유지하며 새 행동 배치·장면 강조와 VA·VH를 비교할 때 |
 | 현재 장면 개요 | [벨레스 도입부터 출항까지](2026-11-06-opening-and-continent/2026-11-14-veles-opening-scenes.md) | 확정 인물·갈등·정보 연결을 적용한 장면과 기존 원고의 차이를 볼 때 |
 | 현재 몬스터·생태 분포 | [고블린 거점과 숲의 일반 동물](2026-11-06-opening-and-continent/2026-11-07-goblin-territories-and-wildlife.md) | 고블린 거점·생활·약탈·운반과 일반 동물을 구분한 v2 지도와 수치를 볼 때 |
 | 현재 공간 상세 | [작업장 연결로·동굴 출구](2026-11-06-opening-and-continent/2026-11-07-forest-sightlines-and-clearance.md) | 길의 폭·작업 단·시야를 가리는 바위와 관찰 위치를 확대 지도에서 볼 때 |
