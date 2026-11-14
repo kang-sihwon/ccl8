@@ -1,0 +1,400 @@
+{
+  "status": "PASS",
+  "checks": [
+    {
+      "name": "World frame and origin unchanged",
+      "passed": true
+    },
+    {
+      "name": "Geometry hash authority unchanged",
+      "passed": true
+    },
+    {
+      "name": "Original geometry manifest.json",
+      "passed": true
+    },
+    {
+      "name": "Original geometry data/placements.json",
+      "passed": true
+    },
+    {
+      "name": "Original geometry data/connections.json",
+      "passed": true
+    },
+    {
+      "name": "Original geometry height/master16.png",
+      "passed": true
+    },
+    {
+      "name": "Original geometry scene.js",
+      "passed": true
+    },
+    {
+      "name": "All 23 V4 source image digests preserved",
+      "passed": true
+    },
+    {
+      "name": "Asset base",
+      "passed": true
+    },
+    {
+      "name": "Asset region",
+      "passed": true
+    },
+    {
+      "name": "Asset N0-0",
+      "passed": true
+    },
+    {
+      "name": "Asset N0-1",
+      "passed": true
+    },
+    {
+      "name": "Asset N0-2",
+      "passed": true
+    },
+    {
+      "name": "Asset N1-0",
+      "passed": true
+    },
+    {
+      "name": "Asset N1-1",
+      "passed": true
+    },
+    {
+      "name": "Asset N1-2",
+      "passed": true
+    },
+    {
+      "name": "Asset S0-0",
+      "passed": true
+    },
+    {
+      "name": "Asset S0-1",
+      "passed": true
+    },
+    {
+      "name": "Asset S0-2",
+      "passed": true
+    },
+    {
+      "name": "Asset S1-0",
+      "passed": true
+    },
+    {
+      "name": "Asset S1-1",
+      "passed": true
+    },
+    {
+      "name": "Asset S1-2",
+      "passed": true
+    },
+    {
+      "name": "Asset S2-0",
+      "passed": true
+    },
+    {
+      "name": "Asset S2-1",
+      "passed": true
+    },
+    {
+      "name": "Asset S2-2",
+      "passed": true
+    },
+    {
+      "name": "Asset west",
+      "passed": true
+    },
+    {
+      "name": "Asset east",
+      "passed": true
+    },
+    {
+      "name": "Asset forest",
+      "passed": true
+    },
+    {
+      "name": "Asset core",
+      "passed": true
+    },
+    {
+      "name": "Asset forest-roads",
+      "passed": true
+    },
+    {
+      "name": "Asset roads",
+      "passed": true
+    },
+    {
+      "name": "Asset west-fill",
+      "passed": true
+    },
+    {
+      "name": "Asset east-fill",
+      "passed": true
+    },
+    {
+      "name": "Asset workshop-access",
+      "passed": true
+    },
+    {
+      "name": "Asset west-access",
+      "passed": true
+    },
+    {
+      "name": "Four edit frames match input records",
+      "passed": true
+    },
+    {
+      "name": "1m full export and 2m preview dimensions",
+      "passed": true
+    },
+    {
+      "name": "Outer six pixels of full export unchanged",
+      "passed": true
+    },
+    {
+      "name": "Outer three pixels of preview unchanged",
+      "passed": true
+    },
+    {
+      "name": "Pixels outside four edit frames plus 2px sampling margin unchanged",
+      "passed": true
+    },
+    {
+      "name": "Exactly 24 expected tile IDs",
+      "passed": true
+    },
+    {
+      "name": "Saved tile frames and pixels match composite",
+      "passed": true
+    },
+    {
+      "name": "24 saved cores reassemble exactly",
+      "passed": true
+    },
+    {
+      "name": "38 shared tile margins identical",
+      "passed": true
+    },
+    {
+      "name": "Detail image footprints cover the full local rectangle",
+      "passed": true
+    }
+  ],
+  "overlaps": [
+    {
+      "a": "C0-R0",
+      "b": "C1-R0",
+      "identical": true
+    },
+    {
+      "a": "C0-R0",
+      "b": "C0-R1",
+      "identical": true
+    },
+    {
+      "a": "C1-R0",
+      "b": "C2-R0",
+      "identical": true
+    },
+    {
+      "a": "C1-R0",
+      "b": "C1-R1",
+      "identical": true
+    },
+    {
+      "a": "C2-R0",
+      "b": "C3-R0",
+      "identical": true
+    },
+    {
+      "a": "C2-R0",
+      "b": "C2-R1",
+      "identical": true
+    },
+    {
+      "a": "C3-R0",
+      "b": "C3-R1",
+      "identical": true
+    },
+    {
+      "a": "C0-R1",
+      "b": "C1-R1",
+      "identical": true
+    },
+    {
+      "a": "C0-R1",
+      "b": "C0-R2",
+      "identical": true
+    },
+    {
+      "a": "C1-R1",
+      "b": "C2-R1",
+      "identical": true
+    },
+    {
+      "a": "C1-R1",
+      "b": "C1-R2",
+      "identical": true
+    },
+    {
+      "a": "C2-R1",
+      "b": "C3-R1",
+      "identical": true
+    },
+    {
+      "a": "C2-R1",
+      "b": "C2-R2",
+      "identical": true
+    },
+    {
+      "a": "C3-R1",
+      "b": "C3-R2",
+      "identical": true
+    },
+    {
+      "a": "C0-R2",
+      "b": "C1-R2",
+      "identical": true
+    },
+    {
+      "a": "C0-R2",
+      "b": "C0-R3",
+      "identical": true
+    },
+    {
+      "a": "C1-R2",
+      "b": "C2-R2",
+      "identical": true
+    },
+    {
+      "a": "C1-R2",
+      "b": "C1-R3",
+      "identical": true
+    },
+    {
+      "a": "C2-R2",
+      "b": "C3-R2",
+      "identical": true
+    },
+    {
+      "a": "C2-R2",
+      "b": "C2-R3",
+      "identical": true
+    },
+    {
+      "a": "C3-R2",
+      "b": "C3-R3",
+      "identical": true
+    },
+    {
+      "a": "C0-R3",
+      "b": "C1-R3",
+      "identical": true
+    },
+    {
+      "a": "C0-R3",
+      "b": "C0-R4",
+      "identical": true
+    },
+    {
+      "a": "C1-R3",
+      "b": "C2-R3",
+      "identical": true
+    },
+    {
+      "a": "C1-R3",
+      "b": "C1-R4",
+      "identical": true
+    },
+    {
+      "a": "C2-R3",
+      "b": "C3-R3",
+      "identical": true
+    },
+    {
+      "a": "C2-R3",
+      "b": "C2-R4",
+      "identical": true
+    },
+    {
+      "a": "C3-R3",
+      "b": "C3-R4",
+      "identical": true
+    },
+    {
+      "a": "C0-R4",
+      "b": "C1-R4",
+      "identical": true
+    },
+    {
+      "a": "C0-R4",
+      "b": "C0-R5",
+      "identical": true
+    },
+    {
+      "a": "C1-R4",
+      "b": "C2-R4",
+      "identical": true
+    },
+    {
+      "a": "C1-R4",
+      "b": "C1-R5",
+      "identical": true
+    },
+    {
+      "a": "C2-R4",
+      "b": "C3-R4",
+      "identical": true
+    },
+    {
+      "a": "C2-R4",
+      "b": "C2-R5",
+      "identical": true
+    },
+    {
+      "a": "C3-R4",
+      "b": "C3-R5",
+      "identical": true
+    },
+    {
+      "a": "C0-R5",
+      "b": "C1-R5",
+      "identical": true
+    },
+    {
+      "a": "C1-R5",
+      "b": "C2-R5",
+      "identical": true
+    },
+    {
+      "a": "C2-R5",
+      "b": "C3-R5",
+      "identical": true
+    }
+  ],
+  "detail_image_footprint_km2": 25.165824,
+  "new_native_mpp": {
+    "west-fill": [
+      0.7800586510263929,
+      0.7807417046193884
+    ],
+    "east-fill": [
+      0.7800586510263929,
+      0.7807417046193884
+    ],
+    "workshop-access": [
+      0.13576779026217228,
+      0.13577732518669383
+    ],
+    "west-access": [
+      0.17385257301808066,
+      0.17383348581884722
+    ]
+  },
+  "coverage_caveat": "Image footprint coverage includes feather zones and intentionally preserved outer-border pixels; not a claim of uniform optical resolution.",
+  "visual_registration": "Not a surveyed map; generated path widths and roof outlines require visual review.",
+  "browser_interaction": "NOT_RUN_FOR_V5",
+  "ue_runtime": "NOT_TESTED"
+}

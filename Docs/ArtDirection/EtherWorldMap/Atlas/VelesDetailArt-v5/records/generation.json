@@ -1,0 +1,26 @@
+{
+  "tool": "built-in image_gen",
+  "scope": "central outer forest strips and local doorway access refinement",
+  "outputs": [
+    {
+      "id": "west-fill",
+      "file": "../assets/west-fill.png",
+      "prompt": "Precisely registered aerial map texture repair. The input is an existing798m wide by1200m high forest patch. Keep exactly its full frame, landform and macro shading. There are ONLY woods, NO houses, tracks, fields, water or clearings; do not invent any. The center has coarse repetitive oversized tree crowns, while several edges already have fine realistic detail. Extend the existing fine organic forest texture across the entire patch, matching adjacent crown scale, muted olive green color and soft lighting. Small irregular overlapping mixed broadleaf/conifer crowns 8-18m across, understory, varied densities; strict vertical orthophoto, no trunks or tree sides, no miniature models, no repeating stamps, no tiling. No new landmarks. Keep the frame edge geography unchanged. Portrait798:1200aspect, sharp natural fine detail. No text, map symbols, guide lines or UI."
+    },
+    {
+      "id": "east-fill",
+      "file": "../assets/east-fill.png",
+      "prompt": "Precisely registered aerial map texture repair. The input is an existing798m wide by1200m high forest patch. Keep exactly its full frame, landform and macro shading. There are ONLY woods, NO houses, tracks, fields, water or clearings; do not invent any. The center has coarse repetitive oversized tree crowns, while several edges already have fine realistic detail. Extend the existing fine organic forest texture across the entire patch, matching adjacent crown scale, muted olive green color and soft lighting. Small irregular overlapping mixed broadleaf/conifer crowns 8-18m across, understory, varied densities; strict vertical orthophoto, no trunks or tree sides, no miniature models, no repeating stamps, no tiling. No new landmarks. Keep the frame edge geography unchanged. Portrait798:1200aspect, sharp natural fine detail. No text, map symbols, guide lines or UI."
+    },
+    {
+      "id": "workshop-access",
+      "file": "../assets/workshop-access.png",
+      "prompt": "Use case: precise-object-edit, fixed-coordinate game-map repair. INPUT1 is the exact aerial patch to edit. INPUT2 same frame with gold showing actual road SURFACES at correct width, cyan showing unchanged roof footprints, blue water centerlines. Correct ONLY the worn earth road/short doorway connection surfaces, particularly faint short spurs. All gold road footprints must become visible continuous worn dirt/gravel at that exact location and width, reaching each cyan building edge. Clear the tiny grass gaps that incorrectly block doorway connections. Do not widen roads for legibility. Keep every roof within its cyan outline, same size/orientation/center and matching original modest weathered timber/slate appearance, do not add houses, fences or objects. Preserve all waterbanks, vegetation, field lines, yards and frame. Increase fine surface detail naturally to support close zoom, not cartoon sharpened outlines. Strict vertical realistic orthophoto, muted olive gray, same soft light; no walls/facades, toy miniature style, text, symbols or colored guides. The blue line is a hydrology GUIDE, not a request to create new water. Remove every colored guide. Frame145m wide x200m high, portrait145:200. The large workshop near lower right has a SHORT2.2m-wide,4m-long access spur from the south roof edge to the end of the approach road. Make this small connection continuous without moving the roof or changing the approach. Also repair the small upper warehouse spur to the main diagonal road."
+    },
+    {
+      "id": "west-access",
+      "file": "../assets/west-access.png",
+      "prompt": "Use case: precise-object-edit, fixed-coordinate game-map repair. INPUT1 is the exact aerial patch to edit. INPUT2 same frame with gold showing actual road SURFACES at correct width, cyan showing unchanged roof footprints, blue water centerlines. Correct ONLY the worn earth road/short doorway connection surfaces, particularly faint short spurs. All gold road footprints must become visible continuous worn dirt/gravel at that exact location and width, reaching each cyan building edge. Clear the tiny grass gaps that incorrectly block doorway connections. Do not widen roads for legibility. Keep every roof within its cyan outline, same size/orientation/center and matching original modest weathered timber/slate appearance, do not add houses, fences or objects. Preserve all waterbanks, vegetation, field lines, yards and frame. Increase fine surface detail naturally to support close zoom, not cartoon sharpened outlines. Strict vertical realistic orthophoto, muted olive gray, same soft light; no walls/facades, toy miniature style, text, symbols or colored guides. The blue line is a hydrology GUIDE, not a request to create new water. Remove every colored guide. Frame250m wide x190m high, landscape250:190. Preserve all existing small roofs and improve the 2.2m doorway spurs, including diagonal short branches, following the guide exactly."
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "map_static_status": "PASS",
+  "node_syntax": "viewer.js",
+  "viewer_manifest_layers_match": true,
+  "referenced_image_digests_match": 27,
+  "owned_document_file_links": {"checked": 118, "missing": 0},
+  "git_diff_check": "PASS",
+  "repository_docs_check": {
+    "status": "PASS",
+    "documents": 578,
+    "errors": 0
+  },
+  "browser_interaction": "NOT_RUN_FOR_V5"
+}

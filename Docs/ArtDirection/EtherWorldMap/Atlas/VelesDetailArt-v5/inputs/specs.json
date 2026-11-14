@@ -1,0 +1,50 @@
+[
+  {
+    "id": "west-fill",
+    "bounds": [
+      -2048,
+      200,
+      -1250,
+      1400
+    ],
+    "fade": 80,
+    "lock": 0,
+    "global_border_lock_m": 12,
+    "global_border_fade_m": 32
+  },
+  {
+    "id": "east-fill",
+    "bounds": [
+      1250,
+      200,
+      2048,
+      1400
+    ],
+    "fade": 80,
+    "lock": 0,
+    "global_border_lock_m": 12,
+    "global_border_fade_m": 32
+  },
+  {
+    "id": "workshop-access",
+    "bounds": [
+      -30,
+      50,
+      115,
+      250
+    ],
+    "fade": 15,
+    "lock": 0
+  },
+  {
+    "id": "west-access",
+    "bounds": [
+      -340,
+      60,
+      -90,
+      250
+    ],
+    "fade": 15,
+    "lock": 0
+  }
+]

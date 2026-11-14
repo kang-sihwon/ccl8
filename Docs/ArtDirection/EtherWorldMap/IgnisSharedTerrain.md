@@ -4,6 +4,18 @@
 
 ## 벨레스와 주변 연결 구간
 
+### 중앙 외곽과 출입구 확대 보정 v5
+
+**중앙 동·서쪽의 낮은 상세도 구간을 채우고 공방·창고 진입로와 서쪽 골목을 확대 보정했다.** [서쪽 외곽 비교](Atlas/VelesDetailArt-v5/previews/west-fill-comparison.png), [동쪽 외곽 비교](Atlas/VelesDetailArt-v5/previews/east-fill-comparison.png), [공방·창고 비교](Atlas/VelesDetailArt-v5/previews/workshop-access-comparison.png), [서쪽 골목 비교](Atlas/VelesDetailArt-v5/previews/west-access-comparison.png)는 왼쪽 v4, 오른쪽 v5다. [확대용 전체본](Atlas/VelesDetailArt-v5/previews/composite-1m.png)과 [경계 표시 축소본](Atlas/VelesDetailArt-v5/previews/assembled-grid.png)을 함께 둔다.
+
+상세 이미지 사각형의 합집합이 벨레스 작업 영역 **4,096×6,144m, 약 25.17km² 전체**를 덮는다. 이그니스 대륙 전체를 완성했다는 뜻은 아니다. 접합을 위해 보존한 바깥 띠와 이미지 혼합 구간이 포함되므로 모든 픽셀의 상세도가 같지는 않다. [규격](Atlas/VelesDetailArt-v5/manifest.json) 기준 새 외곽 이미지 두 장은 약 0.78m/px, 공방·창고와 서쪽 골목은 각각 약 0.136m/px와 0.174m/px다. 확대 구역의 세부는 새로 생성한 제작 후보이며 측량 정보의 복원 결과가 아니다. 1m/px 전체 출력보다 세밀한 부분은 개별 확대 이미지나 뷰어로 확인한다.
+
+공방의 기존 4m 길이·2.2m 폭 연결로와 창고의 대각선 진입로가 확대 화면에서 이어진다. [공방 배치선](Atlas/VelesDetailArt-v5/previews/workshop-access-geometry.png)과 [골목 배치선](Atlas/VelesDetailArt-v5/previews/west-access-geometry.png)으로 기존 외곽·도로와 대조한다. 일부 처마와 길 가장자리의 차이는 남아 있어 [육안 검토](Atlas/VelesDetailArt-v5/records/visual-review.json)는 `PARTIAL_PIXEL_REGISTRATION`이다. 그림에 맞춰 원본 건물·도로 좌표를 이동하지 않았다.
+
+[독립 검사](Atlas/VelesDetailArt-v5/records/verification.json) **45개를 통과했다.** v1 원본 파일 5개와 v4 참조 이미지 23개의 해시가 유지됐다. 수정한 네 구역 바깥은 샘플링 여백 2px를 제외하고 기존 픽셀과 같으며, 전체본의 외곽 6px와 축소본의 외곽 3px도 동일하다. [24개 타일](Atlas/VelesDetailArt-v5/tiles.json) 본체의 재조립과 인접 여백 38곳은 정확히 일치한다.
+
+[뷰어](Atlas/VelesDetailArt-v5/index.html)의 `상세 구역`에서 공방·창고, 서쪽 골목, 동·서쪽 외곽으로 이동하도록 연결했다. 정적 구문·이미지 참조 검사는 통과했으며 실제 브라우저 조작과 UE는 미검증이다. [생성 입력문](Atlas/VelesDetailArt-v5/records/generation.json)을 보관한다. 재출력은 `python Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v5/build.py`, 검사는 같은 폴더의 `verify.py`를 실행한다. Pillow와 보존된 v4 조립 스크립트·원본을 사용한다.
+
 ### 북쪽·남쪽 확장과 길 윤곽 보정 v4
 
 **북쪽 6개·남쪽 9개 상세 이미지와 마을·숲길 보정본을 기존 좌표에 조립했다.** [북쪽 비교](Atlas/VelesDetailArt-v4/previews/north-comparison.png), [남쪽 비교](Atlas/VelesDetailArt-v4/previews/south-comparison.png), [마을 길 비교](Atlas/VelesDetailArt-v4/previews/village-comparison.png), [숲길 비교](Atlas/VelesDetailArt-v4/previews/forest-roads-comparison.png)는 왼쪽 v3, 오른쪽 v4다. [확대용 전체 조립본](Atlas/VelesDetailArt-v4/previews/composite-1m.png)은 **4,096×6,144px, 1m/px**이며, [경계 표시 축소본](Atlas/VelesDetailArt-v4/previews/assembled-grid.png)은 2m/px다. 이전 시안은 보존한다.

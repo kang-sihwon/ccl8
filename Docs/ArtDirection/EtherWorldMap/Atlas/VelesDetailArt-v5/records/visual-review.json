@@ -1,0 +1,12 @@
+{
+  "status": "PARTIAL_PIXEL_REGISTRATION",
+  "reviewed": ["west-fill comparison", "east-fill comparison", "workshop-access comparison and geometry", "west-access geometry", "assembled overview"],
+  "findings": [
+    "Both central outer strips now have fine organic canopy throughout the previously coarse interior; the existing outermost border remains intentionally locked.",
+    "The workshop's short south access spur and the warehouse diagonal spur are now visibly continuous in the close view.",
+    "Western residential short spurs are legible against the source gold road surfaces; roof positions remain in the same general arrangement.",
+    "Some roof eaves and road edges still differ from cyan footprints and road guides, including the workshop roof's right edge. Source coordinates were not moved to fit generated art.",
+    "New fine surface detail is generated art, not recovered survey information. Feather zones retain local sharpness and vegetation contrast differences."
+  ],
+  "not_claimed": ["pixel-exact roof geometry", "all painted road widths measured", "uniform optical resolution", "full Ignis continent detailed", "browser interaction or UE validation"]
+}
