@@ -6,6 +6,7 @@
 
 | 순서 | 읽는 문서 | 산출물 |
 |---|---|---|
+| 정보 전달 선택 | [VB01-VB06 추천·대안·보류](2026-11-06-opening-and-continent/2026-11-14-veles-information-options.md) | 전달 중심과 정확한 재전달 규칙을 구분하고 BA·BH를 비교할 때 |
 | 탐색 선택과 정보 | [벨레스 정보 접근 점검](2026-11-06-opening-and-continent/2026-11-14-veles-information-access.md) | 야외 조우 생략·귀환로 변경과 조사·복구 누락에 따른 정보 연결·보완 후보를 볼 때 |
 | 장면 행동 선택 | [VS01-VS12 추천·대안·보류](2026-11-06-opening-and-continent/2026-11-14-veles-scene-options.md) | 확정 사건을 유지하며 새 행동 배치·장면 강조와 VA·VH를 비교할 때 |
 | 현재 장면 개요 | [벨레스 도입부터 출항까지](2026-11-06-opening-and-continent/2026-11-14-veles-opening-scenes.md) | 확정 인물·갈등·정보 연결을 적용한 장면과 기존 원고의 차이를 볼 때 |
