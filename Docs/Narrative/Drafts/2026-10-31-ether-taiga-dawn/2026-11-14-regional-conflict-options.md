@@ -1,5 +1,7 @@
 # 지역 갈등과 인물 선택의 채택 추천·대안·보류
 
+FC01-FC13의 추천 핵심과 공통 경계는 사용자가 2026-11-14 채택해 [결정 52](../../../decisions/0052-regional-conflict-adoption.md)·[Scenario](../../Scenario.md#지역-갈등과-선택의-대가)에 반영했다. 해당 핵심은 `CLOSED`이며 FA01-FA06 대안·FH01-FH08 보류는 그대로 남긴다. 아래 추천·미채택·선택 예정 표현은 작성 당시 비교 기록이다. 기존 표·본문을 보존하며 현재 확정 범위는 결정 52가 소유한다.
+
 **FC01-FC13의 갈등·선택·남는 대가를 핵심으로 채택하고, FA01-FA06은 비교 대안, FH01-FH08은 세부 보류로 남기는 안을 추천한다.** 지역마다 지키려는 삶과 부담이 달라지고, 네 사람의 성장은 그 요구를 받아들이거나 자기 요구를 줄이는 행동으로 드러난다. 협력 뒤에도 비용·불안·책임은 남는다.
 
 상태는 `DISCUSSION`이며 [독립 검토](../../Reviews/2026-11-14-regional-conflict-options-review.md)는 PASS다. 이번 요청은 선택표 작성이며 아직 FC의 새 상세를 채택한 것은 아니다. [갈등 원문](2026-11-14-regional-interests-and-choices.md)의 FC 식별자를 그대로 쓰되 아래 표의 핵심과 공통 경계만 채택 대상으로 제안한다. 원문의 모든 속마음·장면·절차를 한꺼번에 확정하지 않는다. [Scenario](../../Scenario.md)와 [결정 48](../../../decisions/0048-five-continent-core-plot.md)·[결정 49](../../../decisions/0049-combat-connection-adoption.md)·[결정 51](../../../decisions/0051-core-character-motivations-adoption.md)의 여정·동행·CP01-CP12는 유지한다.

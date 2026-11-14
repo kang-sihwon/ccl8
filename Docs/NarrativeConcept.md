@@ -4,6 +4,8 @@
 
 [결정 49](decisions/0049-combat-connection-adoption.md)의 CL01-CL12로 전투 연결·인물 선택·결과 장면의 중심도 확정했다. [결정 51](decisions/0051-core-character-motivations-adoption.md)의 CP01-CP12는 네 인물의 개인 동기·관계 변화 중심을 확정한다. WH04·CH05의 나머지 개인 서사 세부와 PA01-PA06·PH01-PH08은 보존한다. 이 범위 밖의 상세 행동·패턴·수치·대사·연출과 기존 보류는 남긴다.
 
+[결정 52](decisions/0052-regional-conflict-adoption.md)의 FC01-FC13은 지역 갈등·인물 선택·남는 대가와 공통 경계를 확정한다. FA01-FA06·FH01-FH08과 이전 원문은 보존하고, 기존 WH·CH·PH의 세부는 이번에 채택한 중심 외에는 유지한다.
+
 이 문서는 서사 문서의 소유를 정한다. 확정 설정은 World와 Scenario에만 둔다. Workflow, CurrentWork, Glossary는 작업 절차와 기록 틀이며 세부 게임 설정을 확정하지 않는다. 서사 작업은 `ccl8-narrative` 스킬로 시작한다.
 
 | 문서 | 소유 내용 |
