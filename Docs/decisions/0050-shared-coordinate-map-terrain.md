@@ -3,8 +3,8 @@ number: 50
 date: 2026-11-13
 title: "이그니스 공통 좌표 기반 상세 배경 제작"
 topic: "지도 아트"
-status: "유효"
-summary: "기존 좌표를 유지하고 공통 지형 데이터와 반복 가능한 재질·식생으로 상세 배경을 제작한다. 먼저 정착지 연결 구간의 품질을 검증하며 대륙 전체 상세화 완료와 구분한다"
+status: "유효(부분)"
+summary: "기존 좌표 보존과 공통 지형 데이터 활용은 유지한다. 상세 배경의 추가 제작·대륙 확장은 결정 55로 중단하고 기존 결과를 제작 도안으로 보존한다"
 owners: "[공통 지형 상세 배경](../ArtDirection/EtherWorldMap/IgnisSharedTerrain.md)"
 refines: [47]
 ---
