@@ -12,6 +12,8 @@
 
 [결정 54](decisions/0054-veles-scene-actions-adoption.md)의 VS01-VS12는 벨레스 첫 장의 행동 배치·장면 강조와 공통 경계를 확정한다. VA01-VA02·VH01-VH06과 이전 원문은 보존하며 정확한 표현·소품·수치·운영 상세·전체 원고·제작까지 확정하지 않는다.
 
+[결정 57](decisions/0057-veles-information-delivery-adoption.md)의 VB01-VB06은 벨레스 정보 전달 중심과 공통 경계를 확정한다. BA01-BA02·BH01-BH06과 기존 대안·보류·원문을 보존하며 정확한 재전달 수단·게임 규칙·전체 경로 지원·제작 검증을 함께 확정하지 않는다.
+
 | 문서 | 소유 내용 |
 |---|---|
 | [Workflow](Narrative/Workflow.md) | 조사·비교·초안·검토·승인 절차, 단계와 판정, 기록 위치 |
