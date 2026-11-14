@@ -1,0 +1,378 @@
+{
+  "status": "PASS",
+  "checks": [
+    {
+      "name": "Previously recorded geometry hashes remain authoritative",
+      "passed": true
+    },
+    {
+      "name": "Unchanged geometry manifest.json",
+      "passed": true
+    },
+    {
+      "name": "Unchanged geometry data/placements.json",
+      "passed": true
+    },
+    {
+      "name": "Unchanged geometry data/connections.json",
+      "passed": true
+    },
+    {
+      "name": "Unchanged geometry height/master16.png",
+      "passed": true
+    },
+    {
+      "name": "Unchanged geometry scene.js",
+      "passed": true
+    },
+    {
+      "name": "Asset dimensions and digest base",
+      "passed": true
+    },
+    {
+      "name": "Asset dimensions and digest region",
+      "passed": true
+    },
+    {
+      "name": "Asset dimensions and digest N0-0",
+      "passed": true
+    },
+    {
+      "name": "Asset dimensions and digest N0-1",
+      "passed": true
+    },
+    {
+      "name": "Asset dimensions and digest N0-2",
+      "passed": true
+    },
+    {
+      "name": "Asset dimensions and digest N1-0",
+      "passed": true
+    },
+    {
+      "name": "Asset dimensions and digest N1-1",
+      "passed": true
+    },
+    {
+      "name": "Asset dimensions and digest N1-2",
+      "passed": true
+    },
+    {
+      "name": "Asset dimensions and digest S0-0",
+      "passed": true
+    },
+    {
+      "name": "Asset dimensions and digest S0-1",
+      "passed": true
+    },
+    {
+      "name": "Asset dimensions and digest S0-2",
+      "passed": true
+    },
+    {
+      "name": "Asset dimensions and digest S1-0",
+      "passed": true
+    },
+    {
+      "name": "Asset dimensions and digest S1-1",
+      "passed": true
+    },
+    {
+      "name": "Asset dimensions and digest S1-2",
+      "passed": true
+    },
+    {
+      "name": "Asset dimensions and digest S2-0",
+      "passed": true
+    },
+    {
+      "name": "Asset dimensions and digest S2-1",
+      "passed": true
+    },
+    {
+      "name": "Asset dimensions and digest S2-2",
+      "passed": true
+    },
+    {
+      "name": "Asset dimensions and digest west",
+      "passed": true
+    },
+    {
+      "name": "Asset dimensions and digest east",
+      "passed": true
+    },
+    {
+      "name": "Asset dimensions and digest forest",
+      "passed": true
+    },
+    {
+      "name": "Asset dimensions and digest core",
+      "passed": true
+    },
+    {
+      "name": "Asset dimensions and digest forest-roads",
+      "passed": true
+    },
+    {
+      "name": "Asset dimensions and digest roads",
+      "passed": true
+    },
+    {
+      "name": "World origin and bounds preserved",
+      "passed": true
+    },
+    {
+      "name": "All 16 planned input frames are preserved",
+      "passed": true
+    },
+    {
+      "name": "Forest road repair frame preserved",
+      "passed": true
+    },
+    {
+      "name": "1m export and 2m preview dimensions",
+      "passed": true
+    },
+    {
+      "name": "Four outer 3px preview strips match V3 exactly",
+      "passed": true
+    },
+    {
+      "name": "Four outer 6px full-resolution strips match resampled locked base",
+      "passed": true
+    },
+    {
+      "name": "Exactly 24 expected tile IDs at 1m per pixel",
+      "passed": true
+    },
+    {
+      "name": "All saved tile dimensions, world bounds and pixels match full export",
+      "passed": true
+    },
+    {
+      "name": "24 saved tile cores reconstruct the full export exactly",
+      "passed": true
+    },
+    {
+      "name": "All 38 shared margins are pixel-identical",
+      "passed": true
+    },
+    {
+      "name": "Road audit covers all 103 authoritative route IDs",
+      "passed": true
+    },
+    {
+      "name": "All six road audit pages exist",
+      "passed": true
+    },
+    {
+      "name": "Rejected forest-with-road asset is absent from selected layers",
+      "passed": true
+    },
+    {
+      "name": "15 new terrain patches have native spacing no coarser than 1.14m per pixel",
+      "passed": true
+    }
+  ],
+  "overlaps": [
+    {
+      "a": "C0-R0",
+      "b": "C1-R0",
+      "identical": true
+    },
+    {
+      "a": "C0-R0",
+      "b": "C0-R1",
+      "identical": true
+    },
+    {
+      "a": "C1-R0",
+      "b": "C2-R0",
+      "identical": true
+    },
+    {
+      "a": "C1-R0",
+      "b": "C1-R1",
+      "identical": true
+    },
+    {
+      "a": "C2-R0",
+      "b": "C3-R0",
+      "identical": true
+    },
+    {
+      "a": "C2-R0",
+      "b": "C2-R1",
+      "identical": true
+    },
+    {
+      "a": "C3-R0",
+      "b": "C3-R1",
+      "identical": true
+    },
+    {
+      "a": "C0-R1",
+      "b": "C1-R1",
+      "identical": true
+    },
+    {
+      "a": "C0-R1",
+      "b": "C0-R2",
+      "identical": true
+    },
+    {
+      "a": "C1-R1",
+      "b": "C2-R1",
+      "identical": true
+    },
+    {
+      "a": "C1-R1",
+      "b": "C1-R2",
+      "identical": true
+    },
+    {
+      "a": "C2-R1",
+      "b": "C3-R1",
+      "identical": true
+    },
+    {
+      "a": "C2-R1",
+      "b": "C2-R2",
+      "identical": true
+    },
+    {
+      "a": "C3-R1",
+      "b": "C3-R2",
+      "identical": true
+    },
+    {
+      "a": "C0-R2",
+      "b": "C1-R2",
+      "identical": true
+    },
+    {
+      "a": "C0-R2",
+      "b": "C0-R3",
+      "identical": true
+    },
+    {
+      "a": "C1-R2",
+      "b": "C2-R2",
+      "identical": true
+    },
+    {
+      "a": "C1-R2",
+      "b": "C1-R3",
+      "identical": true
+    },
+    {
+      "a": "C2-R2",
+      "b": "C3-R2",
+      "identical": true
+    },
+    {
+      "a": "C2-R2",
+      "b": "C2-R3",
+      "identical": true
+    },
+    {
+      "a": "C3-R2",
+      "b": "C3-R3",
+      "identical": true
+    },
+    {
+      "a": "C0-R3",
+      "b": "C1-R3",
+      "identical": true
+    },
+    {
+      "a": "C0-R3",
+      "b": "C0-R4",
+      "identical": true
+    },
+    {
+      "a": "C1-R3",
+      "b": "C2-R3",
+      "identical": true
+    },
+    {
+      "a": "C1-R3",
+      "b": "C1-R4",
+      "identical": true
+    },
+    {
+      "a": "C2-R3",
+      "b": "C3-R3",
+      "identical": true
+    },
+    {
+      "a": "C2-R3",
+      "b": "C2-R4",
+      "identical": true
+    },
+    {
+      "a": "C3-R3",
+      "b": "C3-R4",
+      "identical": true
+    },
+    {
+      "a": "C0-R4",
+      "b": "C1-R4",
+      "identical": true
+    },
+    {
+      "a": "C0-R4",
+      "b": "C0-R5",
+      "identical": true
+    },
+    {
+      "a": "C1-R4",
+      "b": "C2-R4",
+      "identical": true
+    },
+    {
+      "a": "C1-R4",
+      "b": "C1-R5",
+      "identical": true
+    },
+    {
+      "a": "C2-R4",
+      "b": "C3-R4",
+      "identical": true
+    },
+    {
+      "a": "C2-R4",
+      "b": "C2-R5",
+      "identical": true
+    },
+    {
+      "a": "C3-R4",
+      "b": "C3-R5",
+      "identical": true
+    },
+    {
+      "a": "C0-R5",
+      "b": "C1-R5",
+      "identical": true
+    },
+    {
+      "a": "C1-R5",
+      "b": "C2-R5",
+      "identical": true
+    },
+    {
+      "a": "C2-R5",
+      "b": "C3-R5",
+      "identical": true
+    }
+  ],
+  "detail_footprint_km2": 24.179424,
+  "coverage_caveat": "Includes feather zones and outer locked strips; does not imply equal optical detail at every pixel.",
+  "new_terrain_native_mpp": [
+    1.0083256244218317,
+    1.1287988422575976
+  ],
+  "pixel_registration_status": "PARTIAL: generated terrain is art; unchanged coordinates and shared tile pixels do not prove every painted path edge.",
+  "browser_interaction": "NOT_RUN_FOR_V4",
+  "ue_runtime": "NOT_TESTED"
+}

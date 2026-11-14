@@ -1,0 +1,17 @@
+{
+  "status": "PARTIAL_PIXEL_REGISTRATION",
+  "review_method": "Manual visual comparison of generated region sheet, assembled overview, north/south and village/forest comparisons, and six route audit sheets against gold source centerlines.",
+  "reviewed_terrain_regions": 15,
+  "reviewed_route_ids": 103,
+  "findings": [
+    "North/south canopy and rocky river margins now have native detail comparable to V3 forest-side patches. Source framing and water/route context are retained.",
+    "Village doorway spurs are more legible and broadly follow the authoritative guide; door-house-003, 007, 012, 016, 024, 031, 041, 055, 066, 072 and 081 show visible connections after correction.",
+    "The forest path network was separately repaired after the route audit identified remaining outline differences.",
+    "The workshop spur and some other very short narrow connections remain visually faint; natural edges, shadows and some roof outlines are not pixel-exact to vectors.",
+    "Two generated candidates introduced unsupported features: S0-0 masonry-like ruins and S1-2 a road/field. Both were excluded and corrected; selected files are specified by manifest.json.",
+    "Patch transitions and the locked outer perimeter retain local canopy contrast and native-resolution differences. Central east/west outer strips remain coarse.",
+    "No manual quantitative survey of all painted road widths or complete independent roof count was performed. Exact tile margins prove common-composite continuity, not accuracy of every painted feature."
+  ],
+  "browser_interaction": "NOT_RUN_FOR_V4",
+  "ue_runtime": "NOT_TESTED"
+}

@@ -4,6 +4,20 @@
 
 ## 벨레스와 주변 연결 구간
 
+### 북쪽·남쪽 확장과 길 윤곽 보정 v4
+
+**북쪽 6개·남쪽 9개 상세 이미지와 마을·숲길 보정본을 기존 좌표에 조립했다.** [북쪽 비교](Atlas/VelesDetailArt-v4/previews/north-comparison.png), [남쪽 비교](Atlas/VelesDetailArt-v4/previews/south-comparison.png), [마을 길 비교](Atlas/VelesDetailArt-v4/previews/village-comparison.png), [숲길 비교](Atlas/VelesDetailArt-v4/previews/forest-roads-comparison.png)는 왼쪽 v3, 오른쪽 v4다. [확대용 전체 조립본](Atlas/VelesDetailArt-v4/previews/composite-1m.png)은 **4,096×6,144px, 1m/px**이며, [경계 표시 축소본](Atlas/VelesDetailArt-v4/previews/assembled-grid.png)은 2m/px다. 이전 시안은 보존한다.
+
+새 지형 15장의 실제 이미지 간격은 [규격](Atlas/VelesDetailArt-v4/manifest.json) 기준 약 **1.01m/px부터 1.13m/px**로, v3 숲 양옆의 1.03m/px에 가까운 상세도다. 1m/px 전체 출력이 모든 구역에 새로운 1m급 정보를 보장하지는 않는다. 상세 이미지 사각형의 합집합은 4.64km²에서 약 **24.18km²**로 늘었다. 혼합 영역과 보존한 외곽 띠를 포함하며, 중앙 동쪽·서쪽의 바깥 띠에는 광역 배경이 남아 있다.
+
+도로 중심선·폭과 건물 외곽을 가이드로 사용했다. [도로 비교 1](Atlas/VelesDetailArt-v4/previews/roads-audit-1.png), [2](Atlas/VelesDetailArt-v4/previews/roads-audit-2.png), [3](Atlas/VelesDetailArt-v4/previews/roads-audit-3.png), [4](Atlas/VelesDetailArt-v4/previews/roads-audit-4.png), [5](Atlas/VelesDetailArt-v4/previews/roads-audit-5.png), [6](Atlas/VelesDetailArt-v4/previews/roads-audit-6.png)에 기존 103개 도로 항목을 담았다. 출입구 연결로가 더 분명해졌고 숲길도 별도로 보정했다. 공방 앞의 짧은 연결로처럼 희미한 곳과 일부 길 가장자리·지붕 윤곽 차이는 남아 있다. [육안 검토](Atlas/VelesDetailArt-v4/records/visual-review.json)는 그림의 정합을 `PARTIAL`로 판정하며 모든 길 폭의 수치 일치를 주장하지 않는다.
+
+[독립 검사](Atlas/VelesDetailArt-v4/records/verification.json) **43개를 통과했다.** 원본 좌표·고도 파일 5개의 해시를 유지했고, 전체 범위와 기준점도 같다. 2m/px 축소본의 바깥 3px 띠는 v3와 일치한다. [24개 아트 타일](Atlas/VelesDetailArt-v4/tiles.json)은 각 1,024m 구역의 1,024×1,024px 본체와 최대 사방 8px 여백을 가진다. 저장된 타일의 본체를 재조립하면 확대용 전체본과 정확히 같고, 인접 여백 38곳도 동일하다. 이는 공통 합성 화면의 분할 검사이며 이웃 마을의 신규 상세 지형이나 모든 그림 요소의 측량 검증은 아니다.
+
+[생성 입력문](Atlas/VelesDetailArt-v4/records/generation.json)과 [숲길 추가 보정](Atlas/VelesDetailArt-v4/records/forest-road-generation.json)을 보관한다. 자연 암석을 유적처럼 그린 첫 남서쪽 시안은 제외했다. 기존에 없던 길·밭이 생긴 동남쪽 시안도 [수정 기록](Atlas/VelesDetailArt-v4/records/correction.json)에 따라 교체했다. 실제 선택 파일은 `manifest.json`을 따른다.
+
+[뷰어](Atlas/VelesDetailArt-v4/index.html)에 북쪽·남쪽 이동 버튼과 기존 배치선·경계 표시를 연결했다. `좌표 원본`은 v1을 보여 준다. JavaScript 구문과 참조 이미지 검사는 수행했지만 v4의 실제 브라우저 조작과 UE 실행은 미검증이다. 재출력은 `python Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v4/assemble.py`, 검사는 같은 폴더의 `verify.py`를 실행한다. Pillow가 필요하며 저장된 생성 이미지를 사용한다. 기존 도로·하천·정착지 좌표를 변경하지 않는다.
+
 ### 건물 외곽 보정과 숲 양옆 확장 v3
 
 **벨레스의 건물 외곽을 기준으로 지붕 위치를 보정하고, 기존 상세 숲의 서쪽·동쪽을 같은 항공사진 화풍으로 확장했다.** [마을 비교](Atlas/VelesDetailArt-v3/previews/village-comparison.png)와 [숲 비교](Atlas/VelesDetailArt-v3/previews/forest-comparison.png)는 왼쪽 v2, 오른쪽 v3다. [마을 확대](Atlas/VelesDetailArt-v3/previews/village.png), [경계 표시 조립본](Atlas/VelesDetailArt-v3/previews/assembled-grid.png), [뷰어](Atlas/VelesDetailArt-v3/index.html)를 함께 둔다. 기존 시안과 수치 원본은 보존한다.

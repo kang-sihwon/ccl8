@@ -1,0 +1,10 @@
+{
+  "status": "PASS",
+  "node_syntax": "viewer.js",
+  "viewer_manifest_layers_match": true,
+  "referenced_image_digests_match": 23,
+  "docs_check": {"documents": 575, "errors": 0},
+  "git_diff_check": "PASS",
+  "browser_interaction": "NOT_RUN_FOR_V4",
+  "scope": "Static scripts, file references and offline rendered artifacts only."
+}

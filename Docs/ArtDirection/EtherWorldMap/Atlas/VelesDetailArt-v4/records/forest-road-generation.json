@@ -1,0 +1,5 @@
+{
+  "tool": "built-in image_gen",
+  "file": "../assets/forest-roads.png",
+  "prompt": "Use case: precise-object-edit. INPUT1 is the natural nadir forest orthophoto to edit; INPUT2 is the SAME registered frame with gold road surface guides and blue stream/river centerlines. Repair ONLY the forest path alignments and widths: every path must follow the gold footprint exactly, including all bends, junctions, diagonal connections and border crossing positions. Gold strokes show actual 3-6m width, never widen for visibility. Remove any old displaced parallel trace by natural grass/understory. Retain woods, crown positions, rocky cave clearing, actual waterbank and stream, framing, lighting and all other geography. Represent paths as worn light earth with sparse gravel, irregular small natural margins, no perfectly painted strokes. Narrow paths at this scale. Do not add or remove routes, houses, ruins, fields, bridges or riverbanks. Remove guide gold and blue entirely; no text/labels/UI. True vertical orthophoto, no miniature perspective, match original olive gray realism. Exactly square1200m x1200m patch, fine native detail around1500px square."
+}

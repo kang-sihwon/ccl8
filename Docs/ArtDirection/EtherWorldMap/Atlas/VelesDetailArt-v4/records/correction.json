@@ -1,0 +1,7 @@
+{
+  "id": "S1-2",
+  "selected": "../assets/S1-2-fixed.png",
+  "rejected": "../assets/S1-2.png",
+  "reason": "Style-reference road and field leaked into an otherwise forest-only sector; replaced with forest-only edit.",
+  "prompt": "Edit the supplied aerial forest patch to increase natural detail. GEOGRAPHY IS FIXED: This entire rectangular patch contains ONLY continuous natural woodland. There are NO roads, NO tracks, NO fields, NO buildings, NO rivers, NO fences anywhere in this frame. Do not add any of those things, including at any image edge. Preserve the exact macro forest shading/topography and framing. Replace large blurry repetitive tree shapes with varied small irregular overlapping olive-green crowns, mixed broadleaf and conifer, subtle dark gaps and understory. True vertical orthophoto, soft natural light, no tree trunks or sides. Photorealistic fine texture instead of miniature/stamp vegetation. Patch covers1468m wide by1110m high, so individual crowns about8-18m wide should occupy less than1.3percent of image width. Same olive gray tone as input, native sharp detail, aspect1468:1110. No text, guide lines, decorative border or UI."
+}
