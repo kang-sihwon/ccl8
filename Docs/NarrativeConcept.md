@@ -8,6 +8,8 @@
 
 이 문서는 서사 문서의 소유를 정한다. 확정 설정은 World와 Scenario에만 둔다. Workflow, CurrentWork, Glossary는 작업 절차와 기록 틀이며 세부 게임 설정을 확정하지 않는다. 서사 작업은 `ccl8-narrative` 스킬로 시작한다.
 
+[결정 53](decisions/0053-scene-continuity-adoption.md)의 SC01-SC13은 장면 연결·정보 공개 시점·반복 완화 강조와 공통 경계를 확정한다. SA01-SA02·SH01-SH07과 이전 원문은 보존한다. 정확한 표현·전달 수단·분기·후일담·원문 전체·제작과 기존 나머지 보류는 유지한다.
+
 | 문서 | 소유 내용 |
 |---|---|
 | [Workflow](Narrative/Workflow.md) | 조사·비교·초안·검토·승인 절차, 단계와 판정, 기록 위치 |
