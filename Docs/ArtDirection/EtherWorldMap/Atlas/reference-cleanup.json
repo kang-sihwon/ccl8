@@ -1,0 +1,3511 @@
+{
+  "status": "PASS",
+  "date": "2026-11-14",
+  "authorization": "User requested whole map workspace cleanup, preserving drawings, original coordinates and required references.",
+  "decision": 56,
+  "summary": {
+    "generation_or_experiment_script": {
+      "files": 44,
+      "bytes": 236104
+    },
+    "superseded_or_experimental_viewer": {
+      "files": 12,
+      "bytes": 83595054
+    },
+    "unused_art_asset": {
+      "files": 5,
+      "bytes": 16451934
+    },
+    "unreferenced_preview": {
+      "files": 271,
+      "bytes": 2339964998
+    },
+    "generation_intermediate": {
+      "files": 359,
+      "bytes": 1979904867
+    },
+    "local_generation_workspace": {
+      "files": 22600,
+      "bytes": 6219373536
+    }
+  },
+  "logical_bytes_removed": 10639526493.0,
+  "observed_drive_free_bytes_delta": 10672582656,
+  "measurement_note": "Logical removed size and drive free space delta differ; concurrent activity and allocation can affect drive delta. Git and LFS object stores were not pruned.",
+  "retained_files_hash_checked": 1010,
+  "retained_files_aggregate_sha256": "6d811f9340714310cff88dc569cbecda7fe7a99fb99f60e254677c91bd6fa265",
+  "retained_images_decoded_headers_verified": 636,
+  "runtime_reference_files_present": 563,
+  "viewer_inline_and_external_scripts_parsed": 13,
+  "settlement_detail_tiles_present": 150,
+  "veles_v5_art_layers_present": 27,
+  "browser_interaction": "NOT_RUN_AFTER_CLEANUP",
+  "ue_validation": "NOT_RUN",
+  "historical_records": "Generation/provenance and old verification records describe pre-cleanup files; input/intermediate paths may no longer exist. Runtime references above were checked separately.",
+  "deleted_tracked_files": [
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisM01Details-v1/assemble.ps1",
+      "bytes": 450,
+      "sha256": "d3d422529b18313327f8110de328fd43a2ac3459bedb183659ebbe815fbc358a"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisM01Details-v1/AssembleDetail.cs",
+      "bytes": 6591,
+      "sha256": "bfadf7a1bd82317500d23c91cbe8a58f5463d415b159c56ac3e90720d5fc5680"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisM01Details-v1/check-viewer.cjs",
+      "bytes": 4384,
+      "sha256": "c2558ad48396bcadbbef88b8fc0ee68895304491daabb2e410d3f560c38754a3"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisM01Details-v1/prepare.ps1",
+      "bytes": 4984,
+      "sha256": "44e7d7fee9d64b1840b00d61ab711149386b140b6cecb85ed4067472d7a55325"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisM01Details-v1/rebuild.ps1",
+      "bytes": 585,
+      "sha256": "f048c3698b0795e3d77e36b3aabdf174db1d817ceea541e8f90904386387f1ab"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisM01Details-v1/repair.ps1",
+      "bytes": 407,
+      "sha256": "386425d497640435cf63229669f4bbc6269ac959240d4e6783098963f91ad8a1"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisM01Details-v1/verify.py",
+      "bytes": 2407,
+      "sha256": "9f0f2b9bfd789d1e3e28ec627efacfbb4182b948f491416be3996830fdbc8756"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisM01Details-v1/viewer-template.html",
+      "bytes": 5845,
+      "sha256": "e74234bf482916c5771e8001ef007d574678294bb8955d42bdf80eb3321f9da4"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/Assemble.cs",
+      "bytes": 9199,
+      "sha256": "783ceb1f00d0fbc3acfb4e573cac69663ede4d81a103be9924c1eab87aba4e3d"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/assemble.ps1",
+      "bytes": 1215,
+      "sha256": "83490090b94386c26d07572cb06ad02d89604e72747a5df9fa7f63814e9b191e"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/audit-full-coverage.cjs",
+      "bytes": 5028,
+      "sha256": "035c63f036c887caf4b47ff5925bf419892461dc14d2cff2f7e01efffa68b469"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/build-viewer.cjs",
+      "bytes": 1258,
+      "sha256": "01f0369aa61ca44c1dd5fe017d662961fc32cceae0fb30baa1b89b8c902746f0"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/check-viewer.cjs",
+      "bytes": 5609,
+      "sha256": "b1d4309b7e7be6e9eca5702454bfb84340b4e963a64093500f19412277040674"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/gallery.ps1",
+      "bytes": 758,
+      "sha256": "e313b1a87db2b5620a17ccb00c6c7d484aacd6b39977dfd487458160ca940c59"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/GridRaster.cs",
+      "bytes": 3127,
+      "sha256": "a9ef4b6b083a71b3d1a000fe4ffd3fa99a752183dd23babbf9da31354bd9d671"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/prepare.cjs",
+      "bytes": 5767,
+      "sha256": "99722d604fecb0195163e623b53eb80246a9f037f25595973c78ae604318a801"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/prepare.ps1",
+      "bytes": 2097,
+      "sha256": "95bf0c867491e542a2d24b449f1a77f30d86f662fc011bc817fe4adea50831f8"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/review.ps1",
+      "bytes": 926,
+      "sha256": "f11e23f4ca729b89f677961ae820bb6ff3ab37d4a597e9143e7308b4415d93a2"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/verify.py",
+      "bytes": 3760,
+      "sha256": "7a797f3e26128b4d679be9ffac953418d39e2645d55f4c5191dd24defdf8ba8f"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/viewer-template.html",
+      "bytes": 11013,
+      "sha256": "9f43eb7563af3c1575dbcc42c31c9678ba6ee4d2164c0ea36a3899c6360c876c"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisTerrainMaster-v1/build.cjs",
+      "bytes": 20437,
+      "sha256": "3e3230ca4b525d727da9b64845eef134efe217d2f8b9e6cc4cb4893824230e43"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisTerrainMaster-v1/check-viewer.cjs",
+      "bytes": 4178,
+      "sha256": "437dff152f3bd24f2645661a9b7f58ea5576d79c793b3e02c8677935fbf2f8dc"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisTerrainMaster-v1/verify-rebuild.cjs",
+      "bytes": 1225,
+      "sha256": "a5c6649387d77bed168acd362e0b749e34dd77d3104a041870e40058bad93218"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisTerrainMaster-v1/verify.py",
+      "bytes": 11644,
+      "sha256": "dd1cb78d14d26de883fde6c73c803960b38daac193d02ecaaf5bee373f52758e"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisTerrainPrototype-v1/build.cjs",
+      "bytes": 4722,
+      "sha256": "f1465f56e97aa6e533b34e3c52e942092b7781a4a31d82418871005e9bf726b0"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisTerrainPrototype-v1/check.cjs",
+      "bytes": 4579,
+      "sha256": "a224c94c37b67ba4815cf1b6c21ec42a7b54187011053cc0a70330da95c36467"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisTerrainPrototype-v1/index.html",
+      "bytes": 13301558,
+      "sha256": "5d37e4bec14a3c135d8a8cfaf07a1327cafd165aaf9485875efa484acebafc3e"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisTerrainPrototype-v1/terrain.js",
+      "bytes": 9067,
+      "sha256": "c2029c74015806e681b5aa468b854b4c99521ff80159f207b7a6d5dfca4ee309"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisTerrainPrototype-v1/verify.py",
+      "bytes": 3605,
+      "sha256": "5e25248d647abf76c19b3680ab1f2850e8c99e42ae16eedad8eeb7d8bcd592b5"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisTerrainPrototype-v1/viewer-extra.js",
+      "bytes": 4133,
+      "sha256": "16424587b989a30f0958609592c8df6fadce848f44be75d58aefda22b8a6f058"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v2/art-assets.js",
+      "bytes": 31064656,
+      "sha256": "9fb7f697d5e3cabff51c4b8ae7284a50a156904386e9ba354ff95aa6b7b8f0cc"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v2/capture.cjs",
+      "bytes": 4786,
+      "sha256": "a92ed1860996dff2263e89397d57b6011f403e79e6848ac771f243e3f8350749"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v2/index.html",
+      "bytes": 1561,
+      "sha256": "9ebd1927dafb7f97941e38f1edfd65a3e9dfb3a36cb89cef4656a01ff83b73cb"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v2/prepare.cjs",
+      "bytes": 1919,
+      "sha256": "239879470034747c288ceeecd2323d75a8e4150d86b695990105ea769d7c2932"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v2/verify.py",
+      "bytes": 3998,
+      "sha256": "5fc6fa7471b1fee42b1befc83e156cd09e215b402ab0882ed652056e7084d795"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v2/viewer.js",
+      "bytes": 5542,
+      "sha256": "590f3f4bf9339b774d63d478e13354fbee8043224a0b38410a39e3a550662123"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v3/art-assets.js",
+      "bytes": 39187112,
+      "sha256": "c951278ea69e08e3cf88dd4f7d0259873f889da6c09427ee8cbc06a01cdcbc1e"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v3/assemble.py",
+      "bytes": 4062,
+      "sha256": "93c70d3d49b035fb58d195fa067a268067006ada9c3f079b1cafd26ea83a4795"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v3/index.html",
+      "bytes": 1564,
+      "sha256": "a7c3b705db59b3ec3c41fd122d84821277a851ffdb1ca697ea4a682767158397"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v3/inputs.cjs",
+      "bytes": 2250,
+      "sha256": "3b7bc3c2f0de753f484ca37d8e21b729b7800c76440916dbe2cbd8e21a87e98c"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v3/prepare.cjs",
+      "bytes": 1805,
+      "sha256": "af777fc980a9c453c3bd90a8b2be820cdbab2597255f8123b0e8ca8dcae58ce6"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v3/verify.py",
+      "bytes": 5119,
+      "sha256": "153b1f7d9e5133814d8583eec8fc5b9101d067b52ee17019bc9bea03bc5f0d6f"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v3/viewer.js",
+      "bytes": 5534,
+      "sha256": "14cb01d70993cde113d077b5ee5f4ffc7c11b38d7a812f389ae644d370e27138"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v4/art-assets.js",
+      "bytes": 6135,
+      "sha256": "da251bcd25b437046664b88b2fb036d6fa0a9329fa6ed2c4cd1c75f35d43c4b4"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v4/assemble.py",
+      "bytes": 6290,
+      "sha256": "ebc090a1288a18cc2ecce2c90c8b96761189be545dcc001f7f018ae8468b015e"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v4/index.html",
+      "bytes": 1648,
+      "sha256": "4499697a746fe9df72fe5081c20dc594e8af03790fc43879c8f0c128a7820c74"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v4/prepare_inputs.py",
+      "bytes": 3633,
+      "sha256": "674c5febf37c04efbd37c3ab8b16dc3b62b3ed8793cbdd6d1c585fb431e0c53c"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v4/verify.py",
+      "bytes": 6125,
+      "sha256": "69882d94c263c1624dd89dabb229caeeb3eeb911bd5c206a95e2402654caa51f"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v4/viewer.js",
+      "bytes": 6544,
+      "sha256": "b6865f88c631072008734dc8ef64f2d431bba3a460f6e230d52251ecb8104b03"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v5/build.py",
+      "bytes": 4636,
+      "sha256": "3adf8e509434578a43b09b1249cccffac7f8c9843362039ce7c9c4d8f8227894"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v5/verify.py",
+      "bytes": 5586,
+      "sha256": "5c36765fb8aafc5fe489ab1013626189db2aff2e2bd426979a00c79ab387218f"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailTerrain-v1/build.cjs",
+      "bytes": 18164,
+      "sha256": "ffa7dc3da1a11dca91f4dc486404112d768bf56251da2c37ed5e65012f47e3b7"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailTerrain-v1/review.cjs",
+      "bytes": 5332,
+      "sha256": "90dda3f9d06d3575e0575a3880806cdc1361ad904eff56a34e3e170f05585491"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailTerrain-v1/verify.py",
+      "bytes": 10417,
+      "sha256": "02153bb7ee9c2cf860270e3c97a017ad572935045bdc5ea7bc799f0239d7bf93"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailTerrain-v1/assets/vegetation-roofs.png",
+      "bytes": 2233835,
+      "sha256": "98bd7bd15362e051d91256873c267dfb7d87232863ab3b94762380de457ed6f5"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailTerrain-v1/previews/all.png",
+      "bytes": 2852049,
+      "sha256": "6e157976e03a4e14fd9f380b0e5a048654df134025312098f4f6f4ba6fdca9d3"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailTerrain-v1/previews/building-footprints.png",
+      "bytes": 2827366,
+      "sha256": "e1d6002fbec483edff1d566ddf7e4cb4f3944b89192a1d6d77ba2c8d9519ae9a"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailTerrain-v1/previews/seam-east.png",
+      "bytes": 12386047,
+      "sha256": "2f4a1c5f6efe0e9dffd9fca90b48f7a6c36b8b67817413ff56f615175ba07222"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailTerrain-v1/previews/seam-west.png",
+      "bytes": 12452402,
+      "sha256": "9eb6ad6b4ba6eb2463ff8ac9abb6b0df4ed093fdff70ef7166a360f7242bc569"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v5/inputs/east-fill-guide.png",
+      "bytes": 3529244,
+      "sha256": "3ba8aa7c34ed0f0ac51e9fee1e034f17c1bf36cbd3f60618c42f967d0fcb173a"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v5/inputs/east-fill.png",
+      "bytes": 3529244,
+      "sha256": "3ba8aa7c34ed0f0ac51e9fee1e034f17c1bf36cbd3f60618c42f967d0fcb173a"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v5/inputs/west-access-guide.png",
+      "bytes": 1441674,
+      "sha256": "6b1d1a60118d9e0045f947fad9f479ed916dcb695df45a44efdc137d3714ed4b"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v5/inputs/west-access.png",
+      "bytes": 1543421,
+      "sha256": "4100e446d008f46cd151ea67b6aa945261e6820941a589c07d738e99e6d0fde4"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v5/inputs/west-fill-guide.png",
+      "bytes": 3376631,
+      "sha256": "e309ff0babdbd50e9b9d928b7e56fbe961de93e444a2944e58af11a3015519ef"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v5/inputs/west-fill.png",
+      "bytes": 3376631,
+      "sha256": "e309ff0babdbd50e9b9d928b7e56fbe961de93e444a2944e58af11a3015519ef"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v5/inputs/workshop-access-guide.png",
+      "bytes": 2050999,
+      "sha256": "4aa3217fd221ffd51f9baeb7ce516a16fd15d2abc13a494853d9d421c6f84e2c"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v5/inputs/workshop-access.png",
+      "bytes": 2109393,
+      "sha256": "5137328f7a0b574d91d67fafa77b94273c56a2353f161a9ec4f1d8cbc49f35e9"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v5/previews/assembled-review.jpg",
+      "bytes": 188037,
+      "sha256": "73bbe9f90f7cf22685832a507333f57c3cc3596d7e33d2bc2add5d8e9bd08394"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v5/previews/composite.png",
+      "bytes": 13985714,
+      "sha256": "f62c0f233337ea3cd87082f82a8ad0bd89ed625ee697f213f3e8ef59394b5a8a"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v5/previews/east-fill-comparison-review.jpg",
+      "bytes": 318040,
+      "sha256": "d697e38e1744a541c892950ad56d7a6829b67cfb21f8679ad8ec2cbad7ea3d98"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v5/previews/east-fill-guide.jpg",
+      "bytes": 86880,
+      "sha256": "eeb2998b0307b07318f53014ba049ec0fc7e6cc97219a8a44c7ef99f4196df99"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v5/previews/east-fill-input.jpg",
+      "bytes": 86880,
+      "sha256": "eeb2998b0307b07318f53014ba049ec0fc7e6cc97219a8a44c7ef99f4196df99"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v5/previews/east-fill.png",
+      "bytes": 3257087,
+      "sha256": "43f4529899a11c976d31225b9a1ad99b580de5b7f554de40707d5fcfdf1d81fb"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v5/previews/village-comparison-review.jpg",
+      "bytes": 161760,
+      "sha256": "5a0fb231a385e0c1497ca8574851fb85d6cbd819a9d90e7c445f43ea3d705bdc"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v5/previews/village-comparison.png",
+      "bytes": 1631503,
+      "sha256": "062fc200ae8a96b5af627876371547e7339addbff2ace9012ef56dfe441e8c1f"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v5/previews/village.png",
+      "bytes": 1213429,
+      "sha256": "c4bcb153f44a4ee6b84d72b1403390d484e44033b9974462e7fa39fed20a2f66"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v5/previews/west-access-comparison-review.jpg",
+      "bytes": 181165,
+      "sha256": "6acb54d23d58fbacc02ce055f4050e5f23fff59cdb1f42f8bc6bcf2f788e3e4c"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v5/previews/west-access-geometry-review.jpg",
+      "bytes": 323766,
+      "sha256": "2e44863726f53b2f961da2f5f15b09d5aeafc34b6f4704600d09cab65d029ff6"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v5/previews/west-access-guide.jpg",
+      "bytes": 102789,
+      "sha256": "58bdefe786ba764638c7d8b511e17bac73af4fbee615e7728c5af236fb65b531"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v5/previews/west-access-input.jpg",
+      "bytes": 85142,
+      "sha256": "d4cf6ee886fff98a0663f813e7227f2567ef465a0152a96a21f489bc38a1983e"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v5/previews/west-access.png",
+      "bytes": 1666188,
+      "sha256": "06dd425bc1840bbca159c0bb77250789281854db249652b1733b21995838ca83"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v5/previews/west-fill-comparison-review.jpg",
+      "bytes": 296723,
+      "sha256": "930e3e129d1596ddd47e1989090601cf0fe3aa6ec4e576c9b99226f7845fab59"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v5/previews/west-fill-guide.jpg",
+      "bytes": 81585,
+      "sha256": "94d3f85ff27b5bb1019b8c2ccce03c8c572b338ba36dbd1710f436225f690dfe"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v5/previews/west-fill-input.jpg",
+      "bytes": 81585,
+      "sha256": "94d3f85ff27b5bb1019b8c2ccce03c8c572b338ba36dbd1710f436225f690dfe"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v5/previews/west-fill.png",
+      "bytes": 3130228,
+      "sha256": "c081a4c6576e7af0cfbe59f1d62c3cdd406318d58390040fe1b9c62e752d996a"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v5/previews/workshop-access-comparison-review.jpg",
+      "bytes": 244632,
+      "sha256": "6c05c3827d3e9bbbce995819ef5ba7131c1ea9a18ee4d5583fa985f105fad7b5"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v5/previews/workshop-access-geometry-review.jpg",
+      "bytes": 161744,
+      "sha256": "f799b70274a52cfc7974d228a8a399d88c49b69034e5725e19deaa3cbcce8096"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v5/previews/workshop-access-guide.jpg",
+      "bytes": 76074,
+      "sha256": "7e1afd2010e3b188c661f06a9aec4f061f959ff37aebd160646ad9b557bdc7dc"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v5/previews/workshop-access-input.jpg",
+      "bytes": 68202,
+      "sha256": "37f2b567540fbd68b426b463d48ffaaba641d282a6060dd2fd41a063bac85465"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v5/previews/workshop-access.png",
+      "bytes": 2516711,
+      "sha256": "9528a7d1f3b975af8028e452dd93787e304f334b67cc50bfbcb960913f7f8cb6"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v4/assets/S1-2.png",
+      "bytes": 3319058,
+      "sha256": "cb9642d6f759d6fc54cca233ed71b0c2f21a0c0e2b64c8c1429683de2b36f739"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v4/inputs/forest-roads-guide.png",
+      "bytes": 4096442,
+      "sha256": "c520bf845709c2af145d4da839b275b3b1801346ab32461c56c64968fe5b9e48"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v4/inputs/forest-roads.png",
+      "bytes": 4106064,
+      "sha256": "6fc6a87f74e0d38146c64c99f810a648b432a764bb82bfeedb0c270eb9d7c83f"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v4/inputs/N0-0-guide.png",
+      "bytes": 2228507,
+      "sha256": "a47428abbd266f1f34ed78652e61efc8af4dfc0266fce3b6bea7dfe65f5a8785"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v4/inputs/N0-0.png",
+      "bytes": 2228507,
+      "sha256": "a47428abbd266f1f34ed78652e61efc8af4dfc0266fce3b6bea7dfe65f5a8785"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v4/inputs/N0-1-guide.png",
+      "bytes": 2108187,
+      "sha256": "8d2ab7f1f0b79c3a8e5a4809ee4aa48301f1d0e10d54ddf5721ef854b0f003e5"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v4/inputs/N0-1.png",
+      "bytes": 2102038,
+      "sha256": "42b2d45549ae6280bfe5ce918aa35830cbc22d03bda846420a6bb443b63b0dca"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v4/inputs/N0-2-guide.png",
+      "bytes": 2223995,
+      "sha256": "2865b1e540f63a44f81e46917ae299263711c2caf240d8d904ec3dbcfd2b5b6a"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v4/inputs/N0-2.png",
+      "bytes": 2213283,
+      "sha256": "723cebe9da466ac7f7ec1c01720f7a7719a036e92c668a1327a7282538c2b6ae"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v4/inputs/N1-0-guide.png",
+      "bytes": 2372578,
+      "sha256": "3dbd481d36e0f9a977fe0656114cf81fc6fd867852ac9c74d76833885d58e83a"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v4/inputs/N1-0.png",
+      "bytes": 2372578,
+      "sha256": "3dbd481d36e0f9a977fe0656114cf81fc6fd867852ac9c74d76833885d58e83a"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v4/inputs/N1-1-guide.png",
+      "bytes": 2426616,
+      "sha256": "ae1bc23ebf46bf80076fd02dd0596c97275becc22adb961ebc5557086f3666dd"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v4/inputs/N1-1.png",
+      "bytes": 2422557,
+      "sha256": "18767259d5231759694a52a90870e4171c8c802952377bd0242bf618adeaf8cb"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v4/inputs/N1-2-guide.png",
+      "bytes": 2425631,
+      "sha256": "55ed187b99c5d2dfc0b65eb0e05e9378e280fd1c66eed70aba30af6b5a1f8b36"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v4/inputs/N1-2.png",
+      "bytes": 2417870,
+      "sha256": "ad3acc4abd5aed5ce98b71f2d40d7ea67d15c7c70dd6bf9d4f7ff0f185fe393d"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v4/inputs/roads-guide.png",
+      "bytes": 2799244,
+      "sha256": "5a878bbf1f5153cd4c8cffbe960721284481073a85591103bba78bc7e5e68870"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v4/inputs/roads.png",
+      "bytes": 2821567,
+      "sha256": "ffc2b3bba7bb24d43616b3c76005c378b478b7e998a40a0a6ee70b62774dff66"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v4/inputs/S0-0-guide.png",
+      "bytes": 2154208,
+      "sha256": "3665b09632a4ce024d6fc24ed5b5622f193b83a52c6d4cfc3df9f7359e2ef3f4"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v4/inputs/S0-0.png",
+      "bytes": 2156879,
+      "sha256": "29346845e02ae050b7baf2f138e83a0a13fe7dfef42765b5d813ca4c2a4b8abd"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v4/inputs/S0-1-guide.png",
+      "bytes": 2540045,
+      "sha256": "2f001cc08b6256d43a447267c6742769dafddcbd3fa688243649d0a081982c98"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v4/inputs/S0-1.png",
+      "bytes": 2550220,
+      "sha256": "9a5618b0723ee540bced547236135d11c3845e9b655299966e2fcaf120123b94"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v4/inputs/S0-2-guide.png",
+      "bytes": 2042786,
+      "sha256": "c0613e19c82bb522c3b234315579c5cb3a3e422ad0a903e855bc68d73a245a5c"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v4/inputs/S0-2.png",
+      "bytes": 2042786,
+      "sha256": "c0613e19c82bb522c3b234315579c5cb3a3e422ad0a903e855bc68d73a245a5c"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v4/inputs/S1-0-guide.png",
+      "bytes": 1938561,
+      "sha256": "f1e6583e695ba4b26a8bd216cf31e46b846278dbf0d00197149483ed1b4ab7f7"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v4/inputs/S1-0.png",
+      "bytes": 1932297,
+      "sha256": "66952df446d481b2c4482b7e1d04234403ba142744dee817298ca81eccbfff46"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v4/inputs/S1-1-guide.png",
+      "bytes": 1792507,
+      "sha256": "2558ededaaeda25d633a63537f9ff2894f95160b9a6156efe5bb48cdc1151b5f"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v4/inputs/S1-1.png",
+      "bytes": 1791675,
+      "sha256": "6d2caa6e9c1324e68e6335fd0dd69153cf0ea5ff10e7199e3b757fc6a5947c0a"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v4/inputs/S1-2-guide.png",
+      "bytes": 1896128,
+      "sha256": "1c749c5044c46a36b4085db58c20f45caac195eeb8ea68c9f2ba2f5983b4e529"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v4/inputs/S1-2.png",
+      "bytes": 1896128,
+      "sha256": "1c749c5044c46a36b4085db58c20f45caac195eeb8ea68c9f2ba2f5983b4e529"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v4/inputs/S2-0-guide.png",
+      "bytes": 1930069,
+      "sha256": "7abf7e1a30d1242a5d0f2c4f0bcc7657fdb1fb2781f0574dbc994330d429355c"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v4/inputs/S2-0.png",
+      "bytes": 1926165,
+      "sha256": "2087f58f1526fe7e983c8bfe2d2928b49f8fecc3a16bd839cf3dbc23242a9e4e"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v4/inputs/S2-1-guide.png",
+      "bytes": 1818558,
+      "sha256": "ce6aa97ad9be66e08c0384d8e980981de0f4566fc9d1cd051d5593cc7248500c"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v4/inputs/S2-1.png",
+      "bytes": 1818558,
+      "sha256": "ce6aa97ad9be66e08c0384d8e980981de0f4566fc9d1cd051d5593cc7248500c"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v4/inputs/S2-2-guide.png",
+      "bytes": 1936548,
+      "sha256": "0bbf18c89cf33d9d3e529e79eb0d85131c1f190525896736435029fe3543ef29"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v4/inputs/S2-2.png",
+      "bytes": 1936548,
+      "sha256": "0bbf18c89cf33d9d3e529e79eb0d85131c1f190525896736435029fe3543ef29"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v4/previews/assembled-review.jpg",
+      "bytes": 187615,
+      "sha256": "50c1eafa1e2576f48eaabac3f66c203ccfaa47d8b7f554d1d96ced2b6a6b2cc2"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v4/previews/composite.png",
+      "bytes": 13857264,
+      "sha256": "6834363e99be8d2e0fa4243ab155d5a63c33d5baa16505b7d4cc57d532e013a8"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v4/previews/forest-roads-comparison-review.jpg",
+      "bytes": 301810,
+      "sha256": "f2a788a864d51b37fbce04c0af218917b1620a547799db33de2ca1cdff1b25c3"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v4/previews/forest-roads-input.jpg",
+      "bytes": 98361,
+      "sha256": "99e811581e8126b9929b4436696097d1cc1de7728d965ff968d62f560fc45e7b"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v4/previews/forest-roads.png",
+      "bytes": 4437516,
+      "sha256": "e53a5019afbdee1af7123cbca9b9f448164317f0b33e75cf42a375b598344121"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v4/previews/generated-sheet.jpg",
+      "bytes": 375660,
+      "sha256": "d9fa6684d6a5767a0bc81cc8e4b727e82675b768ba805202298705fcaa315c30"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v4/previews/input-sheet.jpg",
+      "bytes": 348377,
+      "sha256": "57b26c0c74a817068ab0cf790a648baf6befd6ed9903649b5f56f95829252b08"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v4/previews/N0-0-input.jpg",
+      "bytes": 68838,
+      "sha256": "87d0933ee693ff60c29198c82ae3d5e2669cd36a9391e4c197f05b2ac77d8ba2"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v4/previews/N0-1-input.jpg",
+      "bytes": 65867,
+      "sha256": "7a2c1f235f3e1fd0dfdea9f6e8e0ecf21760949fd63429d54f7d199ddaaa43df"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v4/previews/N0-2-input.jpg",
+      "bytes": 67255,
+      "sha256": "de586f2389833de72d27b82ec02d3231b4ab523dfa0d8f13850164216bc86eb9"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v4/previews/N1-0-input.jpg",
+      "bytes": 69747,
+      "sha256": "2de78cfc26b625b794922dfe425280b7285f1d7f88bd82c0531399de32407cda"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v4/previews/N1-1-input.jpg",
+      "bytes": 71794,
+      "sha256": "e8757e8e900bb705229b1556c5d9d1157b71a94af7a15116b4bba5930379ef74"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v4/previews/N1-2-input.jpg",
+      "bytes": 70933,
+      "sha256": "4a68c724c929b79659ecbc220d5db5a94bd178fa10061d1aaedfac19b11bf753"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v4/previews/north-comparison-review.jpg",
+      "bytes": 154125,
+      "sha256": "e82a20c89aef127803471eab00f2a957370b4a3083ca3a8baa9c130e16d39fa5"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v4/previews/north-road-comparison-review.jpg",
+      "bytes": 241438,
+      "sha256": "990addad443fa23906b2b929847c3c1029da428d3187bcd769a14de10fe4a25b"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v4/previews/north-road-comparison.png",
+      "bytes": 7386922,
+      "sha256": "cb2013a87580ac30865d1364100777c7b5e612417c1de0d70206f7baf780eccf"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v4/previews/north-road.png",
+      "bytes": 4500727,
+      "sha256": "c05e7b89904ce1545b88edb6448baab36a7c2a7c41530388f32479ed79c0f0d9"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v4/previews/north.png",
+      "bytes": 3316078,
+      "sha256": "1cba7fa15ab0f155b4377da35a1f7d6206be75b812cfd4fc6b20351f2fc91007"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v4/previews/roads-audit-1-review.jpg",
+      "bytes": 336490,
+      "sha256": "df4c57c6c905a0ce574de73a641cb31702c85ec7bcfce1fed14e1b1bc55c6f38"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v4/previews/roads-audit-2-review.jpg",
+      "bytes": 201160,
+      "sha256": "0efff46edf57f00033a97aea39f8d5ad3121e130dd6ee0ff5642c36d61aac550"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v4/previews/roads-audit-3-review.jpg",
+      "bytes": 199735,
+      "sha256": "a11c0d19769f21c5391b432e41f481c8cfb84d71afc20e7870cfba4245266365"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v4/previews/roads-audit-4-review.jpg",
+      "bytes": 202846,
+      "sha256": "5cadb55cb0c89141dd5dbab7db3e085bf5e771faccfa5441038a48d61d7e2c01"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v4/previews/roads-audit-5-review.jpg",
+      "bytes": 205009,
+      "sha256": "31ddb7560b104758a70de0b7b00b818e738682672a7b946404f291af267960e9"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v4/previews/roads-audit-6-review.jpg",
+      "bytes": 42682,
+      "sha256": "b525f48120bca5814d4fb468bcbe95ebb703558cc9f3d765d63c457551cb5fb1"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v4/previews/roads-input.jpg",
+      "bytes": 70324,
+      "sha256": "46acfca18b0e293ec499aaa825e849a6e37306213a9c4e970e2eb438300f2d30"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v4/previews/S0-0-input.jpg",
+      "bytes": 61467,
+      "sha256": "07a45bd5d6fdab2b841ac0ba2d480101466423093406434cac65bf1a1c560b9a"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v4/previews/S0-1-input.jpg",
+      "bytes": 67075,
+      "sha256": "a456a8d613a8ef6bbfad76156884188d06a53a3e063bdf5ded76e9d9104f2a0b"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v4/previews/S0-2-input.jpg",
+      "bytes": 61628,
+      "sha256": "af3ce5518a9dbdd6057cd82d98cb5a7963e1fa2e7e10b400f0f4bfc705182a11"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v4/previews/S1-0-input.jpg",
+      "bytes": 60290,
+      "sha256": "0b7c4d74e629f04e443811ebbb571595e67f36ab55925d237d654113a1d43f8b"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v4/previews/S1-1-input.jpg",
+      "bytes": 57894,
+      "sha256": "3e019420ccaf81b98982bb0e5c7f4382d7c3081d1f4924317b5f4954eef97604"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v4/previews/S1-2-input.jpg",
+      "bytes": 59677,
+      "sha256": "ad0acdf10bf4ab15ee48081e1537ad031056cab35ce5b008992ec6fc42d64ff2"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v4/previews/S2-0-input.jpg",
+      "bytes": 58928,
+      "sha256": "8b1357259e6a53753082d6b24d3329de2d4e1535002e4fe8088e570c04fc7e85"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v4/previews/S2-1-input.jpg",
+      "bytes": 57483,
+      "sha256": "55a74e9d8dff1784a47bb9048186e9875ffa02ca784fdead242f4e4924c63d6e"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v4/previews/S2-2-input.jpg",
+      "bytes": 59873,
+      "sha256": "8deb768ecc410f2ba2a2d31622ac9029ff44eb179eec3351845e006ddb3e31fe"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v4/previews/south-comparison-review.jpg",
+      "bytes": 197232,
+      "sha256": "738e5340e174897d11ac6c605ae697fed2bb088e67b78ec2f1aa221657baeca3"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v4/previews/south-junction-comparison-review.jpg",
+      "bytes": 228321,
+      "sha256": "ad8c5c9ac479510644f9bf45ef41f6d1552628a07ffad8a80ffe0432addb83dc"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v4/previews/south-junction-comparison.png",
+      "bytes": 6735464,
+      "sha256": "0a99e8ba0b4304b6d1e7f47c8aa9f1ffaae1d087357c410f0027bbea6be947b6"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v4/previews/south-junction.png",
+      "bytes": 4140645,
+      "sha256": "150f6c5ed291211049d9e11de4282f3be63ff5902270a7a2bf4fcd782bb52c59"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v4/previews/south.png",
+      "bytes": 4168697,
+      "sha256": "01b13c280fe85831c8e55014484942e02d993831fb73ddcf26484b96bda50969"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v4/previews/village-comparison-review.jpg",
+      "bytes": 157343,
+      "sha256": "8083e6dfd23587a8edee1f182bb7f024199419ef7c92c32c5f69644cf466fb3a"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v4/previews/village.png",
+      "bytes": 2024343,
+      "sha256": "c0221bf10f06d6c960f3ec790e7201a458584c749c6fb2a410d12422aae25df6"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v3/inputs/core-art.png",
+      "bytes": 7034570,
+      "sha256": "d2052fcf2ea241c7c9fe0f2af0c5531a1d12a7b666f2cff48695f17395f08586"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v3/inputs/core-guide.png",
+      "bytes": 7125538,
+      "sha256": "f07deb4846d2b5d0b41019c7e5bb2fd3d7e717b6399b039c448e20ecdfa3bfa7"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v3/inputs/east-art.png",
+      "bytes": 4236806,
+      "sha256": "9aac8090a5294353ef237b563d1c2c0c186a2ec784b2132339fecb52e5c78c39"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v3/inputs/east-layout.png",
+      "bytes": 6742985,
+      "sha256": "800e0f6a8b194c4e2a8a4d7494729bbafe428e19a371341c4592848f04cad8b7"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v3/inputs/west-art.png",
+      "bytes": 4460398,
+      "sha256": "aeec63f1ee3692db85dbeee3079c47e228f1ce56e3a271f39df0e1087839dcf8"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v3/inputs/west-layout.png",
+      "bytes": 6760478,
+      "sha256": "bb3428fecb24be0dfb305c444fd5da3cdd72bb0bc3c12857db7ed3d4c28e9eb3"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v3/previews/assembled-grid-review.jpg",
+      "bytes": 160500,
+      "sha256": "60a4436badd98ccd09d76e428c48863eaa914a3b1d2c5d974e0f8bb02611d2c0"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v3/previews/composite.png",
+      "bytes": 10456880,
+      "sha256": "6ffb2bd68a087acbdb096493d49782090610734ca644a1ec2641c89132366e20"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v3/previews/core-art-review.jpg",
+      "bytes": 134396,
+      "sha256": "13bc303ffed78adbbd9a8dfccc7497c403c1be3d77498c8ffeb2f9f71cc8c4a8"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v3/previews/east-art-review.jpg",
+      "bytes": 111646,
+      "sha256": "95a54dea3e6c8e703bba1986ba677c9ab12859cc05161896193f4207d38058d0"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v3/previews/east-layout-review.jpg",
+      "bytes": 165866,
+      "sha256": "6e0d6234e6beb18cb5a717593897d965c69fccaa9df48c38d1d7a1c1a0c8a7cf"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v3/previews/forest-comparison-review.jpg",
+      "bytes": 143892,
+      "sha256": "5fbb3b481c6cec54d4112fa986fc3e5bee9887e36edaf4f2a9acc0475bc0121d"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v3/previews/forest.png",
+      "bytes": 1953293,
+      "sha256": "e1ef24600898471b9f483784b61e1e38848be3bf201295b11405fc1e9b172ff4"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v3/previews/guide-review.jpg",
+      "bytes": 155414,
+      "sha256": "b023c93ae3cd6cd5ea075c379005dcd251b741d50c93fd2507fbf190e94d3b57"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v3/previews/village-comparison-review.jpg",
+      "bytes": 163234,
+      "sha256": "13d602beec6b1dc3d459be0b3b94e6762c2e745d4b7b907e7c688870d85bd5e1"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v3/previews/west-art-review.jpg",
+      "bytes": 118016,
+      "sha256": "b89a82a570c1e77220204aeec6a35d1ee225a60fddad6fb27214a061940576b3"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v3/previews/west-layout-review.jpg",
+      "bytes": 169499,
+      "sha256": "f42dfc1aa7b17d3f91dc6e3287d86664bf768e66631deceb30861d2c9efb181b"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v2/assets/core.png",
+      "bytes": 3765936,
+      "sha256": "032b1f171ab39ddeffb9a23f03d0b057a746af103cd3641063f1beec7753dc47"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v2/assets/region.png",
+      "bytes": 3660918,
+      "sha256": "b0600b58c46360e6bbe66079ad83bbcd8825e64ae5ccebb20af2d55d1f214131"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v2/assets/village-study.png",
+      "bytes": 3472187,
+      "sha256": "2c3ef69f6b31d5ff08216bece6ca8d803717a9762404564e003d2130ff537546"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v2/inputs/core.png",
+      "bytes": 7236617,
+      "sha256": "9ddb439c2e1804f0dc9a1b5778c796bff0d987ef2218deca4069ce04aeae0185"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v2/inputs/forest.png",
+      "bytes": 8384327,
+      "sha256": "f32a5f8329403a71c754d575c1045bc3e954a0a405c8da04c980f78b0b0b5420"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v2/previews/all.png",
+      "bytes": 1037101,
+      "sha256": "817c729d43b7d955cd5f68ee90e4a25513ef4b2aadcb3c1987287d858c019906"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v2/previews/composite.png",
+      "bytes": 12914813,
+      "sha256": "1ce749ae0b5d3318293c6ae2fbf2b4516e3517d91277fec4ca5606eb84b11764"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisTerrainPrototype-v1/previews/B04-middle.png",
+      "bytes": 2064483,
+      "sha256": "50ce1c1e99b7b363dfec64377f60318261be17d25181f4ccdcfcff0b3a338493"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisTerrainPrototype-v1/previews/B04-quarter.png",
+      "bytes": 2118000,
+      "sha256": "e33c82200db088d76b6d31c13c7d3340fb77637d2a0680629021c56bb01ee31e"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisTerrainPrototype-v1/previews/B04-reference.png",
+      "bytes": 63912,
+      "sha256": "d45427c629f15bfe56754eac6dcb913534e1522b5882bdd376a077363a4c1626"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisTerrainPrototype-v1/previews/B04-three-quarter.png",
+      "bytes": 2004975,
+      "sha256": "e92b99830defaf805ac13e171c8e0a067b94af8c82ca694926d717b02b1e859b"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisTerrainPrototype-v1/previews/material-left.png",
+      "bytes": 565217,
+      "sha256": "9a2a2175603315b22616ffda86e426976a77143b7b30bbddc1f8fa15cf1cd6dd"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisTerrainPrototype-v1/previews/material-repeat.png",
+      "bytes": 1133515,
+      "sha256": "408b972dae15f9f69cfe81a2df220601635f05fdd949d41d4747135d30c20fe0"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisTerrainPrototype-v1/previews/material-right.png",
+      "bytes": 569843,
+      "sha256": "0a80f313ccdb77d834107df54f37b02de332bd0afd873b893f5a217cb82d331a"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisTerrainPrototype-v1/previews/material-whole.png",
+      "bytes": 1133515,
+      "sha256": "408b972dae15f9f69cfe81a2df220601635f05fdd949d41d4747135d30c20fe0"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisTerrainPrototype-v1/previews/T11-core.png",
+      "bytes": 2296519,
+      "sha256": "c1e60907bf5df43f769625a941a91d9ec7ca27e7801bc1e6188221fc77384e3d"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisTerrainPrototype-v1/previews/V14-core.png",
+      "bytes": 2173849,
+      "sha256": "21bfb3bf263ddbb71eeb6d493896b82727601e3ac281fe98a8df52009b190662"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisTerrainPrototype-v1/previews/V14-junction.png",
+      "bytes": 2101520,
+      "sha256": "9f9fb22ff20f33f35f768607f96140b631eb43d484c8ff18cc3dfe4bee83c5e4"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisTerrainMaster-v1/previews/terrain.png",
+      "bytes": 801856,
+      "sha256": "bdc634a13e537c2e9d5f0f9b7f7f8e5e10196cd36f671a5624e40b687291b28c"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisTerrainMaster-v1/previews/viewer-overview.png",
+      "bytes": 523737,
+      "sha256": "ed166fd43cf4e950da0fca0b80a2ed1db44e0433564c2a144ca29570a8725686"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisTerrainMaster-v1/previews/viewer-tiles.png",
+      "bytes": 601767,
+      "sha256": "a7637dd86b9a8985a12425f3e0551cc3fa851cbc786b44c28bd3728dd744127f"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisTerrainMaster-v1/previews/viewer-veles.png",
+      "bytes": 312157,
+      "sha256": "4e3754c37717a0ca480dfe6cd77910008fe5b52bbc6b73d7fa1e7e1ca638ab67"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L10-C12166-R3188.png",
+      "bytes": 4031993,
+      "sha256": "ee97176d95adc20385f6c5f32f4db78a17784901a0678d572d9358bf51dc72c8"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L10-C12167-R3187.png",
+      "bytes": 4109232,
+      "sha256": "75ca9c87ab27811f8b86a506985ee3d1867b13f0f418264839004f0f7c33e6f4"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L10-C12167-R3188.png",
+      "bytes": 3913514,
+      "sha256": "dac8bf4a26e2079b47e5cb8014c938ce1c13fd1657a9bcbed0e2f238bcaded0a"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L10-C12168-R3188.png",
+      "bytes": 3921242,
+      "sha256": "a77805d5cca4d5744ef11b0bb71ffbf3c470cca21d8d0092c152797c74f5ad19"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L10-C12557-R4415.png",
+      "bytes": 3738373,
+      "sha256": "bd641c45e06a1a1e40d53940077c73f27780250ccc5f5f877e9f36cfb1ce6a5e"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L10-C12557-R4416.png",
+      "bytes": 3786790,
+      "sha256": "e236079651560fde213928aae388f641280916cf5930ddad7566b6559fb2e186"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L10-C12558-R4415.png",
+      "bytes": 3995806,
+      "sha256": "563c9dc16b94cac46e67016a7edd801e4b736040db0c1145dc368020698fd1e1"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L10-C12558-R4416.png",
+      "bytes": 3620673,
+      "sha256": "7127adc82f15a0e7c4bfddf80ac403cd94049ef9c185e2e6ed27dce8a67e5bbb"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L10-C13298-R3226.png",
+      "bytes": 3812952,
+      "sha256": "b1efe434e949b4a731adafb8953703e57767b0dac558785544b3e38c1fa7f29c"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L10-C13299-R3226.png",
+      "bytes": 3877487,
+      "sha256": "19e0010053cb72799c79fed973250da72dcee00803a818d2df1fadc4ef74e11a"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L10-C13300-R3226.png",
+      "bytes": 3638976,
+      "sha256": "d4b2d5428f7f8f7a5c92c56f86c70344f79556b1b4daf33fd5d7fbc3ce5cc0e4"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L10-C13301-R3226.png",
+      "bytes": 3640357,
+      "sha256": "5467c2d38841c58a150b5e2ee3c878d9482fd31597e8045eb1dc4e3130381e75"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L10-C14154-R3102.png",
+      "bytes": 3787483,
+      "sha256": "e7f8110b1342ceeeadfc12129de9d9fd4c4bfabce50dcc66626464565b6e6794"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L10-C14154-R3103.png",
+      "bytes": 3820090,
+      "sha256": "24658f1ecf61ebe3a53047bf1bbcbb797d9c54052405f0d1ea47bf2db1424746"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L10-C14155-R3102.png",
+      "bytes": 3787859,
+      "sha256": "7c5b5a76079dcf2850f1865c1a117e72dd89a76dcc4399f7d7771059c31750ae"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L10-C14155-R3103.png",
+      "bytes": 3777613,
+      "sha256": "f89c3c29a157707aa6ae7a1121ab6c232789b4571573c563ef1fca5d1e85d071"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L10-C15011-R3184.png",
+      "bytes": 3556609,
+      "sha256": "02cc918baa037e57858a0971d9d4642a9e6f8732e24594bc3e623ac0c12710ed"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L10-C15012-R3184.png",
+      "bytes": 3929494,
+      "sha256": "419d327337347afb4712713eb0e774e83ab32f4590bfe8ad4784ac9ef7d3782c"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L10-C15012-R3185.png",
+      "bytes": 3642814,
+      "sha256": "d4b01b28b0bcd351472d78be527778d1c2ed711d0decdb0c2b9467f6a1a00d1f"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L10-C15013-R3184.png",
+      "bytes": 3826190,
+      "sha256": "c0f48909497221b40e41726613988400b1b09db7e1dca69688d6c3a3a4da1de4"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L10-C15267-R2381.png",
+      "bytes": 3482561,
+      "sha256": "a89c6a297a5c25ab2cf4d3eb1605a25be9ab86abc6f7d5c9fdfd67a269258bc5"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L10-C15268-R2381.png",
+      "bytes": 3371594,
+      "sha256": "ecb29f2b2d737c651a5a304af23d6a70ad9338e63d932d11e1d0ce40b5a1cfd5"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L10-C15269-R2381.png",
+      "bytes": 3414999,
+      "sha256": "f00869748f7437c285c5fb507db8edfae54206b2f71664584df8dd11bf05ac29"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L10-C15270-R2381.png",
+      "bytes": 3428409,
+      "sha256": "c137f3018192ffeeab3d319af82589ddbc79978d6df4232ac459b0d4bc7c66f9"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L10-C15780-R2287.png",
+      "bytes": 3567556,
+      "sha256": "13e2e813e8d397242aef9403c1bdc5e2817366b2b48aef0842c3da2b598fdbe8"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L10-C15781-R2287.png",
+      "bytes": 3503736,
+      "sha256": "8f60a76c86e85a143dcbec60843a1528e0cfe09778179e144ef5af8baf6c22ab"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L10-C15782-R2287.png",
+      "bytes": 3469363,
+      "sha256": "33ea99e074caa7db7876e6f41ae9f87e1e9110491e6d2cfaeed9c06eac5c623b"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L10-C15783-R2287.png",
+      "bytes": 3729986,
+      "sha256": "13fc613a914c7b9ae50ee682c9d7b21b36fd6a816a802990a9b230ac1e25a678"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L10-C15868-R2407.png",
+      "bytes": 3902972,
+      "sha256": "248e389e8a18be8ac65070c71ca61f2e7ea1c510553c2dedb502df79b558be9f"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L10-C15869-R2407.png",
+      "bytes": 3590978,
+      "sha256": "672c20e43023da74b4b70e22c5c12b7d1419086bc919dec037c3e88e2b4476ef"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L10-C15870-R2407.png",
+      "bytes": 4077098,
+      "sha256": "09427c31049549a46b9f4122ea03512764d5ac14d0c3c4335a9958cf5ce2f1af"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L10-C15871-R2407.png",
+      "bytes": 3991898,
+      "sha256": "b0008613f626367ef44339ee3aa421aa7d86bc16b4d196734fcee89122301c3e"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L10-C15931-R2536.png",
+      "bytes": 3328121,
+      "sha256": "2fe26751cccd879c05f410e3c7062b9209c30d7c01c64c5e044c2c397e40d725"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L10-C15932-R2536.png",
+      "bytes": 3435209,
+      "sha256": "2d1fdffe663b598251719007d3dbbd89d17bb7a7b2d65ffe23f572e20a2a4601"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L10-C15933-R2536.png",
+      "bytes": 3631099,
+      "sha256": "187d65d958f4a7f0d38d9ba966dab084df5e3c3f41a98568506c9baf4262817c"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L10-C15934-R2536.png",
+      "bytes": 3820312,
+      "sha256": "df6ec9390a6d25cba352839c7d4d2342f04c581cb784bf4d3f94131a1e881228"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L10-C16343-R3268.png",
+      "bytes": 3771424,
+      "sha256": "1cc432bc133a0d3c83abf7109284ee86032db16e70099a28fa4d86bca17e6663"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L10-C16344-R3268.png",
+      "bytes": 4008597,
+      "sha256": "22ac17e2fe54172d2ed24ea7cf6fa47f94030a355ca5fd1c35bc52ebd3628f1c"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L10-C16345-R3268.png",
+      "bytes": 3880298,
+      "sha256": "77235fdc9dce6fe6e0fbf4937c2438958350c45cb0af83c879cada2f132e7c64"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L10-C16346-R3268.png",
+      "bytes": 3697417,
+      "sha256": "89507f93dc8e218f8a91a615946cf260dec0cb7e6e69b5f6b0f97061a97ce20e"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L10-C16353-R3305.png",
+      "bytes": 3711619,
+      "sha256": "ba12dc8c6d8ac46e7f5059ba3a70a2bbe2a224cda32b7dd746a97bf19f104b57"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L10-C16354-R3305.png",
+      "bytes": 3782359,
+      "sha256": "6eb6cffb615a8db7f92921e67a838ecfac9af28d1751832107fb78b977a1ecae"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L10-C16355-R3305.png",
+      "bytes": 4130114,
+      "sha256": "55d1c7efc81d2c120321f6405e8b875a7f9c5e393fd1c1e6738614b90383d666"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L10-C16356-R3305.png",
+      "bytes": 3935053,
+      "sha256": "a54fb177923c6e333697b61d6e613dbece88efe1fcb3c633f33b0d8639602b45"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L10-C16448-R3199.png",
+      "bytes": 4106166,
+      "sha256": "02eb0a58268412da9b58fb6f508abb341b99533c8eb385589b62af3bbeb423e5"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L10-C16449-R3199.png",
+      "bytes": 3838340,
+      "sha256": "4a50142044f4f7d8c9d30820d9cfa397d3bfdf6073e597c42e1289fa17a46165"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L10-C16450-R3199.png",
+      "bytes": 3522800,
+      "sha256": "6936ecb2219b12a68f142dd54cae9b61bec25e957c610d394bd1c52692eb4949"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L10-C16451-R3199.png",
+      "bytes": 3381956,
+      "sha256": "64095ac9e46c3559d7ce2aaf28ffa130694267c1584990b57a71d54359c5b831"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L10-C16487-R3176.png",
+      "bytes": 3317601,
+      "sha256": "e7719fbe0d6be30efab7b5327fa48c90c0372ae7a38373e460b9d7026282d650"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L10-C16488-R3176.png",
+      "bytes": 3619502,
+      "sha256": "e512b97d273109172f4bb909dc36a17673aad95c8b0625cf7685ec38f4daefb7"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L10-C16489-R3176.png",
+      "bytes": 3784204,
+      "sha256": "3964604796b1d29bbaaa3bc2754ef7938021afa82ac6a3bed64695b5f790b256"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L10-C16490-R3176.png",
+      "bytes": 3737243,
+      "sha256": "0e36ded0eb6ce7e0048049ce431a2acf9a4c9fba7d61804ec33572f97787963a"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L10-C16767-R4161.png",
+      "bytes": 3624252,
+      "sha256": "fbf532b30a0e50c31c5039117ff7bec9b14daa952e19dbbddfb2d6b75421c334"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L10-C16768-R4160.png",
+      "bytes": 3704749,
+      "sha256": "e5169a0c28051e657c8e3888ab326887acfa073ad52a8cb9b6ced5e0fbab7bdc"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L10-C16768-R4161.png",
+      "bytes": 3615393,
+      "sha256": "27e6fc25c275825e130027b0646e6ad2325f7d6bbff4c6ec9fa03c2b254b0ebe"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L10-C16768-R4162.png",
+      "bytes": 3537192,
+      "sha256": "346cd3c64d5470d26e61e3905e4816f982e200323db71b7b8110920c90eedfd7"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L10-C17755-R4005.png",
+      "bytes": 3784463,
+      "sha256": "b30f1f8e5a3e814a8003d5f5953fcc5845e8bdedb34f7296c0f2521f816c0411"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L10-C17756-R4005.png",
+      "bytes": 3848933,
+      "sha256": "ba5f93248a90bac6c2e3ff3844fd21a19d5ed774a46cd5eb2e5b6ff80c877c80"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L10-C17757-R4005.png",
+      "bytes": 3820498,
+      "sha256": "25f68af960848df0bf6e48d379bb0dd18f6d0fe4d2353fee632a648190fcc929"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L10-C18611-R4209.png",
+      "bytes": 4077058,
+      "sha256": "5575d6e08ec0f4e5d83660d9cd822210f5fe2efe3a08970a592f14ac8c468695"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L10-C18612-R4209.png",
+      "bytes": 3879872,
+      "sha256": "1fb5db58d5b54218d635831561431dcc229ded0d16b17ebd087c958d529cbc1c"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L10-C18612-R4210.png",
+      "bytes": 3721821,
+      "sha256": "e31e6ff1a74fe1973c649573cec460fd9ac27f3f03f110cb1772a6d8a48d882e"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L10-C18613-R4209.png",
+      "bytes": 4086327,
+      "sha256": "6768454beb7b799c4e89e549b247addbefa6912613e8c771364296229d8d4e3b"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L10-C19221-R5209.png",
+      "bytes": 3980006,
+      "sha256": "5b4ae35c05dd736cb2f5a6b1f40387f4ee6506525f97d0f46e99f829f83bc237"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L10-C19221-R5210.png",
+      "bytes": 3815108,
+      "sha256": "0b4197f6dc4a75e16b551e4d018d0367a6d3d48ecb2729ecb0fefaa4fcea073a"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L10-C19222-R5210.png",
+      "bytes": 3618352,
+      "sha256": "176487da1f33d69fcc88a57a55ae7f4e9b8161887b279bdd7f99792e0946c4ba"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L10-C19223-R5210.png",
+      "bytes": 3756711,
+      "sha256": "b31832f46202d9dfd46adf59a6ddb0648d99a8e4c02311a41eaad9bc52f267ca"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L10-C19467-R3349.png",
+      "bytes": 3676918,
+      "sha256": "09ecbb3087adb7491469b89b0b586a6b926235ad3a5b93488b550957bc18da3e"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L10-C19468-R3349.png",
+      "bytes": 3755396,
+      "sha256": "0af4f048d702314e49987a1b84abde91219225c3f0e6e9cf20a6e5e3d1250d5f"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L10-C19469-R3349.png",
+      "bytes": 3988575,
+      "sha256": "a232d4524e682d5ff05fc358c5a946771c7d48006204ec838fc1c0625fa0ca8d"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L10-C20411-R3171.png",
+      "bytes": 3730163,
+      "sha256": "e1c26870b4ddd5cf3c37c069ef679cca4c108ba548d674d18b0066a1c764c178"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L10-C20412-R3170.png",
+      "bytes": 3903661,
+      "sha256": "80a513ac2be07c5fd70405a9f22c499b9a4fbe505bca7ce8bb27c201dc971633"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L10-C20412-R3171.png",
+      "bytes": 3792578,
+      "sha256": "13753ed35baae231cba764ccab76b570c3227154b493352f54f3a0a0b51ae1de"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L10-C20412-R3172.png",
+      "bytes": 3615705,
+      "sha256": "d129aca849c47d25f1ba15c936ef235f4959204284e41c95e3a044d78fb9ce82"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L11-C25100-R8770.png",
+      "bytes": 3749397,
+      "sha256": "cfdd139d6b000bdba29e3dbeb4436ada6855d9e35016fc5c4cac47e92e51e299"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L11-C25100-R8771.png",
+      "bytes": 3746852,
+      "sha256": "930cd508f37d7242ea166ffac1a3f353b29f26e2627e2f02b937d2b74f636d31"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L11-C25101-R8770.png",
+      "bytes": 3678667,
+      "sha256": "e42605018da840e6eb8607eb59d0153dd907a51e00bc0e10f947635e29636fb7"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L11-C25101-R8771.png",
+      "bytes": 3597769,
+      "sha256": "b4e173c61b4b0b9504f9e32d08900a529f35c38aa02f3f9d61b1ca5d634c85a3"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L11-C28207-R6167.png",
+      "bytes": 3278639,
+      "sha256": "d866992351742cf2ae932bcdc6dcab4d8838e5852430740e47a9bd8cc54542ba"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L11-C28208-R6167.png",
+      "bytes": 3691492,
+      "sha256": "def0f7eab1883fa46e4af648dd5e6229f19d3ce11d7c31185e8ea64777d6d48a"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L11-C28208-R6168.png",
+      "bytes": 3554628,
+      "sha256": "ae522812126884f76d65be5ca1990ad6abf7e57578cda188ee6ee8ccb06dfa56"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L11-C28209-R6167.png",
+      "bytes": 3455595,
+      "sha256": "faeba058116fd555ad221c4d21cb1702febc3080e5f7eec4465ab2b5f44ea800"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L11-C28379-R6168.png",
+      "bytes": 3537582,
+      "sha256": "8fc94496d5e59b9ae995ba8460e7deae2450c1e6919e2c2ec5bad3d84775b518"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L11-C28380-R6168.png",
+      "bytes": 3908527,
+      "sha256": "e18f05b1034a1a8d96d96ee14d406a69d1198840f399ba98644996109f565016"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L11-C28380-R6169.png",
+      "bytes": 3552773,
+      "sha256": "f4e6789e7fb04db9665fe27e36cb85997213daef84672c450a0d968973df2bb2"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L11-C28381-R6168.png",
+      "bytes": 3696164,
+      "sha256": "06b88a1efca23d054f1c82cec2a24d9368cef7159fccdd1a3355231e5de7d827"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L11-C29920-R6325.png",
+      "bytes": 3689936,
+      "sha256": "3fd29545c190e6e0326e82c43d8d1885cc88bdd071beef85aedce58f2c3952cf"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L11-C29920-R6326.png",
+      "bytes": 3457371,
+      "sha256": "4604815c140c078f9e9a9e09e078ce5100e7f6b1a7e3a45f867a5fd48eb40605"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L11-C29921-R6325.png",
+      "bytes": 3691322,
+      "sha256": "43b470eebb55f05b01d958e0b5053d9fbe7b55381dc924fa84b06e4a2902f7b3"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L11-C29922-R6325.png",
+      "bytes": 3652686,
+      "sha256": "3acd7cb4f3520b83f289a64bbf22fa078f807eaca5b94f2baa18f2b225381e39"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L11-C30354-R4685.png",
+      "bytes": 3383654,
+      "sha256": "4b2a5682c589aa1161b690c40eace3fb616766c636c29477e3e4bf68554c6583"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L11-C30355-R4684.png",
+      "bytes": 3676357,
+      "sha256": "1840e34ba2c25713c60b8b9d7c899a642f664cbb733d9afb17efd3eba75ab26a"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L11-C30355-R4685.png",
+      "bytes": 3517429,
+      "sha256": "202e5349b0378c8b3bacf5cdea8a11c764c5ebc5e106e6ae8e94fef3f721d12a"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L11-C30356-R4685.png",
+      "bytes": 3351856,
+      "sha256": "e0ed78605994dedf45cd389ec864ab51a8f07aa49c1bce25919bfcc8324e3901"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L11-C31611-R4622.png",
+      "bytes": 3514430,
+      "sha256": "073c8ed48912433edcf90a37a008f98bd56660d0fee24934ed392fd8a5457920"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L11-C31612-R4621.png",
+      "bytes": 3625048,
+      "sha256": "03411214b3c2d18d8bffbdabb7cfca269fbfd9ce5c9ba49293a171d4e9c86d17"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L11-C31612-R4622.png",
+      "bytes": 3380858,
+      "sha256": "78ef486fbc38800d08728609c8a06adf1b246f214849df3e822f6fc2daebdc6e"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L11-C31613-R4622.png",
+      "bytes": 3491379,
+      "sha256": "0c1f37dd6331f3d879aac84aa4368770a5fd209d48ce3acee4e677f36d1d0603"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L11-C31792-R4936.png",
+      "bytes": 3572261,
+      "sha256": "a5d2505a38fe01a29323cb0cb1b20f68b533924c830efef86b65a7298d45a29d"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L11-C31793-R4936.png",
+      "bytes": 3706447,
+      "sha256": "5f1d270ce68ac56776d18e0b52a9ceb8cb7828b2ee00fb8b8c8e4256ac89d921"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L11-C31794-R4936.png",
+      "bytes": 3650286,
+      "sha256": "6fb5118c1827925b662e19ef3223ba14d6e623eb3711eb89da331209351a6bfb"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L11-C31795-R4936.png",
+      "bytes": 3744605,
+      "sha256": "24d11104ec7d509b0fd6e47e6255c268e532f470119678923adda78f1badb421"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L11-C31949-R5047.png",
+      "bytes": 3744020,
+      "sha256": "fa1722855103b71b41076e0f99e7d767e47e877fcf8547651048e6fde2fda096"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L11-C31950-R5046.png",
+      "bytes": 3480792,
+      "sha256": "4fffc4fd8d6f3d0796cd36d82f970a00d3a1e1581b2ca3e0ae4c0ffac86b983b"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L11-C31950-R5047.png",
+      "bytes": 3501500,
+      "sha256": "433f453604f5b610ccf0840a6e10a4e497571b5096b60da2a1e18ca0a3976f53"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L11-C31951-R5047.png",
+      "bytes": 3746052,
+      "sha256": "f150bef658e147979bd5db45434437e5f0db9c90b6adb83b6b8b9e6a062b44cf"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L11-C32987-R6332.png",
+      "bytes": 3792031,
+      "sha256": "d66ae3c736cf539b43061c68341cc2d68d5d675da755d705ff7bd889044b4971"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L11-C32987-R6333.png",
+      "bytes": 3781655,
+      "sha256": "76670d08b140129d72119a5f04f26aa1fbec86d4d41937103c1fefd753dfcb0a"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L11-C32988-R6332.png",
+      "bytes": 3858699,
+      "sha256": "6ece35c25c6b83c8bf8f6a954619c314fe66f7aba660b903333fb3b0e1b07cff"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L11-C32988-R6333.png",
+      "bytes": 3666713,
+      "sha256": "edab1b3ad9e13240a97fe258e45f9e16e2b52aa5e6b53c610f871e97f66f776b"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L11-C32996-R6322.png",
+      "bytes": 3548678,
+      "sha256": "09d1f3d06f9e62247c438dcb3314420bea688183592bb1db24f3820e9abd768e"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L11-C32996-R6323.png",
+      "bytes": 3633862,
+      "sha256": "366467c0ce67ec03473e2db315d18b0b3a2a8c0a8d8e525cb3534940d23a26e5"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L11-C32997-R6322.png",
+      "bytes": 3637512,
+      "sha256": "54d9cc037ac30b8024e096c052a1c2e7b463facd22d7ab4cf06cccf40c14daa5"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L11-C32997-R6323.png",
+      "bytes": 3571797,
+      "sha256": "6cefae172c31f5ea12218428a1c2cf64cf38e4cce61d42ec0c8c04ffc0d6024f"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L11-C33016-R6320.png",
+      "bytes": 3483013,
+      "sha256": "adf01f4285d0ee178146780184a7fa60c5dfd25984702faa395c024fe00e01b3"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L11-C33017-R6319.png",
+      "bytes": 3680059,
+      "sha256": "ba9de7ea2da67192d7c7ef5f4d445c544e37fbb649f6b2463e0ff1cbe53c249c"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L11-C33017-R6320.png",
+      "bytes": 3291005,
+      "sha256": "96f96bf29eaf02927c1dc86c54bf90d834d2575f850b9ca23057f5374fc53266"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L11-C33018-R6320.png",
+      "bytes": 3382991,
+      "sha256": "a65f808564ca105f9efb0a712e54606229c9c5c32fe332749a8072d6c03d43f3"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L11-C33028-R6310.png",
+      "bytes": 3612633,
+      "sha256": "ccfb6351fab10ddaf40b27f9020f6c38fbafd1314abe8bdd86a14fd2d7e3cf0e"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L11-C33029-R6310.png",
+      "bytes": 3611782,
+      "sha256": "3d52dc996b3ed59f8d9326c62e1f92c28ae193b67ca51e30f8caa9f97f25d369"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L11-C33030-R6310.png",
+      "bytes": 3811541,
+      "sha256": "38295c9fd01a5eef03f45fbe6b7888b3e3eca2faf09609d0b4a86065776fa7f3"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L11-C33031-R6310.png",
+      "bytes": 3622538,
+      "sha256": "bbdcc8368ad81c5e7ad29ac2f784cc8f27f85e979bc5658d3f5a27b792eb9947"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L11-C35602-R7982.png",
+      "bytes": 3943493,
+      "sha256": "dda6d4e4404120166da0b475a77330ca9edfaf19e6ed979c7f056cbc8dc5b680"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L11-C35602-R7983.png",
+      "bytes": 3782416,
+      "sha256": "d6fa463bfe52af32b5d9f375861d7e2035160a28f2569af8a3fe0d0d447c2976"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L11-C35603-R7982.png",
+      "bytes": 3947414,
+      "sha256": "998f7c2e1dba66d59a0cba5c17fa328cc52c6cedd0db992885c3a147ac9374d6"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L11-C35603-R7983.png",
+      "bytes": 3841089,
+      "sha256": "9c61bdd32dd246358571644d3cccb8e008b8f562e2d281432c888b018d8042ae"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L11-C37257-R8471.png",
+      "bytes": 3831628,
+      "sha256": "ba51f1a984b1e937a827bd62f96b40c3272f6ff5bc4c670b91f637cb88ae7feb"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L11-C37258-R8471.png",
+      "bytes": 3789031,
+      "sha256": "49fb230c8c1f56944ec590e45b1d9f92af96213a3b34ebce032959fe25e27c65"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L11-C37259-R8471.png",
+      "bytes": 3944406,
+      "sha256": "7bdc81ccad18aa785daafb5d981ec16427a6dc02e2adf4c7c8178d3729dd6ec4"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L11-C37260-R8471.png",
+      "bytes": 4105029,
+      "sha256": "d00de2248629cfe2731289d4f83f4b4e1ae9220c84c953f27277be8c702ae869"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L11-C38891-R6629.png",
+      "bytes": 3648582,
+      "sha256": "c7b1b0267055dddacdda9c993f2d7a3e4827ea3b7a495a41ea7ae6944f4f4574"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L11-C38891-R6630.png",
+      "bytes": 3540053,
+      "sha256": "33306f8e67ec8a1bc87e4d188557736e9075209c04b102450937185c182e199c"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L11-C38892-R6629.png",
+      "bytes": 3933747,
+      "sha256": "b0ec1358458a6740eccf8b9effc0b9df8599e1179ca6e2e27b79062cd40bcd3e"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L11-C38892-R6630.png",
+      "bytes": 3641657,
+      "sha256": "15769620c46075777b69bdf320261f3eb818709ba76b214912daf1ffb18ea763"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L11-C41238-R8778.png",
+      "bytes": 3675914,
+      "sha256": "f32c94b7db7c9c77a0c3929a0814470ca5e8ea9d5743845cc9a9a4ef39f96caf"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L11-C41238-R8779.png",
+      "bytes": 3987223,
+      "sha256": "49f97b6cd8083311363c032087b4bfb9f040e881a64d1e61c6c131c2d1b48345"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L11-C41239-R8778.png",
+      "bytes": 3917838,
+      "sha256": "0b0297a681aeb780c7be2f78d3ec8eeacb1e08a899cdf75be5c70dd2f06e5c6d"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/generated/L11-C41239-R8779.png",
+      "bytes": 3991494,
+      "sha256": "6fa26f1286a2117889b01ea21e86e61337a0e5a6d6e85be885fc6701fa84e05b"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L10-C12166-R3188.png",
+      "bytes": 9498467,
+      "sha256": "0474e2098e4f63544c56059375c0c84df6440d3cd1ca17d37f18de9be504cc82"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L10-C12167-R3187.png",
+      "bytes": 8782013,
+      "sha256": "f5a9bc549141dc35d13fb30f999a0d234830ed670c99f763964f678d6c2ee79d"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L10-C12167-R3188.png",
+      "bytes": 8988270,
+      "sha256": "0474dd00f969f677904eb347c05a2b605b117109a1d1097d518b6773b96422c3"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L10-C12168-R3188.png",
+      "bytes": 8658465,
+      "sha256": "2059148451b0093bdfbeeaf5bcaf3c34191e43d01c92ebe9dd530f070e8e6a92"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L10-C12557-R4415.png",
+      "bytes": 8196835,
+      "sha256": "5f2b946df5584756747e15eeb2159b4c107d8d38fa95e81f5eb044f8d08a6591"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L10-C12557-R4416.png",
+      "bytes": 8108106,
+      "sha256": "7c817a36074d751a7b9f958d745f21d8b85193146d02030c07655c15706d9256"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L10-C12558-R4415.png",
+      "bytes": 8677368,
+      "sha256": "b332e3de645e35ed13e1e2e38245833610173269297fb9bace18a2e561815aae"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L10-C12558-R4416.png",
+      "bytes": 7794179,
+      "sha256": "b3d338d91c08a1e46a5c0ed41d7307932ed533e61b2d4efc23314b09cf4d77a0"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L10-C13298-R3226.png",
+      "bytes": 9563942,
+      "sha256": "ac3ea7f06412223503f0d740c428c19c8743154961162581210b0691834a5f98"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L10-C13299-R3226.png",
+      "bytes": 9803751,
+      "sha256": "dcd6d79c79f19460546c8cbded530f02f15239f37791a9b281922b150676992a"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L10-C13300-R3226.png",
+      "bytes": 9054854,
+      "sha256": "71ef9eda407d07de49619c54b40742e39ab4a219b99f4b3f59798d9d2c1479f4"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L10-C13301-R3226.png",
+      "bytes": 8535755,
+      "sha256": "05ddac18067882eeef6ddb1c97eab1f0eb15e8c085c935121a647f204d24433d"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L10-C14154-R3102.png",
+      "bytes": 8078807,
+      "sha256": "01d4ae6388583c45b8584a36929eae77e038c14d200dde7f86a85fd17a0c2707"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L10-C14154-R3103.png",
+      "bytes": 9003039,
+      "sha256": "15e50c2bbeb98895cdf2ac503288ce2dd902dd0ea18d539281d628e7a4574343"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L10-C14155-R3102.png",
+      "bytes": 9026448,
+      "sha256": "c7826db762592978066f5f1b7bc8df75f4475f4076ee0b702cfd85a97165e462"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L10-C14155-R3103.png",
+      "bytes": 8910325,
+      "sha256": "0e76eac9eae3c06829f73d83988cf37586e3c832ca5bd8ee04028a5bc93eb157"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L10-C15011-R3184.png",
+      "bytes": 8094002,
+      "sha256": "1f0d1bbc77c7504f5d1b41dba5b63253d150d50c218b02b6f0b8dfa419a6982b"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L10-C15012-R3184.png",
+      "bytes": 8266364,
+      "sha256": "dcefda3e69f4058a7afb464bcc1d9b4d7e6b2c31d861b2abbaef6f98eac27dc2"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L10-C15012-R3185.png",
+      "bytes": 8724309,
+      "sha256": "324429b9c325473ae9e09ee0f16f5b4551ed590f48f840e49621863499a9e2fb"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L10-C15013-R3184.png",
+      "bytes": 8682532,
+      "sha256": "2a7d2b5e36ac785659ea3c8193ff90dee5492ede15beb7d7dce3bdbd69e8681c"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L10-C15267-R2381.png",
+      "bytes": 6906560,
+      "sha256": "36f18de7de830f7d273746fddcd5b69ed3f996313619dd78228ddbd2fddc3137"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L10-C15268-R2381.png",
+      "bytes": 7201574,
+      "sha256": "ff675a16f0ff75270b971a901763b9294cf725a19f1a4cc0012cee994eae8904"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L10-C15269-R2381.png",
+      "bytes": 7473907,
+      "sha256": "d83e3fd68c0fc7cb78b2c9160b9fb97c827462c00747ee11b965a03e0b05e6e4"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L10-C15270-R2381.png",
+      "bytes": 7103299,
+      "sha256": "8de992b249e3e258e8504d187773ee9517214f70b1529a61e27273639132ed43"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L10-C15780-R2287.png",
+      "bytes": 7793568,
+      "sha256": "4cc354bab5795aa858bfc4e325b763d7110884b99e98313255a3e1321f3be6c6"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L10-C15781-R2287.png",
+      "bytes": 7933423,
+      "sha256": "ca51c2181ac72a4717ac8b8ddfd14d754996a9e29bef298679904bd1e68c4a7b"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L10-C15782-R2287.png",
+      "bytes": 8363071,
+      "sha256": "e761d819224fb51e31d144769f2efc22101099bf13760d96e70b815f4d545a44"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L10-C15783-R2287.png",
+      "bytes": 8243343,
+      "sha256": "3ceef571ff98f212d68cc8cecffcd6ce4c6233293a74176ad6ce4e0249e99ef2"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L10-C15868-R2407.png",
+      "bytes": 8940913,
+      "sha256": "a4314ef95316fbe6cd99029a828540a92eeaf2b8d8018eff94f83c1ca5fb41d4"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L10-C15869-R2407.png",
+      "bytes": 8846009,
+      "sha256": "678f893164b76125ba348a947ac0605261491221117eaaeee94822240c767697"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L10-C15870-R2407.png",
+      "bytes": 10494960,
+      "sha256": "2969e93c41dbc5c41e1112fba8f79b66a79691fed98695d54dacdecfad997531"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L10-C15871-R2407.png",
+      "bytes": 10250275,
+      "sha256": "58b0e83533d74d025348645d7b4ec1123df10a1fd9c7fdb1426d035032729e3c"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L10-C15931-R2536.png",
+      "bytes": 7701107,
+      "sha256": "a963f674b79b21d5d949e4643c3d3b44cfa3d7067d3943c3a5ba3a7b67dba232"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L10-C15932-R2536.png",
+      "bytes": 7889427,
+      "sha256": "b107029f90f77c74d4f0ddc6d3a54b495d9b2b49c9c0b4a602090b5e6c589b8e"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L10-C15933-R2536.png",
+      "bytes": 8917849,
+      "sha256": "80402ad64d609943d73570c31f7955440ed621676c1ed24ea17b042c14a8ffe5"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L10-C15934-R2536.png",
+      "bytes": 8740029,
+      "sha256": "a24d03dbc51b9a57d756826420a9097fe5f92f1738a9fcc89a46ca71b52e36cf"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L10-C16343-R3268.png",
+      "bytes": 8170745,
+      "sha256": "ebf4e23471816e2f87929d148a18480d3a747de8c84e1e8426431baa0dbddeed"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L10-C16344-R3268.png",
+      "bytes": 9047801,
+      "sha256": "68fa45aee99b1952c0a1e244f5a25b3f6d376ba5d3244cbdd5bd834a2b98c349"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L10-C16345-R3268.png",
+      "bytes": 9378642,
+      "sha256": "da1afda6201e650be47b663daea83e4afa1fede7055fbbb3eafd9e67475c3e3a"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L10-C16346-R3268.png",
+      "bytes": 8313096,
+      "sha256": "59da68bb7b1c7dc64222f901301dcb5501399a72bf5cd6e63b5e5513a2040e6b"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L10-C16353-R3305.png",
+      "bytes": 8256688,
+      "sha256": "d324b82556e091f70c3113196b60cda06fd495cc4e72d82f66403aa75ec4a62f"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L10-C16354-R3305.png",
+      "bytes": 8547401,
+      "sha256": "19e46f70ad3a5216ad3137a517eb0e4c2d79dff82102ed9909cf2a5c7bfa7f54"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L10-C16355-R3305.png",
+      "bytes": 9688428,
+      "sha256": "2b31aca01555d7b5cac07fa9118b298f172024974ea09121e2191882b74f03f3"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L10-C16356-R3305.png",
+      "bytes": 9316466,
+      "sha256": "cca82ce3b7542a8633e731b287cf62a57fe4d32a01270f028b70ef5e6af8ca6d"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L10-C16448-R3199.png",
+      "bytes": 9564691,
+      "sha256": "de1230846f2cecec0ce705b2d077b2350680aa16ec4e42e5561ef67243231299"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L10-C16449-R3199.png",
+      "bytes": 9525303,
+      "sha256": "552e53504672e0fc65cc3198b1b7988a3e8ee6edaeb8e550d8af00ad9abd3054"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L10-C16450-R3199.png",
+      "bytes": 8277818,
+      "sha256": "b324ec808d38a5747e89baa25d951928451232a1e20324d3469a12fc7cf8ed13"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L10-C16451-R3199.png",
+      "bytes": 7513937,
+      "sha256": "4a6c04b6f408cff5564f97502c3fc6826d0dea984a7521b5a85dc543f8be36be"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L10-C16487-R3176.png",
+      "bytes": 9742679,
+      "sha256": "871020ad4fb753a9f6b5775c30fe2bab15fb6affa690385e4f410ec936029817"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L10-C16488-R3176.png",
+      "bytes": 9849619,
+      "sha256": "4e3ca3d088eb7ed64dd57d4dbc848152d8e746ce32bdd907d605896edb3f0cb7"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L10-C16489-R3176.png",
+      "bytes": 10211711,
+      "sha256": "746e95631a0d825bdbc94f251433780e302bdc429c148fe5536cb1cace7295d8"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L10-C16490-R3176.png",
+      "bytes": 9733154,
+      "sha256": "efab90218670071dc895319b4804fec53d58bd71bdac46096d4c9488682c7cf9"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L10-C16767-R4161.png",
+      "bytes": 7068832,
+      "sha256": "804ccf459a2e79e85f987e4ea5af9c4b12b8b4386ab422b37f562fc14bff49c6"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L10-C16768-R4160.png",
+      "bytes": 8100727,
+      "sha256": "f566b674c27cc3e7e7c8a8a4f62812be3e5102e6076ccad950127e1cfb411776"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L10-C16768-R4161.png",
+      "bytes": 7643939,
+      "sha256": "b304983165ff14a0a06d18ff3dbd95419e1407bfaea3ee70028211152bf3cdfe"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L10-C16768-R4162.png",
+      "bytes": 7256913,
+      "sha256": "902b9c2dd343c9469ced0ea70ee8577103cd796f92e80761a86e25bcbae01e2b"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L10-C17755-R4005.png",
+      "bytes": 9006074,
+      "sha256": "d6ed1feb1c83be94a515abadd90e6595a46e185475b925b7fbbd5f06e60bd491"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L10-C17756-R4005.png",
+      "bytes": 8922459,
+      "sha256": "734801cc6accfbee77d72b583f9de6a003890f73fcd720d3addca9efa744f74e"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L10-C17757-R4005.png",
+      "bytes": 8659300,
+      "sha256": "023344195a19c2d8d615cbb1b95b94089958e90fd215eeee45bad886a5bb475b"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L10-C18611-R4209.png",
+      "bytes": 11170926,
+      "sha256": "cb262852fd18c972874d371d6f4b5c62de75c3b55f76a5b2fbef5317ad33cc38"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L10-C18612-R4209.png",
+      "bytes": 11089251,
+      "sha256": "7cb54aca964d1b01533694915e395ab9a6468caa69e87031749b3d10c1add607"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L10-C18612-R4210.png",
+      "bytes": 10408972,
+      "sha256": "3bb27d1be24b9f033903d69cfffbb0d27370989bffbf8cf49c8150ca96818fb9"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L10-C18613-R4209.png",
+      "bytes": 10754412,
+      "sha256": "5567eb0e2d5daf41cca6c18acd62ecacd542ff2062a5d68b02c5b44aba67f0ee"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L10-C19221-R5209.png",
+      "bytes": 8673908,
+      "sha256": "a6790045c4d7fb856314bd152887df1fc1819afa5dffd307e1ee979864a703b3"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L10-C19221-R5210.png",
+      "bytes": 8433443,
+      "sha256": "ccd86fae08ce9be7b497a438dc3c24e16b21182928de3a3cd217cbe91dacebd9"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L10-C19222-R5210.png",
+      "bytes": 8511884,
+      "sha256": "c74ceef2e70b55bd3cde2d66f3e11faeb600242e1645b53581c420e59e2057c5"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L10-C19223-R5210.png",
+      "bytes": 8925736,
+      "sha256": "9859332bdf183a0d4c0dc6490b08c0d6c8a712af5ac310119066c6c85204cb72"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L10-C19467-R3349.png",
+      "bytes": 9567359,
+      "sha256": "55b01a3bb93ffb53bb7fd82c92ae4309109aceee5aa4893485f3cbaf7f755920"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L10-C19468-R3349.png",
+      "bytes": 10047600,
+      "sha256": "28c0e6d65e4584621ced848036e2ffdba949e127d23049bada15b90e11244062"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L10-C19469-R3349.png",
+      "bytes": 10597889,
+      "sha256": "cffc18dd0298b672fb83ddf7da3e8d29c81d21096e9f914a9c96680acff22ddd"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L10-C20411-R3171.png",
+      "bytes": 7429523,
+      "sha256": "d6ee3911a692f18a10901ea939c72ca6128d1c8fa1f20eb58d2816e516699de6"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L10-C20412-R3170.png",
+      "bytes": 7570829,
+      "sha256": "380a6e9d91f40cf8e57c50ef215bc88806137d35af7d2c4eaa5fa8ee635a7382"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L10-C20412-R3171.png",
+      "bytes": 7868324,
+      "sha256": "5c8e81b83066a1952effb61730a874d623704b4a6b8a3d5d5442c7591f64bc64"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L10-C20412-R3172.png",
+      "bytes": 6806483,
+      "sha256": "58d1a638702b58546527d01c26cdc81a5de784c0735e75c20cf40cc8642e988f"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L11-C25100-R8770.png",
+      "bytes": 5554223,
+      "sha256": "4dc5dd4ea481a058e7f517723171e059b46da4df1e2bb52c2bc0e00b1d4cb2fb"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L11-C25100-R8771.png",
+      "bytes": 5474397,
+      "sha256": "329e5aec06b83427b66d79762d3829fbd46f1ac230a88f196e00f1e77b0cecb8"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L11-C25101-R8770.png",
+      "bytes": 5746015,
+      "sha256": "9afa34cf6feba65fb5aa9f2b818e4ded7c883c3bcaf572a1195cb278f718fb71"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L11-C25101-R8771.png",
+      "bytes": 5779387,
+      "sha256": "af306ec388e8776ca3b4e900c4600a60f1500fbfcfc3c1ae83774a0e555dac13"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L11-C28207-R6167.png",
+      "bytes": 6684752,
+      "sha256": "daaab610e768fef8ef3103102032664983ecdcc0eba14867813fbe6814621a14"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L11-C28208-R6167.png",
+      "bytes": 7717781,
+      "sha256": "c7cce0998c3f916c4127eab55a1065c7c8624e28cf28664e7e63b8b2da93769b"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L11-C28208-R6168.png",
+      "bytes": 7063473,
+      "sha256": "e2094062b495d42d568f8e2bb07bb2cc1f07b8a809abbbe599046d20120b67ba"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L11-C28209-R6167.png",
+      "bytes": 6990974,
+      "sha256": "913e9d2aa7621e52be1931e27a2a8e6db50f6f672202e866bd106dcee0b9ae39"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L11-C28379-R6168.png",
+      "bytes": 7635845,
+      "sha256": "0cb6771b962b28ae98a67e8401193e155c6e73ec571c0ac3991d3b074b304635"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L11-C28380-R6168.png",
+      "bytes": 7877153,
+      "sha256": "dbccacd28e77011fd004aaa9fccddf216a4b6911c7650825627aba369d4ade3d"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L11-C28380-R6169.png",
+      "bytes": 7818172,
+      "sha256": "810f203117eba7f7ee3043c10e59b8eedd20f28f9e91fffcfa8f60a8d987120a"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L11-C28381-R6168.png",
+      "bytes": 7777878,
+      "sha256": "9cdb7250ebf8c4578c8dfd490cb090442771fcd6a80ef5c963ad5760c8611534"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L11-C29920-R6325.png",
+      "bytes": 8549066,
+      "sha256": "2fccdb32d37e2b393274e17360a70bb90b4c4b89880d71abb54c02867025f5ce"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L11-C29920-R6326.png",
+      "bytes": 8323352,
+      "sha256": "f75fde081e80d517cc9de9a1b9620a35960fcfcb3acd431faec09e0fd504a3f0"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L11-C29921-R6325.png",
+      "bytes": 9011358,
+      "sha256": "371bb07a5f26a73956c4ce76f6d4719846c2da3d9eaefe3db68a1c1bff846cef"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L11-C29922-R6325.png",
+      "bytes": 8568622,
+      "sha256": "0c0919e36e7be99b17efb588074afa89f61d3740bd856b575ae9639688b381c4"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L11-C30354-R4685.png",
+      "bytes": 6506832,
+      "sha256": "eec2135c0d8c99376de4b43b4b1881978e598c0b663fea4e1bda48a91f5759df"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L11-C30355-R4684.png",
+      "bytes": 7081650,
+      "sha256": "21d75cd72d73ee37780eb121a445d997ba0acaa2508959b8bbd66e376aca6447"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L11-C30355-R4685.png",
+      "bytes": 6454402,
+      "sha256": "f59fb4d494fec06c16af6b509694a55e06fb67e92b10fde51ae545e97de95a30"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L11-C30356-R4685.png",
+      "bytes": 6358051,
+      "sha256": "9c184159944355067f58ca936c19b7778031624befb0c57541edefc3294ceda5"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L11-C31611-R4622.png",
+      "bytes": 5965186,
+      "sha256": "161d9a63f2d104b19a958dfcb8e046b05cc6507564e6836509b940309f8b3076"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L11-C31612-R4621.png",
+      "bytes": 6519582,
+      "sha256": "d777acadcba91ab6b4f76e2d42b143e2b07da762fdb42d558be3eeccdd6f205e"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L11-C31612-R4622.png",
+      "bytes": 6377563,
+      "sha256": "fe23bf63944544fa4127ef0258ff89a38e045dc0e6e408131bd3423ada9ed19d"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L11-C31613-R4622.png",
+      "bytes": 6613933,
+      "sha256": "844299d5de2ead4cc90273e15a67f4b61f6424ab7a417f3d1cf7da711ad3cd3c"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L11-C31792-R4936.png",
+      "bytes": 6918318,
+      "sha256": "f8f0c68c0a9c4904f360bd7b166301b3e4b5fb8a61f2552f9d63b09ba4746db8"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L11-C31793-R4936.png",
+      "bytes": 7100525,
+      "sha256": "84931dad5f6657c7b173826871605761718e2cf5522adfae5e7039dda646206c"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L11-C31794-R4936.png",
+      "bytes": 7241738,
+      "sha256": "967bd26e5849b1cc9c53d7a30dabac0e2c19eb942a1c50e1331bd95927e09c5a"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L11-C31795-R4936.png",
+      "bytes": 7198969,
+      "sha256": "df945c8b55d0fc12715727f646528b511abb20f80f3a8d77c3433870c2b9974b"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L11-C31949-R5047.png",
+      "bytes": 6464050,
+      "sha256": "b21d6688a5ab879a00d0d12e70e8ae0b0b10a6299f40190cdfdc5d6d7f61f6d6"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L11-C31950-R5046.png",
+      "bytes": 6335584,
+      "sha256": "051de0a75408aa2e3a4d4a25df35739ee3b13819ab64768f0372fe29bced2e58"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L11-C31950-R5047.png",
+      "bytes": 6199305,
+      "sha256": "7224624f2ebd2183cd48e0a8819c792a6e4fabb8a7428079053125fe58f21de9"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L11-C31951-R5047.png",
+      "bytes": 6774518,
+      "sha256": "9709e20ac5727bd60354bf5c58294cb4dadfef1fa75f102d5497bf982f995cfd"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L11-C32987-R6332.png",
+      "bytes": 9043445,
+      "sha256": "803bc1784d3c5b8fd5760e373bdc92f3d98e3a79dc6766cbe367c0f5c6e2f809"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L11-C32987-R6333.png",
+      "bytes": 8600493,
+      "sha256": "61f1f267746fdd285295940d9dd40ed7c4432a28cb4d6cf0f564956753d4298f"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L11-C32988-R6332.png",
+      "bytes": 9130805,
+      "sha256": "0691d8b4b958f346b9f38e9f49aa475cb9913ee5d9189c17481b0d5ee268aae3"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L11-C32988-R6333.png",
+      "bytes": 8737104,
+      "sha256": "d0a7bb080816613c05a60fb345add499c251da8557bcebbb12963bd98e266e7a"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L11-C32996-R6322.png",
+      "bytes": 8653904,
+      "sha256": "9ecf8a59e60bfba191e9b1eb67567d0e183587baa63813c95218cc7933d392a7"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L11-C32996-R6323.png",
+      "bytes": 8944273,
+      "sha256": "a512801e9858ce3799d45c87e8b3197d0211b004cb224fd18016b8965bc8cf62"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L11-C32997-R6322.png",
+      "bytes": 8896378,
+      "sha256": "78cd69ab7d7abc5f8cd217fa58d887873fcfcaa00108a6f9d8eb72e788de50e4"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L11-C32997-R6323.png",
+      "bytes": 8898275,
+      "sha256": "6965019e8527119916dea8d54b07bf8155ffb454d1ec05f3cf0433a1660c6e8e"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L11-C33016-R6320.png",
+      "bytes": 8058687,
+      "sha256": "a4053320e03b1fd7e6800adaa4ff09a5b34220f31c7fdca813aad93565666f33"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L11-C33017-R6319.png",
+      "bytes": 8473731,
+      "sha256": "9425b36c772dc161065cc5e3cbba844e8fbc55f4db8cff440b307c66477402a1"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L11-C33017-R6320.png",
+      "bytes": 8109689,
+      "sha256": "60a966caedccb4ae6a5847220f7800afeca2006cabd6d45cad03c7a741392120"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L11-C33018-R6320.png",
+      "bytes": 8288271,
+      "sha256": "3e64675a364abf617dc2c989ca08f4a3d51b1bbc9900f0fe6e2cfec01c019ef0"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L11-C33028-R6310.png",
+      "bytes": 8743401,
+      "sha256": "6b086ed6eb6b82026e4d6e7fb69fdec5f41748ac702a9d5225f7bd2767fcf6f7"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L11-C33029-R6310.png",
+      "bytes": 9184721,
+      "sha256": "64176ec787eab40d4f11ef53459928f9845d2eb046b5afa8e8bf5ceb044fba69"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L11-C33030-R6310.png",
+      "bytes": 9331709,
+      "sha256": "3259dc91bdae5cb46976d60b058114ca797a96b65ba50e0503da7fec23f3fc97"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L11-C33031-R6310.png",
+      "bytes": 8747014,
+      "sha256": "0354dcf5b19c2313600fa8e401bb1d9bb6e6b88675564a1551c283c511cbd1bf"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L11-C35602-R7982.png",
+      "bytes": 9473736,
+      "sha256": "f6778ae0642960a61b14b77ce59e2d34b46a4f9d8969be8750ec02868f87c903"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L11-C35602-R7983.png",
+      "bytes": 9115537,
+      "sha256": "1e2b296e26bd7ac2a809bd02d6f98422d70d13a650aa1fb6cdc5d2c16da66472"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L11-C35603-R7982.png",
+      "bytes": 9801990,
+      "sha256": "43df20401b7f5784da44d48d4ea0850037eda281b5c6f0144a4b134391bd84c4"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L11-C35603-R7983.png",
+      "bytes": 9065831,
+      "sha256": "60bb64bdc29ca48da15d2c444ff70d2c1be0b7eac5b233eba80877eaf8fcef9d"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L11-C37257-R8471.png",
+      "bytes": 9061860,
+      "sha256": "75c19845dffea7f59b85a36cf7eaeb2e376f9fd0cfef1e70126ca64055ab9ef6"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L11-C37258-R8471.png",
+      "bytes": 9223071,
+      "sha256": "e12ee29a35e8b73ebb06d909f47584d52a2d5265228964d48048a61eac792840"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L11-C37259-R8471.png",
+      "bytes": 9605760,
+      "sha256": "5279f1222072a8ff9316e9ef52b751bbfe2bb9da42aec5c069f1fc41d471654e"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L11-C37260-R8471.png",
+      "bytes": 9613603,
+      "sha256": "51bf5cb347a7f8bab138daa56c8fa03a7352573658336b94cf285eaa3b28bab2"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L11-C38891-R6629.png",
+      "bytes": 9074897,
+      "sha256": "1d8aad3c04c53eb82c4a8f3940543fed51d5c5faa9374547601a56f18cace8c5"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L11-C38891-R6630.png",
+      "bytes": 9080696,
+      "sha256": "421c253804992f216064aea4b03b9a32d035b60fa720eb707faa0f3765da3c93"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L11-C38892-R6629.png",
+      "bytes": 9438944,
+      "sha256": "d65ca943733f27eaf1228a257cf44c169e6344641a7db2aa756bb42fca82b13e"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L11-C38892-R6630.png",
+      "bytes": 9302908,
+      "sha256": "439404acc26c1d6a210ce64511fb07aed7c79ead55f6379e6278d5ebf69b2209"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L11-C41238-R8778.png",
+      "bytes": 6409567,
+      "sha256": "9b3be761f90b9c67b38363a8f1532f52b4323e3d5fcdfd5bf0a75175d945580c"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L11-C41238-R8779.png",
+      "bytes": 6568037,
+      "sha256": "eaa4119e8bfd079db13acd65d6d81197f835bf5248f5b89412d27f96fd92108c"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L11-C41239-R8778.png",
+      "bytes": 6785234,
+      "sha256": "ef8f2877036ca43c60122569a766dbfd4b885a7e0cbfe8736928f06c0e490a93"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/guides/L11-C41239-R8779.png",
+      "bytes": 6839543,
+      "sha256": "9d6f111339da6448945e85ed6984392f04477c652a857b546460725f7144c1c9"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/continent-routes-ui.png",
+      "bytes": 1354288,
+      "sha256": "736b0ccf16ca086bd583dcd4b5f8b388f18c2eb6d68a662d4232a1ade885c09e"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/continent-ui.png",
+      "bytes": 1305509,
+      "sha256": "7af7dea5db62977d68915b8749630d046a80d95ca91806d3dd9ea1fa9c6ffb7f"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/generated-0.png",
+      "bytes": 5162452,
+      "sha256": "230871fbda3fd84e7e20dbe928a87019cac96b6a522d61085a460eff5266c9db"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/generated-110.png",
+      "bytes": 5186562,
+      "sha256": "6dc6000745423169e40100f54222df1bdbfec8c639c77562feec3afb1c71395b"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/generated-12.png",
+      "bytes": 5164845,
+      "sha256": "ea13b078867e02701f887c66945a04b469e18a5b7f8167d4fc4b8520f86738e6"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/generated-122.png",
+      "bytes": 4887510,
+      "sha256": "42b8a33b81622e6233311856d3456535062a51f821e0c31622f41abb780e5652"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/generated-134.png",
+      "bytes": 1662309,
+      "sha256": "7c3a3db8b144035fce7ac1a99c0deddb0c287d86ee5003f4f2b84611e7620b40"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/generated-24.png",
+      "bytes": 5168212,
+      "sha256": "e254812a4a55e37ec128574310d53ffe94af2a3d26aa8c3161c255f7dd89a774"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/generated-36.png",
+      "bytes": 5097119,
+      "sha256": "3feb84cb68c1d4146f33c55efbc909c09d3336aec2482355e221a1ef9df546d7"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/generated-48.png",
+      "bytes": 5124035,
+      "sha256": "bd0d97d72b6177b90f4cc77d5ab414e03026fab9689379c4ca220a2733f03e4b"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/generated-60.png",
+      "bytes": 5042102,
+      "sha256": "a826eb964f523c10493000680783ef0df4631d1b3d0907ad08586e66b095ce82"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/generated-72.png",
+      "bytes": 817852,
+      "sha256": "92eb9a338eef21d872f66c704387b1c5345d3140d2cb79ff07b737fa3cba92df"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/generated-74.png",
+      "bytes": 5082511,
+      "sha256": "d5dd072f735aa0060c383df6431642731560f7c89d5da349529eb6822a132f5f"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/generated-86.png",
+      "bytes": 4989041,
+      "sha256": "d18e85379c115d4033597a26c647c5c9dc1caf285fa7757a834742f8aecc754e"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/generated-98.png",
+      "bytes": 5089691,
+      "sha256": "50a6105e750d1fd48acba1c2cc198d8a909a1e3add7697cbf220490d3ef69d40"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/guides--0.png",
+      "bytes": 4770557,
+      "sha256": "e909706a46ea24f600c3f75e3fa570e946b2e485f3b32be00ec5acd63603b02c"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/guides--108.png",
+      "bytes": 4839244,
+      "sha256": "90461864674bea53940ba1a39c84bac1c5e4bb788bc8d2ee3ac1ec5d41f02528"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/guides--12.png",
+      "bytes": 4846884,
+      "sha256": "2a4bb69cd6292532f0ed657bbf8a7ff16e569699bd5fa2d6c0a2e6948eee500e"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/guides--120.png",
+      "bytes": 4477241,
+      "sha256": "26b88c575886c5ca150b5a9e2c28a081bea50f6069f97ca6eebeba99470fe148"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/guides--132.png",
+      "bytes": 2285712,
+      "sha256": "8eb51561306f0cc88e15967dc4ab7e78a443af67b8f6233bb5c30385f280dae5"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/guides--24.png",
+      "bytes": 4796278,
+      "sha256": "c286f9e42a98af26a015120a8c6de59615d2e66b3a0e49086d07e3acd11164be"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/guides--36.png",
+      "bytes": 4683678,
+      "sha256": "fe26b052e1f25ed6ca0f811e4a8d3fe0813beb42fa83b7071c383288dbde7851"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/guides--48.png",
+      "bytes": 4742314,
+      "sha256": "1cf2d9c9f2cabbc45fba89b46850a551e0c27de574779dae1519c7dc07590161"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/guides--60.png",
+      "bytes": 4636291,
+      "sha256": "8e6a2c09b6649ffb83f46968718d7a70c8d900a3286fbccf1479147cd3b782d9"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/guides--72.png",
+      "bytes": 4747620,
+      "sha256": "6f86da497d6d16cc8bc28573ad31917b71ee1738d7a7b1ed89d6d85e7a7c232d"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/guides--84.png",
+      "bytes": 4759043,
+      "sha256": "85310006e80d102326d6a40832feec353947e030fa73601370e23beca751e995"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/guides--96.png",
+      "bytes": 4561583,
+      "sha256": "a8f242c889c044fc6c516bb096df39bae52cf5cc99809e4953144ee1417174b7"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/M01-ui.png",
+      "bytes": 2889259,
+      "sha256": "6b012261352606144d1bc5f491e8ee8a0280cd877e67408f6595552236a68222"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/M02-assembled.png",
+      "bytes": 42089672,
+      "sha256": "d37cb1bc94b3e203f35578f239d8589591a116ea651c96c2847084bcb93eeadb"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/M02-close-ui.png",
+      "bytes": 3097877,
+      "sha256": "fdaf548ce6b464f3c706717d263d3cc031ac7ceef75e434f2c64d387d1ef011c"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/M02-grid-ui.png",
+      "bytes": 3102145,
+      "sha256": "af74599283c3c6c4c2b87d393c7d95ed685aa1bbda9dcce22abeda66298f9e87"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/M02-overview.png",
+      "bytes": 3044013,
+      "sha256": "a2dbbb57279e16d48b120b2b629ad6411e66030f4f1d6a417e7941fd0fab72c4"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/M02-reference-ui.png",
+      "bytes": 1431973,
+      "sha256": "629a9c9be5bd49fc4c62f31730b272b9ef11ff72b41b93dbf0e11ef39bc6d939"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/M02-seams.png",
+      "bytes": 2411013,
+      "sha256": "2894ae273e3b54781da4e30bf8b23db5708d19d6116c613dda3e3b1b831624fa"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/M02-ui.png",
+      "bytes": 2767396,
+      "sha256": "1fea99c569f976ae196e9a3e5e8ca9311b61657e429356326972f171096eb956"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/M03-assembled.png",
+      "bytes": 53303396,
+      "sha256": "46fa0b581d86987db2cd1ae69e7dad6c165ba9899a849ea0d13d045df6a4fa2d"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/M03-overview.png",
+      "bytes": 16186030,
+      "sha256": "3e305da4e3cb21e604658112f8277a68096e8b6b00dec59047a5cdd3fe05dd4a"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/M03-seams.png",
+      "bytes": 2393259,
+      "sha256": "38be67179d7094da1afb490eb4f9fbe269ade5c7a05b4bcabd30775220f29906"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/M03-ui.png",
+      "bytes": 2321560,
+      "sha256": "a2e8984d82a4e153bf547811e49523c978ca60dd8e1fe73204013c80e40de79f"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/M04-assembled.png",
+      "bytes": 42592389,
+      "sha256": "64d29347748d4d31a4ddb8a6dbb6f37d4d15905f871b4dc2a21aceee5a6cc748"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/M04-overview.png",
+      "bytes": 12178567,
+      "sha256": "cc4df8bdaa3b8910dd39a6c785b87cf91bec4c4c1e60bde85132c20142e498d3"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/M04-seams.png",
+      "bytes": 3211889,
+      "sha256": "230b22c4e3c53e08aa26cb9a495adb92f191a0d083d40cccecb32c7a0cb77e5b"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/M04-ui.png",
+      "bytes": 2400422,
+      "sha256": "79ec9aacf4e20a0d7f7f50112e28bfced0a01493128f23f5471b05c8769bb294"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/M05-assembled.png",
+      "bytes": 56043285,
+      "sha256": "02d1dbedc807e5443f89a6da2d0ea2353c72c65b85aee90578013fc7162085ca"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/M05-overview.png",
+      "bytes": 7748647,
+      "sha256": "7c82a6367260d23422ff8190aed3ee7c8c4a3dbecad205b9522c79cd9108f85e"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/M05-seams.png",
+      "bytes": 2472524,
+      "sha256": "157a5b0946969f2fe4b482dd6c8cad9f786ae0cae8ca4de79dbc0e39f4b5e082"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/M05-ui.png",
+      "bytes": 2288311,
+      "sha256": "63115c276795c779f4e3b2896f030e33764a37ed38a6bb9f810c646b89f0928f"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/M06-assembled.png",
+      "bytes": 52841241,
+      "sha256": "67c63bc391f32d1d89bbbead3b9dd4078ef16b1817bc5c29bbebec45c9fe5d71"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/M06-overview.png",
+      "bytes": 16068949,
+      "sha256": "2250b392719c9a3c0c3960b429ecda327ff9104aa447938fe4b6bcc90c5cbf16"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/M06-seams.png",
+      "bytes": 2290944,
+      "sha256": "7302588a24c9049e5615f08483b80728817898343f61ff5ef88f04561de95bc7"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/M06-ui.png",
+      "bytes": 1878058,
+      "sha256": "8a6d8c8c8489a64cc65a818bcdffdc48894199d2f43845974e558647e6835acd"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/M07-assembled.png",
+      "bytes": 42795858,
+      "sha256": "45807437001124506afa511e30a1733f312f4fd5dddaf906096f7f57359834b8"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/M07-overview.png",
+      "bytes": 3076326,
+      "sha256": "61932e3c0bdde68800e355fae6da755588646eaaa1cbbc9749752a43fe4a960e"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/M07-seams-blend256.png",
+      "bytes": 2442413,
+      "sha256": "04b4aabd0c8f7e4c543299b999c3c16a4241ff4707bbf31be55df0dbb0735266"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/M07-seams.png",
+      "bytes": 2476996,
+      "sha256": "7860ab15862f7c9a8d6b5114290cfbc198c5314bd0acd65506dabe3be9067c31"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/M07-ui.png",
+      "bytes": 2802298,
+      "sha256": "a1dc732186c1ebc47d05151a4fa04e008ff83a7fbc30c91825da281f5fa984c0"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/M08-assembled.png",
+      "bytes": 59453869,
+      "sha256": "886420957503da852b1648132d7fe277abbd6bedaf3c8e3af8d39db7d2e70c3e"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/M08-overview.png",
+      "bytes": 8045302,
+      "sha256": "71e03799980474e754ef7aa7859916291f59421da56910ad1ded69f425171808"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/M08-seams.png",
+      "bytes": 2356032,
+      "sha256": "d89ce1062b190815ab06f8e3cbfd1958119b2d465d6c7debf0b69e394ed90fcf"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/M08-ui.png",
+      "bytes": 2461692,
+      "sha256": "ab60e9c0e6372cbaf16cf02eab545cbb2faaa3e6c5f905116d48b6833ecf402e"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/T01-assembled.png",
+      "bytes": 42448808,
+      "sha256": "80bc28a99460073522176be30dafd75e56bb787f9b342b7734695f70a4631d63"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/T01-overview.png",
+      "bytes": 3049853,
+      "sha256": "2b82911de1f201658300e52781898b47ceac22ea7c717e469df207fb1ce66b25"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/T01-seams.png",
+      "bytes": 2358082,
+      "sha256": "fef282b727cfbdc07bb7283010f84fc1265bffaf636c488f069abb1ed0654afa"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/T01-ui.png",
+      "bytes": 2792268,
+      "sha256": "cc39c28049a09934fd57558f37b1a803a88a49d61bfec13e68441981e09ea9d7"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/T02-assembled.png",
+      "bytes": 42886622,
+      "sha256": "3fba4673d908911864dcc2cd676822433a040ac3ca51d843f120f7b6b470749c"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/T02-overview.png",
+      "bytes": 3024575,
+      "sha256": "2756b3c16b3f8abdd388f66c27beca2b01bf6cff5af6b2bb5b97370d13669407"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/T02-seams.png",
+      "bytes": 2457294,
+      "sha256": "cd865deac2454d6b4bfcba66faba4d7accaddee69eb6366c0ba823ad36ccdf5e"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/T02-ui.png",
+      "bytes": 2761182,
+      "sha256": "d822f46c53cca5c50efdbf38cc0f65df96a481e6ca113784abe661168289d37e"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/T03-assembled.png",
+      "bytes": 43061109,
+      "sha256": "cd51af67202165c0810ac128db540b3e8f6f2e9249c1451cc2445fbd53fd3cd0"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/T03-overview.png",
+      "bytes": 3029146,
+      "sha256": "a6e7861f0bce80c5ff0992cac16a835b6ad5aabb0f0eb07722b4a58179cb05cc"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/T03-seams.png",
+      "bytes": 2430996,
+      "sha256": "af64921a197e71d25c3c4f9938547e87960baefaa2b8ec8bef3a4f904861d49a"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/T03-ui.png",
+      "bytes": 2770021,
+      "sha256": "c088c2595db02c2aa211f3e70c17ff0c252784f0f0d45836c884ddeaa4f02d05"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/T04-assembled.png",
+      "bytes": 54887773,
+      "sha256": "efae0950ec7d8b340adca8ce614dcaf42a487a159215ccb3a29316fa3aa87124"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/T04-overview.png",
+      "bytes": 7608332,
+      "sha256": "ecb781cb0e511ee81308e5e6ef1df9bbc99e1082ea5bb196946120081bbd763c"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/T04-seams.png",
+      "bytes": 2415554,
+      "sha256": "eec07e43e99d9f2eb132c0db5ae78af10dbf8745c306db5ed5b4642756ada4e0"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/T04-ui.png",
+      "bytes": 2413455,
+      "sha256": "21213ffab0b263ba7e2a2b3a4ecdf4f6af3df59abb164b997843ca5c9e7ecf51"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/T05-assembled.png",
+      "bytes": 42443356,
+      "sha256": "11c52eba81d216f63daf08c3f69162cff57192b1c8c69c805f2ac87f072164dc"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/T05-overview.png",
+      "bytes": 3024055,
+      "sha256": "41e5710673c5801441cb461b738cf76a7929757ba65ea9fdf837c658b41b9738"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/T05-seams.png",
+      "bytes": 2386273,
+      "sha256": "a755924c009728170240e6e6bedd3d4a4007fa0312c0ea58edff863021a78c79"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/T05-ui.png",
+      "bytes": 2738303,
+      "sha256": "1fbe826bcf21491772d9f9266641baa8fa6e2df87caa3020c531eb0441fb54a8"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/T06-assembled.png",
+      "bytes": 42784747,
+      "sha256": "e9fe262fb459063e431fd72e8d357a3458d46823f19321d71344934f17b48921"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/T06-overview.png",
+      "bytes": 12229669,
+      "sha256": "600d6bfadc3c610e51a7bc3d860adfa8eaf52e9425225a3284cecdf2bc3b5404"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/T06-seams.png",
+      "bytes": 3294733,
+      "sha256": "f7ffed8bfdb2468d017a121b5982d85916cf08dc8b4c1d3794405d817f220e51"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/T06-ui.png",
+      "bytes": 2219489,
+      "sha256": "2e957ba9f5e1620af07d57bc38726e7cdaf4d7a59e31ac91773b09137ee29076"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/T07-assembled.png",
+      "bytes": 31586818,
+      "sha256": "cdd8cb41a5077a9dc8d9caba792c0d4d8deed19463253945b59ab151174702e6"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/T07-overview.png",
+      "bytes": 3954306,
+      "sha256": "fadc68f72202175aa8a7125b90a9c9f3f4b7a6849afe6a73872352a4ff4736e1"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/T07-seams.png",
+      "bytes": 1589332,
+      "sha256": "7f46d43a30b4f48cdc7588e5d37de0c3a04e0918b155b0e725ef41fdc62056a9"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/T07-ui.png",
+      "bytes": 2716222,
+      "sha256": "6b21ff10aa72bb70474fb8853b21378c1989e04ded6cef28c9b0fdbe2e786944"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/T08-assembled.png",
+      "bytes": 31984391,
+      "sha256": "71a09afda37b034f29589c8669dc9cd21fecb9772c11b961207adac809c573f8"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/T08-overview.png",
+      "bytes": 4054090,
+      "sha256": "b8d511f0a2ec1362f6d5044864c26ab57bfb6ea6943d476e5d41469e2ce93a2f"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/T08-seams.png",
+      "bytes": 1631826,
+      "sha256": "f0d23f4648ac346333a516dd00f85a93ed3b88e4a1d96522bdc85a5119013191"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/T08-ui.png",
+      "bytes": 2715923,
+      "sha256": "6acbe610bf77a4c4bfebfde5bcc72b433fd3197662e547c5249053e7264875c7"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/T09-assembled.png",
+      "bytes": 55322087,
+      "sha256": "ffad4d056847d176038d9fa821c0f163ef506697f12b03a800cad42cd09d5555"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/T09-overview.png",
+      "bytes": 7603815,
+      "sha256": "a6af28324dd70ebe9e8e97faa5668ad8feccb5166f22c0db269793f9e32ac27c"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/T09-seams.png",
+      "bytes": 2446388,
+      "sha256": "83dd2154d4691ce7c8e48e0230518c1d1ac565e05440862986d5b32929d14f91"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/T09-ui.png",
+      "bytes": 2167780,
+      "sha256": "71eb230c09c76c886162884d84d3e0aa0462de3f687a70c51982f9d8171aefdc"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/T10-assembled.png",
+      "bytes": 41382170,
+      "sha256": "71e94b71567a6da2613e7f9bd6ea67d5a426f9e8c7276ec44fe16f663edeb9f1"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/T10-overview.png",
+      "bytes": 2982864,
+      "sha256": "bab244885171cc4cd7062a7f1ff102c822053903e661e65d92319d8dd4c73283"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/T10-seams.png",
+      "bytes": 2326793,
+      "sha256": "2ca22161a470d1a427c93ed1670566e1a44421344b89d4cb302711ecc9632500"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/T10-ui.png",
+      "bytes": 2701536,
+      "sha256": "b7cd7b58292ee0d1792b86326abb367fd9e129c5c04432e37cb7ece3a1280e14"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/T11-assembled.png",
+      "bytes": 41242350,
+      "sha256": "c93fd593187352cf19354ad89adb5c42e380eb3bcb20b24ae4a63c3dfaf58069"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/T11-overview.png",
+      "bytes": 2949611,
+      "sha256": "8cc85d6aa493efce6c71cfcc31c6ab488481ea07bd43c67c9f72216b6187d81d"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/T11-seams.png",
+      "bytes": 2327010,
+      "sha256": "f76e687a86e6d5c705e8b7eb181a743763499ba0b5c85bd81f3f56592498ebfe"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/T11-ui.png",
+      "bytes": 2610771,
+      "sha256": "811102f466e2101217a2daaf2252822245b624907000de71097ce096b63a5c94"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/T12-assembled.png",
+      "bytes": 39602936,
+      "sha256": "95355c5224daa472a8544c601098fde1deb36aa2116179653a881de68b207e24"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/T12-overview.png",
+      "bytes": 2815635,
+      "sha256": "485b5fde90b03224289fec34add8bec339f8fa54ac1b1a14e2e6706bcda095dd"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/T12-seams.png",
+      "bytes": 2296214,
+      "sha256": "7c539e4a095978a87f867b39007d3ee1d02167ce41ea217df407198ee6564646"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/T12-ui.png",
+      "bytes": 2510283,
+      "sha256": "4c70b514d1d1285ceb0e796bd6a656a4baf13b51a96752f62bf04422eb59f984"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/V01-assembled.png",
+      "bytes": 52808744,
+      "sha256": "ca708eb8b0f3b41fd525a4cb09cac9a95207b653cd5991f264ec5780780c4390"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/V01-overview.png",
+      "bytes": 7391084,
+      "sha256": "f320b84f0897def9e9c839dda1a0a5653f2bbbd3dee4f03d0ed9d983a2b53470"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/V01-seams.png",
+      "bytes": 2341184,
+      "sha256": "e5bd2cf2e1df22fa3309fe858b3e4f194fb22ab1a98495218f685e71925000a0"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/V01-ui.png",
+      "bytes": 2446049,
+      "sha256": "0cb59b2b05c2a4dd4577f5775e8a7dd1d7fed3dcfef907553934bc38d08e66c9"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/V02-assembled.png",
+      "bytes": 41967892,
+      "sha256": "e86bec5c94df83f59ee4b34879efff68bd96711812511fae158fbb6c00c788f4"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/V02-overview.png",
+      "bytes": 3001734,
+      "sha256": "2033985f27d961fd2510137bdb7c7a8bb3f4c367b9ae31114131ddf4d053a0ca"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/V02-seams.png",
+      "bytes": 2404883,
+      "sha256": "3c925aead73b93bb0104d69565064be982deb398c0da5d5924344aa58a24f19c"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/V02-ui.png",
+      "bytes": 2751282,
+      "sha256": "fe926cdfd6c997591a9852908233f66502e330051a18237e9955d9ff0554d1b3"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/V03-assembled.png",
+      "bytes": 43162372,
+      "sha256": "63724272981ea8c1c46e4feb69b43d08f0c1f7e366de822d975b504ceb3a63a0"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/V03-overview.png",
+      "bytes": 12145054,
+      "sha256": "7a8c015a76bbdf082427cba4ce84ca098019ee4f508d33dc8d8367b0fd28847a"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/V03-seams.png",
+      "bytes": 3244509,
+      "sha256": "746f730cc0e51674dcd1f35bcdf5c83462165720db08147a07fb718b409f244f"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/V03-ui.png",
+      "bytes": 2442023,
+      "sha256": "eb1962bc3dc9f8051da5e51ca577fbcdabfac8b11d24aa1b6b1b0d8c936e1bdc"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/V04-assembled.png",
+      "bytes": 40808918,
+      "sha256": "8d6ab6e3a58a65f64468ee28d1801bb35659187a618b6d8d2fef4d89abaf0739"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/V04-overview.png",
+      "bytes": 11592743,
+      "sha256": "2128a3e01974c28a0ab0863ad507617d286b0d829ae1e2ba77ed8b1449e9bb11"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/V04-seams.png",
+      "bytes": 3175462,
+      "sha256": "cd13539024a32a36764e70155273724aacc89e38612d4e934eca0d07dfc9f055"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/V04-ui.png",
+      "bytes": 2494198,
+      "sha256": "0262d02e33589418ddaa06ef3bc75c9aabf3927c252d79d3bac74cd2d0d68f88"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/V05-assembled.png",
+      "bytes": 53985233,
+      "sha256": "9e41041277e493390b7aeefef7bb171b515dc9c2fdae1bf6a6c07b12dde4b79f"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/V05-overview.png",
+      "bytes": 7468933,
+      "sha256": "bd5233faca98d07e99ce665084fb2590dfd30690cc643d4c254d70acbbe1a76a"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/V05-seams.png",
+      "bytes": 2397125,
+      "sha256": "304adf30c1f4419d35c7b4ef7b05a68ef3ba2cd88e106247d301670daf1f638d"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/V05-ui.png",
+      "bytes": 2238196,
+      "sha256": "97683d4891c635215b93fa3d68f031f5ed708a8bc23759f184710cf6b4db51e2"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/V06-assembled.png",
+      "bytes": 51565036,
+      "sha256": "dadfcfd14db0c7e275137afb85beac471d8b020f80bc9819ecb2ab14a664a104"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/V06-overview.png",
+      "bytes": 7137452,
+      "sha256": "7070181a201f3231dd8b0dfc2fa9a625650f338136c806d5df5f2455e90dca1d"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/V06-seams.png",
+      "bytes": 2309570,
+      "sha256": "7847d87cdfc40f938a8765f90a5f0835f7842571c4c494afe3d51ae2fb17aeaa"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/V06-ui.png",
+      "bytes": 2129521,
+      "sha256": "3ded73a2104f4a3764c97e6493873dbc30e74a2c1f08f338cd2e1d055ee5b439"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/V07-assembled.png",
+      "bytes": 54594843,
+      "sha256": "19df380914174323a441a55884947ed8f8c4a9c9c41e84c29ed5f8173f143ad8"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/V07-overview.png",
+      "bytes": 7532409,
+      "sha256": "c43a95ddf4c2b820f4ed39c49dae52742474e8dd18d64c9349ad5633dafafbe3"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/V07-seams.png",
+      "bytes": 2392075,
+      "sha256": "f2b4df2e6f757eb1fe121f87c68e63469ed7d6c6f79f63984e53ecb0a30b4d0a"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/V07-ui.png",
+      "bytes": 2240907,
+      "sha256": "5bb46eba57a108e4b3ceffff5d7fe2d9bd79f5e1e5b713b9477e743c3acb93f7"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/V08-assembled.png",
+      "bytes": 41838370,
+      "sha256": "5f71fc690a1abf2869f8f43b7d0c2c65fe44b804a437d7f9b34fd971427b99ba"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/V08-overview.png",
+      "bytes": 11855930,
+      "sha256": "6d8b026af89405f185f137af52fe44a88ae769ebb94d7cf6e1b22fbf144331ec"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/V08-seams.png",
+      "bytes": 3162684,
+      "sha256": "ed305368adcf47ce096588771b2c564dae2ced2e3d46588bad22db689eff948a"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/V08-ui.png",
+      "bytes": 2018150,
+      "sha256": "12342ff4c340c4c8433df88f0bed9e1c458b80eb3466afd05030c9c3188e1594"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/V09-assembled.png",
+      "bytes": 43570362,
+      "sha256": "8da730a9039d26f4dfc49c655d843c05d26b09dc9f76ac7f4312fd336297528f"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/V09-overview.png",
+      "bytes": 12312378,
+      "sha256": "70c363499db35643231773313609b989010a17ee26836efe8acd839de7ad26e0"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/V09-seams.png",
+      "bytes": 3258141,
+      "sha256": "522b54b9b51fbff78c6e340187fd64ec66b149efd7d5b6325f0a44852aacd1d9"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/V09-ui.png",
+      "bytes": 2395499,
+      "sha256": "856b7315984099df7ec27c0fe58f5fb16b300a48860094068ae635b81a362230"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/V10-assembled.png",
+      "bytes": 43209677,
+      "sha256": "91e154565091e8f2163656b1d411ac4eba285818186b6c648ac4f668e0ff4046"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/V10-overview.png",
+      "bytes": 3092401,
+      "sha256": "c2199028bbd017c931e503e87c1743a5ec8ee6e58e7740cfe96d5dca2846519c"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/V10-seams.png",
+      "bytes": 2434019,
+      "sha256": "d160bf5a317b6b7dbe604cf8d3e6f8578a9f625e02545361a1eb8462db4fc0bd"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/V10-ui.png",
+      "bytes": 2654695,
+      "sha256": "819be994f5021e50154fe550c7e9dfd274f303e79c8fc09fc4fa9e948897ddd9"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/V11-assembled.png",
+      "bytes": 42449682,
+      "sha256": "06c892b54dff35c0392af8088032a14f72868c677eb7b80525882ae2349caa02"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/V11-overview.png",
+      "bytes": 12144126,
+      "sha256": "1fd680bb82c39c73e13de76443082f7a89d2f1fd16599777547494a0c4e2310f"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/V11-seams.png",
+      "bytes": 3205512,
+      "sha256": "6f327977bdbcb48ad3c5b67386263dcbad956347d4f675ac57d47e00496ffe4a"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/V11-ui.png",
+      "bytes": 2300640,
+      "sha256": "5f002fbddb312d997b255f73d8601672d71e3d80d97707fff7695744350bc450"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/V12-assembled.png",
+      "bytes": 43174604,
+      "sha256": "4b3a2ff08e366cda9c79fae9bb931514eff967db4d6d41e5efb15ef6660ac891"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/V12-overview.png",
+      "bytes": 12358497,
+      "sha256": "5fc4ece1ef444b0b4b356ad21cf50dc7bd7ebbea77ab238b2879480976c10466"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/V12-seams.png",
+      "bytes": 3261180,
+      "sha256": "b4315056390ee2e11390785d37ba1921895b47ed585331730fef38c5edaf5673"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/V12-ui.png",
+      "bytes": 2055192,
+      "sha256": "d371d2fcdfce0b87ef22577e95f39975e18930937f0f8a006822d99d2e9c5c2d"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/V13-assembled.png",
+      "bytes": 51549415,
+      "sha256": "37cd40a11b6a77cf292f647ce04388fe50f86dccdfff6407681a8e7050e8d8da"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/V13-overview.png",
+      "bytes": 7212049,
+      "sha256": "3bc1a9dc203b672f9dec40b6cac6d29590020e3b89ea2dea8bad174c3e01f75a"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/V13-seams.png",
+      "bytes": 2347720,
+      "sha256": "27ca47c61779b8ef5b2339c1584bec50604ee32cb71545812c8ed2cbe54e1a97"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/V13-ui.png",
+      "bytes": 2249513,
+      "sha256": "598149a842e2c457e9d86b6609f36cf4e0802d5e2f2325d9dfc5ac14035aabc5"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/V14-assembled.png",
+      "bytes": 51360786,
+      "sha256": "876ce80c521e35e610a59112bbc2b06feff304cd609211034b018a28e1eff4eb"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/V14-overview.png",
+      "bytes": 7204364,
+      "sha256": "f3db81a9f4b985028b9566a6609f183776234ea6a6df3dd346cf5326a18434d5"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/V14-seams.png",
+      "bytes": 2306368,
+      "sha256": "5e4295651c4cb3491129145ec4e8d6bfeba91fc0b1b775d5a8bc531399d66475"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/V14-ui.png",
+      "bytes": 2244882,
+      "sha256": "7ecb19d704b09e1f34b3cf5827a5de647ed102d6baa59eedee76b287db369e08"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/V15-assembled.png",
+      "bytes": 50956729,
+      "sha256": "3b7fb7615f0f118346b1b20ce86b70f163cc4d0161936726cd0b7d9350f17847"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/V15-overview.png",
+      "bytes": 7085111,
+      "sha256": "b56a6b70c3bdb7f083d332f35969cb1fcee9e9523b8861035f46a0922c01de9a"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/V15-seams.png",
+      "bytes": 2262476,
+      "sha256": "56ed991357b0aeb082c88e107f32ef87910197fb4f301b3c6fa999600a16f300"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/V15-ui.png",
+      "bytes": 2205637,
+      "sha256": "9e7a801b6582f35aa15e25df9671d12ef5f9f6bd37f0e13ded9d4c6894b6f8f3"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/V16-assembled.png",
+      "bytes": 41871344,
+      "sha256": "775c7927da61256b7e9d916ffe4bc93a36381706226cc12cd442101d90a7950d"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/V16-overview.png",
+      "bytes": 2971714,
+      "sha256": "d41c1a21b0c254a3c8fd9f6387520141c43640d172db5b38b048bd693cd4cf38"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/V16-seams.png",
+      "bytes": 2389397,
+      "sha256": "67dabc9bb11825c72f1cf95059940c4c7bf1cb537f4c8dfd5547f22279f360ba"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/previews/V16-ui.png",
+      "bytes": 2685840,
+      "sha256": "e9b9ce6a58d0b1a09da3430fca08e4573b0b682246595be18bd713cf3e39a791"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/repairs/V15-road-guide.png",
+      "bytes": 9909061,
+      "sha256": "55f26dc001fce521189e694570636331a5e697f88591a670f7ab0545de3ebc48"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/repairs/V15-road-patch-guide.png",
+      "bytes": 948972,
+      "sha256": "f31c6a35ea8a9d7b3737823da9cb2f75b7e87db92e4903fc6525c315e7dacad9"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/repairs/V15-road-patch.png",
+      "bytes": 2416471,
+      "sha256": "5306f838b66ba0bd4d588f4d416aeb91aea8fdcdc4db8e67f064bf0bbb34ab2e"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSectors-v1/previews/ignis-ui-grid.png",
+      "bytes": 1502857,
+      "sha256": "ee25553c2430b22fc7b4c1f9ae615d1f1f2c3ac1d2d40133325714a9e3d733dd"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSectors-v1/previews/ignis-ui-zoom.png",
+      "bytes": 2480431,
+      "sha256": "8642e1feab9805299c12915c4832dd75d4b73f477b55b37b45506e53b8447c21"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisM01Details-v1/generated/L10-C16316-R3286.png",
+      "bytes": 3841781,
+      "sha256": "906fc2cdfe164c2bfe459d0130c334027f45ff80b02f46bb519ffbdd385dfbef"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisM01Details-v1/generated/L10-C16316-R3287.png",
+      "bytes": 3731672,
+      "sha256": "0b7f2493ae1314c45d644d06678b109b920683abce7aa10a7fef32699eefd8ff"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisM01Details-v1/generated/L10-C16317-R3286.png",
+      "bytes": 3890644,
+      "sha256": "8e0131a04240397163ae9c34379c841de63ed5732bc4b7c77ec36a67d4f0d9cc"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisM01Details-v1/generated/L10-C16317-R3287.png",
+      "bytes": 3747846,
+      "sha256": "624f5cc949155b3f672866ef3db41eab17457fbde40d39103cb85a768d4565e8"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisM01Details-v1/generated/L10-C16318-R3286.png",
+      "bytes": 3904992,
+      "sha256": "cbb629432f23f7c8d45e5955d8082d62d80901ab0e5a11345159ce7aa529bbae"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisM01Details-v1/generated/L10-C16318-R3287.png",
+      "bytes": 3623783,
+      "sha256": "aaa7972d51426ba04ec195164f451d01e181be1f78f7cc52fd30de3e123cb61f"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisM01Details-v1/generated/L10-C16319-R3286.png",
+      "bytes": 3822266,
+      "sha256": "99789bb1fe9a1a37256a45a7e2a68a6c2762a03a85b51f1b9855b0fdb17ae34f"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisM01Details-v1/generated/L10-C16319-R3287.png",
+      "bytes": 3631255,
+      "sha256": "0ab68e22ebf36aae23ece56838ad3258a9aabdee4db37bb7867bc9c20230b57f"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisM01Details-v1/generated/L10-C16320-R3286.png",
+      "bytes": 3611452,
+      "sha256": "281663c4b3da5a6c50079ec7bc0b5310bbe10329b13c6330f852b88b619e519d"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisM01Details-v1/generated/L10-C16320-R3287.png",
+      "bytes": 3698489,
+      "sha256": "b10c4b499bb0ff63ade5d623981f3efb75cdc64090d62ab483312e5c749e71aa"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisM01Details-v1/generated/L10-C16321-R3286.png",
+      "bytes": 3781612,
+      "sha256": "98608fefa8b423050b207c106354f2e1990e1f7d84826da59436931fd99dd34e"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisM01Details-v1/generated/L10-C16321-R3287.png",
+      "bytes": 3621741,
+      "sha256": "3b4197139af3e983d09a82c3f7e337a664ae5e3f584b52ee6fb393f1ac0ef879"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisM01Details-v1/guides/L10-C16316-R3286.png",
+      "bytes": 7147431,
+      "sha256": "62d445708ef70605bd8a7eaf6be6ec0f70890fc73a4abde0ac0b52fe7e6c0843"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisM01Details-v1/guides/L10-C16316-R3287.png",
+      "bytes": 6797526,
+      "sha256": "9f41b42c606010c1842921a398b6a544cf96edabd3ce873ed3f249bd1089da05"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisM01Details-v1/guides/L10-C16317-R3286.png",
+      "bytes": 7730751,
+      "sha256": "2e1458cd4dbaf54d316290c7a4683fb45acfe1e5e09e2c25fc90bc896e3ad3f1"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisM01Details-v1/guides/L10-C16317-R3287.png",
+      "bytes": 6609651,
+      "sha256": "ab7fb928375295a85eb715fb548f49ba5afbc5a6e5a31a28108d3c3baa07c5d1"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisM01Details-v1/guides/L10-C16318-R3286.png",
+      "bytes": 7777004,
+      "sha256": "f111ce3a98c7eda4a5cdf08fd2330f58ac62d7b661ee01b120755a349932d49d"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisM01Details-v1/guides/L10-C16318-R3287.png",
+      "bytes": 7116010,
+      "sha256": "41a08444d295618e5baaa103883614ecd7a1da47445984ac193464e6a07fcaaa"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisM01Details-v1/guides/L10-C16319-R3286.png",
+      "bytes": 7801133,
+      "sha256": "2b42c392bc4d3d5f27a697bf8ca7b363aa30423926f8503c29e38097125c0bff"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisM01Details-v1/guides/L10-C16319-R3287.png",
+      "bytes": 7265556,
+      "sha256": "ba0cff0b93db8cbabefdd347b353698089a30f5c0fd5b4a92e73eb6717579606"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisM01Details-v1/guides/L10-C16320-R3286.png",
+      "bytes": 6954913,
+      "sha256": "c09a93a27dd4d02ef97c5c26ab218c8f0d9c304c4fc9ff4bb0339926ae0c4b53"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisM01Details-v1/guides/L10-C16320-R3287.png",
+      "bytes": 6924600,
+      "sha256": "1cb2bd077bc543dc99a9fbb7cd9f875e0f57d138bee4b8d61d167de90bfd52c8"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisM01Details-v1/guides/L10-C16321-R3286.png",
+      "bytes": 6695376,
+      "sha256": "9095f9facf869d20269716964b2c6960d6563f83ec748badd43482875597a345"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisM01Details-v1/guides/L10-C16321-R3287.png",
+      "bytes": 6917903,
+      "sha256": "cf80fa0cf76550ee3947a146a35cf8c495eabb35e5336bd4632c23525c414020"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisM01Details-v1/previews/m01-overview.png",
+      "bytes": 9188185,
+      "sha256": "24e2a80ce466c878eb46a8d2c59daff7f2c101b87e9ee6cabac64856a68ae6c1"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisM01Details-v1/repairs/seam-4096-after.png",
+      "bytes": 3364296,
+      "sha256": "af1ee5e95246c00b92cbed66c9625f6d1a423c9ad74ccc14f9d5ea95028423c0"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisM01Details-v1/repairs/seam-4096-before.png",
+      "bytes": 5386821,
+      "sha256": "e7b076afe5a80cd2cc248689aa904ddca5b2703857572fe3ad0ea00f7aabb9d0"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisM01Details-v1/repairs/seam-6144-after.png",
+      "bytes": 3338637,
+      "sha256": "5fb70a29378987f58993bcd4f8d0ff2518bf9021d7d3f78f1c7895edfa45aa90"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisM01Details-v1/repairs/seam-6144-before.png",
+      "bytes": 5406789,
+      "sha256": "e0cd6139cd758bf4aa6ee8eeb27e3704d1fb5b23a44b4c0f4d3c2a4f591a54bf"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisM01Details-v1/repairs/seam-8192-after.png",
+      "bytes": 2830680,
+      "sha256": "368567a4899918922f7569db9bc24e3d95a8e26de1bc8719f939544b3d177bc9"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/IgnisM01Details-v1/repairs/seam-8192-before.png",
+      "bytes": 5312833,
+      "sha256": "bb310525adc2e1e048097a4957dd559a44c9f1f4d71f153861e1da76a017f4bd"
+    }
+  ],
+  "deleted_local_workspace": "output/imagegen",
+  "errors": [],
+  "document_validation": {
+    "decisions": 56,
+    "documents": 585,
+    "errors": 0,
+    "preservation_missing": 0,
+    "intentional_removed_reference_exceptions": [
+      "path verify.py",
+      "link Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v4/index.html",
+      "link Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v3/index.html",
+      "link Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v2/index.html",
+      "link Docs/ArtDirection/EtherWorldMap/Atlas/IgnisTerrainMaster-v1/verify.py",
+      "link Docs/ArtDirection/EtherWorldMap/Atlas/IgnisTerrainPrototype-v1/index.html",
+      "link Docs/ArtDirection/EtherWorldMap/Atlas/IgnisSettlementDetails-v1/audit-full-coverage.cjs",
+      "path output/imagegen/ignis-sectors-20261110/"
+    ],
+    "git_diff_check": "PASS"
+  }
+}

@@ -17,7 +17,9 @@
 
 벨레스 전체본은 [v5 규격](Atlas/VelesDetailArt-v5/manifest.json)의 로컬 4,096×6,144m 범위를 담는다. 이 범위는 도안의 작업 사각형이며 실제 플레이 영역·이동 시간·최종 제작 규모를 확정하지 않는다. 확대 뷰어와 개별 확대 이미지로 작은 길과 건물 관계를 확인하고, 전체본만으로 모든 세부를 판단하지 않는다.
 
-기존 [검사 기록](Atlas/VelesDetailArt-v5/records/verification.json)의 45개 통과 항목은 원본 보존·좌표 범위·타일 재조립과 경계 픽셀 일치에 관한 것이다. 실제 통행, 충돌, 건물 치수, 경사, 하천 횡단, UE 수입·실행은 검증하지 않았다. [육안 검토](Atlas/VelesDetailArt-v5/records/visual-review.json)에는 처마·길 가장자리의 불일치가 남아 있고, [정적 검사](Atlas/VelesDetailArt-v5/records/static-verification.json)는 v5 브라우저 조작을 검증하지 않는다. 이전 버전과 기록은 삭제하거나 재생성하지 않는다.
+기존 [검사 기록](Atlas/VelesDetailArt-v5/records/verification.json)의 45개 통과 항목은 원본 보존·좌표 범위·타일 재조립과 경계 픽셀 일치에 관한 것이다. 실제 통행, 충돌, 건물 치수, 경사, 하천 횡단, UE 수입·실행은 검증하지 않았다. [육안 검토](Atlas/VelesDetailArt-v5/records/visual-review.json)에는 처마·길 가장자리의 불일치가 남아 있고, [정적 검사](Atlas/VelesDetailArt-v5/records/static-verification.json)는 v5 브라우저 조작을 검증하지 않는다.
+
+[결정 56](../../decisions/0056-map-reference-cleanup.md)에 따라 도안·원본 좌표와 열람에 필요한 참조를 보존하고 임시 생성물·중복 출력·제작 스크립트를 정리했다. 벨레스의 확대 열람은 v5로 통합한다. 이전 버전의 비교 그림과 검사 기록은 참고 자료이며 삭제한 생성 입력·프로그램을 현재 실행할 수 있다는 뜻은 아니다. 삭제 범위와 보존 검사는 [정리 기록](Atlas/reference-cleanup.json)을 따른다. 과거 생성 기록의 파일 경로는 당시의 출처 기록으로 남는다.
 
 ## 실제 월드 제작을 시작할 때
 
@@ -44,7 +46,7 @@
 
 [독립 검사](Atlas/VelesDetailArt-v5/records/verification.json) **45개를 통과했다.** v1 원본 파일 5개와 v4 참조 이미지 23개의 해시가 유지됐다. 수정한 네 구역 바깥은 샘플링 여백 2px를 제외하고 기존 픽셀과 같으며, 전체본의 외곽 6px와 축소본의 외곽 3px도 동일하다. [24개 타일](Atlas/VelesDetailArt-v5/tiles.json) 본체의 재조립과 인접 여백 38곳은 정확히 일치한다.
 
-[뷰어](Atlas/VelesDetailArt-v5/index.html)의 `상세 구역`에서 공방·창고, 서쪽 골목, 동·서쪽 외곽으로 이동하도록 연결했다. 정적 구문·이미지 참조 검사는 통과했으며 실제 브라우저 조작과 UE는 미검증이다. [생성 입력문](Atlas/VelesDetailArt-v5/records/generation.json)을 보관한다. 재출력은 `python Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v5/build.py`, 검사는 같은 폴더의 `verify.py`를 실행한다. Pillow와 보존된 v4 조립 스크립트·원본을 사용한다.
+[뷰어](Atlas/VelesDetailArt-v5/index.html)의 `상세 구역`에서 공방·창고, 서쪽 골목, 동·서쪽 외곽으로 이동하도록 연결했다. 정적 구문·이미지 참조 검사는 통과했으며 실제 브라우저 조작과 UE는 미검증이다. [생성 입력문](Atlas/VelesDetailArt-v5/records/generation.json)은 출처 기록으로 보관한다. 조립·검사 스크립트는 이미지 제작 종료에 따라 제거했다.
 
 ### 북쪽·남쪽 확장과 길 윤곽 보정 v4
 
@@ -58,11 +60,11 @@
 
 [생성 입력문](Atlas/VelesDetailArt-v4/records/generation.json)과 [숲길 추가 보정](Atlas/VelesDetailArt-v4/records/forest-road-generation.json)을 보관한다. 자연 암석을 유적처럼 그린 첫 남서쪽 시안은 제외했다. 기존에 없던 길·밭이 생긴 동남쪽 시안도 [수정 기록](Atlas/VelesDetailArt-v4/records/correction.json)에 따라 교체했다. 실제 선택 파일은 `manifest.json`을 따른다.
 
-[뷰어](Atlas/VelesDetailArt-v4/index.html)에 북쪽·남쪽 이동 버튼과 기존 배치선·경계 표시를 연결했다. `좌표 원본`은 v1을 보여 준다. JavaScript 구문과 참조 이미지 검사는 수행했지만 v4의 실제 브라우저 조작과 UE 실행은 미검증이다. 재출력은 `python Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v4/assemble.py`, 검사는 같은 폴더의 `verify.py`를 실행한다. Pillow가 필요하며 저장된 생성 이미지를 사용한다. 기존 도로·하천·정착지 좌표를 변경하지 않는다.
+v4의 뷰어·조립 스크립트는 제거하고 열람 기능은 [v5 뷰어](Atlas/VelesDetailArt-v5/index.html)로 통합했다. v4 당시 JavaScript 구문과 참조 이미지 검사는 수행했지만 실제 브라우저 조작과 UE 실행은 미검증이다. 기존 도로·하천·정착지 좌표는 보존한다.
 
 ### 건물 외곽 보정과 숲 양옆 확장 v3
 
-**벨레스의 건물 외곽을 기준으로 지붕 위치를 보정하고, 기존 상세 숲의 서쪽·동쪽을 같은 항공사진 화풍으로 확장했다.** [마을 비교](Atlas/VelesDetailArt-v3/previews/village-comparison.png)와 [숲 비교](Atlas/VelesDetailArt-v3/previews/forest-comparison.png)는 왼쪽 v2, 오른쪽 v3다. [마을 확대](Atlas/VelesDetailArt-v3/previews/village.png), [경계 표시 조립본](Atlas/VelesDetailArt-v3/previews/assembled-grid.png), [뷰어](Atlas/VelesDetailArt-v3/index.html)를 함께 둔다. 기존 시안과 수치 원본은 보존한다.
+**벨레스의 건물 외곽을 기준으로 지붕 위치를 보정하고, 기존 상세 숲의 서쪽·동쪽을 같은 항공사진 화풍으로 확장했다.** [마을 비교](Atlas/VelesDetailArt-v3/previews/village-comparison.png)와 [숲 비교](Atlas/VelesDetailArt-v3/previews/forest-comparison.png)는 왼쪽 v2, 오른쪽 v3다. [마을 확대](Atlas/VelesDetailArt-v3/previews/village.png)와 [경계 표시 조립본](Atlas/VelesDetailArt-v3/previews/assembled-grid.png)을 비교 자료로 보존한다. 열람은 [v5 뷰어](Atlas/VelesDetailArt-v5/index.html)를 사용한다.
 
 건물 86개의 외곽선과 도로 중심선을 생성 입력에 표시했다. [외곽 비교 1](Atlas/VelesDetailArt-v3/previews/roof-audit-1.png), [2](Atlas/VelesDetailArt-v3/previews/roof-audit-2.png), [3](Atlas/VelesDetailArt-v3/previews/roof-audit-3.png), [4](Atlas/VelesDetailArt-v3/previews/roof-audit-4.png)에서 각 건물의 v2·v3와 청록색 기준선을 대조했다. 86개 위치의 지붕을 육안으로 확인했고 외곽 정합은 전반적으로 개선됐다. 일부 처마·그림자·길 가장자리의 차이는 남아 있어 시각적 정합은 계속 `PARTIAL`이다. 도로 103개 전체의 그림 정합이나 생성 그림의 총 건물 수를 자동 검증한 결과는 아니다.
 
@@ -72,11 +74,11 @@
 
 v3 뷰어의 `좌표 원본`은 절차적으로 렌더링한 v1과 비교한다. v2와의 비교는 위 비교 이미지를 사용한다. v3는 정적 JavaScript 검사와 브라우저를 쓰지 않는 이미지 조립·검사를 수행했다. v3의 실제 브라우저 조작과 UE 실행은 미검증이다.
 
-재출력은 `node Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v3/prepare.cjs`, `python Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v3/assemble.py`, `python Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v3/verify.py` 순서다. Python에는 Pillow가 필요하다. 새 이미지를 생성하지 않고 저장된 아트 원본을 고정 좌표에 조립한다. 다음 작업은 남은 길 윤곽과 북쪽·남쪽의 상세도 차이를 줄이는 일이다.
+v3의 제작·조립 스크립트는 정리 대상이며, v5가 참조하는 아트 원본은 기존 경로에 보존한다.
 
 ### 항공사진 화풍 보정 v2
 
-사용자가 v1의 반복 지붕·수관 표현을 지적해, 채택한 벨레스 v2를 참조한 **항공사진 화풍 보정 후보**를 만들었다. [보정 뷰어](Atlas/VelesDetailArt-v2/index.html)의 `수정 전`, `배치선`, `경계`로 원본과 대조한다. [마을 확대](Atlas/VelesDetailArt-v2/previews/village.png), [숲·동굴 연결로](Atlas/VelesDetailArt-v2/previews/forest.png), [전체 조립본](Atlas/VelesDetailArt-v2/previews/assembled-grid.png)을 함께 둔다. v1의 수치 원본과 타일은 보존한다.
+사용자가 v1의 반복 지붕·수관 표현을 지적해, 채택한 벨레스 v2를 참조한 **항공사진 화풍 보정 후보**를 만들었다. [마을 확대](Atlas/VelesDetailArt-v2/previews/village.png), [숲·동굴 연결로](Atlas/VelesDetailArt-v2/previews/forest.png), [전체 조립본](Atlas/VelesDetailArt-v2/previews/assembled-grid.png)을 비교 자료로 보존한다. 이전 보정 뷰어는 제거하고 [v5 뷰어](Atlas/VelesDetailArt-v5/index.html)를 사용한다. v1의 수치 원본과 타일은 보존한다.
 
 지붕의 마모·수리 흔적과 마당·텃밭·흙길을 개별적으로 표현하고, 식생은 겹치는 수관과 밀도가 다른 군락으로 보정했다. 내장 `image_gen`을 사용한 [생성 입력문](Atlas/VelesDetailArt-v2/records/generation.json)과 [광역 수관 축척 보정](Atlas/VelesDetailArt-v2/records/region-refinement.json)을 보관한다. 마을·숲의 확대 보정본과 광역 배경을 동일한 전역 좌표에 놓고 겹치는 가장자리를 혼합한다. UI·표식은 기존 좌표에서 별도로 그린다.
 
@@ -86,7 +88,7 @@ v3 뷰어의 `좌표 원본`은 절차적으로 렌더링한 v1과 비교한다.
 
 보정 이미지의 실제 해상도는 광역 1,024×1,536px, 마을 1,573×1,000px, 숲 1,254×1,254px다. 각각 약 4m/px, 0.7m/px, 0.96m/px이며, 2m/px의 전체 조립 출력은 검토용이다. 확대할수록 광역 배경과 상세 보정 영역 사이의 선명도 차이가 보인다. v1의 전체 0.5m/px 렌더링을 같은 밀도의 사진 정보로 교체한 결과는 아니다. 다음 보정은 일부 지붕·길 윤곽의 정합과 상세 영역 밖의 해상도 차이를 줄이는 일이다.
 
-재출력은 `node Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v2/prepare.cjs`, `node Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v2/capture.cjs`, `python Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v2/verify.py` 순서다. 캡처는 포트 9448의 별도 Chromium 디버깅 세션을 사용하며 Python에는 Pillow가 필요하다. 생성된 아트 원본을 다시 만들지는 않는다.
+v2의 생성·캡처·검사 스크립트와 중복 내장 이미지 뷰어는 제거했다. 포트 9448을 사용한 과거 캡처 검증은 현재 실행 절차가 아니다.
 
 ### 좌표 기반 상세 원본 v1
 
@@ -119,7 +121,7 @@ v3 뷰어의 `좌표 원본`은 절차적으로 렌더링한 v1과 비교한다.
 
 독립 수치 검사 21개와 브라우저 검사 9개를 통과했다. 24개 고도 타일이 상세 원본의 해당 영역과 같고, 내부 경계 38곳의 고도 샘플은 모두 일치한다. 컬러 타일의 38개 중첩 구간은 최대 채널 차이 9/255, 구간별 평균 차이의 최댓값 약 0.0164/255로 검사 허용 범위 안이다. **고도 경계의 정확한 일치와 렌더링 픽셀의 미세한 차이를 구분한다.** 건물끼리 겹치지 않고 도로가 다른 건물을 관통하지 않으며, 모든 출입구가 골목에 연결됨을 확인했다. 게임 내 통행·충돌·교량 구조·배수·UE 수입은 미검증이다.
 
-재생성은 `node Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailTerrain-v1/build.cjs`로 실행한다. 로컬 뷰어가 실제 배치 데이터를 렌더링하며, `review.cjs --export`는 포트 9447의 별도 Chromium 디버깅 세션에서 컬러 타일과 확대 화면을 저장한다. 이어 `python Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailTerrain-v1/verify.py`를 실행하면 수치·픽셀 검사와 실제 타일 조립본을 갱신한다. Python에는 Pillow가 필요하다.
+원본 배치 데이터와 로컬 열람 뷰어는 보존한다. 포트 9447을 사용한 과거 캡처·컬러 타일 출력과 재생성·검사 스크립트는 제거했으며, 저장된 수치 원본과 검사 결과를 참고한다.
 
 ## 대륙 공통 원본
 
@@ -162,7 +164,7 @@ v3 뷰어의 `좌표 원본`은 절차적으로 렌더링한 v1과 비교한다.
 
 ### 검증과 남은 일
 
-[독립 Python 검사](Atlas/IgnisTerrainMaster-v1/verify.py)는 원본 좌표·이름·시설과 PNG를 다시 읽는다. 40개 파일 전체가 원본의 해당 영역과 일치하고 **67개 인접 경계가 모두 동일**함을 확인했다. 하천 제어점의 원본 하상과 격자 보간값의 최대 차이는 약 0.676m다. 2km 이하 간격으로 지정 하천 중심선을 검사했을 때 저장 단위 0.125m를 넘는 역경사는 없었다. 전체 유역의 배수·침식·홍수 검증을 뜻하지 않는다.
+당시 독립 Python 검사는 원본 좌표·이름·시설과 PNG를 다시 읽었다. 40개 파일 전체가 원본의 해당 영역과 일치하고 **67개 인접 경계가 모두 동일**함을 확인했다. 하천 제어점의 원본 하상과 격자 보간값의 최대 차이는 약 0.676m다. 2km 이하 간격으로 지정 하천 중심선을 검사했을 때 저장 단위 0.125m를 넘는 역경사는 없었다. 전체 유역의 배수·침식·홍수 검증을 뜻하지 않는다.
 
 수치 검사는 21개, 로컬 파일 뷰어의 선택·레이어·휠·드래그 검사는 8개를 통과했다. [재생성 검사](Atlas/IgnisTerrainMaster-v1/records/rebuild-verification.json)에서는 같은 Node.js 실행 환경과 입력으로 생성한 데이터 파일 56개의 바이트가 모두 일치했다. 다른 실행 환경의 부동소수점 연산 차이까지 검증한 결과는 아니다.
 
@@ -170,13 +172,13 @@ v3 뷰어의 `좌표 원본`은 절차적으로 렌더링한 v1과 비교한다.
 
 벨레스의 첫 상세 자식 지형은 위 자료에서 확인한다. 외곽 접속 좌표는 후속 실제 월드 제작의 참고로 보존하며 이웃 구역의 상세 이미지 확장은 결정 55에 따라 중단했다. 나머지 대륙의 건물·골목·개별 수목, 기존 상세 그림과의 정밀 정합, 실제 통행성, UE 수입·실행은 아직 검증하지 않았다. 대륙 전체 고도 원본의 제작 완료와 대륙 전체 상세 아트의 완료를 구분한다.
 
-재생성은 저장소 루트에서 `node Docs/ArtDirection/EtherWorldMap/Atlas/IgnisTerrainMaster-v1/build.cjs`, 수치 검사와 미리보기 출력은 `python Docs/ArtDirection/EtherWorldMap/Atlas/IgnisTerrainMaster-v1/verify.py`로 실행한다. Python에는 Pillow가 필요하며 수치 생성기는 Node.js 기본 모듈만 사용한다. 생성기는 이 원본 폴더의 파생 파일만 갱신하고 참조 원본을 수정하지 않는다. 뷰어는 로컬 `index.html`로 열 수 있다.
+고도·배치 원본과 로컬 `index.html` 뷰어는 보존한다. 제작·재생성·검사 스크립트는 제거했으며 과거 실행 결과는 보존한 기록에서 확인한다.
 
 ## 검토 자료
 
 | 자료 | 확인할 것 |
 |---|---|
-| [연결 구간 뷰어](Atlas/IgnisTerrainPrototype-v1/index.html) | `연결 구간`, `길 확대`, `접합 확인`과 휠·드래그로 같은 좌표를 확인한다 |
+| [연결 구간 시제품 화면](Atlas/IgnisTerrainPrototype-v1/previews/B04-overview.png) | 재질 시제품의 당시 결과를 확인한다. 실험용 뷰어와 코드는 제거했다 |
 | [길 확대 화면](Atlas/IgnisTerrainPrototype-v1/previews/B04-close.png) | 수관, 풀과 흙길의 상세도·반복 특성을 확인한다 |
 | [케르딘 접합 화면](Atlas/IgnisTerrainPrototype-v1/previews/T11-junction.png) | 기존 도안의 강·진입로가 새 배경으로 바뀌는 부분을 확인한다 |
 | [전체 연결 구간](Atlas/IgnisTerrainPrototype-v1/previews/B04-overview.png) | 기존 B04의 양 끝 정착지와 구간 범위를 확인한다 |
@@ -188,7 +190,7 @@ v3 뷰어의 `좌표 원본`은 절차적으로 렌더링한 v1과 비교한다.
 
 ## 전체 개별 이미지 방식의 규모
 
-[전체 범위 계산](Atlas/IgnisSettlementDetails-v1/records/full-coverage-audit.json)은 기존 해안선의 타일 중심 포함 여부와 해안 통과 셀을 함께 계산했다. [재현 스크립트](Atlas/IgnisSettlementDetails-v1/audit-full-coverage.cjs)와 [L10 행별 열 범위](Atlas/IgnisSettlementDetails-v1/records/full-coverage-row-ranges.csv)를 보관한다. 지도상의 픽셀 면적을 구면 면적으로 해석하지 않는다.
+[전체 범위 계산](Atlas/IgnisSettlementDetails-v1/records/full-coverage-audit.json)은 기존 해안선의 타일 중심 포함 여부와 해안 통과 셀을 함께 계산했다. [L10 행별 열 범위](Atlas/IgnisSettlementDetails-v1/records/full-coverage-row-ranges.csv)를 보관하며 계산 스크립트는 제거했다. 지도상의 픽셀 면적을 구면 면적으로 해석하지 않는다.
 
 | 항목 | 계산 결과 |
 |---|---|

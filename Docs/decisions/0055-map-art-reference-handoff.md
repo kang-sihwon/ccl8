@@ -3,8 +3,8 @@ number: 55
 date: 2026-11-14
 title: "지도 이미지 제작 중단과 제작 도안 정리"
 topic: "지도 아트"
-status: "유효"
-summary: "지도 이미지의 추가 생성·보정·확장을 중단하고 기존 결과를 실제 월드 제작용 참고 도안으로 보존한다. 화풍·UI 기준과 좌표 자료를 유지하며 실제 플레이용 지도는 구현한 월드를 기준으로 별도 제작·검증한다"
+status: "유효(부분)"
+summary: "이미지 추가 제작 중단과 실제 월드 제작용 도안 활용은 유지한다. 이전 자료 일괄 보존은 결정 56의 도안·좌표·필수 참조 보존으로 대체한다"
 owners: "[제작 도안 보관과 사용](../ArtDirection/EtherWorldMap/IgnisSharedTerrain.md#제작-도안-보관과-사용), [지도 제작 기준](../ArtDirection/EtherWorldMap/MapPresentation.md)"
 refines: [34, 47]
 supersedes_part: [50]
