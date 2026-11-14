@@ -1,0 +1,533 @@
+{
+  "meters_per_export_pixel": 2,
+  "tiles": [
+    {
+      "id": "C0-R0",
+      "file": "tiles/C0-R0.png",
+      "bounds_pixels": [
+        0,
+        0,
+        516,
+        516
+      ],
+      "core_pixels": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "world_bounds": [
+        -2048,
+        2560,
+        -1024,
+        3584
+      ]
+    },
+    {
+      "id": "C1-R0",
+      "file": "tiles/C1-R0.png",
+      "bounds_pixels": [
+        508,
+        0,
+        1028,
+        516
+      ],
+      "core_pixels": [
+        4,
+        0,
+        516,
+        512
+      ],
+      "world_bounds": [
+        -1024,
+        2560,
+        0,
+        3584
+      ]
+    },
+    {
+      "id": "C2-R0",
+      "file": "tiles/C2-R0.png",
+      "bounds_pixels": [
+        1020,
+        0,
+        1540,
+        516
+      ],
+      "core_pixels": [
+        4,
+        0,
+        516,
+        512
+      ],
+      "world_bounds": [
+        0,
+        2560,
+        1024,
+        3584
+      ]
+    },
+    {
+      "id": "C3-R0",
+      "file": "tiles/C3-R0.png",
+      "bounds_pixels": [
+        1532,
+        0,
+        2048,
+        516
+      ],
+      "core_pixels": [
+        4,
+        0,
+        516,
+        512
+      ],
+      "world_bounds": [
+        1024,
+        2560,
+        2048,
+        3584
+      ]
+    },
+    {
+      "id": "C0-R1",
+      "file": "tiles/C0-R1.png",
+      "bounds_pixels": [
+        0,
+        508,
+        516,
+        1028
+      ],
+      "core_pixels": [
+        0,
+        4,
+        512,
+        516
+      ],
+      "world_bounds": [
+        -2048,
+        1536,
+        -1024,
+        2560
+      ]
+    },
+    {
+      "id": "C1-R1",
+      "file": "tiles/C1-R1.png",
+      "bounds_pixels": [
+        508,
+        508,
+        1028,
+        1028
+      ],
+      "core_pixels": [
+        4,
+        4,
+        516,
+        516
+      ],
+      "world_bounds": [
+        -1024,
+        1536,
+        0,
+        2560
+      ]
+    },
+    {
+      "id": "C2-R1",
+      "file": "tiles/C2-R1.png",
+      "bounds_pixels": [
+        1020,
+        508,
+        1540,
+        1028
+      ],
+      "core_pixels": [
+        4,
+        4,
+        516,
+        516
+      ],
+      "world_bounds": [
+        0,
+        1536,
+        1024,
+        2560
+      ]
+    },
+    {
+      "id": "C3-R1",
+      "file": "tiles/C3-R1.png",
+      "bounds_pixels": [
+        1532,
+        508,
+        2048,
+        1028
+      ],
+      "core_pixels": [
+        4,
+        4,
+        516,
+        516
+      ],
+      "world_bounds": [
+        1024,
+        1536,
+        2048,
+        2560
+      ]
+    },
+    {
+      "id": "C0-R2",
+      "file": "tiles/C0-R2.png",
+      "bounds_pixels": [
+        0,
+        1020,
+        516,
+        1540
+      ],
+      "core_pixels": [
+        0,
+        4,
+        512,
+        516
+      ],
+      "world_bounds": [
+        -2048,
+        512,
+        -1024,
+        1536
+      ]
+    },
+    {
+      "id": "C1-R2",
+      "file": "tiles/C1-R2.png",
+      "bounds_pixels": [
+        508,
+        1020,
+        1028,
+        1540
+      ],
+      "core_pixels": [
+        4,
+        4,
+        516,
+        516
+      ],
+      "world_bounds": [
+        -1024,
+        512,
+        0,
+        1536
+      ]
+    },
+    {
+      "id": "C2-R2",
+      "file": "tiles/C2-R2.png",
+      "bounds_pixels": [
+        1020,
+        1020,
+        1540,
+        1540
+      ],
+      "core_pixels": [
+        4,
+        4,
+        516,
+        516
+      ],
+      "world_bounds": [
+        0,
+        512,
+        1024,
+        1536
+      ]
+    },
+    {
+      "id": "C3-R2",
+      "file": "tiles/C3-R2.png",
+      "bounds_pixels": [
+        1532,
+        1020,
+        2048,
+        1540
+      ],
+      "core_pixels": [
+        4,
+        4,
+        516,
+        516
+      ],
+      "world_bounds": [
+        1024,
+        512,
+        2048,
+        1536
+      ]
+    },
+    {
+      "id": "C0-R3",
+      "file": "tiles/C0-R3.png",
+      "bounds_pixels": [
+        0,
+        1532,
+        516,
+        2052
+      ],
+      "core_pixels": [
+        0,
+        4,
+        512,
+        516
+      ],
+      "world_bounds": [
+        -2048,
+        -512,
+        -1024,
+        512
+      ]
+    },
+    {
+      "id": "C1-R3",
+      "file": "tiles/C1-R3.png",
+      "bounds_pixels": [
+        508,
+        1532,
+        1028,
+        2052
+      ],
+      "core_pixels": [
+        4,
+        4,
+        516,
+        516
+      ],
+      "world_bounds": [
+        -1024,
+        -512,
+        0,
+        512
+      ]
+    },
+    {
+      "id": "C2-R3",
+      "file": "tiles/C2-R3.png",
+      "bounds_pixels": [
+        1020,
+        1532,
+        1540,
+        2052
+      ],
+      "core_pixels": [
+        4,
+        4,
+        516,
+        516
+      ],
+      "world_bounds": [
+        0,
+        -512,
+        1024,
+        512
+      ]
+    },
+    {
+      "id": "C3-R3",
+      "file": "tiles/C3-R3.png",
+      "bounds_pixels": [
+        1532,
+        1532,
+        2048,
+        2052
+      ],
+      "core_pixels": [
+        4,
+        4,
+        516,
+        516
+      ],
+      "world_bounds": [
+        1024,
+        -512,
+        2048,
+        512
+      ]
+    },
+    {
+      "id": "C0-R4",
+      "file": "tiles/C0-R4.png",
+      "bounds_pixels": [
+        0,
+        2044,
+        516,
+        2564
+      ],
+      "core_pixels": [
+        0,
+        4,
+        512,
+        516
+      ],
+      "world_bounds": [
+        -2048,
+        -1536,
+        -1024,
+        -512
+      ]
+    },
+    {
+      "id": "C1-R4",
+      "file": "tiles/C1-R4.png",
+      "bounds_pixels": [
+        508,
+        2044,
+        1028,
+        2564
+      ],
+      "core_pixels": [
+        4,
+        4,
+        516,
+        516
+      ],
+      "world_bounds": [
+        -1024,
+        -1536,
+        0,
+        -512
+      ]
+    },
+    {
+      "id": "C2-R4",
+      "file": "tiles/C2-R4.png",
+      "bounds_pixels": [
+        1020,
+        2044,
+        1540,
+        2564
+      ],
+      "core_pixels": [
+        4,
+        4,
+        516,
+        516
+      ],
+      "world_bounds": [
+        0,
+        -1536,
+        1024,
+        -512
+      ]
+    },
+    {
+      "id": "C3-R4",
+      "file": "tiles/C3-R4.png",
+      "bounds_pixels": [
+        1532,
+        2044,
+        2048,
+        2564
+      ],
+      "core_pixels": [
+        4,
+        4,
+        516,
+        516
+      ],
+      "world_bounds": [
+        1024,
+        -1536,
+        2048,
+        -512
+      ]
+    },
+    {
+      "id": "C0-R5",
+      "file": "tiles/C0-R5.png",
+      "bounds_pixels": [
+        0,
+        2556,
+        516,
+        3072
+      ],
+      "core_pixels": [
+        0,
+        4,
+        512,
+        516
+      ],
+      "world_bounds": [
+        -2048,
+        -2560,
+        -1024,
+        -1536
+      ]
+    },
+    {
+      "id": "C1-R5",
+      "file": "tiles/C1-R5.png",
+      "bounds_pixels": [
+        508,
+        2556,
+        1028,
+        3072
+      ],
+      "core_pixels": [
+        4,
+        4,
+        516,
+        516
+      ],
+      "world_bounds": [
+        -1024,
+        -2560,
+        0,
+        -1536
+      ]
+    },
+    {
+      "id": "C2-R5",
+      "file": "tiles/C2-R5.png",
+      "bounds_pixels": [
+        1020,
+        2556,
+        1540,
+        3072
+      ],
+      "core_pixels": [
+        4,
+        4,
+        516,
+        516
+      ],
+      "world_bounds": [
+        0,
+        -2560,
+        1024,
+        -1536
+      ]
+    },
+    {
+      "id": "C3-R5",
+      "file": "tiles/C3-R5.png",
+      "bounds_pixels": [
+        1532,
+        2556,
+        2048,
+        3072
+      ],
+      "core_pixels": [
+        4,
+        4,
+        516,
+        516
+      ],
+      "world_bounds": [
+        1024,
+        -2560,
+        2048,
+        -1536
+      ]
+    }
+  ]
+}

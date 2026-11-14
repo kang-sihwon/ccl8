@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "checks": {
+    "node_syntax": ["viewer.js", "prepare.cjs", "inputs.cjs"],
+    "embedded_manifest_layers_match": true,
+    "embedded_image_digests_match": 6,
+    "docs_check": {"documents": 569, "errors": 0},
+    "git_diff_check": "PASS"
+  },
+  "browser_interaction": "NOT_RUN_FOR_V3",
+  "scope": "Static script and resource checks only; exported images were assembled and inspected offline."
+}

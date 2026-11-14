@@ -1,0 +1,284 @@
+{
+  "data_and_assembly_status": "PASS",
+  "checks": [
+    {
+      "name": "Geometry locks match the previously recorded V2 locks",
+      "passed": true
+    },
+    {
+      "name": "Unchanged geometry: manifest.json",
+      "passed": true
+    },
+    {
+      "name": "Unchanged geometry: data/placements.json",
+      "passed": true
+    },
+    {
+      "name": "Unchanged geometry: data/connections.json",
+      "passed": true
+    },
+    {
+      "name": "Unchanged geometry: height/master16.png",
+      "passed": true
+    },
+    {
+      "name": "Unchanged geometry: scene.js",
+      "passed": true
+    },
+    {
+      "name": "Image dimensions and digest: base",
+      "passed": true
+    },
+    {
+      "name": "Image dimensions and digest: region",
+      "passed": true
+    },
+    {
+      "name": "Image dimensions and digest: west",
+      "passed": true
+    },
+    {
+      "name": "Image dimensions and digest: east",
+      "passed": true
+    },
+    {
+      "name": "Image dimensions and digest: forest",
+      "passed": true
+    },
+    {
+      "name": "Image dimensions and digest: core",
+      "passed": true
+    },
+    {
+      "name": "Original world frame and export dimensions",
+      "passed": true
+    },
+    {
+      "name": "Four outer 3px strips match the original exactly",
+      "passed": true
+    },
+    {
+      "name": "Exactly 24 unique expected tile IDs",
+      "passed": true
+    },
+    {
+      "name": "Every existing tile matches its declared world frame and composite crop",
+      "passed": true
+    },
+    {
+      "name": "24 saved tile cores reconstruct the composite exactly",
+      "passed": true
+    },
+    {
+      "name": "All 38 existing shared margins are pixel-identical",
+      "passed": true
+    }
+  ],
+  "overlaps": [
+    {
+      "a": "C0-R0",
+      "b": "C1-R0",
+      "identical": true
+    },
+    {
+      "a": "C0-R0",
+      "b": "C0-R1",
+      "identical": true
+    },
+    {
+      "a": "C1-R0",
+      "b": "C2-R0",
+      "identical": true
+    },
+    {
+      "a": "C1-R0",
+      "b": "C1-R1",
+      "identical": true
+    },
+    {
+      "a": "C2-R0",
+      "b": "C3-R0",
+      "identical": true
+    },
+    {
+      "a": "C2-R0",
+      "b": "C2-R1",
+      "identical": true
+    },
+    {
+      "a": "C3-R0",
+      "b": "C3-R1",
+      "identical": true
+    },
+    {
+      "a": "C0-R1",
+      "b": "C1-R1",
+      "identical": true
+    },
+    {
+      "a": "C0-R1",
+      "b": "C0-R2",
+      "identical": true
+    },
+    {
+      "a": "C1-R1",
+      "b": "C2-R1",
+      "identical": true
+    },
+    {
+      "a": "C1-R1",
+      "b": "C1-R2",
+      "identical": true
+    },
+    {
+      "a": "C2-R1",
+      "b": "C3-R1",
+      "identical": true
+    },
+    {
+      "a": "C2-R1",
+      "b": "C2-R2",
+      "identical": true
+    },
+    {
+      "a": "C3-R1",
+      "b": "C3-R2",
+      "identical": true
+    },
+    {
+      "a": "C0-R2",
+      "b": "C1-R2",
+      "identical": true
+    },
+    {
+      "a": "C0-R2",
+      "b": "C0-R3",
+      "identical": true
+    },
+    {
+      "a": "C1-R2",
+      "b": "C2-R2",
+      "identical": true
+    },
+    {
+      "a": "C1-R2",
+      "b": "C1-R3",
+      "identical": true
+    },
+    {
+      "a": "C2-R2",
+      "b": "C3-R2",
+      "identical": true
+    },
+    {
+      "a": "C2-R2",
+      "b": "C2-R3",
+      "identical": true
+    },
+    {
+      "a": "C3-R2",
+      "b": "C3-R3",
+      "identical": true
+    },
+    {
+      "a": "C0-R3",
+      "b": "C1-R3",
+      "identical": true
+    },
+    {
+      "a": "C0-R3",
+      "b": "C0-R4",
+      "identical": true
+    },
+    {
+      "a": "C1-R3",
+      "b": "C2-R3",
+      "identical": true
+    },
+    {
+      "a": "C1-R3",
+      "b": "C1-R4",
+      "identical": true
+    },
+    {
+      "a": "C2-R3",
+      "b": "C3-R3",
+      "identical": true
+    },
+    {
+      "a": "C2-R3",
+      "b": "C2-R4",
+      "identical": true
+    },
+    {
+      "a": "C3-R3",
+      "b": "C3-R4",
+      "identical": true
+    },
+    {
+      "a": "C0-R4",
+      "b": "C1-R4",
+      "identical": true
+    },
+    {
+      "a": "C0-R4",
+      "b": "C0-R5",
+      "identical": true
+    },
+    {
+      "a": "C1-R4",
+      "b": "C2-R4",
+      "identical": true
+    },
+    {
+      "a": "C1-R4",
+      "b": "C1-R5",
+      "identical": true
+    },
+    {
+      "a": "C2-R4",
+      "b": "C3-R4",
+      "identical": true
+    },
+    {
+      "a": "C2-R4",
+      "b": "C2-R5",
+      "identical": true
+    },
+    {
+      "a": "C3-R4",
+      "b": "C3-R5",
+      "identical": true
+    },
+    {
+      "a": "C0-R5",
+      "b": "C1-R5",
+      "identical": true
+    },
+    {
+      "a": "C1-R5",
+      "b": "C2-R5",
+      "identical": true
+    },
+    {
+      "a": "C2-R5",
+      "b": "C3-R5",
+      "identical": true
+    }
+  ],
+  "detail_image_footprint_km2": {
+    "v2": 2.12,
+    "v3": 4.64,
+    "includes_feather_transitions": true
+  },
+  "visual_registration_status": "PARTIAL",
+  "manual_visual_review": {
+    "roof_audit_pages": 4,
+    "roof_locations_reviewed": 86,
+    "finding": "Roof presence and outline placement generally improved against authoritative cyan footprints; eaves, shadows and path edges still differ. No exact pixel registration or automated building count claimed.",
+    "forest": "West/east strips reduce coarse canopy beside the existing central forest patch. Remaining regional background still has lower native resolution.",
+    "road_alignment": "Not exhaustively checked against all 103 road records."
+  },
+  "browser_interaction_status": "NOT_RUN_FOR_V3",
+  "runtime_ue_status": "NOT_TESTED"
+}

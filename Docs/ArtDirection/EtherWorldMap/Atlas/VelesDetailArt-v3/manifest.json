@@ -1,0 +1,168 @@
+{
+  "status": "aerial_detail_extension_and_registration_candidate",
+  "bounds": [
+    -2048,
+    -2560,
+    2048,
+    3584
+  ],
+  "origin": [
+    150000,
+    145000
+  ],
+  "geometry_sha256": {
+    "manifest.json": "3ba7ea2d92435768194f0baff003760bb5e04b31f381d06ab9fe0b948c36a186",
+    "data/placements.json": "4cd70eefcf1449e543468a29ea6bb395a477c5c4c57f752d768b36ac8b308ec3",
+    "data/connections.json": "523a15e8f6caadc6dcf8d4ad36e02f95cfff7946ff3d309b2f8a37c948315388",
+    "height/master16.png": "0cf6e53fcfd3c1d3b14c85ef449c1e94057d0f282a9a35f6db5925db8068ee04",
+    "scene.js": "e9eb6039ec1cdcbb9420c0758f3795d8558f95b7fb42aa041ae3303f52021a1d"
+  },
+  "images": {
+    "base": {
+      "file": "../VelesDetailTerrain-v1/previews/assembled.png",
+      "width": 2048,
+      "height": 3072,
+      "sha256": "5bb9ab9350af6466c065e413c684ce43d9536d94c2a75f33063ca4056639b284"
+    },
+    "region": {
+      "file": "../VelesDetailArt-v2/assets/region-refined.png",
+      "width": 1024,
+      "height": 1536,
+      "sha256": "23516207820bff76ff49543c991fd703c25dd12dcbdeb49dd9ccfebab05b45d1"
+    },
+    "west": {
+      "file": "assets/west.png",
+      "width": 1161,
+      "height": 1355,
+      "sha256": "0e5fce3c591533f3cb1bb6aace3dc775d3d3e5b7c7b289b68de179378b5080e0"
+    },
+    "east": {
+      "file": "assets/east.png",
+      "width": 1161,
+      "height": 1355,
+      "sha256": "8b32d8c0717168d18d6ba1cbda84cecb166e717f0d90f6d25fd6a273797579f2"
+    },
+    "forest": {
+      "file": "../VelesDetailArt-v2/assets/forest.png",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "ecfe309c574d16133dda19b5c1fa0e7e6b82aabe0a519f75f19d699c5e69c627"
+    },
+    "core": {
+      "file": "assets/core.png",
+      "width": 1573,
+      "height": 1000,
+      "sha256": "5c3648c8981c6c4d82387a18d5688b6ae5eafa7b04abcb2c52f22ad3ba592b1a"
+    }
+  },
+  "layers": [
+    {
+      "id": "base",
+      "file": "../VelesDetailTerrain-v1/previews/assembled.png",
+      "bounds": [
+        -2048,
+        -2560,
+        2048,
+        3584
+      ],
+      "fade": 0,
+      "lock": 0,
+      "width": 2048,
+      "height": 3072,
+      "mpp": [
+        2,
+        2
+      ]
+    },
+    {
+      "id": "region",
+      "file": "../VelesDetailArt-v2/assets/region-refined.png",
+      "bounds": [
+        -2048,
+        -2560,
+        2048,
+        3584
+      ],
+      "fade": 96,
+      "lock": 8,
+      "width": 1024,
+      "height": 1536,
+      "mpp": [
+        4,
+        4
+      ]
+    },
+    {
+      "id": "west",
+      "file": "assets/west.png",
+      "bounds": [
+        -1500,
+        150,
+        -300,
+        1550
+      ],
+      "fade": 100,
+      "lock": 0,
+      "width": 1161,
+      "height": 1355,
+      "mpp": [
+        1.0335917312661498,
+        1.033210332103321
+      ]
+    },
+    {
+      "id": "east",
+      "file": "assets/east.png",
+      "bounds": [
+        300,
+        150,
+        1500,
+        1550
+      ],
+      "fade": 100,
+      "lock": 0,
+      "width": 1161,
+      "height": 1355,
+      "mpp": [
+        1.0335917312661498,
+        1.033210332103321
+      ]
+    },
+    {
+      "id": "forest",
+      "file": "../VelesDetailArt-v2/assets/forest.png",
+      "bounds": [
+        -600,
+        350,
+        600,
+        1550
+      ],
+      "fade": 90,
+      "lock": 0,
+      "width": 1254,
+      "height": 1254,
+      "mpp": [
+        0.9569377990430622,
+        0.9569377990430622
+      ]
+    },
+    {
+      "id": "core",
+      "file": "assets/core.png",
+      "bounds": [
+        -800,
+        -250,
+        300,
+        450
+      ],
+      "fade": 70,
+      "lock": 0,
+      "width": 1573,
+      "height": 1000,
+      "mpp": [
+        0.6993006993006993,
+        0.7
+      ]
+    }
+  ]
+}

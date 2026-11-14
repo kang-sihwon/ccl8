@@ -4,6 +4,20 @@
 
 ## 벨레스와 주변 연결 구간
 
+### 건물 외곽 보정과 숲 양옆 확장 v3
+
+**벨레스의 건물 외곽을 기준으로 지붕 위치를 보정하고, 기존 상세 숲의 서쪽·동쪽을 같은 항공사진 화풍으로 확장했다.** [마을 비교](Atlas/VelesDetailArt-v3/previews/village-comparison.png)와 [숲 비교](Atlas/VelesDetailArt-v3/previews/forest-comparison.png)는 왼쪽 v2, 오른쪽 v3다. [마을 확대](Atlas/VelesDetailArt-v3/previews/village.png), [경계 표시 조립본](Atlas/VelesDetailArt-v3/previews/assembled-grid.png), [뷰어](Atlas/VelesDetailArt-v3/index.html)를 함께 둔다. 기존 시안과 수치 원본은 보존한다.
+
+건물 86개의 외곽선과 도로 중심선을 생성 입력에 표시했다. [외곽 비교 1](Atlas/VelesDetailArt-v3/previews/roof-audit-1.png), [2](Atlas/VelesDetailArt-v3/previews/roof-audit-2.png), [3](Atlas/VelesDetailArt-v3/previews/roof-audit-3.png), [4](Atlas/VelesDetailArt-v3/previews/roof-audit-4.png)에서 각 건물의 v2·v3와 청록색 기준선을 대조했다. 86개 위치의 지붕을 육안으로 확인했고 외곽 정합은 전반적으로 개선됐다. 일부 처마·그림자·길 가장자리의 차이는 남아 있어 시각적 정합은 계속 `PARTIAL`이다. 도로 103개 전체의 그림 정합이나 생성 그림의 총 건물 수를 자동 검증한 결과는 아니다.
+
+새 서쪽 영역은 로컬 좌표 `[-1500,150,-300,1550]m`, 동쪽은 `[300,150,1500,1550]m`다. 각각 1,161×1,355px로 약 1.03m/px의 실제 이미지 정보를 가진다. [규격](Atlas/VelesDetailArt-v3/manifest.json)의 상세 이미지 사각형 합집합은 **2.12km²에서 4.64km²**로 늘었다. 가장자리 혼합 구간을 포함한 면적이며 모든 픽셀의 선명도가 같다는 뜻은 아니다. 북쪽·남쪽과 나머지 외곽에는 4m/px 광역 배경이 남아 있다. [생성 입력문](Atlas/VelesDetailArt-v3/records/generation.json)을 보관한다.
+
+[독립 검사](Atlas/VelesDetailArt-v3/records/verification.json) 18개를 통과했다. 이전에 기록한 원본 파일 5개의 해시와 좌표·고도를 유지했고, 바깥 3px 띠가 기존 원본과 같다. 이미 저장된 [24개 아트 타일](Atlas/VelesDetailArt-v3/tiles.json)을 다시 읽어 조립하면 공통 합성 화면과 일치하며, 인접 여백 38곳도 픽셀 단위로 같다. 동일 합성 화면에서 자른 타일의 연속성 검사이며, 그림 속 모든 도로·건물이 수치 외곽과 일치한다는 증거는 아니다.
+
+v3 뷰어의 `좌표 원본`은 절차적으로 렌더링한 v1과 비교한다. v2와의 비교는 위 비교 이미지를 사용한다. v3는 정적 JavaScript 검사와 브라우저를 쓰지 않는 이미지 조립·검사를 수행했다. v3의 실제 브라우저 조작과 UE 실행은 미검증이다.
+
+재출력은 `node Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v3/prepare.cjs`, `python Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v3/assemble.py`, `python Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v3/verify.py` 순서다. Python에는 Pillow가 필요하다. 새 이미지를 생성하지 않고 저장된 아트 원본을 고정 좌표에 조립한다. 다음 작업은 남은 길 윤곽과 북쪽·남쪽의 상세도 차이를 줄이는 일이다.
+
 ### 항공사진 화풍 보정 v2
 
 사용자가 v1의 반복 지붕·수관 표현을 지적해, 채택한 벨레스 v2를 참조한 **항공사진 화풍 보정 후보**를 만들었다. [보정 뷰어](Atlas/VelesDetailArt-v2/index.html)의 `수정 전`, `배치선`, `경계`로 원본과 대조한다. [마을 확대](Atlas/VelesDetailArt-v2/previews/village.png), [숲·동굴 연결로](Atlas/VelesDetailArt-v2/previews/forest.png), [전체 조립본](Atlas/VelesDetailArt-v2/previews/assembled-grid.png)을 함께 둔다. v1의 수치 원본과 타일은 보존한다.
