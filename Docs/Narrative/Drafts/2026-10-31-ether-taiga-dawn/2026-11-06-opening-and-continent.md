@@ -6,6 +6,7 @@
 
 | 순서 | 읽는 문서 | 산출물 |
 |---|---|---|
+| 현재 장면 개요 | [벨레스 도입부터 출항까지](2026-11-06-opening-and-continent/2026-11-14-veles-opening-scenes.md) | 확정 인물·갈등·정보 연결을 적용한 장면과 기존 원고의 차이를 볼 때 |
 | 현재 몬스터·생태 분포 | [고블린 거점과 숲의 일반 동물](2026-11-06-opening-and-continent/2026-11-07-goblin-territories-and-wildlife.md) | 고블린 거점·생활·약탈·운반과 일반 동물을 구분한 v2 지도와 수치를 볼 때 |
 | 현재 공간 상세 | [작업장 연결로·동굴 출구](2026-11-06-opening-and-continent/2026-11-07-forest-sightlines-and-clearance.md) | 길의 폭·작업 단·시야를 가리는 바위와 관찰 위치를 확대 지도에서 볼 때 |
 | 현재 탐색 흐름 | [동쪽 진입·서쪽 귀환 모의 탐색](2026-11-06-opening-and-continent/2026-11-07-forest-roundtrip-walkthrough.md) | 탐색·보스·복구·다른 길 귀환과 생활권 공백·추격 중첩의 비교를 볼 때 |
@@ -16,7 +17,7 @@
 | 1 | [첫 장 연결 점검](2026-11-06-opening-and-continent/opening-audit.md) | 기존 장면의 빈틈과 이번 상세안의 대응 |
 | 2 | [지형과 36개 정착지](2026-11-06-opening-and-continent/geography.md) | 다섯 대륙의 외형 기준, 이그니스 유역·고개·정착 위치와 공급 관계 |
 | 3 | [국가·세력·몬스터의 현재 상황](2026-11-06-opening-and-continent/present-world.md) | 첫날 아침에 이미 진행 중인 선택·압력·협력과 충돌 조건 |
-| 4 | [시작부터 출항까지](2026-11-06-opening-and-continent/opening-scenario.md) | 인물·전투·설비·귀환·출항을 연결한 상세 시나리오 |
+| 4 | [시작부터 출항까지의 보존 원고](2026-11-06-opening-and-continent/opening-scenario.md) | 다람쥐 전투·순차 교전·린 동승으로 읽힐 수 있는 서술 등 이전 상세와 현행 개요를 비교할 때 |
 | 검토 | [통합 독립 검토](../../Reviews/2026-11-06-opening-continent-review.md) | 네 단계의 판정, 수정한 지적과 남은 검증 범위 |
 
 현재 시점은 벨레스 급수가 끊기는 날이다. 로덴의 사고, 세르나의 실종선 구조와 부두전, 하르덴 이후 주인공의 여정은 [장기 모험 보존 자료](2026-11-03-adventure-plot.md)에 둔다. 해당 사건의 성공과 결과를 지금의 배경 상태로 옮기지 않는다.
