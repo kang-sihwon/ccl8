@@ -27,7 +27,20 @@
 
 모든 빈칸에 새 설정을 만들어 넣는 것이 완료 조건은 아니다. 현재 상황을 설명하는 데 필요하지 않은 역사·신상·수치는 보류한다. 기존 해안·도시 좌표·선택한 화풍을 보존하며 지도 이미지 재제작·실제 지형 생성·UE 블록아웃은 범위 밖이다. 자료 대조에서 공간 검증이 필요해지면 위치와 이유를 남긴다.
 
-## 스킬과 다음 인계
+## 현재 결과
+
+[배경 정합 묶음](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-15-ignis-background.md)의 작성·독립 검토를 완료했다. [검토 기록](../Reviews/2026-11-15-ignis-background-review.md)은 두 지적 수정 뒤 PASS이며 잔여 지적은 없다. 상태는 `DISCUSSION`, IB01-IB06과 공통 경계는 아직 미채택이다. IA01-IA02·IH01-IH05와 기존 이름·좌표·정본·종과 성장 수치·원문을 보존한다.
+
+| 완료 기준 | 결과와 확인 위치 |
+|---|---|
+| 정착망 비교 | [36곳 표](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-15-ignis-background/settlements.md). 8·12·16곳 이름·좌표 일치, 지형·생계·의존 관계·출처·미확인 표시 |
+| 세력·생활권 관계 | [현재 대응과 생태](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-15-ignis-background/pressures.md). 자원·당사자·현행 대응·조건부 변화·명목과 실제 권한·동물과 몬스터 구분 |
+| 충돌·영향 목록 | [IC01-IC08](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-15-ignis-background/options.md#충돌과-누락의-영향). 벨레스 실재고, 서부 수계, 장거리 교환, 후대 성과와 NG03 영향 |
+| 선택표·검토 | [IB·IA·IH](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-15-ignis-background/options.md)와 [독립 검토](../Reviews/2026-11-15-ignis-background-review.md). 정본 채택과 실제 물류·공간·UE는 별도 |
+
+다음은 사용자가 선택한 IB와 공통 경계를 NG04에서 반영하거나, NG03에서 확정 기준과 미채택 영향을 구분해 여정을 대조하는 일이다. NG02의 서면 완료를 실제 공급량·통행·생태·게임 검증 완료로 바꾸지 않는다.
+
+## 스킬과 인계 범위
 
 관련 조합은 Worldbuilding Studio·Map Maker·Game Designer Assistant와 ccl8-narrative·docs·writing이다. 과거 승인의 적용 범위를 확인하고 새 전문 스킬·확장 범위만 작업 전에 확인한다. Map Maker는 기존 지도·좌표를 대조하는 용도로 제안하며 이미지 제작 재개를 뜻하지 않는다. 관련 선택 스킬은 Mythology Creator이며 전승의 모순을 다룰 때만 검토한다.
 
