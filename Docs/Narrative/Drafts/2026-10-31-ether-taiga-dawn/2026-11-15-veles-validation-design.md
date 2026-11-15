@@ -1,5 +1,7 @@
 # 벨레스 첫 장 공간·운영·전투 검증 설계
 
+2026-11-15 사용자 승인으로 VD01-VD06과 공통 경계를 [결정 62](../../../decisions/0062-veles-validation-design-adoption.md)·[Scenario](../../Scenario.md#벨레스-첫-장의-공간운영전투-검증-기준)에 반영했다. 이 채택 범위는 `CLOSED`다. [반영 독립 검토](../../Reviews/2026-11-15-veles-validation-adoption-review.md)는 PASS이며 잔여 지적은 없다. VDA01-VDA02·VDH01-VDH06과 아래 원문·도안·좌표·수치는 보존한다. SP·GX·WC·OP 및 상세 표·실행용 가정 전체는 일괄 정본화하지 않았고 실제 GX·WC 검사는 모두 미실행이다. 아래 후보·미채택·다음 선택 표현은 작성 당시 기록이다.
+
 **첫 검증은 동쪽 진입·지하 작업실·수원 공동·같은 길 귀환·마을 인수·출항을 잇는 제한된 범위로 잡는다.** 공간은 기존 참조에서 시작하고, 경로·무기·재고 조건을 바꾸며 PR01-PR07이 실제로 성립하는지 판정할 명세를 만든다. 같은 길 왕복은 첫 비교 사례이며 필수 귀환로가 아니다.
 
 2026-11-15 요청한 [NG06](../../WorkGroups/next-workgroups.md#ng06-첫-장-공간운영전투-검증-설계)의 설계 묶음이다. 상태는 `DISCUSSION`이며 [독립 검토](../../Reviews/2026-11-15-veles-validation-design-review.md)는 PASS, 잔여 지적 없음이다. [결정 61](../../../decisions/0061-veles-progression-resume-adoption.md)의 PR01-PR07·공통 경계와 앞선 확정을 입력으로 쓴다. 새 검증 범위·순서·표현인 VD01-VD06은 미채택 후보다. 실제 UE 구현·실행, 이미지 생성, 지도·좌표·수치 변경은 하지 않았다.

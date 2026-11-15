@@ -8,9 +8,11 @@
 
 PRA01-PRA02·PRH01-PRH06과 기존 원문·보류는 보존한다. NG05 묶음·조건·사례·재개·선택표 다섯 원문에는 상단 채택 안내만 더했다. TR·C·RT와 상세 표 전체를 구현 상태·전체 경로 지원으로 승격하지 않는다. 결정 5·21과 기존 NC·VR·IB·JC를 유지하고 World·코드·설정·에셋은 바꾸지 않았다. 삭제 후보와 실제 삭제는 없다. 실제 UE 구현·실행은 제외했다.
 
-## NG06에서 넘어온 미채택 검증 설계
+## 첫 장 공간·운영·전투 검증 기준 채택 묶음
 
-[VD01-VD06과 공통 경계](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-15-veles-validation-design/options.md)는 작성·[독립 검토](../Reviews/2026-11-15-veles-validation-design-review.md)를 PASS로 완료했다. 상태는 `DISCUSSION`이며 사용자 선택 전이고 정본·결정에 반영하지 않았다. VDA01-VDA02·VDH01-VDH06과 기존 원문·대안·보류를 보존한다. 선택 시 검증 범위·판단 기준만 대조하고 SP·GX·WC·OP 전체나 좌표·실행용 가정을 정본 상태·수치로 복사하지 않는다. PR과 앞선 채택은 유지하며 실제 UE 제작·실행은 별도다.
+[VD01-VD06과 공통 경계](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-15-veles-validation-design/options.md)는 작성·[독립 검토](../Reviews/2026-11-15-veles-validation-design-review.md)를 PASS로 완료했다. 사용자 승인으로 [결정 62](../../decisions/0062-veles-validation-design-adoption.md)·[Scenario](../Scenario.md#벨레스-첫-장의-공간운영전투-검증-기준)에 여섯 항목의 검증 범위·판단 기준·이점·부담과 공통 경계를 반영했다. 이 채택 범위는 `CLOSED`다. [반영 독립 검토](../Reviews/2026-11-15-veles-validation-adoption-review.md)는 PASS이며 잔여 지적은 없다.
+
+VDA01-VDA02·VDH01-VDH06과 기존 원문·대안·보류·도안·좌표·수치를 보존한다. 설계 묶음·공간·검사·운영·인계·선택표 여섯 원문에는 상단 채택 안내만 더했다. SP·GX·WC·OP 전체나 좌표·실행용 가정을 정본 상태·수치로 복사하지 않는다. PR과 앞선 채택은 유지하며 World·코드·설정·에셋은 바꾸지 않았다. 삭제 후보와 실제 삭제는 없다. GX·WC는 모두 미실행이며 실제 UE 제작·실행은 별도다.
 
 ## 시작 조건과 입력
 

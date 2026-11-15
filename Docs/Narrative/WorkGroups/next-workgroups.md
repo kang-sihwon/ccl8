@@ -2,7 +2,7 @@
 
 **NG06의 공간·운영·전투 검증 설계를 작성했으며 다음 문서 목표는 NG07 첫 장 통합 집필과 정보 전달을 추천한다.** NG05는 조사 누락·중간 귀환·부분 복구·인수 부족 뒤의 판단을 PR01-PR07로 구체화했다. 작성·독립 검토를 마친 PR01-PR07·공통 경계는 사용자 승인으로 [결정 61](../../decisions/0061-veles-progression-resume-adoption.md)·Scenario에 반영했고 반영 검토도 PASS이며 잔여 지적은 없다.
 
-이 문서는 후속 작업의 순서·완료 기준과 진행 결과를 소유한다. NG05의 작성·채택은 완료했다. NG06은 사용자 요청으로 설계 작성·독립 검토를 완료했으며 NG07·NG08은 **미착수·실행 선택 전**이다. NG05 작성 자체와 사용자 채택을 구분하며, 이번 PR 채택도 남은 상세 보류 해제나 실제 구현 지시가 아니다. 보류 원문과 부분 채택의 경계는 [남은 보류 지도](remaining-holds.md), 완료된 NG01-NG04는 [상위 작업군 지도](../WorkGroups.md)가 소유한다.
+이 문서는 후속 작업의 순서·완료 기준과 진행 결과를 소유한다. NG05의 작성·채택은 완료했다. NG06은 설계 작성·독립 검토를 완료하고 VD01-VD06·공통 경계의 사용자 채택을 정본에 반영했으며 NG07·NG08은 **미착수·실행 선택 전**이다. NG05 작성 자체와 사용자 채택을 구분하며, 이번 PR 채택도 남은 상세 보류 해제나 실제 구현 지시가 아니다. 보류 원문과 부분 채택의 경계는 [남은 보류 지도](remaining-holds.md), 완료된 NG01-NG04는 [상위 작업군 지도](../WorkGroups.md)가 소유한다.
 
 [당초 추천의 독립 검토](../Reviews/2026-11-15-next-workgroups-review.md)는 PASS이며 잔여 지적은 없다. 그 검토 당시에는 NG05도 미착수였다. 이후 NG05의 실행 결과와 검토는 아래에서 별도로 추적한다.
 
@@ -67,7 +67,7 @@ NG06은 **검증 설계까지**다. 실행은 [별도 제작 목표](#실제-제
 
 ### NG06 산출물과 현재 상태
 
-[검증 설계 묶음](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-15-veles-validation-design.md)은 `DISCUSSION`이며 [독립 검토](../Reviews/2026-11-15-veles-validation-design-review.md)는 PASS, 잔여 지적 없음이다. PR01-PR07·공통 경계는 확정 입력이고 VD01-VD06·공통 경계는 새 미채택 후보다. 원문·대안·보류·도안·좌표·수치를 유지했다.
+[검증 설계 묶음](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-15-veles-validation-design.md)의 작성 [독립 검토](../Reviews/2026-11-15-veles-validation-design-review.md)는 PASS, 잔여 지적 없음이다. PR01-PR07·공통 경계는 확정 입력이며 VD01-VD06·공통 경계도 사용자 승인으로 [결정 62](../../decisions/0062-veles-validation-design-adoption.md)·[Scenario](../Scenario.md#벨레스-첫-장의-공간운영전투-검증-기준)에 반영했다. 이 채택 범위는 `CLOSED`다. [반영 독립 검토](../Reviews/2026-11-15-veles-validation-adoption-review.md)는 PASS이며 잔여 지적은 없다. 원문·대안·보류·도안·좌표·수치를 유지했다.
 
 | 완료 기준 | 작성한 결과·검증 한계 |
 |---|---|
@@ -75,7 +75,7 @@ NG06은 **검증 설계까지**다. 실행은 [별도 제작 목표](#실제-제
 | 통행·전투 명세 | [GX01-GX12·WC01-WC06](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-15-veles-validation-design/tests.md)에 시작·행동·기대·실패·측정을 작성했다. 실제 무기 명부의 각 항목을 연결하고 대표 무기 성공으로 전체를 대신하지 않는다. 실행 결과는 모두 미실행이다. |
 | 운영·성장 가정 | [OP01-OP09](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-15-veles-validation-design/operations.md)에 단위·출처·자원 시점·운반·재작업·성장 입력과 판정 불가를 적었다. 기존 S1 1→6·3/1/1 예산을 실제 XP·출항 레벨로 바꾸지 않는다. |
 | 실행 인계 | [최소 제작·계측·실행 순서](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-15-veles-validation-design/handoff.md)에 필요한 연결·측정·증거와 선행 미결을 정리했다. 실제 UE 구현·실행은 별도 요청이며 이번에 하지 않았다. |
-| 추천·검토 | [VD01-VD06·공통 경계·VDA·VDH](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-15-veles-validation-design/options.md)의 작성·독립 검토를 완료했다. 새 후보는 NG04의 선택 대상으로, 공간 제약·미확인은 NG07의 원고 입력으로 넘긴다. |
+| 추천·검토 | [VD01-VD06·공통 경계·VDA·VDH](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-15-veles-validation-design/options.md)의 작성·독립 검토를 완료했다. VD·공통 경계는 NG04에서 채택 범위만 반영했고 VDA·VDH와 상세 표는 보존한다. 공간 제약·미확인은 NG07의 원고 입력으로 넘긴다. |
 
 입력 23개와 제한된 계산은 [대조 기록](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-15-veles-validation-design/source-audit.json)에 남긴다. 해시·문서 검사는 실제 공간·운영·전투의 성공을 뜻하지 않는다. 기존 79행·PRH와 새 VDH의 세부·실행 보류는 유지하며 다음 목표를 자동 시작하지 않는다.
 
