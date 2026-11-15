@@ -36,3 +36,5 @@
 | [Scenario](Narrative/Scenario.md) | 사용자 승인 인물 관계·플롯 |
 
 조사·후보·검토는 `Narrative/Research/`, `Narrative/Drafts/`, `Narrative/Reviews/`에 기록한다. 파일 이름과 항목이 끝난 뒤의 처리는 Workflow가 소유한다. 아트 방향은 [ArtDirection](ArtDirection.md), 코드·설정·에셋의 AI 작업 범위는 [Coding](Coding.md)을 따른다.
+
+[NG08 운영·인계 후보](Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-16-ignis-operational-handoffs.md)는 로덴·세르나·하르덴 한 연결의 흐름·조건/비용·불완전 사례·권한·선택을 소유한다. 작성·독립 검토 PASS이며 HO01-HO06·공통 경계는 미채택이다. 기존 정본과 원문은 유지하고 실제 UE 구현·실행은 제외한다.

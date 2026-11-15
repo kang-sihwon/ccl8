@@ -1,0 +1,99 @@
+{
+  "baseline_commit": "70bed9df98a879a745c8ffcc967b1800e24ec54f",
+  "scope": "NG08 document source preservation; not runtime, logistics, cost or canonical approval evidence",
+  "hash_encoding": "sha256 of exact worktree bytes; git_blob_sha256 of baseline Git blob; text comparison normalizes CRLF to LF",
+  "sources": [
+    {
+      "path": "Docs/Narrative/World.md",
+      "sha256": "711bf76ac7d417d51baadbd4a476e91367913944be35da83df86fe7af2392346",
+      "git_blob_sha256": "711bf76ac7d417d51baadbd4a476e91367913944be35da83df86fe7af2392346"
+    },
+    {
+      "path": "Docs/Narrative/Scenario.md",
+      "sha256": "940a800ba42204590f546d08bf8ff8ebf852b9aa7588b8ba7cb96f6ac028d475",
+      "git_blob_sha256": "940a800ba42204590f546d08bf8ff8ebf852b9aa7588b8ba7cb96f6ac028d475"
+    },
+    {
+      "path": "Docs/decisions/0059-ignis-background-relations-adoption.md",
+      "sha256": "ed1eae1b993e16bff19a00cf3aade20c8e51609863483b9480fbb3b715fcf440",
+      "git_blob_sha256": "ed1eae1b993e16bff19a00cf3aade20c8e51609863483b9480fbb3b715fcf440"
+    },
+    {
+      "path": "Docs/decisions/0060-world-journey-connections-adoption.md",
+      "sha256": "c1f155d773c30a6a348cadeeb30bb9b87f8d980a9c96ddfbebfb4c85791e0d58",
+      "git_blob_sha256": "c1f155d773c30a6a348cadeeb30bb9b87f8d980a9c96ddfbebfb4c85791e0d58"
+    },
+    {
+      "path": "Docs/decisions/0061-veles-progression-resume-adoption.md",
+      "sha256": "3e0967470b457bb3d87a1aab502d519fb7f804d57b0d7f6b38deeeea52d1c9f2",
+      "git_blob_sha256": "3e0967470b457bb3d87a1aab502d519fb7f804d57b0d7f6b38deeeea52d1c9f2"
+    },
+    {
+      "path": "Docs/decisions/0062-veles-validation-design-adoption.md",
+      "sha256": "ef4171c8abdcdc93f444b69c114e41ce9355bd992f36330223eaa0597976d7a1",
+      "git_blob_sha256": "ef4171c8abdcdc93f444b69c114e41ce9355bd992f36330223eaa0597976d7a1"
+    },
+    {
+      "path": "Docs/decisions/0063-veles-manuscript-delivery-adoption.md",
+      "sha256": "dbd2f80c68271d345f82495814443a64529359b440d5787504dad7ae966302b7",
+      "git_blob_sha256": "dbd2f80c68271d345f82495814443a64529359b440d5787504dad7ae966302b7"
+    },
+    {
+      "path": "Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-09-ignis-journey-continuity/story-and-handoffs.md",
+      "sha256": "2f0bc4a3dd5bd2533c96eda4b0ea8014f5ffbf7ae4f052123fbd41086d296eba",
+      "git_blob_sha256": "360ec7b6b46fabc23a18d9138d95bb0f0faecd32f1a7d87db8baf2d80122efaf"
+    },
+    {
+      "path": "Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-08-tarnel-roden-exploration/story-and-roundtrip.md",
+      "sha256": "a9dff7a5d3e037c743bdccae8e9f46086a500fadd42d7dd3909584c1bfb52b69",
+      "git_blob_sha256": "a9dff7a5d3e037c743bdccae8e9f46086a500fadd42d7dd3909584c1bfb52b69"
+    },
+    {
+      "path": "Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-08-roden-serna-exploration/story-and-roundtrip.md",
+      "sha256": "ca67c93be34e9a51e9710a3ab97d2b1e04d326ecc8abd53b7f61a3a42057d76f",
+      "git_blob_sha256": "5618c79c9b443c4fa48e2146e00bd03a6baac5bd76a8b4548756130a4e4acc95"
+    },
+    {
+      "path": "Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-08-serna-harden-exploration/story-and-roundtrip.md",
+      "sha256": "ffc8cf791975c8e690a9798dbe746396d59ca5594fd6992bb6089ec796759047",
+      "git_blob_sha256": "ad8e0f57fc340f2bdde2d4ddeac64e918fb2fe278c3663a214f1242002626ec5"
+    },
+    {
+      "path": "Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-15-world-journey-alignment/journey.md",
+      "sha256": "7ee934a25fd1d75295f94213c29452fe1f2ba0fbf2c1585fefac838795825350",
+      "git_blob_sha256": "7ee934a25fd1d75295f94213c29452fe1f2ba0fbf2c1585fefac838795825350"
+    },
+    {
+      "path": "Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-15-world-journey-alignment/options.md",
+      "sha256": "6c41014848e74d56110047a9d9f7092bdbea69db0022b4af3e26fa418ceac996",
+      "git_blob_sha256": "6c41014848e74d56110047a9d9f7092bdbea69db0022b4af3e26fa418ceac996"
+    },
+    {
+      "path": "Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-15-ignis-background/options.md",
+      "sha256": "3c1114e4603c5bae6d39638ce1b5f56628f085c1a05563a950b440f95763ecef",
+      "git_blob_sha256": "3c1114e4603c5bae6d39638ce1b5f56628f085c1a05563a950b440f95763ecef"
+    },
+    {
+      "path": "Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-15-veles-validation-design/operations.md",
+      "sha256": "c1ab2b228de168e9237ea3dae161e674f130baa3b8d3d7d340dbb0722fdc7d0d",
+      "git_blob_sha256": "c1ab2b228de168e9237ea3dae161e674f130baa3b8d3d7d340dbb0722fdc7d0d"
+    },
+    {
+      "path": "Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-15-veles-progression-resume/options.md",
+      "sha256": "1d5f07b57844378b6ee0211b84b401551331badc4fcceecf42ee938f88a7d4b3",
+      "git_blob_sha256": "1d5f07b57844378b6ee0211b84b401551331badc4fcceecf42ee938f88a7d4b3"
+    },
+    {
+      "path": "Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-15-veles-validation-design/options.md",
+      "sha256": "a0e5465cdafc636894328aea094cd536c65604ce616e7a57d0db2784431dafa1",
+      "git_blob_sha256": "a0e5465cdafc636894328aea094cd536c65604ce616e7a57d0db2784431dafa1"
+    },
+    {
+      "path": "Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-15-veles-integrated-manuscript/options.md",
+      "sha256": "76d75778799e3202c9d16e701cc4bc399c1b8901510fe08f12bc504c75e499d4",
+      "git_blob_sha256": "76d75778799e3202c9d16e701cc4bc399c1b8901510fe08f12bc504c75e499d4"
+    }
+  ],
+  "quantitative_status": "No numeric ranges for OV01-OV10 established; no operational duration, price, stock or capacity computed",
+  "protected_scope": "Earlier drafts, alternatives, holds, drawings, coordinates and values remain unchanged. G4/G5 and UE implementation/execution excluded."
+}
