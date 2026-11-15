@@ -38,7 +38,7 @@
 | 충돌·영향 목록 | [IC01-IC08](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-15-ignis-background/options.md#충돌과-누락의-영향). 벨레스 실재고, 서부 수계, 장거리 교환, 후대 성과와 NG03 영향 |
 | 선택표·검토 | [IB·IA·IH](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-15-ignis-background/options.md)와 [독립 검토](../Reviews/2026-11-15-ignis-background-review.md). 채택한 IB·공통 경계는 결정 59, 실제 물류·공간·UE는 미검증 |
 
-다음 작성 목표는 NG03에서 확정 IB·공통 경계와 나머지 후보·보류를 구분해 여정을 대조하는 일이다. NG02의 서면 완료와 IB 채택을 실제 공급량·통행·생태·게임 검증 완료로 바꾸지 않는다.
+후속 NG03의 여정 대조와 JC 채택·NG04 반영도 완료했다. 지금 남은 수급·공간·생태·표현은 [보류 지도](remaining-holds.md)와 [후속 작업군 추천](next-workgroups.md)에서 고른다. NG02의 서면 완료와 IB 채택을 실제 공급량·통행·생태·게임 검증 완료로 바꾸지 않는다.
 
 ## 스킬과 인계 범위
 

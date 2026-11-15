@@ -8,6 +8,8 @@
 |---|---|---|
 | 시나리오·세계관 작업군 | [작업군 지도](../Narrative/WorkGroups.md) · [현재 상태](../Narrative/CurrentWork.md) | NG01·NG02 작성·검토와 채택을 완료했다. NG04는 NC·VR에 이어 IB01-IB06·공통 경계를 결정 59·정본에 반영했고 독립 검토 PASS로 완료했다. IA·IH와 이전 원문을 보존한다. NG03 작성·독립 검토도 PASS로 완료했다. JC01-JC06·공통 경계도 결정 60·Scenario에 반영했고 반영 독립 검토는 PASS이며 잔여 지적은 없다. JA·JH를 보존하며 실제 물류·생태·플레이·UE는 미검증이다. |
 
+서사 작업의 다음 선택은 [남은 보류](../Narrative/WorkGroups/remaining-holds.md)와 [NG05-NG08 추천](../Narrative/WorkGroups/next-workgroups.md)에서 확인한다. NG01-NG04의 승인 범위는 완료했고 NG05 진행·재개 규칙을 먼저 추천한다. 새 작업군은 모두 미착수이며 실제 제작·검증은 해당 요청 범위에서 시작한다.
+
 ## 다음 작업 후보
 
 아직 지도가 없는 작업이다. 시작할 때 지도를 만들고 위 표로 옮긴다. 범위와 근거는 소유 문서에 있다.
