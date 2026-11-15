@@ -1,6 +1,6 @@
 # 시나리오와 세계관 세션 인계
 
-**NG01 벨레스 첫 장의 작성·독립 검토는 완료했다. 다음 작성·검토 목표는 NG02를 추천하며, VR·NC는 사용자 선택을 기다리는 미채택 후보로 남는다.** [작업군 지도](../WorkGroups.md)의 목표와 완료 조건으로 관련 작업을 묶으며 현재 상태의 정본은 [CurrentWork](../CurrentWork.md)다. NG01을 다시 시작하지 말고 [결과와 완료 기준](01-veles-chapter.md#검토-묶음)부터 확인한다.
+**NG01의 작성·검토·사용자 채택과 NG04의 첫 장 승인 묶음 반영을 완료했다. 다음 목표는 NG02를 추천한다.** [Scenario의 NC·VR 흐름](../Scenario.md#벨레스-첫-장의-통합-흐름과-미완료-연결)과 [NG04 반영·보존 목록](04-canon-consolidation.md#첫-장-통합-묶음)부터 읽는다. NA·NH·RA·RH와 원문 전체·실제 제작의 보류는 남는다. 목표·완료 기준은 [작업군 지도](../WorkGroups.md), 현재 담당·상태는 [CurrentWork](../CurrentWork.md)가 소유한다.
 
 ## 시작 순서
 
@@ -13,13 +13,13 @@
 
 | 구분 | 확인할 내용과 소유 문서 |
 |---|---|
-| 확정 설정 | K는 결정 40·41·42, WP는 48, CL은 49, CP는 51, FC는 52, SC는 53, VS는 54, VB는 57 범위다. [서사 작업 안내](../../NarrativeConcept.md)·[결정 목록](../../Decisions.md)·정본에서 범위를 확인한다. 이 문서가 전체 상세 원고를 확정하지 않는다. |
-| 가장 최근 비교 결과 | [NC01-NC04 묶음 선택표](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-06-opening-and-continent/2026-11-15-veles-chapter-options.md)는 `DISCUSSION`이며 [독립 검토 PASS](../Reviews/2026-11-15-veles-chapter-review.md)다. NC01은 기존 VR 추천 범위, NC02-NC04는 누락 사례의 새 강조다. NA01-NA02·NH01-NH05와 기존 RA·RH를 보존한다. |
+| 확정 설정 | K는 결정 40·41·42, WP는 48, CL은 49, CP는 51, FC는 52, SC는 53, VS는 54, VB는 57, NC와 포함된 VR 흐름·경계는 58 범위다. [서사 작업 안내](../../NarrativeConcept.md)·[결정 목록](../../Decisions.md)·정본에서 범위를 확인한다. 전체 상세 원고는 일괄 확정하지 않았다. |
+| 채택과 비교 근거 | [NC01-NC04 선택표](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-06-opening-and-continent/2026-11-15-veles-chapter-options.md)의 추천과 공통 경계는 사용자 승인으로 `CLOSED`다. NC01은 VR01-VR10 흐름·강조·장면별·공통 경계, NC02-NC04는 조사 공백·미완료 보고·인수 부족의 연결을 포함한다. [정본 반영 독립 검토 PASS](../Reviews/2026-11-15-veles-chapter-adoption-review.md)이며 NA01-NA02·NH01-NH05와 RA·RH는 보존한다. |
 | 적용 사례 | [VR 원문](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-06-opening-and-continent/2026-11-15-veles-familiar-route-scenes.md)은 야외 관찰을 적게 하고 동쪽 길로 왕복하는 성공 사례다. GB03·G04는 조건부 예시이며 필수 전투 순서나 실제 통행 증명이 아니다. |
-| 완료 결과와 선택이 남은 범위 | [C01-C06 비교·통합 흐름](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-06-opening-and-continent/2026-11-15-veles-chapter-comparison.md)에 정상·조사 누락·복구 전과 도중 귀환·인수 부족, 반복·전투 연결의 자체 보완을 남겼다. NG01의 남은 작성·검토 범위와 미해결 수정 요구는 없다. NC01-NC04·NA·공통 경계의 사용자 선택과 NG04 정본 반영은 별도다. |
-| 보존 대상 | RA·RH와 BA·BH를 포함한 기존 대안·보류·원문을 유지한다. 정확한 대사·기록 수단·UI·수치·진행 규칙·제작은 함께 확정하지 않는다. |
-| 최근 작업 근거 | VR 원문은 `14cd0537`, 선택표는 `b7023124`, VB 정본 반영은 `0a3a38fe`다. 다음 결정 번호와 실제 원격 동기화 상태는 작업 시점에 다시 확인한다. |
-| 검증의 의미 | NG01의 판정 범위와 검사 근거는 [검토 기록](../Reviews/2026-11-15-veles-chapter-review.md)이 소유한다. 실제 정보 인지·전투 피로·통행·철수·재고 지속·AI·UE는 검증하지 않았다. |
+| 완료와 남은 범위 | [C01-C06 비교·통합 흐름](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-06-opening-and-continent/2026-11-15-veles-chapter-comparison.md)의 서면 비교와 NC·VR 흐름·경계 정본 반영은 완료했고 미해결 지적은 없다. C 상태표·짧은 장면·통합표 전체, 정확한 진행·운영·재시도·제작은 계속 후보·보류다. NG02·NG03과 그 미래 채택 묶음의 NG04 통합은 별도다. |
+| 보존 대상 | NA·NH·RA·RH·BA·BH와 기존 대안·보류·원문을 유지한다. NC·VR 후보 네 편은 채택 안내만 추가했다. 삭제 후보와 실제 삭제는 없으며 정확한 대사·기록 수단·UI·수치·진행 규칙·제작은 함께 확정하지 않는다. |
+| 최근 작업 근거 | NG01 검토 묶음은 `a3b4c9a6`, 현재 채택은 [결정 58](../../decisions/0058-veles-chapter-continuity-adoption.md)이다. VR 원문 `14cd0537`·선택표 `b7023124`와 VB 정본 반영 `0a3a38fe`도 근거로 보존한다. 다음 결정 번호와 실제 원격 동기화 상태는 작업 시점에 다시 확인한다. |
+| 검증의 의미 | [NG01 작성 검토](../Reviews/2026-11-15-veles-chapter-review.md)와 [NG04 정본 반영 검토](../Reviews/2026-11-15-veles-chapter-adoption-review.md)를 구분한다. 실제 정보 인지·전투 피로·통행·철수·재고 지속·AI·UE는 검증하지 않았다. |
 | 다음 작업군의 영향 | [NG02·NG03 인계](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-06-opening-and-continent/2026-11-15-veles-chapter-comparison.md#다른-작업군에-넘길-영향)를 읽는다. 비상 공급·실재고·운반 부담의 미확인을 유지하고 첫 신뢰 변화를 완전한 성장으로 확대하지 않는다. 새 수치·인물·경로·출항 이후 장면은 추가하지 않았다. |
 
 ## 되돌리지 않을 기준

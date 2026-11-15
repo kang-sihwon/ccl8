@@ -14,6 +14,8 @@
 
 [결정 57](decisions/0057-veles-information-delivery-adoption.md)의 VB01-VB06은 벨레스 정보 전달 중심과 공통 경계를 확정한다. BA01-BA02·BH01-BH06과 기존 대안·보류·원문을 보존하며 정확한 재전달 수단·게임 규칙·전체 경로 지원·제작 검증을 함께 확정하지 않는다.
 
+[결정 58](decisions/0058-veles-chapter-continuity-adoption.md)의 NC01-NC04는 벨레스 첫 장의 통합 흐름·미완료 연결과 공통 경계를 확정한다. NC01이 인용하는 VR01-VR10의 흐름·강조와 장면별·공통 경계도 포함한다. NA·NH·RA·RH와 이전 원문을 보존하며 C01-C06·VR 원문 전체·정확한 표현·진행 규칙·실제 제작은 일괄 확정하지 않는다.
+
 | 문서 | 소유 내용 |
 |---|---|
 | [Workflow](Narrative/Workflow.md) | 조사·비교·초안·검토·승인 절차, 단계와 판정, 기록 위치 |

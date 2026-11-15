@@ -6,7 +6,8 @@
 
 | 순서 | 읽는 문서 | 산출물 |
 |---|---|---|
-| 첫 장 묶음 선택 | [NC01-NC04 추천·대안·보류](2026-11-06-opening-and-continent/2026-11-15-veles-chapter-options.md) | 기존 VR과 조사 누락·미완료 귀환·인수 부족의 새 강조를 함께 고를 때 |
+| 확정한 첫 장 통합 흐름 | [Scenario의 NC·VR](../../Scenario.md#벨레스-첫-장의-통합-흐름과-미완료-연결) | 결정 58로 채택한 정상 흐름·조사 공백·미완료 보고·인수 보완과 공통 경계를 읽을 때 |
+| 첫 장 채택 범위 | [NC01-NC04 추천·대안·보류](2026-11-06-opening-and-continent/2026-11-15-veles-chapter-options.md) | 채택한 NC·VR 범위와 남은 NA·NH·RA·RH를 구분할 때 |
 | 첫 장 통합 비교 | [누락 사례와 통합 흐름](2026-11-06-opening-and-continent/2026-11-15-veles-chapter-comparison.md) | C01-C06의 정보·수행 상태와 도입부터 출항까지의 연결·반복 점검을 볼 때 |
 | 귀환 사례 선택 | [VR01-VR10 추천·대안·보류](2026-11-06-opening-and-continent/2026-11-15-veles-familiar-route-options.md) | 장면 흐름·설명 배분의 채택 범위와 RA·RH를 비교할 때 |
 | 확정 전달 적용 사례 | [적은 야외 관찰·익숙한 길 귀환](2026-11-06-opening-and-continent/2026-11-15-veles-familiar-route-scenes.md) | 짧은 장면 흐름에서 설명 반복·전투 중단·주민 인수를 비교할 때 |
