@@ -1,5 +1,7 @@
 # 벨레스 첫 장의 진행과 재개 규칙 후보
 
+2026-11-15 사용자 승인으로 PR01-PR07과 공통 경계를 [결정 61](../../../decisions/0061-veles-progression-resume-adoption.md)·[Scenario](../../Scenario.md#벨레스-첫-장의-진행과-재개)에 반영했다. 이 채택 범위는 `CLOSED`다. PRA01-PRA02·PRH01-PRH06과 아래 원문을 보존하며 TR·C·RT 및 상세 표 전체·실제 UE 구현은 함께 채택하지 않았다. 아래 후보·미채택·다음 선택 표현은 작성 당시 기록이다. 반영 검토는 [별도 기록](../../Reviews/2026-11-15-veles-progression-adoption-review.md)에서 확인한다.
+
 **첫 장의 진행은 방문한 장소나 처치 수가 아니라 실제 확인·작업·인수의 결과로 판단한다.** 중단 뒤에는 끝낸 사실을 보존하고 현재 달라진 조건을 확인한 뒤 남은 일을 잇는다. 사망한 플레이어의 재스폰과 과거 저장 불러오기는 별개다.
 
 2026-11-15 요청한 [NG05](../../WorkGroups/next-workgroups.md#ng05-첫-장-진행재개-규칙)의 작성·검토 묶음이다. 상태는 `DISCUSSION`이며 [독립 검토](../../Reviews/2026-11-15-veles-progression-resume-review.md)는 표현 두 곳 보완 뒤 PASS, 잔여 지적 없음이다. PR01-PR07과 공통 경계는 새 규칙 후보로, 아직 정본에 채택하지 않았다. NG01-NG04의 NC·VR·IB·JC와 기존 원문·대안·보류를 유지하며 실제 UE 구현은 하지 않는다.

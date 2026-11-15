@@ -2,9 +2,11 @@
 
 **목표는 사용자가 채택한 내용이 결정·정본·문서 지도에서 일치하고, 남은 후보와 보류를 바로 찾을 수 있게 하는 것이다.** 첫 장·대륙 배경·전체 여정의 결과가 채택될 때마다 해당 범위로 수행한다. 현재 상태는 [CurrentWork](../CurrentWork.md), 공통 운영은 [작업군 지도](../WorkGroups.md)를 따른다.
 
-## NG05에서 넘어온 미채택 후보
+## 첫 장 진행·재개 채택 묶음
 
-[NG05 PR01-PR07과 공통 경계](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-15-veles-progression-resume/options.md)는 작성·[독립 검토](../Reviews/2026-11-15-veles-progression-resume-review.md)를 PASS로 완료했다. 아직 사용자 선택 전이며 정본·결정에 반영하지 않았다. 사용자가 고르면 진행 판단·재개 규칙 중 해당 범위만 대조하고 PRA01-PRA02·PRH01-PRH06과 기존 원문·보류는 보존한다. 표의 TR·RT를 구현 상태·전체 경로 지원으로 승격하지 않는다. 기존 NC·VR·IB·JC의 완료 상태는 유지한다.
+[NG05 PR01-PR07과 공통 경계](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-15-veles-progression-resume/options.md)는 작성·[독립 검토](../Reviews/2026-11-15-veles-progression-resume-review.md)를 PASS로 완료했다. 이후 사용자 승인으로 [결정 61](../../decisions/0061-veles-progression-resume-adoption.md)·[Scenario](../Scenario.md#벨레스-첫-장의-진행과-재개)에 일곱 항목의 범위·효과·비용과 공통 경계를 반영했다. [반영 독립 검토](../Reviews/2026-11-15-veles-progression-adoption-review.md)는 PASS이며 잔여 지적은 없다. 채택·반영 범위는 `CLOSED`다.
+
+PRA01-PRA02·PRH01-PRH06과 기존 원문·보류는 보존한다. NG05 묶음·조건·사례·재개·선택표 다섯 원문에는 상단 채택 안내만 더했다. TR·C·RT와 상세 표 전체를 구현 상태·전체 경로 지원으로 승격하지 않는다. 결정 5·21과 기존 NC·VR·IB·JC를 유지하고 World·코드·설정·에셋은 바꾸지 않았다. 삭제 후보와 실제 삭제는 없다. 실제 UE 구현·실행은 제외했다.
 
 ## 시작 조건과 입력
 
