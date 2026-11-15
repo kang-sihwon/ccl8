@@ -1,6 +1,6 @@
 # 벨레스 첫 장 통합 작업 원고
 
-2026-11-16 사용자 승인으로 IW01-IW06과 공통 경계를 [결정 63](../../../../decisions/0063-veles-manuscript-delivery-adoption.md)·[Scenario](../../../Scenario.md#벨레스-첫-장의-표현과-작업-기록)에 반영했다. 이 채택 범위는 `CLOSED`다. [반영 독립 검토](../../../Reviews/2026-11-16-veles-manuscript-adoption-review.md)는 지도 표현 한 곳 보완 뒤 PASS이며 잔여 지적은 없다. IWA01-IWA02·IWH01-IWH06과 아래 원문·대안·보류·도안·좌표·수치는 보존한다. 정확한 대사·매체 규격·MS/C/VI와 원고 전체·실제 UE 구현·실행은 함께 채택하지 않았다. 아래 후보·미채택·다음 선택 표현은 작성 당시 기록이다.
+채택 범위·보류·검증 상태는 [상위 문서](../2026-11-15-veles-integrated-manuscript.md)를 따른다. 본문은 작성 당시 후보 기록이며 원문 전체를 정본화한 것이 아니다.
 
 **MS01-MS10은 적은 야외 관찰·익숙한 길 귀환의 정상 사례를 이어 쓴 원고다.** [VR01-VR10](../2026-11-06-opening-and-continent/2026-11-15-veles-familiar-route-scenes.md)의 순서·강조와 [Scenario](../../../Scenario.md)의 PR·VD를 유지한다. 번호는 읽기 위치이며 퀘스트 단계·필수 교전 수가 아니다. 모든 정확한 문장과 매체는 [IW 선택표](options.md)의 미채택 표현 예시다.
 
