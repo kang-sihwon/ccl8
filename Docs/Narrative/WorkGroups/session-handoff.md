@@ -1,6 +1,6 @@
 # 시나리오와 세계관 세션 인계
 
-**NG01·NG02의 작성·채택과 NG04의 첫 장·이그니스 정본 반영을 마쳤으며, 이그니스 반영의 독립 검토는 PASS이며 잔여 지적은 없다.** NG03 작성·독립 검토도 PASS로 완료했으며 잔여 지적은 없다. JC01-JC06·공통 경계는 미채택이고 사용자 선택 뒤 NG04에서 해당 범위만 반영한다. JA01-JA02·JH01-JH05를 보존한다. [World의 IB 관계](../World.md#이그니스의-공급권한생활권)·[Scenario의 공급·사건 시점](../Scenario.md#벨레스-공급과-후속-사건의-시점)과 [NC·VR 흐름](../Scenario.md#벨레스-첫-장의-통합-흐름과-미완료-연결)부터 읽는다. IA·IH·NA·NH·RA·RH와 원문 전체·실제 제작의 보류는 남는다. 목표·완료 기준은 [작업군 지도](../WorkGroups.md), 현재 담당·상태는 [CurrentWork](../CurrentWork.md)가 소유한다.
+**NG01·NG02의 작성·채택과 NG04의 첫 장·이그니스 정본 반영을 마쳤으며, 이그니스 반영의 독립 검토는 PASS이며 잔여 지적은 없다.** NG03 작성·독립 검토도 PASS로 완료했으며 잔여 지적은 없다. JC01-JC06·공통 경계도 사용자 승인으로 [결정 60](../../decisions/0060-world-journey-connections-adoption.md)·[Scenario](../Scenario.md#여정-연결과-현재-인수)에 반영해 `CLOSED`다. [반영 독립 검토](../Reviews/2026-11-15-world-journey-adoption-review.md)는 PASS이며 잔여 지적은 없다. JA01-JA02·JH01-JH05를 보존한다. [World의 IB 관계](../World.md#이그니스의-공급권한생활권)·[Scenario의 공급·사건 시점](../Scenario.md#벨레스-공급과-후속-사건의-시점)과 [NC·VR 흐름](../Scenario.md#벨레스-첫-장의-통합-흐름과-미완료-연결)부터 읽는다. IA·IH·NA·NH·RA·RH와 원문 전체·실제 제작의 보류는 남는다. 목표·완료 기준은 [작업군 지도](../WorkGroups.md), 현재 담당·상태는 [CurrentWork](../CurrentWork.md)가 소유한다.
 
 ## 시작 순서
 
@@ -13,16 +13,16 @@
 
 | 구분 | 확인할 내용과 소유 문서 |
 |---|---|
-| NG03 완료 결과 | [여정 대조 묶음](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-15-world-journey-alignment.md)에 이동·인계 15구간, 전투·네 인물, 생태·성장, JI01-JI08·JC01-JC06·JA01-JA02·JH01-JH05를 작성했다. [독립 검토](../Reviews/2026-11-15-world-journey-alignment-review.md)는 PASS이며 잔여 지적은 없다. JC·공통 경계는 선택 대기다. |
+| NG03 완료 결과 | [여정 대조 묶음](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-15-world-journey-alignment.md)에 이동·인계 15구간, 전투·네 인물, 생태·성장, JI01-JI08·JC01-JC06·JA01-JA02·JH01-JH05를 작성했다. [독립 검토](../Reviews/2026-11-15-world-journey-alignment-review.md)는 PASS이며 잔여 지적은 없다. JC·공통 경계는 사용자 승인으로 결정 60·Scenario에 반영했다. 작성 검토와 반영 검토는 구분한다. |
 | NG03 수치·한계 | 28지점 원천·전이와 1→60·30/14/15, 64=44+20, 199=59+32+44+47+17을 대조했다. 저장 배치 189행 대조는 원천 전체 재추출이 아니다. 기존 해시 24개 중 정본 둘만 후속 채택으로 달라졌고 나머지 22개는 일치했다. 실제 항행·수급·탐색 생략 경로의 경험치·플레이·UE는 미검증이다. |
 | NG02 완료 결과 | [배경 묶음](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-15-ignis-background.md)의 36곳 정착망·권한·자원·생태·사건 시점을 대조했다. [작성 독립 검토](../Reviews/2026-11-15-ignis-background-review.md)는 두 지적 수정 뒤 PASS다. IB01-IB06·공통 경계는 사용자 승인으로 결정 59·정본에 반영해 `CLOSED`이며 IA01-IA02·IH01-IH05를 보존한다. |
 | NG02에서 확인한 영향 | 하르덴 취수와 윗샘→켈바 지선을 분리하고 윗샘 직접 갈수 인과는 미기록으로 둔다. 평야 곡물은 R7·P02, 동안 조선목은 B12·B15→R7 동안항 구간이다. 청그물·누마의 먼 거래 상대를 근교 공급으로 취급하지 않는다. 좌표·물량·종·성장 수치를 새로 바꾸지 않았다. |
-| 확정 설정 | K는 결정 40·41·42, WP는 48, CL은 49, CP는 51, FC는 52, SC는 53, VS는 54, VB는 57, NC·VR은 58, IB01-IB06·공통 경계는 [결정 59](../../decisions/0059-ignis-background-relations-adoption.md) 범위다. [서사 작업 안내](../../NarrativeConcept.md)·[결정 목록](../../Decisions.md)·정본에서 범위를 확인한다. 상세 원문 전체는 일괄 확정하지 않았다. |
+| 확정 설정 | K는 결정 40·41·42, WP는 48, CL은 49, CP는 51, FC는 52, SC는 53, VS는 54, VB는 57, NC·VR은 58, IB01-IB06·공통 경계는 [결정 59](../../decisions/0059-ignis-background-relations-adoption.md) 범위다. JC01-JC06·공통 경계는 결정 60 범위다. [서사 작업 안내](../../NarrativeConcept.md)·[결정 목록](../../Decisions.md)·정본에서 범위를 확인한다. 상세 원문 전체는 일괄 확정하지 않았다. |
 | 채택과 비교 근거 | [NC01-NC04 선택표](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-06-opening-and-continent/2026-11-15-veles-chapter-options.md)의 추천과 공통 경계는 사용자 승인으로 `CLOSED`다. NC01은 VR01-VR10 흐름·강조·장면별·공통 경계, NC02-NC04는 조사 공백·미완료 보고·인수 부족의 연결을 포함한다. [정본 반영 독립 검토 PASS](../Reviews/2026-11-15-veles-chapter-adoption-review.md)이며 NA01-NA02·NH01-NH05와 RA·RH는 보존한다. |
 | 적용 사례 | [VR 원문](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-06-opening-and-continent/2026-11-15-veles-familiar-route-scenes.md)은 야외 관찰을 적게 하고 동쪽 길로 왕복하는 성공 사례다. GB03·G04는 조건부 예시이며 필수 전투 순서나 실제 통행 증명이 아니다. |
-| 완료와 남은 범위 | NG01·NG02 작성·검토와 NC·VR·IB·공통 경계의 채택·정본 반영을 마쳤다. IB 반영의 독립 검토도 PASS이며 잔여 지적은 없다. C 상태표·짧은 장면·통합표·정착망 전체와 정확한 운영·재시도·제작은 계속 후보·보류다. NG03 작성·검토도 완료했다. JC01-JC06·공통 경계 채택과 미래 승인 묶음의 NG04 반영은 별도다. |
-| 보존 대상 | JA·JH·JI·IA·IH·NA·NH·RA·RH·BA·BH와 기존 대안·보류·원문을 유지한다. IB 관련 네 원문은 채택 안내만 추가했다. 삭제 후보와 실제 삭제는 없으며 정확한 대사·기록 수단·UI·수치·진행 규칙·제작은 함께 확정하지 않는다. |
-| 최근 작업 근거 | NG02 작성·검토 묶음은 `d0dffe33`, IB 채택 커밋은 `f161d8b6`·[결정 59](../../decisions/0059-ignis-background-relations-adoption.md)다. NG01 검토 `a3b4c9a6`·NC·VR 반영 `a9f30ed4`·VR 원문 `14cd0537`·선택표 `b7023124`·VB 반영 `0a3a38fe`도 보존한다. 다음 번호와 원격 동기화 상태는 작업 시점 Git에서 확인한다. |
+| 완료와 남은 범위 | NG01·NG02 작성·검토와 NC·VR·IB·공통 경계의 채택·정본 반영을 마쳤다. IB 반영의 독립 검토도 PASS이며 잔여 지적은 없다. C 상태표·짧은 장면·통합표·정착망 전체와 정확한 운영·재시도·제작은 계속 후보·보류다. NG03 작성·검토도 완료했다. JC01-JC06·공통 경계도 채택·반영을 마쳤다. NG01-NG03의 추천 묶음은 모두 선택됐으며 남은 상세·미래 승인 묶음·제작은 별도다. |
+| 보존 대상 | JA·JH·JI·IA·IH·NA·NH·RA·RH·BA·BH와 기존 대안·보류·원문을 유지한다. IB 관련 네 원문과 JC 관련 다섯 원문은 채택 안내만 추가했다. 삭제 후보와 실제 삭제는 없으며 정확한 대사·기록 수단·UI·수치·진행 규칙·제작은 함께 확정하지 않는다. |
+| 최근 작업 근거 | NG03 작성·검토 묶음은 `5233a98b`, JC 채택은 결정 60이다. NG02 작성·검토 묶음은 `d0dffe33`, IB 채택 커밋은 `f161d8b6`·[결정 59](../../decisions/0059-ignis-background-relations-adoption.md)다. NG01 검토 `a3b4c9a6`·NC·VR 반영 `a9f30ed4`·VR 원문 `14cd0537`·선택표 `b7023124`·VB 반영 `0a3a38fe`도 보존한다. 다음 번호와 원격 동기화 상태는 작업 시점 Git에서 확인한다. |
 | 검증의 의미 | [NG01 작성 검토](../Reviews/2026-11-15-veles-chapter-review.md)·[NC 정본 반영 검토](../Reviews/2026-11-15-veles-chapter-adoption-review.md), [NG02 작성 검토](../Reviews/2026-11-15-ignis-background-review.md)·[IB 정본 반영 검토](../Reviews/2026-11-15-ignis-background-adoption-review.md)를 구분한다. 실제 정보 인지·전투 피로·통행·철수·재고 지속·AI·UE는 검증하지 않았다. |
 | NG03에서 사용한 영향 | [NG02 IC01-IC08](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-15-ignis-background/options.md#충돌과-누락의-영향)과 [NG01 인계](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-06-opening-and-continent/2026-11-15-veles-chapter-comparison.md#다른-작업군에-넘길-영향)를 읽는다. 확정 IB·공통 경계를 적용하되 비상 공급·실재고·운반 부담·장거리 수령·현지 권한의 나머지 미확인을 유지하고 첫 신뢰를 완전한 성장으로 확대하지 않는다. |
 
@@ -36,6 +36,6 @@
 
 ## 다음 세션에 전달할 요청문
 
-> Docs/Narrative/WorkGroups.md와 WorkGroups/session-handoff.md, NG03 선택표를 읽고 사용자가 선택한 JC 항목·공통 경계만 NG04에서 정본에 반영해줘. 사용자 선택이 아직 없으면 정본 반영을 시작하지 말고 JC01-JC06 추천·JA01-JA02 대안·JH01-JH05 보류를 보여줘. 이전안·대안·보류·지도·좌표·수치는 보존해줘.
+> Docs/Narrative/WorkGroups.md와 WorkGroups/session-handoff.md, World·Scenario의 확정 범위를 읽어줘. NG01-NG03 추천 NC·VR·IB·JC와 공통 경계의 채택·NG04 반영은 완료됐으므로 같은 작업을 다시 시작하지 마. 새 요청의 범위에 맞는 보류만 골라 진행하고, 정본·이전안·대안·보류·지도·좌표·수치를 보존해줘.
 
-NG02의 IB01-IB06·공통 경계는 채택됐지만 검토 묶음 전체·좌표·제도·종과 성장 수치를 일괄 채택한 것은 아니다. NG03의 새 후보는 검토를 마쳤고 사용자 선택 뒤 해당 범위만 NG04에서 반영한다. 현재 추천은 JC01-JC06·공통 경계 전체이며 정본·결정은 이번 작성에서 변경하지 않았다. 이 문서는 후속 작업을 자동 실행하거나 다른 세션을 생성하지 않는다.
+NG02의 IB01-IB06·공통 경계는 채택됐지만 검토 묶음 전체·좌표·제도·종과 성장 수치를 일괄 채택한 것은 아니다. NG03의 JC01-JC06·공통 경계는 채택·반영을 마쳤지만 이동·전투·생태·성장 원문 전체는 승격하지 않았다. JA01-JA02·JH01-JH05·JI01-JI08과 기존 보류를 다음 범위의 입력으로 보존한다. 정확한 표현·물량·항행·성장·실패 상태·구현은 새 요청에서 정하며 자동으로 다음 목표를 시작하지 않는다. 이 문서는 후속 작업을 자동 실행하거나 다른 세션을 생성하지 않는다.

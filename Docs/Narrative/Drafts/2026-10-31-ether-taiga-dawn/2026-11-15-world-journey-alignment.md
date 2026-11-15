@@ -1,5 +1,7 @@
 # 5대륙 여정의 확정 기준과 인계 대조
 
+2026-11-15 사용자가 JC01-JC06과 공통 경계를 모두 채택했다. 해당 강조·효과·제한은 [결정 60](../../../decisions/0060-world-journey-connections-adoption.md)·[Scenario](../../Scenario.md#여정-연결과-현재-인수)에 반영해 `CLOSED`다. 아래 미채택·선택 예정은 승인 전 기록이며, JA01-JA02·JH01-JH05·JI01-JI08과 기존 원문·표·사례·수치·지도·좌표는 보존한다. 원문 전체를 일괄 확정하지 않는다.
+
 **첫 장의 실제 인수와 이그니스의 공급·권한 관계를 적용해도 기존 5대륙 여정과 G1-G6는 유지할 수 있다.** 필요한 보완은 새 대륙·전투·해금을 더하는 일이 아니라, 이미 이룬 성과와 현재 확인할 조건을 연결에서 분명히 나누는 것이다. 새 표현·인계 강조 JC01-JC06과 공통 경계는 사용자 선택 전 후보다.
 
 2026-11-15 요청한 [NG03](../../WorkGroups/03-world-journey.md)의 작성·대조 묶음이다. 상태는 미채택 `DISCUSSION`이며 [독립 검토](../../Reviews/2026-11-15-world-journey-alignment-review.md)는 PASS, 잔여 지적 없음이다. [결정 58](../../../decisions/0058-veles-chapter-continuity-adoption.md)의 NC·VR과 [결정 59](../../../decisions/0059-ignis-background-relations-adoption.md)의 IB·공통 경계, 기존 WP·CL·CP·FC·SC를 확정 입력으로 쓴다. 정본과 이전 후보·지도·좌표·성장 수치는 변경하지 않는다.

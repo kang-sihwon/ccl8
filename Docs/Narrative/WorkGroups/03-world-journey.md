@@ -36,13 +36,13 @@
 | 이동·인계 통합표 | [15구간](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-15-world-journey-alignment/journey.md)에 선행 성과·지식·잔류·인수·남은 준비와 여섯 비교 사례를 기록했다. 계약과 실제 인수, 귀환·G6·결말을 구분했다. |
 | 전투·인물 연결 대조 | [전투·인물](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-15-world-journey-alignment/combat-and-characters.md)에 대표 전투 여섯 비교와 주인공·린·마렌·이르의 누적 변화·정보 시점을 대조했다. |
 | 생태·성장 대조 | [숫자와 한계](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-15-world-journey-alignment/ecology-and-growth.md)에 28지점 원천·전이·합계, 64항목·199형태·저장 배치 189행을 대조했다. 원천 배치 재추출·실제 난도는 미검증이다. |
-| 묶음 선택표·검토 기록 | [JI·JC·JA·JH 선택표](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-15-world-journey-alignment/options.md)와 [독립 검토 PASS](../Reviews/2026-11-15-world-journey-alignment-review.md), 문서·결정 검사를 기록했다. JC·공통 경계는 미채택이며 정본은 유지한다. |
+| 묶음 선택표·검토 기록 | [JI·JC·JA·JH 선택표](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-15-world-journey-alignment/options.md)와 [독립 검토 PASS](../Reviews/2026-11-15-world-journey-alignment-review.md), 문서·결정 검사를 기록했다. 작성 검토 뒤 JC·공통 경계는 결정 60으로 채택했다. 상세 표·수치는 후보로 보존한다. |
 
-작성·대조·독립 검토를 완료했다. 다음은 JC01-JC06·공통 경계의 사용자 선택이며, 선택된 범위만 NG04에서 정본에 반영한다. JA01-JA02·JH01-JH05·JI01-JI08과 이전 원문·지도·좌표·수치를 보존한다. 삭제 후보와 실제 삭제는 없다.
+작성·대조·독립 검토를 완료했다. 사용자 승인 JC01-JC06·공통 경계는 [결정 60](../../decisions/0060-world-journey-connections-adoption.md)·[Scenario](../Scenario.md#여정-연결과-현재-인수)에 반영했다. [반영 검토](../Reviews/2026-11-15-world-journey-adoption-review.md)는 PASS이며 잔여 지적은 없다. 작성 검토와 구분하며 채택 범위는 `CLOSED`다. JA01-JA02·JH01-JH05·JI01-JI08과 이전 원문·지도·좌표·수치를 보존한다. 삭제 후보와 실제 삭제는 없다.
 
 ## 스킬과 다음 인계
 
-[현재 여정 대조 묶음](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-15-world-journey-alignment.md)에 이동·인계 15구간, 전투·네 인물, 생태·성장, JC01-JC06·JA01-JA02·JH01-JH05를 작성했다. [독립 검토](../Reviews/2026-11-15-world-journey-alignment-review.md)는 PASS이며 잔여 지적은 없다. 기존 확정·좌표·종과 성장 수치를 유지하고 새 강조는 사용자 선택 전 후보로 둔다.
+[현재 여정 대조 묶음](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-15-world-journey-alignment.md)에 이동·인계 15구간, 전투·네 인물, 생태·성장, JC01-JC06·JA01-JA02·JH01-JH05를 작성했다. [독립 검토](../Reviews/2026-11-15-world-journey-alignment-review.md)는 PASS이며 잔여 지적은 없다. 기존 확정·좌표·종과 성장 수치를 유지하고 사용자가 채택한 JC·공통 경계만 정본으로 옮겼다.
 
 관련 조합은 Creative Fiction Writer·Character Creator·Worldbuilding Studio·Game Designer Assistant와 ccl8-narrative·docs·writing이다. 이미 승인한 범위는 이어 쓰고 새 범위만 확인한다. 관련 선택 스킬은 Map Maker·Mythology Creator이며 항로·전승의 실제 변경 영향이 있을 때만 추가 범위를 검토한다.
 
