@@ -19,7 +19,7 @@ PASS. 산업 정비체의 지역별 권장 범위를 명료화한 뒤 독립 재
 
 ## 관찰과 조치
 
-OBS, 확신도 높음: [배치 대조표의 CT02](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-08-continent-ecology-progression-v2/roster-placement.md#인공-생명-8계열)는 S2·S4 공통 8-18로 읽혔지만 S2 깊은 위험 범위는 12-16이었다. 검토자는 17-18 모델이 로덴에도 있는지 모호하므로 지역별 모델 범위를 나누거나 예외를 명시하도록 제안했다.
+OBS, 확신도 높음: [배치 대조표의 CT02](https://github.com/kang-sihwon/ccl8/blob/2a95af4c674f816fdc3f55796714def2936abfd8/Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-08-continent-ecology-progression-v2/roster-placement.md#인공-생명-8계열)는 S2·S4 공통 8-18로 읽혔지만 S2 깊은 위험 범위는 12-16이었다. 검토자는 17-18 모델이 로덴에도 있는지 모호하므로 지역별 모델 범위를 나누거나 예외를 명시하도록 제안했다.
 
 작성자는 S2 8-12, S4 별도 모델 12-18로 나누고 고원의 더 큰 운반·견인 모델이라는 조건을 붙였다. 철근지기 기준 12는 유지했다. 검토자는 변경 행을 읽고 OBS 해결과 PASS 유지를 확인했다.
 

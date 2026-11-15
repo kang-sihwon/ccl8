@@ -2,7 +2,7 @@
 
 **키메라는 한 몸의 공격이 어느 부위까지 이어졌는지 읽고 짧게 진입한다. 히드라는 여러 목의 공격과 몸통 이동 속에서 마른 땅을 지킨다. 빙편 정령은 공격으로 떨어뜨린 판을 다시 살피고 다음 진입로와 퇴로를 고른다.** 모두 직접 공격으로 이겨야 하지만, 공격을 멈추는 이유와 다시 접근할 때 확인하는 정보가 다르다.
 
-상태는 `DISCUSSION`이며 [독립 검토 PASS](../../Reviews/2026-11-13-predator-and-ice-combat-arcs-review.md)다. [지역별 전투 비교](2026-11-13-regional-combat-and-choices.md)의 반복 위험을 상세화한 창작 후보이며 [결정 48](../../../decisions/0048-five-continent-core-plot.md)의 핵심 플롯과 [Scenario](../../Scenario.md)는 유지한다. 아래 동작 연결·예고·판단 순서는 이번 제안이다. 기존 상세·수치·종·인물 신상·WH 보류의 정본 채택이나 실제 전투 검증을 뜻하지 않는다.
+상태는 `DISCUSSION`이며 [독립 검토 PASS](../../Reviews/2026-11-13-predator-and-ice-combat-arcs-review.md)다. [지역별 전투 비교](https://github.com/kang-sihwon/ccl8/blob/2a95af4c674f816fdc3f55796714def2936abfd8/Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-13-regional-combat-and-choices.md)의 반복 위험을 상세화한 창작 후보이며 [결정 48](../../../decisions/0048-five-continent-core-plot.md)의 핵심 플롯과 [Scenario](../../Scenario.md)는 유지한다. 아래 동작 연결·예고·판단 순서는 이번 제안이다. 기존 상세·수치·종·인물 신상·WH 보류의 정본 채택이나 실제 전투 검증을 뜻하지 않는다.
 
 ## 원문과 적용 범위
 

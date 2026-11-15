@@ -1,8 +1,10 @@
 # 에테르 첫 장 MJ 시안 제작 목록
 
+현재 사건은 [Scenario](../Narrative/Scenario.md)와 [통합 원고](../Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-15-veles-integrated-manuscript.md)를 따른다. 아래 S35·S37·S38의 동행 출항 등 구안은 린 잔류·실제 인수·다음 아침 점검에 맞춰 고친 뒤 제작에 사용한다.
+
 벨레스의 아침부터 바르툴전, 급수 복구와 다음 날 출항까지 YouArt의 Midjourney(MJ)로 탐색할 시안을 정리한다. 디자인 40항목과 장면 38항목, 총 78항목을 제안한다. 항목 수는 아래 두 목록의 합계이며 생성 횟수나 최종 이미지 장수는 아니다. 상태별 시안과 재시도는 별도로 센다.
 
-이 문서는 제작용 참조 목록이다. 시나리오의 사건은 [첫 장 상세 시나리오](../Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-first-chapter.md), 고유 설정은 [에테르 전체 구상](../Narrative/Drafts/2026-10-31-ether-taiga-dawn.md), 공통 시각 방향은 [ArtDirection](../ArtDirection.md)이 소유한다. 시안의 구성·구도·화면비·프롬프트는 제안이고 고유 서사와 최종 디자인은 아직 미승인이다. 벨레스 공간 참조 이미지 두 장을 보관했으며 전체 전경은 미확정이다.
+이 문서는 초기 원고 기반의 미실행 제작용 참조 목록이다. 당시 시나리오는 [초기 첫 장 원문](https://github.com/kang-sihwon/ccl8/blob/2a95af4c674f816fdc3f55796714def2936abfd8/Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-first-chapter.md), 고유 설정은 [에테르 전체 구상](../Narrative/Drafts/2026-10-31-ether-taiga-dawn.md), 공통 시각 방향은 [ArtDirection](../ArtDirection.md)이 소유한다. 시안의 구성·구도·화면비·프롬프트는 제안이고 고유 서사와 최종 디자인은 아직 미승인이다. 벨레스 공간 참조 이미지 두 장을 보관했으며 전체 전경은 미확정이다.
 
 ## 문서 안내
 

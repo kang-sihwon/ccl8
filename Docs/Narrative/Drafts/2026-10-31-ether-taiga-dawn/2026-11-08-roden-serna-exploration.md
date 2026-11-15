@@ -6,7 +6,7 @@
 
 로덴의 송장과 반출 보류를 세르나에서 대조하며 **갈대·잔해 생활권 → 좌초선 구조와 청등 해수 → 다른 제방길 귀환·수리 → 허가 화물 반출·수령 확인**으로 이어간다. 성장 기준은 S3 **10→14**다. 하구와 항만에는 사건 전에 존재하는 생활권을 두고, 모든 거점 처치를 진행 조건으로 삼지 않는다.
 
-2026-11-08 사용자의 로덴–세르나 탐색·생활권·스토리·왕복 지도 요청에 따른 창작 후보다. [현행 세계 분포·성장](2026-11-08-world-distribution-and-leveling.md), [앞선 타르넬–로덴](2026-11-08-tarnel-roden-exploration.md), [세르나 이전 원고](2026-11-03-adventure-plot/2026-11-06-serna-harbor.md), [이그니스 이야기 재검토](2026-11-08-five-continent-mainline/ignis-story-review.md)를 따른다. 새 좌표·무리 수·치수·구조 인원은 정본이 아니며 이전안을 삭제하지 않는다.
+2026-11-08 사용자의 로덴–세르나 탐색·생활권·스토리·왕복 지도 요청에 따른 창작 후보다. [현행 세계 분포·성장](2026-11-08-world-distribution-and-leveling.md), [앞선 타르넬–로덴](2026-11-08-tarnel-roden-exploration.md), [세르나 이전 원고](https://github.com/kang-sihwon/ccl8/blob/2a95af4c674f816fdc3f55796714def2936abfd8/Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-03-adventure-plot/2026-11-06-serna-harbor.md), [이그니스 이야기 재검토](https://github.com/kang-sihwon/ccl8/blob/2a95af4c674f816fdc3f55796714def2936abfd8/Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-08-five-continent-mainline/ignis-story-review.md)를 따른다. 새 좌표·무리 수·치수·구조 인원은 정본이 아니며 이전안을 삭제하지 않는다.
 
 ## 읽는 순서
 

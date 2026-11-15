@@ -2,7 +2,7 @@
 
 PASS. 정본 충돌이나 구성상 수정 필수 지적 없음.
 
-2026-11-08 작성자 Codex와 별도의 읽기 전용 검토 에이전트가 [종 기준안](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-08-monster-roster.md), 종별 생태·전투, 지역 연결 문서를 전체 읽고 기존 정본·지역 플롯·대륙 생태안과 대조했다. BLOCKER는 진행을 막는 모순이나 승인 범위 위반, WARNING은 수정이 필요한 불일치, OBS는 판정을 막지 않는 관찰이다.
+2026-11-08 작성자 Codex와 별도의 읽기 전용 검토 에이전트가 [종 기준안](https://github.com/kang-sihwon/ccl8/blob/2a95af4c674f816fdc3f55796714def2936abfd8/Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-08-monster-roster.md), 종별 생태·전투, 지역 연결 문서를 전체 읽고 기존 정본·지역 플롯·대륙 생태안과 대조했다. BLOCKER는 진행을 막는 모순이나 승인 범위 위반, WARNING은 수정이 필요한 불일치, OBS는 판정을 막지 않는 관찰이다.
 
 ## 확인 결과
 

@@ -2,7 +2,7 @@
 
 **북부는 공격 방향을 붙잡고 작업할 틈을 만들기, 중앙은 재잠금 뒤 공격할 측면을 고르기, 세라디온 결말은 바뀐 전장을 읽고 다음 공격 자리와 퇴로를 함께 확보하기로 구분한다.** 같은 계통의 밀기·회수·지지부 노출을 알아보는 경험은 남기되, 익숙한 회피 뒤 같은 자리에서 계속 공격하면 세 전투를 모두 풀 수 있는 구성은 피한다.
 
-상태는 `DISCUSSION`이며 [독립 검토 PASS](../../Reviews/2026-11-13-guardian-combat-arcs-review.md)다. [지역별 비교](2026-11-13-regional-combat-and-choices.md)의 방어체 반복 위험을 구체화한 새 후보다. [결정 48](../../../decisions/0048-five-continent-core-plot.md)의 핵심 플롯과 [Scenario](../../Scenario.md)를 유지한다. 아래 공격 조합·동료 신호·행동 순서는 이번 창작 제안이며 독립 검토 통과와 사용자 채택, 실제 전투 검증은 별개다.
+상태는 `DISCUSSION`이며 [독립 검토 PASS](../../Reviews/2026-11-13-guardian-combat-arcs-review.md)다. [지역별 비교](https://github.com/kang-sihwon/ccl8/blob/2a95af4c674f816fdc3f55796714def2936abfd8/Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-13-regional-combat-and-choices.md)의 방어체 반복 위험을 구체화한 새 후보다. [결정 48](../../../decisions/0048-five-continent-core-plot.md)의 핵심 플롯과 [Scenario](../../Scenario.md)를 유지한다. 아래 공격 조합·동료 신호·행동 순서는 이번 창작 제안이며 독립 검토 통과와 사용자 채택, 실제 전투 검증은 별개다.
 
 ## 원문과 적용 범위
 
@@ -100,7 +100,7 @@ Q10 뒤에는 확보한 경비 통로로 Q09-Q08-Q07을 따라 인계한다. 북
 | 승리 후 귀환 | 활동 종료한 개체를 귀환권 갱신용으로 다시 잡지 않는다. 일반 생활권·잔류 위험은 각 지역의 기존 상태를 따른다. |
 | 플레이어 사망·재시작 | 체력·부위·분리 상태를 어느 체크포인트로 복원할지는 미정이다. 위 플롯의 자발적 철수를 실제 세이브 규칙으로 확정하지 않는다. |
 
-각 패턴·분리·공개·문 개방마다 새 성장 보상을 추가하지 않는다. [현재 성장안](2026-11-13-world-journey-continuity/ecology-and-growth.md)의 구간 예산을 그대로 두고 대표 전투의 판단만 구체화한다. 주변 필드 생활권은 사건 사이에도 존재하며 보스전마다 필드 전멸을 요구하지 않는다.
+각 패턴·분리·공개·문 개방마다 새 성장 보상을 추가하지 않는다. [현재 성장안](https://github.com/kang-sihwon/ccl8/blob/2a95af4c674f816fdc3f55796714def2936abfd8/Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-13-world-journey-continuity/ecology-and-growth.md)의 구간 예산을 그대로 두고 대표 전투의 판단만 구체화한다. 주변 필드 생활권은 사건 사이에도 존재하며 보스전마다 필드 전멸을 요구하지 않는다.
 
 ## 문서 모의 진행과 남은 검증
 

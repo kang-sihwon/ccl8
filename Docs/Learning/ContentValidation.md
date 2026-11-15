@@ -14,7 +14,7 @@ C++ 클래스가 컴파일돼도 필요한 DataAsset·맵·StateTree가 없으�
 
 현재 기준 `d4888b0`은 2026-10-31의 `main`이며 로컬 원격 추적과 같았다. 원격 서버를 새로 조회한 결과는 아니다. `996bf49`가 에디터 전용 제작 도구를 `Source/CCL/Editor/`에서 별도 모듈 `Source/CCLEditor/`로 옮겼다. 이전 발췌는 `4238990` 시점의 `Source/CCL/Editor/` 코드이고 현재 발췌는 `Source/CCLEditor/Private/`의 `d4888b0` 코드다. 상대 링크는 현재 체크아웃을 연다.
 
-전투 에셋 생성 기반에서 성장·장비·생활 Agent 제작 도구로 확장된 경로를 읽는다. 대상은 `Source/CCLEditor/`, `Source/CCL/Tests/`, `Tools/Validation/`다. 실제 실행·제출 기준은 [Coding](../Coding.md), [DeliveryPlan](../DeliveryPlan.md), [Packaging](../Packaging.md)이 소유한다.
+전투 에셋 생성 기반에서 성장·장비·생활 Agent 제작 도구로 확장된 경로를 읽는다. 대상은 `Source/CCLEditor/`, `Source/CCL/Tests/`, `Tools/Validation/`다. 실제 실행·제출 기준은 [Coding](../Coding.md), [StudyRoadmap](../StudyRoadmap.md), [Packaging](../Packaging.md)이 소유한다.
 
 ## 2. 해결할 문제
 

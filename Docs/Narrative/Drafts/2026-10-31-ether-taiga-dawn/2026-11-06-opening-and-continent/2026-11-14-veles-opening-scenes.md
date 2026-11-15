@@ -4,7 +4,7 @@
 
 **주인공은 수원을 직접 살린 뒤, 자신이 없는 동안의 점검을 주민에게 맡기고 떠난다.** 도입의 여행 욕구와 맡은 일을 놓지 못하는 마음을 숲의 탐색·전투, 현장 복구, 주민의 실제 인수에 연결한다. 린은 출항을 돕고 마을에 남으며 첫 장은 배에서 세계수 상부 수관을 보는 지점에서 끝난다.
 
-상태는 `DISCUSSION`이며 원고 대조 표현 보정 뒤 [독립 검토 PASS](../../../Reviews/2026-11-14-veles-opening-scenes-review.md)다. [기존 상세 원고](opening-scenario.md)를 [Scenario](../../../Scenario.md)의 K·CL·CP·FC·SC 확정과 대조해 다듬은 장면 후보다. 확정된 사건·정보 범위는 유지하며 아래 행동 배치·장면 강조·소품은 미채택이다. 정본·이전 원문·SA·SH 및 기존 대안·보류를 바꾸지 않는다. 장편 대사·컷신·새 퀘스트·실제 제작을 추가하지 않는다.
+상태는 `DISCUSSION`이며 원고 대조 표현 보정 뒤 [독립 검토 PASS](../../../Reviews/2026-11-14-veles-opening-scenes-review.md)다. [기존 상세 원고](https://github.com/kang-sihwon/ccl8/blob/2a95af4c674f816fdc3f55796714def2936abfd8/Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-06-opening-and-continent/opening-scenario.md)를 [Scenario](../../../Scenario.md)의 K·CL·CP·FC·SC 확정과 대조해 다듬은 장면 후보다. 확정된 사건·정보 범위는 유지하며 아래 행동 배치·장면 강조·소품은 미채택이다. 정본·이전 원문·SA·SH 및 기존 대안·보류를 바꾸지 않는다. 장편 대사·컷신·새 퀘스트·실제 제작을 추가하지 않는다.
 
 새 행동 배치·장면 강조의 선택 범위는 [VS01-VS12 추천·대안·보류](2026-11-14-veles-scene-options.md)에서 비교한다. 이 개요의 본문은 보존하며 선택표 작성만으로 채택하지 않는다.
 

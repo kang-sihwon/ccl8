@@ -4,7 +4,7 @@ NG01·NG02 확정을 적용한 이동·인계, 전투·인물, 생태·성장, �
 
 ## 대상과 역할
 
-2026-11-15 Codex가 [NG03 완료 기준](../WorkGroups/03-world-journey.md)에 따라 [여정 대조 묶음](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-15-world-journey-alignment.md)과 하위 네 문서를 작성했다. 세션 모델의 읽기 전용 `ng03_review`가 다섯 문서 전문과 현행 World·Scenario의 NC·VR·IB·WP·CL·CP·FC·SC, 주요 해금·인계 소유 원문을 독립 대조했다. 검토자는 파일을 쓰지 않았고 작성자가 이 기록과 지도를 정리했다.
+2026-11-15 Codex가 [NG03 완료 기준](https://github.com/kang-sihwon/ccl8/blob/2a95af4c674f816fdc3f55796714def2936abfd8/Docs/Narrative/WorkGroups/03-world-journey.md)에 따라 [여정 대조 묶음](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-15-world-journey-alignment.md)과 하위 네 문서를 작성했다. 세션 모델의 읽기 전용 `ng03_review`가 다섯 문서 전문과 현행 World·Scenario의 NC·VR·IB·WP·CL·CP·FC·SC, 주요 해금·인계 소유 원문을 독립 대조했다. 검토자는 파일을 쓰지 않았고 작성자가 이 기록과 지도를 정리했다.
 
 BLOCKER는 진행을 막는 정본 충돌·근거 부재, WARNING은 수정이 필요한 결함, OBS는 경미한 모호성으로 구분했다. 최초 본문 판정부터 PASS였고 수정 지적은 없었다. 본문 검토와 지도·검사 마감은 별도로 확인한다.
 

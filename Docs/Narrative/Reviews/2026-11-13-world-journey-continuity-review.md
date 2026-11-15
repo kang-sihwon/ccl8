@@ -1,6 +1,6 @@
 # 5대륙 전체 여정 독립 검토
 
-**PASS. 지적 없음.** 작성자와 다른 읽기 전용 검토자 `world_journey_review`가 2026-11-13 [통합 후보](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-13-world-journey-continuity.md)와 하위 세 문서, [관계도 안내](../../ArtDirection/EtherWorldMap/2026-11-13-world-journey-continuity-map.md), JSON·PNG·SVG 및 원천을 교차 확인했다. 검토 통과는 사용자 채택·정본 승인·게임 구현 완료가 아니다.
+**PASS. 지적 없음.** 작성자와 다른 읽기 전용 검토자 `world_journey_review`가 2026-11-13 [통합 후보](https://github.com/kang-sihwon/ccl8/blob/2a95af4c674f816fdc3f55796714def2936abfd8/Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-13-world-journey-continuity.md)와 하위 세 문서, [관계도 안내](../../ArtDirection/EtherWorldMap/2026-11-13-world-journey-continuity-map.md), JSON·PNG·SVG 및 원천을 교차 확인했다. 검토 통과는 사용자 채택·정본 승인·게임 구현 완료가 아니다.
 
 BLOCKER는 진행을 막는 근거·설정 충돌, WARNING은 수정이 필요한 논리·공간 문제, OBS는 표기·명료화 문제다. 이번 범위에서 해당 지적은 없었다.
 

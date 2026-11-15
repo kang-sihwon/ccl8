@@ -6,7 +6,7 @@ NG07 [통합 집필 묶음](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-15-vel
 
 2026-11-15 사용자는 NG05·NG06에서 확정한 PR01-PR07·VD01-VD06과 공통 경계를 기준으로 NG07을 하나의 목표로 완료 기준까지 진행하도록 요청했다. 기존 원문·대안·보류·도안·좌표·수치를 유지하고 실제 UE 구현·실행은 제외했다. 작성은 2026-11-15에 시작했고 검토 마감은 2026-11-16이다.
 
-Codex는 Creative Fiction Writer·Character Creator·ccl8-narrative·docs·writing으로 정상 원고와 대체 장면·정보 대조·인물 점검·선택표를 작성했다. 세션 모델의 읽기 전용 `ng07_review`가 본문 여섯 편·원천 기록을 [NG07 완료 기준](../WorkGroups/next-workgroups.md#ng07-첫-장-통합-집필과-정보-전달), Scenario·World·VR·VI 원문·NG05 사례와 대조했다. 검토자는 파일을 쓰지 않았고 작성자가 지적을 수정하고 이 기록을 남겼다.
+Codex는 Creative Fiction Writer·Character Creator·ccl8-narrative·docs·writing으로 정상 원고와 대체 장면·정보 대조·인물 점검·선택표를 작성했다. 세션 모델의 읽기 전용 `ng07_review`가 본문 여섯 편·원천 기록을 [NG07 완료 기준](https://github.com/kang-sihwon/ccl8/blob/2a95af4c674f816fdc3f55796714def2936abfd8/Docs/Narrative/WorkGroups/next-workgroups.md#ng07-첫-장-통합-집필과-정보-전달), Scenario·World·VR·VI 원문·NG05 사례와 대조했다. 검토자는 파일을 쓰지 않았고 작성자가 지적을 수정하고 이 기록을 남겼다.
 
 BLOCKER는 정본 충돌·승인 범위 위반·근거 없는 주장, WARNING은 필수 장면·정보·인계의 누락, OBS는 경미한 문장·순서의 모호성이다. 최초 검토는 BLOCKER 0·WARNING 0·OBS 2였다. 아래 두 표현을 고친 뒤 검토자가 재확인해 잔여 지적 없이 PASS로 판정했다.
 
@@ -43,4 +43,4 @@ BLOCKER는 정본 충돌·승인 범위 위반·근거 없는 주장, WARNING은
 
 IW01-IW06·공통 경계는 사용자 채택 전이며 상태는 `DISCUSSION`이다. NG07 작성·검토 완료는 기존 79행·PRH·VDH·IWH의 세부와 실제 미검증을 해제하지 않는다. 정확한 매체·입력·대사·정보 인정·근거 소실·인수와 운영 수치·전 경로·다인·저장 대응은 남는다.
 
-다음 문서 목표는 NG08 로덴·세르나·하르덴의 운영·인계 첫 연결이다. NG08은 미착수이며 실제 제작도 별도 요청 대상이다. [세션 인계](../WorkGroups/session-handoff.md)와 [NG04 선택 범위](../WorkGroups/04-canon-consolidation.md#ng07에서-넘어온-미채택-집필-표현)에서 이어갈 수 있다.
+다음 문서 목표는 NG08 로덴·세르나·하르덴의 운영·인계 첫 연결이다. NG08은 미착수이며 실제 제작도 별도 요청 대상이다. [세션 인계](https://github.com/kang-sihwon/ccl8/blob/2a95af4c674f816fdc3f55796714def2936abfd8/Docs/Narrative/WorkGroups/session-handoff.md)와 [NG04 선택 범위](https://github.com/kang-sihwon/ccl8/blob/2a95af4c674f816fdc3f55796714def2936abfd8/Docs/Narrative/WorkGroups/04-canon-consolidation.md#ng07에서-넘어온-미채택-집필-표현)에서 이어갈 수 있다.

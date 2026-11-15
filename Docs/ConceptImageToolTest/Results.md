@@ -33,7 +33,6 @@
 - YouArt 2:3 크기는 GPT Image 2.5 832×1248(custom), Nano Banana Pro 848×1264, Midjourney 896×1344다. FLUX 2는 2:3이 없어 3:4(768×1024)를 쓴다.
 - 4장 기준 크레딧은 Nano Banana Pro 40, FLUX 2 56(노드 4개), Midjourney 10이다. GPT Image 2.5는 크기와 참조 수에 따라 12-32다.
 - 실행 시간은 Midjourney를 뺀 묶음이 약 51-82초, Midjourney가 1분 17초에서 2분 30초였다.
--
 - 원본이 WebP인 이미지는 LFS 규칙에 맞추려고 화질 손실 없이 PNG로 바꿔 저장했다. 이미지는 T1 영어만 저장소에 있다.
 
 ## 남은 일

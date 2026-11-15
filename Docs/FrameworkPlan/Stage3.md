@@ -77,14 +77,14 @@ UCCLCombatDefinition·UCCLAbilitySystemComponent·UCCLAbilitySet은 게임 파�
 
 UE 5.8.3, Win64 Development에서 아래 항목을 확인했다. 로그 경로는 저장소 기준이다. 정적 의존 검사와 독립 소스 대조는 `static-validation.json`을 따른다.
 
-| 검사 | 결과 | 근거 |
-|---|---|---|
-| 프로젝트 파일 생성·Editor 빌드 | 성공 | |
-| KSICombat 독립 빌드·실행 | 함정·표적, GAS 거부·재진입·차폐·캡처 효과·Action 수명 27개 확인 | |
-| CCL 자동 검사·원본 에셋 | 164개 성공, 검사 경고·실패 0. 원본 패키지 454개 로드 |, 같은 폴더 |
-| 전투 네트워크·재스폰 | Standalone, Dedicated 지연·손실, Listen 원격·호스트 통과 | |
-| 게임 연결 | 투사체·Agent 피격 기억·새 프로세스 장비 복원·Dedicated 성장 통과 | 같은 폴더의 |
-| Game·Server 패키지 | 생성·실행과 UI 검증 통과 | [전투 모듈 패키지 검증](../Packaging/Records.md#전투-모듈-분리-후-패키지) |
+| 검사 | 결과 |
+|---| --- |
+| 프로젝트 파일 생성·Editor 빌드 | 성공 |
+| KSICombat 독립 빌드·실행 | 함정·표적, GAS 거부·재진입·차폐·캡처 효과·Action 수명 27개 확인 |
+| CCL 자동 검사·원본 에셋 | 164개 성공, 검사 경고·실패 0. 원본 패키지 454개 로드 |
+| 전투 네트워크·재스폰 | Standalone, Dedicated 지연·손실, Listen 원격·호스트 통과 |
+| 게임 연결 | 투사체·Agent 피격 기억·새 프로세스 장비 복원·Dedicated 성장 통과 |
+| Game·Server 패키지 | 생성·실행과 UI 검증 통과 · [전투 모듈 패키지 검증](../Packaging/Records.md#전투-모듈-분리-후-패키지) |
 
 독립 프로젝트에 복사한 KSICombat 소스는 실행 검사 시점의 CCL 소스와 바이트 단위로 같다. 제출 직전 KSIHitRule.h 끝의 빈 줄 하나만 제거했고 선언·실행 코드는 그대로다. 이 차이는 `post-validation-formatting.json`에 기록했으며 프로젝트 생성·Editor 빌드를 다시 확인했다. 재현은 `Tools/Validation/run_framework_isolation.ps1 -Module KSICombat`이다. 이 프로젝트는 CCL·Inventory·UI 코드·콘텐츠를 복사하지 않고 GameplayAbilities만 활성화한다. 전체 자동 검사는 `Tools/Validation/run_automation.ps1 -Filter 'CCL.'`로 실행한다.
 
@@ -93,3 +93,7 @@ UE 5.8.3, Win64 Development에서 아래 항목을 확인했다. 로그 경로�
 자동 검사 시작 전에는 기존 실행에서도 보인 `Condition failed` 진단이 15줄 남았다. 일부 Editor 게임 프로세스에는 EditorToolset·ToolsetRegistry의 `AgentSkill`·`PythonTestRunner` Python 초기화 오류도 있다. 164개 테스트의 결과 JSON과 이 시작 진단을 구분하며, 전체 Editor 로그가 오류 없이 실행됐다는 뜻은 아니다.
 
 GAS와 모듈·리다이렉트는 UE4에도 있던 개념이다. 이번 API·실행 검증 범위는 UE 5.8.3이다. GAS를 필수로 유지하면 기존 예측과 효과 수명을 재사용하지만, GAS가 없는 프로젝트에도 그대로 사용할 수는 없다. 범용 효과 전달 인터페이스를 추가하는 대안보다 공개 경계가 작고 현재 동작을 보존하기 쉬워 이 구성을 택했다. 성능 개선, Shipping·다른 UE 버전·Iris·다른 PC의 호환은 주장하지 않는다. 단계 4와 공용 저장소 배포는 착수하지 않았다.
+
+### 당시 실행 근거의 출처
+
+위 표는 기존 검증의 결론·검사 범위·측정값을 정리한 기록이다. 파일명·소스 manifest·캡처·실행 자료의 원래 목록은 [로그 경로 정리 전 원문](https://github.com/kang-sihwon/ccl8/blob/5eee908ac059031b099aabf0f84b2c6d0329b656/Docs/FrameworkPlan.md)에서 확인한다. 이번 문서 정리는 검사를 다시 실행했다는 뜻이 아니다.

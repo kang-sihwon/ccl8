@@ -1,10 +1,10 @@
 # 벨레스 첫 장의 진행과 재개 규칙 후보
 
-2026-11-15 사용자 승인으로 PR01-PR07과 공통 경계를 [결정 61](../../../decisions/0061-veles-progression-resume-adoption.md)·[Scenario](../../Scenario.md#벨레스-첫-장의-진행과-재개)에 반영했다. 이 채택 범위는 `CLOSED`다. PRA01-PRA02·PRH01-PRH06과 아래 원문을 보존하며 TR·C·RT 및 상세 표 전체·실제 UE 구현은 함께 채택하지 않았다. 아래 후보·미채택·다음 선택 표현은 작성 당시 기록이다. 반영 검토는 [별도 기록](../../Reviews/2026-11-15-veles-progression-adoption-review.md)에서 확인한다.
+2026-11-15 사용자 승인으로 PR01-PR07과 공통 경계를 [결정 61](../../../decisions/0061-veles-progression-resume-adoption.md)·[Scenario](../../Scenario.md#벨레스-첫-장의-진행과-재개)에 반영했다. 이 채택 범위는 `CLOSED`다. PRA01-PRA02·PRH01-PRH06과 아래 원문을 보존하며 TR·C·RT 및 상세 표 전체·실제 UE 구현은 함께 채택하지 않았다. 아래 후보·미채택·다음 선택 표현은 작성 당시 기록이다. 반영 검토는 [별도 기록](../../Reviews/2026-11-16-adoption-summary.md#결정-61)에서 확인한다.
 
 **첫 장의 진행은 방문한 장소나 처치 수가 아니라 실제 확인·작업·인수의 결과로 판단한다.** 중단 뒤에는 끝낸 사실을 보존하고 현재 달라진 조건을 확인한 뒤 남은 일을 잇는다. 사망한 플레이어의 재스폰과 과거 저장 불러오기는 별개다.
 
-2026-11-15 요청한 [NG05](../../WorkGroups/next-workgroups.md#ng05-첫-장-진행재개-규칙)의 작성·검토 묶음이다. 상태는 `DISCUSSION`이며 [독립 검토](../../Reviews/2026-11-15-veles-progression-resume-review.md)는 표현 두 곳 보완 뒤 PASS, 잔여 지적 없음이다. PR01-PR07과 공통 경계는 새 규칙 후보로, 아직 정본에 채택하지 않았다. NG01-NG04의 NC·VR·IB·JC와 기존 원문·대안·보류를 유지하며 실제 UE 구현은 하지 않는다.
+2026-11-15 요청한 [NG05](../../WorkGroups/next-workgroups.md)의 작성·검토 묶음이다. 상태는 `DISCUSSION`이며 [독립 검토](../../Reviews/2026-11-15-veles-progression-resume-review.md)는 표현 두 곳 보완 뒤 PASS, 잔여 지적 없음이다. PR01-PR07과 공통 경계는 새 규칙 후보로, 아직 정본에 채택하지 않았다. NG01-NG04의 NC·VR·IB·JC와 기존 원문·대안·보류를 유지하며 실제 UE 구현은 하지 않는다.
 
 ## 읽는 순서
 
@@ -17,7 +17,7 @@
 
 ## 출발 기준과 달라지는 것
 
-[Scenario](../../Scenario.md)의 VB·NC·VR·JC와 [World](../../World.md)의 유한 자원·IB 관계는 확정 입력이다. [C01-C06](2026-11-06-opening-and-continent/2026-11-15-veles-chapter-comparison.md)과 [VI01-VI08·VT01-VT10](2026-11-06-opening-and-continent/2026-11-14-veles-information-access.md)은 서면 비교 입력이며 퀘스트 단계·지원 경로로 승격하지 않는다. NG01은 인과를 대조했고 이번 NG05는 그 인과를 판정할 조건·중단 후 재개·누락 처리 후보를 만든다.
+[Scenario](../../Scenario.md)의 VB·NC·VR·JC와 [World](../../World.md)의 유한 자원·IB 관계는 확정 입력이다. [C01-C06](2026-11-15-veles-progression-resume/cases.md)과 [VI01-VI08·VT01-VT10](2026-11-06-opening-and-continent/2026-11-14-veles-information-access.md)은 서면 비교 입력이며 퀘스트 단계·지원 경로로 승격하지 않는다. NG01은 인과를 대조했고 이번 NG05는 그 인과를 판정할 조건·중단 후 재개·누락 처리 후보를 만든다.
 
 기존 [개별 재스폰](../../../MultiplayerFoundation.md)·[세션 계약](../../../SessionFoundation.md)과 실제 코드 일부를 읽기 전용 확인했다. 현재 캠페인 체크포인트의 처치 마스크·보스 승리를 첫 장의 해방·복구·주민 인수로 그대로 대응시킬 수는 없다. 이것은 확인한 구현과 새 요구의 차이이며 기존 프로토타입의 버그 판정이나 구현 변경 요청이 아니다. [대조 근거](2026-11-15-veles-progression-resume/resume.md#기존-계약과-읽기-전용-코드-확인)에 소유 문서·코드 위치·확인 한계를 남긴다.
 

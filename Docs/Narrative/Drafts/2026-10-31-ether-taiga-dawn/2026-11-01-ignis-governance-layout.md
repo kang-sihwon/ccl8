@@ -10,7 +10,7 @@
 
 ![이그니스 통치 지역과 생산·교역 배치안](../../../ArtDirection/EtherWorldMap/Images/ignis-governance-production-trade-v2.png)
 
-지도의 도시와 세계수는 위치를 읽기 위한 과장된 기호다. 영역의 넓이나 경로 길이를 실제 면적·거리로 환산하지 않는다. 생성 이미지의 해안·수계·지형은 픽셀 단위로 고정되지 않았으며 정확한 대륙 면적·위경도는 [세계지도 기준](../../../ArtDirection/EtherWorldMap.md)이 유지한다. 입력·출력과 프롬프트는 [지도 제작 기록](../../../ArtDirection/EtherWorldMap/2026-11-01-ignis-governance-prompts.md)에 있다.
+지도의 도시와 세계수는 위치를 읽기 위한 과장된 기호다. 영역의 넓이나 경로 길이를 실제 면적·거리로 환산하지 않는다. 생성 이미지의 해안·수계·지형은 픽셀 단위로 고정되지 않았으며 정확한 대륙 면적·위경도는 [세계지도 기준](../../../ArtDirection/EtherWorldMap.md)이 유지한다. 입력·출력과 프롬프트는 [지도 제작 기록](../../../ArtDirection/EtherWorldMap.md#이전-생성-시안)에 있다.
 
 ## 통치와 협약 범위
 

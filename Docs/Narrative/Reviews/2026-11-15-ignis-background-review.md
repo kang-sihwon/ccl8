@@ -4,7 +4,7 @@
 
 ## 대상과 역할
 
-2026-11-15 Codex가 [NG02 완료 기준](../WorkGroups/02-ignis-world.md)에 따라 [배경 묶음](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-15-ignis-background.md), 하위 정착망·생활권·선택표를 작성했다. 세션 모델의 읽기 전용 `ng02_review`가 원문과 현행 정본·좌표를 독립 대조했다. 검토자는 파일을 쓰지 않았고, 작성자가 지적을 반영하고 이 기록을 남겼다.
+2026-11-15 Codex가 [NG02 완료 기준](https://github.com/kang-sihwon/ccl8/blob/2a95af4c674f816fdc3f55796714def2936abfd8/Docs/Narrative/WorkGroups/02-ignis-world.md)에 따라 [배경 묶음](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-15-ignis-background.md), 하위 정착망·생활권·선택표를 작성했다. 세션 모델의 읽기 전용 `ng02_review`가 원문과 현행 정본·좌표를 독립 대조했다. 검토자는 파일을 쓰지 않았고, 작성자가 지적을 반영하고 이 기록을 남겼다.
 
 심각도는 BLOCKER(진행을 막는 오류), WARNING(후속 재작업이 예상되는 오류·누락), OBS(해석·재현성을 개선할 관찰)로 구분한다. 초기 판정은 `CHANGES_REQUESTED`, BLOCKER 0·WARNING 2·OBS 0이었다. 수정 뒤 판정은 `PASS`, 잔여 지적 없음이다.
 

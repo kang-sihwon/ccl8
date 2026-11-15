@@ -1,6 +1,6 @@
 # 36개 정착지와 생태권의 연결 v2
 
-기존 대도시 8곳·일반 도시 12곳·마을 16곳의 ID·이름·권역과 좌표를 유지한다. 아래는 [기존 정착지 분류](../2026-11-08-continent-ecology-progression/regional-ecology.md#36개-정착지의-연결)에 새 분포의 생활 관계를 붙인 후보다. 정착지 안에 적이 항상 등장한다는 표나 모든 장소를 방문하는 일정이 아니다. 전체 위치는 [대륙 좌표 정합](../../../../ArtDirection/EtherWorldMap/2026-11-07-continent-coordinate-map.md)이 소유한다.
+기존 대도시 8곳·일반 도시 12곳·마을 16곳의 ID·이름·권역과 좌표를 유지한다. 아래는 [기존 정착지 분류](https://github.com/kang-sihwon/ccl8/blob/2a95af4c674f816fdc3f55796714def2936abfd8/Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-08-continent-ecology-progression/regional-ecology.md#36개-정착지의-연결)에 새 분포의 생활 관계를 붙인 후보다. 정착지 안에 적이 항상 등장한다는 표나 모든 장소를 방문하는 일정이 아니다. 전체 위치는 [대륙 좌표 정합](../../../../ArtDirection/EtherWorldMap/2026-11-07-continent-coordinate-map.md)이 소유한다.
 
 | ID·이름 | 권역 | 주변 자연·일반 생태 | 몬스터와 사람의 접점·대응 후보 |
 |---|---|---|---|

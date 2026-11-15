@@ -1,6 +1,6 @@
 # 5대륙 전체 여정 진행 관계도
 
-[전체 여정 통합 점검](../../Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-13-world-journey-continuity.md)을 한 장으로 읽는 비지리 관계도다. 이그니스 환승·세라디온 귀항을 생략하지 않고, G1 선택 왕래와 G2 본편을 구분한다. 기존 세계지도·항구·지역 좌표는 수정하지 않는다.
+[전체 여정 통합 점검](../../Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-15-world-journey-alignment.md)을 한 장으로 읽는 비지리 관계도다. 이그니스 환승·세라디온 귀항을 생략하지 않고, G1 선택 왕래와 G2 본편을 구분한다. 기존 세계지도·항구·지역 좌표는 수정하지 않는다.
 
 ![이그니스부터 세라디온 결말까지 해금·성장·인계 관계](Images/world-journey-continuity-v1.png)
 

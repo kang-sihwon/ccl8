@@ -17,7 +17,7 @@ PASS. 갑주 외형을 설명하는 표현 1곳을 고치고 독립 재확인했
 
 ## 관찰과 조치
 
-OBS, 확신도 높음: [지역 적용의 갑주 비교](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-08-monster-variants/regional-use.md#높낮이와-수평-차이를-함께-사용한다)에서 “갑판 두께”는 선박의 갑판으로 읽혔다. 검토자는 “갑옷 두께” 또는 “갑주 판재 두께”로 고치도록 제안했다. 작성자는 “갑옷 두께”로 바꿨고 검토자는 해당 행의 수정과 OBS 해결을 확인했다.
+OBS, 확신도 높음: [지역 적용의 갑주 비교](https://github.com/kang-sihwon/ccl8/blob/2a95af4c674f816fdc3f55796714def2936abfd8/Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-08-monster-variants/regional-use.md#높낮이와-수평-차이를-함께-사용한다)에서 “갑판 두께”는 선박의 갑판으로 읽혔다. 검토자는 “갑옷 두께” 또는 “갑주 판재 두께”로 고치도록 제안했다. 작성자는 “갑옷 두께”로 바꿨고 검토자는 해당 행의 수정과 OBS 해결을 확인했다.
 
 ## 미검증
 

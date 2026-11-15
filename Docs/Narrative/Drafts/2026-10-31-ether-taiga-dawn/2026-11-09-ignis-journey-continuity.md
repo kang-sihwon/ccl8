@@ -12,7 +12,7 @@
 | 성장 곡선·몬스터 수량·장거리 왕복과 선택 가지 | [이동과 레벨링](2026-11-09-ignis-journey-continuity/travel-and-leveling.md) |
 | 벨레스 고블린 14명의 잎빛·회등형 배정 | [S1 파생형 연결](2026-11-09-ignis-journey-continuity/s1-variants.md) |
 | 전체 경로·인계 흐름·S1 분포를 그림으로 비교 | [연결 지도 3장](../../../ArtDirection/EtherWorldMap/2026-11-09-ignis-journey-map.md) |
-| 교체한 S4 원문과 검토 결과 | [이전 문장](2026-11-09-ignis-journey-continuity/previous-wording.md) · [검토 기록](../../Reviews/2026-11-09-ignis-journey-continuity-review.md) |
+| 교체한 S4 원문과 검토 결과 | [이전 문장](https://github.com/kang-sihwon/ccl8/blob/2a95af4c674f816fdc3f55796714def2936abfd8/Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-09-ignis-journey-continuity/previous-wording.md) · [검토 기록](../../Reviews/2026-11-09-ignis-journey-continuity-review.md) |
 
 ## 점검 결과와 반영
 

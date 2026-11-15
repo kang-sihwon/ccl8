@@ -2,7 +2,7 @@
 
 채택 범위·보류·검증 상태는 [상위 문서](../2026-11-15-veles-integrated-manuscript.md)를 따른다. 본문은 작성 당시 후보 기록이며 원문 전체를 정본화한 것이 아니다.
 
-**C03-C06은 부족한 정보·작업·인수에서만 갈라져 다시 잇는다.** [NG05 사례·반례](../2026-11-15-veles-progression-resume/cases.md)와 [원문 비교](../2026-11-06-opening-and-continent/2026-11-15-veles-chapter-comparison.md)의 시점을 유지한다. 아래 대사·문장은 미채택이며 정상 원고 전체를 다시 쓰지 않는다. 귀환·재접근 장면은 실제 여건을 확보한 경우에만 적용하고, 불가능하면 미완료를 유지한다.
+**C03-C06은 부족한 정보·작업·인수에서만 갈라져 다시 잇는다.** [NG05 사례·반례](../2026-11-15-veles-progression-resume/cases.md)와 [원문 비교](https://github.com/kang-sihwon/ccl8/blob/2a95af4c674f816fdc3f55796714def2936abfd8/Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-06-opening-and-continent/2026-11-15-veles-chapter-comparison.md)의 시점을 유지한다. 아래 대사·문장은 미채택이며 정상 원고 전체를 다시 쓰지 않는다. 귀환·재접근 장면은 실제 여건을 확보한 경우에만 적용하고, 불가능하면 미완료를 유지한다.
 
 ## C03
 

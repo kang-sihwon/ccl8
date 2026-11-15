@@ -1,6 +1,6 @@
 # 벨레스의 적은 관찰·익숙한 길 귀환 독립 검토
 
-**PASS. 지적 없음.** 작성자와 다른 읽기 전용 검토자 `familiar_route_review`가 2026-11-15 [짧은 장면 흐름 VR01-VR10](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-06-opening-and-continent/2026-11-15-veles-familiar-route-scenes.md)을 [Scenario](../Scenario.md#벨레스의-정보-전달과-누락-확인), [결정 54](../../decisions/0054-veles-scene-actions-adoption.md)·[결정 57](../../decisions/0057-veles-information-delivery-adoption.md), 연결된 정보 접근·선택표·동굴 출구·고블린 분포와 대조했다. 확신도는 높다.
+**PASS. 지적 없음.** 작성자와 다른 읽기 전용 검토자 `familiar_route_review`가 2026-11-15 [짧은 장면 흐름 VR01-VR10](https://github.com/kang-sihwon/ccl8/blob/2a95af4c674f816fdc3f55796714def2936abfd8/Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-06-opening-and-continent/2026-11-15-veles-familiar-route-scenes.md)을 [Scenario](../Scenario.md#벨레스의-정보-전달과-누락-확인), [결정 54](../../decisions/0054-veles-scene-actions-adoption.md)·[결정 57](../../decisions/0057-veles-information-delivery-adoption.md), 연결된 정보 접근·선택표·동굴 출구·고블린 분포와 대조했다. 확신도는 높다.
 
 BLOCKER는 진행할 수 없는 승인·근거·정본 위반, WARNING은 수정이 필요한 인과·구조 결함, OBS는 경미한 모호함이다. 이번 검토에는 해당 지적이 없다.
 

@@ -13,7 +13,6 @@
 | [단계 2](FrameworkPlan/Stage2.md) | 저장 참여 계약 분리의 설계와 검증을 찾을 때 |
 | [단계 3](FrameworkPlan/Stage3.md) | 단계 3 구현과 검증을 찾을 때 |
 | [단계 4](FrameworkPlan/Stage4.md) | 모듈별 현재 위치와 단계 4 구현·검증을 찾을 때 |
-| [의존 정리 현황](FrameworkPlan/Dependencies.md) | 2026-10-11 의존 정리 결과를 찾을 때 |
 
 ## 목표와 현재 상태
 

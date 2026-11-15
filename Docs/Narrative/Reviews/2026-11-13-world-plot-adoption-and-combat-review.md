@@ -1,6 +1,6 @@
 # 5대륙 플롯 채택 반영과 전투·선택 비교 검토
 
-**PASS. 수정본에서 남은 지적 없음.** 작성자와 다른 읽기 전용 검토자 `world_plot_adoption_review`가 2026-11-13 [결정 48](../../decisions/0048-five-continent-core-plot.md)의 승인 반영과 [대표 전투·인물 선택 비교](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-13-regional-combat-and-choices.md)의 근거·논리를 검토했다. WP01-WP10의 사용자 채택과 후속 비교안의 검토 통과를 구분한다.
+**PASS. 수정본에서 남은 지적 없음.** 작성자와 다른 읽기 전용 검토자 `world_plot_adoption_review`가 2026-11-13 [결정 48](../../decisions/0048-five-continent-core-plot.md)의 승인 반영과 [대표 전투·인물 선택 비교](https://github.com/kang-sihwon/ccl8/blob/2a95af4c674f816fdc3f55796714def2936abfd8/Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-13-regional-combat-and-choices.md)의 근거·논리를 검토했다. WP01-WP10의 사용자 채택과 후속 비교안의 검토 통과를 구분한다.
 
 BLOCKER는 승인·정본·근거 충돌, WARNING은 수정이 필요한 서사·범위 오류, OBS는 표현의 모호성이다. 실제 전투 차별화나 재미를 확인한 판정은 아니다.
 

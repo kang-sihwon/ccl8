@@ -2,7 +2,7 @@
 
 타르넬 하류의 목재·어살 생활권을 탐색한 뒤 강배로 로덴에 들어가, 바깥 숲과 배수굴을 거쳐 작업자 구조와 철근지기 저지를 수행한다. 돌아올 때는 **타르넬의 높은 운반길과 로덴의 제방길**을 이용한다. 주인공 성장 기준은 S2의 **6→10**이며, 필드의 모든 무리를 처치해야 다음 사건이 열리는 구조는 쓰지 않는다.
 
-2026-11-08 사용자의 “타르넬에서 로덴까지 새 분포·레벨링 기준으로 탐색 공간, 몬스터 생활권, 스토리와 왕복 동선을 구체화해서 지도랑 문서에 반영” 요청에 따른 **창작 후보**다. [세계 분포·성장](2026-11-08-world-distribution-and-leveling.md), [이그니스 이야기 재검토](2026-11-08-five-continent-mainline/ignis-story-review.md), 기존 [사건 상세](2026-11-03-adventure-plot/2026-11-03-veles-roden.md)와 [전투 개정안](2026-11-03-adventure-plot/2026-11-05-veles-roden-combat.md)을 기준으로 삼았다. 새 좌표·무리 수·시설 치수·합류 시점·성장 배분은 정본이 아니다.
+2026-11-08 사용자의 “타르넬에서 로덴까지 새 분포·레벨링 기준으로 탐색 공간, 몬스터 생활권, 스토리와 왕복 동선을 구체화해서 지도랑 문서에 반영” 요청에 따른 **창작 후보**다. [세계 분포·성장](2026-11-08-world-distribution-and-leveling.md), [이그니스 이야기 재검토](https://github.com/kang-sihwon/ccl8/blob/2a95af4c674f816fdc3f55796714def2936abfd8/Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-08-five-continent-mainline/ignis-story-review.md), 기존 [사건 상세](https://github.com/kang-sihwon/ccl8/blob/2a95af4c674f816fdc3f55796714def2936abfd8/Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-03-adventure-plot/2026-11-03-veles-roden.md)와 [전투 개정안](https://github.com/kang-sihwon/ccl8/blob/2a95af4c674f816fdc3f55796714def2936abfd8/Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-03-adventure-plot/2026-11-05-veles-roden-combat.md)을 기준으로 삼았다. 새 좌표·무리 수·시설 치수·합류 시점·성장 배분은 정본이 아니다.
 
 ## 전체 구간과 지도
 

@@ -4,9 +4,9 @@ PASS: 벨레스 출항부터 로덴의 구조 전투와 세르나행 준비까�
 
 ## 범위와 역할
 
-2026-11-03 Codex가 작성한 [벨레스에서 로덴으로 이어지는 사건 후보](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-03-adventure-plot/2026-11-03-veles-roden.md)를 세션 모델의 읽기 전용 검토 에이전트가 확인했다. 검토자는 파일을 쓰지 않았으며 작성자가 수정과 결과 기록을 맡았다.
+2026-11-03 Codex가 작성한 [벨레스에서 로덴으로 이어지는 사건 후보](https://github.com/kang-sihwon/ccl8/blob/2a95af4c674f816fdc3f55796714def2936abfd8/Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-03-adventure-plot/2026-11-03-veles-roden.md)를 세션 모델의 읽기 전용 검토 에이전트가 확인했다. 검토자는 파일을 쓰지 않았으며 작성자가 수정과 결과 기록을 맡았다.
 
-대조 근거는 [첫 장 상세](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-first-chapter.md), [지역별 상세 후보](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-03-adventure-plot/2026-11-03-regional-arcs.md), [주인공 후보](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-03-adventure-plot/2026-11-03-protagonist.md)와 신규 문서가 연결한 로덴의 도시 성장·정치·지리 후보다. 무기 선택은 [결정 37](../../decisions/0037-unrestricted-protagonist-weapons.md), 보존은 [결정 36](../../decisions/0036-narrative-plot-drafts-and-retention.md)을 기준으로 삼았다.
+대조 근거는 [첫 장 상세](https://github.com/kang-sihwon/ccl8/blob/2a95af4c674f816fdc3f55796714def2936abfd8/Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-first-chapter.md), [지역별 상세 후보](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-03-adventure-plot/2026-11-03-regional-arcs.md), [주인공 후보](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-03-adventure-plot/2026-11-03-protagonist.md)와 신규 문서가 연결한 로덴의 도시 성장·정치·지리 후보다. 무기 선택은 [결정 37](../../decisions/0037-unrestricted-protagonist-weapons.md), 보존은 [결정 36](../../decisions/0036-narrative-plot-drafts-and-retention.md)을 기준으로 삼았다.
 
 ## 지적과 처리
 

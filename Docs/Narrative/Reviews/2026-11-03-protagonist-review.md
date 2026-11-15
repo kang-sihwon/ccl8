@@ -4,7 +4,7 @@ PASS: 주인공 후보의 동기·선택·성장과 기존 설정의 관계를 �
 
 ## 범위와 역할
 
-2026-11-03 Codex가 작성한 [주인공 후보](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-03-adventure-plot/2026-11-03-protagonist.md)를 세션 모델의 별도 읽기 전용 검토 에이전트가 확인했다. 비교 근거는 [기본 후보의 주인공](../Drafts/2026-10-31-ether-taiga-dawn.md#3-주인공), [첫 장 상세](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-first-chapter.md), [지역별 사건과 성장](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-03-adventure-plot/2026-11-03-regional-arcs.md)이다. 검토자는 파일을 쓰지 않았고 작성자가 판정을 기록했다.
+2026-11-03 Codex가 작성한 [주인공 후보](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-03-adventure-plot/2026-11-03-protagonist.md)를 세션 모델의 별도 읽기 전용 검토 에이전트가 확인했다. 비교 근거는 [기본 후보의 주인공](../Drafts/2026-10-31-ether-taiga-dawn.md#3-주인공), [첫 장 상세](https://github.com/kang-sihwon/ccl8/blob/2a95af4c674f816fdc3f55796714def2936abfd8/Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-first-chapter.md), [지역별 사건과 성장](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-03-adventure-plot/2026-11-03-regional-arcs.md)이다. 검토자는 파일을 쓰지 않았고 작성자가 판정을 기록했다.
 
 심각도는 BLOCKER(진행을 막는 오류), WARNING(수정이 필요한 문제), OBS(참고 관찰)로 구분한다. 지적 없음.
 

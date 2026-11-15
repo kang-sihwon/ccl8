@@ -14,7 +14,7 @@
 
 ## 플레이 흐름(제안)
 
-아래 표는 경험의 큰 흐름이며 구간마다 전투가 한 번씩만 발생한다는 배치가 아니다. 일반 필드는 이동·탐색·교전이 이어지는 공간으로 구성한다. 첫 장의 [필드 전투 개정 후보](Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-06-opening-and-continent/2026-11-07-field-combat-revision.md)에서 기존 장면과 서식 구역을 구분한다.
+아래 표는 경험의 큰 흐름이며 구간마다 전투가 한 번씩만 발생한다는 배치가 아니다. 일반 필드는 이동·탐색·교전이 이어지는 공간으로 구성한다. 첫 장의 [필드 전투 개정 후보](Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-06-opening-and-continent/2026-11-07-goblin-territories-and-wildlife.md)에서 기존 장면과 서식 구역을 구분한다.
 
 | 구간 | 플레이어 경험 | 설계 의도 |
 |---|---|---|

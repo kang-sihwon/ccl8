@@ -6,7 +6,7 @@
 
 - 작성자: Codex. 지도는 기본 제공 `image_gen`으로 제작했다.
 - 검토자: 읽기 전용 독립 검토 에이전트 `review_ignis_governance_map`. 파일을 수정하지 않고 지적과 판정을 보고했다.
-- 검토 대상: [통치·생산·교역 배치](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-ignis-governance-layout.md), [제작 기록](../../ArtDirection/EtherWorldMap/2026-11-01-ignis-governance-prompts.md), [지도 v2](../../ArtDirection/EtherWorldMap/Images/ignis-governance-production-trade-v2.png).
+- 검토 대상: [통치·생산·교역 배치](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-ignis-governance-layout.md), [제작 기록](https://github.com/kang-sihwon/ccl8/blob/2a95af4c674f816fdc3f55796714def2936abfd8/Docs/ArtDirection/EtherWorldMap/2026-11-01-ignis-governance-prompts.md), [지도 v2](../../ArtDirection/EtherWorldMap/Images/ignis-governance-production-trade-v2.png).
 - 대조 근거: [도시 성장](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-ignis-city-origins.md), [정치 관계](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-ignis-political-relations.md), [기존 도시 지도](../../ArtDirection/EtherWorldMap/Images/ignis-major-cities-v1.png).
 
 ## 지적과 재검토

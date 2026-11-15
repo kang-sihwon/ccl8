@@ -8,7 +8,7 @@
 
 | 항목 | 결과 |
 |---|---|
-| 기존 후보 요약 | K01-K09가 [기본 세계관](../Drafts/2026-10-31-ether-taiga-dawn.md), [주인공 후보](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-03-adventure-plot/2026-11-03-protagonist.md), [현재 상황](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-06-opening-and-continent/present-world.md), [첫 장 상세안](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-06-opening-and-continent/opening-scenario.md)과 일치한다. |
+| 기존 후보 요약 | K01-K09가 [기본 세계관](../Drafts/2026-10-31-ether-taiga-dawn.md), [주인공 후보](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-03-adventure-plot/2026-11-03-protagonist.md), [현재 상황](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-06-opening-and-continent/present-world.md), [첫 장 상세안](https://github.com/kang-sihwon/ccl8/blob/2a95af4c674f816fdc3f55796714def2936abfd8/Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-06-opening-and-continent/opening-scenario.md)과 일치한다. |
 | 전투와 인물의 역할 | 다섯 전투 단위, 무기 자유, 바르툴의 전투를 통한 해방을 유지한다. 주인공의 직접 행동과 주민의 자율성도 함께 남아 있다. |
 | 비교 대안 | A01-A09를 이번에 제안한 신규 대안으로 구분했다. 각 안의 장단점과 함께 다시 써야 할 장면·규칙을 제시했다. |
 | 보류의 의미 | H01-H07이 기존 작업 기준을 무효화하지 않는다. 재고·교체 담당·다음 아침 점검과 이상 시 출항 연기 조건을 유지한다. |

@@ -18,7 +18,7 @@
 
 | 심각도·확신도 | 위치와 결함 | 반영과 재확인 |
 |---|---|---|
-| WARNING·높음 | [점검표 A10](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-06-opening-and-continent/opening-audit.md)의 예비 통 교체 완료 표현이 본문보다 넓다. | 실제 본문에 맞춰 교체 담당·방법 인계로 좁혔다. 검토자가 수정 행을 재확인했다. |
+| WARNING·높음 | [점검표 A10](https://github.com/kang-sihwon/ccl8/blob/2a95af4c674f816fdc3f55796714def2936abfd8/Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-06-opening-and-continent/opening-audit.md)의 예비 통 교체 완료 표현이 본문보다 넓다. | 실제 본문에 맞춰 교체 담당·방법 인계로 좁혔다. 검토자가 수정 행을 재확인했다. |
 | WARNING·높음 | 같은 점검표 A11의 빈 동력통 수리 의뢰는 본문에 없다. | 현장 관찰 기록과 개인 여행 희망으로 고쳤다. 검토자가 수정 행을 재확인했다. |
 
 수정 후 남은 지적은 없다.

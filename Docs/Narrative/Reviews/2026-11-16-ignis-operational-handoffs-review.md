@@ -35,4 +35,4 @@ PR·VD·IW 각각의 적용 범위와 첫 장에만 남기는 사건·공간·�
 
 ## 다음 선택
 
-사용자가 HO01-HO06·공통 경계를 선택하면 [NG04](../WorkGroups/04-canon-consolidation.md#ng08에서-넘어온-미채택-운영인계)에서 그 범위만 정본에 반영한다. 정확한 대사·매체·수치·계약·실제 시험·다른 지역의 운영은 보류한다. 이 작성 목표의 완료와 새 추천의 정본 채택을 구분한다.
+사용자가 HO01-HO06·공통 경계를 선택하면 [NG04](https://github.com/kang-sihwon/ccl8/blob/2a95af4c674f816fdc3f55796714def2936abfd8/Docs/Narrative/WorkGroups/04-canon-consolidation.md#ng08에서-넘어온-미채택-운영인계)에서 그 범위만 정본에 반영한다. 정확한 대사·매체·수치·계약·실제 시험·다른 지역의 운영은 보류한다. 이 작성 목표의 완료와 새 추천의 정본 채택을 구분한다.

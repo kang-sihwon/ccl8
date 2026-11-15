@@ -2,7 +2,7 @@
 
 **세르나는 부상자가 빠져나갈 틈을 직접 만들고 린의 신호에 공격을 끝내는 전투다. 아르베나는 구조를 끝낸 뒤 두 작업 위치를 번갈아 확보하며 회수할 짐과 남길 짐을 판단하는 전투다.** 같은 해수 계통의 돌진·몸 회수에 대응하더라도, 세르나는 한 번의 이탈을 완성하고 아르베나는 작업을 중지·재개하며 귀환 조건을 만든다.
 
-상태는 `DISCUSSION`이며 [독립 검토 PASS](../../Reviews/2026-11-13-sea-beast-combat-arcs-review.md)다. [지역별 비교](2026-11-13-regional-combat-and-choices.md)의 해수전 반복 위험을 구체화한 창작 후보다. [결정 48](../../../decisions/0048-five-continent-core-plot.md)의 핵심 플롯과 [Scenario](../../Scenario.md)는 유지한다. 아래 예고·공격 연결·작업 신호·행동 순서는 새 제안이며 기존 사건 전체를 정본으로 승격하지 않는다. 상세 대사·콘텐츠 제작 사양은 다루지 않는다.
+상태는 `DISCUSSION`이며 [독립 검토 PASS](../../Reviews/2026-11-13-sea-beast-combat-arcs-review.md)다. [지역별 비교](https://github.com/kang-sihwon/ccl8/blob/2a95af4c674f816fdc3f55796714def2936abfd8/Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-13-regional-combat-and-choices.md)의 해수전 반복 위험을 구체화한 창작 후보다. [결정 48](../../../decisions/0048-five-continent-core-plot.md)의 핵심 플롯과 [Scenario](../../Scenario.md)는 유지한다. 아래 예고·공격 연결·작업 신호·행동 순서는 새 제안이며 기존 사건 전체를 정본으로 승격하지 않는다. 상세 대사·콘텐츠 제작 사양은 다루지 않는다.
 
 ## 원문과 적용 범위
 

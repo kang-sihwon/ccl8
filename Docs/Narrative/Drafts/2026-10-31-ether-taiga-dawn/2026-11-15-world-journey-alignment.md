@@ -4,7 +4,7 @@
 
 **첫 장의 실제 인수와 이그니스의 공급·권한 관계를 적용해도 기존 5대륙 여정과 G1-G6는 유지할 수 있다.** 필요한 보완은 새 대륙·전투·해금을 더하는 일이 아니라, 이미 이룬 성과와 현재 확인할 조건을 연결에서 분명히 나누는 것이다. 새 표현·인계 강조 JC01-JC06과 공통 경계는 사용자 선택 전 후보다.
 
-2026-11-15 요청한 [NG03](../../WorkGroups/03-world-journey.md)의 작성·대조 묶음이다. 상태는 미채택 `DISCUSSION`이며 [독립 검토](../../Reviews/2026-11-15-world-journey-alignment-review.md)는 PASS, 잔여 지적 없음이다. [결정 58](../../../decisions/0058-veles-chapter-continuity-adoption.md)의 NC·VR과 [결정 59](../../../decisions/0059-ignis-background-relations-adoption.md)의 IB·공통 경계, 기존 WP·CL·CP·FC·SC를 확정 입력으로 쓴다. 정본과 이전 후보·지도·좌표·성장 수치는 변경하지 않는다.
+2026-11-15 요청한 [NG03](../../WorkGroups.md)의 작성·대조 묶음이다. 상태는 미채택 `DISCUSSION`이며 [독립 검토](../../Reviews/2026-11-15-world-journey-alignment-review.md)는 PASS, 잔여 지적 없음이다. [결정 58](../../../decisions/0058-veles-chapter-continuity-adoption.md)의 NC·VR과 [결정 59](../../../decisions/0059-ignis-background-relations-adoption.md)의 IB·공통 경계, 기존 WP·CL·CP·FC·SC를 확정 입력으로 쓴다. 정본과 이전 후보·지도·좌표·성장 수치는 변경하지 않는다.
 
 ## 읽는 순서
 
@@ -17,7 +17,7 @@
 
 ## 근거와 판정 범위
 
-현재 확정은 [World](../../World.md)와 [Scenario](../../Scenario.md)의 근거 결정 범위다. [이전 여정 통합](2026-11-13-world-journey-continuity.md)·[기존 이동 조건](2026-11-08-five-continent-mainline/routes-and-unlocks.md)·[이그니스 인계](2026-11-09-ignis-journey-continuity/story-and-handoffs.md)는 상세 원문과 비교 경로를 제공한다. 옛 원문의 미채택·미도착·미완료 표현은 해당 시점과 실제 승인 범위를 함께 읽는다.
+현재 확정은 [World](../../World.md)와 [Scenario](../../Scenario.md)의 근거 결정 범위다. [이전 여정 통합](https://github.com/kang-sihwon/ccl8/blob/2a95af4c674f816fdc3f55796714def2936abfd8/Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-13-world-journey-continuity.md)·[기존 이동 조건](2026-11-08-five-continent-mainline/routes-and-unlocks.md)·[이그니스 인계](2026-11-09-ignis-journey-continuity/story-and-handoffs.md)는 상세 원문과 비교 경로를 제공한다. 옛 원문의 미채택·미도착·미완료 표현은 해당 시점과 실제 승인 범위를 함께 읽는다.
 
 **유지**는 기존 확정 또는 현행 후보에 이번 변경 영향이 없어 원래 상태대로 둔다는 뜻이다. **보완 후보**는 연결에서 강조할 표현을 제안한 것이며 새 정본이 아니다. **해석 위험**은 압축된 문장만 읽을 때 생기는 오독이며 원문 전체가 틀렸다는 판정은 아니다. **미검증**은 문장·계산이 성립해도 실제 통행·수급·플레이에서 확인하지 못했다는 뜻이다.
 

@@ -6,7 +6,7 @@ BLOCKER는 기존 설정·요청 범위를 깨는 문제, WARNING은 해석 혼�
 
 ## 검토 범위
 
-2026-11-01 작성자와 별개인 읽기 전용 검토 에이전트 `review_ignis_cities`가 [주요 도시 배치안](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-ignis-major-cities.md)과 [프롬프트 전문](../../ArtDirection/EtherWorldMap/2026-11-01-ignis-city-prompts.md)을 읽었다. 기존 이그니스 지리 문서, 첫 장의 결말과 제작 범위에 대조하고 입력·결과 PNG를 직접 확인했다. 작성자인 Codex가 검토 결과를 이 문서로 옮겼다.
+2026-11-01 작성자와 별개인 읽기 전용 검토 에이전트 `review_ignis_cities`가 [주요 도시 배치안](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-ignis-major-cities.md)과 [프롬프트 전문](https://github.com/kang-sihwon/ccl8/blob/2a95af4c674f816fdc3f55796714def2936abfd8/Docs/ArtDirection/EtherWorldMap/2026-11-01-ignis-city-prompts.md)을 읽었다. 기존 이그니스 지리 문서, 첫 장의 결말과 제작 범위에 대조하고 입력·결과 PNG를 직접 확인했다. 작성자인 Codex가 검토 결과를 이 문서로 옮겼다.
 
 ## 확인 결과
 

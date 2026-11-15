@@ -38,7 +38,7 @@ classDiagram
 
 `Apply`, `Materialize`, `Acquire`, `Release`, `AdvanceTo`, `Capture`, `Restore`의 서명은 `Source/KSIEnvironment/Public/KSIEcologySimulation.h`가 소유한다.
 
-집계 수는 연령군의 수량이고, 예약된 살아 있는 개체는 별도 수량이다. 현재 개체군은 종·서식지별 수량 단위이며 이동 무리의 별도 그룹·행동은 아직 구현하지 않았다. 원장 검사는 두 수량을 합산한다. `Materialize`는 한 마리를 집계에서 빼고 지속 레코드에 넣는다. `Acquire`는 수량을 바꾸지 않고 Actor 또는 Mass의 실행권을 발급한다. 같은 개체에 두 실행권을 주지 않는다. 일반 개체의 `Release`는 집계로 돌려보내고, 중요 개체는 레코드를 남긴 채 먼 상태로 전환한다.
+집계 수는 연령군의 수량이고, 예약된 살아 있는 개체는 별도 수량이다. 초기 구현의 개체군은 종·서식지별 수량 단위였고 별도 무리·행동은 없었다. 후속 `FKSIEcologyGroup`과 개별 행동은 [행동 모델](Behavior/Model.md)이 소유한다. 원장 검사는 두 수량을 합산한다. `Materialize`는 한 마리를 집계에서 빼고 지속 레코드에 넣는다. `Acquire`는 수량을 바꾸지 않고 Actor 또는 Mass의 실행권을 발급한다. 같은 개체에 두 실행권을 주지 않는다. 일반 개체의 `Release`는 집계로 돌려보내고, 중요 개체는 레코드를 남긴 채 먼 상태로 전환한다.
 
 요청 검증과 수량 변경은 후보에서 수행하고, 검증을 통과해야 후보로 원본을 교체한다.
 

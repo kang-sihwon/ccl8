@@ -2,7 +2,7 @@
 
 판정은 `PASS`다. 최초 `CHANGES_REQUESTED` 뒤 구조 동선, 계류줄 처리, 경비의 권한을 고쳤다. 독립 검토자가 수정본을 다시 읽고 남은 지적이 없다고 판정했다. 작성자는 Codex이며 검토는 세션 모델의 별도 읽기 전용 검토자가 맡았다. 플롯은 사용자와 논의할 후보 단계다.
 
-검토자는 [세르나 상세안](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-03-adventure-plot/2026-11-06-serna-harbor.md)의 다섯 전투 장면과 수리·이동을 [로덴 전투 후보](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-03-adventure-plot/2026-11-05-veles-roden-combat.md), [지역 개요](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-03-adventure-plot/2026-11-03-regional-arcs.md), [도시 간 정치 관계](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-ignis-political-relations.md)와 대조했다.
+검토자는 [세르나 상세안](https://github.com/kang-sihwon/ccl8/blob/2a95af4c674f816fdc3f55796714def2936abfd8/Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-03-adventure-plot/2026-11-06-serna-harbor.md)의 다섯 전투 장면과 수리·이동을 [로덴 전투 후보](https://github.com/kang-sihwon/ccl8/blob/2a95af4c674f816fdc3f55796714def2936abfd8/Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-03-adventure-plot/2026-11-05-veles-roden-combat.md), [지역 개요](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-03-adventure-plot/2026-11-03-regional-arcs.md), [도시 간 정치 관계](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-ignis-political-relations.md)와 대조했다.
 
 | 최초 지적 | 수정본에서 확인한 내용 |
 |---|---|

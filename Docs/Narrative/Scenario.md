@@ -469,7 +469,7 @@ JA01-JA02는 미채택 대안, JH01-JH05는 세부 보류로 유지한다. JI01-
 
 ## 보존 자료와 다음 상세화
 
-[첫 장 통합 선택표](Drafts/2026-10-31-ether-taiga-dawn/2026-11-06-opening-and-continent/2026-11-15-veles-chapter-options.md)의 NA01-NA02·NH01-NH05와 [귀환 사례 선택표](Drafts/2026-10-31-ether-taiga-dawn/2026-11-06-opening-and-continent/2026-11-15-veles-familiar-route-options.md)의 RA01-RA02·RH01-RH06을 보존한다. NC01-NC04와 공통 경계, NC01이 포함하는 VR 흐름·경계만 확정했다. C·VR·VI·VT 원문 전체·동선·수치·정확한 표현·진행·운영·재시도·제작은 별도 후보와 보류다. 근거: [결정 58](../decisions/0058-veles-chapter-continuity-adoption.md).
+[첫 장 통합 선택표](Drafts/2026-10-31-ether-taiga-dawn/2026-11-06-opening-and-continent/2026-11-15-veles-chapter-options.md)의 NA01-NA02·NH01-NH05와 [귀환 사례 선택표](https://github.com/kang-sihwon/ccl8/blob/2a95af4c674f816fdc3f55796714def2936abfd8/Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-06-opening-and-continent/2026-11-15-veles-familiar-route-options.md)의 RA01-RA02·RH01-RH06을 보존한다. NC01-NC04와 공통 경계, NC01이 포함하는 VR 흐름·경계만 확정했다. C·VR·VI·VT 원문 전체·동선·수치·정확한 표현·진행·운영·재시도·제작은 별도 후보와 보류다. 근거: [결정 58](../decisions/0058-veles-chapter-continuity-adoption.md).
 
 [벨레스 정보 전달 선택표](Drafts/2026-10-31-ether-taiga-dawn/2026-11-06-opening-and-continent/2026-11-14-veles-information-options.md)의 BA01-BA02는 미채택 표현 대안, BH01-BH06은 세부 보류로 보존한다. VB01-VB06 전달 중심과 공통 경계만 확정했다. VH02 등 기존 보류에서도 이 중심에 해당하는 부분만 구분하며 정확한 대사·소품·재전달 수단·UI·판정·분기·수치·재작업 운영·재시도·후속 사건·원문 전체·제작 검증은 남긴다. VI·VT와 원문, VA·VH 및 이전 대안·보류는 보존한다. 근거: [결정 57](../decisions/0057-veles-information-delivery-adoption.md).
 
@@ -483,4 +483,4 @@ JA01-JA02는 미채택 대안, JH01-JH05는 세부 보류로 유지한다. JI01-
 
 [전투 연결 선택표](Drafts/2026-10-31-ether-taiga-dawn/2026-11-13-combat-connection-options.md)의 CA01-CA06은 미채택 대안, CH01-CH08은 세부 보류로 보존한다. CL01-CL12의 위 핵심만 확정했으며 연결 원문·네 전투 상세안 전체를 정본으로 승격하지 않았다. 기존 대안·보류와 제작 범위는 유지한다. 근거: [결정 49](../decisions/0049-combat-connection-adoption.md).
 
-[첫 장 선택표](Drafts/2026-10-31-ether-taiga-dawn/2026-11-06-opening-and-continent/2026-11-07-core-setting-options.md)의 비교 대안과 H01-H07 기록을 보존한다. H07은 결정 48로 채택한 핵심 부분만 예외이며 나머지 세부는 보류한다. [5대륙 선택표](Drafts/2026-10-31-ether-taiga-dawn/2026-11-13-world-plot-options.md)의 WA01-WA10·WH01-WH08도 보존한다. [기존 상세 시나리오](Drafts/2026-10-31-ether-taiga-dawn/2026-11-06-opening-and-continent/opening-scenario.md)는 장면을 구성하는 작업 원고다. 이 문서에 반영하지 않은 대사·신상·배치와 출항 이후 상세 모험은 후보 상태를 유지한다.
+[첫 장 선택표](Drafts/2026-10-31-ether-taiga-dawn/2026-11-06-opening-and-continent/2026-11-07-core-setting-options.md)의 비교 대안과 H01-H07 기록을 보존한다. H07은 결정 48로 채택한 핵심 부분만 예외이며 나머지 세부는 보류한다. [5대륙 선택표](Drafts/2026-10-31-ether-taiga-dawn/2026-11-13-world-plot-options.md)의 WA01-WA10·WH01-WH08도 보존한다. [기존 상세 시나리오](Drafts/2026-10-31-ether-taiga-dawn/2026-11-15-veles-integrated-manuscript/manuscript.md)는 장면을 구성하는 작업 원고다. 이 문서에 반영하지 않은 대사·신상·배치와 출항 이후 상세 모험은 후보 상태를 유지한다.

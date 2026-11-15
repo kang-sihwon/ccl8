@@ -40,8 +40,8 @@
 | 이어서 할 작업을 고를 때 | [진행 중인 작업](Work/README.md) |
 | 현재 유효한 결정을 찾을 때 | [Decisions](Decisions.md), [결정 파일](decisions/) |
 | 작업 순서와 일정 초안을 볼 때 | [StudyRoadmap](StudyRoadmap.md) |
-| 단계 하나를 생성·빌드·제출할 때 | [DeliveryPlan](DeliveryPlan.md) |
-| 초기 구성 범위를 확인할 때 | [Setup](Setup.md) |
+| 단계 하나를 생성·빌드·제출할 때 | [StudyRoadmap](StudyRoadmap.md) |
+| 초기 구성 범위를 확인할 때 | [Setup](https://github.com/kang-sihwon/ccl8/blob/2a95af4c674f816fdc3f55796714def2936abfd8/Docs/Setup.md) |
 | 지난 실행 검증의 시점 기록을 찾을 때 | [QA 보고서](QA/README.md) |
 
 ## 규칙

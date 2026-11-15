@@ -2,7 +2,7 @@
 
 **하르덴 비룡은 반복 습격 개체를 식별하고 착지 밀기 뒤 공격하되 재상승 전에 빠진다. 오르다스 흰침은 측풍과 사격 방향을 읽고 엄폐를 유지하거나 바꾼 뒤 낮아진 몸에 접근한다.** 두 전투 모두 직접 사냥으로 끝내지만, 비룡은 착지에서 다시 날아오르기까지의 행동을, 흰침은 다음 공격 방향과 이동 중 노출을 계속 판단하게 한다.
 
-상태는 `DISCUSSION`이며 [독립 검토 PASS](../../Reviews/2026-11-13-aerial-hunt-combat-arcs-review.md)다. [지역별 전투 비교](2026-11-13-regional-combat-and-choices.md)의 비행 포식자 반복 위험을 구체화한 창작 후보이며 [결정 48](../../../decisions/0048-five-continent-core-plot.md)의 핵심 플롯과 [Scenario](../../Scenario.md)는 유지한다. 아래 공격 연결·예고·엄폐 판단·행동 순서는 새 제안이다. 기존 수치·종·공간·인물 신상·보류의 정본 채택이나 실제 전투 검증은 아니다.
+상태는 `DISCUSSION`이며 [독립 검토 PASS](../../Reviews/2026-11-13-aerial-hunt-combat-arcs-review.md)다. [지역별 전투 비교](https://github.com/kang-sihwon/ccl8/blob/2a95af4c674f816fdc3f55796714def2936abfd8/Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-13-regional-combat-and-choices.md)의 비행 포식자 반복 위험을 구체화한 창작 후보이며 [결정 48](../../../decisions/0048-five-continent-core-plot.md)의 핵심 플롯과 [Scenario](../../Scenario.md)는 유지한다. 아래 공격 연결·예고·엄폐 판단·행동 순서는 새 제안이다. 기존 수치·종·공간·인물 신상·보류의 정본 채택이나 실제 전투 검증은 아니다.
 
 ## 원문과 적용 범위
 

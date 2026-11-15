@@ -12,7 +12,7 @@
 
 | 문서 | 읽는 때 |
 |---|---|
-| [전체 64항목 색인](2026-11-08-worldwide-monster-variants/catalog.md) | 한 종의 모든 형태와 상세 문서, 다른 대륙의 형태를 찾을 때 |
+| [전체 64항목 색인](2026-11-08-world-distribution-and-leveling/variant-distribution.md) | 한 종의 모든 형태와 상세 문서, 다른 대륙의 형태를 찾을 때 |
 | [이그니스 추가 56형태](2026-11-08-worldwide-monster-variants/ignis-completion.md) | 미노타우로스부터 서큐버스까지 기존 미분화 28항목을 비교할 때 |
 | [다른 대륙 64형태](2026-11-08-worldwide-monster-variants/overseas-forms.md) | 피부·체격·매개·행동·권장 레벨과 해외 서식지를 비교할 때 |
 | [대륙별 생활권과 연결](2026-11-08-worldwide-monster-variants/continents.md) | 서식 조건·일반 동물·갈등·이동·난도 혼재를 볼 때 |
@@ -20,7 +20,7 @@
 | [기존 현현 등 16형태와 구조체](2026-11-08-monster-variants/other-forms.md) | 이전 7항목의 형태와 별도 구조체 모델을 볼 때 |
 | [독립 검토](../../Reviews/2026-11-08-worldwide-monster-variants-review.md) | 누락·중복·범위·기존 설정 보존과 미검증을 확인할 때 |
 
-기본 존재의 정체·기원은 [확장 종 목록](2026-11-08-expanded-monster-roster/species.md)이 소유한다. 이그니스 부모 항목의 지역·레벨은 [분포 v2](2026-11-08-continent-ecology-progression-v2/roster-placement.md)를 유지한다. 이 문서군은 파생형 전체의 현행 색인과 추가분·해외 분포를 소유한다. 기존 79형태는 원문을 그대로 참조하며 당시 “28항목 기본형 유지”는 이전 범위의 기록이다.
+기본 존재의 정체·기원은 [확장 종 목록](2026-11-08-expanded-monster-roster/species.md)이 소유한다. 이그니스 부모 항목의 지역·레벨은 [분포 v2](2026-11-08-world-distribution-and-leveling/species-distribution.md)를 유지한다. 이 문서군은 파생형 전체의 현행 색인과 추가분·해외 분포를 소유한다. 기존 79형태는 원문을 그대로 참조하며 당시 “28항목 기본형 유지”는 이전 범위의 기록이다.
 
 ## 형태·레벨·분포의 해석
 

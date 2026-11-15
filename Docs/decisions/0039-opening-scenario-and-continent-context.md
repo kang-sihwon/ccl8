@@ -6,7 +6,7 @@ topic: "서사 작업"
 status: "유효(부분)"
 summary: "첫 장의 상세화와 플레이 대륙 배경의 깊이는 유지한다. 출항 이후 여정 보류는 결정 48의 5대륙 핵심 플롯 채택·대표 전투와 인물 선택 비교 범위에서 일부 대체했다"
 supersedes_part: [36]
-owners: "[서사 작업 현황](../Narrative/CurrentWork.md#상세화할-범위와-순서)"
+owners: "[서사 작업 현황](https://github.com/kang-sihwon/ccl8/blob/2a95af4c674f816fdc3f55796714def2936abfd8/Docs/Narrative/CurrentWork.md#상세화할-범위와-순서)"
 ---
 
 # 2026-11-06 — 결정 39: 출항까지의 시나리오와 플레이 대륙 배경의 상세화 범위

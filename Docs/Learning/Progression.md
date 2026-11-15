@@ -32,29 +32,21 @@
 ```cpp
 bool UCCLLoadoutComponent::Learn(UCCLSkillDefinition* Definition)
 {
-    if (bMutating || bRestoring)
-    {
-        return false;
-    }
-
     if (!CanAct() || !Definition || !AvailableSkills.Contains(Definition) || IsLearned(Definition) ||
         Definition->PointCost <= 0 || Points < Definition->PointCost || !Definition->Effect || !FMath::IsFinite(Definition->Magnitude) ||
         Definition->Effect->GetDefaultObject<UGameplayEffect>()->DurationPolicy != EGameplayEffectDurationType::Infinite)
     {
-        return Report(false, TEXT("훈련할 수 없거나 훈련 점수가 부족하다."));
+        return Report(false, TEXT("Training unavailable or not enough points."));
     }
-    TGuardValue<uint8> MutationGuard(bMutating, 1);
-    TGuardValue<uint8> InventoryGuard(GetInventory()->bMutationLocked, 1);
-    FScopedAggregatorOnDirtyBatch AttributeBatch;
     const FActiveGameplayEffectHandle Handle = GetASC()->ApplyEffect(Definition->Effect, Definition->Magnitude);
-    if (!Handle.IsValid() || !GetASC()->GetActiveGameplayEffect(Handle))
+    if (!Handle.IsValid())
     {
-        return Report(false, TEXT("훈련 효과를 적용하지 못했다."));
+        return Report(false, TEXT("Training effect failed."));
     }
     SkillEffects.Add(Handle);
     Learned.Add(Definition);
     Points -= Definition->PointCost;
-    return Report(true, TEXT("훈련을 완료했다."));
+    return Report(true, TEXT("Training learned."));
 }
 ```
 
@@ -68,38 +60,9 @@ bool UCCLLoadoutComponent::Learn(UCCLSkillDefinition* Definition)
 
 ## 6. 현재의 훈련과 회복
 
-출처: `d4888b0`, [CCLLoadoutComponent.cpp](../../Source/CCL/Items/CCLLoadoutComponent.cpp)의 `UCCLLoadoutComponent::Learn`. 실제 코드 전체 함수이며 들여쓰기를 공백으로 바꿨다.
+비교 기준 `d4888b0`의 `Learn`은 [4절](#4-최초-구현의-훈련)의 `3b36968`과 검사·효과·목록·비용 순서를 공유하지만 보호 장치가 추가됐다. `bMutating`·`bRestoring`으로 재진입을 막고, `bMutationLocked`로 가방을 잠그며, `FScopedAggregatorOnDirtyBatch`로 속성 갱신을 모은다. 효과 핸들의 유효성에 더해 `GetActiveGameplayEffect`로 실제 활성 효과가 남았는지도 확인한다.
 
-```cpp
-bool UCCLLoadoutComponent::Learn(UCCLSkillDefinition* Definition)
-{
-    if (bMutating || bRestoring)
-    {
-        return false;
-    }
-
-    if (!CanAct() || !Definition || !AvailableSkills.Contains(Definition) || IsLearned(Definition) ||
-        Definition->PointCost <= 0 || Points < Definition->PointCost || !Definition->Effect || !FMath::IsFinite(Definition->Magnitude) ||
-        Definition->Effect->GetDefaultObject<UGameplayEffect>()->DurationPolicy != EGameplayEffectDurationType::Infinite)
-    {
-        return Report(false, TEXT("훈련할 수 없거나 훈련 점수가 부족하다."));
-    }
-    TGuardValue<uint8> MutationGuard(bMutating, 1);
-    TGuardValue<uint8> InventoryGuard(GetInventory()->bMutationLocked, 1);
-    FScopedAggregatorOnDirtyBatch AttributeBatch;
-    const FActiveGameplayEffectHandle Handle = GetASC()->ApplyEffect(Definition->Effect, Definition->Magnitude);
-    if (!Handle.IsValid() || !GetASC()->GetActiveGameplayEffect(Handle))
-    {
-        return Report(false, TEXT("훈련 효과를 적용하지 못했다."));
-    }
-    SkillEffects.Add(Handle);
-    Learned.Add(Definition);
-    Points -= Definition->PointCost;
-    return Report(true, TEXT("훈련을 완료했다."));
-}
-```
-
-첫 구현과 같은 검사·효과·비용 순서가 유지된다. 더해진 것은 세 가지다. 학습이나 복원 도중에 다시 들어오는 호출을 `bMutating`과 `bRestoring`으로 막고, 효과를 적용하는 동안 가방 변경을 `bMutationLocked`로 잠그며 속성 갱신을 `FScopedAggregatorOnDirtyBatch`로 모은다. 효과 핸들이 유효할 뿐 아니라 ASC에 활성 효과로 남아 있는지도 확인한다. 함수의 의미(검사, 효과, 목록, 비용 순서)는 그대로다. 이 보강이 어느 커밋에서 들어왔는지와 그 이유는 확인하지 않았다.
+두 고정 커밋의 실제 함수를 다시 대조해 초기 코드 자리에 복사돼 있던 최신 발췌를 바로잡았다. [후속 함수 원문](https://github.com/kang-sihwon/ccl8/blob/d4888b08154afab8712af974bce0ead2b90978ac/Source/CCL/Items/CCLLoadoutComponent.cpp#L350)에서 차이를 확인할 수 있다. 보호 장치가 처음 들어간 커밋과 동기는 이번 대조로 판정하지 않는다.
 
 회복은 별도 함수로 처리한다.
 

@@ -1,6 +1,6 @@
 # 추천·대안·보류와 다음 작업
 
-2026-11-15 사용자 승인으로 PR01-PR07과 공통 경계를 [결정 61](../../../../decisions/0061-veles-progression-resume-adoption.md)·[Scenario](../../../Scenario.md#벨레스-첫-장의-진행과-재개)에 반영했다. 이 채택 범위는 `CLOSED`다. PRA01-PRA02·PRH01-PRH06과 아래 원문을 보존하며 TR·C·RT 및 상세 표 전체·실제 UE 구현은 함께 채택하지 않았다. 아래 후보·미채택·다음 선택 표현은 작성 당시 기록이다. 반영 검토는 [별도 기록](../../../Reviews/2026-11-15-veles-progression-adoption-review.md)에서 확인한다.
+2026-11-15 사용자 승인으로 PR01-PR07과 공통 경계를 [결정 61](../../../../decisions/0061-veles-progression-resume-adoption.md)·[Scenario](../../../Scenario.md#벨레스-첫-장의-진행과-재개)에 반영했다. 이 채택 범위는 `CLOSED`다. PRA01-PRA02·PRH01-PRH06과 아래 원문을 보존하며 TR·C·RT 및 상세 표 전체·실제 UE 구현은 함께 채택하지 않았다. 아래 후보·미채택·다음 선택 표현은 작성 당시 기록이다. 반영 검토는 [별도 기록](../../../Reviews/2026-11-16-adoption-summary.md#결정-61)에서 확인한다.
 
 **PR01-PR07과 공통 경계를 한 묶음으로 추천한다.** 진행 판단에 필요한 사실, 중단 뒤 보존할 성과, 현재 다시 확인할 조건을 함께 선택해야 정상 흐름과 C03-C06이 다른 규칙을 쓰지 않는다. 이는 NG05의 새 후보이며 사용자 채택 전이다. [상위 문서](../2026-11-15-veles-progression-resume.md), [조건·전이](conditions.md), [사례 추적](cases.md), [재개·저장 대조](resume.md)가 상세 근거다.
 

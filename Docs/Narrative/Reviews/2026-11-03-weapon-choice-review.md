@@ -6,7 +6,7 @@ PASS: 무기 고정 해제와 관련 문서의 일관성·이전 내용 보존�
 
 2026-11-03 사용자의 모든 무기 사용 목표에 따라 Codex가 작성한 변경을 세션 모델의 읽기 전용 검토 에이전트가 확인했다. 검토자는 파일을 쓰지 않았고 작성자가 지적 수정과 결과 기록을 맡았다. 기준은 [결정 37](../../decisions/0037-unrestricted-protagonist-weapons.md)이다.
 
-대상은 [게임 기획](../../GameDesign.md), [기본 후보](../Drafts/2026-10-31-ether-taiga-dawn.md), [첫 장](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-first-chapter.md), [지역별 상세](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-03-adventure-plot/2026-11-03-regional-arcs.md), [주인공](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-03-adventure-plot/2026-11-03-protagonist.md), [아트 참조 목록](../../ArtDirection/EtherFirstChapter.md)과 하위 [디자인](../../ArtDirection/EtherFirstChapter/Designs.md)·[장면](../../ArtDirection/EtherFirstChapter/Scenes.md)이다. [이전 내용 보존본](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-03-adventure-plot/2026-11-03-fixed-weapon-previous.md), 결정과 현황 표기도 함께 확인했다.
+대상은 [게임 기획](../../GameDesign.md), [기본 후보](../Drafts/2026-10-31-ether-taiga-dawn.md), [첫 장](https://github.com/kang-sihwon/ccl8/blob/2a95af4c674f816fdc3f55796714def2936abfd8/Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-first-chapter.md), [지역별 상세](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-03-adventure-plot/2026-11-03-regional-arcs.md), [주인공](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-03-adventure-plot/2026-11-03-protagonist.md), [아트 참조 목록](../../ArtDirection/EtherFirstChapter.md)과 하위 [디자인](../../ArtDirection/EtherFirstChapter/Designs.md)·[장면](../../ArtDirection/EtherFirstChapter/Scenes.md)이다. [이전 내용 보존본](https://github.com/kang-sihwon/ccl8/blob/2a95af4c674f816fdc3f55796714def2936abfd8/Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-03-adventure-plot/2026-11-03-fixed-weapon-previous.md), 결정과 현황 표기도 함께 확인했다.
 
 ## 지적과 처리
 

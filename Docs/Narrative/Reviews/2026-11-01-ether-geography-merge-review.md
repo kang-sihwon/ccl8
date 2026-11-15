@@ -8,7 +8,7 @@
 - 작성자: Codex. 검토자: 작성자와 분리된 읽기 전용 검토 에이전트.
 - 대조 원문: 사용자가 제공한 「이그니스 타이가 지리·스토리 배치 초안.md」와 「5대륙 세계지도 배치.md」의 전체 본문.
 - 대상: [5대륙 세계지도 배치](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-world-map.md), [이그니스 타이가 지리와 여정](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-ignis-taiga-geography.md), [벨레스 주변 지리와 시각 배치](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-veles-geography.md).
-- 연관 대조: [전체 구상](../Drafts/2026-10-31-ether-taiga-dawn.md), [첫 장 상세 시나리오](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-first-chapter.md), [세계관 정본](../World.md), [시나리오 정본](../Scenario.md).
+- 연관 대조: [전체 구상](../Drafts/2026-10-31-ether-taiga-dawn.md), [첫 장 상세 시나리오](https://github.com/kang-sihwon/ccl8/blob/2a95af4c674f816fdc3f55796714def2936abfd8/Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-first-chapter.md), [세계관 정본](../World.md), [시나리오 정본](../Scenario.md).
 - 심각도: `BLOCKER`는 제출 전 필수 수정, `WARNING`은 의미를 오해할 가능성, `OBS`는 경미한 개선이다. 최종본에 남은 지적은 없다.
 
 ## 확인 결과

@@ -28,7 +28,7 @@
 |---|---|
 | [생물 파생형 63개](2026-11-08-monster-variants/field-forms.md) | 29개 기본 항목의 피부·체격·행동·서식형·성장형·장비형을 비교할 때 |
 | [현현·구성형과 인공 모델](2026-11-08-monster-variants/other-forms.md) | 7개 기본 항목의 16개 파생형, 구조체 16모델, 별도 분화하지 않은 28항목을 볼 때 |
-| [지역 적용과 레벨 해석](2026-11-08-monster-variants/regional-use.md) | 파생형의 등장 지역·혼재·재방문과 첫 장 보존을 볼 때 |
+| [지역 적용과 레벨 해석](2026-11-08-world-distribution-and-leveling/regional-ecology.md) | 파생형의 등장 지역·혼재·재방문과 첫 장 보존을 볼 때 |
 | [독립 검토](../../Reviews/2026-11-08-monster-variants-review.md) | ID·수량·지역·레벨·기존 설정 대조와 미검증 범위를 볼 때 |
 
 ## 외형에서 위험을 읽는 방식

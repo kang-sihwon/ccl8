@@ -1,5 +1,7 @@
 # 첫 장 장면 시안
 
+이 목록은 초기 원고를 바탕으로 만든 미실행 장면 시안이다. 특히 S35·S37·S38의 동행 출항은 현재 정본의 린 잔류와 다르다. 실제 제작에 사용할 장면은 [현행 Scenario](../../Narrative/Scenario.md)와 현재 인수·아침 점검 조건에 맞춰 먼저 고친다. 아래 목록을 최신 시나리오나 실행 검증으로 읽지 않는다.
+
 도입부터 다음 날 출항까지 38개 장면을 제안한다. 각 장면은 하나의 핵심 행동이나 결과를 담는다. [디자인 목록](Designs.md)의 인물·공간·소품을 선택한 뒤 조합하며, 생성 상태와 공통 프롬프트는 [부모 문서](../EtherFirstChapter.md)를 따른다.
 
 화면비는 모든 장면에 16:9를 제안한다. 표의 영어 초안 앞에 공통 문장과 선택한 인물·공간의 외형 문장을 붙인다. 참조 ID는 필요한 디자인의 목록이며 YouArt에 그 수만큼 이미지를 동시에 입력하라는 뜻이 아니다. 실제 입력 방식은 실행 화면에서 확인한다.
@@ -8,7 +10,7 @@
 
 ## 시작과 현장 점검 준비
 
-근거: 첫 장의 [1 시작](../../Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-first-chapter.md#1-시작-사람들에게-필요한-작은-기술), [2 출발](../../Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-first-chapter.md#2-출발-마을의-역할-분담).
+근거: 첫 장의 [1 시작](https://github.com/kang-sihwon/ccl8/blob/2a95af4c674f816fdc3f55796714def2936abfd8/Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-first-chapter.md#1-시작-사람들에게-필요한-작은-기술), [2 출발](https://github.com/kang-sihwon/ccl8/blob/2a95af4c674f816fdc3f55796714def2936abfd8/Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-first-chapter.md#2-출발-마을의-역할-분담).
 
 | ID·장면 | 필요한 디자인 | 구도·필수 요소 | 영어 프롬프트 초안 | 검수 기준 |
 |---|---|---|---|---|
@@ -22,7 +24,7 @@
 
 ## 숲과 동굴 조사
 
-근거: 첫 장의 [3 숲](../../Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-first-chapter.md#3-숲-같은-수원을-가리키는-이상), [4 동굴](../../Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-first-chapter.md#4-동굴-결빙의-원인과-복구-계획).
+근거: 첫 장의 [3 숲](https://github.com/kang-sihwon/ccl8/blob/2a95af4c674f816fdc3f55796714def2936abfd8/Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-first-chapter.md#3-숲-같은-수원을-가리키는-이상), [4 동굴](https://github.com/kang-sihwon/ccl8/blob/2a95af4c674f816fdc3f55796714def2936abfd8/Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-first-chapter.md#4-동굴-결빙의-원인과-복구-계획).
 
 | ID·장면 | 필요한 디자인 | 구도·필수 요소 | 영어 프롬프트 초안 | 검수 기준 |
 |---|---|---|---|---|
@@ -37,7 +39,7 @@
 
 ## 바르툴 대면과 보스전
 
-근거: 첫 장의 [5 대면](../../Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-first-chapter.md#5-대면-조작부-앞에-붙들린-숲의-어른), [6 보스전](../../Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-first-chapter.md#6-보스전-결박이-풀릴수록-커지는-움직임).
+근거: 첫 장의 [5 대면](https://github.com/kang-sihwon/ccl8/blob/2a95af4c674f816fdc3f55796714def2936abfd8/Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-first-chapter.md#5-대면-조작부-앞에-붙들린-숲의-어른), [6 보스전](https://github.com/kang-sihwon/ccl8/blob/2a95af4c674f816fdc3f55796714def2936abfd8/Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-first-chapter.md#6-보스전-결박이-풀릴수록-커지는-움직임).
 
 E07의 샘·뿌리·조작부·햇빛 바위 위치를 고정한다. 곰의 결박한 앞다리 좌우는 D09에서 고른 값을 모든 장면에 쓴다. S16-S19는 앞다리와 가슴이 묶여 있고, S20-S22는 가슴 연결만 남는다. S23부터는 두 연결이 모두 끊어진 상태다.
 
@@ -54,7 +56,7 @@ E07의 샘·뿌리·조작부·햇빛 바위 위치를 고정한다. 곰의 결�
 
 ## 수원 복구
 
-근거: 첫 장의 [7 복구](../../Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-first-chapter.md#7-복구-강제-채취를-멈추고-급수-설비를-살린다). S24-S26은 같은 작업 위치를 쓰되 손과 대상 부품이 보이는 구도로 나눈다.
+근거: 첫 장의 [7 복구](https://github.com/kang-sihwon/ccl8/blob/2a95af4c674f816fdc3f55796714def2936abfd8/Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-first-chapter.md#7-복구-강제-채취를-멈추고-급수-설비를-살린다). S24-S26은 같은 작업 위치를 쓰되 손과 대상 부품이 보이는 구도로 나눈다.
 
 | ID·장면 | 필요한 디자인 | 구도·필수 요소 | 영어 프롬프트 초안 | 검수 기준 |
 |---|---|---|---|---|
@@ -67,7 +69,7 @@ E07의 샘·뿌리·조작부·햇빛 바위 위치를 고정한다. 곰의 결�
 
 ## 귀환과 출항
 
-근거: 첫 장의 [8 귀환](../../Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-first-chapter.md#8-귀환-마을이-유지할-수-있는-해결), [9 출항](../../Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-first-chapter.md#9-출항-다른-장인들과-고장-기록을-나누러-간다).
+근거: 첫 장의 [8 귀환](https://github.com/kang-sihwon/ccl8/blob/2a95af4c674f816fdc3f55796714def2936abfd8/Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-first-chapter.md#8-귀환-마을이-유지할-수-있는-해결), [9 출항](https://github.com/kang-sihwon/ccl8/blob/2a95af4c674f816fdc3f55796714def2936abfd8/Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-first-chapter.md#9-출항-다른-장인들과-고장-기록을-나누러-간다).
 
 | ID·장면 | 필요한 디자인 | 구도·필수 요소 | 영어 프롬프트 초안 | 검수 기준 |
 |---|---|---|---|---|

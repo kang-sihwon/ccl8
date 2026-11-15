@@ -7,7 +7,7 @@
 - 작성자: Codex. 새 지명·성장사·지역 제도·풍습은 창작 후보로 작성했다.
 - 검토자: 읽기 전용 독립 검토 에이전트 `review_ignis_small_settlements`. 파일을 수정하지 않고 판정과 지적만 보고했다.
 - 대상: [일반 도시](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-ignis-settlement-network/2026-11-01-towns.md), [마을](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-ignis-settlement-network/2026-11-01-villages.md).
-- 대조: [정착망](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-ignis-settlement-network.md), [정치 관계](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-ignis-political-relations.md), [통치·생산·교역](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-ignis-governance-layout.md), [첫 장](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-first-chapter.md), [World](../World.md), [Scenario](../Scenario.md).
+- 대조: [정착망](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-ignis-settlement-network.md), [정치 관계](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-ignis-political-relations.md), [통치·생산·교역](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-ignis-governance-layout.md), [첫 장](https://github.com/kang-sihwon/ccl8/blob/2a95af4c674f816fdc3f55796714def2936abfd8/Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-first-chapter.md), [World](../World.md), [Scenario](../Scenario.md).
 
 ## 지적
 

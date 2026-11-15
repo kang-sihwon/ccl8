@@ -1,14 +1,10 @@
 # 진행 중인 작업
 
-새 세션은 이 목록에서 이어서 할 작업을 고른다. 한 줄에 작업 하나를 적고, 세부와 다음 조각은 작업별 지도가 소유한다. 끝난 작업은 결과를 소유 사양서로 옮긴 뒤 이 목록과 지도에서 지운다. 근거는 [결정 28](../decisions/0028-agent-workflow-restructure.md)이다.
-
-작업을 시작하면 아래 표에 한 줄을 더한다.
+새 세션은 이 목록에서 이어갈 작업을 고른다. 작업별 지도는 결과·다음 행동을 소유하며, 완료 결과는 소유 사양서에 둔다. 근거는 [결정 28](../decisions/0028-agent-workflow-restructure.md)이다.
 
 | 작업 | 지도 | 상태 |
 |---|---|---|
-| 시나리오·세계관 작업군 | [작업군 지도](../Narrative/WorkGroups.md) · [현재 상태](../Narrative/CurrentWork.md) | NG01·NG02 작성·검토와 채택을 완료했다. NG04는 NC·VR에 이어 IB01-IB06·공통 경계를 결정 59·정본에 반영했고 독립 검토 PASS로 완료했다. IA·IH와 이전 원문을 보존한다. NG03 작성·독립 검토도 PASS로 완료했다. JC01-JC06·공통 경계도 결정 60·Scenario에 반영했고 반영 독립 검토는 PASS이며 잔여 지적은 없다. JA·JH를 보존하며 실제 물류·생태·플레이·UE는 미검증이다. |
-
-서사 작업의 다음 선택은 [남은 보류](../Narrative/WorkGroups/remaining-holds.md)와 [NG05-NG08 추천](../Narrative/WorkGroups/next-workgroups.md)에서 확인한다. NG01-NG04의 승인 범위는 완료했다. NG05의 [진행·재개 후보](../Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-15-veles-progression-resume.md)는 표현 두 곳 보완 뒤 작성·독립 검토 PASS로 완료했고 PR01-PR07·공통 경계도 사용자 승인으로 [결정 61](../decisions/0061-veles-progression-resume-adoption.md)·Scenario에 반영했다. [반영 검토](../Narrative/Reviews/2026-11-15-veles-progression-adoption-review.md)도 PASS이며 잔여 지적은 없다. 기존 원문·대안·보류는 보존한다. NG06은 [검증 설계](../Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-15-veles-validation-design.md)의 작성·[독립 검토](../Narrative/Reviews/2026-11-15-veles-validation-design-review.md)를 PASS로 완료했으며 잔여 지적은 없다. VD01-VD06·공통 경계는 사용자 승인으로 결정 62·Scenario에 반영했다. 이 채택 범위는 `CLOSED`다. [반영 독립 검토](../Narrative/Reviews/2026-11-15-veles-validation-adoption-review.md)는 PASS이며 잔여 지적은 없다. VDA·VDH와 기존 원문·대안·보류·도안·좌표·수치를 보존한다. 실제 GX·WC 검사는 모두 미실행이다. NG07은 통합 원고·대체 장면·정보 대조의 작성·독립 검토를 완료했다. [독립 검토](../Narrative/Reviews/2026-11-16-veles-integrated-manuscript-review.md)는 C05 표현 두 곳 보완 뒤 PASS이며 잔여 지적은 없다. IW01-IW06·공통 경계는 사용자 승인으로 결정 63·Scenario에 반영했다. 이 채택 범위는 `CLOSED`다. [반영 독립 검토](../Narrative/Reviews/2026-11-16-veles-manuscript-adoption-review.md)는 지도 표현 한 곳 보완 뒤 PASS이며 잔여 지적은 없다. IWA·IWH와 기존 원문·대안·보류·도안·좌표·수치를 보존한다. NG08 로덴·세르나·하르덴 운영·인계의 작성·독립 검토를 PASS로 완료했다. 잔여 지적은 없다. HO01-HO06·공통 경계는 미채택 후보인 DISCUSSION이며 HOA01-HOA02·HOH01-HOH06을 보존한다. G4·G5 상세와 실제 UE 구현·실행은 미착수다. 실제 제작·검증은 별도 요청 범위에서 시작한다.
+| 시나리오·세계관 | [현재 상태](../Narrative/CurrentWork.md) | NG08 작성·독립 검토 PASS. HO01-HO06·공통 경계는 미채택이며 다음 사용자 선택이 남았다. 실제 UE 검증은 미실행이다. |
 
 ## 다음 작업 후보
 
@@ -23,7 +19,3 @@
 | 자연 환경 단계 8 마무리와 단계 9 | [EnvironmentPlan](../EnvironmentPlan.md#단계별-현황) | 없음 |
 | GitHub Issues와 CI 도입 | [결정 28](../decisions/0028-agent-workflow-restructure.md) | 보류. 여러 세션이 동시에 일을 가져갈 때 다시 검토한다 |
 | 전역 설정과 프로젝트 설정의 graft 훅 중복 제거 | [AgentContextTools](../AgentContextTools.md) | 보류. 세션 시작 문구가 두 번 들어오지만 2026-10-31에 고치지 않기로 했다 |
-
-NG07의 현재 원고·정보·선택 범위를 읽을 때는 [통합 집필 묶음](../Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-15-veles-integrated-manuscript.md)을 사용한다. MS01-MS10·C03-C06·VI01-VI08은 문서 결과이며 실제 인지·전투·운영·UE 검증이 아니다.
-
-NG08의 완료 결과와 다음 선택은 [운영·인계 묶음](../Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-16-ignis-operational-handoffs.md)·[후속 지도](../Narrative/WorkGroups/next-workgroups.md#ng08-산출물과-현재-상태)에서 확인한다. [독립 검토](../Narrative/Reviews/2026-11-16-ignis-operational-handoffs-review.md)는 PASS이며 새 HO 추천은 미채택이다.

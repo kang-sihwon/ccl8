@@ -2,7 +2,7 @@
 
 벨레스는 세계수 북동쪽 약 208.6km, 로덴보다 상류에 있는 작은 강변 공방 마을로 둔다. 식수는 북쪽 숲의 별도 샘에서 받고 큰 강은 운송과 비상 급수에 사용한다. 가까운 능선이 나루에서 세계수를 가리고, 출항한 배가 능선을 돌아 나가면 먼 상부 수관을 보게 한다.
 
-2026-11-01 사용자 요청의 마지막 순서인 벨레스와 첫 장 지역 설정의 신규 후보다. [세계수 규모](2026-11-01-worldtree-scale.md)와 [정착망](2026-11-01-ignis-settlement-network.md)을 바탕으로 한다. 이 문서는 새 지역 좌표·생활 배치·연출 공간을 소유하고, 사건·대사·적·제작 범위는 [첫 장 시나리오](2026-11-01-first-chapter.md)를 유지한다. [이전 배치안](2026-11-01-first-chapter-spatial-layout.md)은 보류한 비교 자료다.
+2026-11-01 사용자 요청의 마지막 순서인 벨레스와 첫 장 지역 설정의 신규 후보다. [세계수 규모](2026-11-01-worldtree-scale.md)와 [정착망](2026-11-01-ignis-settlement-network.md)을 바탕으로 한다. 이 문서는 새 지역 좌표·생활 배치·연출 공간을 소유하고, 사건·대사·적·제작 범위는 [첫 장 시나리오](https://github.com/kang-sihwon/ccl8/blob/2a95af4c674f816fdc3f55796714def2936abfd8/Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-first-chapter.md)를 유지한다. [이전 배치안](2026-11-01-first-chapter-spatial-layout.md)은 보류한 비교 자료다.
 
 ## 마을의 생활권
 

@@ -6,7 +6,7 @@
 
 - 검토일: 2026-11-01.
 - 작성자: Codex. 독립 검토자: 작성자와 분리된 읽기 전용 검토 에이전트.
-- 전체 검토 대상: [지도 제작 기준표](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-map-production-basis.md), [Jenova 프롬프트](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-jenova-world-map-prompt.md).
+- 전체 검토 대상: [지도 제작 기준표](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-map-production-basis.md), [Jenova 프롬프트](https://github.com/kang-sihwon/ccl8/blob/2a95af4c674f816fdc3f55796714def2936abfd8/Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-jenova-world-map-prompt.md).
 - 일치 여부 대조: [5대륙 세계지도 배치](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-world-map.md).
 - 확인 방법: 기준표의 구면 계산식을 별도로 계산하고 경위도·화면 백분율·면적 목표·대륙 간 간격을 대조했다. 작성자도 별도 JavaScript 계산으로 경계 겹침과 목표 면적의 외곽 범위 수용 여부를 확인했다.
 - 심각도: `BLOCKER`는 사용을 막는 결함, `WARNING`은 잘못된 제작 결과를 낳을 우려, `OBS`는 경미한 개선이다. 해당 지적 없음.

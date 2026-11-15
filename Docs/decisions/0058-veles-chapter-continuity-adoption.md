@@ -17,7 +17,7 @@ owners: "[벨레스 첫 장의 통합 흐름과 미완료 연결](../Narrative/S
 
 > 추천한 NC01-NC04와 공통 경계를 모두 채택할게. NG04에서 해당 범위를 정본에 반영하고 검토·커밋·푸시까지 진행해줘.
 
-[NG01 독립 검토 PASS](../Narrative/Reviews/2026-11-15-veles-chapter-review.md)와 사용자 승인은 별개다. 이번 승인으로 선택표의 네 항목과 장면별·공통 경계를 채택한다. NC01이 인용한 [VR01-VR10 선택표](../Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-06-opening-and-continent/2026-11-15-veles-familiar-route-options.md)의 흐름·강조와 장면별·공통 경계도 원래 범위대로 포함한다. NA·RA 대안이나 NH·RH 세부, 두 비교 원문 전체를 승인한 것으로 확대하지 않는다.
+[NG01 독립 검토 PASS](../Narrative/Reviews/2026-11-15-veles-chapter-review.md)와 사용자 승인은 별개다. 이번 승인으로 선택표의 네 항목과 장면별·공통 경계를 채택한다. NC01이 인용한 [VR01-VR10 선택표](https://github.com/kang-sihwon/ccl8/blob/2a95af4c674f816fdc3f55796714def2936abfd8/Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-06-opening-and-continent/2026-11-15-veles-familiar-route-options.md)의 흐름·강조와 장면별·공통 경계도 원래 범위대로 포함한다. NA·RA 대안이나 NH·RH 세부, 두 비교 원문 전체를 승인한 것으로 확대하지 않는다.
 
 ### 결정
 

@@ -124,7 +124,7 @@ Commit에 실패하면 Entity를 먼저 없애지 않는다. 보류 결과를 �
 
 `UCCLAgentWorldSubsystem::OnWorldBeginPlay`는 게임 월드의 캠페인 권한 측에서 세션 ID와 저장 자료를 확인한다. 시나리오 초기화나 Load가 성공한 뒤 주민·작업장을 배치한다.
 
-현재 Tick은 누적 게임 시간이 0.25초 이상이면 60배의 시간을 Simulation에 넘긴다. 60배는 현재 코드의 상수이며 최종 게임 배율의 설계 근거가 확인된 수치는 아니다.
+환경 통합 전인 `50e5838`의 Tick은 게임 시간을 0.25초 이상 모아 60배로 생활 시뮬레이션에 넘겼다. `64a7549` 이후의 진행 주체는 `UCCLWorldSimulationSubsystem`이다. 이전 Tick과 공통 실행기의 차이는 [공통 시간](EnvironmentTime.md)에서 읽는다.
 
 Actor 수행은 SelectIntent, Approach, Perform 순으로 이어진다. 이동은 30초 제한과 거리 검사, 수행은 도착 거리·예약·기회 Revision을 확인한다. 수행 중 주기적으로 재판단하고 급한 허기 때문에 다른 기회로 전환할 수 있다. 실제 거래는 Simulation의 Execute가 맡는다.
 

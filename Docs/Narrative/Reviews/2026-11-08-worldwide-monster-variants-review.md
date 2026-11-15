@@ -2,7 +2,7 @@
 
 PASS. 외형과 배치 대상의 표현 두 곳을 명료화하고 독립 재확인을 마쳤다. 남은 지적 없음.
 
-2026-11-08 작성자 Codex와 별도의 읽기 전용 검토자가 [전체안](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-08-worldwide-monster-variants.md)과 하위 네 문서를 검토했다. 기준은 [기존 79형태](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-08-monster-variants.md), [부모 지역·레벨](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-08-continent-ecology-progression-v2/roster-placement.md), [기본 존재와 기원](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-08-expanded-monster-roster.md), [세계지도](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-world-map.md), World·Scenario다. BLOCKER는 진행 불가, WARNING은 수정 필요, OBS는 명료화 권고다. 검토 통과는 후보 채택이나 실제 생태·게임 실행의 검증이 아니다.
+2026-11-08 작성자 Codex와 별도의 읽기 전용 검토자가 [전체안](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-08-worldwide-monster-variants.md)과 하위 네 문서를 검토했다. 기준은 [기존 79형태](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-08-monster-variants.md), [부모 지역·레벨](https://github.com/kang-sihwon/ccl8/blob/2a95af4c674f816fdc3f55796714def2936abfd8/Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-08-continent-ecology-progression-v2/roster-placement.md), [기본 존재와 기원](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-08-expanded-monster-roster.md), [세계지도](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-world-map.md), World·Scenario다. BLOCKER는 진행 불가, WARNING은 수정 필요, OBS는 명료화 권고다. 검토 통과는 후보 채택이나 실제 생태·게임 실행의 검증이 아니다.
 
 ## 확인 결과
 

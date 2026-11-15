@@ -6,7 +6,7 @@
 
 메인 여정은 **벨레스 → 타르넬·로덴 → 세르나 → 하르덴 → 북부 → 세계수 접근**으로 유지한다. 지역마다 생업이 유지되는 낮은 위험 구역, 몬스터의 생활권을 가로지르는 탐색 구역, 준비 후 들어가는 깊은 위험 구역을 함께 둔다. 이야기의 진도보다 먹이·물·은신처·작업·계약의 조건이 생물과 초자연 존재의 위치를 결정한다.
 
-2026-11-08 사용자가 [몬스터 확장안](2026-11-08-expanded-monster-roster.md)을 기준으로 분포와 레벨링을 다시 구성하도록 요청했다. 이 문서군은 그 확장안을 작업 기준으로 사용한 **새 분포 후보**다. 종·기원·수치의 정본 승인으로 확대하지 않는다. [이전 v1](2026-11-08-continent-ecology-progression.md)의 본문·지도·성장 곡선·JSON과 당시 검토는 보존한다.
+2026-11-08 사용자가 [몬스터 확장안](2026-11-08-expanded-monster-roster.md)을 기준으로 분포와 레벨링을 다시 구성하도록 요청했다. 이 문서군은 그 확장안을 작업 기준으로 사용한 **새 분포 후보**다. 종·기원·수치의 정본 승인으로 확대하지 않는다. [이전 v1](https://github.com/kang-sihwon/ccl8/blob/2a95af4c674f816fdc3f55796714def2936abfd8/Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-08-continent-ecology-progression.md)의 본문·지도·성장 곡선·JSON과 당시 검토는 보존한다.
 
 ## 전체 흐름과 지역의 차이
 
@@ -27,7 +27,7 @@
 |---|---|
 | [지역 생활권과 탐색](2026-11-08-continent-ecology-progression-v2/regional-distribution.md) | 자연환경·동물·몬스터 거점·활동 시간·이동·왕복 경로·선택 탐색권을 볼 때 |
 | [이동·레벨·보상](2026-11-08-continent-ecology-progression-v2/route-and-levels.md) | 이동 이유와 환적, 지역 안의 난도 차이, 성장 예산·재방문·과성장을 볼 때 |
-| [64항목·구조체 배치 대조](2026-11-08-continent-ecology-progression-v2/roster-placement.md) | 각 종의 우선 지역·보조 지역·등장 방식·교전 권장 범위를 찾을 때 |
+| [64항목·구조체 배치 대조](2026-11-08-world-distribution-and-leveling/species-distribution.md) | 각 종의 우선 지역·보조 지역·등장 방식·교전 권장 범위를 찾을 때 |
 | [36개 정착지 연결](2026-11-08-continent-ecology-progression-v2/settlement-links.md) | 36곳이 어느 환경권에 속하고 주민이 어떻게 대응하는지 볼 때 |
 | [같은 종의 파생형과 외형별 위험도](2026-11-08-monster-variants.md) | 종별 범위 안에서 피부·체격·성장·행동·모델에 따른 세부 차이를 볼 때 |
 | [64항목 전체와 5대륙 형태](2026-11-08-worldwide-monster-variants.md) | 기존 79형태에 추가 56형태·해외 64형태를 연결한 현행 후보를 볼 때 |
@@ -54,3 +54,8 @@
 대륙의 긴 강선·육로를 한 숲의 활동 반경처럼 다루지 않는다. 문서의 거점·활동 동선은 각 정박지·탐색 장소 안의 후보이고, 그 사이의 이동은 배편·환적·육로 여정으로 연결한다. 수백·수천 km를 같은 몬스터 무리가 추격하거나 당일 왕복하는 계획은 아니다. 실제 이동 일수·계절·세부 고도는 미정이다.
 
 추천은 이처럼 서로 다른 위험을 가진 생활권의 연결이다. 구간마다 모든 적을 같은 레벨로 맞추면 설명은 단순하지만 재방문·회피·생태의 차이가 줄어든다. 완전 무레벨 대안도 가능하지만 현재는 기존 1-40 비교 기준을 유지해 여섯 지역의 성장과 도전 차이를 검토한다. 실제 성장 시스템과 제작 범위의 결정은 별도다.
+
+
+## 초기안에서 이어 쓰는 자료
+
+[동료·지역 전승](2026-11-08-continent-ecology-progression/companions-and-lore.md)은 고유 상세를 소유한다. 초기 v1 도면·JSON은 작성 당시 비교 자료이며 현행 v2 배치로 읽지 않는다. [초기 도면과 원천 안내](https://github.com/kang-sihwon/ccl8/blob/2a95af4c674f816fdc3f55796714def2936abfd8/Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-08-continent-ecology-progression.md)에서 확인한다.

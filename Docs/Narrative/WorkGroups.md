@@ -1,44 +1,20 @@
 # 시나리오와 세계관 작업군
 
-NG01-NG04는 **벨레스 첫 장, 이그니스 배경, 5대륙 여정, 채택 자료 통합**을 맡았고 승인된 추천 묶음까지 완료했다. 후속 목표는 아래 NG05-NG08 추천에서 고른다. 한 작업군 안에서 관련 조사·초안·수정·검토를 이어 수행하고, 결과 묶음을 사용자에게 보여 준다. 문서 작성 한 번이나 식별자 하나를 전체 목표의 완료로 보지 않는다.
+현재 작업과 다음 선택은 [CurrentWork](CurrentWork.md)가 소유한다. 아래는 완료된 문서 작업의 결과이며 실제 제작·플레이 검증의 완료표가 아니다.
 
-현재 상태·담당은 [CurrentWork](CurrentWork.md), 새 세션의 출발점은 [세션 인계](WorkGroups/session-handoff.md)가 소유한다. NG01·NG02의 작성·검토와 사용자 채택을 완료했다. NG04는 첫 장을 결정 58·Scenario에, 이그니스 IB01-IB06·공통 경계를 [결정 59](../decisions/0059-ignis-background-relations-adoption.md)·World·Scenario에 반영했다. 이그니스 반영의 독립 검토는 PASS이며 잔여 지적은 없다. NG03의 [여정 대조](Drafts/2026-10-31-ether-taiga-dawn/2026-11-15-world-journey-alignment.md)도 작성·독립 검토 PASS로 완료했다. JC01-JC06·공통 경계는 사용자 승인으로 [결정 60](../decisions/0060-world-journey-connections-adoption.md)·Scenario에 반영했고 정본 반영 독립 검토는 PASS이며 잔여 지적은 없다. JA·JH를 보존한다. 이 지도 자체가 세계 설정·제작 범위를 확정하지는 않는다.
+## 완료 결과
 
-인계·계획의 정합성은 [독립 검토](Reviews/2026-11-15-narrative-workgroups-review.md)에서 확인했다. 이 검토는 아래 작업군의 실행이나 전체 세계 설정 검증을 대신하지 않는다.
-
-| 작업군 | 목표로 삼을 결과 | 시작 조건과 의존 | 상세 |
+| 작업군 | 소유 산출물 | 채택 범위 | 반영 검토 |
 |---|---|---|---|
-| NG01 벨레스 첫 장 완성도 | 탐색 선택과 정보 누락에도 도입·전투·복구·귀환·출항의 이유가 이어지는 첫 장 검토 묶음 | 작성·검토와 NC·VR 흐름·경계 채택을 완료했다. NG04의 정본 반영 검토도 PASS이며 세부 보류는 유지한다. | [목표와 완료 기준·결과](WorkGroups/01-veles-chapter.md) |
-| NG02 이그니스 배경 정합 | 지형·36개 정착지·교역·세력·몬스터 생활권이 서로 설명되는 대륙 배경 묶음 | 작성·독립 검토 완료. IB01-IB06·공통 경계는 결정 59로 채택, IA·IH 보존. 실제 물류·공간·UE 미검증. | [완료 기준과 결과](WorkGroups/02-ignis-world.md) |
-| NG03 5대륙 여정 연결 | 해금·동료·설비 인계·몬스터와 성장·대표 전투의 차이가 이어지는 전체 여정 묶음 | NG01·NG02 확정을 적용한 15구간·전투·인물·생태·성장 대조와 독립 검토를 완료했다. JC·공통 경계는 결정 60으로 채택, JA·JH 보존. | [완료 기준과 결과](WorkGroups/03-world-journey.md) |
-| NG04 채택 설정과 문서 통합 | 채택한 내용의 읽기 시작점·정본·결정·남은 후보가 일치하는 문서 묶음 | 첫 장 NC·VR은 결정 58로 완료했다. 이그니스 IB·공통 경계는 결정 59·정본 반영과 독립 검토 PASS로 완료했다. NG03의 JC·공통 경계도 결정 60·Scenario에 반영했으며 반영 독립 검토는 PASS이며 잔여 지적은 없다. PR01-PR07·공통 경계도 결정 61·Scenario 반영과 독립 검토 PASS로 완료했다. VD01-VD06·공통 경계도 결정 62·Scenario 반영과 독립 검토 PASS로 완료했다. | [목표와 완료 기준·반영 범위](WorkGroups/04-canon-consolidation.md) |
+| NG01 | [첫 장 통합 흐름](Drafts/2026-10-31-ether-taiga-dawn/2026-11-06-opening-and-continent/2026-11-15-veles-chapter-options.md) | NC01-NC04·VR01-VR10와 공통 경계, [결정 58](../decisions/0058-veles-chapter-continuity-adoption.md)에 한해 `CLOSED` | [당시 PASS·지적 0](Reviews/2026-11-16-adoption-summary.md#결정-58) |
+| NG02 | [이그니스 배경](Drafts/2026-10-31-ether-taiga-dawn/2026-11-15-ignis-background.md) | IB01-IB06와 공통 경계, [결정 59](../decisions/0059-ignis-background-relations-adoption.md)에 한해 `CLOSED` | [당시 PASS·지적 0](Reviews/2026-11-16-adoption-summary.md#결정-59) |
+| NG03 | [5대륙 여정 연결](Drafts/2026-10-31-ether-taiga-dawn/2026-11-15-world-journey-alignment.md) | JC01-JC06와 공통 경계, [결정 60](../decisions/0060-world-journey-connections-adoption.md)에 한해 `CLOSED` | [당시 PASS·지적 0](Reviews/2026-11-16-adoption-summary.md#결정-60) |
+| NG05 | [첫 장 진행·재개](Drafts/2026-10-31-ether-taiga-dawn/2026-11-15-veles-progression-resume.md) | PR01-PR07와 공통 경계, [결정 61](../decisions/0061-veles-progression-resume-adoption.md)에 한해 `CLOSED` | [당시 PASS·지적 0](Reviews/2026-11-16-adoption-summary.md#결정-61) |
+| NG06 | [첫 장 검증 설계](Drafts/2026-10-31-ether-taiga-dawn/2026-11-15-veles-validation-design.md) | VD01-VD06와 공통 경계, [결정 62](../decisions/0062-veles-validation-design-adoption.md)에 한해 `CLOSED` | [당시 PASS·지적 0](Reviews/2026-11-16-adoption-summary.md#결정-62) |
+| NG07 | [첫 장 통합 집필](Drafts/2026-10-31-ether-taiga-dawn/2026-11-15-veles-integrated-manuscript.md) | IW01-IW06와 공통 경계, [결정 63](../decisions/0063-veles-manuscript-delivery-adoption.md)에 한해 `CLOSED` | [당시 PASS·지적 0](Reviews/2026-11-16-adoption-summary.md#결정-63) |
 
-NG01-NG03의 추천 NC·VR·IB·JC와 공통 경계는 모두 사용자 선택을 받아 정본에 반영했다. JA·JH와 NG02의 미채택 IA·보류 IH를 보존한다. 남은 표현·운영·생태·성장·구현은 별도 요청에서 범위를 정한다. NG04는 사용자가 채택한 묶음마다 수행하고 마지막에 전체 연결을 확인한다. 이 의존 관계는 다른 세션을 자동으로 만들거나 여러 작성자가 같은 파일을 동시에 고치라는 뜻이 아니다.
-
-## 후속 추천과 남은 보류
-
-[남은 보류 지도](WorkGroups/remaining-holds.md)는 열두 선택표의 보류 79행을 현재 채택·남은 세부·실제 미검증으로 나누고 중복 주제의 담당 범위를 연결한다. 미채택 대안과 비교 사례는 자동으로 할 일이 되지 않는다. 원문·지도·수치는 보존한다.
-
-[후속 작업군 추천](WorkGroups/next-workgroups.md)이 우선순위·의존·첫 범위·완료 기준을 소유한다. NG05 첫 장 진행·재개 규칙은 [후보](Drafts/2026-10-31-ether-taiga-dawn/2026-11-15-veles-progression-resume.md)의 작성·[독립 검토](Reviews/2026-11-15-veles-progression-resume-review.md)를 PASS로 완료했다. PR01-PR07·공통 경계도 사용자 승인으로 [결정 61](../decisions/0061-veles-progression-resume-adoption.md)·Scenario에 반영했으며 [반영 검토](Reviews/2026-11-15-veles-progression-adoption-review.md)도 PASS이며 잔여 지적은 없다. PRA01-PRA02·PRH01-PRH06을 보존한다. **NG06의 검증 기준은 채택을 마쳤고 NG07 통합 집필은 작성·독립 검토를 완료했다.** NG08의 운영·인계 작성·독립 검토도 PASS로 완료했다. [NG06 독립 검토](Reviews/2026-11-15-veles-validation-design-review.md)는 PASS이며 잔여 지적은 없다. [NG06 결과](Drafts/2026-10-31-ether-taiga-dawn/2026-11-15-veles-validation-design.md)의 VD01-VD06·공통 경계는 사용자 승인으로 결정 62·Scenario에 반영했다. 이 채택 범위는 `CLOSED`다. [반영 독립 검토](Reviews/2026-11-15-veles-validation-adoption-review.md)는 PASS이며 잔여 지적은 없다. VDA·VDH와 기존 원문·대안·보류·도안·좌표·수치를 보존한다. NG08은 로덴·세르나·하르덴 인계 한 묶음을 작성했다. HO01-HO06·공통 경계는 미채택 DISCUSSION이며 기존 보류·실제 제작은 포함하지 않는다. G4·G5 상세는 미착수다.
-
-실제 제작이 목적이면 채택된 NG05·NG06의 조건을 입력으로 제한된 첫 장 제작·실행 목표를 별도로 요청할 수 있다. 전 대륙 상세·신화·후일담을 모두 끝내야 제작을 시작할 수 있는 것은 아니다. NG04는 이후 선택된 묶음에도 재사용한다.
-
-## 작업군을 목표로 사용할 때
-
-사용자가 작업군을 요청하면 그 문서의 목표와 완료 기준을 하나의 작업 범위로 삼는다. 요청된 목표 안에서 필요한 하위 조사·초안·자체 수정·독립 검토·선택표·진행 기록을 이어 수행한다. 이미 검토한 원문은 재사용하고 변경 영향·미확인 부분을 우선한다. 하위 항목마다 새로운 선택표를 만들기보다 마지막에 채택 추천·대안·보류를 묶는다.
-
-각 작업군의 검토 완료와 설정 채택 완료는 구분한다. 검토 완료는 근거·후보·지적 처리·미검증 범위가 함께 준비된 상태다. 사용자 승인 뒤에만 선택한 범위를 결정·정본에 반영한다. 승인할 선택이 남아 있더라도 독립적으로 작성·검토할 수 있는 부분은 계속 진행한다. 승인이 필요한 정본 변경을 진행하거나 미채택 후보를 확정으로 취급하지 않는다.
-
-스킬은 각 작업군에 적은 관련 조합을 참고한다. 같은 범위에서 이미 승인된 조합은 반복 확인하지 않고, 새 전문 스킬이나 범위가 필요한 부분만 [스킬 사용 안내](../AgentContextTools/SkillUsage.md)에 따라 확인한다. 현재 작업군을 골랐다는 사실이 후속 제작·이미지 생성·코드 변경·자동 예약·다른 세션 시작까지 허용하지는 않는다.
-
-## 세션을 넘길 때 남길 것
-
-작업자는 CurrentWork의 담당과 진행 중인 작업군을 갱신하고, 종료할 때 완료 결과·남은 하위 범위·승인 대기·미검증을 남긴다. 파일별 완료 개수만으로 작업군 완료를 선언하지 않는다. 승인되지 않은 선택은 다음 세션에서도 후보로 이어간다.
-
-문서 제출 전에는 문서 검사와 변경이 있는 결정의 검사를 수행하고, 자신의 변경만 검토해 저장소 규칙에 따라 커밋한다. push는 요청 범위를 확인한다. 검사 결과는 서면 정합의 증거이며 실제 전투·이동·정보 인지의 증거로 쓰지 않는다. 세부 절차는 [서사 작업 절차](Workflow.md)와 [버전 관리](../VersionControl.md)를 따른다.
-
-NG07의 완료 기준별 결과는 [통합 집필 묶음](Drafts/2026-10-31-ether-taiga-dawn/2026-11-15-veles-integrated-manuscript.md)에서 확인한다. NG07은 통합 원고·대체 장면·정보 대조의 작성·독립 검토를 완료했다. [독립 검토](Reviews/2026-11-16-veles-integrated-manuscript-review.md)는 C05 표현 두 곳 보완 뒤 PASS이며 잔여 지적은 없다. IW01-IW06·공통 경계는 사용자 승인으로 결정 63·Scenario에 반영했다. 이 채택 범위는 `CLOSED`다. [반영 독립 검토](Reviews/2026-11-16-veles-manuscript-adoption-review.md)는 지도 표현 한 곳 보완 뒤 PASS이며 잔여 지적은 없다. IWA·IWH와 기존 원문·대안·보류·도안·좌표·수치를 보존한다. 전체 원고·정확한 대사·매체 규격·조건부 성공·실제 플레이 지원은 함께 확정하지 않는다.
+NG04는 선택한 범위를 결정·정본에 옮기는 절차다. 다음 채택에도 [Workflow](Workflow.md)를 적용한다. 표의 범위 밖 대안·보류는 [원문별 추적](WorkGroups/remaining-holds.md)에 남아 있다. NG06의 GX·WC는 미실행이고, NG07의 원고 전체·정확한 대사·매체 규격·조건부 성공은 일괄 확정하지 않았다.
 
 ## NG08 운영·인계 결과
 
-NG08 로덴·세르나·하르덴 운영·인계의 작성·독립 검토를 PASS로 완료했다. 잔여 지적은 없다. HO01-HO06·공통 경계는 미채택 후보인 DISCUSSION이며 HOA01-HOA02·HOH01-HOH06을 보존한다. G4·G5 상세와 실제 UE 구현·실행은 미착수다. [운영 묶음](Drafts/2026-10-31-ether-taiga-dawn/2026-11-16-ignis-operational-handoffs.md)과 [독립 검토](Reviews/2026-11-16-ignis-operational-handoffs-review.md)에서 확인한다. 완료 기준별 결과는 [후속 작업군 지도](WorkGroups/next-workgroups.md#ng08-산출물과-현재-상태)가 소유한다. 다음 선택은 HO01-HO06·공통 경계이며 NG04의 이전 채택 완료를 되돌리지 않는다.
+[로덴·세르나·하르덴 묶음](Drafts/2026-10-31-ether-taiga-dawn/2026-11-16-ignis-operational-handoffs.md)은 작성·독립 검토를 완료했다. HO01-HO06·공통 경계는 미채택 `DISCUSSION`이다. 다음 선택과 실제 미검증은 [CurrentWork](CurrentWork.md), 이후 작업 후보는 [후속 지도](WorkGroups/next-workgroups.md)가 소유한다.

@@ -23,7 +23,7 @@ BLOCKER는 진행할 수 없는 승인·근거·정본 위반, WARNING은 수정
 
 ## 확인 범위와 미검증
 
-[기존 상세 원고](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-06-opening-and-continent/opening-scenario.md), [Scenario](../Scenario.md), [World](../World.md), 개요가 연결한 고블린·일반 동물·S1 파생형·왕복·공간 후보를 기준으로 검토했다. 검토자는 파일을 쓰지 않고 판정만 보고했으며 작성자가 결과를 기록했다.
+[기존 상세 원고](https://github.com/kang-sihwon/ccl8/blob/2a95af4c674f816fdc3f55796714def2936abfd8/Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-06-opening-and-continent/opening-scenario.md), [Scenario](../Scenario.md), [World](../World.md), 개요가 연결한 고블린·일반 동물·S1 파생형·왕복·공간 후보를 기준으로 검토했다. 검토자는 파일을 쓰지 않고 판정만 보고했으며 작성자가 결과를 기록했다.
 
 작성자는 기존 상세 원고에 안내 문단만 추가했고 이전 본문이 보존됨을 별도로 비교했다. 문서·결정 검사는 작성자가 수행하며 독립 검토자의 실행 결과와 구분한다. PASS는 서면 정합성 판정이고 새 세부의 사용자 채택이 아니다.
 

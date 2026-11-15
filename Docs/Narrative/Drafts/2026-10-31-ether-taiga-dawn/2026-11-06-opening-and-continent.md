@@ -9,9 +9,9 @@
 | 이그니스 배경 대조 | [36곳·생활권·보완 선택](2026-11-15-ignis-background.md) | NG01 확정을 기준으로 지형·교역·세력·생태와 IB·IA·IH를 비교할 때 |
 | 확정한 첫 장 통합 흐름 | [Scenario의 NC·VR](../../Scenario.md#벨레스-첫-장의-통합-흐름과-미완료-연결) | 결정 58로 채택한 정상 흐름·조사 공백·미완료 보고·인수 보완과 공통 경계를 읽을 때 |
 | 첫 장 채택 범위 | [NC01-NC04 추천·대안·보류](2026-11-06-opening-and-continent/2026-11-15-veles-chapter-options.md) | 채택한 NC·VR 범위와 남은 NA·NH·RA·RH를 구분할 때 |
-| 첫 장 통합 비교 | [누락 사례와 통합 흐름](2026-11-06-opening-and-continent/2026-11-15-veles-chapter-comparison.md) | C01-C06의 정보·수행 상태와 도입부터 출항까지의 연결·반복 점검을 볼 때 |
-| 귀환 사례 선택 | [VR01-VR10 추천·대안·보류](2026-11-06-opening-and-continent/2026-11-15-veles-familiar-route-options.md) | 장면 흐름·설명 배분의 채택 범위와 RA·RH를 비교할 때 |
-| 확정 전달 적용 사례 | [적은 야외 관찰·익숙한 길 귀환](2026-11-06-opening-and-continent/2026-11-15-veles-familiar-route-scenes.md) | 짧은 장면 흐름에서 설명 반복·전투 중단·주민 인수를 비교할 때 |
+| 첫 장 통합 비교 | [누락 사례와 통합 흐름](2026-11-15-veles-progression-resume/cases.md) | C01-C06의 정보·수행 상태와 도입부터 출항까지의 연결·반복 점검을 볼 때 |
+| 귀환 사례 선택 | [VR01-VR10 추천·대안·보류](2026-11-15-veles-integrated-manuscript/options.md) | 장면 흐름·설명 배분의 채택 범위와 RA·RH를 비교할 때 |
+| 확정 전달 적용 사례 | [적은 야외 관찰·익숙한 길 귀환](2026-11-15-veles-integrated-manuscript/manuscript.md) | 짧은 장면 흐름에서 설명 반복·전투 중단·주민 인수를 비교할 때 |
 | 정보 전달 선택 | [VB01-VB06 추천·대안·보류](2026-11-06-opening-and-continent/2026-11-14-veles-information-options.md) | 전달 중심과 정확한 재전달 규칙을 구분하고 BA·BH를 비교할 때 |
 | 탐색 선택과 정보 | [벨레스 정보 접근 점검](2026-11-06-opening-and-continent/2026-11-14-veles-information-access.md) | 야외 조우 생략·귀환로 변경과 조사·복구 누락에 따른 정보 연결·보완 후보를 볼 때 |
 | 장면 행동 선택 | [VS01-VS12 추천·대안·보류](2026-11-06-opening-and-continent/2026-11-14-veles-scene-options.md) | 확정 사건을 유지하며 새 행동 배치·장면 강조와 VA·VH를 비교할 때 |
@@ -20,13 +20,12 @@
 | 현재 공간 상세 | [작업장 연결로·동굴 출구](2026-11-06-opening-and-continent/2026-11-07-forest-sightlines-and-clearance.md) | 길의 폭·작업 단·시야를 가리는 바위와 관찰 위치를 확대 지도에서 볼 때 |
 | 현재 탐색 흐름 | [동쪽 진입·서쪽 귀환 모의 탐색](2026-11-06-opening-and-continent/2026-11-07-forest-roundtrip-walkthrough.md) | 탐색·보스·복구·다른 길 귀환과 생활권 공백·추격 중첩의 비교를 볼 때 |
 | 이전 숲 배치 | [벨레스 숲 탐색 구역·몬스터 분포 v1](2026-11-06-opening-and-continent/2026-11-07-veles-forest-population.md) | 다람쥐 전투 무리와 25개체를 포함했던 이전 분포·계산을 비교할 때 |
-| 현재 전투 구조 | [필드 탐색과 전투 개정 후보](2026-11-06-opening-and-continent/2026-11-07-field-combat-revision.md) | 분포한 동물·몬스터와 탐색 중 싸우는 구조, 서식 구역·갈림길·대표 사건의 관계를 볼 때 |
 | 설정 선택 | [핵심 설정의 채택 추천·대안·보류](2026-11-06-opening-and-continent/2026-11-07-core-setting-options.md) | 첫 장의 핵심 후보를 선택하고 대안의 영향과 보류 시점을 비교할 때 |
 | 이전 공간 연결 | [공방부터 출항까지의 연결 후보](2026-11-06-opening-and-continent/2026-11-07-opening-spatial-connections.md) | 이전 순차 전투안과 장소·퇴로·물길·출항의 좌표 참조를 비교할 때 |
-| 1 | [첫 장 연결 점검](2026-11-06-opening-and-continent/opening-audit.md) | 기존 장면의 빈틈과 이번 상세안의 대응 |
+| 1 | [첫 장 연결 점검](https://github.com/kang-sihwon/ccl8/blob/2a95af4c674f816fdc3f55796714def2936abfd8/Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-06-opening-and-continent/opening-audit.md) | 기존 장면의 빈틈과 이번 상세안의 대응 |
 | 2 | [지형과 36개 정착지](2026-11-06-opening-and-continent/geography.md) | 다섯 대륙의 외형 기준, 이그니스 유역·고개·정착 위치와 공급 관계 |
 | 3 | [국가·세력·몬스터의 현재 상황](2026-11-06-opening-and-continent/present-world.md) | 첫날 아침에 이미 진행 중인 선택·압력·협력과 충돌 조건 |
-| 4 | [시작부터 출항까지의 보존 원고](2026-11-06-opening-and-continent/opening-scenario.md) | 다람쥐 전투·순차 교전·린 동승으로 읽힐 수 있는 서술 등 이전 상세와 현행 개요를 비교할 때 |
+| 4 | [시작부터 출항까지의 보존 원고](2026-11-15-veles-integrated-manuscript/manuscript.md) | 다람쥐 전투·순차 교전·린 동승으로 읽힐 수 있는 서술 등 이전 상세와 현행 개요를 비교할 때 |
 | 검토 | [통합 독립 검토](../../Reviews/2026-11-06-opening-continent-review.md) | 네 단계의 판정, 수정한 지적과 남은 검증 범위 |
 
 현재 시점은 벨레스 급수가 끊기는 날이다. 로덴의 사고, 세르나의 실종선 구조와 부두전, 하르덴 이후 주인공의 여정은 [장기 모험 보존 자료](2026-11-03-adventure-plot.md)에 둔다. 해당 사건의 성공과 결과를 지금의 배경 상태로 옮기지 않는다.

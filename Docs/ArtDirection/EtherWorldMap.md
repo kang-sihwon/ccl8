@@ -58,19 +58,19 @@
 
 확장 몬스터 기준의 현재 분포·레벨 문서는 [생태·성장 v2](../Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-08-continent-ecology-progression-v2.md)다. v2는 문서 작업이며 아래 v1의 지도·JSON을 갱신하지 않았다. v1 그림은 기존 지형·경로의 참고이고 확장 종의 현행 배치도가 아니다.
 
-대륙 메인 여정을 기존 좌표에 연결한 [이동·생태·성장 후보](../Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-08-continent-ecology-progression.md)에 전체 경로도·중앙 확대도·성장 곡선과 JSON을 추가했다. 36곳과 기존 해안·물길을 유지하고 여섯 메인 구간과 세 선택 탐색권을 구분한다. 새 접근점·레벨·지역 생태는 후보이며 그림의 색 표식은 기후 경계나 실제 스폰 영역이 아니다.
+이전 [이동·생태·성장 v1 후보](https://github.com/kang-sihwon/ccl8/blob/2a95af4c674f816fdc3f55796714def2936abfd8/Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-08-continent-ecology-progression.md)에 전체 경로도·중앙 확대도·성장 곡선과 JSON을 추가했다. 당시 36곳과 기존 해안·물길을 유지하고 여섯 메인 구간과 세 선택 탐색권을 구분했다. 새 접근점·레벨·지역 생태는 후보이며 그림의 색 표식은 기후 경계나 실제 스폰 영역이 아니다.
 
 실제 인게임 지도 UI는 지형과 위치를 읽는 평면 도면형 지도로 제작한다. 기존 이그니스 생성 그림은 도시·마을 사이 이동을 보여주는 개념도로 활용할 수 있다. 근거는 사용자의 용도 구분을 기록한 [결정 34](../decisions/0034-concept-and-ingame-map-roles.md)다.
 
 [결정 35](../decisions/0035-nadir-map-presentation.md)의 지역 지도 수직 시점은 유지한다. UI 제작 보류와 모든 축척의 엄격한 평면 표현은 결정 43으로 일부 대체했다. 지역은 벨레스의 수직 항공사진 느낌을, 대륙은 이그니스 선택안의 산맥 입체감과 지표 질감을 따른다.
 
-[벨레스 지도만의 표현 3안과 첫 표현 유지본](EtherWorldMap/2026-11-01-veles-map-style-variants.md), [주변 생활권 지도와 수직 시점 수정안](EtherWorldMap/2026-11-01-veles-wider-region-map.md)은 이전 비교 자료로 보존한다. 현재 표현 기준은 위 채택 시안이며 이미지의 지형·축척·정착지 좌표를 확정한 것은 아니다. 일반 도시와 마을의 표시 이름·생활권은 [정착망 상세 설정](../Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-ignis-settlement-network.md#상세-설정)을 참조한다.
+[벨레스 지도만의 표현 3안과 첫 표현 유지본](EtherWorldMap.md#이전-생성-시안), [주변 생활권 지도와 수직 시점 수정안](EtherWorldMap.md#이전-생성-시안)은 이전 비교 자료로 보존한다. 현재 표현 기준은 위 채택 시안이며 이미지의 지형·축척·정착지 좌표를 확정한 것은 아니다. 일반 도시와 마을의 표시 이름·생활권은 [정착망 상세 설정](../Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-ignis-settlement-network.md#상세-설정)을 참조한다.
 
 | 자료 | 용도와 현재 상태 |
 |---|---|
 | 기존 이그니스 생성 지도 | 대륙 분위기·거점 관계를 보는 개념도. 도시·마을 단위 이동 화면의 활용 후보 |
 | 세계지도 좌표·세계수·정착지 설계도 | 면적·거리·배치·시야를 검토하는 제작 자료. UI 외형을 정한 시안이 아님 |
-| 인게임 지도 UI | [벨레스·이그니스·에테르 월드맵 최종 시안 v2](EtherWorldMap/MapPresentation.md#최종-시안-v2)를 제작 기준으로 사용한다. [벨레스 첫 시안](EtherWorldMap/2026-11-01-veles-ingame-map-ui.md)은 이전 비교 자료이며 실제 게임 구현은 미검증이다. |
+| 인게임 지도 UI | [벨레스·이그니스·에테르 월드맵 최종 시안 v2](EtherWorldMap/MapPresentation.md#최종-시안-v2)를 제작 기준으로 사용한다. [벨레스 첫 시안](EtherWorldMap.md#이전-생성-시안)은 이전 비교 자료이며 실제 게임 구현은 미검증이다. |
 
 사용자는 붉은사막·원신을 인게임 지도의 방향 참고로 들었다. 두 작품의 세부 지도 기능이나 시각 요소를 조사·채택한 상태는 아니다. ccl8의 현행 기준과 남은 범위는 다음과 같다.
 
@@ -102,40 +102,29 @@
 
 중앙의 관리도시·로덴·벨레스와 주변 정착지의 위치·방향·축척은 [좌표 기준 보정본](EtherWorldMap/2026-11-07-central-coordinate-map.md)을 우선한다. 기존 데이터로 중앙 9곳과 환적장을 다시 그리고 벨레스 주변을 같은 축척 비율로 확대했다. 좌표 역산 검사와 독립 시각 검토를 통과했다.
 
-대도시 8곳·일반 도시 12곳·마을 16곳의 이름과 위치는 위의 36곳 좌표 정합 도면에서 함께 읽는다. [이전 정착망 수직 평면 시안](EtherWorldMap/2026-11-01-ignis-all-settlements-nadir.md)은 등고선 중심의 표현 참고로 보존한다. 이전 시안의 중앙 확대도는 거리 비율과 벨레스 이웃 마을 방향에 오차가 있어 실제 좌표 기준으로 사용하지 않는다.
+대도시 8곳·일반 도시 12곳·마을 16곳의 이름과 위치는 위의 36곳 좌표 정합 도면에서 함께 읽는다. [이전 정착망 수직 평면 시안](EtherWorldMap.md#이전-생성-시안)은 등고선 중심의 표현 참고로 보존한다. 이전 시안의 중앙 확대도는 거리 비율과 벨레스 이웃 마을 방향에 오차가 있어 실제 좌표 기준으로 사용하지 않는다.
 
 세계수의 실제 치수와 그 영향을 받는 도시·마을의 현재 작업 후보는 [세계수·정착지 설계도](EtherWorldMap/2026-11-01-worldtree-settlement-plans.md)에서 읽는다. 새 지역도는 관리도시·로덴·벨레스의 거리와 가림 조건을 정의한다. 아래 생성 이미지는 대륙의 큰 지형·정치 관계를 보는 개념도로 유지하며, 중앙 도시 표식의 실거리 배치로 사용하지 않는다.
 
-현재 배치의 바탕은 [이그니스 전체 지형 시안](EtherWorldMap/2026-11-01-ignis-macro-terrain.md)이다. 대륙이 화면 대부분을 채우도록 확대한 뒤 산맥·고원·분지·평야·강·호수와 세계수를 표현했다. 사용자가 다음 단계로 이그니스의 큰 도시 배치를 요청해 [주요 도시 8곳의 후보](../Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-ignis-major-cities.md)를 추가했다. [도시 시안 제작 기록](EtherWorldMap/2026-11-01-ignis-city-prompts.md)에 입력·출력·프롬프트를 둔다.
+현재 배치의 바탕은 [이그니스 전체 지형 시안](EtherWorldMap.md#이전-생성-시안)이다. 대륙이 화면 대부분을 채우도록 확대한 뒤 산맥·고원·분지·평야·강·호수와 세계수를 표현했다. 사용자가 다음 단계로 이그니스의 큰 도시 배치를 요청해 [주요 도시 8곳의 후보](../Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-ignis-major-cities.md)를 추가했다. [도시 시안 제작 기록](EtherWorldMap.md#이전-생성-시안)에 입력·출력·프롬프트를 둔다.
 
-세계수는 [중앙 분지의 본류 서쪽에 표시한 후보](EtherWorldMap/2026-11-01-ignis-macro-terrain.md#세계수-위치-후보)를 추가했다. 지도상의 수관은 가독성을 위해 강조한 상징이며 실제 치수의 작업 후보는 [세계수 규모](../Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-worldtree-scale.md)에 정리했다.
+세계수는 [중앙 분지의 본류 서쪽에 표시한 후보](EtherWorldMap.md#이전-생성-시안)를 추가했다. 지도상의 수관은 가독성을 위해 강조한 상징이며 실제 치수의 작업 후보는 [세계수 규모](../Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-worldtree-scale.md)에 정리했다.
 
-도시와 정치 관계를 지도에서 함께 볼 때는 [통치·생산·교역 배치안](../Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-ignis-governance-layout.md)을 읽는다. [통합 PNG](EtherWorldMap/Images/ignis-governance-production-trade-v2.png)에 정치권 4곳과 생산·공급 거점 8곳, 수운·육로·연안 해로를 표시했다. 입력·출력·프롬프트와 화면 확인 범위는 [제작 기록](EtherWorldMap/2026-11-01-ignis-governance-prompts.md)이 소유한다. 정밀 국경·면적·항행 조건을 검증한 지도는 아니다.
+도시와 정치 관계를 지도에서 함께 볼 때는 [통치·생산·교역 배치안](../Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-ignis-governance-layout.md)을 읽는다. [통합 PNG](EtherWorldMap/Images/ignis-governance-production-trade-v2.png)에 정치권 4곳과 생산·공급 거점 8곳, 수운·육로·연안 해로를 표시했다. 입력·출력·프롬프트와 화면 확인 범위는 [제작 기록](EtherWorldMap.md#이전-생성-시안)이 소유한다. 정밀 국경·면적·항행 조건을 검증한 지도는 아니다.
 
 앞서 만든 [이그니스 거점 배치](../Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-ignis-spatial-layout.md)와 [벨레스·첫 장 동선](../Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-first-chapter-spatial-layout.md)은 비교 자료로 보존한다. 대륙 전체 지형을 고른 뒤 다시 검토하며 기존 좌표를 확정 조건으로 사용하지 않는다.
 
-## 생성 시안의 제작 정보
+## 이전 생성 시안
 
-2026-11-01 사용자가 Jenova 이용 한도 때문에 Codex에서 직접 생성하도록 요청했다. 기본 제공 `image_gen`으로 한 장을 생성한 뒤 같은 도구로 한 차례 위치·격자 보정을 요청했다. CLI/API 우회는 사용하지 않았다. 입력한 문장은 [생성·보정 프롬프트](EtherWorldMap/2026-11-01-land35-prompts.md)에 원문으로 보관한다.
+아래 그림은 2026-11-01의 비교 자료다. 현재 화풍·UI는 [통일 v2](EtherWorldMap/MapPresentation.md), 정착지 위치는 [중앙 좌표도](EtherWorldMap/2026-11-07-central-coordinate-map.md)와 [36곳 좌표도](EtherWorldMap/2026-11-07-continent-coordinate-map.md)를 따른다. 이미지·원자료는 유지하고 종료된 생성·수정 프롬프트는 각 작업명의 Git 원문에서 확인한다. 생성 기호의 크기와 픽셀 간격은 실제 거리·세계수 크기·행정 경계가 아니다.
 
-| 파일 | 용도 |
-|---|---|
-| [첫 생성물](EtherWorldMap/Images/ether-world-map-land35-v1.png) | 보정 전 비교용 |
-| [보정 시안](EtherWorldMap/Images/ether-world-map-land35-v2.png) | 계산 보정 전의 형태·크기 비교용 |
-
-![육지 35% 목표의 세계지도 보정 시안](EtherWorldMap/Images/ether-world-map-land35-v2.png)
-
-번호는 1 이그니스 타이가, 2 아르베나, 3 오르다스, 4 세라디온, 5 니베르다. 니베르는 남극을 포함한 육지와 그 위 빙설이며 북극은 바다다.
-
-## 생성 시안에서 확인한 내용
-
-- 이그니스가 넓은 북방 육지로 표현되고 남쪽 만이 보인다.
-- 오르다스 북동쪽의 내해가 좁은 물길을 통해 바깥 바다와 이어져 보인다. 정확한 수로 폭과 항행 가능성은 미검증이다.
-- 다섯 본토가 바다로 분리되고 니베르가 하단 전체에 이어진다.
-- 세 교역 연결을 점선으로 표현했다. 세라디온과 니베르로 가는 선은 없다.
-
-## 생성 시안의 오차와 미검증 항목
-
-격자가 요구한 가로·세로 각 12등분과 일치하지 않고 적도도 세로 중앙에서 벗어나 보인다. 기준점과 본토 극점도 표의 좌표에서 일부 벗어난다. 해안의 작은 섬과 항로의 화살표 같은 끝 모양은 생략 요청과 다르다. 이 확인은 화면 관찰이며 정밀 픽셀 측정은 아니다.
-
-해안선의 구면 면적을 계산하지 않았으므로 실제 육지 비중 35%와 이그니스 2,000만 km²의 충족은 미검증이다. 니베르 해안의 범위와 좌우 이음, 항로 끝의 정확한 접속도 추가 확인이 필요하다. 이 시안은 대륙의 존재감과 전체 형태를 고르는 데 사용하고, 선택한 형태를 좌표가 고정된 지도에 옮긴 뒤 면적을 검증한다.
+| 이전 작업·Git 원문 | 남긴 그림·참조 | 현재와 구분할 점 |
+|---|---|---|
+| [세계지도 첫 생성·보정](https://github.com/kang-sihwon/ccl8/blob/2a95af4c674f816fdc3f55796714def2936abfd8/Docs/ArtDirection/EtherWorldMap/2026-11-01-land35-prompts.md) | [v1](EtherWorldMap/Images/ether-world-map-land35-v1.png) · [v2](EtherWorldMap/Images/ether-world-map-land35-v2.png) | Codex 기본 image_gen 생성·1회 보정 기록이다. 육지 비율·대륙 면적은 이후 v3 좌표·구면 계산 보정이 소유한다. 초기 그림의 격자·적도·극점·섬·항로 오차는 측량 결과가 아니다. |
+| [이그니스 대지형·세계수](https://github.com/kang-sihwon/ccl8/blob/2a95af4c674f816fdc3f55796714def2936abfd8/Docs/ArtDirection/EtherWorldMap/2026-11-01-ignis-macro-terrain.md) | [지형](EtherWorldMap/Images/ignis-macro-terrain-concept-v1.png) · [세계수 추가](EtherWorldMap/Images/ignis-macro-terrain-worldtree-v1.png) · 해안 참조 [PNG](EtherWorldMap/Images/ignis-coast-closeup-reference-v1.png)/[SVG](EtherWorldMap/Images/ignis-coast-closeup-reference-v1.svg) | 해안 기반 개념도다. 세계수는 식별용 과장 기호이며 기후·수계·항행·고도를 검증한 지형이 아니다. |
+| [주요 도시 8곳](https://github.com/kang-sihwon/ccl8/blob/2a95af4c674f816fdc3f55796714def2936abfd8/Docs/ArtDirection/EtherWorldMap/2026-11-01-ignis-city-prompts.md) | [도시 시안](EtherWorldMap/Images/ignis-major-cities-v1.png) | 대지형·세계수 시안 위에 개념 위치를 표시했다. 생성 프롬프트의 화면 비율은 현행 정착지 좌표가 아니다. |
+| [정치·생산·교역](https://github.com/kang-sihwon/ccl8/blob/2a95af4c674f816fdc3f55796714def2936abfd8/Docs/ArtDirection/EtherWorldMap/2026-11-01-ignis-governance-prompts.md) | [v1](EtherWorldMap/Images/ignis-governance-production-trade-v1.png) · [v2](EtherWorldMap/Images/ignis-governance-production-trade-v2.png) | v1의 중복 P3를 v2에서 P2로 고쳤다. 4정치권·8생산거점 관계를 나타내며 정밀 국경·면적·항행 조건이나 픽셀 보존을 검증한 그림은 아니다. 정치·생산의 의미는 서사 배치안이 소유한다. |
+| [36곳 생성 지도](https://github.com/kang-sihwon/ccl8/blob/2a95af4c674f816fdc3f55796714def2936abfd8/Docs/ArtDirection/EtherWorldMap/2026-11-01-ignis-all-settlements-nadir.md) | [전체 시안](EtherWorldMap/Images/ignis-all-settlements-nadir-v1.png) | 중앙 확대의 가로세로 비율, 과장된 세계수와 바람재 부근 추가 무명 점 때문에 위치·방향·축척 근거로 사용하지 않는다. 중앙·36곳 좌표도가 대체한다. |
+| [벨레스 초기 UI](https://github.com/kang-sihwon/ccl8/blob/2a95af4c674f816fdc3f55796714def2936abfd8/Docs/ArtDirection/EtherWorldMap/2026-11-01-veles-ingame-map-ui.md) | [첫 UI](EtherWorldMap/Images/veles-ingame-map-ui-v1.png) · [입력 배치도](EtherWorldMap/Images/veles-first-chapter-layout-v2.png) | 초기 기호·금색 목표 표현은 현재 UI 기준이 아니다. 색·크기·지명 표기는 통일 v2가 소유한다. |
+| [벨레스 스타일 비교](https://github.com/kang-sihwon/ccl8/blob/2a95af4c674f816fdc3f55796714def2936abfd8/Docs/ArtDirection/EtherWorldMap/2026-11-01-veles-map-style-variants.md) | [양피지](EtherWorldMap/Images/veles-map-only-a-parchment-v1.png) · [컬러](EtherWorldMap/Images/veles-map-only-b-color-v1.png) · [잉크](EtherWorldMap/Images/veles-map-only-c-ink-v1.png) · [원본 스타일](EtherWorldMap/Images/veles-map-only-original-style-v1.png) | UI를 뺀 비교 시안이다. 당시 선택 보류는 통일 v2 채택으로 끝났으며 네 장은 현재 제작 기준이 아니다. |
+| [벨레스 주변 확대](https://github.com/kang-sihwon/ccl8/blob/2a95af4c674f816fdc3f55796714def2936abfd8/Docs/ArtDirection/EtherWorldMap/2026-11-01-veles-wider-region-map.md) | [초기 확대](EtherWorldMap/Images/veles-wider-region-original-style-v1.png) · [나디르 v2](EtherWorldMap/Images/veles-wider-region-nadir-v2.png) | 이웃 마을과 지형의 표현 비교용이다. 약 28×18km 프레이밍·생성 기호 간격은 측량 결과가 아니며 실제 상대 위치는 중앙 좌표도를 따른다. |

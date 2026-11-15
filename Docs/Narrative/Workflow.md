@@ -7,7 +7,7 @@
 1. 작성자는 [AGENTS.md](../../AGENTS.md), [WritingGuide](../WritingGuide.md), [Decisions](../Decisions.md), [NarrativeConcept](../NarrativeConcept.md), [CurrentWork](CurrentWork.md)를 순서대로 읽는다. 결정의 배경이 필요하면 `Docs/decisions/`에서 해당 번호의 파일을 연다.
 2. 작성자는 현재 요청의 질문·범위·완료 조건을 정하고 CurrentWork의 담당 칸에 자기를 적는다.
 
-이 절차는 Orbis에서 옮겨 ccl8에 맞춘 작업 방식의 하나다([Setup](../Setup.md)). Orbis의 서사 설정과, Orbis 절차에 있던 조사 작품 수 할당량과 일회성 예외는 ccl8에 적용하지 않는다. 할당량과 예외의 원래 내용은 이 저장소에 기록이 없다.
+이 절차는 Orbis에서 옮겨 ccl8에 맞춘 작업 방식의 하나다([Setup](https://github.com/kang-sihwon/ccl8/blob/2a95af4c674f816fdc3f55796714def2936abfd8/Docs/Setup.md)). Orbis의 서사 설정과, Orbis 절차에 있던 조사 작품 수 할당량과 일회성 예외는 ccl8에 적용하지 않는다. 할당량과 예외의 원래 내용은 이 저장소에 기록이 없다.
 
 ## 역할
 

@@ -6,7 +6,7 @@
 
 - 검토일: 2026-11-01.
 - 작성자: Codex. 독립 검토자: 작성자와 분리된 읽기 전용 검토 에이전트.
-- 전체 검토 대상: [제작 기준표](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-map-production-basis.md), [세계지도 배치](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-world-map.md), [이그니스 지리](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-ignis-taiga-geography.md), [Jenova 입력문](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-jenova-world-map-prompt.md), [작업 현황](../CurrentWork.md).
+- 전체 검토 대상: [제작 기준표](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-map-production-basis.md), [세계지도 배치](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-world-map.md), [이그니스 지리](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-ignis-taiga-geography.md), [Jenova 입력문](https://github.com/kang-sihwon/ccl8/blob/2a95af4c674f816fdc3f55796714def2936abfd8/Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-jenova-world-map-prompt.md), [작업 현황](../CurrentWork.md).
 - 요청 근거: 사용자가 육지 비중을 35%로 바꾸고 이그니스 육지 면적을 2,000만 km²에 가깝게 잡도록 요청했다. 다른 대륙의 면적 배분과 외곽·좌표는 이 목표에 맞춘 설계 제안이다.
 - 확인 방법: 문서 전체를 읽고 구면 면적, 위경도 범위, 화면 백분율을 독립 계산했다. 경도에 360°를 더하거나 뺀 경계도 포함해 본토 외곽의 겹침을 확인했다.
 - 심각도: `BLOCKER`는 사용을 막는 결함, `WARNING`은 잘못된 제작 결과를 낳을 우려, `OBS`는 경미한 개선이다. 해당 지적 없음.

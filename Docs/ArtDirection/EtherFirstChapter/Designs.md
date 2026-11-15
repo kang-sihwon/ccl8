@@ -6,7 +6,7 @@
 
 ## 인물과 생물
 
-근거는 [주인공·무대·일반 적·바르툴 설정](../../Narrative/Drafts/2026-10-31-ether-taiga-dawn.md#3-주인공)과 [첫 장의 전투](../../Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-first-chapter.md#6-보스전-결박이-풀릴수록-커지는-움직임)다. 얼굴, 체형, 의상 세부와 구도는 시안에서 비교할 제안이다.
+근거는 [주인공·무대·일반 적·바르툴 설정](../../Narrative/Drafts/2026-10-31-ether-taiga-dawn.md#3-주인공)과 [첫 장의 전투](https://github.com/kang-sihwon/ccl8/blob/2a95af4c674f816fdc3f55796714def2936abfd8/Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-first-chapter.md#6-보스전-결박이-풀릴수록-커지는-움직임)다. 얼굴, 체형, 의상 세부와 구도는 시안에서 비교할 제안이다.
 
 | ID·대상 | 목적과 화면비 | 상태·필수 요소 | 영어 프롬프트 초안 | 검수 기준 |
 |---|---|---|---|---|
@@ -24,7 +24,7 @@ D01-D04는 얼굴 단독 시안보다 전신의 직업과 재질을 먼저 고�
 
 ## 자원과 휴대 소품
 
-근거는 [에테르의 규칙](../../Narrative/Drafts/2026-10-31-ether-taiga-dawn.md#세계수와-에테르), 첫 장의 [시작](../../Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-first-chapter.md#1-시작-사람들에게-필요한-작은-기술), [출발](../../Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-first-chapter.md#2-출발-마을의-역할-분담), [귀환](../../Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-first-chapter.md#8-귀환-마을이-유지할-수-있는-해결)이다.
+근거는 [에테르의 규칙](../../Narrative/Drafts/2026-10-31-ether-taiga-dawn.md#세계수와-에테르), 첫 장의 [시작](https://github.com/kang-sihwon/ccl8/blob/2a95af4c674f816fdc3f55796714def2936abfd8/Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-first-chapter.md#1-시작-사람들에게-필요한-작은-기술), [출발](https://github.com/kang-sihwon/ccl8/blob/2a95af4c674f816fdc3f55796714def2936abfd8/Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-first-chapter.md#2-출발-마을의-역할-분담), [귀환](https://github.com/kang-sihwon/ccl8/blob/2a95af4c674f816fdc3f55796714def2936abfd8/Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-first-chapter.md#8-귀환-마을이-유지할-수-있는-해결)이다.
 
 | ID·대상 | 목적과 화면비 | 상태·필수 요소 | 영어 프롬프트 초안 | 검수 기준 |
 |---|---|---|---|---|
@@ -37,7 +37,7 @@ D01-D04는 얼굴 단독 시안보다 전신의 직업과 재질을 먼저 고�
 
 ## 급수 설비와 생활 소품
 
-근거는 첫 장의 [동굴 조사](../../Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-first-chapter.md#4-동굴-결빙의-원인과-복구-계획), [수원 복구](../../Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-first-chapter.md#7-복구-강제-채취를-멈추고-급수-설비를-살린다), [출항](../../Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-first-chapter.md#9-출항-다른-장인들과-고장-기록을-나누러-간다)이다. 부품의 실제 형태과 접속 방식은 시각화 제안이며 기계 설계 확정이 아니다.
+근거는 첫 장의 [동굴 조사](https://github.com/kang-sihwon/ccl8/blob/2a95af4c674f816fdc3f55796714def2936abfd8/Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-first-chapter.md#4-동굴-결빙의-원인과-복구-계획), [수원 복구](https://github.com/kang-sihwon/ccl8/blob/2a95af4c674f816fdc3f55796714def2936abfd8/Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-first-chapter.md#7-복구-강제-채취를-멈추고-급수-설비를-살린다), [출항](https://github.com/kang-sihwon/ccl8/blob/2a95af4c674f816fdc3f55796714def2936abfd8/Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-first-chapter.md#9-출항-다른-장인들과-고장-기록을-나누러-간다)이다. 부품의 실제 형태과 접속 방식은 시각화 제안이며 기계 설계 확정이 아니다.
 
 | ID·대상 | 목적과 화면비 | 상태·필수 요소 | 영어 프롬프트 초안 | 검수 기준 |
 |---|---|---|---|---|
@@ -67,7 +67,7 @@ D18-D21은 각각 고른 뒤 E06·E07에서 함께 대조한다. 아름다운 �
 
 벨레스의 보관 이미지와 참조 경로는 [벨레스 공간 참조 이미지](VelesReferences.md)에 있다. E01의 공간 관계와 중심부 참고이며 전체 전경과 최종 배치는 미확정이다.
 
-근거는 첫 장의 [장면 구성](../../Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-first-chapter.md#장면-구성)과 [제작 범위](../../Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-first-chapter.md#10-실제-첫-게임의-제작-범위)다. 각 공간은 인물 연기보다 배치와 빛을 먼저 본다. 화면비는 모두 16:9를 제안한다.
+근거는 첫 장의 [장면 구성](https://github.com/kang-sihwon/ccl8/blob/2a95af4c674f816fdc3f55796714def2936abfd8/Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-first-chapter.md#장면-구성)과 [제작 범위](https://github.com/kang-sihwon/ccl8/blob/2a95af4c674f816fdc3f55796714def2936abfd8/Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-first-chapter.md#10-실제-첫-게임의-제작-범위)다. 각 공간은 인물 연기보다 배치와 빛을 먼저 본다. 화면비는 모두 16:9를 제안한다.
 
 | ID·대상 | 목적 | 상태·필수 요소 | 영어 프롬프트 초안 | 검수 기준 |
 |---|---|---|---|---|
@@ -84,7 +84,7 @@ E01·E04·E07은 기준 시점을 고른 뒤 복구 상태를 만든다. E02의 
 
 ## 효과와 상태 변화
 
-재질 외형은 D10·D11이 소유하고, 이 목록은 그 재질이 시간에 따라 어떻게 달라 보이는지 다룬다. 근거는 첫 장의 [보스전](../../Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-first-chapter.md#6-보스전-결박이-풀릴수록-커지는-움직임)과 [복구](../../Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-first-chapter.md#7-복구-강제-채취를-멈추고-급수-설비를-살린다)다. 화면비는 모두 16:9를 제안한다.
+재질 외형은 D10·D11이 소유하고, 이 목록은 그 재질이 시간에 따라 어떻게 달라 보이는지 다룬다. 근거는 첫 장의 [보스전](https://github.com/kang-sihwon/ccl8/blob/2a95af4c674f816fdc3f55796714def2936abfd8/Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-first-chapter.md#6-보스전-결박이-풀릴수록-커지는-움직임)과 [복구](https://github.com/kang-sihwon/ccl8/blob/2a95af4c674f816fdc3f55796714def2936abfd8/Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-first-chapter.md#7-복구-강제-채취를-멈추고-급수-설비를-살린다)다. 화면비는 모두 16:9를 제안한다.
 
 | ID·대상 | 목적 | 필요한 별도 상태 | 영어 프롬프트 초안 | 검수 기준 |
 |---|---|---|---|---|

@@ -1,6 +1,6 @@
 # 생물·초자연 존재 64항목
 
-[확장안](../2026-11-08-expanded-monster-roster.md)의 항목별 후보다. 지역·생태·공격·대응은 모두 ccl8용 제안이며 원작의 사실이 아니다. R01-R12는 [조사 기록의 출처](../../../Research/2026-11-08-fantasy-monster-references.md#확인한-출처)를 가리킨다. “기존”은 [14종안](../2026-11-08-monster-roster.md)에서 가져온 항목이라는 뜻이며 정본 확정이라는 뜻은 아니다.
+[확장안](../2026-11-08-expanded-monster-roster.md)의 항목별 후보다. 지역·생태·공격·대응은 모두 ccl8용 제안이며 원작의 사실이 아니다. R01-R12는 [조사 기록의 출처](../../../Research/2026-11-08-fantasy-monster-references.md#확인한-출처)를 가리킨다. “기존”은 [14종안](https://github.com/kang-sihwon/ccl8/blob/2a95af4c674f816fdc3f55796714def2936abfd8/Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-08-monster-roster.md)에서 가져온 항목이라는 뜻이며 정본 확정이라는 뜻은 아니다.
 
 서식 범위는 [지역 연결](world-rules-and-regions.md#지역별-연결)의 S1-S6·E1-E3을 사용한다. ‘흔함’은 적합한 서식지 안의 반복 가능성, ‘국지’는 특정 거점·조건, ‘희귀’는 넓은 활동권의 드문 존재다. 세계의 모든 장소에 같은 밀도로 나온다는 뜻이 아니다. 각 행의 전투는 적대가 성립했을 때의 후보이며 필수 토벌 목록이 아니다.
 

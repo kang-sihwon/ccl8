@@ -50,7 +50,7 @@
 
 ### 시나리오에서 가져올 조건
 
-[에테르 전체 구상](../Narrative/Drafts/2026-10-31-ether-taiga-dawn.md)과 [첫 장 상세 시나리오](../Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-first-chapter.md)는 모두 미승인 초안이다. 다음은 그 초안을 지도 시안의 입력 조건으로 읽은 것이며 정본의 확정 설정이 아니다.
+[에테르 전체 구상](../Narrative/Drafts/2026-10-31-ether-taiga-dawn.md)과 [첫 장 상세 시나리오](https://github.com/kang-sihwon/ccl8/blob/2a95af4c674f816fdc3f55796714def2936abfd8/Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-01-first-chapter.md)는 모두 미승인 초안이다. 다음은 그 초안을 지도 시안의 입력 조건으로 읽은 것이며 정본의 확정 설정이 아니다.
 
 - 세계는 바다로 연결된 여러 대륙이며 첫 대륙 이그니스 타이가의 중심에는 세계수가 있다.
 - 벨레스는 강과 황금빛 숲이 만나는 장인 마을이다. 식수 수로와 배가 다니는 큰 강을 구분한다.

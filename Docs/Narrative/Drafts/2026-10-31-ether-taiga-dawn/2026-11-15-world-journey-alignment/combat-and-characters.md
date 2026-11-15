@@ -2,7 +2,7 @@
 
 채택 범위·보류·검증 상태는 [상위 문서](../2026-11-15-world-journey-alignment.md)를 따른다. 본문은 작성 당시 후보 기록이며 원문 전체를 정본화한 것이 아니다.
 
-**첫 장에서 생긴 작은 신뢰는 이후의 잘못을 없애지 않으며, 하르덴 이후에는 배운 협력을 먼저 실행한다.** [Scenario의 CL·CP·FC·SC](../../../Scenario.md#전투-판단의-연결)를 유지하면서 [대표 전투 비교](../2026-11-13-regional-combat-and-choices.md)에 남은 반복 위험을 현재 확정과 대조했다. 새 동작·공격 순서·필수 실패·종 명부는 추가하지 않는다. 전체 상태는 [여정 묶음](../2026-11-15-world-journey-alignment.md)을 따른다.
+**첫 장에서 생긴 작은 신뢰는 이후의 잘못을 없애지 않으며, 하르덴 이후에는 배운 협력을 먼저 실행한다.** [Scenario의 CL·CP·FC·SC](../../../Scenario.md#전투-판단의-연결)를 유지하면서 [대표 전투 비교](https://github.com/kang-sihwon/ccl8/blob/2a95af4c674f816fdc3f55796714def2936abfd8/Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-13-regional-combat-and-choices.md)에 남은 반복 위험을 현재 확정과 대조했다. 새 동작·공격 순서·필수 실패·종 명부는 추가하지 않는다. 전체 상태는 [여정 묶음](../2026-11-15-world-journey-alignment.md)을 따른다.
 
 ## 전투에서 무엇이 달라지는가
 
