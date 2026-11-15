@@ -29,16 +29,16 @@
 
 ## 현재 결과
 
-[배경 정합 묶음](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-15-ignis-background.md)의 작성·독립 검토를 완료했다. [검토 기록](../Reviews/2026-11-15-ignis-background-review.md)은 두 지적 수정 뒤 PASS이며 잔여 지적은 없다. 상태는 `DISCUSSION`, IB01-IB06과 공통 경계는 아직 미채택이다. IA01-IA02·IH01-IH05와 기존 이름·좌표·정본·종과 성장 수치·원문을 보존한다.
+[배경 정합 묶음](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-15-ignis-background.md)의 작성·독립 검토를 완료했다. [검토 기록](../Reviews/2026-11-15-ignis-background-review.md)은 두 지적 수정 뒤 PASS이며 잔여 지적은 없다. IB01-IB06과 공통 경계는 사용자 승인으로 [결정 59](../../decisions/0059-ignis-background-relations-adoption.md)·World·Scenario에 반영했다. 해당 범위는 `CLOSED`이며 [NG04](04-canon-consolidation.md#이그니스-배경-채택-묶음)가 반영 검토·마감을 소유한다. IA01-IA02·IH01-IH05와 기존 이름·좌표·종과 성장 수치·원문을 보존한다.
 
 | 완료 기준 | 결과와 확인 위치 |
 |---|---|
 | 정착망 비교 | [36곳 표](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-15-ignis-background/settlements.md). 8·12·16곳 이름·좌표 일치, 지형·생계·의존 관계·출처·미확인 표시 |
 | 세력·생활권 관계 | [현재 대응과 생태](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-15-ignis-background/pressures.md). 자원·당사자·현행 대응·조건부 변화·명목과 실제 권한·동물과 몬스터 구분 |
 | 충돌·영향 목록 | [IC01-IC08](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-15-ignis-background/options.md#충돌과-누락의-영향). 벨레스 실재고, 서부 수계, 장거리 교환, 후대 성과와 NG03 영향 |
-| 선택표·검토 | [IB·IA·IH](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-15-ignis-background/options.md)와 [독립 검토](../Reviews/2026-11-15-ignis-background-review.md). 정본 채택과 실제 물류·공간·UE는 별도 |
+| 선택표·검토 | [IB·IA·IH](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-15-ignis-background/options.md)와 [독립 검토](../Reviews/2026-11-15-ignis-background-review.md). 채택한 IB·공통 경계는 결정 59, 실제 물류·공간·UE는 미검증 |
 
-다음은 사용자가 선택한 IB와 공통 경계를 NG04에서 반영하거나, NG03에서 확정 기준과 미채택 영향을 구분해 여정을 대조하는 일이다. NG02의 서면 완료를 실제 공급량·통행·생태·게임 검증 완료로 바꾸지 않는다.
+다음 작성 목표는 NG03에서 확정 IB·공통 경계와 나머지 후보·보류를 구분해 여정을 대조하는 일이다. NG02의 서면 완료와 IB 채택을 실제 공급량·통행·생태·게임 검증 완료로 바꾸지 않는다.
 
 ## 스킬과 인계 범위
 

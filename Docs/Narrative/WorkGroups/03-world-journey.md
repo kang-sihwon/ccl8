@@ -8,7 +8,7 @@
 - [5대륙 여정 통합](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-13-world-journey-continuity.md)의 해금·인계·생태·성장·미정 목록.
 - [5대륙 메인라인](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-08-five-continent-mainline.md), [이그니스 통합](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-09-ignis-journey-continuity.md), [대표 전투와 선택 비교](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-13-regional-combat-and-choices.md).
 - [세계 분포·성장](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-08-world-distribution-and-leveling.md)의 64항목·199형태와 성장 후보. 기존 수치가 있다는 사실과 정본 채택 여부를 구분한다.
-- [NG02의 충돌·영향](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-15-ignis-background/options.md#충돌과-누락의-영향). 벨레스의 실재고·미완료 귀환, 하르덴·켈바 물 협의, 외곽 장거리 교환, 공공 통과와 현지 권한을 입력으로 삼는다. 새 IB 보완은 미채택 후보이며 좌표·종·성장·해금은 바꾸지 않았다.
+- [NG02의 충돌·영향](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-15-ignis-background/options.md#충돌과-누락의-영향). 벨레스의 실재고·미완료 귀환, 하르덴·켈바 물 협의, 외곽 장거리 교환, 공공 통과와 현지 권한을 입력으로 삼는다. IB01-IB06·공통 경계는 [결정 59](../../decisions/0059-ignis-background-relations-adoption.md)·World·Scenario에서 확정했고 IA·IH와 원문 전체는 별도로 보존한다. 좌표·종·성장·해금은 바꾸지 않았다.
 
 ## 묶어서 수행할 범위
 

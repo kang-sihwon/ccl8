@@ -2,7 +2,7 @@
 
 ## 다른 세션에서 이어가기
 
-[세션 인계](WorkGroups/session-handoff.md)와 [작업군 지도](WorkGroups.md)에서 다음 범위를 고른다. NG01과 NG04 첫 장 승인 묶음은 [결정 58](../decisions/0058-veles-chapter-continuity-adoption.md)·[Scenario](Scenario.md#벨레스-첫-장의-통합-흐름과-미완료-연결)에 반영했고 NC·VR 흐름·경계는 `CLOSED`다. NG02의 [이그니스 배경 묶음](Drafts/2026-10-31-ether-taiga-dawn/2026-11-15-ignis-background.md)도 작성·[독립 검토 PASS](Reviews/2026-11-15-ignis-background-review.md)로 완료했으며 IB01-IB06·공통 경계는 `DISCUSSION`, 아직 미채택이다. IA·IH와 이전 원문·보류는 유지한다. 다음 작성 목표는 NG03을 추천하고, NG02 채택 범위의 NG04 반영은 사용자 선택 뒤 진행한다. 실제 물류·공간·생태·플레이·UE는 미검증이다.
+[세션 인계](WorkGroups/session-handoff.md)와 [작업군 지도](WorkGroups.md)에서 다음 범위를 고른다. NG01·NG02의 작성·검토와 사용자 채택을 완료했다. 첫 장 NC·VR은 결정 58·Scenario에, 이그니스 IB01-IB06·공통 경계는 [결정 59](../decisions/0059-ignis-background-relations-adoption.md)·[World](World.md#이그니스의-공급권한생활권)·[Scenario](Scenario.md#벨레스-공급과-후속-사건의-시점)에 반영해 `CLOSED`다. IB 정본 반영의 독립 검토는 PASS이며 잔여 지적은 없다. IA·IH와 이전 원문·보류를 보존하며 다음 작성 목표는 NG03이다. 실제 물류·공간·생태·플레이·UE는 미검증이다.
 
 ## 상세화할 범위와 순서
 
@@ -24,8 +24,8 @@
 사용자가 2026-10-31 [에테르 시나리오 후보](Drafts/2026-10-31-ether-taiga-dawn.md)를 "기본 시나리오는 이걸로 할게"라고 골랐다. 첫 장 세부 시나리오와 사용자 제공 지리 원고 두 편을 기존 후보에 연결했다. 2026-11-07 K01-K09 추천안의 정본 반영을 승인했고 H01-H07은 보류로 유지했다.
 
 - 상태: 첫 장 핵심 `CLOSED` (결정 40·41·42), 5대륙 핵심 WP01-WP10 `CLOSED` (결정 48), 전투 연결 CL01-CL12 `CLOSED` (결정 49), 인물 동기·관계 변화 CP01-CP12 `CLOSED` (결정 51), 지역 갈등·선택·대가 FC01-FC13 `CLOSED` (결정 52), 장면 연결·정보 공개 SC01-SC13 `CLOSED` (결정 53), 벨레스 행동·장면 강조 VS01-VS12 `CLOSED` (결정 54), 벨레스 정보 전달 VB01-VB06 `CLOSED` (결정 57), 첫 장 통합 흐름 NC01-NC04와 포함된 VR01-VR10 흐름·경계 `CLOSED` (결정 58). 정본에 옮기지 않은 전투·인물·지역 상세·분포·성장 후보는 `DISCUSSION`이며 각각의 검토 범위에서 PASS다. 이전 몬스터·분포·플롯안은 보존한다.
-- 담당: 없음. Codex가 NG02 작성·검토를 마쳤고 읽기 전용 `ng02_review`의 재검토는 PASS다. Worldbuilding Studio·Map Maker·Game Designer Assistant·ccl8-narrative·docs·writing의 기존 승인 범위를 이어 사용했다. 새 정본 반영·이미지·UE 제작은 수행하지 않았다.
-- 이그니스 배경 묶음: [36곳 정착망·세력·생태·선택표](Drafts/2026-10-31-ether-taiga-dawn/2026-11-15-ignis-background.md)를 완료했다. 이름·표시 좌표와 거리 8쌍을 대조했고, 수계 인과·동부 운송 경로의 독립 지적 두 건을 수정했다. IC01-IC08은 기존 충돌·누락과 NG01·NG03 영향을 추적한다. 추천 IB01-IB06·공통 경계는 미채택이며 IA01-IA02·IH01-IH05를 보존한다. 기존 지리·첫날 상황·인계 원문 세 편에는 읽기 안내만 추가했다. 다음은 사용자 선택 범위의 NG04 반영 또는 NG03 여정 대조다. 아래의 다음 행동·미착수 표현은 각 이전 작업의 종료 기록이다.
+- 담당: 없음. Codex가 승인된 IB01-IB06·공통 경계의 NG04 반영을 마쳤고 읽기 전용 `ib_adoption_review`의 독립 검토는 PASS다. ccl8-narrative·docs·writing을 적용했다. 커밋·원격 제출 상태는 Git에서 확인한다.
+- 이그니스 배경 채택: [36곳 정착망·세력·생태·선택표](Drafts/2026-10-31-ether-taiga-dawn/2026-11-15-ignis-background.md)의 IB01-IB06·공통 경계를 사용자 승인으로 결정 59·World·Scenario에 반영했다. [반영 검토](Reviews/2026-11-15-ignis-background-adoption-review.md)는 PASS이며 잔여 지적은 없다. 네 원문은 안내만 추가했고 IA01-IA02·IH01-IH05·좌표·지도·종과 성장 수치·이전 원문을 보존한다. 작성 검토의 두 지적 수정·PASS는 [작성 검토 기록](Reviews/2026-11-15-ignis-background-review.md)에 남는다. 다음 작성은 NG03이며 아래 미채택·다음 행동은 이전 작업의 종료 기록이다.
 - 첫 장 통합 채택: NC01-NC04·공통 경계와 NC01이 포함하는 VR01-VR10 흐름·강조·장면별·공통 경계는 결정 58로 `CLOSED`다. [보존 목록](WorkGroups/04-canon-consolidation.md#첫-장-통합-묶음)에 NA·NH·RA·RH와 이전안·원문을 남겼다. 후보 네 편은 안내만 추가했고 C01-C06 표·장면·통합표 전체, 지도·수치·정확한 진행 규칙은 승격하지 않았다. 아래 미채택·다음 행동은 승인 전 작업의 종료 기록이다.
 - 첫 장 통합 묶음: C01-C06에서 정상·조사 누락·복구 전과 도중 귀환·인수 부족을 구분했다. 기존 VR은 NC01의 근거로 재사용했고 NC02-NC04에 새 연결·강조를 모았다. [NG02·NG03 인계](Drafts/2026-10-31-ether-taiga-dawn/2026-11-06-opening-and-continent/2026-11-15-veles-chapter-comparison.md#다른-작업군에-넘길-영향)는 비상 운영의 현재 부담과 첫 신뢰 변화의 범위만 전달한다. 정본·기존 후보·대안·보류·지도는 보존하며 아래의 다음 행동은 앞선 작업 종료 당시 기록이다.
 - 벨레스 귀환 사례 선택표: [VR01-VR10 추천·대안·보류](Drafts/2026-10-31-ether-taiga-dawn/2026-11-06-opening-and-continent/2026-11-15-veles-familiar-route-options.md)는 `DISCUSSION`이며 [독립 검토 PASS](Reviews/2026-11-15-veles-familiar-route-options-review.md)다. 장면 흐름·강조와 공통 경계를 추천하고 RA01-RA02 표현·조건부 조우 대안, RH01-RH06 세부 보류를 비교했다. GB03·G04 사례를 필수 전투 순서로 채택하지 않으며 기존 VS·VB 확정은 유지한다. 다음은 사용자가 고른 흐름·강조와 공통 경계를 새 결정·Scenario에 반영하는 일이다. 아직 미채택이며 원문·정본·지도·기존 대안·보류를 보존한다. 실제 정보 인지·전투와 설명 체감·통행·철수·재고·AI·UE는 미검증이며 아래 다음 행동은 이전 작업 종료 기록이다.
