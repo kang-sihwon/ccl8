@@ -1,0 +1,126 @@
+{
+  "status": "read_only_reference_audit_not_runtime_verification",
+  "baseline_commit": "0e3ee9e12b7f5e4838b3139102b022812ecedc98",
+  "date": "2026-11-15",
+  "sources": [
+    {
+      "path": "Docs/Narrative/Scenario.md",
+      "sha256": "96a9870ecc23c29232ab7cdad1e99c25350129ee48d9e5460236c23a22947723"
+    },
+    {
+      "path": "Docs/Narrative/World.md",
+      "sha256": "711bf76ac7d417d51baadbd4a476e91367913944be35da83df86fe7af2392346"
+    },
+    {
+      "path": "Docs/decisions/0061-veles-progression-resume-adoption.md",
+      "sha256": "3e0967470b457bb3d87a1aab502d519fb7f804d57b0d7f6b38deeeea52d1c9f2"
+    },
+    {
+      "path": "Docs/decisions/0037-unrestricted-protagonist-weapons.md",
+      "sha256": "83f6fee7bc2cf691e1d30a3167222876390df42e1baaf123e3ad319b3070369b"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/IgnisSharedTerrain.md",
+      "sha256": "c6e8b7bc0f5bc828bd063445d60595d4651b69aa9c9df4a4be9c3dad3061bcbd"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailTerrain-v1/manifest.json",
+      "sha256": "3ba7ea2d92435768194f0baff003760bb5e04b31f381d06ab9fe0b948c36a186"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailTerrain-v1/data/placements.json",
+      "sha256": "4cd70eefcf1449e543468a29ea6bb395a477c5c4c57f752d768b36ac8b308ec3"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailTerrain-v1/data/connections.json",
+      "sha256": "523a15e8f6caadc6dcf8d4ad36e02f95cfff7946ff3d309b2f8a37c948315388"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Data/veles-opening-connections-v1.json",
+      "sha256": "d00f20008fe6f4cbbd450c57e98a20eae964c18e4cd0d4be58ce9a330e1ebcce"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Data/veles-forest-ecology-v2.json",
+      "sha256": "56009a29f7ba55e1f1903ee8ced9b1132d4a972fda2e7d65e47af0005d2eba7c"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Data/veles-forest-detail-v1.json",
+      "sha256": "d6b6a919c45bfd5d2ea5ba805171f1f8049ff129e5c4c2564ad926e4c5ca2353"
+    },
+    {
+      "path": "Docs/ArtDirection/EtherWorldMap/Atlas/VelesDetailArt-v5/manifest.json",
+      "sha256": "da702bfa115887f94c510c66a49e458003070893aa32dd4397ae19247fa872c4"
+    },
+    {
+      "path": "Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-06-opening-and-continent/2026-11-15-veles-familiar-route-scenes.md",
+      "sha256": "12c7a9d4c70282ebcd4a592d21435b1269c4fbd6dfc3ec651bad9ed9a2f4957d"
+    },
+    {
+      "path": "Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-06-opening-and-continent/2026-11-15-veles-chapter-comparison.md",
+      "sha256": "d7b206c984525d17e001bf133372e3607995d93a7d2fd25e4d6d5b256025febc"
+    },
+    {
+      "path": "Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-15-veles-progression-resume/conditions.md",
+      "sha256": "df6055428e99456d8c463df59d73b2c09c37b50062fd51a08e0035919a209633"
+    },
+    {
+      "path": "Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-15-veles-progression-resume/cases.md",
+      "sha256": "e85607c7d835b3458e2f8b5b96364bb9dbb7563ba83145507a6abcf57f838c0b"
+    },
+    {
+      "path": "Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-15-veles-progression-resume/resume.md",
+      "sha256": "db6403071c2eaa4112165eacae06fbbff16741264855c58dcbee2e6a7465d010"
+    },
+    {
+      "path": "Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-15-veles-progression-resume/options.md",
+      "sha256": "1d5f07b57844378b6ee0211b84b401551331badc4fcceecf42ee938f88a7d4b3"
+    },
+    {
+      "path": "Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-08-world-distribution-and-leveling/progression.md",
+      "sha256": "a847c8417b972d74f4672a22067206827025f666f5daf39896cb8a73007450aa"
+    },
+    {
+      "path": "Docs/Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-09-ignis-journey-continuity/s1-variants.md",
+      "sha256": "fc1184c4cfb3cd01705ec7bee771444d5c6e746d963e033b35c402a0586d1865"
+    },
+    {
+      "path": "Docs/GameDesign.md",
+      "sha256": "95b1a12cd4dd3a26e06c4c3ce851133d42cb90704c3599f463d710b1ab3b1587"
+    },
+    {
+      "path": "Docs/CombatFoundation/Actions.md",
+      "sha256": "1e04e873ade1f00b29f67e1e98a17173f212fdc262dcb426f7746d756bd3ed52"
+    },
+    {
+      "path": "Docs/ProgressionFoundation/Equipment.md",
+      "sha256": "631b1087b5a781a946936f478d554d41d9850573c5f411c8506c1481f34bd5b0"
+    }
+  ],
+  "method": "Planar Euclidean sum of consecutive reference nodes in meters. No elevations, actors, speed, collision or runtime. Original IDs and values are unchanged.",
+  "checks": {
+    "opening_to_detail_poi_equal_count": 15,
+    "detail_poi_count": 15,
+    "old_workshop_surface": "underground"
+  },
+  "derived": {
+    "east_outdoor_nodes": [
+      "forest_gate",
+      "squirrel",
+      "E1",
+      "E2",
+      "E3",
+      "wolves",
+      "B04",
+      "cave"
+    ],
+    "east_outdoor_centerline_m": 1136.3787312733573,
+    "R02_segment_m": 721.3570300340568,
+    "boat_reference_m": 1772.9904269986596
+  },
+  "limits": [
+    "No map edits or UE execution.",
+    "Reference extents and widths are not runtime clearance.",
+    "Lengths do not establish travel time, safe retreat or boat navigability.",
+    "Hash equality proves retained bytes only."
+  ]
+}
