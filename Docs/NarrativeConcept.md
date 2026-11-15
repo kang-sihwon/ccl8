@@ -18,6 +18,7 @@
 |---|---|
 | [Workflow](Narrative/Workflow.md) | 조사·비교·초안·검토·승인 절차, 단계와 판정, 기록 위치 |
 | [CurrentWork](Narrative/CurrentWork.md) | 현재 담당자·작업·다음 행동 |
+| [작업군 지도와 세션 인계](Narrative/WorkGroups.md) | NG01-NG04의 목표·완료 조건·의존 관계와 다른 세션의 시작점 |
 | [Glossary](Narrative/Glossary.md) | 서사 항목의 상태와 향후 정의할 용어 |
 | [World](Narrative/World.md) | 사용자 승인 세계 설정 |
 | [Scenario](Narrative/Scenario.md) | 사용자 승인 인물 관계·플롯 |
