@@ -6,6 +6,8 @@
 
 | 순서 | 읽는 문서 | 산출물 |
 |---|---|---|
+| 첫 장 묶음 선택 | [NC01-NC04 추천·대안·보류](2026-11-06-opening-and-continent/2026-11-15-veles-chapter-options.md) | 기존 VR과 조사 누락·미완료 귀환·인수 부족의 새 강조를 함께 고를 때 |
+| 첫 장 통합 비교 | [누락 사례와 통합 흐름](2026-11-06-opening-and-continent/2026-11-15-veles-chapter-comparison.md) | C01-C06의 정보·수행 상태와 도입부터 출항까지의 연결·반복 점검을 볼 때 |
 | 귀환 사례 선택 | [VR01-VR10 추천·대안·보류](2026-11-06-opening-and-continent/2026-11-15-veles-familiar-route-options.md) | 장면 흐름·설명 배분의 채택 범위와 RA·RH를 비교할 때 |
 | 확정 전달 적용 사례 | [적은 야외 관찰·익숙한 길 귀환](2026-11-06-opening-and-continent/2026-11-15-veles-familiar-route-scenes.md) | 짧은 장면 흐름에서 설명 반복·전투 중단·주민 인수를 비교할 때 |
 | 정보 전달 선택 | [VB01-VB06 추천·대안·보류](2026-11-06-opening-and-continent/2026-11-14-veles-information-options.md) | 전달 중심과 정확한 재전달 규칙을 구분하고 BA·BH를 비교할 때 |

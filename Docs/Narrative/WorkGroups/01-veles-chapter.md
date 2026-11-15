@@ -2,6 +2,18 @@
 
 **목표는 도입부터 보스·복구·귀환·출항까지, 탐색 선택이 달라도 필요한 정보와 인물의 선택이 이어지는 첫 장 검토 묶음이다.** 새 지역이나 구현을 늘리지 않고 기존 상세 원고를 정리한다. 현재 담당·상태는 [CurrentWork](../CurrentWork.md), 공통 운영 기준은 [작업군 지도](../WorkGroups.md)를 따른다.
 
+## 검토 묶음
+
+NG01의 작성·독립 검토를 완료했다. [독립 검토 PASS](../Reviews/2026-11-15-veles-chapter-review.md)이며 미해결 수정 요구는 없다. 새 강조는 `DISCUSSION`으로 미채택이며 정본 승인과 별개다.
+
+| 읽는 때 | 결과물 | 확인 범위 |
+|---|---|---|
+| 정상·조사 누락·복구 전 및 도중 귀환·인수 부족을 비교할 때 | [사례 비교와 첫 장 통합 흐름](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-06-opening-and-continent/2026-11-15-veles-chapter-comparison.md) | C01-C06의 지식·수행·위협·보고, 도입부터 출항, 반복·전투 연결의 자체 보완 |
+| 새로 채택할 흐름·강조를 고를 때 | [NC01-NC04 묶음 선택표](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-06-opening-and-continent/2026-11-15-veles-chapter-options.md) | 확정과 추천·대안·보류, 기존 VR 범위 재사용, 승인 뒤 NG04 인계 |
+| 판정·완료 기준별 근거·미검증을 확인할 때 | [독립 검토](../Reviews/2026-11-15-veles-chapter-review.md) | 서면 인과·선택 범위 PASS, 실제 인지·전투·운영·UE 미검증 |
+
+다음 행동은 NC01-NC04·NA·공통 경계의 사용자 선택과 해당 범위의 NG04 반영이다. NG02·NG03에는 [변경 가정과 미확인](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-06-opening-and-continent/2026-11-15-veles-chapter-comparison.md#다른-작업군에-넘길-영향)을 넘긴다. 아직 선택되지 않은 VR·NC와 정확한 진행 규칙·운영·실제 검증을 완료로 세지 않는다.
+
 ## 시작할 자료
 
 - [Scenario](../Scenario.md)의 VS·VB 확정과 인물·복구·출항 조건.
