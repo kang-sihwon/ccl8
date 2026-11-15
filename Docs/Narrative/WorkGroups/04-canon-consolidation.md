@@ -14,9 +14,13 @@ PRA01-PRA02·PRH01-PRH06과 기존 원문·보류는 보존한다. NG05 묶음·
 
 VDA01-VDA02·VDH01-VDH06과 기존 원문·대안·보류·도안·좌표·수치를 보존한다. 설계 묶음·공간·검사·운영·인계·선택표 여섯 원문에는 상단 채택 안내만 더했다. SP·GX·WC·OP 전체나 좌표·실행용 가정을 정본 상태·수치로 복사하지 않는다. PR과 앞선 채택은 유지하며 World·코드·설정·에셋은 바꾸지 않았다. 삭제 후보와 실제 삭제는 없다. GX·WC는 모두 미실행이며 실제 UE 제작·실행은 별도다.
 
-## NG07에서 넘어온 미채택 집필 표현
+<a id="ng07에서-넘어온-미채택-집필-표현"></a>
 
-[IW01-IW06과 공통 경계](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-15-veles-integrated-manuscript/options.md)는 작성·독립 검토를 완료했다. [독립 검토](../Reviews/2026-11-16-veles-integrated-manuscript-review.md)는 C05 표현 두 곳 보완 뒤 PASS이며 잔여 지적은 없다. 상태는 `DISCUSSION`이다. 사용자 선택 전이며 정본·결정에 반영하지 않았다. 표현·휴대 기록·누락 보완·미완료 보고·주민 질문·저녁과 아침의 차이만 선택 대상으로 삼는다. 원고 전체·정확한 대사·매체 규격·VI표·실제 통행·운영 성공을 일괄 정본화하지 않는다. IWA01-IWA02·IWH01-IWH06과 기존 원문·대안·보류·도안·좌표·수치를 보존한다. PR·VD 채택은 유지하고 실제 UE 제작·실행은 별도다.
+## 첫 장 집필 표현과 정보 전달 채택 묶음
+
+[IW01-IW06과 공통 경계](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-15-veles-integrated-manuscript/options.md)는 작성·[독립 검토](../Reviews/2026-11-16-veles-integrated-manuscript-review.md)를 C05 표현 두 곳 보완 뒤 PASS로 완료했다. 사용자 승인으로 [결정 63](../../decisions/0063-veles-manuscript-delivery-adoption.md)·[Scenario](../Scenario.md#벨레스-첫-장의-표현과-작업-기록)에 여섯 항목의 표현·수단·적용 조건·이점·비용과 공통 경계를 반영했다. 이 채택 범위는 `CLOSED`다. [반영 독립 검토](../Reviews/2026-11-16-veles-manuscript-adoption-review.md)는 지도 표현 한 곳 보완 뒤 PASS이며 잔여 지적은 없다.
+
+IWA01-IWA02·IWH01-IWH06과 기존 원문·대안·보류·도안·좌표·수치를 보존한다. 통합 묶음·원고·대체 장면·정보·인물·선택표 여섯 원문에는 상단 채택 안내만 더했다. 정확한 대사·매체 규격·MS/C/VI·조건부 통행과 운영 성공·원고 전체를 일괄 정본화하지 않는다. PR·VD와 앞선 확정, World·코드·설정·에셋은 유지했다. 작성 검토와 이 절로 오는 기존 앵커도 보존한다. 삭제 후보와 실제 삭제는 없으며 실제 UE 제작·실행은 별도다.
 
 ## 시작 조건과 입력
 

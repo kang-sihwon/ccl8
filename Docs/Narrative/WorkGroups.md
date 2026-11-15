@@ -37,4 +37,4 @@ NG01-NG03의 추천 NC·VR·IB·JC와 공통 경계는 모두 사용자 선택�
 
 문서 제출 전에는 문서 검사와 변경이 있는 결정의 검사를 수행하고, 자신의 변경만 검토해 저장소 규칙에 따라 커밋한다. push는 요청 범위를 확인한다. 검사 결과는 서면 정합의 증거이며 실제 전투·이동·정보 인지의 증거로 쓰지 않는다. 세부 절차는 [서사 작업 절차](Workflow.md)와 [버전 관리](../VersionControl.md)를 따른다.
 
-NG07의 완료 기준별 결과는 [통합 집필 묶음](Drafts/2026-10-31-ether-taiga-dawn/2026-11-15-veles-integrated-manuscript.md)에서 확인한다. NG07은 통합 원고·대체 장면·정보 대조의 작성·독립 검토를 완료했다. [독립 검토](Reviews/2026-11-16-veles-integrated-manuscript-review.md)는 C05 표현 두 곳 보완 뒤 PASS이며 잔여 지적은 없다. IW01-IW06·공통 경계는 미채택이며 IWA·IWH와 기존 자료를 보존한다. 전체 원고·정확한 대사·매체·조건부 성공·실제 플레이 지원은 함께 확정하지 않는다.
+NG07의 완료 기준별 결과는 [통합 집필 묶음](Drafts/2026-10-31-ether-taiga-dawn/2026-11-15-veles-integrated-manuscript.md)에서 확인한다. NG07은 통합 원고·대체 장면·정보 대조의 작성·독립 검토를 완료했다. [독립 검토](Reviews/2026-11-16-veles-integrated-manuscript-review.md)는 C05 표현 두 곳 보완 뒤 PASS이며 잔여 지적은 없다. IW01-IW06·공통 경계는 사용자 승인으로 결정 63·Scenario에 반영했다. 이 채택 범위는 `CLOSED`다. [반영 독립 검토](Reviews/2026-11-16-veles-manuscript-adoption-review.md)는 지도 표현 한 곳 보완 뒤 PASS이며 잔여 지적은 없다. IWA·IWH와 기존 원문·대안·보류·도안·좌표·수치를 보존한다. 전체 원고·정확한 대사·매체 규격·조건부 성공·실제 플레이 지원은 함께 확정하지 않는다.

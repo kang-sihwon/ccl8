@@ -1,5 +1,7 @@
 # 누락·미완료에서 달라지는 장면
 
+2026-11-16 사용자 승인으로 IW01-IW06과 공통 경계를 [결정 63](../../../../decisions/0063-veles-manuscript-delivery-adoption.md)·[Scenario](../../../Scenario.md#벨레스-첫-장의-표현과-작업-기록)에 반영했다. 이 채택 범위는 `CLOSED`다. [반영 독립 검토](../../../Reviews/2026-11-16-veles-manuscript-adoption-review.md)는 지도 표현 한 곳 보완 뒤 PASS이며 잔여 지적은 없다. IWA01-IWA02·IWH01-IWH06과 아래 원문·대안·보류·도안·좌표·수치는 보존한다. 정확한 대사·매체 규격·MS/C/VI와 원고 전체·실제 UE 구현·실행은 함께 채택하지 않았다. 아래 후보·미채택·다음 선택 표현은 작성 당시 기록이다.
+
 **C03-C06은 부족한 정보·작업·인수에서만 갈라져 다시 잇는다.** [NG05 사례·반례](../2026-11-15-veles-progression-resume/cases.md)와 [원문 비교](../2026-11-06-opening-and-continent/2026-11-15-veles-chapter-comparison.md)의 시점을 유지한다. 아래 대사·문장은 미채택이며 정상 원고 전체를 다시 쓰지 않는다. 귀환·재접근 장면은 실제 여건을 확보한 경우에만 적용하고, 불가능하면 미완료를 유지한다.
 
 ## C03

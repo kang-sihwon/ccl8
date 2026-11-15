@@ -97,7 +97,7 @@ NG06은 **검증 설계까지**다. 실행은 [별도 제작 목표](#실제-제
 
 ### NG07 산출물과 현재 상태
 
-[통합 집필 묶음](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-15-veles-integrated-manuscript.md)은 `DISCUSSION`이다. [독립 검토](../Reviews/2026-11-16-veles-integrated-manuscript-review.md)는 C05 표현 두 곳 보완 뒤 PASS이며 잔여 지적은 없다. PR01-PR07·VD01-VD06·공통 경계는 확정 입력이며 IW01-IW06·공통 경계는 미채택 후보다. 기존 원문·대안·보류·도안·좌표·수치와 정본은 유지했다.
+[통합 집필 묶음](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-15-veles-integrated-manuscript.md)의 작성·검토를 완료했다. [독립 검토](../Reviews/2026-11-16-veles-integrated-manuscript-review.md)는 C05 표현 두 곳 보완 뒤 PASS이며 잔여 지적은 없다. PR01-PR07·VD01-VD06·공통 경계는 확정 입력이며 IW01-IW06·공통 경계도 사용자 승인으로 [결정 63](../../decisions/0063-veles-manuscript-delivery-adoption.md)·[Scenario](../Scenario.md#벨레스-첫-장의-표현과-작업-기록)에 반영했다. 이 채택 범위는 `CLOSED`다. [반영 독립 검토](../Reviews/2026-11-16-veles-manuscript-adoption-review.md)는 지도 표현 한 곳 보완 뒤 PASS이며 잔여 지적은 없다. NG07 작성에서는 정본을 유지했고 NG04의 채택 범위만 후속 반영한다. 기존 원문·대안·보류·도안·좌표·수치는 보존했다.
 
 | 완료 기준 | 작성한 결과·검증 한계 |
 |---|---|
@@ -105,7 +105,7 @@ NG06은 **검증 설계까지**다. 실행은 [별도 제작 목표](#실제-제
 | 차이가 있는 장면 | [C03-C06](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-15-veles-integrated-manuscript/variants.md)에 시작 정보·보고·실제 대응·다시 이을 조건을 썼다. 해방 뒤 조사 공백 C03-R과 아침 인수 보완 C06-M은 성과·현재 시각을 보존한다. |
 | 정보 전달 대조 | [VI01-VI08](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-15-veles-integrated-manuscript/information.md)을 최초 확인·누락 기회·재전달·현재 지식·미확인과 원고 위치로 연결했다. 플레이어의 실제 이해는 확인하지 않았다. |
 | 인물·설명 검토 | [인물과 설명](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-15-veles-integrated-manuscript/voices.md)에서 주인공·스승·린·보관인·담당 주민·선장의 말의 근거와 역할, 반복·전투 중단·첫 신뢰의 경계를 대조했다. |
-| 추천·검토·인계 | [IW01-IW06·공통 경계·IWA·IWH](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-15-veles-integrated-manuscript/options.md)를 선택표로 묶었다. 독립 검토는 C05 표현 두 곳 보완 뒤 PASS이며 잔여 지적은 없다. 원고 전체를 정본으로 옮기지 않는다. |
+| 추천·검토·인계 | [IW01-IW06·공통 경계·IWA·IWH](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-15-veles-integrated-manuscript/options.md)를 선택표로 묶었다. 독립 검토는 C05 표현 두 곳 보완 뒤 PASS이며 잔여 지적은 없다. IW·공통 경계의 채택 범위만 정본에 반영하며 IWA·IWH와 원고 전체·정확한 대사는 별도로 보존한다. |
 
 [원천 보존 기록](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-15-veles-integrated-manuscript/source-audit.json)은 이번 입력과 이전 NG06 참조의 해시를 남긴다. 문서 보존·검토는 실제 정보 인지·재미·전투 피로·UE 실행을 뜻하지 않는다. 기존 79행·PRH·VDH와 새 IWH의 세부 보류는 유지하며 NG08이나 실제 제작을 자동 시작하지 않는다.
 
