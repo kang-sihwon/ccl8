@@ -2,11 +2,11 @@
 
 ## 현재 결과와 다음 선택
 
-담당: 없음. **NG08 로덴·세르나·하르덴 운영·인계**의 작성과 [독립 검토](Reviews/2026-11-16-ignis-operational-handoffs-review.md)를 PASS, 잔여 지적 0으로 완료했다. [HO01-HO06과 공통 경계](Drafts/2026-10-31-ether-taiga-dawn/2026-11-16-ignis-operational-handoffs/options.md)는 `DISCUSSION`이며 아직 채택하지 않았다.
+담당: 없음. **NG08 로덴·세르나·하르덴 운영·인계**의 작성과 [독립 검토](Reviews/2026-11-16-ignis-operational-handoffs-review.md)는 PASS, 잔여 지적 0이다. 사용자가 [HO01-HO06과 공통 경계](Drafts/2026-10-31-ether-taiga-dawn/2026-11-16-ignis-operational-handoffs/options.md)를 모두 채택해 NG04 절차로 정본 반영·검토를 완료했다. 해당 범위는 `CLOSED`다.
 
 [운영·인계 묶음](Drafts/2026-10-31-ether-taiga-dawn/2026-11-16-ignis-operational-handoffs.md)이 당사자·물자·정보의 흐름, 조건·비용, 불완전 인계, 권한·책임을 소유한다. HOA01-HOA02·HOH01-HOH06은 남겨 둔다. 실제 UE 구현·실행, 운항 시간·비축량·운송량·요금 계산은 수행하지 않았다.
 
-다음은 사용자가 HO의 채택 범위 또는 [후속 범위](WorkGroups/next-workgroups.md)를 고르는 일이다. G4·G5 상세는 미착수다. 완료된 NG01-NG07의 결과와 채택 범위는 [작업군 지도](WorkGroups.md), 원문별 미채택 범위는 [남은 보류](WorkGroups/remaining-holds.md)에서 확인한다.
+HO01-HO06·공통 경계는 [결정 64](../decisions/0064-ignis-operational-handoffs-adoption.md)·[Scenario](Scenario.md#로덴세르나하르덴의-운영과-인계)에 반영했다. [반영 독립 검토](Reviews/2026-11-16-ignis-handoffs-adoption-review.md)는 PASS, 잔여 지적 0이다. 이후 [후속 범위](WorkGroups/next-workgroups.md)는 별도 사용자 선택으로 시작한다. G4·G5 상세는 미착수다. 완료된 NG01-NG07과 NG08의 결과·채택 범위는 [작업군 지도](WorkGroups.md), 원문별 미채택 범위는 [남은 보류](WorkGroups/remaining-holds.md)에서 확인한다.
 
 ## 상세화할 범위와 순서
 

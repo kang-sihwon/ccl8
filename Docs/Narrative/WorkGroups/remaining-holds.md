@@ -2,14 +2,14 @@
 
 기존 열두 선택표의 **보류 79행**은 중복과 부분 채택을 포함한 추적 범위이며 독립 과제 79개가 아니다. 아래 표는 주제별 소유 관계를 유지한다. 완료된 진행을 다시 할 일로 읽지 않는다.
 
-NG05의 PR, NG06의 VD, NG07의 IW는 [완료 지도](../WorkGroups.md)의 범위에서 채택됐다. 정확한 입력·저장·공간·수치·표현과 실제 실행은 그 채택만으로 해결되지 않는다. 후속 PRH01-PRH06·VDH01-VDH06·IWH01-IWH06과 NG08의 HOH01-HOH06은 아래 79행과 구분해 각 선택표에서 추적한다.
+NG05의 PR, NG06의 VD, NG07의 IW와 NG08의 HO는 [완료 지도](../WorkGroups.md)의 범위에서 채택됐다. 정확한 입력·저장·공간·수치·표현과 실제 실행은 그 채택만으로 해결되지 않는다. 후속 PRH01-PRH06·VDH01-VDH06·IWH01-IWH06과 NG08의 HOH01-HOH06은 아래 79행과 구분해 각 선택표에서 추적한다.
 
 | 후속 범위 | 남은 세부의 소유 문서 |
 |---|---|
 | 진행·재개 | [PRA·PRH](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-15-veles-progression-resume/options.md) |
 | 검증 설계·실행 | [VDA·VDH](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-15-veles-validation-design/options.md) |
 | 통합 집필 | [IWA·IWH와 앞선 RA·RH](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-15-veles-integrated-manuscript/options.md) |
-| 후속 운영·인계 | [HO·HOA·HOH](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-16-ignis-operational-handoffs/options.md), HO는 아직 미채택 |
+| 후속 운영·인계 | [HO·HOA·HOH](../Drafts/2026-10-31-ether-taiga-dawn/2026-11-16-ignis-operational-handoffs/options.md), HO는 [결정 64](../../decisions/0064-ignis-operational-handoffs-adoption.md)의 범위에서 채택 |
 
 ## 원문별 추적
 

@@ -17,4 +17,4 @@ NG04는 선택한 범위를 결정·정본에 옮기는 절차다. 다음 채택
 
 ## NG08 운영·인계 결과
 
-[로덴·세르나·하르덴 묶음](Drafts/2026-10-31-ether-taiga-dawn/2026-11-16-ignis-operational-handoffs.md)은 작성·독립 검토를 완료했다. HO01-HO06·공통 경계는 미채택 `DISCUSSION`이다. 다음 선택과 실제 미검증은 [CurrentWork](CurrentWork.md), 이후 작업 후보는 [후속 지도](WorkGroups/next-workgroups.md)가 소유한다.
+[로덴·세르나·하르덴 묶음](Drafts/2026-10-31-ether-taiga-dawn/2026-11-16-ignis-operational-handoffs.md)은 작성·독립 검토를 완료했다. HO01-HO06·공통 경계는 사용자 승인으로 [결정 64](../decisions/0064-ignis-operational-handoffs-adoption.md)·[Scenario](Scenario.md#로덴세르나하르덴의-운영과-인계)에 반영했다. NG04 절차의 [반영 독립 검토](Reviews/2026-11-16-ignis-handoffs-adoption-review.md)는 PASS, 잔여 지적 0이며 해당 범위는 `CLOSED`다. HOA01-HOA02·HOH01-HOH06과 원문·대안·보류·도안·좌표·수치는 보존한다. 다음 선택과 실제 미검증은 [CurrentWork](CurrentWork.md), 이후 작업 후보는 [후속 지도](WorkGroups/next-workgroups.md)가 소유한다.

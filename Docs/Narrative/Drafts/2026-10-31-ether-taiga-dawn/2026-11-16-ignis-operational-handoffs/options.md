@@ -1,5 +1,7 @@
 # 운영·인계의 추천과 남은 선택
 
+2026-11-16 사용자가 HO01-HO06·공통 경계를 모두 채택했다. [결정 64](../../../../decisions/0064-ignis-operational-handoffs-adoption.md)·[Scenario](../../../Scenario.md#로덴세르나하르덴의-운영과-인계)에 반영해 CLOSED다. [반영 독립 검토](../../../Reviews/2026-11-16-ignis-handoffs-adoption-review.md)는 PASS, 잔여 지적 0이다. 아래 미채택·다음 선택은 승인 전 기록이며 HOA01-HOA02·HOH01-HOH06과 원문·상세 표·도안·좌표·수치를 보존한다. OF·OV·HC 전체·정확한 표현·매체·수치·계약·UI·실제 구현을 함께 확정하지 않는다.
+
 **HO01-HO06을 공통 경계와 함께 추천한다.** 기존 SC02-SC04·IB·JC의 인계를 판단 근거와 불완전 사례로 구체화하는 후보이며 아직 채택되지 않았다. [전체 묶음](../2026-11-16-ignis-operational-handoffs.md)의 모든 표·정확한 문장·변수명·사례를 함께 정본화하는 선택은 아니다.
 
 ## 추천

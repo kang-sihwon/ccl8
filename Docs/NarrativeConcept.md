@@ -15,4 +15,4 @@
 
 조사·후보·검토는 `Narrative/Research/`, `Narrative/Drafts/`, `Narrative/Reviews/`에 기록한다. 파일 이름과 항목이 끝난 뒤의 처리는 Workflow가 소유한다. 아트 방향은 [ArtDirection](ArtDirection.md), 코드·설정·에셋의 AI 작업 범위는 [Coding](Coding.md)을 따른다.
 
-현재 NG08의 다음 선택은 [CurrentWork](Narrative/CurrentWork.md), 미채택 대안과 세부는 [보류 지도](Narrative/WorkGroups/remaining-holds.md)에서 읽는다.
+NG08의 HO01-HO06·공통 경계는 [결정 64](decisions/0064-ignis-operational-handoffs-adoption.md)·[Scenario](Narrative/Scenario.md#로덴세르나하르덴의-운영과-인계)가 소유한다. 반영 상태와 다음 선택은 [CurrentWork](Narrative/CurrentWork.md), 미채택 대안과 세부는 [보류 지도](Narrative/WorkGroups/remaining-holds.md)에서 읽는다.
