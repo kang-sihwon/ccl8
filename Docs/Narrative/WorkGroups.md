@@ -13,8 +13,10 @@
 | NG06 | [첫 장 검증 설계](Drafts/2026-10-31-ether-taiga-dawn/2026-11-15-veles-validation-design.md) | VD01-VD06와 공통 경계, [결정 62](../decisions/0062-veles-validation-design-adoption.md)에 한해 `CLOSED` | [당시 PASS·지적 0](Reviews/2026-11-16-adoption-summary.md#결정-62) |
 | NG07 | [첫 장 통합 집필](Drafts/2026-10-31-ether-taiga-dawn/2026-11-15-veles-integrated-manuscript.md) | IW01-IW06와 공통 경계, [결정 63](../decisions/0063-veles-manuscript-delivery-adoption.md)에 한해 `CLOSED` | [당시 PASS·지적 0](Reviews/2026-11-16-adoption-summary.md#결정-63) |
 
-NG04는 선택한 범위를 결정·정본에 옮기는 절차다. 다음 채택에도 [Workflow](Workflow.md)를 적용한다. 표의 범위 밖 대안·보류는 [원문별 추적](WorkGroups/remaining-holds.md)에 남아 있다. NG06의 GX·WC는 미실행이고, NG07의 원고 전체·정확한 대사·매체 규격·조건부 성공은 일괄 확정하지 않았다.
+NG04는 선택한 범위를 결정·정본에 옮기는 절차다. 다음 채택에도 [Workflow](Workflow.md)를 적용한다. 표의 범위 밖 대안·보류는 [원문별 추적](WorkGroups/remaining-holds.md)에 남아 있다. NG06의 GX·WC는 미실행이고, NG07의 원고 전체·정확한 대사·매체 규격·조건부 성공은 일괄 확정하지 않았다. 별도 [외부 블록아웃의 이동 검증](../Work/VelesBlockout.md)은 그 기록의 경로·조건에 한정한다.
 
 ## NG08 운영·인계 결과
 
 [로덴·세르나·하르덴 묶음](Drafts/2026-10-31-ether-taiga-dawn/2026-11-16-ignis-operational-handoffs.md)은 작성·독립 검토를 완료했다. HO01-HO06·공통 경계는 사용자 승인으로 [결정 64](../decisions/0064-ignis-operational-handoffs-adoption.md)·[Scenario](Scenario.md#로덴세르나하르덴의-운영과-인계)에 반영했다. NG04 절차의 [반영 독립 검토](Reviews/2026-11-16-ignis-handoffs-adoption-review.md)는 PASS, 잔여 지적 0이며 해당 범위는 `CLOSED`다. HOA01-HOA02·HOH01-HOH06과 원문·대안·보류·도안·좌표·수치는 보존한다. 다음 선택과 실제 미검증은 [CurrentWork](CurrentWork.md), 이후 작업 후보는 [후속 지도](WorkGroups/next-workgroups.md)가 소유한다.
+
+NG01-NG08 완료 뒤의 [보류 분류](WorkGroups/remaining-holds.md#완료-뒤에도-남는-질문)와 [NG09-NG12 추천](WorkGroups/next-workgroups.md#ng01-ng08-이후의-우선순위)은 작성·[독립 검토](Reviews/2026-11-16-post-ng08-workgroups-review.md) PASS, 잔여 지적 0이다. 다음 기본 추천은 NG09이며 새 작업군은 모두 미착수다.
