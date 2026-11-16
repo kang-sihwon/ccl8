@@ -1,0 +1,254 @@
+{
+  "engine": "5.8.3",
+  "build": "CCLEditor Win64 Development",
+  "gpu": "NVIDIA GeForce RTX 4070 Ti 12GB",
+  "api": "D3D12 SM6",
+  "build_result": {
+    "map": "/Game/Maps/VelesArtSlice",
+    "source_map": "/Game/Maps/VelesBlockout",
+    "route_m": 284.9466798255191,
+    "counts": {
+      "Ground": 1,
+      "Architecture": 280,
+      "Banks": 112,
+      "Cave": 6,
+      "Vegetation": 795,
+      "Props": 7,
+      "Bridges": 4
+    },
+    "buildings": 8,
+    "actors_total": 3324,
+    "imported_resources": {
+      "Tree": "/Game/TestResources/NorwayMaple/Geometry/SimpleWind/SM_NorwayMaple_Field_01",
+      "Sapling": "/Game/TestResources/NorwayMaple/Geometry/SimpleWind/SM_NorwayMaple_Sapling_01",
+      "Bush": "/Game/TestResources/Fishermans_Cabin/Meshes/Foliage/Bush/SM_Bush_01",
+      "Grass": "/Game/TestResources/Fishermans_Cabin/Meshes/Foliage/Grass/SM_Grass_01",
+      "Fern": "/Game/TestResources/PN_Fern/Meshes/fern_01_01"
+    },
+    "limits": "Exterior trial; no building interiors, combat or final water simulation."
+  },
+  "audit": {
+    "status": "PASS",
+    "strength": "internal",
+    "ground_samples": 441,
+    "corridor_offsets_m": [
+      -1,
+      0,
+      1
+    ],
+    "capsule_cm": [
+      42,
+      96
+    ],
+    "sources_preserved": true,
+    "failures": [],
+    "actor_count": 3324,
+    "terrain_mesh": "/Game/WorldBuilding/VelesArtSlice/SM_TerrainUpward.SM_TerrainUpward",
+    "limits": "Three sampled lines, not every point of the corridor or combat navigation."
+  },
+  "movement": {
+    "status": "PASS",
+    "reason": "Completed authored out-and-back route and camera orbits.",
+    "map": "VelesArtSlice",
+    "strength": "MCP/EI",
+    "elapsed_s": 184.73500000000058,
+    "distance_m": 566.989179904731,
+    "waypoint": 7,
+    "route_m": 569.8933596510382,
+    "orbits": [
+      0,
+      1,
+      3,
+      6
+    ],
+    "fall_samples": 0,
+    "orbit_turn_degrees": {
+      "0": 359.9969740899978,
+      "1": 359.9969544536434,
+      "3": 359.9969560668105,
+      "6": 359.99644607363734
+    },
+    "camera_overlap_samples": 0,
+    "settings": {
+      "t.MaxFPS": 0.0,
+      "r.VSync": 0.0,
+      "r.ScreenPercentage": 0.0,
+      "sg.ViewDistanceQuality": 3.0,
+      "sg.ShadowQuality": 3.0,
+      "sg.FoliageQuality": 3.0,
+      "r.DynamicRes.OperationMode": 0.0
+    },
+    "wall_frame": {
+      "count": 15496,
+      "mean_ms": 10.952439339184602,
+      "p50_ms": 14.999999999417923,
+      "p95_ms": 16.00000000325963,
+      "p99_ms": 16.00000000325963,
+      "max_ms": 171.99999999866122,
+      "over_50ms": 7
+    },
+    "engine_csv_started": true,
+    "walk_wall_frame": {
+      "count": 10279,
+      "mean_ms": 11.063235723319837,
+      "p50_ms": 14.999999999417923,
+      "p95_ms": 16.00000000325963,
+      "p99_ms": 16.00000000325963,
+      "max_ms": 63.00000000192085,
+      "over_50ms": 3
+    },
+    "limits": "Editor Slate wall-frame intervals, includes tool/editor overhead; not packaged GPU timing, manual play, combat or full-width clearance."
+  },
+  "profile": {
+    "source": "Profile(20261116_174808).csv",
+    "metrics": {
+      "FrameTime": {
+        "samples": 15496,
+        "mean": 10.952476277749097,
+        "p50": 10.7307,
+        "p95": 12.5882,
+        "p99": 13.7915,
+        "max": 169.0089,
+        "equivalent_mean_fps": 91.30355315460363,
+        "over_16_667ms": 7,
+        "over_33_333ms": 7,
+        "over_50ms": 7
+      },
+      "GameThreadTime": {
+        "samples": 15496,
+        "mean": 10.941189184305626,
+        "p50": 10.7051,
+        "p95": 12.5566,
+        "p99": 13.6289,
+        "max": 143.3818
+      },
+      "RenderThreadTime": {
+        "samples": 15496,
+        "mean": 10.254614035880227,
+        "p50": 10.1422,
+        "p95": 11.3915,
+        "p99": 12.4866,
+        "max": 16.4143
+      },
+      "GPUTime": {
+        "samples": 15496,
+        "mean": 5.603314423076924,
+        "p50": 5.3219,
+        "p95": 7.4853,
+        "p99": 8.0491,
+        "max": 9.1626
+      },
+      "RHI/DrawCalls": {
+        "samples": 15496,
+        "mean": 2364.747418688694,
+        "p50": 2368.0,
+        "p95": 2482.0,
+        "p99": 2526.0,
+        "max": 4504.0
+      },
+      "RHI/PrimitivesDrawn": {
+        "samples": 15496,
+        "mean": 367072.1351316469,
+        "p50": 363692.0,
+        "p95": 430678.0,
+        "p99": 447582.0,
+        "max": 506606.0
+      },
+      "GPUMem/LocalUsedMB": {
+        "samples": 15496,
+        "mean": 5013.3203,
+        "p50": 5013.3203,
+        "p95": 5013.3203,
+        "p99": 5013.3203,
+        "max": 5013.3203
+      },
+      "TextureStreaming/DesiredDataLoadedPercent": {
+        "samples": 15496,
+        "mean": 100.0,
+        "p50": 100.0,
+        "p95": 100.0,
+        "p99": 100.0,
+        "max": 100.0
+      }
+    },
+    "limits": "All positive FrameTime rows, including profiler/tool overhead. Editor PIE, not packaged performance."
+  },
+  "baseline_reference": {
+    "source": "Profile(20261116_173403).csv",
+    "metrics": {
+      "FrameTime": {
+        "samples": 16913,
+        "mean": 10.035754141784427,
+        "p50": 9.8521,
+        "p95": 11.639,
+        "p99": 13.0107,
+        "max": 78.6173,
+        "equivalent_mean_fps": 99.6437323864326,
+        "over_16_667ms": 16,
+        "over_33_333ms": 3,
+        "over_50ms": 3
+      },
+      "GameThreadTime": {
+        "samples": 16913,
+        "mean": 9.697175498137527,
+        "p50": 9.4735,
+        "p95": 11.2901,
+        "p99": 12.6525,
+        "max": 78.2059
+      },
+      "RenderThreadTime": {
+        "samples": 16913,
+        "mean": 10.00998260509667,
+        "p50": 9.8253,
+        "p95": 11.4929,
+        "p99": 12.9319,
+        "max": 18.3836
+      },
+      "GPUTime": {
+        "samples": 16913,
+        "mean": 3.827087784544433,
+        "p50": 3.7887,
+        "p95": 4.224,
+        "p99": 4.4223,
+        "max": 4.8294
+      },
+      "RHI/DrawCalls": {
+        "samples": 16913,
+        "mean": 2086.184887364749,
+        "p50": 2077.0,
+        "p95": 2210.0,
+        "p99": 2264.0,
+        "max": 2431.0
+      },
+      "RHI/PrimitivesDrawn": {
+        "samples": 16913,
+        "mean": 357698.44652042806,
+        "p50": 350850.0,
+        "p95": 423666.0,
+        "p99": 435880.0,
+        "max": 469568.0
+      },
+      "GPUMem/LocalUsedMB": {
+        "samples": 16913,
+        "mean": 5012.4531,
+        "p50": 5012.4531,
+        "p95": 5012.4531,
+        "p99": 5012.4531,
+        "max": 5012.4531
+      },
+      "TextureStreaming/DesiredDataLoadedPercent": {
+        "samples": 16913,
+        "mean": 100.0,
+        "p50": 100.0,
+        "p95": 100.0,
+        "p99": 100.0,
+        "max": 100.0
+      }
+    },
+    "limits": "All positive FrameTime rows, including profiler/tool overhead. Editor PIE, not packaged performance."
+  },
+  "csv_sha256": {
+    "Profile(20261116_174808).csv": "b10b81feaed969757f9f87f0a3e40b725c92754b4ef69241c20876f0da0d0e36",
+    "Profile(20261116_173403).csv": "be214e45583f8773a93110cfdf033342ac36ae814b0bde52dea150725328e36a"
+  }
+}
