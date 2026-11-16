@@ -5,7 +5,7 @@
 | 작업 | 지도 | 상태 |
 |---|---|---|
 | 벨레스 블록아웃 | [제작·검증](VelesBlockout.md) | 도로 통합·레벨 제작·주요 순환로 PIE 검증과 v5 화면 대조 완료. 숲 군집·동굴 암벽·길과 강변 접속 보완 후 공방–물터–숲문 실리소스 시험 구간을 제안했다. 최종 아트·전투·지하 동굴은 미완료다. |
-| 시나리오·세계관 | [현재 상태](../Narrative/CurrentWork.md) | NG01-NG08의 채택 범위는 완료했다. HO01-HO06·공통 경계는 결정 64·정본 반영과 NG04 검토 PASS·잔여 지적 0으로 CLOSED다. [후속 작업군](../Narrative/WorkGroups/next-workgroups.md)의 우선순위·완료 기준을 정리하고 독립 검토 PASS로 마쳤다. 기본 추천은 NG09이며 새 작업은 미착수다. 서사 통합 GX·WC는 미실행이다. |
+| 시나리오·세계관 | [현재 상태](../Narrative/CurrentWork.md) | NG01-NG08의 채택 범위는 완료했다. HO01-HO06·공통 경계는 결정 64·정본 반영과 NG04 검토 PASS·잔여 지적 0으로 CLOSED다. [후속 작업군](../Narrative/WorkGroups/next-workgroups.md)의 우선순위·완료 기준을 정리하고 독립 검토 PASS로 마쳤다. NG09 상호작용·작업 기록 상세는 작성·검토 PASS·잔여 지적 0이며 IR01-IR06·공통 경계의 사용자 선택 전(DISCUSSION)이다. NG10-NG12는 미착수다. 서사 통합 GX·WC는 미실행이다. |
 
 ## 다음 작업 후보
 
