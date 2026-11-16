@@ -2,7 +2,7 @@
 
 ## 현재 결과와 다음 선택
 
-담당: 없음. [NG09 첫 장 상호작용·작업 기록 상세](Drafts/2026-10-31-ether-taiga-dawn/2026-11-16-veles-interaction-records.md)의 작성과 [독립 검토](Reviews/2026-11-16-veles-interaction-records-review.md)를 PASS, 잔여 지적 0으로 완료했다. 단계는 `DISCUSSION`이며 [IR01-IR06과 공통 경계](Drafts/2026-10-31-ether-taiga-dawn/2026-11-16-veles-interaction-records/options.md)를 채택 추천한다. 사용자 선택 전이므로 정본 반영·새 결정은 하지 않았다. 정확한 예문·UI·실제 인지·UE 구현·실행은 미확정 또는 미검증이며 IRA01-IRA02·IRH01-IRH06과 기존 보류는 유지한다.
+담당: 없음. [NG09 첫 장 상호작용·작업 기록 상세](Drafts/2026-10-31-ether-taiga-dawn/2026-11-16-veles-interaction-records.md)의 작성과 [독립 검토](Reviews/2026-11-16-veles-interaction-records-review.md)를 PASS, 잔여 지적 0으로 완료했다. 승인된 범위의 단계는 `CLOSED`이며 [IR01-IR06과 공통 경계](Drafts/2026-10-31-ether-taiga-dawn/2026-11-16-veles-interaction-records/options.md)를 사용자가 모두 채택했다. [결정 65](../decisions/0065-veles-interaction-records-adoption.md)·[Scenario](Scenario.md#벨레스-첫-장의-상호작용과-기록-상세)에 반영했다. [NG04 반영 독립 검토](Reviews/2026-11-16-veles-interaction-adoption-review.md)는 PASS, 잔여 지적 0이다. 정확한 예문·UI·실제 인지·UE 구현·실행은 미확정 또는 미검증이며 IRA01-IRA02·IRH01-IRH06과 기존 보류는 유지한다.
 
 NG01-NG08 완료 뒤 남은 보류와 후속 작업군 추천을 정리하고 [독립 검토](Reviews/2026-11-16-post-ng08-workgroups-review.md)를 PASS, 잔여 지적 0으로 완료했다. **NG08 로덴·세르나·하르덴 운영·인계**의 작성과 [독립 검토](Reviews/2026-11-16-ignis-operational-handoffs-review.md)는 PASS, 잔여 지적 0이다. 사용자가 [HO01-HO06과 공통 경계](Drafts/2026-10-31-ether-taiga-dawn/2026-11-16-ignis-operational-handoffs/options.md)를 모두 채택해 NG04 절차로 정본 반영·검토를 완료했다. 해당 범위는 `CLOSED`다.
 
@@ -12,7 +12,7 @@ HO01-HO06·공통 경계는 [결정 64](../decisions/0064-ignis-operational-hand
 
 ## 상세화할 범위와 순서
 
-[NG09-NG12 추천](WorkGroups/next-workgroups.md#ng01-ng08-이후의-우선순위)은 첫 장 상호작용·작업 기록, 운영·성장 계산 입력, G4 환승, G5 극지 준비·구조·귀환 순서다. NG09는 작성·검토를 마쳤고 다음 행동은 IR 추천 범위의 사용자 선택이다. 선택된 범위만 NG04로 반영한다. NG10-NG12는 미착수이며 기본 후속 후보는 NG10, 여정 확장이 우선이면 NG11이다. 새 설정 채택·기존 보류 해제·실제 UE 구현·실행은 포함하지 않는다.
+[NG09-NG12 추천](WorkGroups/next-workgroups.md#ng01-ng08-이후의-우선순위)은 첫 장 상호작용·작업 기록, 운영·성장 계산 입력, G4 환승, G5 극지 준비·구조·귀환 순서다. NG09의 IR01-IR06·공통 경계는 사용자 승인 범위의 NG04 반영·검토를 완료했다. NG10-NG12는 미착수이며 기본 후속 후보는 NG10, 여정 확장이 우선이면 NG11이다. IR 승인 범위 밖의 새 설정 채택·기존 보류 해제·실제 UE 구현·실행은 포함하지 않는다.
 
 [별도 벨레스 블록아웃](../Work/VelesBlockout.md)의 외부 순환로 PIE 기록은 그 경로·조건의 증거다. 지하·바르툴·정보 인지·재고·저장·다인·서사 통합 GX/WC까지 통과한 것으로 보지 않는다.
 

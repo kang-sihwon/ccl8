@@ -1,5 +1,7 @@
 # 벨레스 첫 장 상호작용·작업 기록 상세
 
+채택 범위: IR01-IR06·공통 경계는 사용자 승인으로 [결정 65](../../../decisions/0065-veles-interaction-records-adoption.md)·[Scenario](../../Scenario.md#벨레스-첫-장의-상호작용과-기록-상세)에 반영했다. 현재 반영 검토 상태는 [CurrentWork](../../CurrentWork.md)가 소유한다. 아래 본문은 작성 당시 후보 기록으로 보존한다. IRA01-IRA02·IRH01-IRH06·정확한 예문·매체 세부와 실제 검증은 일괄 채택하지 않았다.
+
 **VI01-VI08의 관찰·질문·기록을 현재 장면에 연결한 후보 묶음이다.** NG09의 [완료 기준](../../WorkGroups/next-workgroups.md#ng09-첫-장-상호작용작업-기록-상세)을 따른다. NG01-NG08의 확정은 유지하며 정본·기존 원고를 수정하지 않는다. 현재 단계와 검토 결과는 [CurrentWork](../../CurrentWork.md)가 소유한다.
 
 | 읽는 때 | 문서 |
