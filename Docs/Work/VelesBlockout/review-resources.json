@@ -1,0 +1,62 @@
+[
+  {
+    "path": "/Game/TestResources/NorwayMaple/Geometry/SimpleWind/SM_NorwayMaple_Field_01",
+    "loaded": true,
+    "class": "StaticMesh",
+    "dimensions_m": [
+      24.52120361328125,
+      27.342998046875,
+      28.12807373046875
+    ]
+  },
+  {
+    "path": "/Game/TestResources/NorwayMaple/Geometry/SimpleWind/SM_NorwayMaple_Sapling_01",
+    "loaded": true,
+    "class": "StaticMesh",
+    "dimensions_m": [
+      2.0241378784179687,
+      1.8238424682617187,
+      3.390769348144531
+    ]
+  },
+  {
+    "path": "/Game/TestResources/NorwayMaple/Geometry/SimpleWind/SM_NorwayMaple_Seedling_01",
+    "loaded": true,
+    "class": "StaticMesh",
+    "dimensions_m": [
+      0.41418639183044437,
+      0.4611023807525635,
+      0.49999820709228515
+    ]
+  },
+  {
+    "path": "/Game/TestResources/PN_Fern/Meshes/fern_01_01",
+    "loaded": true,
+    "class": "StaticMesh",
+    "dimensions_m": [
+      0.7586004638671875,
+      0.6680357360839844,
+      0.6659906005859375
+    ]
+  },
+  {
+    "path": "/Game/TestResources/Fishermans_Cabin/Meshes/Foliage/Bush/SM_Bush_01",
+    "loaded": true,
+    "class": "StaticMesh",
+    "dimensions_m": [
+      1.9344404602050782,
+      1.6249797058105468,
+      1.7111012268066406
+    ]
+  },
+  {
+    "path": "/Game/TestResources/Fishermans_Cabin/Meshes/Foliage/Grass/SM_Grass_01",
+    "loaded": true,
+    "class": "StaticMesh",
+    "dimensions_m": [
+      1.0109768676757813,
+      1.0505328369140625,
+      0.8122040557861329
+    ]
+  }
+]
