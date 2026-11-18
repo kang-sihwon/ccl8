@@ -1,0 +1,13 @@
+{
+  "id": 1454,
+  "verdict": "보류",
+  "use": "S08 이끼·낙엽 패치",
+  "reason": "1.19m의 낮은 돌과 선명한 이끼로 기존 바닥 후보 충분",
+  "edit": "녹색 채도 축소 및 경계 매입",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:21:12.796128+00:00",
+  "sourcePageSha256": "8dfb1ad5d0d1ae34fb26055721a25c96713443b99fde8266951adfe8ee4cc921"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 1445,
+  "verdict": "보류",
+  "use": "S08 작은 이끼 돌군",
+  "reason": "84cm의 복잡한 돌과 선명한 황록색 이끼로 기존 후보 충분",
+  "edit": "이끼·흰 얼룩 대비 축소 및 열린 면 매입",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:21:12.787122+00:00",
+  "sourcePageSha256": "cd7eec1a50a447ba571cf0cded6ccaced684c76d3f491951ae1b7291555f8afa"
+}

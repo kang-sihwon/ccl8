@@ -1,0 +1,13 @@
+{
+  "id": 1901,
+  "verdict": "보류",
+  "use": "S02 장부 대안",
+  "reason": "21cm 선명한 빨강·파랑 표지가 B안보다 강하고 현대적",
+  "edit": "표지 색·제본 수정",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:38:57.950227+00:00",
+  "sourcePageSha256": "19c0e8c64b1bf519ac022a20fefdc569b28899d1ae1f274c47b3be6c31d22c19"
+}

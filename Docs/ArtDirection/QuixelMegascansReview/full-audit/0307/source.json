@@ -1,0 +1,82 @@
+{
+  "id": 307,
+  "url": "https://www.fab.com/listings/9d221f88-2def-498e-ab50-7358c5be4708",
+  "uid": "9d221f88-2def-498e-ab50-7358c5be4708",
+  "title": "Wooden Carpet Beater",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:10:48.837228+00:00",
+  "pageSha256": "ed73bb17171b7c8a3ffec0e9fe8e639e0e4cd43843502f122e29d9f32feb41c4",
+  "description": "Texel density: 5913 px/m\nPhysical size: 0.23m x 0.78m x 0.04m\nMesh type: Closed mesh\nMaps: Bump Displacement(high tier only) Normal Roughness Basecolor Gloss AO Cavity Specular\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.23m x 0.78m x 0.04m",
+  "mesh": "Closed mesh",
+  "texelDensity": "5913 px/m",
+  "maps": "Bump Displacement(high tier only) Normal Roughness Basecolor Gloss AO Cavity Specular",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "ZBrush",
+      "extensions": [
+        "zbp",
+        "ztl"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/a8257cb0-4564-48a2-af08-02e63189f1b0/08ca6a04-a095-4ca0-ab25-be4cf475a20a.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/a8257cb0-4564-48a2-af08-02e63189f1b0/e23acd52-3879-4f5a-af6b-fdf9b08b71d1.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

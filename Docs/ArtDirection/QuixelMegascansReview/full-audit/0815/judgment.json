@@ -1,0 +1,13 @@
+{
+  "id": 815,
+  "verdict": "수정 후 후보",
+  "use": "S08 숲 내부 긴 고사목",
+  "reason": "9.4m의 낮고 긴 통나무는 자연 경계에 적합하지만 입구 크기에 과대하다.",
+  "edit": "입구 뒤 지형에 평행 배치; 열린 밑면 처리",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:48:57.485509+00:00",
+  "sourcePageSha256": "3c2bcc7ec7c1c0735bab84035f8d77bdd86a843e311b7edadf930ecc3d543155"
+}

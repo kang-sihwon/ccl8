@@ -1,0 +1,74 @@
+{
+  "id": 1090,
+  "url": "https://www.fab.com/listings/da1ba696-28d7-48d7-a120-2deb04f8df63",
+  "uid": "da1ba696-28d7-48d7-a120-2deb04f8df63",
+  "title": "Cave African Ledge Plain Stone Medium 01",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:15:47.246974+00:00",
+  "pageSha256": "d97329eabfab5148a874bd8f675f8c11b732e2bf379de5dd62d8fe1584941077",
+  "description": "The ‘Cave African’ themed assets capture the layered, mineral-rich character of cave systems. Featuring high-fidelity scans of vertical stone columns, eroded and muddy rock formations, decorative wall sections, and muddy cave floors, this collection reflects the slow mineral deposition and erosion that shape subterranean environments over time.\nIdeal for creating atmospheric cave environments with a strong sense of scale, geological detail, and environmental storytelling.\nTexel density: 2183 px/m\nPhysical size: 2.32m x 5.05m x 0.48m\nMesh type: Open mesh\nMaps: AO Basecolor Bump Cavity Displacement Gloss Normal Roughness Specular\nCreate high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.\n\nCurious about future releases? Discover upcoming Megascans content and vote for your favorite themes: Public Roadmap",
+  "size": "2.32m x 5.05m x 0.48m",
+  "mesh": "Open mesh",
+  "texelDensity": "2183 px/m",
+  "maps": "AO Basecolor Bump Cavity Displacement Gloss Normal Roughness Specular",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/fc531e0f-ed50-442b-9602-12049d51d4b6/39aa039f-6663-48f3-b41d-61e06a1dca79.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/fc531e0f-ed50-442b-9602-12049d51d4b6/7645afd7-119a-47aa-a0e8-75e463b7c838.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

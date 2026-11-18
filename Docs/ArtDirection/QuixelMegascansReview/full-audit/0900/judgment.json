@@ -1,0 +1,13 @@
+{
+  "id": 900,
+  "verdict": "보류",
+  "use": "S02·S08 작은 목질 부스러기",
+  "reason": "12cm 길이에 1cm급 단면으로 화면 전체에서 영향이 작다.",
+  "edit": "과도한 확대 금지; 초근경에만",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:54:43.611907+00:00",
+  "sourcePageSha256": "ae1880ab7c192babcf3251fc85ba7aacdd438a933c6817748d8ade00737f7b3c"
+}

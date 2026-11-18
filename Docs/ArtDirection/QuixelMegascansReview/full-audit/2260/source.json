@@ -1,0 +1,85 @@
+{
+  "id": 2260,
+  "url": "https://www.fab.com/listings/c2977aaa-98df-4742-8ba7-a525e2ee47ea",
+  "uid": "c2977aaa-98df-4742-8ba7-a525e2ee47ea",
+  "title": "Half Avocado",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:23:10.539338+00:00",
+  "pageSha256": "72a55e0e09fdbeaee832950ac938e76a90ecb62447af7e5a7d06adad50fb870b",
+  "description": "Texel density: 1103 px/m\nPhysical size: 0.06m x 0.07m x 0.03m\nMesh type: Closed mesh\nMaps: Displacement(high tier only) AO Transmission Normal Basecolor Specular Cavity Roughness Gloss\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.06m x 0.07m x 0.03m",
+  "mesh": "Closed mesh",
+  "texelDensity": "1103 px/m",
+  "maps": "Displacement(high tier only) AO Transmission Normal Basecolor Specular Cavity Roughness Gloss",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "UEFN Reference",
+      "extensions": null,
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "UEFN - Reference only",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/9e658b80-0906-4e8b-9dcd-36d765f9edf6/c5931829-638a-4780-954f-042f36704f2c.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/9e658b80-0906-4e8b-9dcd-36d765f9edf6/e3cb1ffa-bc31-4167-8115-3e52e04d6bc8.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

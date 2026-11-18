@@ -1,0 +1,13 @@
+{
+  "id": 2068,
+  "verdict": "추천",
+  "use": "S02 수리 중인 보강 목판",
+  "reason": "1.09m 판재와 가로 철띠·못이 작업 흔적에 적합",
+  "edit": "철띠 반사 통일 및 실제 용도에 맞게 연결",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:44:39.473517+00:00",
+  "sourcePageSha256": "d12ecceef9f427117abf85b95bb094a16b95040553421aa03d701f0321f62ba2"
+}

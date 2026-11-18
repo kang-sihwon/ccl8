@@ -1,0 +1,13 @@
+{
+  "id": 1381,
+  "verdict": "수정 후 후보",
+  "use": "S08 낮은 돌과 낙엽 바닥",
+  "reason": "1.79m의 낮은 바닥 조합은 적합하나 돌 위 가지 그림자처럼 보이는 무늬가 강함",
+  "edit": "Basecolor에 그림자가 남았는지 확인·정리하고 경계 매입",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:17:00.814185+00:00",
+  "sourcePageSha256": "58e1ea8e71d7847b7176f85fc32455b11b5dd0a85bc2e8781f1a344e756aad2b"
+}

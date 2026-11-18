@@ -1,0 +1,82 @@
+{
+  "id": 505,
+  "url": "https://www.fab.com/listings/2a94dc89-d1fd-4941-b90a-399f1539a830",
+  "uid": "2a94dc89-d1fd-4941-b90a-399f1539a830",
+  "title": "Mossy Birch Log",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:12:06.956789+00:00",
+  "pageSha256": "2e7fcdca73ab47acaf26b19b49dc3325d5689d64a25eaf99bd798ff6d32f35f8",
+  "description": "Texel density: 5574 px/m\nPhysical size: 0.23m x 1.31m x 0.23m\nMesh type: Closed mesh\nMaps: Normal Bump Fuzz Specular AO Roughness Basecolor Cavity Gloss Displacement\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.23m x 1.31m x 0.23m",
+  "mesh": "Closed mesh",
+  "texelDensity": "5574 px/m",
+  "maps": "Normal Bump Fuzz Specular AO Roughness Basecolor Cavity Gloss Displacement",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "ZBrush",
+      "extensions": [
+        "zbp",
+        "ztl"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/7be11880-9db5-42dd-b540-fdd0c188ec3e/95701451-19af-41f6-bb70-d0c204d04c3e.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/7be11880-9db5-42dd-b540-fdd0c188ec3e/25cd6423-d7a0-428b-83fe-eda56e503344.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

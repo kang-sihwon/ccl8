@@ -1,0 +1,82 @@
+{
+  "id": 530,
+  "url": "https://www.fab.com/listings/fd9669f8-feed-4c3b-84a0-765dc70c3124",
+  "uid": "fd9669f8-feed-4c3b-84a0-765dc70c3124",
+  "title": "Nordic Forest Tree Uprooted Small",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:12:14.896312+00:00",
+  "pageSha256": "2814339a887742cf442ef539a3dc477896f5952c4d1968f37bb3e892ae31d481",
+  "description": "Texel density: 6146 px/m\nPhysical size: 2.81m x 2.77m x 1.76m\nMesh type: Open mesh\nMaps: Bump Displacement(high tier only) Fuzz Normal Roughness Basecolor Gloss AO Cavity Specular\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "2.81m x 2.77m x 1.76m",
+  "mesh": "Open mesh",
+  "texelDensity": "6146 px/m",
+  "maps": "Bump Displacement(high tier only) Fuzz Normal Roughness Basecolor Gloss AO Cavity Specular",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "ZBrush",
+      "extensions": [
+        "zbp",
+        "ztl"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/e6e3a18f-902d-4b1f-8297-cd819fd0eb4d/468adbfe-7d4b-4af7-a9bb-16eed20d9c8f.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/e6e3a18f-902d-4b1f-8297-cd819fd0eb4d/bc7b023b-2650-4638-8cbc-f933847d0a54.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

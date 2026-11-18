@@ -1,0 +1,13 @@
+{
+  "id": 1127,
+  "verdict": "수정 후 후보",
+  "use": "S08 숲길 바깥 둔한 바위",
+  "reason": "1.04m의 둔한 다면체는 유용하나 흙 같은 황갈색 재질이 강함",
+  "edit": "회색 바위 재질로 조절하고 열린 면 매입",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:07:19.731687+00:00",
+  "sourcePageSha256": "e3fb6ddc8e94df99f0309439079de7f81c8b7c942c6c3f184dcd57450cc33b3e"
+}

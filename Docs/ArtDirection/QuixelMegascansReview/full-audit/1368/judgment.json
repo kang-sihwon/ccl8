@@ -1,0 +1,13 @@
+{
+  "id": 1368,
+  "verdict": "수정 후 후보",
+  "use": "S08 입구 옆 둥근 이끼 바위",
+  "reason": "1.45m의 단순한 큰 면은 적합하나 상단이 과하게 희고 밝음",
+  "edit": "흰색 명도와 이끼 대비를 줄여 회색 돌 통일",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:17:00.800407+00:00",
+  "sourcePageSha256": "fd263c29e75c8afba675dcc74145074d0de1dc0814a455aa4275d658a8e69efe"
+}

@@ -1,0 +1,65 @@
+{
+  "id": 1055,
+  "url": "https://www.fab.com/listings/dc7775d0-4839-4fbd-9357-806218064850",
+  "uid": "dc7775d0-4839-4fbd-9357-806218064850",
+  "title": "Rush Daffodil",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:15:33.290829+00:00",
+  "pageSha256": "fc8c3cf99d8291ed88e83e6765f152728abe6bb3ed32e17380c8cba208a57a4f",
+  "description": "Maps: Roughness Normal Cavity Gloss Basecolor Specular Displacement Translucency AO Opacity Bump\n \nCreate high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "기재 확인 안 됨",
+  "mesh": "기재 확인 안 됨",
+  "texelDensity": "기재 확인 안 됨",
+  "maps": "Roughness Normal Cavity Gloss Basecolor Specular Displacement Translucency AO Opacity Bump",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/34a33602-b965-4a4e-89ad-64446760b215/ee29e9df-9330-4c1a-9e4e-bb4841ffc08f.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 2,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/34a33602-b965-4a4e-89ad-64446760b215/e366188d-1c88-4d50-8e13-fa6f95217e68.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

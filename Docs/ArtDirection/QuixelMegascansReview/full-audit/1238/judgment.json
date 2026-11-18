@@ -1,0 +1,13 @@
+{
+  "id": 1238,
+  "verdict": "추천",
+  "use": "S08 숲 안쪽 낮은 바위턱",
+  "reason": "4.01m의 큰 회색 덩어리와 불규칙한 균열이 숲 배경 경계에 적합",
+  "edit": "밝은 면 대비 절제 및 지면 접합",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:11:29.616406+00:00",
+  "sourcePageSha256": "70fa316ca570e887398ead19e5205ea992b1eed319c108b9ab6c5da0d0c6ba25"
+}

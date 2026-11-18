@@ -1,0 +1,65 @@
+{
+  "id": 1034,
+  "url": "https://www.fab.com/listings/1b8a6ba2-0883-468c-8bdf-b46b93babe59",
+  "uid": "1b8a6ba2-0883-468c-8bdf-b46b93babe59",
+  "title": "Dead Leaves",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:15:27.586169+00:00",
+  "pageSha256": "65789594aa4d698ae6baaf4881b20d598feffe444c3f384221e06f2a5caa90de",
+  "description": "Maps: Cavity Displacement Specular Gloss Normal Opacity Bump Roughness Basecolor Translucency\n \nCreate high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "기재 확인 안 됨",
+  "mesh": "기재 확인 안 됨",
+  "texelDensity": "기재 확인 안 됨",
+  "maps": "Cavity Displacement Specular Gloss Normal Opacity Bump Roughness Basecolor Translucency",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/14a1c590-8bf3-478e-a73b-108dfb5fd545/6d838908-1f08-4037-b61f-a9fbaefe8867.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 2,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/14a1c590-8bf3-478e-a73b-108dfb5fd545/5bc8a0e0-05ee-4240-9f17-13cf7639307c.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

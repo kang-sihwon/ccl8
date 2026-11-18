@@ -1,0 +1,13 @@
+{
+  "id": 1640,
+  "verdict": "보류",
+  "use": "S08 길가 자갈",
+  "reason": "12cm 밝은 둥근 돌은 적합하나 기존 변형 충분",
+  "edit": "밝기 조절",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:30:20.088817+00:00",
+  "sourcePageSha256": "27b90292c5ac284b46e99a4e584396976d5b57fa97b68c48d228c4723e664184"
+}

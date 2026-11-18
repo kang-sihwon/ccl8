@@ -1,0 +1,13 @@
+{
+  "id": 2203,
+  "verdict": "보류",
+  "use": "S01 빵 화물 대안",
+  "reason": "35cm 길쭉한 빵은 음식 물류 연출이 필요",
+  "edit": "식량 운송 확정 전 보류",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:52:25.951462+00:00",
+  "sourcePageSha256": "c5ef9eaaeb5590c49e2dbfd9f87f79c5494136849a2163ecdff6adc0dc5cc594"
+}

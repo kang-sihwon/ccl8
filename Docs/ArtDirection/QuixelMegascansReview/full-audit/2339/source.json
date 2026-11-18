@@ -1,0 +1,82 @@
+{
+  "id": 2339,
+  "url": "https://www.fab.com/listings/4f1961cf-6d62-46e6-97f7-ee9759dcd897",
+  "uid": "4f1961cf-6d62-46e6-97f7-ee9759dcd897",
+  "title": "Small Walnut Bread Loaf",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:23:42.420432+00:00",
+  "pageSha256": "74cf3a49f74a871999205d6671282f3c7a265552fa1415aebc1fb2e465efe53c",
+  "description": "Texel density: 5903 px/m\nPhysical size: 0.16m x 0.32m x 0.09m\nMesh type: Closed mesh\nMaps: Gloss Roughness AO Displacement(high tier only) Basecolor Bump Cavity Specular Normal\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.16m x 0.32m x 0.09m",
+  "mesh": "Closed mesh",
+  "texelDensity": "5903 px/m",
+  "maps": "Gloss Roughness AO Displacement(high tier only) Basecolor Bump Cavity Specular Normal",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "ZBrush",
+      "extensions": [
+        "zbp",
+        "ztl"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/9ca5e400-e856-4916-86f8-59c4a3591127/dc60ec4d-330a-4985-ba17-b79b455a3511.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/9ca5e400-e856-4916-86f8-59c4a3591127/6ae3bc77-8b18-499a-89e5-d47d5ff79499.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

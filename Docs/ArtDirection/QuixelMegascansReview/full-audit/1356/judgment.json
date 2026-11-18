@@ -1,0 +1,13 @@
+{
+  "id": 1356,
+  "verdict": "보류",
+  "use": "S01 작은 각진 화강암",
+  "reason": "20cm의 청회색 돌로 기존 자갈 세트와 중복",
+  "edit": "청색 기운 완화",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:17:00.787953+00:00",
+  "sourcePageSha256": "872b0623e7c5d6d658574a94e9df63117e6492f7030a74603b5055b2afd36c5b"
+}

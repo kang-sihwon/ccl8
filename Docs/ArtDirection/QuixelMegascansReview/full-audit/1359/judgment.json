@@ -1,0 +1,13 @@
+{
+  "id": 1359,
+  "verdict": "보류",
+  "use": "S01 어두운 둥근 바위 변형",
+  "reason": "1.73m의 짙은 다공성 돌로 1358과 역할 중복",
+  "edit": "검은 홈 대비 축소",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:17:00.790810+00:00",
+  "sourcePageSha256": "5c613f9317c38e52ece52e8613cfa0dab77622a5cb6f02180f9ca1799f2e9656"
+}

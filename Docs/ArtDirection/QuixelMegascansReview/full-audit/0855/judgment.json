@@ -1,0 +1,13 @@
+{
+  "id": 855,
+  "verdict": "보류",
+  "use": "S02 잘린 가지 재료",
+  "reason": "1.55m의 끝이 잘린 매끈한 가지로 0823·0824와 같은 역할이다.",
+  "edit": "기존 가공 가지 크기 변형 필요 시만",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:52:44.809411+00:00",
+  "sourcePageSha256": "d2283723dd44e6b4352d3521b1ab27e320a0c32d50faeda9d8a2b5dcf5827a7c"
+}

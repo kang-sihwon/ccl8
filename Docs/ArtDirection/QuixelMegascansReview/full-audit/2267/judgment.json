@@ -1,0 +1,13 @@
+{
+  "id": 2267,
+  "verdict": "수정 후 후보",
+  "use": "S01 견과 화물",
+  "reason": "4cm 갈색 헤이즐넛은 작은 식량 바구니에 적합",
+  "edit": "식량 품목 확인·숲 자생 단정 금지",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:55:15.636827+00:00",
+  "sourcePageSha256": "c26df033e9a3263b68487b5b0910c547d7daeb3912d736a583299c2d3eddbc4a"
+}

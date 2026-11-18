@@ -1,0 +1,85 @@
+{
+  "id": 1933,
+  "url": "https://www.fab.com/listings/3c562ea2-a3fd-414f-9cf1-2293be766d46",
+  "uid": "3c562ea2-a3fd-414f-9cf1-2293be766d46",
+  "title": "Candle Holder",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:21:07.822125+00:00",
+  "pageSha256": "1b6a0a61741ffcdf87f8aa2cbb52b9702552b5f33759602d3778035e2b3f7c4e",
+  "description": "Texel density: 1128 px/m\nPhysical size: 0.1m x 0.1m x 0.16m\nMesh type: Closed mesh\nMaps: AO Gloss Cavity Displacement(high tier only) Normal Specular Basecolor Roughness\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.1m x 0.1m x 0.16m",
+  "mesh": "Closed mesh",
+  "texelDensity": "1128 px/m",
+  "maps": "AO Gloss Cavity Displacement(high tier only) Normal Specular Basecolor Roughness",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "UEFN Reference",
+      "extensions": null,
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "UEFN - Reference only",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/95b50971-8a2e-4884-af11-52325c57580a/07d47d32-05bd-4578-86a9-9afc0436716d.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/95b50971-8a2e-4884-af11-52325c57580a/8d16105a-99f5-4767-84a5-5ef6df8b1b92.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

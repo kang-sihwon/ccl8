@@ -1,0 +1,13 @@
+{
+  "id": 1752,
+  "verdict": "보류",
+  "use": "S08 솔방울 변형",
+  "reason": "11cm 어두운 열린 솔방울로 기존 후보 충분",
+  "edit": "밝기 통일",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:33:48.190115+00:00",
+  "sourcePageSha256": "2d237dfb4ddfe392d34446c81d9bf2b3de8f28e99a9d2c3ee32b2c03daefd93e"
+}

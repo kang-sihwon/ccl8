@@ -1,0 +1,82 @@
+{
+  "id": 1489,
+  "url": "https://www.fab.com/listings/c47f6376-20c4-4631-a6d6-82f626652691",
+  "uid": "c47f6376-20c4-4631-a6d6-82f626652691",
+  "title": "Quarry Cliff",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:18:17.406107+00:00",
+  "pageSha256": "e7f74f5520ca67bd9614fc3a6138e97da38fb52b7005c4f0105528f37f56a2e7",
+  "description": "Texel density: 6222 px/m\nPhysical size: 9.22m x 13.44m x 14.25m\nMesh type: Open mesh\nMaps: Cavity Specular AO Basecolor Displacement(high tier only) Bump Normal Gloss Roughness\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "9.22m x 13.44m x 14.25m",
+  "mesh": "Open mesh",
+  "texelDensity": "6222 px/m",
+  "maps": "Cavity Specular AO Basecolor Displacement(high tier only) Bump Normal Gloss Roughness",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "ZBrush",
+      "extensions": [
+        "zbp",
+        "ztl"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/c7008e39-3a70-4b5c-99b5-f0263b6ff5f6/b7bbc2a3-e1f1-400b-9ed6-8de653ad0e37.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/c7008e39-3a70-4b5c-99b5-f0263b6ff5f6/d26dcfe3-11fd-4191-adca-42644c9d70f1.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

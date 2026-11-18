@@ -1,0 +1,65 @@
+{
+  "id": 1024,
+  "url": "https://www.fab.com/listings/3b23a3ad-6d00-4355-86c8-e9f0c8622f39",
+  "uid": "3b23a3ad-6d00-4355-86c8-e9f0c8622f39",
+  "title": "Bog Bilberry",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:15:23.177676+00:00",
+  "pageSha256": "236cade76a76023d80f1d059aaa4ba81d31a6c2bb9dcd5c95f3dc13223755f49",
+  "description": "Maps: Normal Cavity Roughness Bump Translucency Gloss Opacity Specular AO Basecolor Displacement\n \nCreate high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "기재 확인 안 됨",
+  "mesh": "기재 확인 안 됨",
+  "texelDensity": "기재 확인 안 됨",
+  "maps": "Normal Cavity Roughness Bump Translucency Gloss Opacity Specular AO Basecolor Displacement",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/026e8831-38b5-48ac-b170-987ae5c42e1b/6bc14abf-6ef7-4ebc-ad7e-fb87f6c20492.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 2,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/026e8831-38b5-48ac-b170-987ae5c42e1b/f36ee0d2-08dd-4dbe-859c-aa3d37e7a98f.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

@@ -1,0 +1,82 @@
+{
+  "id": 1496,
+  "url": "https://www.fab.com/listings/b439c10e-057e-4690-a0dd-23f3b4e4366a",
+  "uid": "b439c10e-057e-4690-a0dd-23f3b4e4366a",
+  "title": "Quarry Outcrop",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:18:18.760679+00:00",
+  "pageSha256": "5649ee4d3bb8da9807c23f9f69fabf2cbe6077375843277150fb2c70bd9fa91c",
+  "description": "Texel density: 5633 px/m\nPhysical size: 0.66m x 2.69m x 0.52m\nMesh type: Open mesh\nMaps: AO Displacement(high tier only) Specular Basecolor Bump Cavity Gloss Normal Roughness\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.66m x 2.69m x 0.52m",
+  "mesh": "Open mesh",
+  "texelDensity": "5633 px/m",
+  "maps": "AO Displacement(high tier only) Specular Basecolor Bump Cavity Gloss Normal Roughness",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "ZBrush",
+      "extensions": [
+        "zbp",
+        "ztl"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/4140def0-f3ac-451e-b7c1-dc64e7ea0f5d/95086283-48e7-40d1-ace2-dbf04165a74d.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/4140def0-f3ac-451e-b7c1-dc64e7ea0f5d/442f0038-40b6-4c6a-a944-9b20e1bd7618.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

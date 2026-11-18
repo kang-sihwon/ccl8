@@ -1,0 +1,13 @@
+{
+  "id": 1576,
+  "verdict": "보류",
+  "use": "S08 작은 바위 변형",
+  "reason": "44cm 둥근 화강암은 적합하나 1575의 작은 변형 용도 중복",
+  "edit": "주황색 약화",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:27:20.427101+00:00",
+  "sourcePageSha256": "d48d8475996fb812a535193c6d30f5bbb0417e34dbc6bedbb757e09704b44a7a"
+}

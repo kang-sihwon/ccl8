@@ -1,0 +1,13 @@
+{
+  "id": 1117,
+  "verdict": "제외",
+  "use": "현재 세 장소 배치 없음",
+  "reason": "3.09m의 길고 붉은 매끈한 침전물 파편으로 기존 암반과 형태 차이 큼",
+  "edit": "현재 자연석 후보 사용",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:07:19.720888+00:00",
+  "sourcePageSha256": "f5fb30d53f31a13e6fda6ee47d49ea1e204bf86f565d1bfec57dd5caeb991e6f"
+}

@@ -1,0 +1,90 @@
+{
+  "id": 2009,
+  "url": "https://www.fab.com/listings/15acc8f0-72cb-48bd-a182-4a97aea0ced9",
+  "uid": "15acc8f0-72cb-48bd-a182-4a97aea0ced9",
+  "title": "Historic Medieval Farm Shovel Iron M",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:21:35.603527+00:00",
+  "pageSha256": "c618193303a8805d22b989f0772fc9dbadb2dde05acabda2c7c32af42df7ac96",
+  "description": "Bring rural realism to your worlds with the ‘Medieval Farm’ themed assets, featuring high-fidelity scans of a barn interior filled with wooden carts, rugged chairs, barrels, and some essential farming tools. \nWhether you’re building an old cottage, a farmstead, or an entire agrarian settlement, these scans provide the texture, grit, and atmosphere you need.\nShowcase Video\nTexel density: 29948 px/m\nPhysical size: 0.1m x 0.48m x 0.27m\nMesh type: Closed mesh\nMaps: AO Basecolor Bump Cavity Diffuse Displacement Gloss Metalness Normal Roughness Specular\nCreate high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.\n\nCurious about future releases? Discover upcoming Megascans content and vote for your favorite themes: Public Roadmap",
+  "size": "0.1m x 0.48m x 0.27m",
+  "mesh": "Closed mesh",
+  "texelDensity": "29948 px/m",
+  "maps": "AO Basecolor Bump Cavity Diffuse Displacement Gloss Metalness Normal Roughness Specular",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "ZBrush",
+      "extensions": [
+        "zbp",
+        "ztl"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/71b32f78-720c-4271-ab1f-f0b6ccfe79b4/e903867a-5567-41ab-bb04-9cb740b762f5.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/71b32f78-720c-4271-ab1f-f0b6ccfe79b4/7c7cc7fe-82bd-4a98-8417-2ca335243842.jpeg"
+    },
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/aad2ddb3-e824-448e-af0a-eaa6ea6e830b/e119f8d4-ebc7-4624-b5b8-6de30aa238f8.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 2,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/aad2ddb3-e824-448e-af0a-eaa6ea6e830b/9f8abe8d-d5d9-445d-b8c9-0e9da45cc178.jpg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg",
+    "gallery-02.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

@@ -1,0 +1,13 @@
+{
+  "id": 1353,
+  "verdict": "수정 후 후보",
+  "use": "S08 입구 발치 이끼 바위·낙엽 패치",
+  "reason": "1.3m의 중심 돌과 낙엽 연결은 유용하나 흰 얼룩과 초록 이끼 대비가 강함",
+  "edit": "지의류·이끼 대비 축소 및 열린 경계 매입",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:17:00.785179+00:00",
+  "sourcePageSha256": "e0fc12fecda87250d751ddaa44bbe8ac841bec3f669e9163e5fd30e47c5473eb"
+}

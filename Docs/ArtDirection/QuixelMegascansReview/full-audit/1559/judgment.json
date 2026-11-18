@@ -1,0 +1,13 @@
+{
+  "id": 1559,
+  "verdict": "보류",
+  "use": "S01 홈이 있는 자갈 변형",
+  "reason": "13cm 회색 돌의 깊은 홈은 가능하나 1546과 용도 중복",
+  "edit": "일부 매입해 반복 감추기",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:27:20.410804+00:00",
+  "sourcePageSha256": "21b87e6f12ea6145a35348f424b6eba0272f9d249c86e80e108b500ec548d124"
+}

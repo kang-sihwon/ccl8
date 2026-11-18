@@ -1,0 +1,93 @@
+{
+  "id": 1389,
+  "url": "https://www.fab.com/listings/eb51bbdc-7038-4142-9184-af26e0fb2280",
+  "uid": "eb51bbdc-7038-4142-9184-af26e0fb2280",
+  "title": "Japanese Mossy Boulder",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:17:40.360293+00:00",
+  "pageSha256": "b51ea0bfad554fe8799ebb737d0b0fc358e0700089cf4579e0b203ebc8ad4e20",
+  "description": "Texel density: 5520 px/m\nPhysical size: 1.01m x 1.17m x 1.0m\nMesh type: Closed mesh\nMaps: AO Gloss Cavity Fuzz Roughness Displacement(high tier only) Normal Specular Basecolor Bump\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "1.01m x 1.17m x 1.0m",
+  "mesh": "Closed mesh",
+  "texelDensity": "5520 px/m",
+  "maps": "AO Gloss Cavity Fuzz Roughness Displacement(high tier only) Normal Specular Basecolor Bump",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "ZBrush",
+      "extensions": [
+        "zbp",
+        "ztl"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "UEFN Reference",
+      "extensions": null,
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "UEFN - Reference only",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/84ef1e0a-84d0-41b8-aeee-77b932cb2012/b66517df-398c-467b-9b1e-63e46b1ce436.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/84ef1e0a-84d0-41b8-aeee-77b932cb2012/d07fefb8-4976-4afe-960f-41b7c3db9701.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

@@ -6,15 +6,21 @@ Orbis의 그래픽 스타일을 ccl8의 마을, 전투 구간, 보스 공간에 
 
 | 문서 | 읽는 때 |
 |---|---|
+| [벨레스 B안 건축 키트 비교](ArtDirection/VelesBuildingKits-2026-11-18.md) | 보유 후보 16개의 상세·이미지 근거와 공방·주택 조립안을 비교할 때 |
+| [벨레스 아트 콘셉트 3안](ArtDirection/VelesConcepts-2026-11-17.md) | 리소스 선정 전에 현실감·반실사·형태 중심의 목표 화면을 비교할 때 |
 | [에테르 첫 장 MJ 시안 목록](ArtDirection/EtherFirstChapter.md) | 도입부터 바르툴전 이후 출항까지 YouArt에서 만들 디자인과 장면 시안을 고를 때 |
 | [에테르 세계지도 시안](ArtDirection/EtherWorldMap.md) | 육지 35%·이그니스 2,000만 km²의 계산 보정 지도와 대륙·벨레스 지역 확대를 볼 때 |
 | [지도 제작 기준과 채택 시안](ArtDirection/EtherWorldMap/MapPresentation.md) | 벨레스·이그니스·에테르 최종 시안 v2와 이후 지도의 화풍·UI·지명 표기 기준을 적용할 때 |
+| [Quixel Megascans 3D 리소스 조사](ArtDirection/QuixelMegascans-2026-11-16.md) | 8,825개 상품의 전체 검색표와 상세 확인한 41개 후보를 세계관·지역·제작 조건별로 비교할 때 |
+| [벨레스 Megascans 상세·이미지 선별](ArtDirection/QuixelMegascansReview.md) | 우선 후보 2,387개의 상세 검토 진행과 실제 이미지로 추린 공방·나루·숲 리소스를 비교할 때 |
 
 ## 참고 근거
 
 2026-10-05에 확인한 Orbis의 `Docs/ArtConcept.md`를 요약했다. 원문은 기본 렌더링 방향을 후보로, 주인공 성별과 세부 디자인을 미결로 표시하므로 원문의 후보를 ccl8의 확정안으로 취급하지 않는다. 이 문서는 참고 방향만 기록하고 Orbis 원문·이미지·얼굴 후보 풀을 가져오지 않는다.
 
 ## 시각 기준(제안)
+
+벨레스 환경 콘셉트는 [결정 66](decisions/0066-veles-b-art-direction.md)에 따라 [B안의 서정적인 반실사 화풍](ArtDirection/VelesConcepts-2026-11-17/B-lyrical.png)을 기준으로 한다. 후속 [공방·나루·숲 시안](ArtDirection/VelesConcepts-2026-11-17/B-scenes.md)은 기존 지도·배치 위치를 반영한다. B 원본의 압축된 공간 구성과 아래 다른 미확정 항목까지 채택한 것은 아니다.
 
 | 항목 | ccl8에 적용할 방향 |
 |---|---|

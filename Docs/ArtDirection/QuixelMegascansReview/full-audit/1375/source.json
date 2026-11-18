@@ -1,0 +1,93 @@
+{
+  "id": 1375,
+  "url": "https://www.fab.com/listings/b3b6906f-ef49-4440-8af2-e0a08048551f",
+  "uid": "b3b6906f-ef49-4440-8af2-e0a08048551f",
+  "title": "Granite Rocks",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:17:34.558805+00:00",
+  "pageSha256": "480025c5b5028cf409bb19541d45ece53bba52c69cd4b05d41ec17330d8a935c",
+  "description": "Texel density: 3495 px/m\nPhysical size: 0.73m x 0.9m x 0.49m\nMesh type: Closed mesh\nMaps: Displacement(high tier only) Cavity Gloss Specular Basecolor Roughness Normal AO Bump\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.73m x 0.9m x 0.49m",
+  "mesh": "Closed mesh",
+  "texelDensity": "3495 px/m",
+  "maps": "Displacement(high tier only) Cavity Gloss Specular Basecolor Roughness Normal AO Bump",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "ZBrush",
+      "extensions": [
+        "zbp",
+        "ztl"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "UEFN Reference",
+      "extensions": null,
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "UEFN - Reference only",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/efe0dff5-e63f-4675-93d8-f057d43909a1/7dc8951f-67c5-4d0a-9433-3c8b84fcc41f.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/efe0dff5-e63f-4675-93d8-f057d43909a1/a6e96b81-0f7d-4f7f-b2cc-1f07a4a0c22b.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

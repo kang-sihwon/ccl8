@@ -1,0 +1,13 @@
+{
+  "id": 446,
+  "verdict": "보류",
+  "use": "S08 바위 군집 대체",
+  "reason": "비스듬한 두 돌의 삼각 형태는 유용하나 0445와 같은 규모·역할이다.",
+  "edit": "0445 반복이 드러날 때 교체; 바닥 열린 면 숨기기",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:29:37.249711+00:00",
+  "sourcePageSha256": "0f77d2f78ceb6dde7274573358ed276ef09fa57eac3e1614ebe8df901ac97f8b"
+}

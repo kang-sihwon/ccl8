@@ -1,0 +1,13 @@
+{
+  "id": 1182,
+  "verdict": "추천",
+  "use": "S08 숲길 측면의 긴 뿌리·돌 턱",
+  "reason": "4.54m의 낮은 뿌리와 돌이 연결된 턱이 경사 가장자리 구성에 적합",
+  "edit": "녹색 채도 조절 및 열린 경계 매입",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:09:31.912765+00:00",
+  "sourcePageSha256": "824d15c495e1246332fcbde1b919ebc7e69ebeec4f770347dd42d3405e9edad0"
+}

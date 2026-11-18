@@ -1,0 +1,13 @@
+{
+  "id": 601,
+  "verdict": "보류",
+  "use": "S08 활엽수 밑동 변형",
+  "reason": "매끈하고 곧은 줄기와 뿌리가 0599의 작은 변형이다.",
+  "edit": "0599 반복 회피 필요 시만; 수관 별도",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:38:54.196427+00:00",
+  "sourcePageSha256": "c3c5ecb3e8cc6366b0178bc984dca952d8d881b5d13f02fb532d9d6d23a7c634"
+}

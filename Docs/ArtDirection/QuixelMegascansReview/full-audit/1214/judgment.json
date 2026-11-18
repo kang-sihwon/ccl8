@@ -1,0 +1,13 @@
+{
+  "id": 1214,
+  "verdict": "추천",
+  "use": "S08 숲길 바깥 낮고 긴 바위",
+  "reason": "3.78m의 평평한 상단과 낮은 이끼 경계가 길 측면에 적합",
+  "edit": "열린 밑면 매입 및 이끼 채도 통일",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:11:29.587602+00:00",
+  "sourcePageSha256": "4a63a227fbd8e4be44548e0ca5f98a3dab185203a4a2f7361385f037a0cad92d"
+}

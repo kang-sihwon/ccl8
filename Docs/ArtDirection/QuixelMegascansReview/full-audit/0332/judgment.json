@@ -1,0 +1,13 @@
+{
+  "id": 332,
+  "verdict": "제외",
+  "use": "S02 수공구·S01 노 대용에서 제외",
+  "reason": "끝이 굽은 하키 스틱 형상이 읽혀 공구나 노로 배치하면 용도가 어색하다.",
+  "edit": "목재라는 재질만으로 채택하지 않고 해당 용도의 도구를 쓴다.",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:16:43.054853+00:00",
+  "sourcePageSha256": "e43fbf9fd0b832cfccf8591de75235c0d9db9e6497face5f5fcbe8561de85c3a"
+}

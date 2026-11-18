@@ -1,0 +1,13 @@
+{
+  "id": 993,
+  "verdict": "보류",
+  "use": "S08 작은 보라 버섯 변형",
+  "reason": "8cm의 작은 보라 갓으로 977과 용도 중복",
+  "edit": "실측 유지 및 보라색 완화",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:01:11.397278+00:00",
+  "sourcePageSha256": "a7bef9e5e5a000207ce8cf124cb386929bba16231afb1b9ea87d968436ccc6c7"
+}

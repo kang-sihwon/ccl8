@@ -1,0 +1,13 @@
+{
+  "id": 1352,
+  "verdict": "보류",
+  "use": "S02 작은 원석 견본 변형",
+  "reason": "5cm 안팎의 파랑·청록·붉은 원석으로 1351과 역할 중복하며 용도 미확정",
+  "edit": "공방 취급 재료 확정 시 재검토",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:17:00.784255+00:00",
+  "sourcePageSha256": "e9d7f0895e54b1623f17f2a7ff576ebff08eb090e4fc6bbbe484f970d0bae529"
+}

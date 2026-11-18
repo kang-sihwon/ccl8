@@ -1,0 +1,13 @@
+{
+  "id": 424,
+  "verdict": "보류",
+  "use": "S08 작은 가지 파편",
+  "reason": "0.42m의 짧은 갈색 가지로 다른 파편 후보와 기능이 겹친다.",
+  "edit": "근경 바닥 밀도가 부족할 때만 추가",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:27:25.610193+00:00",
+  "sourcePageSha256": "bbfa3a8c83bf11bed7196defcd5f71dc569e98b79291fe1c217ff7cefcf8d61d"
+}

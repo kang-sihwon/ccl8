@@ -1,0 +1,13 @@
+{
+  "id": 2106,
+  "verdict": "보류",
+  "use": "S02 장부 대안",
+  "reason": "17cm 마블 표지와 파손된 장식 책등이 강함",
+  "edit": "무늬·파손 완화",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:46:35.349389+00:00",
+  "sourcePageSha256": "785d17c01e12f005fd61fd91965831541f59453124ecfd62e0828b5c0d0ccf6c"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 828,
+  "verdict": "보류",
+  "use": "S08 굵은 활엽수 줄기 변형",
+  "reason": "굵은 매끈한 줄기와 옆으로 뻗은 뿌리가 0826의 변형 역할이다.",
+  "edit": "수관 연결 전제; 기존 후보 우선",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:52:44.783087+00:00",
+  "sourcePageSha256": "d1a3a64695c682ea2df6e35eefdb229cf2e4819a7f53604e52591151e156dfbe"
+}

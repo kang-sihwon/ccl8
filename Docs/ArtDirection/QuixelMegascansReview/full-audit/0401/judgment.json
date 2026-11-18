@@ -1,0 +1,13 @@
+{
+  "id": 401,
+  "verdict": "추천",
+  "use": "S02 수레 수리품·S01 예비 바퀴",
+  "reason": "가는 단순 바퀴살과 목제 테두리의 온전한 바퀴라 생활 수레 수리에 맞는다.",
+  "edit": "기대 둔 정적 소품으로 우선 사용하고 축·구동은 별도 검증한다.",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:22:16.893190+00:00",
+  "sourcePageSha256": "faa8db874eae5a7aae8b1bfd16149bf6c3f3d78c6cc102496c900e0ee3cc7acc"
+}

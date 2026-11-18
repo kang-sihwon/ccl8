@@ -1,0 +1,13 @@
+{
+  "id": 1112,
+  "verdict": "수정 후 후보",
+  "use": "S01 나루 물선 위 진흙 조각",
+  "reason": "72cm의 둥글고 낮은 흙판이 수변 접합에 유용하나 주황색이 강함",
+  "edit": "회갈색 흙으로 조절하고 열린 가장자리 매입",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:07:19.715040+00:00",
+  "sourcePageSha256": "8ab0ac5f8aa9638f6273a125ee9e83aba554c2b973f8e79cfe934b55eac9fa64"
+}

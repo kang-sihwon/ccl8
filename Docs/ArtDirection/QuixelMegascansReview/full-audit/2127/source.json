@@ -1,0 +1,82 @@
+{
+  "id": 2127,
+  "url": "https://www.fab.com/listings/6d950059-3ee4-47ca-aab1-fd31ba24e54a",
+  "uid": "6d950059-3ee4-47ca-aab1-fd31ba24e54a",
+  "title": "Old Clay Sistrum",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:22:20.356232+00:00",
+  "pageSha256": "26522fa277042830ea67c60b8e94449ee3c2e2d2c7a0264f1e81fe8778bef0a2",
+  "description": "Texel density: 5736 px/m\nPhysical size: 0.16m x 0.32m x 0.05m\nMesh type: Closed mesh\nMaps: Specular Roughness Cavity AO Bump Gloss Displacement(high tier only) Basecolor Normal\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.16m x 0.32m x 0.05m",
+  "mesh": "Closed mesh",
+  "texelDensity": "5736 px/m",
+  "maps": "Specular Roughness Cavity AO Bump Gloss Displacement(high tier only) Basecolor Normal",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "ZBrush",
+      "extensions": [
+        "zbp",
+        "ztl"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/06f190b1-5086-4dfb-a349-038b81dd547c/e34ed729-9087-4bf7-8414-13e7af68002b.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/06f190b1-5086-4dfb-a349-038b81dd547c/844ae53e-60c3-4d53-a3e6-028a9b1e412c.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

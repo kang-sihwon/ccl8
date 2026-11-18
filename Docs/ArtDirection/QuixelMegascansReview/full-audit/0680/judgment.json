@@ -1,0 +1,13 @@
+{
+  "id": 680,
+  "verdict": "보류",
+  "use": "S08 긴 마른 가지",
+  "reason": "1.66m의 가늘고 곧은 가지로 0512·0675와 역할이 겹친다.",
+  "edit": "반복 회피용으로만 사용",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:44:12.015320+00:00",
+  "sourcePageSha256": "1c4d649276352f6239a05a6bc93a5264da04fd3e778f7fffcf517c02d6cb9148"
+}

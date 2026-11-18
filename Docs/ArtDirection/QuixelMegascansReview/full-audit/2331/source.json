@@ -1,0 +1,82 @@
+{
+  "id": 2331,
+  "url": "https://www.fab.com/listings/bc332753-ee5a-4bdb-8826-3dc7af28a0b7",
+  "uid": "bc332753-ee5a-4bdb-8826-3dc7af28a0b7",
+  "title": "Round White Bread",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:23:38.443283+00:00",
+  "pageSha256": "0784e5ac0c401a09e6cbbad3efcbd1ff5af501f788f9415de44bc4a5a21674f2",
+  "description": "Texel density: 5783 px/m\nPhysical size: 0.16m x 0.17m x 0.08m\nMesh type: Closed mesh\nMaps: Displacement(high tier only) Cavity Gloss Specular Basecolor Roughness Normal AO Bump\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.16m x 0.17m x 0.08m",
+  "mesh": "Closed mesh",
+  "texelDensity": "5783 px/m",
+  "maps": "Displacement(high tier only) Cavity Gloss Specular Basecolor Roughness Normal AO Bump",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "ZBrush",
+      "extensions": [
+        "zbp",
+        "ztl"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/95f6b751-0e82-4d2d-83b4-9fc6c58d15e1/921c9e2d-f849-4e33-aedc-4fab317a845f.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/95f6b751-0e82-4d2d-83b4-9fc6c58d15e1/9c2c0e0f-b9cf-479f-8035-3fb1fdec2479.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

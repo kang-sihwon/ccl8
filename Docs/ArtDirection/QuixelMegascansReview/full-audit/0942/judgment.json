@@ -1,0 +1,13 @@
+{
+  "id": 942,
+  "verdict": "보류",
+  "use": "S02 짧은 연료 조각",
+  "reason": "25cm의 절단된 둥근 가지지만 기존 장작 세트로 대체 가능",
+  "edit": "절단면 밝기 통일",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:59:25.690384+00:00",
+  "sourcePageSha256": "6b08dc5a50189c5637e2d96baf0e0468ec8b031927e28e746559fdc9df25c1ad"
+}

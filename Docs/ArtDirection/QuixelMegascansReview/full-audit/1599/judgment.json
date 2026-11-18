@@ -1,0 +1,13 @@
+{
+  "id": 1599,
+  "verdict": "제외",
+  "use": "현재 세 장소 제외",
+  "reason": "8cm 붉은 정육면체형 돌은 회색 수변석과 다름",
+  "edit": "기존 후보 사용",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:28:52.979267+00:00",
+  "sourcePageSha256": "2a8596a7941d1ea59151a082567644a97e2f7c449b4dd9c80c5b67db604106b8"
+}

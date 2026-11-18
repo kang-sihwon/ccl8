@@ -1,0 +1,13 @@
+{
+  "id": 1407,
+  "verdict": "보류",
+  "use": "S01 작은 돌 군집 변형",
+  "reason": "65cm의 작은 돌과 붉은 흙으로 기존 자갈 패치 충분",
+  "edit": "실측 유지 및 붉은색 완화",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:19:10.435266+00:00",
+  "sourcePageSha256": "c88b69ad3b533df1e82728a1418bb7eff6ce95b2ad9ebd5329a749712f2d660a"
+}

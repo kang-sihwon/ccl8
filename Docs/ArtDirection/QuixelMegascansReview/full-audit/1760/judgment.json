@@ -1,0 +1,13 @@
+{
+  "id": 1760,
+  "verdict": "수정 후 후보",
+  "use": "S02 작업대 위 부품 서랍함",
+  "reason": "42cm 작은 목제 서랍함은 수납에 유용하나 금속 라벨 손잡이가 정형적",
+  "edit": "라벨 홀더 단순화 및 광택 감소",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:33:48.197736+00:00",
+  "sourcePageSha256": "9bd5b3a225d77acdb6e358b35e838de991c9c0ed51db00be0ac623fc17a2b7fb"
+}

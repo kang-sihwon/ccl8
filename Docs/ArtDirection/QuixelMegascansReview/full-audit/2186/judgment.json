@@ -1,0 +1,13 @@
+{
+  "id": 2186,
+  "verdict": "수정 후 후보",
+  "use": "S02 소박한 식사 그릇",
+  "reason": "9cm 구운 순무의 무광 갈색 표면이 과장되지 않음",
+  "edit": "식량 품목·식사 배치 확인",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:52:25.934927+00:00",
+  "sourcePageSha256": "8d9faa50dd2dba46880a105059402f4aafd6065bb3b34326795944601abeb711"
+}

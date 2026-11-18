@@ -1,0 +1,13 @@
+{
+  "id": 504,
+  "verdict": "보류",
+  "use": "S08 가는 고사목 변형",
+  "reason": "가늘고 직선인 짧은 줄기로 0503보다 실루엣 특성이 약하다.",
+  "edit": "군락 밀도 보완 필요 시만; 열린 상단 처리",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:32:36.376597+00:00",
+  "sourcePageSha256": "cf68132b3957f4c2871fef6a77c7fd511b9c59594a1ae859bb4d919bb8f0a9a9"
+}

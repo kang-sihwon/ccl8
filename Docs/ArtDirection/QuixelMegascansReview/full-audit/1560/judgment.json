@@ -1,0 +1,13 @@
+{
+  "id": 1560,
+  "verdict": "보류",
+  "use": "S01 근접 자갈 변형",
+  "reason": "5cm 흑백 점박이 돌로 화면 기여 낮음",
+  "edit": "근접 장면에만 제한",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:27:20.411760+00:00",
+  "sourcePageSha256": "33cbfc406a3efaaa14bcb6c0535dcf638800c101fe48bf25c2eeca169ec96a91"
+}

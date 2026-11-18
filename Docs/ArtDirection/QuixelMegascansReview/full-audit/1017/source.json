@@ -1,0 +1,82 @@
+{
+  "id": 1017,
+  "url": "https://www.fab.com/listings/1763bdb6-8157-454b-89d9-678832204ac3",
+  "uid": "1763bdb6-8157-454b-89d9-678832204ac3",
+  "title": "White Button Mushroom",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:15:21.244784+00:00",
+  "pageSha256": "3d75461bbcb791e8748c76fb908a170145bf22f36bd0e546d28347318d3a0842",
+  "description": "Texel density: 5437 px/m\nPhysical size: 0.06m x 0.06m x 0.07m\nMesh type: Closed mesh\nMaps: Cavity Specular AO Basecolor Displacement(high tier only) Bump Normal Gloss Roughness\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.06m x 0.06m x 0.07m",
+  "mesh": "Closed mesh",
+  "texelDensity": "5437 px/m",
+  "maps": "Cavity Specular AO Basecolor Displacement(high tier only) Bump Normal Gloss Roughness",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "ZBrush",
+      "extensions": [
+        "zbp",
+        "ztl"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/f3d0d2e8-925e-4849-9d86-cbaf59f8b81c/6a5890ad-65d4-4bdb-8590-89b26a15b24b.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/f3d0d2e8-925e-4849-9d86-cbaf59f8b81c/30274b69-43b6-4e61-ad29-34370f1d2325.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

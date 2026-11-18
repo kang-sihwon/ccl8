@@ -1,0 +1,13 @@
+{
+  "id": 1273,
+  "verdict": "보류",
+  "use": "S01 작은 거친 자갈",
+  "reason": "22cm의 밝고 다공성인 돌로 기존 작은 자연석 충분",
+  "edit": "밝기와 요철 대비 완화",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:13:25.150906+00:00",
+  "sourcePageSha256": "bec3ff64312331a828789b0533722f5aed7fc5ca032cca8ce768073f3adb6e81"
+}

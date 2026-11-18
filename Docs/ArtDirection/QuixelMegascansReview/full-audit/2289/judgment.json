@@ -1,0 +1,13 @@
+{
+  "id": 2289,
+  "verdict": "보류",
+  "use": "S01 과일 대안",
+  "reason": "5cm 선명한 오렌지는 감귤 후보 중복",
+  "edit": "교역 확인",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:55:15.658417+00:00",
+  "sourcePageSha256": "f28c8db99feb78bbf6413d4a255bc99ff622299d687974370dfb7420860fe308"
+}

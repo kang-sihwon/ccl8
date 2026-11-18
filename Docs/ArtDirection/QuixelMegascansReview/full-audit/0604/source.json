@@ -1,0 +1,93 @@
+{
+  "id": 604,
+  "url": "https://www.fab.com/listings/0bef4aac-367e-49dc-ade4-cb2a4ee4c920",
+  "uid": "0bef4aac-367e-49dc-ade4-cb2a4ee4c920",
+  "title": "Blackened Tree Trunk",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:12:40.579924+00:00",
+  "pageSha256": "cdb8c60e7dcf5c820fc169e81524ad23bf21ae5b41bf45f8b377a76c996357d0",
+  "description": "Texel density: 5076 px/m\nPhysical size: 0.94m x 0.91m x 2.2m\nMesh type: Open mesh\nMaps: Roughness Specular Cavity Normal Bump AO Basecolor Displacement(high tier only) Gloss\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.94m x 0.91m x 2.2m",
+  "mesh": "Open mesh",
+  "texelDensity": "5076 px/m",
+  "maps": "Roughness Specular Cavity Normal Bump AO Basecolor Displacement(high tier only) Gloss",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "ZBrush",
+      "extensions": [
+        "zbp",
+        "ztl"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "UEFN Reference",
+      "extensions": null,
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "UEFN - Reference only",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/cc4de6a8-48ba-447a-add8-9bc3ade42871/0e98d9f6-6586-4cd8-b9d0-c03b12f7a777.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/cc4de6a8-48ba-447a-add8-9bc3ade42871/94dcdfc7-0238-4803-a4d6-ad3b3517cee8.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

@@ -1,0 +1,93 @@
+{
+  "id": 654,
+  "url": "https://www.fab.com/listings/33625e5f-f6f0-4541-90f0-3da16858542e",
+  "uid": "33625e5f-f6f0-4541-90f0-3da16858542e",
+  "title": "Eroded Pine Log",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:12:59.446470+00:00",
+  "pageSha256": "8f53d285fb4b232e906ec4a3005a1d65622af81a297aed8019a3d847b3e169cb",
+  "description": "Texel density: 5801 px/m\nPhysical size: 0.13m x 1.3m x 0.07m\nMesh type: Closed mesh\nMaps: Displacement(high tier only) Roughness Gloss Specular Basecolor Cavity Bump Normal Ao\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.13m x 1.3m x 0.07m",
+  "mesh": "Closed mesh",
+  "texelDensity": "5801 px/m",
+  "maps": "Displacement(high tier only) Roughness Gloss Specular Basecolor Cavity Bump Normal Ao",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "ZBrush",
+      "extensions": [
+        "zbp",
+        "ztl"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "UEFN Reference",
+      "extensions": null,
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "UEFN - Reference only",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/ef0f0e90-55da-40e7-b2ee-4ac0416a63f4/cb6b68f2-1e69-4587-baff-f2a5f27150b2.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/ef0f0e90-55da-40e7-b2ee-4ac0416a63f4/b667d6ed-9945-4588-b4c8-a5c4e3957094.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

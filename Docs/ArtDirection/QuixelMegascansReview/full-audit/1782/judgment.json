@@ -1,0 +1,13 @@
+{
+  "id": 1782,
+  "verdict": "보류",
+  "use": "S02 작은 벽돌 잔해",
+  "reason": "11cm 단순한 갈색 파편이나 보수 연출 필요 미확정",
+  "edit": "실제 벽체 재질 확인",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:35:21.219311+00:00",
+  "sourcePageSha256": "d125b1360798ffa1d55fd42aa71e2b4ce7a5dfae003124fbd6eb3c80bf70ba8b"
+}

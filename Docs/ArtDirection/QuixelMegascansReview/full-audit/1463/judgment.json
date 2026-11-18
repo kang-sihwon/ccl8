@@ -1,0 +1,13 @@
+{
+  "id": 1463,
+  "verdict": "보류",
+  "use": "S08 소형 이끼 돌 세트 변형",
+  "reason": "34cm 안팎의 넓은 이끼 돌 조합으로 기존 세트 충분",
+  "edit": "실측 유지 및 이끼색 통일",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:21:12.805663+00:00",
+  "sourcePageSha256": "1050dbe3137c9a9fa9471b8a8f11253349c0d42ba4de723bc7f92f778fd7dd9b"
+}

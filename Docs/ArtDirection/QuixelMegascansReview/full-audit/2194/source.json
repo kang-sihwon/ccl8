@@ -1,0 +1,85 @@
+{
+  "id": 2194,
+  "url": "https://www.fab.com/listings/f6cc1dba-fb81-4d41-a9b8-601b5212da2d",
+  "uid": "f6cc1dba-fb81-4d41-a9b8-601b5212da2d",
+  "title": "Black Bread",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:22:45.496470+00:00",
+  "pageSha256": "457bc4c9fa7b7805f13a7cfa9b523ff69cbf6e0d920dcf50f697049e5ce75795",
+  "description": "Texel density: 1213 px/m\nPhysical size: 0.24m x 0.16m x 0.12m\nMesh type: Closed mesh\nMaps: AO Displacement(high tier only) Specular Basecolor Cavity Gloss Normal Roughness\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.24m x 0.16m x 0.12m",
+  "mesh": "Closed mesh",
+  "texelDensity": "1213 px/m",
+  "maps": "AO Displacement(high tier only) Specular Basecolor Cavity Gloss Normal Roughness",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "UEFN Reference",
+      "extensions": null,
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "UEFN - Reference only",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/5d7465e1-7992-4adb-a17c-38ddee2b3a72/457d3bc6-9a05-46cd-a010-0b64acab10a8.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/5d7465e1-7992-4adb-a17c-38ddee2b3a72/2a6d677e-ea8f-434f-88c9-067a7e54ca3a.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

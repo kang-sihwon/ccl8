@@ -1,0 +1,13 @@
+{
+  "id": 955,
+  "verdict": "보류",
+  "use": "S08 작은 구부러진 가지",
+  "reason": "27cm의 갈래 끝이 보이나 화면 기여 적음",
+  "edit": "지면 접합 확인",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:59:25.702357+00:00",
+  "sourcePageSha256": "7e4365a9513da8447dff911c1e2c0dae94f5c7f8390258a252fccdacaad59561"
+}

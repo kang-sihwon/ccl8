@@ -1,0 +1,13 @@
+{
+  "id": 548,
+  "verdict": "추천",
+  "use": "S08 숲길 굽이 암반",
+  "reason": "길쭉한 능선과 넓은 경사면이 방향을 명확히 보여준다.",
+  "edit": "황록색을 회갈색으로 통일; 길 폭 유지",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:36:32.288657+00:00",
+  "sourcePageSha256": "fd6f59597c3ca1c5c8a2a5c11330473c6bb1454e2b7b38cf78a24760aff37500"
+}

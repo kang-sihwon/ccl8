@@ -1,0 +1,13 @@
+{
+  "id": 1494,
+  "verdict": "보류",
+  "use": "S08 작은 암벽 조각",
+  "reason": "1.1m의 붉은 수직 층상 면으로 현재 둥근 자연석보다 수정량 큼",
+  "edit": "붉은색 제거 및 열린 면 매입",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:23:18.555084+00:00",
+  "sourcePageSha256": "3bc7e6437febc6e671c347a32a95171accaef84a21fcfac5a30663f801967212"
+}

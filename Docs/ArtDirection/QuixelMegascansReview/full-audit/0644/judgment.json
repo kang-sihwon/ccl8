@@ -1,0 +1,13 @@
+{
+  "id": 644,
+  "verdict": "보류",
+  "use": "S08 가는 곡선 가지",
+  "reason": "89cm의 가는 곡선 가지로 기존 0603과 배치 용도가 겹친다.",
+  "edit": "기존 가지 반복 회피에만 사용",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:41:41.765125+00:00",
+  "sourcePageSha256": "e9effdd751e61c8bbaa033336a7009e232286d16f066d5cbcfde9120d89fbe47"
+}

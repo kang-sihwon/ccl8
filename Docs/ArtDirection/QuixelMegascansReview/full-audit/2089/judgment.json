@@ -1,0 +1,13 @@
+{
+  "id": 2089,
+  "verdict": "보류",
+  "use": "S02 작은 주걱 대안",
+  "reason": "34cm 목제 숟가락 끝의 흑백 장식이 2088보다 복잡",
+  "edit": "끝 장식 제거",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:46:35.333462+00:00",
+  "sourcePageSha256": "0aef80ae78e222aab490c75eea484e8fa99f86d9396b8ebc99f14c7f28c24ddf"
+}

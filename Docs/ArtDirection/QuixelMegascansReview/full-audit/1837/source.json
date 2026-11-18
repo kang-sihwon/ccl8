@@ -1,0 +1,74 @@
+{
+  "id": 1837,
+  "url": "https://www.fab.com/listings/37936e30-9146-43f4-bfdd-ff9a5b30de29",
+  "uid": "37936e30-9146-43f4-bfdd-ff9a5b30de29",
+  "title": "Modular Brick Stair",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:20:30.916992+00:00",
+  "pageSha256": "ccd876535a3a1ecc6f9aa27d5fa04329951c9e6c0ebd002547a419b0140dea6a",
+  "description": "Texel density: 6754 px/m\nPhysical size: 1.03m x 1.26m x 0.81m\nMesh type: Closed mesh\nMaps: Displacement(high tier only) Roughness Gloss Specular Basecolor Cavity Bump Normal Ao\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "1.03m x 1.26m x 0.81m",
+  "mesh": "Closed mesh",
+  "texelDensity": "6754 px/m",
+  "maps": "Displacement(high tier only) Roughness Gloss Specular Basecolor Cavity Bump Normal Ao",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/f35dfbdf-ec30-4e41-977f-48408e5db30e/13e31e0a-3704-4052-a57d-b44e13aea384.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/f35dfbdf-ec30-4e41-977f-48408e5db30e/a97cd671-8f95-4235-8615-56d2fd5655f9.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

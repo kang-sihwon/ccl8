@@ -1,0 +1,13 @@
+{
+  "id": 1284,
+  "verdict": "보류",
+  "use": "S01 작은 둥근 밝은 돌",
+  "reason": "23cm의 단순한 밝은 덩어리로 기존 자갈 충분",
+  "edit": "황색과 밝기 완화",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:13:25.163826+00:00",
+  "sourcePageSha256": "e09ca1ef13849e639e64a786d753a4163e7877d3dec8c1028d16f8b7c7815c2f"
+}

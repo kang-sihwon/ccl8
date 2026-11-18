@@ -1,0 +1,13 @@
+{
+  "id": 1323,
+  "verdict": "보류",
+  "use": "S08 큰 둥근 암반 변형",
+  "reason": "9.32m의 낮은 아치형 덩어리로 기존 원경 암석과 중복",
+  "edit": "갈색과 흰 얼룩 대비 축소",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:15:07.653073+00:00",
+  "sourcePageSha256": "4ac4e54fe6ff9ed2f98ac509f31270a541990094ff7c38a7240ab73242b610b3"
+}

@@ -1,0 +1,85 @@
+{
+  "id": 1804,
+  "url": "https://www.fab.com/listings/15dfe341-9718-4fa8-9439-6778b5352500",
+  "uid": "15dfe341-9718-4fa8-9439-6778b5352500",
+  "title": "Burnt Brick Debris",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:20:17.247517+00:00",
+  "pageSha256": "133cd3b85b4d89e2e5753cdb2437bb5cf6a316dfc4f99abf12467cc9cb68aa38",
+  "description": "Texel density: 1191 px/m\nPhysical size: 0.14m x 0.12m x 0.06m\nMesh type: Closed mesh\nMaps: AO Gloss Cavity Displacement(high tier only) Normal Specular Basecolor Roughness\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.14m x 0.12m x 0.06m",
+  "mesh": "Closed mesh",
+  "texelDensity": "1191 px/m",
+  "maps": "AO Gloss Cavity Displacement(high tier only) Normal Specular Basecolor Roughness",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "UEFN Reference",
+      "extensions": null,
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "UEFN - Reference only",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/e65972ef-885c-4fc5-86e3-c1ae5dbd5e18/305af7bd-0406-4e31-9b28-bc61935b47c7.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/e65972ef-885c-4fc5-86e3-c1ae5dbd5e18/5daeee67-8c64-4852-9e13-68c7bbbe5679.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

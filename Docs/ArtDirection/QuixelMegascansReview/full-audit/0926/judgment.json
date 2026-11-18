@@ -1,0 +1,13 @@
+{
+  "id": 926,
+  "verdict": "보류",
+  "use": "S08 밝은 부후목 조각",
+  "reason": "58cm의 작은 속 빈 목편으로 기존 부후목과 중복",
+  "edit": "밝은 노란색 완화",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:59:25.674825+00:00",
+  "sourcePageSha256": "bfd08316dace0135a58a262d017ec23f3cd1087f1adcbb4f7c1455af57ac28df"
+}

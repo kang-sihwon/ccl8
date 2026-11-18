@@ -1,0 +1,13 @@
+{
+  "id": 1852,
+  "verdict": "보류",
+  "use": "S02 새 벽돌 대안",
+  "reason": "23cm 주황 벽돌은 1848과 중복",
+  "edit": "채도·밝기 감소",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:36:56.638910+00:00",
+  "sourcePageSha256": "135e3da09d5732d0e08f6552f1de4da6718b1dcade795639cc8ba5c965e958e6"
+}

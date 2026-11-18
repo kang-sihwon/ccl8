@@ -1,0 +1,13 @@
+{
+  "id": 967,
+  "verdict": "보류",
+  "use": "S08 미세 수피 조각",
+  "reason": "7cm의 붉은 판형 수피로 독립 배치 효과 낮음",
+  "edit": "실측 유지 및 채도 완화",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:01:11.371469+00:00",
+  "sourcePageSha256": "fa1d4e8863d0da67c3dc18aae45f4a8557548e45286dfbce0f9b8d56e593c3f6"
+}

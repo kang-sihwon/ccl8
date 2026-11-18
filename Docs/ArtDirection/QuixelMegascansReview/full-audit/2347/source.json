@@ -1,0 +1,82 @@
+{
+  "id": 2347,
+  "url": "https://www.fab.com/listings/dc5b4280-fce1-4295-a2f0-3dfa2cefa397",
+  "uid": "dc5b4280-fce1-4295-a2f0-3dfa2cefa397",
+  "title": "Smoked Sausage",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:23:44.188421+00:00",
+  "pageSha256": "36422cc2bacbef6b370db796dcecc54312e89a7d96b6ab5583812bf051c336ba",
+  "description": "Texel density: 2986 px/m\nPhysical size: 0.07m x 0.08m x 0.18m\nMesh type: Closed mesh\nMaps: Displacement(high tier only) Cavity Gloss Specular Basecolor Roughness Normal AO Bump\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.07m x 0.08m x 0.18m",
+  "mesh": "Closed mesh",
+  "texelDensity": "2986 px/m",
+  "maps": "Displacement(high tier only) Cavity Gloss Specular Basecolor Roughness Normal AO Bump",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "ZBrush",
+      "extensions": [
+        "zbp",
+        "ztl"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/e66f7238-520a-415d-84ee-845d76519f2f/71f0e24d-a7e7-4572-b37e-f653d0dac340.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/e66f7238-520a-415d-84ee-845d76519f2f/763035e1-30f9-4139-a3b1-34a148f5769a.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

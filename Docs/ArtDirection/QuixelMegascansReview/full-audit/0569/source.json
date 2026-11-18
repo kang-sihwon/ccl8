@@ -1,0 +1,82 @@
+{
+  "id": 569,
+  "url": "https://www.fab.com/listings/c2313264-448a-4d15-ab51-ddcec411fb92",
+  "uid": "c2313264-448a-4d15-ab51-ddcec411fb92",
+  "title": "Mossy Forest Rock",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:12:28.942670+00:00",
+  "pageSha256": "6e4a8e994d0bfa6c90cca90f0e1e5a1e17c9dc565a962d7aa088c6fc2598ec70",
+  "description": "Texel density: 2941 px/m\nPhysical size: 0.31m x 0.43m x 0.1m\nMesh type: Closed mesh\nMaps: Displacement(high tier only) Roughness Gloss Specular Basecolor Fuzz Cavity Bump Normal Ao\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.31m x 0.43m x 0.1m",
+  "mesh": "Closed mesh",
+  "texelDensity": "2941 px/m",
+  "maps": "Displacement(high tier only) Roughness Gloss Specular Basecolor Fuzz Cavity Bump Normal Ao",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "ZBrush",
+      "extensions": [
+        "zbp",
+        "ztl"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/a8d6df9a-5183-4e91-8095-379e136fcce1/bbadf66a-cb85-4bc3-8089-4bc727789fd3.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/a8d6df9a-5183-4e91-8095-379e136fcce1/58bdbab4-ce68-4f69-817d-b808ae9ccb6e.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

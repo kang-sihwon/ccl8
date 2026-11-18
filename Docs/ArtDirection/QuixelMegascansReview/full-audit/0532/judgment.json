@@ -1,0 +1,13 @@
+{
+  "id": 532,
+  "verdict": "추천",
+  "use": "S08 숲길 뒤 암반 단차",
+  "reason": "큰 세로 면과 완만한 둥근 꼭대기가 B안의 읽기 쉬운 덩어리에 맞는다.",
+  "edit": "이끼색 통일; 열린 뒤와 바닥 매립",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:36:32.273169+00:00",
+  "sourcePageSha256": "3a2bbca9c724a0f3ebeee2251c034d790255fe76f95aaf97be4e2a1a3ba40b55"
+}

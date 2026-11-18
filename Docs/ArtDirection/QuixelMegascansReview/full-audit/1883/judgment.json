@@ -1,0 +1,13 @@
+{
+  "id": 1883,
+  "verdict": "보류",
+  "use": "S02 기와 대안",
+  "reason": "18cm 굴곡형 붉은 기와는 기존 후보와 중복",
+  "edit": "단면 확인",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:38:57.932218+00:00",
+  "sourcePageSha256": "3e7159ca1b1d81629fe091bb94b694f50c0a3f2c5b110b8c0f85fa2dd14e9a0c"
+}

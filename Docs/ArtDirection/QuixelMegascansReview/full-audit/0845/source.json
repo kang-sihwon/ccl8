@@ -1,0 +1,82 @@
+{
+  "id": 845,
+  "url": "https://www.fab.com/listings/7c698a80-65ff-4289-96bd-9e2aa821c91a",
+  "uid": "7c698a80-65ff-4289-96bd-9e2aa821c91a",
+  "title": "Mossy Tree Branch",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:14:14.013005+00:00",
+  "pageSha256": "5a84fbbdf71f08a02d142b6599f2052df3559b5ddee69222df69fcbd82a4ab50",
+  "description": "Texel density: 5162 px/m\nPhysical size: 0.11m x 1.87m x 0.35m\nMesh type: Closed mesh\nMaps: Basecolor Gloss Displacement(high tier only) AO Cavity Bump Normal Specular Fuzz Roughness\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.11m x 1.87m x 0.35m",
+  "mesh": "Closed mesh",
+  "texelDensity": "5162 px/m",
+  "maps": "Basecolor Gloss Displacement(high tier only) AO Cavity Bump Normal Specular Fuzz Roughness",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "ZBrush",
+      "extensions": [
+        "zbp",
+        "ztl"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/567f4ce0-5aa7-4df2-804e-fa1c8fb5389a/65303e72-c337-459f-b010-f4ee410479f2.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/567f4ce0-5aa7-4df2-804e-fa1c8fb5389a/089f2235-98d8-4376-b739-abec32755278.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

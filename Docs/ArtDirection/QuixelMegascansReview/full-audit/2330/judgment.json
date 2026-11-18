@@ -1,0 +1,13 @@
+{
+  "id": 2330,
+  "verdict": "수정 후 후보",
+  "use": "S02 작업자 식사",
+  "reason": "21cm 단순 둥근 호밀빵은 거친 무광 표면과 명확한 형태가 적합",
+  "edit": "식량 설정·기존 빵과 최종 택일",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:56:37.647429+00:00",
+  "sourcePageSha256": "95bbe55f2a4ff1eb55770793e2b66e0de6a7a7f69657c6a70f4bc60aeee6f8c4"
+}

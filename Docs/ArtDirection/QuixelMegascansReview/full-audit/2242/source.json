@@ -1,0 +1,93 @@
+{
+  "id": 2242,
+  "url": "https://www.fab.com/listings/f2096e92-253f-4003-8a4f-af429477ea82",
+  "uid": "f2096e92-253f-4003-8a4f-af429477ea82",
+  "title": "Fried Chicken Wing",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:23:03.177632+00:00",
+  "pageSha256": "a20226de67e25f101b331ded3a96bfb5aae2fe0a6666987f367739b941a0f821",
+  "description": "Texel density: 2766 px/m\nPhysical size: 0.04m x 0.08m x 0.02m\nMesh type: Closed mesh\nMaps: Bump Displacement(high tier only) Basecolor Normal Cavity Gloss Specular Roughness Ao\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.04m x 0.08m x 0.02m",
+  "mesh": "Closed mesh",
+  "texelDensity": "2766 px/m",
+  "maps": "Bump Displacement(high tier only) Basecolor Normal Cavity Gloss Specular Roughness Ao",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "ZBrush",
+      "extensions": [
+        "zbp",
+        "ztl"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "UEFN Reference",
+      "extensions": null,
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "UEFN - Reference only",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/e168846d-1898-4a9e-9dac-436c08e51712/102dd7e4-0505-46d7-a039-1af60d4b1a48.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/e168846d-1898-4a9e-9dac-436c08e51712/4808d772-be22-4872-bb74-7beba8fd8df5.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

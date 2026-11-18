@@ -1,0 +1,13 @@
+{
+  "id": 1745,
+  "verdict": "보류",
+  "use": "S08 솔방울 잔해",
+  "reason": "13cm 부서진 밝은 솔방울은 가까이서만 의미 있음",
+  "edit": "밝기 감소 및 근접 제한",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:33:48.182518+00:00",
+  "sourcePageSha256": "0e091d31afba1455f9189798e39f63d1e048bd54c376d89fd1e5282e2f5b72d1"
+}

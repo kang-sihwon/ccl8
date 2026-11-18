@@ -1,0 +1,13 @@
+{
+  "id": 507,
+  "verdict": "추천",
+  "use": "S08 숲길 가장자리 뿌리 패치",
+  "reason": "갈색 흙 위 큰 뿌리 몇 개가 명료하게 읽혀 B안의 단순한 면과 맞는다.",
+  "edit": "경계 매립; 이동면의 뿌리 충돌 단순화",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:32:36.379123+00:00",
+  "sourcePageSha256": "165efa25270eeec8aa757f71aff6ea27880131a96fdaa83963a7a10975bf6172"
+}

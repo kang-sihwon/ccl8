@@ -1,0 +1,13 @@
+{
+  "id": 618,
+  "verdict": "수정 후 후보",
+  "use": "S02 화덕의 탄 가지",
+  "reason": "96cm의 구불구불한 탄 가지가 연료 잔재로 읽힌다.",
+  "edit": "화덕 규격에 맞춰 절단·배치; 재와 조합",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:38:54.212073+00:00",
+  "sourcePageSha256": "9d6b80fb71b5136d9070aecf9b67bf2b7039abffb0de616230430b58445aa773"
+}

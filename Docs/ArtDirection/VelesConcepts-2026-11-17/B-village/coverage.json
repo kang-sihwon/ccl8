@@ -1,0 +1,239 @@
+{
+  "scope": "Veles settlement, farmland and forest threshold; cave corridor excluded",
+  "bounds": [
+    -800,
+    -160,
+    200,
+    450
+  ],
+  "sectors": [
+    {
+      "id": "S01",
+      "name": "나루",
+      "bounds": [
+        -140,
+        -100,
+        110,
+        70
+      ],
+      "buildings": [
+        "house-011",
+        "house-012",
+        "house-013",
+        "house-014"
+      ],
+      "fields": []
+    },
+    {
+      "id": "S02",
+      "name": "공방 주변",
+      "bounds": [
+        20,
+        65,
+        150,
+        165
+      ],
+      "buildings": [
+        "workshop"
+      ],
+      "fields": []
+    },
+    {
+      "id": "S03",
+      "name": "공동 급수대",
+      "bounds": [
+        -90,
+        40,
+        35,
+        185
+      ],
+      "buildings": [
+        "house-014",
+        "house-015",
+        "house-035",
+        "house-036",
+        "house-037",
+        "house-038",
+        "house-039",
+        "house-084"
+      ],
+      "fields": []
+    },
+    {
+      "id": "S04",
+      "name": "남쪽·중앙 주거지",
+      "bounds": [
+        -260,
+        -15,
+        -80,
+        185
+      ],
+      "buildings": [
+        "house-006",
+        "house-007",
+        "house-008",
+        "house-009",
+        "house-010",
+        "house-011",
+        "house-012",
+        "house-013",
+        "house-024",
+        "house-025",
+        "house-026",
+        "house-027",
+        "house-028",
+        "house-029",
+        "house-030",
+        "house-031",
+        "house-032",
+        "house-033",
+        "house-034",
+        "house-080",
+        "house-082",
+        "house-083",
+        "house-084"
+      ],
+      "fields": []
+    },
+    {
+      "id": "S05",
+      "name": "서쪽 주거지",
+      "bounds": [
+        -430,
+        -15,
+        -220,
+        365
+      ],
+      "buildings": [
+        "house-002",
+        "house-003",
+        "house-004",
+        "house-005",
+        "house-006",
+        "house-016",
+        "house-017",
+        "house-018",
+        "house-019",
+        "house-020",
+        "house-021",
+        "house-022",
+        "house-023",
+        "house-024",
+        "house-025",
+        "house-026",
+        "house-027",
+        "house-040",
+        "house-041",
+        "house-042",
+        "house-043",
+        "house-044",
+        "house-045",
+        "house-046",
+        "house-061",
+        "house-062",
+        "house-063",
+        "house-064",
+        "house-065",
+        "house-077",
+        "house-078",
+        "house-079",
+        "house-080",
+        "house-081"
+      ],
+      "fields": []
+    },
+    {
+      "id": "S06",
+      "name": "북쪽 주거지",
+      "bounds": [
+        -240,
+        175,
+        35,
+        365
+      ],
+      "buildings": [
+        "water-store",
+        "house-046",
+        "house-047",
+        "house-048",
+        "house-049",
+        "house-050",
+        "house-051",
+        "house-052",
+        "house-053",
+        "house-054",
+        "house-055",
+        "house-056",
+        "house-057",
+        "house-058",
+        "house-059",
+        "house-060",
+        "house-064",
+        "house-065",
+        "house-066",
+        "house-067",
+        "house-068",
+        "house-069",
+        "house-070",
+        "house-071",
+        "house-072",
+        "house-073",
+        "house-074",
+        "house-075",
+        "house-076",
+        "house-084",
+        "house-085"
+      ],
+      "fields": []
+    },
+    {
+      "id": "S07",
+      "name": "서쪽 경작지",
+      "bounds": [
+        -780,
+        -140,
+        -450,
+        420
+      ],
+      "buildings": [],
+      "fields": [
+        "field-0-0",
+        "field-1-0",
+        "field-2-0",
+        "field-0-1",
+        "field-1-1",
+        "field-2-1",
+        "field-0-2",
+        "field-1-2",
+        "field-2-2",
+        "field-0-3",
+        "field-1-3",
+        "field-2-3",
+        "field-0-4",
+        "field-1-4",
+        "field-2-4"
+      ]
+    },
+    {
+      "id": "S08",
+      "name": "물 저장고·숲 입구",
+      "bounds": [
+        -15,
+        155,
+        180,
+        380
+      ],
+      "buildings": [
+        "water-store",
+        "house-059",
+        "house-060"
+      ],
+      "fields": []
+    }
+  ],
+  "source_buildings": 86,
+  "source_fields": 15,
+  "uncovered_buildings": [],
+  "uncovered_fields": [],
+  "meaning": "Coverage of source centers by planned view regions; not image registration or visible-object count"
+}

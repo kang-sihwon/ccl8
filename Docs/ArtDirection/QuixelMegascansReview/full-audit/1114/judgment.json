@@ -1,0 +1,13 @@
+{
+  "id": 1114,
+  "verdict": "보류",
+  "use": "S01 작은 거친 돌",
+  "reason": "41cm의 얼룩과 구멍이 많은 돌로 기존 작은 자연석 충분",
+  "edit": "명암과 황색 완화",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:07:19.717108+00:00",
+  "sourcePageSha256": "86bbcd62a74f3f5352c69ceebc69df07e655771c27cad0d253a3de6381c4a867"
+}

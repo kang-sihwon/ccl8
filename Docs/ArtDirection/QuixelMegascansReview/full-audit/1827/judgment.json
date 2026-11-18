@@ -1,0 +1,13 @@
+{
+  "id": 1827,
+  "verdict": "보류",
+  "use": "S02 실내 난방 벽난로 대안",
+  "reason": "1.38m 단순 사각형이나 기둥 홈·철책이 있어 작업용 화덕과 용도 다름",
+  "edit": "난방용 필요 확인 및 장식 축소",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:35:21.262491+00:00",
+  "sourcePageSha256": "efaecb8a169ae61b037e33f5c227e339383bd3f9ce734b45b2872d5eccf715d4"
+}

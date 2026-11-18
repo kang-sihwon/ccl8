@@ -1,0 +1,13 @@
+{
+  "id": 1833,
+  "verdict": "수정 후 후보",
+  "use": "S02 벽면 정비용 삽",
+  "reason": "1.38m 긴 나무 자루와 회색 날은 가능하나 날의 성형 홈이 보임",
+  "edit": "날 형태 단순화 및 결합부 검토",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:36:56.620381+00:00",
+  "sourcePageSha256": "014e2dafcf951a8b7d247c4ef0de28390887e1f139c01ee549a2779f762c2e8b"
+}

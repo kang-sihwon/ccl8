@@ -1,0 +1,13 @@
+{
+  "id": 1754,
+  "verdict": "보류",
+  "use": "S08 솔방울 변형",
+  "reason": "9cm 갈색 솔방울은 1748·1753과 중복",
+  "edit": "근접 필요 시만 추가",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:33:48.191956+00:00",
+  "sourcePageSha256": "0f57e4f643fc4f70500f6a4550656b5a6b921a1af6cd4ad28510220343c3fc4f"
+}

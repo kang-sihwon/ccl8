@@ -1,0 +1,13 @@
+{
+  "id": 402,
+  "verdict": "보류",
+  "use": "S02 큰 원판 바퀴 대체안",
+  "reason": "판재가 채운 큰 원판형 바퀴로 0400과 역할이 같다.",
+  "edit": "큰 규격이 필요한 경우에만 추가하고 축 연결을 확인한다.",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:22:16.894186+00:00",
+  "sourcePageSha256": "ca07adf15835d1982593ddb4636acf0cfb22f6daf5ece58a62a9a7f77e101f84"
+}

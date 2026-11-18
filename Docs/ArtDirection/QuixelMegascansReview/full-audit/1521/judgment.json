@@ -1,0 +1,13 @@
+{
+  "id": 1521,
+  "verdict": "보류",
+  "use": "S08 작은 이끼 바위",
+  "reason": "66cm의 복잡한 흰 얼룩과 이끼로 현재 후보 우선",
+  "edit": "얼룩 대비 축소 및 열린 면 매입",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:23:18.582201+00:00",
+  "sourcePageSha256": "598dee30db6c499e2cc8ac8025aa7d821ce2afff567440e6c7dc280edce01a23"
+}

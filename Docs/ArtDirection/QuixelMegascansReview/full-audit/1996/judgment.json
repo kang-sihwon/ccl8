@@ -1,0 +1,13 @@
+{
+  "id": 1996,
+  "verdict": "보류",
+  "use": "S02 창가 화분 대안",
+  "reason": "14cm 적갈색 화분의 삼각 음각이 기존 무장식 후보보다 복잡",
+  "edit": "문양 단순화",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:42:46.954171+00:00",
+  "sourcePageSha256": "36e38069e9d3c4e04650c1c3e142256566f397cfcc4f024f7a7ae71a1a307e19"
+}

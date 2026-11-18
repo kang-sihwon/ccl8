@@ -1,0 +1,13 @@
+{
+  "id": 2111,
+  "verdict": "보류",
+  "use": "S02 장부 대안",
+  "reason": "26cm 붉은 표지와 검은 라벨 책등은 기존 후보 충분",
+  "edit": "라벨·문구 교체",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:46:35.354027+00:00",
+  "sourcePageSha256": "f296d1f7b04dfd2328a1ceb6e029aac12d4a6014fb9222467afe55050f07f89f"
+}

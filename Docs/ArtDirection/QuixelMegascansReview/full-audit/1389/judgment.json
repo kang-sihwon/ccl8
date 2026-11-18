@@ -1,0 +1,13 @@
+{
+  "id": 1389,
+  "verdict": "보류",
+  "use": "S08 둥근 이끼 바위 변형",
+  "reason": "1.17m의 거친 골과 회녹색 표면으로 기존 후보 충분",
+  "edit": "요철과 이끼 대비 축소",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:17:00.822505+00:00",
+  "sourcePageSha256": "b51ea0bfad554fe8799ebb737d0b0fc358e0700089cf4579e0b203ebc8ad4e20"
+}

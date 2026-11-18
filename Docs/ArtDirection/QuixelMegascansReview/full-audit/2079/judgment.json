@@ -1,0 +1,13 @@
+{
+  "id": 2079,
+  "verdict": "수정 후 후보",
+  "use": "S02 화덕 옆 작업용 큰 솥",
+  "reason": "68cm 큰 검은 금속 솥과 손잡이가 가능하나 흰 오염·녹이 강함",
+  "edit": "오염 정리 및 가열 작업 용도 확인",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:46:35.323395+00:00",
+  "sourcePageSha256": "102d5b8fb08bb47ad591c191eb49871091db9c2d1d3d802bfe2d4b3596b59e57"
+}

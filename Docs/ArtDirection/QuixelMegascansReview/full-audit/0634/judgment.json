@@ -1,0 +1,13 @@
+{
+  "id": 634,
+  "verdict": "보류",
+  "use": "S08 손상된 작은 밑동",
+  "reason": "57cm의 비스듬한 절단 밑동으로 0522·0610과 역할이 겹친다.",
+  "edit": "작은 밑동 변형이 필요할 때만 사용",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:41:41.754797+00:00",
+  "sourcePageSha256": "9eeeee9685ec80462ec4b266ea7b0cdc4523278c2fd8f80c378ba8fca24419fa"
+}

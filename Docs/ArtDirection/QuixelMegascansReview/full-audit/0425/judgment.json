@@ -1,0 +1,13 @@
+{
+  "id": 425,
+  "verdict": "보류",
+  "use": "S08 가는 고사목 조각",
+  "reason": "가늘고 곧은 갈색 가지로 별도 대표 형태 가치가 낮다.",
+  "edit": "0423·0426 우선; 반복 감소 필요 시 사용",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:27:25.611114+00:00",
+  "sourcePageSha256": "646b3955bdf98034466ea752ffb7a15d6fdec1813cbfbeb81b180e685b135a77"
+}

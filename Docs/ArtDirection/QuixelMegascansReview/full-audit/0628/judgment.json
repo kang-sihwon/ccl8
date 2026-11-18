@@ -1,0 +1,13 @@
+{
+  "id": 628,
+  "verdict": "보류",
+  "use": "S08 가는 침엽수 잔가지",
+  "reason": "88cm의 거의 직선인 가는 가지로 이미 선택한 0512와 역할이 겹친다.",
+  "edit": "기존 잔가지 변형 부족 시 추가",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:38:54.221298+00:00",
+  "sourcePageSha256": "5c9c84553402a1acd4e2be2e6934459127abce43475b742dab772f0ccf74f69f"
+}

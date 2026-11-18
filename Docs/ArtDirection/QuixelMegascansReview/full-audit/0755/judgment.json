@@ -1,0 +1,13 @@
+{
+  "id": 755,
+  "verdict": "보류",
+  "use": "S08 얇게 벗겨진 수피",
+  "reason": "48cm의 부분 수피와 밝은 목질이 기존 0685·0672와 중복된다.",
+  "edit": "기존 파편 우선",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:46:33.132958+00:00",
+  "sourcePageSha256": "4d0e38770861db30f2bd64cce11fa557423766c10ea4e09dbb8c53af44962dac"
+}

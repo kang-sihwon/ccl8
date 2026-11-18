@@ -1,0 +1,82 @@
+{
+  "id": 399,
+  "url": "https://www.fab.com/listings/2b90a704-0b8a-47c9-85b3-ac7b3a491050",
+  "uid": "2b90a704-0b8a-47c9-85b3-ac7b3a491050",
+  "title": "Wooden Wheel",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:11:24.835330+00:00",
+  "pageSha256": "a7a0babd72c09045f3bc0e5e43eef515b566a43465fe7d1f1c870848fab23078",
+  "description": "Texel density: 5571 px/m\nPhysical size: 0.15m x 0.89m x 0.89m\nMesh type: Closed mesh\nMaps: Specular Roughness Cavity Normal AO Basecolor Bump Diffuse Displacement(high tier only) Metalness\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.15m x 0.89m x 0.89m",
+  "mesh": "Closed mesh",
+  "texelDensity": "5571 px/m",
+  "maps": "Specular Roughness Cavity Normal AO Basecolor Bump Diffuse Displacement(high tier only) Metalness",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "ZBrush",
+      "extensions": [
+        "zbp",
+        "ztl"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/ac15b345-ec8f-467d-81e1-9cb10b287efb/9a82884e-ce06-4554-9f97-6f5ae8f18ed4.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/ac15b345-ec8f-467d-81e1-9cb10b287efb/e12a8a7d-a1c9-44e8-b6de-d9410870b493.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

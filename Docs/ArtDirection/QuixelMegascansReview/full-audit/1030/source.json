@@ -1,0 +1,65 @@
+{
+  "id": 1030,
+  "url": "https://www.fab.com/listings/237bfa58-1039-4835-8970-be9505d47e07",
+  "uid": "237bfa58-1039-4835-8970-be9505d47e07",
+  "title": "Cock's-foot Grass",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:15:25.879107+00:00",
+  "pageSha256": "e60fb295c181820f1cb46d4cc674f7c7c18b4c53e6120e699860d5194a075380",
+  "description": "Maps: Cavity Roughness Opacity Bump AO Specular Displacement Basecolor Translucency Gloss Normal\n \nCreate high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "기재 확인 안 됨",
+  "mesh": "기재 확인 안 됨",
+  "texelDensity": "기재 확인 안 됨",
+  "maps": "Cavity Roughness Opacity Bump AO Specular Displacement Basecolor Translucency Gloss Normal",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/4a223583-2e58-4a16-942e-97ef891ba5e0/cc8d1b03-4593-43aa-94dd-5920184e9eaf.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 2,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/4a223583-2e58-4a16-942e-97ef891ba5e0/9b4f3f83-423d-4c0a-aee1-ae1b7e211e44.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

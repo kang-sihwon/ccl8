@@ -1,0 +1,13 @@
+{
+  "id": 1866,
+  "verdict": "보류",
+  "use": "S02 화덕 벽돌 변형",
+  "reason": "25cm 매끈한 붉은 사각 벽돌로 새것 인상",
+  "edit": "마모·색 조절",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:36:56.652188+00:00",
+  "sourcePageSha256": "30044047cfb5f500a0101c4e6e59606f54f60f7a3d08dd54bd959d64c8e0dfe4"
+}

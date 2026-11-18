@@ -1,0 +1,13 @@
+{
+  "id": 746,
+  "verdict": "추천",
+  "use": "S08 갈라진 두 갈래 밑동",
+  "reason": "두 개의 빈 원통과 연결 뿌리가 다른 낮은 그루터기와 구별된다.",
+  "edit": "열린 밑면 매립; 녹색 점 완화",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:46:33.124554+00:00",
+  "sourcePageSha256": "3a3bb6dbf35a8c9763b0eb827dbc32dc6672b9280b2a6a06031d90d4c415fccd"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 1208,
+  "verdict": "추천",
+  "use": "S08 숲 내부 낮은 암반턱",
+  "reason": "4.75m의 넓고 낮은 층상 바위와 제한된 이끼가 배경 경계에 적합",
+  "edit": "열린 면 매입 및 길 시야 확보",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:11:29.581229+00:00",
+  "sourcePageSha256": "277852b5ce8f251170b3d11f9cc27cdc9250cc416ac8d9cfcd74bb91012c136d"
+}

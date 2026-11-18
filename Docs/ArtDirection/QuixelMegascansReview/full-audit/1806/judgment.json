@@ -1,0 +1,13 @@
+{
+  "id": 1806,
+  "verdict": "보류",
+  "use": "S02 화덕 잔해 변형",
+  "reason": "14cm 회갈색 단순 파편은 묶음 후보 우선",
+  "edit": "화덕 재질 일치",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:35:21.242753+00:00",
+  "sourcePageSha256": "b11eecb43d52ae9b5a6413f233e2556e4e44b6a930688b31c98cebe39748da72"
+}

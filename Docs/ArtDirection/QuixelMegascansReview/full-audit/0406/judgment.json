@@ -1,0 +1,13 @@
+{
+  "id": 406,
+  "verdict": "제외",
+  "use": "S01 기본 화물 상자에서 제외",
+  "reason": "빨간 도색이 심하게 벗겨진 상자에 현대 금속 손잡이·작은 바퀴가 보인다.",
+  "edit": "B안의 단순 목제 화물에는 다른 상자를 사용한다.",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:22:16.898703+00:00",
+  "sourcePageSha256": "c299d0120b9ca03bfd7f49d832768fbcf95b0bdcbfa5d464b0774a86fa9f7de9"
+}

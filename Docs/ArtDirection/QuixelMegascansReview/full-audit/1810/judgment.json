@@ -1,0 +1,13 @@
+{
+  "id": 1810,
+  "verdict": "보류",
+  "use": "S02 화덕 잔해 대안",
+  "reason": "21cm 파편에 넓은 흰 층이 붙어 현재 화덕과 일치 미확인",
+  "edit": "미장층 재질 확인",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:35:21.246582+00:00",
+  "sourcePageSha256": "a577521b9641c791bce69699fb8699c925a75386842cdeb1e4a65efc452914c9"
+}

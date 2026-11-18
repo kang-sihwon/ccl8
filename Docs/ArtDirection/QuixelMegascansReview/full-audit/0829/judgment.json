@@ -1,0 +1,13 @@
+{
+  "id": 829,
+  "verdict": "보류",
+  "use": "S08 이끼 수피 조각",
+  "reason": "59cm 목편 대부분을 짙은 이끼가 덮어 0414보다 가독성이 낮다.",
+  "edit": "이끼색·면적 정리 후 변형으로만",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:52:44.784042+00:00",
+  "sourcePageSha256": "c41826493f95831d3e47c87aa463bd58febf72d14a9ffc964c9fe4a81509b1f6"
+}

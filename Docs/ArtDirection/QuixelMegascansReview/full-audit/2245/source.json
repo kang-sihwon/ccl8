@@ -1,0 +1,85 @@
+{
+  "id": 2245,
+  "url": "https://www.fab.com/listings/886f5fc8-a932-4b33-bfe4-cb2b6384ef27",
+  "uid": "886f5fc8-a932-4b33-bfe4-cb2b6384ef27",
+  "title": "Garlic Clove",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:23:03.622550+00:00",
+  "pageSha256": "662ddcbec7477edb733f467a5f32b84957f7c194b518d28491184960b21e1f0b",
+  "description": "Texel density: 1055 px/m\nPhysical size: 0.03m x 0.04m x 0.02m\nMesh type: Closed mesh\nMaps: Basecolor Displacement(high tier only) Gloss Normal Cavity Specular AO Roughness\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.03m x 0.04m x 0.02m",
+  "mesh": "Closed mesh",
+  "texelDensity": "1055 px/m",
+  "maps": "Basecolor Displacement(high tier only) Gloss Normal Cavity Specular AO Roughness",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "UEFN Reference",
+      "extensions": null,
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "UEFN - Reference only",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/abaa7e05-3a0f-4509-97cb-93b2f7ac7eca/708e545c-ddff-483e-9711-d3a306663aec.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/abaa7e05-3a0f-4509-97cb-93b2f7ac7eca/a84ca8aa-4fdc-47ff-9894-77e6ef53a168.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

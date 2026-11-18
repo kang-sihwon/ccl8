@@ -1,0 +1,13 @@
+{
+  "id": 2031,
+  "verdict": "수정 후 후보",
+  "use": "S02 부품을 나눠 담는 삼칸 목제 받침",
+  "reason": "57cm 연결된 세 그릇이 분류용으로 가능하나 주황색 강함",
+  "edit": "갈색 채도 감소 및 연결부 실제 형태 확인",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:44:39.437516+00:00",
+  "sourcePageSha256": "ed71c35f7b3a8401be64496af2529e572f6c4165b0cbfe3c9398bbe792da1a27"
+}

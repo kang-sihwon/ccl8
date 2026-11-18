@@ -1,0 +1,13 @@
+{
+  "id": 928,
+  "verdict": "보류",
+  "use": "S08 곡선 낙지 변형",
+  "reason": "약 1m의 V형 어두운 가지로 기존 꺾인 목편과 용도 겹침",
+  "edit": "어두운 홈 대비 완화",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:59:25.676875+00:00",
+  "sourcePageSha256": "a4f638be54c3f39d88836f0ca3c1f92aaf949f7169328276692915017ae86fe9"
+}

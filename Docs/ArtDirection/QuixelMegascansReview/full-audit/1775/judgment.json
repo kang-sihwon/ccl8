@@ -1,0 +1,13 @@
+{
+  "id": 1775,
+  "verdict": "보류",
+  "use": "S02 화덕 주변 벽돌 대안",
+  "reason": "22cm 작은 구멍 있는 검은 벽돌로 변형 충분",
+  "edit": "미세 대비 완화",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:33:48.212500+00:00",
+  "sourcePageSha256": "f2bf552d1d1f15939ed9cbf38eea121e983ceb59b95b4e74e3bf5eaff0205a78"
+}

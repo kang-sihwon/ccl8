@@ -1,0 +1,13 @@
+{
+  "id": 818,
+  "verdict": "보류",
+  "use": "S08 굵은 고사목 대체",
+  "reason": "5.86m급 몸통과 휜 끝이 있으나 기존 0815보다 역할 차이가 작다.",
+  "edit": "긴 고사목 반복 회피 필요 시만",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:48:57.488202+00:00",
+  "sourcePageSha256": "91d0229c92511d5285dc106993edde07ff74adbb1a4d2293f9d28c4bf8f5ed75"
+}

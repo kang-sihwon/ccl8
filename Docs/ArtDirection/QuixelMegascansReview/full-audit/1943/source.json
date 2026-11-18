@@ -1,0 +1,85 @@
+{
+  "id": 1943,
+  "url": "https://www.fab.com/listings/bb2e9b5c-89d0-4f87-9b6b-29daf030bd2c",
+  "uid": "bb2e9b5c-89d0-4f87-9b6b-29daf030bd2c",
+  "title": "Ceramic Bottle",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:21:10.595019+00:00",
+  "pageSha256": "6d2e0941f85b1ad852195e5b5b31e547a6c73a02f6c9349412e68c0d7dc0774c",
+  "description": "Texel density: 1220 px/m\nPhysical size: 0.07m x 0.07m x 0.16m\nMesh type: Closed mesh\nMaps: Displacement(high tier only) Cavity Gloss Specular Basecolor AO Roughness Normal\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.07m x 0.07m x 0.16m",
+  "mesh": "Closed mesh",
+  "texelDensity": "1220 px/m",
+  "maps": "Displacement(high tier only) Cavity Gloss Specular Basecolor AO Roughness Normal",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "UEFN Reference",
+      "extensions": null,
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "UEFN - Reference only",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/8d3aa567-f21c-44cc-89c9-705896aa4753/7a2c09ce-933d-4913-86f5-c9faeacd7605.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/8d3aa567-f21c-44cc-89c9-705896aa4753/6f96e426-d212-46a2-b927-835e09a96a67.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

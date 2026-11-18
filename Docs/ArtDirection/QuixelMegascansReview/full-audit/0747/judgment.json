@@ -1,0 +1,13 @@
+{
+  "id": 747,
+  "verdict": "보류",
+  "use": "S08 뿌리 달린 부러진 줄기",
+  "reason": "1.37m 규모의 기울어진 밑동으로 0610·0724와 역할이 겹친다.",
+  "edit": "기존 밑동 반복 시만 대체",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:46:33.125511+00:00",
+  "sourcePageSha256": "08061e421d76f56cfe8c3c595712a991e943de16d63a509ebdc4e8be53fb7b05"
+}

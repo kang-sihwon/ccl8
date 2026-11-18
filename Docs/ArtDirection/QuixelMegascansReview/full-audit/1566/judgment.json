@@ -1,0 +1,13 @@
+{
+  "id": 1566,
+  "verdict": "보류",
+  "use": "S08 먼 암벽 대안",
+  "reason": "19.6m 연속 수직 벽이 장면 규모를 바꾸므로 기존 배경 후보 우선",
+  "edit": "열린 뒤쪽 연결 및 지형 필요 확인",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:27:20.417539+00:00",
+  "sourcePageSha256": "666e2d0e01d0d4ef71fa43aba58fda19d28c98234597f9055b3ae9b7aaf49b73"
+}

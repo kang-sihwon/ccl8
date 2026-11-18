@@ -1,0 +1,13 @@
+{
+  "id": 835,
+  "verdict": "수정 후 후보",
+  "use": "S08 넓은 낮은 둔덕",
+  "reason": "7.65m의 낮은 지면에 많은 이끼 덩어리가 있어 지형 연결에 유용하다.",
+  "edit": "넓은 지면 경계 매립; 초록 피복을 가을색·낙엽으로 분산",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:52:44.789903+00:00",
+  "sourcePageSha256": "29d96eabd98a05c0efc90041a7004a4ec6af65bcf22738ba9dc4a577e50c0ea1"
+}

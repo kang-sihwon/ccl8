@@ -1,0 +1,13 @@
+{
+  "id": 1701,
+  "verdict": "보류",
+  "use": "S08 작은 판석 변형",
+  "reason": "6cm 층상 돌의 붉은 줄이 강함",
+  "edit": "붉은색 완화",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:31:48.503082+00:00",
+  "sourcePageSha256": "38bfd29964366a0793417279f78654a3ed12a78e0944ac83b71bd65a836a23ce"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 2257,
+  "verdict": "보류",
+  "use": "S02 식사 대안",
+  "reason": "13cm 구운 칠면조 다리는 종·조리 설정이 필요",
+  "edit": "식량 설정 확인",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:53:43.658091+00:00",
+  "sourcePageSha256": "c63ef797b17597fa718609a1fa078f339d1581c122e501186e64f0413a2e43b5"
+}

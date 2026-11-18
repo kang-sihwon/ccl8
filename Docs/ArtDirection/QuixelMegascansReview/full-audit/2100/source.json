@@ -1,0 +1,82 @@
+{
+  "id": 2100,
+  "url": "https://www.fab.com/listings/c36b5aad-9d2e-4334-adfe-2748ee6af3e7",
+  "uid": "c36b5aad-9d2e-4334-adfe-2748ee6af3e7",
+  "title": "Leather Luggage Suitcase",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:22:09.680083+00:00",
+  "pageSha256": "78106088613d77f63e9da01b763822302281b29e85acadebf62f2fdd6bcfe96d",
+  "description": "Texel density: 6551 px/m\nPhysical size: 0.22m x 0.39m x 0.22m\nMesh type: Closed mesh\nMaps: Diffuse Displacement(high tier only) Normal Metalness Roughness Specular Basecolor AO Cavity Bump\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.22m x 0.39m x 0.22m",
+  "mesh": "Closed mesh",
+  "texelDensity": "6551 px/m",
+  "maps": "Diffuse Displacement(high tier only) Normal Metalness Roughness Specular Basecolor AO Cavity Bump",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "ZBrush",
+      "extensions": [
+        "zbp",
+        "ztl"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/29a07289-02f8-4eab-8292-2bebe790f671/25d280a9-8d49-4939-93c3-48a66345adfb.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/29a07289-02f8-4eab-8292-2bebe790f671/6033db81-ead9-4c45-b8ff-b84cb9673b54.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

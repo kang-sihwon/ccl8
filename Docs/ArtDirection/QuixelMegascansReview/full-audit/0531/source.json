@@ -1,0 +1,82 @@
+{
+  "id": 531,
+  "url": "https://www.fab.com/listings/3630ed15-8b52-4f4e-a11f-0c0e85ba0b05",
+  "uid": "3630ed15-8b52-4f4e-a11f-0c0e85ba0b05",
+  "title": "Nordic Forest Cliff Large",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:12:14.650619+00:00",
+  "pageSha256": "8d0ffd6592990f3bb10c1479c8651b6ab4775b0e913156a9e33c9712245735f9",
+  "description": "Texel density: 5947 px/m\nPhysical size: 4.14m x 18.8m x 5.47m\nMesh type: Open mesh\nMaps: Basecolor Roughness Cavity Displacement(high tier only) Gloss Normal Specular AO Fuzz Bump\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "4.14m x 18.8m x 5.47m",
+  "mesh": "Open mesh",
+  "texelDensity": "5947 px/m",
+  "maps": "Basecolor Roughness Cavity Displacement(high tier only) Gloss Normal Specular AO Fuzz Bump",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "ZBrush",
+      "extensions": [
+        "zbp",
+        "ztl"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/ad71d0e9-a800-4030-815c-b7a3957e23ae/f70a4cf0-5443-4541-88c1-3892c36e66d1.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/ad71d0e9-a800-4030-815c-b7a3957e23ae/cbd7ca1b-bf95-40c1-af34-0991d5f66945.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

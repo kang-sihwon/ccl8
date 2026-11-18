@@ -1,0 +1,82 @@
+{
+  "id": 527,
+  "url": "https://www.fab.com/listings/54d2b14f-6549-44ae-b3c7-1179395a822d",
+  "uid": "54d2b14f-6549-44ae-b3c7-1179395a822d",
+  "title": "Nordic Forest Tree Trunk Spruce Medium",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:12:13.596254+00:00",
+  "pageSha256": "fd59567a7bd60d0039cfe5cd5a2ff08e35b12d28b9e303ab14a578e5780f8ca1",
+  "description": "Texel density: 5773 px/m\nPhysical size: 0.63m x 0.61m x 1.66m\nMesh type: Open mesh\nMaps: Basecolor Specular Roughness Cavity AO Bump Gloss Displacement(high tier only) Fuzz Normal\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.63m x 0.61m x 1.66m",
+  "mesh": "Open mesh",
+  "texelDensity": "5773 px/m",
+  "maps": "Basecolor Specular Roughness Cavity AO Bump Gloss Displacement(high tier only) Fuzz Normal",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "ZBrush",
+      "extensions": [
+        "zbp",
+        "ztl"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/bb39c399-e189-439c-b6f3-6e5e591e88af/4088a9f9-c1f4-4f4d-8f54-3a1773d43a81.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/bb39c399-e189-439c-b6f3-6e5e591e88af/63bae23c-43cb-4833-be81-a5e944a9eb70.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

@@ -1,0 +1,13 @@
+{
+  "id": 1098,
+  "verdict": "제외",
+  "use": "현재 세 장소 배치 없음",
+  "reason": "1.22m의 매끈한 흰 내부와 깊은 홈이 동굴 침전 파편으로 읽힘",
+  "edit": "일반 회색 자연석 사용",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:05:26.872240+00:00",
+  "sourcePageSha256": "93c49080acb8da48b61fc5633088ab8d1929948a4f5eea26c25073fc9d3c1589"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 1826,
+  "verdict": "제외",
+  "use": "현재 세 장소 제외",
+  "reason": "큰 장식 굴뚝형 벽난로가 궁정 실내 인상을 줌",
+  "edit": "단순 공방 화덕 제작 필요",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:35:21.261535+00:00",
+  "sourcePageSha256": "6bc25b452add91ffd19647001c2f64e66a4f4693d592ec1f94c6760e9d4efd90"
+}

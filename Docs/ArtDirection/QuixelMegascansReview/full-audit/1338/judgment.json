@@ -1,0 +1,13 @@
+{
+  "id": 1338,
+  "verdict": "추천",
+  "use": "S08 길 옆 좁은 암반띠",
+  "reason": "3.27m의 낮고 길게 이어진 바위와 작은 파편이 길 경계에 적합",
+  "edit": "열린 경계 매입 및 작은 돌의 보행 충돌 검토",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:15:07.669304+00:00",
+  "sourcePageSha256": "bbeb5d91ce8b898fc8abc8210b23b29cee52ff6d9456ffeeade25c05195b419b"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 1487,
+  "verdict": "보류",
+  "use": "S01 둔치 암벽 변형",
+  "reason": "4.3m의 넓고 갈색인 벽으로 1482와 역할 겹침",
+  "edit": "회색 조절 및 열린 면 연결",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:21:12.829701+00:00",
+  "sourcePageSha256": "4c805bf830dbe3c37bff783fd7cc3959ac3f623b5213ba9cefa596da2df885cb"
+}

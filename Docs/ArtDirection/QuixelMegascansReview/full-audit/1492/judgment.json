@@ -1,0 +1,13 @@
+{
+  "id": 1492,
+  "verdict": "보류",
+  "use": "S08 작은 층상 바위벽",
+  "reason": "2.09m의 붉은 층상 면과 세로 홈으로 기존 회색 자연석 우선",
+  "edit": "회색 색조 조절 및 열린 면 연결",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:21:12.834591+00:00",
+  "sourcePageSha256": "d48fa2f751660138ccebf3f121a7260f6564deb8943a0975dcd4ce860fb12d8b"
+}

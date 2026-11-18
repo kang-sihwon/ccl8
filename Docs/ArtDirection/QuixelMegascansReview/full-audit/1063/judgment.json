@@ -1,0 +1,13 @@
+{
+  "id": 1063,
+  "verdict": "보류",
+  "use": "S01 넓은 잎 풀 변형",
+  "reason": "밝은 녹색 긴 잎의 방사형 군집으로 1053 등과 중복",
+  "edit": "크기 확인 및 녹색 채도 완화",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:05:26.835996+00:00",
+  "sourcePageSha256": "0ddde98ff4d8ecb5f8b6014717169c6b17412ae6926601c09ad9ce85c7a57fc6"
+}

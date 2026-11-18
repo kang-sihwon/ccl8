@@ -1,0 +1,13 @@
+{
+  "id": 2083,
+  "verdict": "수정 후 후보",
+  "use": "S02 원료를 가는 돌판",
+  "reason": "77cm 얕게 팬 회색 돌판은 분쇄 작업에 가능",
+  "edit": "공방 공정 확인 및 작업대 하중·크기 맞춤",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:46:35.327508+00:00",
+  "sourcePageSha256": "5eb6abfcb890a47c1978503b5430fc6606e9f1dec1ca5f28a10779ced889fbec"
+}

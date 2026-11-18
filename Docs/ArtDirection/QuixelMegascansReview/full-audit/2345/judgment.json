@@ -1,0 +1,13 @@
+{
+  "id": 2345,
+  "verdict": "보류",
+  "use": "S01 보존식 대안",
+  "reason": "19cm 고리 소시지는 가공 식량 설정 필요",
+  "edit": "식문화 확인",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:56:37.661622+00:00",
+  "sourcePageSha256": "27d909a7665c10151a455a370b24a093ad6f518a6422637ee4aaa8637ce66a0c"
+}

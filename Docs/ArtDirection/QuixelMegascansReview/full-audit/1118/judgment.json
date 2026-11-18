@@ -1,0 +1,13 @@
+{
+  "id": 1118,
+  "verdict": "보류",
+  "use": "S01 작은 돌판 변형",
+  "reason": "55cm의 밝고 불규칙한 얇은 돌로 기존 돌판과 중복",
+  "edit": "크림색 완화",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:07:19.721959+00:00",
+  "sourcePageSha256": "865a709ad9c99398abb5534d43b514b8931b148b4c981312df8ebf1071a4596f"
+}

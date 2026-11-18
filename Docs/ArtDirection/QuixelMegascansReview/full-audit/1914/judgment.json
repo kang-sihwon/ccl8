@@ -1,0 +1,13 @@
+{
+  "id": 1914,
+  "verdict": "보류",
+  "use": "S02 숯 조각 변형",
+  "reason": "6cm 짧은 원통형 숯은 화면 기여 낮음",
+  "edit": "근접에만 사용",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:38:57.962549+00:00",
+  "sourcePageSha256": "88aafd7bbbb84f8716e25e2b46a0fa15cf9bd44b29e6962a730d64b127f1ecbc"
+}

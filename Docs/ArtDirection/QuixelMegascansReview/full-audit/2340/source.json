@@ -1,0 +1,82 @@
+{
+  "id": 2340,
+  "url": "https://www.fab.com/listings/43144cdb-7176-4b8c-b337-fae8b2423a7c",
+  "uid": "43144cdb-7176-4b8c-b337-fae8b2423a7c",
+  "title": "Smoked Deer Leg",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:23:41.529559+00:00",
+  "pageSha256": "547c687ec95c834f0160e6d43f81c4a8155852f58f3b8a9bdaa5ca38b1c4ed1d",
+  "description": "Texel density: 5757 px/m\nPhysical size: 0.19m x 0.49m x 0.11m\nMesh type: Closed mesh\nMaps: AO Displacement(high tier only) Specular Basecolor Bump Cavity Gloss Normal Roughness\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.19m x 0.49m x 0.11m",
+  "mesh": "Closed mesh",
+  "texelDensity": "5757 px/m",
+  "maps": "AO Displacement(high tier only) Specular Basecolor Bump Cavity Gloss Normal Roughness",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "ZBrush",
+      "extensions": [
+        "zbp",
+        "ztl"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/dac1f2f4-e297-4359-9067-ac8b7e642e18/67a96bef-5ea9-40cd-9e92-490c2f081e02.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/dac1f2f4-e297-4359-9067-ac8b7e642e18/9c32b979-654b-4aaa-babd-b23afb16cf3e.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

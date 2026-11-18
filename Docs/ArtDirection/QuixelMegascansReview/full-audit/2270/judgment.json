@@ -1,0 +1,13 @@
+{
+  "id": 2270,
+  "verdict": "보류",
+  "use": "S01 알 화물 대안",
+  "reason": "15cm 얼룩진 큰 알은 종과 크기 설정이 필요",
+  "edit": "일반 가금 알로 단정 금지",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:55:15.639998+00:00",
+  "sourcePageSha256": "6444ec2a46edf5b66a0b907c80b32c779b265911a254e9758db87458064ceefb"
+}

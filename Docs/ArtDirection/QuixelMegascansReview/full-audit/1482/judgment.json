@@ -1,0 +1,13 @@
+{
+  "id": 1482,
+  "verdict": "수정 후 후보",
+  "use": "S01 먼 강둑의 긴 암반턱",
+  "reason": "6.41m의 평평한 상단과 낮은 층이 강둑 경계에 가능",
+  "edit": "붉은색·수평층 대비 축소 및 열린 뒤쪽 접합",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:21:12.824360+00:00",
+  "sourcePageSha256": "398278d49af79fb731bf21b063fdf40ddad1a3f5cd6bbaacb67c877c6394abe9"
+}

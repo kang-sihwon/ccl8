@@ -1,0 +1,13 @@
+{
+  "id": 2200,
+  "verdict": "수정 후 후보",
+  "use": "S02 한 끼 빵",
+  "reason": "11cm 단순 둥근 황갈색 롤은 실루엣이 잘 읽힘",
+  "edit": "식량 설정·광택 조정",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:52:25.948275+00:00",
+  "sourcePageSha256": "8b5f4c810680a0d32af30ad25dd2b2a1c5496e2b25f84a3959842bcbde0f70a1"
+}

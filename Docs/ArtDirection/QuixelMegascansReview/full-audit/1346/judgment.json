@@ -1,0 +1,13 @@
+{
+  "id": 1346,
+  "verdict": "보류",
+  "use": "S08 기울어진 판형 바위",
+  "reason": "5.25m의 급한 경사면으로 기존 낮은 바위보다 입구 활용성 낮음",
+  "edit": "배경 경사에 맞춰 열린 면 매입",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:15:07.677018+00:00",
+  "sourcePageSha256": "3cc4e9f4cf95803f970cd71db601704e0f327ac9bd1a4dade89fc1565d44d994"
+}

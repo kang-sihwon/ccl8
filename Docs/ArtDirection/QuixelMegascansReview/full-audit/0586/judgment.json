@@ -1,0 +1,13 @@
+{
+  "id": 586,
+  "verdict": "보류",
+  "use": "S08 작은 바위 대체",
+  "reason": "상부가 움푹한 작은 돌이나 검은 측면과 흰 얼룩이 강하다.",
+  "edit": "기존 단순 바위 우선; 얼룩·명암 완화",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:38:54.182428+00:00",
+  "sourcePageSha256": "b3764235dfa2635c41ef3bb3374d65b97f332f3986a176c8d7329fdc8914decc"
+}

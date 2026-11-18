@@ -1,0 +1,13 @@
+{
+  "id": 1360,
+  "verdict": "보류",
+  "use": "S01 작은 붉은 화강암",
+  "reason": "32cm의 각진 붉은 회색 돌로 기존 자갈보다 색 조정 필요 큼",
+  "edit": "붉은색 완화",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:17:00.791795+00:00",
+  "sourcePageSha256": "64c4f03b6b589b07f715e37ab9027b82424e3fff356e261ca02d17f1ba13e304"
+}

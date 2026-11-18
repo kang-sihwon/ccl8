@@ -1,0 +1,13 @@
+{
+  "id": 1003,
+  "verdict": "보류",
+  "use": "S08 기울어진 적갈색 버섯",
+  "reason": "8cm의 넓게 기운 갓으로 군집 세트 대체 가능",
+  "edit": "흰 대와 갓의 명암 축소",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:01:11.406746+00:00",
+  "sourcePageSha256": "09008e74d88a94f5f0c8b4b4fdff4c6232506d54483a0b6319144b772c55c5e4"
+}

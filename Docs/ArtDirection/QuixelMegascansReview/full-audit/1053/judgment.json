@@ -1,0 +1,13 @@
+{
+  "id": 1053,
+  "verdict": "보류",
+  "use": "S01 넓은 잎 풀 변형",
+  "reason": "방사형 넓은 녹색 잎으로 기존 1021 및 수변 풀과 역할 중복",
+  "edit": "실측과 계절색 확인",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:03:25.991842+00:00",
+  "sourcePageSha256": "62f18fbff13e122bf1a3df748cdefab6e5f77255014a3e12886fa63a6578e747"
+}

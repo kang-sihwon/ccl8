@@ -1,0 +1,13 @@
+{
+  "id": 2003,
+  "verdict": "수정 후 후보",
+  "use": "S02 문 옆 거친 흙화분",
+  "reason": "14cm 불규칙한 회갈색 화분은 수작업 인상이나 파손된 입구 보임",
+  "edit": "입구 파손·내부 확인 및 흙·식물 추가",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:42:46.960890+00:00",
+  "sourcePageSha256": "a72fa360aa7afbe3d51634bbd58648391e5f19a46da7d87e4bb4a2e42faa0181"
+}

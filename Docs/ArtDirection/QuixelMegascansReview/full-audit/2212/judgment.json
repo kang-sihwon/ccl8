@@ -1,0 +1,13 @@
+{
+  "id": 2212,
+  "verdict": "보류",
+  "use": "S01 뿌리채소 대안",
+  "reason": "20cm 붉은 굽은 당근은 변주 가능하나 작물 범위 미확정",
+  "edit": "품종 색 통일",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:52:25.960044+00:00",
+  "sourcePageSha256": "6094e249c417d5393b639d6057db4849e5d7fc3eb1e38ed1ac8211d0e0e58d9f"
+}

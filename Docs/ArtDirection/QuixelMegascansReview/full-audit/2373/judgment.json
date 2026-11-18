@@ -1,0 +1,13 @@
+{
+  "id": 2373,
+  "verdict": "수정 후 후보",
+  "use": "S02 수리 중 도끼",
+  "reason": "90cm 자루와 천 감긴 머리가 수선 흔적으로 읽힘",
+  "edit": "감김 구조·날 고정 안전한 외형으로 정리",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:57:51.203591+00:00",
+  "sourcePageSha256": "c1a3963acf89f1073d8213fa835872e531e55ce713dfb68d75fa07b3b359aa3e"
+}

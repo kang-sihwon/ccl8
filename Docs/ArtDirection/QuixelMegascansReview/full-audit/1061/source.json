@@ -1,0 +1,65 @@
+{
+  "id": 1061,
+  "url": "https://www.fab.com/listings/0311f445-453b-48d1-adcf-5d38162a5fa7",
+  "uid": "0311f445-453b-48d1-adcf-5d38162a5fa7",
+  "title": "Thatching Grass",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:15:35.843175+00:00",
+  "pageSha256": "0011f7035cbd19a6133b9fdd84dbe0ab67d1694e67768f10a7273e0ca3b49fe2",
+  "description": "Maps: Gloss Cavity Translucency Specular Bump AO Normal Roughness Displacement Opacity Basecolor\n \nCreate high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "기재 확인 안 됨",
+  "mesh": "기재 확인 안 됨",
+  "texelDensity": "기재 확인 안 됨",
+  "maps": "Gloss Cavity Translucency Specular Bump AO Normal Roughness Displacement Opacity Basecolor",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/6279f12b-c4c1-4472-ad28-450d32809ea8/f6f79352-0ab4-48c9-90e5-fb91ac9f713a.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 2,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/6279f12b-c4c1-4472-ad28-450d32809ea8/8cc9385f-543a-4308-9ec1-9fe319be6ee3.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

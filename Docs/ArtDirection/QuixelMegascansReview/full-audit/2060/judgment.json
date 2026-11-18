@@ -1,0 +1,13 @@
+{
+  "id": 2060,
+  "verdict": "수정 후 후보",
+  "use": "S02 생활용 목제 주전자 수리품",
+  "reason": "43cm 판재형 주전자가 가능하나 지그재그 무늬가 강함",
+  "edit": "문양 단순화 및 취급 품목 확인",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:44:39.466025+00:00",
+  "sourcePageSha256": "a903fa9be4ad45c7d900c9b4e29d65e0d04d11dd1c1030b816cd960fdf95b459"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 2320,
+  "verdict": "보류",
+  "use": "S01 과일 대안",
+  "reason": "8cm 매끈한 붉은 사과는 기존 후보 중복",
+  "edit": "광택 조정",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:56:37.637683+00:00",
+  "sourcePageSha256": "9e3c94c0623dff1e5859640e38f9200bedb34c158d6ccda29f381d8ff922d24b"
+}

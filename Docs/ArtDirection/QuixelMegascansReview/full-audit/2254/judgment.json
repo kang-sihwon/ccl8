@@ -1,0 +1,13 @@
+{
+  "id": 2254,
+  "verdict": "보류",
+  "use": "S01 채소 대안",
+  "reason": "8cm 녹색 피망은 반사가 강하고 작물 미확정",
+  "edit": "작물 설정·광택 축소",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:53:43.655285+00:00",
+  "sourcePageSha256": "643975a35a5a04a998cc43c80684c101133cadc7bec21d871bbfe5a17e9b40af"
+}

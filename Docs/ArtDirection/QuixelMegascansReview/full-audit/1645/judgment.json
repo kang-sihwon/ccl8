@@ -1,0 +1,13 @@
+{
+  "id": 1645,
+  "verdict": "보류",
+  "use": "S08 길가 작은 돌",
+  "reason": "10cm 황갈색 삼각 돌은 화면 기여 낮음",
+  "edit": "노란색 감소",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:30:20.093618+00:00",
+  "sourcePageSha256": "0b6c7f5dc622f898928a26eedf8f053efc63d1c6e65cb8629fbac96ad65f4a99"
+}

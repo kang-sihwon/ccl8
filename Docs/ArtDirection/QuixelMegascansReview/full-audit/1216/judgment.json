@@ -1,0 +1,13 @@
+{
+  "id": 1216,
+  "verdict": "추천",
+  "use": "S01 접근 둔치의 낮은 긴 바위",
+  "reason": "2.31m의 넓은 면과 낮은 채도의 이끼가 수변 경계에 적합",
+  "edit": "갈색 단면을 회색과 통일하고 물선 접합",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:11:29.590291+00:00",
+  "sourcePageSha256": "9d685d196adf3b0b2ccc71e8d6d5b3ae782d77e45eee38a70a538ba7756d06fb"
+}

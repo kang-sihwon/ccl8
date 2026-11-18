@@ -1,0 +1,13 @@
+{
+  "id": 1668,
+  "verdict": "제외",
+  "use": "현재 세 장소 제외",
+  "reason": "11cm 선명한 황색 판석은 회색 자연석과 차이 큼",
+  "edit": "회색 돌 사용",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:30:20.115919+00:00",
+  "sourcePageSha256": "2ae8e68fb0d350e96d037defa0ef4bfe672517e00e919c7c0ab4459ed53f7e17"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 2185,
+  "verdict": "보류",
+  "use": "S02 식사 소품 대안",
+  "reason": "19cm 통구이는 생활 소품 가능하나 공방 시안 핵심 아님",
+  "edit": "조리 동물 설정 확인",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:52:25.934023+00:00",
+  "sourcePageSha256": "da93acbd8db998ee96d22a06caedf865ee559e05f1243275d64fcdba7833ce31"
+}

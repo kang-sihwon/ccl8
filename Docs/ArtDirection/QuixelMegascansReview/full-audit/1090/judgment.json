@@ -1,0 +1,13 @@
+{
+  "id": 1090,
+  "verdict": "수정 후 후보",
+  "use": "S08 외곽 낮은 암반",
+  "reason": "5.05m의 넓고 완만한 바위판은 유용하나 황색이 강함",
+  "edit": "회색 재질 조정 및 열린 가장자리 매입",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:05:26.864357+00:00",
+  "sourcePageSha256": "d97329eabfab5148a874bd8f675f8c11b732e2bf379de5dd62d8fe1584941077"
+}

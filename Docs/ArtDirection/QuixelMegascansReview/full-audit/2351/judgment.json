@@ -1,0 +1,13 @@
+{
+  "id": 2351,
+  "verdict": "보류",
+  "use": "S02 빵 대안",
+  "reason": "27cm 씨앗 있는 타원 빵은 기존 후보 중복",
+  "edit": "대표 빵만 선택",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:56:37.667630+00:00",
+  "sourcePageSha256": "c54a5258fff2ac4bd8b9bb36c165fdb2a2a94bf469c52907e25636689c2b5f4d"
+}

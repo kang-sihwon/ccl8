@@ -1,0 +1,93 @@
+{
+  "id": 2182,
+  "url": "https://www.fab.com/listings/a31811f9-69a7-4961-a1b1-66471396d6c7",
+  "uid": "a31811f9-69a7-4961-a1b1-66471396d6c7",
+  "title": "Banquet Chicken Leg on Skewers",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:22:40.609161+00:00",
+  "pageSha256": "bb5e7e1e95f7f300256a342ba18c6c017492765bc62261f899f9f48fa333d757",
+  "description": "Texel density: 4660 px/m\nPhysical size: 0.1m x 0.35m x 0.04m\nMesh type: Closed mesh\nMaps: Basecolor Roughness Cavity Displacement(high tier only) Gloss Normal Specular AO Bump\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.1m x 0.35m x 0.04m",
+  "mesh": "Closed mesh",
+  "texelDensity": "4660 px/m",
+  "maps": "Basecolor Roughness Cavity Displacement(high tier only) Gloss Normal Specular AO Bump",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "ZBrush",
+      "extensions": [
+        "zbp",
+        "ztl"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "UEFN Reference",
+      "extensions": null,
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "UEFN - Reference only",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/66448644-a92b-4ba9-9ee7-e4ef81943dd0/f8d9745a-d96f-4873-b104-e6a498f21ecb.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/66448644-a92b-4ba9-9ee7-e4ef81943dd0/f241589a-3f42-4483-a45e-713b51444dee.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

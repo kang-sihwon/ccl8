@@ -1,0 +1,13 @@
+{
+  "id": 1910,
+  "verdict": "보류",
+  "use": "S02 탄 장작 변형",
+  "reason": "22cm 검은 껍질과 밝은 재 대비가 1909보다 강함",
+  "edit": "흰 재 대비 낮추기",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:38:57.958845+00:00",
+  "sourcePageSha256": "8a6daa1167dd8af5028cd1904498ef83fe28ac2b08a69e0c00a16fadb0f35fa2"
+}

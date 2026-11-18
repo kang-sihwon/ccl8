@@ -1,0 +1,13 @@
+{
+  "id": 420,
+  "verdict": "수정 후 후보",
+  "use": "S01 둑 위 긴 원목 저장",
+  "reason": "4.47m의 가는 원목은 수송 재료로 유용하지만 3m 안팎 부두 폭보다 길다.",
+  "edit": "나루 통로가 아닌 둑 위에 길이 방향 배치",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:27:25.606478+00:00",
+  "sourcePageSha256": "7a121e3f4a5f97d4e7b327ce90fad8613e7e62f644b4f3908d5c6846ca5d1fd2"
+}

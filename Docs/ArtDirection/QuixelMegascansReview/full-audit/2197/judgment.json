@@ -1,0 +1,13 @@
+{
+  "id": 2197,
+  "verdict": "수정 후 후보",
+  "use": "S02 휴식 탁자 빵",
+  "reason": "20cm 거친 타원 빵의 단순 형태와 따뜻한 갈색이 적합",
+  "edit": "식량 설정·밀가루 흰 대비 완화",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:52:25.945502+00:00",
+  "sourcePageSha256": "b513269cd25817c3be8586fe6f3842f36b5195d3b3ed7d886efbe8ae52174840"
+}

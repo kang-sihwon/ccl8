@@ -1,0 +1,13 @@
+{
+  "id": 1899,
+  "verdict": "수정 후 후보",
+  "use": "S02 작업대 장부",
+  "reason": "22cm 단순 파란 표지지만 균일한 현대 제본 인상이 있음",
+  "edit": "청록 저채도 표지·종이 가장자리 수정 및 글자 확인",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:38:57.948089+00:00",
+  "sourcePageSha256": "b6f51b0988637d4ebd18e787cabee9eeab7f7c45ee9f456a7b6d78149d8594b4"
+}

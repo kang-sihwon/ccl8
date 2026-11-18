@@ -1,0 +1,13 @@
+{
+  "id": 2104,
+  "verdict": "보류",
+  "use": "S02 장부 변형",
+  "reason": "21cm 낡은 파랑 표지는 기존 청록 후보 충분",
+  "edit": "청록 조절 및 문구 확인",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:46:35.347593+00:00",
+  "sourcePageSha256": "726a9416867f1d9cba0323b58da69c448eb2e4a8c498c6d26414e4d2c798965f"
+}

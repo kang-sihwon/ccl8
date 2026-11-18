@@ -1,0 +1,13 @@
+{
+  "id": 1181,
+  "verdict": "보류",
+  "use": "S08 높은 흙턱 변형",
+  "reason": "3.78m의 두꺼운 흙덩어리로 기존 낮은 턱보다 입구 시야 영향 큼",
+  "edit": "통로 밖 배치 및 열린 경계 매입",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:09:31.911663+00:00",
+  "sourcePageSha256": "6ee21fe6e7bbd613a1602cd2a69073572ed0e32be9d7c44dfc09437701cd2eb5"
+}

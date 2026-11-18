@@ -1,0 +1,13 @@
+{
+  "id": 2036,
+  "verdict": "수정 후 후보",
+  "use": "S02 작은 자재함",
+  "reason": "43cm 단순 사각 상자이나 선명한 빨강 도장이 강함",
+  "edit": "따뜻한 목재색 또는 낮은 붉은색으로 재도장",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:44:39.442256+00:00",
+  "sourcePageSha256": "4a090d9031c5c84571c41acc1d908ef9090e7dc227f5082faa061f2fba37110a"
+}

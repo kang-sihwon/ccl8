@@ -1,0 +1,13 @@
+{
+  "id": 1718,
+  "verdict": "보류",
+  "use": "S01 작은 자갈 대안",
+  "reason": "7cm 분홍빛 타원석은 수정 대비 효용 낮음",
+  "edit": "회색화",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:31:48.520361+00:00",
+  "sourcePageSha256": "2996d41da10c803d618450b752fddfd811aa0236442362472ee13e78cf328092"
+}

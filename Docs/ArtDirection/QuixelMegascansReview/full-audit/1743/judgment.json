@@ -1,0 +1,13 @@
+{
+  "id": 1743,
+  "verdict": "수정 후 후보",
+  "use": "S08 숲길 밖 낙엽 바닥",
+  "reason": "2.57m 패치의 흰 돌과 붉은 낙엽 대비가 다소 강함",
+  "edit": "돌 밝기·잎 채도 감소 및 경계 연결",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:33:48.180607+00:00",
+  "sourcePageSha256": "cce8c1c258da227e03b17037328d59d75d9e5533f0cc1a66f5077981fd4c0de3"
+}

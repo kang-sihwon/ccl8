@@ -1,0 +1,13 @@
+{
+  "id": 1716,
+  "verdict": "보류",
+  "use": "S08 작은 돌 변형",
+  "reason": "6cm 붉은 반점과 검은 표면 대비가 강함",
+  "edit": "붉은색 감소",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:31:48.518439+00:00",
+  "sourcePageSha256": "8da3306d2f9c71508ee098e9dec9ddbb349fcbf0fd6a8b8903dbb963cc8b9517"
+}

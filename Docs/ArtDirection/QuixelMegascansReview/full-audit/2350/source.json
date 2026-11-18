@@ -1,0 +1,74 @@
+{
+  "id": 2350,
+  "url": "https://www.fab.com/listings/374ca85e-c76f-4275-86a8-07a69690cf04",
+  "uid": "374ca85e-c76f-4275-86a8-07a69690cf04",
+  "title": "Smooth Green Lime",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:23:45.177234+00:00",
+  "pageSha256": "b1324bc9501510507a9a2ea9940382635ea320260700d8dab3b59cb35789450d",
+  "description": "Texel density: 1127 px/m\nPhysical size: 0.05m x 0.05m x 0.06m\nMesh type: Closed mesh\nMaps: AO Gloss Cavity Displacement(high tier only) Normal Specular Basecolor Roughness\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.05m x 0.05m x 0.06m",
+  "mesh": "Closed mesh",
+  "texelDensity": "1127 px/m",
+  "maps": "AO Gloss Cavity Displacement(high tier only) Normal Specular Basecolor Roughness",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/502f1026-f298-4791-adba-8c12aff642a3/c696b628-c25e-410b-99a8-e20fef80b6ef.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/502f1026-f298-4791-adba-8c12aff642a3/aa8c3959-3d66-4300-bdb8-1a6cc23d6d71.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

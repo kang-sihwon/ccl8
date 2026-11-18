@@ -1,0 +1,13 @@
+{
+  "id": 1792,
+  "verdict": "보류",
+  "use": "S02 기와 파편 변형",
+  "reason": "9cm 정사각 갈색 조각은 기존 후보와 중복",
+  "edit": "지붕 재질 일치 확인",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:35:21.229249+00:00",
+  "sourcePageSha256": "7777e4f6f47f1e9ad96843871ea8d39843fdf1dc69305eba44ef96d4cbfe0927"
+}

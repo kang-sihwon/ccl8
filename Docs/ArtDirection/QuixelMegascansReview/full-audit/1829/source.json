@@ -1,0 +1,90 @@
+{
+  "id": 1829,
+  "url": "https://www.fab.com/listings/b72ad420-f9ad-4acd-bc7d-0d62e8ab8035",
+  "uid": "b72ad420-f9ad-4acd-bc7d-0d62e8ab8035",
+  "title": "Industrial Abandoned Factory Tool Shovel Metal Rusted",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:20:26.970170+00:00",
+  "pageSha256": "88f74d1f41ae3cd3922b654aad50137d3a4e4af630780c2e29f153baa79589f2",
+  "description": "The ‘Abandoned Factory’ themed assets focus on industrial interiors slowly reclaimed by time.\nThis collection features hi-res scans of a control room space, structural frameworks, oxidized metal, fractured walls, and debris-covered floors.\nShowcase Video\nTexel density: 14000 px/m\nPhysical size: 0.26m x 1.17m x 0.15m\nMesh type: Closed mesh\nMaps: AO Basecolor Bump Cavity Diffuse Displacement Gloss Metalness Normal Roughness Specular\nCreate high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.\n\nCurious about future releases? Discover upcoming Megascans content and vote for your favorite themes: Public Roadmap",
+  "size": "0.26m x 1.17m x 0.15m",
+  "mesh": "Closed mesh",
+  "texelDensity": "14000 px/m",
+  "maps": "AO Basecolor Bump Cavity Diffuse Displacement Gloss Metalness Normal Roughness Specular",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "ZBrush",
+      "extensions": [
+        "zbp",
+        "ztl"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/e371e445-f6b6-4072-a1f5-b7febcb9458c/29bf4b6f-1661-46d9-9ba8-6ba73ecb2240.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/e371e445-f6b6-4072-a1f5-b7febcb9458c/90bdfa6b-9c64-4d51-8618-a4208e076179.jpeg"
+    },
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/13a81818-d1c6-4b16-9f10-865efab349c4/efc82e7c-5d72-44e6-bfea-2ab59a9fbf3d.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 2,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/13a81818-d1c6-4b16-9f10-865efab349c4/8a5e2418-2b99-40f7-983c-bb2c308e5445.jpg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg",
+    "gallery-02.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

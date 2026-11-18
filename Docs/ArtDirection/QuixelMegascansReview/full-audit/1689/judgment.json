@@ -1,0 +1,13 @@
+{
+  "id": 1689,
+  "verdict": "수정 후 후보",
+  "use": "S02 문턱 옆 흙 속 판석",
+  "reason": "43cm 넓고 낮은 판형은 유용하나 전체 황색이 강함",
+  "edit": "회색 보정 후 작은 영역에 배치",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:31:48.490848+00:00",
+  "sourcePageSha256": "bac1ea1d683777d17b6e4218aa032bc3ec927b0275e4946b2f14e0db46b62b7b"
+}

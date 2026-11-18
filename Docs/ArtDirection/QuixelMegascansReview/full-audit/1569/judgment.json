@@ -1,0 +1,13 @@
+{
+  "id": 1569,
+  "verdict": "제외",
+  "use": "현재 세 장소 배치 제외",
+  "reason": "73cm 쐐기형 돌의 강한 주황 얼룩이 시안과 차이 큼",
+  "edit": "기존 회색 돌 사용",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:27:20.420596+00:00",
+  "sourcePageSha256": "578552c6f391603d4b77c67098ad7f39d9b705bc41923996dcc2ef1738a2fe19"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 1104,
+  "verdict": "보류",
+  "use": "S08 작은 다공성 돌",
+  "reason": "33cm의 밝고 구멍 많은 덩어리로 현재 회색 바위보다 수정량 큼",
+  "edit": "밝기와 황색 완화",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:05:26.878346+00:00",
+  "sourcePageSha256": "bfbf44626c346fe8bbb2f8616811200c5a434899cf0b872417ea8496fad52b48"
+}

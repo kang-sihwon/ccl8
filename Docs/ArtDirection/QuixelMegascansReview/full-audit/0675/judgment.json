@@ -1,0 +1,13 @@
+{
+  "id": 675,
+  "verdict": "보류",
+  "use": "S08 긴 탈피 가지",
+  "reason": "1.98m의 길쭉한 밝은 나뭇가지로 0512·0654와 역할이 겹친다.",
+  "edit": "기존 밝은 고사목 변형 부족 시 사용",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:41:41.795055+00:00",
+  "sourcePageSha256": "55131350be88e4987953cc6e4ad0683b2d48dc3a5deb16e976dbc8d69f4f6b77"
+}

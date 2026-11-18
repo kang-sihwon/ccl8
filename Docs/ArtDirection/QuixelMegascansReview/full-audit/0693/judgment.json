@@ -1,0 +1,13 @@
+{
+  "id": 693,
+  "verdict": "추천",
+  "use": "S01 강안의 탈색된 유목",
+  "reason": "63cm의 밝고 비틀린 갈라진 목재가 물가의 작은 유목으로 읽힌다.",
+  "edit": "백색 명도 낮추고 회갈색 통일",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:44:12.027615+00:00",
+  "sourcePageSha256": "c42d2cd49ab85af9eb6274e2db4622a3ece40cf8e2581538a76fe363ad13d8b2"
+}

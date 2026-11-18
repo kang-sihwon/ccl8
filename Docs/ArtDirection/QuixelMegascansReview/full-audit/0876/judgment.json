@@ -1,0 +1,13 @@
+{
+  "id": 876,
+  "verdict": "보류",
+  "use": "S01 작은 탈색 유목",
+  "reason": "31cm의 흰 목편과 작은 돌출이 0865·0786과 같은 근경 역할이다.",
+  "edit": "백색 완화; 기존 유목 우선",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:54:43.588013+00:00",
+  "sourcePageSha256": "a83becf4a1d418061c2d8cc8f6fe4ea8714f5abf92186adf7e18349783e7789c"
+}

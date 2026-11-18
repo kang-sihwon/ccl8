@@ -1,0 +1,13 @@
+{
+  "id": 1719,
+  "verdict": "보류",
+  "use": "S01 작은 자갈 변형",
+  "reason": "6cm 회색 둥근 돌의 홈은 적합하나 중복",
+  "edit": "부분 매입",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:31:48.521299+00:00",
+  "sourcePageSha256": "701d445af99e2d806816e44f6c299787d71b1df0ae3e8226cd4635a387561921"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 1155,
+  "verdict": "보류",
+  "use": "S08 긴 흙턱 변형",
+  "reason": "2.85m의 낮고 긴 흙판으로 1153 및 1154와 역할 중복",
+  "edit": "열린 가장자리 매입",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:07:19.762215+00:00",
+  "sourcePageSha256": "81ed690e5edd33a5399dd610a7c42acaf3f324ce1611586b9638757f06f965a6"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 1122,
+  "verdict": "보류",
+  "use": "S08 작은 황토색 돌",
+  "reason": "32cm의 얇은 층과 돌출부로 기존 작은 돌 대체 가능",
+  "edit": "황색 완화 및 열린 면 매입",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:07:19.726274+00:00",
+  "sourcePageSha256": "ba76268008cb91a0043926c1bfce71651fcfed067dc347ed55eb421b55a9770f"
+}

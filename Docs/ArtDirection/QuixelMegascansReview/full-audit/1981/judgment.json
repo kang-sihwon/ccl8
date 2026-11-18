@@ -1,0 +1,13 @@
+{
+  "id": 1981,
+  "verdict": "수정 후 후보",
+  "use": "S02 작업대의 긴 도구꽂이",
+  "reason": "25cm 단순 목제 원통이 가능하나 원래 음료 용기이고 내경 좁음",
+  "edit": "내부 깊이·바닥 안정성 확인",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:42:46.939459+00:00",
+  "sourcePageSha256": "00c20309239bd8ebb250396c8f5a4a7c214230b42d01fc82eb2e0c3ba01c95d5"
+}

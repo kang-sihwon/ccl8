@@ -1,0 +1,93 @@
+{
+  "id": 1338,
+  "url": "https://www.fab.com/listings/982d2144-5917-4b3f-abb0-89d474bee276",
+  "uid": "982d2144-5917-4b3f-abb0-89d474bee276",
+  "title": "Forest Rock Formation",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:17:20.413041+00:00",
+  "pageSha256": "bbeb5d91ce8b898fc8abc8210b23b29cee52ff6d9456ffeeade25c05195b419b",
+  "description": "Texel density: 6203 px/m\nPhysical size: 1.38m x 3.27m x 0.2m\nMesh type: Open mesh\nMaps: AO Displacement(high tier only) Specular Basecolor Bump Cavity Gloss Normal Roughness\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "1.38m x 3.27m x 0.2m",
+  "mesh": "Open mesh",
+  "texelDensity": "6203 px/m",
+  "maps": "AO Displacement(high tier only) Specular Basecolor Bump Cavity Gloss Normal Roughness",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "ZBrush",
+      "extensions": [
+        "zbp",
+        "ztl"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "UEFN Reference",
+      "extensions": null,
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "UEFN - Reference only",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/97273f52-232a-4b9e-8074-d5b2837acb1e/3d975ab6-a25d-4d69-a120-fba78d7a690a.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/97273f52-232a-4b9e-8074-d5b2837acb1e/eab8d306-fcdc-4e93-867e-46ffd363d198.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

@@ -1,0 +1,13 @@
+{
+  "id": 1490,
+  "verdict": "보류",
+  "use": "S08 원경 높은 암벽",
+  "reason": "13.22m 축 규모의 세로 홈이 강한 절벽으로 현재 입구 배치 근거 없음",
+  "edit": "원경 지형 확정 후만 검토",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:21:12.832683+00:00",
+  "sourcePageSha256": "1e56b50bbc313e128c3e2c59d5f1c0a45c2516d3e4baa212d83aa3030929b726"
+}

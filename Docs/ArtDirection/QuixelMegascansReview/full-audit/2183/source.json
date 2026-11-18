@@ -1,0 +1,93 @@
+{
+  "id": 2183,
+  "url": "https://www.fab.com/listings/166a3f54-7f9b-454e-8868-d6b2166bd392",
+  "uid": "166a3f54-7f9b-454e-8868-d6b2166bd392",
+  "title": "Banquet Lamb Rack of Ribs",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:22:40.578859+00:00",
+  "pageSha256": "fb7b9c9504b0aec4347f889b2ae0c0d7d0a79d44a82240ffa93dbef2cab8fda9",
+  "description": "Texel density: 5434 px/m\nPhysical size: 0.19m x 0.2m x 0.11m\nMesh type: Closed mesh\nMaps: Basecolor Roughness Cavity Displacement(high tier only) Gloss Normal Specular AO Bump\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.19m x 0.2m x 0.11m",
+  "mesh": "Closed mesh",
+  "texelDensity": "5434 px/m",
+  "maps": "Basecolor Roughness Cavity Displacement(high tier only) Gloss Normal Specular AO Bump",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "ZBrush",
+      "extensions": [
+        "zbp",
+        "ztl"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "UEFN Reference",
+      "extensions": null,
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "UEFN - Reference only",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/bdcb30b6-e838-4673-9b25-420f99960ad2/6021e620-4c4c-4f0e-96e6-259abf1fff4b.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/bdcb30b6-e838-4673-9b25-420f99960ad2/37ce4c19-42cf-431f-838e-026cbac87172.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

@@ -1,0 +1,13 @@
+{
+  "id": 960,
+  "verdict": "보류",
+  "use": "S08 작은 이끼 목편",
+  "reason": "42cm의 낮은 부후 조각과 부분 이끼로 근경 보조에 한정",
+  "edit": "붉은 단면 채도 완화",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:59:25.706884+00:00",
+  "sourcePageSha256": "71b0383071b057f0155aba3338bddac4e09aa06ecd7f708da5d0e684e59d7adc"
+}

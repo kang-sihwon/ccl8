@@ -1,0 +1,13 @@
+{
+  "id": 1146,
+  "verdict": "추천",
+  "use": "S08 숲 입구 측면의 균열 바위",
+  "reason": "1.52m의 큰 덩어리와 명확한 균열이 통로 바깥 실루엣 형성에 적합",
+  "edit": "균열 검정 대비 절제 및 열린 밑면 매입",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:07:19.752653+00:00",
+  "sourcePageSha256": "17a4235485181be8832066e6d4b3dba24c16e5da0746ddafae3abe3ed1678b1d"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 1867,
+  "verdict": "보류",
+  "use": "S02 화덕 벽돌 변형",
+  "reason": "21cm 붉은 단순 벽돌은 1865와 중복",
+  "edit": "채도 감소",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:36:56.653088+00:00",
+  "sourcePageSha256": "b674d5ca87a1f962f1cca1dfab82d7e072bbd9d87098793f397633a14562bed9"
+}

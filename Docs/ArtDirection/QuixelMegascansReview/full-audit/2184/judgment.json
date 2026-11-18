@@ -1,0 +1,13 @@
+{
+  "id": 2184,
+  "verdict": "보류",
+  "use": "S02 식사 소품 대안",
+  "reason": "14cm 익힌 갈비 조각은 근경 식탁 전용",
+  "edit": "음식 종류·식사 공간 확인",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:52:25.932896+00:00",
+  "sourcePageSha256": "e6ef2bfdee73c5d2101133f04c09ec43d7afba75f8420f9bc755b97e200fe922"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 1024,
+  "verdict": "추천",
+  "use": "S01 접근 둔치와 S08 습한 그늘의 낮은 관목",
+  "reason": "둥근 작은 잎과 불규칙한 낮은 가지가 돌 사이 식생에 적합",
+  "edit": "실측 확인 및 청록 기운 절제",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:03:25.963197+00:00",
+  "sourcePageSha256": "236cade76a76023d80f1d059aaa4ba81d31a6c2bb9dcd5c95f3dc13223755f49"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 2349,
+  "verdict": "보류",
+  "use": "S02 식사 대안",
+  "reason": "17cm 단면 보이는 소시지는2348과 중복",
+  "edit": "식량 품목 확인",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:56:37.665832+00:00",
+  "sourcePageSha256": "99aeecad5ec1ed63a71e7d8b69fc29fc76aa61daa4804649d2c96445d0baa754"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 888,
+  "verdict": "보류",
+  "use": "S08 긴 소나무 고사 줄기",
+  "reason": "2.05m의 뾰족한 부러진 줄기로 0903과 같은 수직 고사목 역할이다.",
+  "edit": "기존 고사목 높이 변형 필요 시만",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:54:43.600128+00:00",
+  "sourcePageSha256": "cead1c8cef8a97f3150f0702a4c3d0c35ac29282d8f9d3c0e4a79c5f5a186812"
+}

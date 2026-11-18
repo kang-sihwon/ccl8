@@ -1,0 +1,85 @@
+{
+  "id": 1961,
+  "url": "https://www.fab.com/listings/01340bf9-b2a7-4eb0-9a37-191ae802bda9",
+  "uid": "01340bf9-b2a7-4eb0-9a37-191ae802bda9",
+  "title": "Clay Toy Bear",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:21:17.453949+00:00",
+  "pageSha256": "763d4a0120c98f3bcf915983d39fea580f7b66dbbc0386adb0d605fe1d4317c2",
+  "description": "Texel density: 1005 px/m\nPhysical size: 0.11m x 0.17m x 0.16m\nMesh type: Closed mesh\nMaps: AO Displacement(high tier only) Specular Basecolor Cavity Gloss Normal Roughness\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.11m x 0.17m x 0.16m",
+  "mesh": "Closed mesh",
+  "texelDensity": "1005 px/m",
+  "maps": "AO Displacement(high tier only) Specular Basecolor Cavity Gloss Normal Roughness",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "UEFN Reference",
+      "extensions": null,
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "UEFN - Reference only",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/56bbcf95-42a6-4882-ba97-19ce3b149120/6528eb38-66d6-4f46-91bb-91566d6a8d3a.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/56bbcf95-42a6-4882-ba97-19ce3b149120/ab521edd-e34a-4ff7-968a-1ab48efd208e.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

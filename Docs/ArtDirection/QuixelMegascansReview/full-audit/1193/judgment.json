@@ -1,0 +1,13 @@
+{
+  "id": 1193,
+  "verdict": "수정 후 후보",
+  "use": "S08 숲길 옆 길쭉한 이끼 바위군",
+  "reason": "2.03m의 큰 덩어리와 작은 돌 연결은 유용하나 진한 녹색이 지배적",
+  "edit": "이끼 면적·채도 축소 및 열린 밑면 매입",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:09:31.923388+00:00",
+  "sourcePageSha256": "59c1cdf5a3c593fcd43f87754b2c0b0e5e1b1eb977fc592d4bf4d4f6a3208791"
+}

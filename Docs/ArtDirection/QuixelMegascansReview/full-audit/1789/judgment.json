@@ -1,0 +1,13 @@
+{
+  "id": 1789,
+  "verdict": "보류",
+  "use": "S02 파손 벽돌 대안",
+  "reason": "17cm 홈이 있는 갈색 파편은 기존 보수 후보 충분",
+  "edit": "벽체 재질 확인",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:35:21.225978+00:00",
+  "sourcePageSha256": "ee5da1b8fd6cc8b108e14d33f8eadc1149acbd33ece28dd3cbdb51af861de19d"
+}

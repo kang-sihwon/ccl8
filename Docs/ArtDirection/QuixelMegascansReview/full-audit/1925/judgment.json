@@ -1,0 +1,13 @@
+{
+  "id": 1925,
+  "verdict": "보류",
+  "use": "S02 숯 조각 변형",
+  "reason": "8cm 사각 목편의 일부만 탄 형태로 기존 숯 후보 충분",
+  "edit": "화덕 내부 소량 사용",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:40:59.584170+00:00",
+  "sourcePageSha256": "7df958c8d24539189c8132e320f5c296ef95f2df57cfb1a2227d6f2a6dd81931"
+}

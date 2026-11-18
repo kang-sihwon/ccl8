@@ -1,0 +1,13 @@
+{
+  "id": 998,
+  "verdict": "보류",
+  "use": "S08 깔때기형 버섯",
+  "reason": "12cm의 물결치는 밝은 갓으로 976과 용도 중복",
+  "edit": "흰색 명도 완화",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:01:11.402040+00:00",
+  "sourcePageSha256": "f1e91ba0865ffcba99696c95157c5add1ce9dd2ccd037d5a86771bc533670c0f"
+}

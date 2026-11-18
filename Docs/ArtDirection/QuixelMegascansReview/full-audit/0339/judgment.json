@@ -1,0 +1,13 @@
+{
+  "id": 339,
+  "verdict": "보류",
+  "use": "S02 긴 사다리 대체안",
+  "reason": "가는 세로목과 가로 단의 단순 사다리지만 0338과 용도가 겹친다.",
+  "edit": "더 좁고 긴 형태가 필요한 장소에만 추가한다.",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:22:15.998827+00:00",
+  "sourcePageSha256": "bed56c0e8c95705cb514c58faaba6d357e7bfd8735a68e880a54ecab57fb00ed"
+}

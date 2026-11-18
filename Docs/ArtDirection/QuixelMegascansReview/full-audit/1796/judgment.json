@@ -1,0 +1,13 @@
+{
+  "id": 1796,
+  "verdict": "보류",
+  "use": "S02 기와 파편 변형",
+  "reason": "14cm 붉은 반원형 파편으로 1794와 중복",
+  "edit": "붉은 채도 완화",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:35:21.233198+00:00",
+  "sourcePageSha256": "9377b887078fcbe098244cf8dcaff5898a3d2a88e023c910f9ee5ef3263bd7cd"
+}

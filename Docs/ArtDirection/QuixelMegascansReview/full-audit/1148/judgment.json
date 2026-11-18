@@ -1,0 +1,13 @@
+{
+  "id": 1148,
+  "verdict": "추천",
+  "use": "S08 입구 발치의 낮은 이끼 바위",
+  "reason": "1.3m의 평평하고 둥근 회색 암석과 제한된 이끼가 B안에 적합",
+  "edit": "이끼 채도 조절 및 열린 밑면 매입",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:07:19.755311+00:00",
+  "sourcePageSha256": "8b7c14fbf9aaf4fba84203269e85b9fe10b9f9a46ca0318ec7b74903f1cdddcb"
+}

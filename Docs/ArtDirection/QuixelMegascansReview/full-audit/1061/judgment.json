@@ -1,0 +1,13 @@
+{
+  "id": 1061,
+  "verdict": "보류",
+  "use": "S08 마른 풀 군집 변형",
+  "reason": "가는 황갈색 잎과 높은 줄기의 군집으로 기존 마른 풀 후보 충분",
+  "edit": "실측 확인 및 반복 분산",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:05:26.833856+00:00",
+  "sourcePageSha256": "0011f7035cbd19a6133b9fdd84dbe0ab67d1694e67768f10a7273e0ca3b49fe2"
+}

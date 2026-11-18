@@ -1,0 +1,93 @@
+{
+  "id": 2102,
+  "url": "https://www.fab.com/listings/4dd0048c-2647-4039-956e-398d0bb0660c",
+  "uid": "4dd0048c-2647-4039-956e-398d0bb0660c",
+  "title": "Leather Water Pot",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:22:10.641210+00:00",
+  "pageSha256": "5b93f71e20eaae2e98d42dafa559f1e9543e6d25393d6c7476ea56dc14a7fd36",
+  "description": "Texel density: 6170 px/m\nPhysical size: 0.15m x 0.17m x 0.19m\nMesh type: Closed mesh\nMaps: Bump Displacement(high tier only) Basecolor Normal Cavity Gloss Specular Roughness Ao\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.15m x 0.17m x 0.19m",
+  "mesh": "Closed mesh",
+  "texelDensity": "6170 px/m",
+  "maps": "Bump Displacement(high tier only) Basecolor Normal Cavity Gloss Specular Roughness Ao",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "ZBrush",
+      "extensions": [
+        "zbp",
+        "ztl"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "UEFN Reference",
+      "extensions": null,
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "UEFN - Reference only",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/fc58bf7f-763f-4550-9063-abddc6cebfbf/2aa8ff56-561f-49ee-9c71-af9f8dda0168.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/fc58bf7f-763f-4550-9063-abddc6cebfbf/31973eb2-3e14-431d-9be2-d264b609dd57.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

@@ -1,0 +1,13 @@
+{
+  "id": 1676,
+  "verdict": "보류",
+  "use": "S08 작은 돌 변형",
+  "reason": "13cm 밝은 쐐기형 돌의 노란 측면이 강함",
+  "edit": "노란색 감소",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:30:20.123897+00:00",
+  "sourcePageSha256": "5c0e7b865fbffaa49faf01f2a182edab7c8faf30c5c8dcb7dacbd06d3e80e42c"
+}

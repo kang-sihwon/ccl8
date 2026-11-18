@@ -1,0 +1,13 @@
+{
+  "id": 1690,
+  "verdict": "보류",
+  "use": "S02 작은 돌 조각",
+  "reason": "15cm 갈색 판형 돌은 1689보다 작고 용도 중복",
+  "edit": "노란색 완화",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:31:48.492027+00:00",
+  "sourcePageSha256": "8c64f6ff80613bad35d114f0c3a5d794c3f14dd571e077a66a2c073d09d6f298"
+}

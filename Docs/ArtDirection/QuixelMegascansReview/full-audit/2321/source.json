@@ -1,0 +1,74 @@
+{
+  "id": 2321,
+  "url": "https://www.fab.com/listings/3a09bd83-b92a-4bcd-841d-ae07da648921",
+  "uid": "3a09bd83-b92a-4bcd-841d-ae07da648921",
+  "title": "Red Apple Core",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:23:34.036192+00:00",
+  "pageSha256": "0390cf0393f9101fb53e53e36b8a3862d13c157dd2413d154e69c17a554406aa",
+  "description": "Texel density: 1094 px/m\nPhysical size: 0.05m x 0.05m x 0.08m\nMesh type: Closed mesh\nMaps: Basecolor Displacement(high tier only) Gloss Normal Cavity Specular AO Roughness\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.05m x 0.05m x 0.08m",
+  "mesh": "Closed mesh",
+  "texelDensity": "1094 px/m",
+  "maps": "Basecolor Displacement(high tier only) Gloss Normal Cavity Specular AO Roughness",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/112ca1e2-63e9-4595-b328-5a92df607f8c/d600fe05-97f6-403e-a1bf-532656c91a59.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/112ca1e2-63e9-4595-b328-5a92df607f8c/bdda8c8b-5390-4648-a390-e1b18a42a611.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

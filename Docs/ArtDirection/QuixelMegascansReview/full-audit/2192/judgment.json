@@ -1,0 +1,13 @@
+{
+  "id": 2192,
+  "verdict": "보류",
+  "use": "S02 식사 대안",
+  "reason": "6cm 소시지 단면은 작고 식사 공간에만 유효",
+  "edit": "식문화 확인·근경에서만 사용",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:52:25.940520+00:00",
+  "sourcePageSha256": "6af81468abb4f599e5d5acc132919ba8eaa6bbd7e21e3b93914fa3456348504a"
+}

@@ -1,0 +1,93 @@
+{
+  "id": 1416,
+  "url": "https://www.fab.com/listings/e02988c0-9120-43d1-a1be-4eb1b83e5b84",
+  "uid": "e02988c0-9120-43d1-a1be-4eb1b83e5b84",
+  "title": "Limestone Slab",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:17:49.829713+00:00",
+  "pageSha256": "5299fcae787474100fe712363b3127fb1fe51daefac47ce94e39a9786ea8a72e",
+  "description": "Texel density: 5162 px/m\nPhysical size: 1.57m x 0.69m x 0.38m\nMesh type: Closed mesh\nMaps: Basecolor Displacement(high tier only) Gloss Normal Cavity AO Specular Roughness Bump\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "1.57m x 0.69m x 0.38m",
+  "mesh": "Closed mesh",
+  "texelDensity": "5162 px/m",
+  "maps": "Basecolor Displacement(high tier only) Gloss Normal Cavity AO Specular Roughness Bump",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "ZBrush",
+      "extensions": [
+        "zbp",
+        "ztl"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "UEFN Reference",
+      "extensions": null,
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "UEFN - Reference only",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/b1424966-24f3-4ff1-997e-377fde835d60/ad675965-2040-42ae-b408-5d09a233a343.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/b1424966-24f3-4ff1-997e-377fde835d60/00d00627-d659-4535-98f5-053ab90493ea.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

@@ -1,0 +1,13 @@
+{
+  "id": 1885,
+  "verdict": "보류",
+  "use": "S02 기와 대안",
+  "reason": "22cm 붉은 굴곡형은 1881과 중복",
+  "edit": "겹침 확인",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:38:57.934460+00:00",
+  "sourcePageSha256": "5928625044b32449220e6a83b8b01693e19c0d0b497ecb514a76381b937bdbb6"
+}

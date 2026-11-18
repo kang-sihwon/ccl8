@@ -1,0 +1,13 @@
+{
+  "id": 920,
+  "verdict": "보류",
+  "use": "S08 낙지 변형",
+  "reason": "각진 아치형 가지가 보이나 비슷한 굽은 가지 확보됨",
+  "edit": "채택 시 두 끝을 지면에 접합",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:59:25.668495+00:00",
+  "sourcePageSha256": "daa4aaf8e3a53c2431956d48881ee123d4fb1f83ee8ba9d8e872e199598c1f56"
+}

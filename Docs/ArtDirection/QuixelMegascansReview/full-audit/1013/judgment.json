@@ -1,0 +1,13 @@
+{
+  "id": 1013,
+  "verdict": "보류",
+  "use": "S08 작은 둥근 버섯 군집",
+  "reason": "6cm 안팎의 황색 구형 버섯으로 개성은 있으나 현재 바닥 포인트 충분",
+  "edit": "실측 유지 및 노란색 대비 완화",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:03:25.952528+00:00",
+  "sourcePageSha256": "4bc2633a8712ace88d413365eb7fce2df8bdcf404bbc2b8bce64c6df49316838"
+}

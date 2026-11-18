@@ -1,0 +1,13 @@
+{
+  "id": 1665,
+  "verdict": "보류",
+  "use": "S08 작은 돌 변형",
+  "reason": "8cm 어둡고 다공성인 조각은 화면 기여 낮음",
+  "edit": "미세 대비 감소",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:30:20.113040+00:00",
+  "sourcePageSha256": "1b1364fefcf538417bbe2016d567c3526d96c09d87d1d32aa37cffc79c22b906"
+}

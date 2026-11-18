@@ -1,0 +1,93 @@
+{
+  "id": 1399,
+  "url": "https://www.fab.com/listings/9a498ae1-8ef6-4c0e-9239-38a03297e3d9",
+  "uid": "9a498ae1-8ef6-4c0e-9239-38a03297e3d9",
+  "title": "Lichened Forest Boulder",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:17:43.684706+00:00",
+  "pageSha256": "1bdd3f53d8ccd7b6f2186d0d2e875656ffc1f20fc72fc2c9ab22a22453a97d96",
+  "description": "Texel density: 5921 px/m\nPhysical size: 1.12m x 1.49m x 1.02m\nMesh type: Closed mesh\nMaps: Displacement(high tier only) Roughness Gloss Specular Basecolor Cavity Bump Normal Ao\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "1.12m x 1.49m x 1.02m",
+  "mesh": "Closed mesh",
+  "texelDensity": "5921 px/m",
+  "maps": "Displacement(high tier only) Roughness Gloss Specular Basecolor Cavity Bump Normal Ao",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "ZBrush",
+      "extensions": [
+        "zbp",
+        "ztl"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "UEFN Reference",
+      "extensions": null,
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "UEFN - Reference only",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/a34a0bc3-8b6c-45df-9a72-ed7c1c7853e5/04641c53-0fb4-45cd-b3fa-89929f054fb9.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/a34a0bc3-8b6c-45df-9a72-ed7c1c7853e5/b6aef086-eb3a-4068-acf8-02ea6d9725d0.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

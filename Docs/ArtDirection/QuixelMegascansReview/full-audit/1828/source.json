@@ -1,0 +1,74 @@
+{
+  "id": 1828,
+  "url": "https://www.fab.com/listings/905f400a-f417-45da-8b8e-dc10f0845eb6",
+  "uid": "905f400a-f417-45da-8b8e-dc10f0845eb6",
+  "title": "Historic Building Interior Arch Brick Old",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:20:25.100529+00:00",
+  "pageSha256": "739391b528e49b5859b881f3a7176c3a1f03fd3a729d68f192c74683bf4f470b",
+  "description": "The ‘Historic Building’ themed assets capture the ornate, hand-finished feel of traditional masonry. Featuring high-fidelity scans of patterned ceramic tiles and aged archways, this collection reflects craftsmanship shaped by geometry and detail.\nIdeal for creating richly decorated architectural interiors and facades with a strong sense of realism and environmental storytelling.\nTexel density: 462 px/m\nPhysical size: 6.26m x 7.5m x 4.37m\nMesh type: Closed mesh\nMaps: AO Basecolor Bump Cavity Displacement Gloss Normal Roughness Specular\nCreate high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.\n\nCurious about future releases? Discover upcoming Megascans content and vote for your favorite themes: Public Roadmap",
+  "size": "6.26m x 7.5m x 4.37m",
+  "mesh": "Closed mesh",
+  "texelDensity": "462 px/m",
+  "maps": "AO Basecolor Bump Cavity Displacement Gloss Normal Roughness Specular",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/77c047ce-fafe-4358-8937-db3a6573fefa/a2b1f3ca-3a0a-4d77-921d-f43450ce5aab.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/77c047ce-fafe-4358-8937-db3a6573fefa/0dd28b1c-44a9-48d8-b04f-b3bd4d41619a.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

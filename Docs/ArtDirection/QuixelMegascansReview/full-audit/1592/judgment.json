@@ -1,0 +1,13 @@
+{
+  "id": 1592,
+  "verdict": "보류",
+  "use": "S08 지의류 돌 변형",
+  "reason": "12cm 돌의 어두운 작은 구멍이 많아 화면 기여 낮음",
+  "edit": "표면 대비 축소",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:28:52.972160+00:00",
+  "sourcePageSha256": "0ba24327c3ce6f35e613218f3efe339d331bbdd8f9051f0fd4f6b3e8a682a8b8"
+}

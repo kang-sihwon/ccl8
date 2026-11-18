@@ -1,0 +1,13 @@
+{
+  "id": 1834,
+  "verdict": "수정 후 후보",
+  "use": "S02 화덕 옆 재·석탄 삽",
+  "reason": "1.06m 목재 D손잡이와 넓은 날이 가능하나 규격형 접합 구조 확인 필요",
+  "edit": "손잡이·날 연결 단순화 및 그을음 통일",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:36:56.621514+00:00",
+  "sourcePageSha256": "b9bd6eae9c8c3b86e1d045c632e659a984abe4c915bcb255945a19bd07be76a0"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 1990,
+  "verdict": "보류",
+  "use": "S02 장작 변형",
+  "reason": "18cm 거친 옹이 장작은 1983과 중복",
+  "edit": "부분적 밝기 통일",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:42:46.948361+00:00",
+  "sourcePageSha256": "73e398d370fda2b801cea353b458bd7b9ea757c935d0a34e8bddbb7b754c9280"
+}

@@ -1,0 +1,85 @@
+{
+  "id": 1996,
+  "url": "https://www.fab.com/listings/0c9129fc-39d6-447d-9dc1-22c1a3050864",
+  "uid": "0c9129fc-39d6-447d-9dc1-22c1a3050864",
+  "title": "Flower Pot",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:21:29.801976+00:00",
+  "pageSha256": "36e38069e9d3c4e04650c1c3e142256566f397cfcc4f024f7a7ae71a1a307e19",
+  "description": "Texel density: 1157 px/m\nPhysical size: 0.14m x 0.14m x 0.12m\nMesh type: Closed mesh\nMaps: AO Gloss Cavity Displacement(high tier only) Normal Specular Basecolor Roughness\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.14m x 0.14m x 0.12m",
+  "mesh": "Closed mesh",
+  "texelDensity": "1157 px/m",
+  "maps": "AO Gloss Cavity Displacement(high tier only) Normal Specular Basecolor Roughness",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "UEFN Reference",
+      "extensions": null,
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "UEFN - Reference only",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/c932021d-df91-41d6-87bf-5d32dea7eb02/8c37fcd4-8d63-46ae-a91c-3d55abd74969.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/c932021d-df91-41d6-87bf-5d32dea7eb02/2f915278-b653-4dfe-b43f-fe2d3e1a9cf1.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

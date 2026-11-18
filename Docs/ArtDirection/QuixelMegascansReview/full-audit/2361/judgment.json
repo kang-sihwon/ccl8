@@ -1,0 +1,13 @@
+{
+  "id": 2361,
+  "verdict": "수정 후 후보",
+  "use": "S01 견과 화물",
+  "reason": "4cm 갈색 호두는 무광 목재 팔레트에 맞는 식량 소품",
+  "edit": "식량 품목 확인·자생종 단정 금지",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:57:51.191701+00:00",
+  "sourcePageSha256": "bee83e562cf41dcc1c5ff8b2ed1931f1ed8e92b618ff46b298f55f5aee23223e"
+}

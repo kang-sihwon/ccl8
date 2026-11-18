@@ -1,0 +1,13 @@
+{
+  "id": 622,
+  "verdict": "제외",
+  "use": "현재 벨레스 숲에는 미배치",
+  "reason": "검은 그루터기와 잿빛 바닥이 건강한 숲 입구 분위기와 맞지 않는다.",
+  "edit": "현 범위 도입 제외",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:38:54.215794+00:00",
+  "sourcePageSha256": "98801df8a0d4865764c3d5119bf9582de7270ad400bf79b22b6bbc7d656fb68a"
+}

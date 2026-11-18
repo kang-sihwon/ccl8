@@ -1,0 +1,13 @@
+{
+  "id": 1515,
+  "verdict": "보류",
+  "use": "S08 작은 균열 돌",
+  "reason": "32cm의 작고 날카로운 분절 돌로 기존 작은 돌 후보 충분",
+  "edit": "실측 유지 및 열린 밑면 매입",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:23:18.576248+00:00",
+  "sourcePageSha256": "b0fe24eb62fa02e7dc61114ec4c6f4c1ce6fb397a327878f697b45eb0d952073"
+}

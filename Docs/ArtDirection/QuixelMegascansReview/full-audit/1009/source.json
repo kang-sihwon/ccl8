@@ -1,0 +1,85 @@
+{
+  "id": 1009,
+  "url": "https://www.fab.com/listings/185c1532-4e32-4354-94cb-d97393e21b65",
+  "uid": "185c1532-4e32-4354-94cb-d97393e21b65",
+  "title": "Gilled Mushroom",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:15:18.038121+00:00",
+  "pageSha256": "610a3bde62a0b2a904be06fe53cc274784d3325e5a0fa97b534875413be212b2",
+  "description": "Texel density: 1091 px/m\nPhysical size: 0.04m x 0.03m x 0.04m\nMesh type: Closed mesh\nMaps: Normal Specular Roughness Basecolor Cavity Gloss Displacement(high tier only) AO\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.04m x 0.03m x 0.04m",
+  "mesh": "Closed mesh",
+  "texelDensity": "1091 px/m",
+  "maps": "Normal Specular Roughness Basecolor Cavity Gloss Displacement(high tier only) AO",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "UEFN Reference",
+      "extensions": null,
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "UEFN - Reference only",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/c0661127-8898-4cb2-87e8-0b74da3bae0c/2d953d9f-2402-4cd3-95af-b0d1e0be0459.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/c0661127-8898-4cb2-87e8-0b74da3bae0c/9f1edd27-7ca4-453b-90cf-6890e8d8c30d.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

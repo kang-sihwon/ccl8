@@ -1,0 +1,65 @@
+{
+  "id": 535,
+  "url": "https://www.fab.com/listings/55b75d85-76f7-41b0-bafb-6265df677066",
+  "uid": "55b75d85-76f7-41b0-bafb-6265df677066",
+  "title": "Boston Fern",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:12:15.917287+00:00",
+  "pageSha256": "0df4c9244c12a977f2749598b4b3580e12ec64d8fe5d99552d5c6a35253b471d",
+  "description": "Maps: Specular Displacement Opacity Normal Translucency Roughness Basecolor Bump Gloss\n \nCreate high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "기재 확인 안 됨",
+  "mesh": "기재 확인 안 됨",
+  "texelDensity": "기재 확인 안 됨",
+  "maps": "Specular Displacement Opacity Normal Translucency Roughness Basecolor Bump Gloss",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/63c497dc-49db-456a-b1ff-62e53bee0528/da185723-cbc4-44fd-aba4-9b8592a7834c.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 2,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/63c497dc-49db-456a-b1ff-62e53bee0528/ad9ec11d-47f7-41e0-bdc0-c4c99d6ee646.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

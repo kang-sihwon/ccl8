@@ -1,0 +1,13 @@
+{
+  "id": 2033,
+  "verdict": "수정 후 후보",
+  "use": "S02 갈색 나무 재료 그릇",
+  "reason": "21cm 단순 둥근 외형이나 붉은 나뭇결 대비가 강함",
+  "edit": "채도·나뭇결 대비 낮추기",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:44:39.439543+00:00",
+  "sourcePageSha256": "2871bbbf4cb6428a3cf56ba89ce48b2e754e5f31344724250bf623b6c57de00b"
+}

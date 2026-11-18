@@ -1,0 +1,13 @@
+{
+  "id": 1698,
+  "verdict": "수정 후 후보",
+  "use": "S08 숲길 밖 잔돌·낙엽 바닥",
+  "reason": "1.42m 잔돌과 갈색 낙엽 패치이나 흰 돌의 대비가 강함",
+  "edit": "흰 얼룩 완화 및 열린 경계 블렌딩",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:31:48.500199+00:00",
+  "sourcePageSha256": "d9d4cdbb3e34caeb6c36b0d87f083702801469335f2bb7f229b4b822eea1e9bf"
+}

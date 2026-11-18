@@ -1,0 +1,13 @@
+{
+  "id": 461,
+  "verdict": "보류",
+  "use": "S08 작은 층진 암반",
+  "reason": "평평한 흙 상면과 아래쪽 돌출부가 있으나 낮은 암반 후보와 중복된다.",
+  "edit": "0456 대체 형태로 제한",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:29:37.265660+00:00",
+  "sourcePageSha256": "2d2d0daa312ec4bd94d0e0e7f2abe8465c7d8421443ef51685976da547bfc9ad"
+}

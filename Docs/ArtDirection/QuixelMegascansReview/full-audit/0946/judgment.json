@@ -1,0 +1,13 @@
+{
+  "id": 946,
+  "verdict": "보류",
+  "use": "S08 굽은 소형 가지",
+  "reason": "25cm의 가는 적갈색 곡선 가지로 기존 잔가지와 중복",
+  "edit": "붉은 채도 완화",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:59:25.694135+00:00",
+  "sourcePageSha256": "b8fe5f2da7eb1dd79e2ebf153b6986ecaa7cc64e437041b4d099fcb4a0f0eb93"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 2193,
+  "verdict": "제외",
+  "use": "현재 세 장소 제외",
+  "reason": "12cm 여주는 밝은 녹색 돌기와 식량 설정 불확실성이 큼",
+  "edit": "현재 시안 범위 밖",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:52:25.941626+00:00",
+  "sourcePageSha256": "da24522d9d4426b4bf858604c65be1b37270f5f70bf87c49540c21390b6be30f"
+}

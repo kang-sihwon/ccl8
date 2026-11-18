@@ -1,0 +1,13 @@
+{
+  "id": 1762,
+  "verdict": "수정 후 후보",
+  "use": "S02 공방 자재 반입용 양개문",
+  "reason": "2.51m 규모의 대각 보강 목문은 반입구에 가능하나 시안 개구부와 맞춤 필요",
+  "edit": "문짝 분리·피벗 확인 및 보강재 두께 조정",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:33:48.199566+00:00",
+  "sourcePageSha256": "877f98432b2edc064e55c3b8f7acc49b1f8d0a9a9612d509d6fc5bed91321eba"
+}

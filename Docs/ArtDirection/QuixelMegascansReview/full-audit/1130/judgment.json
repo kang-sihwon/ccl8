@@ -1,0 +1,13 @@
+{
+  "id": 1130,
+  "verdict": "보류",
+  "use": "S01 침식 돌 변형",
+  "reason": "89cm의 깊은 홈과 황색 표면이 강해 기존 회색 돌보다 수정량 큼",
+  "edit": "황색 제거 및 열린 면 접합",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:07:19.735002+00:00",
+  "sourcePageSha256": "818218b836aaf41f63d16590bf621f1b27bd933f5c5c8d5e54e77cb3d9dc7902"
+}

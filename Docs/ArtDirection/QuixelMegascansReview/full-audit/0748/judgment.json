@@ -1,0 +1,13 @@
+{
+  "id": 748,
+  "verdict": "보류",
+  "use": "S08 가는 덩굴형 가지",
+  "reason": "1.01m의 매끈한 곡선 하나로 현재 숲의 잔가지와 역할이 겹친다.",
+  "edit": "덩굴 배치가 확정될 때 도입",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:46:33.126445+00:00",
+  "sourcePageSha256": "605e424c8b4f1637345daf5c0c7a77d263302f8940ed3e2929fc6b5bba2441e9"
+}

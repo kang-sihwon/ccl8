@@ -1,0 +1,13 @@
+{
+  "id": 1723,
+  "verdict": "보류",
+  "use": "S08 작은 돌 변형",
+  "reason": "9cm 갈라진 회색 쐐기로 화면 기여 낮음",
+  "edit": "부분 매입",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:31:48.525246+00:00",
+  "sourcePageSha256": "40b50841ad06ef57c000e38833e4f9066fc5722399e9b5901fa0c3276048c46e"
+}

@@ -1,0 +1,82 @@
+{
+  "id": 335,
+  "url": "https://www.fab.com/listings/470bec94-c35e-494f-911f-4654664ccb89",
+  "uid": "470bec94-c35e-494f-911f-4654664ccb89",
+  "title": "Wooden Keg",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:10:59.405747+00:00",
+  "pageSha256": "0c994d5f9e67cbd8edac1e1467bcece201fa6f6756d7e4cfedd4a6659c34f20a",
+  "description": "Texel density: 3026 px/m\nPhysical size: 0.17m x 0.25m x 0.3m\nMesh type: Closed mesh\nMaps: Displacement(high tier only) AO Normal Basecolor Bump Specular Cavity Roughness Gloss\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.17m x 0.25m x 0.3m",
+  "mesh": "Closed mesh",
+  "texelDensity": "3026 px/m",
+  "maps": "Displacement(high tier only) AO Normal Basecolor Bump Specular Cavity Roughness Gloss",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "ZBrush",
+      "extensions": [
+        "zbp",
+        "ztl"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/41cfa3d3-3f51-4181-bcf2-1d330a77ad35/213a0fe0-a4d7-4c27-a592-de6d44c71799.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/41cfa3d3-3f51-4181-bcf2-1d330a77ad35/fd41e8bc-1813-4d98-9b5a-d44d9ca09029.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

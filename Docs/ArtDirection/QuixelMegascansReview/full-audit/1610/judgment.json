@@ -1,0 +1,13 @@
+{
+  "id": 1610,
+  "verdict": "보류",
+  "use": "S08 길가 낮은 돌",
+  "reason": "14cm 어두운 회색 판석은 적합하나 1577 등과 중복",
+  "edit": "지면 연결",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:28:52.990902+00:00",
+  "sourcePageSha256": "c7e41eebaa090288879ab9aacd7ee843cfd3f659ef6ac0b35ed1e16ced7ef7b3"
+}

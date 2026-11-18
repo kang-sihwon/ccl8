@@ -1,0 +1,13 @@
+{
+  "id": 492,
+  "verdict": "보류",
+  "use": "S02 목재 가공 찌꺼기",
+  "reason": "9cm급 붉은 갈색 수피 조각이며 별도 장면 역할이 작다.",
+  "edit": "작업대 근접 화면에서만 소량",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:32:36.364715+00:00",
+  "sourcePageSha256": "8da7d80f287aefd1451d5b6954ee7dc55468139c4e5a48ad87c622aee9b90463"
+}

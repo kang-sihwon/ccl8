@@ -1,0 +1,13 @@
+{
+  "id": 556,
+  "verdict": "보류",
+  "use": "S08 낮은 회색 바위",
+  "reason": "평평한 회색 돌과 옅은 이끼로 0550·0551과 역할이 겹친다.",
+  "edit": "기존 후보 반복 회피용",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:36:32.296044+00:00",
+  "sourcePageSha256": "f895d61a24970b8b859dd359cc2dbc2ef9f4d1ed09d931c7924093033a9b1555"
+}

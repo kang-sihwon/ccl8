@@ -1,0 +1,13 @@
+{
+  "id": 542,
+  "verdict": "추천",
+  "use": "S08 낙엽 바닥의 낮은 바위",
+  "reason": "회색 바위 둘레에 붉은 갈색 낙엽이 붙어 B안 지면과 잘 이어진다.",
+  "edit": "낙엽 채도 통일; 열린 가장자리 매립",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:36:32.283018+00:00",
+  "sourcePageSha256": "3bdf6f62ba9275fca1bcde6dc55ed3f6847581a68240f8a7eba90c52484281c0"
+}

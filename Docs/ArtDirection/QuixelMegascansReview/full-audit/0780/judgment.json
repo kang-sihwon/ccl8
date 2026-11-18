@@ -1,0 +1,13 @@
+{
+  "id": 780,
+  "verdict": "보류",
+  "use": "S08 긴 고사 줄기",
+  "reason": "3.33m의 거의 곧은 수피 줄기로 0498·0518과 경계 역할이 겹친다.",
+  "edit": "기존 긴 줄기 우선",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:48:57.448941+00:00",
+  "sourcePageSha256": "cb3c0c870bf7ce37246ae18dddbda0efb78b7d53bda5489077b9c7556434c77b"
+}

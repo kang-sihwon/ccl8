@@ -1,0 +1,13 @@
+{
+  "id": 1244,
+  "verdict": "보류",
+  "use": "S08 큰 암반 바닥 변형",
+  "reason": "7.77m의 분절된 낮은 암반으로 1168 및 1237과 역할 중복",
+  "edit": "원경 배치 및 텍셀 품질 확인",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:11:29.623757+00:00",
+  "sourcePageSha256": "e275e2516ef9233a728503e86e64d0ccd9571433b6e0f907f92df54cb9de7ad0"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 689,
+  "verdict": "보류",
+  "use": "S08 옹이 목재 파편",
+  "reason": "1.19m의 옹이와 어두운 얼룩이 있으나 고사목 후보와 역할이 겹친다.",
+  "edit": "얼룩 완화 후 변형으로만 사용",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:44:12.023845+00:00",
+  "sourcePageSha256": "bc78a47ef8b7438252b2b08fff2bb56f3f3dba5bbba4c01d03db03227373a3d9"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 2176,
+  "verdict": "수정 후 후보",
+  "use": "S01 과일 화물",
+  "reason": "여섯 색·형태 사과가 바구니 반복을 줄임",
+  "edit": "식량 품목·개별 메시 분리 확인",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:52:25.924737+00:00",
+  "sourcePageSha256": "9da968332fc09a58aee532bc2f446dc93a47a53e1663dfdab411755051f4f431"
+}

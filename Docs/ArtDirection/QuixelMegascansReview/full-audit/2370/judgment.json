@@ -1,0 +1,13 @@
+{
+  "id": 2370,
+  "verdict": "보류",
+  "use": "S01 채소 대안",
+  "reason": "22cm 짙은 주키니는2369와 중복",
+  "edit": "대표 채소만 선택",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:57:51.200649+00:00",
+  "sourcePageSha256": "605328ba9edfa3a8ebc4b7714f88203e27dc237226c3ebfed9e86bbda4fd0df8"
+}

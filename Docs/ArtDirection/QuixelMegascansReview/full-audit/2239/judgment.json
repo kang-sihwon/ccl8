@@ -1,0 +1,13 @@
+{
+  "id": 2239,
+  "verdict": "보류",
+  "use": "S02 휴식 과일 대안",
+  "reason": "9cm 황록 사과의 작은 베어 문 자국은2190과 중복",
+  "edit": "대표 과일 선택",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:53:43.640850+00:00",
+  "sourcePageSha256": "67306ac2195c39de2ff9ce10894a4f0b6f23114055db39b545d3332a80a81922"
+}

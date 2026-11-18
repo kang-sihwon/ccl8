@@ -1,0 +1,85 @@
+{
+  "id": 1798,
+  "url": "https://www.fab.com/listings/6eae81fb-61fa-401d-b4f5-f4e6884a42ff",
+  "uid": "6eae81fb-61fa-401d-b4f5-f4e6884a42ff",
+  "title": "Broken Clay Tile",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:20:14.043741+00:00",
+  "pageSha256": "a0552755cc9d9886f7fac41c8d6e057c36e90d4eb48532b0dc2460850d36b2aa",
+  "description": "Texel density: 1194 px/m\nPhysical size: 0.13m x 0.13m x 0.04m\nMesh type: Closed mesh\nMaps: AO Displacement(high tier only) Specular Basecolor Cavity Gloss Normal Roughness\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.13m x 0.13m x 0.04m",
+  "mesh": "Closed mesh",
+  "texelDensity": "1194 px/m",
+  "maps": "AO Displacement(high tier only) Specular Basecolor Cavity Gloss Normal Roughness",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "UEFN Reference",
+      "extensions": null,
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "UEFN - Reference only",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/676956dc-8175-4e9c-8359-953a1d4d9c1d/fbc41637-48f7-4699-8eef-603266832049.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/676956dc-8175-4e9c-8359-953a1d4d9c1d/f17c06e6-e628-464e-8641-d1579f34fe1b.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

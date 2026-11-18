@@ -1,0 +1,13 @@
+{
+  "id": 875,
+  "verdict": "추천",
+  "use": "S08 위로 갈라진 큰 가지",
+  "reason": "2.94m의 굵은 갈래가 입체적으로 뻗어 평평한 고사목과 구별된다.",
+  "edit": "길 바깥 배치; 가지 충돌 단순화",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:54:43.587107+00:00",
+  "sourcePageSha256": "c42a387d6d30b91b03b163f4e80a698e6a8544ac4e4fd20b946a8116e6bb34af"
+}

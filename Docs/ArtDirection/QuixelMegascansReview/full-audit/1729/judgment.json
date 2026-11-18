@@ -1,0 +1,13 @@
+{
+  "id": 1729,
+  "verdict": "보류",
+  "use": "S02 판석 묶음 대안",
+  "reason": "낮은 각진 돌은 가능하나 갈색이 강하고 후보 중복",
+  "edit": "회색 조절 및 분리 확인",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:31:48.531379+00:00",
+  "sourcePageSha256": "0cf52542f5b51ce1d848c03777515f4b29144b4fb22b415be4c14bc94326df92"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 1028,
+  "verdict": "보류",
+  "use": "S02 마른 잡초 변형",
+  "reason": "긴 붉은 줄기 끝의 작은 잎으로 가독성과 배치 우선순위 낮음",
+  "edit": "줄기 붉은색 완화 및 실측 확인",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:03:25.967451+00:00",
+  "sourcePageSha256": "bdbae25aaf5c6aa9ef6cc2337bd8ba26a696b0b5f881f95c542bd327310abf73"
+}

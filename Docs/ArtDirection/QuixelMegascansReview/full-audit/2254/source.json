@@ -1,0 +1,85 @@
+{
+  "id": 2254,
+  "url": "https://www.fab.com/listings/65fd92e7-3e87-4df9-aedf-d8f60131b447",
+  "uid": "65fd92e7-3e87-4df9-aedf-d8f60131b447",
+  "title": "Green Bell Pepper",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:23:07.504937+00:00",
+  "pageSha256": "643975a35a5a04a998cc43c80684c101133cadc7bec21d871bbfe5a17e9b40af",
+  "description": "Texel density: 1181 px/m\nPhysical size: 0.08m x 0.07m x 0.08m\nMesh type: Closed mesh\nMaps: AO Transmission Displacement(high tier only) Specular Basecolor Cavity Gloss Normal Roughness\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.08m x 0.07m x 0.08m",
+  "mesh": "Closed mesh",
+  "texelDensity": "1181 px/m",
+  "maps": "AO Transmission Displacement(high tier only) Specular Basecolor Cavity Gloss Normal Roughness",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "UEFN Reference",
+      "extensions": null,
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "UEFN - Reference only",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/c723a9b6-aa29-4132-a743-600f2acde9de/e2e2619b-0bb0-406d-ada9-0bfb8e65a8ef.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/c723a9b6-aa29-4132-a743-600f2acde9de/d37a8494-f741-4595-8ea9-4b8ce78a38e2.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

@@ -1,0 +1,93 @@
+{
+  "id": 519,
+  "url": "https://www.fab.com/listings/e925c2fe-5024-4d46-95ef-ad5279a2be75",
+  "uid": "e925c2fe-5024-4d46-95ef-ad5279a2be75",
+  "title": "Nordic Forest Tree Log Small",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:12:11.092693+00:00",
+  "pageSha256": "deb6b88d8ad8f4271c66a343baff17d30189fd91b2f6dbd4cddd3ec2d5a1707e",
+  "description": "Texel density: 5977 px/m\nPhysical size: 0.6m x 2.34m x 0.8m\nMesh type: Closed mesh\nMaps: Gloss Roughness AO Displacement(high tier only) Basecolor Bump Cavity Specular Fuzz Normal\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.6m x 2.34m x 0.8m",
+  "mesh": "Closed mesh",
+  "texelDensity": "5977 px/m",
+  "maps": "Gloss Roughness AO Displacement(high tier only) Basecolor Bump Cavity Specular Fuzz Normal",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "ZBrush",
+      "extensions": [
+        "zbp",
+        "ztl"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "UEFN Reference",
+      "extensions": null,
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "UEFN - Reference only",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/1fe53a30-068c-4c75-8b38-c44b47a0bb40/153175c3-0298-4589-a7ad-0cb33be1a350.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/1fe53a30-068c-4c75-8b38-c44b47a0bb40/c06a67e8-a1a4-493f-bd31-cdf9b45fd799.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

@@ -1,0 +1,74 @@
+{
+  "id": 2387,
+  "url": "https://www.fab.com/listings/4e8bcc64-f7a3-4934-9d84-2e15ed382af0",
+  "uid": "4e8bcc64-f7a3-4934-9d84-2e15ed382af0",
+  "title": "Rusty Wedge",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:23:59.221192+00:00",
+  "pageSha256": "a00ba7c4c80b78f924de2ea8f2ad5a4dab9b50078b2488cc6080ffd728c4464d",
+  "description": "Texel density: 1202 px/m\nPhysical size: 0.06m x 0.17m x 0.05m\nMesh type: Closed mesh\nMaps: Roughness Cavity Diffuse Normal Displacement(high tier only) AO Metalness Basecolor Specular\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.06m x 0.17m x 0.05m",
+  "mesh": "Closed mesh",
+  "texelDensity": "1202 px/m",
+  "maps": "Roughness Cavity Diffuse Normal Displacement(high tier only) AO Metalness Basecolor Specular",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/4cac3e6a-ecb6-411a-99af-1514dfbdfe9c/0d49afd5-3bae-4334-8057-c367ee0b9826.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/4cac3e6a-ecb6-411a-99af-1514dfbdfe9c/0291718f-104a-4001-b265-7ad0b7491bf8.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

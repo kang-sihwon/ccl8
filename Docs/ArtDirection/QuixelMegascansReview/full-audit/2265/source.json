@@ -1,0 +1,85 @@
+{
+  "id": 2265,
+  "url": "https://www.fab.com/listings/49705e8b-86f4-4db5-8bdb-af0c227336a9",
+  "uid": "49705e8b-86f4-4db5-8bdb-af0c227336a9",
+  "title": "Half Walnut Bread",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:23:12.124441+00:00",
+  "pageSha256": "ddef5e0c9cf23f37f722b64b4e28c797730a3267ff881c08f4d8759071a7efb2",
+  "description": "Texel density: 1094 px/m\nPhysical size: 0.28m x 0.19m x 0.12m\nMesh type: Closed mesh\nMaps: Normal Specular Roughness Basecolor Cavity Gloss Displacement(high tier only) AO\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.28m x 0.19m x 0.12m",
+  "mesh": "Closed mesh",
+  "texelDensity": "1094 px/m",
+  "maps": "Normal Specular Roughness Basecolor Cavity Gloss Displacement(high tier only) AO",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "UEFN Reference",
+      "extensions": null,
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "UEFN - Reference only",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/05c6d69a-ce5e-412a-9782-37175d192387/e0a6bb7e-d326-4b4d-9534-31a3af507d9c.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/05c6d69a-ce5e-412a-9782-37175d192387/88127388-30ba-4260-aff9-4c31d502a724.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

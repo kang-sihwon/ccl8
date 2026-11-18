@@ -1,0 +1,13 @@
+{
+  "id": 483,
+  "verdict": "추천",
+  "use": "S08 숲길 경사 발치",
+  "reason": "한쪽에 돌이 높고 반대쪽은 평평한 흙이라 경사 접합에 적합하다.",
+  "edit": "초록 피복 완화; 주 통행선 바깥 배치",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:32:36.355127+00:00",
+  "sourcePageSha256": "9e2cbcfc8a827edf3ff5466bb6302783d848ee34f1ecd5ae0ef424994561f62d"
+}

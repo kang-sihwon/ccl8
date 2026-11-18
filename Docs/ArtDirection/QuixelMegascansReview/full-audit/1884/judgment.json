@@ -1,0 +1,13 @@
+{
+  "id": 1884,
+  "verdict": "보류",
+  "use": "S02 기와 대안",
+  "reason": "25cm 검은 굴곡형은 색 수정 필요하고 중복",
+  "edit": "붉은색 통일",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:38:57.933492+00:00",
+  "sourcePageSha256": "9bc0ad80203933cd00b8afe8d985e217eeb5b66938c4ab61689e534df9839a83"
+}

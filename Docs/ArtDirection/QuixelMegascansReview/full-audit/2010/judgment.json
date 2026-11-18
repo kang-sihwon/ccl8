@@ -1,0 +1,13 @@
+{
+  "id": 2010,
+  "verdict": "추천",
+  "use": "S01 둔치 정비 또는 S02 수리 대기 삽",
+  "reason": "1.22m 갈색 목재 자루와 단순 둥근 철날이 적합",
+  "edit": "녹 대비 완화",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:42:46.968005+00:00",
+  "sourcePageSha256": "1e59006e8cac7eec4a7f5c385b27eb36216927f01c7d521deb8d3ae2fc2c08f3"
+}

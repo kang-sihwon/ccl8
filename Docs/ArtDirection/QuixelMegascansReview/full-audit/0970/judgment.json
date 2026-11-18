@@ -1,0 +1,13 @@
+{
+  "id": 970,
+  "verdict": "보류",
+  "use": "S08 가는 목재 파편",
+  "reason": "9cm의 길게 갈라진 조각으로 화면 기여 낮음",
+  "edit": "실측 유지",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:01:11.374377+00:00",
+  "sourcePageSha256": "91d45f602ccfb83151ad57e1903d4fdf16f978593649d5b22fea6b27d1287544"
+}

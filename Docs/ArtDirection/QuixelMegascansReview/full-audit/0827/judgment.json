@@ -1,0 +1,13 @@
+{
+  "id": 827,
+  "verdict": "보류",
+  "use": "S08 가는 활엽수 줄기",
+  "reason": "작은 밑동의 곧은 2.4m 줄기로 수관이 없고 기존 줄기와 중복된다.",
+  "edit": "완성 수목 조립 필요 시만 검토",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:52:44.781773+00:00",
+  "sourcePageSha256": "cb39f2e74155cf812d6807a8d9f49e8acebaac0f02ef59e503051977b8acb3f3"
+}

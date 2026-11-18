@@ -1,0 +1,13 @@
+{
+  "id": 856,
+  "verdict": "보류",
+  "use": "S08 굵은 마른 가지",
+  "reason": "2.81m의 굴곡 줄기와 짧은 돌출이 0794와 기능이 겹친다.",
+  "edit": "기존 큰 가지 우선",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:52:44.810329+00:00",
+  "sourcePageSha256": "8c4ffb63a49a2f3ae82c8c83eef8b3c4d7c1800a9aa150fbedbc967897ce9aff"
+}

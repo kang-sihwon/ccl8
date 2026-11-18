@@ -1,0 +1,13 @@
+{
+  "id": 363,
+  "verdict": "제외",
+  "use": "S02·S08 기본 장식에서 제외",
+  "reason": "길고 뾰족한 장식과 인면 조각이 강한 의례물·조각품 인상을 준다.",
+  "edit": "새 문화 설정 없이 배치하지 않고 단순 목재 소품을 우선한다.",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:22:16.023185+00:00",
+  "sourcePageSha256": "ff22a801468c418cf7bf614cc4d14a1fd9cdf69feefc2fa02c9ea29c0e0dc422"
+}

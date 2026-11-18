@@ -1,0 +1,13 @@
+{
+  "id": 1123,
+  "verdict": "보류",
+  "use": "S01 작은 층상 돌",
+  "reason": "41cm의 갈라진 층과 갈색 덩어리로 현재 자연석 후보 충분",
+  "edit": "흙색 통일",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:07:19.727367+00:00",
+  "sourcePageSha256": "53e1d7ae0b9286fd83f7c8faa03fdce6798ea7713314640886dc3f7953ec03d9"
+}

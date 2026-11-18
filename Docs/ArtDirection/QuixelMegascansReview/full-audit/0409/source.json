@@ -1,0 +1,74 @@
+{
+  "id": 409,
+  "url": "https://www.fab.com/listings/839c7e4e-3f17-40a2-9289-71a8a5663d52",
+  "uid": "839c7e4e-3f17-40a2-9289-71a8a5663d52",
+  "title": "Historic Medieval Harbour Oar Wood Old 01",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:11:27.349986+00:00",
+  "pageSha256": "44522414a15253a4b1ff232e916fdccb93c46a3a13a77a5b70e3728567eea742",
+  "description": "The ‘Historic Medieval’ themed assets capture the sturdy, timeworn feel of medieval stone and timber settings. Featuring high-fidelity scans of stone arches and doorways, fireplaces, wooden furniture and crates, scrolls, books, candle holders, and coiled rope, this collection reflects spaces built for daily life, work, and study.\nIdeal for creating authentic period interiors and structures with a strong sense of scale, realism, and environmental storytelling.\nTexel density: 10770 px/m\nPhysical size: 0.1m x 2.38m x 0.08m\nMesh type: Closed mesh\nMaps: AO Basecolor Bump Cavity Displacement Gloss Normal Roughness Specular\nCreate high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.\n\nCurious about future releases? Discover upcoming Megascans content and vote for your favorite themes: Public Roadmap",
+  "size": "0.1m x 2.38m x 0.08m",
+  "mesh": "Closed mesh",
+  "texelDensity": "10770 px/m",
+  "maps": "AO Basecolor Bump Cavity Displacement Gloss Normal Roughness Specular",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/04fbdf27-9780-4b7c-b68f-aa183f727a85/a6c99bf0-c0ce-41b9-a0ed-12a2800c52c7.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/04fbdf27-9780-4b7c-b68f-aa183f727a85/f88b1128-b9bd-4a69-826e-fb7c50873859.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

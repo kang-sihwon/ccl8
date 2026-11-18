@@ -1,0 +1,13 @@
+{
+  "id": 2372,
+  "verdict": "수정 후 후보",
+  "use": "S02 작은 작업 도끼",
+  "reason": "46cm 단순 목제 자루와 철날이 적합하지만 끝 주황 도색이 남음",
+  "edit": "도색 제거·날 마모 정리",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:57:51.202446+00:00",
+  "sourcePageSha256": "d4668ca7636cc8c393d08b31dac0a61280ca57d21b0c80c35eee1d1eb8800574"
+}

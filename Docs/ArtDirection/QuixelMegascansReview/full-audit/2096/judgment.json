@@ -1,0 +1,13 @@
+{
+  "id": 2096,
+  "verdict": "보류",
+  "use": "S02 물레 수리 대안",
+  "reason": "1.22m 큰 바퀴와 가공 기둥은 2081보다 공간을 많이 차지",
+  "edit": "수리 품목·회전부 분리 확인",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:46:35.340253+00:00",
+  "sourcePageSha256": "21be5cc2ddbb85aad022a5086e019ea13f0fe54d790f76a00ef1274d7680b59b"
+}

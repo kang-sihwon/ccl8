@@ -1,0 +1,13 @@
+{
+  "id": 862,
+  "verdict": "보류",
+  "use": "S08 긴 탈색 고사 가지",
+  "reason": "4.1m의 작은 돌출이 남은 긴 가지로 0518·0774와 겹친다.",
+  "edit": "기존 긴 가지 반복 시만",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:52:44.815983+00:00",
+  "sourcePageSha256": "ae985d6783b1c03f9404adafd56edbdfd3f1766825e44a8de4e491c95543b535"
+}

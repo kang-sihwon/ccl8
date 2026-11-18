@@ -1,0 +1,13 @@
+{
+  "id": 2323,
+  "verdict": "보류",
+  "use": "S01 채소 대안",
+  "reason": "15cm 자주색 양배추는 강한 붉은 색 덩어리",
+  "edit": "2208 우선",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:56:37.640680+00:00",
+  "sourcePageSha256": "3b01d490a55f154cb9b56a97e6375c329374f36159f0b9d162bd59b7869c668b"
+}

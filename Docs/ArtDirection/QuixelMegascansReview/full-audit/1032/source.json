@@ -1,0 +1,65 @@
+{
+  "id": 1032,
+  "url": "https://www.fab.com/listings/b47f93c5-abb9-4f3d-80c5-b0cd5d4f77a5",
+  "uid": "b47f93c5-abb9-4f3d-80c5-b0cd5d4f77a5",
+  "title": "Dead Herb Weed",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:15:26.141098+00:00",
+  "pageSha256": "69129b7b79056d110416d3e25dfc300e3725985ca0c479f79a4e331c865b740b",
+  "description": "Maps: Basecolor Specular Bump Translucency Displacement Normal Cavity Roughness Opacity AO Gloss\n \nCreate high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "기재 확인 안 됨",
+  "mesh": "기재 확인 안 됨",
+  "texelDensity": "기재 확인 안 됨",
+  "maps": "Basecolor Specular Bump Translucency Displacement Normal Cavity Roughness Opacity AO Gloss",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/447f84ce-6737-41be-a6c0-f875984b5596/da33d330-86f6-4ef3-a966-18fd1a96cec5.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 2,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/447f84ce-6737-41be-a6c0-f875984b5596/8b60f5b4-3e36-40fa-bb69-8fc8441bbf6d.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

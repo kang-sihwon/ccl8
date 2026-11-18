@@ -1,0 +1,13 @@
+{
+  "id": 672,
+  "verdict": "추천",
+  "use": "S08 길게 갈라진 목편",
+  "reason": "1.08m의 골이 깊고 길쭉한 조각이 부식 목재의 다른 단면을 제공한다.",
+  "edit": "미세 노멀 완화; 길 가장자리 배치",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:41:41.792203+00:00",
+  "sourcePageSha256": "4edbb03504f766d26d5f4b8cd03c7f3fa23af90096aeee2ea61ed26d74061321"
+}

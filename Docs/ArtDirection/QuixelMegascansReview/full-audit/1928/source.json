@@ -1,0 +1,82 @@
+{
+  "id": 1928,
+  "url": "https://www.fab.com/listings/28dedc08-6a12-4bda-b201-8c58cd696157",
+  "uid": "28dedc08-6a12-4bda-b201-8c58cd696157",
+  "title": "Butter Churn",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:21:05.667830+00:00",
+  "pageSha256": "cf4c29eaa110822a32dde463d089361178fc29acb1c8ca6186e1276c022509e8",
+  "description": "Texel density: 5927 px/m\nPhysical size: 0.2m x 0.21m x 0.77m\nMesh type: Closed mesh\nMaps: Specular Roughness Cavity Normal AO Basecolor Bump Diffuse Displacement(high tier only) Metalness\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.2m x 0.21m x 0.77m",
+  "mesh": "Closed mesh",
+  "texelDensity": "5927 px/m",
+  "maps": "Specular Roughness Cavity Normal AO Basecolor Bump Diffuse Displacement(high tier only) Metalness",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "ZBrush",
+      "extensions": [
+        "zbp",
+        "ztl"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/4f612538-52f3-4747-b869-919d9d7947fe/d3c52045-0079-43d4-9dec-02180bc31230.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/4f612538-52f3-4747-b869-919d9d7947fe/15e88ccb-b671-43d2-a573-5f648fe0574f.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

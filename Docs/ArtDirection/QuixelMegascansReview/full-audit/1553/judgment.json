@@ -1,0 +1,13 @@
+{
+  "id": 1553,
+  "verdict": "보류",
+  "use": "S01 작은 자갈 변형",
+  "reason": "7cm 흑백 얼룩이 강한 돌로 기존 회색 돌보다 산만함",
+  "edit": "색 대비 축소",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:27:20.405175+00:00",
+  "sourcePageSha256": "e1a24c767eba4aac5511a7630097cf8633d2926a6e090535d4c3238fcc2cfd0e"
+}

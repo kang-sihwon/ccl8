@@ -1,0 +1,74 @@
+{
+  "id": 289,
+  "url": "https://www.fab.com/listings/041557b4-cb3e-4836-8e9e-1260bc417334",
+  "uid": "041557b4-cb3e-4836-8e9e-1260bc417334",
+  "title": "Wooden Bowl",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:10:41.868137+00:00",
+  "pageSha256": "85d4825582449117c8d2e8181e882cc853d76ef14cd8e18d753a124b3b409bc0",
+  "description": "Texel density: 1159 px/m\nPhysical size: 0.14m x 0.14m x 0.05m\nMesh type: Closed mesh\nMaps: Specular Cavity Displacement(high tier only) Gloss AO Roughness Basecolor Normal\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.14m x 0.14m x 0.05m",
+  "mesh": "Closed mesh",
+  "texelDensity": "1159 px/m",
+  "maps": "Specular Cavity Displacement(high tier only) Gloss AO Roughness Basecolor Normal",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/40356772-a23e-4ff5-a19f-da0f445a1c4a/2759ba71-9327-4a98-b4a3-25876caddfa9.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/40356772-a23e-4ff5-a19f-da0f445a1c4a/5affcce0-5985-4688-8106-5801fb77f865.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

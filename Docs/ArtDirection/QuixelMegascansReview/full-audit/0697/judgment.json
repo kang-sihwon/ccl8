@@ -1,0 +1,13 @@
+{
+  "id": 697,
+  "verdict": "보류",
+  "use": "S01 작은 유목 파편",
+  "reason": "63cm의 회색 표면과 노란 부러진 끝이 0693과 같은 역할이다.",
+  "edit": "노란 단면 대비 완화 후 변형으로 사용",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:44:12.031319+00:00",
+  "sourcePageSha256": "6a89c041bd36caefbcce423726245193d3d9b497c221c0413aa3f3027ac7a2a7"
+}

@@ -1,0 +1,65 @@
+{
+  "id": 1029,
+  "url": "https://www.fab.com/listings/8747f1bc-1309-45f1-bf82-8d82338e9e61",
+  "uid": "8747f1bc-1309-45f1-bf82-8d82338e9e61",
+  "title": "Clover Varieties",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:15:25.138553+00:00",
+  "pageSha256": "ce6ba319d2c33c71019fbb1f3f5e7244c2f659e253ec4551664d8a1b21332f5e",
+  "description": "Maps: Roughness Opacity Normal Bump Specular Cavity Displacement Basecolor Gloss Translucency\n \nCreate high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "기재 확인 안 됨",
+  "mesh": "기재 확인 안 됨",
+  "texelDensity": "기재 확인 안 됨",
+  "maps": "Roughness Opacity Normal Bump Specular Cavity Displacement Basecolor Gloss Translucency",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/f02d683b-9bc9-4834-8703-57f78199ffea/215e68b9-606b-4c71-a032-6898811635b2.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 2,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/f02d683b-9bc9-4834-8703-57f78199ffea/62649961-bad4-4310-8f91-cf43f527ada1.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

@@ -1,0 +1,13 @@
+{
+  "id": 1011,
+  "verdict": "보류",
+  "use": "S08 작은 황갈색 버섯",
+  "reason": "5cm의 짧고 둥근 갓으로 별도 배치 필요 낮음",
+  "edit": "실측 유지",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:01:11.414257+00:00",
+  "sourcePageSha256": "7453b5a21873e0acb95aea0e4f343cd45d8c041ddc88e44026acb840713f119d"
+}

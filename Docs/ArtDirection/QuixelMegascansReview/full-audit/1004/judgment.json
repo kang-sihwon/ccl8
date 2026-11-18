@@ -1,0 +1,13 @@
+{
+  "id": 1004,
+  "verdict": "보류",
+  "use": "S08 작은 황토색 버섯",
+  "reason": "7cm의 밝은 평평한 갓으로 972와 976 역할 중복",
+  "edit": "실측 유지 및 채도 정리",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:01:11.407684+00:00",
+  "sourcePageSha256": "09644ea81d942f821f57f87d5d07feb9b1bd4b4e91bfd840a49681dd77817bfb"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 575,
+  "verdict": "보류",
+  "use": "S08 바위 군집 대체",
+  "reason": "큰 둥근 돌과 작은 돌 무리지만 이끼가 많고 0573과 역할이 겹친다.",
+  "edit": "0573 반복 회피 시만; 이끼 피복 완화",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:36:32.313739+00:00",
+  "sourcePageSha256": "1e3a6d269ddccd36fbe75d7cbb4fcf8fb46d46ae0a75eae12fe6705cbfa24525"
+}

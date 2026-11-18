@@ -1,0 +1,13 @@
+{
+  "id": 765,
+  "verdict": "보류",
+  "use": "S08 굽은 수피 조각",
+  "reason": "43cm의 곡선 수피에 흰 반점이 있으나 0754와 역할이 겹친다.",
+  "edit": "흰 얼룩 완화 후 필요 시 교체",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:46:33.142374+00:00",
+  "sourcePageSha256": "e437c9a4b70d8cd013ac191f9daab422e58622a444b13fbe1915a6d1b782aee1"
+}

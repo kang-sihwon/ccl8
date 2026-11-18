@@ -1,0 +1,13 @@
+{
+  "id": 517,
+  "verdict": "추천",
+  "use": "S08 세 갈래 이끼 고사목",
+  "reason": "굵은 Y형 줄기와 중앙 돌출이 숲 바닥의 방향성을 만든다.",
+  "edit": "이끼를 황갈색 중심으로 변경; 바닥 접촉 맞춤",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:32:36.387146+00:00",
+  "sourcePageSha256": "56ff62fc4fbd40fcc979f315c46e7b0ed6deb794a45c8381d20bc06c38b3246d"
+}

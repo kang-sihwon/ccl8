@@ -1,0 +1,13 @@
+{
+  "id": 427,
+  "verdict": "추천",
+  "use": "S08 썩은 목재 근경",
+  "reason": "깊게 갈라진 수피와 밝은 내부가 부식 과정을 명확히 보여준다.",
+  "edit": "명암·노멀 세부 완화; 1m급 근경 소량",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:27:25.612953+00:00",
+  "sourcePageSha256": "66fd7ba9fac1733e4259de229e7e3d0219cd21d52b9383be416eaab636fcc8f4"
+}

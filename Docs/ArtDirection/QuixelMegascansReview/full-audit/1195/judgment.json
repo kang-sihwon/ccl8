@@ -1,0 +1,13 @@
+{
+  "id": 1195,
+  "verdict": "보류",
+  "use": "S08 낮은 이끼 돌 군집",
+  "reason": "1.51m의 작은 돌과 낙엽 조합으로 1184와 역할 중복",
+  "edit": "녹색 채도 조절 및 경계 매입",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:09:31.925347+00:00",
+  "sourcePageSha256": "b0871f48bc52ca5d2dc012d7411dca5aadae7ece0069f81520d265431e74197c"
+}

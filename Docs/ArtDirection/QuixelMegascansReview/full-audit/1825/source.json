@@ -1,0 +1,82 @@
+{
+  "id": 1825,
+  "url": "https://www.fab.com/listings/ef289444-1dc6-4130-96fa-e389972d6fb6",
+  "uid": "ef289444-1dc6-4130-96fa-e389972d6fb6",
+  "title": "Decorative Stone Relief Sculpture",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:20:25.711718+00:00",
+  "pageSha256": "484d80e8a889d6a102c3e16c289fe2db6bf4dd472de06e565abed6f390dbac41",
+  "description": "Texel density: 5787 px/m\nPhysical size: 0.26m x 4.0m x 1.02m\nMesh type: Open mesh\nMaps: Displacement(high tier only) Cavity Gloss Specular Basecolor Roughness Normal AO Bump\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.26m x 4.0m x 1.02m",
+  "mesh": "Open mesh",
+  "texelDensity": "5787 px/m",
+  "maps": "Displacement(high tier only) Cavity Gloss Specular Basecolor Roughness Normal AO Bump",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "ZBrush",
+      "extensions": [
+        "zbp",
+        "ztl"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/2f2754a3-4c67-45ac-8d25-4380b33b6a76/8d4ca770-4dbb-4666-b6a1-ba179f9f5d19.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/2f2754a3-4c67-45ac-8d25-4380b33b6a76/f2e19016-abac-458a-85db-7290f73a3c07.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

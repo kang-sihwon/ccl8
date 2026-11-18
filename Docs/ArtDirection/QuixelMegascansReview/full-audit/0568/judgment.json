@@ -1,0 +1,13 @@
+{
+  "id": 568,
+  "verdict": "보류",
+  "use": "S08 다공질 바위 변형",
+  "reason": "울퉁불퉁한 기공과 작은 초록 패치로 0566·0567과 중복된다.",
+  "edit": "현재 암석 계열에 혼합 보류",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:36:32.307287+00:00",
+  "sourcePageSha256": "ae15efb5767973956659a8ea90fa48c1daf21846c6f59d02f32a163a0efa338d"
+}

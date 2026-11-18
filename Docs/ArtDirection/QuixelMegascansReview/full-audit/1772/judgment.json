@@ -1,0 +1,13 @@
+{
+  "id": 1772,
+  "verdict": "보류",
+  "use": "S02 화덕 주변 벽돌 대안",
+  "reason": "22cm 짙은 사각 벽돌은 가능하나 단품 변형 중복",
+  "edit": "검정 대비 완화 및 화덕 재질 일치",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:33:48.209712+00:00",
+  "sourcePageSha256": "68e4b443680de4f7f14256e375dd53695f8a987ea5c163ef1e8d9d98cc937090"
+}

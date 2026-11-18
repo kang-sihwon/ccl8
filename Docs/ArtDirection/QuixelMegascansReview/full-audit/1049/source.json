@@ -1,0 +1,65 @@
+{
+  "id": 1049,
+  "url": "https://www.fab.com/listings/e6d0a66a-3db0-4049-a1db-a1cfe1c1073b",
+  "uid": "e6d0a66a-3db0-4049-a1db-a1cfe1c1073b",
+  "title": "Grass Clumps",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:15:31.425821+00:00",
+  "pageSha256": "0e21754ac8599687d90127620131b81bea521a2f61b083c27f89b9d4225bdea8",
+  "description": "Maps: Normal Cavity Specular Basecolor Translucency Bump Displacement Gloss Opacity Roughness\n \nCreate high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "기재 확인 안 됨",
+  "mesh": "기재 확인 안 됨",
+  "texelDensity": "기재 확인 안 됨",
+  "maps": "Normal Cavity Specular Basecolor Translucency Bump Displacement Gloss Opacity Roughness",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/fad2e4d2-840d-4cc9-b248-ce53da09cb3e/d9d94ae2-89e9-40fd-a524-081e290c7451.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 2,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/fad2e4d2-840d-4cc9-b248-ce53da09cb3e/a89c411b-614d-4b8a-84a1-0e5f5b5af5ff.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

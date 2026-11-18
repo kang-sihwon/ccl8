@@ -1,0 +1,13 @@
+{
+  "id": 1632,
+  "verdict": "보류",
+  "use": "S08 작은 돌 변형",
+  "reason": "12cm 거칠고 어두운 조각은 기존 변형 충분",
+  "edit": "미세 대비 완화",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:28:53.013004+00:00",
+  "sourcePageSha256": "f8b27479acd6a41d360a832229787fa45cdaa2e43ecc9bc95fd2d5c50a91479e"
+}

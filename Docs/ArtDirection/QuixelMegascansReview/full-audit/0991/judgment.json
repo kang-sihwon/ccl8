@@ -1,0 +1,13 @@
+{
+  "id": 991,
+  "verdict": "보류",
+  "use": "S08 낮은 갈색 버섯 변형",
+  "reason": "21cm의 넓고 낮은 갈색 갓으로 981 및 978과 중복",
+  "edit": "목재 접합 확인",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:01:11.395361+00:00",
+  "sourcePageSha256": "4ec852598deb245df253a5f2923bb339525fbfca8feec655c63f5268246597ed"
+}

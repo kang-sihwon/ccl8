@@ -1,0 +1,13 @@
+{
+  "id": 1631,
+  "verdict": "보류",
+  "use": "S02 기단 주변 조각",
+  "reason": "17cm 노란 낮은 돌로 기존 회색 후보 우선",
+  "edit": "황색 감소",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:28:53.012075+00:00",
+  "sourcePageSha256": "c9c77437e3650c9a1464ad09c73d459cbccdc0287b30dbf7427675da0644cdeb"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 1514,
+  "verdict": "보류",
+  "use": "S01 밝은 각형 바위",
+  "reason": "82cm의 큰 균열은 좋으나 황색·흰색이 강하고 기존 후보 충분",
+  "edit": "황색·흰색 명도 완화",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:23:18.575305+00:00",
+  "sourcePageSha256": "d3f7833a6ba793c93a269557972d49e9811ac66111825ff0ace0e0a42f296d8e"
+}

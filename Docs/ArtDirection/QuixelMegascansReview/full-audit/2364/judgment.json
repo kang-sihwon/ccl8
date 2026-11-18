@@ -1,0 +1,13 @@
+{
+  "id": 2364,
+  "verdict": "보류",
+  "use": "S02 식사 대안",
+  "reason": "43cm 큰 호두 빵은 기존 통빵 후보보다 공간을 많이 차지",
+  "edit": "대표 빵 우선",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:57:51.194433+00:00",
+  "sourcePageSha256": "319b5065575a09e6ecfcaf878258faa7c3a682a5264c1622b4ba21e8ed62df44"
+}

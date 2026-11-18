@@ -1,0 +1,13 @@
+{
+  "id": 1056,
+  "verdict": "수정 후 후보",
+  "use": "S01 먼 강둑 관목",
+  "reason": "작은 은회색 잎 덩어리가 수변에 유용하나 B안 대비 색이 차갑고 밝음",
+  "edit": "회녹색 명도 낮추고 따뜻한 기운 추가 및 실측 확인",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:03:25.994701+00:00",
+  "sourcePageSha256": "51403771a0ccabd237dee43271f09a370abffe61e4abb6ef2a63dde680bc0a96"
+}

@@ -1,0 +1,65 @@
+{
+  "id": 1038,
+  "url": "https://www.fab.com/listings/a5a85500-be52-4c50-8697-3c17b9a59dc3",
+  "uid": "a5a85500-be52-4c50-8697-3c17b9a59dc3",
+  "title": "Dwarf Willow",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:15:28.280040+00:00",
+  "pageSha256": "2c40dfda385ed579e8ca2280b492d37623bec9d9878dc9a75ce8387dc085ab7b",
+  "description": "Maps: Normal Specular AO Opacity Displacement Gloss Translucency Bump Roughness Cavity Basecolor\n \nCreate high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "기재 확인 안 됨",
+  "mesh": "기재 확인 안 됨",
+  "texelDensity": "기재 확인 안 됨",
+  "maps": "Normal Specular AO Opacity Displacement Gloss Translucency Bump Roughness Cavity Basecolor",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/3c11afcb-2531-4ba9-9e3d-2cb147a767f4/918ef518-2b1f-453d-bce8-c7eb96c2a307.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/3c11afcb-2531-4ba9-9e3d-2cb147a767f4/9c8ec028-c588-43be-a06f-8d4f39938199.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

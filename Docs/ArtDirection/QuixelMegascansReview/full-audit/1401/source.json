@@ -1,0 +1,93 @@
+{
+  "id": 1401,
+  "url": "https://www.fab.com/listings/5ddb2798-6805-4f83-944b-5a7c23bf1851",
+  "uid": "5ddb2798-6805-4f83-944b-5a7c23bf1851",
+  "title": "Lichened Rocky Ground",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:17:44.563895+00:00",
+  "pageSha256": "35d19b2ee18109f57400ed9563e0c00d6fea5bf09f1fa17cec7aa982dbb5b7e0",
+  "description": "Texel density: 5494 px/m\nPhysical size: 1.98m x 1.97m x 0.31m\nMesh type: Open mesh\nMaps: Cavity Specular AO Basecolor Displacement(high tier only) Bump Fuzz Normal Gloss Roughness\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "1.98m x 1.97m x 0.31m",
+  "mesh": "Open mesh",
+  "texelDensity": "5494 px/m",
+  "maps": "Cavity Specular AO Basecolor Displacement(high tier only) Bump Fuzz Normal Gloss Roughness",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "ZBrush",
+      "extensions": [
+        "zbp",
+        "ztl"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "UEFN Reference",
+      "extensions": null,
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "UEFN - Reference only",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/1c77160a-8667-478a-9058-6eca6d8f3c0c/c5685f88-33a5-450f-9a5a-4c45231a70a0.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/1c77160a-8667-478a-9058-6eca6d8f3c0c/c25d3c8c-a368-406d-bcf2-3cd29222fa97.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

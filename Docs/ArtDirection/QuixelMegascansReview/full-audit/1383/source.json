@@ -1,0 +1,74 @@
+{
+  "id": 1383,
+  "url": "https://www.fab.com/listings/e78d35c9-c375-4b69-b99d-4e67d1c9e1c7",
+  "uid": "e78d35c9-c375-4b69-b99d-4e67d1c9e1c7",
+  "title": "Historic Japanese Village Rock Stone Small 01",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:17:37.238405+00:00",
+  "pageSha256": "7883cbe9c4cda86c4bffc95ab5ed334bf18d93739de74090be36254fe589db4a",
+  "description": "The ‘Historic Japanese’ themed assets capture the feel of traditional craftsmanship and daily routine. Featuring high-fidelity scans of handcrafted weapons, storage chests, household tools, and weathered stone and timber building elements, this collection reflects a way of life shaped by skill and tradition.\nIdeal for creating authentic period scenes with a strong sense of realism and environmental storytelling.\nTexel density: 41745 px/m\nPhysical size: 0.09m x 0.1m x 0.08m\nMesh type: Closed mesh\nMaps: AO Basecolor Bump Cavity Displacement Gloss Metalness Normal Roughness Specular\nCreate high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.\n\nCurious about future releases? Discover upcoming Megascans content and vote for your favorite themes: Public Roadmap",
+  "size": "0.09m x 0.1m x 0.08m",
+  "mesh": "Closed mesh",
+  "texelDensity": "41745 px/m",
+  "maps": "AO Basecolor Bump Cavity Displacement Gloss Metalness Normal Roughness Specular",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/318e9bde-1a10-495e-a003-3165fcfc15a3/c4fd596e-0c02-4385-9856-9382e6f29adb.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/318e9bde-1a10-495e-a003-3165fcfc15a3/8800632a-a5be-4b5f-b07f-4d35eca54dc8.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

@@ -1,0 +1,13 @@
+{
+  "id": 451,
+  "verdict": "보류",
+  "use": "S01 넓은 강둑 변형",
+  "reason": "넓은 상면과 완만한 토사 경사가 있으나 0448·0449와 역할이 겹친다.",
+  "edit": "긴 구간 반복이 보일 때만 혼합",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:29:37.255121+00:00",
+  "sourcePageSha256": "7e26d3cd8fe07aa21d113ae6399df5b133511f1cc0e6ff09e81c63b5b36d84c2"
+}

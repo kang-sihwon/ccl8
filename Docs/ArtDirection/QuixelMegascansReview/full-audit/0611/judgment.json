@@ -1,0 +1,13 @@
+{
+  "id": 611,
+  "verdict": "보류",
+  "use": "S08 작은 부러진 나무",
+  "reason": "67cm의 가는 갈라진 줄기로 0503·0522와 역할이 겹친다.",
+  "edit": "작은 고사목이 부족한 구간에만 사용",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:38:54.205653+00:00",
+  "sourcePageSha256": "4674a5f110458ed0f459fa6ea1a7d11d91b0ec8b34ac0247ea38ec6773a48b7c"
+}

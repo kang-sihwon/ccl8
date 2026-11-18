@@ -1,0 +1,13 @@
+{
+  "id": 524,
+  "verdict": "보류",
+  "use": "S08 침엽수 밑동 대체",
+  "reason": "2.14m 높이의 넓은 뿌리형 줄기로 0523과 중복된다.",
+  "edit": "수관 제작 후 0523 변형으로만 사용",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:32:36.393359+00:00",
+  "sourcePageSha256": "5fdef07fbdcf9cd4757fa118c90e621c52a2d4371f87d0e237529d1e2e5c0b08"
+}

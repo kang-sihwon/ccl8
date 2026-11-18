@@ -1,0 +1,13 @@
+{
+  "id": 1956,
+  "verdict": "수정 후 후보",
+  "use": "S02 작은 저장 단지",
+  "reason": "14cm 뚜껑과 손잡이는 적합하나 노란 얼룩과 반점이 강함",
+  "edit": "갈색 저채도로 조절",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:40:59.614928+00:00",
+  "sourcePageSha256": "cdb584343a27b89b383b1f661d32e1dc2ee92a1385fe78bc23467d635b883b1e"
+}

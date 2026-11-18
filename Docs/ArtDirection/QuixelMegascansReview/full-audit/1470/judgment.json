@@ -1,0 +1,13 @@
+{
+  "id": 1470,
+  "verdict": "보류",
+  "use": "S01 작은 화강암 변형",
+  "reason": "37cm의 흰 반점과 붉은 기운이 있는 돌로 기존 자갈 충분",
+  "edit": "흰색·붉은색 대비 축소",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:21:12.812697+00:00",
+  "sourcePageSha256": "d23cd5650ff6ec1c06f9d63a46cfcf14d6dbf259235ffdf54db64b94d56d7383"
+}

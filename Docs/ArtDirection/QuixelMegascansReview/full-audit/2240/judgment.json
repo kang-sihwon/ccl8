@@ -1,0 +1,13 @@
+{
+  "id": 2240,
+  "verdict": "보류",
+  "use": "S02 휴식 과일 대안",
+  "reason": "8cm 빨간 사과의 큰 한입 자국은 생활감 있지만 후보 중복",
+  "edit": "2190과 하나 선택",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:53:43.642229+00:00",
+  "sourcePageSha256": "f1b73e5ce151cb0513d35111ba979e4d1d8fc49b9b25ac7a9291809f61238a06"
+}

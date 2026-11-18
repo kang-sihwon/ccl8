@@ -1,0 +1,13 @@
+{
+  "id": 1664,
+  "verdict": "보류",
+  "use": "S08 작은 돌 변형",
+  "reason": "16cm 황색 다공성 둥근 돌은 표면 수정 필요",
+  "edit": "노란색과 구멍 대비 완화",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:30:20.112125+00:00",
+  "sourcePageSha256": "17bfe8b21d786d85413e0c79616ee583afc48e0e724701d9743692fc8a0e5c21"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 333,
+  "verdict": "추천",
+  "use": "S02 선반의 작은 뚜껑 용기",
+  "reason": "낮은 꼭지가 있는 뚜껑과 짙은 목재 몸체가 작은 재료 보관통에 맞는다.",
+  "edit": "목재 대비·광택을 낮추고 내용물·개폐는 별도로 구현한다.",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:16:43.055854+00:00",
+  "sourcePageSha256": "c1843de799cde9ff17e8a0c706f9d3ea200edf0b3a218fe3038722ffbd37ff2c"
+}

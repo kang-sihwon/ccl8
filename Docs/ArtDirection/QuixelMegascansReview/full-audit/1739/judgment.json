@@ -1,0 +1,13 @@
+{
+  "id": 1739,
+  "verdict": "보류",
+  "use": "S01 자갈 묶음 대안",
+  "reason": "붉은 돌과 거친 각진 돌이 섞여 1738 우선",
+  "edit": "회색 선택 및 분리 확인",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:33:48.176454+00:00",
+  "sourcePageSha256": "d6c38040889bc7ba38bec826acd189a489248d5e8866fa5a1d9ebfa983106407"
+}

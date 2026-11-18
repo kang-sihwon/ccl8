@@ -1,0 +1,13 @@
+{
+  "id": 2363,
+  "verdict": "보류",
+  "use": "S01 견과 대안",
+  "reason": "4cm 둥근 호두는2361과 중복",
+  "edit": "대표 하나 선택",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:57:51.193531+00:00",
+  "sourcePageSha256": "cc902d873c496828f92db2f62c8745fb7862b000db76bb6930dca610dd1d0958"
+}

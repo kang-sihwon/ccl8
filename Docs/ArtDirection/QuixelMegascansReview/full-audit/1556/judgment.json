@@ -1,0 +1,13 @@
+{
+  "id": 1556,
+  "verdict": "보류",
+  "use": "S01 밝은 자갈 변형",
+  "reason": "12cm 밝고 네모난 둥근 돌은 사용 가능하나 기존 후보 충분",
+  "edit": "황색 얼룩 완화",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:27:20.407940+00:00",
+  "sourcePageSha256": "ead87f8731291d36969c31cc15263e0478e425fbdc5c69f40f901dfb3f7da203"
+}

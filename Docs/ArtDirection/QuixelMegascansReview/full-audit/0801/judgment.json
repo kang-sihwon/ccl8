@@ -1,0 +1,13 @@
+{
+  "id": 801,
+  "verdict": "보류",
+  "use": "S08 넓은 탈색 파편",
+  "reason": "52cm의 불규칙한 흰 목편으로 기존 0786·0798과 중복된다.",
+  "edit": "백색 대비 완화; 변형 필요 시만",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:48:57.472694+00:00",
+  "sourcePageSha256": "6e749ae709c3f60a15a0d421624e366fee70886171c8b5d68aea11cb25fe46e4"
+}

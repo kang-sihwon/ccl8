@@ -1,0 +1,74 @@
+{
+  "id": 1466,
+  "url": "https://www.fab.com/listings/67439f5f-fc73-4c5e-82d9-9ff350dd34e7",
+  "uid": "67439f5f-fc73-4c5e-82d9-9ff350dd34e7",
+  "title": "Nature Scatter Rock Set 02",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:18:09.290501+00:00",
+  "pageSha256": "eb4a234932d6834ddd7bb6624ef387ceff49faaf3e2f7e2d6babff0bd756259a",
+  "description": "Texel density: 18142 px/m\nPhysical size: 0.1m x 0.15m x 0.07m\nMesh type: Closed mesh\nMaps: AO Basecolor Cavity Displacement Gloss Normal Roughness Specular\n\nCreate high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.1m x 0.15m x 0.07m",
+  "mesh": "Closed mesh",
+  "texelDensity": "18142 px/m",
+  "maps": "AO Basecolor Cavity Displacement Gloss Normal Roughness Specular",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/afc560cd-9f8d-4bb3-adcb-bd18b991465c/a7c167a3-6c7c-4757-b96a-9c4716b8656b.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/afc560cd-9f8d-4bb3-adcb-bd18b991465c/e956f583-295b-45eb-8bb2-f8aaee89a4c9.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

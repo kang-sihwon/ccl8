@@ -1,0 +1,13 @@
+{
+  "id": 2165,
+  "verdict": "보류",
+  "use": "S02 장부 대안",
+  "reason": "24cm 흰 표지와 갈색 책등은 단순하지만 기존 갈색 장부와 중복",
+  "edit": "인쇄 문구 확인·교체",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:52:25.912856+00:00",
+  "sourcePageSha256": "103362fe0fd86c4b336c7c6b4a7d864f3b85fe421396055e729c50cc160998e4"
+}

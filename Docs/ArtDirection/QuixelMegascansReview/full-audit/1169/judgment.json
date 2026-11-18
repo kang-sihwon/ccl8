@@ -1,0 +1,13 @@
+{
+  "id": 1169,
+  "verdict": "추천",
+  "use": "S01 나루 접근로 바깥 넓은 암반 바닥",
+  "reason": "5.25m의 완만한 평면과 큰 균열이 흙·자갈과 섞인 둔치에 적합",
+  "edit": "열린 경계 매입 및 주변 흙과 블렌딩",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:09:31.899704+00:00",
+  "sourcePageSha256": "3cb415c2a0fe3bfb04d2ed14b99594fc8bae2d98e41dea20ddae061ae68a0e74"
+}

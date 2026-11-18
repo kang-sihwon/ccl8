@@ -1,0 +1,13 @@
+{
+  "id": 1343,
+  "verdict": "보류",
+  "use": "S08 매끈한 넓은 암반",
+  "reason": "5.19m의 완만한 회색 덩어리로 기존 배경 바위 충분",
+  "edit": "열린 면 매입 및 밝기 조절",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:15:07.674132+00:00",
+  "sourcePageSha256": "9b7857b6437f79a2ad43ce9dcbe8559706cc82169457c658bf49561242a9efde"
+}

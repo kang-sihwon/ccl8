@@ -1,0 +1,93 @@
+{
+  "id": 813,
+  "url": "https://www.fab.com/listings/73b41c2b-c8c2-4b31-a496-218595a03351",
+  "uid": "73b41c2b-c8c2-4b31-a496-218595a03351",
+  "title": "Juniper Branch",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:14:02.534416+00:00",
+  "pageSha256": "9d20a19961bb2598785ee9ad8621ba1cc3b38d46d777276d0e9a17fe316732aa",
+  "description": "Texel density: 5602 px/m\nPhysical size: 0.12m x 0.68m x 0.1m\nMesh type: Closed mesh\nMaps: AO Gloss Cavity Fuzz Roughness Displacement(high tier only) Normal Specular Basecolor Bump\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.12m x 0.68m x 0.1m",
+  "mesh": "Closed mesh",
+  "texelDensity": "5602 px/m",
+  "maps": "AO Gloss Cavity Fuzz Roughness Displacement(high tier only) Normal Specular Basecolor Bump",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "ZBrush",
+      "extensions": [
+        "zbp",
+        "ztl"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "UEFN Reference",
+      "extensions": null,
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "UEFN - Reference only",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/dc2d4b8c-701d-4307-be43-800f893cb654/ce2c2095-ed1f-4ffd-9ed2-2a06e7731b34.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/dc2d4b8c-701d-4307-be43-800f893cb654/5eaf4104-4b73-4333-99a7-c788294cc195.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

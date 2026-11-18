@@ -1,0 +1,13 @@
+{
+  "id": 1870,
+  "verdict": "보류",
+  "use": "S02 화덕 벽돌 변형",
+  "reason": "23cm 밝은 붉은 벽돌은 기존 후보 충분",
+  "edit": "채도 감소",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:36:56.655869+00:00",
+  "sourcePageSha256": "094743f5e91a4df8cf728aee64d44abd4882e266421e9af895221f8d1c4d215c"
+}

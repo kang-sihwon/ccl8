@@ -1,0 +1,13 @@
+{
+  "id": 445,
+  "verdict": "추천",
+  "use": "S08 숲길 경계 바위 군집",
+  "reason": "큰 밝은 돌과 작은 어두운 돌의 크기 대비로 큰 형태가 잘 읽힌다.",
+  "edit": "이끼 채도 완화; 흙 경계 지면과 혼합",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:29:37.248598+00:00",
+  "sourcePageSha256": "c00dac435f5b3faa42c45b9382d482df45d7f66fe0c8b8f26c88757f39455e79"
+}

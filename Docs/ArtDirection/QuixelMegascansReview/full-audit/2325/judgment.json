@@ -1,0 +1,13 @@
+{
+  "id": 2325,
+  "verdict": "보류",
+  "use": "S01 과일 대안",
+  "reason": "12cm 큰 붉고 노란 사과는2174와 중복",
+  "edit": "팩 우선",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:56:37.642689+00:00",
+  "sourcePageSha256": "b2920a8104f4c8cb534d07a83cade0a104569855dc02361911fc7076d83ff01d"
+}

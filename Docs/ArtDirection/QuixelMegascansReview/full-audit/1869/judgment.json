@@ -1,0 +1,13 @@
+{
+  "id": 1869,
+  "verdict": "보류",
+  "use": "S02 화덕 벽돌 변형",
+  "reason": "23cm 작은 표면 흠만 있는 붉은 벽돌로 중복",
+  "edit": "채도 감소",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:36:56.654959+00:00",
+  "sourcePageSha256": "d3e6c8fa10cca4cb94a5d7bc497ec40e9aca8b228655690d3a07180d7be30baa"
+}

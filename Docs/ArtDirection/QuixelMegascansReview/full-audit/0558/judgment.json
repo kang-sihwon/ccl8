@@ -1,0 +1,13 @@
+{
+  "id": 558,
+  "verdict": "보류",
+  "use": "S08 얼룩진 둥근 돌",
+  "reason": "갈색과 흰색 얼룩이 강해 단순한 0557보다 색잡음이 많다.",
+  "edit": "밝기 얼룩 완화 후 필요 시 교체",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:36:32.297874+00:00",
+  "sourcePageSha256": "8ef505f51efb5ee87a2922ebd2e4607dad10200cc15a0628895edebbac41c259"
+}

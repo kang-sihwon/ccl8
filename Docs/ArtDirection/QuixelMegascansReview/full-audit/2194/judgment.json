@@ -1,0 +1,13 @@
+{
+  "id": 2194,
+  "verdict": "수정 후 후보",
+  "use": "S02 작업자 식량",
+  "reason": "24cm 어두운 각형 빵은 소박한 식사에 사용 가능",
+  "edit": "제빵 품목 확인·잘린 면 반복 줄임",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:52:25.942568+00:00",
+  "sourcePageSha256": "457bc4c9fa7b7805f13a7cfa9b523ff69cbf6e0d920dcf50f697049e5ce75795"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 736,
+  "verdict": "보류",
+  "use": "S08 초근경 목재 파편",
+  "reason": "12cm의 작은 구멍 난 목편으로 장면 전체에서 영향이 작다.",
+  "edit": "실물 크기 유지; 초근경 필요 시만 사용",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:46:33.115124+00:00",
+  "sourcePageSha256": "8d0f4bf5e04225e9937d618d459cfddefa0e97affb5138b16f5f7dfa5053688b"
+}

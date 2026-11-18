@@ -1,0 +1,13 @@
+{
+  "id": 2070,
+  "verdict": "수정 후 후보",
+  "use": "S02 원료 분쇄용 목제 절구",
+  "reason": "27cm 투박한 목통과 세 다리는 가능하나 공방 재료 공정 미확정",
+  "edit": "절굿공이 추가 및 작업 공정 확인",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:46:35.313258+00:00",
+  "sourcePageSha256": "87890ecf5cb6c3e862aa212a49db38ccfe831e3ddad9198c35f74418931e8bd8"
+}

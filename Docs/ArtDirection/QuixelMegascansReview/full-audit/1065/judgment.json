@@ -1,0 +1,13 @@
+{
+  "id": 1065,
+  "verdict": "보류",
+  "use": "S02 작업장 외곽 잡초",
+  "reason": "직립 줄기에 넓은 잎이 층층이 붙으나 현재 잡초 후보 충분",
+  "edit": "실측 확인 및 과한 녹색 완화",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:05:26.838099+00:00",
+  "sourcePageSha256": "44be2b3c1846dccff0245b7f662411f0ee0dad06c8522c70f6a0e22f08404527"
+}

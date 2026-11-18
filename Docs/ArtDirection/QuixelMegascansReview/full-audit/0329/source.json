@@ -1,0 +1,74 @@
+{
+  "id": 329,
+  "url": "https://www.fab.com/listings/a8534003-b8e6-4eea-bf9e-9eecd9fedc47",
+  "uid": "a8534003-b8e6-4eea-bf9e-9eecd9fedc47",
+  "title": "Wooden Floor Lamp",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:10:57.222332+00:00",
+  "pageSha256": "585726136346444409d3ae06a3ed8ef84ab663829acbcf4ebe8dc31e4ee07163",
+  "description": "Texel density: 5308 px/m\nPhysical size: 0.57m x 0.58m x 1.64m\nMesh type: Closed mesh\nMaps: Normal Basecolor Specular Roughness Cavity Bump Displacement(high tier only) Diffuse Metalness Ao\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.57m x 0.58m x 1.64m",
+  "mesh": "Closed mesh",
+  "texelDensity": "5308 px/m",
+  "maps": "Normal Basecolor Specular Roughness Cavity Bump Displacement(high tier only) Diffuse Metalness Ao",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/9be21f88-f0de-4a31-a636-435603ae6c03/f53c26b1-4f9c-424e-aab1-bd1a51c9b025.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/9be21f88-f0de-4a31-a636-435603ae6c03/fe0721c8-9cd4-44e6-9537-d3564ff54059.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

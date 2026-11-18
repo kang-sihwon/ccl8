@@ -1,0 +1,13 @@
+{
+  "id": 2291,
+  "verdict": "제외",
+  "use": "현재 세 장소 제외",
+  "reason": "6cm 주름진 패션프루트는 식량 설정 근거 부족",
+  "edit": "현재 우선 대상 밖",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:55:15.660340+00:00",
+  "sourcePageSha256": "02ffa405d1a44a5874d0730c668d7d7e3efd1e12e7b1e3bc0a3a40b6429f521a"
+}

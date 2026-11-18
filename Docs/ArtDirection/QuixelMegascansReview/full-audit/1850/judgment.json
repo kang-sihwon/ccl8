@@ -1,0 +1,13 @@
+{
+  "id": 1850,
+  "verdict": "보류",
+  "use": "S02 새 벽돌 대안",
+  "reason": "25cm 주황 사각 벽돌은 기존 후보 중복",
+  "edit": "채도 감소",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:36:56.636991+00:00",
+  "sourcePageSha256": "73db3ba41b92aecbd4bc6ae64d2eecf6070b027de38df4c366423176550b2017"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 665,
+  "verdict": "추천",
+  "use": "S02 작업대의 작은 목편",
+  "reason": "23cm의 황갈색 갈라진 조각이 작은 목재 가공 잔재로 읽힌다.",
+  "edit": "채도 완화; 실물 크기 유지",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:41:41.785516+00:00",
+  "sourcePageSha256": "6d286d462b484eab891ec1387f9210a7a5c001ecf4fa23fb658a1bfb6c8b9da9"
+}

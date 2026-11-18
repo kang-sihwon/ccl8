@@ -1,0 +1,13 @@
+{
+  "id": 2152,
+  "verdict": "수정 후 후보",
+  "use": "S02 실·가는 끈을 감는 실패",
+  "reason": "22cm 목제 축은 가능하나 끝판 금속 구멍과 규격 구조 보임",
+  "edit": "끝판 단순화 및 실 별도 추가",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:48:31.645878+00:00",
+  "sourcePageSha256": "7fe0569a58355125c4df02c56caea63edced3013da162bf54c4b5ced99652e2d"
+}

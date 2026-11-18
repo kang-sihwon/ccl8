@@ -1,0 +1,13 @@
+{
+  "id": 1187,
+  "verdict": "보류",
+  "use": "S01 구멍 있는 둥근 바위",
+  "reason": "1.1m의 둔한 돌과 상단 작은 구멍으로 기존 자연석 충분",
+  "edit": "갈색을 주변 회색과 맞춤",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:09:31.917600+00:00",
+  "sourcePageSha256": "64bafbf44495ec7ac556168311a36eae58067f0bd5b45966e6a752db2e96436d"
+}

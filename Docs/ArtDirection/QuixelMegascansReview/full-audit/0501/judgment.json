@@ -1,0 +1,13 @@
+{
+  "id": 501,
+  "verdict": "수정 후 후보",
+  "use": "S08 숲 진입부 자작 밑동",
+  "reason": "넓은 뿌리 기반과 두꺼운 줄기가 근경 수목 하부에 유용하다.",
+  "edit": "상부 수관 별도; 바닥 경계 매립",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:32:36.373601+00:00",
+  "sourcePageSha256": "58beccec8d95152b06216cf32b85db2f36d0fb7e930ffb2573f85f8f7698e67f"
+}

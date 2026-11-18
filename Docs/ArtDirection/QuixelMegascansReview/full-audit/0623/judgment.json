@@ -1,0 +1,13 @@
+{
+  "id": 623,
+  "verdict": "제외",
+  "use": "현재 벨레스 숲에는 미배치",
+  "reason": "기울고 검게 탄 줄기와 재색 밑면이 산불 이후 장면으로 읽힌다.",
+  "edit": "별도 화재 구역에서 재검토",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:38:54.216707+00:00",
+  "sourcePageSha256": "96dcff9e23d60c0853076d0fd568124a3308904ccee50b11e7415b1cbadb481d"
+}

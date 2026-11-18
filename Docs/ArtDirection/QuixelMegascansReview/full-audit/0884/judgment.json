@@ -1,0 +1,13 @@
+{
+  "id": 884,
+  "verdict": "보류",
+  "use": "S08 얇은 수피 파편",
+  "reason": "25cm의 길쭉한 수피로 0759·0761과 중복된다.",
+  "edit": "기존 파편 우선",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:54:43.595589+00:00",
+  "sourcePageSha256": "b75b8d936d8cbca1bf0480b62de357b0e0fcab92a54e72f69a0cefc140b8a78d"
+}

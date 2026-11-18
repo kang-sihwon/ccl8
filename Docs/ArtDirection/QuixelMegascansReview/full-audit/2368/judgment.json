@@ -1,0 +1,13 @@
+{
+  "id": 2368,
+  "verdict": "보류",
+  "use": "S01 과일 대안",
+  "reason": "7cm 붉고 노란 천도복숭아는 사과와 색 역할 중복",
+  "edit": "작물 설정 확인",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:57:51.198624+00:00",
+  "sourcePageSha256": "0be41bf232f90f5d6c89f6ce36218e989ef12b2981d00299bb671ebf449ab9e6"
+}

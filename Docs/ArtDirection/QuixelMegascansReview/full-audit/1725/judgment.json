@@ -1,0 +1,13 @@
+{
+  "id": 1725,
+  "verdict": "보류",
+  "use": "S08 작은 돌 묶음 대안",
+  "reason": "여러 회색 조각이 보이나 1699와 용도 중복",
+  "edit": "개별 메시 여부 확인",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:31:48.527371+00:00",
+  "sourcePageSha256": "e9c22105eb33acdb6757e395cf8fc2115aaddcfc1fd08ed523f034baf60e8ad3"
+}

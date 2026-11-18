@@ -1,0 +1,13 @@
+{
+  "id": 2284,
+  "verdict": "보류",
+  "use": "S01 과일 대안",
+  "reason": "30cm 타원 멜론은 부피가 크고 무늬가 강함",
+  "edit": "작물 설정·채도 축소",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:55:15.653560+00:00",
+  "sourcePageSha256": "4de4ee05d9ac6936f2b8c1dbce95cedb56e3229d2863c45ea076269754073316"
+}

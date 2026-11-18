@@ -1,0 +1,13 @@
+{
+  "id": 1589,
+  "verdict": "보류",
+  "use": "S02 마당 돌 변형",
+  "reason": "26cm 밝은 판형 돌로 1584와 중복",
+  "edit": "노란 기운 완화",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:28:52.969097+00:00",
+  "sourcePageSha256": "f1d0cdf95b84d52882b3bc08e7ab233295625549f0f5db411491482665679d58"
+}

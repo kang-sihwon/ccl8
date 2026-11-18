@@ -1,0 +1,13 @@
+{
+  "id": 1050,
+  "verdict": "보류",
+  "use": "S01 낮은 잔디 변형",
+  "reason": "가는 잎이 넓게 퍼진 낮은 잔디로 기존 짧은 풀 후보 충분",
+  "edit": "실측 확인 및 바닥 접합",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:03:25.988991+00:00",
+  "sourcePageSha256": "0357d0bfd63e7daff72a598e62f4c35e85fc9953b5aa83ca72a8e30a912fea5b"
+}

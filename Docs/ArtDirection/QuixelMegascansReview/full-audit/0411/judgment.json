@@ -1,0 +1,13 @@
+{
+  "id": 411,
+  "verdict": "추천",
+  "use": "S01 소형 배 내부 가로 좌판",
+  "reason": "중앙 구멍이 있는 1.21m 판재로 단순한 배 내부 구조에 적합하다.",
+  "edit": "선체 폭에 맞춰 조절; 구멍 용도와 결합부 제작",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:27:25.597306+00:00",
+  "sourcePageSha256": "bcb7289f1111aff823c8b1201b4aebabefd25c1fce5135e7c66b4cb7ac1debcc"
+}

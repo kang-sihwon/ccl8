@@ -1,0 +1,85 @@
+{
+  "id": 2199,
+  "url": "https://www.fab.com/listings/10c6a427-55a1-4ec2-ba45-2c90bf0c1255",
+  "uid": "10c6a427-55a1-4ec2-ba45-2c90bf0c1255",
+  "title": "Bread Roll",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:22:46.556021+00:00",
+  "pageSha256": "1f7830f778362283372fb27a660e3cd3bd84b0833919a3201644538b84626ec1",
+  "description": "Texel density: 1242 px/m\nPhysical size: 0.07m x 0.06m x 0.04m\nMesh type: Closed mesh\nMaps: Displacement(high tier only) Cavity Gloss Specular Basecolor AO Roughness Normal\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.07m x 0.06m x 0.04m",
+  "mesh": "Closed mesh",
+  "texelDensity": "1242 px/m",
+  "maps": "Displacement(high tier only) Cavity Gloss Specular Basecolor AO Roughness Normal",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "UEFN Reference",
+      "extensions": null,
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "UEFN - Reference only",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/5450945f-4a23-41e2-93c0-f37fbea79884/efb9cf4d-cfb2-4e5a-9af5-1a20bc55b067.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/5450945f-4a23-41e2-93c0-f37fbea79884/89944ca5-1bd7-4452-9246-2e2878047595.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

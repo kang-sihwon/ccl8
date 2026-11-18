@@ -1,0 +1,13 @@
+{
+  "id": 706,
+  "verdict": "보류",
+  "use": "S08 긴 뿌리 패치",
+  "reason": "2.14m의 길쭉한 바닥에 뿌리 두 줄이 있지만 0702와 역할이 겹친다.",
+  "edit": "긴 길 구간 반복 회피용",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:44:12.039771+00:00",
+  "sourcePageSha256": "cad9f526ed25f69f947fc97b697ea1e7817ba6b856ae50ccb502a5c58ede9521"
+}

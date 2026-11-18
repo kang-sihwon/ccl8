@@ -1,0 +1,13 @@
+{
+  "id": 2180,
+  "verdict": "보류",
+  "use": "S02 식사 소품 대안",
+  "reason": "44cm 긴 바게트는 눈에 띄는 특정 제빵 형태",
+  "edit": "단순 둥근 빵 우선",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:52:25.928867+00:00",
+  "sourcePageSha256": "0f728a696a7a89f832e6832a5e674e86f7bd6196ae5dde323a0424ed14892a5f"
+}

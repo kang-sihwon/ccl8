@@ -1,0 +1,13 @@
+{
+  "id": 2334,
+  "verdict": "보류",
+  "use": "S02 식사 대안",
+  "reason": "21cm 반쪽 갈색 빵은2262와 중복",
+  "edit": "하나만 선택",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:56:37.651305+00:00",
+  "sourcePageSha256": "9d1647cb260dd34a8fa1b6b10e3ae259592204175cd3618a4cce71d30208c1cc"
+}

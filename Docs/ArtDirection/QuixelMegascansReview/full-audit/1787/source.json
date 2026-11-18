@@ -1,0 +1,93 @@
+{
+  "id": 1787,
+  "url": "https://www.fab.com/listings/8e3676eb-3539-4b40-8e34-4c46ff823533",
+  "uid": "8e3676eb-3539-4b40-8e34-4c46ff823533",
+  "title": "Bricks Rubble",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:20:10.724434+00:00",
+  "pageSha256": "46d4a6039f90288cf268c35d9e5d17c1be03f890ceda2bc4d3aefd3b11772ef4",
+  "description": "Texel density: 5467 px/m\nPhysical size: 0.61m x 0.88m x 0.14m\nMesh type: Open mesh\nMaps: AO Gloss Cavity Roughness Displacement(high tier only) Normal Specular Basecolor Bump\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.61m x 0.88m x 0.14m",
+  "mesh": "Open mesh",
+  "texelDensity": "5467 px/m",
+  "maps": "AO Gloss Cavity Roughness Displacement(high tier only) Normal Specular Basecolor Bump",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "ZBrush",
+      "extensions": [
+        "zbp",
+        "ztl"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "UEFN Reference",
+      "extensions": null,
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "UEFN - Reference only",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/a166768e-4a8f-4558-80f2-e8586c2a6a24/c0cf1e15-9d8a-48bb-aeb9-434c7a32755d.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/a166768e-4a8f-4558-80f2-e8586c2a6a24/645fd199-5cf2-4c95-b27c-4a0226a684db.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

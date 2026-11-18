@@ -1,0 +1,13 @@
+{
+  "id": 1993,
+  "verdict": "보류",
+  "use": "S02 장작 변형",
+  "reason": "22cm 가지가 남은 반쪽 장작은 기존 변형 충분",
+  "edit": "가지 돌출은 통행선 밖으로",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:42:46.951392+00:00",
+  "sourcePageSha256": "b8d73ce7a5ab6abde39561f2a2580855e303fe5d378fd7b1cb493e403a316552"
+}

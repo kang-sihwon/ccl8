@@ -1,0 +1,13 @@
+{
+  "id": 1485,
+  "verdict": "보류",
+  "use": "S08 높은 암벽 변형",
+  "reason": "4.45m의 넓은 갈색 벽과 수평층으로 기존 회색 암반 후보 충분",
+  "edit": "회색 조절 및 열린 면 연결",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:21:12.827247+00:00",
+  "sourcePageSha256": "b0367cacbe1bde3f5f23209c4cef61d37bcdc6a43d58deaa9df1d89472979ff1"
+}

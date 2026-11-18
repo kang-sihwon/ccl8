@@ -1,0 +1,13 @@
+{
+  "id": 1364,
+  "verdict": "보류",
+  "use": "S01 둥근 어두운 바위",
+  "reason": "82cm의 붉은 회갈색 덩어리로 기존 둥근 바위 충분",
+  "edit": "붉은색과 어두운 면 완화",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:17:00.796006+00:00",
+  "sourcePageSha256": "536fa8cbdef6bc159139d8c493968fb27f67bd3e66d28c4d3afe5a1023f58ea2"
+}

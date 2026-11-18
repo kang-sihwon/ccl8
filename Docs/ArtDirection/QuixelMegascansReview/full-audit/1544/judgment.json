@@ -1,0 +1,13 @@
+{
+  "id": 1544,
+  "verdict": "보류",
+  "use": "S08 길가 작은 돌",
+  "reason": "7cm 검고 패인 돌은 화면 기여가 작고 기존 변형 충분",
+  "edit": "과한 검정 대비 완화",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:27:20.396175+00:00",
+  "sourcePageSha256": "5a5eb8eb7f213a7fb0f0de27fb8fcc96bc03a2805feb3772bfd72e52f31911a6"
+}

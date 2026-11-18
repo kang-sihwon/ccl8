@@ -1,0 +1,13 @@
+{
+  "id": 1979,
+  "verdict": "제외",
+  "use": "현재 세 장소 제외",
+  "reason": "대칭 양날과 못 장식·휘어진 끝이 생활용 벌목 도구보다 무기 인상",
+  "edit": "단순 작업 도끼 우선",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:42:46.937340+00:00",
+  "sourcePageSha256": "f14ec1e068593b45168c0e8a11abc4ebb52fdcad7bc967329f0cf33d459e6ba7"
+}

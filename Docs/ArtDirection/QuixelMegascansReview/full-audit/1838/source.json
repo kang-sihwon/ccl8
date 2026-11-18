@@ -1,0 +1,74 @@
+{
+  "id": 1838,
+  "url": "https://www.fab.com/listings/d85f6b81-8554-42eb-9f9d-3a6cde372edf",
+  "uid": "d85f6b81-8554-42eb-9f9d-3a6cde372edf",
+  "title": "Modular Brick Trim",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:20:31.051916+00:00",
+  "pageSha256": "9af744b22100ffb42ac9f390e394aa08ab5852a50e9da15b061ccd1f372512c0",
+  "description": "Texel density: 5636 px/m\nPhysical size: 3.6m x 3.8m x 1.42m\nMesh type: Closed mesh\nMaps: AO Displacement(high tier only) Specular Basecolor Bump Cavity Gloss Normal Roughness\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "3.6m x 3.8m x 1.42m",
+  "mesh": "Closed mesh",
+  "texelDensity": "5636 px/m",
+  "maps": "AO Displacement(high tier only) Specular Basecolor Bump Cavity Gloss Normal Roughness",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/69e33a9b-d9fb-4de3-a9d5-33b493be3bb4/4a2b40e2-f497-4bb6-8488-3b2eaad4e28b.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/69e33a9b-d9fb-4de3-a9d5-33b493be3bb4/24a483bc-e8b3-486f-98b9-0b95bc27a8a3.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

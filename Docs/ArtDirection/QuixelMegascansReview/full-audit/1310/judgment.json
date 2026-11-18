@@ -1,0 +1,13 @@
+{
+  "id": 1310,
+  "verdict": "보류",
+  "use": "S08 작은 돌 변형",
+  "reason": "16cm의 거친 갈색 덩어리로 기존 후보 대체 가능",
+  "edit": "실측 유지",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:15:07.638741+00:00",
+  "sourcePageSha256": "7d1f7d795f6a858c8af558159f08686d3801ad7a5290e73f9038b22095b751d0"
+}

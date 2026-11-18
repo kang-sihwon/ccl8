@@ -1,0 +1,85 @@
+{
+  "id": 2196,
+  "url": "https://www.fab.com/listings/e2603cf6-3c00-4e7f-8098-2056d107c935",
+  "uid": "e2603cf6-3c00-4e7f-8098-2056d107c935",
+  "title": "Braided Pastry",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:22:45.294411+00:00",
+  "pageSha256": "c5332f7bb5be3f7915fc22cda4df807a3e30b582e3cffd88dab70ad949f00e36",
+  "description": "Texel density: 1075 px/m\nPhysical size: 0.05m x 0.1m x 0.03m\nMesh type: Closed mesh\nMaps: Basecolor Displacement(high tier only) Gloss Normal Cavity Specular AO Roughness\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.05m x 0.1m x 0.03m",
+  "mesh": "Closed mesh",
+  "texelDensity": "1075 px/m",
+  "maps": "Basecolor Displacement(high tier only) Gloss Normal Cavity Specular AO Roughness",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "UEFN Reference",
+      "extensions": null,
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "UEFN - Reference only",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/469f3004-ab71-44bb-b82d-55db9aa372e1/8aab7dbf-f00d-448f-aeff-1c8d19550bab.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/469f3004-ab71-44bb-b82d-55db9aa372e1/026064f4-7b30-478d-9970-b127fb6022d6.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

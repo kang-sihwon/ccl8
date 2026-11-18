@@ -1,0 +1,13 @@
+{
+  "id": 1717,
+  "verdict": "보류",
+  "use": "S01 작은 자갈 변형",
+  "reason": "9cm 짙은 둥근 돌은 기존 후보 충분",
+  "edit": "밝기 통일",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:31:48.519375+00:00",
+  "sourcePageSha256": "86dc5db8f89efe2e16ccd5ed748de947dde47c60355a0c9ee6955ea2d95b224e"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 1239,
+  "verdict": "추천",
+  "use": "S08 숲 입구 바깥 돌·흙 혼합 지면",
+  "reason": "3.11m의 낮은 회색 돌과 흙 연결 면이 큰 암석 발치에 적합",
+  "edit": "열린 경계 매입하고 흙에 낙엽 혼합",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:11:29.617425+00:00",
+  "sourcePageSha256": "53193de796f2bb7fbfe14dc0a49beecc4ff16a131430ee78715e5369679eca77"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 1384,
+  "verdict": "보류",
+  "use": "S01 미세 검은 자갈",
+  "reason": "12cm의 낮은 검정 돌로 기존 작은 돌 세트와 중복",
+  "edit": "검정 명도 완화",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:17:00.817310+00:00",
+  "sourcePageSha256": "b2be3a4cbfd995979862cd27d58fd8c0145e5a8ca646ea26d9b75c4b5b37fbfe"
+}

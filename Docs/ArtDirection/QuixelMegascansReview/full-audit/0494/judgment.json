@@ -1,0 +1,13 @@
+{
+  "id": 494,
+  "verdict": "보류",
+  "use": "S02 수피 잔재 변형",
+  "reason": "10cm급 길쭉한 황갈색 조각으로 0493과 용도가 겹친다.",
+  "edit": "0493 반복 시 교체",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:32:36.366748+00:00",
+  "sourcePageSha256": "1ed997c88dc56d8959e052b71e805dab77cca6617451b4092f6ad28c2276f1d9"
+}

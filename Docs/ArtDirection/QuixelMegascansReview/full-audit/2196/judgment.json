@@ -1,0 +1,13 @@
+{
+  "id": 2196,
+  "verdict": "보류",
+  "use": "S02 빵 대안",
+  "reason": "10cm 윤기 있는 땋은 과자는 소박한 공방보다 제과 진열에 가까움",
+  "edit": "제과 설정 확인",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:52:25.944464+00:00",
+  "sourcePageSha256": "c5332f7bb5be3f7915fc22cda4df807a3e30b582e3cffd88dab70ad949f00e36"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 986,
+  "verdict": "보류",
+  "use": "S08 부착형 버섯 변형",
+  "reason": "15cm의 밝은 갈라진 표면이 강하며 978로 대체 가능",
+  "edit": "노란 얼룩과 밝기 완화",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:01:11.390592+00:00",
+  "sourcePageSha256": "aea7e6e19739bfa1d2a62ca15da5fadbd0008e756404017fcf5747baa91285a9"
+}

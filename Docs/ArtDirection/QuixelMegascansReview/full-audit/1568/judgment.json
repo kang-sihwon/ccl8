@@ -1,0 +1,13 @@
+{
+  "id": 1568,
+  "verdict": "보류",
+  "use": "S08 바위 변형",
+  "reason": "1.27m 낮은 돌의 붉고 노란 줄무늬가 강해 기존 회색 돌 우선",
+  "edit": "색무늬 약화",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:27:20.419360+00:00",
+  "sourcePageSha256": "4ae517909660e4c57eac16e37b19816e01ae2b088a0b63ad358966bda4bc7a3d"
+}

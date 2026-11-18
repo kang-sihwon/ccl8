@@ -1,0 +1,13 @@
+{
+  "id": 1661,
+  "verdict": "보류",
+  "use": "S08 작은 돌 대안",
+  "reason": "15cm 갈색의 비정형 돌은 기존 회색 후보 우선",
+  "edit": "노란색 감소",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:30:20.109162+00:00",
+  "sourcePageSha256": "10330cc544566a7917f95da6af9612d5d930e5d6397002ae969c0aa3798ec19a"
+}

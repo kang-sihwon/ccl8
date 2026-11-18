@@ -1,0 +1,13 @@
+{
+  "id": 2272,
+  "verdict": "보류",
+  "use": "S02 빵 대안",
+  "reason": "12cm 매끈한 길쭉한 번은 단순하지만 기존 빵 중복",
+  "edit": "거친 빵 우선",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:55:15.641907+00:00",
+  "sourcePageSha256": "20beb99ac3648084b1117279dd32af28f945bee04ce8b4eb0d579c8303b903f1"
+}

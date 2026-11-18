@@ -1,0 +1,13 @@
+{
+  "id": 2319,
+  "verdict": "보류",
+  "use": "S01 과일 대안",
+  "reason": "9cm 줄무늬 빨간 사과는2176 팩과 중복",
+  "edit": "기존 팩 우선",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:56:37.636730+00:00",
+  "sourcePageSha256": "1014bce47368fbe64ff5887d31c143728f1d73be064153adb2db946702eaf864"
+}

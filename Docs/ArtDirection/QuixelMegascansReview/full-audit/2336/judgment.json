@@ -1,0 +1,13 @@
+{
+  "id": 2336,
+  "verdict": "보류",
+  "use": "S02 식사 대안",
+  "reason": "6cm 분홍 소시지 조각은2335와 중복",
+  "edit": "조리 품목 확인",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:56:37.653160+00:00",
+  "sourcePageSha256": "e910c4851d44b4ddefbdee58a759a26d81edace890f1566de9a878867b459663"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 2329,
+  "verdict": "보류",
+  "use": "S01 수확물 대안",
+  "reason": "8cm 줄기 긴 둥근 박은 기존 호박과 용도 중복",
+  "edit": "작물 설정 확인",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:56:37.646513+00:00",
+  "sourcePageSha256": "edfc1b375a64f80796425ae6d0c5a9b64e1ba638836d3218822846489a714a16"
+}

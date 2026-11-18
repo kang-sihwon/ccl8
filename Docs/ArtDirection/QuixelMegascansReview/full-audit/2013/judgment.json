@@ -1,0 +1,13 @@
+{
+  "id": 2013,
+  "verdict": "수정 후 후보",
+  "use": "S02 화덕 안 철제 연료 받침",
+  "reason": "42cm 철띠 바구니는 가능하나 반복 고리와 녹이 강함",
+  "edit": "장식 고리 단순화·녹 완화 및 화덕 치수 맞춤",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:42:46.971067+00:00",
+  "sourcePageSha256": "3ea92d19f10ab8fede95850fd1e3e7fdde588d056b915395092468bba23e3209"
+}

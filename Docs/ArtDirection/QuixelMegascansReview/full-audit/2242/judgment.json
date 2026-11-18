@@ -1,0 +1,13 @@
+{
+  "id": 2242,
+  "verdict": "보류",
+  "use": "S02 식사 대안",
+  "reason": "8cm 어두운 튀김 날개는 근경 식탁 전용",
+  "edit": "대표 음식만 선택",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:53:43.644072+00:00",
+  "sourcePageSha256": "a20226de67e25f101b331ded3a96bfb5aae2fe0a6666987f367739b941a0f821"
+}

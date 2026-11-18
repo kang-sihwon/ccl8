@@ -1,0 +1,13 @@
+{
+  "id": 1624,
+  "verdict": "보류",
+  "use": "S08 작은 돌 변형",
+  "reason": "9cm 세로로 갈라진 붉은 회색 돌로 화면 기여 낮음",
+  "edit": "붉은색 감소",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:28:53.005187+00:00",
+  "sourcePageSha256": "ed759bd0f52da70ebad0d7e221ee80de93f5414edbc25effc9900c6481fb43e9"
+}

@@ -1,0 +1,74 @@
+{
+  "id": 1073,
+  "url": "https://www.fab.com/listings/a5dde9b7-3df9-414f-a807-8b8465a1b1bb",
+  "uid": "a5dde9b7-3df9-414f-a807-8b8465a1b1bb",
+  "title": "Cave African Cluster Vertical Stone Medium",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:15:41.072371+00:00",
+  "pageSha256": "15d7205d826c3cd53c33e4953debfa24929a3dfc0e9346fe5a32d188bf30fd11",
+  "description": "The ‘Cave African’ themed assets capture the layered, mineral-rich character of cave systems. Featuring high-fidelity scans of vertical stone columns, eroded and muddy rock formations, decorative wall sections, and muddy cave floors, this collection reflects the slow mineral deposition and erosion that shape subterranean environments over time.\nIdeal for creating atmospheric cave environments with a strong sense of scale, geological detail, and environmental storytelling.\nTexel density: 2027 px/m\nPhysical size: 1.78m x 2.73m x 1.51m\nMesh type: Open mesh\nMaps: AO Basecolor Bump Cavity Displacement Gloss Normal Roughness Specular\nCreate high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.\n\nCurious about future releases? Discover upcoming Megascans content and vote for your favorite themes: Public Roadmap",
+  "size": "1.78m x 2.73m x 1.51m",
+  "mesh": "Open mesh",
+  "texelDensity": "2027 px/m",
+  "maps": "AO Basecolor Bump Cavity Displacement Gloss Normal Roughness Specular",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/89791019-c03a-4662-b353-fb4030a7adf3/b0f8c3e4-1c3f-4a3f-a180-97f1db8aa10a.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/89791019-c03a-4662-b353-fb4030a7adf3/25a04bac-f6d2-478b-966d-3b4c2719cd12.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

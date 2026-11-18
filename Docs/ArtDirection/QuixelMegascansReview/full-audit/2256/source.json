@@ -1,0 +1,85 @@
+{
+  "id": 2256,
+  "url": "https://www.fab.com/listings/dc6ac685-5e9a-4e4b-b6b3-f7450c97e255",
+  "uid": "dc6ac685-5e9a-4e4b-b6b3-f7450c97e255",
+  "title": "Green Pear Bite",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:23:07.910047+00:00",
+  "pageSha256": "5c8a77bb9787614f350913272f443d6b04fc437b951f0aed1300c1f38ad8b92e",
+  "description": "Texel density: 1141 px/m\nPhysical size: 0.07m x 0.07m x 0.15m\nMesh type: Closed mesh\nMaps: Basecolor Displacement(high tier only) Gloss Normal Cavity Specular AO Roughness\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.07m x 0.07m x 0.15m",
+  "mesh": "Closed mesh",
+  "texelDensity": "1141 px/m",
+  "maps": "Basecolor Displacement(high tier only) Gloss Normal Cavity Specular AO Roughness",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "UEFN Reference",
+      "extensions": null,
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "UEFN - Reference only",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/4642b647-e7b6-477c-a9b2-fb9015dc4889/1c1ecc2e-8fd7-4719-8e5d-f5afd82e76e0.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/4642b647-e7b6-477c-a9b2-fb9015dc4889/7f0c6e1a-81c8-42a9-89ed-ef296637330b.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

@@ -1,0 +1,13 @@
+{
+  "id": 1591,
+  "verdict": "보류",
+  "use": "S08 길가 작은 돌",
+  "reason": "18cm 황갈색 돌의 거친 홈이 기존 후보보다 복잡",
+  "edit": "미세 대비 완화",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:28:52.971226+00:00",
+  "sourcePageSha256": "47c5eccf54fa72342ae187f61c7a12288fec83dcaf89270ee02d3206d23ddbb9"
+}

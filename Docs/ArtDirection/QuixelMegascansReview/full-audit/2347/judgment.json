@@ -1,0 +1,13 @@
+{
+  "id": 2347,
+  "verdict": "수정 후 후보",
+  "use": "S01 보존식 걸이",
+  "reason": "18cm 짙은 고리 소시지와 끈이 운송용 보존식으로 읽힘",
+  "edit": "식량 품목·포장·걸이 접합 확인",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:56:37.663803+00:00",
+  "sourcePageSha256": "36422cc2bacbef6b370db796dcecc54312e89a7d96b6ab5583812bf051c336ba"
+}

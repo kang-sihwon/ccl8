@@ -1,0 +1,13 @@
+{
+  "id": 2243,
+  "verdict": "수정 후 후보",
+  "use": "S01 채소 묶음",
+  "reason": "12cm 줄기 있는 마늘은 묶음 화물로 읽힘",
+  "edit": "작물 설정·묶음은 별도 제작",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:53:43.644966+00:00",
+  "sourcePageSha256": "76b660bdf740895d6f4ad6ad9c57fe40662076c6a5f9b11432a1ae19e4933be5"
+}

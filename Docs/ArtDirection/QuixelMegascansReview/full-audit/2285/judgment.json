@@ -1,0 +1,13 @@
+{
+  "id": 2285,
+  "verdict": "보류",
+  "use": "S01 과일 대안",
+  "reason": "10cm 그물 멜론은2283과 중복",
+  "edit": "대표 과일만 선택",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:55:15.654490+00:00",
+  "sourcePageSha256": "e3c4729542a95373feb53b243f415d71b2a81cb999131788c0808beea22738de"
+}

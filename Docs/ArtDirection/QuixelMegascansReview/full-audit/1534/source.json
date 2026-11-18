@@ -1,0 +1,82 @@
+{
+  "id": 1534,
+  "url": "https://www.fab.com/listings/acb9dd7f-fbc2-4bbe-88d1-7ec96417bb49",
+  "uid": "acb9dd7f-fbc2-4bbe-88d1-7ec96417bb49",
+  "title": "Rough Mossy Rock",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:18:35.128822+00:00",
+  "pageSha256": "ca7d3e52e6f50f83c36a7b202f1a07fe2fa6444e5b17e8d0befca62bafaae493",
+  "description": "Texel density: 5188 px/m\nPhysical size: 1.34m x 1.03m x 0.8m\nMesh type: Open mesh\nMaps: Basecolor Gloss Displacement(high tier only) AO Cavity Bump Normal Specular Roughness\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "1.34m x 1.03m x 0.8m",
+  "mesh": "Open mesh",
+  "texelDensity": "5188 px/m",
+  "maps": "Basecolor Gloss Displacement(high tier only) AO Cavity Bump Normal Specular Roughness",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "ZBrush",
+      "extensions": [
+        "zbp",
+        "ztl"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/38bb2ef1-0a94-480f-8196-e8c670d64ea7/ebe23319-cefa-412d-a7c3-97313588d71f.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/38bb2ef1-0a94-480f-8196-e8c670d64ea7/4e3c91b2-df0b-4c74-8ac8-0e8b9fedd31d.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

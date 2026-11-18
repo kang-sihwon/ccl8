@@ -1,0 +1,85 @@
+{
+  "id": 1137,
+  "url": "https://www.fab.com/listings/547f3440-b6a5-46c0-86d8-26b2cd45dec1",
+  "uid": "547f3440-b6a5-46c0-86d8-26b2cd45dec1",
+  "title": "Cobblestone",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:16:06.005316+00:00",
+  "pageSha256": "ba10c3344ed62c7f2c078b10b7f675ce3f8d23a556d7ff6c8f9a7b9566f1f892",
+  "description": "Texel density: 1208 px/m\nPhysical size: 0.07m x 0.07m x 0.08m\nMesh type: Closed mesh\nMaps: Basecolor Displacement(high tier only) Gloss Normal Cavity Specular AO Roughness\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.07m x 0.07m x 0.08m",
+  "mesh": "Closed mesh",
+  "texelDensity": "1208 px/m",
+  "maps": "Basecolor Displacement(high tier only) Gloss Normal Cavity Specular AO Roughness",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "UEFN Reference",
+      "extensions": null,
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "UEFN - Reference only",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/fbcd97fe-cf36-4027-a0cd-19f960fe2138/e3daa4a8-40b1-4245-a459-6f4f27b07791.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/fbcd97fe-cf36-4027-a0cd-19f960fe2138/570f7ad6-6a33-434c-a55e-ecbc204c5c77.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

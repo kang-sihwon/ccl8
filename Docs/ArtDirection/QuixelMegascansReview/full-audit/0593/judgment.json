@@ -1,0 +1,13 @@
+{
+  "id": 593,
+  "verdict": "보류",
+  "use": "S08 오리나무 줄기 변형",
+  "reason": "얇은 밑동과 살짝 휜 줄기로 0590과 기능이 같다.",
+  "edit": "수관 제작 후 추가 변형에만 사용",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:38:54.189040+00:00",
+  "sourcePageSha256": "debea91678657f30a240af1957a1b3d02bec7d3605321b8c52917f295a071e0f"
+}

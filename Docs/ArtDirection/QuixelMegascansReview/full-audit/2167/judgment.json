@@ -1,0 +1,13 @@
+{
+  "id": 2167,
+  "verdict": "수정 후 후보",
+  "use": "S02 벽 선반 받침",
+  "reason": "2.07m 반복 삼각 목재 지지대가 단순 공방 구조에 맞음",
+  "edit": "실제 설치 방향·벽 접합·모듈 분리 확인",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:52:25.915088+00:00",
+  "sourcePageSha256": "a1d9c2de995d297d91db856c73578a59b9c2add263f29b886f154ceb48e2f0d9"
+}

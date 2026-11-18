@@ -1,0 +1,13 @@
+{
+  "id": 1483,
+  "verdict": "보류",
+  "use": "S08 층상 바위벽 변형",
+  "reason": "3.48m의 깊은 빈틈과 여러 층이 있는 벽으로 기존 후보보다 복잡",
+  "edit": "회색 조절 및 열린 면 연결",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:21:12.825318+00:00",
+  "sourcePageSha256": "843859c1e84de2fd7902e55e3bd2e3b94a95dc4db601d8a4666cd6e5719ae998"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 414,
+  "verdict": "추천",
+  "use": "S08 전경 부식 목재",
+  "reason": "붉은 갈색 수피와 황토 이끼가 B안 가을 바닥에 잘 맞는다.",
+  "edit": "미세 노멀 강도 낮추기; 반복 방향 변경",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:27:25.600331+00:00",
+  "sourcePageSha256": "0dc61c05481bdd5a1351ed925612cd18adfa753e79c61b0bf603aecc546fcc39"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 1933,
+  "verdict": "보류",
+  "use": "S02 촛대 대안",
+  "reason": "16cm 검은 굴곡형은 가능하나 1932와 용도 중복",
+  "edit": "밝기 통일",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:40:59.591870+00:00",
+  "sourcePageSha256": "1b6a0a61741ffcdf87f8aa2cbb52b9702552b5f33759602d3778035e2b3f7c4e"
+}

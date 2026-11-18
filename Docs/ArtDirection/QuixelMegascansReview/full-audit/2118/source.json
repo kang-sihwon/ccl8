@@ -1,0 +1,74 @@
+{
+  "id": 2118,
+  "url": "https://www.fab.com/listings/4c853f99-5e13-4fc9-93f3-8b2ecc34e606",
+  "uid": "4c853f99-5e13-4fc9-93f3-8b2ecc34e606",
+  "title": "Old Ceramic Bottle",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:22:16.645142+00:00",
+  "pageSha256": "f5e81cd7a9640a5a84d36d629788f2db63639e35c557c548ffcebb70a09fc931",
+  "description": "Texel density: 1176 px/m\nPhysical size: 0.16m x 0.16m x 0.34m\nMesh type: Closed mesh\nMaps: Displacement(high tier only) Cavity Gloss Specular Basecolor AO Roughness Normal\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.16m x 0.16m x 0.34m",
+  "mesh": "Closed mesh",
+  "texelDensity": "1176 px/m",
+  "maps": "Displacement(high tier only) Cavity Gloss Specular Basecolor AO Roughness Normal",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/d7b418f7-f654-4946-9d8d-da95005a17d7/5739f562-0070-44b0-8d7b-16b43e8643cd.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/d7b418f7-f654-4946-9d8d-da95005a17d7/9cea4590-18f0-4ebe-ab9d-721193ad6edf.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

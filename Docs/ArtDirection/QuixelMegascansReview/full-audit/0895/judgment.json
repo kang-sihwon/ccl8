@@ -1,0 +1,13 @@
+{
+  "id": 895,
+  "verdict": "보류",
+  "use": "S02 전정 나무 대체",
+  "reason": "비틀린 세로 줄기와 짧게 잘린 갈래로 0893·0894와 역할이 겹친다.",
+  "edit": "전정 배치 목적 확정 후 대체",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:54:43.607124+00:00",
+  "sourcePageSha256": "cbf7eb3e8c569f5e0a8f7fbde7ff9409c49dc7710276dcb01111e706b3324762"
+}

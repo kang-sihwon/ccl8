@@ -1,0 +1,13 @@
+{
+  "id": 1773,
+  "verdict": "보류",
+  "use": "S02 화덕 주변 벽돌 대안",
+  "reason": "22cm 낮고 어두운 벽돌로 1772와 중복",
+  "edit": "밝기 통일",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:33:48.210636+00:00",
+  "sourcePageSha256": "d2536e3f8f941639b859d0850d1a274ac1fd3ae456715947d941cccedf225164"
+}

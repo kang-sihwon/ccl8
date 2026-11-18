@@ -1,0 +1,74 @@
+{
+  "id": 2354,
+  "url": "https://www.fab.com/listings/61d0f910-e65c-4189-895c-3c63f02e5264",
+  "uid": "61d0f910-e65c-4189-895c-3c63f02e5264",
+  "title": "Sweet Potato",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:23:46.474810+00:00",
+  "pageSha256": "4e858ae2904ee0221031cabb0c8ee5613ee2b29511ee96a55bbe40cdca744dec",
+  "description": "Texel density: 1192 px/m\nPhysical size: 0.07m x 0.21m x 0.07m\nMesh type: Closed mesh\nMaps: Roughness Specular Cavity Normal AO Basecolor Displacement(high tier only) Gloss\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.07m x 0.21m x 0.07m",
+  "mesh": "Closed mesh",
+  "texelDensity": "1192 px/m",
+  "maps": "Roughness Specular Cavity Normal AO Basecolor Displacement(high tier only) Gloss",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/d93ad18a-66b4-4792-bc96-2907c02a75fa/5e7d6c15-8225-427a-b7f5-9439e7a7e391.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/d93ad18a-66b4-4792-bc96-2907c02a75fa/fc46c833-77f6-4183-b1f4-633aebd402dc.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

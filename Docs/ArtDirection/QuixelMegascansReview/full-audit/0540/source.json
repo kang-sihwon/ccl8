@@ -1,0 +1,65 @@
+{
+  "id": 540,
+  "url": "https://www.fab.com/listings/6a980692-8eb3-4178-a683-5ce86d8620ff",
+  "uid": "6a980692-8eb3-4178-a683-5ce86d8620ff",
+  "title": "Silver Lady Fern",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:12:19.004714+00:00",
+  "pageSha256": "d99afae94b4900ca5d3273d0cbe0d8490c32539e4a32c8d0f3e1c246dc5a211e",
+  "description": "Maps: Normal Specular AO Gloss Translucency Bump Basecolor Displacement Opacity Roughness Cavity\n \nCreate high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "기재 확인 안 됨",
+  "mesh": "기재 확인 안 됨",
+  "texelDensity": "기재 확인 안 됨",
+  "maps": "Normal Specular AO Gloss Translucency Bump Basecolor Displacement Opacity Roughness Cavity",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/57a226bb-4ce8-4e7e-ab9f-f786a0234e81/329f76e3-5bea-47c9-b0fd-a9d21188669d.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 2,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/57a226bb-4ce8-4e7e-ab9f-f786a0234e81/16678b7d-b856-4d0d-8879-2d7c4e054e76.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

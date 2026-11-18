@@ -1,0 +1,13 @@
+{
+  "id": 1012,
+  "verdict": "보류",
+  "use": "S08 짧은 갈색 버섯",
+  "reason": "15cm의 두꺼운 갈색 갓과 짧은 대로 기존 버섯 후보 충분",
+  "edit": "거친 표면 대비 완화",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:01:11.415211+00:00",
+  "sourcePageSha256": "94e7efdc43ac4102f7e64f1d3445cfa72f78c55a014ab0d3355dd131dafdedc5"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 1641,
+  "verdict": "보류",
+  "use": "S02 작은 판석",
+  "reason": "8cm 갈색 판형은 작고 색 보정 필요",
+  "edit": "회색화",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:30:20.089895+00:00",
+  "sourcePageSha256": "d083c9d75f066da0d7a948413a4e33b601146fcddac1f609d99c9e5a07c2941b"
+}

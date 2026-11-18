@@ -1,0 +1,13 @@
+{
+  "id": 1791,
+  "verdict": "보류",
+  "use": "S02 기와 파편 변형",
+  "reason": "9cm 낮은 삼각 조각으로 1790과 중복",
+  "edit": "소량 배치",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:35:21.228297+00:00",
+  "sourcePageSha256": "a778aa3aa3b35c81b02b712a06ab95c26cad2ffc0a16c88f3933883901c93efe"
+}

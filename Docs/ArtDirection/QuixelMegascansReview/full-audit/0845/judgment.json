@@ -1,0 +1,13 @@
+{
+  "id": 845,
+  "verdict": "보류",
+  "use": "S08 긴 이끼 잔가지",
+  "reason": "1.87m의 거의 직선인 목편 일부에 이끼가 붙어 기존 0830과 겹친다.",
+  "edit": "기존 가지 우선; 이끼색 통일",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:52:44.799472+00:00",
+  "sourcePageSha256": "5a84fbbdf71f08a02d142b6599f2052df3559b5ddee69222df69fcbd82a4ab50"
+}

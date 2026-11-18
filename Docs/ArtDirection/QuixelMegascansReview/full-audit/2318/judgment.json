@@ -1,0 +1,13 @@
+{
+  "id": 2318,
+  "verdict": "보류",
+  "use": "S01 채소 대안",
+  "reason": "3cm 붉은 래디시는 작은 크기로 화면 기여가 낮음",
+  "edit": "근경 필요 시만 사용",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:56:37.635721+00:00",
+  "sourcePageSha256": "cb3b489b0db3515b90b7c8c621307a01574e6d64532a47a3f65ffab032daeb53"
+}

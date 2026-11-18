@@ -1,0 +1,13 @@
+{
+  "id": 2339,
+  "verdict": "보류",
+  "use": "S02 식사 대안",
+  "reason": "32cm 길쭉한 호두 빵은 후보 중복과 재료 설정 필요",
+  "edit": "대표 빵만 선택",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:56:37.656101+00:00",
+  "sourcePageSha256": "74cf3a49f74a871999205d6671282f3c7a265552fa1415aebc1fb2e465efe53c"
+}

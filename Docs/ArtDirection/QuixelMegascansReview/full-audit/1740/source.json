@@ -1,0 +1,82 @@
+{
+  "id": 1740,
+  "url": "https://www.fab.com/listings/67b625c0-2161-422f-b891-f38e60eba65b",
+  "uid": "67b625c0-2161-422f-b891-f38e60eba65b",
+  "title": "Deer Antlers",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:19:53.367243+00:00",
+  "pageSha256": "8af992ed86bd9c1a82d3787ccbaaf851fab76658ae09269af9b058335afd2eff",
+  "description": "Texel density: 5669 px/m\nPhysical size: 0.16m x 0.34m x 0.13m\nMesh type: Closed mesh\nMaps: Basecolor Bump Specular Roughness Normal Displacement(high tier only) Cavity Gloss Ao\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.16m x 0.34m x 0.13m",
+  "mesh": "Closed mesh",
+  "texelDensity": "5669 px/m",
+  "maps": "Basecolor Bump Specular Roughness Normal Displacement(high tier only) Cavity Gloss Ao",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "ZBrush",
+      "extensions": [
+        "zbp",
+        "ztl"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/9bbb5278-962f-42e9-966e-705171439eb1/761cb7f4-5a23-4f6f-9ca7-b4bd28e1ee23.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/9bbb5278-962f-42e9-966e-705171439eb1/fa9f29e3-c374-42b7-977c-36a63e71c534.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

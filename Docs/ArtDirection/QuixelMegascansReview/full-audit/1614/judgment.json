@@ -1,0 +1,13 @@
+{
+  "id": 1614,
+  "verdict": "제외",
+  "use": "현재 세 장소 제외",
+  "reason": "25cm 길고 붉은 다공성 돌은 수정 대비 효용 낮음",
+  "edit": "기존 회색 조각 사용",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:28:52.994876+00:00",
+  "sourcePageSha256": "315c7ac4bd4bcf7d10a0860e21788aa1e402f9654e05c4ec940e4f9d4e10ef3b"
+}

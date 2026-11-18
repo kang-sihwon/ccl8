@@ -1,0 +1,13 @@
+{
+  "id": 2030,
+  "verdict": "수정 후 후보",
+  "use": "S02 바닥의 목제 절구형 용기",
+  "reason": "40cm 세로로 긴 통목과 큰 구멍이 가능하나 실제 용도 미확정",
+  "edit": "절구·공구꽂이 용도 확인 및 내부 검증",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:44:39.436592+00:00",
+  "sourcePageSha256": "ef76efbcaf67526ee580dd230a9dfc475ef45faf1bb510c030d2833463cedf88"
+}

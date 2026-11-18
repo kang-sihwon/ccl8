@@ -1,0 +1,93 @@
+{
+  "id": 1981,
+  "url": "https://www.fab.com/listings/a802e54a-f4ec-4528-bab1-179c981c5518",
+  "uid": "a802e54a-f4ec-4528-bab1-179c981c5518",
+  "title": "Drinking Vessel",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:21:23.817330+00:00",
+  "pageSha256": "00c20309239bd8ebb250396c8f5a4a7c214230b42d01fc82eb2e0c3ba01c95d5",
+  "description": "Texel density: 5996 px/m\nPhysical size: 0.07m x 0.09m x 0.25m\nMesh type: Closed mesh\nMaps: Basecolor Roughness Cavity Displacement(high tier only) Gloss Normal Specular AO Bump\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.07m x 0.09m x 0.25m",
+  "mesh": "Closed mesh",
+  "texelDensity": "5996 px/m",
+  "maps": "Basecolor Roughness Cavity Displacement(high tier only) Gloss Normal Specular AO Bump",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "ZBrush",
+      "extensions": [
+        "zbp",
+        "ztl"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "UEFN Reference",
+      "extensions": null,
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "UEFN - Reference only",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/4f313123-0e64-46f3-aedc-01fb1ab407ec/bbc7c136-2b54-4db9-9a1d-9f706cd751ce.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/4f313123-0e64-46f3-aedc-01fb1ab407ec/5fc153ef-4b71-4b3e-8676-e15345c97fcb.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

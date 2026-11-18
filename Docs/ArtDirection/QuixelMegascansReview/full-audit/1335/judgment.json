@@ -1,0 +1,13 @@
+{
+  "id": 1335,
+  "verdict": "보류",
+  "use": "S01 넓은 암반 바닥 변형",
+  "reason": "5.65m의 완만한 회색 돌판으로 기존 수변 바닥 후보 충분",
+  "edit": "열린 면 매입",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:15:07.665834+00:00",
+  "sourcePageSha256": "458f7048b4d10a11538b8cb25e5a77cfbc5cc173963709913850948f74eaa2df"
+}

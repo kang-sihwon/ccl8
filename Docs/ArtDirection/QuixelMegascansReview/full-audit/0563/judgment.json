@@ -1,0 +1,13 @@
+{
+  "id": 563,
+  "verdict": "보류",
+  "use": "S08 넓은 회색 돌",
+  "reason": "큰 상면과 사각 실루엣이 있으나 0550·0552와 중복된다.",
+  "edit": "추가 형태 필요 시만; 색잡음 완화",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:36:32.302582+00:00",
+  "sourcePageSha256": "2f6a63d15aa38ef15faea7eab1ad7767883ee3d2fa8ae6003d1366f6973f35ca"
+}

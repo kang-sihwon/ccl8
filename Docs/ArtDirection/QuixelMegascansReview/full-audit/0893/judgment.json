@@ -1,0 +1,13 @@
+{
+  "id": 893,
+  "verdict": "수정 후 후보",
+  "use": "S02 뒤 관리된 나무",
+  "reason": "6.42m의 가는 줄기에 가지가 짧게 잘린 형태가 작업장 관리 흔적으로 가능하다.",
+  "edit": "전정 나무 배치 의미 확인; 필요 시 새 가지·수관 제작",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:54:43.605115+00:00",
+  "sourcePageSha256": "da7b0c3a44c7a6131f4f024df63cb4da7cecc2ac907f490a725ec1196b1e32db"
+}

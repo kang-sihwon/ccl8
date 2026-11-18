@@ -1,0 +1,13 @@
+{
+  "id": 951,
+  "verdict": "보류",
+  "use": "S02 작은 가지치기 잔재",
+  "reason": "30cm의 여러 절단면이 보이나 948과 역할 겹침",
+  "edit": "절단면 밝기 통일",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:59:25.698741+00:00",
+  "sourcePageSha256": "aac59970d3c77aab8db40aac1bf8ca9cb81fa5d42a9ecc5ed7dda2557c34786f"
+}

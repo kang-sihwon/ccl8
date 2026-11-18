@@ -1,0 +1,13 @@
+{
+  "id": 2234,
+  "verdict": "제외",
+  "use": "현재 세 장소 제외",
+  "reason": "9cm 흰 아이싱과 색 스프링클이 현대 제과 인상",
+  "edit": "현재 시안 제외",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:53:43.636112+00:00",
+  "sourcePageSha256": "9135ecfb94832a856bf774f3e1423f6d3b9a0e4f48cfc6f41da81ed5d9aa42e3"
+}

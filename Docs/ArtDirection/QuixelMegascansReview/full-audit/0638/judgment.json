@@ -1,0 +1,13 @@
+{
+  "id": 638,
+  "verdict": "보류",
+  "use": "S08 짧은 소나무 고사 가지",
+  "reason": "74cm의 밝은 직선 가지로 별도 도입 필요성이 낮다.",
+  "edit": "기존 마른 가지 변형 부족 시만",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:41:41.758881+00:00",
+  "sourcePageSha256": "5b61f83573fbab72bf263dc5e82e6b9a3392cb893b866d9ea93d0cad2cfd67f4"
+}

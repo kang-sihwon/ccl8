@@ -1,0 +1,65 @@
+{
+  "id": 1054,
+  "url": "https://www.fab.com/listings/82b4a272-5e9a-4113-a393-e513772da73f",
+  "uid": "82b4a272-5e9a-4113-a393-e513772da73f",
+  "title": "Rough Meadow Grass",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:15:32.924108+00:00",
+  "pageSha256": "f7a66caab100e019fdd52dc2165bf2f03c94a764c452e3a5572402c644a9e5a9",
+  "description": "Maps: Specular Displacement Cavity AO Opacity Normal Bump Basecolor Roughness Translucency Gloss\n \nCreate high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "기재 확인 안 됨",
+  "mesh": "기재 확인 안 됨",
+  "texelDensity": "기재 확인 안 됨",
+  "maps": "Specular Displacement Cavity AO Opacity Normal Bump Basecolor Roughness Translucency Gloss",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/5b5f1904-a93a-4670-a322-d19a1a6bff86/d41a445f-9427-4c0a-ba70-e8c51c33867b.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 2,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/5b5f1904-a93a-4670-a322-d19a1a6bff86/8df0a105-9e79-4bfd-b4f4-c46690dfbd1f.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

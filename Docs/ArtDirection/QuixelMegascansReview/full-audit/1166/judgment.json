@@ -1,0 +1,13 @@
+{
+  "id": 1166,
+  "verdict": "보류",
+  "use": "S01 작은 회색 자갈",
+  "reason": "24cm의 각진 밝은 돌로 기존 자갈 변형 충분",
+  "edit": "흰색 명도 조절",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:09:31.896594+00:00",
+  "sourcePageSha256": "1f57e3c850786be2d17bbeaf54aabe205e9322c7f158eaa4bf1849c21e2469c8"
+}

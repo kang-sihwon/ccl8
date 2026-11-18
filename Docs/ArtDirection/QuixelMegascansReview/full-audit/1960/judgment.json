@@ -1,0 +1,13 @@
+{
+  "id": 1960,
+  "verdict": "제외",
+  "use": "현재 세 장소 제외",
+  "reason": "흰 바탕의 반복 방사형 부조가 시안의 도기와 차이 큼",
+  "edit": "단순 도기 사용",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:40:59.618657+00:00",
+  "sourcePageSha256": "bcaa9a1308b6f96aff0af92c1288b2fc1ab360a316b6127445dd7e7682eccc31"
+}

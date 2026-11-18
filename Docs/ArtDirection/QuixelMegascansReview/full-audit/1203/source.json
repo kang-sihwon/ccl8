@@ -1,0 +1,74 @@
+{
+  "id": 1203,
+  "url": "https://www.fab.com/listings/58c70f85-c89d-4b85-8782-08918cc88ab4",
+  "uid": "58c70f85-c89d-4b85-8782-08918cc88ab4",
+  "title": "Forest Japanese Rock Ledge Stone Large 02",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:16:30.115745+00:00",
+  "pageSha256": "fe1488306a13c7a5c14e4e5ccafd83d4125d18ccc2e0d2f0a14be97337ab4ca0",
+  "description": "The ‘Forest Japanese’ themed assets capture the dense, humid character of subtropical woodland environments. Featuring high-fidelity scans of moss-covered rock ledges and clusters, twisted tree trunks and branches, hanging vines, fallen fruit, and scattered forest debris, this collection reflects the layered undergrowth and constant decay of a living forest floor.\nIdeal for creating dense, immersive forest environments with a strong sense of scale, natural variation, and environmental storytelling.\nTexel density: 1888 px/m\nPhysical size: 1.63m x 3.49m x 1.3m\nMesh type: Open mesh\nMaps: AO Basecolor Bump Cavity Displacement Gloss Normal Roughness Specular\nCreate high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.\n\nCurious about future releases? Discover upcoming Megascans content and vote for your favorite themes: Public Roadmap",
+  "size": "1.63m x 3.49m x 1.3m",
+  "mesh": "Open mesh",
+  "texelDensity": "1888 px/m",
+  "maps": "AO Basecolor Bump Cavity Displacement Gloss Normal Roughness Specular",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/068c9924-9d14-4573-957d-73e8f56a8851/3345463e-8f6f-46b1-9332-0f2d88fddb76.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/068c9924-9d14-4573-957d-73e8f56a8851/dfc9dda3-380f-4e8f-9c4a-d1dfc2e2e51a.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

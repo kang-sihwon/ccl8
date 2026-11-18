@@ -1,0 +1,13 @@
+{
+  "id": 915,
+  "verdict": "보류",
+  "use": "S08 긴 수피 껍질",
+  "reason": "1.58m의 넓고 어두운 껍질이 있지만 0874와 부식 목재 역할이 같다.",
+  "edit": "암부 완화; 기존 후보 우선",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:54:43.625937+00:00",
+  "sourcePageSha256": "a1a39ff987a82fadeac467466367899bc381ec70bbdaa81e1bc2257dfe48a8d1"
+}

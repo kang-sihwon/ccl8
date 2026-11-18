@@ -1,0 +1,13 @@
+{
+  "id": 1332,
+  "verdict": "추천",
+  "use": "S08 뿌리 옆 낮은 이끼 둔덕",
+  "reason": "1.9m의 낮은 흙·돌 덩어리와 국소 이끼가 숲 바닥 접합에 적합",
+  "edit": "이끼 면적과 녹색 채도 조절 및 열린 경계 매입",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:15:07.662961+00:00",
+  "sourcePageSha256": "559d26a6fa0bd03935af56af2a50825e9eead58e61051b1e7d9c3fa3fc74013e"
+}

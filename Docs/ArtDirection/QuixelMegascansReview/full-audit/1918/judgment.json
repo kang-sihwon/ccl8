@@ -1,0 +1,13 @@
+{
+  "id": 1918,
+  "verdict": "보류",
+  "use": "S02 탄 장작 변형",
+  "reason": "18cm 파손 끝과 흰 재 대비가 커 기존 후보 우선",
+  "edit": "재 대비 감소",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:38:57.966260+00:00",
+  "sourcePageSha256": "594d57c32ad005dc3591515b7c20feffdddf668399fa051729c4be5b947d5666"
+}

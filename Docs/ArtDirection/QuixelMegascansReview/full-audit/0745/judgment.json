@@ -1,0 +1,13 @@
+{
+  "id": 745,
+  "verdict": "추천",
+  "use": "S08 가느다란 썩은 밑동",
+  "reason": "59cm의 얇은 벽이 찢어진 형태로 낮은 부식 단계 변화를 준다.",
+  "edit": "명암 통일; 바닥 접촉 맞춤",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:46:33.123619+00:00",
+  "sourcePageSha256": "b086da1874aec72b02860ce4230b87cb04c512f7e6d42c8ce191e8ccebdea1fa"
+}

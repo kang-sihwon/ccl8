@@ -1,0 +1,13 @@
+{
+  "id": 2382,
+  "verdict": "수정 후 후보",
+  "use": "S02 수리 대기 삽",
+  "reason": "98cm 녹슨 삽은 목제 자루지만 D형 손잡이가 눈에 띔",
+  "edit": "손잡이 교체·2010 우선",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:57:51.212267+00:00",
+  "sourcePageSha256": "947bcbe1e6d36dba0ed5286482358e9e373f74e490db70ec4c882ed386ad8610"
+}

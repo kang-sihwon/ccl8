@@ -1,0 +1,74 @@
+{
+  "id": 358,
+  "url": "https://www.fab.com/listings/f177273d-343b-4593-ad7c-d2954b57c6b3",
+  "uid": "f177273d-343b-4593-ad7c-d2954b57c6b3",
+  "title": "Wooden Plate Smooth",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:11:07.997370+00:00",
+  "pageSha256": "765f5799c02cf758690f584d3b1e3eebdc5e2f72fef1eb1652d90815b6731807",
+  "description": "Texel density: 1086 px/m\nPhysical size: 0.31m x 0.39m x 0.03m\nMesh type: Closed mesh\nMaps: Basecolor Displacement(high tier only) Gloss Normal Cavity Specular AO Roughness\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.31m x 0.39m x 0.03m",
+  "mesh": "Closed mesh",
+  "texelDensity": "1086 px/m",
+  "maps": "Basecolor Displacement(high tier only) Gloss Normal Cavity Specular AO Roughness",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/c0236b89-08c4-4b39-84c2-c7724bfa8eee/472e58ca-104f-43d2-b57f-7d96e7094a13.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/c0236b89-08c4-4b39-84c2-c7724bfa8eee/4a87e142-fd71-406d-85a2-2c59d5e3c71e.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

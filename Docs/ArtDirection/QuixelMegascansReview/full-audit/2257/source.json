@@ -1,0 +1,93 @@
+{
+  "id": 2257,
+  "url": "https://www.fab.com/listings/7040dc02-9267-4325-a7f2-64530cb7c090",
+  "uid": "7040dc02-9267-4325-a7f2-64530cb7c090",
+  "title": "Grilled Turkey Leg",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:23:09.201187+00:00",
+  "pageSha256": "c63ef797b17597fa718609a1fa078f339d1581c122e501186e64f0413a2e43b5",
+  "description": "Texel density: 2921 px/m\nPhysical size: 0.06m x 0.13m x 0.04m\nMesh type: Closed mesh\nMaps: AO Gloss Cavity Roughness Displacement(high tier only) Normal Specular Basecolor Bump\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.06m x 0.13m x 0.04m",
+  "mesh": "Closed mesh",
+  "texelDensity": "2921 px/m",
+  "maps": "AO Gloss Cavity Roughness Displacement(high tier only) Normal Specular Basecolor Bump",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "ZBrush",
+      "extensions": [
+        "zbp",
+        "ztl"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "UEFN Reference",
+      "extensions": null,
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "UEFN - Reference only",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/45fca302-60ca-49ab-9050-796156d2b1b2/20f4e650-0b3e-47bd-a90f-a1922a384a19.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/45fca302-60ca-49ab-9050-796156d2b1b2/cc97cfe9-f1ff-43f5-8fe6-2f90a74e3054.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

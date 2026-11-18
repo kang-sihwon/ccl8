@@ -1,0 +1,13 @@
+{
+  "id": 2100,
+  "verdict": "수정 후 후보",
+  "use": "S01 작은 가죽 화물 상자",
+  "reason": "39cm 낡은 가죽과 끈은 가능하나 현대식 중앙 잠금쇠 보임",
+  "edit": "잠금 장치를 단순 가죽끈·버클로 수정",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:46:35.343926+00:00",
+  "sourcePageSha256": "78106088613d77f63e9da01b763822302281b29e85acadebf62f2fdd6bcfe96d"
+}

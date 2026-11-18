@@ -1,0 +1,13 @@
+{
+  "id": 651,
+  "verdict": "보류",
+  "use": "S02·S08 작은 수피 파편",
+  "reason": "여러 불규칙 수피가 보이나 11cm급으로 기존 수피 후보와 겹친다.",
+  "edit": "실제 메시 개수 확인; 초근경 필요 시 사용",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:41:41.771759+00:00",
+  "sourcePageSha256": "866356e5b6da6dd316c2b98dd093d5f26a92ed2fc73326b6d3b8d14a629ee6a5"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 2156,
+  "verdict": "수정 후 후보",
+  "use": "S02 안료·원료 분쇄용 절구",
+  "reason": "20cm 회색 절구는 공정에 가능하나 가공 무늬가 강함",
+  "edit": "줄무늬 단순화 및 분쇄 공정 확인",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:48:31.649515+00:00",
+  "sourcePageSha256": "b6174e74329bda8a500efa9a962a3a07f5add69111b8dcd973934e8ce935f854"
+}

@@ -1,0 +1,93 @@
+{
+  "id": 2180,
+  "url": "https://www.fab.com/listings/e555b990-d7ca-49db-bdde-653ce637854e",
+  "uid": "e555b990-d7ca-49db-bdde-653ce637854e",
+  "title": "Baguette Bread",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:22:40.238922+00:00",
+  "pageSha256": "0f728a696a7a89f832e6832a5e674e86f7bd6196ae5dde323a0424ed14892a5f",
+  "description": "Texel density: 6530 px/m\nPhysical size: 0.08m x 0.44m x 0.06m\nMesh type: Closed mesh\nMaps: Bump Gloss Basecolor Specular AO Roughness Cavity Normal Displacement\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.08m x 0.44m x 0.06m",
+  "mesh": "Closed mesh",
+  "texelDensity": "6530 px/m",
+  "maps": "Bump Gloss Basecolor Specular AO Roughness Cavity Normal Displacement",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "ZBrush",
+      "extensions": [
+        "zbp",
+        "ztl"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "UEFN Reference",
+      "extensions": null,
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "UEFN - Reference only",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/82b8d38a-2fa6-400a-a5f1-e893e873192d/0ea03f8d-401d-4228-b318-225bf267be06.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/82b8d38a-2fa6-400a-a5f1-e893e873192d/379b049b-f0dd-41fb-b79a-d5b433b68817.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

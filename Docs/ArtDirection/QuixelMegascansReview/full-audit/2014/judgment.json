@@ -1,0 +1,13 @@
+{
+  "id": 2014,
+  "verdict": "수정 후 후보",
+  "use": "S02 낡은 소형 장부",
+  "reason": "16cm 짙은 청록 표지와 닳은 책등이 적합하나 실존 제목 보임",
+  "edit": "책등·표지 문자 교체",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:42:46.971995+00:00",
+  "sourcePageSha256": "1a6c49b1a0aba9473ec22b43145bcc3660c9f59457aee306a0a62e4e16f1b49b"
+}

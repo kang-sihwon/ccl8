@@ -1,0 +1,13 @@
+{
+  "id": 2274,
+  "verdict": "제외",
+  "use": "현재 세 장소 제외",
+  "reason": "8cm 밝은 키위는2273과 같은 설정 문제",
+  "edit": "현재 우선 대상 밖",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:55:15.643911+00:00",
+  "sourcePageSha256": "58b7204c2c9d4f1cd8f4d11b49bf9a838572439b848cbf167f84b33796501d89"
+}

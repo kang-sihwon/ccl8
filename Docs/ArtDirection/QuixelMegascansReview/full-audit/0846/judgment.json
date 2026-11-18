@@ -1,0 +1,13 @@
+{
+  "id": 846,
+  "verdict": "보류",
+  "use": "S08 작은 갈래 이끼 가지",
+  "reason": "65cm의 갈라진 몸통과 밝은 이끼가 0831·0834와 중복된다.",
+  "edit": "초록·주황 대비 완화 후 변형으로만",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:52:44.800460+00:00",
+  "sourcePageSha256": "d05c12b7a1ce17b2857e5cba5943f3a0c4a0788bba3504104223d701c4c1f47c"
+}

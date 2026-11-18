@@ -1,0 +1,13 @@
+{
+  "id": 2166,
+  "verdict": "보류",
+  "use": "S02 장부 대안",
+  "reason": "19cm 흰 표지·파란 책등은 청록 악센트 후보지만 기존 장부 우선",
+  "edit": "청록 조정·인쇄 확인",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:52:25.914061+00:00",
+  "sourcePageSha256": "287e07d4e1309c683b20b2ef9fce5ee29c6fce62bd546b4e1f70bc94f0143613"
+}

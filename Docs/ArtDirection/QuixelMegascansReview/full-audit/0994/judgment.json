@@ -1,0 +1,13 @@
+{
+  "id": 994,
+  "verdict": "보류",
+  "use": "S08 작은 보라 버섯 변형",
+  "reason": "6cm의 둥근 보라 갓과 직선 대로 독립 필요 낮음",
+  "edit": "보라색 팔레트 조정",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:01:11.398197+00:00",
+  "sourcePageSha256": "2ff27eaa98c871db5f583d3683f3b6b4dfe3f9e0a85212bea12a91c983ccdf4a"
+}

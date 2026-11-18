@@ -1,0 +1,13 @@
+{
+  "id": 2377,
+  "verdict": "수정 후 후보",
+  "use": "S02 농기구 수리 대기",
+  "reason": "1.01m 쇠스랑은 목제 자루지만 D형 손잡이가 눈에 띔",
+  "edit": "단순 나무 손잡이로 교체하거나2007 우선",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:57:51.207426+00:00",
+  "sourcePageSha256": "9ab571f4fd1e8bfd97958b5f28f25007170ae25db204a8aaa1f3523f042d0c38"
+}

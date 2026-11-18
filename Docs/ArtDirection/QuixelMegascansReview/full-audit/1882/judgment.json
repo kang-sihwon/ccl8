@@ -1,0 +1,13 @@
+{
+  "id": 1882,
+  "verdict": "제외",
+  "use": "현재 세 장소 제외",
+  "reason": "성형 리브와 원형 고정 흔적이 강한 기와는 시안과 다름",
+  "edit": "단순 기와 우선",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:38:57.931320+00:00",
+  "sourcePageSha256": "624726bb48af036bae19c57b62a821b5edfa3ae0e75e94e54199857b851af132"
+}

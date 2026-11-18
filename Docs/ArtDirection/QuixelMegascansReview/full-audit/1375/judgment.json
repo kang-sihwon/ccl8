@@ -1,0 +1,13 @@
+{
+  "id": 1375,
+  "verdict": "보류",
+  "use": "S01 낮은 어두운 돌",
+  "reason": "90cm의 둥근 덩어리와 작은 흰 반점으로 기존 수변 바위 충분",
+  "edit": "반점 대비 축소",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:17:00.807591+00:00",
+  "sourcePageSha256": "480025c5b5028cf409bb19541d45ece53bba52c69cd4b05d41ec17330d8a935c"
+}

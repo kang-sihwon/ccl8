@@ -1,0 +1,74 @@
+{
+  "id": 393,
+  "url": "https://www.fab.com/listings/c2242c5f-f39f-4313-96d3-999e6131e423",
+  "uid": "c2242c5f-f39f-4313-96d3-999e6131e423",
+  "title": "Wooden Table Caddy",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:11:21.740001+00:00",
+  "pageSha256": "a095ec00da90b73ac30cf163d405f4bcb29e7df86c474373419641a771df1536",
+  "description": "Texel density: 1065 px/m\nPhysical size: 0.21m x 0.27m x 0.09m\nMesh type: Closed mesh\nMaps: Displacement(high tier only) Normal Basecolor Specular Cavity Roughness Gloss AO\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.21m x 0.27m x 0.09m",
+  "mesh": "Closed mesh",
+  "texelDensity": "1065 px/m",
+  "maps": "Displacement(high tier only) Normal Basecolor Specular Cavity Roughness Gloss AO",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/8e102461-79b9-484a-a8e6-f22bb56fbd38/cb4877ef-95e9-4b5e-b153-3cd917741738.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/8e102461-79b9-484a-a8e6-f22bb56fbd38/de70cda5-ce75-4ea8-9925-a54208413d2b.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

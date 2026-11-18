@@ -1,0 +1,13 @@
+{
+  "id": 740,
+  "verdict": "보류",
+  "use": "S08 짧은 수피 목편",
+  "reason": "31cm의 매끈한 수피와 찢어진 끝은 0676 계열과 중복된다.",
+  "edit": "기존 작은 목편 우선",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:46:33.118888+00:00",
+  "sourcePageSha256": "05d63fa1e7b0bc53e9681a4b7e601b0570bda9c82b5acebf3f796140c53bf0c5"
+}

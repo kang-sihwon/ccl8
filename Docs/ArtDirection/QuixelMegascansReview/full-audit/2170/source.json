@@ -1,0 +1,74 @@
+{
+  "id": 2170,
+  "url": "https://www.fab.com/listings/164b1100-6447-4eec-92e6-2006269bfedf",
+  "uid": "164b1100-6447-4eec-92e6-2006269bfedf",
+  "title": "Woven Wood Bottle",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:22:36.196343+00:00",
+  "pageSha256": "552f1d5d2facf22242f6a0a9be29d513caadcf94380ac7cf661fd9c46db328be",
+  "description": "Texel density: 1204 px/m\nPhysical size: 0.08m x 0.08m x 0.23m\nMesh type: Closed mesh\nMaps: Basecolor Displacement(high tier only) Gloss Normal Cavity Specular AO Roughness\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.08m x 0.08m x 0.23m",
+  "mesh": "Closed mesh",
+  "texelDensity": "1204 px/m",
+  "maps": "Basecolor Displacement(high tier only) Gloss Normal Cavity Specular AO Roughness",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/9d6c9939-bdf9-407e-81a7-c6520b0125af/39da3b89-77d1-438b-a556-6516b8a23400.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/9d6c9939-bdf9-407e-81a7-c6520b0125af/87caf66a-bc31-4d1d-b728-9199b594df11.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

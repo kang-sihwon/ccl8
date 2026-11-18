@@ -1,0 +1,13 @@
+{
+  "id": 554,
+  "verdict": "추천",
+  "use": "S08 둥근 입구 바위",
+  "reason": "둥근 큰 면에 세로 균열이 단순하게 나뉘어 B안 형태에 적합하다.",
+  "edit": "기준 회색 통일; 한쪽에만 이끼 포인트",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:36:32.294200+00:00",
+  "sourcePageSha256": "ce1505ba6d34efe6ae0e6496a62b796b0548765d6990720b3d6cd701785fadd9"
+}

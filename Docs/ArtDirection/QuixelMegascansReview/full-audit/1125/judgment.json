@@ -1,0 +1,13 @@
+{
+  "id": 1125,
+  "verdict": "보류",
+  "use": "S01 작은 다공성 돌",
+  "reason": "49cm의 낮고 구멍 많은 돌로 1106 등과 중복",
+  "edit": "검은 홈과 흰색 대비 축소",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:07:19.729608+00:00",
+  "sourcePageSha256": "4d19d95600c53c90006ef1392c46d64ee916f3c37bf627f03f9e57efbfae1946"
+}

@@ -1,0 +1,93 @@
+{
+  "id": 585,
+  "url": "https://www.fab.com/listings/58697649-903a-484b-b6a7-90ea78b0c131",
+  "uid": "58697649-903a-484b-b6a7-90ea78b0c131",
+  "title": "Nordic Forest Rock Large",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:12:33.639487+00:00",
+  "pageSha256": "4a33a5c3be2a708a1118ce045db136e80bbb1a7f8d93c3d1a674ebf355dab0ce",
+  "description": "Texel density: 6022 px/m\nPhysical size: 2.99m x 3.24m x 2.26m\nMesh type: Open mesh\nMaps: Basecolor Gloss Displacement(high tier only) AO Cavity Bump Normal Specular Fuzz Roughness\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "2.99m x 3.24m x 2.26m",
+  "mesh": "Open mesh",
+  "texelDensity": "6022 px/m",
+  "maps": "Basecolor Gloss Displacement(high tier only) AO Cavity Bump Normal Specular Fuzz Roughness",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "ZBrush",
+      "extensions": [
+        "zbp",
+        "ztl"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "UEFN Reference",
+      "extensions": null,
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "UEFN - Reference only",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/d148e63c-0966-4cf5-95cf-f1a8cb86cd88/8ea9ee7b-e59e-4365-8e26-d5937b92e486.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/d148e63c-0966-4cf5-95cf-f1a8cb86cd88/229df10d-8f73-486a-b4ac-147c1b6c962f.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

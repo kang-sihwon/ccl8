@@ -1,0 +1,13 @@
+{
+  "id": 1587,
+  "verdict": "보류",
+  "use": "S02 기단 옆 돌 조각",
+  "reason": "18cm 길쭉한 각진 조각은 기존 묶음 후보와 중복",
+  "edit": "부분 매입",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:27:20.437814+00:00",
+  "sourcePageSha256": "0676fc25a53c7eb1ea4a8d67f853b816891f07b816c560b765f6436a3759aabe"
+}

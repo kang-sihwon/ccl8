@@ -1,0 +1,13 @@
+{
+  "id": 1669,
+  "verdict": "보류",
+  "use": "S02 기단 조각 대안",
+  "reason": "25cm 큰 갈색 사각 돌은 기존 회색 후보보다 수정 필요",
+  "edit": "갈색 완화",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:30:20.116845+00:00",
+  "sourcePageSha256": "6c324d9c0e0b5ae684f666579ee06a12dad93f35b524f79609e93840cf6cba2a"
+}

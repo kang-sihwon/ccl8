@@ -1,0 +1,82 @@
+{
+  "id": 331,
+  "url": "https://www.fab.com/listings/e479fe93-b4c8-4d6d-9d62-cea30d3d5f52",
+  "uid": "e479fe93-b4c8-4d6d-9d62-cea30d3d5f52",
+  "title": "Wooden Grave Cross",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:10:58.182774+00:00",
+  "pageSha256": "ef4b3a186bd9ea5e66af6f5a6e0d6d49843958371a20c42d3d81d123cf1a58f4",
+  "description": "Texel density: 5588 px/m\nPhysical size: 0.07m x 0.8m x 1.25m\nMesh type: Closed mesh\nMaps: Roughness Cavity Diffuse Bump Normal Displacement(high tier only) AO Metalness Basecolor Specular\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.07m x 0.8m x 1.25m",
+  "mesh": "Closed mesh",
+  "texelDensity": "5588 px/m",
+  "maps": "Roughness Cavity Diffuse Bump Normal Displacement(high tier only) AO Metalness Basecolor Specular",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "ZBrush",
+      "extensions": [
+        "zbp",
+        "ztl"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/e1c934ff-2d8b-4e4f-a183-a04431fb7e10/ad1ade7d-ef0f-4f81-8d38-7819c2547f99.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/e1c934ff-2d8b-4e4f-a183-a04431fb7e10/80b9f7c7-dd19-47b5-8cc6-d70f276e25b0.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

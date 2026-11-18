@@ -1,0 +1,13 @@
+{
+  "id": 1999,
+  "verdict": "보류",
+  "use": "S02 화분 대안",
+  "reason": "14cm 세로 홈 장식은 무장식 후보보다 복잡",
+  "edit": "장식 단순화",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:42:46.957103+00:00",
+  "sourcePageSha256": "f453d3747f9b2382ed39333cc61a6d64870b35451e5f3dc625add60aa40cd005"
+}

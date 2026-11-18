@@ -1,0 +1,85 @@
+{
+  "id": 1937,
+  "url": "https://www.fab.com/listings/ac4d27d4-790b-425c-a4ca-1de5774a706d",
+  "uid": "ac4d27d4-790b-425c-a4ca-1de5774a706d",
+  "title": "Candle Holder",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:21:08.228171+00:00",
+  "pageSha256": "828c4b5c422ad933aeca22f5c493c0c18c9de3a7c873823ad65cbd7788b4482a",
+  "description": "Texel density: 928 px/m\nPhysical size: 0.08m x 0.09m x 0.05m\nMesh type: Closed mesh\nMaps: Displacement(high tier only) Normal Basecolor Specular Cavity Roughness Gloss AO\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.08m x 0.09m x 0.05m",
+  "mesh": "Closed mesh",
+  "texelDensity": "928 px/m",
+  "maps": "Displacement(high tier only) Normal Basecolor Specular Cavity Roughness Gloss AO",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "UEFN Reference",
+      "extensions": null,
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "UEFN - Reference only",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/0220fead-17bd-4988-9605-23ec47f7a787/5109504f-6e0c-4d8d-bd6b-122a13292e46.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/0220fead-17bd-4988-9605-23ec47f7a787/a843598a-b134-4bbf-a0e5-c0c486a88c1d.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

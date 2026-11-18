@@ -1,0 +1,13 @@
+{
+  "id": 1295,
+  "verdict": "보류",
+  "use": "S08 큰 낮은 암반 변형",
+  "reason": "5.97m의 넓은 상단과 수평 틈으로 기존 큰 바위턱 충분",
+  "edit": "갈색 명도 통일",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:13:25.175633+00:00",
+  "sourcePageSha256": "00f6825d80816404d145d8c70718c460fc083c12b1d12df23bf1514a8204faff"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 857,
+  "verdict": "보류",
+  "use": "S08 두 갈래 큰 가지",
+  "reason": "2.59m의 긴 Y형 가지는 0792와 같은 경계 소품이다.",
+  "edit": "기존 갈래 고사목 반복 시만 대체",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:52:44.811307+00:00",
+  "sourcePageSha256": "c919894921dbc41eb49f9bb9ac22daf7ac139252a3d1a972ce93a888ae86d9d9"
+}

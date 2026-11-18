@@ -1,0 +1,13 @@
+{
+  "id": 1768,
+  "verdict": "수정 후 후보",
+  "use": "S02 작은 물품 정리대",
+  "reason": "93cm 상판은 가능하나 장식 테두리·선반형 낮은 구조 수정 필요",
+  "edit": "조각 제거 및 용도에 맞는 높이 검증",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:33:48.205767+00:00",
+  "sourcePageSha256": "b383fb971380dd7bcb7ce3b8a80e9ab86c7dd3e0c4c4abc987e39380080c6035"
+}

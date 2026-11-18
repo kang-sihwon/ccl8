@@ -1,0 +1,13 @@
+{
+  "id": 1583,
+  "verdict": "보류",
+  "use": "S02 돌 조각 변형",
+  "reason": "12cm 각진 밝은 조각은 1564 묶음과 기능 중복",
+  "edit": "미세 얼룩 대비 완화",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:27:20.434063+00:00",
+  "sourcePageSha256": "77cf804169810e3720445e97f1484ae1e50cdf671003dca66b37d5120b3c6429"
+}

@@ -1,0 +1,65 @@
+{
+  "id": 1069,
+  "url": "https://www.fab.com/listings/971ee9b9-7680-45f1-84bd-013b5e518b23",
+  "uid": "971ee9b9-7680-45f1-84bd-013b5e518b23",
+  "title": "Wild Grass",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:15:39.331814+00:00",
+  "pageSha256": "7ece6ad047e8b8970fe84eca0ae8123628fafc5965b3f30b4cebb34c91623b44",
+  "description": "Maps: Normal Specular AO Opacity Displacement Gloss Translucency Bump Roughness Cavity Basecolor\n \nCreate high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "기재 확인 안 됨",
+  "mesh": "기재 확인 안 됨",
+  "texelDensity": "기재 확인 안 됨",
+  "maps": "Normal Specular AO Opacity Displacement Gloss Translucency Bump Roughness Cavity Basecolor",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/8d86d745-e5de-402b-9975-f636216cc5c1/25501015-28eb-400f-9b91-1c27da8e4f85.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/8d86d745-e5de-402b-9975-f636216cc5c1/f6224bcd-cecd-41d6-8d2c-a4e7f3f8e71f.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

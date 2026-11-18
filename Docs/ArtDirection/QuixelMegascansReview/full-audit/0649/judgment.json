@@ -1,0 +1,13 @@
+{
+  "id": 649,
+  "verdict": "보류",
+  "use": "S01 유목 뿌리 후보",
+  "reason": "52cm의 검게 얼룩진 울퉁불퉁한 뿌리로 0606보다 색 대비가 복잡하다.",
+  "edit": "0606 우선; 검은 얼룩 정리 필요",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:41:41.769788+00:00",
+  "sourcePageSha256": "73cf1a71a79a57bd9a460a4a0997acc3d9681685c6958aae8633ab94d4b53e81"
+}

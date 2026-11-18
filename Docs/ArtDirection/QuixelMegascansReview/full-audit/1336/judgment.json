@@ -1,0 +1,13 @@
+{
+  "id": 1336,
+  "verdict": "추천",
+  "use": "S08 숲 입구 바깥 낮은 분절 암반",
+  "reason": "4.4m의 얇은 판과 큰 분절이 길 가장자리의 명료한 덩어리에 적합",
+  "edit": "열린 경계 매입 및 주 통로 평탄성 확인",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:15:07.666963+00:00",
+  "sourcePageSha256": "fa746e0c2190e7ab65d2b399de0b945fac89e5ef2120918453d7bd7d9dbbc4ce"
+}

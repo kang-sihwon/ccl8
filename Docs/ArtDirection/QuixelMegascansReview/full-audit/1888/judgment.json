@@ -1,0 +1,13 @@
+{
+  "id": 1888,
+  "verdict": "수정 후 후보",
+  "use": "S02 공방 외벽 옆 보수용 벽돌 더미",
+  "reason": "32cm 규모의 작은 적치 묶음이 보수 자재에 가능",
+  "edit": "정형적인 표면 줄과 채도 완화",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:38:57.937327+00:00",
+  "sourcePageSha256": "f6a64e484fcb756e3bff3edc34055eb8b1899ecb5899bac53a8daad4aa98ee19"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 1801,
+  "verdict": "보류",
+  "use": "S02 기와 파편 변형",
+  "reason": "14cm 밝은 주황 파편은 1794보다 채도 높음",
+  "edit": "붉은 갈색으로 조절",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:35:21.237977+00:00",
+  "sourcePageSha256": "4352a9fc3d347ad29146eb308af3b665f6631d5ec6a823acf219d1ab12a6f387"
+}

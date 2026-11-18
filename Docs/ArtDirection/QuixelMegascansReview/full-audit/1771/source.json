@@ -1,0 +1,90 @@
+{
+  "id": 1771,
+  "url": "https://www.fab.com/listings/daef3d25-9120-435b-88db-5915ed70df17",
+  "uid": "daef3d25-9120-435b-88db-5915ed70df17",
+  "title": "Historic South African Artifacts Axe Wood 01",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:20:05.055349+00:00",
+  "pageSha256": "bf8075ff30b6fc74c530a440928b5dd445683f3d1ccba9cac9d3cceae36ce5e5",
+  "description": "Check out our new ‘South African Artifacts’ themed assets, featuring hi-res scanned textiles, carved wood stools, and aged leather vessels. These assets provide the authenticity needed to breathe life into your exhibits, interiors, and habitats.\n\nTexel density: 19530 px/m\nPhysical size: 0.29m x 0.64m x 0.07m\nMesh type: Closed mesh\nMaps: AO Basecolor Bump Cavity Diffuse Displacement Gloss Metalness Normal Roughness Specular\n\nCreate high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.\n\nCurious about future releases? Discover upcoming Megascans content and vote for your favorite themes: Public Roadmap",
+  "size": "0.29m x 0.64m x 0.07m",
+  "mesh": "Closed mesh",
+  "texelDensity": "19530 px/m",
+  "maps": "AO Basecolor Bump Cavity Diffuse Displacement Gloss Metalness Normal Roughness Specular",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "ZBrush",
+      "extensions": [
+        "zbp",
+        "ztl"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/d232e4a4-957f-4a0c-9954-30fc7b228a66/74115e3b-38b7-4306-bac6-a191f322a1ac.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/d232e4a4-957f-4a0c-9954-30fc7b228a66/96688507-a350-4646-86ec-a54f9ea5937b.jpeg"
+    },
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/0d4384c7-2e0f-4f40-9e94-d0d73861fc82/4f8fb349-d3c1-4ee0-8214-872d5a4bbb13.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 2,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/0d4384c7-2e0f-4f40-9e94-d0d73861fc82/9c418152-c259-4c16-a7be-0594600b9ace.jpg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg",
+    "gallery-02.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

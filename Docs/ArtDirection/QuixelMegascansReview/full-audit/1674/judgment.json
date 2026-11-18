@@ -1,0 +1,13 @@
+{
+  "id": 1674,
+  "verdict": "수정 후 후보",
+  "use": "S08 숲길 외곽 지의류 바위",
+  "reason": "71cm 큰 덩어리지만 흰 반점과 주황색이 강함",
+  "edit": "반점 대비 축소 및 회색 통일",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:30:20.121786+00:00",
+  "sourcePageSha256": "55b7dd699b848d851322c878a9b8ea3e6044a1f39d50b8e03a546ab7a3f7a5c5"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 1771,
+  "verdict": "수정 후 후보",
+  "use": "S02 벽에 거는 자귀형 수공구",
+  "reason": "64cm 굽은 목재 자루와 단순 철날은 가능하나 날 결합 방식이 특이함",
+  "edit": "공방 공구 용도와 결합 구조 검토 후 배치",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:33:48.208655+00:00",
+  "sourcePageSha256": "bf8075ff30b6fc74c530a440928b5dd445683f3d1ccba9cac9d3cceae36ce5e5"
+}

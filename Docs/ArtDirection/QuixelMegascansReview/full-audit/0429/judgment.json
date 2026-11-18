@@ -1,0 +1,13 @@
+{
+  "id": 429,
+  "verdict": "보류",
+  "use": "S02 장작 잔재 또는 S08 바닥",
+  "reason": "밝고 짧은 쪼개진 목재로 기존 장작·파편과 중복된다.",
+  "edit": "장작 구성에 부족한 밝은 변형으로만 채택",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:27:25.614860+00:00",
+  "sourcePageSha256": "c37a86ae0abb16a0de44a1153c20fb4bc3ac01e2c97cf987ea3fc82557a3a58a"
+}

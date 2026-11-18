@@ -1,0 +1,74 @@
+{
+  "id": 347,
+  "url": "https://www.fab.com/listings/b185979d-6bf2-4641-92da-a9e5700ebca4",
+  "uid": "b185979d-6bf2-4641-92da-a9e5700ebca4",
+  "title": "Wooden Pepper Shaker",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:11:04.459389+00:00",
+  "pageSha256": "8974fe5c4beee0fd907bdc399e6c8c0e9091ad4b726fd6c3adaba1ca10dce1cc",
+  "description": "Texel density: 1173 px/m\nPhysical size: 0.02m x 0.02m x 0.03m\nMesh type: Closed mesh\nMaps: AO Gloss Cavity Displacement(high tier only) Normal Specular Basecolor Roughness\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.02m x 0.02m x 0.03m",
+  "mesh": "Closed mesh",
+  "texelDensity": "1173 px/m",
+  "maps": "AO Gloss Cavity Displacement(high tier only) Normal Specular Basecolor Roughness",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/51111018-be1c-4240-a2e7-31405a40e195/4797dd96-25a2-45f5-af39-631a487fe4aa.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/51111018-be1c-4240-a2e7-31405a40e195/e99cf856-b1c4-4360-9248-9bdf1cd8627a.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

@@ -1,0 +1,13 @@
+{
+  "id": 2335,
+  "verdict": "보류",
+  "use": "S02 식사 대안",
+  "reason": "4cm 흰 소시지 조각 둘은 가공 식량 설정 필요",
+  "edit": "분리 메시 미확인",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:56:37.652231+00:00",
+  "sourcePageSha256": "6050a127949256a3201a55b0bee4adf9bc5ea4a4a40fb5dbf154749d12b1e9c4"
+}

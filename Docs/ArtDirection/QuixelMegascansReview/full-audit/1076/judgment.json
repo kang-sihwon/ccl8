@@ -1,0 +1,13 @@
+{
+  "id": 1076,
+  "verdict": "제외",
+  "use": "현재 세 장소 배치 없음",
+  "reason": "3.25m의 긴 붉은 석주 파편으로 현재 수변 자연석과 형태 차이 큼",
+  "edit": "기존 유목과 회색 바위로 대체",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:05:26.849747+00:00",
+  "sourcePageSha256": "1ab6bed521ce8fd80a98b83c21b549af4c919c610819c6cfa4cd04dc811d5a4f"
+}

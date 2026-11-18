@@ -1,0 +1,13 @@
+{
+  "id": 579,
+  "verdict": "수정 후 후보",
+  "use": "S08 길 뒤 수직 암반",
+  "reason": "4.25m의 긴 바위에 큰 세로 균열과 이끼 상단이 있어 낮은 벽으로 유용하다.",
+  "edit": "지도 단차 범위에 매립; 과한 어두움·이끼 완화",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:36:32.316553+00:00",
+  "sourcePageSha256": "e3c7819e9c8fa3acf78b797f673611a019eace44cb0c436a26046fc5cc5e0a6a"
+}

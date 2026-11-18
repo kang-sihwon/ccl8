@@ -1,0 +1,13 @@
+{
+  "id": 1565,
+  "verdict": "보류",
+  "use": "S08 먼 암벽 대안",
+  "reason": "18.85m 규모의 날카로운 수직 벽은 현재 숲 진입부에 필요 불명",
+  "edit": "지도에 없는 큰 절벽 추가 금지",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:27:20.416636+00:00",
+  "sourcePageSha256": "a7ca3abcf91d681d559b6bfff8dbf39ca0c6d23b28dc8b740290ced2ba254d1c"
+}

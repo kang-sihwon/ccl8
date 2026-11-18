@@ -1,0 +1,13 @@
+{
+  "id": 587,
+  "verdict": "보류",
+  "use": "S08 낮은 이끼 돌",
+  "reason": "둥근 돌에 이끼와 흰 면이 섞여 기존 0543·0559와 중복된다.",
+  "edit": "추가 변형 필요 시만 도입",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:38:54.183365+00:00",
+  "sourcePageSha256": "3fada827c8ee86479851c04cdec7ab944e8d49170a48af2ae72fd061f06f0970"
+}

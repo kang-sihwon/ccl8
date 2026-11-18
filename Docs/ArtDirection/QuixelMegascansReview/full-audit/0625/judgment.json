@@ -1,0 +1,13 @@
+{
+  "id": 625,
+  "verdict": "제외",
+  "use": "현재 벨레스 숲에는 미배치",
+  "reason": "길고 검은 속이 드러난 부러진 줄기로 재난 후 인상이 강하다.",
+  "edit": "화재 설정이 필요한 장면에만 재검토",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:38:54.218543+00:00",
+  "sourcePageSha256": "7ef29e769f016980bc0e8d75e78d453f8db01bd62861f0e7a9b1ccaf810b99d4"
+}

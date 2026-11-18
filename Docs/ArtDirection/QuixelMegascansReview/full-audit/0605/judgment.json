@@ -1,0 +1,13 @@
+{
+  "id": 605,
+  "verdict": "제외",
+  "use": "현재 벨레스 숲에는 미배치",
+  "reason": "짧고 검게 변한 수피의 줄기로 화재 흔적을 추가하게 된다.",
+  "edit": "현 시안 범위 도입 제외",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:38:54.200087+00:00",
+  "sourcePageSha256": "32450fe7932fddd6e8b09bea1c6534b16adbfde34a887df7f0fd291f3237cb20"
+}

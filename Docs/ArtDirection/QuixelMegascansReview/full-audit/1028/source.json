@@ -1,0 +1,65 @@
+{
+  "id": 1028,
+  "url": "https://www.fab.com/listings/edb56e43-d431-454e-a6cd-af7ddf01cea8",
+  "uid": "edb56e43-d431-454e-a6cd-af7ddf01cea8",
+  "title": "Carnation Weed",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:15:25.109036+00:00",
+  "pageSha256": "bdbae25aaf5c6aa9ef6cc2337bd8ba26a696b0b5f881f95c542bd327310abf73",
+  "description": "Maps: Roughness Opacity Normal Bump Specular Cavity Displacement Basecolor Translucency Gloss AO\n \nCreate high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "기재 확인 안 됨",
+  "mesh": "기재 확인 안 됨",
+  "texelDensity": "기재 확인 안 됨",
+  "maps": "Roughness Opacity Normal Bump Specular Cavity Displacement Basecolor Translucency Gloss AO",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/5d383701-5655-45b5-bb32-ba71bbb866fe/eacf41bf-5b8c-4df4-bd33-cab27169ec24.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 2,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/5d383701-5655-45b5-bb32-ba71bbb866fe/9ff57f7c-4eda-4666-ae09-b381ab94c5e0.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

@@ -1,0 +1,82 @@
+{
+  "id": 577,
+  "url": "https://www.fab.com/listings/d1d80f44-2edc-4304-a7b2-e5001d68bcc1",
+  "uid": "d1d80f44-2edc-4304-a7b2-e5001d68bcc1",
+  "title": "Nordic Forest Cluster Rock Moss",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:12:31.355963+00:00",
+  "pageSha256": "361be4cceb1cc0f5b8fba48f04f5c65dce17d73c8fc30d81c5f49e15490c5b58",
+  "description": "Texel density: 5385 px/m\nPhysical size: 1.67m x 1.68m x 0.25m\nMesh type: Open mesh\nMaps: AO Displacement(high tier only) Specular Basecolor Bump Cavity Gloss Normal Roughness Fuzz\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "1.67m x 1.68m x 0.25m",
+  "mesh": "Open mesh",
+  "texelDensity": "5385 px/m",
+  "maps": "AO Displacement(high tier only) Specular Basecolor Bump Cavity Gloss Normal Roughness Fuzz",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "ZBrush",
+      "extensions": [
+        "zbp",
+        "ztl"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/b33e3d9f-8d96-41eb-a603-7e1ca98af178/9a94c938-284c-4f20-afb4-fa3b6060774e.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/b33e3d9f-8d96-41eb-a603-7e1ca98af178/d37e2d14-a4e7-4e28-87bc-7fd704425813.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

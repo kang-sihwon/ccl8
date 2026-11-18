@@ -1,0 +1,13 @@
+{
+  "id": 1874,
+  "verdict": "수정 후 후보",
+  "use": "S02 용마루 보수 기와",
+  "reason": "25cm 붉은 반원형과 테두리 접합부가 지붕 소품에 가능",
+  "edit": "시안 용마루 형태와 결합 규격 맞춤",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:36:56.659559+00:00",
+  "sourcePageSha256": "aeef0e5fa5ec6b56cb1f3dbb80de223994030fd83f11c7d57e37a3afcb0dcb89"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 990,
+  "verdict": "보류",
+  "use": "S08 밝은 부착형 버섯",
+  "reason": "11cm의 둥근 크림색 덩어리로 현재 군집 보강 필요 낮음",
+  "edit": "밝은 표면 대비 완화",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:01:11.394426+00:00",
+  "sourcePageSha256": "f8bf68a7c0caf3aa9c460a755ae0adb94797020a40e9b9b09026d3d6fce7ac17"
+}

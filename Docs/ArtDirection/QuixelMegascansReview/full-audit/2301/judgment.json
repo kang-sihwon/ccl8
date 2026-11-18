@@ -1,0 +1,13 @@
+{
+  "id": 2301,
+  "verdict": "보류",
+  "use": "S02 식사 대안",
+  "reason": "10cm 파이 한 조각은 근경 식탁 전용",
+  "edit": "현재 필요성 낮음",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:55:15.669496+00:00",
+  "sourcePageSha256": "00cf9424a6cbaf6adbb38b9d31722c945b99049bbd357e0d2a6b6525e896b403"
+}

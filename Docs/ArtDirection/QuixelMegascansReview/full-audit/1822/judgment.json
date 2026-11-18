@@ -1,0 +1,13 @@
+{
+  "id": 1822,
+  "verdict": "보류",
+  "use": "S02 벽돌 보수 대안",
+  "reason": "23cm 홈 있는 벽돌의 흰 미장·파손이 강함",
+  "edit": "실제 벽체와 일치할 때만",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:35:21.257818+00:00",
+  "sourcePageSha256": "162329b8b7ab3f4475449d7b91789df5105408f35c343500b0f8af0d40fe6650"
+}

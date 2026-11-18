@@ -1,0 +1,85 @@
+{
+  "id": 1912,
+  "url": "https://www.fab.com/listings/9b48cb9b-8054-471c-af7a-55cca23ac320",
+  "uid": "9b48cb9b-8054-471c-af7a-55cca23ac320",
+  "title": "Burnt Firewood",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:20:59.978040+00:00",
+  "pageSha256": "f366cf16b14ca49682696589b8f86b8e6e087edaed7dc707eb15d9e36c5538e5",
+  "description": "Texel density: 1215 px/m\nPhysical size: 0.05m x 0.05m x 0.08m\nMesh type: Closed mesh\nMaps: Basecolor Displacement(high tier only) Gloss Normal Cavity Specular AO Roughness\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.05m x 0.05m x 0.08m",
+  "mesh": "Closed mesh",
+  "texelDensity": "1215 px/m",
+  "maps": "Basecolor Displacement(high tier only) Gloss Normal Cavity Specular AO Roughness",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "UEFN Reference",
+      "extensions": null,
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "UEFN - Reference only",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/80737393-0fcb-4fe5-a415-2c27daf58908/d4a9ea69-a72c-48f8-9ae7-eabae92ee2d8.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/80737393-0fcb-4fe5-a415-2c27daf58908/bd4d831b-4a7f-4542-b9f5-515ed0d9d4dd.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

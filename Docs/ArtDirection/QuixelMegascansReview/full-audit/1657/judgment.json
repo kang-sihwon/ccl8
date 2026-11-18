@@ -1,0 +1,13 @@
+{
+  "id": 1657,
+  "verdict": "보류",
+  "use": "S02 작은 판석 대안",
+  "reason": "10cm 얇은 돌에 주황색이 섞여 1655 우선",
+  "edit": "황색 감소",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:30:20.105360+00:00",
+  "sourcePageSha256": "0748c9208a25e197ef494a7e09654c701372473a7ddc7542ed4aea9322fb2672"
+}

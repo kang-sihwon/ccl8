@@ -1,0 +1,13 @@
+{
+  "id": 1331,
+  "verdict": "보류",
+  "use": "S08 지의류 바위 변형",
+  "reason": "1.7m의 둔한 삼각형 돌이지만 흰 원형 얼룩이 강하고 후보 충분",
+  "edit": "흰 얼룩 완화",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:15:07.661832+00:00",
+  "sourcePageSha256": "9cfb81fffa49f2680f40e1983a87c3b5e8ef692c83797c44d90d043446a96516"
+}

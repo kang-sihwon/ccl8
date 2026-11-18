@@ -1,0 +1,13 @@
+{
+  "id": 2063,
+  "verdict": "수정 후 후보",
+  "use": "S02 문 옆 또는 S01 창고 처마의 걸이등",
+  "reason": "54cm 사각 틀과 곡선 브래킷은 가능하나 얇은 물결 지붕이 눈에 띔",
+  "edit": "지붕 판을 단순화하고 광원·유리 별도 검증",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:44:39.468835+00:00",
+  "sourcePageSha256": "b8fb205cfe13d03ccb2ba92e69fd05d391f2ca97c4cf0994534f2b62c594556c"
+}

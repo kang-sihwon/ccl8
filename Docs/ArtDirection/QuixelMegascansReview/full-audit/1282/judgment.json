@@ -1,0 +1,13 @@
+{
+  "id": 1282,
+  "verdict": "보류",
+  "use": "S01 작은 흰 돌",
+  "reason": "26cm의 세로로 선 밝은 돌 조각으로 기존 후보 충분",
+  "edit": "흰색 명도 완화",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:13:25.161655+00:00",
+  "sourcePageSha256": "7056955d93cb4bcd55b94dc4f7caf65eaf8d13a3137a2524f0d1a9709c539a47"
+}

@@ -1,0 +1,74 @@
+{
+  "id": 2160,
+  "url": "https://www.fab.com/listings/bbc4035b-9ff7-483f-8b65-a358825c1ed6",
+  "uid": "bbc4035b-9ff7-483f-8b65-a358825c1ed6",
+  "title": "Urban Camping Gear Axe Metal Large",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:22:32.439836+00:00",
+  "pageSha256": "263dd25561fb4c0e19a828f46575bff8c43f4f046d5826b826a5d3400f03a480",
+  "description": "The ‘Camping Gear’ themed assets focus on practical outdoor equipment and well-used travel supplies designed for temporary campsites and wilderness setups. Featuring high-fidelity scans of sleeping gear, backpacks, cooking equipment, storage containers, and miscellaneous campsite props, this collection captures the functional, lived-in character of outdoor exploration and survival.\n\nIdeal for creating grounded campsite environments with a strong sense of realism, utility, and environmental storytelling.\nTexel density: 19506 px/m\nPhysical size: 0.19m x 0.81m x 0.04m\nMesh type: Closed mesh\nMaps: AO Basecolor Bump Cavity Displacement Gloss Metalness Normal Roughness Specular\nCreate high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.\n\nCurious about future releases? Discover upcoming Megascans content and vote for your favorite themes: Public Roadmap",
+  "size": "0.19m x 0.81m x 0.04m",
+  "mesh": "Closed mesh",
+  "texelDensity": "19506 px/m",
+  "maps": "AO Basecolor Bump Cavity Displacement Gloss Metalness Normal Roughness Specular",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/f635e044-ebd0-461f-a2e7-19a8e1d68f56/119b67fe-7ddd-40c3-80a9-b1cc17ae560e.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/f635e044-ebd0-461f-a2e7-19a8e1d68f56/5955fd2a-8e7b-4f7f-9049-c9e39127cdfd.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

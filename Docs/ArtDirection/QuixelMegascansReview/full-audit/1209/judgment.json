@@ -1,0 +1,13 @@
+{
+  "id": 1209,
+  "verdict": "보류",
+  "use": "S08 작은 이끼 자갈",
+  "reason": "12cm의 이끼 덮인 각형 돌로 기존 자갈 후보 충분",
+  "edit": "실측 유지",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:11:29.582244+00:00",
+  "sourcePageSha256": "2fc9b41ebadc3be4eca75ee49791f45daa2d03848642d25fd67f6b207feb60c1"
+}

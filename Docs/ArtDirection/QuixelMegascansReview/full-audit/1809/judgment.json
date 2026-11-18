@@ -1,0 +1,13 @@
+{
+  "id": 1809,
+  "verdict": "보류",
+  "use": "S02 화덕 잔해 변형",
+  "reason": "10cm 곡면 파편의 주황색이 강함",
+  "edit": "주황색 감소",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:35:21.245667+00:00",
+  "sourcePageSha256": "95b61ef55a79c6f5e5566862ef5256f28ce6fcf945b30f03f40bcb645579d85b"
+}

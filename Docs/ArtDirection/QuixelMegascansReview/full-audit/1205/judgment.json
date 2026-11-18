@@ -1,0 +1,13 @@
+{
+  "id": 1205,
+  "verdict": "추천",
+  "use": "S08 숲 내부 바위턱 경계",
+  "reason": "3.09m의 큰 세로 균열과 평평한 상단이 명료한 암반 덩어리로 적합",
+  "edit": "입구 시야 밖 배치 및 회색 명도 통일",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:11:29.577670+00:00",
+  "sourcePageSha256": "d3d28ba7b225da70229f5bab5eebe865b48e7cc95623b764aed306a418e6746a"
+}

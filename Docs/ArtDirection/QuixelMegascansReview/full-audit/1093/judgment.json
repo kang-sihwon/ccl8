@@ -1,0 +1,13 @@
+{
+  "id": 1093,
+  "verdict": "추천",
+  "use": "S08 입구 바깥 지면 노출 암반",
+  "reason": "3.52m의 낮고 비대칭인 회갈색 돌과 얕은 균열이 길 가장자리에 적합",
+  "edit": "열린 바닥 매입하고 과한 얼룩 대비 축소",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:05:26.867351+00:00",
+  "sourcePageSha256": "7f4e12e496e12dd52903aba3c56d026b6c1d901d4ec9f91448dd85bedbac96de"
+}

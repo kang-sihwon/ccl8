@@ -1,0 +1,13 @@
+{
+  "id": 1987,
+  "verdict": "보류",
+  "use": "S02 장작 변형",
+  "reason": "21cm 얇은 껍질 장작은 1985와 중복",
+  "edit": "나무색 통일",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:42:46.945550+00:00",
+  "sourcePageSha256": "67520eeb85928ee450b3a215bf71508990c2ed84af408d7002c27b54f57d3704"
+}

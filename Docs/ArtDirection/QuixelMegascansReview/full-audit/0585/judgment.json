@@ -1,0 +1,13 @@
+{
+  "id": 585,
+  "verdict": "추천",
+  "use": "S08 입구 바깥 큰 바위",
+  "reason": "약 3m의 큰 회색 사면과 흙 상부가 입구의 큰 형태를 잡는다.",
+  "edit": "통행선을 가리지 않게 배치; 이끼색 통일",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:38:54.181513+00:00",
+  "sourcePageSha256": "4a33a5c3be2a708a1118ce045db136e80bbb1a7f8d93c3d1a674ebf355dab0ce"
+}

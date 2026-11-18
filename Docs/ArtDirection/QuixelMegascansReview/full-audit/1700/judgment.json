@@ -1,0 +1,13 @@
+{
+  "id": 1700,
+  "verdict": "보류",
+  "use": "S08 작은 판석 변형",
+  "reason": "5cm 짙은 회색 층상석은 화면 기여 작음",
+  "edit": "근접 장면에만 사용",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:31:48.502141+00:00",
+  "sourcePageSha256": "ef92061e5574a80c7aa1241994f4677f5a9b996e730426cbc80eb3ff034c24cc"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 1168,
+  "verdict": "보류",
+  "use": "S01 넓은 암반 바닥 변형",
+  "reason": "8.78m의 큰 얇은 회색 판으로 1147과 역할 중복",
+  "edit": "실측 유지 및 열린 경계 매입",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:09:31.898735+00:00",
+  "sourcePageSha256": "abf96d200bc2e35795020af19cdae0e03755287d54d6544e232df019d3c14e52"
+}

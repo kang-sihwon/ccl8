@@ -1,0 +1,13 @@
+{
+  "id": 1425,
+  "verdict": "추천",
+  "use": "S08 뿌리 발치의 둥근 이끼 둔덕",
+  "reason": "1.27m의 완만한 덩어리와 흙 노출이 작은 지면 연결에 적합",
+  "edit": "녹색 채도 낮추고 열린 경계 매입",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:19:10.452503+00:00",
+  "sourcePageSha256": "45438f36f98eb8b53d726ed7cfa02022ecaf91f3876caf3481f348fc5dcb3996"
+}

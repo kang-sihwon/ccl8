@@ -1,0 +1,13 @@
+{
+  "id": 2227,
+  "verdict": "보류",
+  "use": "S02 간식 대안",
+  "reason": "6cm 붉은 건과일 쿠키는2226과 중복",
+  "edit": "대표 하나만 선택",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:53:43.629377+00:00",
+  "sourcePageSha256": "bd5c5a966056d05a36f962b25ee48c3da827f4b8519cbb66ca803539929effe7"
+}

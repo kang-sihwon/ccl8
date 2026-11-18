@@ -1,0 +1,13 @@
+{
+  "id": 1630,
+  "verdict": "보류",
+  "use": "S02 바닥 작은 판석",
+  "reason": "9cm 밝은 납작한 돌은 화면 기여 낮음",
+  "edit": "주변 흙색 연결",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:28:53.011164+00:00",
+  "sourcePageSha256": "1072a18c33beecf5bafed07437e35349d76e5b2cd7fee9243b1724f115e9e86c"
+}

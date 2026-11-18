@@ -1,0 +1,93 @@
+{
+  "id": 502,
+  "url": "https://www.fab.com/listings/af24ffdc-5594-4fec-81ff-cb875649aa3f",
+  "uid": "af24ffdc-5594-4fec-81ff-cb875649aa3f",
+  "title": "Birch Tree Trunk",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:12:06.068980+00:00",
+  "pageSha256": "c54cf2c86910afc4c1c1041d806e969aa38a9c635486bce39746ba790a356c01",
+  "description": "Texel density: 5598 px/m\nPhysical size: 0.64m x 0.65m x 2.64m\nMesh type: Open mesh\nMaps: Normal Bump Fuzz Specular AO Roughness Basecolor Cavity Gloss Displacement\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.64m x 0.65m x 2.64m",
+  "mesh": "Open mesh",
+  "texelDensity": "5598 px/m",
+  "maps": "Normal Bump Fuzz Specular AO Roughness Basecolor Cavity Gloss Displacement",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "ZBrush",
+      "extensions": [
+        "zbp",
+        "ztl"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "UEFN Reference",
+      "extensions": null,
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "UEFN - Reference only",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/1e591711-955c-43f0-82c7-14235fc8616d/da4296c0-eac8-4291-9a30-58352cd203f7.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/1e591711-955c-43f0-82c7-14235fc8616d/bf7c7398-b5a4-4682-a359-93d4e3a90b5b.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

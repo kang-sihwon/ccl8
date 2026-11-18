@@ -1,0 +1,13 @@
+{
+  "id": 2348,
+  "verdict": "보류",
+  "use": "S02 식사 대안",
+  "reason": "12cm 껍질 없는 소시지 조각은 식탁 전용",
+  "edit": "식사 연출 확인",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:56:37.664768+00:00",
+  "sourcePageSha256": "17f1f57bc89ca17d4018648eccdff63ddd703458aa209321b3bdda4b8db54a6c"
+}

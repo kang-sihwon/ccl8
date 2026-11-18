@@ -1,0 +1,74 @@
+{
+  "id": 2322,
+  "url": "https://www.fab.com/listings/85c6edab-9500-4dd5-807c-a20bf86d58e4",
+  "uid": "85c6edab-9500-4dd5-807c-a20bf86d58e4",
+  "title": "Red Bell Pepper",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:23:34.428870+00:00",
+  "pageSha256": "be03a5aa4a4734b57d15a84e728889815f5a5494a2401d749763b13f444040d6",
+  "description": "Texel density: 1188 px/m\nPhysical size: 0.12m x 0.12m x 0.14m\nMesh type: Closed mesh\nMaps: AO Transmission Displacement(high tier only) Specular Basecolor Cavity Gloss Normal Roughness\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.12m x 0.12m x 0.14m",
+  "mesh": "Closed mesh",
+  "texelDensity": "1188 px/m",
+  "maps": "AO Transmission Displacement(high tier only) Specular Basecolor Cavity Gloss Normal Roughness",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/576d2153-d8f5-4c6b-a33f-9fca19c641ed/16dbd4c9-de2e-4fc8-b038-c46287b7f337.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/576d2153-d8f5-4c6b-a33f-9fca19c641ed/c37c563c-ad26-4a55-b00f-4e08f21ebf49.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

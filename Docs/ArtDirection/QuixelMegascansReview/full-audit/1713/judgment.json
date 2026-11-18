@@ -1,0 +1,13 @@
+{
+  "id": 1713,
+  "verdict": "보류",
+  "use": "S01 작은 자갈 변형",
+  "reason": "6cm 흰 줄이 있는 회색 돌로 1555보다 화면 기여 작음",
+  "edit": "반복 줄무늬 주의",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:31:48.514595+00:00",
+  "sourcePageSha256": "ab6784d27e80a766feb4f6020aec40e63160aa59f275f6cedfa01a29efb63d1b"
+}

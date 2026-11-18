@@ -1,0 +1,13 @@
+{
+  "id": 1707,
+  "verdict": "보류",
+  "use": "S01 작은 자갈 변형",
+  "reason": "6cm 타원 화강암으로 1706보다 활용 폭 작음",
+  "edit": "미세 대비 완화",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:31:48.508916+00:00",
+  "sourcePageSha256": "9677ce0f271edcb883a0829237b99119551db0377b5ab23ef2b3e64cc3d42280"
+}

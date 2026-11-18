@@ -1,0 +1,13 @@
+{
+  "id": 516,
+  "verdict": "보류",
+  "use": "S08 긴 고사목 대체",
+  "reason": "5.51m의 부러진 줄기로 0515와 형태·역할이 비슷하다.",
+  "edit": "0515 반복 시만 교체; 길 폭 유지",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:32:36.386117+00:00",
+  "sourcePageSha256": "d35e97a6bd2fe3cd7f1b264dfea807eca657e74229b3f8ee1b8734bee66faa70"
+}

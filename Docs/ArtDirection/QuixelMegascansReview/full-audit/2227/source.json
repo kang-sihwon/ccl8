@@ -1,0 +1,74 @@
+{
+  "id": 2227,
+  "url": "https://www.fab.com/listings/8b74625f-bc9e-47e4-9b7f-3f9136b63230",
+  "uid": "8b74625f-bc9e-47e4-9b7f-3f9136b63230",
+  "title": "Cranberry Cookie",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:22:56.710640+00:00",
+  "pageSha256": "bd5c5a966056d05a36f962b25ee48c3da827f4b8519cbb66ca803539929effe7",
+  "description": "Texel density: 1091 px/m\nPhysical size: 0.06m x 0.06m x 0.02m\nMesh type: Closed mesh\nMaps: AO Gloss Cavity Displacement(high tier only) Normal Specular Basecolor Roughness\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.06m x 0.06m x 0.02m",
+  "mesh": "Closed mesh",
+  "texelDensity": "1091 px/m",
+  "maps": "AO Gloss Cavity Displacement(high tier only) Normal Specular Basecolor Roughness",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/bda0adfd-d3a9-4d04-8451-9aaf68cfc3d6/30df4788-8506-487b-b4c6-b0318c628946.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/bda0adfd-d3a9-4d04-8451-9aaf68cfc3d6/de202587-e655-40e7-b726-abd9eea47c51.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

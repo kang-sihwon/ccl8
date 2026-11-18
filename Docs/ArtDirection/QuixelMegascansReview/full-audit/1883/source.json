@@ -1,0 +1,74 @@
+{
+  "id": 1883,
+  "url": "https://www.fab.com/listings/ca20fb64-7dd1-4ec2-bda4-f08b794a4214",
+  "uid": "ca20fb64-7dd1-4ec2-bda4-f08b794a4214",
+  "title": "Roof Tile",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:20:48.129057+00:00",
+  "pageSha256": "3e7159ca1b1d81629fe091bb94b694f50c0a3f2c5b110b8c0f85fa2dd14e9a0c",
+  "description": "Texel density: 1263 px/m\nPhysical size: 0.13m x 0.18m x 0.06m\nMesh type: Closed mesh\nMaps: AO Gloss Cavity Displacement(high tier only) Normal Specular Basecolor Roughness\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.13m x 0.18m x 0.06m",
+  "mesh": "Closed mesh",
+  "texelDensity": "1263 px/m",
+  "maps": "AO Gloss Cavity Displacement(high tier only) Normal Specular Basecolor Roughness",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/c41cfd58-1e83-4d9c-a472-9b535efb922d/f5952d3c-b930-4c9d-977c-f5b3bd97766c.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/c41cfd58-1e83-4d9c-a472-9b535efb922d/69c99db1-817e-44b8-84ad-11dd7c36e96c.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

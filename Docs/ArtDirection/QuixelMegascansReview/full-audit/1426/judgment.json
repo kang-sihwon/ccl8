@@ -1,0 +1,13 @@
+{
+  "id": 1426,
+  "verdict": "추천",
+  "use": "S08 바위 밑 낮은 이끼 군집",
+  "reason": "1.36m의 여러 낮은 둔덕과 흙 틈이 바닥 변화에 적합",
+  "edit": "이끼색 통일 및 열린 경계 매입",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:19:10.453525+00:00",
+  "sourcePageSha256": "9d38da4bc6b512b5ea95bfdfa5181f7f1a27ec7de301db0d3be74925ff3a0f3c"
+}

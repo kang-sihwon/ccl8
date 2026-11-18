@@ -1,0 +1,13 @@
+{
+  "id": 1271,
+  "verdict": "보류",
+  "use": "S01 작은 밝은 돌",
+  "reason": "25cm의 세로 홈이 강한 흰 돌로 기존 자갈과 중복",
+  "edit": "밝기와 홈 대비 축소",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:13:25.148807+00:00",
+  "sourcePageSha256": "306bf12e91323cf9c60142c43032b2e4176d4d409f4f331d75fa8486b897e2b6"
+}

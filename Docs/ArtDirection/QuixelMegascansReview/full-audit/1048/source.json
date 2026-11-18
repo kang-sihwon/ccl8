@@ -1,0 +1,65 @@
+{
+  "id": 1048,
+  "url": "https://www.fab.com/listings/d22b2fc3-9389-4d39-894c-5369a7e49ddf",
+  "uid": "d22b2fc3-9389-4d39-894c-5369a7e49ddf",
+  "title": "Grass Clumps",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:15:31.474941+00:00",
+  "pageSha256": "91a64cdfde232eb4def7ec038844d48a1eae2e82915b8c666e9daf4beebd9fd8",
+  "description": "Maps: Normal Cavity Specular Basecolor Translucency Bump Displacement Opacity Roughness\n \nCreate high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "기재 확인 안 됨",
+  "mesh": "기재 확인 안 됨",
+  "texelDensity": "기재 확인 안 됨",
+  "maps": "Normal Cavity Specular Basecolor Translucency Bump Displacement Opacity Roughness",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/7e56aae2-d81a-49e4-89c3-45de5e57be81/c41d8bbd-0f65-4611-9013-70d028d6686e.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 2,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/7e56aae2-d81a-49e4-89c3-45de5e57be81/5aaa929b-05b8-445b-8880-4a6c92f1ed4c.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

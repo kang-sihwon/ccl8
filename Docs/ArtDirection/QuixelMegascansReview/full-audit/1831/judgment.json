@@ -1,0 +1,13 @@
+{
+  "id": 1831,
+  "verdict": "수정 후 후보",
+  "use": "S01 둔치 정비용 긴 삽",
+  "reason": "1.73m 목재 자루는 적합하나 프레스형 날과 주황 녹이 강함",
+  "edit": "날 보강선 단순화 및 녹 채도 감소",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:36:56.618403+00:00",
+  "sourcePageSha256": "3efd3c6f881cfa998aa9ae0c5ed910b5624a48543d4d993b210791bbb8c138ca"
+}

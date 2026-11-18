@@ -1,0 +1,13 @@
+{
+  "id": 911,
+  "verdict": "보류",
+  "use": "S08 작은 이끼 수피",
+  "reason": "31cm의 어두운 얇은 조각으로 0829와 역할이 겹친다.",
+  "edit": "기존 수피 우선; 이끼색 통일",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:54:43.622230+00:00",
+  "sourcePageSha256": "ce0356a517a5d62518089ffa15d9fc361c49d3d8a93cef686bfd0216df2da22b"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 673,
+  "verdict": "보류",
+  "use": "S08 짧은 수피 통",
+  "reason": "40cm의 원통형 수피가 남은 어두운 조각으로 작은 고사목 후보와 중복된다.",
+  "edit": "밝기 조정 후 필요 시 사용",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:41:41.793127+00:00",
+  "sourcePageSha256": "f9c2f93f9c3a6f0413e51d900bc7ac2f4694eb709870eb63eac93477c2904b61"
+}

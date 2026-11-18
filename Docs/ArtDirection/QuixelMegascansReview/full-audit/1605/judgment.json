@@ -1,0 +1,13 @@
+{
+  "id": 1605,
+  "verdict": "제외",
+  "use": "현재 세 장소 제외",
+  "reason": "5cm 붉은 작은 조각은 색 수정 대비 화면 기여 낮음",
+  "edit": "기존 자갈 사용",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:28:52.985165+00:00",
+  "sourcePageSha256": "f1daa9dc675de76fe63a4cfc364940e7a056b76e7843099ea689b12b9074dd30"
+}

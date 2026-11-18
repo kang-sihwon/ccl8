@@ -1,0 +1,13 @@
+{
+  "id": 1183,
+  "verdict": "보류",
+  "use": "S08 긴 뿌리 흙턱 변형",
+  "reason": "4.86m의 뿌리·이끼 돌 혼합 턱으로 1182와 역할 중복",
+  "edit": "열린 경계 매입",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:09:31.913704+00:00",
+  "sourcePageSha256": "3f4404b0b11c1afb6b7c7bc8e1a2b0111cff4950ffe0c79ec166e655b2e8b9ab"
+}

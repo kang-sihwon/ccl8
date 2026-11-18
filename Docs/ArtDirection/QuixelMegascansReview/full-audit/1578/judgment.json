@@ -1,0 +1,13 @@
+{
+  "id": 1578,
+  "verdict": "보류",
+  "use": "S08 작은 돌 변형",
+  "reason": "20cm 자갈이 뭉친 듯한 표면과 큰 구멍이 기존 바위보다 복잡함",
+  "edit": "미세 대비 축소",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:27:20.428996+00:00",
+  "sourcePageSha256": "a82776afe48646879d53e0850d33bc424de8e75dae025e1eb88384374c86b6dc"
+}

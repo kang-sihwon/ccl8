@@ -1,0 +1,13 @@
+{
+  "id": 1927,
+  "verdict": "보류",
+  "use": "S02 수리 대기 교반통 대안",
+  "reason": "74cm 뚜껑 없는 긴 목통은 1926과 기능 중복",
+  "edit": "뚜껑 구성과 수리 품목 확인",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:40:59.586180+00:00",
+  "sourcePageSha256": "5a8aae9b4f8483ffd7486ad1bef2ca61679173f164633d24b2d67f3de0476856"
+}

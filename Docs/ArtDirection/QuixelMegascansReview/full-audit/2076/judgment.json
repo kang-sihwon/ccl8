@@ -1,0 +1,13 @@
+{
+  "id": 2076,
+  "verdict": "보류",
+  "use": "S02 도기 단지 대안",
+  "reason": "12cm 분홍빛 둥근 단지는 2074와 중복",
+  "edit": "붉은 채도 감소",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:46:35.320616+00:00",
+  "sourcePageSha256": "851a7eb91f0f0fc4acc8bee837ffc4261da3fc39c1e5ac25eaf3cf9a61e27dec"
+}

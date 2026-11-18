@@ -1,0 +1,13 @@
+{
+  "id": 1843,
+  "verdict": "보류",
+  "use": "S02 화덕 벽돌 변형",
+  "reason": "24cm 붉은 사각 돌의 검은 오염이 1840과 중복",
+  "edit": "색 통일",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:36:56.630365+00:00",
+  "sourcePageSha256": "d1a6325f234ae4e736893328aecc07829b05414eb7a281e27c6b4772d47ac066"
+}

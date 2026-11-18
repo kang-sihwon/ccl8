@@ -1,0 +1,13 @@
+{
+  "id": 584,
+  "verdict": "추천",
+  "use": "S08 흙길 옆 낮은 암반",
+  "reason": "흙이 덮인 넓은 평면과 회색 측면이 읽혀 지면과 연결하기 좋다.",
+  "edit": "이끼 띠 완화; 열린 면 매립",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:38:54.180600+00:00",
+  "sourcePageSha256": "5e366ee17ab3f39a8fdbf4e771714f8c5dee8fccf63fb71bd9c809f8c06666a6"
+}

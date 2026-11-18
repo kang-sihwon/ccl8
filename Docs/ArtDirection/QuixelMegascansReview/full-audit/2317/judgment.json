@@ -1,0 +1,13 @@
+{
+  "id": 2317,
+  "verdict": "보류",
+  "use": "S01 과일 대안",
+  "reason": "8cm 골진 노란 모과는 색 포인트가 강함",
+  "edit": "작물 설정·채도 조정",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:56:37.634791+00:00",
+  "sourcePageSha256": "8f1637a6cf07af41e3dd2395b58eeab3e881f6b358cfd265a80e917c92ff2f63"
+}

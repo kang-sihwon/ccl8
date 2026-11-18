@@ -1,0 +1,13 @@
+{
+  "id": 950,
+  "verdict": "보류",
+  "use": "S08 가는 직선 잔가지",
+  "reason": "43cm의 얇은 단일 가지로 기존 변형 충분",
+  "edit": "군집 사용 시 반복 분산",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:59:25.697855+00:00",
+  "sourcePageSha256": "cab25f0aadbf971dd473ba5808b403dccd134f91932f22301671c3c80290bb7e"
+}

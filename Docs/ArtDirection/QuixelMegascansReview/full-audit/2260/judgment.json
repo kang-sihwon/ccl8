@@ -1,0 +1,13 @@
+{
+  "id": 2260,
+  "verdict": "제외",
+  "use": "현재 세 장소 제외",
+  "reason": "7cm 반쪽 아보카도는 특정 식재료를 강하게 드러냄",
+  "edit": "현재 식량 시안 범위 밖",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:53:43.660853+00:00",
+  "sourcePageSha256": "72a55e0e09fdbeaee832950ac938e76a90ecb62447af7e5a7d06adad50fb870b"
+}

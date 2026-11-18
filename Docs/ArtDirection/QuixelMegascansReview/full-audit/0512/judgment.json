@@ -1,0 +1,13 @@
+{
+  "id": 512,
+  "verdict": "추천",
+  "use": "S08 긴 마른 가지",
+  "reason": "거의 직선인 밝은 1.93m 가지가 갈라진 가지와 실루엣을 달리한다.",
+  "edit": "명도 완화; 길 방향과 평행 배치",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:32:36.383134+00:00",
+  "sourcePageSha256": "c87ce265803a3f90c35f2d2aee1ccdd3a115b713b97ba3ed63b092cd14a83f62"
+}

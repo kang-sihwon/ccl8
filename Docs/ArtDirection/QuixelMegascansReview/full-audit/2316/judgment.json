@@ -1,0 +1,13 @@
+{
+  "id": 2316,
+  "verdict": "보류",
+  "use": "S01 과일 대안",
+  "reason": "8cm 둥근 모과는2315와 중복",
+  "edit": "대표 과일만 선택",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:56:37.633470+00:00",
+  "sourcePageSha256": "0c07df3cda66907952ee9b88f6021fd3b3bcb4974999f4214ee8c4eeca4fed4d"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 416,
+  "verdict": "보류",
+  "use": "S02 원목 적치 변형",
+  "reason": "중간이 휘고 끝에 옹이가 있으나 0415와 역할이 겹친다.",
+  "edit": "0415 반복이 보일 때만 혼합",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:27:25.602588+00:00",
+  "sourcePageSha256": "d7daeb3ed5276409962dcae1101a09456a46907b49d9603a111f61e0dca4c2c5"
+}

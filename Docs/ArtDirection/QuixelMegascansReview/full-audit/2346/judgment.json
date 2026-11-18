@@ -1,0 +1,13 @@
+{
+  "id": 2346,
+  "verdict": "보류",
+  "use": "S01 보존식 대안",
+  "reason": "31cm 긴 고리 소시지는2345와 중복",
+  "edit": "대표 하나만 선택",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:56:37.662546+00:00",
+  "sourcePageSha256": "69b18cb49470a2150fc6f00f7888653d333aae67ab6bbac8d573af1b6bec9d0e"
+}

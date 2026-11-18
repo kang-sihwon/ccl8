@@ -1,0 +1,13 @@
+{
+  "id": 1984,
+  "verdict": "보류",
+  "use": "S02 장작 변형",
+  "reason": "18cm 밝은 절단면의 반쪽 장작으로 기존 후보 충분",
+  "edit": "단면 밝기 완화",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:42:46.942563+00:00",
+  "sourcePageSha256": "80b35ea1df0921b014b20d6fb5e899deb054d1062094cfabbb04b6a243a73d80"
+}

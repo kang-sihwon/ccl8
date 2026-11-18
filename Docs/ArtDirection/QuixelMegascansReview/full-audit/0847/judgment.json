@@ -1,0 +1,13 @@
+{
+  "id": 847,
+  "verdict": "보류",
+  "use": "S08 곡선 이끼 가지",
+  "reason": "84cm의 이끼가 많은 곡선 형태로 0667과 역할이 같다.",
+  "edit": "열린 끝 처리; 기존 후보 우선",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:52:44.801388+00:00",
+  "sourcePageSha256": "cec9d7d6cbf8245ecdf966bff06d2e85e2f2f3f61aace99a68ff4b6a0c075016"
+}

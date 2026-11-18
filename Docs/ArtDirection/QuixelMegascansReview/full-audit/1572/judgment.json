@@ -1,0 +1,13 @@
+{
+  "id": 1572,
+  "verdict": "보류",
+  "use": "S08 잔돌 패치 묶음",
+  "reason": "작은 돌 무더기 변형은 있으나 솟은 돌과 황갈색 대비가 강함",
+  "edit": "개별 메시 여부 확인 및 열린 경계 매입",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:27:20.423384+00:00",
+  "sourcePageSha256": "2ed640677428907ff940327f4432a15c0e1b3dd74bc50e8281cfbe39fdea0dcf"
+}

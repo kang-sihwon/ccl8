@@ -1,0 +1,82 @@
+{
+  "id": 1737,
+  "url": "https://www.fab.com/listings/046f4f4f-ffa2-4d63-ae22-4524ce10e529",
+  "uid": "046f4f4f-ffa2-4d63-ae22-4524ce10e529",
+  "title": "Stone Rubble Pile",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:19:51.814620+00:00",
+  "pageSha256": "cd804c4aa8d94801c0f35ceb85175bb9f2de34a7997d2846b29cf3d9d057b034",
+  "description": "Texel density: 4791 px/m\nPhysical size: 1.0m x 1.22m x 0.24m\nMesh type: Open mesh\nMaps: Displacement(high tier only) Cavity Gloss Specular Basecolor Roughness Normal AO Bump\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "1.0m x 1.22m x 0.24m",
+  "mesh": "Open mesh",
+  "texelDensity": "4791 px/m",
+  "maps": "Displacement(high tier only) Cavity Gloss Specular Basecolor Roughness Normal AO Bump",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "ZBrush",
+      "extensions": [
+        "zbp",
+        "ztl"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/616f39de-0df9-49b5-ac45-3bbd0d19b643/3ca576c7-16a1-413e-9d2e-6d5c3caeff2e.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/616f39de-0df9-49b5-ac45-3bbd0d19b643/17a33838-26b8-4de8-9021-553cf78b3867.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

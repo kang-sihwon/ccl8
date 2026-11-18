@@ -1,0 +1,13 @@
+{
+  "id": 1165,
+  "verdict": "보류",
+  "use": "S01 작은 밝은 자갈",
+  "reason": "17cm의 둥근 밝은 돌로 기존 자갈 세트 대체 가능",
+  "edit": "실측 유지 및 황색 완화",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:09:31.895622+00:00",
+  "sourcePageSha256": "82dc247d212f5bcc1906653ebc5a22e3990bbff01d2a753d1bddf02ac58ba32c"
+}

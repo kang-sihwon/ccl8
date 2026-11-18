@@ -1,0 +1,13 @@
+{
+  "id": 1733,
+  "verdict": "보류",
+  "use": "S01 자갈 묶음 대안",
+  "reason": "밝은 둥근 돌과 각진 돌 혼재로 기존 자갈 충분",
+  "edit": "밝기 통일 및 분리 확인",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:33:48.170502+00:00",
+  "sourcePageSha256": "9b76693d41c8fa17aacc3057c5ebd670efa1ff91bbb4114c150a8dc5f01cf914"
+}

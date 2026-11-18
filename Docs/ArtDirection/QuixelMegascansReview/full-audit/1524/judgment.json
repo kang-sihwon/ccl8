@@ -1,0 +1,13 @@
+{
+  "id": 1524,
+  "verdict": "보류",
+  "use": "S08 작은 얼룩진 바위",
+  "reason": "64cm의 흰색·붉은 이끼가 복잡하게 섞여 기존 후보 우선",
+  "edit": "지의류와 이끼 대비 축소",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:23:18.584997+00:00",
+  "sourcePageSha256": "b8f1fa70c385520027d20c295ff377129fd29892b045efd9abbd06fb4a044991"
+}

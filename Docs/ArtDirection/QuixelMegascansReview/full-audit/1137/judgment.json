@@ -1,0 +1,13 @@
+{
+  "id": 1137,
+  "verdict": "보류",
+  "use": "S02 작은 포석 변형",
+  "reason": "8cm의 밝고 둥근 포석으로 팩과 중복",
+  "edit": "실측 유지 및 밝기 조절",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:07:19.742923+00:00",
+  "sourcePageSha256": "ba10c3344ed62c7f2c078b10b7f675ce3f8d23a556d7ff6c8f9a7b9566f1f892"
+}

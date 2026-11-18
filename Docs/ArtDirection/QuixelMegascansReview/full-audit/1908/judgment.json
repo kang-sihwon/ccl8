@@ -1,0 +1,13 @@
+{
+  "id": 1908,
+  "verdict": "보류",
+  "use": "S02 장부 대안",
+  "reason": "20cm 짙은 마블 무늬와 금색 장식이 1907과 중복",
+  "edit": "무늬·문자 수정",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:38:57.957009+00:00",
+  "sourcePageSha256": "9c9d773bb63da757504e94cd1e0746d312d469ed62c068b2d77319ac68b2b494"
+}

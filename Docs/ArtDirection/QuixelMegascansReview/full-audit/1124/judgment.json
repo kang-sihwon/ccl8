@@ -1,0 +1,13 @@
+{
+  "id": 1124,
+  "verdict": "보류",
+  "use": "S01 낮은 돌판 변형",
+  "reason": "1.43m의 낮고 둥근 표면과 돌출 조각이 보이나 유사 판석 충분",
+  "edit": "황색 조절 및 열린 가장자리 매입",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:07:19.728424+00:00",
+  "sourcePageSha256": "21d2e266b967cfb3f8469933538b07bc568c165ce69951405dde3b8f71de74ee"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 1697,
+  "verdict": "보류",
+  "use": "S08 작은 돌 변형",
+  "reason": "19cm 황갈색 다공성 덩어리로 표면 차이 큼",
+  "edit": "미세 대비와 노란색 축소",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:31:48.499124+00:00",
+  "sourcePageSha256": "1ee0a5f7e5e7b5370649dfc3a0e60e2a4051905722acba679c815f2a0a69034c"
+}

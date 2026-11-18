@@ -1,0 +1,13 @@
+{
+  "id": 1805,
+  "verdict": "보류",
+  "use": "S02 화덕 잔해 변형",
+  "reason": "13cm 노란 벽돌 파편으로 1804와 중복",
+  "edit": "색 대비 감소",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:35:21.241774+00:00",
+  "sourcePageSha256": "e3192dc6b803e5e3065ebb0cb4d150663b6ddfdbb0e89897a6e529343a235dd4"
+}

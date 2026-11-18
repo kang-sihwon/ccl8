@@ -1,0 +1,13 @@
+{
+  "id": 1102,
+  "verdict": "보류",
+  "use": "S01 작은 돌 조각 변형",
+  "reason": "20cm의 얇고 붉은 거친 돌로 기존 자갈 후보 충분",
+  "edit": "주황색 제거 및 실제 크기 유지",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:05:26.876344+00:00",
+  "sourcePageSha256": "af3c9d026cb476214b595ae31675110a1150cafb71f0472da5ae8df4c354cffd"
+}

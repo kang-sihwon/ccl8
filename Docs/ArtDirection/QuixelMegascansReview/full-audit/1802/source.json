@@ -1,0 +1,74 @@
+{
+  "id": 1802,
+  "url": "https://www.fab.com/listings/649bf39d-bc07-4301-8178-fd079891d138",
+  "uid": "649bf39d-bc07-4301-8178-fd079891d138",
+  "title": "Broken Clay Tiles Pack",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:20:15.899981+00:00",
+  "pageSha256": "4eb572f5208327ffd50c9c9d008b2ba917df24641548c36550b8a794c226f9e5",
+  "description": "Texel density: 2948 px/m\nPhysical size: 0.09m x 0.1m x 0.03m\nMesh type: Closed mesh\nMaps: AO Displacement(high tier only) Specular Basecolor Cavity Gloss Normal Roughness\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.09m x 0.1m x 0.03m",
+  "mesh": "Closed mesh",
+  "texelDensity": "2948 px/m",
+  "maps": "AO Displacement(high tier only) Specular Basecolor Cavity Gloss Normal Roughness",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/aec1de23-d328-4c29-ba38-1d401464b64b/02822573-a188-4726-bf40-86edf02a1b95.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/aec1de23-d328-4c29-ba38-1d401464b64b/9d99173d-8da4-4e0f-b698-420487264f7a.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

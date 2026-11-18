@@ -1,0 +1,13 @@
+{
+  "id": 1297,
+  "verdict": "보류",
+  "use": "S08 작은 이끼 바위군",
+  "reason": "99cm의 거친 돌과 흙 혼합으로 기존 접합 패치 충분",
+  "edit": "요철 대비 축소 및 경계 매입",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:13:25.178010+00:00",
+  "sourcePageSha256": "9fa6586aca5b7644bccaa74bbc86e295567ee4311ef9eb94ed0edcf12ca3eb24"
+}

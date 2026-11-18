@@ -1,0 +1,85 @@
+{
+  "id": 1947,
+  "url": "https://www.fab.com/listings/c85ea6b1-34aa-485a-aa4b-b73d0389f268",
+  "uid": "c85ea6b1-34aa-485a-aa4b-b73d0389f268",
+  "title": "Ceramic Flask",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:21:11.577764+00:00",
+  "pageSha256": "0802e973df992ec9bcbf01481e175e5d6fd6289ba288a97cc01051a095d7428a",
+  "description": "Texel density: 1118 px/m\nPhysical size: 0.09m x 0.11m x 0.2m\nMesh type: Closed mesh\nMaps: Displacement(high tier only) Cavity Gloss Specular Basecolor AO Roughness Normal\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.09m x 0.11m x 0.2m",
+  "mesh": "Closed mesh",
+  "texelDensity": "1118 px/m",
+  "maps": "Displacement(high tier only) Cavity Gloss Specular Basecolor AO Roughness Normal",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "UEFN Reference",
+      "extensions": null,
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "UEFN - Reference only",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/2bff456c-cb60-464a-b9b8-f2fe4bfb0c02/679ccab0-db92-4a33-99c8-85810560ba8f.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/2bff456c-cb60-464a-b9b8-f2fe4bfb0c02/a1650577-238b-4006-b3ac-c9f363b781be.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

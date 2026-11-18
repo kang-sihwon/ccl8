@@ -1,0 +1,74 @@
+{
+  "id": 1171,
+  "url": "https://www.fab.com/listings/c13eb941-f067-4fd8-b10d-6d6654d73eed",
+  "uid": "c13eb941-f067-4fd8-b10d-6d6654d73eed",
+  "title": "Forest American Rock Mossy Mixed Small 01",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:16:19.106576+00:00",
+  "pageSha256": "26c922ae1f183881682aa5f035d428a1399f1f652c1edcb3c10ccd02de3d5d6d",
+  "description": "The ‘Forest American’ themed assets capture the damp, layered feel of wetland and forested terrain. Featuring high-fidelity scans of tree trunks, roots, stumps, and scattered mushrooms, this collection reflects a landscape shaped by moisture and dense plant growth.\nIdeal for creating lush, natural wooded environments with a strong sense of scale and realism.\nTexel density: 3978 px/m\nPhysical size: 1.04m x 1.07m x 0.86m\nMesh type: Closed mesh\nMaps: AO Basecolor Bump Cavity Displacement Gloss Normal Roughness Specular\nCreate high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.\n\nCurious about future releases? Discover upcoming Megascans content and vote for your favorite themes: Public Roadmap",
+  "size": "1.04m x 1.07m x 0.86m",
+  "mesh": "Closed mesh",
+  "texelDensity": "3978 px/m",
+  "maps": "AO Basecolor Bump Cavity Displacement Gloss Normal Roughness Specular",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/a0fa640e-5178-47f9-817e-14c239fb9c73/23cb9d9b-fa2c-4d17-a980-81c04f662a8b.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/a0fa640e-5178-47f9-817e-14c239fb9c73/13d49a31-37a0-468a-b4ef-d759705a8401.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

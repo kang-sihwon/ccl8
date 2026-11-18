@@ -1,0 +1,98 @@
+{
+  "id": 1836,
+  "url": "https://www.fab.com/listings/d35ba867-3ee5-46cd-8a83-6bfd88f9ec81",
+  "uid": "d35ba867-3ee5-46cd-8a83-6bfd88f9ec81",
+  "title": "Industrial Construction Tools Shovel Wood Square 01",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:20:30.610344+00:00",
+  "pageSha256": "3fb5c800d948d47ebbf410bd879ec3b6c7bcf51c1f9112fe07363a519fb05aaf",
+  "description": "Ready to build something raw and real? The ‘Construction Site’ themed assets are here to provide the perfect foundation for your next project. \n\nWe've captured every detail of an active construction site, from the rough textures of exposed bricks and piles of concrete to the numerous tools and materials that tell a story of work in progress.\n\nShowcase Video\n\nSee the construction site themed assets in action! This quick-start tutorial shows you exactly how to create a stunning, realistic scene with them.\n\nTexel density: 14086 px/m\nPhysical size: 0.24m x 1.03m x 0.16m\nMesh type: Closed mesh\nMaps: AO Basecolor Bump Cavity Diffuse Displacement Gloss Metalness Normal Roughness Specular\n\nCreate high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.\n\nCurious about future releases? Discover upcoming Megascans content and vote for your favorite themes: Public Roadmap",
+  "size": "0.24m x 1.03m x 0.16m",
+  "mesh": "Closed mesh",
+  "texelDensity": "14086 px/m",
+  "maps": "AO Basecolor Bump Cavity Diffuse Displacement Gloss Metalness Normal Roughness Specular",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "ZBrush",
+      "extensions": [
+        "zbp",
+        "ztl"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/636db979-5720-4cc0-830a-662ecea44a0b/1732d055-74d9-4971-bab1-f21e7e5e0208.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/636db979-5720-4cc0-830a-662ecea44a0b/cfd435ff-2ef8-4aaf-a4d8-e956133426b4.jpeg"
+    },
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/b2bf66f2-8fcc-4f0a-bf55-c4c1ef6c1eb8/f27b1671-524e-4fe7-b57d-50aede363584.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 2,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/b2bf66f2-8fcc-4f0a-bf55-c4c1ef6c1eb8/bbf7a9af-a3c7-4a69-bc6c-839e271179fa.jpg"
+    },
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/2acd9aa1-6587-4dd0-98d0-2d2f7b0cf022/c82217bd-4eb3-4ef1-9df6-96b58a4e3cf2.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 3,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/2acd9aa1-6587-4dd0-98d0-2d2f7b0cf022/25caed83-f057-413b-807c-0d01ccc12ce0.jpg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg",
+    "gallery-02.jpg",
+    "gallery-03.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

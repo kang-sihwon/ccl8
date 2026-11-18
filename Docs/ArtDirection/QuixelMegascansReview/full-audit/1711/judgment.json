@@ -1,0 +1,13 @@
+{
+  "id": 1711,
+  "verdict": "제외",
+  "use": "현재 세 장소 제외",
+  "reason": "5cm 선명한 붉은 돌은 회색 자연석과 다름",
+  "edit": "기존 회색 자갈 사용",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:31:48.512793+00:00",
+  "sourcePageSha256": "1bbb406701227deedbfdea64965596536b7b17d586e2b30ec21be1d30e48a61c"
+}

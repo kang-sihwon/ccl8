@@ -1,0 +1,13 @@
+{
+  "id": 1189,
+  "verdict": "보류",
+  "use": "S01 층이 드러난 긴 돌",
+  "reason": "1.5m의 매끈한 층상 형태로 기존 수변 암석 충분",
+  "edit": "갈색 층 대비 축소",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:09:31.919563+00:00",
+  "sourcePageSha256": "60f9db52d6d3e8698c43a24f3bb17c3b12ac8ea78cbaf0bcb6236d5603a5f842"
+}

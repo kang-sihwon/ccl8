@@ -1,0 +1,13 @@
+{
+  "id": 2034,
+  "verdict": "보류",
+  "use": "S02 작은 용기 대안",
+  "reason": "13cm 촘촘한 동심원 단차가 장식적",
+  "edit": "단차 단순화",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:44:39.440450+00:00",
+  "sourcePageSha256": "e1a09fb06cfd2c5b660622d35a02f6f0f3234206f363b84fb3ea263712feb65b"
+}

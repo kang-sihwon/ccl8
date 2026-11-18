@@ -1,0 +1,82 @@
+{
+  "id": 1147,
+  "url": "https://www.fab.com/listings/fe808d77-d23b-4993-bfd3-63bedccc7f13",
+  "uid": "fe808d77-d23b-4993-bfd3-63bedccc7f13",
+  "title": "Eroded Rocky Ground",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:16:09.503802+00:00",
+  "pageSha256": "d74d296d78b7fed0e2fffc16eae39dc723742381aab7369eb8e187231ea11d55",
+  "description": "Texel density: 5715 px/m\nPhysical size: 3.68m x 7.25m x 0.32m\nMesh type: Open mesh\nMaps: Displacement(high tier only) Cavity Gloss Specular Basecolor Roughness Normal AO Bump\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "3.68m x 7.25m x 0.32m",
+  "mesh": "Open mesh",
+  "texelDensity": "5715 px/m",
+  "maps": "Displacement(high tier only) Cavity Gloss Specular Basecolor Roughness Normal AO Bump",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "ZBrush",
+      "extensions": [
+        "zbp",
+        "ztl"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/18581ab8-5255-41f1-9c31-5355af12e950/ffb7786f-15c3-4f7e-b4da-c48a0b882d61.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/18581ab8-5255-41f1-9c31-5355af12e950/fd304a5a-c04c-4687-bb7d-177446bb9f3d.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

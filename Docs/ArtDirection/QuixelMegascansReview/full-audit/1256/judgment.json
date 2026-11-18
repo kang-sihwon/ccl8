@@ -1,0 +1,13 @@
+{
+  "id": 1256,
+  "verdict": "보류",
+  "use": "S08 둥근 낮은 바위",
+  "reason": "1.96m의 둥근 흰 회색 덩어리로 기존 바위와 중복",
+  "edit": "작은 구멍과 흰색 대비 축소",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:13:25.131957+00:00",
+  "sourcePageSha256": "eafcb1c79abedb704337bba9a2a8f8f08436f826bcf8744914912730623f5456"
+}

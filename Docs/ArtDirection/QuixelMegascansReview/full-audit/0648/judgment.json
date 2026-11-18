@@ -1,0 +1,13 @@
+{
+  "id": 648,
+  "verdict": "보류",
+  "use": "S08 길고 가는 마른 가지",
+  "reason": "1.15m의 밝은 굴곡 가지로 0644·0512와 역할이 겹친다.",
+  "edit": "밝기 완화 후 변형으로만 도입",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:41:41.768855+00:00",
+  "sourcePageSha256": "f78af856d08924cdfc9f6e63b45bc9cc9f303b4c4212f814ab4354109ee0ba34"
+}

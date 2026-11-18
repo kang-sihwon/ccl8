@@ -1,0 +1,13 @@
+{
+  "id": 760,
+  "verdict": "보류",
+  "use": "S02 작은 갈라진 수피",
+  "reason": "10cm의 굵고 붉은 내부 파편으로 별도 우선 역할이 약하다.",
+  "edit": "주황 채도 완화; 근경 필요 시만",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:46:33.137760+00:00",
+  "sourcePageSha256": "2e7b5329f190f9b9bb6cba948f22694c9b19d801edea44b793c34a11d44ee18f"
+}

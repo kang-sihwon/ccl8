@@ -1,0 +1,13 @@
+{
+  "id": 1401,
+  "verdict": "추천",
+  "use": "S08 숲길 가장자리 낮은 돌·낙엽 바닥",
+  "reason": "1.98m의 낮고 성긴 돌과 낙엽이 길 접합부에 적합",
+  "edit": "지의류 명도 절제 및 열린 경계 매입",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:19:10.428809+00:00",
+  "sourcePageSha256": "35d19b2ee18109f57400ed9563e0c00d6fea5bf09f1fa17cec7aa982dbb5b7e0"
+}

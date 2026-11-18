@@ -1,0 +1,13 @@
+{
+  "id": 2042,
+  "verdict": "보류",
+  "use": "S01 박 용기 화물 대안",
+  "reason": "42cm 큰 박은 가능하나 흰 얼룩과 식문화 용도 미확정",
+  "edit": "색 정리·운반 품목 확인",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:44:39.448716+00:00",
+  "sourcePageSha256": "f77c96c8f28214600e579d5daeae24793c427e510477ccabf95f5e314cfe12b5"
+}

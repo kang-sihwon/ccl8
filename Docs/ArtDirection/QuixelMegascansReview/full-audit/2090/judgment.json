@@ -1,0 +1,13 @@
+{
+  "id": 2090,
+  "verdict": "보류",
+  "use": "S01 둔치 계단 대안",
+  "reason": "3.61m 폭의 5단 석조 계단은 현재 나루 단차와 동선에 맞는지 미확정",
+  "edit": "지도 고저차 유지 및 열린 경계 연결",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:46:35.334375+00:00",
+  "sourcePageSha256": "ad0c08fdebbd0f7625b0ef1d4bdd912dfa780d0b76b17383dfb7dade5fe6765d"
+}

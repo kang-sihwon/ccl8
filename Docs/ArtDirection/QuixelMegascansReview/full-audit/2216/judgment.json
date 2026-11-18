@@ -1,0 +1,13 @@
+{
+  "id": 2216,
+  "verdict": "제외",
+  "use": "현재 세 장소 제외",
+  "reason": "5cm 성형 너깃은 현대 가공식품 인상이 강함",
+  "edit": "현재 식사 시안과 부적합",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:53:43.619154+00:00",
+  "sourcePageSha256": "ac5d4956c143e11be7d4dc29bda637fd9d0ab4363969a15928bbaac2f1ec40b1"
+}

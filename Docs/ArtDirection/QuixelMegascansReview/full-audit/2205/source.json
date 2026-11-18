@@ -1,0 +1,85 @@
+{
+  "id": 2205,
+  "url": "https://www.fab.com/listings/4a1a2af4-9536-4c4a-bce0-166036134372",
+  "uid": "4a1a2af4-9536-4c4a-bce0-166036134372",
+  "title": "Brown Bread Roll",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:22:48.854778+00:00",
+  "pageSha256": "912d8c283825d225a84a09eaf1f44bd3a2628b278d8008866b988d49b5d6f10b",
+  "description": "Texel density: 1007 px/m\nPhysical size: 0.21m x 0.21m x 0.13m\nMesh type: Closed mesh\nMaps: Basecolor Gloss Displacement(high tier only) Cavity Normal Specular AO Roughness\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.21m x 0.21m x 0.13m",
+  "mesh": "Closed mesh",
+  "texelDensity": "1007 px/m",
+  "maps": "Basecolor Gloss Displacement(high tier only) Cavity Normal Specular AO Roughness",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "UEFN Reference",
+      "extensions": null,
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "UEFN - Reference only",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/706fd94d-12ed-43d8-b7bf-fd52e5d248d4/8f80139e-31e3-4065-a4c7-4f4853d0202c.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/706fd94d-12ed-43d8-b7bf-fd52e5d248d4/d9830ee3-de64-4ffb-a6fc-313f30aaaa0b.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

@@ -1,0 +1,74 @@
+{
+  "id": 1977,
+  "url": "https://www.fab.com/listings/55566ea2-4ea0-434f-a397-e006119f0395",
+  "uid": "55566ea2-4ea0-434f-a397-e006119f0395",
+  "title": "Decorative Stone Bowl",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:21:23.162121+00:00",
+  "pageSha256": "620a3df5cb6a93a8e689cb59d047d50abdc42f46dafa50836ce24fbf18c45c49",
+  "description": "Texel density: 1098 px/m\nPhysical size: 0.16m x 0.16m x 0.07m\nMesh type: Closed mesh\nMaps: AO Displacement(high tier only) Specular Basecolor Cavity Gloss Normal Roughness\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.16m x 0.16m x 0.07m",
+  "mesh": "Closed mesh",
+  "texelDensity": "1098 px/m",
+  "maps": "AO Displacement(high tier only) Specular Basecolor Cavity Gloss Normal Roughness",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/b9490552-682c-4b3a-8b9f-a363f9b2bf7c/f94a7613-70e5-415e-91e6-79c5c71ff1e9.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/b9490552-682c-4b3a-8b9f-a363f9b2bf7c/a9d6fd8e-f20c-42ad-975f-f751b4ad869b.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

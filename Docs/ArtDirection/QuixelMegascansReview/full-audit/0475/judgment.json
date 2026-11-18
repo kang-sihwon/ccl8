@@ -1,0 +1,13 @@
+{
+  "id": 475,
+  "verdict": "보류",
+  "use": "S08 얇은 암편 더미",
+  "reason": "얇은 조각이 겹치고 이끼가 강해 0444와 용도가 중복된다.",
+  "edit": "0444와 동시 도입 피하기; 이끼 채도 완화",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:29:37.280869+00:00",
+  "sourcePageSha256": "ebd59425a3abd473f710abfd48f4d9668b668ba27ae2e714978b10b0b439dd8f"
+}

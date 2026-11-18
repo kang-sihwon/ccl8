@@ -1,0 +1,13 @@
+{
+  "id": 1373,
+  "verdict": "보류",
+  "use": "S08 큰 이끼 바위 변형",
+  "reason": "1.3m의 상단 이끼와 흰 얼룩이 매우 많아 기존 후보 우선",
+  "edit": "이끼 및 지의류 대비 축소",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:17:00.805416+00:00",
+  "sourcePageSha256": "efcc2a05f303cba84a7ba2604d2c4508bb46d9198b4bc5106497465324a84400"
+}

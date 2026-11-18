@@ -1,0 +1,13 @@
+{
+  "id": 2247,
+  "verdict": "보류",
+  "use": "S01 향신료 대안",
+  "reason": "9cm 갈라진 생강은2246과 중복",
+  "edit": "대표 한 종류만 선택",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:53:43.648852+00:00",
+  "sourcePageSha256": "97eab29f8f43e725c0f1ec01f46239c9d370198e985a324716097cad50bb5e7f"
+}

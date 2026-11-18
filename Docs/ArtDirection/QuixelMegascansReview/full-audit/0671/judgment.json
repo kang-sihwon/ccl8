@@ -1,0 +1,13 @@
+{
+  "id": 671,
+  "verdict": "보류",
+  "use": "S08 벗겨진 가지 파편",
+  "reason": "96cm의 찢어진 수피와 밝은 끝이 보이나 0613과 용도가 겹친다.",
+  "edit": "수피 대비 완화 후 변형으로 제한",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:41:41.791245+00:00",
+  "sourcePageSha256": "dc7823057fc43b3dfb059283d8a540fe8d87eb9b5d4a46c7504a322fcc42f0f7"
+}

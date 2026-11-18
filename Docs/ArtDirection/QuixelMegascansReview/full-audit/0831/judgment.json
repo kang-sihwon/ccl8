@@ -1,0 +1,13 @@
+{
+  "id": 831,
+  "verdict": "보류",
+  "use": "S08 짧은 이끼 가지",
+  "reason": "60cm의 굽은 수피와 짧은 돌출이 0667의 작은 변형이다.",
+  "edit": "기존 가지 반복 필요 시만",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:52:44.785962+00:00",
+  "sourcePageSha256": "350aa765d5e80f73f1b280932ffe563054e24a3ac2fbfa49491b157c402bb06a"
+}

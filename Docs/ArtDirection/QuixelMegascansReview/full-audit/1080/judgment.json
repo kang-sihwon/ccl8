@@ -1,0 +1,13 @@
+{
+  "id": 1080,
+  "verdict": "제외",
+  "use": "현재 세 장소 배치 없음",
+  "reason": "91cm의 세로 흘러내린 골과 기둥 실루엣이 동굴 침전물로 읽힘",
+  "edit": "현재 배치 제외",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:05:26.854309+00:00",
+  "sourcePageSha256": "9336c826bb929ee92f59a9fb503e77117c74ffd6f404a426d06570f9d1c56502"
+}

@@ -1,0 +1,82 @@
+{
+  "id": 1897,
+  "url": "https://www.fab.com/listings/b94822f7-e18e-4fcb-944b-bca9569b5aa5",
+  "uid": "b94822f7-e18e-4fcb-944b-bca9569b5aa5",
+  "title": "Billhook",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:20:53.914401+00:00",
+  "pageSha256": "cc73b7467ccbd6e9f34667b676e0a2e11b7d51bbb6068e81f291863590f721d6",
+  "description": "Texel density: 2881 px/m\nPhysical size: 0.1m x 0.34m x 0.03m\nMesh type: Closed mesh\nMaps: Specular Roughness Cavity Normal AO Basecolor Bump Diffuse Displacement(high tier only) Metalness\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.1m x 0.34m x 0.03m",
+  "mesh": "Closed mesh",
+  "texelDensity": "2881 px/m",
+  "maps": "Specular Roughness Cavity Normal AO Basecolor Bump Diffuse Displacement(high tier only) Metalness",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "ZBrush",
+      "extensions": [
+        "zbp",
+        "ztl"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/4e14f3cc-3fb1-43ae-8dcf-68e80f25f395/7da4fe4c-0b79-4add-a0df-75ff51c3f654.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/4e14f3cc-3fb1-43ae-8dcf-68e80f25f395/af98bec2-a250-4f6e-903b-0261702a2180.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

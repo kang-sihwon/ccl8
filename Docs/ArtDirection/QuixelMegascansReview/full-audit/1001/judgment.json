@@ -1,0 +1,13 @@
+{
+  "id": 1001,
+  "verdict": "보류",
+  "use": "S08 작은 보라 버섯",
+  "reason": "6cm의 찢긴 갓과 꺾인 대로 977 변형과 중복",
+  "edit": "보라색 완화 및 대 접합",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:01:11.404830+00:00",
+  "sourcePageSha256": "03292d53e4f2e93bf8849c2a630d30f23ac09256d61b37db0e43f1bd05b8a664"
+}

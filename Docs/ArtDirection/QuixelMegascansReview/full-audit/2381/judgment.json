@@ -1,0 +1,13 @@
+{
+  "id": 2381,
+  "verdict": "제외",
+  "use": "현재 세 장소 제외",
+  "reason": "90cm 곡괭이에 검은 합성재처럼 보이는 손잡이와 회색 결합부가 있음",
+  "edit": "단순 목제2374 우선",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:57:51.211306+00:00",
+  "sourcePageSha256": "32b3cae6b946254a8da6a779db4eb1b12720ab3baa6da25d73656087a02a9023"
+}

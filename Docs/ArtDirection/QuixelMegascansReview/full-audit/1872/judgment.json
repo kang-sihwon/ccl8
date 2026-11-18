@@ -1,0 +1,13 @@
+{
+  "id": 1872,
+  "verdict": "보류",
+  "use": "S02 화덕 벽돌 변형",
+  "reason": "23cm 선명한 주홍색이 시안보다 강함",
+  "edit": "적갈색으로 통일",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:36:56.657687+00:00",
+  "sourcePageSha256": "af144dab7e5d4026b8639be12012979f66531b2d5caeb761a249340d597aa969"
+}

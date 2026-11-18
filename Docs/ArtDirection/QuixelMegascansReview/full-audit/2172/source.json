@@ -1,0 +1,90 @@
+{
+  "id": 2172,
+  "url": "https://www.fab.com/listings/579baa33-f521-4e10-b469-1cdcef26ac0e",
+  "uid": "579baa33-f521-4e10-b469-1cdcef26ac0e",
+  "title": "Historic Medieval Weapon Axe Wood Long 01",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:22:36.733341+00:00",
+  "pageSha256": "46c4279db566102465f06c25514eff0454228e2cd1df12790c6003160dda4375",
+  "description": "Step back in time with ‘Medieval Weapons’ themed assets and immerse yourself in the world of chivalry, epic battles, and grand castle life.\nNow offering a range of weapons that were once the tools of knights, vikings, and warriors. Don't just tell a story—bring it to life. Let the crossed axes, feathered arrows and the weathered shields speak to the courage and conflict of the past.\n\nShowcase Video \n\nTexel density: 18300 px/m\nPhysical size: 0.27m x 0.98m x 0.04m\nMesh type: Closed mesh\nMaps: AO Basecolor Bump Cavity Diffuse Displacement Gloss Metalness Normal Roughness Specular\n\nCreate high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.\n\nCurious about future releases? Discover upcoming Megascans content and vote for your favorite themes: Public Roadmap",
+  "size": "0.27m x 0.98m x 0.04m",
+  "mesh": "Closed mesh",
+  "texelDensity": "18300 px/m",
+  "maps": "AO Basecolor Bump Cavity Diffuse Displacement Gloss Metalness Normal Roughness Specular",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "ZBrush",
+      "extensions": [
+        "zbp",
+        "ztl"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/4197a074-0fa9-41cf-831a-24e99116cfa4/621dd52b-f530-4f05-b3cb-f9bc1426f1e7.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/4197a074-0fa9-41cf-831a-24e99116cfa4/b6e17ee9-1519-40da-83f3-0f5a2f34bca0.jpeg"
+    },
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/f4f406d7-2e7a-47fc-9d58-e47cb2960971/deb78cb2-7257-40cf-87ab-fddd754a4e5d.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 2,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/f4f406d7-2e7a-47fc-9d58-e47cb2960971/fee8a54d-696c-43e9-814b-0092eea80f86.jpg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg",
+    "gallery-02.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

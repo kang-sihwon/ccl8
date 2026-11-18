@@ -1,0 +1,13 @@
+{
+  "id": 537,
+  "verdict": "보류",
+  "use": "S08 낮은 고사리 대체",
+  "reason": "밝은 녹색의 낮은 군락으로 기존 Common Fern과 같은 역할이다.",
+  "edit": "기존 후보와 잎 밀도 비교 후 도입",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:36:32.278260+00:00",
+  "sourcePageSha256": "2b76560c1416f5a05acbfc0ca1a5302fa4bd4a05f269d0d7871d7d2e73301014"
+}

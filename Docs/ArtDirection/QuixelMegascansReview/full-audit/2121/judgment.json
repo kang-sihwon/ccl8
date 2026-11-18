@@ -1,0 +1,13 @@
+{
+  "id": 2121,
+  "verdict": "보류",
+  "use": "S02 도기병 변형",
+  "reason": "23cm 붉은 원통병은 1943과 중복",
+  "edit": "채도 감소",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:48:31.615380+00:00",
+  "sourcePageSha256": "f188317a55e9f5fb8c63aa0f75b8ad7292aeb87a99a8e3fffa36b133188dad2e"
+}

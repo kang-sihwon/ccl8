@@ -1,0 +1,13 @@
+{
+  "id": 486,
+  "verdict": "추천",
+  "use": "S08 땅에 묻힌 작은 암반",
+  "reason": "큰 층진 돌 주변에 흙이 붙어 지면과 바위의 이음이 자연스럽다.",
+  "edit": "녹색 완화; 바닥 경계 매립",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:32:36.358363+00:00",
+  "sourcePageSha256": "1bd98a71e4638c697780c47cf0b289b2a365d41ed11a38932ea9a5fa15eb2d58"
+}

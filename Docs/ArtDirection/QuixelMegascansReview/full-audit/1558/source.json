@@ -1,0 +1,74 @@
+{
+  "id": 1558,
+  "url": "https://www.fab.com/listings/d146c1aa-99b5-4841-9bd4-737761b25bb5",
+  "uid": "d146c1aa-99b5-4841-9bd4-737761b25bb5",
+  "title": "Rounded Cobble",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:18:44.077393+00:00",
+  "pageSha256": "20aa3f2af7251490c21a7db1a164cb0799ca8b9138c00a950ea6073d6cc71d35",
+  "description": "Texel density: 1229 px/m\nPhysical size: 0.06m x 0.07m x 0.07m\nMesh type: Closed mesh\nMaps: Displacement(high tier only) AO Normal Basecolor Specular Cavity Roughness Gloss\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.06m x 0.07m x 0.07m",
+  "mesh": "Closed mesh",
+  "texelDensity": "1229 px/m",
+  "maps": "Displacement(high tier only) AO Normal Basecolor Specular Cavity Roughness Gloss",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/58bff663-d95e-4ba2-9e95-376e7cd5781b/5771aab8-ac18-4080-91e6-c6084cb55838.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/58bff663-d95e-4ba2-9e95-376e7cd5781b/0e481ac9-02a7-4380-8f75-3df15defec40.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

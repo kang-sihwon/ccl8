@@ -1,0 +1,74 @@
+{
+  "id": 783,
+  "url": "https://www.fab.com/listings/a9031d69-7e9c-43a2-bbdd-71c10b025f96",
+  "uid": "a9031d69-7e9c-43a2-bbdd-71c10b025f96",
+  "title": "Forest Mediterranean Tree Branch Wood Long 13",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:13:50.610521+00:00",
+  "pageSha256": "75f3795e27b6151d62387c55b8026e592822aa3126578a505e776f7b5312f3bf",
+  "description": "The ‘Forest Mediterranean’ themed assets capture the sun-drenched feel of coastal woodland terrain. Featuring high-fidelity scans of pine cones, tree bark and branches, and scattered rock formations, this collection reflects a landscape shaped by dry heat and seasonal growth.\nIdeal for creating warm, wooded outdoor environments with a strong sense of scale, realism, and environmental storytelling.\nTexel density: 12979 px/m\nPhysical size: 0.35m x 1.45m x 0.2m\nMesh type: Closed mesh\nMaps: AO Basecolor Bump Cavity Displacement Gloss Normal Roughness Specular\nCreate high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.\n\nCurious about future releases? Discover upcoming Megascans content and vote for your favorite themes: Public Roadmap",
+  "size": "0.35m x 1.45m x 0.2m",
+  "mesh": "Closed mesh",
+  "texelDensity": "12979 px/m",
+  "maps": "AO Basecolor Bump Cavity Displacement Gloss Normal Roughness Specular",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/92a5734a-2c91-4f6a-a982-7b4edb77b131/959fe87d-591c-4a1c-98c7-7aad180b6475.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/92a5734a-2c91-4f6a-a982-7b4edb77b131/fdda216d-b893-444a-a664-3c76fad88672.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

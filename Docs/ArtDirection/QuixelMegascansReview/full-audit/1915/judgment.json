@@ -1,0 +1,13 @@
+{
+  "id": 1915,
+  "verdict": "보류",
+  "use": "S02 탄 장작 변형",
+  "reason": "18cm 붉은 단면과 흰 재가 강해 1909 우선",
+  "edit": "채도·대비 완화",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:38:57.963484+00:00",
+  "sourcePageSha256": "e7bc962f6d2a30b7e363579348149dce13b560fb417cd2dbd04adc9923c95e9d"
+}

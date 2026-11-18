@@ -1,0 +1,13 @@
+{
+  "id": 1794,
+  "verdict": "추천",
+  "use": "S02 자재 놓는 곳의 붉은 기와 조각",
+  "reason": "15cm 납작한 붉은 파편이 시안의 붉은 지붕과 연결됨",
+  "edit": "실제 지붕 기와 재질에 맞춰 소량 배치",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:35:21.231094+00:00",
+  "sourcePageSha256": "e1357dbdce7d58acd2fc106ce8694171da6a62ddc691eb364c5e93cc2a1365c8"
+}

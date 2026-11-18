@@ -1,0 +1,13 @@
+{
+  "id": 1740,
+  "verdict": "수정 후 후보",
+  "use": "S02 작업대의 뿔 재료 소품",
+  "reason": "34cm 자연스러운 갈색 가지형 뿔이 수공예 재료로 가능",
+  "edit": "공방 취급 재료 설정 확인 후 소량 사용",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:33:48.177358+00:00",
+  "sourcePageSha256": "8af992ed86bd9c1a82d3787ccbaaf851fab76658ae09269af9b058335afd2eff"
+}

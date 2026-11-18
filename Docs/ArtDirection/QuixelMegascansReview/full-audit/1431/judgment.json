@@ -1,0 +1,13 @@
+{
+  "id": 1431,
+  "verdict": "보류",
+  "use": "S08 작은 세로 돌",
+  "reason": "33cm의 가는 돌에 강한 흰 세로 띠가 있어 기존 후보 우선",
+  "edit": "흰 띠 대비 축소",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:19:10.458138+00:00",
+  "sourcePageSha256": "ef4bb14d25bc69a08523681e54ca9d04025e5622b3b1da59b64dcf8c2e6fdaf4"
+}

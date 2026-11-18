@@ -1,0 +1,13 @@
+{
+  "id": 2294,
+  "verdict": "보류",
+  "use": "S01 과일 대안",
+  "reason": "10cm 노랑·분홍 배는2255와 후보 중복",
+  "edit": "식량 품목 확인",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:55:15.663117+00:00",
+  "sourcePageSha256": "928d2b35afcebdec38af3491e2cf2c90b2619ec7d8ca870e52f519af7dfbf482"
+}

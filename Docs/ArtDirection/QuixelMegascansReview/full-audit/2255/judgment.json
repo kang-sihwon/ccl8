@@ -1,0 +1,13 @@
+{
+  "id": 2255,
+  "verdict": "수정 후 후보",
+  "use": "S01 과일 바구니",
+  "reason": "15cm 굽은 녹색 배는 사과와 실루엣 구분이 좋음",
+  "edit": "식량 품목 확인·채도 통일",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:53:43.656248+00:00",
+  "sourcePageSha256": "b175ecae7c6260b6fd92c7d3c145fc04b6ae8877f976ab71cacdc2a3224ff87f"
+}

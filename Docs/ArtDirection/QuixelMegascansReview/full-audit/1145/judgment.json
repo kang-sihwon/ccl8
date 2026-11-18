@@ -1,0 +1,13 @@
+{
+  "id": 1145,
+  "verdict": "보류",
+  "use": "S08 작은 삼각 바위",
+  "reason": "72cm의 뾰족한 삼각형과 어두운 균열로 기존 회색 바위 후보 충분",
+  "edit": "황색 얼룩 완화 및 열린 면 매입",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:07:19.751611+00:00",
+  "sourcePageSha256": "dbdcad540f5d2f75c27f508300b764f95604d0d836fd043c4db7422a5284a880"
+}

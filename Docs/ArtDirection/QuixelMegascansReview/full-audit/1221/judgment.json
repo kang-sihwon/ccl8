@@ -1,0 +1,13 @@
+{
+  "id": 1221,
+  "verdict": "보류",
+  "use": "S08 지의류 바위 변형",
+  "reason": "1.45m의 둥근 돌과 흰 얼룩으로 기존 후보와 중복",
+  "edit": "흰 얼룩과 녹색 대비 축소",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:11:29.596189+00:00",
+  "sourcePageSha256": "c9235c9bbc0a8fe8dd815a08789b98060a0123f215ffe882cf5c4bb16bfa0cc1"
+}

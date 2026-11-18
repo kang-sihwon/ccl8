@@ -1,0 +1,13 @@
+{
+  "id": 1840,
+  "verdict": "보류",
+  "use": "S02 화덕 벽돌 대안",
+  "reason": "23cm 붉은 규격 벽돌의 검은 얼룩이 보임",
+  "edit": "화덕 재질 확정 후 색 통일",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:36:56.627321+00:00",
+  "sourcePageSha256": "10d1363ea7f0f21ab894196d973d0eae81cf725a7e638902bdc6c6d354cfcd4c"
+}

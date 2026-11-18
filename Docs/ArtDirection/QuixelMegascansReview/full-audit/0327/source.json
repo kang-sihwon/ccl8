@@ -1,0 +1,82 @@
+{
+  "id": 327,
+  "url": "https://www.fab.com/listings/ee9d6fa7-6d15-48a9-bce0-5c9ac51b3653",
+  "uid": "ee9d6fa7-6d15-48a9-bce0-5c9ac51b3653",
+  "title": "Wooden Dough Bowl",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:10:56.134668+00:00",
+  "pageSha256": "2eb8dfb725d879989970444d5488e72b328d7ba186c6d074e343871430240ed5",
+  "description": "Texel density: 6181 px/m\nPhysical size: 0.29m x 0.93m x 0.15m\nMesh type: Open mesh\nMaps: Displacement(high tier only) Roughness Gloss Specular Basecolor Cavity Bump Normal Ao\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.29m x 0.93m x 0.15m",
+  "mesh": "Open mesh",
+  "texelDensity": "6181 px/m",
+  "maps": "Displacement(high tier only) Roughness Gloss Specular Basecolor Cavity Bump Normal Ao",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "ZBrush",
+      "extensions": [
+        "zbp",
+        "ztl"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/925d18d3-eaef-414a-98e0-1aec2f393e14/2f11a382-0e26-4691-bb95-9f1c98f09cc9.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/925d18d3-eaef-414a-98e0-1aec2f393e14/4511cc6d-61a6-407b-b691-35dc15cb31a6.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

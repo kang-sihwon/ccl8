@@ -1,0 +1,13 @@
+{
+  "id": 691,
+  "verdict": "보류",
+  "use": "S08 작은 갈래 가지",
+  "reason": "92cm의 Y갈래가 짧게 남은 줄기로 0646과 겹친다.",
+  "edit": "기존 갈래 가지 우선",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:44:12.025723+00:00",
+  "sourcePageSha256": "31a96fd1d6d286d5ad69fa29a07b9efbb712fe70fee9c257af0d56e866643683"
+}

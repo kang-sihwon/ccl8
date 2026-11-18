@@ -1,0 +1,13 @@
+{
+  "id": 1880,
+  "verdict": "보류",
+  "use": "S02 기와 대안",
+  "reason": "24cm 주황 굴곡형은 1878과 중복",
+  "edit": "지붕 모듈 확인",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:38:57.929494+00:00",
+  "sourcePageSha256": "7d2f972b8bd3f65fa4c9756e8f1e4b70c35d09ecd3e9b243fff03fdd955a20d6"
+}

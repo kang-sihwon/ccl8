@@ -1,0 +1,82 @@
+{
+  "id": 2141,
+  "url": "https://www.fab.com/listings/7868d952-a929-4148-96e3-e18721af9247",
+  "uid": "7868d952-a929-4148-96e3-e18721af9247",
+  "title": "Old Well Crank",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:22:25.440887+00:00",
+  "pageSha256": "b8d21ca13744bb43b29a748a2aec6fe6ba4d455480136e0dfe4bfb52b7ff4549",
+  "description": "Texel density: 5858 px/m\nPhysical size: 0.46m x 2.28m x 0.79m\nMesh type: Closed mesh\nMaps: Displacement(high tier only) Cavity Gloss Specular Basecolor Roughness Normal AO Bump\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.46m x 2.28m x 0.79m",
+  "mesh": "Closed mesh",
+  "texelDensity": "5858 px/m",
+  "maps": "Displacement(high tier only) Cavity Gloss Specular Basecolor Roughness Normal AO Bump",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "ZBrush",
+      "extensions": [
+        "zbp",
+        "ztl"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/02e8d093-7a2b-42e4-8f14-afb72647bbe7/6dd36939-a755-4634-8798-aaf2ff28e40d.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/02e8d093-7a2b-42e4-8f14-afb72647bbe7/1a306aeb-aee1-4232-b99f-f1b3e29b872c.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

@@ -1,0 +1,13 @@
+{
+  "id": 1955,
+  "verdict": "보류",
+  "use": "S02 작은 컵 대안",
+  "reason": "5cm 갈색 컵의 띠 문양은 단순하나 화면 기여 낮음",
+  "edit": "근접 장면에만 사용",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:40:59.614000+00:00",
+  "sourcePageSha256": "49cc8483e34a1fed848d8ae01c9203c38cc95b92d3bd03db8972370fe0ba2d78"
+}

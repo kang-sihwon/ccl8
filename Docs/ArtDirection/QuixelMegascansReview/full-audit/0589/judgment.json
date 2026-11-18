@@ -1,0 +1,13 @@
+{
+  "id": 589,
+  "verdict": "보류",
+  "use": "S08 둥근 이끼 돌 대체",
+  "reason": "둥글고 낮은 실루엣 대부분을 갈색·초록 이끼가 덮어 기존 후보와 중복된다.",
+  "edit": "회색 면 노출 후 반복 회피용",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:38:54.185210+00:00",
+  "sourcePageSha256": "23624d5ff0ecfcc1590acbb57db7945170ad5c563550bfa14794d7fa90d5f2d5"
+}

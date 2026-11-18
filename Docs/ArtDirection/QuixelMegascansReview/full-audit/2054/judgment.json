@@ -1,0 +1,13 @@
+{
+  "id": 2054,
+  "verdict": "수정 후 후보",
+  "use": "S02 수리 대기 목제 요람",
+  "reason": "86cm 단순 목제 요람은 생활용품 수리 연출에 가능",
+  "edit": "공방 취급 품목 확인 및 흔들 다리 충돌 구성",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:44:39.460305+00:00",
+  "sourcePageSha256": "f5f396bb57cc35be7d08ee6e67cb1529ca11ade06d08de1ed80f30425a846d78"
+}

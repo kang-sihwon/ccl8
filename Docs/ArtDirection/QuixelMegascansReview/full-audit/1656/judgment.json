@@ -1,0 +1,13 @@
+{
+  "id": 1656,
+  "verdict": "보류",
+  "use": "S02 작은 돌 변형",
+  "reason": "9cm 사각 갈색 돌의 흰 점이 강함",
+  "edit": "색 대비 감소",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:30:20.104451+00:00",
+  "sourcePageSha256": "f8b0596c3ed0d59b4ce10abf06dc66f47be57d911c493258081868d09c6f3684"
+}

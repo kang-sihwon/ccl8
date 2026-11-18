@@ -1,0 +1,65 @@
+{
+  "id": 1023,
+  "url": "https://www.fab.com/listings/7e830716-e432-426f-8a88-22098b8d0290",
+  "uid": "7e830716-e432-426f-8a88-22098b8d0290",
+  "title": "Bilberry",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:15:24.037662+00:00",
+  "pageSha256": "d500b8e72db563bc1ae86b66228ec9b4705056c992d326bec335c6c7c905717f",
+  "description": "Maps: Cavity Roughness Basecolor Translucency Opacity AO Specular Displacement Bump Gloss Normal\n \nCreate high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "기재 확인 안 됨",
+  "mesh": "기재 확인 안 됨",
+  "texelDensity": "기재 확인 안 됨",
+  "maps": "Cavity Roughness Basecolor Translucency Opacity AO Specular Displacement Bump Gloss Normal",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/2b403346-e9ca-48d7-a15c-9639576f55e5/4a13fc9c-6f3c-42a9-a85b-99dfe5b04de8.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 2,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/2b403346-e9ca-48d7-a15c-9639576f55e5/6aa5d95d-4600-4d11-a6c0-d36febe780a9.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

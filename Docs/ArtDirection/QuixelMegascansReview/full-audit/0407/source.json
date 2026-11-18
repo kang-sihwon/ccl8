@@ -1,0 +1,74 @@
+{
+  "id": 407,
+  "url": "https://www.fab.com/listings/72fcaca7-e319-4249-a513-ab222f73e466",
+  "uid": "72fcaca7-e319-4249-a513-ab222f73e466",
+  "title": "Worn Wooden Crate",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:11:27.262475+00:00",
+  "pageSha256": "0f2d826057c8b1581415e322d52fec58c7192bb224103f8729fcd815f8976a6e",
+  "description": "Texel density: 5944 px/m\nPhysical size: 0.61m x 0.66m x 0.31m\nMesh type: Closed mesh\nMaps: Diffuse Displacement(high tier only) Normal Metalness Roughness Specular Basecolor AO Cavity Bump\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.61m x 0.66m x 0.31m",
+  "mesh": "Closed mesh",
+  "texelDensity": "5944 px/m",
+  "maps": "Diffuse Displacement(high tier only) Normal Metalness Roughness Specular Basecolor AO Cavity Bump",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/babc27d4-0e45-430e-af66-f57d4b71dcb4/88f67de8-23d8-4ef9-821b-9c0438d68097.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/babc27d4-0e45-430e-af66-f57d4b71dcb4/23cb850c-e253-4b13-9b6d-3265b3441cf2.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

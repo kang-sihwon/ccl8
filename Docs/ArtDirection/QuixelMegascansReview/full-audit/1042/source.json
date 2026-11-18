@@ -1,0 +1,65 @@
+{
+  "id": 1042,
+  "url": "https://www.fab.com/listings/7df9d5b8-6567-4a4d-9b37-53d63e7e6cd8",
+  "uid": "7df9d5b8-6567-4a4d-9b37-53d63e7e6cd8",
+  "title": "Giant Reed",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:15:28.993854+00:00",
+  "pageSha256": "5d3029b6005a25ded06f724f1820a900c779d5a277ca348d82adf2e1932cca03",
+  "description": "Maps: Roughness Opacity Normal Bump Specular Cavity Displacement Basecolor Translucency Gloss AO\n \nCreate high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "기재 확인 안 됨",
+  "mesh": "기재 확인 안 됨",
+  "texelDensity": "기재 확인 안 됨",
+  "maps": "Roughness Opacity Normal Bump Specular Cavity Displacement Basecolor Translucency Gloss AO",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/5650b4fd-017e-4ab5-959b-765cb4539be6/234382b4-c0aa-4c06-b7de-70f09d7a8d9d.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 2,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/5650b4fd-017e-4ab5-959b-765cb4539be6/b4a1b20f-ee65-4b4c-bb4f-b2e86c7e7acf.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

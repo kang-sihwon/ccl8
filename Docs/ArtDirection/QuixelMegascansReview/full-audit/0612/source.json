@@ -1,0 +1,93 @@
+{
+  "id": 612,
+  "url": "https://www.fab.com/listings/e8710209-bbbc-4fad-b32a-27f25071269a",
+  "uid": "e8710209-bbbc-4fad-b32a-27f25071269a",
+  "title": "Broken Tree Bark",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:12:43.730962+00:00",
+  "pageSha256": "1cecfb9a31a4107de1fa403302387c002b7497e3a7c29449b7b1a6620c933152",
+  "description": "Texel density: 5500 px/m\nPhysical size: 0.17m x 0.77m x 0.12m\nMesh type: Closed mesh\nMaps: AO Gloss Cavity Roughness Displacement(high tier only) Normal Specular Basecolor Bump\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.17m x 0.77m x 0.12m",
+  "mesh": "Closed mesh",
+  "texelDensity": "5500 px/m",
+  "maps": "AO Gloss Cavity Roughness Displacement(high tier only) Normal Specular Basecolor Bump",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "ZBrush",
+      "extensions": [
+        "zbp",
+        "ztl"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "UEFN Reference",
+      "extensions": null,
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "UEFN - Reference only",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/74ee1167-0ab3-4b54-8977-24564125ad16/4c0b44fd-b1aa-4ee4-8490-5fa52b4c2547.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/74ee1167-0ab3-4b54-8977-24564125ad16/35f39b60-149d-4504-b3d8-fb188e6dfb8d.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

@@ -1,0 +1,13 @@
+{
+  "id": 1543,
+  "verdict": "제외",
+  "use": "현재 세 장소 배치 제외",
+  "reason": "8cm 돌 전체의 강한 붉은색이 B안 회색 수변석과 다름",
+  "edit": "회색 자갈 후보 우선",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:27:20.395257+00:00",
+  "sourcePageSha256": "647f5889f42058f18cc76d15eb208c21b5980650236f46142f3da67ef0cfb8a1"
+}

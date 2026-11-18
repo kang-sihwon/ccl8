@@ -1,0 +1,13 @@
+{
+  "id": 1253,
+  "verdict": "보류",
+  "use": "S08 세로 바위 변형",
+  "reason": "2.69m의 얇고 큰 균열이 있는 돌로 기존 입구 바위와 중복",
+  "edit": "열린 면 매입 및 밝기 조절",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:13:25.128644+00:00",
+  "sourcePageSha256": "bce9ba4d27dd39bcb6dba3caac810f3f26e743714e05703dbc6101e3d084f6cc"
+}

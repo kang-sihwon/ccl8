@@ -1,0 +1,13 @@
+{
+  "id": 1989,
+  "verdict": "보류",
+  "use": "S02 장작 변형",
+  "reason": "24cm 노란 쐐기형은 1986과 중복",
+  "edit": "단면 채도 감소",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:42:46.947485+00:00",
+  "sourcePageSha256": "2214615cb85f63b6dc161bbf72a5daa4af61364a2415596d0a01dbca35f546a0"
+}

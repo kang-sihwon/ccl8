@@ -1,0 +1,93 @@
+{
+  "id": 1896,
+  "url": "https://www.fab.com/listings/dbc485cf-30b9-4cb9-b837-0df861d6a0e8",
+  "uid": "dbc485cf-30b9-4cb9-b837-0df861d6a0e8",
+  "title": "Banquet Wood Plate",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:20:53.539698+00:00",
+  "pageSha256": "04a637098124d9f9820bee1dff0298500b660fb4ae291c3b17b57f013883e8d7",
+  "description": "Texel density: 2945 px/m\nPhysical size: 0.18m x 0.17m x 0.02m\nMesh type: Closed mesh\nMaps: Basecolor Roughness Cavity Displacement(high tier only) Gloss Normal Specular AO Bump\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.18m x 0.17m x 0.02m",
+  "mesh": "Closed mesh",
+  "texelDensity": "2945 px/m",
+  "maps": "Basecolor Roughness Cavity Displacement(high tier only) Gloss Normal Specular AO Bump",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "ZBrush",
+      "extensions": [
+        "zbp",
+        "ztl"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "UEFN Reference",
+      "extensions": null,
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "UEFN - Reference only",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/22df927e-7cb9-4911-a385-ef3c89f7a946/8660e295-ab58-4769-aedf-37895bcd9af1.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/22df927e-7cb9-4911-a385-ef3c89f7a946/b4c567e8-43c9-4764-834e-18aed948ebe4.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

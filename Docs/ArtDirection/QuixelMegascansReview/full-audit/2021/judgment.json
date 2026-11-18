@@ -1,0 +1,13 @@
+{
+  "id": 2021,
+  "verdict": "수정 후 후보",
+  "use": "S02 두꺼운 작업 장부",
+  "reason": "26cm 어두운 표지와 밝게 닳은 책등이 가능하나 대비 큼",
+  "edit": "책등 밝기·문자 조절",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:44:39.428140+00:00",
+  "sourcePageSha256": "b00fce831ba6964948941470392ae43effb3528313180ab98316dc2151fc9f8b"
+}

@@ -1,0 +1,82 @@
+{
+  "id": 2152,
+  "url": "https://www.fab.com/listings/f8500664-ebc9-445a-88c5-7ad814bac515",
+  "uid": "f8500664-ebc9-445a-88c5-7ad814bac515",
+  "title": "Small Yarn Spool",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:22:29.942041+00:00",
+  "pageSha256": "7fe0569a58355125c4df02c56caea63edced3013da162bf54c4b5ced99652e2d",
+  "description": "Texel density: 5764 px/m\nPhysical size: 0.08m x 0.22m x 0.08m\nMesh type: Closed mesh\nMaps: Specular Roughness Cavity AO Bump Gloss Displacement(high tier only) Basecolor Normal\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.08m x 0.22m x 0.08m",
+  "mesh": "Closed mesh",
+  "texelDensity": "5764 px/m",
+  "maps": "Specular Roughness Cavity AO Bump Gloss Displacement(high tier only) Basecolor Normal",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "ZBrush",
+      "extensions": [
+        "zbp",
+        "ztl"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/5987e64a-ba17-4f0a-9053-8d7f2e3a3e65/39f5e01a-8f4f-4211-ad0e-e1c536d55f45.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/5987e64a-ba17-4f0a-9053-8d7f2e3a3e65/3cf1030e-ded3-4db1-b5a1-20b946566cda.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

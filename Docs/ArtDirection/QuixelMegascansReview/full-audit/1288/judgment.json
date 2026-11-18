@@ -1,0 +1,13 @@
+{
+  "id": 1288,
+  "verdict": "보류",
+  "use": "S08 원경 암벽 후보",
+  "reason": "21.58m의 매우 큰 긴 암벽으로 현재 세 장면에 필요한 범위를 넘음",
+  "edit": "원경 지형 확정 시만 검토 및 낮은 텍셀 밀도 확인",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:13:25.168400+00:00",
+  "sourcePageSha256": "e8028747bc4b76afacc58eae0b56e1ea42eea83f7bdae67605d49e6ceace8a96"
+}

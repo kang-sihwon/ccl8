@@ -1,0 +1,13 @@
+{
+  "id": 2250,
+  "verdict": "보류",
+  "use": "S01 과일 대안",
+  "reason": "13cm 노란 자몽은 색 변주지만 용도 중복",
+  "edit": "교역 확인",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:53:43.651610+00:00",
+  "sourcePageSha256": "0b09aba021fd955c2298c758166a9dbc44216a74ddb751a74fd1bbd35dbf6f44"
+}

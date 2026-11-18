@@ -1,0 +1,13 @@
+{
+  "id": 1862,
+  "verdict": "보류",
+  "use": "S02 화덕 벽돌 변형",
+  "reason": "21cm 검은 중앙과 붉은 측면 대비가 큼",
+  "edit": "그을음·채도 조절",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:36:56.648200+00:00",
+  "sourcePageSha256": "178808ce0ab53ceb24ae4c783a4520753f068e4205c124eec1e593bd925febe0"
+}

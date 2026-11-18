@@ -1,0 +1,13 @@
+{
+  "id": 2189,
+  "verdict": "보류",
+  "use": "S02 먹다 남긴 과일 대안",
+  "reason": "9cm 황록 사과 심은2188과 용도 중복",
+  "edit": "한 종류만 선택",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:52:25.937819+00:00",
+  "sourcePageSha256": "ee16808f5ffb28d2f32ec78ab4133ee9fdf896d81d84bf3ae9de6039b2cdd04e"
+}

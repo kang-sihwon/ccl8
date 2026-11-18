@@ -1,0 +1,13 @@
+{
+  "id": 877,
+  "verdict": "추천",
+  "use": "S08 낮은 속 빈 그루터기",
+  "reason": "52cm급 높이에 넓게 썩은 내부와 이끼 테두리가 명료하다.",
+  "edit": "열린 지면 경계 매립; 초록 이끼 완화",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:54:43.588935+00:00",
+  "sourcePageSha256": "d19fc6b43cb84426bc77e00cceceee66b0eadd53b62e75e118a9346ada4c9774"
+}

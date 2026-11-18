@@ -1,0 +1,13 @@
+{
+  "id": 1696,
+  "verdict": "보류",
+  "use": "S02 기단 작은 돌",
+  "reason": "11cm 밝은 사각 돌은 변형 확보됨",
+  "edit": "밝기 통일",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:31:48.498178+00:00",
+  "sourcePageSha256": "3c742e288a208161fbf1124af38e97716abcb6a91b57353ee7262d19e9abf2cf"
+}

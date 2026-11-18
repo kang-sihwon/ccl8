@@ -1,0 +1,13 @@
+{
+  "id": 1604,
+  "verdict": "보류",
+  "use": "S02 기단 주변 돌",
+  "reason": "13cm 회갈색 각진 조각으로 사용 가능하나 중복",
+  "edit": "붉은 부분 완화",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:28:52.984219+00:00",
+  "sourcePageSha256": "24ad7fcce62763e1190e4906372e19dbd35f51bfa92e6faf73f10c30ab08034d"
+}

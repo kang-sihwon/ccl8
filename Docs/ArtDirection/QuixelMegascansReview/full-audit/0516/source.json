@@ -1,0 +1,93 @@
+{
+  "id": 516,
+  "url": "https://www.fab.com/listings/c11bff3d-4576-432e-a7cf-e4da029ffd8b",
+  "uid": "c11bff3d-4576-432e-a7cf-e4da029ffd8b",
+  "title": "Nordic Forest Tree Log Large",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:12:09.443226+00:00",
+  "pageSha256": "d35e97a6bd2fe3cd7f1b264dfea807eca657e74229b3f8ee1b8734bee66faa70",
+  "description": "Texel density: 6031 px/m\nPhysical size: 0.71m x 5.51m x 0.81m\nMesh type: Closed mesh\nMaps: Bump Displacement(high tier only) Gloss Basecolor Specular AO Roughness Cavity Normal Fuzz\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.71m x 5.51m x 0.81m",
+  "mesh": "Closed mesh",
+  "texelDensity": "6031 px/m",
+  "maps": "Bump Displacement(high tier only) Gloss Basecolor Specular AO Roughness Cavity Normal Fuzz",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "ZBrush",
+      "extensions": [
+        "zbp",
+        "ztl"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "UEFN Reference",
+      "extensions": null,
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "UEFN - Reference only",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/3070dbd6-5189-458e-b924-91f231cfe563/bf5b274d-e237-4c50-a3bd-b667006c91d9.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/3070dbd6-5189-458e-b924-91f231cfe563/d4355c3a-7988-4958-8687-b0085df5bacc.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

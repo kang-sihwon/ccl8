@@ -1,0 +1,13 @@
+{
+  "id": 739,
+  "verdict": "보류",
+  "use": "S08 길고 가는 곡선 가지",
+  "reason": "1.65m의 가는 곡선으로 0512·0680과 같은 용도다.",
+  "edit": "반복 회피용으로 한정",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:46:33.117928+00:00",
+  "sourcePageSha256": "a55feb89361422548cf6f9d3b6a0d6fcbfa4e039697e5cc17d593850130f13e4"
+}

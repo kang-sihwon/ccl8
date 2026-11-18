@@ -1,0 +1,13 @@
+{
+  "id": 1766,
+  "verdict": "제외",
+  "use": "현재 세 장소 제외",
+  "reason": "원통 전체에 반복 고리 장식이 있어 B안 수공예 가구와 차이 큼",
+  "edit": "단순 목재 받침 사용",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:33:48.203421+00:00",
+  "sourcePageSha256": "851f1387fc04193f1b0f9d4f09b648eb1e838d3dbdd4100035eec5646a63bbe4"
+}

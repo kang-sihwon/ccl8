@@ -1,0 +1,13 @@
+{
+  "id": 1176,
+  "verdict": "추천",
+  "use": "S08 입구 옆 습한 뿌리·이끼 돌 바닥",
+  "reason": "2.75m의 뿌리와 제한된 이끼 돌이 그늘진 경계 구성에 유용",
+  "edit": "이끼 채도 축소 및 열린 경계 매입",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:09:31.906648+00:00",
+  "sourcePageSha256": "5af4a25b6cc40f8e5621810d9edbaf12056b4a4473262980eb0bd56a0febdb1c"
+}

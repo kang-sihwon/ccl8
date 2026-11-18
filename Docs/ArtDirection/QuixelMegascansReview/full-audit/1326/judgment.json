@@ -1,0 +1,13 @@
+{
+  "id": 1326,
+  "verdict": "보류",
+  "use": "S02 외곽 작은 바위 변형",
+  "reason": "1.21m의 황갈색 둥근 돌로 기존 경계석 후보 충분",
+  "edit": "황색을 회색으로 조절",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:15:07.655985+00:00",
+  "sourcePageSha256": "db2d6fb88a056ffd026a334c7df9ef7f9591475a0798f6856ec15ddda40fea7a"
+}

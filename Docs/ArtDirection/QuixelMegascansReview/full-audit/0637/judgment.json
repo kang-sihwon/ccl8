@@ -1,0 +1,13 @@
+{
+  "id": 637,
+  "verdict": "보류",
+  "use": "S08 밝은 마른 가지",
+  "reason": "89cm의 탈색된 직선 가지로 0638·0512 계열과 용도가 같다.",
+  "edit": "기존 가지 우선; 밝기 완화",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:41:41.757778+00:00",
+  "sourcePageSha256": "3d9d66b6e3ee45a031b31d036cf3fe065d8a714598c3314223167b1fc21e5ccf"
+}

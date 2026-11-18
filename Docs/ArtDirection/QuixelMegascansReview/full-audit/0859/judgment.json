@@ -1,0 +1,13 @@
+{
+  "id": 859,
+  "verdict": "보류",
+  "use": "S08 짧고 굵은 고사 줄기",
+  "reason": "2.33m의 단순한 몸통과 부러진 끝이 기존 굵은 통나무와 겹친다.",
+  "edit": "기존 통나무 형태 반복 시만",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:52:44.813139+00:00",
+  "sourcePageSha256": "09b59f68bb2c8cf38e9fffd64125a7157383f8b0f705f2c712f404b318291cde"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 2298,
+  "verdict": "보류",
+  "use": "S02 식사 대안",
+  "reason": "19cm 조각 빠진 파이는 조리 장면 필요",
+  "edit": "일반 빵 우선",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:55:15.666777+00:00",
+  "sourcePageSha256": "7af2ba6ad9a7f8dc0d1db50b67ae1adec6bad3fadcb2b376260690fc40a50e2b"
+}

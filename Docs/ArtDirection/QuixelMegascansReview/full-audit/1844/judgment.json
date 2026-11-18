@@ -1,0 +1,13 @@
+{
+  "id": 1844,
+  "verdict": "보류",
+  "use": "S02 화덕 벽돌 변형",
+  "reason": "23cm 흰 분진이 붙은 붉은 벽돌로 중복",
+  "edit": "분진 완화",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:36:56.631280+00:00",
+  "sourcePageSha256": "3ebf4600c2bed035c721f11f9b53b5bf1ae840d5e7b58bdf7e5da30edd665a24"
+}

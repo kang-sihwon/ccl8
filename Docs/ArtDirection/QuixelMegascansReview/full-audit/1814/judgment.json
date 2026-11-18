@@ -1,0 +1,13 @@
+{
+  "id": 1814,
+  "verdict": "보류",
+  "use": "S02 화덕 잔해 대안",
+  "reason": "13cm 선명한 주황·노란 단면은 색 수정 필요",
+  "edit": "채도 감소",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:35:21.250386+00:00",
+  "sourcePageSha256": "81d63d1464d68dbb55a3650473c67822b2d36bb64101b40d29987ef496eb9f87"
+}

@@ -1,0 +1,82 @@
+{
+  "id": 973,
+  "url": "https://www.fab.com/listings/83c5683b-19c3-483f-bf9e-1e2c35de1ba8",
+  "uid": "83c5683b-19c3-483f-bf9e-1e2c35de1ba8",
+  "title": "Bolete Mushrooms",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:15:04.019875+00:00",
+  "pageSha256": "adac343f8b08b70d5e4d3691777968c342bfcc41d203dbcaa4fd11441ee4a51b",
+  "description": "Texel density: 5686 px/m\nPhysical size: 0.1m x 0.1m x 0.11m\nMesh type: Closed mesh\nMaps: Basecolor Displacement(high tier only) Gloss AO Bump Roughness Cavity Normal Specular\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.1m x 0.1m x 0.11m",
+  "mesh": "Closed mesh",
+  "texelDensity": "5686 px/m",
+  "maps": "Basecolor Displacement(high tier only) Gloss AO Bump Roughness Cavity Normal Specular",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "ZBrush",
+      "extensions": [
+        "zbp",
+        "ztl"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/f09a3870-a452-466d-a4cd-d9d0d01cf221/6f8001b6-814b-4f78-9a62-28fa427ceb65.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/f09a3870-a452-466d-a4cd-d9d0d01cf221/7d47b3f8-635e-4f83-8927-3865856c7d8d.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

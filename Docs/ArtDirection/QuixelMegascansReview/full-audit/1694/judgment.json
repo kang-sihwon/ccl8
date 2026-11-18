@@ -1,0 +1,13 @@
+{
+  "id": 1694,
+  "verdict": "보류",
+  "use": "S02 바닥 판석 대안",
+  "reason": "34cm 낮은 갈색 돌은 1689와 기능 중복",
+  "edit": "회색화",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:31:48.496244+00:00",
+  "sourcePageSha256": "6323290a8c0734fd6d625fb06c4271a7e54f203fbc2fef19e76b8cc713677fd0"
+}

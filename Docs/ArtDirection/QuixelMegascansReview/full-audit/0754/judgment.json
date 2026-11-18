@@ -1,0 +1,13 @@
+{
+  "id": 754,
+  "verdict": "보류",
+  "use": "S02 수피 파편 대체",
+  "reason": "34cm의 넓고 거친 수피로 0753의 크기 변형 역할이다.",
+  "edit": "0753 반복 회피용으로만 도입",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:46:33.132027+00:00",
+  "sourcePageSha256": "218547360d4d5a79ed409c04f211694e4ec8109c4a21f1de3eb7fffba32fcb1b"
+}

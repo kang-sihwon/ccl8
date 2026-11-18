@@ -1,0 +1,13 @@
+{
+  "id": 1873,
+  "verdict": "수정 후 후보",
+  "use": "S02 붉은 지붕의 용마루 조각",
+  "reason": "23cm 단순 반원 기와 형태는 가능하나 검은 갈색임",
+  "edit": "붉은 기와색 맞춤 및 실제 지붕 단면·겹침 확인",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:36:56.658630+00:00",
+  "sourcePageSha256": "dc185f690f41c87d58fa28e8fbb2ead7a8530d632b3bb04b1bf45763e9d3f617"
+}

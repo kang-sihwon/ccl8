@@ -1,0 +1,13 @@
+{
+  "id": 2340,
+  "verdict": "수정 후 후보",
+  "use": "S01 보존식 화물",
+  "reason": "49cm 훈제 사슴 다리는 사냥·보존식 화물 연출 가능",
+  "edit": "사냥·교역 품목 확인·포장 별도",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:56:37.657014+00:00",
+  "sourcePageSha256": "547c687ec95c834f0160e6d43f81c4a8155852f58f3b8a9bdaa5ca38b1c4ed1d"
+}

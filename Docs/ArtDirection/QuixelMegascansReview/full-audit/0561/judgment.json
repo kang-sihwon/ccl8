@@ -1,0 +1,13 @@
+{
+  "id": 561,
+  "verdict": "추천",
+  "use": "S01·S08 근경 자갈",
+  "reason": "12cm의 둥근 회갈색 돌로 큰 바위와 바닥 재질 사이를 보완한다.",
+  "edit": "실물 크기 유지; 자갈 밀도·충돌 단순화",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:36:32.300695+00:00",
+  "sourcePageSha256": "99a8b8d777e018a81dbeb1e580567f1e995c9b4d9423b49a661d29fddad3e0f1"
+}

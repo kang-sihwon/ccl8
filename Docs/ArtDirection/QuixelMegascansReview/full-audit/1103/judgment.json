@@ -1,0 +1,13 @@
+{
+  "id": 1103,
+  "verdict": "보류",
+  "use": "S01 얇은 돌 조각 변형",
+  "reason": "38cm의 낮고 침식 홈이 있는 판으로 기존 돌 후보와 중복",
+  "edit": "회색 조절 및 지면 접합",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:05:26.877399+00:00",
+  "sourcePageSha256": "027d58f2d6ee5d0592f6a6403030372c654d4432515f8143c1f8bfc4423eada3"
+}

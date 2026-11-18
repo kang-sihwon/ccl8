@@ -1,0 +1,65 @@
+{
+  "id": 538,
+  "url": "https://www.fab.com/listings/edc17ea3-2f18-41e7-85a1-e97a9f1097f3",
+  "uid": "edc17ea3-2f18-41e7-85a1-e97a9f1097f3",
+  "title": "Fern",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:12:17.111104+00:00",
+  "pageSha256": "e17fb123dde0b78460f01b74e821ff28df740dfab4cf63acfed5b7ae4d56e29b",
+  "description": "Maps: Roughness Opacity Normal Specular Basecolor Cavity Displacement Bump Translucency Gloss AO\n \nCreate high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "기재 확인 안 됨",
+  "mesh": "기재 확인 안 됨",
+  "texelDensity": "기재 확인 안 됨",
+  "maps": "Roughness Opacity Normal Specular Basecolor Cavity Displacement Bump Translucency Gloss AO",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/4c966e0b-7fa0-453b-b082-c4aed2249040/7c32b6b5-99f0-4280-b132-7e5b8b258b42.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 2,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/4c966e0b-7fa0-453b-b082-c4aed2249040/413643b7-4512-4a90-b12a-c04d924bf975.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

@@ -1,0 +1,13 @@
+{
+  "id": 1588,
+  "verdict": "보류",
+  "use": "S08 둥근 돌 변형",
+  "reason": "29cm 회갈색 둥근 돌은 1575 계열과 기능 중복",
+  "edit": "따뜻한 색 기운 완화",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:27:20.438734+00:00",
+  "sourcePageSha256": "8c691f891e7a69b5e2a8aee738fdb37d14d7995377880bea3a2ff7773f5a248e"
+}

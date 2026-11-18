@@ -1,0 +1,13 @@
+{
+  "id": 722,
+  "verdict": "보류",
+  "use": "S08 작은 밑동 변형",
+  "reason": "40cm의 밝은 둥근 상단이 잘린 고사목보다 매끈해 기존 후보 우선도가 높다.",
+  "edit": "큰 목질 결 강조 필요; 도입 보류",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:44:12.054569+00:00",
+  "sourcePageSha256": "28abe5559fa25ea12a1cc3f8ae03f75929a2e32d56b2167a7f94b1a9a2eb49d0"
+}

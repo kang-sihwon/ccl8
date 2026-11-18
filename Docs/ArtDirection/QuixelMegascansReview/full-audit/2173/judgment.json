@@ -1,0 +1,13 @@
+{
+  "id": 2173,
+  "verdict": "보류",
+  "use": "S02 무기 수리 대안",
+  "reason": "70cm 뾰족한 후면 날이 작업 도끼보다 전투 무기를 강조",
+  "edit": "2160 장작 도끼 우선",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:52:25.921614+00:00",
+  "sourcePageSha256": "3cb6cad4ac1582de46c4c1167e9df72a334c0002dd43f02a37b1c7f6eed4a236"
+}

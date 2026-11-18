@@ -1,0 +1,13 @@
+{
+  "id": 1735,
+  "verdict": "보류",
+  "use": "S02 작은 판석 묶음",
+  "reason": "어두운 판석과 흰 지의류 무늬가 강함",
+  "edit": "얼룩 완화 및 분리 확인",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:33:48.172603+00:00",
+  "sourcePageSha256": "51b1a92dd01ac6a0b200d1dcab9cdd62c8b5507c9498207c844c23f62881941c"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 2286,
+  "verdict": "보류",
+  "use": "S02 식사 대안",
+  "reason": "6cm 씨앗이 빽빽한 빵은 작은 크기에 디테일 과다",
+  "edit": "단순 빵 우선",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:55:15.655652+00:00",
+  "sourcePageSha256": "0529e02d18711caa5ea3c95064424bd84a8bee66719b10587070da9322cb5499"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 1073,
+  "verdict": "제외",
+  "use": "현재 세 장소 배치 없음",
+  "reason": "2.73m의 수직 침전 기둥 군집이 동굴 지형으로 읽힘",
+  "edit": "동굴 구간이 정해질 때 재검토",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:05:26.846632+00:00",
+  "sourcePageSha256": "15d7205d826c3cd53c33e4953debfa24929a3dfc0e9346fe5a32d188bf30fd11"
+}

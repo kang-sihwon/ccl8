@@ -1,0 +1,13 @@
+{
+  "id": 2303,
+  "verdict": "수정 후 후보",
+  "use": "S01 식량 자루 주변",
+  "reason": "8cm 흙빛 감자는 무광 색과 단순 형태가 화물에 적합",
+  "edit": "작물 설정·자루 별도 조합",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:55:15.671340+00:00",
+  "sourcePageSha256": "a121f91b2c2ab209e351fc39457c978c27c9003a2b2215e7fa8727fc1d5a0cb7"
+}

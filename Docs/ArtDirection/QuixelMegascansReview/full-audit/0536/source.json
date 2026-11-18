@@ -1,0 +1,65 @@
+{
+  "id": 536,
+  "url": "https://www.fab.com/listings/b4bf4ef7-f341-48ee-b851-c3297909485d",
+  "uid": "b4bf4ef7-f341-48ee-b851-c3297909485d",
+  "title": "Bracken Fern",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:12:16.680643+00:00",
+  "pageSha256": "2b05cd79983d67265f69473bd66848d9f18ff132f090d409a6d2064cff44f883",
+  "description": "Maps: Roughness Opacity Normal Specular Basecolor Bump Displacement Cavity Translucency Gloss AO\n \nCreate high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "기재 확인 안 됨",
+  "mesh": "기재 확인 안 됨",
+  "texelDensity": "기재 확인 안 됨",
+  "maps": "Roughness Opacity Normal Specular Basecolor Bump Displacement Cavity Translucency Gloss AO",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/b2c3bc35-382d-4e33-99a3-466fb69caf4f/02ff7083-cc30-428b-a0aa-2c69852fac14.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/b2c3bc35-382d-4e33-99a3-466fb69caf4f/bbab3886-7189-4c95-8934-325cdc2f1426.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

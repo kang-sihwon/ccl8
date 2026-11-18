@@ -1,0 +1,13 @@
+{
+  "id": 1504,
+  "verdict": "보류",
+  "use": "S08 낮은 넓은 바위",
+  "reason": "2.3m의 낮은 회갈색 돌과 작은 얼룩으로 기존 암반 후보 충분",
+  "edit": "열린 면 매입 및 얼룩 대비 축소",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:23:18.564794+00:00",
+  "sourcePageSha256": "02286711f94d8c097d20092dfbe40cfb36ac160e0a5a0b3ab2b34a85a3bd7533"
+}

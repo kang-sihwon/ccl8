@@ -1,0 +1,13 @@
+{
+  "id": 1637,
+  "verdict": "보류",
+  "use": "S02 돌 조각 대안",
+  "reason": "12cm 얇은 갈색 조각의 흰 얼룩 대비가 큼",
+  "edit": "색 대비 완화",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:30:20.085924+00:00",
+  "sourcePageSha256": "6a1e73d371300a52aed212ed7969e2461a333ee3b22ef35fec64924ea26c066f"
+}

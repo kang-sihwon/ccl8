@@ -1,0 +1,13 @@
+{
+  "id": 315,
+  "verdict": "보류",
+  "use": "S02 얇은 타격 받침목 대체안",
+  "reason": "낮고 둥근 통나무 조각으로 0314보다 얇지만 동일한 작업대 받침 역할이다.",
+  "edit": "받침 높이 변형이 필요할 때만 추가한다.",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:16:43.039650+00:00",
+  "sourcePageSha256": "a36e5cd641d78b50955c603f9eed20ea02a8c525acd9f64cef6e134b74d169bb"
+}

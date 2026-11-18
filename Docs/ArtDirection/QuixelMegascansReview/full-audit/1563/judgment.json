@@ -1,0 +1,13 @@
+{
+  "id": 1563,
+  "verdict": "보류",
+  "use": "S01 자갈 묶음 대안",
+  "reason": "둥근 돌 종류는 다양하나 붉은 돌과 점박이 돌 혼재",
+  "edit": "개별 메시 여부 확인 후 회색 계열만 선택",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:27:20.414648+00:00",
+  "sourcePageSha256": "5929c6bfb7c8b644a15d2a74b5cdc2ebdd5cc4640681b18dd882b94510a9f15b"
+}

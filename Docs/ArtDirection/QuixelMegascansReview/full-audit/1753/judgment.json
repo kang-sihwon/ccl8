@@ -1,0 +1,13 @@
+{
+  "id": 1753,
+  "verdict": "추천",
+  "use": "S08 근경의 큰 솔방울",
+  "reason": "17cm 긴 갈색 솔방울이 작은 후보와 크기 차이를 줌",
+  "edit": "실제 수종 일치 및 개수 제한",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:33:48.191023+00:00",
+  "sourcePageSha256": "2f2ec63d8de1730815458b46bd79118fb4ba74caed769de75f876a9d0cdc89a8"
+}

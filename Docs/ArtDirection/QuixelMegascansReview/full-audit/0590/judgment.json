@@ -1,0 +1,13 @@
+{
+  "id": 590,
+  "verdict": "보류",
+  "use": "S08 활엽수 줄기 부재",
+  "reason": "가는 오리나무 밑동만 있으며 수관이 없고 기존 자작·침엽수 줄기와 역할이 겹친다.",
+  "edit": "활엽수 추가 필요 확정 후 상부 제작",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:38:54.186127+00:00",
+  "sourcePageSha256": "2c5d61251c0ad6b142ff3cc1f3d3db698f5aeb1208ba74cb94e9dfc035ba79e8"
+}

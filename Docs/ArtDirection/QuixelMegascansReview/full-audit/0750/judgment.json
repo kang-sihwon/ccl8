@@ -1,0 +1,13 @@
+{
+  "id": 750,
+  "verdict": "보류",
+  "use": "S08 긴 덩굴형 가지",
+  "reason": "1.25m의 가는 곡선으로 0748보다 추가 역할이 약하다.",
+  "edit": "덩굴 용도가 정해지기 전 보류",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:46:33.128316+00:00",
+  "sourcePageSha256": "a28d8b2b7355e31a27f92c5f3fce3d8dd8267a55135f739f2e0ff9944a058a09"
+}

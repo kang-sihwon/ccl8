@@ -1,0 +1,13 @@
+{
+  "id": 1231,
+  "verdict": "보류",
+  "use": "S01 작은 둥근 황토 자갈",
+  "reason": "10cm의 단순한 둥근 황갈색 돌로 기존 후보 충분",
+  "edit": "황색 완화",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:11:29.608398+00:00",
+  "sourcePageSha256": "4ecf22353c2fc8cec9320fb3ceefd946ed3eeaabeb232a7ec7044138f2d83a9f"
+}

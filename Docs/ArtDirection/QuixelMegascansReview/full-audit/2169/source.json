@@ -1,0 +1,82 @@
+{
+  "id": 2169,
+  "url": "https://www.fab.com/listings/8f1d4ebd-f0fe-4623-82ab-b34306cd2b4c",
+  "uid": "8f1d4ebd-f0fe-4623-82ab-b34306cd2b4c",
+  "title": "Woven Chair",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:22:35.711230+00:00",
+  "pageSha256": "0864aefa70848d72350c566a6ea05e43bbd14dbac016263b8d9ed2b5de58fafa",
+  "description": "Texel density: 6163 px/m\nPhysical size: 0.46m x 0.42m x 0.86m\nMesh type: Closed mesh\nMaps: Bump Gloss Basecolor Specular AO Roughness Cavity Normal Displacement\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.46m x 0.42m x 0.86m",
+  "mesh": "Closed mesh",
+  "texelDensity": "6163 px/m",
+  "maps": "Bump Gloss Basecolor Specular AO Roughness Cavity Normal Displacement",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "ZBrush",
+      "extensions": [
+        "zbp",
+        "ztl"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/3ff80d2f-0694-4245-8146-dae66d345d9b/60f10bd4-3eaa-425b-a81d-ac33d9f8ed28.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/3ff80d2f-0694-4245-8146-dae66d345d9b/3bea1a53-4fc1-4c78-a1c9-d39db3b29b17.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

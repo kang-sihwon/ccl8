@@ -1,0 +1,13 @@
+{
+  "id": 450,
+  "verdict": "추천",
+  "use": "S01 둑 모서리 연결",
+  "reason": "작고 둥글게 감긴 둑 조각으로 직선 강둑의 끝을 연결하기 좋다.",
+  "edit": "강변 곡선에 맞춰 매립; 초록 띠 채도 완화",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:29:37.254052+00:00",
+  "sourcePageSha256": "99522b1aa4a1b81cdfeaa226080cc220014927675fdb39fec555fe597febead4"
+}

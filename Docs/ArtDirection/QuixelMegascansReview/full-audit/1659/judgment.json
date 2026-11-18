@@ -1,0 +1,13 @@
+{
+  "id": 1659,
+  "verdict": "보류",
+  "use": "S08 작은 돌 변형",
+  "reason": "8cm 밝고 울퉁불퉁한 갈색 돌로 화면 기여 낮음",
+  "edit": "부분 매입",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:30:20.107218+00:00",
+  "sourcePageSha256": "087c0dae3fd7e39e43405405666ce8b9f96213f42f657360240302531362d7be"
+}

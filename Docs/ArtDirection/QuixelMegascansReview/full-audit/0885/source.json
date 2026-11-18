@@ -1,0 +1,82 @@
+{
+  "id": 885,
+  "url": "https://www.fab.com/listings/d9856ff0-2ceb-4f78-9423-05dedf2f54ab",
+  "uid": "d9856ff0-2ceb-4f78-9423-05dedf2f54ab",
+  "title": "Pine Bark Piece",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:14:30.052738+00:00",
+  "pageSha256": "b97f050866fd426ee9936de8b2f4d9e594dca71bdf91bca8cf58d2a6dcc4391f",
+  "description": "Texel density: 5298 px/m\nPhysical size: 0.1m x 0.25m x 0.05m\nMesh type: Closed mesh\nMaps: AO Displacement(high tier only) Specular Basecolor Bump Cavity Gloss Normal Roughness\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.1m x 0.25m x 0.05m",
+  "mesh": "Closed mesh",
+  "texelDensity": "5298 px/m",
+  "maps": "AO Displacement(high tier only) Specular Basecolor Bump Cavity Gloss Normal Roughness",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "ZBrush",
+      "extensions": [
+        "zbp",
+        "ztl"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/231e82f4-9ab7-42a1-a370-ba5af5b745af/a3a7b78b-29cd-47b4-abfd-6c4d02cdccba.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/231e82f4-9ab7-42a1-a370-ba5af5b745af/1ff57324-3a3d-4aa6-a3cb-c341a2fd4bc1.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

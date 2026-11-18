@@ -1,0 +1,13 @@
+{
+  "id": 1619,
+  "verdict": "보류",
+  "use": "S02 돌 조각 묶음 대안",
+  "reason": "밝은 붉은색 파편 여러 개로 1564보다 수정량 큼",
+  "edit": "색 보정 및 분리 여부 확인",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:28:52.999980+00:00",
+  "sourcePageSha256": "fb2a0d815fc2a5cafa958e366bc8288c4d0c60b965c2452e582216d9dbfc50e8"
+}

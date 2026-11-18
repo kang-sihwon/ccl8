@@ -1,0 +1,13 @@
+{
+  "id": 708,
+  "verdict": "보류",
+  "use": "S08 잔뿌리 패치 대체",
+  "reason": "넓은 흙 바닥에 작은 뿌리가 많아 0488보다 조밀하고 같은 역할이다.",
+  "edit": "큰 뿌리 패치 반복 시만; 미세 대비 완화",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:44:12.041626+00:00",
+  "sourcePageSha256": "acc42ef89dde35699abd55657b94008c1c2b300948f406e76fe166c20cbbb47b"
+}

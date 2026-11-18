@@ -1,0 +1,13 @@
+{
+  "id": 544,
+  "verdict": "추천",
+  "use": "S01 물가 돌·S08 회색 바위",
+  "reason": "넓은 흰 회색 면과 단순한 모서리가 명료한 바위 형태에 맞는다.",
+  "edit": "백색 명도 완화; 수변 젖음 추가",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:36:32.284883+00:00",
+  "sourcePageSha256": "4fda25c98ec685bfa0cf38083a3d9d8af88c5f6a94ba79378b60887bd0278dce"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 1369,
+  "verdict": "보류",
+  "use": "S01 낮은 비대칭 바위",
+  "reason": "89cm의 붉고 어두운 덩어리로 기존 수변 바위 충분",
+  "edit": "붉은색 완화",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:17:00.801397+00:00",
+  "sourcePageSha256": "e0423921f50ae2dedea27f93ee1e06ea8674559e91e084a44245adb8984cf8f4"
+}

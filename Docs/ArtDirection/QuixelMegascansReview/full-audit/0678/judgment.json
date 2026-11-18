@@ -1,0 +1,13 @@
+{
+  "id": 678,
+  "verdict": "추천",
+  "use": "S08 부식된 짧은 목편",
+  "reason": "55cm의 깊이 갈라지고 벗겨진 덩어리가 짧은 고사목 단면 변화를 준다.",
+  "edit": "암부·노멀 대비 낮추기; 근경 소량",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:44:12.013392+00:00",
+  "sourcePageSha256": "1a30aea93ad3cefa9a74a9a1ac4ff29d123a26edaa67a37444dc0311927e01a3"
+}

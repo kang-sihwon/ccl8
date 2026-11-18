@@ -1,0 +1,13 @@
+{
+  "id": 1720,
+  "verdict": "보류",
+  "use": "S08 작은 돌 변형",
+  "reason": "7cm 어두운 갈색 돌은 화면 기여 낮음",
+  "edit": "근접 장면에만 사용",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:31:48.522265+00:00",
+  "sourcePageSha256": "8b0b67a155137346f6652da38ef249cc9b316eb6d5b99cf35c400aa013773afe"
+}

@@ -1,0 +1,85 @@
+{
+  "id": 1803,
+  "url": "https://www.fab.com/listings/b0b47182-523f-457e-a579-daee68fb1a61",
+  "uid": "b0b47182-523f-457e-a579-daee68fb1a61",
+  "title": "Broken Wood Piece",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:20:16.302495+00:00",
+  "pageSha256": "b06b6f37f5fea2b3274956e7ecf94d89c028a7d696933d5cd7f0901fea0dede6",
+  "description": "Texel density: 1197 px/m\nPhysical size: 0.03m x 0.27m x 0.01m\nMesh type: Closed mesh\nMaps: Displacement(high tier only) Cavity Gloss Specular Basecolor AO Roughness Normal\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.03m x 0.27m x 0.01m",
+  "mesh": "Closed mesh",
+  "texelDensity": "1197 px/m",
+  "maps": "Displacement(high tier only) Cavity Gloss Specular Basecolor AO Roughness Normal",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "UEFN Reference",
+      "extensions": null,
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "UEFN - Reference only",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/2359ac6b-0e89-4e65-bcc8-af3490ee4829/1ce95428-0474-4407-849a-a7c5be5f87ef.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/2359ac6b-0e89-4e65-bcc8-af3490ee4829/6f2e7f0f-a0aa-403e-9ef3-7449fe600442.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

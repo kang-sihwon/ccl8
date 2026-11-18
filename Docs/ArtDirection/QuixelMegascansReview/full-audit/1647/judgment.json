@@ -1,0 +1,13 @@
+{
+  "id": 1647,
+  "verdict": "보류",
+  "use": "S08 작은 바위 변형",
+  "reason": "24cm 회색 울퉁불퉁한 돌은 사용 가능하나 중복",
+  "edit": "밑면 매입",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:30:20.095398+00:00",
+  "sourcePageSha256": "db3907325d55fcc6dd3eb33c61ca2c2b22116ceab3b4986bc83670f56d60abd4"
+}

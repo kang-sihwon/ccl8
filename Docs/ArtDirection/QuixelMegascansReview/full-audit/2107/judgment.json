@@ -1,0 +1,13 @@
+{
+  "id": 2107,
+  "verdict": "추천",
+  "use": "S02 오래된 제작 장부",
+  "reason": "26cm 무장식 짙은 적갈색 표지와 누런 종이가 적합",
+  "edit": "표지·책등 문구 확인 및 필요 시 교체",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:46:35.350332+00:00",
+  "sourcePageSha256": "964c2e635192211dce0610902f3ebd99d86f1fac702687f6dd136bb103d5994a"
+}

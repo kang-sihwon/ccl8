@@ -1,0 +1,13 @@
+{
+  "id": 1593,
+  "verdict": "보류",
+  "use": "S08 지의류 돌 변형",
+  "reason": "20cm 납작한 돌의 흑백 반점이 강함",
+  "edit": "얼룩 대비 낮추기",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:28:52.973145+00:00",
+  "sourcePageSha256": "50eb0028b2bd297ee0f7d03ecfc4b6ced7b0af2f2377d79452db6512b47120ae"
+}

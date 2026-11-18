@@ -1,0 +1,13 @@
+{
+  "id": 2163,
+  "verdict": "보류",
+  "use": "S02 작은 뿔 용기 대안",
+  "reason": "8cm 타원 뿔 용기와 금속 뚜껑은 재료·취급 용도 미확정",
+  "edit": "재료 설정·뚜껑 구조 확인",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:48:31.656312+00:00",
+  "sourcePageSha256": "220add9bade66dbe846f64ea82e3ae8aad0b1f0cee34e67ff8f21059faa4b16a"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 1878,
+  "verdict": "보류",
+  "use": "S02 기와 대안",
+  "reason": "22cm 붉은 꺾임형 기와는 시안의 평판형 지붕과 대조 필요",
+  "edit": "지붕 모듈 규격 확인",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:38:57.927475+00:00",
+  "sourcePageSha256": "a17ccb1f02f828300359edcbadff5fab5e2a2bc94cf9c8036340dc0a6228f261"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 607,
+  "verdict": "보류",
+  "use": "S08 부러진 가지 파편",
+  "reason": "50cm의 어두운 직선 파편으로 기존 0424·0425와 역할이 겹친다.",
+  "edit": "기존 파편 변형 부족 시 도입",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:38:54.201974+00:00",
+  "sourcePageSha256": "295994f39af35b29eb7e4fdfaf26196a01a9b2b34982af7a285c6c7e5c53f9b1"
+}

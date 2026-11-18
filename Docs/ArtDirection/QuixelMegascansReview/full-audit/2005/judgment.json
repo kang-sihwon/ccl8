@@ -1,0 +1,13 @@
+{
+  "id": 2005,
+  "verdict": "수정 후 후보",
+  "use": "S02 작은 장부",
+  "reason": "18cm 녹색 표지는 팔레트에 가능하나 깨끗한 제본·책등 문양 보임",
+  "edit": "청록 조절·마모 추가 및 문자 확인",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:42:46.962820+00:00",
+  "sourcePageSha256": "36bd1e6c3667582d2ba0fa9e5c90d6a7b7e6453211c18df1f7aa23bd08544f82"
+}

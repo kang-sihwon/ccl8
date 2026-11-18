@@ -1,0 +1,13 @@
+{
+  "id": 1301,
+  "verdict": "보류",
+  "use": "S08 이끼 바위 변형",
+  "reason": "1.24m의 어두운 각형 덩어리로 기존 중형 바위와 역할 중복",
+  "edit": "어두운 면과 이끼 대비 완화",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:15:07.628455+00:00",
+  "sourcePageSha256": "744b69d4cb95fdff8fe907877fe5cde9c4204f139fe2993084706ac8d3db9716"
+}

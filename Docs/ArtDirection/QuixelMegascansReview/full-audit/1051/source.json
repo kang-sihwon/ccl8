@@ -1,0 +1,65 @@
+{
+  "id": 1051,
+  "url": "https://www.fab.com/listings/b8248574-2b05-479e-88eb-05fc2a5647be",
+  "uid": "b8248574-2b05-479e-88eb-05fc2a5647be",
+  "title": "Red Fountain Grass",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:15:32.067604+00:00",
+  "pageSha256": "31e6c9da4f8f8d50a258d98fe22c3c8a32af1ad293d019d61e6a5b9167a3ed33",
+  "description": "Maps: AO Bump Normal Gloss Translucency Roughness Specular Cavity Basecolor Opacity Displacement\n \nCreate high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "기재 확인 안 됨",
+  "mesh": "기재 확인 안 됨",
+  "texelDensity": "기재 확인 안 됨",
+  "maps": "AO Bump Normal Gloss Translucency Roughness Specular Cavity Basecolor Opacity Displacement",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/a3b1a921-9bb8-4639-b261-b3f2e7b23837/7d213ebc-575e-43a9-a02a-d6946005971f.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/a3b1a921-9bb8-4639-b261-b3f2e7b23837/25def418-698c-4c12-9dfb-3da8fcd7160b.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

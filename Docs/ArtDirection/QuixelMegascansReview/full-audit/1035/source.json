@@ -1,0 +1,65 @@
+{
+  "id": 1035,
+  "url": "https://www.fab.com/listings/8cc80963-3ff2-4592-9b72-b73db18ed494",
+  "uid": "8cc80963-3ff2-4592-9b72-b73db18ed494",
+  "title": "Dead Leaves",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:15:27.025170+00:00",
+  "pageSha256": "80a3cc3c9a53eb35ac49066b6d5b5e91f6ea31eeb4600f8f1f5b283bf25d613a",
+  "description": "Maps: Specular Normal Basecolor Translucency Bump Displacement Gloss Opacity Roughness\n \nCreate high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "기재 확인 안 됨",
+  "mesh": "기재 확인 안 됨",
+  "texelDensity": "기재 확인 안 됨",
+  "maps": "Specular Normal Basecolor Translucency Bump Displacement Gloss Opacity Roughness",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/ce58ac3d-5e9b-4b0f-995f-23700b371495/79ed2b33-06a9-4d0e-a5eb-6c10df167c70.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 2,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/ce58ac3d-5e9b-4b0f-995f-23700b371495/8ac84889-c8de-4a41-a250-054a88e9170f.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

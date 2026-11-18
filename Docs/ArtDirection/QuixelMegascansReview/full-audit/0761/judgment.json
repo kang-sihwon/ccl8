@@ -1,0 +1,13 @@
+{
+  "id": 761,
+  "verdict": "보류",
+  "use": "S02·S08 수피 변형",
+  "reason": "23cm의 넓고 뾰족한 외피로 0753과 크기·역할이 겹친다.",
+  "edit": "0753 반복 시 교체",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:46:33.138674+00:00",
+  "sourcePageSha256": "59ad402dde2bb7dcf4d47429ba0c56756d039c2749c042aefebbd7b020dd3951"
+}

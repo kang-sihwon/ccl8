@@ -1,0 +1,13 @@
+{
+  "id": 1506,
+  "verdict": "보류",
+  "use": "S08 넓은 삼각 돌판",
+  "reason": "1.86m의 단순한 삼각형 큰 면으로 기존 바위 후보와 중복",
+  "edit": "황색 완화 및 열린 면 매입",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:23:18.566836+00:00",
+  "sourcePageSha256": "34b3ea9d76b32aab1ef5a499ecec7120ecc6661b90468f08cffb27982a778140"
+}

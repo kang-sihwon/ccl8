@@ -1,0 +1,85 @@
+{
+  "id": 1948,
+  "url": "https://www.fab.com/listings/4d45a563-bbda-48af-b13d-8415640fbf37",
+  "uid": "4d45a563-bbda-48af-b13d-8415640fbf37",
+  "title": "Ceramic Flower Pot",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:21:11.986284+00:00",
+  "pageSha256": "1f1819bd005709367a5e313793c513d5465fcfc5918df6faf4cdbac4931aed6d",
+  "description": "Texel density: 1191 px/m\nPhysical size: 0.13m x 0.22m x 0.11m\nMesh type: Closed mesh\nMaps: Displacement(high tier only) Roughness Gloss Specular Basecolor Cavity Normal Ao\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.13m x 0.22m x 0.11m",
+  "mesh": "Closed mesh",
+  "texelDensity": "1191 px/m",
+  "maps": "Displacement(high tier only) Roughness Gloss Specular Basecolor Cavity Normal Ao",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "UEFN Reference",
+      "extensions": null,
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "UEFN - Reference only",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/8785c4e2-0cc7-43dc-b7c4-84581f3f2133/699aeefe-47cd-49b2-bb75-6baabf4ed452.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/8785c4e2-0cc7-43dc-b7c4-84581f3f2133/d2960edc-7194-48c3-b0bb-41a2e72fcecc.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

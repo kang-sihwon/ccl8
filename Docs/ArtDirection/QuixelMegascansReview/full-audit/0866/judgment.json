@@ -1,0 +1,13 @@
+{
+  "id": 866,
+  "verdict": "보류",
+  "use": "S08 가는 굽은 가지",
+  "reason": "1.82m의 얇은 목편으로 0512·0648과 역할이 같다.",
+  "edit": "기존 가지 우선",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:52:44.819670+00:00",
+  "sourcePageSha256": "f2a6c1a317e10f9185799b77d94b95702c3fbbb23700e32bd1427b06ce5ea2c8"
+}

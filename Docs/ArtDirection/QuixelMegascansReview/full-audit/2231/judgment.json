@@ -1,0 +1,13 @@
+{
+  "id": 2231,
+  "verdict": "보류",
+  "use": "S01 채소 대안",
+  "reason": "21cm 굽은 오이는 사용 가능하나 작물 후보 증가",
+  "edit": "작물 설정 확인",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:53:43.633271+00:00",
+  "sourcePageSha256": "8d569fd6bbe4eb1bd5a92013a10c77f922f6c1c89366cd845a6ac07a1c3b038c"
+}

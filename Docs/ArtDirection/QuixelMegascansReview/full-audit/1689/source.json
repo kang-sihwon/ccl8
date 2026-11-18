@@ -1,0 +1,82 @@
+{
+  "id": 1689,
+  "url": "https://www.fab.com/listings/f3946064-e13f-403d-9b4b-fdee0d5817b3",
+  "uid": "f3946064-e13f-403d-9b4b-fdee0d5817b3",
+  "title": "Small Rock",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:19:34.797559+00:00",
+  "pageSha256": "bac1ea1d683777d17b6e4218aa032bc3ec927b0275e4946b2f14e0db46b62b7b",
+  "description": "Texel density: 5806 px/m\nPhysical size: 0.43m x 0.35m x 0.16m\nMesh type: Closed mesh\nMaps: Bump Displacement(high tier only) Gloss Basecolor Specular AO Roughness Cavity Normal Fuzz\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.43m x 0.35m x 0.16m",
+  "mesh": "Closed mesh",
+  "texelDensity": "5806 px/m",
+  "maps": "Bump Displacement(high tier only) Gloss Basecolor Specular AO Roughness Cavity Normal Fuzz",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "ZBrush",
+      "extensions": [
+        "zbp",
+        "ztl"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/129e7277-50c6-49f6-95fd-686fe0026204/420f618c-10aa-482a-a66e-ebbb151df9f6.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/129e7277-50c6-49f6-95fd-686fe0026204/7a3ca4d1-629e-4887-91e4-5f149ec7641b.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

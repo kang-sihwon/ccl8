@@ -1,0 +1,74 @@
+{
+  "id": 2051,
+  "url": "https://www.fab.com/listings/190a7309-7cec-4396-a366-dec48b9121af",
+  "uid": "190a7309-7cec-4396-a366-dec48b9121af",
+  "title": "Historic Miscellaneous Container Wood Old 01",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:21:52.270849+00:00",
+  "pageSha256": "50a8c698183db93957960113749bc2be10fa5bb18b6b0191a49fde21c17c3e69",
+  "description": "The ‘Historic Miscellaneous’ themed assets capture the humble, handmade feel of everyday life in earlier times. Featuring high-fidelity scans of wooden doors, bowls, baskets, books, simple furniture, and assorted household objects, this collection reflects ordinary items worn by daily use.\nIdeal for creating rustic period dwellings and set dressing with a strong sense of realism and environmental storytelling.\nTexel density: 12541 px/m\nPhysical size: 0.23m x 0.34m x 0.22m\nMesh type: Closed mesh\nMaps: AO Basecolor Bump Cavity Displacement Gloss Normal Roughness Specular\nCreate high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.\n\nCurious about future releases? Discover upcoming Megascans content and vote for your favorite themes: Public Roadmap",
+  "size": "0.23m x 0.34m x 0.22m",
+  "mesh": "Closed mesh",
+  "texelDensity": "12541 px/m",
+  "maps": "AO Basecolor Bump Cavity Displacement Gloss Normal Roughness Specular",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/b9ebc93d-6fae-44bb-ac40-ce2f70ad4d1c/a262129d-3d1e-49b7-9ad6-01d42462e6fa.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/b9ebc93d-6fae-44bb-ac40-ce2f70ad4d1c/e38f95ce-d349-45be-a770-66c941ee2564.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

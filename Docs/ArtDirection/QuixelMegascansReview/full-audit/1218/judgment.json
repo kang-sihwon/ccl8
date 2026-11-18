@@ -1,0 +1,13 @@
+{
+  "id": 1218,
+  "verdict": "보류",
+  "use": "S08 층상 바위 변형",
+  "reason": "3.95m의 층진 넓은 덩어리로 1217 및 큰 암반 후보 충분",
+  "edit": "밝기 통일",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:11:29.592700+00:00",
+  "sourcePageSha256": "1f67dd57f6512aad34f73f4a31002e028462259ee1e7a9fafaba6bf0b343c04e"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 2311,
+  "verdict": "수정 후 후보",
+  "use": "S01 화물 바구니 옆",
+  "reason": "31cm 단순 주황 호박은 수확물 실루엣이 분명함",
+  "edit": "작물 설정·주황 채도 완화",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:56:37.628560+00:00",
+  "sourcePageSha256": "d833ae46936f10f70c311cb3fbc1afea26e69fea8533d9d6040b197cfd139acb"
+}

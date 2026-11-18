@@ -1,0 +1,13 @@
+{
+  "id": 1819,
+  "verdict": "수정 후 후보",
+  "use": "S02 화덕 보수용 파편 묶음",
+  "reason": "회색·검정·붉은 조각이 있어 소량 보수 흔적 가능",
+  "edit": "흰 미장층·색 대비 완화 및 분리 확인",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:35:21.255047+00:00",
+  "sourcePageSha256": "0b3655e863b4d08dcbd8dc02620c1121bce92dd6fe05df7dd18c0fac1889e3c5"
+}

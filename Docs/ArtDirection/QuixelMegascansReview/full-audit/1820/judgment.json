@@ -1,0 +1,13 @@
+{
+  "id": 1820,
+  "verdict": "보류",
+  "use": "S02 벽돌 보수 대안",
+  "reason": "18cm 깊은 성형 홈과 흰 미장이 보임",
+  "edit": "공방 벽체와 재질 일치 확인",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:35:21.255998+00:00",
+  "sourcePageSha256": "4b6cad635610d54e77c29d085a27dfe4ec37a84af1a33d17ca50a037cf34559c"
+}

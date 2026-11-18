@@ -1,0 +1,13 @@
+{
+  "id": 2136,
+  "verdict": "수정 후 후보",
+  "use": "S02 수리 대기 안장",
+  "reason": "73cm 낡은 갈색 가죽은 적합하나 마구 형태와 수리 취급 미확정",
+  "edit": "마구 설정·등자 구조 확인",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:48:31.630776+00:00",
+  "sourcePageSha256": "5e8e504395c2b85f329d9c406c9c2be4791335318ee1bedf28b6cbc9a7332ec4"
+}

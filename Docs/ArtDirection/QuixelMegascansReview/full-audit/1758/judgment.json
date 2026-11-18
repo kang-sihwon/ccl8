@@ -1,0 +1,13 @@
+{
+  "id": 1758,
+  "verdict": "보류",
+  "use": "S08 작은 솔방울 변형",
+  "reason": "5cm 어두운 열린 솔방울로 화면 기여 낮음",
+  "edit": "근접 장면에만 제한",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:33:48.195732+00:00",
+  "sourcePageSha256": "f1e2cf391009d2c8c49b99b6ed0d341487c816bdc542bc3673b31ebd9e50ab00"
+}

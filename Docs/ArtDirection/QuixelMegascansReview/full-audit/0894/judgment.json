@@ -1,0 +1,13 @@
+{
+  "id": 894,
+  "verdict": "수정 후 후보",
+  "use": "S02 뒤 넓게 전정된 나무",
+  "reason": "여러 큰 가지가 벌어진 형태로 작업장 주변 나무 골격 후보가 된다.",
+  "edit": "황금 수관·새 가지 추가; 현재 상태만 반복하지 않기",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:54:43.606160+00:00",
+  "sourcePageSha256": "6c567ceb47441a031dc3fef70585af2bdda8eefe42f8dcca43f78b83643f6bcc"
+}

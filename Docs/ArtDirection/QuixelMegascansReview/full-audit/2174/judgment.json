@@ -1,0 +1,13 @@
+{
+  "id": 2174,
+  "verdict": "수정 후 후보",
+  "use": "S01 식량 바구니",
+  "reason": "9cm 붉고 노란 사과가 따뜻한 팔레트와 맞음",
+  "edit": "식량 품목 확인·과도한 광택 축소",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:52:25.922770+00:00",
+  "sourcePageSha256": "f8a8d1937c0c9ca76798c22535371ef483c7b25430d9c01f841b5cd6281fbce8"
+}

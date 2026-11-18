@@ -1,0 +1,82 @@
+{
+  "id": 1529,
+  "url": "https://www.fab.com/listings/5aa6b87c-1d2e-42a3-81d8-f19896d18812",
+  "uid": "5aa6b87c-1d2e-42a3-81d8-f19896d18812",
+  "title": "Rocky Forest Path",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:18:31.731930+00:00",
+  "pageSha256": "ffe112e8f7ca5509700866688a39b5b9fc98dac85e0893ae20a5a5e1288c263a",
+  "description": "Texel density: 5534 px/m\nPhysical size: 1.22m x 3.49m x 0.12m\nMesh type: Open mesh\nMaps: Displacement(high tier only) Roughness Gloss Specular Basecolor Cavity Bump Normal Ao\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "1.22m x 3.49m x 0.12m",
+  "mesh": "Open mesh",
+  "texelDensity": "5534 px/m",
+  "maps": "Displacement(high tier only) Roughness Gloss Specular Basecolor Cavity Bump Normal Ao",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "ZBrush",
+      "extensions": [
+        "zbp",
+        "ztl"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/8c27348f-063f-4d83-a958-5a1a20356f22/e3afe7cd-0c50-42f7-8962-23b16c665a4c.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/8c27348f-063f-4d83-a958-5a1a20356f22/7428cdcc-b1ae-4610-9a47-b375820d5e82.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

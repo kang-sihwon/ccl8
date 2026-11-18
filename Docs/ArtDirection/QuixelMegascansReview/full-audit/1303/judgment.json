@@ -1,0 +1,13 @@
+{
+  "id": 1303,
+  "verdict": "보류",
+  "use": "S08 낮은 이끼 바위",
+  "reason": "1.93m의 낮고 넓은 거친 돌로 기존 바위 후보와 중복",
+  "edit": "작은 요철과 이끼 대비 축소",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:15:07.630723+00:00",
+  "sourcePageSha256": "60870912f38bf71093308bcb493c5928b197956dae67e8cd2283fa5bad2c07b8"
+}

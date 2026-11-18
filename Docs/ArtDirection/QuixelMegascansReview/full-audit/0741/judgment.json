@@ -1,0 +1,13 @@
+{
+  "id": 741,
+  "verdict": "보류",
+  "use": "S08 짧은 갈색 가지",
+  "reason": "40cm의 가는 직선 가지로 별도 우선 도입 이유가 약하다.",
+  "edit": "추가 근경 변형 필요 시만",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:46:33.119834+00:00",
+  "sourcePageSha256": "e4b70379e7bb430291fde92e21a07c9dbc302ac17087fcf77f19b42c4c0e3550"
+}

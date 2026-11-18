@@ -1,0 +1,13 @@
+{
+  "id": 1695,
+  "verdict": "보류",
+  "use": "S08 작은 돌 변형",
+  "reason": "21cm 갈색의 깊은 홈이 있는 돌은 기존 후보 충분",
+  "edit": "미세 대비 완화",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:31:48.497219+00:00",
+  "sourcePageSha256": "7e8ec6c5be3b7a9be54a77e75ff3109fbfcd618be0645f397f4e617d240e125d"
+}

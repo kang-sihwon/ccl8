@@ -1,0 +1,13 @@
+{
+  "id": 1596,
+  "verdict": "제외",
+  "use": "현재 세 장소 제외",
+  "reason": "12cm 붉고 구멍 많은 돌로 색과 표면 모두 차이 큼",
+  "edit": "기존 회색 돌 사용",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:28:52.976282+00:00",
+  "sourcePageSha256": "71d19d9095b9e11df71d6669ef5682f92fab7e3f8f1625e5e95e24f77aff900c"
+}

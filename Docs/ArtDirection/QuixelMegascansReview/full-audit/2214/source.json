@@ -1,0 +1,85 @@
+{
+  "id": 2214,
+  "url": "https://www.fab.com/listings/cb16b925-e447-4895-a15e-41615df80a75",
+  "uid": "cb16b925-e447-4895-a15e-41615df80a75",
+  "title": "Carved Pumpkin",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:22:51.458437+00:00",
+  "pageSha256": "0be6710ee7391e0cb03f41548c0de47053cb21e69a07085c3d3133f5d986260a",
+  "description": "Texel density: 1115 px/m\nPhysical size: 0.37m x 0.36m x 0.36m\nMesh type: Closed mesh\nMaps: Basecolor Displacement(high tier only) Gloss Normal Cavity Specular AO Roughness\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.37m x 0.36m x 0.36m",
+  "mesh": "Closed mesh",
+  "texelDensity": "1115 px/m",
+  "maps": "Basecolor Displacement(high tier only) Gloss Normal Cavity Specular AO Roughness",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "UEFN Reference",
+      "extensions": null,
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "UEFN - Reference only",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/e690448b-ef71-49c7-8d51-7bd40de3c5e1/a9af0e56-6691-440c-9f36-0e00d3375a1b.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/e690448b-ef71-49c7-8d51-7bd40de3c5e1/f708f356-91c3-48e0-bbbe-846d60a9d460.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

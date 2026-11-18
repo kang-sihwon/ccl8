@@ -1,0 +1,13 @@
+{
+  "id": 2077,
+  "verdict": "보류",
+  "use": "S02 작은 화분 대안",
+  "reason": "14cm 무장식 붉은 화분은 2001과 중복",
+  "edit": "식물·흙 별도 추가",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:46:35.321559+00:00",
+  "sourcePageSha256": "e6cbd63823e908f1566ec0cd51117ab0f92c66b1b4b71ccf2eb0c355503965b4"
+}

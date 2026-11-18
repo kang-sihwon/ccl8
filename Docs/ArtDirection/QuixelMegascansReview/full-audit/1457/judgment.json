@@ -1,0 +1,13 @@
+{
+  "id": 1457,
+  "verdict": "보류",
+  "use": "S08 큰 돌·낙엽 바닥군",
+  "reason": "2.53m의 많은 각진 돌과 이끼로 기존 바닥 후보보다 복잡",
+  "edit": "이끼·지의류 대비 축소 및 열린 경계 매입",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:21:12.799229+00:00",
+  "sourcePageSha256": "34fdbe036a6ed21d1b2eb1b918eb778f346bf8ce7b8d6186e15e1894ecbeb31a"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 1417,
+  "verdict": "보류",
+  "use": "S08 먼 원경 절벽",
+  "reason": "29.7m의 매우 긴 층상 암벽으로 현재 세 장소 근경 범위 밖",
+  "edit": "원경 지형 확정 뒤 열린 면 연결",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:19:10.444956+00:00",
+  "sourcePageSha256": "bbdbb14892b2dede1e6a6739016c4ef80e7cd4e22b89a62769e4d0e67eb7e1f5"
+}

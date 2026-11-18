@@ -1,0 +1,13 @@
+{
+  "id": 720,
+  "verdict": "추천",
+  "use": "S08 뿌리와 썩은 목재 덩어리",
+  "reason": "1.42m의 크게 굽은 고사목에 잔뿌리가 붙어 낮은 바닥 변주가 된다.",
+  "edit": "지면 접촉 확인; 미세 노멀 완화",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:44:12.052704+00:00",
+  "sourcePageSha256": "a3abe06b4e0d21865eed20f572cb3ebd4d68cb9fe5e8504c3771b1b879c4ab5b"
+}

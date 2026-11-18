@@ -1,0 +1,13 @@
+{
+  "id": 463,
+  "verdict": "수정 후 후보",
+  "use": "S08 숲 바닥 큰 바위",
+  "reason": "상면이 넓고 일부 흙이 덮인 덩어리이나 밝은 이끼가 시선을 과하게 끈다.",
+  "edit": "이끼 피복 축소; 회색 측면 강조",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:29:37.267847+00:00",
+  "sourcePageSha256": "c9b6a62acd2b6aa72b482ebe9fd3ab582b1e45107792e23e315e2b38036f94e6"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 1571,
+  "verdict": "보류",
+  "use": "S08 작은 암석 바닥 패치",
+  "reason": "87cm 갈색 잔돌 패치가 기존 지면 후보와 중복",
+  "edit": "황색 감소 및 경계 블렌딩",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:27:20.422458+00:00",
+  "sourcePageSha256": "cdecebfb385cffa840b15953fa7bbd29fbaaed3fcf3bcd6d6ccf80dd86c7d9da"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 2175,
+  "verdict": "보류",
+  "use": "S01 과일 대안",
+  "reason": "11cm 황록 사과는 활용 가능하나 과일 후보 중복",
+  "edit": "2174 또는 팩 우선",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:52:25.923740+00:00",
+  "sourcePageSha256": "5f9bca6cdc1db27e6adcc6ef1afdfc6bea71b87710f5bea964130b532553db58"
+}

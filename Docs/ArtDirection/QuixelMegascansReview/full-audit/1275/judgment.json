@@ -1,0 +1,13 @@
+{
+  "id": 1275,
+  "verdict": "보류",
+  "use": "S01 가늘고 밝은 돌 조각",
+  "reason": "20cm의 길고 꺾인 흰 조각으로 기존 자갈 후보 충분",
+  "edit": "흰색 명도 낮춤",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:13:25.153143+00:00",
+  "sourcePageSha256": "f99181e3c249bb3a7026ca1fe3d13f760bddb9be78b178bdf3aeb80c4932abd0"
+}

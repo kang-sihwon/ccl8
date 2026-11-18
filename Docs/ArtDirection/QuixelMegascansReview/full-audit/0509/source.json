@@ -1,0 +1,82 @@
+{
+  "id": 509,
+  "url": "https://www.fab.com/listings/2e39c099-b57b-4bb1-923a-f37678baf600",
+  "uid": "2e39c099-b57b-4bb1-923a-f37678baf600",
+  "title": "Nordic Forest Ledge Dirt Root Medium",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:12:07.513509+00:00",
+  "pageSha256": "ccf1ca852d15f6811bdbc71245c3d1d6b1a8cc1f4142b579c28cb1e940e3c2d2",
+  "description": "Texel density: 5743 px/m\nPhysical size: 1.79m x 4.83m x 0.95m\nMesh type: Open mesh\nMaps: AO Displacement(high tier only) Specular Basecolor Bump Cavity Gloss Normal Roughness Fuzz\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "1.79m x 4.83m x 0.95m",
+  "mesh": "Open mesh",
+  "texelDensity": "5743 px/m",
+  "maps": "AO Displacement(high tier only) Specular Basecolor Bump Cavity Gloss Normal Roughness Fuzz",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "ZBrush",
+      "extensions": [
+        "zbp",
+        "ztl"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/57630c4c-b0c0-456a-adc7-f2a3751f6fbf/f6f171b8-c496-4096-8fdc-47b45bc216b4.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/57630c4c-b0c0-456a-adc7-f2a3751f6fbf/26436d97-92b9-4b67-972e-526b212a7a44.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

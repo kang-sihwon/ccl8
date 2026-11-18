@@ -1,0 +1,13 @@
+{
+  "id": 1007,
+  "verdict": "보류",
+  "use": "S08 작은 보라 버섯",
+  "reason": "6cm의 작고 단순한 보라 갓으로 977과 중복",
+  "edit": "팔레트 조정 필요",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:01:11.410517+00:00",
+  "sourcePageSha256": "6841a0d221b42995079314096eda70e981f2d3394ea54d49df5bf128501a75af"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 1861,
+  "verdict": "보류",
+  "use": "S02 화덕 벽돌 대안",
+  "reason": "23cm 선명한 붉은 벽돌은 현재 팔레트보다 강함",
+  "edit": "적갈색 저채도로 조절",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:36:56.647300+00:00",
+  "sourcePageSha256": "94dcbf12a69bd69c3ce4412f90470437420514a135b341bd946b9ba20bcf350a"
+}

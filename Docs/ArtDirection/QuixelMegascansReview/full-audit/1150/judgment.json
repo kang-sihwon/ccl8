@@ -1,0 +1,13 @@
+{
+  "id": 1150,
+  "verdict": "보류",
+  "use": "S08 작은 이끼 바닥 변형",
+  "reason": "54cm의 낮고 둥근 이끼 덩어리로 1149와 역할 겹침",
+  "edit": "열린 테두리 매입",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:07:19.757262+00:00",
+  "sourcePageSha256": "d0a3ed1d17d821219fbcded37587a01f3af56cf5803fcac28c8a34e7ec7f8b10"
+}

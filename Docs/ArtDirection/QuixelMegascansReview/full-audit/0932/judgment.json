@@ -1,0 +1,13 @@
+{
+  "id": 932,
+  "verdict": "보류",
+  "use": "S02 장작 더미 주변 목편",
+  "reason": "52cm의 짧고 곧은 목편으로 기존 장작과 중복",
+  "edit": "절단면이 보이는 방향 확인",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:59:25.680796+00:00",
+  "sourcePageSha256": "74bb8fdaafaf03e537afc8e504c2131227fa4b98d56890273f0f8f2d03da2aab"
+}

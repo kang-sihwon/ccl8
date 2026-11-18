@@ -1,0 +1,13 @@
+{
+  "id": 470,
+  "verdict": "추천",
+  "use": "S08 길 바깥 긴 낮은 암반",
+  "reason": "5.3m로 길고 낮은 회갈색 바위가 자연스러운 길 경계를 만든다.",
+  "edit": "길 폭 유지; 열린 밑면과 뒤쪽 매립",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:29:37.275300+00:00",
+  "sourcePageSha256": "4c2d11f5245811c5100d325260dfc0ece11d468f009c4b08cd7d6a6be944af76"
+}

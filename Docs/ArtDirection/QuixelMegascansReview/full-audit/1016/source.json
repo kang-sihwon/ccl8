@@ -1,0 +1,82 @@
+{
+  "id": 1016,
+  "url": "https://www.fab.com/listings/811bf78e-fab0-4072-9e4e-4b424cb36416",
+  "uid": "811bf78e-fab0-4072-9e4e-4b424cb36416",
+  "title": "Spotted Red Mushrooms",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:15:20.321913+00:00",
+  "pageSha256": "f97d6125ebe02061a31aa8aa26e77e930f89eaf6d2b16694163e2fa76fa3b8b0",
+  "description": "Texel density: 5637 px/m\nPhysical size: 0.12m x 0.13m x 0.19m\nMesh type: Closed mesh\nMaps: Basecolor Gloss Displacement(high tier only) AO Cavity Bump Normal Specular Roughness\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.12m x 0.13m x 0.19m",
+  "mesh": "Closed mesh",
+  "texelDensity": "5637 px/m",
+  "maps": "Basecolor Gloss Displacement(high tier only) AO Cavity Bump Normal Specular Roughness",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "ZBrush",
+      "extensions": [
+        "zbp",
+        "ztl"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/035d4afd-5f1f-494c-9ce4-0a974098fabb/1b879cb8-e675-4ae7-9ce5-5bcca74fbbf4.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/035d4afd-5f1f-494c-9ce4-0a974098fabb/40123248-0adc-4e97-884a-f0e452ebef0d.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

@@ -1,0 +1,74 @@
+{
+  "id": 490,
+  "url": "https://www.fab.com/listings/53e60bb7-832f-4e64-baf9-a73d13c025f7",
+  "uid": "53e60bb7-832f-4e64-baf9-a73d13c025f7",
+  "title": "Old Wooden Scoop",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:12:01.136992+00:00",
+  "pageSha256": "9ad170fa89b9489f480ab55d0870b3de6315182ebec76afeb3777307b8b94f55",
+  "description": "Texel density: 1195 px/m\nPhysical size: 0.09m x 0.21m x 0.04m\nMesh type: Closed mesh\nMaps: Basecolor Displacement(high tier only) Gloss Normal Cavity Specular AO Roughness\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.09m x 0.21m x 0.04m",
+  "mesh": "Closed mesh",
+  "texelDensity": "1195 px/m",
+  "maps": "Basecolor Displacement(high tier only) Gloss Normal Cavity Specular AO Roughness",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/764fd3e9-29eb-410e-a67d-c939d288f047/865311e6-a349-4458-aca6-6b33075d2ebb.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/764fd3e9-29eb-410e-a67d-c939d288f047/074cec0a-bff5-458a-a554-4238a38172d5.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

@@ -1,0 +1,13 @@
+{
+  "id": 1875,
+  "verdict": "보류",
+  "use": "S02 용마루 기와 대안",
+  "reason": "30cm 갈색 반원 기와는 1874와 중복",
+  "edit": "붉은색 통일 및 접합 확인",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:36:56.660511+00:00",
+  "sourcePageSha256": "480ce3f3dfdf13371129709b8b3dcd18eadd5631510d6b4dc2aee7d0ac31783d"
+}

@@ -1,0 +1,82 @@
+{
+  "id": 1823,
+  "url": "https://www.fab.com/listings/eedd169c-b6ca-47c7-8d69-e057999f3f23",
+  "uid": "eedd169c-b6ca-47c7-8d69-e057999f3f23",
+  "title": "Decorative Stone Corbel",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:20:23.427069+00:00",
+  "pageSha256": "92ae19f7222134594254d70bf19b0598c652cebbec3092beb8876bbd3bb69e1b",
+  "description": "Texel density: 5344 px/m\nPhysical size: 0.27m x 0.2m x 0.51m\nMesh type: Open mesh\nMaps: AO Displacement(high tier only) Specular Basecolor Bump Cavity Gloss Normal Roughness\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.27m x 0.2m x 0.51m",
+  "mesh": "Open mesh",
+  "texelDensity": "5344 px/m",
+  "maps": "AO Displacement(high tier only) Specular Basecolor Bump Cavity Gloss Normal Roughness",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "ZBrush",
+      "extensions": [
+        "zbp",
+        "ztl"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/2ad2da36-c000-4795-a776-75b5fa0132b0/53054a57-42b5-4e11-b24a-b1ef3c9aac98.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/2ad2da36-c000-4795-a776-75b5fa0132b0/6f7313b5-0739-4064-87ed-d0c4d69cd0bc.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

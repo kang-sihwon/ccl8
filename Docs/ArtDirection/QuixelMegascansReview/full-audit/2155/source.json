@@ -1,0 +1,74 @@
+{
+  "id": 2155,
+  "url": "https://www.fab.com/listings/9a544a93-85f6-47f8-888c-321ac3584198",
+  "uid": "9a544a93-85f6-47f8-888c-321ac3584198",
+  "title": "Stone Candle Holder",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:22:31.106339+00:00",
+  "pageSha256": "d4553a1afe30b1bd021f852f0f24f929dcd3fa74b63ed732d5e3b5d1ff1898f3",
+  "description": "Texel density: 1174 px/m\nPhysical size: 0.1m x 0.1m x 0.3m\nMesh type: Closed mesh\nMaps: AO Gloss Cavity Displacement(high tier only) Normal Specular Basecolor Roughness\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.1m x 0.1m x 0.3m",
+  "mesh": "Closed mesh",
+  "texelDensity": "1174 px/m",
+  "maps": "AO Gloss Cavity Displacement(high tier only) Normal Specular Basecolor Roughness",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/8c0970ee-115a-49c0-b8ea-f736e0cdf3fd/990b5d7b-ba8e-49c3-9ec5-820e7fe946fc.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/8c0970ee-115a-49c0-b8ea-f736e0cdf3fd/0875f725-bbeb-4240-bea6-a32bb5da5af7.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

@@ -1,0 +1,13 @@
+{
+  "id": 813,
+  "verdict": "보류",
+  "use": "S02 잘린 원목 변형",
+  "reason": "68cm의 굽은 절단 가지로 0812와 같은 가공 재료 역할이다.",
+  "edit": "원목 적치 변형 필요 시만 사용",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:48:57.483720+00:00",
+  "sourcePageSha256": "9d20a19961bb2598785ee9ad8621ba1cc3b38d46d777276d0e9a17fe316732aa"
+}

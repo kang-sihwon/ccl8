@@ -1,0 +1,13 @@
+{
+  "id": 2215,
+  "verdict": "수정 후 후보",
+  "use": "S01 소량 견과 화물",
+  "reason": "4cm 밤의 갈색 껍질은 소박한 식량 소품에 적합",
+  "edit": "식량 품목 확인·숲 자생종으로 단정 금지",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:53:43.617856+00:00",
+  "sourcePageSha256": "bb746d67befa493526004bab4a3ec3ccf9e29e944fec5827d0a06d84f25376fa"
+}

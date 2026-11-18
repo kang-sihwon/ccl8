@@ -1,0 +1,13 @@
+{
+  "id": 1902,
+  "verdict": "수정 후 후보",
+  "use": "S02 참고서 소품",
+  "reason": "19cm 낡은 가죽 책은 가능하나 표지 장식이 강함",
+  "edit": "장식 단순화·문자 교체 및 펼침 메시 여부 확인",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:38:57.951109+00:00",
+  "sourcePageSha256": "058c2fb36f9ba0fb7b51a16a00a69c305c4c34e2b601cfc76376a685d69dd7c9"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 700,
+  "verdict": "추천",
+  "use": "S08 나무 밑 뿌리 지면",
+  "reason": "낮은 둥근 뿌리 덩어리와 갈색 흙이 자연스럽게 연결된다.",
+  "edit": "줄기와 접합; 열린 경계 매립",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:44:12.034156+00:00",
+  "sourcePageSha256": "aa68c2d94fea5a05ba56a79b2217247114945df7bc8ea0dd2925ecdc1dcee942"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 1291,
+  "verdict": "보류",
+  "use": "S01 낮은 긴 암반 변형",
+  "reason": "2.99m의 밝고 거친 암반띠로 기존 수변 암반 충분",
+  "edit": "열린 면 매입 및 밝기 완화",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:13:25.171324+00:00",
+  "sourcePageSha256": "8bddb0624f4c0a25c16c7167f6b501f6776565104e48afe7c90bda5fde6d160e"
+}

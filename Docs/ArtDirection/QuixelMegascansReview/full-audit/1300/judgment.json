@@ -1,0 +1,13 @@
+{
+  "id": 1300,
+  "verdict": "보류",
+  "use": "S08 거친 이끼 바위 변형",
+  "reason": "1.73m의 불규칙한 층과 낮은 이끼로 기존 후보와 역할 중복",
+  "edit": "미세 요철 대비 축소",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:13:25.180900+00:00",
+  "sourcePageSha256": "120db1861de42096716eeede62fb0bc7a31f07c37865482ff39acee359fc4654"
+}

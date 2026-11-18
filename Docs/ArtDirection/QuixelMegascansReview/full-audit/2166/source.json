@@ -1,0 +1,74 @@
+{
+  "id": 2166,
+  "url": "https://www.fab.com/listings/c24a5dc2-af9a-4275-a0de-59fd75f55d3e",
+  "uid": "c24a5dc2-af9a-4275-a0de-59fd75f55d3e",
+  "title": "White and Blue Book",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:22:35.327364+00:00",
+  "pageSha256": "287e07d4e1309c683b20b2ef9fce5ee29c6fce62bd546b4e1f70bc94f0143613",
+  "description": "Texel density: 1561 px/m\nPhysical size: 0.13m x 0.19m x 0.03m\nMesh type: Closed mesh\nMaps: Roughness Specular Cavity Normal AO Basecolor Displacement(high tier only) Gloss\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.13m x 0.19m x 0.03m",
+  "mesh": "Closed mesh",
+  "texelDensity": "1561 px/m",
+  "maps": "Roughness Specular Cavity Normal AO Basecolor Displacement(high tier only) Gloss",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/9903e06b-8c6c-491b-8ff4-245e4698214e/233ca74c-01c5-4aa2-802a-02e05222c85c.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/9903e06b-8c6c-491b-8ff4-245e4698214e/b3376aa1-07bb-4f92-a658-8aa4ce47399e.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

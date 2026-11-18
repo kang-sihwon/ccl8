@@ -1,0 +1,13 @@
+{
+  "id": 1558,
+  "verdict": "보류",
+  "use": "S01 작은 자갈 변형",
+  "reason": "7cm 밝은 돌의 짙은 검은 띠가 강함",
+  "edit": "검은 얼룩 대비 낮추기",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:27:20.409892+00:00",
+  "sourcePageSha256": "20aa3f2af7251490c21a7db1a164cb0799ca8b9138c00a950ea6073d6cc71d35"
+}

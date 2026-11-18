@@ -1,0 +1,13 @@
+{
+  "id": 1493,
+  "verdict": "보류",
+  "use": "S08 먼 암벽 변형",
+  "reason": "5.19m의 높고 붉은 층상 벽으로 기존 회색 암벽 후보 충분",
+  "edit": "회색 조절 및 열린 뒤쪽 연결",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:23:18.553937+00:00",
+  "sourcePageSha256": "d5e257a73f2de7997b86f943dd86bb61188aecf19e91c36a4b3214063c926433"
+}

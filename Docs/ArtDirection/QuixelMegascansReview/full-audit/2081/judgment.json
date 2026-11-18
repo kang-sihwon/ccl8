@@ -1,0 +1,13 @@
+{
+  "id": 2081,
+  "verdict": "수정 후 후보",
+  "use": "S02 수리 대기 물레",
+  "reason": "96cm 목제 바퀴와 발판형 장치가 생활용품 수리에 가능",
+  "edit": "공방 수리 품목 확인 및 회전부 분리 여부 검증",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:46:35.325704+00:00",
+  "sourcePageSha256": "a0a82772b33065a38c2bec90e71cd00d0a3cf6df5117b584cae37567add931d1"
+}

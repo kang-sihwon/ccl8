@@ -1,0 +1,13 @@
+{
+  "id": 961,
+  "verdict": "수정 후 후보",
+  "use": "S08 숲 가장자리 수목 밑동",
+  "reason": "거친 수피의 약 2.85m 밑동만 제공되어 완성 수목으로는 사용 불가",
+  "edit": "열린 상단 연결과 B안 수관 추가 및 밑면 매입",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:59:25.707964+00:00",
+  "sourcePageSha256": "5d63acb84d6bfa44e2f10d8319fffdf7abb68d3e8299ebfe31f6311b42dc4f99"
+}

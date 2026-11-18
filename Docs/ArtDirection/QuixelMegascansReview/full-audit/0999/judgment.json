@@ -1,0 +1,13 @@
+{
+  "id": 999,
+  "verdict": "보류",
+  "use": "S08 큰 깔때기형 버섯",
+  "reason": "16cm의 넓은 물결 갓과 짙은 주름으로 976과 중복",
+  "edit": "주름 명암 축소",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:01:11.403003+00:00",
+  "sourcePageSha256": "ce3b1649e6d037142b0571b420906beb003c6cdcc5ce6329b99e7feb3c0e692c"
+}

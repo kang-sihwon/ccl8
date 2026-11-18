@@ -1,0 +1,13 @@
+{
+  "id": 1708,
+  "verdict": "보류",
+  "use": "S08 작은 돌 변형",
+  "reason": "7cm 짙은 쐐기형 돌에 주황 틈이 있음",
+  "edit": "주황색 감소",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:31:48.509835+00:00",
+  "sourcePageSha256": "5d1cc7d8654c89b2f095a5f592c56521089d7fc1c7badec325f01917b1e235c0"
+}

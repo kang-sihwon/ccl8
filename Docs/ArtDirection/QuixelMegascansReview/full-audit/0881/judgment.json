@@ -1,0 +1,13 @@
+{
+  "id": 881,
+  "verdict": "추천",
+  "use": "S02 목재 가공 잔재",
+  "reason": "31cm 수피 한쪽에 매끈하게 드러난 면이 있어 외피와 가공 단면을 함께 보여준다.",
+  "edit": "주황색 단면 완화; 원목색 통일",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:54:43.592722+00:00",
+  "sourcePageSha256": "ff735bc65441392cbfa6b8f4127e9be5b27f8e4e333273d59f3f276be35ce4f7"
+}

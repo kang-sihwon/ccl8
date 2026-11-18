@@ -1,0 +1,13 @@
+{
+  "id": 1712,
+  "verdict": "보류",
+  "use": "S01 자갈 대안",
+  "reason": "18cm 갈색 타원석은 회색 후보보다 수정 필요",
+  "edit": "갈색 완화",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:31:48.513700+00:00",
+  "sourcePageSha256": "8e30abecbad3d2f6e17d17e2995616e1d4741db86bad3b514964744b09c91563"
+}

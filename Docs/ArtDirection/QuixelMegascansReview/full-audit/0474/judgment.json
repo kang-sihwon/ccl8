@@ -1,0 +1,13 @@
+{
+  "id": 474,
+  "verdict": "추천",
+  "use": "S08 흙길과 바위 접합",
+  "reason": "낮은 직사각 암반 상부에 흙이 붙어 지면에 자연스럽게 이어진다.",
+  "edit": "열린 경계 매립; 흙색 통일",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:29:37.279806+00:00",
+  "sourcePageSha256": "f5f2e296d735e375c136acbe7ed2f4d5264ce18e298b0b16480b8d78506a0d0b"
+}

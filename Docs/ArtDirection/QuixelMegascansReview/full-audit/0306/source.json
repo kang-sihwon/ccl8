@@ -1,0 +1,74 @@
+{
+  "id": 306,
+  "url": "https://www.fab.com/listings/e09abe57-34fb-40ab-ad9d-338bef9c6c2a",
+  "uid": "e09abe57-34fb-40ab-ad9d-338bef9c6c2a",
+  "title": "Wooden Candle Holder",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:10:49.060766+00:00",
+  "pageSha256": "62203f7ff2cbcd8276b005daab4f9f578a04234932e927f2f62fb83a5e85f50f",
+  "description": "Texel density: 929 px/m\nPhysical size: 0.06m x 0.16m x 0.04m\nMesh type: Closed mesh\nMaps: Displacement(high tier only) Normal Basecolor Specular Cavity Roughness Gloss AO\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.06m x 0.16m x 0.04m",
+  "mesh": "Closed mesh",
+  "texelDensity": "929 px/m",
+  "maps": "Displacement(high tier only) Normal Basecolor Specular Cavity Roughness Gloss AO",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/81c4674c-3d16-4bb2-865e-9ca0a4d2e2d8/698fbf15-95fc-443f-94da-0c19835828cc.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/81c4674c-3d16-4bb2-865e-9ca0a4d2e2d8/9d96685c-dcca-43c6-9885-ef328eed3e1a.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

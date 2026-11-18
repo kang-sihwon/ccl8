@@ -1,0 +1,13 @@
+{
+  "id": 1706,
+  "verdict": "보류",
+  "use": "S01 작은 자갈 변형",
+  "reason": "14cm 둥근 화강암의 점무늬가 세밀함",
+  "edit": "미세 대비 완화",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:31:48.508010+00:00",
+  "sourcePageSha256": "251bddca397702e69e08a350b747e526cbb9cbdff5fa0c28813adff387e619a1"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 2119,
+  "verdict": "보류",
+  "use": "S02 도기병 변형",
+  "reason": "20cm 노란 원통병은 1944 묶음과 중복",
+  "edit": "황색 감소",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:48:31.613508+00:00",
+  "sourcePageSha256": "7eaea9022190cf1e790bc97b02cc2affc731f41bd990ceb7e7420110ccda8373"
+}

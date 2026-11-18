@@ -1,0 +1,13 @@
+{
+  "id": 874,
+  "verdict": "보류",
+  "use": "S08 얇게 갈라진 목재",
+  "reason": "97cm의 넓은 목질 면이 있으나 0873과 용도가 겹친다.",
+  "edit": "0873의 낮은 변형 필요 시만",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:54:43.586177+00:00",
+  "sourcePageSha256": "88e1469dbeed37a71c55ccde92e70b28e15958d522c79e68157917d6535eb937"
+}

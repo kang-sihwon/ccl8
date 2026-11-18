@@ -1,0 +1,13 @@
+{
+  "id": 1705,
+  "verdict": "보류",
+  "use": "S01 작은 자갈 변형",
+  "reason": "6cm 짙은 둥근 돌은 화면 기여 낮음",
+  "edit": "주변 자갈과 밝기 통일",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:31:48.506955+00:00",
+  "sourcePageSha256": "30404d82d05398e7061234e85fbc04a21185c1ca7fe10ff81a6a12cdb8b17736"
+}

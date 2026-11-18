@@ -1,0 +1,13 @@
+{
+  "id": 2265,
+  "verdict": "보류",
+  "use": "S02 식사 대안",
+  "reason": "28cm 호두 빵은 크고 재료 정보가 추가됨",
+  "edit": "2262 우선",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:55:15.634737+00:00",
+  "sourcePageSha256": "ddef5e0c9cf23f37f722b64b4e28c797730a3267ff881c08f4d8759071a7efb2"
+}

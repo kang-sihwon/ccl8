@@ -1,0 +1,13 @@
+{
+  "id": 2188,
+  "verdict": "보류",
+  "use": "S02 먹다 남긴 과일",
+  "reason": "10cm 사과 심은 일회성 식사 흔적에 적합",
+  "edit": "깨끗한 공방 연출과 필요성 확인",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:52:25.936765+00:00",
+  "sourcePageSha256": "58d9823b73d7952b8399fdcfde128e8434fa83c01c6ed07eb93662d21dbcee23"
+}

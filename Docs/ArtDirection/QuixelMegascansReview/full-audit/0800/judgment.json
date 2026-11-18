@@ -1,0 +1,13 @@
+{
+  "id": 800,
+  "verdict": "보류",
+  "use": "S01 작은 탈색 목편",
+  "reason": "17cm의 밝게 갈라진 조각으로 0797과 같은 초근경 용도다.",
+  "edit": "과도한 확대 금지; 근경 필요 시만",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:48:57.471782+00:00",
+  "sourcePageSha256": "f077cfe4608b0edb8bfcb4cf092d399be44d84e78bbfd407f7b32b0e7c31d256"
+}

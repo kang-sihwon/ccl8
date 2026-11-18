@@ -1,0 +1,13 @@
+{
+  "id": 963,
+  "verdict": "보류",
+  "use": "S08 수목 밑동 변형",
+  "reason": "2.37m의 원통 밑동과 둥근 옹이가 보이나 다른 밑동 후보 충분",
+  "edit": "채택 시 열린 상단과 수관 연결 필요",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:59:25.710025+00:00",
+  "sourcePageSha256": "5eb1d71a69220f877539b593dbe26a7ba29d306a65c16da9cead8ebc0abdf760"
+}

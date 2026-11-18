@@ -1,0 +1,13 @@
+{
+  "id": 1258,
+  "verdict": "보류",
+  "use": "S08 작은 둥근 바위",
+  "reason": "88cm의 세로 홈이 많은 둥근 돌로 기존 후보보다 표면 복잡",
+  "edit": "요철 대비 축소",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:13:25.134174+00:00",
+  "sourcePageSha256": "d79aafbf992e297b0509bec125394494dc5c3256c2c03b0311ba03cf861effa3"
+}

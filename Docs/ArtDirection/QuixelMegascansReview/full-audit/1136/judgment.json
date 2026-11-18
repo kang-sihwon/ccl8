@@ -1,0 +1,13 @@
+{
+  "id": 1136,
+  "verdict": "보류",
+  "use": "S02 작은 포석 변형",
+  "reason": "10cm의 이끼 묻은 정육면체 포석으로 1140과 중복",
+  "edit": "실측 유지",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:07:19.741871+00:00",
+  "sourcePageSha256": "f38a6e90e011aa5709e7ed6ded3d5cd4bf27188e3fe585932edf04521ab0eeb4"
+}

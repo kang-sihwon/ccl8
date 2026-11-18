@@ -1,0 +1,13 @@
+{
+  "id": 1681,
+  "verdict": "보류",
+  "use": "S08 작은 돌 변형",
+  "reason": "10cm 갈색 잔무늬가 강한 판형 돌로 중복",
+  "edit": "표면 대비 완화",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:30:20.128631+00:00",
+  "sourcePageSha256": "3a81d6eef7a565d7a7199b459f8eb5709f1354cac9e2eda69ce6418ebd18b7f6"
+}

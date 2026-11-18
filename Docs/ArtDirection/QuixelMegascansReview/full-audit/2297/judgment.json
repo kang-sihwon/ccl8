@@ -1,0 +1,13 @@
+{
+  "id": 2297,
+  "verdict": "보류",
+  "use": "S01 과일 대안",
+  "reason": "10cm 붉은 석류는2296과 중복",
+  "edit": "색 강조 축소",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:55:15.665847+00:00",
+  "sourcePageSha256": "0a00141c436163422e97ce4411c4b53dad87d58b79cd470e86eb421d23564492"
+}

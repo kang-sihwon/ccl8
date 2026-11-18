@@ -1,0 +1,13 @@
+{
+  "id": 1329,
+  "verdict": "추천",
+  "use": "S08 입구 측면의 균열 바위",
+  "reason": "1.58m의 둥근 회색 덩어리와 한 줄 큰 균열이 B안 형태에 적합",
+  "edit": "흰 얼룩 대비 축소 및 통로 밖 배치",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:15:07.659553+00:00",
+  "sourcePageSha256": "76bb2368409b43ff4398dca7f8d76120d52f89fe3b60987bf6ccf3eb54dfb07a"
+}

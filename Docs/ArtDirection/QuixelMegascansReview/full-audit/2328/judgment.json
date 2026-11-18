@@ -1,0 +1,13 @@
+{
+  "id": 2328,
+  "verdict": "제외",
+  "use": "현재 세 장소 제외",
+  "reason": "1.15m 통돼지 구이는 연회 중심 물체로 현재 시안과 거리 큼",
+  "edit": "행사 설정 없이 배치하지 않음",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:56:37.645416+00:00",
+  "sourcePageSha256": "d6173849e1503eded8e2ceddeb2ddde7532fd868491119e7a7cc0803cf594176"
+}

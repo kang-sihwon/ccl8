@@ -1,0 +1,13 @@
+{
+  "id": 469,
+  "verdict": "수정 후 후보",
+  "use": "S08 낮은 숲 바위",
+  "reason": "둥글고 넓은 상면이 좋지만 대부분 초록 이끼여서 가을 팔레트와 차이 난다.",
+  "edit": "이끼 피복과 채도 축소; 회색 면 복원",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:29:37.274236+00:00",
+  "sourcePageSha256": "f1f4c6abba2601c422a25fb0dd9cc9130aa18403e20ce63815ab5915e4c2c092"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 662,
+  "verdict": "추천",
+  "use": "S08 서 있는 밑동과 쓰러진 줄기",
+  "reason": "높은 부러진 밑동과 긴 수평 줄기가 방향과 높이 변화를 함께 만든다.",
+  "edit": "열린 경계 매립; 길 바깥 배치",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:41:41.782643+00:00",
+  "sourcePageSha256": "bc87ac96cf0d286b662e0e2f2c3fc7176ac86d09174657b9f9dec0bd42be643d"
+}

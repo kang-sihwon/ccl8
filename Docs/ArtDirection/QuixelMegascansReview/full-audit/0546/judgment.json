@@ -1,0 +1,13 @@
+{
+  "id": 546,
+  "verdict": "수정 후 후보",
+  "use": "S08 길 옆 낮은 이끼 바위",
+  "reason": "길쭉한 낮은 단차는 유용하지만 밝은 녹색이 넓은 상면을 덮는다.",
+  "edit": "녹색 면적 축소; 열린 지면 경계 매립",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:36:32.286775+00:00",
+  "sourcePageSha256": "843bc7620896347b62af4cb3e77825dd00e6dbb137eca362cf3e524a61eeb5fb"
+}

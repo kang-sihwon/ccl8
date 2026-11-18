@@ -1,0 +1,13 @@
+{
+  "id": 468,
+  "verdict": "보류",
+  "use": "S08 거친 바위 변형",
+  "reason": "작은 구멍이 조밀하고 초록 피복이 강해 B안의 큰 면 읽기를 방해한다.",
+  "edit": "대표 바위 대신 배경에 제한; 표면 단순화 필요",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:29:37.273190+00:00",
+  "sourcePageSha256": "a7b6070526f41ca9490cd73f8754852c181fbd33adaff955ab29fe93c0e08aee"
+}

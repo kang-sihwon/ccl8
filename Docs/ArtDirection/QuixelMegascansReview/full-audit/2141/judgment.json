@@ -1,0 +1,13 @@
+{
+  "id": 2141,
+  "verdict": "보류",
+  "use": "S03 우물 권양기 대안",
+  "reason": "2.28m 통나무·밧줄·손잡이 구조는 가능하나 우물 설치 미확정",
+  "edit": "수원 위치·구조 및 회전부 분리 확인",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:48:31.635497+00:00",
+  "sourcePageSha256": "b8d21ca13744bb43b29a748a2aec6fe6ba4d455480136e0dfe4bfb52b7ff4549"
+}

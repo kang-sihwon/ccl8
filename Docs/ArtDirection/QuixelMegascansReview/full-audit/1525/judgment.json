@@ -1,0 +1,13 @@
+{
+  "id": 1525,
+  "verdict": "보류",
+  "use": "S01 작은 돌 세트",
+  "reason": "11cm 안팎의 밝은 각형 돌 여러 형태로 기존 자갈 세트 충분",
+  "edit": "실측 유지 및 개별 메시 확인",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:23:18.586074+00:00",
+  "sourcePageSha256": "6d2b57b6e8fc33a98b4bd5e8cd4c54bce6008a47789a3cb84ad98e2b78388729"
+}

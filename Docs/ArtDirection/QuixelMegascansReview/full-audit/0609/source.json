@@ -1,0 +1,82 @@
+{
+  "id": 609,
+  "url": "https://www.fab.com/listings/16cde037-00fc-4148-940e-db70ae7fc701",
+  "uid": "16cde037-00fc-4148-940e-db70ae7fc701",
+  "title": "Broken Pine Stump",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:12:42.567138+00:00",
+  "pageSha256": "055fe51edbcc8a27c3960eeb414c7749b332ded316a5a79a70d16d892c68d4f1",
+  "description": "Texel density: 5671 px/m\nPhysical size: 0.54m x 0.49m x 1.4m\nMesh type: Open mesh\nMaps: Normal Basecolor Displacement(high tier only) Gloss AO Bump Roughness Cavity Fuzz Specular\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.54m x 0.49m x 1.4m",
+  "mesh": "Open mesh",
+  "texelDensity": "5671 px/m",
+  "maps": "Normal Basecolor Displacement(high tier only) Gloss AO Bump Roughness Cavity Fuzz Specular",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "ZBrush",
+      "extensions": [
+        "zbp",
+        "ztl"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/2a71a4f8-2052-46ff-b450-0603444bb24d/ce91e4a8-e162-425d-a411-f56714d459ab.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/2a71a4f8-2052-46ff-b450-0603444bb24d/33ff429c-81c4-44f1-a16e-5633b89fcf6e.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

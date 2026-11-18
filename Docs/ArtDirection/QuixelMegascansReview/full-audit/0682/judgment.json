@@ -1,0 +1,13 @@
+{
+  "id": 682,
+  "verdict": "보류",
+  "use": "S08 짧은 갈래 가지",
+  "reason": "1.27m의 짧은 돌출 가지가 달린 줄기로 0646과 역할이 겹친다.",
+  "edit": "기존 후보 우선; 밝기 통일",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:44:12.017231+00:00",
+  "sourcePageSha256": "3298cc49e7aa02822350301fa8e81f29c4daf35962f74f79efd4c975de1f6116"
+}

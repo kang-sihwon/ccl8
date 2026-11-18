@@ -1,0 +1,13 @@
+{
+  "id": 1419,
+  "verdict": "추천",
+  "use": "S08 입구 발치 세로 바위",
+  "reason": "1.04m 안팎의 단순한 큰 면과 세로 균열이 입구 주변 소형 바위에 적합",
+  "edit": "연녹색을 회녹색으로 정리하고 통로 밖 배치",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:19:10.446785+00:00",
+  "sourcePageSha256": "c654ef2c7d8a7a9b70602ddd889a69a6dccbaeb7b0c7dff09a2d3a654b127ff4"
+}

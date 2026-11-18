@@ -1,0 +1,13 @@
+{
+  "id": 1110,
+  "verdict": "보류",
+  "use": "S01 낮은 암석 변형",
+  "reason": "94cm의 침식 홈이 있는 낮은 황갈색 판으로 기존 후보 충분",
+  "edit": "회갈색 조절 및 경계 매입",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:07:19.713042+00:00",
+  "sourcePageSha256": "ce9404f5f8664d91e59451769efb76faed9f44ef1931bc3bf81a1d08ea78e6ae"
+}

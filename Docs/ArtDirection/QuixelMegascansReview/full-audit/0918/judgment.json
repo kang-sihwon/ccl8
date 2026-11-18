@@ -1,0 +1,13 @@
+{
+  "id": 918,
+  "verdict": "보류",
+  "use": "S08 부후 목편 변형",
+  "reason": "59cm의 밝고 얇은 부후 가지로 기존 목편과 용도 중복",
+  "edit": "채택 시 밝은 속살 대비 완화",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:59:25.666637+00:00",
+  "sourcePageSha256": "ea6fecbc827f1a1a5f79bd7e96572c2d071d02776987d15654e84ebb5b97eab6"
+}

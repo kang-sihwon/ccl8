@@ -1,0 +1,13 @@
+{
+  "id": 477,
+  "verdict": "수정 후 후보",
+  "use": "S08 그늘진 이끼 포인트",
+  "reason": "둥근 돌에 두툼한 이끼가 패치처럼 붙어 포인트로는 좋다.",
+  "edit": "전체 숲에 반복하지 않기; 황갈색·부분 붉은 이끼로 제한",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:29:37.282946+00:00",
+  "sourcePageSha256": "aa02e1b62c5cc17607064c0f412ffed50ed8b4ccac7bbe38220e5d86212c7c99"
+}

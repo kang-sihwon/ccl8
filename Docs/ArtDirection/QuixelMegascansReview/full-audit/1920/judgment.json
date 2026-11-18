@@ -1,0 +1,13 @@
+{
+  "id": 1920,
+  "verdict": "수정 후 후보",
+  "use": "S02 화덕 연료 잔재 묶음",
+  "reason": "짧은 탄 통나무 여러 변형이 가능하나 흰 반점·주황 단면이 강함",
+  "edit": "재·단면 대비 감소 및 개별 메시 확인",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:38:57.968137+00:00",
+  "sourcePageSha256": "540b570e8fe2cb9e0ab0f1726eedf56ad6ada7f2c90bd36aa142a028a41f8026"
+}

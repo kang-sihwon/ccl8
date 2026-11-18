@@ -1,0 +1,13 @@
+{
+  "id": 674,
+  "verdict": "보류",
+  "use": "S08 가는 썩은 목편",
+  "reason": "50cm의 검게 갈라진 얇은 목재로 0672보다 별도 역할이 약하다.",
+  "edit": "0672 우선; 암부 대비 완화",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:41:41.794079+00:00",
+  "sourcePageSha256": "9077c375afa6c073aea8581b26ee2a8df1ea8fdbde658bebff8a68b34f534a91"
+}

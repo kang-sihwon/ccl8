@@ -1,0 +1,13 @@
+{
+  "id": 1484,
+  "verdict": "보류",
+  "use": "S08 원경 층상 절벽",
+  "reason": "13.42m의 긴 벽과 중앙 깊은 틈으로 현재 근경 범위 밖",
+  "edit": "원경 지형 확정 후 재검토",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:21:12.826250+00:00",
+  "sourcePageSha256": "c6dadc220b9b203d62ce27321cbd81059895d285aa9095973e31e5e344ab3f0b"
+}

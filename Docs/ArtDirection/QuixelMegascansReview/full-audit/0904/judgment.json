@@ -1,0 +1,13 @@
+{
+  "id": 904,
+  "verdict": "보류",
+  "use": "S08 굵은 부러진 침엽수",
+  "reason": "2.41m의 굵은 줄기와 넓은 뿌리이나 0903·0887과 역할이 겹친다.",
+  "edit": "굵은 고사목이 필요한 구간에서만",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:54:43.615725+00:00",
+  "sourcePageSha256": "ad2dd9bbf047e70442e758a985c91d2656b4b3fd1d470cae25e5b237dd9eb7e1"
+}

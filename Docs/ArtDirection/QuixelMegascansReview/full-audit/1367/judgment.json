@@ -1,0 +1,13 @@
+{
+  "id": 1367,
+  "verdict": "보류",
+  "use": "S08 작은 이끼 바위",
+  "reason": "29cm의 각형 돌과 강한 밝은 세로 얼룩으로 기존 후보 충분",
+  "edit": "흰 얼룩 대비 축소",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:17:00.799256+00:00",
+  "sourcePageSha256": "aeab2ec1017d575493ea0811c9ece3fb79e981761b5121ef8df7075fd82437ea"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 1900,
+  "verdict": "수정 후 후보",
+  "use": "S02 장부 변형",
+  "reason": "24cm 어두운 청색 표지와 밝은 종이로 재질 수정 필요",
+  "edit": "종이 황색·표지 마모 조절 및 글자 제거 확인",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:38:57.949327+00:00",
+  "sourcePageSha256": "c8963ac07e139c8b42c611a83c184df9f68c972ac9797841949ced9bf017b1dd"
+}

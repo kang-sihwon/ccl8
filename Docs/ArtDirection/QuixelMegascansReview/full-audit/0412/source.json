@@ -1,0 +1,82 @@
+{
+  "id": 412,
+  "url": "https://www.fab.com/listings/7917aae7-b142-4ebc-8a58-187d53d684f5",
+  "uid": "7917aae7-b142-4ebc-8a58-187d53d684f5",
+  "title": "Hornbeam Tree Trunk",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:11:28.612523+00:00",
+  "pageSha256": "382cf9bbdd1c1294aa26efd628e83f4dd25a1ea948539a5cf7de288ac342f97a",
+  "description": "Texel density: 6161 px/m\nPhysical size: 0.69m x 0.68m x 1.99m\nMesh type: Open mesh\nMaps: Displacement(high tier only) Cavity Gloss Fuzz Specular Basecolor Roughness Normal AO Bump\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.69m x 0.68m x 1.99m",
+  "mesh": "Open mesh",
+  "texelDensity": "6161 px/m",
+  "maps": "Displacement(high tier only) Cavity Gloss Fuzz Specular Basecolor Roughness Normal AO Bump",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "ZBrush",
+      "extensions": [
+        "zbp",
+        "ztl"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/6d82243c-a64d-4745-9fc6-dcbdde68b8cc/4e1608f4-94e6-41d3-af64-3f09e4a82e52.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/6d82243c-a64d-4745-9fc6-dcbdde68b8cc/6716b086-003d-44a8-8e16-6120bd86de4b.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

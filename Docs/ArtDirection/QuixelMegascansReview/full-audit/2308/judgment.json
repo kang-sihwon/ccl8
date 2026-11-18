@@ -1,0 +1,13 @@
+{
+  "id": 2308,
+  "verdict": "보류",
+  "use": "S01 수확물 대안",
+  "reason": "15cm 노랑·녹색 줄무늬 호박은 색이 강함",
+  "edit": "작물 설정·채도 통일",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:55:15.675915+00:00",
+  "sourcePageSha256": "c94d0655b6fa5c44e3c1e81b35657c1aed57cbdfafbbaa833d6c98b850d7d32c"
+}

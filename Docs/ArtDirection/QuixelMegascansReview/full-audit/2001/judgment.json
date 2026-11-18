@@ -1,0 +1,13 @@
+{
+  "id": 2001,
+  "verdict": "추천",
+  "use": "S02 창가 화분의 큰 변형",
+  "reason": "16cm 단순 적갈색 화분과 넓은 테두리가 적합",
+  "edit": "흙·식물 추가 및 흰 얼룩 완화",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:42:46.959067+00:00",
+  "sourcePageSha256": "06dec875ed887b9859c62a70998cb4ec212b6f5ce524f1700228d333548cbd7f"
+}

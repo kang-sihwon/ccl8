@@ -1,0 +1,13 @@
+{
+  "id": 1864,
+  "verdict": "보류",
+  "use": "S02 화덕 벽돌 변형",
+  "reason": "21cm 붉은색과 어두운 오염이 1862와 중복",
+  "edit": "오염 대비 감소",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:36:56.649989+00:00",
+  "sourcePageSha256": "e53fdcc97869f9746b12909b6971f0221eb3e23754da38ed88b66f75c350d1a6"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 1644,
+  "verdict": "보류",
+  "use": "S02 마당 작은 돌",
+  "reason": "11cm 갈색 층상 판석은 기존 회색 후보와 중복",
+  "edit": "붉은 기운 감소",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:30:20.092726+00:00",
+  "sourcePageSha256": "98c35c701acc914c821ea12758fefa1c07620417d9cbb1e12b0291dabc839141"
+}

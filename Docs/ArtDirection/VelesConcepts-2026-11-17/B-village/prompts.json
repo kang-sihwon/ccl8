@@ -1,0 +1,170 @@
+{
+  "tool": "built-in image_gen",
+  "date": "2026-11-17",
+  "approved_style": "B",
+  "scope": "8 settlement sectors and one unified oblique panorama",
+  "common": "Create ONE landscape 16:9 finished environment concept keyframe, not a contact sheet. Approved lyrical semi-realistic B art direction for Veles fantasy action RPG: warm substantial handcrafted wood, muted terracotta red roofs, deep teal shutters, selective mustard canvas awnings, natural late-morning light, cool open shadows, convincing but edited wood/stone/cloth/iron textures, legible large color shapes and adult human scale. Same season and daylight across all eight scenes. Golden conifer woodland and patches of low red moss, only tiny shaded frost. A working inhabited village, neither a resort nor a ruined city. Avoid excessive flowers, microscopic grime, toy proportions and photorealism.\nREFERENCE ROLES: image1 approved B STYLE only, image2 exact planar geography/coverage guide only. If image3 is present it is architectural continuity for that landmark. Do NOT copy B's compressed layout or high stair terraces. Do NOT copy map labels, flat colors, grids or rectangles. Render an immersive oblique perspective showing one district at useful environmental-design scale.\nGEOGRAPHY: local meters east +X north +Y. Village houses lie X -390..30,Y15..340; main workshop center(60,124) footprint18x20m, south entrance(60,114), main red gable/mustard canopy/teal shutters/stone forge. Quay marker(0,0) connected by3m-wide timber jetty from bank(-46,20). River runs from NE via(180,160),(0,0), then(-300,-150) downstream, about55m wide at village; settled northwest bank only, opposite bank unbuilt woodland. Communal basin(-20,90), water storage BUILDING(23,195)14x10m and distribution node(45,175). Separate spring channel runs north to south via(20,290),(45,175),(-20,90),(0,20), NOT drawn from the river. Forest threshold(90,260). Western farms X-730..-485,Y-110..380. Houses and alleys separate the farms from river. No literal castle, palace, walls, tower gate, world tree, skyline giant roots, ocean ships, modern pipes, speculative new industry or grand square. Terrain near village is gently undulating low riverbank, no20m cliff or giant stairs.\nEight scene regions overlap only for context. Respect relative position and distances; do not bring every landmark into every scene. Clear connected walking paths, domestic work and material storage, a few anonymous residents as scale. Output no text, borders, diagrams, symbols, logos, watermark or UI.",
+  "sectors": [
+    {
+      "id": "S01",
+      "title": "나루와 물가 접근",
+      "file": "S01-quay.png",
+      "ref": "B-scenes/quay-wide.png",
+      "prompt": "Region X-140..110,Y-100..70. Expanded view of river landing and its bank access. Camera south-southwest of quay, low elevated lookout around6m above water, looking north-northeast. Long narrow unroofed timber jetty projects from LEFT settled bank into CENTER foreground; two small moored wooden river boats, restrained cargo and ropes at landward end. The broad river fills right/lower frame, flows from upper right toward lower left. Include footpath V-WATER approaching along(-80,80),(-55,50),(-46,20), and only the southernmost few houses up on LEFT bank. Main workshop is small distant center-right background at(60,124), never next to boats. Other houses recede left/west, not across river. Preserve image3's quay vocabulary but widen the view to show the route entering the bank, safe open passage, boat repair/transport daily life. No extra harbor buildings or fountain on jetty.",
+      "references": [
+        "<repository>/Docs/ArtDirection/VelesConcepts-2026-11-17/B-lyrical.png",
+        "<repository>/Docs/ArtDirection/VelesConcepts-2026-11-17/B-village/coverage-plan.png",
+        "<repository>/Docs/ArtDirection/VelesConcepts-2026-11-17/B-scenes/quay-wide.png"
+      ]
+    },
+    {
+      "id": "S02",
+      "title": "공방과 작업 마당",
+      "file": "S02-workshop.png",
+      "ref": "B-scenes/workshop-close.png",
+      "prompt": "Region X20..150,Y65..165. Workshop district seen from southwest, camera approximately(20,70),18m above ground looking northeast,35mm, moderately elevated three-quarter view. Preserve the EXACT recognizable image3 workshop design: central south-facing entrance, mustard awning and wooden boat repair bench on its west/left front, stone forge/chimney on east/right front, red gable and teal shutters. Show the entire18x20m building, open apron, short entrance connector and route going WEST toward communal water point off-frame. A few lumber stacks/rope and boards only in yard, leave circulation clear. River lies farther southeast/right across substantial grass/rock bank, can be partly visible along far RIGHT edge; quay is southwest behind camera and should not appear beside workshop. Neighboring houses only on left/west background, forest beyond north. Do not add another workshop, town square or steep retaining cliff.",
+      "references": [
+        "<repository>/Docs/ArtDirection/VelesConcepts-2026-11-17/B-lyrical.png",
+        "<repository>/Docs/ArtDirection/VelesConcepts-2026-11-17/B-village/coverage-plan.png",
+        "<repository>/Docs/ArtDirection/VelesConcepts-2026-11-17/B-scenes/workshop-close.png"
+      ]
+    },
+    {
+      "id": "S03",
+      "title": "공동 급수대와 생활길",
+      "file": "S03-water-common.png",
+      "prompt": "Region X-90..35,Y40..185. Functional communal water point at(-20,90), modest low rough-stone receiving basin, unadorned wooden spout from spring-fed channel, a couple of buckets and residents collecting water. Camera about(-55,55),eye4m,looking northeast. The basin is a practical village meeting of paths, NOT ornamental fountain or large plaza. R01 arrives from workshop on RIGHT/east about80m away, then goes to upper RIGHT/northeast toward storage; the village lane arrives from LEFT/west. Show8 or fewer nearby red-roof houses west/left, fences, simple garden plots; workshop appears very small distant right if seen. Narrow spring channel comes from NORTH/NORTHEAST, then continues south off-frame; main navigable river is farther southeast OFFSCREEN. Ground remains earth/grass with a small working stone pad and short plank crossings, not a paved urban square. Maintain domestic scale and readable connected routes.",
+      "references": [
+        "<repository>/Docs/ArtDirection/VelesConcepts-2026-11-17/B-lyrical.png",
+        "<repository>/Docs/ArtDirection/VelesConcepts-2026-11-17/B-village/coverage-plan.png"
+      ]
+    },
+    {
+      "id": "S04",
+      "title": "남쪽·중앙 주거 골목",
+      "file": "S04-south-central-homes.png",
+      "prompt": "Region X-260..-80,Y-15..185. A settled residential district with several rows of modest freestanding timber houses along curving earth lanes, domestic yards, wood piles, drying cloth and little vegetable gardens. Camera near(-210,0),18m high looking north-northeast across A0 low lane and toward A1 middle lane; show about15–20 houses through depth, mostly one-story with modest raised timber footings, irregular spacing matched to map instead of tightly packed townhouses. A0 trends east-west nearY40–70, A1 nearY130; narrow north-south connectors link them. Roof vocabulary matches B: simple red gables, timber/plaster walls, teal shutters, occasional mustard awning. Let the connecting village lanes visually continue out left/right. Main river is behind camera/southeast and should NOT run through the neighborhood. No central church, huge workshop, market plaza, canal or newly invented landmark.",
+      "references": [
+        "<repository>/Docs/ArtDirection/VelesConcepts-2026-11-17/B-lyrical.png",
+        "<repository>/Docs/ArtDirection/VelesConcepts-2026-11-17/B-village/coverage-plan.png"
+      ]
+    },
+    {
+      "id": "S05",
+      "title": "서쪽 주거지와 마을 진입",
+      "file": "S05-west-homes.png",
+      "prompt": "Region X-430..-220,Y-15..365. West residential edge of Veles, camera near(-470,70),about25m high looking EAST-NORTHEAST. Several gently curving parallel earth alleys feed into scattered timber homes and fenced yards across the frame, about20–25 houses in depth, with golden forest behind. In foreground LEFT and behind camera are the margins of the western fields separated by grassy belt; the main western approach C-W enters from lower-left and leads into the southern part of neighborhood toward communal water point far off right/east. Show believable rural settlement spacing and paths not dense urban blocks. Houses vary slightly in roof repairs, porch and shutters while remaining same B vocabulary. Domestic daily work, hanging firewood shelters and gardens; no defensive wall, gatehouse, arch, new bridge or waterway. River and main workshop are hundreds of meters east and must remain offscreen.",
+      "references": [
+        "<repository>/Docs/ArtDirection/VelesConcepts-2026-11-17/B-lyrical.png",
+        "<repository>/Docs/ArtDirection/VelesConcepts-2026-11-17/B-village/coverage-plan.png"
+      ]
+    },
+    {
+      "id": "S06",
+      "title": "북쪽 주거지와 숲 경계",
+      "file": "S06-north-homes.png",
+      "prompt": "Region X-240..35,Y175..365. Northern residential band where houses thin into golden taiga. Camera near(-170,180),20m elevated looking north-northeast,show about16–22 houses arranged along A2 lane aroundY220 and A3 aroundY300, with clear domestic gardens/wood sheds and golden conifers beyond north. The A2 lane exits toward forest threshold(90,260) on far RIGHT/east, not left. Terrain gently undulates rather than climbing dramatic tiers. Broad warm red roof masses, teal shutter accents, quiet wood and stone, soft blue-green shadows. Preserve gaps and connector paths between individual houses. No workshop hero building, waterfront, central fountain, walls, towers or mountainous background village. Forest transition looks managed and inhabited, no new cemetery or religious building.",
+      "references": [
+        "<repository>/Docs/ArtDirection/VelesConcepts-2026-11-17/B-lyrical.png",
+        "<repository>/Docs/ArtDirection/VelesConcepts-2026-11-17/B-village/coverage-plan.png"
+      ]
+    },
+    {
+      "id": "S07",
+      "title": "서쪽 경작지와 접근로",
+      "file": "S07-west-fields.png",
+      "prompt": "Region X-780..-450,Y-140..420. All western farm plots of Veles: approximately15 long rectangular plots in3 columns and5 rows, some cultivated and some fallow, roughly70x86m each, with practical field borders and modest woven/wood fences, only a few hand carts and workers, no newly invented large barns. Camera southwest around(-850,-200),85m high looking NORTHEAST,wide environmental oblique view that shows the five rows receding; not orthographic map. The village's red-roof houses lie to EAST / screen RIGHT in far background after a grass belt; golden forest borders north and west. Western approach road passes diagonally through the southern part toward village. Do not put river through the fields or move fields north of village. Keep the same B style and golden light; soil, harvested strips and soft green low crops provide contrast, not a field of bright yellow flowers. Modest cultivated rural economy.",
+      "references": [
+        "<repository>/Docs/ArtDirection/VelesConcepts-2026-11-17/B-lyrical.png",
+        "<repository>/Docs/ArtDirection/VelesConcepts-2026-11-17/B-village/coverage-plan.png"
+      ]
+    },
+    {
+      "id": "S08",
+      "title": "물 저장고와 숲 진입 연결",
+      "file": "S08-store-forest.png",
+      "ref": "B-scenes/forest-entrance.png",
+      "prompt": "Region X-15..180,Y155..380. Transition from settlement water storage to forest entrance. Camera around(0,150),12m elevated looking NORTH-NORTHEAST. A small14x10m single-storey functional timber water-store building at(23,195) in midground LEFT/CENTER, red gable, teal shutters, modest basin/channel inspection at(45,175), NO giant tank or water tower. R01 runs through(42,187) toward opening between trees at(90,260), then bends north-northeast to(180,440) in distance upper RIGHT. Left/west margins show a few last homes and the end of A2 lane arriving from village. At forest threshold the northern connector branches northwest/LEFT while main management path goes northeast/RIGHT. Narrow spring channel remains on WEST/LEFT of forest path, coming from(20,290) to distribution node; do not replace it with main river. Broad golden conifers and low red moss frame usable open walking ground. No main river, quay, cave mouth, stone gate or waterfall. Preserve image3 forest vegetation/materials, but view a wider southern approach including the existing storage building.",
+      "references": [
+        "<repository>/Docs/ArtDirection/VelesConcepts-2026-11-17/B-lyrical.png",
+        "<repository>/Docs/ArtDirection/VelesConcepts-2026-11-17/B-village/coverage-plan.png",
+        "<repository>/Docs/ArtDirection/VelesConcepts-2026-11-17/B-scenes/forest-entrance.png"
+      ]
+    }
+  ],
+  "overview": {
+    "base_prompt": "Create ONE large highly detailed landscape16:9 MASTER ENVIRONMENT CONCEPT of the ENTIRE VELES VILLAGE seen from the SOUTH in an elevated oblique bird's-eye panorama, looking NORTH, east screen-right and west screen-left. This is one continuous coherent world, NOT a collage, tiled contact sheet, map UI, isometric miniature, detached diorama or set of panels. Show the whole inhabited settlement and western farm belt, northern forest edge and river landing together within the frame. Use the eight attached sector concepts as the actual architectural, material, seasonal, lighting and daily-life vocabulary to synthesize into one geography.\nREFERENCE ROLES: Image1 is the coordinate coverage diagram, authoritative for PLANAR relative placement ONLY (ignore colored rectangles, labels, grid, flat map style). Images2–5 are respectively S01 quay, S02 workshop, S03 communal water, S07 western farms. These lock the four principal landmark designs. Residential districts and water-store/forest details will be refined in a subsequent pass without moving the plan. Show all eight districts now according to the geographic text. Use the same B lyrical semi-realism, red simple gables, teal shutters, warm timber/plaster/stone, occasional mustard awnings, golden conifers, restrained red moss, naturally lit edited PBR-like surfaces. Late-morning warm sunlight and cool soft shadows. Do not let image1's map style override these eight concepts.\nGEOMETRY: approximately1000m east-west by610m north-south region. Local meters east+X,north+Y; overall bounds[-800,-160,200,450]. Camera proposed around(-300,-620),420m above ground,looking toward(-250,120),wide oblique perspective with enough altitude to read the complete plan. Ground gently undulating, no giant terraces/cliff. House district X-390..30,Y15..340, about84 modest detached houses plus one main workshop and one storage building; keep a believable village of roughly80–90 roofs across several curved lane bands, NOT a handful of oversized buildings or a dense city. Private gardens and meaningful gaps. No exact roof-count typography. Village core should occupy center/center-right, western farm belt left, taiga behind.\nPlace west fields on LEFT X-730..-485,Y-110..380: roughly15 cultivated/fallow rectangles arranged3 columns by5 rows with narrow field paths and the western approach entering southern part. Do NOT move them north of village. A grass/tree margin separates them from west homes. Low residential lane bands atY40,130,220,300 flow east-west across village, narrow connectors link bands. Main western entry runs west-to-east along southern neighborhood toward communal water.\nMain river is a broad55m-ish watercourse on SOUTH and EAST of settlement, flowing from UPPER RIGHT/NE through(180,160),(0,0), then to LOWER LEFT/SW(-300,-150); it borders the southern/eastern side, never encircles village as an island, never cuts between west fields and houses. Opposite/southeast bank remains natural woodland with NO houses. Quay near(0,0) is on LOWER RIGHT edge of settled bank:3m-wide unroofed jetty from(-46,20) toward(0,0), two small boats, clear walking access and modest cargo. Preserve S01 landing design.\nWorkshop center(60,124),18x20m, at EAST/right edge of village but farther inland/north than quay by about125m. Its south-facing front has mustard canopy to west/left and stone forge/chimney to east/right, central doorway and small boat-repair apron as in S02. It must NOT be next to jetty or centered in village. Communal low stone basin at(-20,90),WEST of workshop, connected by short village route, preserve S03. Storage building at(23,195),behind/NORTHWEST of workshop, with small distribution basin around(45,175), preserve S08. Forest entrance(90,260),NORTHEAST of homes and north of workshop. Visible earth management trail continues north-northeast from this threshold. No built entrance gate. Separate modest spring-water channel descends from north via(20,290),(45,175),(-20,90),(0,20), distinguish it from navigable river and do not turn it into a major canal. Make the basin a very small village element, not a monumental square.\nGolden forest encloses north and west beyond farmland, low wooded distant ridges. World tree and cave remain unseen. No castle, church, tower, palace, walls, grand market, industrial machinery, new iconic building, glowing effects, high waterfalls, additional bridge across main river. Preserve overall calm craft-and-transport village identity, with subtle activity and believable adult scale. Clear detailed roofs, alleys, fields, shore and transitions visible at full image size. No text, labels, legend, grid, border, logo or watermark.",
+    "base_references": [
+      "coverage-plan.png",
+      "S01-quay.png",
+      "S02-workshop.png",
+      "S03-water-common.png",
+      "S07-west-fields.png"
+    ],
+    "refinement_prompt": "Refine Image1, the continuous Veles whole-village panorama, with the additional district references. Output ONE coherent landscape16:9 panorama, no collage/panels/map labels. Image1 is EDIT TARGET. Image2=S04 south/central residential style, Image3=S05 west residential edge, Image4=S06 northern residential/forest transition, Image5=S08 water-store/forest threshold. Preserve Image1's approved B art style, warm natural daylight, aerial SOUTH-looking-NORTH camera, west=left/east=right, 15 western plots, central home district, right-hand quay, small spring channel, golden forest backdrop. Integrate the recognizable house porches, teal shutters, wood shelters, domestic yards and lane transitions from images2–4 into the EXISTING residential positions. Make the small water storage building behind/northwest of workshop match image5, with red simple gable, teal shutters and modest working basin, and a clear trail branching into golden forest upper-right. Do not put another central workshop or new landmark into housing.\nTwo required corrections to Image1:\n1. The EAST/right-edge main workshop is disproportionately huge. Reduce its building footprint and apparent mass to about1.3–1.5 times a typical nearby house, respecting an18x20m footprint versus houses about12–18m. Keep its exact district location and south-facing doorway, mustard canopy west/left, stone forge east/right, recognizable S02 design. Do not move it to quay or center.\n2. The river must NOT trace the entire southern border of the WEST farm plots. Source river flows down the EAST village bank from upper right through quay at(0,0), then southwest to(-300,-150), then SOUTH outside frame. In this south-looking-north panorama, retain river on RIGHT and LOWER CENTER/RIGHT, but make it exit the BOTTOM edge around the center, BEFORE the western farm belt. Replace the water shoreline along the LOWER LEFT directly beneath the farm plots with dry rough meadow, scrub and golden woodland edge continuing toward foreground. Preserve all15 farm rectangles and western approach road on LEFT. Village is not an island and no river passes between fields and houses.\nKeep settlement broadly around80 detached houses worth of scale, but do not scatter new houses into forests or fields simply to increase count. Maintain paths and sufficient yard space. Do not enlarge residential houses to fill whole image. No huge workshop, city hall, church, castle, gates, walls, world tree, waterfall, ocean ships, industrial pipework, text, labels, watermarks, UI. The result should synthesize these last four districts with the four already incorporated in Image1, all as ONE village with plausible spatial scale.",
+    "refinement_references": [
+      "base panorama",
+      "S04-south-central-homes.png",
+      "S05-west-homes.png",
+      "S06-north-homes.png",
+      "S08-store-forest.png"
+    ]
+  },
+  "outputs": [
+    {
+      "id": "S01",
+      "title": "나루와 물가 접근",
+      "file": "S01-quay.png",
+      "source": "<generated-images>/01a1e499-7dd2-7452-8fc8-b3c77d959796\\exec-42f5334b-b97d-44f6-8b41-43c9a548de40.png"
+    },
+    {
+      "id": "S02",
+      "title": "공방과 작업 마당",
+      "file": "S02-workshop.png",
+      "source": "<generated-images>/01a1e499-7dd2-7452-8fc8-b3c77d959796\\exec-66c560d0-f0a8-4b50-81a5-4ad6e9fb95ca.png"
+    },
+    {
+      "id": "S03",
+      "title": "공동 급수대와 생활길",
+      "file": "S03-water-common.png",
+      "source": "<generated-images>/01a1e499-7dd2-7452-8fc8-b3c77d959796\\exec-e39101f8-22a9-46c1-be8d-4614c6704ef5.png"
+    },
+    {
+      "id": "S04",
+      "title": "남쪽·중앙 주거 골목",
+      "file": "S04-south-central-homes.png",
+      "source": "<generated-images>/01a1e499-7dd2-7452-8fc8-b3c77d959796\\exec-32a08960-6b00-433d-8c8e-429cde2b3a58.png"
+    },
+    {
+      "id": "S05",
+      "title": "서쪽 주거지와 마을 진입",
+      "file": "S05-west-homes.png",
+      "source": "<generated-images>/01a1e499-7dd2-7452-8fc8-b3c77d959796\\exec-0263b2dc-6ace-44b5-97e7-78564cad3691.png"
+    },
+    {
+      "id": "S06",
+      "title": "북쪽 주거지와 숲 경계",
+      "file": "S06-north-homes.png",
+      "source": "<generated-images>/01a1e499-7dd2-7452-8fc8-b3c77d959796\\exec-d583ec2b-2315-4364-ba80-2712255f37fc.png"
+    },
+    {
+      "id": "S07",
+      "title": "서쪽 경작지와 접근로",
+      "file": "S07-west-fields.png",
+      "source": "<generated-images>/01a1e499-7dd2-7452-8fc8-b3c77d959796\\exec-896c46ee-80e3-480d-944a-d0781176ba98.png"
+    },
+    {
+      "id": "S08",
+      "title": "물 저장고와 숲 진입 연결",
+      "file": "S08-store-forest.png",
+      "source": "<generated-images>/01a1e499-7dd2-7452-8fc8-b3c77d959796\\exec-927bdaba-0a8f-496e-8bc1-4b219c0acbbc.png"
+    },
+    {
+      "id": "overview",
+      "file": "Veles-overview.png",
+      "source": "<generated-images>/01a1e499-7dd2-7452-8fc8-b3c77d959796/exec-e4a153bf-6937-4ddd-abba-8e589c7c2333.png"
+    }
+  ],
+  "verification": "All nine final images visually inspected; source-center sector coverage checked; no per-building pixel registration or UE validation.",
+  "path_normalization": "공유본은 PC 전용 경로를 <repository>와 <generated-images> 자리표시자로 바꿨다. 원본 입력 기록은 Git 제외 로컬 백업에 보존했다."
+}

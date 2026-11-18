@@ -1,0 +1,85 @@
+{
+  "id": 1923,
+  "url": "https://www.fab.com/listings/b6e01745-82bc-4407-8033-a3c81935282a",
+  "uid": "b6e01745-82bc-4407-8033-a3c81935282a",
+  "title": "Burnt Wood",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:21:03.439189+00:00",
+  "pageSha256": "df4e33143e813711e12350cd0d5627673995c637346b7bf97cb3f66e84b56071",
+  "description": "Texel density: 1090 px/m\nPhysical size: 0.06m x 0.23m x 0.02m\nMesh type: Closed mesh\nMaps: Displacement(high tier only) Roughness Gloss Specular Basecolor Cavity Normal Ao\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.06m x 0.23m x 0.02m",
+  "mesh": "Closed mesh",
+  "texelDensity": "1090 px/m",
+  "maps": "Displacement(high tier only) Roughness Gloss Specular Basecolor Cavity Normal Ao",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "UEFN Reference",
+      "extensions": null,
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "UEFN - Reference only",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/13a91c71-0394-4311-8b0a-d33bf1caf00f/1c882ead-8a69-46e1-ac70-ba6837075690.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/13a91c71-0394-4311-8b0a-d33bf1caf00f/06f9f892-1304-452d-9aa0-a7bdab9f0095.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

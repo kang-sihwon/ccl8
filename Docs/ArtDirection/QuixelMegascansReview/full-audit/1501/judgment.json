@@ -1,0 +1,13 @@
+{
+  "id": 1501,
+  "verdict": "추천",
+  "use": "S08 입구 측면 세로 바위",
+  "reason": "1.61m의 각진 큰 면과 단순한 세로 실루엣이 입구 한쪽 경계에 적합",
+  "edit": "부분 매입하고 통로 폭 확보",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:23:18.561755+00:00",
+  "sourcePageSha256": "6928d73683dd9c5bf6227cbde9479f452298dbbfd4791a72fea797516d5cff75"
+}

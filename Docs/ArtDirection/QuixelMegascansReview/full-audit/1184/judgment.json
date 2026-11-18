@@ -1,0 +1,13 @@
+{
+  "id": 1184,
+  "verdict": "추천",
+  "use": "S08 입구 발치의 이끼 돌 군집",
+  "reason": "1.88m의 낮은 돌과 낙엽 바닥이 뿌리 주변 접합에 적합",
+  "edit": "이끼 면적과 녹색 채도 줄이고 경계 매입",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:09:31.914658+00:00",
+  "sourcePageSha256": "cf09acfd8ee823a732d7e37dd9d9dc49d70e2e8d08aa50c9902748dd4aa31fb1"
+}

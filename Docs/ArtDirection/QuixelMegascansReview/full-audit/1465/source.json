@@ -1,0 +1,74 @@
+{
+  "id": 1465,
+  "url": "https://www.fab.com/listings/71d3376f-fb48-42ad-9f84-c106933e2007",
+  "uid": "71d3376f-fb48-42ad-9f84-c106933e2007",
+  "title": "Nature Rock Boulder Basalt Mossy",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:18:08.211343+00:00",
+  "pageSha256": "e8a80ed2da58f94f07e36cf0a312977b6f00331a7474962fa350f32f210fe762",
+  "description": "The ‘Tundra Icelandic’ themed assets capture the raw, otherworldly feel of a volcanic landscape. Featuring high-fidelity scans of moss-covered boulders and varied rock formations, this collection reflects a landscape shaped by geological activity and harsh climate.\nIdeal for creating dramatic, natural terrain with a strong sense of scale, realism, and environmental storytelling.\nTexel density: 1913 px/m\nPhysical size: 2.42m x 3.3m x 0.95m\nMesh type: Closed mesh\nMaps: AO Basecolor Bump Cavity Displacement Gloss Normal Roughness Specular\nCreate high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.\n\nCurious about future releases? Discover upcoming Megascans content and vote for your favorite themes: Public Roadmap",
+  "size": "2.42m x 3.3m x 0.95m",
+  "mesh": "Closed mesh",
+  "texelDensity": "1913 px/m",
+  "maps": "AO Basecolor Bump Cavity Displacement Gloss Normal Roughness Specular",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/78d2d355-7f7a-4300-8b45-3cbd4dc364bd/3cba953e-6992-437e-b337-73efb8d880a7.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/78d2d355-7f7a-4300-8b45-3cbd4dc364bd/0ec4ea47-6b7f-404a-b49f-d3e7d0f66125.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

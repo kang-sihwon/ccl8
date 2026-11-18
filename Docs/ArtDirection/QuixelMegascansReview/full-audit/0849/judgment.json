@@ -1,0 +1,13 @@
+{
+  "id": 849,
+  "verdict": "보류",
+  "use": "S08 긴 이끼 줄기 대체",
+  "reason": "6.24m의 곧은 줄기에 밝은 이끼가 넓어 0848보다 색 정리가 많이 필요하다.",
+  "edit": "0848 우선; 큰 구간 필요 시만",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:52:44.803261+00:00",
+  "sourcePageSha256": "e123c27b145d1bb1970ed6e18c4028c9b3470cf9e2a4a1dd91c918a71bfe362d"
+}

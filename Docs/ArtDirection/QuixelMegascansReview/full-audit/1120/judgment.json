@@ -1,0 +1,13 @@
+{
+  "id": 1120,
+  "verdict": "보류",
+  "use": "S08 작은 밝은 돌판",
+  "reason": "43cm의 둥글고 밝은 돌판으로 기존 회색 돌과 중복",
+  "edit": "밝기와 크림색 완화",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:07:19.724080+00:00",
+  "sourcePageSha256": "1629594c9ed5507959c81ccf8ce8ecc738b12eca458d1127b8edab23496c4252"
+}

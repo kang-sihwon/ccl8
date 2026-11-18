@@ -1,0 +1,13 @@
+{
+  "id": 1958,
+  "verdict": "보류",
+  "use": "S02 뚜껑 그릇 대안",
+  "reason": "15cm 도기 그릇의 뚜껑 잎 장식이 기존 단지보다 복잡",
+  "edit": "장식 단순화",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:40:59.616776+00:00",
+  "sourcePageSha256": "c37265694b82d26d02ee9b84e0143194ce37fe277b1221cdc8a7343034ab6b41"
+}

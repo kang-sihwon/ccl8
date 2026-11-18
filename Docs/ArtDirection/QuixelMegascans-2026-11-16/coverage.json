@@ -1,0 +1,192 @@
+{
+  "date": "2026-11-16",
+  "source": "https://www.fab.com/sellers/Quixel%20Megascans?listing_types=3d-model",
+  "total": 8825,
+  "detailPages": 41,
+  "method": "Chrome 판매자 3D 카테고리별 끝까지 목록 수집, URL 중복 제거, 이름·분류 규칙으로 1차 선별, 대표 41개 상세 설명 대조",
+  "grades": {
+    "A": 2387,
+    "B": 4608,
+    "C": 1479,
+    "D": 351
+  },
+  "categories": {
+    "건축": 2180,
+    "도구/소품": 1764,
+    "자연/나무": 579,
+    "자연/숲": 8,
+    "자연/식물": 260,
+    "자연/암석": 2715,
+    "무기": 41,
+    "자연/눈": 43,
+    "환경": 172,
+    "가구": 527,
+    "운송": 5,
+    "음식": 239,
+    "자연/버섯": 46,
+    "자연/지형": 8,
+    "자연/파편": 57,
+    "전자/기술": 115,
+    "의류": 2,
+    "자연/해저": 15,
+    "캐릭터": 49
+  },
+  "prices": {
+    "무료 표시": 8756,
+    "가격 미표시": 62,
+    "라이브러리 저장 표시·가격 미표시": 7
+  },
+  "categorySources": [
+    {
+      "category": "자연/눈",
+      "expected": 43,
+      "count": 43,
+      "url": "https://www.fab.com/sellers/Quixel%20Megascans?listing_types=3d-model&categories=nature-plants--snow"
+    },
+    {
+      "category": "자연/숲",
+      "expected": 8,
+      "count": 8,
+      "url": "https://www.fab.com/sellers/Quixel%20Megascans?listing_types=3d-model&categories=nature-plants--forest"
+    },
+    {
+      "category": "자연/나무",
+      "expected": 579,
+      "count": 579,
+      "url": "https://www.fab.com/sellers/Quixel%20Megascans?listing_types=3d-model&categories=nature-plants--trees"
+    },
+    {
+      "category": "자연/버섯",
+      "expected": 46,
+      "count": 46,
+      "url": "https://www.fab.com/sellers/Quixel%20Megascans?listing_types=3d-model&categories=nature-plants--mushrooms"
+    },
+    {
+      "category": "자연/지형",
+      "expected": 8,
+      "count": 8,
+      "url": "https://www.fab.com/sellers/Quixel%20Megascans?listing_types=3d-model&categories=nature-plants--terrain"
+    },
+    {
+      "category": "자연/파편",
+      "expected": 57,
+      "count": 57,
+      "url": "https://www.fab.com/sellers/Quixel%20Megascans?listing_types=3d-model&categories=nature-plants--debris"
+    },
+    {
+      "category": "자연/해저",
+      "expected": 15,
+      "count": 15,
+      "url": "https://www.fab.com/sellers/Quixel%20Megascans?listing_types=3d-model&categories=nature-plants--seabed"
+    },
+    {
+      "category": "자연/암석",
+      "expected": "2.7K",
+      "count": 2715,
+      "url": "https://www.fab.com/sellers/Quixel%20Megascans?listing_types=3d-model&categories=nature-plants--rocks-stones"
+    },
+    {
+      "category": "건축",
+      "expected": "2.2K",
+      "count": 2180,
+      "url": "https://www.fab.com/sellers/Quixel%20Megascans?listing_types=3d-model&categories=buildings-architecture"
+    },
+    {
+      "category": "도구/소품",
+      "expected": "1.8K",
+      "count": {
+        "dom": 1764,
+        "unique": 1764
+      },
+      "url": "https://www.fab.com/sellers/Quixel%20Megascans?listing_types=3d-model&categories=objects-decor"
+    },
+    {
+      "category": "가구",
+      "expected": 527,
+      "count": {
+        "dom": 527,
+        "unique": 527
+      },
+      "url": "https://www.fab.com/sellers/Quixel%20Megascans?listing_types=3d-model&categories=furniture-fixtures"
+    },
+    {
+      "category": "환경",
+      "expected": 172,
+      "count": {
+        "dom": 172,
+        "unique": 172
+      },
+      "url": "https://www.fab.com/sellers/Quixel%20Megascans?listing_types=3d-model&categories=environments"
+    },
+    {
+      "category": "의류",
+      "expected": 2,
+      "count": {
+        "dom": 2,
+        "unique": 2
+      },
+      "url": "https://www.fab.com/sellers/Quixel%20Megascans?listing_types=3d-model&categories=clothing-accessories"
+    },
+    {
+      "category": "무기",
+      "expected": 41,
+      "count": {
+        "dom": 41,
+        "unique": 41
+      },
+      "url": "https://www.fab.com/sellers/Quixel%20Megascans?listing_types=3d-model&categories=weapons-combat"
+    },
+    {
+      "category": "음식",
+      "expected": 239,
+      "count": {
+        "dom": 239,
+        "unique": 239
+      },
+      "url": "https://www.fab.com/sellers/Quixel%20Megascans?listing_types=3d-model&categories=food-drink"
+    },
+    {
+      "category": "운송",
+      "expected": 5,
+      "count": {
+        "dom": 5,
+        "unique": 5
+      },
+      "url": "https://www.fab.com/sellers/Quixel%20Megascans?listing_types=3d-model&categories=vehicles-transportation"
+    },
+    {
+      "category": "전자/기술",
+      "expected": 115,
+      "count": {
+        "dom": 115,
+        "unique": 115
+      },
+      "url": "https://www.fab.com/sellers/Quixel%20Megascans?listing_types=3d-model&categories=electronics-technology"
+    },
+    {
+      "category": "캐릭터",
+      "expected": 49,
+      "count": {
+        "dom": 49,
+        "unique": 49
+      },
+      "url": "https://www.fab.com/sellers/Quixel%20Megascans?listing_types=3d-model&categories=characters-creatures"
+    },
+    {
+      "category": "자연/식물",
+      "expected": 260,
+      "count": {
+        "dom": 260,
+        "unique": 260
+      },
+      "url": "https://www.fab.com/sellers/Quixel%20Megascans?listing_types=3d-model&categories=nature-plants--plants"
+    }
+  ],
+  "excludedNon3dCount": 264,
+  "limits": [
+    "전 상품 상세·이미지 검토는 아님",
+    "브러시 264개는 3D 범위 밖으로 제외",
+    "구매·다운로드·UE 실행·성능·충돌·LOD·Nanite 검증 없음",
+    "팩 내부 개별 에셋은 별도 상품 수로 집계하지 않음"
+  ]
+}

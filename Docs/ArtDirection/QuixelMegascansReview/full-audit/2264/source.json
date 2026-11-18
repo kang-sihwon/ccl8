@@ -1,0 +1,93 @@
+{
+  "id": 2264,
+  "url": "https://www.fab.com/listings/546c5627-03d4-45bd-a16b-e4281ec4e5c0",
+  "uid": "546c5627-03d4-45bd-a16b-e4281ec4e5c0",
+  "title": "Half Pork Pie",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:23:12.930578+00:00",
+  "pageSha256": "285cedd35594915349373b5b61a83dd6fa074921e02df7fd3ae052399ac542f2",
+  "description": "Texel density: 2955 px/m\nPhysical size: 0.06m x 0.11m x 0.06m\nMesh type: Closed mesh\nMaps: Displacement(high tier only) Roughness Gloss Specular Basecolor Cavity Bump Normal Ao\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.06m x 0.11m x 0.06m",
+  "mesh": "Closed mesh",
+  "texelDensity": "2955 px/m",
+  "maps": "Displacement(high tier only) Roughness Gloss Specular Basecolor Cavity Bump Normal Ao",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "ZBrush",
+      "extensions": [
+        "zbp",
+        "ztl"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "UEFN Reference",
+      "extensions": null,
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "UEFN - Reference only",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/531222a7-c3f8-4dc3-9aab-7b9b009ec726/b4c346cf-e82e-48dd-a144-33f3bed83ac3.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/531222a7-c3f8-4dc3-9aab-7b9b009ec726/525cc14e-2ef9-4dd0-a1c9-0470e4c0a1ce.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

@@ -1,0 +1,13 @@
+{
+  "id": 1688,
+  "verdict": "보류",
+  "use": "S08 작은 돌 변형",
+  "reason": "10cm 어두운 층상 조각으로 기존 변형 충분",
+  "edit": "부분 매입",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:31:48.489933+00:00",
+  "sourcePageSha256": "f3de58ff87debe462ce5673b13730b757ea7914740bd75bdedf793601c1976f8"
+}

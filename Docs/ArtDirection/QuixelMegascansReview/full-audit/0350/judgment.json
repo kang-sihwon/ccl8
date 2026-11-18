@@ -1,0 +1,13 @@
+{
+  "id": 350,
+  "verdict": "제외",
+  "use": "S02 작업 메모 틀에서 제외",
+  "reason": "매끈한 밝은 몰딩과 평평한 뒷판의 현대 사진 액자 인상이 강하다.",
+  "edit": "다른 거친 목재 프레임을 우선한다.",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:22:16.010387+00:00",
+  "sourcePageSha256": "8eb1005f4dfe663f5339de74a3a51979a895b0e8cebcbcba04365f99b6681e57"
+}

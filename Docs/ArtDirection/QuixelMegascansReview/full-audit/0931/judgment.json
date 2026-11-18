@@ -1,0 +1,13 @@
+{
+  "id": 931,
+  "verdict": "추천",
+  "use": "S08 숲 가장자리 긴 잔가지",
+  "reason": "2.18m의 단순한 장대형과 작은 분기가 바닥 방향성을 읽히게 함",
+  "edit": "길과 평행 배치하고 충돌 단순화 검토",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:59:25.679747+00:00",
+  "sourcePageSha256": "e2f65c11e5eb0e06397e981a5309f229fc2e07d0e2a3b73158a9fe464d6fd1d6"
+}

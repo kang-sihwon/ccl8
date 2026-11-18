@@ -1,0 +1,13 @@
+{
+  "id": 2183,
+  "verdict": "보류",
+  "use": "S01 음식 진열 대안",
+  "reason": "20cm 갈비 랙은 연회 중심 시각이 강함",
+  "edit": "일상 화물보다 우선도 낮음",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:52:25.931960+00:00",
+  "sourcePageSha256": "fb7b9c9504b0aec4347f889b2ae0c0d7d0a79d44a82240ffa93dbef2cab8fda9"
+}

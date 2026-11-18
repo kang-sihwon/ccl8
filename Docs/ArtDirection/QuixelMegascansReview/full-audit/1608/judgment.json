@@ -1,0 +1,13 @@
+{
+  "id": 1608,
+  "verdict": "제외",
+  "use": "현재 세 장소 제외",
+  "reason": "14cm 붉은 평면과 밝은 얼룩이 두드러짐",
+  "edit": "회색 돌 우선",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:28:52.988583+00:00",
+  "sourcePageSha256": "87c8d535d66a2c5036f83cda9e24f6f5719fd37a84bcfff5b4579c99f1b211e9"
+}

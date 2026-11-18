@@ -1,0 +1,13 @@
+{
+  "id": 868,
+  "verdict": "보류",
+  "use": "S08 숲 뒤 긴 고사 가지",
+  "reason": "9.54m의 구불구불한 긴 몸통은 현 입구 화면에서 규모가 과하다.",
+  "edit": "넓은 숲 내부가 정해진 뒤 재검토",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:52:44.821526+00:00",
+  "sourcePageSha256": "e522883baa68fcc293a7f222c9e55f172c9c627284b9a5c973ca7818f9ec0bac"
+}

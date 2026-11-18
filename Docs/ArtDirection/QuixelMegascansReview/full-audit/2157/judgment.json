@@ -1,0 +1,13 @@
+{
+  "id": 2157,
+  "verdict": "수정 후 후보",
+  "use": "S02 절구용 공이",
+  "reason": "27cm 회색 긴 공이는 2156과 조합 가능",
+  "edit": "절구 내경·길이 및 가공 재료 확인",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:48:31.650429+00:00",
+  "sourcePageSha256": "4d554b4efe461f0deb299d2b3095105e0f5181ddcdab8dc4ced7d5a6f8424787"
+}

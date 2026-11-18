@@ -1,0 +1,65 @@
+{
+  "id": 1039,
+  "url": "https://www.fab.com/listings/03c1d983-769b-408e-b520-8e15b097390c",
+  "uid": "03c1d983-769b-408e-b520-8e15b097390c",
+  "title": "English Ivy",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:15:28.161168+00:00",
+  "pageSha256": "f25b89c9e2a87751620a9167d066ffdf98fbeaaa5894975652815c56649ee612",
+  "description": "Maps: Opacity AO Basecolor Specular Gloss Translucency Displacement Bump Normal Roughness Cavity\n \nCreate high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "기재 확인 안 됨",
+  "mesh": "기재 확인 안 됨",
+  "texelDensity": "기재 확인 안 됨",
+  "maps": "Opacity AO Basecolor Specular Gloss Translucency Displacement Bump Normal Roughness Cavity",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/3c1a45ee-21dc-4235-9946-5aa9e3a97b22/dd6836e7-49b6-4f95-b248-06cb4b5064d0.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 2,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/3c1a45ee-21dc-4235-9946-5aa9e3a97b22/f061063f-0019-4279-acbe-5daf954e50fb.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

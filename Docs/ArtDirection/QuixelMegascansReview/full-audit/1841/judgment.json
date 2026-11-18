@@ -1,0 +1,13 @@
+{
+  "id": 1841,
+  "verdict": "보류",
+  "use": "S02 화덕 벽돌 대안",
+  "reason": "23cm 붉은 벽돌의 흰 윗면 얼룩이 큼",
+  "edit": "흰 얼룩 감소",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:36:56.628236+00:00",
+  "sourcePageSha256": "d6229e9d2c16b27906b51b86dc60786ff8eb3021f55279c60e3dda56942dff2b"
+}

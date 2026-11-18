@@ -1,0 +1,13 @@
+{
+  "id": 1942,
+  "verdict": "수정 후 후보",
+  "use": "S02 작업대의 기름 보관병",
+  "reason": "24cm 단순 긴 도기병은 가능하나 황색이 강함",
+  "edit": "갈색 저채도로 조절 및 마개 추가",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:40:59.600981+00:00",
+  "sourcePageSha256": "c0cade34c55e8fdfc1942d6c1a4dacf114914e3210c76cfb8c54aaa7db266dab"
+}

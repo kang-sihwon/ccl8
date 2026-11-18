@@ -1,0 +1,13 @@
+{
+  "id": 2022,
+  "verdict": "추천",
+  "use": "S02 작업대의 가죽 장부",
+  "reason": "26cm 짙은 갈색 단순 표지와 낡은 책등이 적합",
+  "edit": "실존 문자 확인 후 교체",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:44:39.429258+00:00",
+  "sourcePageSha256": "81bab8d7b53dda27f37430fc67fbd1967bb0aed8eaea125cbe1926d6e1655433"
+}

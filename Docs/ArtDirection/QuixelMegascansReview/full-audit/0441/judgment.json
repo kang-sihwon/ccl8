@@ -1,0 +1,13 @@
+{
+  "id": 441,
+  "verdict": "추천",
+  "use": "S08 길 옆 회색 암반",
+  "reason": "2.73m의 낮은 회색 암반은 B안의 읽기 쉬운 바위 덩어리와 잘 맞는다.",
+  "edit": "지면 접합; 미세 표면 대비 완화",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:27:25.626647+00:00",
+  "sourcePageSha256": "fb3f6f2a7127196fd176530f133f0a6f90f66f8e3df73c7d75a2dc9f70a8a403"
+}

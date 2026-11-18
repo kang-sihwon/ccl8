@@ -1,0 +1,13 @@
+{
+  "id": 2321,
+  "verdict": "보류",
+  "use": "S02 식사 흔적 대안",
+  "reason": "8cm 사과 심은 먹은 흔적용이나2188과 중복",
+  "edit": "대표 하나 선택",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:56:37.638794+00:00",
+  "sourcePageSha256": "0390cf0393f9101fb53e53e36b8a3862d13c157dd2413d154e69c17a554406aa"
+}

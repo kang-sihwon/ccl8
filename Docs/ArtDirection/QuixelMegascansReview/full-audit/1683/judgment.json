@@ -1,0 +1,13 @@
+{
+  "id": 1683,
+  "verdict": "보류",
+  "use": "S02 작은 판석",
+  "reason": "11cm 어두운 층상석은 1655와 기능 중복",
+  "edit": "부분 매입",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:30:20.130452+00:00",
+  "sourcePageSha256": "b5cb37f25400315c88e53432fcd75b44c137041c6791c4e2d36d833910ab844c"
+}

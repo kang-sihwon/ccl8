@@ -1,0 +1,13 @@
+{
+  "id": 1395,
+  "verdict": "보류",
+  "use": "S08 작은 붉은 이끼 바위",
+  "reason": "44cm의 세로형 돌과 붉은 표면으로 기존 작은 돌 후보 충분",
+  "edit": "붉은색과 녹색 대비 축소",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:17:00.828828+00:00",
+  "sourcePageSha256": "4a1c45ff12c28eb44a2e90d5457120c808ac6aef6c8bf2d55c93e2b2c19aa10d"
+}

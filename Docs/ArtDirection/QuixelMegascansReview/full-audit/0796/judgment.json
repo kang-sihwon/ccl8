@@ -1,0 +1,13 @@
+{
+  "id": 796,
+  "verdict": "보류",
+  "use": "S08 휘어진 긴 고사목",
+  "reason": "2.21m의 적갈색 굽은 몸통으로 0684·0794와 역할이 겹친다.",
+  "edit": "기존 곡선 고사목 우선",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:48:57.468127+00:00",
+  "sourcePageSha256": "c2a01cac5a1f155ad639d212bd59548eec5da40f62fd51b10ccd76643c32f7e0"
+}

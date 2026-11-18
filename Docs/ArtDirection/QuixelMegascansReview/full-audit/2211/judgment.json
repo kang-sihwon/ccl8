@@ -1,0 +1,13 @@
+{
+  "id": 2211,
+  "verdict": "보류",
+  "use": "S01 뿌리채소 대안",
+  "reason": "21cm 붉고 흰 당근은 색 변주용이나 후보 중복",
+  "edit": "2210 우선",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:52:25.959139+00:00",
+  "sourcePageSha256": "e9289df29f9f4299b2ae0aa632ae787dcb6720c4fc66c6ccec37f38e8a7cde8b"
+}

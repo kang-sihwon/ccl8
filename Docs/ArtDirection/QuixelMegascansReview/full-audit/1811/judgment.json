@@ -1,0 +1,13 @@
+{
+  "id": 1811,
+  "verdict": "보류",
+  "use": "S02 화덕 잔해 변형",
+  "reason": "10cm 노란 단면이 두드러지는 파편으로 중복",
+  "edit": "노란색 감소",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:35:21.247645+00:00",
+  "sourcePageSha256": "fb8c3d1ccb1f52e927f7c37c001eb673264abf1b15340a3d4d9ff8416366c7cf"
+}

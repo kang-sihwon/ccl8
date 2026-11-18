@@ -1,0 +1,13 @@
+{
+  "id": 797,
+  "verdict": "보류",
+  "use": "S01 초근경 유목 파편",
+  "reason": "17cm의 휜 밝은 목편으로 장면 규모에서 영향이 작다.",
+  "edit": "실물 크기 유지; 초근경에만 사용",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:48:57.469054+00:00",
+  "sourcePageSha256": "f0f206d3ac6a4d8599809565cbba0597ca0f9c69abd9507f5b2a003e178add8b"
+}

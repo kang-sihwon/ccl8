@@ -1,0 +1,13 @@
+{
+  "id": 2147,
+  "verdict": "보류",
+  "use": "S02 장부 대안",
+  "reason": "22cm 두꺼운 빨강·파랑 제본은 기존 후보보다 현대적",
+  "edit": "제본·색 수정",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:48:31.641236+00:00",
+  "sourcePageSha256": "8edb55396ead3f8b612224ba25be297fc4ad39d1dfe8ca7ca52c8d8de7e8bd0f"
+}

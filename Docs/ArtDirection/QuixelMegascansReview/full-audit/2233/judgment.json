@@ -1,0 +1,13 @@
+{
+  "id": 2233,
+  "verdict": "보류",
+  "use": "S02 제과 대안",
+  "reason": "13cm 소용돌이 번은 제과 형태가 눈에 띔",
+  "edit": "일반 빵 우선",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:53:43.635198+00:00",
+  "sourcePageSha256": "7a73b17a01e74bc25a1c638ebf89fb4b1759338549dee113fc95407bfac69623"
+}

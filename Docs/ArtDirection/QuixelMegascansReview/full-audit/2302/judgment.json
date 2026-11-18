@@ -1,0 +1,13 @@
+{
+  "id": 2302,
+  "verdict": "보류",
+  "use": "S01 뿌리채소 대안",
+  "reason": "10cm 붉은 반점 감자는 색 대비가 강함",
+  "edit": "작물 설정·2303 우선",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:55:15.670439+00:00",
+  "sourcePageSha256": "ade1f6f7a3b5dc81e2082e56ed8b5fcc6d9f606f5f1a6c003bbfe937c48d1555"
+}

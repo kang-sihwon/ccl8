@@ -1,0 +1,13 @@
+{
+  "id": 336,
+  "verdict": "제외",
+  "use": "S02 도구 꽂이에서 제외",
+  "reason": "균일한 칼 슬롯과 매끈한 사선 몸체가 현대 주방 칼꽂이로 읽힌다.",
+  "edit": "수공구용 열린 목제 함을 우선한다.",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:22:15.995592+00:00",
+  "sourcePageSha256": "3405e4beb21312dc6ff36c73df6a82c1369c0b85993da1ed3b6151eaf54ec5fd"
+}

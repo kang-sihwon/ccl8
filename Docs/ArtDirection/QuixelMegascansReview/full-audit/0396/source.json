@@ -1,0 +1,74 @@
+{
+  "id": 396,
+  "url": "https://www.fab.com/listings/97bbb64c-57fe-42c5-9161-3523f79500cf",
+  "uid": "97bbb64c-57fe-42c5-9161-3523f79500cf",
+  "title": "Wooden Toy Horse",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:11:22.885006+00:00",
+  "pageSha256": "1143a96b5cb78ea0c1d989ba2f0df0859d4b63354097e068ff435f4b68a062a7",
+  "description": "Texel density: 1037 px/m\nPhysical size: 0.04m x 0.14m x 0.13m\nMesh type: Closed mesh\nMaps: AO Displacement(high tier only) Specular Basecolor Cavity Gloss Normal Roughness\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.04m x 0.14m x 0.13m",
+  "mesh": "Closed mesh",
+  "texelDensity": "1037 px/m",
+  "maps": "AO Displacement(high tier only) Specular Basecolor Cavity Gloss Normal Roughness",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/d46155c6-af99-4fb7-8568-936fab39165b/4dbb0099-a6f9-4145-b3b5-66f392e61f32.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/d46155c6-af99-4fb7-8568-936fab39165b/d08b5052-719c-4e0c-888d-cf67a3759916.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

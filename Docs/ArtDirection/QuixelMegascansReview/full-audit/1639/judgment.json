@@ -1,0 +1,13 @@
+{
+  "id": 1639,
+  "verdict": "보류",
+  "use": "S02 기단 작은 돌",
+  "reason": "9cm 갈색 사각 돌로 기존 후보와 중복",
+  "edit": "황색 감소",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:30:20.087895+00:00",
+  "sourcePageSha256": "ceb2e61fb23f6775b45969d58266d813f25a90739d60a3d3f8247952cc1f01fb"
+}

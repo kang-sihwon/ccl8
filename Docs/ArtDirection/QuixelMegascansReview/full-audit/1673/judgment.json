@@ -1,0 +1,13 @@
+{
+  "id": 1673,
+  "verdict": "보류",
+  "use": "S08 작은 돌 변형",
+  "reason": "13cm 깊은 홈이 있는 갈색 돌로 중복",
+  "edit": "붉은색 감소",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:30:20.120695+00:00",
+  "sourcePageSha256": "8b9b24c4fa4ee1cfad57b0a375abffb895271515836a263799862241ee2d8532"
+}

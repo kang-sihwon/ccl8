@@ -1,0 +1,13 @@
+{
+  "id": 1223,
+  "verdict": "보류",
+  "use": "S01 작은 두색 자갈",
+  "reason": "15cm의 갈색 상단과 회색 하단으로 기존 자갈 충분",
+  "edit": "실측 유지 및 색 통일",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:11:29.598525+00:00",
+  "sourcePageSha256": "8eaa392dce957ac536e34a0862cc2ee205c43088734aa8a01b986de3109fd006"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 1579,
+  "verdict": "보류",
+  "use": "S08 흙길 작은 돌",
+  "reason": "15cm 황갈색 둥근 돌은 기존 후보와 중복",
+  "edit": "노란색 완화",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:27:20.429908+00:00",
+  "sourcePageSha256": "9e3b21883544c1218b779118dde369d7f88ecd7504a27fbd7c3a827029cb35b2"
+}

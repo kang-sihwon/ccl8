@@ -1,0 +1,13 @@
+{
+  "id": 2109,
+  "verdict": "수정 후 후보",
+  "use": "S02 두꺼운 작업 장부",
+  "reason": "20cm 어두운 녹갈색 가죽은 가능하나 모서리 장식이 보임",
+  "edit": "모서리 문양·문자 단순화",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:46:35.352221+00:00",
+  "sourcePageSha256": "994474de0ebb40304a812ed69b2ddeb5548da82c0c7a4b6f755de66c07cba7a3"
+}

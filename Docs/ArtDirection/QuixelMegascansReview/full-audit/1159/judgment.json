@@ -1,0 +1,13 @@
+{
+  "id": 1159,
+  "verdict": "보류",
+  "use": "S08 큰 둥근 바위 변형",
+  "reason": "2.9m의 둔한 짙은 바위로 기존 큰 자연석 후보와 중복",
+  "edit": "어두운 얼룩 대비 완화",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:09:31.888927+00:00",
+  "sourcePageSha256": "ec9903ee20fa8dd7552b0aba90eda15266ab7b75d15912b47ad290c37a9e0680"
+}

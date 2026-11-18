@@ -1,0 +1,74 @@
+{
+  "id": 1620,
+  "url": "https://www.fab.com/listings/37de860b-e9ff-48ed-a599-03abadeae902",
+  "uid": "37de860b-e9ff-48ed-a599-03abadeae902",
+  "title": "Small Limestone Rocks Pack",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:19:06.938021+00:00",
+  "pageSha256": "7212a2d53b056c23d50176136671dde15df81f963c33acd92e505a525e9decb6",
+  "description": "Texel density: 1489 px/m\nPhysical size: 0.15m x 0.25m x 0.12m\nMesh type: Closed mesh\nMaps: Displacement(high tier only) Cavity Gloss Specular Basecolor AO Roughness Normal\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.15m x 0.25m x 0.12m",
+  "mesh": "Closed mesh",
+  "texelDensity": "1489 px/m",
+  "maps": "Displacement(high tier only) Cavity Gloss Specular Basecolor AO Roughness Normal",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/f05a233b-a34d-471f-996d-7e0ac6425bf2/ad7d2dff-0952-4ae1-a5b8-f80009c9e063.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/f05a233b-a34d-471f-996d-7e0ac6425bf2/c01c1230-cb9b-45fd-ac6e-b73330165aad.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

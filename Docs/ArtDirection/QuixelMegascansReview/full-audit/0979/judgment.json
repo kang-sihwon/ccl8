@@ -1,0 +1,13 @@
+{
+  "id": 979,
+  "verdict": "보류",
+  "use": "S08 작은 밝은 버섯",
+  "reason": "6cm의 밝은 둥근 갓으로 군집 세트와 역할 중복",
+  "edit": "채택 시 크림색 명도 완화",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:01:11.383585+00:00",
+  "sourcePageSha256": "8954f1b76eefb138beb469cfc878c1b3ad1a21f7836d845738fab8cb9d08a086"
+}

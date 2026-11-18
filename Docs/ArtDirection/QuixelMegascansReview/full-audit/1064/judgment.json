@@ -1,0 +1,13 @@
+{
+  "id": 1064,
+  "verdict": "보류",
+  "use": "S08 직립 풀 변형",
+  "reason": "긴 녹색 잎과 성긴 이삭으로 기존 1044와 역할 겹침",
+  "edit": "실측과 바람 확인",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:05:26.836990+00:00",
+  "sourcePageSha256": "a7622604a7f991413ee9856a04efd35981417b0dfcd6be50d6f808686775bd59"
+}

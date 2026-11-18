@@ -1,0 +1,13 @@
+{
+  "id": 1143,
+  "verdict": "추천",
+  "use": "S08 입구 바깥 회색 바위",
+  "reason": "1.31m의 둔한 실루엣과 큰 균열이 B안의 명료한 암석 형태에 적합",
+  "edit": "붉은 얼룩 절제 및 열린 밑면 매입",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:07:19.749497+00:00",
+  "sourcePageSha256": "3afe6270d919535d0aeb31ddf30e4040409cc885273ecabb5731e7ff86e95d24"
+}

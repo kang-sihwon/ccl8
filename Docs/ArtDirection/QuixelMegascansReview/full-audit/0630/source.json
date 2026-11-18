@@ -1,0 +1,93 @@
+{
+  "id": 630,
+  "url": "https://www.fab.com/listings/c8c60768-bd83-4d64-845d-0198ce1ecdad",
+  "uid": "c8c60768-bd83-4d64-845d-0198ce1ecdad",
+  "title": "Common Spruce Branch",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:12:49.915325+00:00",
+  "pageSha256": "44ea779e9b9d443cf02c1da4ea20052b08ac195c36c7ff2ef9c13622c603ae0f",
+  "description": "Texel density: 2668 px/m\nPhysical size: 0.14m x 1.22m x 0.05m\nMesh type: Closed mesh\nMaps: Displacement(high tier only) Cavity Gloss Fuzz Specular Basecolor Roughness Normal AO Bump\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.14m x 1.22m x 0.05m",
+  "mesh": "Closed mesh",
+  "texelDensity": "2668 px/m",
+  "maps": "Displacement(high tier only) Cavity Gloss Fuzz Specular Basecolor Roughness Normal AO Bump",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "ZBrush",
+      "extensions": [
+        "zbp",
+        "ztl"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "UEFN Reference",
+      "extensions": null,
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "UEFN - Reference only",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/2a05eff3-bc85-453c-9c54-f73c28c72e1f/236fe3e0-65eb-466b-a3b4-c9526f9eee19.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/2a05eff3-bc85-453c-9c54-f73c28c72e1f/060c7f89-84df-456b-899b-db19f21ee051.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

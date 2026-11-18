@@ -1,0 +1,13 @@
+{
+  "id": 1611,
+  "verdict": "보류",
+  "use": "S02 기단 주변 돌",
+  "reason": "25cm 회갈색 각진 돌은 붉은 윗면 수정 필요",
+  "edit": "붉은색 약화",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:28:52.991896+00:00",
+  "sourcePageSha256": "ab4fc76332e58d58793fa4f55c793537436575a697ae9cb3aec5a1edb25fc455"
+}

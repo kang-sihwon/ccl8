@@ -1,0 +1,85 @@
+{
+  "id": 2224,
+  "url": "https://www.fab.com/listings/b0130ca2-1f2b-4da3-8748-fd9c00197131",
+  "uid": "b0130ca2-1f2b-4da3-8748-fd9c00197131",
+  "title": "Colored Chip Cookie",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:22:55.702729+00:00",
+  "pageSha256": "4a62d2416ce114c42e2e8d5cb00ddbfb42da739a80a652c5312f2aee2f64958f",
+  "description": "Texel density: 1041 px/m\nPhysical size: 0.05m x 0.05m x 0.01m\nMesh type: Closed mesh\nMaps: Displacement(high tier only) Cavity Gloss Specular Basecolor AO Roughness Normal\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.05m x 0.05m x 0.01m",
+  "mesh": "Closed mesh",
+  "texelDensity": "1041 px/m",
+  "maps": "Displacement(high tier only) Cavity Gloss Specular Basecolor AO Roughness Normal",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "UEFN Reference",
+      "extensions": null,
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "UEFN - Reference only",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/63d7af5f-6040-4b85-bfd7-42fa4f8ddb7a/88ed80dc-8c5f-4b91-8da2-267c0dcd74c4.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/63d7af5f-6040-4b85-bfd7-42fa4f8ddb7a/84ecd383-5896-4f08-a161-e05b1a80d0d6.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

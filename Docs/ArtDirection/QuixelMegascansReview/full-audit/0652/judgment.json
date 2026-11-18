@@ -1,0 +1,13 @@
+{
+  "id": 652,
+  "verdict": "보류",
+  "use": "S08 마른 가지 묶음",
+  "reason": "가늘고 긴 여러 가지가 있으나 0636과 같은 변형 묶음 역할이다.",
+  "edit": "0636 우선; 개별 메시 제공 여부 확인",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:41:41.772819+00:00",
+  "sourcePageSha256": "d96040c312ecedaaa3f90ea7d95c00af085e138474df80de1cf04b577260ff8f"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 1365,
+  "verdict": "보류",
+  "use": "S08 세로 이끼 바위",
+  "reason": "63cm의 이끼와 지의류가 촘촘한 돌로 기존 후보보다 복잡",
+  "edit": "얼룩 대비 축소",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:17:00.797063+00:00",
+  "sourcePageSha256": "8648bbf6db268ea42d5e9577d527589d43af35179b1786b398ac77ccf0be0c5c"
+}

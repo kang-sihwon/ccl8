@@ -1,0 +1,13 @@
+{
+  "id": 938,
+  "verdict": "보류",
+  "use": "S08 갈라진 속살 조각",
+  "reason": "37cm의 가시처럼 찢긴 부후목으로 기존 잔해와 중복",
+  "edit": "돌출부가 보행로에 나오지 않게 배치",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:59:25.686430+00:00",
+  "sourcePageSha256": "623976c0289575cad944153fe92b283dd81d482b2fd928ae5c1ada39566a090e"
+}

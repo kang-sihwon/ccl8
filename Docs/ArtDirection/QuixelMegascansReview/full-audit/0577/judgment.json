@@ -1,0 +1,13 @@
+{
+  "id": 577,
+  "verdict": "추천",
+  "use": "S01 자연 강안 돌무더기",
+  "reason": "여러 크기의 낮은 돌이 모여 큰 바위와 자갈길 사이를 이어 준다.",
+  "edit": "수면 위·아래 젖음 구분; 열린 바닥 매립",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:36:32.315627+00:00",
+  "sourcePageSha256": "361be4cceb1cc0f5b8fba48f04f5c65dce17d73c8fc30d81c5f49e15490c5b58"
+}

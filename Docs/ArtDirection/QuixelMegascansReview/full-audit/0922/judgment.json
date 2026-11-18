@@ -1,0 +1,13 @@
+{
+  "id": 922,
+  "verdict": "보류",
+  "use": "S08 갈라진 가지 변형",
+  "reason": "큰 Y형 회색 가지지만 기존 고사목 조각과 중복",
+  "edit": "수피 회색을 주변 팔레트에 맞춤",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:59:25.670514+00:00",
+  "sourcePageSha256": "bc7efe70e3908a155b4257257652de45794b84ceda3348a33fce0edda90b5b4d"
+}

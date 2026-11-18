@@ -1,0 +1,13 @@
+{
+  "id": 2264,
+  "verdict": "보류",
+  "use": "S02 식사 대안",
+  "reason": "11cm 고기 파이 단면은2191과 중복",
+  "edit": "조리 품목 확인",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:55:15.633821+00:00",
+  "sourcePageSha256": "285cedd35594915349373b5b61a83dd6fa074921e02df7fd3ae052399ac542f2"
+}

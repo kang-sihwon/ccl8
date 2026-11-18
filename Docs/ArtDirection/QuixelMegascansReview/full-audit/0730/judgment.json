@@ -1,0 +1,13 @@
+{
+  "id": 730,
+  "verdict": "보류",
+  "use": "S08 짧은 탈색 줄기",
+  "reason": "77cm의 직선 줄기와 작은 부러진 끝으로 기존 고사 줄기와 중복된다.",
+  "edit": "수피 밝기 완화 후 변형으로 사용",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:46:33.109278+00:00",
+  "sourcePageSha256": "9cdcf4513ad95d95ba731efa4f5409b7db3803295262c9b3d49a8ffb30a75605"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 2375,
+  "verdict": "보류",
+  "use": "S02 곡괭이 대안",
+  "reason": "87cm 길이 범위의 굽은 양날과 나무 자루는2374와 중복",
+  "edit": "대표 하나만 선택",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:57:51.205426+00:00",
+  "sourcePageSha256": "fc2c1c0f1ceacde4a4055d32f51a0d512056d95f5a960348f247db703e95fbc2"
+}

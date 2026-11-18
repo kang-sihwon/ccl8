@@ -1,0 +1,13 @@
+{
+  "id": 2333,
+  "verdict": "보류",
+  "use": "S02 식사 대안",
+  "reason": "6cm 얇은 빵 조각은 근경에서만 읽힘",
+  "edit": "대표 통빵 우선",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:56:37.650391+00:00",
+  "sourcePageSha256": "ca54b5ca3fd705284319ba7e8143d96fbc74fc4ee2b5528b1e6ec51352e1de56"
+}

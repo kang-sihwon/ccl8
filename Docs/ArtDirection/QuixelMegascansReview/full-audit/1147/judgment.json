@@ -1,0 +1,13 @@
+{
+  "id": 1147,
+  "verdict": "추천",
+  "use": "S01 둔치의 노출 암반 바닥",
+  "reason": "7.25m의 넓고 낮은 회색 침식면이 수변 자연 바닥에 적합",
+  "edit": "지형 방향에 맞추고 열린 경계 매입 및 물선 재질 조절",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:07:19.753966+00:00",
+  "sourcePageSha256": "d74d296d78b7fed0e2fffc16eae39dc723742381aab7369eb8e187231ea11d55"
+}

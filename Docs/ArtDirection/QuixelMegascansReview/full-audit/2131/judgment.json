@@ -1,0 +1,13 @@
+{
+  "id": 2131,
+  "verdict": "보류",
+  "use": "S01 큰 금속 용기 대안",
+  "reason": "85cm 크고 장식적인 손잡이·골진 몸체는 현재 화물보다 특수함",
+  "edit": "운반 품목과 금속 구조 확인",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:48:31.625953+00:00",
+  "sourcePageSha256": "7cc4407769d523ed02c1de0141849ccfae34a869abb1c4ae664cbcdffbef12cb"
+}

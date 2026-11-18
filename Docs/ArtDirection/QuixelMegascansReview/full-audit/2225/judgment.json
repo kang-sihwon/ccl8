@@ -1,0 +1,13 @@
+{
+  "id": 2225,
+  "verdict": "보류",
+  "use": "S02 식사 대안",
+  "reason": "18cm 크랜베리 빵은 단순하지만 재료 설정 추가 필요",
+  "edit": "일반 빵 우선",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:53:43.627605+00:00",
+  "sourcePageSha256": "99141b6eb97286ffeb999642b9a3007fdb74c0d8e464e32b51542ed273c16bd6"
+}

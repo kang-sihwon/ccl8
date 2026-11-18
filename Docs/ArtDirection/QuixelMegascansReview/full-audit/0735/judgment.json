@@ -1,0 +1,13 @@
+{
+  "id": 735,
+  "verdict": "보류",
+  "use": "S08 얇은 썩은 목편",
+  "reason": "68cm의 검게 갈라진 얇은 목재가 0674와 같은 바닥 소품이다.",
+  "edit": "기존 목편 우선; 암부 완화",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:46:33.114197+00:00",
+  "sourcePageSha256": "74085bd36a8a7b16dc822d12ae8b1f5b9afba1b9a93b85fe85c2e9316073fbce"
+}

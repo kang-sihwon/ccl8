@@ -1,0 +1,13 @@
+{
+  "id": 456,
+  "verdict": "추천",
+  "use": "S08 길 옆 층진 암반",
+  "reason": "수평 층과 평평한 상면이 낮은 지형 단차를 구성하기 좋다.",
+  "edit": "계단처럼 보이지 않게 불규칙 매립; 통행선 피하기",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:29:37.260380+00:00",
+  "sourcePageSha256": "0f90aa287af0f39ac6cf331321b7e1867d4ece1d64f74ee70bea75ec344260aa"
+}

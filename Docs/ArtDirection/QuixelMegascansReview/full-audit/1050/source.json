@@ -1,0 +1,65 @@
+{
+  "id": 1050,
+  "url": "https://www.fab.com/listings/4a7f5036-b879-4910-a5f2-271ccff93b32",
+  "uid": "4a7f5036-b879-4910-a5f2-271ccff93b32",
+  "title": "Kikuyu Grass",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:15:31.560642+00:00",
+  "pageSha256": "0357d0bfd63e7daff72a598e62f4c35e85fc9953b5aa83ca72a8e30a912fea5b",
+  "description": "Maps: Roughness Normal Cavity Gloss Basecolor Specular Displacement Translucency AO Opacity Bump\n \nCreate high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "기재 확인 안 됨",
+  "mesh": "기재 확인 안 됨",
+  "texelDensity": "기재 확인 안 됨",
+  "maps": "Roughness Normal Cavity Gloss Basecolor Specular Displacement Translucency AO Opacity Bump",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/bf226729-92c5-4164-9303-944f62e925b1/0fac748e-883a-45d7-935c-e536e173c19b.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 2,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/bf226729-92c5-4164-9303-944f62e925b1/8e3a2839-8dc1-4cb6-a908-8cdf4934221d.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

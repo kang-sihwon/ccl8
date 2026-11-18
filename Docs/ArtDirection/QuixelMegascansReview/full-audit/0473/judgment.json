@@ -1,0 +1,13 @@
+{
+  "id": 473,
+  "verdict": "수정 후 후보",
+  "use": "S08 작은 각진 바위",
+  "reason": "세 면이 크게 읽히는 단순한 형태지만 황록색 막이 전체를 덮는다.",
+  "edit": "회색 재질로 정리하고 이끼를 일부만 남기기",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:29:37.278716+00:00",
+  "sourcePageSha256": "efa20abed59eac17ce3019f8df823fef079fa0ecd90377d332dee614dceb455c"
+}

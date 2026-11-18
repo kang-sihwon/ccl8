@@ -1,0 +1,82 @@
+{
+  "id": 326,
+  "url": "https://www.fab.com/listings/7dfb0efa-7e77-4c40-b83a-c63e184db3d8",
+  "uid": "7dfb0efa-7e77-4c40-b83a-c63e184db3d8",
+  "title": "Wooden Door Knob",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:10:56.629273+00:00",
+  "pageSha256": "97135ca320fa0d919d5c40489b2c61e550858d29e32720716161fe599380a0cd",
+  "description": "Texel density: 5742 px/m\nPhysical size: 0.07m x 0.06m x 0.07m\nMesh type: Closed mesh\nMaps: Displacement(high tier only) Cavity Gloss Specular Basecolor Roughness Normal AO Bump\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.07m x 0.06m x 0.07m",
+  "mesh": "Closed mesh",
+  "texelDensity": "5742 px/m",
+  "maps": "Displacement(high tier only) Cavity Gloss Specular Basecolor Roughness Normal AO Bump",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "ZBrush",
+      "extensions": [
+        "zbp",
+        "ztl"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/f731ade3-6fbb-46f7-8d4f-2ce669f86101/07d3867a-a34c-46ff-8817-483c1871a3c4.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/f731ade3-6fbb-46f7-8d4f-2ce669f86101/a5688979-fe0e-443c-b880-f11c5dfb5428.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

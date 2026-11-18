@@ -1,0 +1,13 @@
+{
+  "id": 1871,
+  "verdict": "보류",
+  "use": "S02 화덕 벽돌 변형",
+  "reason": "23cm 거친 밝은 붉은 윗면으로 색 수정 필요",
+  "edit": "채도 감소",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:36:56.656765+00:00",
+  "sourcePageSha256": "5e9e199e5b050de1dce557bf535b1749c73abcffe24f2f938a2817ea9a54dd94"
+}

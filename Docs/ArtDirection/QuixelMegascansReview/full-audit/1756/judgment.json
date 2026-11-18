@@ -1,0 +1,13 @@
+{
+  "id": 1756,
+  "verdict": "보류",
+  "use": "S08 솔방울 변형",
+  "reason": "12cm 넓게 열린 비늘이 강한 주황색으로 수정 필요",
+  "edit": "갈색화",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:33:48.193907+00:00",
+  "sourcePageSha256": "270fbec7d49a3eef01b1d4d07a081f3dfcbeeccdc2aac3c1f56a2efa3fffce57"
+}

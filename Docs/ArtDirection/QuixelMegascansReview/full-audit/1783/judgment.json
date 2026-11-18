@@ -1,0 +1,13 @@
+{
+  "id": 1783,
+  "verdict": "보류",
+  "use": "S02 작은 벽돌 잔해",
+  "reason": "15cm 흰 미장층 붙은 파편은 기존 기단과 다름",
+  "edit": "미장층 제거 검토",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:35:21.220260+00:00",
+  "sourcePageSha256": "96f97c005675b706d9ddb94c08b78e28ab9ca2cd8af4ac014973202efcd8e396"
+}

@@ -1,0 +1,82 @@
+{
+  "id": 405,
+  "url": "https://www.fab.com/listings/8f945fbe-00e4-4fc3-b363-81cdc4ad1653",
+  "uid": "8f945fbe-00e4-4fc3-b363-81cdc4ad1653",
+  "title": "Wooden Wheelbarrow",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:11:26.037502+00:00",
+  "pageSha256": "4cad877540c18b1c30c0b742f2d4c8c85de545e743d38b3a2b9d3389c41f6b7c",
+  "description": "Texel density: 5960 px/m\nPhysical size: 1.41m x 0.6m x 0.42m\nMesh type: Closed mesh\nMaps: AO Displacement(high tier only) Specular Basecolor Bump Cavity Gloss Normal Roughness\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "1.41m x 0.6m x 0.42m",
+  "mesh": "Closed mesh",
+  "texelDensity": "5960 px/m",
+  "maps": "AO Displacement(high tier only) Specular Basecolor Bump Cavity Gloss Normal Roughness",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "ZBrush",
+      "extensions": [
+        "zbp",
+        "ztl"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/388970e7-4406-4df7-86be-4c723fc15c0b/fd5bb42d-44df-4d69-895c-4f206f782cc1.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/388970e7-4406-4df7-86be-4c723fc15c0b/06592502-7be5-4fa0-bfe7-31d27bab08f5.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

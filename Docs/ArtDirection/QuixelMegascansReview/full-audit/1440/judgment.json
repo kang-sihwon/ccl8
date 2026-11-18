@@ -1,0 +1,13 @@
+{
+  "id": 1440,
+  "verdict": "보류",
+  "use": "S08 작은 얼룩진 바위",
+  "reason": "44cm의 둥근 돌과 복잡한 지의류로 기존 후보 중복",
+  "edit": "얼룩 대비 축소",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:19:10.466331+00:00",
+  "sourcePageSha256": "c5178156ffef9f9d52c7ddbd93989752802b0943468ed9448bf3d1e64cabcd79"
+}

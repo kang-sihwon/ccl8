@@ -1,0 +1,13 @@
+{
+  "id": 766,
+  "verdict": "보류",
+  "use": "S02 얇은 수피 편",
+  "reason": "17cm의 얇고 넓은 곡면으로 기존 수피 잔재와 중복된다.",
+  "edit": "작업대 근경 필요 시만 사용",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:46:33.143294+00:00",
+  "sourcePageSha256": "1b17495c21777f15d044fd170c1dd8ec194fabfcc1da7dd124436728fc9da12e"
+}

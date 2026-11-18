@@ -1,0 +1,13 @@
+{
+  "id": 452,
+  "verdict": "보류",
+  "use": "S01 직선 강둑 대체",
+  "reason": "긴 흙벽과 어두운 상단 틈이 있는 둑으로 0449와 중복된다.",
+  "edit": "0449보다 낮은 채도가 필요할 때 교체",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:29:37.256166+00:00",
+  "sourcePageSha256": "60f6a8cd8fe3ff453187bfc4c916068ed1e69a5bad33a5744b8d90fc568b44c7"
+}

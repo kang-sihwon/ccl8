@@ -1,0 +1,13 @@
+{
+  "id": 439,
+  "verdict": "수정 후 후보",
+  "use": "S08 숲 뒤 낮은 암반 능선",
+  "reason": "18m급 넓은 암반으로 전경 소품보다 지형 덩어리에 적합하다.",
+  "edit": "지도 고저 유지; 녹색 상부를 낙엽·회색 암반으로 조정",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:27:25.624445+00:00",
+  "sourcePageSha256": "7d3f2ea7a3ace0da15bb7e0842de1cd1c63fcfbe4ef09e31c0e464cbe13aa312"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 2367,
+  "verdict": "보류",
+  "use": "S01 과일 대안",
+  "reason": "18cm 녹색 그물 멜론은 기존 멜론 후보 중복",
+  "edit": "대표 과일만 선택",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:57:51.197656+00:00",
+  "sourcePageSha256": "fc78dc29dc34ccd3b4bc0d8cf4ac32f713f1d8014ab5af65bd886d2f8434d9f0"
+}

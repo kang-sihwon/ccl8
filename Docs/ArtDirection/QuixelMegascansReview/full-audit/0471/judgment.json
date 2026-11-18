@@ -1,0 +1,13 @@
+{
+  "id": 471,
+  "verdict": "보류",
+  "use": "S08 둥근 거친 바위",
+  "reason": "큰 둥근 형상이지만 흰 점과 작은 구멍이 많아 0447보다 복잡하다.",
+  "edit": "0447 우선; 근경 사용 시 노멀·색잡음 완화",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:29:37.276395+00:00",
+  "sourcePageSha256": "06cca7a96af8fa4e35c453451eec28b1ee386dc4ff8ef0bcdec511759f341f52"
+}

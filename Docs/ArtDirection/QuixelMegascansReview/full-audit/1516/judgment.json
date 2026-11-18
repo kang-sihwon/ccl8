@@ -1,0 +1,13 @@
+{
+  "id": 1516,
+  "verdict": "수정 후 후보",
+  "use": "S08 제한된 붉은 이끼 포인트",
+  "reason": "45cm의 낮은 돌과 붉은 이끼가 작은 색 포인트로 가능",
+  "edit": "붉은 이끼 채도와 면적 제한",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:23:18.577179+00:00",
+  "sourcePageSha256": "017c7ea4eee056a7c93bb2244b7628ce85da088283f40c29a4b060008d9fa5a2"
+}

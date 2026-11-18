@@ -1,0 +1,13 @@
+{
+  "id": 1430,
+  "verdict": "보류",
+  "use": "S08 밝은 이끼 바닥군",
+  "reason": "1.58m의 많은 이끼 덩어리와 돌로 현재 제한된 이끼 시안과 차이",
+  "edit": "이끼 면적·채도 축소 및 열린 면 매입",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:19:10.457229+00:00",
+  "sourcePageSha256": "e65c156e7d8ada38eb18da7b1d2a4d73c1e4ac2daf45b735e00d3f337c5cd352"
+}

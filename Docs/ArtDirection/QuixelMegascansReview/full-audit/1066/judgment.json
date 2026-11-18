@@ -1,0 +1,13 @@
+{
+  "id": 1066,
+  "verdict": "보류",
+  "use": "S08 마른 이삭풀 변형",
+  "reason": "밝은 성긴 이삭과 마른 하부로 1030 및 1043과 중복",
+  "edit": "크기 확인 및 밝기 조절",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:05:26.839070+00:00",
+  "sourcePageSha256": "9bccfd10dc647580fd3133e5fee2307707315062f2f763cc31be1c8643bc235a"
+}

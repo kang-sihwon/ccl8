@@ -1,0 +1,13 @@
+{
+  "id": 2048,
+  "verdict": "제외",
+  "use": "현재 세 장소 제외",
+  "reason": "25cm 목제 촛대의 인물·동물형 투각이 현재 장식 체계와 다름",
+  "edit": "단순 촛대 사용",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:44:39.454450+00:00",
+  "sourcePageSha256": "01f6b493948c2c7df1fe5e9786c533160b1d4e4a8687c8308088e4e75c9f98c2"
+}

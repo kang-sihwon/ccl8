@@ -1,0 +1,13 @@
+{
+  "id": 572,
+  "verdict": "보류",
+  "use": "S08 넓은 뒤쪽 암벽",
+  "reason": "15.58m급 넓은 암벽이며 요철이 복잡해 0531과 역할이 겹친다.",
+  "edit": "지도 지형 변경 없이 매립 가능한 경우만 검토",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:36:32.310976+00:00",
+  "sourcePageSha256": "7a1b556b9d0c11fafca63b610ffeb20335b775fddf98d606ae281f17c64dc3bf"
+}

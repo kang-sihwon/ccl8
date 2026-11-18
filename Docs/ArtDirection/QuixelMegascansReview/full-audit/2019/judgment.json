@@ -1,0 +1,13 @@
+{
+  "id": 2019,
+  "verdict": "보류",
+  "use": "S02 장부 대안",
+  "reason": "20cm 노란 가죽 책은 큰 돌출 띠가 강하고 색 수정 필요",
+  "edit": "갈색화·장식 축소",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:42:46.976707+00:00",
+  "sourcePageSha256": "e6c46265e0ac43057bc4f75c13925b2dde45312ae5368e36228d6c0ec9550cd9"
+}

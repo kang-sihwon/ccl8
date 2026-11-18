@@ -1,0 +1,85 @@
+{
+  "id": 1962,
+  "url": "https://www.fab.com/listings/191ca089-f7fe-44b6-89e0-63c0af448ddd",
+  "uid": "191ca089-f7fe-44b6-89e0-63c0af448ddd",
+  "title": "Clay Vase",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:21:17.970211+00:00",
+  "pageSha256": "fa7f79916eb99c3d84d2a572562334835e35e0c383e16f925b1d5cbcebc48e0f",
+  "description": "Texel density: 1380 px/m\nPhysical size: 0.09m x 0.09m x 0.31m\nMesh type: Closed mesh\nMaps: AO Displacement(high tier only) Specular Basecolor Cavity Gloss Normal Roughness\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.09m x 0.09m x 0.31m",
+  "mesh": "Closed mesh",
+  "texelDensity": "1380 px/m",
+  "maps": "AO Displacement(high tier only) Specular Basecolor Cavity Gloss Normal Roughness",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "UEFN Reference",
+      "extensions": null,
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "UEFN - Reference only",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/004826df-8a3b-4664-964e-4b7ae7e7055f/9a83e5f0-5fb6-4124-b33e-2e971e22958c.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/004826df-8a3b-4664-964e-4b7ae7e7055f/549ed173-bebe-45ad-abb8-c8043c32b31d.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

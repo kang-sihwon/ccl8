@@ -1,0 +1,85 @@
+{
+  "id": 2209,
+  "url": "https://www.fab.com/listings/82036254-b3d6-425e-b514-df4918ce58f2",
+  "uid": "82036254-b3d6-425e-b514-df4918ce58f2",
+  "title": "Cardamom Bun",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:22:50.109571+00:00",
+  "pageSha256": "e429eaf0aab834a636367f092a6419ec0e4134091df3f27246d30922c1823f6c",
+  "description": "Texel density: 1012 px/m\nPhysical size: 0.11m x 0.12m x 0.05m\nMesh type: Closed mesh\nMaps: Displacement(high tier only) Cavity Gloss Specular Basecolor AO Roughness Normal\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.11m x 0.12m x 0.05m",
+  "mesh": "Closed mesh",
+  "texelDensity": "1012 px/m",
+  "maps": "Displacement(high tier only) Cavity Gloss Specular Basecolor AO Roughness Normal",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "UEFN Reference",
+      "extensions": null,
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "UEFN - Reference only",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/32b8f5c6-2a5a-4a2c-b64a-1f098711830c/6a4fc23f-f218-4b49-9673-8b24ec317a46.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/32b8f5c6-2a5a-4a2c-b64a-1f098711830c/ea4269b0-28d5-4d1a-b1ae-f7ebb845fdfe.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

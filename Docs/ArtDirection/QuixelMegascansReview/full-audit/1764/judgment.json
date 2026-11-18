@@ -1,0 +1,13 @@
+{
+  "id": 1764,
+  "verdict": "수정 후 후보",
+  "use": "S02 작은 보조 작업대",
+  "reason": "1.45m 긴 청록 상판은 팔레트에 맞지만 낮고 장식 다리가 가늘음",
+  "edit": "다리 보강·높이 조정 및 장식 단순화",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:33:48.201565+00:00",
+  "sourcePageSha256": "d11cb60c2bb58ccb75d9ee3e51021615b539cf632f51255ec0027ffc57d8e522"
+}

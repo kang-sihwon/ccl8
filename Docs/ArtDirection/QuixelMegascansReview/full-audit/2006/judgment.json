@@ -1,0 +1,13 @@
+{
+  "id": 2006,
+  "verdict": "보류",
+  "use": "S02 도끼 수리 대안",
+  "reason": "90cm 넓은 외날 도끼는 제목상 처형용이며 생활 공구 용도 불명",
+  "edit": "용도 설정 확인 전 배치 보류",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:42:46.963756+00:00",
+  "sourcePageSha256": "cfb2d04caca70e686c28fd993c51a7d8e2d4f4f40f1e3ac6ee407e4d368fe6bb"
+}

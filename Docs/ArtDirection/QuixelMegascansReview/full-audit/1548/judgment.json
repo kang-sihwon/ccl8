@@ -1,0 +1,13 @@
+{
+  "id": 1548,
+  "verdict": "보류",
+  "use": "S08 흙길 작은 돌",
+  "reason": "13cm 갈색 돌의 낮은 삼각 형태는 사용 가능하나 중복",
+  "edit": "흙색과 대비 조절",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:27:20.399967+00:00",
+  "sourcePageSha256": "d1f855dfc453651fd66af53a4e5edef78fa7901e3bdf2731aa77b5e0db11ca24"
+}

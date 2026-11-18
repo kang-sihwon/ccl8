@@ -1,0 +1,13 @@
+{
+  "id": 1601,
+  "verdict": "제외",
+  "use": "현재 세 장소 제외",
+  "reason": "20cm 붉고 다공성인 납작한 돌은 색 보정량 큼",
+  "edit": "기존 회색 판석 사용",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:28:52.981282+00:00",
+  "sourcePageSha256": "9c82cbc6526b330ddcf89f990d84a29386a51b790349331a0c19780fb0b137cc"
+}

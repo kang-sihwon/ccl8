@@ -1,0 +1,13 @@
+{
+  "id": 1308,
+  "verdict": "보류",
+  "use": "S08 작은 이끼 돌",
+  "reason": "13cm의 작은 덩어리에 부분 이끼가 있으나 기존 자갈 충분",
+  "edit": "실측 유지",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:15:07.636773+00:00",
+  "sourcePageSha256": "c805b2caefa397fc59aa8feece36a856b38fd23a0a8583afa4670db6e35602f9"
+}

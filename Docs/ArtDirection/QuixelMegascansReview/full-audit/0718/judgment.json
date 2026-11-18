@@ -1,0 +1,13 @@
+{
+  "id": 718,
+  "verdict": "제외",
+  "use": "현재 벨레스 숲에는 미배치",
+  "reason": "길게 솟은 세 원뿔이 현재 타이가 밑동 실루엣과 맞지 않는다.",
+  "edit": "현 범위 도입 제외",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:44:12.050857+00:00",
+  "sourcePageSha256": "b5795a6bc5a75fc0d1cf5a6f22842beb5bf69308f45687e0a617d2ecf1a51e77"
+}

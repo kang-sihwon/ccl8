@@ -1,0 +1,85 @@
+{
+  "id": 2240,
+  "url": "https://www.fab.com/listings/ae644ce4-c3fd-47f2-bd04-8cd710cd8bca",
+  "uid": "ae644ce4-c3fd-47f2-bd04-8cd710cd8bca",
+  "title": "Freshly Bitten Apple",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:23:01.923478+00:00",
+  "pageSha256": "f1b73e5ce151cb0513d35111ba979e4d1d8fc49b9b25ac7a9291809f61238a06",
+  "description": "Texel density: 1114 px/m\nPhysical size: 0.08m x 0.08m x 0.08m\nMesh type: Closed mesh\nMaps: Displacement(high tier only) Cavity Gloss Specular Basecolor AO Roughness Normal\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.08m x 0.08m x 0.08m",
+  "mesh": "Closed mesh",
+  "texelDensity": "1114 px/m",
+  "maps": "Displacement(high tier only) Cavity Gloss Specular Basecolor AO Roughness Normal",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "UEFN Reference",
+      "extensions": null,
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "UEFN - Reference only",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/7a2b2073-1cf0-4720-a7d4-6b463985c380/9affaf9a-0905-419f-adb0-49bb0f484096.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/7a2b2073-1cf0-4720-a7d4-6b463985c380/ad1ee6fc-4007-4435-8265-e3d46bdb82ba.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

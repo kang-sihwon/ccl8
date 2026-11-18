@@ -1,0 +1,13 @@
+{
+  "id": 528,
+  "verdict": "수정 후 후보",
+  "use": "S08 입구 큰 나무 뿌리",
+  "reason": "넓게 방사형으로 퍼진 뿌리와 이끼가 근경 나무의 기반을 강조한다.",
+  "edit": "상부 수관 연결; 녹색 이끼 완화; 길 폭 확보",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:32:36.397276+00:00",
+  "sourcePageSha256": "924118c58e7adaddd02129d1cdb8b2a924007e16b0055cdd344db4af94f7e6cc"
+}

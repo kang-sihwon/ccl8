@@ -1,0 +1,13 @@
+{
+  "id": 2065,
+  "verdict": "제외",
+  "use": "현재 세 장소 제외",
+  "reason": "71cm 판 전체의 조각·문자 패널이 소박한 목함 뚜껑과 다름",
+  "edit": "무장식 덮개 사용",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:44:39.470725+00:00",
+  "sourcePageSha256": "fb9a94b4ff94bd8986bf7ccb09fc67828b7ea366abb516d0a7ea3bdf2747bdc7"
+}

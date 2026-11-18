@@ -1,0 +1,13 @@
+{
+  "id": 1730,
+  "verdict": "보류",
+  "use": "S08 작은 돌 묶음 대안",
+  "reason": "각진 갈색 조각의 변형은 충분하나 1699 우선",
+  "edit": "노란색 완화 및 분리 확인",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:31:48.532420+00:00",
+  "sourcePageSha256": "afc2dff06d926719c80331e698700aba19d3ec597fc2a6c77e098dedf7e243b5"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 695,
+  "verdict": "보류",
+  "use": "S08 긴 갈색 목편",
+  "reason": "1.58m의 거의 직선인 갈색 조각으로 0654·0675와 중복된다.",
+  "edit": "기존 밝은 목편과 색 차이가 필요할 때만",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:44:12.029465+00:00",
+  "sourcePageSha256": "b5b4990ab19dd5123cc669fc4691bb96e04ac2b1e075f45b5ab49a5e5d8c81b8"
+}

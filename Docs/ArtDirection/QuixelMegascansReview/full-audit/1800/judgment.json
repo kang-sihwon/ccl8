@@ -1,0 +1,13 @@
+{
+  "id": 1800,
+  "verdict": "보류",
+  "use": "S02 기와 파편 변형",
+  "reason": "7cm 갈색 삼각 조각은 중복",
+  "edit": "근접 장면에만",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:35:21.237054+00:00",
+  "sourcePageSha256": "bb8e28acddc6a28821ad420465970b4067ed8c6866bde8d82d52818f80e9d3c4"
+}

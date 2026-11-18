@@ -1,0 +1,13 @@
+{
+  "id": 825,
+  "verdict": "보류",
+  "use": "S08 덩굴 줄기 부재",
+  "reason": "2.32m의 가는 줄기만 있어 현재 숲의 덩굴 배치 목적이 분명하지 않다.",
+  "edit": "열린 끝 접합과 덩굴 용도 확정 후 도입",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:52:44.779807+00:00",
+  "sourcePageSha256": "e73dad54f147abeeecf2c3cb1750f29fec4953515db895dd8f89ee61cac0828d"
+}

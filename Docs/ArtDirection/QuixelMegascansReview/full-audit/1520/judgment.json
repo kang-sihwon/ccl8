@@ -1,0 +1,13 @@
+{
+  "id": 1520,
+  "verdict": "보류",
+  "use": "S08 이끼 화강암 변형",
+  "reason": "1.09m의 큰 면과 강한 흰 지의류로 기존 후보 충분",
+  "edit": "지의류 대비 축소",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:23:18.581092+00:00",
+  "sourcePageSha256": "bd1abdc30bcda41a16b8ac57329b9b7d18657497305c704b43bde934398fc142"
+}

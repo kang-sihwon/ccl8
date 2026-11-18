@@ -1,0 +1,13 @@
+{
+  "id": 2115,
+  "verdict": "보류",
+  "use": "S01 섬유 싸개 물병 대안",
+  "reason": "28cm 둥근 짚 병은 2097과 용도 중복",
+  "edit": "마개·손잡이 연결 확인",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:46:35.357702+00:00",
+  "sourcePageSha256": "6ded56470f0ba72315ed07f367e7cbbabfc83f5ea1c7d8f8f58a304a423338d3"
+}

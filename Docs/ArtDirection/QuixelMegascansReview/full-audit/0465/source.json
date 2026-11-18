@@ -1,0 +1,90 @@
+{
+  "id": 465,
+  "url": "https://www.fab.com/listings/5a3b6e4e-1390-44da-a9c9-dc951e175afb",
+  "uid": "5a3b6e4e-1390-44da-a9c9-dc951e175afb",
+  "title": "Forest European Broadleaf Rock L 04",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:11:50.239436+00:00",
+  "pageSha256": "5f98b436cbb0cdc9da5415367c77f0135c0595013ddac41cd20435d29e5607d6",
+  "description": "The ‘European Broadleaf Forest’ themed assets capture the dense, temperate character of woodland environments shaped by moisture, erosion, and layered vegetation.\nThis collection features dense surface variation and natural mossy ravine environment to bring a quiet, enclosed forest setting to life. \nShowcase Video\nTexel density: 1292 px/m\nPhysical size: 3.91m x 4.44m x 1.95m\nMesh type: Open mesh\nMaps: AO Basecolor Bump Cavity Displacement Fuzz Gloss Normal Roughness Specular\nCreate high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.\n\nCurious about future releases? Discover upcoming Megascans content and vote for your favorite themes: Public Roadmap",
+  "size": "3.91m x 4.44m x 1.95m",
+  "mesh": "Open mesh",
+  "texelDensity": "1292 px/m",
+  "maps": "AO Basecolor Bump Cavity Displacement Fuzz Gloss Normal Roughness Specular",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "ZBrush",
+      "extensions": [
+        "zbp",
+        "ztl"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/9f7cd2a0-bc0b-448e-b414-57348267338b/88e6c6b3-6763-4617-8d5b-6007084156e7.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/9f7cd2a0-bc0b-448e-b414-57348267338b/753c3f79-9347-4f48-a90e-968bcff9c5cb.png"
+    },
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/5d395ff0-3977-432a-b9ea-4b745fbb6d86/ce919554-2070-4530-a70f-23455d593851.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 2,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/5d395ff0-3977-432a-b9ea-4b745fbb6d86/778a6769-de8b-45f4-b450-843979be8c6f.jpg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg",
+    "gallery-02.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

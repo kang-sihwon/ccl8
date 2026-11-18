@@ -1,0 +1,65 @@
+{
+  "id": 1027,
+  "url": "https://www.fab.com/listings/bb43df2d-4d92-4a59-96e6-6cf44f8110e3",
+  "uid": "bb43df2d-4d92-4a59-96e6-6cf44f8110e3",
+  "title": "Cape Weed",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:15:24.459609+00:00",
+  "pageSha256": "013d7c8b857570da4526c49ccba0a7df37814179783b092866f13b5996d4ad3e",
+  "description": "Maps: Gloss Cavity Translucency Specular Normal AO Bump Displacement Roughness Opacity Basecolor\n \nCreate high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "기재 확인 안 됨",
+  "mesh": "기재 확인 안 됨",
+  "texelDensity": "기재 확인 안 됨",
+  "maps": "Gloss Cavity Translucency Specular Normal AO Bump Displacement Roughness Opacity Basecolor",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/60f43a7c-a114-498c-8186-2c7ddf423096/7d363bf4-7f80-47d3-89ad-06f7b24fa07c.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/60f43a7c-a114-498c-8186-2c7ddf423096/1d310f1f-3be5-4156-9b92-2e7c0cd10ad4.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

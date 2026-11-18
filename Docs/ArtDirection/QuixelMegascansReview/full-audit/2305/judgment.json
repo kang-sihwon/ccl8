@@ -1,0 +1,13 @@
+{
+  "id": 2305,
+  "verdict": "보류",
+  "use": "S01 뿌리채소 대안",
+  "reason": "9cm 길쭉한 감자는2304와 중복",
+  "edit": "소수 변주만 사용",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:55:15.673158+00:00",
+  "sourcePageSha256": "f36e892d52282986392047bdb867ae6e54b5a12eb2c602b3e2a406fd21a2ab06"
+}

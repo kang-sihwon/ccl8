@@ -1,0 +1,13 @@
+{
+  "id": 2023,
+  "verdict": "보류",
+  "use": "S02 장부 대안",
+  "reason": "24cm 붉은 표지와 화려한 책등은 기존 후보보다 장식적",
+  "edit": "책등 장식·문자 수정",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:44:39.430178+00:00",
+  "sourcePageSha256": "6105e24052bb0c053a6e33ccd86d66c948abc29f61f7b3d85687094525d0506b"
+}

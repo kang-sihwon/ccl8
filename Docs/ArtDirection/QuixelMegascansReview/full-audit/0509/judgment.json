@@ -1,0 +1,13 @@
+{
+  "id": 509,
+  "verdict": "추천",
+  "use": "S08 흙길 옆 둔덕",
+  "reason": "긴 흙 단차와 드러난 뿌리가 숲의 높낮이를 자연스럽게 연결한다.",
+  "edit": "지도 지형 높이 유지; 낙엽색 맞춤",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:32:36.380110+00:00",
+  "sourcePageSha256": "ccf1ca852d15f6811bdbc71245c3d1d6b1a8cc1f4142b579c28cb1e940e3c2d2"
+}

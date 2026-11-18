@@ -1,0 +1,82 @@
+{
+  "id": 337,
+  "url": "https://www.fab.com/listings/4156fdc9-4098-4d21-94ad-72ca08f0ca4b",
+  "uid": "4156fdc9-4098-4d21-94ad-72ca08f0ca4b",
+  "title": "Wooden Ladder",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:11:00.460411+00:00",
+  "pageSha256": "5a5297420277f214dba31af05d8d90c758721cbd9240821707896fbb79d5f28b",
+  "description": "Texel density: 6411 px/m\nPhysical size: 0.07m x 0.55m x 1.54m\nMesh type: Closed mesh\nMaps: Roughness Specular Cavity Normal Bump AO Basecolor Displacement(high tier only) Gloss\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.07m x 0.55m x 1.54m",
+  "mesh": "Closed mesh",
+  "texelDensity": "6411 px/m",
+  "maps": "Roughness Specular Cavity Normal Bump AO Basecolor Displacement(high tier only) Gloss",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "ZBrush",
+      "extensions": [
+        "zbp",
+        "ztl"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/b3e4744a-2e01-43a8-bfca-e54418ca8001/2642e796-70d7-474a-b544-ebf99590417b.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/b3e4744a-2e01-43a8-bfca-e54418ca8001/1893133c-304e-4c2b-9644-3050fde70e59.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

@@ -1,0 +1,13 @@
+{
+  "id": 1222,
+  "verdict": "보류",
+  "use": "S01 작은 층상 자갈",
+  "reason": "17cm의 굵은 흰 줄무늬가 현재 회색 자갈보다 강함",
+  "edit": "줄무늬와 갈색 대비 축소",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:11:29.597514+00:00",
+  "sourcePageSha256": "d704be3771ff5e19309582c018f9d52ad61af206f324a981b5bf60f2275ef185"
+}

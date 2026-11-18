@@ -1,0 +1,13 @@
+{
+  "id": 2071,
+  "verdict": "수정 후 후보",
+  "use": "S01 나루의 예비 노",
+  "reason": "1.71m 낡은 목제 노는 적합하나 폭 12cm로 가늘고 녹색 얼룩 보임",
+  "edit": "선박 크기와 노 폭 확인 및 얼룩 완화",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:46:35.315346+00:00",
+  "sourcePageSha256": "12f406bda363ebde27bfeea4030a6daeba5a04318c70a0dd03298246ef9b1176"
+}

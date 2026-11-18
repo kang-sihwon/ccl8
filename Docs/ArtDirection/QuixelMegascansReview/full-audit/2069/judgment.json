@@ -1,0 +1,13 @@
+{
+  "id": 2069,
+  "verdict": "보류",
+  "use": "S02 악기 수리 소품 대안",
+  "reason": "25cm 목제 건반 악기는 단순하지만 취급 악기·문화 설정 미확정",
+  "edit": "실제 악기 용도와 수리 품목 확인",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:46:35.310223+00:00",
+  "sourcePageSha256": "31576c42ccbe8eccb9246fd25b1ffebfe1f6667cc7cb8be0038d07056c749eb2"
+}

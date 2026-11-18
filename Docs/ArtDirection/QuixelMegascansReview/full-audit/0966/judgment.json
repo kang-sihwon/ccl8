@@ -1,0 +1,13 @@
+{
+  "id": 966,
+  "verdict": "보류",
+  "use": "S08 가는 수목 줄기",
+  "reason": "2.21m의 가는 매끈한 줄기 하부만 보이며 수관 없는 열린 메시",
+  "edit": "전체 실루엣과 연결 부위 추가 확인 및 수관 제작",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:01:11.370551+00:00",
+  "sourcePageSha256": "4b9363a91e308499e4f9bff838395e302555f1e8b733fafe02a1ffb748ae4ae0"
+}

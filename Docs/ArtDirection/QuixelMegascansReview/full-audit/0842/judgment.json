@@ -1,0 +1,13 @@
+{
+  "id": 842,
+  "verdict": "수정 후 후보",
+  "use": "S08 갈라진 수목 하부",
+  "reason": "두 갈래 줄기와 이끼 밑동이 좋지만 상단이 잘린 조립 부재다.",
+  "edit": "상부·수관 연결; 이끼색 조정",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:52:44.796598+00:00",
+  "sourcePageSha256": "9f08b7694ff0b3b2d4a193b79e97d2ff8d791169ed81eed38abdd624c50d85c5"
+}

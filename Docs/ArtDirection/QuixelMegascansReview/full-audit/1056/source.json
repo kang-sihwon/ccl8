@@ -1,0 +1,65 @@
+{
+  "id": 1056,
+  "url": "https://www.fab.com/listings/220f8573-5f22-455b-bf65-76565c499357",
+  "uid": "220f8573-5f22-455b-bf65-76565c499357",
+  "title": "Silver Downy Willow",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:15:34.525074+00:00",
+  "pageSha256": "51403771a0ccabd237dee43271f09a370abffe61e4abb6ef2a63dde680bc0a96",
+  "description": "Maps: Bump Cavity Normal Basecolor Displacement Opacity Gloss AO Roughness Translucency Specular\n \nCreate high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "기재 확인 안 됨",
+  "mesh": "기재 확인 안 됨",
+  "texelDensity": "기재 확인 안 됨",
+  "maps": "Bump Cavity Normal Basecolor Displacement Opacity Gloss AO Roughness Translucency Specular",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/2915dae0-3387-4d2f-b5a6-9cecf3abe6d2/08965f02-72d8-4cda-a71b-44ab324d9b26.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 2,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/2915dae0-3387-4d2f-b5a6-9cecf3abe6d2/0685361c-edfc-49b4-8d90-49d9f2c385fa.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

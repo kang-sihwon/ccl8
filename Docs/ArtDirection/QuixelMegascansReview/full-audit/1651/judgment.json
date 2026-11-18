@@ -1,0 +1,13 @@
+{
+  "id": 1651,
+  "verdict": "보류",
+  "use": "S01 자갈 대안",
+  "reason": "27cm 단순한 둥근 형태지만 분홍빛 전체 색 수정 필요",
+  "edit": "회색화",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:30:20.099473+00:00",
+  "sourcePageSha256": "a07a9bd639d74e701e90f46af7a3a3fce8f50dc8cf186f972ae7dfabf468d0f3"
+}

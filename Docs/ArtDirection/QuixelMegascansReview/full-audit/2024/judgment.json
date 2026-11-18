@@ -1,0 +1,13 @@
+{
+  "id": 2024,
+  "verdict": "수정 후 후보",
+  "use": "S02 두꺼운 청록 장부",
+  "reason": "25cm 청록 표지와 갈색 책등이 팔레트에 맞으나 라벨·문자 보임",
+  "edit": "라벨과 문구 교체",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:44:39.431108+00:00",
+  "sourcePageSha256": "7331a71d74daed8c7954230aa99314a6d04fbc7155c3be4f8ae4209225cdc94c"
+}

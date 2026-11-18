@@ -1,0 +1,13 @@
+{
+  "id": 2127,
+  "verdict": "보류",
+  "use": "S02 악기 수리 소품 대안",
+  "reason": "32cm 타원 틀과 원판이 있는 악기는 문화·수리 품목 미확정",
+  "edit": "악기 용도 설정 확인",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:48:31.621862+00:00",
+  "sourcePageSha256": "26522fa277042830ea67c60b8e94449ee3c2e2d2c7a0264f1e81fe8778bef0a2"
+}

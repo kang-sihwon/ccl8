@@ -1,0 +1,13 @@
+{
+  "id": 1667,
+  "verdict": "보류",
+  "use": "S08 지의류 돌 대안",
+  "reason": "16cm 쐐기형 돌의 큰 흰 반점이 반복되기 쉬움",
+  "edit": "반점 대비 완화",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:30:20.114912+00:00",
+  "sourcePageSha256": "9613912a980ae82cb4548852686886068e66f9e7869b497e18b3fdc2afc21a87"
+}

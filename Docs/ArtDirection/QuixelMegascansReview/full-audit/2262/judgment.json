@@ -1,0 +1,13 @@
+{
+  "id": 2262,
+  "verdict": "수정 후 후보",
+  "use": "S02 휴식 탁자 식량",
+  "reason": "15cm 반쪽 빵의 거친 껍질과 단면이 소박한 식사에 적합",
+  "edit": "식량 설정·단면 반복 방지",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:55:15.631643+00:00",
+  "sourcePageSha256": "8c632875c57578a7f9863f2d5c6ea786a4d028247de2c9cd43f10aef10e68dba"
+}

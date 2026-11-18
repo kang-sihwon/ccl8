@@ -1,0 +1,13 @@
+{
+  "id": 2067,
+  "verdict": "추천",
+  "use": "S01 화물함 덮개 또는 S02 판재 자재",
+  "reason": "1.1m 넓은 낡은 판재 덮개가 단순한 화물함에 적합",
+  "edit": "함 치수와 두께 맞춤",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:44:39.472592+00:00",
+  "sourcePageSha256": "51c2ae4fdbd4575fd8e6ac99f99f69292407620b9050c83743ac4f474a21ab8f"
+}

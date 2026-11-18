@@ -1,0 +1,13 @@
+{
+  "id": 2110,
+  "verdict": "보류",
+  "use": "S02 장부 대안",
+  "reason": "19cm 깨끗한 파란 제본은 기존 낡은 후보보다 현대적",
+  "edit": "표지색·마모 수정",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:46:35.353127+00:00",
+  "sourcePageSha256": "1e8c82209f77285c971c5785f6bfe9411daac09406f120cd4b9ded7105ff126e"
+}

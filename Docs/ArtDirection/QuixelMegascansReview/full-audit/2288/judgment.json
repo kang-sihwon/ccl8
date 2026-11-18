@@ -1,0 +1,13 @@
+{
+  "id": 2288,
+  "verdict": "수정 후 후보",
+  "use": "S01 채소 자루 주변",
+  "reason": "7cm 황갈색 양파가 목재·자루 팔레트에 잘 맞음",
+  "edit": "작물 설정·과한 광택 축소",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:55:15.657502+00:00",
+  "sourcePageSha256": "43867c7ea547b4f7be5a5b282a98b77521dbec199a9f59101274e0eec6553b89"
+}

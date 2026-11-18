@@ -1,0 +1,13 @@
+{
+  "id": 1922,
+  "verdict": "보류",
+  "use": "S02 작은 숯 파편",
+  "reason": "7cm 갈라진 판형 숯으로 묶음 후보와 중복",
+  "edit": "근접에만 사용",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:38:57.969953+00:00",
+  "sourcePageSha256": "d31a94741f7e68d47550228359085ce67b08849d89c064a0a612096f8320ae5e"
+}

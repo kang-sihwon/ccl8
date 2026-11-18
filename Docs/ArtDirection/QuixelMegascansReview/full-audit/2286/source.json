@@ -1,0 +1,74 @@
+{
+  "id": 2286,
+  "url": "https://www.fab.com/listings/bffa92bd-e214-4a4f-94cf-2fa2e4337e7f",
+  "uid": "bffa92bd-e214-4a4f-94cf-2fa2e4337e7f",
+  "title": "Nutty Bread",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:23:21.031128+00:00",
+  "pageSha256": "0529e02d18711caa5ea3c95064424bd84a8bee66719b10587070da9322cb5499",
+  "description": "Texel density: 1080 px/m\nPhysical size: 0.06m x 0.06m x 0.03m\nMesh type: Closed mesh\nMaps: Displacement(high tier only) Cavity Gloss Specular Basecolor AO Roughness Normal\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.06m x 0.06m x 0.03m",
+  "mesh": "Closed mesh",
+  "texelDensity": "1080 px/m",
+  "maps": "Displacement(high tier only) Cavity Gloss Specular Basecolor AO Roughness Normal",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/623c9378-3ed5-4491-b521-8e31844ff2e3/3402a4c9-6266-483a-95b5-49c7876d1904.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/623c9378-3ed5-4491-b521-8e31844ff2e3/beaa5000-5a93-487f-a960-d7b4ecac43ba.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

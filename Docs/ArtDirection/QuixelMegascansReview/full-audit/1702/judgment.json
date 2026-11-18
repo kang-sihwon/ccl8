@@ -1,0 +1,13 @@
+{
+  "id": 1702,
+  "verdict": "보류",
+  "use": "S08 이끼 판석 변형",
+  "reason": "8cm 녹색 이끼가 있는 층상석은 기존 이끼돌과 중복",
+  "edit": "이끼 채도 감소",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:31:48.504147+00:00",
+  "sourcePageSha256": "e68919f67c0cfc03356831f5e11b911c91752bb521dc2c83963c9db481f56fa3"
+}

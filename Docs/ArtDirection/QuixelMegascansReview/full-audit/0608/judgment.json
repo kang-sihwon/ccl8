@@ -1,0 +1,13 @@
+{
+  "id": 608,
+  "verdict": "추천",
+  "use": "S08 숲길 옆 갈라진 가지",
+  "reason": "중앙 줄기에서 여러 가는 가지가 불규칙하게 솟아 실루엣 변화가 크다.",
+  "edit": "가는 가지 충돌 단순화; 이끼색 통일",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:38:54.202891+00:00",
+  "sourcePageSha256": "05ad60a22f16cca7667d7f717f40cd59ca541dfe67d3adbefb185b8c9177d485"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 1334,
+  "verdict": "추천",
+  "use": "S01 나루 접근 둔치의 낮은 노출 암반",
+  "reason": "6.6m의 큰 판과 명료한 균열이 수변 바닥의 수평 형태에 적합",
+  "edit": "황색 완화 및 열린 경계 매입과 물선 블렌딩",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:15:07.664893+00:00",
+  "sourcePageSha256": "833ae802d220dd1f86f8c701cde9ac107af8a3ae2745eb26d5235a4aaac27fac"
+}

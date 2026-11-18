@@ -1,0 +1,13 @@
+{
+  "id": 2113,
+  "verdict": "수정 후 후보",
+  "use": "S02 선반의 철제 촛대",
+  "reason": "16cm 수공예 철띠와 촛농이 가능하나 곡선 장식이 강함",
+  "edit": "말린 다리 단순화 및 촛불 별도 구성",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:46:35.355901+00:00",
+  "sourcePageSha256": "676bf5ea90122540dd38c8cdaa34e73896e783f53da654a4b892a8d9bcbb921f"
+}

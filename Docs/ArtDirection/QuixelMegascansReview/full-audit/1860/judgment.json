@@ -1,0 +1,13 @@
+{
+  "id": 1860,
+  "verdict": "보류",
+  "use": "S08 목책 가로대 변형",
+  "reason": "1.05m 곧은 원목 봉으로 1859와 중복",
+  "edit": "가로대 간격 맞춤",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:36:56.646400+00:00",
+  "sourcePageSha256": "e1bcf60a214c65bc96708dc31c92bd18bc13bf3a8a98c54e84205dccc95fa6b7"
+}

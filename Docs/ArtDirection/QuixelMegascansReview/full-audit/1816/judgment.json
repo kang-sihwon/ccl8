@@ -1,0 +1,13 @@
+{
+  "id": 1816,
+  "verdict": "보류",
+  "use": "S02 화덕 잔해 변형",
+  "reason": "11cm 큰 깨진 단면의 황색이 강함",
+  "edit": "황색 감소",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:35:21.252255+00:00",
+  "sourcePageSha256": "3036b719b9930b5e3f6213a1f2c4df2131877838d5f152691c6e765549a7bc1c"
+}

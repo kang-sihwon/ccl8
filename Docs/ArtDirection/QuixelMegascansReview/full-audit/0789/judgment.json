@@ -1,0 +1,13 @@
+{
+  "id": 789,
+  "verdict": "보류",
+  "use": "S01 탈색된 짧은 유목",
+  "reason": "86cm의 밝은 줄기와 찢어진 끝으로 0693·0774와 중복된다.",
+  "edit": "수변 크기 변형이 필요할 때 사용",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:48:57.461718+00:00",
+  "sourcePageSha256": "fa33864c0613d781492bef20fa7b922c610df4b7c738af6ee848e3b677c7af9d"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 567,
+  "verdict": "보류",
+  "use": "S08 구멍 많은 바위",
+  "reason": "짙은 회색의 깊은 구멍이 많아 기존 암석 계열과 시각적 차이가 크다.",
+  "edit": "별도 지질 구간이 필요할 때 재검토",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:36:32.306343+00:00",
+  "sourcePageSha256": "5867860f05ec7782ebc2f7370ac943ff33c931fea3e38e54b705cd2427ca08ff"
+}

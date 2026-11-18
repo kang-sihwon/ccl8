@@ -1,0 +1,13 @@
+{
+  "id": 1015,
+  "verdict": "보류",
+  "use": "S08 작은 갈색 버섯 군집",
+  "reason": "11cm 안팎의 짧은 갈색 버섯으로 기존 972 및 1014와 중복",
+  "edit": "광택 완화",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:03:25.954630+00:00",
+  "sourcePageSha256": "ae7805ac2898b8c90123ba77bfd718c7d83da0c58e05d20c56fdcfa638473472"
+}

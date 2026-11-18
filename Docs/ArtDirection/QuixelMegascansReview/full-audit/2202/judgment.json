@@ -1,0 +1,13 @@
+{
+  "id": 2202,
+  "verdict": "보류",
+  "use": "S02 빵 대안",
+  "reason": "8cm 주름 많은 원형 빵은 작은 크기에 디테일이 과함",
+  "edit": "표면 대비 축소",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:52:25.950570+00:00",
+  "sourcePageSha256": "335dc38cb99b85c4b22a3c698093c4b73e80b9cee085d32e101ebe89e0cc69a0"
+}

@@ -1,0 +1,74 @@
+{
+  "id": 336,
+  "url": "https://www.fab.com/listings/85deda53-0907-4792-a113-38935eea51be",
+  "uid": "85deda53-0907-4792-a113-38935eea51be",
+  "title": "Wooden Knife Block",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:11:00.010734+00:00",
+  "pageSha256": "3405e4beb21312dc6ff36c73df6a82c1369c0b85993da1ed3b6151eaf54ec5fd",
+  "description": "Texel density: 1181 px/m\nPhysical size: 0.07m x 0.15m x 0.13m\nMesh type: Closed mesh\nMaps: Displacement(high tier only) Normal Basecolor Specular Cavity Roughness Gloss AO\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.07m x 0.15m x 0.13m",
+  "mesh": "Closed mesh",
+  "texelDensity": "1181 px/m",
+  "maps": "Displacement(high tier only) Normal Basecolor Specular Cavity Roughness Gloss AO",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/c7a7d52a-2257-4a44-925e-7fab44217bad/8c352528-eb09-40e7-a485-3cae7a1766c4.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/c7a7d52a-2257-4a44-925e-7fab44217bad/70159a00-c458-4112-982b-55939bc0a6fb.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

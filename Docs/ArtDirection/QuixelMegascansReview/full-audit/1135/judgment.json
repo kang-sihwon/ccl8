@@ -1,0 +1,13 @@
+{
+  "id": 1135,
+  "verdict": "보류",
+  "use": "S02 작은 포석 변형",
+  "reason": "11cm의 어두운 면과 둥근 모서리가 있는 포석으로 팩 우선",
+  "edit": "얼룩 대비 완화",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:07:19.740851+00:00",
+  "sourcePageSha256": "bf5a936aa498831cc7ab2defcc34b9a377b765a1ac4b26ee21900743b7ccf28d"
+}

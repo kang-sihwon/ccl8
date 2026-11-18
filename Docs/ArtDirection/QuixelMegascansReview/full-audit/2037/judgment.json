@@ -1,0 +1,13 @@
+{
+  "id": 2037,
+  "verdict": "보류",
+  "use": "S02 철제 화로 대안",
+  "reason": "1m 규모의 둥근 그릇과 곡선 다리가 시안 화덕과 구조 다름",
+  "edit": "화덕 형식 확인 및 녹 감소",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:44:39.443531+00:00",
+  "sourcePageSha256": "0141a0524d6bcefcc82a9aa9626e8d60575f53786456d963221c4367dc9ae1f6"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 1649,
+  "verdict": "보류",
+  "use": "S02 작은 돌 변형",
+  "reason": "8cm 흰 지의류 얼룩 사각 돌로 화면 기여 낮음",
+  "edit": "얼룩 대비 완화",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:30:20.097345+00:00",
+  "sourcePageSha256": "557e3da4ad07b05b4d21313ca9d1866fdc30107e1dce7e0e324dd7c81d4e0634"
+}

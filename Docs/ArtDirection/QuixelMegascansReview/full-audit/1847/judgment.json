@@ -1,0 +1,13 @@
+{
+  "id": 1847,
+  "verdict": "보류",
+  "use": "S02 낡은 벽돌 묶음 대안",
+  "reason": "깊은 성형 홈과 녹색 이끼가 있는 벽돌은 화덕용과 상태 다름",
+  "edit": "이끼·홈 제거 및 분리 확인",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:36:56.634139+00:00",
+  "sourcePageSha256": "f86f247ca484047b7559186e4d3922934bdcc5f6d8e465c3d8becf4ca19f9f3c"
+}

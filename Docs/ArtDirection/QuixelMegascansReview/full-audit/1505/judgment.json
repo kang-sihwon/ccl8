@@ -1,0 +1,13 @@
+{
+  "id": 1505,
+  "verdict": "보류",
+  "use": "S01 작은 밝은 돌",
+  "reason": "57cm의 길쭉한 돌에 흰 반점이 많아 기존 자갈 우선",
+  "edit": "흰색 대비 축소",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:23:18.565758+00:00",
+  "sourcePageSha256": "2ac62650b5e9d3620dcdb2a5b53ef2b652538c87d787b795cb863f8583080149"
+}

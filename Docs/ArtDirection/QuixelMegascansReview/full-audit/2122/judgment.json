@@ -1,0 +1,13 @@
+{
+  "id": 2122,
+  "verdict": "보류",
+  "use": "S02 도기병 변형",
+  "reason": "20cm 갈색 원통병은 기존 묶음과 기능 중복",
+  "edit": "밝기 통일",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:48:31.616275+00:00",
+  "sourcePageSha256": "e3848996e2a93c8016c2cbf680f2d7a80f68dc5ef999cd9b28696cd664586fbf"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 2380,
+  "verdict": "수정 후 후보",
+  "use": "S02 수리 도끼 대안",
+  "reason": "83cm 나무 자루는 적합하나 빨간 금속 도색과 복합 머리가 강함",
+  "edit": "도색 제거·2160 또는2378 우선",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:57:51.210231+00:00",
+  "sourcePageSha256": "2a76932f3cc4dcefb0b1058596325899c8beda10a07a4107f37e4f45caec1862"
+}

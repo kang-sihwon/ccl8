@@ -1,0 +1,82 @@
+{
+  "id": 532,
+  "url": "https://www.fab.com/listings/7ecc46cf-6b02-4976-b17d-523d3b61f180",
+  "uid": "7ecc46cf-6b02-4976-b17d-523d3b61f180",
+  "title": "Nordic Forest Ledge Rock Large",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:12:14.618505+00:00",
+  "pageSha256": "3a2bbca9c724a0f3ebeee2251c034d790255fe76f95aaf97be4e2a1a3ba40b55",
+  "description": "Texel density: 5983 px/m\nPhysical size: 3.11m x 5.09m x 1.75m\nMesh type: Open mesh\nMaps: Basecolor Roughness Cavity Displacement(high tier only) Gloss Normal Specular AO Fuzz Bump\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "3.11m x 5.09m x 1.75m",
+  "mesh": "Open mesh",
+  "texelDensity": "5983 px/m",
+  "maps": "Basecolor Roughness Cavity Displacement(high tier only) Gloss Normal Specular AO Fuzz Bump",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "ZBrush",
+      "extensions": [
+        "zbp",
+        "ztl"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/7da1a240-e51e-43aa-93a5-53a366c4460e/dad57d5a-160f-4f7d-b441-e526d457b48b.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/7da1a240-e51e-43aa-93a5-53a366c4460e/7bd5f3d5-c783-41b5-abc5-bb2b0cf85cdb.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

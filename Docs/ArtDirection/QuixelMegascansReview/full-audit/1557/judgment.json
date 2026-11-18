@@ -1,0 +1,13 @@
+{
+  "id": 1557,
+  "verdict": "보류",
+  "use": "S01 작은 자갈 변형",
+  "reason": "6cm 돌 전체의 촘촘한 흑백 무늬가 B안보다 세밀함",
+  "edit": "미세 대비 축소",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:27:20.408989+00:00",
+  "sourcePageSha256": "9f5c8cc3f841bb71e68ee0683d81a69eb42042542d57c5f52c64619c773dcf5e"
+}

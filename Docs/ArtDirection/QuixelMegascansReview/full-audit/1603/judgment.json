@@ -1,0 +1,13 @@
+{
+  "id": 1603,
+  "verdict": "제외",
+  "use": "현재 세 장소 제외",
+  "reason": "24cm 붉은 각진 판석으로 현재 색 계획과 불일치",
+  "edit": "회색 판석 우선",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:28:52.983315+00:00",
+  "sourcePageSha256": "1b9195b3c2cb2e18e4d0204bbbbd925cf42bf3d726df1c4b762544854d5ed30a"
+}

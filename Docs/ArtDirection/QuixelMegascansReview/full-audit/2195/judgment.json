@@ -1,0 +1,13 @@
+{
+  "id": 2195,
+  "verdict": "보류",
+  "use": "S02 빵 대안",
+  "reason": "10cm 씨앗 덮인 검은 빵은 재료 정보가 복잡함",
+  "edit": "단순 빵 우선",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:52:25.943512+00:00",
+  "sourcePageSha256": "57d99cbd54ac60ff1c0e531af820c98d87574017a8bf6f140d345b8de5cd67d5"
+}

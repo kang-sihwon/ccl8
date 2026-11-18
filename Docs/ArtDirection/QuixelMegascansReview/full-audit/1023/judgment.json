@@ -1,0 +1,13 @@
+{
+  "id": 1023,
+  "verdict": "보류",
+  "use": "S08 소형 관목 변형",
+  "reason": "초록 타원 잎과 붉은 잎이 섞인 가지로 1022와 역할 중복",
+  "edit": "실측과 군집 메시 구성 확인",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:03:25.962264+00:00",
+  "sourcePageSha256": "d500b8e72db563bc1ae86b66228ec9b4705056c992d326bec335c6c7c905717f"
+}

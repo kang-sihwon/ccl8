@@ -1,0 +1,13 @@
+{
+  "id": 630,
+  "verdict": "보류",
+  "use": "S08 긴 침엽수 잔가지",
+  "reason": "1.22m의 가는 굴곡 가지로 0512보다 추가 배치 역할이 약하다.",
+  "edit": "기존 변형이 부족할 때 혼합",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:41:41.751086+00:00",
+  "sourcePageSha256": "44ea779e9b9d443cf02c1da4ea20052b08ac195c36c7ff2ef9c13622c603ae0f"
+}

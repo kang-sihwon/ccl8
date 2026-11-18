@@ -1,0 +1,13 @@
+{
+  "id": 2116,
+  "verdict": "보류",
+  "use": "S02 도기병 변형",
+  "reason": "26cm 노란 마개 병은 1944 묶음과 중복",
+  "edit": "노란색 감소",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:46:35.358648+00:00",
+  "sourcePageSha256": "be64b53bde236be896c1230141c9000014112537a9d6f3729b0a2d9a5c22e208"
+}

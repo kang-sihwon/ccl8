@@ -1,0 +1,13 @@
+{
+  "id": 1936,
+  "verdict": "수정 후 후보",
+  "use": "S02 작은 공구·붓 꽂이",
+  "reason": "8cm 나무껍질 같은 원통 외형은 가능하나 촛대 원래 용도와 다름",
+  "edit": "내부 깊이·재질 확인 후 작은 도구만 배치",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:40:59.595184+00:00",
+  "sourcePageSha256": "55235ce72efd3c92c2a9703cb3b2d829efa36085cf919214eabc94eb6f04699e"
+}

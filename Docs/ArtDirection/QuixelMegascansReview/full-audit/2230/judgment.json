@@ -1,0 +1,13 @@
+{
+  "id": 2230,
+  "verdict": "보류",
+  "use": "S02 식사 대안",
+  "reason": "6cm 원통 튀김은 조리 종류가 불명확한 장식이 됨",
+  "edit": "식사 연출 확정 필요",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:53:43.632351+00:00",
+  "sourcePageSha256": "190fd3afde59b8282649f89b2af133f72570c43666cde6604551f89cac4f76e3"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 1366,
+  "verdict": "보류",
+  "use": "S01 작은 밝은 바위",
+  "reason": "29cm의 낮은 돌에 강한 흰 반점과 붉은 얼룩으로 기존 자갈 우선",
+  "edit": "표면 명암과 붉은색 완화",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:17:00.798088+00:00",
+  "sourcePageSha256": "abf11f8deefdc64db55612ae780966a5328244dfb8e3bc6daf50c9d78d16f52c"
+}

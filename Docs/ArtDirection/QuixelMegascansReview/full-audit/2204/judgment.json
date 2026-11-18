@@ -1,0 +1,13 @@
+{
+  "id": 2204,
+  "verdict": "수정 후 후보",
+  "use": "S02 공유 식사 빵",
+  "reason": "23cm 통밀색 타원 빵은 간결하고 생활감 있음",
+  "edit": "식량 설정·2197과 하나 선택",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:52:25.952376+00:00",
+  "sourcePageSha256": "182b3de95573850c95a86404599066ba05d45fbef2be63f6518e626339be77ee"
+}

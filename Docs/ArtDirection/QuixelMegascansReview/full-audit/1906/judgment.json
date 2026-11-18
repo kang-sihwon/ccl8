@@ -1,0 +1,13 @@
+{
+  "id": 1906,
+  "verdict": "수정 후 후보",
+  "use": "S02 갈색 장부",
+  "reason": "23cm 무장식 갈색 표지는 유용하나 지나치게 깨끗한 제본",
+  "edit": "가죽 질감·마모 추가 및 문구 확인",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:38:57.955062+00:00",
+  "sourcePageSha256": "0ffbb3a261e6dbaa1b8f7a0b7055a61eb7fd1dcd34068c88b6fe490c6103a6df"
+}

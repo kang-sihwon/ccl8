@@ -1,0 +1,13 @@
+{
+  "id": 1774,
+  "verdict": "보류",
+  "use": "S02 화덕 주변 벽돌 대안",
+  "reason": "23cm 거친 검은 벽돌은 묶음 후보 우선",
+  "edit": "검정 대비 감소",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:33:48.211549+00:00",
+  "sourcePageSha256": "761cc1f6f12d1c27944074be6719a9aaa30a6b7d552ff1e70bcd51a82bb2df22"
+}

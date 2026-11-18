@@ -1,0 +1,13 @@
+{
+  "id": 1526,
+  "verdict": "보류",
+  "use": "S08 둥근 거친 바위",
+  "reason": "1.33m의 회갈색 덩어리와 많은 홈으로 기존 후보 중복",
+  "edit": "홈 대비 축소",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:23:18.587032+00:00",
+  "sourcePageSha256": "4c95b21c597f93c951a3ad9fa9a1d9533f9fb878d1e51ea151df53e94ce6dcdc"
+}

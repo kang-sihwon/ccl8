@@ -1,0 +1,13 @@
+{
+  "id": 891,
+  "verdict": "추천",
+  "use": "S02 원목 옆 작은 부식 목재",
+  "reason": "29cm의 층층이 갈라진 황갈색 단면이 버려진 목재 조각으로 읽힌다.",
+  "edit": "채도·미세 노멀 완화; 소량",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:54:43.603119+00:00",
+  "sourcePageSha256": "91658ff7b981c84f63fea277357bd584eb1d63437a9cbccaeb6ac3e2a7436d08"
+}

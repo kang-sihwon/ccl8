@@ -1,0 +1,13 @@
+{
+  "id": 1460,
+  "verdict": "추천",
+  "use": "S08 좁은 길 가장자리 낙엽·돌띠",
+  "reason": "1.93m의 길고 낮은 낙엽 바닥과 드문 돌이 길 접합에 적합",
+  "edit": "열린 경계 매입 및 낙엽 반복 분산",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:21:12.802695+00:00",
+  "sourcePageSha256": "76da18018776742579b45e6caa9aa47e30c4ba16e3c11e2a4ff8bc234af35d7d"
+}

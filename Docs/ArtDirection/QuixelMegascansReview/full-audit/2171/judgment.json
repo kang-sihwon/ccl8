@@ -1,0 +1,13 @@
+{
+  "id": 2171,
+  "verdict": "수정 후 후보",
+  "use": "S02 수리 중 도끼",
+  "reason": "64cm 긴 나무 손잡이와 단순 철날이 공방에 어울림",
+  "edit": "무기 수리 취급 여부·날 방향 확인",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:52:25.919281+00:00",
+  "sourcePageSha256": "3c3ee30e5700114038d17e85222e1600d8bcafabe9708a48913b55b85732ee3e"
+}

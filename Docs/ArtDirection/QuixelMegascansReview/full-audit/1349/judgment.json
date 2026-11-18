@@ -1,0 +1,13 @@
+{
+  "id": 1349,
+  "verdict": "보류",
+  "use": "S08 원경 암벽 변형",
+  "reason": "14.12m의 높은 벽과 강한 이끼 얼룩으로 현재 입구 세부 배치보다 규모 큼",
+  "edit": "원경 지형 확정 후 열린 면 연결과 색 조절",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:17:00.781217+00:00",
+  "sourcePageSha256": "238142833e742ce7aa64c2fb4d15f520542ce4bc6a95eaf388ae0b8f5bcaff70"
+}

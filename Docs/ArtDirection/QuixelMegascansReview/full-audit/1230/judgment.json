@@ -1,0 +1,13 @@
+{
+  "id": 1230,
+  "verdict": "보류",
+  "use": "S01 작은 줄무늬 자갈",
+  "reason": "10cm의 흰 층이 많은 둥근 돌로 현재 자갈 팔레트와 차이",
+  "edit": "띠 대비 완화",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:11:29.607393+00:00",
+  "sourcePageSha256": "1b04f69d4ace7b82a61b7812451ae295ad77f92f22ebd4262a3f124d66f05696"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 929,
+  "verdict": "보류",
+  "use": "S08 부후 가지 소품",
+  "reason": "46cm의 밝은 속살과 돌출 가지로 근접 바닥 소품에 한정",
+  "edit": "노란 속살 채도 축소",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:59:25.677806+00:00",
+  "sourcePageSha256": "8e0287286d187e5b46ed0202a9b698ba90fe5efa8b2915e0b0d35f0c50e7e34a"
+}

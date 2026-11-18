@@ -1,0 +1,13 @@
+{
+  "id": 319,
+  "verdict": "보류",
+  "use": "S02 원형 부품함 대체안",
+  "reason": "작은 둥근 뚜껑 용기로 0317과 기능·크기가 거의 겹친다.",
+  "edit": "짙은 목재 변형이 꼭 필요할 때 추가한다.",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:16:43.042543+00:00",
+  "sourcePageSha256": "6fb1bfa24b2bae0868d3631fbd4a8b4f943fd349b48c98aeb8168a9a7b2b2e07"
+}

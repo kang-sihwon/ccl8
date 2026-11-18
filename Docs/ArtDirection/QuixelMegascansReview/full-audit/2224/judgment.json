@@ -1,0 +1,13 @@
+{
+  "id": 2224,
+  "verdict": "제외",
+  "use": "현재 세 장소 제외",
+  "reason": "5cm 쿠키의 보라·파랑 조각이 시각적으로 이질적",
+  "edit": "현대 제과 소품 제외",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:53:43.626699+00:00",
+  "sourcePageSha256": "4a62d2416ce114c42e2e8d5cb00ddbfb42da739a80a652c5312f2aee2f64958f"
+}

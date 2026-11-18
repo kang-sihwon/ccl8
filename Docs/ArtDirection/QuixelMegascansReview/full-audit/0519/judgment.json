@@ -1,0 +1,13 @@
+{
+  "id": 519,
+  "verdict": "보류",
+  "use": "S08 짧은 고사목 대체",
+  "reason": "짧은 가지가 여럿 남은 2.34m 줄기로 0515의 축소 역할이다.",
+  "edit": "공간이 좁은 구간에서만 대체",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:32:36.389136+00:00",
+  "sourcePageSha256": "deb6b88d8ad8f4271c66a343baff17d30189fd91b2f6dbd4cddd3ec2d5a1707e"
+}

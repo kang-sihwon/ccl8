@@ -1,0 +1,13 @@
+{
+  "id": 1653,
+  "verdict": "보류",
+  "use": "S02 마당 작은 돌",
+  "reason": "13cm 쐐기형 갈색 돌로 중복",
+  "edit": "주황색 감소",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:30:20.101567+00:00",
+  "sourcePageSha256": "f1e22d78af73b8b502f59e332af45869f976ed2ff10876b911c3568147d85e04"
+}

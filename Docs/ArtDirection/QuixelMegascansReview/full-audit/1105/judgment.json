@@ -1,0 +1,13 @@
+{
+  "id": 1105,
+  "verdict": "보류",
+  "use": "S08 작은 침식 돌 변형",
+  "reason": "38cm의 붉고 다공성인 조각으로 자연석 후보 충분",
+  "edit": "붉은색과 홈 대비 완화",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:05:26.879334+00:00",
+  "sourcePageSha256": "c89987a870067cc679b91c9a6af7f438af900d7ad9deb603a4ccadc677770a29"
+}

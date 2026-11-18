@@ -1,0 +1,82 @@
+{
+  "id": 810,
+  "url": "https://www.fab.com/listings/4cc1c266-4be2-4971-b34a-9a030a8af363",
+  "uid": "4cc1c266-4be2-4971-b34a-9a030a8af363",
+  "title": "Hillside Tree Stump",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:14:01.498371+00:00",
+  "pageSha256": "1558768390ec4495c13ca6319dd18c16c3cf75ae614208a5f63a2f871ce334cd",
+  "description": "Texel density: 5796 px/m\nPhysical size: 2.17m x 1.49m x 1.69m\nMesh type: Open mesh\nMaps: Basecolor Fuzz Displacement(high tier only) Gloss Normal Cavity AO Specular Roughness Bump\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "2.17m x 1.49m x 1.69m",
+  "mesh": "Open mesh",
+  "texelDensity": "5796 px/m",
+  "maps": "Basecolor Fuzz Displacement(high tier only) Gloss Normal Cavity AO Specular Roughness Bump",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "ZBrush",
+      "extensions": [
+        "zbp",
+        "ztl"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/117deaf6-94a2-46ef-8bce-f297869387ea/bb19b6da-7f31-4e81-9cc3-610f192cda5d.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/117deaf6-94a2-46ef-8bce-f297869387ea/f21c9bfe-1a33-434b-8d6a-bc31f6de2162.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

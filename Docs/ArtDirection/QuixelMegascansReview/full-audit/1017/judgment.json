@@ -1,0 +1,13 @@
+{
+  "id": 1017,
+  "verdict": "보류",
+  "use": "S08 밝은 버섯 변형",
+  "reason": "7cm 안팎의 흰 갓과 어두운 얼룩으로 기존 세트와 용도 중복",
+  "edit": "흰색 명도 완화",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:03:25.956490+00:00",
+  "sourcePageSha256": "3d75461bbcb791e8748c76fb908a170145bf22f36bd0e546d28347318d3a0842"
+}

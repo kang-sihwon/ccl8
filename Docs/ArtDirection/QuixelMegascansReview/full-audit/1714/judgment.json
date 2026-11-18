@@ -1,0 +1,13 @@
+{
+  "id": 1714,
+  "verdict": "보류",
+  "use": "S08 작은 돌 변형",
+  "reason": "4cm 갈색 조각은 개별 배치 효용 낮음",
+  "edit": "근접 장면에만 사용",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:31:48.516312+00:00",
+  "sourcePageSha256": "8d49593c8f95dd1d21829222988d363ebb61f6c7047211e1c9bbf3f3e2502413"
+}

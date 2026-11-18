@@ -1,0 +1,13 @@
+{
+  "id": 710,
+  "verdict": "제외",
+  "use": "현재 벨레스 숲에는 미배치",
+  "reason": "둥근 끝의 원뿔형 돌출 군집이 현 숲의 밑동 실루엣과 맞지 않는다.",
+  "edit": "현 범위 도입 제외",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:44:12.043467+00:00",
+  "sourcePageSha256": "c7744500e7cbea3575c66eb6ae0569816a8b5a60d6d18a53df98b49ed671efcd"
+}

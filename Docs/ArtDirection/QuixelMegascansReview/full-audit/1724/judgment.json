@@ -1,0 +1,13 @@
+{
+  "id": 1724,
+  "verdict": "보류",
+  "use": "S01 작은 자갈 변형",
+  "reason": "11cm 회색 삼각 화강암은 1677과 중복",
+  "edit": "표면 대비 완화",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:31:48.526355+00:00",
+  "sourcePageSha256": "31c21e790f254bb3e9f2b237b4fd757f7bd0b4af110ce08e9fc2a7a8a8983f34"
+}

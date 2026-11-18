@@ -1,0 +1,82 @@
+{
+  "id": 1786,
+  "url": "https://www.fab.com/listings/6d936f2a-761e-49b2-aa0e-820697572e50",
+  "uid": "6d936f2a-761e-49b2-aa0e-820697572e50",
+  "title": "Bricks Rubble",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:20:09.756983+00:00",
+  "pageSha256": "fcaf5501cf6573307519a15fe7b2698cb0a1c2607eba75b2246e665b071a2729",
+  "description": "Texel density: 5778 px/m\nPhysical size: 0.53m x 0.87m x 0.3m\nMesh type: Open mesh\nMaps: Cavity Specular AO Basecolor Displacement(high tier only) Bump Normal Gloss Roughness\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.53m x 0.87m x 0.3m",
+  "mesh": "Open mesh",
+  "texelDensity": "5778 px/m",
+  "maps": "Cavity Specular AO Basecolor Displacement(high tier only) Bump Normal Gloss Roughness",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "ZBrush",
+      "extensions": [
+        "zbp",
+        "ztl"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/add9ad08-309b-45f3-9b36-25d12bc51ab3/0fa2da37-4ef3-46fb-ba95-848f17beb168.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/add9ad08-309b-45f3-9b36-25d12bc51ab3/91a6eaa9-d924-4ed7-b15d-f5095445fb98.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

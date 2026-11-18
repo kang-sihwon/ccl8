@@ -1,0 +1,13 @@
+{
+  "id": 2313,
+  "verdict": "보류",
+  "use": "S01 뿌리채소 대안",
+  "reason": "20cm 어두운 보라 당근은 흙빛에 맞지만 후보 중복",
+  "edit": "품종 설정 확인",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:56:37.630663+00:00",
+  "sourcePageSha256": "07c0fc810473a617fcb56865dec57f4a6b8f024518a2cc45e3b940f7ee89c538"
+}

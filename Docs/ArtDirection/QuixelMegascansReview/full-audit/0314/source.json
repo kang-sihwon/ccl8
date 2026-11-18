@@ -1,0 +1,74 @@
+{
+  "id": 314,
+  "url": "https://www.fab.com/listings/8618feb4-ee01-4bcc-8a88-fb5d0b3c50da",
+  "uid": "8618feb4-ee01-4bcc-8a88-fb5d0b3c50da",
+  "title": "Wooden Chopping Block",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:10:51.568769+00:00",
+  "pageSha256": "b1dbd45cae0a768ac6db39cea9a761dd5989db6fdedf6382416b19c75816aef4",
+  "description": "Texel density: 1246 px/m\nPhysical size: 0.21m x 0.24m x 0.13m\nMesh type: Closed mesh\nMaps: Displacement(high tier only) Cavity Gloss Specular Basecolor AO Roughness Normal\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.21m x 0.24m x 0.13m",
+  "mesh": "Closed mesh",
+  "texelDensity": "1246 px/m",
+  "maps": "Displacement(high tier only) Cavity Gloss Specular Basecolor AO Roughness Normal",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/3357c8ea-13c9-490e-84bc-a41ead7990a0/02923197-3679-4073-8c65-91f5101af9e5.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/3357c8ea-13c9-490e-84bc-a41ead7990a0/6b3360d0-367d-4813-848b-cfb7096993a2.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

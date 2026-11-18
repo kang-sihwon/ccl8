@@ -1,0 +1,13 @@
+{
+  "id": 2040,
+  "verdict": "보류",
+  "use": "S02 박 용기 대안",
+  "reason": "19cm 굽은 관 형태와 큰 개구부의 용도 미확정",
+  "edit": "세계관 생활용품 용도 확인",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:44:39.446620+00:00",
+  "sourcePageSha256": "8e2ca596f3903d0aa6b00d58b3bc464db6377ded2f596a7c226e44979da365df"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 1096,
+  "verdict": "보류",
+  "use": "S01 큰 퇴적 둔덕 변형",
+  "reason": "7.36m의 긴 노란 둔덕으로 기존 수변 지형과 역할 중복",
+  "edit": "크기 유지 시 통로 밖 배치 및 색 조절",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:05:26.870295+00:00",
+  "sourcePageSha256": "8f09d2eb1ae3d5cfe5b0ff16a4881e77285001495edc36548dc61c8acc5c8a1c"
+}

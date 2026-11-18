@@ -1,0 +1,82 @@
+{
+  "id": 2099,
+  "url": "https://www.fab.com/listings/edcd95cc-fc8b-447b-af7c-3987e4cba064",
+  "uid": "edcd95cc-fc8b-447b-af7c-3987e4cba064",
+  "title": "Leather Dopp Kit",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:22:10.563953+00:00",
+  "pageSha256": "99b671289ee1a0471e062dbd5b8b35856ced3f4a401ed62c108e8d8d203268e8",
+  "description": "Texel density: 6331 px/m\nPhysical size: 0.2m x 0.31m x 0.28m\nMesh type: Closed mesh\nMaps: Basecolor Diffuse AO Metalness Roughness Cavity Specular Bump Normal Displacement\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.2m x 0.31m x 0.28m",
+  "mesh": "Closed mesh",
+  "texelDensity": "6331 px/m",
+  "maps": "Basecolor Diffuse AO Metalness Roughness Cavity Specular Bump Normal Displacement",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "ZBrush",
+      "extensions": [
+        "zbp",
+        "ztl"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/4f40047a-a93f-477e-ac82-396175a9f392/aa6d2d0f-aa1f-4c2d-9ba5-b6d6f0defdbe.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/4f40047a-a93f-477e-ac82-396175a9f392/d4aa0248-10d7-4c2c-810b-901bc127f5ff.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

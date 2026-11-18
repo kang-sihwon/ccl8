@@ -1,0 +1,13 @@
+{
+  "id": 1654,
+  "verdict": "보류",
+  "use": "S08 작은 돌 변형",
+  "reason": "12cm 짙은 갈색 쐐기로 회색 후보보다 수정 필요",
+  "edit": "회색화",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:30:20.102500+00:00",
+  "sourcePageSha256": "41dd39f54f5fe59ead2c1ddd8734c16f773a8d348c9ef58754ff5adb8751993e"
+}

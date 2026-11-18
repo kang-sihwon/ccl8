@@ -1,0 +1,13 @@
+{
+  "id": 1194,
+  "verdict": "보류",
+  "use": "S08 낙엽·이끼 돌 바닥",
+  "reason": "1.92m의 큰 잎과 돌이 혼합된 패치로 기존 바닥 후보 충분",
+  "edit": "이끼색 통일 및 열린 경계 매입",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:09:31.924337+00:00",
+  "sourcePageSha256": "171bcbdb7ebc1d3b0606c033acc7415542957202879bc72953401fcea8e4bfd9"
+}

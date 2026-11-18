@@ -1,0 +1,13 @@
+{
+  "id": 1804,
+  "verdict": "보류",
+  "use": "S02 화덕 주변 파손 벽돌",
+  "reason": "14cm 노란 단면과 검정 측면 대비가 큼",
+  "edit": "황색·그을음 완화",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:35:21.240852+00:00",
+  "sourcePageSha256": "133cd3b85b4d89e2e5753cdb2437bb5cf6a316dfc4f99abf12467cc9cb68aa38"
+}

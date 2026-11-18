@@ -1,0 +1,74 @@
+{
+  "id": 713,
+  "url": "https://www.fab.com/listings/6a3e35d1-1127-463a-996d-f6157b017057",
+  "uid": "6a3e35d1-1127-463a-996d-f6157b017057",
+  "title": "Forest American Tree Stump Mixed Large 05",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:13:22.696920+00:00",
+  "pageSha256": "ee04207fb57ff27351f8964d4340002e26d13f0e712b569c61be80ed6005f179",
+  "description": "The ‘Forest American’ themed assets capture the damp, layered feel of wetland and forested terrain. Featuring high-fidelity scans of tree trunks, roots, stumps, and scattered mushrooms, this collection reflects a landscape shaped by moisture and dense plant growth.\nIdeal for creating lush, natural wooded environments with a strong sense of scale and realism.\nTexel density: 6831 px/m\nPhysical size: 0.69m x 0.91m x 0.54m\nMesh type: Open mesh\nMaps: AO Basecolor Bump Cavity Displacement Gloss Normal Roughness Specular\nCreate high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.\n\nCurious about future releases? Discover upcoming Megascans content and vote for your favorite themes: Public Roadmap",
+  "size": "0.69m x 0.91m x 0.54m",
+  "mesh": "Open mesh",
+  "texelDensity": "6831 px/m",
+  "maps": "AO Basecolor Bump Cavity Displacement Gloss Normal Roughness Specular",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/ecd7f5b9-3117-43a0-a11a-0ce4d95f20bc/f3c86bcd-ed1a-4e20-8648-3ef34492dda4.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/ecd7f5b9-3117-43a0-a11a-0ce4d95f20bc/c46026f3-3f60-447d-8efc-e2cb3f645566.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

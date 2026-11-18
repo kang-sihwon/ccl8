@@ -1,0 +1,13 @@
+{
+  "id": 1077,
+  "verdict": "제외",
+  "use": "현재 세 장소 배치 없음",
+  "reason": "3.44m의 세로 석주와 흘러내린 표면이 동굴 맥락을 요구함",
+  "edit": "동굴 시안에서 재검토",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:05:26.850886+00:00",
+  "sourcePageSha256": "4be9df7e12a43b6f3696654a98689aa1298f5a89b1a94eaa66a3d6533b197a42"
+}

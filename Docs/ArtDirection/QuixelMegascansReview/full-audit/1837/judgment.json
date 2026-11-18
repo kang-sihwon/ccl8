@@ -1,0 +1,13 @@
+{
+  "id": 1837,
+  "verdict": "수정 후 후보",
+  "use": "S02 기단 출입 단차 대안",
+  "reason": "1.26m 폭의 3단 벽돌 계단은 가능하나 시안의 낮은 기단과 치수 미확인",
+  "edit": "단수·폭 맞춤 및 회색 돌 재질과 비교",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:36:56.624421+00:00",
+  "sourcePageSha256": "ccd876535a3a1ecc6f9aa27d5fa04329951c9e6c0ebd002547a419b0140dea6a"
+}

@@ -1,0 +1,74 @@
+{
+  "id": 2103,
+  "url": "https://www.fab.com/listings/703d6b2b-786b-4716-81ab-545b797fc1a7",
+  "uid": "703d6b2b-786b-4716-81ab-545b797fc1a7",
+  "title": "Metal Pot",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:22:10.980247+00:00",
+  "pageSha256": "62c6d91da84d205af92250666fafbbab60651d46593f1bd9a519430dc9b6203c",
+  "description": "Texel density: 4916 px/m\nPhysical size: 0.37m x 0.44m x 0.34m\nMesh type: Closed mesh\nMaps: AO Diffuse Specular Displacement(high tier only) Metalness Normal Basecolor Roughness Bump Cavity\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.37m x 0.44m x 0.34m",
+  "mesh": "Closed mesh",
+  "texelDensity": "4916 px/m",
+  "maps": "AO Diffuse Specular Displacement(high tier only) Metalness Normal Basecolor Roughness Bump Cavity",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/ea6ab427-f3ca-4664-a019-8bc09df5a1c5/6982c8e3-25bd-45e1-b165-1f69c756c4a3.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/ea6ab427-f3ca-4664-a019-8bc09df5a1c5/625d1d0b-ab9f-4976-94c1-dbd333a83fb6.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

@@ -1,0 +1,13 @@
+{
+  "id": 1251,
+  "verdict": "보류",
+  "use": "S08 거친 바위 변형",
+  "reason": "3.14m의 깊은 홈과 많은 돌출부로 기존 더 단순한 바위 후보 우선",
+  "edit": "미세 요철 대비 축소 및 열린 면 매입",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:11:29.631654+00:00",
+  "sourcePageSha256": "ce1586b1b5cb2e3bc9aa0a990d148aeef2993cd694998765a3ace4d15324f230"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 1113,
+  "verdict": "보류",
+  "use": "S01 진흙 돌판 변형",
+  "reason": "82cm의 완만한 둥근 돌로 1112와 역할 중복",
+  "edit": "주황색 완화 및 접합",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:07:19.716069+00:00",
+  "sourcePageSha256": "7ab26e3ba4d59542cf5bd6c4a64a2dbee6f9e7797c46a05124ce3d59d2ac2595"
+}

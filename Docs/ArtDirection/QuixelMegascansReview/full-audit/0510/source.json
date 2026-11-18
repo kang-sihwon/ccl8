@@ -1,0 +1,93 @@
+{
+  "id": 510,
+  "url": "https://www.fab.com/listings/b4452d45-8337-4b2e-b210-e0f2c5df9537",
+  "uid": "b4452d45-8337-4b2e-b210-e0f2c5df9537",
+  "title": "Nordic Forest Tree Branch Pine Small",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:12:07.839183+00:00",
+  "pageSha256": "714dde2ce1366f4176e76ebfc901af3fb47c4aa22edecf70b2e4649ad1a00658",
+  "description": "Texel density: 5804 px/m\nPhysical size: 1.02m x 2.13m x 0.59m\nMesh type: Closed mesh\nMaps: Bump Displacement(high tier only) Fuzz Normal Roughness Basecolor Gloss AO Cavity Specular\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "1.02m x 2.13m x 0.59m",
+  "mesh": "Closed mesh",
+  "texelDensity": "5804 px/m",
+  "maps": "Bump Displacement(high tier only) Fuzz Normal Roughness Basecolor Gloss AO Cavity Specular",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "ZBrush",
+      "extensions": [
+        "zbp",
+        "ztl"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "UEFN Reference",
+      "extensions": null,
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "UEFN - Reference only",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/1ba1171c-924d-4ce9-b4bc-df6a845316b5/6c6f8ac7-a833-4337-adaa-d556955426d5.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/1ba1171c-924d-4ce9-b4bc-df6a845316b5/589b54cd-89ed-4159-8441-58c69e85d031.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

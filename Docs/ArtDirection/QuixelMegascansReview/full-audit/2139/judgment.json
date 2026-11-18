@@ -1,0 +1,13 @@
+{
+  "id": 2139,
+  "verdict": "수정 후 후보",
+  "use": "S01 둔치 정비 삽",
+  "reason": "1.68m T자 목재 손잡이는 가능하나 철날의 규격 보강선 보임",
+  "edit": "날 보강선 단순화 및 나무색 통일",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:48:31.633633+00:00",
+  "sourcePageSha256": "f6cf6c36b2bc9e01facb07267c7b50f13199b38078e2d19331c552185a9a08b0"
+}

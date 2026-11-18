@@ -1,0 +1,13 @@
+{
+  "id": 296,
+  "verdict": "보류",
+  "use": "S02 낮은 부품 접시 대체안",
+  "reason": "두꺼운 가장자리의 낮은 원형 접시로 0289와 외형·역할이 겹친다.",
+  "edit": "낮은 접시 변형이 필요할 때만 추가한다.",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:14:24.876105+00:00",
+  "sourcePageSha256": "a9e52e73f61ee5db0ee9023a50de4709be4ce751b07100823ef3d9963cfbe8fe"
+}

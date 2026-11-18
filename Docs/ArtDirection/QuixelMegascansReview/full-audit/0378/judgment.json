@@ -1,0 +1,13 @@
+{
+  "id": 378,
+  "verdict": "보류",
+  "use": "S02 옹이 있는 원목 판재 변형",
+  "reason": "옆으로 튀어나온 큰 옹이가 특징이나 동일한 원목 적재 역할이다.",
+  "edit": "큰 옹이 실루엣이 필요한 가까운 소품에만 추가한다.",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:22:16.869148+00:00",
+  "sourcePageSha256": "bfcebaaad30a9cdb2b80eb0f9026fe8dcbf89fa61bbdd0c8fb4296ebb8c67b85"
+}

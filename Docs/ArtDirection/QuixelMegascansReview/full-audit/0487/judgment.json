@@ -1,0 +1,13 @@
+{
+  "id": 487,
+  "verdict": "보류",
+  "use": "S08 얇은 자갈 패치",
+  "reason": "얇고 평평한 자갈 흙 조각으로 0482·0484와 역할이 중복된다.",
+  "edit": "주요 패치 반복이 보일 때 혼합",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:32:36.359420+00:00",
+  "sourcePageSha256": "b1c301f20ec8bb28cc954e0119d8eb71b4277edfc9743770c0654b10e2b3a10c"
+}

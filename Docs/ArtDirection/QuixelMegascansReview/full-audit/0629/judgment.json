@@ -1,0 +1,13 @@
+{
+  "id": 629,
+  "verdict": "보류",
+  "use": "S08 가는 침엽수 가지",
+  "reason": "64cm의 짧은 가지에 작은 갈래가 있지만 기존 0510·0512와 역할이 겹친다.",
+  "edit": "기존 가지 반복이 보일 때만 사용",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:41:41.749980+00:00",
+  "sourcePageSha256": "5787db4ec4c57dc7d49322a35ee306d2f1d3e1eba9ec852defa3500a51886a4b"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 2338,
+  "verdict": "보류",
+  "use": "S02 식사 대안",
+  "reason": "9cm 소형 파이는 기존 파이 후보 중복",
+  "edit": "일반 빵 우선",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:56:37.655180+00:00",
+  "sourcePageSha256": "93961e298afffa0954fe6952c7da88bd8e648bfdffcfed73cf87556c63a391d4"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 1629,
+  "verdict": "보류",
+  "use": "S08 작은 돌 변형",
+  "reason": "21cm 노란 층상 돌로 색 수정 필요",
+  "edit": "노란색 낮추기",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:28:53.010166+00:00",
+  "sourcePageSha256": "f6a11bacfdcc9b1f1c1ec2b731a90d67b24cfa5856f032781aa8f00d17da1756"
+}

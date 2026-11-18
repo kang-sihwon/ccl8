@@ -1,0 +1,13 @@
+{
+  "id": 2153,
+  "verdict": "수정 후 후보",
+  "use": "S02 두꺼운 가죽 작업 장부",
+  "reason": "25cm 갈색 표지와 가죽 띠가 적합하나 얼룩이 강함",
+  "edit": "얼룩 완화 및 문자 확인",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:48:31.646782+00:00",
+  "sourcePageSha256": "518d6030ce45e7da8f44d3e6b17d5381a5b9baa30ac6fa3f7414f24628bca384"
+}

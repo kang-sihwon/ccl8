@@ -1,0 +1,13 @@
+{
+  "id": 2146,
+  "verdict": "보류",
+  "use": "S02 장부 변형",
+  "reason": "25cm 붉은 천 표지로 기존 가죽 장부 우선",
+  "edit": "표지 재질·문자 확인",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:48:31.640196+00:00",
+  "sourcePageSha256": "b5aba66e41bb7672eefe5acb27d8096344021bd985d705c52be7d7939476c3bd"
+}

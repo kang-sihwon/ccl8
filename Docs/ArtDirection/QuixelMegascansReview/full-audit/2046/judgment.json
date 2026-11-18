@@ -1,0 +1,13 @@
+{
+  "id": 2046,
+  "verdict": "보류",
+  "use": "S02 바닥 촛대 대안",
+  "reason": "1.2m 긴 철제 받침은 작업장 바닥 동선과 용도 확인 필요",
+  "edit": "크기·초 고정 방식 확인",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:44:39.452565+00:00",
+  "sourcePageSha256": "549d9fc6089f17b8bd3f7ca78cf3f21dd489abe4cc80cab5a92596b9f74465b8"
+}

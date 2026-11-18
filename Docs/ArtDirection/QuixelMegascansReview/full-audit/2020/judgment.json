@@ -1,0 +1,13 @@
+{
+  "id": 2020,
+  "verdict": "수정 후 후보",
+  "use": "S02 얇은 작업 수첩",
+  "reason": "20cm 단순 회갈색 표지는 가능하나 노출된 제본과 파손이 큼",
+  "edit": "제본 보수 및 문구 확인",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:42:46.977687+00:00",
+  "sourcePageSha256": "f501b4f8a18251b65a0e1860e777850adda4bff4b8d3d2aa57acf191269b8cd7"
+}

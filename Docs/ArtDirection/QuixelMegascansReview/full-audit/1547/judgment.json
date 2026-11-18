@@ -1,0 +1,13 @@
+{
+  "id": 1547,
+  "verdict": "보류",
+  "use": "S08 마른 길가 자갈",
+  "reason": "16cm 거친 갈색 돌로 기존 회색 후보보다 색 보정 필요",
+  "edit": "주황 기운 완화",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:27:20.399057+00:00",
+  "sourcePageSha256": "66d95f4bd37654b583fdffedb00443ec2e8905a8f53dfe3d7fb4f6def7fd6d2e"
+}

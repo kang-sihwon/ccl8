@@ -1,0 +1,13 @@
+{
+  "id": 973,
+  "verdict": "수정 후 후보",
+  "use": "S08 숲 안쪽 버섯 군집",
+  "reason": "둥근 주황색 갓과 굵은 대는 읽히지만 광택과 채도가 강함",
+  "edit": "주황 채도와 광택 축소 및 식용 설정과 분리",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:01:11.377145+00:00",
+  "sourcePageSha256": "adac343f8b08b70d5e4d3691777968c342bfcc41d203dbcaa4fd11441ee4a51b"
+}

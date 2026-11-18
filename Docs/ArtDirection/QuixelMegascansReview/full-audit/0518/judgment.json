@@ -1,0 +1,13 @@
+{
+  "id": 518,
+  "verdict": "추천",
+  "use": "S08 길 바깥 가는 고사목",
+  "reason": "3.38m의 가는 줄기와 짧은 가지가 큰 고사목 사이를 보완한다.",
+  "edit": "노출 밝기 통일; 길 가장자리에 배치",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:32:36.388162+00:00",
+  "sourcePageSha256": "d79eb070ac045a9614756bc68ee5f496261e212e63ebb20b8fb33bf5a371d7cc"
+}

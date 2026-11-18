@@ -1,0 +1,13 @@
+{
+  "id": 1625,
+  "verdict": "보류",
+  "use": "S02 기단 돌 조각",
+  "reason": "9cm 황갈색 사각 돌은 기존 조각과 중복",
+  "edit": "회색 보정",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:28:53.006174+00:00",
+  "sourcePageSha256": "5f60508bf2bf366f766a184e6e86b4feb200a4f0f104c296fcce3d31bfd0c2d1"
+}

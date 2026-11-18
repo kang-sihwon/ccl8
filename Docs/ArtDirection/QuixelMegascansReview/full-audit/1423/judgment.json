@@ -1,0 +1,13 @@
+{
+  "id": 1423,
+  "verdict": "추천",
+  "use": "S08 숲길 바깥 낮은 바위·낙엽 바닥",
+  "reason": "1.29m의 큰 면과 일부 이끼·낙엽이 자연 접합부에 적합",
+  "edit": "녹색 채도 절제 및 열린 경계 매입",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:19:10.450492+00:00",
+  "sourcePageSha256": "be2f6b190fcc8a89d351da8564abf8051af567a595e7b0c5afa7680008f38dac"
+}

@@ -1,0 +1,74 @@
+{
+  "id": 380,
+  "url": "https://www.fab.com/listings/412904a3-71c7-4f61-83f9-564a84ae4318",
+  "uid": "412904a3-71c7-4f61-83f9-564a84ae4318",
+  "title": "Wooden Spatula",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:11:16.951331+00:00",
+  "pageSha256": "ba5f3caee7cebe4fffd33fecc7a4a47ef5ba3e876c978a3e442046691870c2e1",
+  "description": "Texel density: 1184 px/m\nPhysical size: 0.06m x 0.3m x 0.01m\nMesh type: Closed mesh\nMaps: Basecolor Displacement(high tier only) Gloss Normal Cavity Specular AO Roughness\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.06m x 0.3m x 0.01m",
+  "mesh": "Closed mesh",
+  "texelDensity": "1184 px/m",
+  "maps": "Basecolor Displacement(high tier only) Gloss Normal Cavity Specular AO Roughness",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/7b160a51-eac3-4208-a99f-bf5eb9ea4ff0/9689d7f4-31c4-4b22-9182-7f6813cf6355.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/7b160a51-eac3-4208-a99f-bf5eb9ea4ff0/561991ea-26ea-4004-9eb6-454ffc38b595.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

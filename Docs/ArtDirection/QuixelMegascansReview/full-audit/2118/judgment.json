@@ -1,0 +1,13 @@
+{
+  "id": 2118,
+  "verdict": "보류",
+  "use": "S02 큰 도기병 대안",
+  "reason": "34cm 붉은 긴 병은 기존 병 후보보다 채도 강함",
+  "edit": "붉은색 감소",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:48:31.612549+00:00",
+  "sourcePageSha256": "f5e81cd7a9640a5a84d36d629788f2db63639e35c557c548ffcebb70a09fc931"
+}

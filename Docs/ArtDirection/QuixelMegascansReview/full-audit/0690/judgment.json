@@ -1,0 +1,13 @@
+{
+  "id": 690,
+  "verdict": "보류",
+  "use": "S08 굵은 짧은 줄기",
+  "reason": "1.67m의 곧은 줄기와 짧은 가지 돌출은 0519와 같은 역할이다.",
+  "edit": "기존 고사목 크기 변형이 부족할 때 도입",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:44:12.024788+00:00",
+  "sourcePageSha256": "1cb10d23edcbf5e0fc9d06862a714a66bc55e4fd30f83407dc629a94c8001454"
+}

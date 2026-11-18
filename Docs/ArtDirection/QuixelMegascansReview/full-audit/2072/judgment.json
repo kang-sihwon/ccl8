@@ -1,0 +1,13 @@
+{
+  "id": 2072,
+  "verdict": "보류",
+  "use": "S02 목제 부품 접시 대안",
+  "reason": "20cm 단순 밝은 접시는 1895와 중복",
+  "edit": "나무색 통일",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:46:35.316530+00:00",
+  "sourcePageSha256": "8ee65bb11b58256089959e2bfa87a8b661ba2b7cfd61d9555860cdc2c0aaf2af"
+}

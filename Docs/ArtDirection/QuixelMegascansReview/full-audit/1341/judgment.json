@@ -1,0 +1,13 @@
+{
+  "id": 1341,
+  "verdict": "보류",
+  "use": "S08 넓은 낮은 바위턱",
+  "reason": "5.4m의 평평한 큰 판으로 기존 암반턱 후보와 중복",
+  "edit": "황색 완화 및 열린 면 매입",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:15:07.672224+00:00",
+  "sourcePageSha256": "a72d6801b6a4ee080d1ba89c8fa160ca82d792a985c381beee2f4bdb84977ab9"
+}

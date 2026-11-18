@@ -1,0 +1,93 @@
+{
+  "id": 2185,
+  "url": "https://www.fab.com/listings/6fb34001-0ded-4092-a41f-f19e8486af93",
+  "uid": "6fb34001-0ded-4092-a41f-f19e8486af93",
+  "title": "Banquet Roasted Quail",
+  "seller": "Quixel Megascans",
+  "retrievedAt": "2026-11-17T09:22:41.535519+00:00",
+  "pageSha256": "da93acbd8db998ee96d22a06caedf865ee559e05f1243275d64fcdba7833ce31",
+  "description": "Texel density: 5347 px/m\nPhysical size: 0.1m x 0.19m x 0.08m\nMesh type: Closed mesh\nMaps: Basecolor Roughness Cavity Displacement(high tier only) Gloss Normal Specular AO Bump\n Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available here on Fab.\n\nFor any questions or support regarding Quixel content, please get in touch here.",
+  "size": "0.1m x 0.19m x 0.08m",
+  "mesh": "Closed mesh",
+  "texelDensity": "5347 px/m",
+  "maps": "Basecolor Roughness Cavity Displacement(high tier only) Gloss Normal Specular AO Bump",
+  "formats": [
+    {
+      "name": "FBX",
+      "extensions": [
+        "fbx"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Converted Files",
+      "extensions": [
+        "gltf",
+        "glb",
+        "usdz"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "ZBrush",
+      "extensions": [
+        "zbp",
+        "ztl"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "Additional files",
+      "extensions": [
+        "zip"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "GLTF",
+      "extensions": [
+        "gltf"
+      ],
+      "containsPack": false
+    },
+    {
+      "name": "UEFN Reference",
+      "extensions": null,
+      "containsPack": false
+    }
+  ],
+  "licenses": [
+    {
+      "name": "UEFN - Reference only",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Personal",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    },
+    {
+      "name": "Professional",
+      "group": "standard",
+      "currency": "KRW",
+      "price": 0.0
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://media.fab.com/image_previews/gallery_images/c6f0eb73-f4ac-4ded-803a-1c5870f805e2/1fa61f92-5259-475a-b2a6-040da7ca4b66.jpg",
+      "width": 1280,
+      "height": 720,
+      "position": 0,
+      "originalUrl": "https://media.fab.com/image_previews/gallery_images/c6f0eb73-f4ac-4ded-803a-1c5870f805e2/4d1e2ba4-144a-406d-9b48-75061c199a1a.jpeg"
+    }
+  ],
+  "localImages": [
+    "gallery-01.jpg"
+  ],
+  "fetchComplete": true,
+  "visualReviewed": true
+}

@@ -1,0 +1,13 @@
+{
+  "id": 751,
+  "verdict": "보류",
+  "use": "S02 긴 수피 조각",
+  "reason": "70cm의 얇은 황갈색 내부 수피로 0612·0626과 기능이 같다.",
+  "edit": "기존 수피 우선; 주황 채도 통일",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:46:33.129245+00:00",
+  "sourcePageSha256": "6a1670b9a4c90a8db0e01a601f1d830ed46dc6ea645323206d0315ad0b200e1d"
+}

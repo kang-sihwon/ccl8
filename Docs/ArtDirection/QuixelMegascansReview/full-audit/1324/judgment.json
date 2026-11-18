@@ -1,0 +1,13 @@
+{
+  "id": 1324,
+  "verdict": "수정 후 후보",
+  "use": "S08 입구 옆 작은 이끼 바위",
+  "reason": "1.38m의 계단형 덩어리는 유용하나 흰 지의류와 이끼가 과하게 대비됨",
+  "edit": "흰 얼룩과 이끼 대비 축소 및 열린 밑면 매입",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:15:07.654063+00:00",
+  "sourcePageSha256": "94d8d5fac687dc98c8ceb72229eb5628d6f7eedea2552fd498fe1221e1ab1f16"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 1344,
+  "verdict": "보류",
+  "use": "S01 둥근 분절 암반",
+  "reason": "5.57m의 둥근 큰 덩어리와 얕은 균열로 기존 수변 암반 중복",
+  "edit": "열린 면 매입",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:15:07.675090+00:00",
+  "sourcePageSha256": "f21706d66c6e0ccd525e1ea3390cebbd30c5b522fbf40f839a6a8c31a4f029fa"
+}

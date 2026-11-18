@@ -1,0 +1,13 @@
+{
+  "id": 756,
+  "verdict": "보류",
+  "use": "S02 초근경 수피",
+  "reason": "7cm의 층층이 갈라진 조각으로 화면 전체에서 영향이 작다.",
+  "edit": "작업대 초근경이 있을 때만",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T09:46:33.133932+00:00",
+  "sourcePageSha256": "7549e13e09055d9364e4f934c72e0ef55748cdb059bd2bdb3c37493c39c388d8"
+}

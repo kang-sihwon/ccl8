@@ -1,0 +1,13 @@
+{
+  "id": 2015,
+  "verdict": "수정 후 후보",
+  "use": "S02 두꺼운 작업 장부",
+  "reason": "24cm 청록 표지에 큰 흰 보수 띠가 보여 보정 필요",
+  "edit": "흰 띠 완화 및 문구 교체",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:42:46.972917+00:00",
+  "sourcePageSha256": "237ad90331848732abcce389d49ff17d240b7f57ac775e08f45bf7e19d60010a"
+}

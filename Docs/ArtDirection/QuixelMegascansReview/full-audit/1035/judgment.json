@@ -1,0 +1,13 @@
+{
+  "id": 1035,
+  "verdict": "보류",
+  "use": "S08 작은 둥근 낙엽 변형",
+  "reason": "작은 잎 군집이 보이나 1034와 배치 역할 중복",
+  "edit": "실측 확인 및 바닥 들뜸 방지",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:03:25.974439+00:00",
+  "sourcePageSha256": "80a3cc3c9a53eb35ac49066b6d5b5e91f6ea31eeb4600f8f1f5b283bf25d613a"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 2304,
+  "verdict": "보류",
+  "use": "S01 뿌리채소 대안",
+  "reason": "9cm 둥근 황갈색 감자는2303과 중복",
+  "edit": "개체 변주 필요 시 선택",
+  "basis": "B안 시안·공개 상세 설명·대표 이미지 직접 대조",
+  "inspectedImages": [
+    "gallery-01.jpg"
+  ],
+  "reviewedAt": "2026-11-17T10:55:15.672268+00:00",
+  "sourcePageSha256": "14122077c3c4320066ab8875bb4799cbb4f207c9765c01c03a47c309d36378aa"
+}
