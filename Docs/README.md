@@ -60,6 +60,7 @@
 |---|---|
 | 도구를 설치, 설정, 복구, 진단하거나 검사 명령을 찾을 때 | [AgentContextTools](AgentContextTools.md) |
 | AI 제작 도구의 후보와 도입 근거를 찾을 때 | [AgentToolingResearch](AgentToolingResearch.md) |
+| Tripo로 콘셉트 이미지를 모델링하고 UE 반입을 검토할 때 | [Tripo 개발자 문서 전체 분석](AgentToolingResearch/Tripo-2026-11-18.md) |
 | 컨셉 이미지 도구의 비교 조건과 결과를 찾을 때 | [컨셉 이미지 도구 비교 테스트](ConceptImageToolTest.md) |
 
 ## 학습

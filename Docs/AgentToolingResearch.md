@@ -12,6 +12,7 @@ AI 주도 제작에 쓸 도구는 UE 내장 Unreal MCP를 먼저 쓰고, ccl8의
 | [스킬 묶음 통합 검토](AgentToolingResearch/BundleReview.md) | 스킬 묶음 세 개에서 무엇을 가져오고 뺐는지 찾을 때 |
 | [Jenova 지도 생성 자료 조사](AgentToolingResearch/2026-11-01-jenova-map-generation.md) | 대륙·지역·마을 지도 제작 자료와 첫 시험 순서를 찾을 때 |
 | [Jenova 자료 전체 목록과 용도 조사](AgentToolingResearch/2026-11-04-jenova-resources.md) | Resources 전체 글 목록과 분야별 용도·연결 도구를 찾을 때 |
+| [Tripo 개발자 문서 전체 분석](AgentToolingResearch/Tripo-2026-11-18.md) | 콘셉트 이미지를 3D 모델로 만들 때 필요한 입력, 리깅, 비용과 UE 반입 기준을 찾을 때 |
 
 ## 반영 상태
 

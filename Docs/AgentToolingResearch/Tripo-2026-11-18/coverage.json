@@ -1,0 +1,477 @@
+{
+  "date": "2026-11-18",
+  "entry": "https://developers.tripo3d.ai/ko/docs",
+  "scope": "Public Korean documentation sidebar, H/P pages counted separately, aliases deduplicated",
+  "pageCount": 44,
+  "quickStart": {
+    "scenarioTabs": [
+      "게임 캐릭터",
+      "고해상도 형상·재질",
+      "3D 프린팅",
+      "애니메이션 장면",
+      "상품 시각화",
+      "멀티뷰 복원"
+    ],
+    "featureTabs": [
+      "형상만 생성",
+      "텍스처 포함 생성",
+      "PBR 생성",
+      "재텍스처",
+      "리그 추가",
+      "애니메이션 추가",
+      "파일 형식 변환",
+      "멀티뷰 복원"
+    ]
+  },
+  "supplementalPricing": {
+    "url": "https://developers.tripo3d.ai/ko/pricing",
+    "httpStatus": 200,
+    "modelTabs": [
+      "H",
+      "P",
+      "Gaussian Splat"
+    ]
+  },
+  "pages": [
+    {
+      "number": 1,
+      "title": "Tripo API 소개",
+      "url": "https://developers.tripo3d.ai/ko/docs/introduction",
+      "httpStatus": 200,
+      "bodyCharacters": 4494,
+      "scrapeId": "01a1ed93-b6ae-726c-97c4-d665dd3ef857",
+      "analysis": "Operations.md",
+      "read": true
+    },
+    {
+      "number": 2,
+      "title": "빠른 시작",
+      "url": "https://developers.tripo3d.ai/ko/docs/quick-start",
+      "httpStatus": 200,
+      "bodyCharacters": 10235,
+      "scrapeId": "01a1ed94-691c-724e-96bc-5db7be8a9992",
+      "analysis": "ProductionWorkflow.md",
+      "read": true
+    },
+    {
+      "number": 3,
+      "title": "인증",
+      "url": "https://developers.tripo3d.ai/ko/docs/authentication",
+      "httpStatus": 200,
+      "bodyCharacters": 1478,
+      "scrapeId": "01a1ed94-6949-730e-b2bd-af3082dd7b89",
+      "analysis": "Operations.md",
+      "read": true
+    },
+    {
+      "number": 4,
+      "title": "변경 내역",
+      "url": "https://developers.tripo3d.ai/ko/docs/changelog",
+      "httpStatus": 200,
+      "bodyCharacters": 9723,
+      "scrapeId": "01a1ed94-6911-7218-9679-9bc4d9a5c694",
+      "analysis": "Operations.md",
+      "read": true
+    },
+    {
+      "number": 5,
+      "title": "SDK 연동",
+      "url": "https://developers.tripo3d.ai/ko/docs/sdk",
+      "httpStatus": 200,
+      "bodyCharacters": 13604,
+      "scrapeId": "01a1ed94-6906-72f6-98b0-633c7136ce7b",
+      "analysis": "Tools.md",
+      "read": true
+    },
+    {
+      "number": 6,
+      "title": "Tripo 플러그인",
+      "url": "https://developers.tripo3d.ai/ko/docs/plugins",
+      "httpStatus": 200,
+      "bodyCharacters": 5854,
+      "scrapeId": "01a1ed94-6918-7549-8440-92810eb43ef7",
+      "analysis": "Tools.md",
+      "read": true
+    },
+    {
+      "number": 7,
+      "title": "ComfyUI 노드",
+      "url": "https://developers.tripo3d.ai/ko/docs/comfyui-nodes",
+      "httpStatus": 200,
+      "bodyCharacters": 23071,
+      "scrapeId": "01a1ed94-78a1-77ec-8b0f-6def922a220d",
+      "analysis": "Tools.md",
+      "read": true
+    },
+    {
+      "number": 8,
+      "title": "Tripo CLI: AI로 텍스트와 이미지를 3D 모델로 만들기",
+      "url": "https://developers.tripo3d.ai/ko/docs/cli",
+      "httpStatus": 200,
+      "bodyCharacters": 16483,
+      "scrapeId": "01a1ed94-78ac-738f-ba44-8a441aca8a60",
+      "analysis": "Tools.md",
+      "read": true
+    },
+    {
+      "number": 9,
+      "title": "Codex에서 Tripo 사용하기",
+      "url": "https://developers.tripo3d.ai/ko/docs/codex-plugin",
+      "httpStatus": 200,
+      "bodyCharacters": 4963,
+      "scrapeId": "01a1ed94-78d3-720d-a9e4-f995b5adb74a",
+      "analysis": "Tools.md",
+      "read": true
+    },
+    {
+      "number": 10,
+      "title": "작업 수명주기",
+      "url": "https://developers.tripo3d.ai/ko/docs/task-lifecycle",
+      "httpStatus": 200,
+      "bodyCharacters": 3808,
+      "scrapeId": "01a1ed94-78d4-774a-b6bc-ab811db2905a",
+      "analysis": "Operations.md",
+      "read": true
+    },
+    {
+      "number": 11,
+      "title": "모델 및 버전",
+      "url": "https://developers.tripo3d.ai/ko/docs/models-and-versions",
+      "httpStatus": 200,
+      "bodyCharacters": 2548,
+      "scrapeId": "01a1ed94-7917-77aa-9300-c21056178124",
+      "analysis": "Generation.md",
+      "read": true
+    },
+    {
+      "number": 12,
+      "title": "청구",
+      "url": "https://developers.tripo3d.ai/ko/docs/billing",
+      "httpStatus": 200,
+      "bodyCharacters": 2682,
+      "scrapeId": "01a1ed94-8799-7596-8655-54f4e2435ccf",
+      "analysis": "Operations.md",
+      "read": true
+    },
+    {
+      "number": 13,
+      "title": "3D 모델에 대한 텍스트",
+      "url": "https://developers.tripo3d.ai/ko/docs/generation-text-to-model/standard",
+      "httpStatus": 200,
+      "bodyCharacters": 5211,
+      "scrapeId": "01a1ed94-8940-75ee-8ac0-c2dbac48e2a3",
+      "analysis": "Generation.md",
+      "read": true
+    },
+    {
+      "number": 14,
+      "title": "텍스트를 3D 모델로 — P 시리즈",
+      "url": "https://developers.tripo3d.ai/ko/docs/generation-text-to-model/p",
+      "httpStatus": 200,
+      "bodyCharacters": 3023,
+      "scrapeId": "01a1ed94-87b5-76ea-8577-e239c128aa78",
+      "analysis": "Generation.md",
+      "read": true
+    },
+    {
+      "number": 15,
+      "title": "이미지를 3D 모델로",
+      "url": "https://developers.tripo3d.ai/ko/docs/generation-image-to-model/standard",
+      "httpStatus": 200,
+      "bodyCharacters": 5573,
+      "scrapeId": "01a1ed94-87b4-74e8-9760-52a55ff5c976",
+      "analysis": "Generation.md",
+      "read": true
+    },
+    {
+      "number": 16,
+      "title": "이미지를 3D 모델로 — P 시리즈",
+      "url": "https://developers.tripo3d.ai/ko/docs/generation-image-to-model/p",
+      "httpStatus": 200,
+      "bodyCharacters": 2885,
+      "scrapeId": "01a1ed94-88a2-73ad-af65-574227e08c2d",
+      "analysis": "Generation.md",
+      "read": true
+    },
+    {
+      "number": 17,
+      "title": "멀티뷰에서 3D 모델로",
+      "url": "https://developers.tripo3d.ai/ko/docs/generation-multiview-to-model/standard",
+      "httpStatus": 200,
+      "bodyCharacters": 7591,
+      "scrapeId": "01a1ed94-973d-75eb-b3c5-e0ed9a8cf1ed",
+      "analysis": "Generation.md",
+      "read": true
+    },
+    {
+      "number": 18,
+      "title": "멀티뷰에서 3D 모델로 — P 시리즈",
+      "url": "https://developers.tripo3d.ai/ko/docs/generation-multiview-to-model/p",
+      "httpStatus": 200,
+      "bodyCharacters": 3299,
+      "scrapeId": "01a1ed94-96e2-708c-9a80-743138a9cca4",
+      "analysis": "Generation.md",
+      "read": true
+    },
+    {
+      "number": 19,
+      "title": "Gaussian Splat에 대한 이미지",
+      "url": "https://developers.tripo3d.ai/ko/docs/generation-image-to-splat",
+      "httpStatus": 200,
+      "bodyCharacters": 1026,
+      "scrapeId": "01a1ed94-96e1-71f2-ab91-1a90669f481c",
+      "analysis": "Generation.md",
+      "read": true
+    },
+    {
+      "number": 20,
+      "title": "텍스트를 이미지로",
+      "url": "https://developers.tripo3d.ai/ko/docs/generation-text-to-image",
+      "httpStatus": 200,
+      "bodyCharacters": 3126,
+      "scrapeId": "01a1ed94-96c2-752f-901d-da9d64698d67",
+      "analysis": "Generation.md",
+      "read": true
+    },
+    {
+      "number": 21,
+      "title": "이미지를 이미지로",
+      "url": "https://developers.tripo3d.ai/ko/docs/generation-image-to-image",
+      "httpStatus": 200,
+      "bodyCharacters": 3676,
+      "scrapeId": "01a1ed94-96e0-75aa-9511-844cdc405b2d",
+      "analysis": "Generation.md",
+      "read": true
+    },
+    {
+      "number": 22,
+      "title": "이미지를 멀티뷰로",
+      "url": "https://developers.tripo3d.ai/ko/docs/generation-image-to-multiview",
+      "httpStatus": 200,
+      "bodyCharacters": 2978,
+      "scrapeId": "01a1ed94-a469-73e0-96c8-afc9d6945b57",
+      "analysis": "Generation.md",
+      "read": true
+    },
+    {
+      "number": 23,
+      "title": "멀티뷰 편집",
+      "url": "https://developers.tripo3d.ai/ko/docs/generation-edit-multiview",
+      "httpStatus": 200,
+      "bodyCharacters": 2514,
+      "scrapeId": "01a1ed94-a496-709c-a55f-87b3d57ac777",
+      "analysis": "Generation.md",
+      "read": true
+    },
+    {
+      "number": 24,
+      "title": "모델 리텍스쳐링",
+      "url": "https://developers.tripo3d.ai/ko/docs/models-texture",
+      "httpStatus": 200,
+      "bodyCharacters": 2825,
+      "scrapeId": "01a1ed94-a4b8-7269-b148-1db1964df0e6",
+      "analysis": "Processing.md",
+      "read": true
+    },
+    {
+      "number": 25,
+      "title": "메시 의미론적 분할",
+      "url": "https://developers.tripo3d.ai/ko/docs/mesh-segment",
+      "httpStatus": 200,
+      "bodyCharacters": 4020,
+      "scrapeId": "01a1ed94-a57a-7195-bfa6-21088a202d99",
+      "analysis": "Processing.md",
+      "read": true
+    },
+    {
+      "number": 26,
+      "title": "스마트 세분화",
+      "url": "https://developers.tripo3d.ai/ko/docs/mesh-smartsegment",
+      "httpStatus": 200,
+      "bodyCharacters": 5396,
+      "scrapeId": "01a1ed94-a4a4-77e1-89f4-21371200948e",
+      "analysis": "Processing.md",
+      "read": true
+    },
+    {
+      "number": 27,
+      "title": "메시 부품 완성",
+      "url": "https://developers.tripo3d.ai/ko/docs/mesh-complete",
+      "httpStatus": 200,
+      "bodyCharacters": 3082,
+      "scrapeId": "01a1ed94-b23a-73dc-a503-20479accf468",
+      "analysis": "Processing.md",
+      "read": true
+    },
+    {
+      "number": 28,
+      "title": "메시 데시메이션",
+      "url": "https://developers.tripo3d.ai/ko/docs/mesh-decimate",
+      "httpStatus": 200,
+      "bodyCharacters": 2779,
+      "scrapeId": "01a1ed94-b547-7668-af5f-08de2edb3d95",
+      "analysis": "Processing.md",
+      "read": true
+    },
+    {
+      "number": 29,
+      "title": "스마트 UV",
+      "url": "https://developers.tripo3d.ai/ko/docs/mesh-uv",
+      "httpStatus": 200,
+      "bodyCharacters": 2425,
+      "scrapeId": "01a1ed94-b23c-75cf-b794-0a9c72ccc6f6",
+      "analysis": "Processing.md",
+      "read": true
+    },
+    {
+      "number": 30,
+      "title": "모델 형식 변환",
+      "url": "https://developers.tripo3d.ai/ko/docs/models-convert",
+      "httpStatus": 200,
+      "bodyCharacters": 4330,
+      "scrapeId": "01a1ed94-b247-736f-8313-d6f5c72882e2",
+      "analysis": "Processing.md",
+      "read": true
+    },
+    {
+      "number": 31,
+      "title": "강성 검사",
+      "url": "https://developers.tripo3d.ai/ko/docs/animations-rig-check",
+      "httpStatus": 200,
+      "bodyCharacters": 2598,
+      "scrapeId": "01a1ed94-b25e-76fd-a397-03c455c607ea",
+      "analysis": "Animation.md",
+      "read": true
+    },
+    {
+      "number": 32,
+      "title": "자동 리깅",
+      "url": "https://developers.tripo3d.ai/ko/docs/animations-rig",
+      "httpStatus": 200,
+      "bodyCharacters": 3033,
+      "scrapeId": "01a1ed94-c312-77a8-a11f-6c0ec0eb0a33",
+      "analysis": "Animation.md",
+      "read": true
+    },
+    {
+      "number": 33,
+      "title": "애니메이션 리타겟팅",
+      "url": "https://developers.tripo3d.ai/ko/docs/animations-retarget",
+      "httpStatus": 200,
+      "bodyCharacters": 7243,
+      "scrapeId": "01a1ed94-c311-72ad-9fbb-fd78e120622d",
+      "analysis": "Animation.md",
+      "read": true
+    },
+    {
+      "number": 34,
+      "title": "작업 쿼리",
+      "url": "https://developers.tripo3d.ai/ko/docs/task-query",
+      "httpStatus": 200,
+      "bodyCharacters": 2764,
+      "scrapeId": "01a1ed94-c32b-75f4-a650-ce335766f93b",
+      "analysis": "Operations.md",
+      "read": true
+    },
+    {
+      "number": 35,
+      "title": "일괄 작업 쿼리",
+      "url": "https://developers.tripo3d.ai/ko/docs/task-batch-query",
+      "httpStatus": 200,
+      "bodyCharacters": 1097,
+      "scrapeId": "01a1ed94-c30a-7526-b449-a72fe7cdcea7",
+      "analysis": "Operations.md",
+      "read": true
+    },
+    {
+      "number": 36,
+      "title": "파일 관리",
+      "url": "https://developers.tripo3d.ai/ko/docs/files",
+      "httpStatus": 200,
+      "bodyCharacters": 3105,
+      "scrapeId": "01a1ed94-c312-702a-bc7a-e5609a779fb8",
+      "analysis": "Operations.md",
+      "read": true
+    },
+    {
+      "number": 37,
+      "title": "파일 업로드(대용량 파일)",
+      "url": "https://developers.tripo3d.ai/ko/docs/files-presign",
+      "httpStatus": 200,
+      "bodyCharacters": 1298,
+      "scrapeId": "01a1ed94-d158-710d-8f49-f588b68fb100",
+      "analysis": "Operations.md",
+      "read": true
+    },
+    {
+      "number": 38,
+      "title": "계정 관리",
+      "url": "https://developers.tripo3d.ai/ko/docs/account",
+      "httpStatus": 200,
+      "bodyCharacters": 2465,
+      "scrapeId": "01a1ed94-d09a-77f8-8f51-3f166bd0a327",
+      "analysis": "Operations.md",
+      "read": true
+    },
+    {
+      "number": 39,
+      "title": "사용 내역",
+      "url": "https://developers.tripo3d.ai/ko/docs/account-usage-history",
+      "httpStatus": 200,
+      "bodyCharacters": 3625,
+      "scrapeId": "01a1ed94-d03b-72d7-870b-e421b59ff645",
+      "analysis": "Operations.md",
+      "read": true
+    },
+    {
+      "number": 40,
+      "title": "오류 처리",
+      "url": "https://developers.tripo3d.ai/ko/docs/error-handling",
+      "httpStatus": 200,
+      "bodyCharacters": 5892,
+      "scrapeId": "01a1ed94-d097-759a-8102-1cf4374abff5",
+      "analysis": "Operations.md",
+      "read": true
+    },
+    {
+      "number": 41,
+      "title": "속도 제한 및 동시성",
+      "url": "https://developers.tripo3d.ai/ko/docs/rate-limits",
+      "httpStatus": 200,
+      "bodyCharacters": 4092,
+      "scrapeId": "01a1ed94-d0db-734a-9e63-735ecd78fd46",
+      "analysis": "Operations.md",
+      "read": true
+    },
+    {
+      "number": 42,
+      "title": "Webhooks",
+      "url": "https://developers.tripo3d.ai/ko/docs/webhooks",
+      "httpStatus": 200,
+      "bodyCharacters": 1528,
+      "scrapeId": "01a1ed94-ddba-748c-9894-420b73dce053",
+      "analysis": "Operations.md",
+      "read": true
+    },
+    {
+      "number": 43,
+      "title": "v2에서 v3로 마이그레이션 가이드",
+      "url": "https://developers.tripo3d.ai/ko/docs/migration-v2-to-v3",
+      "httpStatus": 200,
+      "bodyCharacters": 5090,
+      "scrapeId": "01a1ed94-ddeb-72d9-93f2-9eef98fc5c59",
+      "analysis": "Operations.md",
+      "read": true
+    },
+    {
+      "number": 44,
+      "title": "모델 가져오기",
+      "url": "https://developers.tripo3d.ai/ko/docs/models-import",
+      "httpStatus": 200,
+      "bodyCharacters": 2999,
+      "scrapeId": "01a1ed94-de32-7316-b363-3727082aab88",
+      "analysis": "Processing.md",
+      "read": true
+    }
+  ]
+}
