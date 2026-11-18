@@ -6,7 +6,7 @@ Orbis의 그래픽 스타일을 ccl8의 마을, 전투 구간, 보스 공간에 
 
 | 문서 | 읽는 때 |
 |---|---|
-| [벨레스 B안 건축 키트 비교](ArtDirection/VelesBuildingKits-2026-11-18.md) | 보유 후보 16개의 상세·이미지 근거와 공방·주택 조립안을 비교할 때 |
+| [벨레스 B안 건축 키트 비교](ArtDirection/VelesBuildingKits-2026-11-18.md) | 조사한 16종 중 제외 9종의 사유와 남은 7종의 공방·주택 활용안을 비교할 때 |
 | [벨레스 아트 콘셉트 3안](ArtDirection/VelesConcepts-2026-11-17.md) | 리소스 선정 전에 현실감·반실사·형태 중심의 목표 화면을 비교할 때 |
 | [에테르 첫 장 MJ 시안 목록](ArtDirection/EtherFirstChapter.md) | 도입부터 바르툴전 이후 출항까지 YouArt에서 만들 디자인과 장면 시안을 고를 때 |
 | [에테르 세계지도 시안](ArtDirection/EtherWorldMap.md) | 육지 35%·이그니스 2,000만 km²의 계산 보정 지도와 대륙·벨레스 지역 확대를 볼 때 |
