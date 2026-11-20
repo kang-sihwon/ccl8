@@ -8,7 +8,6 @@
 
 class UKSIActionSet;
 class UCCLProjectileProfile;
-
 class UCCLCombatDefinition;
 class UCCLAbilitySet;
 class UGameplayEffect;
@@ -17,65 +16,12 @@ class USkeletalMesh;
 class UAnimInstance;
 
 UENUM(BlueprintType)
-enum class ECCLEquipmentSlot : uint8
-{
-	LeftHand,
-	RightHand,
-	Armor,
-	Boots,
-	Cloak,
-	Necklace,
-	RingOne,
-	RingTwo,
-	Count
-};
-
-UENUM(BlueprintType)
 enum class ECCLHandAction : uint8
 {
 	None,
 	Attack,
 	Guard,
 	Parry
-};
-
-USTRUCT(BlueprintType)
-struct CCL_API FCCLItemFragment_Equip : public FKSIItemFragmentData
-{
-	GENERATED_BODY()
-
-	bool Allows(FGameplayTag Slot) const;
-
-	UPROPERTY(EditAnywhere, meta = (Categories = "Equipment.Slot"))
-	FGameplayTagContainer AllowedSlots;
-
-	UPROPERTY(EditAnywhere, meta = (Categories = "Equipment.Slot"))
-	FGameplayTag DefaultSlotTag;
-
-	// Serialized legacy fields, hidden from new authoring.
-	UPROPERTY()
-	ECCLEquipmentSlot DefaultSlot = ECCLEquipmentSlot::RightHand;
-
-	UPROPERTY()
-	uint8 bTwoHanded = 0;
-
-	UPROPERTY(EditAnywhere)
-	TSubclassOf<UGameplayEffect> Effect;
-
-	UPROPERTY(EditAnywhere)
-	float Magnitude = 0.f;
-};
-
-USTRUCT(BlueprintType)
-struct CCL_API FCCLItemFragment_ConsumableData : public FKSIItemFragmentData
-{
-	GENERATED_BODY()
-
-	UPROPERTY(EditAnywhere)
-	TSubclassOf<UGameplayEffect> Effect;
-
-	UPROPERTY(EditAnywhere)
-	float Magnitude = 50.f;
 };
 
 USTRUCT(BlueprintType)
@@ -93,32 +39,18 @@ struct CCL_API FCCLItemAttachment
 	FTransform Offset;
 };
 
+// 월드에 놓인 아이템과 정적 메시로 장착한 아이템의 표시다.
 USTRUCT(BlueprintType)
-struct CCL_API FCCLItemFragment_Visual : public FKSIItemFragmentData
+struct CCL_API FCCLVisualFragment : public FKSIItemFragmentData
 {
 	GENERATED_BODY()
 
-	const FCCLItemAttachment* FindAttachment(FGameplayTag Slot) const;
-
 	UPROPERTY(EditAnywhere)
-	TArray<FCCLItemAttachment> Attachments;
-
-	UPROPERTY(EditAnywhere)
-	TObjectPtr<UStaticMesh> DroppedMesh;
-
-	// Read only during migration of the previous struct layout.
-	UPROPERTY()
-	FName LeftSocket = TEXT("hand_l");
-
-	UPROPERTY()
-	FName RightSocket = TEXT("hand_r");
-
-	UPROPERTY()
-	FTransform EquippedTransform;
+	TObjectPtr<UStaticMesh> WorldMesh;
 };
 
 USTRUCT(BlueprintType)
-struct CCL_API FCCLItemFragment_SkeletalVisual : public FCCLItemFragment_Visual
+struct CCL_API FCCLSkeletalMeshFragment : public FCCLVisualFragment
 {
 	GENERATED_BODY()
 
@@ -129,19 +61,39 @@ struct CCL_API FCCLItemFragment_SkeletalVisual : public FCCLItemFragment_Visual
 	TSubclassOf<UAnimInstance> AnimClass;
 };
 
+// 방어구를 포함한 모든 장비다. 장착 부위, 부위별 부착 위치, 장착 효과를 가진다.
 USTRUCT(BlueprintType)
-struct CCL_API FCCLItemFragment_Weapon : public FKSIItemFragmentData
+struct CCL_API FCCLEquipmentFragment : public FKSIItemFragmentData
 {
 	GENERATED_BODY()
 
+	virtual void Validate(const FKSIItemValidation& Context) const override;
+
+	bool Allows(FGameplayTag Slot) const;
+	const FCCLItemAttachment* FindAttachment(FGameplayTag Slot) const;
+
+	UPROPERTY(EditAnywhere, meta = (Categories = "Equipment.Slot"))
+	FGameplayTagContainer AllowedSlots;
+
+	UPROPERTY(EditAnywhere, meta = (Categories = "Equipment.Slot"))
+	FGameplayTag DefaultSlot;
+
+	// 표시가 있는 아이템은 표시되는 부위마다 부착 위치가 하나씩 있어야 한다.
 	UPROPERTY(EditAnywhere)
-	TObjectPtr<UKSIActionSet> ActionSet;
+	TArray<FCCLItemAttachment> Attachments;
 
 	UPROPERTY(EditAnywhere)
-	TMap<FGameplayTag, FGameplayTag> HandActions;
+	TSubclassOf<UGameplayEffect> Effect;
 
-	UPROPERTY(EditAnywhere, meta = (Categories = "Weapon.HandUsage"))
-	FGameplayTag HandUsage = CCLItemTags::HandUsage_OneHanded;
+	UPROPERTY(EditAnywhere)
+	float Magnitude = 0.f;
+};
+
+// 손 행동의 임시 자료다. 결정 69의 무브셋(재설계 단계 3)이 대체한다.
+USTRUCT(BlueprintType)
+struct CCL_API FCCLHandActions
+{
+	GENERATED_BODY()
 
 	UPROPERTY(EditAnywhere)
 	TObjectPtr<UCCLCombatDefinition> Combat;
@@ -150,46 +102,81 @@ struct CCL_API FCCLItemFragment_Weapon : public FKSIItemFragmentData
 	TObjectPtr<UCCLAbilitySet> Abilities;
 
 	UPROPERTY(EditAnywhere)
+	TObjectPtr<UKSIActionSet> ActionSet;
+
+	UPROPERTY(EditAnywhere)
+	TMap<FGameplayTag, FGameplayTag> HandActions;
+
+	UPROPERTY(EditAnywhere)
 	ECCLHandAction LeftAction = ECCLHandAction::Attack;
 
 	UPROPERTY(EditAnywhere)
 	ECCLHandAction RightAction = ECCLHandAction::Attack;
 };
 
+// 손을 점유하는 장비다. 방패는 여기까지, 무기는 Weapon 아래를 쓴다.
 USTRUCT(BlueprintType)
-struct CCL_API FCCLItemFragment_MeleeWeapon : public FCCLItemFragment_Weapon
+struct CCL_API FCCLHandEquipmentFragment : public FCCLEquipmentFragment
+{
+	GENERATED_BODY()
+
+	virtual void Validate(const FKSIItemValidation& Context) const override;
+
+	bool IsTwoHanded() const { return HandUsage == CCLItemTags::HandUsage_TwoHanded; }
+
+	UPROPERTY(EditAnywhere, meta = (Categories = "Weapon.HandUsage"))
+	FGameplayTag HandUsage = CCLItemTags::HandUsage_OneHanded;
+
+	UPROPERTY(EditAnywhere)
+	FCCLHandActions Actions;
+};
+
+USTRUCT(BlueprintType)
+struct CCL_API FCCLWeaponFragment : public FCCLHandEquipmentFragment
 {
 	GENERATED_BODY()
 };
 
 USTRUCT(BlueprintType)
-struct CCL_API FCCLItemFragment_ProjectileWeapon : public FCCLItemFragment_Weapon
+struct CCL_API FCCLMeleeWeaponFragment : public FCCLWeaponFragment
+{
+	GENERATED_BODY()
+};
+
+USTRUCT(BlueprintType)
+struct CCL_API FCCLRangedWeaponFragment : public FCCLWeaponFragment
 {
 	GENERATED_BODY()
 
+	virtual void Validate(const FKSIItemValidation& Context) const override;
+
+	// 투사체, 속도, 장전 시간, 탄창 크기의 유일한 소유자다.
 	UPROPERTY(EditAnywhere)
 	TObjectPtr<UCCLProjectileProfile> Profile;
-
-	UPROPERTY(EditAnywhere)
-	TSubclassOf<AActor> ProjectileClass;
-
-	UPROPERTY(EditAnywhere, meta = (ClampMin = "0"))
-	float LaunchSpeed = 2000.f;
-
-	UPROPERTY(EditAnywhere, meta = (ClampMin = "0"))
-	float ReloadSeconds = 2.f;
 };
 
+// 회복 효과를 바로 적용하는 사용 아이템이다. 재설계 단계 4에서 Usable로 바뀐다.
 USTRUCT(BlueprintType)
-struct CCL_API FCCLItemFragment_HarvestTool : public FKSIItemFragmentData
+struct CCL_API FCCLItemFragment_ConsumableData : public FKSIItemFragmentData
 {
 	GENERATED_BODY()
 
 	UPROPERTY(EditAnywhere)
-	FName ResourceType;
+	TSubclassOf<UGameplayEffect> Effect;
 
-	UPROPERTY(EditAnywhere, meta = (ClampMin = "1"))
-	int32 Tier = 1;
+	UPROPERTY(EditAnywhere)
+	float Magnitude = 50.f;
+};
+
+USTRUCT(BlueprintType)
+struct CCL_API FCCLPerishableFragment : public FKSIItemFragmentData
+{
+	GENERATED_BODY()
+
+	virtual void Validate(const FKSIItemValidation& Context) const override;
+
+	UPROPERTY(EditAnywhere)
+	FCCLFoodPolicy Policy;
 };
 
 USTRUCT()
@@ -202,13 +189,4 @@ struct CCL_API FCCLEquippedSlot
 
 	UPROPERTY()
 	FGuid Id;
-};
-
-USTRUCT(BlueprintType)
-struct CCL_API FCCLItemFragment_Perishable : public FKSIItemFragmentData
-{
-	GENERATED_BODY()
-
-	UPROPERTY(EditAnywhere)
-	FCCLFoodPolicy Policy;
 };

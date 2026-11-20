@@ -9,6 +9,7 @@
 #include "AbilitySystem/CCLEffects.h"
 #include "Combat/CCLEnemyAIController.h"
 #include "Items/CCLItemDefinition.h"
+#include "CCLProgressionAssetLibrary.h"
 #include "Editor.h"
 #include "ActorFactories/ActorFactory.h"
 #include "EngineUtils.h"
@@ -132,12 +133,8 @@ bool UCCLCombatAssetLibrary::CreateCombatAssets()
 	auto MakeItem = [](const TCHAR* Name, UCCLCombatDefinition* Combat, UCCLAbilitySet* Abilities)
 	{
 		auto* Item = Asset<UCCLItemDefinition>(Name);
-		Item->Fragments.Reset();
-		FCCLItemFragment_MeleeWeapon Fragment;
-		Fragment.Combat = Combat;
-		Fragment.Abilities = Abilities;
-		Item->ItemFragments = {FInstancedStruct::Make(Fragment)};
-		Item->ItemName = FText::FromString(FCString::Strcmp(Name, TEXT("DA_Unarmed")) == 0 ? TEXT("맨손") : TEXT("적의 맨손"));
+		UCCLProgressionAssetLibrary::ConfigureUnarmedItem(*Item, Combat, Abilities,
+														  FCString::Strcmp(Name, TEXT("DA_Unarmed")) == 0 ? TEXT("맨손") : TEXT("적의 맨손"));
 		return Save(Item);
 	};
 

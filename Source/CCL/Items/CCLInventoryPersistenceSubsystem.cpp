@@ -367,7 +367,7 @@ bool UCCLInventoryPersistenceSubsystem::PrepareRestore(const TArray<FCCLInventor
 			return false;
 		}
 		if (Record.Owner == ECCLInventoryOwner::FoodPickup && !Record.Items.IsEmpty() &&
-			!Resolved[Record.ContainerId][0].Definition->FindFragment<FCCLItemFragment_Perishable>())
+			!Resolved[Record.ContainerId][0].Definition->FindFragment<FCCLPerishableFragment>())
 		{
 			return Reject(Error, TEXT("Stored pickup must resolve to a perishable definition."));
 		}

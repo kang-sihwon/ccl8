@@ -51,13 +51,13 @@ bool UCCLInventoryNetworkSmoke::Seed(ACCLInventoryNetworkProbe& Probe, bool bNew
     Food.Quantity = 2;
     Food.Slot = 1;
     FString Error;
-    const auto* Policy = Food.Definition ? Food.Definition->FindFragment<FCCLItemFragment_Perishable>() : nullptr;
-    if (!Policy || !CCLFood::Create(WorldId, FoodId, 2, 0., Policy->Policy, {}, Food.GetState<FCCLItemState>().Food, Error)
-        || (bNewState && !CCLFood::Advance(Food.GetState<FCCLItemState>().Food, 10., Error)))
-    {
-        return false;
-    }
-    return Probe.Inventory->Restore({Rifle, Food});
+	const auto* Policy = Food.Definition ? Food.Definition->FindFragment<FCCLPerishableFragment>() : nullptr;
+	if (!Policy || !CCLFood::Create(WorldId, FoodId, 2, 0., Policy->Policy, {}, Food.GetState<FCCLItemState>().Food, Error) ||
+		(bNewState && !CCLFood::Advance(Food.GetState<FCCLItemState>().Food, 10., Error)))
+	{
+		return false;
+	}
+	return Probe.Inventory->Restore({Rifle, Food});
 }
 
 void UCCLInventoryNetworkSmoke::Finish(bool bSuccess, const TCHAR* Reason)

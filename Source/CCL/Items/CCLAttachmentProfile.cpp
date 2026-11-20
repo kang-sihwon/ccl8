@@ -51,13 +51,13 @@ bool UCCLAttachmentProfile::ValidateItem(const UKSIItemDefinition* Item, const U
 		return false;
 	}
 
-	const auto* Visual = Item->FindFragment<FCCLItemFragment_Visual>();
-	if (!Visual)
+	const FCCLEquipmentFragment* Equipment = Item->FindFragment<FCCLEquipmentFragment>();
+	if (!Equipment || !Item->FindFragment<FCCLVisualFragment>())
 	{
 		return true;
 	}
 
-	for (const auto& Binding : Visual->Attachments)
+	for (const FCCLItemAttachment& Binding : Equipment->Attachments)
 	{
 		FName Socket;
 		if (!Resolve(Mesh, Binding.Point, Socket, Error))

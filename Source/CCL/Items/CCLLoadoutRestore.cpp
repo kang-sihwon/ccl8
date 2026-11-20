@@ -120,7 +120,7 @@ bool UCCLLoadoutComponent::CanRestoreState(const TArray<FKSIInventoryEntry>& Ent
 				return false;
 			}
 		}
-		const auto* Equip = Entry.Definition->FindFragment<FCCLItemFragment_Equip>();
+		const auto* Equip = Entry.Definition->FindFragment<FCCLEquipmentFragment>();
 		FGameplayEffectSpecHandle Spec;
 		if (!Equip || (Equip->Effect && !MakeRestoreSpec(*GetASC(), Equip->Effect, Equip->Magnitude, Spec)))
 		{
@@ -206,7 +206,7 @@ bool FCCLLoadoutRestoreBatch::Execute(TConstArrayView<FCCLLoadoutRestoreRequest>
 			}
 			ItemIds.Add(Entry.Id);
 			const auto* Equip =
-				Entry.Slot == INDEX_NONE ? Entry.Definition->FindFragment<FCCLItemFragment_Equip>() : nullptr;
+				Entry.Slot == INDEX_NONE ? Entry.Definition->FindFragment<FCCLEquipmentFragment>() : nullptr;
 			if (Equip && Equip->Effect)
 			{
 				FGameplayEffectSpecHandle Spec;

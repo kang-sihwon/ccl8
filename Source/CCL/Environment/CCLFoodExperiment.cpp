@@ -125,7 +125,7 @@ bool ACCLFoodExperiment::MakeInitial(FGuid WorldId, double WorldSeconds, TArray<
 									 FString& Error) const
 {
 	auto* Definition = SampleDefinition();
-	const auto* Perishable = Definition ? Definition->FindFragment<FCCLItemFragment_Perishable>() : nullptr;
+	const auto* Perishable = Definition ? Definition->FindFragment<FCCLPerishableFragment>() : nullptr;
 	if (!Perishable)
 	{
 		Error = TEXT("실험용 음식 정의를 불러올 수 없다.");

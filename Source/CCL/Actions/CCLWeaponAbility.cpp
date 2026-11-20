@@ -30,7 +30,7 @@ const UCCLProjectileProfile* Profile(const UObject* Source)
 	}
 
 	const auto* Item = Cast<UKSIItemDefinition>(Source);
-	const auto* Fragment = Item ? Item->FindFragment<FCCLItemFragment_ProjectileWeapon>() : nullptr;
+	const auto* Fragment = Item ? Item->FindFragment<FCCLRangedWeaponFragment>() : nullptr;
 	return Fragment ? Fragment->Profile : nullptr;
 }
 

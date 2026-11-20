@@ -61,10 +61,10 @@ void ACCLWorldPickup::RefreshVisual()
 		FallbackMesh = Mesh->GetStaticMesh();
 	}
 
-	const auto* Visual = Definition ? Definition->FindFragment<FCCLItemFragment_Visual>() : nullptr;
-	auto* DefaultMesh = Definition && Definition->FindFragment<FCCLItemFragment_Perishable>()
+	const auto* Visual = Definition ? Definition->FindFragment<FCCLVisualFragment>() : nullptr;
+	auto* DefaultMesh = Definition && Definition->FindFragment<FCCLPerishableFragment>()
 		? LoadObject<UStaticMesh>(nullptr, TEXT("/Engine/BasicShapes/Sphere.Sphere")) : FallbackMesh.Get();
-	Mesh->SetStaticMesh(Visual && Visual->DroppedMesh ? Visual->DroppedMesh.Get() : DefaultMesh);
+	Mesh->SetStaticMesh(Visual && Visual->WorldMesh ? Visual->WorldMesh.Get() : DefaultMesh);
 }
 
 bool ACCLWorldPickup::TryCollect(UCCLInventoryComponent* Inventory, AActor* Collector)
@@ -88,7 +88,7 @@ bool ACCLWorldPickup::TryCollect(UCCLInventoryComponent* Inventory, AActor* Coll
 	{
 		return false;
 	}
-	const bool bFood = Definition && Definition->FindFragment<FCCLItemFragment_Perishable>();
+	const bool bFood = Definition && Definition->FindFragment<FCCLPerishableFragment>();
 	if ((bFood && !EnsureFood()) || (!bFood && bFoodInitialized))
 	{
 		return false;
@@ -121,7 +121,7 @@ bool ACCLWorldPickup::InitializeFood(UKSIItemDefinition* Item, const FCCLFoodSta
 	auto* Store = GetWorld() ? GetWorld()->GetSubsystem<UCCLInventoryPersistenceSubsystem>() : nullptr;
 	if (!Store || Store->IsPreparing() || !HasAuthority() || bCollected || bFoodInitialized ||
 		!FoodInventory->GetEntries().IsEmpty() || !Runtime || !Runtime->IsRunning() || !Item || !ItemId.IsValid() ||
-		!Item->FindFragment<FCCLItemFragment_Perishable>() || Food.WorldId != Runtime->GetIdentity().WorldId ||
+		!Item->FindFragment<FCCLPerishableFragment>() || Food.WorldId != Runtime->GetIdentity().WorldId ||
 		Food.UpdatedWorldSeconds > Runtime->GetClock().GetWorldSeconds())
 	{
 		Error = TEXT("Pickup food initialization is unavailable or belongs to another world.");
@@ -164,7 +164,7 @@ bool ACCLWorldPickup::EnsureFood()
 		const auto* Entry = FoodInventory->FindSlot(0);
 		return Entry && Entry->Definition == Definition && Entry->Quantity == Quantity;
 	}
-	const auto* Fragment = Definition->FindFragment<FCCLItemFragment_Perishable>();
+	const auto* Fragment = Definition->FindFragment<FCCLPerishableFragment>();
 	const auto* Runtime = GetWorld()->GetSubsystem<UCCLWorldSimulationSubsystem>();
 	if (!Fragment || !Runtime || !Runtime->IsRunning())
 	{

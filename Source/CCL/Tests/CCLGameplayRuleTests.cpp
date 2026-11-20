@@ -517,7 +517,7 @@ bool FCCLLoadoutPublicationTest::RunTest(const FString& Parameters)
 		const auto* Entry = Inventory->Find(Item);
 		TestTrue(TEXT("placement committed before notification"), Entry && (bExpectEquipped ? Entry->Slot == INDEX_NONE : Entry->Slot == BagSlot));
 		TestEqual(TEXT("effect committed before notification"), ASC->GetNumericAttribute(UCCLOffenseSet::GetAttackBonusAttribute()),
-			BaseAttack + (bExpectEquipped ? Sword->FindFragment<FCCLItemFragment_Equip>()->Magnitude : 0.f));
+					   BaseAttack + (bExpectEquipped ? Sword->FindFragment<FCCLEquipmentFragment>()->Magnitude : 0.f));
 		TestFalse(TEXT("equip notification cannot reenter unequip"), Loadout->Unequip(Item));
 		TestFalse(TEXT("notification cannot reenter training"), Loadout->Learn(Skill));
 		TestFalse(TEXT("notification cannot mutate inventory directly"), Inventory->Remove(Item, 1));

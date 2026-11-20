@@ -35,8 +35,7 @@ bool FCCLInventoryFood::BuildFoodAddition(const UCCLInventoryComponent& Inventor
 		return false;
 	}
 	const int32 Count = CCLFood::Quantity(Food);
-	if (!Definition || !Definition->FindFragment<FCCLItemFragment_Perishable>() || !Food.IsPresent()
-		|| Count < 1 || Count > Definition->GetMaxStack() || !CCLFood::Validate(Food, Count, Error))
+	if (!Definition || !Definition->FindFragment<FCCLPerishableFragment>() || !Food.IsPresent() || Count < 1 || Count > Definition->GetMaxStack() || !CCLFood::Validate(Food, Count, Error))
 	{
 		return false;
 	}

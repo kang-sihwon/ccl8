@@ -47,22 +47,22 @@ bool CCLEquipment::IsHand(FGameplayTag Slot)
 
 bool CCLEquipment::IsTwoHanded(const UKSIItemDefinition* Item)
 {
-	const auto* Weapon = Item ? Item->FindFragment<FCCLItemFragment_Weapon>() : nullptr;
-	return Weapon && Weapon->HandUsage == CCLItemTags::HandUsage_TwoHanded;
+	const FCCLHandEquipmentFragment* Hand = Item ? Item->FindFragment<FCCLHandEquipmentFragment>() : nullptr;
+	return Hand && Hand->IsTwoHanded();
 }
 
 bool CCLEquipment::GetOccupiedSlots(const UKSIItemDefinition* Item, FGameplayTag RequestedSlot, TArray<FGameplayTag>& OutSlots)
 {
 	OutSlots.Reset();
-	const auto* Equip = Item ? Item->FindFragment<FCCLItemFragment_Equip>() : nullptr;
+	const FCCLEquipmentFragment* Equip = Item ? Item->FindFragment<FCCLEquipmentFragment>() : nullptr;
 	if (!Equip || !Equip->Allows(RequestedSlot))
 	{
 		return false;
 	}
 
-	const auto* Weapon = Item->FindFragment<FCCLItemFragment_Weapon>();
-	if (Weapon && (!IsHand(RequestedSlot) ||
-				   (Weapon->HandUsage != CCLItemTags::HandUsage_OneHanded && Weapon->HandUsage != CCLItemTags::HandUsage_TwoHanded)))
+	const FCCLHandEquipmentFragment* Hand = Item->FindFragment<FCCLHandEquipmentFragment>();
+	if (Hand && (!IsHand(RequestedSlot) ||
+				 (Hand->HandUsage != CCLItemTags::HandUsage_OneHanded && Hand->HandUsage != CCLItemTags::HandUsage_TwoHanded)))
 	{
 		return false;
 	}

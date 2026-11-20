@@ -1,6 +1,6 @@
 # 인벤토리·장비·성장 설계
 
-마을의 보급품 획득, 장비 장착, 회복품 사용, 스킬 포인트 소비를 전투에 연결했고 Standalone, Dedicated, Listen, 저장 복원, 패키지 화면에서 검증했다. 이 문서는 아이템 정의, 소유, 콘텐츠 초안을 정하고 하위 문서로 안내한다. [StudyRoadmap](StudyRoadmap.md)의 단계 4 사양이며 근거는 [결정 15](decisions/0015-struct-fragments-and-two-handed-gear.md)와 [결정 16](decisions/0016-tagged-slots-and-attachments.md)이다. 2026-11-19에 [결정 68](decisions/0068-item-fragment-hierarchy.md)-[70](decisions/0070-rebuild-item-data-without-conversion.md)으로 Fragment 계층, 손 입력, 데이터 재생성을 다시 정했다. 2026-11-20에 구현 단계 1(인벤토리 편집 객체)만 마쳤고, 아래 내용은 현재 구현이다. 값과 콘텐츠 명칭은 구현용 초안이며 최종 밸런스와 세계관이 아니다.
+마을의 보급품 획득, 장비 장착, 회복품 사용, 스킬 포인트 소비를 전투에 연결했고 Standalone, Dedicated, Listen, 저장 복원, 패키지 화면에서 검증했다. 이 문서는 아이템 정의, 소유, 콘텐츠 초안을 정하고 하위 문서로 안내한다. [StudyRoadmap](StudyRoadmap.md)의 단계 4 사양이며 근거는 [결정 15](decisions/0015-struct-fragments-and-two-handed-gear.md)와 [결정 16](decisions/0016-tagged-slots-and-attachments.md)이다. 2026-11-19에 [결정 68](decisions/0068-item-fragment-hierarchy.md)-[70](decisions/0070-rebuild-item-data-without-conversion.md)으로 Fragment 계층, 손 입력, 데이터 재생성을 다시 정했다. 2026-11-20에 구현 단계 1(인벤토리 편집 객체)과 단계 2(Fragment 계층)를 마쳤고, 아래 내용은 현재 구현이다. 값과 콘텐츠 명칭은 구현용 초안이며 최종 밸런스와 세계관이 아니다.
 
 ## 하위 문서
 
@@ -46,11 +46,11 @@ classDiagram
 
 ## 아이템 정의
 
-ItemDefinition이 이름·설명·아이콘·최대 중첩 수를 소유하고, 선택 기능은 `FInstancedStruct` 배열로 보관한다. Fragment 구조체의 루트는 공용 `FKSIItemFragmentData`다. 정의에는 Equip, ConsumableData, Visual, SkeletalVisual, HarvestTool, MeleeWeapon, ProjectileWeapon을 조합한다. SkeletalVisual은 Visual의 바닥 표시용 StaticMesh를 상속하고 장착용 SkeletalMesh를 더한다. 무기 속성은 Weapon 계층 안에 둔다. 기존 UObject Fragment 클래스는 저장된 에셋을 `PostLoad`에서 읽는 호환 경로로만 남아 있다.
+ItemDefinition이 이름·설명·아이콘·최대 중첩 수를 소유하고, 선택 기능은 `FInstancedStruct` 배열로 보관한다. Fragment 구조체의 루트는 공용 `FKSIItemFragmentData`이며 각 Fragment가 `Validate`로 자기 규칙을 검사한다. 루트 아래 조상을 공유하는 Fragment 둘은 한 정의에 넣을 수 없다. 계층은 Equipment → HandEquipment → Weapon → MeleeWeapon·RangedWeapon, Visual → SkeletalMesh, Perishable, 그리고 단계 4에서 Usable로 바뀔 ConsumableData다([결정 68](decisions/0068-item-fragment-hierarchy.md)). 방어구는 Equipment, 방패는 HandEquipment, 무기는 Weapon 아래를 쓴다. 이전 UObject Fragment와 로드 변환은 지웠다.
 
 훈련 목록과 저장 가능한 정의는 `UCCLItemCatalog`(`DA_ItemCatalog`)가 소유한다. Loadout의 훈련 요청과 세션 저장이 같은 카탈로그를 조회하므로, 새 아이템이나 훈련을 추가할 때 코드의 이름 목록을 고치지 않는다. 카탈로그는 중복 저장 이름과 빈 항목을 거절한다. 설정과 저장 거부 규칙은 [정의 카탈로그와 보급품 개수](SessionFoundation/Checkpoint.md#정의-카탈로그와-보급품-개수)가 소유한다.
 
-음식과 탄약 실행은 `FCCLInventoryFood`, `FCCLInventoryWeapon`이 맡는다. 발사·채집 실행은 ProjectileWeapon·HarvestTool의 정의 형식과 별개다.
+음식과 탄약 실행은 `FCCLInventoryFood`, `FCCLInventoryWeapon`이 맡는다. 투사체 수치는 RangedWeapon이 참조하는 `UCCLProjectileProfile`이 소유한다. 채집 도구 Fragment는 채집 루프를 설계할 때 만든다.
 
 ## 콘텐츠 초안
 

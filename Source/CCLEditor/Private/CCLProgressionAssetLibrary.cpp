@@ -30,42 +30,82 @@
 
 namespace
 {
-template <class T> T* ProgressionAsset(const TCHAR* Name)
-{
-	const FString Path = FString(TEXT("/Game/Progression/")) + Name;
-	if (FPackageName::DoesPackageExist(Path))
+	template <class T>
+	T* EditorAsset(const TCHAR* Folder, const TCHAR* Name)
 	{
-		return LoadObject<T>(nullptr, *(Path + TEXT(".") + Name));
+		const FString Path = FString(Folder) + TEXT("/") + Name;
+		if (FPackageName::DoesPackageExist(Path))
+		{
+			return LoadObject<T>(nullptr, *(Path + TEXT(".") + Name));
+		}
+
+		UPackage* Package = CreatePackage(*Path);
+		T* Object = NewObject<T>(Package, Name, RF_Public | RF_Standalone);
+		FAssetRegistryModule::AssetCreated(Object);
+		return Object;
 	}
 
-	UPackage* Package = CreatePackage(*Path);
-	T* Object = NewObject<T>(Package, Name, RF_Public | RF_Standalone);
-	FAssetRegistryModule::AssetCreated(Object);
-	return Object;
-}
-
-bool SaveProgression(UObject* Object)
-{
-	if (!Object)
+	template <class T>
+	T* ProgressionAsset(const TCHAR* Name)
 	{
-		return false;
+		return EditorAsset<T>(TEXT("/Game/Progression"), Name);
 	}
 
-	Object->MarkPackageDirty();
-	FSavePackageArgs Args;
-	Args.TopLevelFlags = RF_Public | RF_Standalone;
-	return UPackage::SavePackage(
-		Object->GetOutermost(), Object,
-		*FPackageName::LongPackageNameToFilename(Object->GetOutermost()->GetName(), FPackageName::GetAssetPackageExtension()), Args);
-}
+	bool SaveProgression(UObject* Object)
+	{
+		if (!Object)
+		{
+			return false;
+		}
 
-void DescribeProgression(UCCLItemDefinition* Item, const TCHAR* Label, int32 MaxStack)
-{
-	Item->Fragments.Reset();
-	Item->ItemFragments.Reset();
-	Item->ItemName = FText::FromString(Label);
-	Item->MaxStackCount = MaxStack;
-}
+		Object->MarkPackageDirty();
+		FSavePackageArgs Args;
+		Args.TopLevelFlags = RF_Public | RF_Standalone;
+		return UPackage::SavePackage(
+			Object->GetOutermost(), Object,
+			*FPackageName::LongPackageNameToFilename(Object->GetOutermost()->GetName(), FPackageName::GetAssetPackageExtension()), Args);
+	}
+
+	// 생성기가 정하지 않는 값이 남지 않도록 정의 전체를 초기화한다.
+	void DescribeProgression(UCCLItemDefinition* Item, const TCHAR* Label, int32 MaxStack, const TCHAR* Description = TEXT(""))
+	{
+		Item->ItemFragments.Reset();
+		Item->ItemName = FText::FromString(Label);
+		Item->Description = FText::FromString(Description);
+		Item->IconTexture = nullptr;
+		Item->MaxStackCount = MaxStack;
+	}
+
+	void AllowHands(FCCLEquipmentFragment& Equipment)
+	{
+		Equipment.DefaultSlot = CCLItemTags::Slot_RightHand;
+		Equipment.AllowedSlots.AddTag(CCLItemTags::Slot_LeftHand);
+		Equipment.AllowedSlots.AddTag(CCLItemTags::Slot_RightHand);
+	}
+
+	void AttachToHands(FCCLEquipmentFragment& Equipment, FGameplayTag LeftPoint, FGameplayTag RightPoint, const FTransform& Offset)
+	{
+		for (int32 Hand = 0; Hand < 2; ++Hand)
+		{
+			FCCLItemAttachment& Binding = Equipment.Attachments.AddDefaulted_GetRef();
+			Binding.Slot = CCLEquipment::SlotAt(Hand);
+			Binding.Point = Hand == 0 ? LeftPoint : RightPoint;
+			Binding.Offset = Offset;
+		}
+	}
+
+	bool BuildFood(const TCHAR* Folder, const TCHAR* Name, const TCHAR* Label, const TCHAR* Description, double ShelfLife, double MoldDelay,
+				   double MoldGrowth)
+	{
+		auto* Item = EditorAsset<UCCLItemDefinition>(Folder, Name);
+		if (!Item)
+		{
+			return false;
+		}
+
+		DescribeProgression(Item, Label, 20, Description);
+		return Item->ConfigurePerishable(ShelfLife, MoldDelay, MoldGrowth) && SaveProgression(Item);
+	}
 } // namespace
 #endif
 
@@ -82,18 +122,14 @@ bool UCCLProgressionAssetLibrary::CreateProgressionAssets()
 	}
 
 	DescribeProgression(Gauntlets, TEXT("철 장갑 (공격력 +10)"), 1);
-	FCCLItemFragment_Equip Equipment;
-	Equipment.DefaultSlotTag = CCLItemTags::Slot_RightHand;
-	Equipment.AllowedSlots.AddTag(CCLItemTags::Slot_LeftHand);
-	Equipment.AllowedSlots.AddTag(CCLItemTags::Slot_RightHand);
-	Equipment.Effect = UCCLPersistentPowerEffect::StaticClass();
-	Equipment.Magnitude = 10.f;
-	Gauntlets->ItemFragments.Add(FInstancedStruct::Make(Equipment));
-	FCCLItemFragment_MeleeWeapon Combat;
-	Combat.Combat = LoadObject<UCCLCombatDefinition>(nullptr, TEXT("/Game/Combat/DA_PlayerAttack.DA_PlayerAttack"));
-	Combat.Abilities = LoadObject<UCCLAbilitySet>(nullptr, TEXT("/Game/Combat/DA_PlayerAbilities.DA_PlayerAbilities"));
-	Gauntlets->ItemFragments.Add(FInstancedStruct::Make(Combat));
-	if (!Combat.Combat || !Combat.Abilities)
+	FCCLMeleeWeaponFragment Fists;
+	AllowHands(Fists);
+	Fists.Effect = UCCLPersistentPowerEffect::StaticClass();
+	Fists.Magnitude = 10.f;
+	Fists.Actions.Combat = LoadObject<UCCLCombatDefinition>(nullptr, TEXT("/Game/Combat/DA_PlayerAttack.DA_PlayerAttack"));
+	Fists.Actions.Abilities = LoadObject<UCCLAbilitySet>(nullptr, TEXT("/Game/Combat/DA_PlayerAbilities.DA_PlayerAbilities"));
+	Gauntlets->ItemFragments.Add(FInstancedStruct::Make(Fists));
+	if (!Fists.Actions.Combat || !Fists.Actions.Abilities)
 	{
 		return false;
 	}
@@ -170,58 +206,59 @@ bool UCCLProgressionAssetLibrary::CreateEquipmentAssets()
 	const FGameplayTag Slots[] = {CCLItemTags::Slot_RightHand, CCLItemTags::Slot_RightHand, CCLItemTags::Slot_RightHand,
 								  CCLItemTags::Slot_Armor,	   CCLItemTags::Slot_Boots,		CCLItemTags::Slot_Cloak,
 								  CCLItemTags::Slot_Necklace,  CCLItemTags::Slot_RingOne};
+	UCCLCombatDefinition* Attack = LoadObject<UCCLCombatDefinition>(nullptr, TEXT("/Game/Combat/DA_PlayerAttack.DA_PlayerAttack"));
+	UCCLAbilitySet* Abilities = LoadObject<UCCLAbilitySet>(nullptr, TEXT("/Game/Combat/DA_PlayerAbilities.DA_PlayerAbilities"));
+	UStaticMesh* Meshes[] = {LoadObject<UStaticMesh>(nullptr, TEXT("/Game/TestResources/Weapon_Pack/Mesh/Weapons/Weapons_Kit/SM_Sword.SM_Sword")),
+													 LoadObject<UStaticMesh>(nullptr, TEXT("/Game/TestResources/Weapon_Pack/Mesh/Weapons/Weapons_Kit/SM_Shield.SM_Shield")),
+																			 LoadObject<UStaticMesh>(nullptr, TEXT("/Engine/BasicShapes/Cube.Cube"))};
+	if (!Attack || !Abilities || !Meshes[0] || !Meshes[1] || !Meshes[2])
+	{
+		return false;
+	}
+
+	// 검과 방패의 메시와 오프셋은 시험 자원 교체(create_test_laboratories.py) 뒤 맞춘 값이다.
+	const FTransform Offsets[] = {FTransform(FQuat(0., 0., 1., 0.), FVector::ZeroVector, FVector(0.75)),
+								  FTransform(FQuat(0., -UE_INV_SQRT_2, 0., UE_INV_SQRT_2), FVector::ZeroVector, FVector(0.85)),
+								  FTransform(FQuat::Identity, FVector(0., 0., 25.), FVector(0.06, 0.06, 1.5))};
+	const ECCLHandAction LeftActions[] = {ECCLHandAction::Attack, ECCLHandAction::Guard, ECCLHandAction::Attack};
+	const ECCLHandAction RightActions[] = {ECCLHandAction::Attack, ECCLHandAction::Guard, ECCLHandAction::Guard};
 	for (int32 Index = 0; Index < 8; ++Index)
 	{
-		if (FPackageName::DoesPackageExist(FString(TEXT("/Game/Progression/")) + Names[Index]))
-		{
-			continue;
-		}
-
 		auto* Item = ProgressionAsset<UCCLItemDefinition>(Names[Index]);
 		if (!Item)
 		{
 			return false;
 		}
 
-		DescribeProgression(Item, Labels[Index], 1);
-		Item->Description = FText::FromString(TEXT("장비 기능을 시험하기 위한 시제품이다. 외형과 수치는 추후 조정될 수 있다."));
-		FCCLItemFragment_Equip Equip;
-		Equip.DefaultSlotTag = Slots[Index];
-		Equip.AllowedSlots.AddTag(Slots[Index]);
-		if (Index < 3)
+		DescribeProgression(Item, Labels[Index], 1, TEXT("장비 기능을 시험하기 위한 시제품이다. 외형과 수치는 추후 조정될 수 있다."));
+		if (Index >= 3)
 		{
-			Equip.AllowedSlots.AddTag(CCLItemTags::Slot_LeftHand);
-		}
-
-		if (Index == 7)
-		{
-			Equip.AllowedSlots.AddTag(CCLItemTags::Slot_RingTwo);
-		}
-
-		Item->ItemFragments.Add(FInstancedStruct::Make(Equip));
-		if (Index < 3)
-		{
-			FCCLItemFragment_MeleeWeapon Weapon;
-			Weapon.HandUsage = Index == 2 ? CCLItemTags::HandUsage_TwoHanded : CCLItemTags::HandUsage_OneHanded;
-			Weapon.Combat = LoadObject<UCCLCombatDefinition>(nullptr, TEXT("/Game/Combat/DA_PlayerAttack.DA_PlayerAttack"));
-			Weapon.Abilities = LoadObject<UCCLAbilitySet>(nullptr, TEXT("/Game/Combat/DA_PlayerAbilities.DA_PlayerAbilities"));
-			Weapon.LeftAction = Index == 1 ? ECCLHandAction::Guard : ECCLHandAction::Attack;
-			Weapon.RightAction = Index == 0 ? ECCLHandAction::Attack : ECCLHandAction::Guard;
-			Item->ItemFragments.Add(FInstancedStruct::Make(Weapon));
-			FCCLItemFragment_Visual Visual;
-			Visual.DroppedMesh = LoadObject<UStaticMesh>(nullptr, TEXT("/Engine/BasicShapes/Cube.Cube"));
-			const FTransform Offset = FTransform(FRotator::ZeroRotator, FVector(0.f, 0.f, 25.f),
-												 Index == 1 ? FVector(0.08f, 0.5f, 0.6f) : FVector(0.06f, 0.06f, Index == 2 ? 1.5f : 0.8f));
-			for (int32 Hand = 0; Hand < 2; ++Hand)
+			FCCLEquipmentFragment Equipment;
+			Equipment.DefaultSlot = Slots[Index];
+			Equipment.AllowedSlots.AddTag(Slots[Index]);
+			if (Index == 7)
 			{
-				FCCLItemAttachment Binding;
-				Binding.Slot = CCLEquipment::SlotAt(Hand);
-				Binding.Point = Index == 1 ? (Hand == 0 ? CCLItemTags::Attachment_ShieldLeft : CCLItemTags::Attachment_ShieldRight)
-										   : (Hand == 0 ? CCLItemTags::Attachment_GripLeft : CCLItemTags::Attachment_GripRight);
-				Binding.Offset = Offset;
-				Visual.Attachments.Add(Binding);
+				Equipment.AllowedSlots.AddTag(CCLItemTags::Slot_RingTwo);
 			}
 
+			Item->ItemFragments.Add(FInstancedStruct::Make(Equipment));
+		}
+		else
+		{
+			// 방패는 손 장비이고 검과 지팡이는 근접 무기다.
+			FInstancedStruct Hand = Index == 1 ? FInstancedStruct::Make(FCCLHandEquipmentFragment()) : FInstancedStruct::Make(FCCLMeleeWeaponFragment());
+			FCCLHandEquipmentFragment& Equipment = Hand.GetMutable<FCCLHandEquipmentFragment>();
+			AllowHands(Equipment);
+			Equipment.HandUsage = Index == 2 ? CCLItemTags::HandUsage_TwoHanded : CCLItemTags::HandUsage_OneHanded;
+			Equipment.Actions.Combat = Attack;
+			Equipment.Actions.Abilities = Abilities;
+			Equipment.Actions.LeftAction = LeftActions[Index];
+			Equipment.Actions.RightAction = RightActions[Index];
+			AttachToHands(Equipment, Index == 1 ? CCLItemTags::Attachment_ShieldLeft : CCLItemTags::Attachment_GripLeft,
+						  Index == 1 ? CCLItemTags::Attachment_ShieldRight : CCLItemTags::Attachment_GripRight, Offsets[Index]);
+			Item->ItemFragments.Add(MoveTemp(Hand));
+			FCCLVisualFragment Visual;
+			Visual.WorldMesh = Meshes[Index];
 			Item->ItemFragments.Add(FInstancedStruct::Make(Visual));
 		}
 
@@ -346,9 +383,9 @@ bool UCCLProgressionAssetLibrary::MigrateEquipmentTagAssets()
 		{
 			for (auto& Fragment : Item->ItemFragments)
 			{
-				if (auto* Visual = Fragment.GetMutablePtr<FCCLItemFragment_Visual>())
+				if (auto* Equipment = Fragment.GetMutablePtr<FCCLEquipmentFragment>())
 				{
-					for (auto& Binding : Visual->Attachments)
+					for (auto& Binding : Equipment->Attachments)
 					{
 						if (Binding.Point == CCLItemTags::Attachment_GripLeft)
 						{
@@ -437,31 +474,20 @@ bool UCCLProgressionAssetLibrary::CreateProjectileAssets()
 		Profile->Ammunition = Bullets;
 		auto* Item = ProgressionAsset<UCCLItemDefinition>(bRifle ? TEXT("DA_Rifle") : TEXT("DA_Pistol"));
 		DescribeProgression(Item, bRifle ? TEXT("저속 장전 소총") : TEXT("권총"), 1);
-		FCCLItemFragment_Equip Equip;
-		Equip.DefaultSlotTag = CCLItemTags::Slot_RightHand;
-		Equip.AllowedSlots.AddTag(CCLItemTags::Slot_LeftHand);
-		Equip.AllowedSlots.AddTag(CCLItemTags::Slot_RightHand);
-		Item->ItemFragments.Add(FInstancedStruct::Make(Equip));
-		FCCLItemFragment_ProjectileWeapon Weapon;
+		FCCLRangedWeaponFragment Weapon;
+		AllowHands(Weapon);
 		Weapon.HandUsage = bRifle ? CCLItemTags::HandUsage_TwoHanded : CCLItemTags::HandUsage_OneHanded;
-		Weapon.Combat = Combat;
-		Weapon.ActionSet = Actions;
 		Weapon.Profile = Profile;
-		Weapon.HandActions.Add(CCLItemTags::Slot_LeftHand, CCLActionTags::Fire);
-		Weapon.HandActions.Add(CCLItemTags::Slot_RightHand, bRifle ? CCLActionTags::Aim : CCLActionTags::Fire);
+		Weapon.Actions.Combat = Combat;
+		Weapon.Actions.ActionSet = Actions;
+		Weapon.Actions.HandActions.Add(CCLItemTags::Slot_LeftHand, CCLActionTags::Fire);
+		Weapon.Actions.HandActions.Add(CCLItemTags::Slot_RightHand, bRifle ? CCLActionTags::Aim : CCLActionTags::Fire);
+		AttachToHands(Weapon, CCLItemTags::Attachment_GripLeft, CCLItemTags::Attachment_GripRight, FTransform::Identity);
 		Item->ItemFragments.Add(FInstancedStruct::Make(Weapon));
-		FCCLItemFragment_Visual Visual;
-		Visual.DroppedMesh = LoadObject<UStaticMesh>(nullptr, bRifle ?
-			TEXT("/Game/Weapons/Rifle/Meshes/SM_Rifle.SM_Rifle") : TEXT("/Game/Weapons/Pistol/Meshes/SM_Pistol.SM_Pistol"));
-		for (const auto Slot : {FGameplayTag(CCLItemTags::Slot_LeftHand), FGameplayTag(CCLItemTags::Slot_RightHand)})
-		{
-			auto& Attachment = Visual.Attachments.AddDefaulted_GetRef();
-			Attachment.Slot = Slot;
-			Attachment.Point = Slot == CCLItemTags::Slot_LeftHand ? CCLItemTags::Attachment_GripLeft : CCLItemTags::Attachment_GripRight;
-		}
-
+		FCCLVisualFragment Visual;
+		Visual.WorldMesh = LoadObject<UStaticMesh>(nullptr, bRifle ? TEXT("/Game/Weapons/Rifle/Meshes/SM_Rifle.SM_Rifle") : TEXT("/Game/Weapons/Pistol/Meshes/SM_Pistol.SM_Pistol"));
 		Item->ItemFragments.Add(FInstancedStruct::Make(Visual));
-		if (!Visual.DroppedMesh || !SaveProgression(Combat) || !SaveProgression(Profile) || !SaveProgression(Item))
+		if (!Visual.WorldMesh || !SaveProgression(Combat) || !SaveProgression(Profile) || !SaveProgression(Item))
 		{
 			return false;
 		}
@@ -470,6 +496,44 @@ bool UCCLProgressionAssetLibrary::CreateProjectileAssets()
 	return true;
 #else
 	return false;
+#endif
+}
+
+bool UCCLProgressionAssetLibrary::RebuildItemDefinitions()
+{
+#if WITH_EDITOR
+	auto* Unarmed = EditorAsset<UCCLItemDefinition>(TEXT("/Game/Combat"), TEXT("DA_Unarmed"));
+	auto* EnemyUnarmed = EditorAsset<UCCLItemDefinition>(TEXT("/Game/Combat"), TEXT("DA_EnemyUnarmed"));
+	auto* PlayerAttack = LoadObject<UCCLCombatDefinition>(nullptr, TEXT("/Game/Combat/DA_PlayerAttack.DA_PlayerAttack"));
+	auto* EnemyAttack = LoadObject<UCCLCombatDefinition>(nullptr, TEXT("/Game/Combat/DA_EnemyAttack.DA_EnemyAttack"));
+	auto* PlayerAbilities = LoadObject<UCCLAbilitySet>(nullptr, TEXT("/Game/Combat/DA_PlayerAbilities.DA_PlayerAbilities"));
+	auto* EnemyAbilities = LoadObject<UCCLAbilitySet>(nullptr, TEXT("/Game/Combat/DA_EnemyAbilities.DA_EnemyAbilities"));
+	if (!Unarmed || !EnemyUnarmed || !PlayerAttack || !EnemyAttack || !PlayerAbilities || !EnemyAbilities)
+	{
+		return false;
+	}
+
+	ConfigureUnarmedItem(*Unarmed, PlayerAttack, PlayerAbilities, TEXT("맨손"));
+	ConfigureUnarmedItem(*EnemyUnarmed, EnemyAttack, EnemyAbilities, TEXT("적의 맨손"));
+	return SaveProgression(Unarmed) && SaveProgression(EnemyUnarmed) && CreateProgressionAssets() && CreateEquipmentAssets() &&
+		   CreateProjectileAssets() &&
+		   BuildFood(TEXT("/Game/Progression"), TEXT("DA_Bread"), TEXT("빵"), TEXT("보관 온도와 습도에 따라 신선도와 곰팡이가 변하는 음식."), 86400., 43200., 43200.) &&
+																	   BuildFood(TEXT("/Game/Environment/Experiments"), TEXT("DA_FoodSample"), TEXT("실험용 빵"), TEXT("부패 기준 300초의 보관 조건 비교 표본."), 300., 120., 180.);
+#else
+	return false;
+#endif
+}
+
+void UCCLProgressionAssetLibrary::ConfigureUnarmedItem(UCCLItemDefinition& Item, UCCLCombatDefinition* Combat, UCCLAbilitySet* Abilities, const TCHAR* Label)
+{
+#if WITH_EDITOR
+	// 맨손은 단계 3에서 무브셋으로 바뀐다. 그때까지는 양손에 들 수 있는 근접 무기로 둔다.
+	DescribeProgression(&Item, Label, 1);
+	FCCLMeleeWeaponFragment Fists;
+	AllowHands(Fists);
+	Fists.Actions.Combat = Combat;
+	Fists.Actions.Abilities = Abilities;
+	Item.ItemFragments.Add(FInstancedStruct::Make(Fists));
 #endif
 }
 

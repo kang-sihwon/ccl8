@@ -37,7 +37,7 @@ bool FCCLInventoryWeapon::Reload(UCCLInventoryComponent& Inventory, FGuid Id)
 		return false;
 	}
 
-	const UCCLProjectileProfile* Profile = Weapon->Definition->FindFragment<FCCLItemFragment_ProjectileWeapon>()->Profile.Get();
+	const UCCLProjectileProfile* Profile = Weapon->Definition->FindFragment<FCCLRangedWeaponFragment>()->Profile.Get();
 	int32& LoadedAmmo = Weapon->GetState<FCCLItemState>().LoadedAmmo;
 	int32 Remaining = Profile->MagazineSize - LoadedAmmo;
 	for (FKSIInventoryEntry& Entry : Edit.GetEntries())
@@ -65,7 +65,7 @@ bool FCCLInventoryWeapon::CanFire(const UCCLInventoryComponent& Inventory, FGuid
 bool FCCLInventoryWeapon::CanReload(const UCCLInventoryComponent& Inventory, FGuid Id)
 {
 	const auto* Entry = Inventory.Find(Id);
-	const auto* Weapon = Entry && Entry->Definition ? Entry->Definition->FindFragment<FCCLItemFragment_ProjectileWeapon>() : nullptr;
+	const auto* Weapon = Entry && Entry->Definition ? Entry->Definition->FindFragment<FCCLRangedWeaponFragment>() : nullptr;
 	const auto* Profile = Weapon ? Weapon->Profile.Get() : nullptr;
 	return Profile && Profile->MagazineSize > Entry->GetState<FCCLItemState>().LoadedAmmo && Profile->Ammunition &&
 		   Inventory.GetEntries().ContainsByPredicate([Profile, Id](const FKSIInventoryEntry& E)
@@ -74,7 +74,7 @@ bool FCCLInventoryWeapon::CanReload(const UCCLInventoryComponent& Inventory, FGu
 
 bool FCCLInventoryWeapon::Validate(const FKSIInventoryEntry& Entry)
 {
-	const auto* Weapon = Entry.Definition ? Entry.Definition->FindFragment<FCCLItemFragment_ProjectileWeapon>() : nullptr;
+	const auto* Weapon = Entry.Definition ? Entry.Definition->FindFragment<FCCLRangedWeaponFragment>() : nullptr;
 	const int32 Maximum = Weapon && Weapon->Profile ? Weapon->Profile->MagazineSize : 0;
 	return Entry.GetState<FCCLItemState>().LoadedAmmo >= 0 && Entry.GetState<FCCLItemState>().LoadedAmmo <= Maximum;
 }

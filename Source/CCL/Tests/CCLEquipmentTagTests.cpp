@@ -14,12 +14,10 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(FCCLEquipmentTagTest, "CCL.Equipment.TagContrac
 bool FCCLEquipmentTagTest::RunTest(const FString& Parameters)
 {
 	auto* Item = NewObject<UCCLItemDefinition>();
-	FCCLItemFragment_Equip Equip;
-	Equip.DefaultSlotTag = CCLItemTags::Slot_RightHand;
-	Equip.AllowedSlots.AddTag(CCLItemTags::Slot_LeftHand);
-	Equip.AllowedSlots.AddTag(CCLItemTags::Slot_RightHand);
-	Item->ItemFragments.Add(FInstancedStruct::Make(Equip));
-	FCCLItemFragment_MeleeWeapon Weapon;
+	FCCLMeleeWeaponFragment Weapon;
+	Weapon.DefaultSlot = CCLItemTags::Slot_RightHand;
+	Weapon.AllowedSlots.AddTag(CCLItemTags::Slot_LeftHand);
+	Weapon.AllowedSlots.AddTag(CCLItemTags::Slot_RightHand);
 	Weapon.HandUsage = CCLItemTags::HandUsage_TwoHanded;
 	Item->ItemFragments.Add(FInstancedStruct::Make(Weapon));
 	TArray<FGameplayTag> Slots;
@@ -29,16 +27,34 @@ bool FCCLEquipmentTagTest::RunTest(const FString& Parameters)
 			  CCLEquipment::GetOccupiedSlots(Item, FGameplayTag::RequestGameplayTag(TEXT("Equipment.Slot.Hand")), Slots));
 	TestFalse(TEXT("attachment tag is not an equipment slot"),
 			  CCLEquipment::GetOccupiedSlots(Item, CCLItemTags::Attachment_GripRight, Slots));
-	Item->ItemFragments[0].GetMutable<FCCLItemFragment_Equip>().AllowedSlots.RemoveTag(CCLItemTags::Slot_LeftHand);
+	Item->ItemFragments[0].GetMutable<FCCLMeleeWeaponFragment>().AllowedSlots.RemoveTag(CCLItemTags::Slot_LeftHand);
 	TestFalse(TEXT("two-hand requires both allowed slots"), CCLEquipment::GetOccupiedSlots(Item, CCLItemTags::Slot_RightHand, Slots));
-	Item->ItemFragments[0] = FInstancedStruct::Make(Equip);
-	Item->ItemFragments[1].GetMutable<FCCLItemFragment_MeleeWeapon>().HandUsage = CCLItemTags::Slot_Armor;
+	Item->ItemFragments[0] = FInstancedStruct::Make(Weapon);
+	Item->ItemFragments[0].GetMutable<FCCLMeleeWeaponFragment>().HandUsage = CCLItemTags::Slot_Armor;
 	TArray<FText> Errors;
 	TestFalse(TEXT("wrong hand-usage namespace rejected"), Item->ValidateDefinition(Errors));
-	Item->ItemFragments[1] = FInstancedStruct::Make(Weapon);
-	Item->ItemFragments.Add(FInstancedStruct::Make(Equip));
+	Item->ItemFragments[0] = FInstancedStruct::Make(Weapon);
+	Errors.Reset();
+	TestTrue(TEXT("one hand equipment fragment is valid"), Item->ValidateDefinition(Errors));
+	FCCLEquipmentFragment Armor;
+	Armor.DefaultSlot = CCLItemTags::Slot_Armor;
+	Armor.AllowedSlots.AddTag(CCLItemTags::Slot_Armor);
+	Item->ItemFragments.Add(FInstancedStruct::Make(Armor));
 	Errors.Reset();
 	TestFalse(TEXT("duplicate fragments rejected"), Item->ValidateDefinition(Errors));
+	Item->ItemFragments.SetNum(1);
+	Item->ItemFragments.Add(FInstancedStruct::Make(FCCLVisualFragment()));
+	Errors.Reset();
+	TestFalse(TEXT("visible equipment needs attachments"), Item->ValidateDefinition(Errors));
+	FCCLItemAttachment Grip;
+	Grip.Slot = CCLItemTags::Slot_RightHand;
+	Grip.Point = CCLItemTags::Attachment_GripRight;
+	Item->ItemFragments[0].GetMutable<FCCLMeleeWeaponFragment>().Attachments.Add(Grip);
+	Errors.Reset();
+	TestTrue(TEXT("two-hand visual needs only the right attachment"), Item->ValidateDefinition(Errors));
+	Item->MaxStackCount = 2;
+	Errors.Reset();
+	TestFalse(TEXT("equipment cannot stack"), Item->ValidateDefinition(Errors));
 
 	auto* Profile = LoadObject<UCCLAttachmentProfile>(nullptr, TEXT("/Game/Progression/DA_HumanoidAttachments.DA_HumanoidAttachments"));
 	if (!TestNotNull(TEXT("generated attachment profile"), Profile))

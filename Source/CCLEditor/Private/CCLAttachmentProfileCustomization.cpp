@@ -107,8 +107,9 @@ class SCCLAttachmentViewport : public SEditorViewport
 
 		const FGameplayTag Slot =
 			CCLEquipment::IsTwoHanded(Value->PreviewItem) ? FGameplayTag(CCLItemTags::Slot_RightHand) : Value->PreviewSlot;
-		const auto* Visual = Value->PreviewItem->FindFragment<FCCLItemFragment_Visual>();
-		const auto* Binding = Visual ? Visual->FindAttachment(Slot) : nullptr;
+		const FCCLVisualFragment* Visual = Value->PreviewItem->FindFragment<FCCLVisualFragment>();
+		const FCCLEquipmentFragment* Equipment = Value->PreviewItem->FindFragment<FCCLEquipmentFragment>();
+		const FCCLItemAttachment* Binding = Visual && Equipment ? Equipment->FindAttachment(Slot) : nullptr;
 		FName Socket;
 		if (!Binding || !Value->Resolve(Value->ReferenceMesh, Binding->Point, Socket, Status))
 		{
@@ -120,16 +121,16 @@ class SCCLAttachmentViewport : public SEditorViewport
 			return;
 		}
 
-		if (const auto* Skeletal = Value->PreviewItem->FindFragment<FCCLItemFragment_SkeletalVisual>(); Skeletal && Skeletal->EquippedMesh)
+		if (const auto* Skeletal = Value->PreviewItem->FindFragment<FCCLSkeletalMeshFragment>(); Skeletal && Skeletal->EquippedMesh)
 		{
 			auto* Mesh = NewObject<USkeletalMeshComponent>();
 			Mesh->SetSkeletalMesh(Skeletal->EquippedMesh);
 			Gear = Mesh;
 		}
-		else if (Visual->DroppedMesh)
+		else if (Visual->WorldMesh)
 		{
 			auto* Mesh = NewObject<UStaticMeshComponent>();
-			Mesh->SetStaticMesh(Visual->DroppedMesh);
+			Mesh->SetStaticMesh(Visual->WorldMesh);
 			Gear = Mesh;
 		}
 

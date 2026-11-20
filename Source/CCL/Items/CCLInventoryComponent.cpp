@@ -40,8 +40,7 @@ bool UCCLInventoryComponent::ValidateEntries(const TArray<FKSIInventoryEntry>& E
 		}
 
 		FString FoodError;
-		if (!CCLFood::Validate(Entry.GetState<FCCLItemState>().Food, Entry.GetState<FCCLItemState>().Food.IsPresent() ? Entry.Quantity : 0, FoodError)
-			|| (Entry.GetState<FCCLItemState>().Food.IsPresent() && !Entry.Definition->FindFragment<FCCLItemFragment_Perishable>()))
+		if (!CCLFood::Validate(Entry.GetState<FCCLItemState>().Food, Entry.GetState<FCCLItemState>().Food.IsPresent() ? Entry.Quantity : 0, FoodError) || (Entry.GetState<FCCLItemState>().Food.IsPresent() && !Entry.Definition->FindFragment<FCCLPerishableFragment>()))
 		{
 			return false;
 		}
@@ -85,7 +84,7 @@ bool UCCLInventoryComponent::CanAdd(const UKSIItemDefinition* Definition, int32 
 		return false;
 	}
 
-	const bool bPerishable = Definition->FindFragment<FCCLItemFragment_Perishable>() != nullptr;
+	const bool bPerishable = Definition->FindFragment<FCCLPerishableFragment>() != nullptr;
 	for (const FKSIInventoryEntry& Entry : GetEntries())
 	{
 		if (Entry.Slot < 0 || Entry.Definition != Definition || Quantity > Definition->GetMaxStack() - Entry.Quantity)
@@ -104,7 +103,7 @@ bool UCCLInventoryComponent::CanAdd(const UKSIItemDefinition* Definition, int32 
 
 bool UCCLInventoryComponent::StageAdd(TArray<FKSIInventoryEntry>& Entries, UKSIItemDefinition* Definition, int32 Quantity, FGuid& OutId) const
 {
-	const FCCLItemFragment_Perishable* Fragment = Definition ? Definition->FindFragment<FCCLItemFragment_Perishable>() : nullptr;
+	const FCCLPerishableFragment* Fragment = Definition ? Definition->FindFragment<FCCLPerishableFragment>() : nullptr;
 	if (!Fragment)
 	{
 		return Super::StageAdd(Entries, Definition, Quantity, OutId);
@@ -168,7 +167,7 @@ bool UCCLInventoryComponent::StageRemove(TArray<FKSIInventoryEntry>& Entries, FG
 bool UCCLInventoryComponent::CanUsePlainTransfer(const FKSIInventoryEntry& Entry) const
 {
 	return Entry.Definition && !Entry.GetState<FCCLItemState>().Food.IsPresent() && Entry.GetState<FCCLItemState>().LoadedAmmo == 0 &&
-		   !Entry.Definition->FindFragment<FCCLItemFragment_Perishable>();
+		   !Entry.Definition->FindFragment<FCCLPerishableFragment>();
 }
 
 bool UCCLInventoryComponent::CanStackEntry(const FKSIInventoryEntry& Entry) const

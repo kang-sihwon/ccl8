@@ -115,7 +115,7 @@ void UCCLFighterComponent::PresentEquipment(UKSIItemDefinition* LeftHand, UKSIIt
 	RefreshEquipmentVisuals();
 	Item = RightHandItem ? RightHandItem : LeftHandItem;
 
-	if (!Item || !Item->FindFragment<FCCLItemFragment_Weapon>())
+	if (!Item || !Item->FindFragment<FCCLHandEquipmentFragment>())
 	{
 		Item = LoadDefaultItem();
 	}
@@ -173,11 +173,11 @@ void UCCLFighterComponent::Initialize(UCCLAbilitySystemComponent* InASC)
 
 		if (Item)
 		{
-			const auto* Fragment = Item->FindFragment<FCCLItemFragment_Weapon>();
+			const FCCLHandEquipmentFragment* Fragment = Item->FindFragment<FCCLHandEquipmentFragment>();
 
-			if (Fragment && Fragment->Abilities)
+			if (Fragment && Fragment->Actions.Abilities)
 			{
-				Fragment->Abilities->GrantTo(*ASC, Item);
+				Fragment->Actions.Abilities->GrantTo(*ASC, Item);
 			}
 		}
 
@@ -260,13 +260,14 @@ void UCCLFighterComponent::RefreshEquipmentVisuals()
 			continue;
 		}
 
-		const auto* Visual = Definition->FindFragment<FCCLItemFragment_Visual>();
-		if (!Visual)
+		const FCCLVisualFragment* Visual = Definition->FindFragment<FCCLVisualFragment>();
+		const FCCLEquipmentFragment* Equipment = Definition->FindFragment<FCCLEquipmentFragment>();
+		if (!Visual || !Equipment)
 		{
 			continue;
 		}
 
-		const auto* Binding = Visual->FindAttachment(CCLEquipment::SlotAt(Hand));
+		const FCCLItemAttachment* Binding = Equipment->FindAttachment(CCLEquipment::SlotAt(Hand));
 		FName Socket;
 		FString Error;
 		if (!Binding || !Profile ||
@@ -277,7 +278,7 @@ void UCCLFighterComponent::RefreshEquipmentVisuals()
 		}
 
 		UMeshComponent* Mesh = nullptr;
-		if (const auto* Skeletal = Definition->FindFragment<FCCLItemFragment_SkeletalVisual>(); Skeletal && Skeletal->EquippedMesh)
+		if (const auto* Skeletal = Definition->FindFragment<FCCLSkeletalMeshFragment>(); Skeletal && Skeletal->EquippedMesh)
 		{
 			auto* Component = NewObject<USkeletalMeshComponent>(Character);
 			Component->SetSkeletalMesh(Skeletal->EquippedMesh);
@@ -288,10 +289,10 @@ void UCCLFighterComponent::RefreshEquipmentVisuals()
 
 			Mesh = Component;
 		}
-		else if (Visual->DroppedMesh)
+		else if (Visual->WorldMesh)
 		{
 			auto* Component = NewObject<UStaticMeshComponent>(Character);
-			Component->SetStaticMesh(Visual->DroppedMesh);
+			Component->SetStaticMesh(Visual->WorldMesh);
 			Mesh = Component;
 		}
 
@@ -380,8 +381,8 @@ const UCCLCombatDefinition* UCCLFighterComponent::GetAttack() const
 		return AttackOverride;
 	}
 
-	const auto* Fragment = Item ? Item->FindFragment<FCCLItemFragment_Weapon>() : nullptr;
-	return Fragment ? Fragment->Combat.Get() : nullptr;
+	const FCCLHandEquipmentFragment* Fragment = Item ? Item->FindFragment<FCCLHandEquipmentFragment>() : nullptr;
+	return Fragment ? Fragment->Actions.Combat.Get() : nullptr;
 }
 
 bool UCCLFighterComponent::IsDead() const

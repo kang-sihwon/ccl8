@@ -332,7 +332,7 @@ bool ACCLCampaignDirector::ValidateSupplies(FString& Error) const
 	{
 		auto* Item = Spawn.Item.LoadSynchronous();
 		if (!Spawn.PlacementId.IsValid() || Ids.Contains(Spawn.PlacementId) || !Item || Spawn.Quantity < 1 ||
-			Spawn.Quantity > 1000000 || Item->FindFragment<FCCLItemFragment_Perishable>())
+			Spawn.Quantity > 1000000 || Item->FindFragment<FCCLPerishableFragment>())
 		{
 			Error = TEXT("Supply needs a unique placement ID, valid quantity and non-perishable item. Food uses world persistence.");
 			return false;

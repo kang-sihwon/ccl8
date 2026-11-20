@@ -89,7 +89,7 @@ bool UCCLLoadoutComponent::Equip(FGuid Id, FGameplayTag Slot)
 	}
 	auto* Inventory = GetInventory();
 	const auto* Entry = Inventory ? Inventory->Find(Id) : nullptr;
-	const auto* Equip = Entry && Entry->Definition ? Entry->Definition->FindFragment<FCCLItemFragment_Equip>() : nullptr;
+	const auto* Equip = Entry && Entry->Definition ? Entry->Definition->FindFragment<FCCLEquipmentFragment>() : nullptr;
 	if (!Equip || Entry->Quantity != 1)
 	{
 		return Report(false, TEXT("소지 중인 장비를 선택해 줘."));
@@ -103,7 +103,7 @@ bool UCCLLoadoutComponent::Equip(FGuid Id, FGameplayTag Slot)
 
 	if (!Slot.IsValid())
 	{
-		Slot = Equip->DefaultSlotTag;
+		Slot = Equip->DefaultSlot;
 	}
 	TArray<FGameplayTag> Occupied;
 	if (!CCLEquipment::GetOccupiedSlots(Entry->Definition, Slot, Occupied))
@@ -418,8 +418,8 @@ ECCLHandAction UCCLLoadoutComponent::GetHandAction(FGameplayTag Hand) const
 		return ECCLHandAction::Attack;
 	}
 
-	const auto* Weapon = Item->FindFragment<FCCLItemFragment_Weapon>();
-	return Weapon ? (Hand == CCLItemTags::Slot_LeftHand ? Weapon->LeftAction : Weapon->RightAction) : ECCLHandAction::None;
+	const FCCLHandEquipmentFragment* Equipment = Item->FindFragment<FCCLHandEquipmentFragment>();
+	return Equipment ? (Hand == CCLItemTags::Slot_LeftHand ? Equipment->Actions.LeftAction : Equipment->Actions.RightAction) : ECCLHandAction::None;
 }
 
 FGameplayTag UCCLLoadoutComponent::PrepareHandAction(FGameplayTag Hand)
@@ -583,9 +583,9 @@ bool UCCLLoadoutComponent::Restore(const TArray<FCCLEquippedSlot>& Equipment, co
 bool UCCLLoadoutComponent::RequestCustomHandAction(FGameplayTag Hand, bool bPressed)
 {
 	const auto* Item = GetEquippedItem(Hand);
-	const auto* Weapon = Item ? Item->FindFragment<FCCLItemFragment_Weapon>() : nullptr;
-	const auto* Action = Weapon ? Weapon->HandActions.Find(Hand) : nullptr;
-	if (!Weapon || !Weapon->ActionSet || !Action)
+	const FCCLHandEquipmentFragment* Equipment = Item ? Item->FindFragment<FCCLHandEquipmentFragment>() : nullptr;
+	const FGameplayTag* Action = Equipment ? Equipment->Actions.HandActions.Find(Hand) : nullptr;
+	if (!Equipment || !Equipment->Actions.ActionSet || !Action)
 	{
 		return false;
 	}
@@ -610,8 +610,8 @@ void UCCLLoadoutComponent::ServerCustomHandAction_Implementation(FGameplayTag Ha
 	}
 
 	const auto* Item = GetEquippedItem(Hand);
-	const auto* Weapon = Item ? Item->FindFragment<FCCLItemFragment_Weapon>() : nullptr;
-	const auto* Action = Weapon ? Weapon->HandActions.Find(Hand) : nullptr;
+	const FCCLHandEquipmentFragment* Equipment = Item ? Item->FindFragment<FCCLHandEquipmentFragment>() : nullptr;
+	const FGameplayTag* Action = Equipment ? Equipment->Actions.HandActions.Find(Hand) : nullptr;
 	if (Action)
 	{
 		ExecuteCustom(GetEquippedId(Hand), *Action, bPressed);
@@ -621,9 +621,9 @@ void UCCLLoadoutComponent::ServerCustomHandAction_Implementation(FGameplayTag Ha
 bool UCCLLoadoutComponent::ExecuteCustom(FGuid Id, FGameplayTag Action, bool bPressed)
 {
 	const auto* Entry = GetInventory() ? GetInventory()->Find(Id) : nullptr;
-	const auto* Weapon = Entry && Entry->Definition ? Entry->Definition->FindFragment<FCCLItemFragment_Weapon>() : nullptr;
+	const FCCLHandEquipmentFragment* Equipment = Entry && Entry->Definition ? Entry->Definition->FindFragment<FCCLHandEquipmentFragment>() : nullptr;
 	auto* Actions = GetOwner()->FindComponentByClass<UKSIActionComponent>();
-	if (!Actions || !IsEquipped(Id) || !Weapon || !Weapon->ActionSet)
+	if (!Actions || !IsEquipped(Id) || !Equipment || !Equipment->Actions.ActionSet)
 	{
 		return false;
 	}
@@ -645,7 +645,7 @@ bool UCCLLoadoutComponent::ExecuteCustom(FGuid Id, FGameplayTag Action, bool bPr
 
 	if (!Actions->HasSource(Id))
 	{
-		if (!Actions->RegisterSource(Id, Entry->Definition, Weapon->ActionSet->Actions))
+		if (!Actions->RegisterSource(Id, Entry->Definition, Equipment->Actions.ActionSet->Actions))
 		{
 			return false;
 		}

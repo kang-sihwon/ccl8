@@ -2,6 +2,20 @@
 
 #include "Misc/DataValidation.h"
 
+namespace
+{
+	// 공용 루트 바로 아래부터 이 구조체까지의 계열이다.
+	TArray<const UStruct*> FamilyOf(const UScriptStruct* Struct)
+	{
+		TArray<const UStruct*> Family;
+		for (const UStruct* Current = Struct; Current && Current != FKSIItemFragmentData::StaticStruct(); Current = Current->GetSuperStruct())
+		{
+			Family.Add(Current);
+		}
+		return Family;
+	}
+} // namespace
+
 #if WITH_EDITOR
 EDataValidationResult UKSIItemDefinition::IsDataValid(FDataValidationContext& Context) const
 {
@@ -34,6 +48,22 @@ bool UKSIItemDefinition::ValidateDefinition(TArray<FText>& Errors) const
 		}
 
 		Value->Validate(Context);
+	}
+
+	// 루트 아래 조상을 공유하는 Fragment가 둘이면 FindFragment의 결과가 넣은 순서에 달린다.
+	for (int32 Index = 0; Index < ItemFragments.Num(); ++Index)
+	{
+		const TArray<const UStruct*> Family = FamilyOf(ItemFragments[Index].GetScriptStruct());
+		for (int32 Other = Index + 1; Other < ItemFragments.Num(); ++Other)
+		{
+			const TArray<const UStruct*> OtherFamily = FamilyOf(ItemFragments[Other].GetScriptStruct());
+			const bool bShared = Family.ContainsByPredicate([&OtherFamily](const UStruct* Struct)
+															{ return OtherFamily.Contains(Struct); });
+			if (bShared)
+			{
+				Errors.Add(FText::FromString(TEXT("Two fragments share a family, so FindFragment would depend on their order.")));
+			}
+		}
 	}
 	return Errors.IsEmpty();
 }

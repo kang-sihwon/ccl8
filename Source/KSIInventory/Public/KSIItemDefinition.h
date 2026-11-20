@@ -47,7 +47,7 @@ public:
 	// 정의 필드를 검사하고 각 Fragment의 Validate를 부른다.
 	virtual bool ValidateDefinition(TArray<FText>& Errors) const;
 
-	// 파생 Fragment도 찾는다. 같은 계열의 Fragment가 둘이면 먼저 넣은 것을 돌려준다.
+	// 파생 Fragment도 찾는다. 같은 계열의 Fragment를 둘 넣은 정의는 ValidateDefinition이 거절한다.
 	template <class T>
 	const T* FindFragment() const
 	{

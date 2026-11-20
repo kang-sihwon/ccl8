@@ -70,7 +70,7 @@ void UCCLFoodSmokeSubsystem::Tick(float DeltaTime)
 	}
 
 	auto* Definition = FCCLSessionCodec::Item(TEXT("DA_Bread"));
-	if (!Check(Definition && Definition->FindFragment<FCCLItemFragment_Perishable>(), TEXT("authored bread")))
+	if (!Check(Definition && Definition->FindFragment<FCCLPerishableFragment>(), TEXT("authored bread")))
 	{
 		return;
 	}

@@ -27,6 +27,23 @@ UCCLSkillDefinition* FCCLSessionCodec::Skill(FName Id)
 
 namespace
 {
+	// 형식 3은 장착 부위를 지금은 없는 enum의 이름으로 기록했다. 순서는 CCLEquipment::Slots()와 같다.
+	int32 LegacySlotIndex(const FString& Name)
+	{
+		static const TCHAR* const Names[] = {TEXT("LeftHand"), TEXT("RightHand"), TEXT("Armor"), TEXT("Boots"),
+																									  TEXT("Cloak"), TEXT("Necklace"), TEXT("RingOne"), TEXT("RingTwo")};
+		const int32 Scope = Name.Find(TEXT("::"));
+		const FString Short = Scope == INDEX_NONE ? Name : Name.RightChop(Scope + 2);
+		for (int32 Index = 0; Index < UE_ARRAY_COUNT(Names); ++Index)
+		{
+			if (Short == Names[Index])
+			{
+				return Index;
+			}
+		}
+		return INDEX_NONE;
+	}
+
 // Format budgets, not content rules. The campaign director validates the guard mask against its road.
 constexpr int32 MaxRemainingSupplies = 64;
 constexpr int32 MaxSkills = 16;
@@ -122,7 +139,7 @@ bool ValidateRecord(const FCCLSessionRecord& R, bool bProfile, FGuid ProfileWorl
 			return false;
 		}
 
-		const auto* Weapon = Definition->FindFragment<FCCLItemFragment_ProjectileWeapon>();
+		const auto* Weapon = Definition->FindFragment<FCCLRangedWeaponFragment>();
 		const int32 Maximum = Weapon && Weapon->Profile ? Weapon->Profile->MagazineSize : 0;
 		if (Entry.LoadedAmmo < 0 || Entry.LoadedAmmo > Maximum)
 		{
@@ -131,10 +148,7 @@ bool ValidateRecord(const FCCLSessionRecord& R, bool bProfile, FGuid ProfileWorl
 
 		FCCLFoodState Food;
 		FString FoodError;
-		if (!CCLFood::Decode(Entry.Food, Food, FoodError)
-			|| !CCLFood::Validate(Food, Food.IsPresent() ? Entry.Quantity : 0, FoodError)
-			|| (Food.IsPresent() && (R.Version < 7 || !Definition->FindFragment<FCCLItemFragment_Perishable>()
-				|| Food.WorldId != FoodWorldId || Food.UpdatedWorldSeconds > FoodWorldSeconds)))
+		if (!CCLFood::Decode(Entry.Food, Food, FoodError) || !CCLFood::Validate(Food, Food.IsPresent() ? Entry.Quantity : 0, FoodError) || (Food.IsPresent() && (R.Version < 7 || !Definition->FindFragment<FCCLPerishableFragment>() || Food.WorldId != FoodWorldId || Food.UpdatedWorldSeconds > FoodWorldSeconds)))
 		{
 			return false;
 		}
@@ -155,7 +169,7 @@ bool ValidateRecord(const FCCLSessionRecord& R, bool bProfile, FGuid ProfileWorl
 
 		if (R.Equipped == Entry.Id)
 		{
-			bLegacyEquipmentFound = Definition->FindFragment<FCCLItemFragment_Equip>() != nullptr;
+			bLegacyEquipmentFound = Definition->FindFragment<FCCLEquipmentFragment>() != nullptr;
 		}
 	}
 
@@ -182,7 +196,7 @@ bool ValidateRecord(const FCCLSessionRecord& R, bool bProfile, FGuid ProfileWorl
 
 			const auto* Entry = R.Items.FindByPredicate([&](const auto& Value) { return Value.Id == Slot.Id; });
 			const auto* Definition = Entry ? FCCLSessionCodec::Item(Entry->Definition) : nullptr;
-			const auto* Equip = Definition ? Definition->FindFragment<FCCLItemFragment_Equip>() : nullptr;
+			const auto* Equip = Definition ? Definition->FindFragment<FCCLEquipmentFragment>() : nullptr;
 			if (!Entry || Entry->Slot != INDEX_NONE || Entry->Quantity != 1 || !Equip || !Equip->Allows(Slot.Slot))
 			{
 				return false;
@@ -238,7 +252,7 @@ bool ValidateRecord(const FCCLSessionRecord& R, bool bProfile, FGuid ProfileWorl
 	{
 		const auto* Definition = FCCLSessionCodec::Item(Supply.Definition);
 		if (!Supply.PlacementId.IsValid() || Placements.Contains(Supply.PlacementId) || !Definition ||
-			Supply.Quantity < 1 || Supply.Quantity > 1000000 || Definition->FindFragment<FCCLItemFragment_Perishable>())
+			Supply.Quantity < 1 || Supply.Quantity > 1000000 || Definition->FindFragment<FCCLPerishableFragment>())
 		{
 			return false;
 		}
@@ -451,7 +465,7 @@ bool FCCLSessionCodec::Decode(const TArray<uint8>& Bytes, FCCLSessionRecord& Rec
 			}
 			else if (SlotValue && SlotValue->Type == EJson::String && Object->TryGetStringField(TEXT("slot"), Name))
 			{
-				Slot.Slot = CCLEquipment::SlotAt(static_cast<int32>(StaticEnum<ECCLEquipmentSlot>()->GetValueByNameString(Name)));
+				Slot.Slot = CCLEquipment::SlotAt(LegacySlotIndex(Name));
 			}
 			else if (Number(Object, TEXT("slot"), 0, 7))
 			{
@@ -515,9 +529,9 @@ bool FCCLSessionCodec::Decode(const TArray<uint8>& Bytes, FCCLSessionRecord& Rec
 				return false;
 			}
 
-			const auto* Equip = Item(Entry->Definition)->FindFragment<FCCLItemFragment_Equip>();
+			const auto* Equip = Item(Entry->Definition)->FindFragment<FCCLEquipmentFragment>();
 			TArray<FGameplayTag> Slots;
-			if (!Equip || !CCLEquipment::GetOccupiedSlots(Item(Entry->Definition), Equip->DefaultSlotTag, Slots))
+			if (!Equip || !CCLEquipment::GetOccupiedSlots(Item(Entry->Definition), Equip->DefaultSlot, Slots))
 			{
 				return false;
 			}
