@@ -482,7 +482,7 @@ void UCCLFoodPickupSmokeSubsystem::Tick(float DeltaTime)
 		const auto Lease = AgentStore.Acquire(AgentStore.GetHandle(Life.Agents[0].Id), FGuid::NewGuid());
 		const bool Rejected = Lease.Writer.IsValid() && !R->Restore(Agents->GetSimulation(), GroundSave, Error);
 		const bool Released = AgentStore.Release(Lease);
-		if (!Check(Rejected && Released && !FindPickup() && !Target->IsTransactionOpen() &&
+		if (!Check(Rejected && Released && !FindPickup() && !Target->IsEditOpen() &&
 					   Target->Find(OriginalId)->Quantity == 6,
 				   TEXT("life failure discards candidate pickup and preserves inventory")))
 		{
@@ -530,7 +530,7 @@ void UCCLFoodPickupSmokeSubsystem::Tick(float DeltaTime)
 		const bool Rejected = Lease.Writer.IsValid() && !R->Restore(Agents->GetSimulation(), CollectedSave, Error);
 		const bool Released = AgentStore.Release(Lease);
 		if (!Check(Rejected && Released && FindPickup() == Pickup && Target->GetEntries().IsEmpty() &&
-					   !Pickup->GetFoodInventory()->IsTransactionOpen(),
+					   !Pickup->GetFoodInventory()->IsEditOpen(),
 				   TEXT("failed restore preserves original live pickup")))
 		{
 			return;

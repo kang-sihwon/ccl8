@@ -1,5 +1,6 @@
 #include "CCLAccountComponent.h"
 
+#include "KSIInventoryEdit.h"
 #include "CCLAgentWorldSubsystem.h"
 #include "CCLAgentTags.h"
 #include "Environment/CCLWorldSimulationSubsystem.h"
@@ -152,16 +153,16 @@ bool UCCLAccountComponent::Purchase(UCCLInventoryComponent* Inventory, const FCC
 		Stock.Resources.Add(Offer.StockResource, Offer.InitialStock);
 	}
 
-	if (CCLEconomy::Quantity(Economy, ShopInventory, Offer.StockResource) < 1 || !Inventory->BeginTransaction())
+	if (CCLEconomy::Quantity(Economy, ShopInventory, Offer.StockResource) < 1)
 	{
 		return false;
 	}
 
-	const auto Before = Inventory->GetEntries();
-	const FGuid DeliveredItem = Inventory->Add(Item, 1);
-	if (!DeliveredItem.IsValid())
+	// 경제 거래가 성립할 때만 아이템 지급을 확정한다.
+	FKSIInventoryEdit Edit(*Inventory);
+	FGuid DeliveredItem;
+	if (!Edit.Add(Item, 1, DeliveredItem) || !Edit.Validate())
 	{
-		Inventory->EndTransaction(false);
 		return false;
 	}
 
@@ -180,13 +181,12 @@ bool UCCLAccountComponent::Purchase(UCCLInventoryComponent* Inventory, const FCC
 	Transfer.Quantity = 1;
 	Request.Items.Add(Transfer);
 	const bool bSucceeded = CCLEconomy::Execute(Economy, Request).bSucceeded != 0;
-	if (!bSucceeded)
+	if (bSucceeded)
 	{
-		Inventory->Restore(Before);
+		verify(Edit.Commit());
 	}
 
 	RefreshView();
-	Inventory->EndTransaction(bSucceeded);
 	return bSucceeded;
 }
 

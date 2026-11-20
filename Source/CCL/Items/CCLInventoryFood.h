@@ -16,7 +16,6 @@ public:
 	static bool FoodContext(const UCCLInventoryComponent& Inventory, FGuid& WorldId, double& WorldSeconds);
 	static bool BuildFoodAddition(const UCCLInventoryComponent& Inventory, TArray<FKSIInventoryEntry>& Entries, UKSIItemDefinition* Definition,
 	const FCCLFoodState& SourceFood, double WorldSeconds, FGuid& AddedId);
-	static FGuid AddFood(UCCLInventoryComponent& Inventory, UKSIItemDefinition* Definition, const FCCLFoodState& Food);
 	static bool MergeFood(UCCLInventoryComponent& Inventory, FGuid SourceId, FGuid DestinationId);
 	static FGuid SplitFood(UCCLInventoryComponent& Inventory, FGuid SourceId, int32 Count, int32 Slot);
 	static bool TransferFood(UCCLInventoryComponent& Inventory, FGuid SourceId, int32 Count, UCCLInventoryComponent* Destination);

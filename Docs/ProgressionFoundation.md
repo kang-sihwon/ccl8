@@ -1,6 +1,6 @@
 # 인벤토리·장비·성장 설계
 
-마을의 보급품 획득, 장비 장착, 회복품 사용, 스킬 포인트 소비를 전투에 연결했고 Standalone, Dedicated, Listen, 저장 복원, 패키지 화면에서 검증했다. 이 문서는 아이템 정의, 소유, 콘텐츠 초안을 정하고 하위 문서로 안내한다. [StudyRoadmap](StudyRoadmap.md)의 단계 4 사양이며 근거는 [결정 15](decisions/0015-struct-fragments-and-two-handed-gear.md)와 [결정 16](decisions/0016-tagged-slots-and-attachments.md)이다. 값과 콘텐츠 명칭은 구현용 초안이며 최종 밸런스와 세계관이 아니다.
+마을의 보급품 획득, 장비 장착, 회복품 사용, 스킬 포인트 소비를 전투에 연결했고 Standalone, Dedicated, Listen, 저장 복원, 패키지 화면에서 검증했다. 이 문서는 아이템 정의, 소유, 콘텐츠 초안을 정하고 하위 문서로 안내한다. [StudyRoadmap](StudyRoadmap.md)의 단계 4 사양이며 근거는 [결정 15](decisions/0015-struct-fragments-and-two-handed-gear.md)와 [결정 16](decisions/0016-tagged-slots-and-attachments.md)이다. 2026-11-19에 [결정 68](decisions/0068-item-fragment-hierarchy.md)-[70](decisions/0070-rebuild-item-data-without-conversion.md)으로 Fragment 계층, 손 입력, 데이터 재생성을 다시 정했다. 2026-11-20에 구현 단계 1(인벤토리 편집 객체)만 마쳤고, 아래 내용은 현재 구현이다. 값과 콘텐츠 명칭은 구현용 초안이며 최종 밸런스와 세계관이 아니다.
 
 ## 하위 문서
 
@@ -9,6 +9,7 @@
 | [장비](ProgressionFoundation/Equipment.md) | 장착 규칙, 슬롯과 부착 태그, 변경 순서, 장비 에셋 도구를 바꿀 때 |
 | [인벤토리 화면과 일관성](ProgressionFoundation/Inventory.md) | 화면, 입력, 서버 검증, 복제와 저장 경계를 바꿀 때 |
 | [성장 검증 기록](ProgressionFoundation/Verification.md) | 인벤토리·장비·성장의 실행 결과와 2026-10-11 후속 수정을 확인할 때 |
+| [아이템 축 재설계 검토](ProgressionFoundation/ItemRedesign-2026-11-19.md) | 결정 68-72를 정한 검토 과정과 대안을 볼 때. 확정한 목표 구조는 [장비의 재설계 계약](ProgressionFoundation/Equipment.md#재설계-계약)이 소유한다 |
 
 ## 목표와 책임
 

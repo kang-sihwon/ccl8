@@ -4,6 +4,7 @@
 #include "Subsystems/WorldSubsystem.h"
 #include "CCLInventorySnapshot.h"
 #include "CCLInventoryComponent.h"
+#include "KSIInventoryEdit.h"
 #include "KSIWorldParticipant.h"
 #include "Environment/CCLWorldAdvanceParticipant.h"
 #include "CCLInventoryPersistenceSubsystem.generated.h"
@@ -62,7 +63,8 @@ private:
 	TMap<FGuid, TWeakObjectPtr<UCCLInventoryComponent>> Live;
 	TMap<FGuid, FCCLInventorySnapshot> Prepared;
 	TMap<TWeakObjectPtr<UCCLInventoryComponent>, TArray<FKSIInventoryEntry>> Pending;
-	TArray<TWeakObjectPtr<UCCLInventoryComponent>> Locked;
+	// Prepare에서 열고 Publish까지 유지한다. 잠긴 동안 다른 쓰기는 거절된다.
+	TArray<TUniquePtr<FKSIInventoryEdit>> Edits;
 	TArray<TWeakObjectPtr<ACCLWorldPickup>> RetiredPickups;
 
 	UPROPERTY(Transient)

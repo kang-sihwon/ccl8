@@ -22,7 +22,7 @@ ACCLWorldPickup* PickupOwner(const UCCLInventoryComponent& Inventory)
 
 bool CaptureInventory(const UCCLInventoryComponent& Inventory, FCCLInventorySnapshot& Record, FString& Error)
 {
-	if (Inventory.IsTransactionOpen() || !Inventory.CanRestore(Inventory.GetEntries()))
+	if (Inventory.IsEditOpen() || !Inventory.CanRestore(Inventory.GetEntries()))
 	{
 		return Reject(Error, TEXT("Inventory is busy or invalid."));
 	}
@@ -171,7 +171,7 @@ bool UCCLInventoryPersistenceSubsystem::Bind(UCCLInventoryComponent& Inventory, 
 {
 	const auto* Runtime = GetWorld()->GetSubsystem<UCCLWorldSimulationSubsystem>();
 	if (bPreparing || !Id.IsValid() || Inventory.GetWorld() != GetWorld() || !Inventory.GetOwner()->HasAuthority() ||
-		Inventory.IsTransactionOpen() || !Runtime || !Runtime->IsRunning() ||
+		Inventory.IsEditOpen() || !Runtime || !Runtime->IsRunning() ||
 		(Inventory.PersistenceId.IsValid() && Inventory.PersistenceId != Id))
 	{
 		return Reject(Error, TEXT("Cannot bind this inventory to a persistent owner."));
@@ -318,7 +318,7 @@ bool UCCLInventoryPersistenceSubsystem::Capture(FGuid WorldId, double WorldSecon
 	TConstArrayView<UCCLInventoryComponent*> PlayerInventories) const
 {
 	if (SessionInventory && (!IsValid(SessionInventory) || SessionInventory->GetWorld() != GetWorld() ||
-							 SessionInventory->GetPersistenceId().IsValid() || SessionInventory->IsTransactionOpen() ||
+							 SessionInventory->GetPersistenceId().IsValid() || SessionInventory->IsEditOpen() ||
 							 !SessionInventory->CanRestore(SessionInventory->GetEntries())))
 	{
 		return Reject(Error, TEXT("Session inventory must be valid, unbound and captured by its session owner."));
@@ -376,7 +376,7 @@ bool UCCLInventoryPersistenceSubsystem::PrepareRestore(const TArray<FCCLInventor
 	{
 		auto* Inventory = Pair.Value.Get();
 		const auto* Record = Input.FindByPredicate([&](const auto& R) { return R.ContainerId == Pair.Key; });
-		if (!Inventory || Inventory->IsTransactionOpen() ||
+		if (!Inventory || Inventory->IsEditOpen() ||
 			(Record && (Record->Owner == ECCLInventoryOwner::FoodPickup) != (PickupOwner(*Inventory) != nullptr)))
 		{
 			return Reject(Error, TEXT("Live inventory owner is missing, busy or incompatible."));
@@ -424,37 +424,33 @@ bool UCCLInventoryPersistenceSubsystem::PrepareRestore(const TArray<FCCLInventor
 		{
 			Pending.Add(Inventory, MoveTemp(Resolved.FindOrAdd(Pair.Key)));
 		}
-		if (!Inventory->BeginTransaction())
+		TUniquePtr<FKSIInventoryEdit> Edit = MakeUnique<FKSIInventoryEdit>(*Inventory);
+		if (!Edit->IsOpen())
 		{
 			CancelRestore();
 			return Reject(Error, TEXT("Inventory transaction could not be acquired."));
 		}
-		Locked.Add(Inventory);
+		Edits.Add(MoveTemp(Edit));
 	}
 	for (const auto& Pickup : SpawnedPickups)
 	{
-		if (!Pickup->FoodInventory->BeginTransaction())
+		TUniquePtr<FKSIInventoryEdit> Edit = MakeUnique<FKSIInventoryEdit>(*Pickup->FoodInventory);
+		if (!Edit->IsOpen())
 		{
 			CancelRestore();
 			return Reject(Error, TEXT("Prepared pickup transaction could not be acquired."));
 		}
-		Locked.Add(Pickup->FoodInventory);
+		Edits.Add(MoveTemp(Edit));
 	}
 	return true;
 }
 
 void UCCLInventoryPersistenceSubsystem::CancelRestore()
 {
-	for (const auto& Inventory : Locked)
-	{
-		if (Inventory.IsValid())
-		{
-			Inventory->EndTransaction(false);
-		}
-	}
+	// 확정하지 않은 편집은 후보를 버리고 잠금을 푼다.
+	Edits.Reset();
 	Pending.Reset();
 	Prepared.Reset();
-	Locked.Reset();
 	for (const auto& Pickup : SpawnedPickups)
 	{
 		if (IsValid(Pickup))
@@ -492,8 +488,10 @@ void UCCLInventoryPersistenceSubsystem::CommitRestore(bool bPublish)
 	{
 		check(Pair.Key.IsValid());
 		const auto* Record = Records.Find(Pair.Key->GetPersistenceId());
-		Pair.Key->FoodEnvironment = Record ? Record->Environment : FCCLFoodEnvironmentBinding();
-		verify(Pair.Key->Restore(Pair.Value));
+		FKSIInventoryEdit* Edit = FKSIInventoryEdit::FindIn(Edits, Pair.Key.Get());
+		check(Edit);
+		Edit->Replace(Pair.Value);
+		verify(Pair.Key->CommitWithFoodEnvironment(*Edit, Record ? Record->Environment : FCCLFoodEnvironmentBinding()));
 	}
 	Pending.Reset();
 	for (const auto& Pickup : SpawnedPickups)
@@ -521,14 +519,7 @@ void UCCLInventoryPersistenceSubsystem::CommitRestore(bool bPublish)
 void UCCLInventoryPersistenceSubsystem::PublishRestore()
 {
 	// The world coordinator publishes only after every owner has committed its state.
-	auto Notifications = MoveTemp(Locked);
-	for (const auto& Inventory : Notifications)
-	{
-		if (Inventory.IsValid())
-		{
-			Inventory->EndTransaction(true);
-		}
-	}
+	FKSIInventoryEdit::PublishAndRelease(Edits);
 	bPreparing = 0;
 }
 
@@ -626,12 +617,13 @@ bool UCCLInventoryPersistenceSubsystem::PrepareAdvance(const FKSIWorldStep& Step
 	Pending = MoveTemp(Entries);
 	for (const auto& Pair : Pending)
 	{
-		if (!Pair.Key.IsValid() || !Pair.Key->BeginTransaction())
+		TUniquePtr<FKSIInventoryEdit> Edit = Pair.Key.IsValid() ? MakeUnique<FKSIInventoryEdit>(*Pair.Key) : nullptr;
+		if (!Edit || !Edit->IsOpen())
 		{
 			CancelRestore();
 			return Reject(Error, TEXT("Food environment inventory could not be locked."));
 		}
-		Locked.Add(Pair.Key);
+		Edits.Add(MoveTemp(Edit));
 	}
 	return true;
 }

@@ -3,9 +3,9 @@ number: 16
 date: 2026-10-07
 title: "장비 슬롯과 부착 위치의 태그 설정"
 topic: "아이템·장비"
-status: "유효"
+status: "유효(부분)"
 progress: "태그 개편 실행 검증 완료"
-summary: "슬롯과 부착 지점은 태그로 지정하고 양손 여부는 Weapon이 소유한다. 캐릭터별 AttachmentProfile과 장비 창은 ProgressionFoundation을 따른다"
+summary: "슬롯과 부착 지점은 태그로 지정하고 캐릭터별 AttachmentProfile이 소켓으로 해석한다. 양손 여부의 소유는 결정 68이 HandEquipment로, 호환 경로 유지는 결정 70이 대체했다"
 owners: "[ProgressionFoundation](../ProgressionFoundation.md)"
 refines: [15]
 ---

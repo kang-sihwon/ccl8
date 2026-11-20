@@ -4,6 +4,7 @@
 
 #include "Items/CCLInventoryComponent.h"
 #include "Items/CCLItemDefinition.h"
+#include "KSIInventoryEdit.h"
 #include "Session/CCLSessionRecord.h"
 #include "Environment/CCLExperimentDirector.h"
 #include "Environment/CCLWorldSimulationSubsystem.h"
@@ -262,13 +263,15 @@ void UCCLFoodSmokeSubsystem::Tick(float DeltaTime)
 			return;
 		}
 		const double FutureTime = Runtime->GetClock().GetWorldSeconds();
-		if (!Check(Inventory->BeginTransaction(), TEXT("open inventory transaction")))
+		TOptional<FKSIInventoryEdit> Held;
+		Held.Emplace(*Inventory);
+		if (!Check(Held->IsOpen(), TEXT("open inventory edit")))
 		{
 			return;
 		}
 
 		const bool bRejectedBusy = !Agents->Restore(WorldSaved, Error);
-		Inventory->EndTransaction(false);
+		Held.Reset();
 		if (!Check(bRejectedBusy && Runtime->GetClock().GetWorldSeconds() == FutureTime
 			&& Inventory->Find(Id)->Quantity == 3 && Target->GetEntries().Num() == 1, TEXT("busy restore preserves all owners")))
 		{
@@ -284,9 +287,8 @@ void UCCLFoodSmokeSubsystem::Tick(float DeltaTime)
 		const auto Lease = AgentStore.Acquire(AgentStore.GetHandle(Life.Agents[0].Id), FGuid::NewGuid());
 		const bool bRejectedLife = Lease.Writer.IsValid() && !Agents->Restore(WorldSaved, Error);
 		const bool bReleasedLife = AgentStore.Release(Lease);
-		if (!Check(bRejectedLife && bReleasedLife && !Inventory->IsTransactionOpen() && !Target->IsTransactionOpen()
-			&& Inventory->Find(Id)->Quantity == 3 && Runtime->GetClock().GetWorldSeconds() == FutureTime,
-			TEXT("life failure cancels prepared inventory restore")))
+		if (!Check(bRejectedLife && bReleasedLife && !Inventory->IsEditOpen() && !Target->IsEditOpen() && Inventory->Find(Id)->Quantity == 3 && Runtime->GetClock().GetWorldSeconds() == FutureTime,
+				   TEXT("life failure cancels prepared inventory restore")))
 		{
 			return;
 		}

@@ -12,7 +12,7 @@
 - **무기 부여:** 복원 성공 시 이전 무기 행동 부여를 정리해 같은 GUID가 과거 정의를 참조하지 않게 한다. 다음 무기 조작에서 복원된 정의로 능력을 준다.
 - **체력:** `bResetHealth=false`는 부상을 유지하고 최종 최대 체력이 낮아지면 그 값으로 제한한다. 기존 개인 체크포인트는 기본값 `true`로 완전 체력을 유지한다.
 
-이 계약은 임의 GAS 적용 델리게이트의 외부 부작용을 되돌리는 트랜잭션이 아니다. Attribute 알림 묶음이 효과 적용 델리게이트 자체를 지연하지 않고, 인벤토리의 트랜잭션도 모든 외부 변경을 막는 잠금이 아니다. 같은 Loadout의 조작과 복원 재진입은 거부하지만 외부 코드가 다른 상태를 수정하는 경우는 보장하지 않는다.
+이 계약은 임의 GAS 적용 델리게이트의 외부 부작용을 되돌리는 트랜잭션이 아니다. Attribute 알림 묶음이 효과 적용 델리게이트 자체를 지연하지 않고, 인벤토리의 편집 객체도 그 인벤토리의 쓰기만 막고 다른 상태의 외부 변경은 막지 않는다. 같은 Loadout의 조작과 복원 재진입은 거부하지만 외부 코드가 다른 상태를 수정하는 경우는 보장하지 않는다.
 
 UE 5.8.3 근거는 `<Engine>/Plugins/Runtime/GameplayAbilities/Source/GameplayAbilities/` 아래의 `Private/AbilitySystemComponent.cpp:1037`(적용 Query 거부), 2160줄(효과 적용 델리게이트), `Public/GameplayEffectAggregator.h:392`(Attribute 알림 보류)다. 이 확인만으로 해당 기능이 UE5에서 처음 도입됐다고 주장하지 않는다.
 
@@ -29,7 +29,7 @@ UE 5.8.3 근거는 `<Engine>/Plugins/Runtime/GameplayAbilities/Source/GameplayAb
 1. 후보 배열을 복사하고 모든 대상의 인벤토리 알림과 Loadout 조작을 보류한다.
 2. 새 효과를 전부 준비한다. GAS가 거부하면 세계 복원을 호출하지 않는다.
 3. `CommitWorld`를 호출한다. 실패하면 모든 대상의 새 효과를 없앤다. `CommitWorld`는 실패할 때 자기 세계 상태를 보존해야 하고 플레이어 후보나 효과를 수정하면 안 된다.
-4. 준비된 항목, 장비, 스킬을 확정한다. 항목 교체는 검증한 복사본을 받는 비공개 `RestoreValidated` 경로로 한다.
+4. 준비된 항목, 장비, 스킬을 확정한다. 항목 교체는 1번에서 연 편집 객체의 `Commit`으로 한다. 편집 객체는 모든 알림이 끝날 때까지 인벤토리를 잠근다.
 5. Attribute 일괄 갱신이 끝난 뒤 아바타, 체력 정책, 개인 상태 후처리를 적용하고 인벤토리 알림을 게시한다.
 
 요청과 준비 자료는 같은 게임 스레드 호출 안에서만 산다. GAS의 일괄 갱신 잠금은 전역이므로 이미 잠금이 열린 상태에서는 거부한다. 중첩 잠금 안에서 체력을 확정하면 아직 계산하지 않은 최대 체력을 쓸 수 있기 때문이다. `UCCLLoadoutComponent::RestoreState`는 한 요청으로 이 경계를 쓰고, `UCCLGameInstance::ApplyRecord`는 `Agents->Restore`를 `CommitWorld`에 연결한다.

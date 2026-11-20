@@ -2,46 +2,58 @@
 
 #include "CCLInventoryComponent.h"
 #include "CCLItemDefinition.h"
+#include "KSIInventoryEdit.h"
 #include "Actions/CCLWeaponAbility.h"
 
 bool FCCLInventoryWeapon::ConsumeShot(UCCLInventoryComponent& Inventory, FGuid Id)
 {
-	if (!Inventory.CanMutate() || !CanFire(Inventory, Id))
+	if (!CanFire(Inventory, Id))
 	{
 		return false;
 	}
 
-	auto* Entry = Inventory.List.Entries.FindByPredicate([Id](const FKSIInventoryEntry& E) { return E.Id == Id; });
+	FKSIInventoryEdit Edit(Inventory);
+	FKSIInventoryEntry* Entry = Edit.Find(Id);
+	if (!Entry)
+	{
+		return false;
+	}
+
 	--Entry->GetState<FCCLItemState>().LoadedAmmo;
-	Inventory.List.MarkItemDirty(*Entry);
-	Inventory.NotifyChanged();
-	return true;
+	return Edit.Commit();
 }
 
 bool FCCLInventoryWeapon::Reload(UCCLInventoryComponent& Inventory, FGuid Id)
 {
-	if (!Inventory.CanMutate() || !CanReload(Inventory, Id))
+	if (!CanReload(Inventory, Id))
 	{
 		return false;
 	}
 
-	TArray<FKSIInventoryEntry> Candidate = Inventory.List.Entries;
-	auto* Weapon = Candidate.FindByPredicate([Id](const FKSIInventoryEntry& E) { return E.Id == Id; });
-	const auto* Profile = Weapon->Definition->FindFragment<FCCLItemFragment_ProjectileWeapon>()->Profile.Get();
-	int32 Remaining = Profile->MagazineSize - Weapon->GetState<FCCLItemState>().LoadedAmmo;
-	for (auto& Entry : Candidate)
+	FKSIInventoryEdit Edit(Inventory);
+	FKSIInventoryEntry* Weapon = Edit.Find(Id);
+	if (!Weapon)
+	{
+		return false;
+	}
+
+	const UCCLProjectileProfile* Profile = Weapon->Definition->FindFragment<FCCLItemFragment_ProjectileWeapon>()->Profile.Get();
+	int32& LoadedAmmo = Weapon->GetState<FCCLItemState>().LoadedAmmo;
+	int32 Remaining = Profile->MagazineSize - LoadedAmmo;
+	for (FKSIInventoryEntry& Entry : Edit.GetEntries())
 	{
 		if (Entry.Definition == Profile->Ammunition && Entry.Slot >= 0 && Entry.Id != Id)
 		{
 			const int32 Used = FMath::Min(Entry.Quantity, Remaining);
 			Entry.Quantity -= Used;
-			Weapon->GetState<FCCLItemState>().LoadedAmmo += Used;
+			LoadedAmmo += Used;
 			Remaining -= Used;
 		}
 	}
 
-	Candidate.RemoveAll([](const FKSIInventoryEntry& E) { return E.Quantity == 0; });
-	return Inventory.Restore(Candidate);
+	Edit.GetEntries().RemoveAll([](const FKSIInventoryEntry& Entry)
+								{ return Entry.Quantity == 0; });
+	return Edit.Commit();
 }
 
 bool FCCLInventoryWeapon::CanFire(const UCCLInventoryComponent& Inventory, FGuid Id)
@@ -56,10 +68,8 @@ bool FCCLInventoryWeapon::CanReload(const UCCLInventoryComponent& Inventory, FGu
 	const auto* Weapon = Entry && Entry->Definition ? Entry->Definition->FindFragment<FCCLItemFragment_ProjectileWeapon>() : nullptr;
 	const auto* Profile = Weapon ? Weapon->Profile.Get() : nullptr;
 	return Profile && Profile->MagazineSize > Entry->GetState<FCCLItemState>().LoadedAmmo && Profile->Ammunition &&
-		Inventory.List.Entries.ContainsByPredicate([Profile, Id](const FKSIInventoryEntry& E)
-		{
-			return E.Id != Id && E.Definition == Profile->Ammunition && E.Slot >= 0 && E.Quantity > 0;
-		});
+		   Inventory.GetEntries().ContainsByPredicate([Profile, Id](const FKSIInventoryEntry& E)
+													  { return E.Id != Id && E.Definition == Profile->Ammunition && E.Slot >= 0 && E.Quantity > 0; });
 }
 
 bool FCCLInventoryWeapon::Validate(const FKSIInventoryEntry& Entry)

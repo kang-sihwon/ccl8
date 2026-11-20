@@ -71,7 +71,7 @@ bool ACCLWorldPickup::TryCollect(UCCLInventoryComponent* Inventory, AActor* Coll
 {
 	const auto* Store = GetWorld()->GetSubsystem<UCCLInventoryPersistenceSubsystem>();
 	if (!HasAuthority() || bCollected || (Store && Store->IsPreparing()) || !Inventory || !Inventory->GetOwner() ||
-		!Inventory->GetOwner()->HasAuthority() || Inventory->IsTransactionOpen() || !IsValid(Collector) ||
+		!Inventory->GetOwner()->HasAuthority() || Inventory->IsEditOpen() || !IsValid(Collector) ||
 		Collector->GetWorld() != GetWorld() || Inventory->GetWorld() != GetWorld() ||
 		FVector::DistSquared(Collector->GetActorLocation(), GetActorLocation()) > FMath::Square(225.f))
 	{
@@ -199,7 +199,7 @@ ACCLWorldPickup* ACCLWorldPickup::DropFood(UCCLInventoryComponent* Source, FGuid
 										   const FTransform& Transform, FString& Error)
 {
 	const auto* Entry = Source ? Source->Find(ItemId) : nullptr;
-	if (!Source || !Source->GetOwner() || !Source->GetOwner()->HasAuthority() || Source->IsTransactionOpen() ||
+	if (!Source || !Source->GetOwner() || !Source->GetOwner()->HasAuthority() || Source->IsEditOpen() ||
 		!Entry || !Entry->GetState<FCCLItemState>().Food.IsPresent() || Entry->Slot < 0 || Count < 1 || Count > Entry->Quantity ||
 		Transform.ContainsNaN())
 	{

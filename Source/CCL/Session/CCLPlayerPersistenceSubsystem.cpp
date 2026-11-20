@@ -80,7 +80,7 @@ bool UCCLPlayerPersistenceSubsystem::CapturePlayer(const FString& Key, ACCLPlaye
 	auto* ASC = Player.GetCCLAbilitySystem();
 	auto* Account = Player.FindComponentByClass<UCCLAccountComponent>();
 	if (!Player.HasAuthority() || !Inventory || !Loadout || !ASC || !Account || !Player.GetExpedition() ||
-		Inventory->GetPersistenceId().IsValid() || Inventory->IsTransactionOpen() ||
+		Inventory->GetPersistenceId().IsValid() || Inventory->IsEditOpen() ||
 		!Inventory->CanRestore(Inventory->GetEntries()))
 	{
 		return Reject(Error, TEXT("Player capture requires a valid, unbound, idle inventory and profile components."));
@@ -612,26 +612,21 @@ bool UCCLPlayerPersistenceSubsystem::PrepareWorldAdvance(const FKSIWorldStep& St
 	Pending = MoveTemp(Entries);
 	for (auto& Pair : Pending)
 	{
-		if (!Pair.Key.IsValid() || !Pair.Key->BeginTransaction())
+		TUniquePtr<FKSIInventoryEdit> Edit = Pair.Key.IsValid() ? MakeUnique<FKSIInventoryEdit>(*Pair.Key) : nullptr;
+		if (!Edit || !Edit->IsOpen())
 		{
 			CancelWorldAdvance();
 			return Reject(Error, TEXT("Player food inventory is busy."));
 		}
-		Locked.Add(Pair.Key);
+		Edits.Add(MoveTemp(Edit));
 	}
 	return true;
 }
 
 void UCCLPlayerPersistenceSubsystem::CancelWorldAdvance()
 {
-	for (auto& Owner : Locked)
-	{
-		if (Owner.IsValid())
-		{
-			Owner->EndTransaction(false);
-		}
-	}
-	Locked.Reset();
+	// 확정하지 않은 편집은 후보를 버리고 잠금을 푼다.
+	Edits.Reset();
 	Pending.Reset();
 	Prepared.Reset();
 	bPreparing = 0;
@@ -646,8 +641,10 @@ void UCCLPlayerPersistenceSubsystem::CommitWorldAdvance()
 		auto* Player = Pair.Value.Get();
 		if (Player && Pending.Contains(Player->GetInventory()))
 		{
-			Player->GetInventory()->FoodEnvironment = Records[Pair.Key].Environment;
-			Player->GetInventory()->RestoreValidated(Pending[Player->GetInventory()]);
+			FKSIInventoryEdit* Edit = FKSIInventoryEdit::FindIn(Edits, Player->GetInventory());
+			check(Edit);
+			Edit->Replace(Pending[Player->GetInventory()]);
+			verify(Player->GetInventory()->CommitWithFoodEnvironment(*Edit, Records[Pair.Key].Environment));
 		}
 	}
 	Pending.Reset();
@@ -656,13 +653,6 @@ void UCCLPlayerPersistenceSubsystem::CommitWorldAdvance()
 void UCCLPlayerPersistenceSubsystem::PublishWorldAdvance()
 {
 	// Inventory transactions held every notification until all participants committed.
-	auto Notify = MoveTemp(Locked);
-	for (auto& Owner : Notify)
-	{
-		if (Owner.IsValid())
-		{
-			Owner->EndTransaction(true);
-		}
-	}
+	FKSIInventoryEdit::PublishAndRelease(Edits);
 	bPreparing = 0;
 }

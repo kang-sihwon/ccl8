@@ -3,6 +3,7 @@
 #include "CCLInventoryComponent.h"
 
 #include "CCLItemDefinition.h"
+#include "KSIInventoryEdit.h"
 #include "Environment/CCLWorldSimulationSubsystem.h"
 #include "Engine/World.h"
 
@@ -29,7 +30,7 @@ bool FCCLInventoryFood::BuildFoodAddition(const UCCLInventoryComponent& Inventor
 {
 	FString Error;
 	auto Food = SourceFood;
-	if (Inventory.FoodEnvironment.IsDynamic() && !CCLFood::ChangeStorage(Food, Inventory.FoodEnvironment.Conditions, WorldSeconds, Error))
+	if (Inventory.GetFoodEnvironment().IsDynamic() && !CCLFood::ChangeStorage(Food, Inventory.GetFoodEnvironment().Conditions, WorldSeconds, Error))
 	{
 		return false;
 	}
@@ -55,13 +56,8 @@ bool FCCLInventoryFood::BuildFoodAddition(const UCCLInventoryComponent& Inventor
 		}
 	}
 
-	int32 Slot = 0;
-	while (Entries.ContainsByPredicate([Slot](const auto& Entry) { return Entry.Slot == Slot; }))
-	{
-		++Slot;
-	}
-
-	if (Slot >= FMath::Clamp(Inventory.Capacity, 1, 128))
+	const int32 Slot = FKSIInventoryEdit::FindFreeSlot(Entries, Inventory.GetSlotCount());
+	if (Slot == INDEX_NONE)
 	{
 		return false;
 	}
@@ -82,61 +78,54 @@ bool FCCLInventoryFood::BuildFoodAddition(const UCCLInventoryComponent& Inventor
 	return true;
 }
 
-FGuid FCCLInventoryFood::AddFood(UCCLInventoryComponent& Inventory, UKSIItemDefinition* Definition, const FCCLFoodState& Food)
-{
-	FGuid WorldId, AddedId;
-	double WorldSeconds = 0.;
-	if (!Inventory.GetOwner() || !Inventory.CanMutate() || !FoodContext(Inventory, WorldId, WorldSeconds) || Food.WorldId != WorldId)
-	{
-		return {};
-	}
-
-	auto Candidate = Inventory.List.Entries;
-	return BuildFoodAddition(Inventory, Candidate, Definition, Food, WorldSeconds, AddedId) && Inventory.Restore(Candidate) ? AddedId : FGuid();
-}
-
 bool FCCLInventoryFood::MergeFood(UCCLInventoryComponent& Inventory, FGuid SourceId, FGuid DestinationId)
 {
 	FGuid WorldId;
 	double WorldSeconds = 0.;
-	if (!Inventory.GetOwner() || !Inventory.CanMutate() || SourceId == DestinationId || !FoodContext(Inventory, WorldId, WorldSeconds))
+	if (SourceId == DestinationId || !FoodContext(Inventory, WorldId, WorldSeconds))
 	{
 		return false;
 	}
 
-	auto Candidate = Inventory.List.Entries;
-	auto* Source = Candidate.FindByPredicate([SourceId](const auto& Entry) { return Entry.Id == SourceId; });
-	auto* Destination = Candidate.FindByPredicate([DestinationId](const auto& Entry) { return Entry.Id == DestinationId; });
+	FKSIInventoryEdit Edit(Inventory);
+	FKSIInventoryEntry* Source = Edit.Find(SourceId);
+	FKSIInventoryEntry* Destination = Edit.Find(DestinationId);
 	FString Error;
-	if (!Source || !Destination || Source->Slot < 0 || Destination->Slot < 0 || Source->Definition != Destination->Definition
-		|| !Destination->Definition || Source->Quantity > Destination->Definition->GetMaxStack() - Destination->Quantity
-		|| Source->GetState<FCCLItemState>().Food.WorldId != WorldId || !CCLFood::Merge(Destination->GetState<FCCLItemState>().Food, Source->GetState<FCCLItemState>().Food, WorldSeconds, Error))
+	if (!Source || !Destination || Source->Slot < 0 || Destination->Slot < 0 || Source->Definition != Destination->Definition ||
+		!Destination->Definition || Source->Quantity > Destination->Definition->GetMaxStack() - Destination->Quantity ||
+		Source->GetState<FCCLItemState>().Food.WorldId != WorldId ||
+		!CCLFood::Merge(Destination->GetState<FCCLItemState>().Food, Source->GetState<FCCLItemState>().Food, WorldSeconds, Error))
 	{
 		return false;
 	}
 
 	Destination->Quantity += Source->Quantity;
-	Candidate.RemoveAll([SourceId](const auto& Entry) { return Entry.Id == SourceId; });
-	return Inventory.Restore(Candidate);
+	Edit.GetEntries().RemoveAll([SourceId](const FKSIInventoryEntry& Entry)
+								{ return Entry.Id == SourceId; });
+	return Edit.Commit();
 }
 
 FGuid FCCLInventoryFood::SplitFood(UCCLInventoryComponent& Inventory, FGuid SourceId, int32 Count, int32 Slot)
 {
 	FGuid WorldId;
 	double WorldSeconds = 0.;
-	const auto* Original = Inventory.Find(SourceId);
-	if (!Inventory.GetOwner() || !Inventory.CanMutate() || !Original || Original->Slot < 0 || Count >= Original->Quantity
-		|| Slot < 0 || Slot >= FMath::Clamp(Inventory.Capacity, 1, 128) || Inventory.FindSlot(Slot) || !FoodContext(Inventory, WorldId, WorldSeconds)
-		|| Original->GetState<FCCLItemState>().Food.WorldId != WorldId)
+	const FKSIInventoryEntry* Original = Inventory.Find(SourceId);
+	if (!Original || Original->Slot < 0 || Count >= Original->Quantity || Slot < 0 || Slot >= Inventory.GetSlotCount() ||
+		Inventory.FindSlot(Slot) || !FoodContext(Inventory, WorldId, WorldSeconds) || Original->GetState<FCCLItemState>().Food.WorldId != WorldId)
 	{
 		return {};
 	}
 
-	auto Candidate = Inventory.List.Entries;
-	auto* Source = Candidate.FindByPredicate([SourceId](const auto& Entry) { return Entry.Id == SourceId; });
+	FKSIInventoryEdit Edit(Inventory);
+	FKSIInventoryEntry* Source = Edit.Find(SourceId);
+	if (!Source)
+	{
+		return {};
+	}
+
 	FKSIInventoryEntry Taken;
 	Taken.Id = FGuid::NewGuid();
-	Taken.Definition = Original->Definition;
+	Taken.Definition = Source->Definition;
 	Taken.Quantity = Count;
 	Taken.Slot = Slot;
 	FString Error;
@@ -146,31 +135,29 @@ FGuid FCCLInventoryFood::SplitFood(UCCLInventoryComponent& Inventory, FGuid Sour
 	}
 
 	Source->Quantity -= Count;
-	Candidate.Add(Taken);
-	return Inventory.Restore(Candidate) ? Taken.Id : FGuid();
+	Edit.GetEntries().Add(Taken);
+	return Edit.Commit() ? Taken.Id : FGuid();
 }
 
 bool FCCLInventoryFood::TransferFood(UCCLInventoryComponent& Inventory, FGuid SourceId, int32 Count, UCCLInventoryComponent* Destination)
 {
 	FGuid WorldId, TargetWorldId, AddedId;
 	double WorldSeconds = 0., TargetSeconds = 0.;
-	if (!Inventory.GetOwner() || !Inventory.CanMutate() || !Destination || Destination == &Inventory
-		|| !Destination->GetOwner() || !Destination->CanMutate()
-		|| Destination->GetWorld() != Inventory.GetWorld() || Inventory.bTransactionOpen || Destination->bTransactionOpen
-		|| !FoodContext(Inventory, WorldId, WorldSeconds) || !FoodContext(*Destination, TargetWorldId, TargetSeconds)
-		|| WorldId != TargetWorldId || WorldSeconds != TargetSeconds)
+	if (!Destination || Destination == &Inventory || Destination->GetWorld() != Inventory.GetWorld() ||
+		!FoodContext(Inventory, WorldId, WorldSeconds) || !FoodContext(*Destination, TargetWorldId, TargetSeconds) ||
+		WorldId != TargetWorldId || WorldSeconds != TargetSeconds)
 	{
 		return false;
 	}
 
-	auto SourceEntries = Inventory.List.Entries;
-	auto TargetEntries = Destination->List.Entries;
-	auto* Source = SourceEntries.FindByPredicate([SourceId](const auto& Entry) { return Entry.Id == SourceId; });
+	FKSIInventoryEdit SourceEdit(Inventory);
+	FKSIInventoryEdit TargetEdit(*Destination);
+	FKSIInventoryEntry* Source = SourceEdit.Find(SourceId);
 	FCCLFoodState Taken;
 	FString Error;
-	if (!Source || Source->Slot < 0 || Source->GetState<FCCLItemState>().Food.WorldId != WorldId
-		|| !CCLFood::Split(Source->GetState<FCCLItemState>().Food, Count, WorldSeconds, Taken, Error)
-		|| !BuildFoodAddition(*Destination, TargetEntries, Source->Definition, Taken, WorldSeconds, AddedId))
+	if (!SourceEdit.IsOpen() || !TargetEdit.IsOpen() || !Source || Source->Slot < 0 || Source->GetState<FCCLItemState>().Food.WorldId != WorldId ||
+		!CCLFood::Split(Source->GetState<FCCLItemState>().Food, Count, WorldSeconds, Taken, Error) ||
+		!BuildFoodAddition(*Destination, TargetEdit.GetEntries(), Source->Definition, Taken, WorldSeconds, AddedId))
 	{
 		return false;
 	}
@@ -182,47 +169,39 @@ bool FCCLInventoryFood::TransferFood(UCCLInventoryComponent& Inventory, FGuid So
 			return false;
 		}
 
-		auto* Added = TargetEntries.FindByPredicate([AddedId](const auto& Entry) { return Entry.Id == AddedId; });
-		Added->Id = SourceId;
+		TargetEdit.Find(AddedId)->Id = SourceId;
 	}
 
 	Source->Quantity -= Count;
-	SourceEntries.RemoveAll([](const auto& Entry) { return Entry.Quantity == 0; });
-	const auto Before = Inventory.List.Entries;
-	const auto TargetBefore = Destination->List.Entries;
-	Inventory.BeginTransaction();
-	Destination->BeginTransaction();
-	const bool bApplied = Inventory.Restore(SourceEntries) && Destination->Restore(TargetEntries);
-	if (!bApplied)
+	SourceEdit.GetEntries().RemoveAll([](const FKSIInventoryEntry& Entry)
+									  { return Entry.Quantity == 0; });
+	if (!SourceEdit.Validate() || !TargetEdit.Validate())
 	{
-		Inventory.Restore(Before);
-		Destination->Restore(TargetBefore);
+		return false;
 	}
 
 	// Both authoritative arrays are final before either observer is notified.
-	Inventory.EndTransaction(bApplied);
-	Destination->EndTransaction(bApplied);
-	return bApplied;
+	verify(SourceEdit.Commit());
+	verify(TargetEdit.Commit());
+	SourceEdit.Publish();
+	TargetEdit.Publish();
+	return true;
 }
 
 bool FCCLInventoryFood::ChangeFoodStorage(UCCLInventoryComponent& Inventory, FGuid Id, const FCCLFoodStorage& Storage)
 {
-	if (Inventory.FoodEnvironment.IsDynamic())
-	{
-		return false;
-	}
 	FGuid WorldId;
 	double WorldSeconds = 0.;
-	if (!Inventory.GetOwner() || !Inventory.CanMutate() || !FoodContext(Inventory, WorldId, WorldSeconds))
+	if (Inventory.GetFoodEnvironment().IsDynamic() || !FoodContext(Inventory, WorldId, WorldSeconds))
 	{
 		return false;
 	}
 
-	auto Candidate = Inventory.List.Entries;
-	auto* Entry = Candidate.FindByPredicate([Id](const auto& Value) { return Value.Id == Id; });
+	FKSIInventoryEdit Edit(Inventory);
+	FKSIInventoryEntry* Entry = Edit.Find(Id);
 	FString Error;
-	return Entry && Entry->GetState<FCCLItemState>().Food.WorldId == WorldId
-		&& CCLFood::ChangeStorage(Entry->GetState<FCCLItemState>().Food, Storage, WorldSeconds, Error) && Inventory.Restore(Candidate);
+	return Entry && Entry->GetState<FCCLItemState>().Food.WorldId == WorldId &&
+		   CCLFood::ChangeStorage(Entry->GetState<FCCLItemState>().Food, Storage, WorldSeconds, Error) && Edit.Commit();
 }
 
 bool FCCLInventoryFood::GetFoodQuality(const UCCLInventoryComponent& Inventory, FGuid Id, FCCLFoodQuality& Quality)
@@ -238,33 +217,33 @@ bool FCCLInventoryFood::GetFoodQuality(const UCCLInventoryComponent& Inventory, 
 bool FCCLInventoryFood::ChangeFoodEnvironment(UCCLInventoryComponent& Inventory, const FCCLFoodEnvironmentBinding& Binding, FString& Error)
 {
 	auto* Runtime = Inventory.GetWorld() ? Inventory.GetWorld()->GetSubsystem<UCCLWorldSimulationSubsystem>() : nullptr;
-	const bool bPersistentOwner = Inventory.HasPersistentOwner();
-	if (!Inventory.GetOwner() || !Inventory.CanMutate() || !bPersistentOwner || Inventory.bTransactionOpen
-		|| !Runtime || !Runtime->IsRunning())
+	FKSIInventoryEdit Edit(Inventory);
+	if (!Edit.IsOpen() || !Inventory.HasPersistentOwner() || !Runtime || !Runtime->IsRunning())
 	{
 		Error = TEXT("Food environment requires an idle registered server inventory owner.");
 		return false;
 	}
-	auto PreparedBinding = Binding;
+
+	FCCLFoodEnvironmentBinding PreparedBinding = Binding;
 	if (!CCLFoodEnvironment::Sample(PreparedBinding, Runtime->GetSurfaceSimulation(), Error))
 	{
 		return false;
 	}
-	auto Candidate = Inventory.List.Entries;
-	for (auto& Entry : Candidate)
+
+	for (FKSIInventoryEntry& Entry : Edit.GetEntries())
 	{
-		if (Entry.GetState<FCCLItemState>().Food.IsPresent() && (Entry.GetState<FCCLItemState>().Food.WorldId != Runtime->GetIdentity().WorldId
-			|| !CCLFood::ChangeStorage(Entry.GetState<FCCLItemState>().Food, PreparedBinding.Conditions, Runtime->GetClock().GetWorldSeconds(), Error)))
+		// 상수 접근으로 먼저 확인해 음식이 아닌 항목에 빈 상태를 만들지 않는다.
+		if (!static_cast<const FKSIInventoryEntry&>(Entry).GetState<FCCLItemState>().Food.IsPresent())
+		{
+			continue;
+		}
+
+		FCCLFoodState& Food = Entry.GetState<FCCLItemState>().Food;
+		if (Food.WorldId != Runtime->GetIdentity().WorldId ||
+			!CCLFood::ChangeStorage(Food, PreparedBinding.Conditions, Runtime->GetClock().GetWorldSeconds(), Error))
 		{
 			return false;
 		}
 	}
-	if (!Inventory.CanRestore(Candidate) || !Inventory.BeginTransaction())
-	{
-		return false;
-	}
-	Inventory.FoodEnvironment = PreparedBinding;
-	verify(Inventory.Restore(Candidate));
-	Inventory.EndTransaction(true);
-	return true;
+	return Inventory.CommitWithFoodEnvironment(Edit, PreparedBinding);
 }

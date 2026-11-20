@@ -6,6 +6,7 @@
 #include "KSIWorldParticipant.h"
 #include "Environment/CCLWorldAdvanceParticipant.h"
 #include "Items/CCLLoadoutRestore.h"
+#include "KSIInventoryEdit.h"
 #include "CCLPlayerPersistenceSubsystem.generated.h"
 
 class ACCLPlayerState;
@@ -69,7 +70,8 @@ private:
 	TMap<FString, TWeakObjectPtr<ACCLPlayerState>> Live;
 	TMap<FString, FCCLPlayerSnapshot> Prepared;
 	TMap<TWeakObjectPtr<UCCLInventoryComponent>, TArray<FKSIInventoryEntry>> Pending;
-	TArray<TWeakObjectPtr<UCCLInventoryComponent>> Locked;
+	// 세계 진행 준비에서 열고 Publish까지 유지한다.
+	TArray<TUniquePtr<FKSIInventoryEdit>> Edits;
 
 	// Staged world restore: profiles to commit, live players to restore and the optional host session.
 	TMap<FString, FCCLPlayerSnapshot> RestoreCandidate;

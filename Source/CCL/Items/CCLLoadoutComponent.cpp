@@ -3,6 +3,7 @@
 #include "Items/CCLInventoryFood.h"
 
 #include "CCLInventoryComponent.h"
+#include "KSIInventoryEdit.h"
 #include "CCLItemDefinition.h"
 #include "CCLSkillDefinition.h"
 #include "KSIActionComponent.h"
@@ -15,7 +16,6 @@
 #include "CCLItemCatalog.h"
 #include "Net/UnrealNetwork.h"
 #include "GameplayEffectAggregator.h"
-#include "Misc/ScopeExit.h"
 
 UCCLLoadoutComponent::UCCLLoadoutComponent()
 {
@@ -130,48 +130,33 @@ bool UCCLLoadoutComponent::Equip(FGuid Id, FGameplayTag Slot)
 		NewEquipment.Add(NewSlot);
 	}
 
-	TArray<FKSIInventoryEntry> Placement = Inventory->GetEntries();
-	for (auto& Value : Placement)
+	// 편집 객체는 변경 알림이 끝날 때까지 인벤토리를 잠근다.
+	TGuardValue<uint8> MutationGuard(bMutating, 1);
+	FKSIInventoryEdit Edit(*Inventory);
+	if (!Edit.Place(Id, INDEX_NONE))
 	{
-		if (Value.Id == Id)
-		{
-			Value.Slot = INDEX_NONE;
-		}
+		return Report(false, TEXT("장비를 배치할 수 없다."));
 	}
 
 	for (FGuid ReturnId : Returning)
 	{
-		auto* Value = Placement.FindByPredicate([ReturnId](const auto& Item) { return Item.Id == ReturnId; });
-		if (!Value)
+		if (!Edit.Find(ReturnId))
 		{
 			return Report(false, TEXT("장비 상태를 확인할 수 없다."));
 		}
 
-		int32 Free = 0;
-		while (Placement.ContainsByPredicate([Free](const auto& Item) { return Item.Slot == Free; }))
-		{
-			++Free;
-		}
-
-		if (Free >= Inventory->Capacity)
+		const int32 Free = Edit.FindFreeSlot();
+		if (Free == INDEX_NONE || !Edit.Place(ReturnId, Free))
 		{
 			return Report(false, TEXT("장비를 돌려놓을 소지품 공간이 부족하다."));
 		}
-
-		Value->Slot = Free;
 	}
 
-	if (!Inventory->CanRestore(Placement) || !Inventory->BeginTransaction())
+	if (!Edit.Validate())
 	{
 		return Report(false, TEXT("장비를 배치할 수 없다."));
 	}
-	TGuardValue<uint8> MutationGuard(bMutating, 1);
-	TGuardValue<uint8> InventoryGuard(Inventory->bMutationLocked, 1);
-	bool bPublish = false;
-	ON_SCOPE_EXIT
-	{
-		Inventory->FinishTransaction(bPublish);
-	};
+
 	{
 		FScopedAggregatorOnDirtyBatch AttributeBatch;
 		FActiveGameplayEffectHandle AddedEffect;
@@ -188,7 +173,7 @@ bool UCCLLoadoutComponent::Equip(FGuid Id, FGameplayTag Slot)
 				return Report(false, TEXT("장비 효과를 적용하지 못했다."));
 			}
 		}
-		Inventory->RestoreValidated(Placement);
+		verify(Edit.Commit());
 
 		for (FGuid ReturnId : Returning)
 		{
@@ -206,7 +191,6 @@ bool UCCLLoadoutComponent::Equip(FGuid Id, FGameplayTag Slot)
 
 		EquipmentSlots = MoveTemp(NewEquipment);
 	}
-	bPublish = true;
 	SyncAvatar();
 	return Report(true, TEXT("장비를 장착했다."));
 }
@@ -253,28 +237,16 @@ bool UCCLLoadoutComponent::Unequip(FGuid Id, int32 BagSlot)
 		return Report(false, TEXT("빈 소지품 칸을 선택해 줘."));
 	}
 
-	TArray<FKSIInventoryEntry> Placement = Inventory->GetEntries();
-	auto* Item = Placement.FindByPredicate([Id](const auto& Value) { return Value.Id == Id; });
-	if (!Item)
+	TGuardValue<uint8> MutationGuard(bMutating, 1);
+	FKSIInventoryEdit Edit(*Inventory);
+	if (!Edit.Place(Id, BagSlot) || !Edit.Validate())
 	{
 		return false;
 	}
 
-	Item->Slot = BagSlot;
-	if (!Inventory->CanRestore(Placement) || !Inventory->BeginTransaction())
-	{
-		return false;
-	}
-	TGuardValue<uint8> MutationGuard(bMutating, 1);
-	TGuardValue<uint8> InventoryGuard(Inventory->bMutationLocked, 1);
-	bool bPublish = false;
-	ON_SCOPE_EXIT
-	{
-		Inventory->FinishTransaction(bPublish);
-	};
 	{
 		FScopedAggregatorOnDirtyBatch AttributeBatch;
-		Inventory->RestoreValidated(Placement);
+		verify(Edit.Commit());
 
 		EquipmentSlots.RemoveAll([Id](const auto& Value) { return Value.Id == Id; });
 		if (auto* Handle = EquipmentEffects.Find(Id))
@@ -283,7 +255,6 @@ bool UCCLLoadoutComponent::Unequip(FGuid Id, int32 BagSlot)
 			EquipmentEffects.Remove(Id);
 		}
 	}
-	bPublish = true;
 	SyncAvatar();
 	return Report(true, TEXT("장비를 해제해 소지품으로 옮겼다."));
 }
@@ -322,28 +293,24 @@ bool UCCLLoadoutComponent::Use(FGuid Id)
 	}
 
 	TGuardValue<uint8> MutationGuard(bMutating, 1);
-	// Consume first and restore the exact entries if the effect is rejected, so one item never heals twice.
-	const TArray<FKSIInventoryEntry> Before = Inventory->GetEntries();
-	if (!Inventory->BeginTransaction())
+	// 소모를 검증한 뒤 잠긴 인벤토리에서 효과를 적용하고 확정한다. 효과가 거절되면 확정하지 않으므로 한 아이템으로 두 번 회복하지 않는다.
+	FKSIInventoryEdit Edit(*Inventory);
+	if (!Edit.IsOpen())
 	{
 		return Report(false, TEXT("지금은 아이템을 사용할 수 없다."));
 	}
 
-	if (!Inventory->Remove(Id, 1))
+	if (!Edit.Remove(Id, 1) || !Edit.Validate())
 	{
-		Inventory->EndTransaction(false);
 		return Report(false, TEXT("아이템을 소모하지 못했다."));
 	}
 
-	TGuardValue<uint8> InventoryGuard(Inventory->bMutationLocked, 1);
 	if (!ASC->ApplyEffect(Fragment->Effect, Fragment->Magnitude).WasSuccessfullyApplied())
 	{
-		Inventory->RestoreValidated(Before);
-		Inventory->FinishTransaction(false);
 		return Report(false, TEXT("아이템 효과를 적용하지 못했다."));
 	}
 
-	Inventory->FinishTransaction(true);
+	verify(Edit.Commit());
 	return Report(true, TEXT("회복 아이템을 사용했다."));
 }
 
@@ -361,7 +328,8 @@ bool UCCLLoadoutComponent::Learn(UCCLSkillDefinition* Definition)
 		return Report(false, TEXT("훈련할 수 없거나 훈련 점수가 부족하다."));
 	}
 	TGuardValue<uint8> MutationGuard(bMutating, 1);
-	TGuardValue<uint8> InventoryGuard(GetInventory()->bMutationLocked, 1);
+	// 확정하지 않는 편집으로 효과 콜백 동안 인벤토리 쓰기를 막는다.
+	FKSIInventoryEdit InventoryLock(*GetInventory());
 	FScopedAggregatorOnDirtyBatch AttributeBatch;
 	const FActiveGameplayEffectHandle Handle = GetASC()->ApplyEffect(Definition->Effect, Definition->Magnitude);
 	if (!Handle.IsValid() || !GetASC()->GetActiveGameplayEffect(Handle))
@@ -571,9 +539,9 @@ bool UCCLLoadoutComponent::CanAct() const
 {
 	const auto* ASC = GetASC();
 	return !bRestoring && !bMutating && FScopedAggregatorOnDirtyBatch::GlobalBatchCount == 0 &&
-		(GetInventory() && GetInventory()->CanMutate() && !GetInventory()->IsTransactionOpen()) && GetOwner()->HasAuthority() && ASC && IsValid(ASC->GetAvatarActor()) &&
-		!ASC->HasMatchingGameplayTag(CCLTags::State_Dead) && !ASC->HasMatchingGameplayTag(CCLTags::State_Busy) &&
-		!ASC->HasMatchingGameplayTag(CCLTags::State_Stagger);
+		   (GetInventory() && GetInventory()->CanMutate() && !GetInventory()->IsEditOpen()) && GetOwner()->HasAuthority() && ASC && IsValid(ASC->GetAvatarActor()) &&
+		   !ASC->HasMatchingGameplayTag(CCLTags::State_Dead) && !ASC->HasMatchingGameplayTag(CCLTags::State_Busy) &&
+		   !ASC->HasMatchingGameplayTag(CCLTags::State_Stagger);
 }
 
 UCCLAbilitySystemComponent* UCCLLoadoutComponent::GetASC() const

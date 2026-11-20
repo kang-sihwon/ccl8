@@ -2,6 +2,7 @@
 
 #include "CCLPlayerState.h"
 #include "KSIActionComponent.h"
+#include "KSIInventoryEdit.h"
 #include "AbilitySystem/CCLAbilitySystemComponent.h"
 #include "AbilitySystem/CCLEffects.h"
 #include "AbilitySystem/CCLHealthSet.h"
@@ -160,7 +161,7 @@ void UCCLLoadoutRestoreSmokeSubsystem::Tick(float DeltaTime)
 	};
 	auto Preserved = [&]()
 	{
-		if (Notifications || Inventory->IsTransactionOpen() || Loadout->GetPoints() != 7 ||
+		if (Notifications || Inventory->IsEditOpen() || Loadout->GetPoints() != 7 ||
 			!Loadout->IsLearned(Power) || !Loadout->IsLearned(Vitality) || Loadout->GetEquippedId() != Gauntlets ||
 			Inventory->GetEntries().Num() != Original.Num() ||
 			ASC->GetNumericAttribute(UCCLHealthSet::GetHealthAttribute()) != 120.f ||
@@ -240,12 +241,14 @@ void UCCLLoadoutRestoreSmokeSubsystem::Tick(float DeltaTime)
 			return;
 		}
 	}
-	if (!Check(Inventory->BeginTransaction(), TEXT("hold inventory transaction")))
+	TOptional<FKSIInventoryEdit> Held;
+	Held.Emplace(*Inventory);
+	if (!Check(Held->IsOpen(), TEXT("hold inventory edit")))
 	{
 		return;
 	}
 	const bool LockedRejected = !Loadout->RestoreState(Candidate, Equipment, Skills, 7);
-	Inventory->EndTransaction(false);
+	Held.Reset();
 	if (!Check(LockedRejected && Preserved(), TEXT("busy inventory rejected and original preserved")))
 	{
 		return;
@@ -428,8 +431,8 @@ bool UCCLLoadoutRestoreSmokeSubsystem::CheckBatch(ACCLPlayerState& First)
 	auto Preserved = [&]
 	{
 		if (Notifications || FinalizeCalls || WorldState->GetEpoch() != OriginalEpoch ||
-			WorldState->GetClock().GetWorldSeconds() != OriginalTime || First.GetInventory()->IsTransactionOpen() ||
-			Second->GetInventory()->IsTransactionOpen() || First.GetLoadout()->GetPoints() != 7 ||
+			WorldState->GetClock().GetWorldSeconds() != OriginalTime || First.GetInventory()->IsEditOpen() ||
+			Second->GetInventory()->IsEditOpen() || First.GetLoadout()->GetPoints() != 7 ||
 			Second->GetLoadout()->GetPoints() != 9 || !First.GetInventory()->Find(Originals[0].Entries[0].Id) ||
 			!Second->GetInventory()->Find(Originals[1].Entries[0].Id) ||
 			FirstASC->GetNumericAttribute(UCCLHealthSet::GetHealthAttribute()) != 120.f ||
@@ -501,8 +504,8 @@ bool UCCLLoadoutRestoreSmokeSubsystem::CheckBatch(ACCLPlayerState& First)
 		const auto Query = FGameplayEffectApplicationQuery::CreateLambda(
 			[&](const FActiveGameplayEffectsContainer&, const FGameplayEffectSpec&)
 			{
-				bBothLocked &= First.GetInventory()->IsTransactionOpen() &&
-							   Second->GetInventory()->IsTransactionOpen() &&
+				bBothLocked &= First.GetInventory()->IsEditOpen() &&
+							   Second->GetInventory()->IsEditOpen() &&
 							   !First.GetLoadout()->RestoreState({}, {}, {}, 0);
 				return ++Attempts != 2;
 			});
@@ -537,8 +540,8 @@ bool UCCLLoadoutRestoreSmokeSubsystem::CheckBatch(ACCLPlayerState& First)
 	if (!Check(FCCLLoadoutRestoreBatch::Execute(Requests, Commit, Finalize) && WorldCalls == 2 && FinalizeCalls == 1 &&
 				   Notifications == 2 && bConsistent && FinalState() && WorldState->GetEpoch() != OriginalEpoch &&
 				   WorldState->GetClock().GetWorldSeconds() == OriginalTime &&
-				   !First.GetInventory()->IsTransactionOpen() &&
-				   !Second->GetInventory()->IsTransactionOpen(),
+				   !First.GetInventory()->IsEditOpen() &&
+				   !Second->GetInventory()->IsEditOpen(),
 			   TEXT("both profiles and final maximum health precede finalization and both inventory notifications")))
 	{
 		return false;

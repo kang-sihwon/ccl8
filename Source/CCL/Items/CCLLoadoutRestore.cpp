@@ -3,6 +3,7 @@
 #include "CCLLoadoutComponent.h"
 
 #include "CCLInventoryComponent.h"
+#include "KSIInventoryEdit.h"
 #include "CCLItemDefinition.h"
 #include "CCLSkillDefinition.h"
 #include "KSIActionComponent.h"
@@ -78,7 +79,7 @@ bool UCCLLoadoutComponent::CanRestoreState(const TArray<FKSIInventoryEntry>& Ent
 										   const TArray<UCCLSkillDefinition*>& Skills, int32 UnspentPoints) const
 {
 	const auto* Inventory = GetInventory();
-	if (!CanAct() || !Inventory || Inventory->IsTransactionOpen() || !Inventory->CanRestore(Entries) ||
+	if (!CanAct() || !Inventory || Inventory->IsEditOpen() || !Inventory->CanRestore(Entries) ||
 		UnspentPoints < 0 || UnspentPoints > 1000 || Skills.Num() > AvailableSkills.Num() || Equipment.Num() > 8)
 	{
 		return false;
@@ -227,15 +228,17 @@ bool FCCLLoadoutRestoreBatch::Execute(TConstArrayView<FCCLLoadoutRestoreRequest>
 			Value.Specs.Add(MoveTemp(Spec));
 		}
 	}
+	// 편집 객체가 종료 블록보다 오래 살아서, 모든 알림이 끝날 때까지 인벤토리가 잠겨 있다.
+	TArray<TUniquePtr<FKSIInventoryEdit>> Edits;
 	bool bPublish = false;
 	ON_SCOPE_EXIT
 	{
 		// Keep every loadout closed until all inventory listeners have returned.
-		for (auto& Value : Prepared)
+		if (bPublish)
 		{
-			if (Value.bLocked)
+			for (const TUniquePtr<FKSIInventoryEdit>& Edit : Edits)
 			{
-				Value.Inventory->FinishTransaction(bPublish);
+				Edit->Publish();
 			}
 		}
 		for (auto& Value : Prepared)
@@ -243,18 +246,18 @@ bool FCCLLoadoutRestoreBatch::Execute(TConstArrayView<FCCLLoadoutRestoreRequest>
 			if (Value.bLocked)
 			{
 				Value.Request.Loadout->bRestoring = 0;
-				Value.Inventory->bMutationLocked = 0;
 			}
 		}
 	};
 	for (auto& Value : Prepared)
 	{
-		if (!Value.Inventory->BeginTransaction())
+		const TUniquePtr<FKSIInventoryEdit>& Edit = Edits.Add_GetRef(MakeUnique<FKSIInventoryEdit>(*Value.Inventory));
+		if (!Edit->IsOpen())
 		{
 			return false;
 		}
+		Edit->Replace(Value.Request.Entries);
 		Value.Request.Loadout->bRestoring = 1;
-		Value.Inventory->bMutationLocked = 1;
 		Value.bLocked = true;
 	}
 	{
@@ -286,12 +289,15 @@ bool FCCLLoadoutRestoreBatch::Execute(TConstArrayView<FCCLLoadoutRestoreRequest>
 			}
 		}
 		// A later participant's query may have invalidated an earlier new handle.
-		for (const auto& Value : Prepared)
+		for (const TUniquePtr<FKSIInventoryEdit>& Edit : Edits)
 		{
-			if (!Value.Inventory->CanRestore(Value.Request.Entries))
+			if (!Edit->Validate())
 			{
 				return false;
 			}
+		}
+		for (const auto& Value : Prepared)
+		{
 			for (const auto Handle : Value.Added)
 			{
 				if (!Value.ASC->GetActiveGameplayEffect(Handle))
@@ -305,9 +311,9 @@ bool FCCLLoadoutRestoreBatch::Execute(TConstArrayView<FCCLLoadoutRestoreRequest>
 			return false;
 		}
 		// All fallible work is complete. Callbacks obey the participant contract.
-		for (auto& Value : Prepared)
+		for (const TUniquePtr<FKSIInventoryEdit>& Edit : Edits)
 		{
-			Value.Inventory->RestoreValidated(Value.Request.Entries);
+			verify(Edit->Commit());
 		}
 		for (auto& Value : Prepared)
 		{

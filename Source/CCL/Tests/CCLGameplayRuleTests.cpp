@@ -552,8 +552,7 @@ bool FCCLLoadoutPublicationTest::RunTest(const FString& Parameters)
 		ASC->GameplayEffectApplicationQueries.RemoveAll([&](const auto& Value) { return Value.GetHandle() == QueryHandle; });
 	};
 	TestFalse(TEXT("GAS rejection refuses equip"), Loadout->Equip(Item));
-	TestTrue(TEXT("rejection preserves bag and effects"), !Loadout->IsEquipped(Item) && Inventory->Find(Item)->Slot == BagSlot
-		&& ASC->GetNumericAttribute(UCCLOffenseSet::GetAttackBonusAttribute()) == BaseAttack && !Inventory->IsTransactionOpen());
+	TestTrue(TEXT("rejection preserves bag and effects"), !Loadout->IsEquipped(Item) && Inventory->Find(Item)->Slot == BagSlot && ASC->GetNumericAttribute(UCCLOffenseSet::GetAttackBonusAttribute()) == BaseAttack && !Inventory->IsEditOpen());
 	bReject = false;
 	const int32 Points = Loadout->GetPoints();
 	TestTrue(TEXT("learn once through synchronous callback"), Loadout->Learn(Skill));

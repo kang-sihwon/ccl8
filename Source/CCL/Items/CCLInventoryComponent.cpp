@@ -5,88 +5,8 @@
 #include "Engine/World.h"
 #include "CCLInventoryWeapon.h"
 #include "CCLInventoryFood.h"
+#include "KSIInventoryEdit.h"
 #include "Net/UnrealNetwork.h"
-
-FGuid UCCLInventoryComponent::Add(UKSIItemDefinition* Definition, int32 Quantity)
-{
-	if (!CanMutate() || !CanAdd(Definition, Quantity))
-	{
-		return FGuid();
-	}
-	if (const auto* Fragment = Definition->FindFragment<FCCLItemFragment_Perishable>())
-	{
-		FGuid WorldId;
-		double WorldSeconds = 0.;
-		FCCLFoodState Food;
-		FString Error;
-		return FCCLInventoryFood::FoodContext(*this, WorldId, WorldSeconds)
-			&& CCLFood::Create(WorldId, FGuid::NewGuid(), Quantity, WorldSeconds, Fragment->Policy, {}, Food, Error)
-			? FCCLInventoryFood::AddFood(*this, Definition, Food) : FGuid();
-	}
-
-    return Super::Add(Definition, Quantity);
-}
-
-bool UCCLInventoryComponent::Remove(FGuid Id, int32 Quantity)
-{
-	if (!CanMutate() || !Id.IsValid() || Quantity <= 0)
-	{
-		return false;
-	}
-	const int32 Index = List.Entries.IndexOfByPredicate([Id](const FKSIInventoryEntry& Entry) { return Entry.Id == Id; });
-	if (Index == INDEX_NONE || List.Entries[Index].Quantity < Quantity)
-	{
-		return false;
-	}
-	const auto& Current = List.Entries[Index];
-    if (Current.GetState<FCCLItemState>().Food.IsPresent())
-	{
-		FGuid WorldId;
-		double WorldSeconds = 0.;
-		FCCLFoodState Candidate = Current.GetState<FCCLItemState>().Food;
-		FCCLFoodState Removed;
-		FString Error;
-		if (!FCCLInventoryFood::FoodContext(*this, WorldId, WorldSeconds) || WorldId != Candidate.WorldId
-			|| !CCLFood::Split(Candidate, Quantity, WorldSeconds, Removed, Error))
-		{
-			return false;
-		}
-
-		List.Entries[Index].GetState<FCCLItemState>().Food = MoveTemp(Candidate);
-	}
-
-	List.Entries[Index].Quantity -= Quantity;
-	if (List.Entries[Index].Quantity == 0)
-	{
-		List.Entries.RemoveAt(Index);
-		List.MarkArrayDirty();
-	}
-	else
-	{
-		List.MarkItemDirty(List.Entries[Index]);
-	}
-	NotifyChanged();
-	return true;
-}
-
-bool UCCLInventoryComponent::CanAdd(const UKSIItemDefinition* Definition, int32 Quantity) const
-{
-	if (!Definition || Quantity <= 0 || Quantity > Definition->GetMaxStack())
-	{
-		return false;
-	}
-	for (const auto& Entry : List.Entries)
-	{
-		if (Entry.Slot >= 0 && Entry.Definition == Definition && Quantity <= Definition->GetMaxStack() - Entry.Quantity
-			&& (Definition->FindFragment<FCCLItemFragment_Perishable>() ? Entry.GetState<FCCLItemState>().Food.IsPresent()
-				&& Entry.GetState<FCCLItemState>().Food.Lots.Num() < CCLFood::MaxLots : CanStackEntry(Entry)))
-		{
-			return true;
-		}
-	}
-	return List.Entries.FilterByPredicate([](const FKSIInventoryEntry& Entry) { return Entry.Slot >= 0; }).Num() <
-	       FMath::Clamp(Capacity, 1, 128);
-}
 
 bool UCCLInventoryComponent::CanRestore(const TArray<FKSIInventoryEntry>& Entries) const
 {
@@ -147,13 +67,111 @@ bool UCCLInventoryComponent::BindPersistence(FGuid ContainerId, FString& Error)
 	return Store && Store->Bind(*this, ContainerId, Error);
 }
 
+bool UCCLInventoryComponent::CommitWithFoodEnvironment(FKSIInventoryEdit& Edit, const FCCLFoodEnvironmentBinding& Binding)
+{
+	if (Edit.GetInventory() != this || !Edit.Commit())
+	{
+		return false;
+	}
+
+	FoodEnvironment = Binding;
+	return true;
+}
+
+bool UCCLInventoryComponent::CanAdd(const UKSIItemDefinition* Definition, int32 Quantity) const
+{
+	if (!Definition || Quantity <= 0 || Quantity > Definition->GetMaxStack())
+	{
+		return false;
+	}
+
+	const bool bPerishable = Definition->FindFragment<FCCLItemFragment_Perishable>() != nullptr;
+	for (const FKSIInventoryEntry& Entry : GetEntries())
+	{
+		if (Entry.Slot < 0 || Entry.Definition != Definition || Quantity > Definition->GetMaxStack() - Entry.Quantity)
+		{
+			continue;
+		}
+
+		const FCCLFoodState& Food = Entry.GetState<FCCLItemState>().Food;
+		if (bPerishable ? Food.IsPresent() && Food.Lots.Num() < CCLFood::MaxLots : CanStackEntry(Entry))
+		{
+			return true;
+		}
+	}
+	return FKSIInventoryEdit::FindFreeSlot(GetEntries(), GetSlotCount()) != INDEX_NONE;
+}
+
+bool UCCLInventoryComponent::StageAdd(TArray<FKSIInventoryEntry>& Entries, UKSIItemDefinition* Definition, int32 Quantity, FGuid& OutId) const
+{
+	const FCCLItemFragment_Perishable* Fragment = Definition ? Definition->FindFragment<FCCLItemFragment_Perishable>() : nullptr;
+	if (!Fragment)
+	{
+		return Super::StageAdd(Entries, Definition, Quantity, OutId);
+	}
+
+	if (Quantity <= 0 || Quantity > Definition->GetMaxStack())
+	{
+		return false;
+	}
+
+	FGuid WorldId;
+	double WorldSeconds = 0.;
+	FCCLFoodState Food;
+	FString Error;
+	return FCCLInventoryFood::FoodContext(*this, WorldId, WorldSeconds) &&
+		   CCLFood::Create(WorldId, FGuid::NewGuid(), Quantity, WorldSeconds, Fragment->Policy, {}, Food, Error) &&
+		   FCCLInventoryFood::BuildFoodAddition(*this, Entries, Definition, Food, WorldSeconds, OutId);
+}
+
+bool UCCLInventoryComponent::StageRemove(TArray<FKSIInventoryEntry>& Entries, FGuid Id, int32 Quantity) const
+{
+	if (!Id.IsValid() || Quantity <= 0)
+	{
+		return false;
+	}
+
+	FKSIInventoryEntry* Entry = Entries.FindByPredicate([Id](const FKSIInventoryEntry& Value)
+														{ return Value.Id == Id; });
+	if (!Entry || Entry->Quantity < Quantity)
+	{
+		return false;
+	}
+
+	// 읽기는 상수 접근으로 해서 상태가 없는 항목에 빈 상태를 만들지 않는다.
+	const FCCLFoodState& CurrentFood = static_cast<const FKSIInventoryEntry&>(*Entry).GetState<FCCLItemState>().Food;
+	if (CurrentFood.IsPresent())
+	{
+		FGuid WorldId;
+		double WorldSeconds = 0.;
+		FCCLFoodState Candidate = CurrentFood;
+		FCCLFoodState Removed;
+		FString Error;
+		if (!FCCLInventoryFood::FoodContext(*this, WorldId, WorldSeconds) || WorldId != Candidate.WorldId ||
+			!CCLFood::Split(Candidate, Quantity, WorldSeconds, Removed, Error))
+		{
+			return false;
+		}
+
+		Entry->GetState<FCCLItemState>().Food = MoveTemp(Candidate);
+	}
+
+	Entry->Quantity -= Quantity;
+	if (Entry->Quantity == 0)
+	{
+		Entries.RemoveAll([Id](const FKSIInventoryEntry& Value)
+						  { return Value.Id == Id; });
+	}
+	return true;
+}
+
 bool UCCLInventoryComponent::CanUsePlainTransfer(const FKSIInventoryEntry& Entry) const
 {
-    return Entry.Definition && !Entry.GetState<FCCLItemState>().Food.IsPresent() && Entry.GetState<FCCLItemState>().LoadedAmmo == 0
-        && !Entry.Definition->FindFragment<FCCLItemFragment_Perishable>();
+	return Entry.Definition && !Entry.GetState<FCCLItemState>().Food.IsPresent() && Entry.GetState<FCCLItemState>().LoadedAmmo == 0 &&
+		   !Entry.Definition->FindFragment<FCCLItemFragment_Perishable>();
 }
 
 bool UCCLInventoryComponent::CanStackEntry(const FKSIInventoryEntry& Entry) const
 {
-    return !Entry.GetState<FCCLItemState>().Food.IsPresent() && Entry.GetState<FCCLItemState>().LoadedAmmo == 0;
+	return !Entry.GetState<FCCLItemState>().Food.IsPresent() && Entry.GetState<FCCLItemState>().LoadedAmmo == 0;
 }
