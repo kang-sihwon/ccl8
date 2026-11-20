@@ -17,7 +17,7 @@ AI는 [Direction](Direction.md)의 합의된 제작 범위에서 `Source/`, `Con
 
 기준 환경은 Windows와 UE 5.8.3 소스 빌드다. 실제 엔진 버전은 `<Engine>/Build/Build.version`에서 확인한다. 엔진 소스는 읽기 전용 참고 자료이고, 경로는 로컬 설정에 둔다([AgentContextTools](AgentContextTools.md)).
 
-빌드 타깃은 `CCL`, `CCLEditor`, `CCLServer`다. 분리 모듈의 목록·의존·독립 검사용 최소 프로젝트는 [FrameworkPlan](FrameworkPlan.md)이 소유한다. 그 밖의 프로젝트 빌드 타깃은 실행하지 않는다. 엔진 전체 재빌드와 대형 인덱스 생성은 필요성과 비용을 먼저 사용자에게 제시한다.
+빌드 타깃은 `CCL`, `CCLEditor`, `CCLServer`, `CCLClient`다. `CCLClient`는 서버 코드를 뺀 시연용 클라이언트 패키지에만 쓴다([Packaging](Packaging.md)). 분리 모듈의 목록·의존·독립 검사용 최소 프로젝트는 [FrameworkPlan](FrameworkPlan.md)이 소유한다. 그 밖의 프로젝트 빌드 타깃은 실행하지 않는다. 엔진 전체 재빌드와 대형 인덱스 생성은 필요성과 비용을 먼저 사용자에게 제시한다.
 
 ## 코드 관례
 

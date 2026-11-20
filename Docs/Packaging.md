@@ -1,6 +1,6 @@
 # Windows 검토용 패키지
 
-Windows Development의 Game·실제 Server 패키지를 만들고 에디터를 거치지 않는 실행 파일에서 기능을 검사한다. 가장 최근 결과는 2026-10-12 UE 5.8.3의 [세계 모듈 분리 후 패키지](Packaging/Records.md#세계-모듈-분리-후-패키지)이고, 전투·투사체·UI 검사는 같은 날의 [전투 모듈 분리 후 패키지](Packaging/Records.md#전투-모듈-분리-후-패키지)가 마지막이다. 이 문서는 패키지 구성, 생성·실행 방법, 패키지별 검증 기록을 소유한다. [StudyRoadmap](StudyRoadmap.md)의 단계 7 사양이며, 산출물은 기능 검토용이라 최종 아트·밸런스와 Shipping 배포본을 대신하지 않는다.
+Windows Development의 Game·Client·실제 Server 패키지를 만들고 에디터를 거치지 않는 실행 파일에서 기능을 검사한다. 가장 최근 결과는 2026-10-28 UE 5.8.3의 [시연용 Client·Server 패키지](Packaging/Records.md#시연용-clientserver-패키지)이고, Game 패키지는 2026-10-12 [세계 모듈 분리 후 패키지](Packaging/Records.md#세계-모듈-분리-후-패키지)가 마지막이다. 전투·투사체·UI 검사는 같은 날의 [전투 모듈 분리 후 패키지](Packaging/Records.md#전투-모듈-분리-후-패키지)가 마지막이다. 이 문서는 패키지 구성, 생성·실행 방법, 패키지별 검증 기록을 소유한다. [StudyRoadmap](StudyRoadmap.md)의 단계 7 사양이며, 산출물은 기능 검토용이라 최종 아트·밸런스와 Shipping 배포본을 대신하지 않는다.
 
 ## 하위 문서
 
@@ -23,6 +23,7 @@ Windows Development의 Game·실제 Server 패키지를 만들고 에디터를 �
 |---|---|
 | `-ArchiveDirectory <path>` | 출력 폴더를 지정한다. 기본값은 `Saved/Packages/`다. 기존 전달본을 덮지 않도록 패키지마다 다른 폴더를 쓴다 |
 | `-Server` | UAT의 `-server -noclient -serverconfig=Development -serverplatform=Win64`로 `CCLServer`(`TargetType.Server`)를 만든다 |
+| `-Client` | UAT의 `-client`로 `CCLClient`(`TargetType.Client`)를 만든다. `-Server`와 함께 쓸 수 없다 |
 | `-SkipZenStore` | 쿠킹 결과를 Zen 저장소 대신 파일로 저장한다. 엔진 `CookCommandlet.cpp`의 `SkipZenStore` 분기를 쓰며 프로젝트 기본 설정은 바꾸지 않는다 |
 | `-SkipBuild` | 빌드를 건너뛰고 쿠킹부터 실행한다 |
 
@@ -32,6 +33,8 @@ Windows Development의 Game·실제 Server 패키지를 만들고 에디터를 �
 
 ## 실행 방법
 
-사용자는 패키지 루트의 `Windows/CCL.exe`를 실행하면 시작 화면이 열린다. 검사 도구는 `Windows/CCL/Binaries/Win64/CCL.exe`를 직접 쓴다. 다른 위치로 옮기거나 다른 PC에 전달할 때는 실행 파일만 복사하지 않고 해당 `Windows` 또는 `WindowsServer` 폴더 전체를 복사한다. 패키지와 로그는 Git에서 제외된 `Saved/`에 두고 GitHub에는 코드·설정·검증 도구·문서를 제출한다.
+사용자는 패키지 루트의 `Windows/CCL.exe`를 실행하면 시작 화면이 열린다. 검사 도구는 `Windows/CCL/Binaries/Win64/CCL.exe`를 직접 쓴다. 다른 위치로 옮기거나 다른 PC에 전달할 때는 실행 파일만 복사하지 않고 해당 `Windows`, `WindowsClient`, `WindowsServer` 폴더 전체를 복사한다. 패키지와 로그는 Git에서 제외된 `Saved/`에 두고 GitHub에는 코드·설정·검증 도구·문서를 제출한다.
+
+Client 패키지는 `WITH_SERVER_CODE=0`으로 빌드돼 Dedicated Server 접속 전용이다. UBT는 `TargetType.Client`일 때만 서버 코드를 끈다(`<Engine>/Source/Programs/UnrealBuildTool/Configuration/Rules/TargetRules.cs:1498`). 방 만들기(Listen)가 필요한 시연은 Game 패키지를 쓴다.
 
 일반 플레이는 `CCL_Checkpoint` 슬롯을 쓰며 자동 검사의 별도 슬롯과 구분한다. 검사에서 생성한 저장 파일·설정·로그·화면 캡처는 배포 폴더 밖에 둔다.

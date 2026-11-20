@@ -112,3 +112,25 @@
 | 사용자 실행기와 세션 | 루트 `CCL.exe`에서 네트워크 방 생성, 접속, 클라이언트 정상 종료 |
 
 Game과 Server 빌드 영수증의 `TargetType`과 패키지 내부 실행 파일의 SHA-256을 대조했다. PDB 보완을 위해 Game 스테이징의 같은 해시 중복본 하나만 지웠고 원본 Binaries와 Game 아카이브의 심볼은 보존했다. 최종 패키지 실행의 치명적 오류, 어설션, ensure, CDO 생성자 오류를 따로 검사했다.
+
+## 시연용 Client·Server 패키지
+
+2026-10-28 UE 5.8.3 소스 엔진에서 `CCLClient`(`TargetType.Client`)와 `CCLServer`(`TargetType.Server`)의 Windows Development 패키지를 만들고, 실제 Server에 Client 실행 파일을 연결해 검사했다. 로그의 공통 루트는 `Saved/DemoPackaging/`이다.
+
+| 용도 | 경로 |
+|---|---|
+| 사용자용 Client 실행기 | `Saved/DemoClientPackage/WindowsClient/CCLClient.exe` |
+| 검사에 사용한 Client | `Saved/DemoClientPackage/WindowsClient/CCL/Binaries/Win64/CCLClient.exe` |
+| 실제 Server 타깃 | `Saved/DemoServerPackage/WindowsServer/CCL/Binaries/Win64/CCLServer.exe` |
+
+| 검사 | 결과 | 근거 |
+|---|---|---|
+| Server BuildCookRun | 1810초, 종료 코드 0 | `Server-Package.log` |
+| Client BuildCookRun | 2294초, 종료 코드 0 | `Client-Package.log` |
+| 타깃과 아카이브 | 빌드 영수증의 TargetType이 Server·Client이고, 아카이브의 exe·PDB 4개가 빌드 원본과 SHA-256이 같다 | `Binaries/Win64/CCLServer.target`, `CCLClient.target` |
+| 환경 Dedicated | 실제 Server와 Client 2개, 지연 80ms·손실 2%, 관측자 재접속 성공 | `Packaged-Environment-Dedicated.log`, `Saved/Tests/Environment/EnvironmentScenario-Dedicated-20261028-183401-194/result.json` |
+| 전투 Dedicated | 실제 Server와 Client 2개, 지연 50ms·손실 2%, 관찰자 생존과 개별 재스폰 성공 | `Packaged-Combat-Dedicated.log`, `Saved/Tests/CombatSmoke/Dedicated-20261028-183532/` |
+
+각 프로세스 로그의 실행 파일이 `CCLClient.exe`·`CCLServer.exe`이고 NetMode가 Client·Dedicated Server인 것을 확인했다. 치명적 오류·어설션·ensure는 없다. Client 쿠킹에는 두 환경 맵의 FString 기반 FText 저장 경고 26건이 남았다.
+
+렌더링한 시작 화면과 메뉴의 주소 입력 접속, Client 실행 파일의 Standalone 동작은 검사하지 않았다. 한 PC의 검증이며 다른 PC·외부 인터넷·NAT는 검증하지 않았다.
