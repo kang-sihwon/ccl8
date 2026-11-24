@@ -24,7 +24,7 @@
 
 공방–물터–숲문 284.947m의 [실리소스 제작·검증 결과](VelesBlockout/ArtSlice-2026-11-16.md)를 완료했다. 별도 VelesArtSlice에서 건축 외형 8동과 식생 795개를 배치했고 왕복 이동·네 번의 카메라 회전·엔진 CSV 측정을 마쳤다. 다음은 지면·수면·조명과 원경 정리, 전투·NavMesh, 목표 환경의 패키지 성능 검증이다. 최종 아트와 전투 완료는 아니다.
 
-별도 [VelesBlockout 레벨](../../Content/Maps/VelesBlockout.umap)의 제작·저장·재로드와 주요 순환로의 PIE 이동 검증을 완료했다. UE 5.8.3의 Unreal MCP를 사용했다. Campaign과 원본 도안은 변경하지 않았다. 현재 단계는 공간 배치와 통행을 확인한 블록아웃이며 최종 아트나 전투 콘텐츠의 완료가 아니다.
+별도 [VelesBlockout 레벨](https://github.com/kang-sihwon/ccl8/blob/d65f96af09f94751d57ac0735e07e8617c2f082c/Content/Maps/VelesBlockout.umap)의 제작·저장·재로드와 주요 순환로의 PIE 이동 검증을 완료했다. UE 5.8.3의 Unreal MCP를 사용했다. Campaign과 원본 도안은 변경하지 않았다. 현재 단계는 공간 배치와 통행을 확인한 블록아웃이며 최종 아트나 전투 콘텐츠의 완료가 아니다.
 
 ![벨레스 블록아웃 전체 배치](VelesBlockout-preview.png)
 

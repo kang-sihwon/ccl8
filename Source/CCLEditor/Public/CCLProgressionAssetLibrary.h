@@ -25,9 +25,6 @@ public:
 	static bool CreateAttachmentProfileAssets();
 
 	UFUNCTION(BlueprintCallable, Category = "CCL|Editor")
-	static bool MigrateEquipmentTagAssets();
-
-	UFUNCTION(BlueprintCallable, Category = "CCL|Editor")
 	static bool CreateProjectileAssets();
 
 	// 모든 아이템 정의를 이 라이브러리의 값으로 다시 만든다(결정 70). 맨손, 진행 보상, 장비, 총기, 음식이 대상이다.

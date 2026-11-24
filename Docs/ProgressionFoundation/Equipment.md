@@ -44,7 +44,7 @@ GAS의 효과 추가 콜백 자체를 숨기지는 않는다. 해당 콜백에�
 
 - `Tools/Validation/rebuild_item_definitions.py`는 `UCCLProgressionAssetLibrary::RebuildItemDefinitions`로 아이템 정의 17개(맨손 2, 진행 보상 2, 시험 장비 8, 탄환·권총·소총, 음식 2)를 덮어써서 다시 만들고 결과를 로그에 덤프한다. 에디터 밖에서 손으로 고친 값은 남지 않으므로 정의 값을 바꿀 때는 라이브러리를 고친다. 2026-11-20 재생성 전 값은 같은 방식으로 덤프해 비교했고, 생성기와 달랐던 훈련용 검·방패의 메시(`TestResources/Weapon_Pack`)와 부착 오프셋은 라이브러리에 옮겼다.
 - `Tools/Validation/create_equipment.py`는 시험용 장비 8종을 다시 만든다.
-- `migrate_equipment_tags.py`, `migrate_item_fragments.py`는 이전 형식 변환 도구다. 2026-11-20의 정의 재생성으로 쓸 일이 없어졌다. 기본 마네킹 소켓과 `DA_HumanoidAttachments`는 `CreateAttachmentProfileAssets`가 만든다.
+- 기본 마네킹 소켓과 `DA_HumanoidAttachments`는 `CreateAttachmentProfileAssets`가 만든다. 이전 형식 변환 도구(`migrate_equipment_tags.py`, `migrate_item_fragments.py`, `MigrateEquipmentTagAssets`)는 정의 재생성으로 쓸 일이 없어져 2026-11-20에 지웠다.
 
 구현 위치는 `Source/CCL/Items/CCLItemFragments.h`, `CCLLoadoutComponent.cpp`, `Source/CCL/UI/SCCLInventoryWidget.cpp`다.
 

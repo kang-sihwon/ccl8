@@ -7,6 +7,9 @@ Orbis의 그래픽 스타일을 ccl8의 마을, 전투 구간, 보스 공간에 
 | 문서 | 읽는 때 |
 |---|---|
 | [벨레스 B안 건축 키트 비교](ArtDirection/VelesBuildingKits-2026-11-18.md) | 조사한 16종 중 제외 9종의 사유와 남은 7종의 공방·주택 활용안을 비교할 때 |
+| [UE5_2 리소스 조사](ArtDirection/UE52ResourceSurvey-2026-11-20.md) | 원본 팩을 가로질러 집·나무·조립 부재를 찾고 전체 파일의 경로와 UE 클래스를 확인할 때 |
+| [UE5_5 석조 건축 부재](ArtDirection/UE55ResourceSurvey-2026-11-24.md) | 문틀·창·벽 48개의 형태를 비교하고 정리 후 경로를 찾을 때 |
+| [MedievalEnvironment 중세 마을 리소스](ArtDirection/MedievalEnvironmentResourceSurvey-2026-11-24.md) | 지붕·벽·수목·대장간 도구를 고르고 마을 맵과 외부 액터의 새 경로를 확인할 때 |
 | [벨레스 아트 콘셉트 3안](ArtDirection/VelesConcepts-2026-11-17.md) | 리소스 선정 전에 현실감·반실사·형태 중심의 목표 화면을 비교할 때 |
 | [에테르 첫 장 MJ 시안 목록](ArtDirection/EtherFirstChapter.md) | 도입부터 바르툴전 이후 출항까지 YouArt에서 만들 디자인과 장면 시안을 고를 때 |
 | [에테르 세계지도 시안](ArtDirection/EtherWorldMap.md) | 육지 35%·이그니스 2,000만 km²의 계산 보정 지도와 대륙·벨레스 지역 확대를 볼 때 |
