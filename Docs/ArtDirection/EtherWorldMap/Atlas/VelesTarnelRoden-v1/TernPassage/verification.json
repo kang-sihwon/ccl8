@@ -1,0 +1,56 @@
+{
+  "tiles": {
+    "벨레스": 25,
+    "타르넬": 97,
+    "로덴": 124,
+    "VT": 363,
+    "TR": 593
+  },
+  "original_files_sha256_verified": 267,
+  "legs": {
+    "VT": {
+      "shared_edges": 597,
+      "feature_crossings": 498,
+      "max_position_error_m": 0.00046,
+      "max_tangent_error_deg": 0.00288,
+      "legacy_ports": 9,
+      "max_port_error_m": 0.00091,
+      "max_port_tangent_deg": 0.01473,
+      "tributary_bridges": 1
+    },
+    "TR": {
+      "shared_edges": 974,
+      "feature_crossings": 818,
+      "max_position_error_m": 0.00073,
+      "max_tangent_error_deg": 0.00304,
+      "legacy_ports": 8,
+      "max_port_error_m": 0.00038,
+      "max_port_tangent_deg": 0.00523,
+      "tributary_bridges": 1
+    }
+  },
+  "journeys": {
+    "boat": {
+      "sheets_in_order": 356,
+      "regions": [
+        "벨레스",
+        "VT",
+        "타르넬",
+        "TR",
+        "로덴"
+      ],
+      "max_join_gap_m": 0.0
+    },
+    "road": {
+      "sheets_in_order": 370,
+      "regions": [
+        "벨레스",
+        "VT",
+        "타르넬",
+        "TR",
+        "로덴"
+      ],
+      "max_join_gap_m": 0.0
+    }
+  }
+}

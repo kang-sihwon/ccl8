@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>판타지 마을의 인구와 크기 · 이그니스 지도 자료집</title>
+  <link rel="stylesheet" href="atlas.css"><script defer src="cases.js"></script><script defer src="atlas.js"></script>
+</head>
+<body>
+<header><div class="wrap topline"><a href="../MedievalSettlementScaleReferences/index.html">이그니스 지도 자료집</a><a href="../MedievalSettlementScaleReferences/index.html">중세 역사편 ↗</a></div></header>
+<main class="wrap">
+  <section class="intro">
+    <div><p class="kicker">정착지 연구　/　판타지편</p><h1>판타지 마을의<br> 인구와 크기</h1><p class="deck">소설 속 마을에는 몇 명이 살고, 게임에서는 그중 누구의 집과 일터를 보여 줄까?</p>
+    <p class="lead">리버팜의 <b>100명 남짓</b>은 재난을 겪은 마을의 주민 수다. 리버우드의 <b>14명</b>은 게임 초반 여섯 거처의 명단에서 센 인물이다. 두 숫자가 각자의 작품에서 어디까지 설명하는지 살펴본다.</p></div>
+    <figure><button data-open="riverwood" aria-label="리버우드 원화 확대"><img src="plates/riverwood.webp" alt="강과 제재소가 있는 리버우드의 콘셉트 원화"></button><figcaption>리버우드　·　Ray Lederer, Skyrim 콘셉트 원화　<a href="#case-riverwood">거처별 인원 보기 ↘</a></figcaption></figure>
+  </section>
+  <nav aria-label="자료집 목차"><a href="#compare">숫자 비교</a><a href="#scale">동일 축척 지도</a><a href="#catalog">작품별 사례</a><a href="#ignis">벨레스·타르넬·로덴</a></nav>
+  <section id="compare"><h2>마을에서 무엇을 셌나</h2><p>판타지 작품의 100명은 상주인구일 수도, 습격 후 남은 사람이나 모집 가능한 일꾼일 수도 있다. 같은 단위끼리 비교할 수 있도록 숫자가 가리키는 대상을 함께 적었다.</p>
+    <div class="scroll"><table><caption>원작·설정집·게임 운영에서 확인한 대표 수치</caption><thead><tr><th>정착지</th><th>확인한 규모</th><th>포함 범위</th><th>근거</th></tr></thead><tbody id="numbers"></tbody></table></div>
+  </section>
+  <section id="scale"><div class="section-head"><div><h2>같은 600m 안에 들어오는 마을</h2><p>벌목 마을 한 곳과 항구 두 곳을 원도판의 축척 막대에 맞췄다. 각 창의 가로 폭은 600m다. 오타리와 샌드포인트는 인구가 같은데도 물가에 닿는 길이 다르다.</p></div><label class="toggle"><input id="tiles" type="checkbox"> 벨레스 한 타일 겹치기</label></div>
+    <div class="maps" id="maps"></div><p class="fine">격자 한 칸은 255.06 × 272.94m다. 테두리는 원도판 축에 나란히 놓았다. 창은 취락 중심의 일부분이며 숲·수면도 담는다. 이미지에서 읽은 막대 길이를 썼으므로 표시 거리는 근삿값이다. <a href="../Atlas/VelesTarnelRoden-v1/VelesCardinalTiles/tiles.json">벨레스 타일 규격 ↗</a></p>
+  </section>
+  <section id="catalog"><h2>작품별 마을과 도시</h2><p>소설 10곳, 비디오게임 마을 13곳, 게임 속 도시 2곳과 인구표·도면이 있는 테이블톱 RPG 4곳을 담았다. 사건 뒤 모습과 모험의 초반 전개도 다룬다.</p>
+    <div class="filters"><label>작품·지명 검색<input id="query" type="search" placeholder="예: 스카이림, Riverfarm"></label><label>자료 유형<select id="group"><option value="">전체</option></select></label><label>센 대상<select id="unit"><option value="">전체</option></select></label></div>
+    <p id="status" role="status"></p><div id="cards"></div>
+  </section>
+  <section id="ignis"><h2>테른 강의 세 정착지에 대입하면</h2>
+    <div class="notes"><article><h3>벨레스 · 한 집에서 누가 사는가</h3><p>현재안은 16가구 60명이다. 100명 안팎으로 키우는 선택에는 리버팜이 직접적인 판타지 선례다. 기존 가구당 평균 3.75명을 적용하면 27가구는 약 101명이다. 플레이에서 보여 줄 집을 고를 때는 리버우드처럼 여관·잡화점·공방에 누가 자고 일하는지를 먼저 배정할 수 있다.</p><a href="#case-riverfarm">리버팜의 원문</a> · <a href="#case-riverwood">리버우드의 명단</a></article>
+    <article><h3>타르넬 · 목재가 항구까지 가는 길</h3><p>현재안은 3,200명·48ha다. 오타리의 수차와 목재 운반 수로는 일이 이루어지는 순서를 지도에서 읽을 수 있는 사례다. 타르넬에서는 공동 나루에서 검사길로 들어가는 짐수레와, 높은 단의 시장으로 돌아가는 주민이 어디서 길을 나누는지 비교할 수 있다.</p><a href="#case-otari">오타리의 공식 도면</a> · <a href="#case-willow">강 양안의 윌로쇼어</a></article>
+    <article><h3>로덴 · 한 장면에 들어오는 도시</h3><p>현재안은 24,000명·210ha다. 보도 자료의 노비그라드 3만 명은 비슷한 자릿수의 참고점이다. 로덴 나루에서는 하역 인력, 조합에서는 장인과 거래인, 사고 구역에서는 점검·구조에 투입된 인원을 각각 세는 편이 장면 설계에 맞는다.</p><a href="#case-novigrad">노비그라드의 항구·광장</a> · <a href="#case-moon">사건 전후의 주민 흔적</a></article></div>
+    <p class="fine">60명·3,200명·24,000명은 이그니스 설정안이다. 100명은 비교를 위한 벨레스의 대안이다. <a href="../Atlas/VelesTarnelRoden-v1/TernBasin377/settings.html#settlement-scale">세 정착지의 현재 설정 ↗</a></p>
+  </section>
+  <section id="method"><h2>자료를 읽는 기준</h2><p>소설은 장면과 화자를, 게임은 판본과 퀘스트 상태를 기록했다. 커뮤니티가 옮겨 적은 대사·건물 목록, 직접 합산한 명단, 출판사가 명시한 인구는 각 항목의 설명과 출처에서 구별한다. 화면 한 장의 원근이나 전투 맵의 칸 수로 정주 면적을 추정하지 않았다.</p><p>규칙 자체를 비교하려면 《패스파인더 킹메이커》 2판의 정착지 표도 볼 만하다. 왕국 운영용 지침은 마을을 최대 400명, 타운을 401~2,000명으로 놓는다. 같은 출판사가 윌로쇼어를 225명의 타운으로 소개하는 사례에서 보듯, 이 구간은 해당 규칙을 사용하는 캠페인의 분류다. <a href="https://downloads.paizo.com/KingmakerSecondEdition_PlayersGuide.pdf#page=47">Kingmaker Player’s Guide, p.47 ↗</a></p></section>
+  <footer><a href="../MedievalSettlementScaleReferences/index.html">중세 정착지 인구·면적 자료집 ↗</a><a href="../MedievalSettlementMapReferences/index.html">정착지 지도와 게임 현장 도판 ↗</a></footer>
+</main>
+<dialog id="viewer" aria-labelledby="view-title"><div class="dialog-head"><div><small id="view-work"></small><h2 id="view-title"></h2></div><button id="close" autofocus>닫기 ×</button></div><div class="zoom"><label>도판 확대 <input type="range" id="zoom" min="1" max="3" step=".25" value="1"></label><output id="factor">1×</output><label id="trace-label" hidden><input id="show-trace" type="checkbox"> 두 지점 표시</label></div><div class="pane" tabindex="0" aria-label="도판을 확대하면 가로와 세로로 이동할 수 있음"><div id="sheet"><img id="enlarged" alt=""><svg id="trace" aria-hidden="true"></svg></div></div><p id="distance"></p><p id="credit"></p></dialog>
+</body></html>

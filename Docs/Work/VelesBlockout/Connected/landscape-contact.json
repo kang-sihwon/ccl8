@@ -1,0 +1,41 @@
+{
+  "map": "/Game/Level/VelesDeparture/Connected/WP_VelesDeparture",
+  "tree_collar_before": {
+    "total": 10432,
+    "over_20cm": 4413,
+    "max_cm": 2397.86,
+    "lowest_cm": -549.47
+  },
+  "tree_collar_after": {
+    "total": 10533,
+    "over_20cm": 0,
+    "max_cm": -9.0,
+    "lowest_cm": -84.98
+  },
+  "verge_instances": {
+    "SM_Fern_01": 602,
+    "SM_BushWithoutSnow_02": 610,
+    "SM_GrassClump_03": 1481,
+    "SM_White_Oak_Young_01": 101
+  },
+  "understory_before": {
+    "total": 85835,
+    "above_2cm": 2163,
+    "max_cm": 287.59
+  },
+  "understory_after": {
+    "total": 85835,
+    "above_2cm": 0,
+    "max_cm": 1.99
+  },
+  "western_trail_pine": {
+    "before_xy_m": [
+      -92.4735,
+      240.0819
+    ],
+    "after_xy_m": [
+      -101.9735,
+      240.0819
+    ]
+  }
+}

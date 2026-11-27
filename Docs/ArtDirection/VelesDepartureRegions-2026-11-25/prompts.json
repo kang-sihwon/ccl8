@@ -1,0 +1,86 @@
+{
+  "tool": "image_gen",
+  "style": "Use case: stylized-concept. CCL dark-folklore RPG, a grounded and generous pre-departure medieval river-valley world. Premium panoramic horizontal environment development art, one full-bleed scene per image. Realistic architectural proportions, deliberate painterly edges and foliage groupings, natural weathered materials, restrained olive/sage, umber, silver water, honey light. Depth via grouped values, an artist's focal hierarchy, subtle atmospheric perspective, historically plausible practical carpentry. No typography, captions, border, diagram labels, UI, photographic montage or repeated thumbnail layout. Avoid the rejected uniformly orange conifer-grid toy hamlet with identical red-roof cottages. ",
+  "images": [
+    {
+      "id": "v00",
+      "title": "벨레스 마을 전경",
+      "prompt": "An integrated high oblique panorama of the ENTIRE small riverside village, looking uphill from across the main river. Make the reference village recognizable: lower left the working ferry, narrow shallow stepped watercourse through the houses, horizontal meadow strips and orchard to left, sprawling repair yard with cart wheels to right, great spreading amber oak and canvas market near middle, two little storehouses at the back and the northern forest gate. Show an irregular, compact human settlement, castle-free. A warm late afternoon, muted clay roofs, a thread of hearth smoke. Compose an utterly coherent single establishment painting."
+    },
+    {
+      "id": "v01",
+      "title": "강변 수리 공방",
+      "prompt": "Street-height close environment painting inside the OPEN FRONT of the Veles repair courtyard at first light, looking obliquely across a very tactile bench with a modest lit hand-repaired ether lantern, plane shavings and a half-repaired wheel. Wet cobbles meet compacted dirt. Beyond the uneven plaster half-timber workshop door and a waist-high shuttered window, catch a fragment of the main oak and neighbors starting work. Focus on a real occupied craft space, room for a traveler through the door. Low humans incidental."
+    },
+    {
+      "id": "v02",
+      "title": "샘물길과 공동 물터",
+      "prompt": "At pedestrian height the Veles communal water point at the moment the village notices water has stopped. Small stone-lined collection basin, the intake lip now dry, a woman checking an empty pail while the adjacent ordinary ether lamp still glows. A handspan-deep spring runnel in an eroded bank strictly BETWEEN the modest timber-plaster houses; keep foundations clear. Behind: washing stones, damp tide mark, soft grassy margins, distant clay roof. Close angled composition on physical evidence and accessible footpath, no enormous aqueduct or ocean."
+    },
+    {
+      "id": "v03",
+      "title": "큰 참나무 장터와 공동 식탁",
+      "prompt": "Intimate blue-hour evening after the water returns, beneath the broad low branches of Veles's signature huge amber oak in the modest market. Neighbors eat at two joined rough tables, pass bread and mend a traveling strap, a modest cook fire and warm hand lanterns, creak of canvas stalls; the trickle and terrace path glimmer beyond; familiar gabled roofs in dusk. Candid, lived-in, not a festival. The square is irregular and surprisingly small, viewed from between two seated figures."
+    },
+    {
+      "id": "v04",
+      "title": "다음 날 아침의 나루",
+      "prompt": "Veles's humble river ferry at cool dawn from a low mooring bollard; view diagonally along a short two-level weathered landing, one small scheduled inland timber cargo boat being readied with rope and bundles. A young traveler boards; the ferryman friend remains distinctly on the dock. Background local roofs and partly visible broad oak, humble stone abutment, reeds and a quiet river beneath distant hills. Human-sized boat not an ocean ship, no major city, no world tree on horizon. Crisp brush focus in foreground and silvery haze."
+    },
+    {
+      "id": "f00",
+      "title": "금빛 안개 삼림 전경",
+      "prompt": "One continuous high-angle aerial landscape of the ENTIRE forest watershed, not separate scenes. Orient south at bottom, north uphill. Lower border village gate and pruned coppice, west (left) granite outcrops and an open-sided sawyers' timber yard, east (right) a raised berry woodland terrace on the west bank of a navigable main river at far right, center a narrower winding spring stream with occasional weathered maintenance structures, upper wet banks and a short footbridge, converging trails terminate beneath a SINGLE huge LOCAL old tree on a root-bound hill with a small dark cave entry. Patches of warm mist, clear navigation landmarks, readable switchbacks, scale continuity."
+    },
+    {
+      "id": "f01",
+      "title": "마을 바깥 관리림",
+      "prompt": "At the mouth of the forest looking back toward Veles from a cool threshold under young coppiced oaks. Distinct cut stools with multiple regrown stems, neat pale cuts, a dry-stone culvert, shallow maintenance runnel, a low woven gate and two worn cart ruts separating into paths. Last tiny red roof at far end of the lane. Ferns, birds, warm mist. This is tended everyday woodland, with taller dark unmanaged forest beginning to the side."
+    },
+    {
+      "id": "f02",
+      "title": "동쪽 열매숲",
+      "prompt": "The eastern berry woodland on a high alluvial terrace. Foreground close wild berry-laden shrubs, resin tapped into tiny wooden cups from a few evergreen trunks, woven gathering baskets, sunlit broadleaf canopy, a side trail bending to a lookout over the larger river down below on the right. Texture of resin, leaves and bark, a clear traversable route for a grown human. No fruit orchard rows or village houses. Golden shafts through cool mist."
+    },
+    {
+      "id": "f03",
+      "title": "수로 작업림",
+      "prompt": "The watercourse maintenance grove. A shallow hand-maintained water channel follows a stony contour under a mixed forest canopy. A narrow dry work bench on raised stone footings, two stop-board grooves, old timber repair trestles and secured insulated copper fittings with an old tool beside them. Wide enough maintenance strip to walk along; a small patch of unnatural frost bites the outlet while surrounding ferns are green. Infrastructure of rural craftspeople, no factory or pump engines. East light with long dark lines leading uphill."
+    },
+    {
+      "id": "f04",
+      "title": "서쪽 바위숲과 원목 작업장",
+      "prompt": "Western rocky woods with a cart track bending between two lichen-mottled granite shoulders before revealing a useful timber yard. Show a LOW open-sided single-slope sawyers' shelter, neatly stacked stripped logs with end grain, a two-wheel hauling cart, saw horse and froe. Meadow ridge rises behind; a second track vanishes through rock and fir. View from a foreground boulder at height of an approaching walker. Outdoor timber handling; no buried machine shop or cave."
+    },
+    {
+      "id": "f05",
+      "title": "상류 물가",
+      "prompt": "At water level on a wet bend in the UPPER SPRING STREAM. Foreground prints of a large bear pressed into soft silt beside rounded stones, fine localized fringe ice at an intake, wider living open water under leaning alder, glistening sedges. A modest timber maintenance footbridge crosses upstream, thick low brush hides what is around its bend. Cold stream reflected against warm mist in forest. No monsters staged in front of camera; space for a cautious approach."
+    },
+    {
+      "id": "f06",
+      "title": "뿌리 언덕",
+      "prompt": "The root hill directly above the spring cave, two forest tracks meet beneath an ancient LOCAL tree, its thick earth-covered exposed roots holding a granite hillside. Place a person-size shadowed seam in the roots with an old timber maintenance jamb and subtle localized frost around the spring lip. Strong uphill foreground framing and soft amber backlight, a small traveler for scale. No castle entrance, no giant glowing portal, no world tree skyline."
+    },
+    {
+      "id": "c00",
+      "title": "서리뿌리 동굴 통합 단면",
+      "prompt": "ONE coherent, exquisite wide geological cutaway environment painting, as if part of the hillside was sliced along the playable path. Above-ground at far left daylight the frozen spring entrance under old roots; descending by a dry narrow ramp to an artisan workshop with drawing bench and guarded service piping in the middle; to the right a distinctly larger grotto beneath the roots of the SAME old local tree, living brown bear next to dark crystalline mechanical tethers; at its side a reachable operating platform, discharge and water return. Distinguish hand-built floor above water and natural rock. Retain visible rock strata between spaces, connected walking routes, humans and bear to scale. Composition fills frame, no labels, diagram arrows or stand-alone detached miniatures; infrequent warm lights rhythmically recede in blue-grey stone."
+    },
+    {
+      "id": "c01",
+      "title": "얼어붙은 샘 입구",
+      "prompt": "From just within the cold threshold looking diagonally deeper along a sloping walkable maintenance ledge, from leaf-strewn daylight to damp blue stone. Natural limestone shelter squeezed by big earth-covered roots. Ribbon of water seeps from under a timber-framed, locally FROZEN intake; a shoulder-height inspection hatch with simple handmade latch, bootworn dry access ramp and a single distant amber lantern. Clearly a modest utilitarian mountain spring entrance. Not an ice palace or a giant mine."
+    },
+    {
+      "id": "c02",
+      "title": "옛 장인의 지하 작업실",
+      "prompt": "Reachable subterranean waterworks service room carved out of rock, functional interior environmental keyframe viewed from the passage at eye level. An old drawing desk with faded linework faces an inspection slit exposing a compact bypass coupling bridging a rest governor on the constantly engaged extraction unit. Separate intact supply piping. The angular wood-and-stone maintenance sentinel occupies part of the working floor, scale near human, modest, no boss bear in this room. Root ceiling, marks from repairs, oil lamp, pale frost along the outlet; repair logic and clean spatial reads, simple tools, NO industrial steampunk congestion."
+    },
+    {
+      "id": "c03",
+      "title": "거목 아래 수원 공동",
+      "prompt": "An immense but believable natural freshwater cavern below the LOCAL tree, roots descending through rock, pool on lower floor, broad dry stony arena and two escape lanes. Visual center: a powerful, living anatomically natural brown bear Bartul trying to back away, prevented by clearly EXTERNAL dark crystal restraints from one foreleg and chest down to the old extracting plant and anchors. Body unarmored and unharmed; distinguish normal brass/wood service equipment at side and the higher operator's ledge it blocks. Quiet tragedy, cold blue reflected water, a focused shaft of warm light through roots, subdued mineral sparkle, optional tiny traveler for scale, no gore or crystal monster."
+    }
+  ]
+}

@@ -1,0 +1,154 @@
+{
+  "L01_VelesVillage": {
+    "map_sha256": "f6e4b1ed8cb7938317ace3ca85f9b562e5aa69fe81d805c321cfb8b47ec89b03",
+    "source": "Saved/Tests/VelesDeparture/20261125-203733/report.json",
+    "cameras": [
+      "V00",
+      "V01",
+      "V02",
+      "V03",
+      "V04"
+    ],
+    "walks": [
+      {
+        "segment": 0,
+        "passed": true,
+        "metres": 4.46,
+        "falling_frames": 0
+      },
+      {
+        "segment": 1,
+        "passed": true,
+        "metres": 1.17,
+        "falling_frames": 0
+      },
+      {
+        "segment": 2,
+        "passed": true,
+        "metres": 2.98,
+        "falling_frames": 0
+      },
+      {
+        "segment": 3,
+        "passed": true,
+        "metres": 3.89,
+        "falling_frames": 0
+      }
+    ],
+    "issues": [],
+    "time_variants": [
+      "Evening",
+      "Dawn",
+      "Day"
+    ],
+    "sun_lux": {
+      "V00": 4.4,
+      "V01": 4.4,
+      "V02": 4.4,
+      "V03": 0.035,
+      "V04": 0.85
+    },
+    "start": "<Struct 'Vector' (0x000001264458DDC0) {x: -5400.000000, y: 5200.000000, z: 295.338784}>"
+  },
+  "L02_GoldenMistForest": {
+    "map_sha256": "007317df20de6f1d93270e8917ae3e9496e2d33936da5736b982920422cbcdeb",
+    "source": "Saved/Tests/VelesDeparture/20261125-203329/report.json",
+    "cameras": [
+      "F00",
+      "F01",
+      "F02",
+      "F03",
+      "F04",
+      "F05",
+      "F06"
+    ],
+    "walks": [
+      {
+        "segment": 0,
+        "passed": true,
+        "metres": 3.89,
+        "falling_frames": 0
+      },
+      {
+        "segment": 1,
+        "passed": true,
+        "metres": 4.84,
+        "falling_frames": 0
+      },
+      {
+        "segment": 2,
+        "passed": true,
+        "metres": 4.42,
+        "falling_frames": 0
+      },
+      {
+        "segment": 3,
+        "passed": true,
+        "metres": 8.79,
+        "falling_frames": 0
+      },
+      {
+        "segment": 4,
+        "passed": true,
+        "metres": 5.46,
+        "falling_frames": 0
+      },
+      {
+        "segment": 5,
+        "passed": true,
+        "metres": 9.75,
+        "falling_frames": 0
+      },
+      {
+        "segment": 6,
+        "passed": true,
+        "metres": 2054.41,
+        "falling_frames": 0
+      }
+    ],
+    "issues": [],
+    "trees": 9384,
+    "tree_cull_end_cm": [
+      310000,
+      310000,
+      310000,
+      310000
+    ],
+    "water_bodies": 2,
+    "start": "<Struct 'Vector' (0x0000016A5A561D70) {x: -8000.000000, y: 20500.000000, z: 1005.011492}>",
+    "waypoints_reached": 66,
+    "last_position_m": [
+      271.04,
+      1247.79,
+      64.1
+    ],
+    "journey_time_dilation": 4,
+    "journey_waypoints": 67
+  },
+  "L03_FrostrootCave": {
+    "map_sha256": "24c00ae82d14a847a21fec58ed35f246a57287d880245d1031e5586d53014f8a",
+    "source": "Saved/Tests/VelesDeparture/20261125-203159/report.json",
+    "cameras": [
+      "C00",
+      "C01",
+      "C02",
+      "C03"
+    ],
+    "walks": [
+      {
+        "segment": 0,
+        "passed": true,
+        "metres": 71.95,
+        "falling_frames": 0
+      }
+    ],
+    "issues": [],
+    "start": "<Struct 'Vector' (0x000001D1DED8DA50) {x: -700.000000, y: -132.725787, z: 209.898287}>",
+    "waypoints_reached": 12,
+    "last_position_m": [
+      60.43,
+      -1.86,
+      -2.25
+    ]
+  }
+}

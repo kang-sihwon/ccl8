@@ -1,0 +1,93 @@
+{
+  "status": "PASS",
+  "scope": "현재 도면의 좌표·경로 상태·브라우저 표시. UE 실플레이·충돌·항행·AI는 미검증.",
+  "checks": {
+    "river": 1,
+    "source places": 22,
+    "S2 ecology": 15,
+    "S2 movement": 4,
+    "Veles ecology": 12,
+    "unique counts": 4,
+    "scenes": 25,
+    "sheet panels": 8,
+    "layer membership": 26,
+    "frame": 663,
+    "rendered geometry": 658,
+    "scale": 26,
+    "rendered radius": 18,
+    "harbor registration": 4,
+    "harbor bank": 3,
+    "registration differences": 5,
+    "underground footprint": 5,
+    "cave section": 1,
+    "state and transport": 30,
+    "grid clearance": 8,
+    "return": 1,
+    "Tarnel branches": 1,
+    "index target": 116,
+    "browser labels": 8
+  },
+  "sheets": 8,
+  "panels": 26,
+  "story_scenes": 24,
+  "browser": {
+    "01-river.svg": {
+      "labels": 17,
+      "crossing": [],
+      "over": []
+    },
+    "02-village.svg": {
+      "labels": 21,
+      "crossing": [],
+      "over": []
+    },
+    "03-forest.svg": {
+      "labels": 23,
+      "crossing": [],
+      "over": []
+    },
+    "04-cave.svg": {
+      "labels": 16,
+      "crossing": [],
+      "over": []
+    },
+    "05-tarnel.svg": {
+      "labels": 26,
+      "crossing": [],
+      "over": []
+    },
+    "06-roden-quay.svg": {
+      "labels": 14,
+      "crossing": [],
+      "over": []
+    },
+    "07-roden-approach.svg": {
+      "labels": 23,
+      "crossing": [],
+      "over": []
+    },
+    "08-roden-rescue.svg": {
+      "labels": 43,
+      "crossing": [],
+      "over": []
+    },
+    "index": {
+      "heading": "벨레스에서 로덴까지",
+      "scene_links": 76,
+      "distinct_views": 13
+    }
+  },
+  "visual_review": "8개 SVG의 렌더링을 확인했다. 들것 동선과 충돌한 수동 격자를 측면 통로로 옮기고, 접안점 세 곳의 국소 강안을 표시했다.",
+  "sha256": {
+    "01-river.svg": "a1680f819de8c35255ea138b309354608c5526bfff4dcb54b0fa54dc5f955a3c",
+    "02-village.svg": "e845f4b9c788b6585e04412258fd90610e1c3df7676864b12b2aa9bfdbacaad3",
+    "03-forest.svg": "0e3e5728dc8ae7ac9a9b7d4c155dcf2090dd97d2fc4b5f2959d45fe551af364f",
+    "04-cave.svg": "a9366afb857003e01115315266155aa7fd2a0ed74a891967252529df72cdb4da",
+    "05-tarnel.svg": "2fbc5fc181d36cfbad940426ca0cdddd37755ffcd8a7ec0e0da426c0470ee2e7",
+    "06-roden-quay.svg": "919a76ae5f515f45023733bfd89c49a0b1d7abef4542e632b971dfcee271a0e6",
+    "07-roden-approach.svg": "74c75b234b8c510f5a24160ac201b6e763c529a887276df50dfa6ffede93bee3",
+    "08-roden-rescue.svg": "f1f2a4c12ff3557e33f805e65ae6481fe78fa68a756ad1be6598c9394710ec38",
+    "coordinates.json": "35d7d2c2978fe176ab3b993eece8fe832300df4c4592acc4152fb16746cb2cd1",
+    "index.html": "248e7f0326763d33c37094df98623269ad03eb8d787331756b3a753d4dc99e75"
+  }
+}

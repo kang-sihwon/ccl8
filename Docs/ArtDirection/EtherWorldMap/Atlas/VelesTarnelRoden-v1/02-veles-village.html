@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="ko">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>벨레스 마을과 출항 나루 · 상세지도</title>
+<style>
+*{box-sizing:border-box}
+body{max-width:1090px;margin:0 auto;padding:28px clamp(12px,3vw,36px) 48px;background:#f2eddf;color:#363a30;font:16px/1.7 "Malgun Gothic",sans-serif}
+a{color:#36594e;text-underline-offset:.22em}
+nav,.controls,footer{display:flex;align-items:baseline;flex-wrap:wrap;gap:.4rem 1.3rem}
+nav{font-size:.9rem}
+h1{font:700 clamp(28px,5vw,52px)/1.2 Batang,serif;letter-spacing:-.055em;margin:1.4rem 0}
+.controls{justify-content:space-between;margin-bottom:.55rem}.controls label{cursor:pointer}
+figure{margin:0}.map{position:relative;border:1px solid #7c795e;background:#ccbea3}
+.plan-link{display:block;border:1px solid #9a917a}details{margin-top:1rem}summary{cursor:pointer;font-weight:700}details[open] summary{margin-bottom:.8rem}
+img{width:100%;display:block}.map span{position:absolute;left:var(--x);top:var(--y);transform:translate(-50%,-115%);border:1px solid #857451;background:#f1e8ceeb;color:#322e23;padding:0 .34em;line-height:1.45;font-weight:600;font-size:clamp(10px,1.5vw,14px);white-space:nowrap;pointer-events:none}
+.map span::after{content:"";position:absolute;left:50%;bottom:-4px;width:5px;height:5px;background:#f1e8ce;border-bottom:1px solid #857451;border-right:1px solid #857451;transform:translateX(-50%) rotate(45deg)}
+main:not(:has(#labels:checked)) .map span{display:none}
+figcaption{max-width:58em;margin:.9rem 0;color:#565848}
+footer{border-top:1px solid #c1b79f;margin-top:1.4rem;padding-top:1rem}
+@media print{body{padding:0}nav,.controls,footer{display:none}}
+</style>
+<main>
+<nav aria-label="지도 목록"><a href="index.html#maps">벨레스에서 로덴까지</a><a href="../../MedievalSettlementMapReferences/index.html">중세 정착지 레퍼런스</a></nav>
+<h1>벨레스 마을과 출항 나루</h1>
+<p>벨레스는 열여섯 가구 60명이 사는 나루 마을이다. 지붕 위의 짙은 번호는 살림채를 가리킨다. 숲문에서 종이 울리면 공동 창고 곁집이 돌아온 사람을 세고, 나루 짐꾼은 강변에서 일하는 사람과 배에 소식을 전한다.</p>
+<div class="controls"><strong>벨레스 좌표 평면도</strong><a href="02-veles-village.svg">원본 확대</a></div>
+<figure><a class="plan-link" href="02-veles-village.svg"><img src="02-veles-village.svg" alt="벨레스 좌표 평면도. 북서쪽 숲문과 공동 창고, 남쪽 나루의 경보 지점과 본채 35동, 열린 작업채 여섯 곳, 동쪽 띠밭을 표시했다."></a>
+<figcaption>작업채는 재료와 일감을 비에서 지킬 수 있게 기둥 여섯 개에 지붕을 얹었다. 공방 동쪽과 공동 창고 서쪽 작업채는 처마가 본채나 길에 겹치지 않도록 기존 제작 좌표에서 각각 약 2.2m와 3.6m 옮긴 배치안이다.</figcaption></figure>
+<details><summary>마을 채색 지도 보기</summary>
+<div class="controls"><label><input type="checkbox" id="labels" checked> 장소 이름 표시</label><a href="02-veles-village-painting.png">채색 지도 원본 확대</a></div>
+<figure>
+<div class="map">
+<img src="02-veles-village-painting.png" alt="북서쪽 숲문에서 집과 울타리 사이를 돌아 공동 급수대와 공방 마당을 지나 남쪽 테른 강 나루로 내려가는 벨레스. 강 건너에는 숲이 이어지고 동쪽 비탈에는 길쭉한 밭이 놓여 있다.">
+<span style="--x:17.5%;--y:8.7%">숲문</span>
+<span style="--x:17%;--y:20.5%">저장고</span>
+<span style="--x:55%;--y:39.3%">주거지</span>
+<span style="--x:46.9%;--y:46.3%">참나무 공동 식탁</span>
+<span style="--x:44.5%;--y:50.5%">공동 급수대</span>
+<span style="--x:26.6%;--y:66.6%">수리 공방</span>
+<span style="--x:82.8%;--y:55.9%">경작지</span>
+<span style="--x:54.1%;--y:80.8%">승선판</span>
+</div>
+<figcaption>공방에서 나온 수레는 마당의 열린 쪽으로 돌아 큰길에 합류한다. 급수대와 식탁을 사이에 둔 두 길은 위쪽 집터에서 다시 만난다. 물가에서는 자갈이 드러난 안쪽 기슭이 넓어지고, 그 건너편은 숲을 끼고 길게 휜다.</figcaption>
+</figure>
+</details>
+<footer><a href="02-veles-village.svg">집터와 거점 좌표를 맞춘 평면도</a><a href="VelesCardinalTiles/index.html">벨레스 5×5 좌표 평면도</a><a href="02-village.svg">기존 제작 도면 · 장면 동선과 UE 대응점</a></footer>
+<p>채색본의 지붕·울타리·강안은 배치 시안이다. 마당이 길로 열리는 자리는 <a href="../../MedievalSettlementMapReferences/index.html#gaiberg5">가이베르크</a>, 밭과 집 사이 갈림길은 <a href="../../MedievalSettlementMapReferences/index.html#artschphandalin">판달린</a>, 물굽이와 진입로가 만나는 지점은 <a href="../../MedievalSettlementMapReferences/index.html#mapplateLedetchko">레데치코</a>를 참고했다.</p>
+</main>
+</html>

@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>테른 강 연결 좌표 평면도</title><link rel="stylesheet" href="viewer.css"></head>
+<body><main>
+<nav><a href="../index.html">테른 강 지도 목차</a><a href="../VelesCardinalTiles/index.html">벨레스</a><a href="../CityPlans/Tarnel/index.html">타르넬</a><a href="../CityPlans/Roden/index.html">로덴</a></nav>
+<header><div><h1>테른 강 연결 좌표 평면도</h1><p>벨레스 출항 나루에서 타르넬의 목재 시장을 지나 로덴 북나루까지</p></div><small>신규 956장　·　기존 246장</small></header>
+<div class="spread"><aside><h2>항로와 강변길</h2><div class="controls"><select id="scope" aria-label="전체도 표시 범위"><option value="all">세 지역 전체</option><option value="VT">벨레스 → 타르넬 · 363장</option><option value="TR">타르넬 → 로덴 · 593장</option></select>
+<button id="minus" aria-label="전체도 축소">−</button><button id="plus" aria-label="전체도 확대">＋</button></div>
+<canvas id="map" tabindex="0" aria-label="전체도. 타일을 눌러 열거나 방향키로 지도를 이동한다."></canvas>
+<p class="legend"><i></i>신규 연결도　<i></i>기존 도면　<i></i>선택 타일</p>
+<label>여정 <select id="mode"><option value="boat">배로 이동</option><option value="road">강변길과 도선으로 이동</option></select></label>
+<div class="steps"><button id="prev">← 이전</button><output id="progress"></output><button id="next">다음 →</button></div>
+<label>장소 <select id="place"></select></label>
+<form id="jump"><label for="address">세계 타일 X, Y</label><input id="address" placeholder="예: -53, -81" size="12" required><button>열기</button></form><output id="message" role="status"></output>
+<details><summary>도면과 통행 기준</summary><p>기존 세 지역의 원본 도면과 같은 세계 격자를 쓴다. 한 칸은 동서 255.06m, 남북 272.94m다. 신규 구간은 테른 유역의 수계와 도시 경계에 맞춘 배치 시안이다.</p><p>배는 강 가운데의 옅은 파선을 따른다. 흙빛 길은 한쪽 기슭을 따라가며, 반대편으로 건널 때는 버들여울과 갈대굽이의 수레 도선을 이용한다. 지류가 길을 가로지르는 곳에는 작업교를 놓았다.</p><a href="verification.json">좌표·접합 검사 결과</a></details></aside>
+<section class="sheet"><div class="sheet-head"><div><small id="region"></small><h2 id="title"></h2></div><a id="source">SVG 원본 확대 ↗</a></div>
+<div class="tools"><span id="world"></span><label>도면 확대 <select id="zoom"><option>100%</option><option>150%</option><option>200%</option><option>300%</option></select></label></div>
+<div id="port"><img id="art" alt="선택한 타일 좌표 평면도"></div><div class="tools"><div id="neighbors"></div><output id="position">벨레스 기준 동 X · 북 Y (m)</output></div></section></div>
+</main><script src="atlas.js"></script><script src="viewer.js"></script></body></html>

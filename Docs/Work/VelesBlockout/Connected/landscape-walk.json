@@ -1,0 +1,143 @@
+{
+  "map": "/Game/Level/VelesDeparture/Connected/WP_VelesDeparture",
+  "status": "PASS",
+  "editor_views": [
+    "Departure overview",
+    "village edge",
+    "stream bank",
+    "stream meander",
+    "tree bases"
+  ],
+  "walks": [
+    {
+      "stage": "village to gate",
+      "waypoints": 15,
+      "position_m": [
+        -79.58,
+        204.27,
+        10.66
+      ],
+      "cumulative_metres": 231.73,
+      "falling_samples": 0,
+      "runtime_tiles": 22
+    },
+    {
+      "stage": "eastern trail",
+      "waypoints": 11,
+      "position_m": [
+        95.41,
+        755.3,
+        33.29
+      ],
+      "cumulative_metres": 979.81,
+      "falling_samples": 0,
+      "runtime_tiles": 21
+    },
+    {
+      "stage": "upstream to intake",
+      "waypoints": 47,
+      "position_m": [
+        272.32,
+        1249.65,
+        64.49
+      ],
+      "cumulative_metres": 1533.29,
+      "falling_samples": 21,
+      "runtime_tiles": 17
+    },
+    {
+      "stage": "intake to source chamber",
+      "waypoints": 15,
+      "position_m": [
+        271.19,
+        1326.63,
+        59.86
+      ],
+      "cumulative_metres": 1611.2,
+      "falling_samples": 21,
+      "runtime_tiles": 14
+    },
+    {
+      "stage": "source chamber to intake",
+      "waypoints": 14,
+      "position_m": [
+        271.86,
+        1251.32,
+        64.42
+      ],
+      "cumulative_metres": 1688.78,
+      "falling_samples": 21,
+      "runtime_tiles": 17
+    },
+    {
+      "stage": "return downstream",
+      "waypoints": 47,
+      "position_m": [
+        97.72,
+        765.44,
+        33.78
+      ],
+      "cumulative_metres": 2232.24,
+      "falling_samples": 75,
+      "runtime_tiles": 19
+    },
+    {
+      "stage": "western timber trail",
+      "waypoints": 11,
+      "position_m": [
+        -80.28,
+        205.78,
+        11.09
+      ],
+      "cumulative_metres": 3183.15,
+      "falling_samples": 75,
+      "runtime_tiles": 22
+    },
+    {
+      "stage": "gate to repair yard",
+      "waypoints": 14,
+      "position_m": [
+        -47.37,
+        52.81,
+        3.04
+      ],
+      "cumulative_metres": 3416.34,
+      "falling_samples": 75,
+      "runtime_tiles": 18
+    }
+  ],
+  "input": "Enhanced Input",
+  "time_dilation": 1,
+  "pre_play": {
+    "loaded_actors": 1316,
+    "terrain_tiles": 144,
+    "foliage_instances": 96018
+  },
+  "tree_contact": {
+    "total": 10533,
+    "over_20cm": 0,
+    "max_cm": -9.0,
+    "lowest_cm": -84.98
+  },
+  "understory_contact": {
+    "total": 85835,
+    "above_2cm": 0,
+    "max_cm": 1.99
+  },
+  "ground_material": "/Game/Level/VelesDeparture/Connected/Geometry/M_DepartureValleyGround",
+  "pie_max_frame_time_s": 0.05,
+  "pawn_class": "BP_VillageTraveler_C",
+  "max_walk_speed_cm_s": 5000.0,
+  "progress": [
+    8,
+    0
+  ],
+  "metres": 3416.34,
+  "return_error_m": 0.66,
+  "pie_views": [
+    "pie-village-trail.png",
+    "pie-woodland-trail.png",
+    "pie-return-trail.png"
+  ],
+  "max_sample_step_m": 2.52
+}

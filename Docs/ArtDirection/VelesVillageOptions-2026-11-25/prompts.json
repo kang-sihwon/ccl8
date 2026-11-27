@@ -1,0 +1,66 @@
+{
+  "tool": "image_gen",
+  "shared": "Use case: stylized-concept. A finished standalone landscape-format keyframe for Veles in the CCL medieval fantasy RPG. Grounded, lyrical semi-realistic environment painting, exquisite material observation and selective painterly edges, luminous natural daylight, legible values. One frame full bleed, no text or numbers. A modest inhabited artisan and ferry village, weathered local materials; brick-red roofs, occasional oxidized teal shutters, a mustard cloth and a golden woodland edge used sparingly. Proportions matter: human adult near one convincing full-height doorway with generous head clearance, window visibly separate with continuous wall beneath a waist-high sill and a broad shutter opening; houses substantial enough to walk into. A few purposeful villagers. Defer to the specific settlement geometry, architecture, and focal point below. Avoid castle skylines, majestic churches, visual clutter, huge empty plazas, modern objects, symmetrical prop scattering, copies of an existing game image. ",
+  "variants": [
+    {
+      "id": "01",
+      "name": "맞배지붕 골목 마을",
+      "references": "V023·V016·V062",
+      "prompt": "Interlocking short gable-fronted timber-frame houses packed along a dogleg lane of THE WHOLE settlement. Distinctive steep paired triangular roof silhouette; overhanging white limewashed upper storeys almost meet, slightly skewed plots. Street-level intimate lens 30mm, looking past a near shop corner with visible threshold, a woman lifting a shutter; warm open space and distant ferry glimpsed at the sharp bend. Patchy cart rut, stone doorstep, cultivated private skinny yards only behind buildings. Lively cool shade/warm sun, subtle charcoal line in painted surface."
+    },
+    {
+      "id": "02",
+      "name": "세 뜰을 잇는 공방촌",
+      "references": "V043·V004·V055",
+      "prompt": "The entire settlement organized into THREE interlocking U-shaped artisan courtyards, each shared by multiple residential wings. From the entrance to the first working court, reveal a second through a broad timber carriage arch, a sliver of third; no shopping boulevard. Dominant shape is a broad, low asymmetrical roof enclosing a sunlit square of tamped clay. Show an actual cart wheel being fitted beneath a lean-to, wood stock stacked under eaves and clear turning area. Cool soot-dark wood, copper earth, scattered red tile. Architectural gouache, bold masses. Reachable threshold next to shutter window in near side building."
+    },
+    {
+      "id": "03",
+      "name": "갈대 물굽이 나루 마을",
+      "references": "V063·V060·V030",
+      "prompt": "A horizontal crescent of low elongated ferry workers' dwellings and boat sheds following a natural river meander on the south edge of this village. From a low gravel spit look sideways along the bank: foreground undercut brown earth, roots and rushes cover half of irregular bank, ferry pulled up on sandy notch, only one short plank landing. Farther back a string of roomy clay-and-timber houses with raised stone plinths recedes around the curve; smoke from small repair yard. Expanse of water occupies left third; very low, long roofline. Waterside landscape in translucent oil-glaze colors under pearly daylight, rippled reflections. Domestic spring does not feed directly into this landing."
+    },
+    {
+      "id": "04",
+      "name": "띠밭을 낀 긴집 마을",
+      "references": "V098·V012·V086",
+      "prompt": "The west edge runs on repeated long ribbon plots: one substantial oak-framed longhouse per cultivated strip, gable to a gently wandering cart road, long ridge perpendicular to lane. Alternating cabbage rows, harvested golden stubble, narrow hedges, mixed red clay roof and weathered reddish shingle. View across furrows from a low shoulder of ground, fields dominate foreground, three obviously parallel strips leading up to three different occupied farmsteads, denser houses and forest beyond. Residents stacking hay. Northern European seasonal panel-painting clarity, fine brushwork and airy green-gold light, oblique horizon, avoid gridded aerial layout."
+    },
+    {
+      "id": "05",
+      "name": "돌축대 위 계단 마을",
+      "references": "V036·V050·V019",
+      "prompt": "The principal settlement composition is three shallow habitable terraces along a gently rising hillside, defined by chunky pale dry-stone retaining walls. River remains below to south. From a lower lane see masonry bases with narrow kitchen gardens on their roofs' level, higher red roof planes rising diagonally in sequence. A long sloping cart ramp meets a short flight of stone pedestrian steps at foreground; one broad teal hinged window at waist height on the upper walking terrace, a resident beside the door on the same level. Worn stone, ivory lime and rosemary-green; sun rakes across solid near wall. Architectural watercolor with confident opaque sunlit facets. No Italian hilltop cathedral, no giant cliff."
+    },
+    {
+      "id": "06",
+      "name": "큰 나무 아래 공동마당",
+      "references": "V056·V065·V005",
+      "prompt": "A single enormous pollarded broadleaf tree with a low fork anchors a roughly oval grass-and-packed-soil COMMON, homes turn inward in a broken horseshoe, worn footpaths radiate toward workshop and boat landing. Wide field of view from beneath outer canopy at eye level, trunk intentionally off-centre, houses form a broken band around open space. Pencil-thin patchwork of shade, a child leading a goat through people mending baskets, ancient hand-hewn seats on the edge. Asymmetric sheltering roofs, red brick inserts and black oak; foreground threshold and window in dappled light. Naturalist oil study of cool violet shadows and luminous leaves, tree is visibly a real living village gathering place."
+    },
+    {
+      "id": "07",
+      "name": "처마 회랑이 이어진 장터길",
+      "references": "V085·V040·V018",
+      "prompt": "The settlement grows along a single covered linear street. Long attached timber post-and-beam galleries protect work and trade, rows of low pitched roofs stitch adjacent houses together on one side, ochre fabric awnings only fill occasional gaps. The other side is open and light, revealing a parallel branch lane and private rear courts. View obliquely along the rhythmic colonnade at standing height, strong vanishing lines and an unbroken dry walking strip beneath eaves. One generous waist-high bakery counter shutters up, a woman passing bread across to a customer; a separate full-size door nearby. Not a big market square. Jewel-like warm shadows, graphic tempera painting with sophisticated semi-realism."
+    },
+    {
+      "id": "08",
+      "name": "과수원 울타리 마을",
+      "references": "V097·V090·V003",
+      "prompt": "A cluster settlement built as islands of two or three gabled cottages around productive orchard paddocks. Orchard dominates: squat crooked fruit trees planted in loose rows, woven hazel fences, small wickets and a worn green lane thread between clusters; open orchard grass unmistakably distinct from densely planted vegetable fields or forest. Slightly raised human vantage through open low wicket toward nearest stone-ground-floor farmhouse and a ladder at fruit harvest. Other roofs reveal themselves intermittently through branches. Teal offcuts and red ridge tiles, pear green and pale amber. Light, plein-air brushwork, breathable spaces visibly occupied by work. Modest village on a mild slope."
+    },
+    {
+      "id": "09",
+      "name": "샘물길 양편의 마을",
+      "references": "V047·V091·V027",
+      "prompt": "The distinctive plan follows a NARROW spring-fed domestic rill through the central neighborhood, distinct from ferry river offscreen. A shallow thread of clear water no wider than a person's step; irregular stone-lined sections, laundry trough and two tiny single-slab footbridges. Staggered two-storey rendered houses face the rill with a walking path on each side; human-height view looks up this skinny blue-green seam as it slips past doorsteps, a resident fetching clean water with clay pail. A close house's shutter opens above continuous wall. No grand canal, gondolas or waterwheels. Silvery indirect light, rich muted blue-green against rusty red; fine painted ink contours and soft washes."
+    },
+    {
+      "id": "10",
+      "name": "숲 가장자리의 통나무 마을",
+      "references": "V051·V065·V100",
+      "prompt": "A comb-shaped settlement along the northeastern managed forest edge: substantial broad, low log dwellings extend in short perpendicular rows off a single winding haul road, with a distinctive twin-gabled timber storage barn marking the woodland gateway. Forest looms at rear, golden canopy windows, standing mature trees only in selected gaps; foreground timber stacked in cribs, bark fragments, two measured wheel tracks and plank aprons at full-height doors. View outward from a fork in the haul lane across occupied homes to golden forest entrance. Stacked logs with squared dovetail joints, split reddish shingles, selective teal shutter and ochre workcloth. Amber backlight, tactile broad oil painting and restrained fantasy mood. No stockade, no monumental gate."
+    }
+  ]
+}

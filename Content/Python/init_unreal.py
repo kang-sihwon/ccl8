@@ -1,0 +1,3 @@
+import veles_departure_editor
+
+veles_departure_editor.install_on_first_editor_tick()

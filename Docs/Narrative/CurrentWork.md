@@ -2,6 +2,22 @@
 
 ## 현재 결과와 다음 선택
 
+[테른 강 세 정착지의 인구와 시가지](Drafts/2026-10-31-ether-taiga-dawn/2026-11-27-tern-settlement-scale.md)에 벨레스의 숲문 당번, 타르넬의 세 거주 구획과 하류 경보, 로덴의 네 거주 구획과 사고 때의 경비·급수·구조 분담을 반영했다. 설정안 작성은 Codex가 맡았다. [유역 설정집](../ArtDirection/EtherWorldMap/Atlas/VelesTarnelRoden-v1/TernBasin377/settings.html#settlement-scale)에서도 비교할 수 있다. [독립 재검토](Reviews/2026-11-27-tern-settlement-scale-review.md) PASS 뒤 사용자 논의 단계다.
+
+[벨레스 상주 가구원 44명](Drafts/2026-10-31-ether-taiga-dawn/2026-11-27-veles-households.md)의 이름과 생업, 가족관계, 성별과 나이, 체격과 외모, 개인사를 기존 16가구에 배정했다. [가구와 연대 재검토](Reviews/2026-11-27-veles-households-review.md) PASS 뒤 사용자 논의 단계다.
+
+타르넬 첫 기항부터 로덴 조합 귀환까지 [본편 12장면](Drafts/2026-10-31-ether-taiga-dawn/2026-11-27-tarnel-roden-script/script.md), 두 도시 여섯 장소의 생활 대화 12편과 경로별 대사를 [장면표](Drafts/2026-10-31-ether-taiga-dawn/2026-11-27-tarnel-roden-script/index.md)에 연결했다. [독립 재검토](Reviews/2026-11-27-tarnel-roden-script-review.md)는 PASS, 잔여 지적 0건이다. 대사와 연출은 사용자 승인 대기다.
+
+[벨레스 열여섯 사람의 개인사](Drafts/2026-10-31-ether-taiga-dawn/2026-11-26-veles-resident-histories.md)를 나이에 맞춰 증보했다. 니모가 기억하는 유년부터 토르마의 수습·독립·가마 승계·은퇴까지 다루고 함께 겪은 사건의 당시 나이를 맞췄다. [증보본 독립 재검토](Reviews/2026-11-26-veles-resident-histories-review.md#생애-증보본-검토) PASS 뒤 사용자 논의 단계다.
+
+[벨레스에서 만나는 열여섯 사람](Drafts/2026-10-31-ether-taiga-dawn/2026-11-26-veles-residents.md)에 세 가지 규모, 추천안의 인물 16명과 상주 16가구 60명, 익명 주민과 생활 대화 배역을 정리했다. [독립 재검토](Reviews/2026-11-26-veles-residents-review.md)는 PASS다. 세대 구성과 개별 인물 설정은 사용자 논의 단계다.
+
+벨레스의 아침부터 출항까지 [첫 장 제작 대본](Drafts/2026-10-31-ether-taiga-dawn/2026-11-26-veles-departure-script/script.md)과 [장면표·생활 대화·미완료 경로](Drafts/2026-10-31-ether-taiga-dawn/2026-11-26-veles-departure-script/index.md)를 작성했다. [독립 재검토](Reviews/2026-11-26-veles-departure-script-review.md)는 PASS, 잔여 지적 0건이다. 정확한 대사와 연출은 사용자 승인 대기다.
+
+타르넬과 로덴의 상세 스토리 12장면을 [타르넬에서 받은 짐](Drafts/2026-10-31-ether-taiga-dawn/2026-11-26-tarnel-timber.md), [짐 사이로 보이는 손](Drafts/2026-10-31-ether-taiga-dawn/2026-11-26-roden-first-day.md), [들것이 지나간 자리](Drafts/2026-10-31-ether-taiga-dawn/2026-11-26-roden-return.md) 세 편으로 집필했다. [상세 원고 독립 검토](Reviews/2026-11-26-tarnel-roden-detail-review.md)는 PASS다. 주민의 대사, 선택한 경로에서 겪는 일화, 구조 전후의 관계는 사용자 논의 단계의 후보다.
+
+벨레스 출항 이후의 [타르넬·로덴 장면 원고 01~12](Drafts/2026-10-31-ether-taiga-dawn/2026-11-26-veles-tarnel-roden-scenes.md)를 집필했다. [이야기 흐름](Drafts/2026-10-31-ether-taiga-dawn/2026-11-26-veles-tarnel-roden-outline.md)의 [집필 태스크 12개](Drafts/2026-10-31-ether-taiga-dawn/2026-11-26-veles-tarnel-roden-story-tasks.md)를 완료했다. [계획 검토](Reviews/2026-11-26-veles-tarnel-roden-story-review.md)와 [원고 독립 검토](Reviews/2026-11-26-veles-tarnel-roden-scenes-review.md)는 PASS다. 원고는 사용자 논의 단계의 후보다.
+
 담당: 없음. [NG09 첫 장 상호작용·작업 기록 상세](Drafts/2026-10-31-ether-taiga-dawn/2026-11-16-veles-interaction-records.md)의 작성과 [독립 검토](Reviews/2026-11-16-veles-interaction-records-review.md)를 PASS, 잔여 지적 0으로 완료했다. 승인된 범위의 단계는 `CLOSED`이며 [IR01-IR06과 공통 경계](Drafts/2026-10-31-ether-taiga-dawn/2026-11-16-veles-interaction-records/options.md)를 사용자가 모두 채택했다. [결정 65](../decisions/0065-veles-interaction-records-adoption.md)·[Scenario](Scenario.md#벨레스-첫-장의-상호작용과-기록-상세)에 반영했다. [NG04 반영 독립 검토](Reviews/2026-11-16-veles-interaction-adoption-review.md)는 PASS, 잔여 지적 0이다. 정확한 예문·UI·실제 인지·UE 구현·실행은 미확정 또는 미검증이며 IRA01-IRA02·IRH01-IRH06과 기존 보류는 유지한다.
 
 NG01-NG08 완료 뒤 남은 보류와 후속 작업군 추천을 정리하고 [독립 검토](Reviews/2026-11-16-post-ng08-workgroups-review.md)를 PASS, 잔여 지적 0으로 완료했다. **NG08 로덴·세르나·하르덴 운영·인계**의 작성과 [독립 검토](Reviews/2026-11-16-ignis-operational-handoffs-review.md)는 PASS, 잔여 지적 0이다. 사용자가 [HO01-HO06과 공통 경계](Drafts/2026-10-31-ether-taiga-dawn/2026-11-16-ignis-operational-handoffs/options.md)를 모두 채택해 NG04 절차로 정본 반영·검토를 완료했다. 해당 범위는 `CLOSED`다.

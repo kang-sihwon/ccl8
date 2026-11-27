@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>타르넬 하류 · 어살에서 쉼나루까지</title>
+<style>
+*{box-sizing:border-box}body{max-width:1090px;margin:0 auto;padding:28px clamp(12px,3vw,36px) 48px;background:#f2eddf;color:#363a30;font:16px/1.7 "Malgun Gothic",sans-serif}
+a{color:#36594e;text-underline-offset:.22em}nav,.controls,footer{display:flex;align-items:baseline;flex-wrap:wrap;gap:.4rem 1.3rem}nav{font-size:.9rem}
+h1{font:700 clamp(28px,5vw,52px)/1.2 Batang,serif;letter-spacing:-.055em;margin:1.4rem 0}
+.controls{margin-bottom:.55rem}.controls a{margin-left:auto}.controls label{cursor:pointer}
+figure{margin:0}.map{position:relative;border:1px solid #7c795e}.map img{width:100%;height:auto;display:block}
+.map span{position:absolute;left:var(--x);top:var(--y);transform:translate(-50%,-100%);background:#f1e8ceef;color:#322e23;border:1px solid #857451;padding:0 .34em;line-height:1.45;font-weight:600;font-size:clamp(10px,1.5vw,14px);white-space:nowrap}
+.map .route{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+main:not(:has(#labels:checked)) .map span,main:not(:has(#walk:checked)) .route{display:none}
+figcaption{max-width:58em;margin:.9rem 0;color:#565848}footer{border-top:1px solid #c1b79f;margin-top:1.4rem;padding-top:1rem}
+@media print{nav,.controls,footer{display:none}}
+</style>
+</head>
+<body><main>
+<nav aria-label="지도 목록"><a href="index.html#maps">벨레스에서 로덴까지</a><a href="02-veles-village.html">벨레스 마을 상세지도</a></nav>
+<h1>타르넬 하류 · 어살에서 쉼나루까지</h1>
+<div class="controls"><label><input id="labels" type="checkbox" checked> 장소 이름</label><label><input id="walk" type="checkbox"> 강둑길 표시</label><a href="05-tarnel-lower-painting.png">채색 지도 원본 확대</a></div>
+<figure><div class="map">
+<img src="05-tarnel-lower-painting.png" alt="테른 강 동쪽의 얕은 여울에 나뭇살이 물 안으로 뻗어 있다. 흙길은 자갈턱과 갈대밭 뒤를 크게 감아 아래쪽 쉼나루의 잔교에 닿는다. 건너편 숲은 깎인 둑 바로 위까지 내려온다.">
+<svg class="route" viewBox="0 0 1254 1254" aria-hidden="true">
+<path d="M778 266 C793 274 783 285 793 306 S814 351 801 382 C786 429 748 455 704 478 S626 531 589 559 C552 586 530 626 520 657 S513 707 528 741 C545 779 562 779 572 818 S581 865 578 889 Q573 912 588 932" fill="none" stroke="#f9ecc4" stroke-width="6" opacity=".88"/>
+<path d="M778 266 C793 274 783 285 793 306 S814 351 801 382 C786 429 748 455 704 478 S626 531 589 559 C552 586 530 626 520 657 S513 707 528 741 C545 779 562 779 572 818 S581 865 578 889 Q573 912 588 932" fill="none" stroke="#743e23" stroke-width="2.5" stroke-dasharray="8 6" stroke-linecap="round"/>
+</svg>
+<span style="--x:66.4%;--y:17.3%">A07 어살·여울 관찰턱</span>
+<span style="--x:53.9%;--y:68.2%">A08 하류 쉼나루</span>
+<span style="--x:83.2%;--y:10%">숲길 갈림턱에서</span>
+<span style="--x:84.6%;--y:66.6%">높은 운반길로 →</span>
+</div>
+<figcaption>어살을 나서면 길이 자갈턱 뒤로 물러났다가 갈대 가장자리를 따라 수면 가까이 돌아온다. 강 건너편에는 물이 깎아 낸 흙벽과 드러난 뿌리가 길게 이어진다. 쉼나루에서 물가를 떠난 수레 자국은 동쪽의 높은 운반길로 오른다.</figcaption></figure>
+<footer><a href="05-tarnel-lower.svg">좌표 평면도 · 관찰턱과 두 먹이터</a><a href="05-tarnel.svg#detail-1">하류 전체 동선과 몬스터 활동권</a><a href="05-tarnel.svg#detail-2">상류 공동 나루 화물 인수 도면</a></footer>
+<p>좌표 평면도에는 기존 A07·A08과 먹이터 TW1·TW2를 표시했다. 두 강안의 굴곡, 흙길, 잔교와 쉼터는 이번 배치 시안이다.</p>
+</main></body></html>

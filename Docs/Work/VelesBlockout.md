@@ -22,6 +22,106 @@
 
 ## 현재 상태
 
+### 벨레스에서 수원 공동까지
+
+[WP_VelesDeparture](../../Content/Level/VelesDeparture/Connected/WP_VelesDeparture.umap)는 출항 전 마을·황금안개숲·수원 동굴을 잇는 월드 파티션 맵이다. 벨레스 수리 공방에서 숲문으로 올라가면 동쪽 열매숲과 서쪽 원목 작업장으로 길이 갈라진다. 두 길은 수로 작업림에서 합류한다. 거기서 개울을 거슬러 뿌리 언덕의 취수구로 들어가면 지하 작업실과 수원 공동까지 걸어갈 수 있다. [실측 보행 동선](VelesBlockout/Connected/walk.png)
+
+플레이 전에 아웃라이너의 `Departure overview` 카메라로 계곡 전체를 볼 수 있다. 동굴 내부는 `C02 Workshop`과 `C03 Bartul cavern` 카메라에서 확인한다. 사용자 설정이 비어 있는 UE 5.8.3 에디터에서 저장본을 다시 열어 지형 타일 144개와 식생 인스턴스 93,224개가 로드된 상태로 여섯 구도를 촬영했다. 제작 전후에 독립 맵 세 개의 SHA-256이 모두 일치했다. [에디터 화면 6장](VelesBlockout/Connected/editor-views.jpg)
+
+기존 편집 세션에서는 개인 설정에 통합 맵의 로딩 영역이 빠져 지형이 0/144개만 열리는 문제가 재현됐다. 통합 맵에 에디터 전용 `Departure route editor region`을 추가했다. [맵 열기 처리](../../Content/Python/veles_departure_editor.py)가 이 볼륨을 로드한다. 같은 창에서 Play를 누르지 않고 다른 레벨을 거쳐 두 번 다시 열었을 때 매번 지형 144개와 마을·숲·동굴을 확인했다. 기존 사용자 설정의 사본으로 시작한 별도 에디터에서도 첫 열기와 두 번의 재열기가 통과했다. [실제 편집 창 기록](VelesBlockout/Connected/editor-reopen.json) · [재현 검사](../../Tools/WorldBuilding/verify_departure_editor_loading.py)
+
+PIE에서 기본 시간 배율로 Enhanced Input을 주입해 공방에서 동쪽 길을 따라 수원 공동에 들어간 뒤 서쪽 길로 복귀했다. 같은 캐릭터가 3,415.70m를 연속 이동했고 출발 위치와 최종 위치 차이는 6cm였다. 경유지에서 로드된 지형은 14~22개 타일이었다. 숲 상류 왕로에서 2회, 복로에서 55회의 낙하 상태 표본을 관측했다. 동굴 문턱과 내부를 왕복하는 동안 추가 낙하 표본은 없었다. [PIE 실측값](VelesBlockout/Connected/roundtrip.json) · [제작 스크립트](../../Tools/WorldBuilding/build_veles_departure_world.py) · [재검증 스크립트](../../Tools/WorldBuilding/verify_veles_departure_world.py)
+
+2026-11-26에 초기 마을 시안 2개, `VelesDeparture` 폴더 바로 아래의 지역 초안 3개와 첫 숲문 시험 맵을 정리했다. 지역별 편집 원본은 `StoryRegions`에 있고, 숲문만 따로 확인할 때는 `WP_VelesGateFork_Valley`를 연다.
+
+#### 마을과 숲 사이의 지면과 식생
+
+통합 맵에서는 마을의 흙길이 숲문을 지나 동서 갈림길까지 이어진다. 지형 타일 144개가 같은 재질을 사용한다. 길 중심에서 멀어지면 흙 사이로 풀이 늘어나고, 개울 양쪽에는 물가의 흙과 모래가 드러난다. 숲 가장자리와 둔덕에는 어린 참나무 101그루와 양치식물·관목·풀 2,693개를 군락으로 배치했다. [조감도 전후 비교와 플레이 화면](VelesBlockout/Connected/landscape.jpg)
+
+수정 전에는 나무 4,413그루의 밑동 기준점이 실제 지면보다 20cm 이상 높았다. 통합 지형의 삼각형을 기준으로 높이를 맞춘 뒤 새로 심은 나무까지 10,533그루를 다시 검사했다. 지면보다 높은 밑동 기준점은 0개였다. 풀·관목·돌 등 식생 인스턴스 85,835개 중 하단이 지면에서 2cm 넘게 뜬 2,163개도 내렸다. 서쪽 귀환로 가운데의 소나무는 둔덕 쪽으로 9.5m 옮겼다. [접지 측정값](VelesBlockout/Connected/landscape-contact.json)
+
+최종 저장본을 새 에디터에서 열어 Play 전 지형 144개를 확인했다. PIE에서 Enhanced Input으로 공방 → 동쪽 숲길 → 수원 공동 → 서쪽 원목길 → 공방을 3,416.34m 걸었고, 출발점에서 0.66m 떨어진 위치까지 돌아왔다. 상류의 취수구 접근과 하류 복귀에서는 캐릭터가 낙하 상태인 프레임이 각각 21회와 54회 있었다. 마을과 숲문 사이, 동굴 내부, 서쪽 원목길에서는 추가 낙하 표본이 없었다. [최종 PIE 왕복과 재로드 측정값](VelesBlockout/Connected/landscape-walk.json)
+
+### 숲문과 황금안개숲 첫 갈림길
+
+[WP_VelesGateFork_Valley](../../Content/Level/VelesDeparture/GateFork/WP_VelesGateFork_Valley.umap)을 열고 Play를 누르면 숲문 남쪽 마을길에서 시작한다. 두 나무 기둥 사이로 올라가면 동쪽 길은 관리림 개울을 따라가고 서쪽 길은 원목 작업장 방향으로 갈라진다. 이 맵의 제작 범위는 두 갈래의 초입까지다. 숲문은 원본 좌표 (−80, 205)m에 있고, 두 길이 갈라지는 지점은 북쪽으로 13m 떨어져 있다.
+
+플레이 전 에디터 카메라로도 이 구간 전체를 둘러볼 수 있다. 편집 영역을 비운 상태에서는 액터 547개 중 15개만 로드됐고 지형 타일은 하나도 보이지 않았다. 프로젝트의 [에디터 기본 설정](../../Config/DefaultEditorPerProjectUserSettings.ini)에 숲문·갈림길과 개울 양 끝을 포함하는 영역을 등록했다. UE 5.8.3 에디터를 새 사용자 설정으로 다시 실행한 뒤 네 위치에서 지형 42개, 숲문 기둥 2개, 개울 수면과 식생 인스턴스 2,442개가 로드된 것을 확인했다. 기존에 열려 있던 에디터에도 같은 구간을 로드했다. [네 위치의 편집 화면](VelesBlockout/GateFork/Valley/editor-views.jpg)
+
+초기 시험 맵 `WP_VelesGateFork`은 남북 개울과 동서 지면이 타일 끝에서 끊겼다. 네 면에서 경계 바깥 2m 지점의 지면 충돌이 없음을 재현했다. 수정본은 타일 가장자리 높이에 맞춘 비탈을 네 면에 두르고 개울 양 끝을 각각 34m 연장했다. 산등성이 뒤에는 바깥 지형으로 넘어가는 것을 막는 충돌 경계를 두었다.
+
+수정본을 다시 연 UE 5.8.3 PIE에서 옛 경계 바깥 25cm를 따라 2m 간격으로 420곳을 추적했다. 모두 지면 충돌이 있었다. 숲문 왕복을 마친 뒤 각 검사 구역의 시작점으로 이동해, 각 경계를 Enhanced Input으로 걸어서 넘고 돌아왔다. 네 구역의 왕복 거리는 합계 144.47m였고 보행 중 관측된 낙하 프레임은 0개였다. [네 방향의 플레이 화면](VelesBlockout/GateFork/Valley/edge-walk.jpg) · [최종 실행 기록](VelesBlockout/GateFork/Valley/pie.json) · [경계 검사](../../Tools/WorldBuilding/verify_veles_gate_perimeter.py)
+
+지형 42개를 32m 단위로 나눴다. 마을 북단의 집과 숲문 기둥, 관리림 소품은 출항 전 마을·삼림 맵에서 가져왔다. 개울은 황금안개숲에서 숲문 동쪽 둔치로 내려가는 WaterBodyRiver 하나로 이어진다. 보이는 물과 물 판정은 같은 스플라인을 쓴다. [제작 스크립트](../../Tools/WorldBuilding/build_veles_gate_fork.py)
+
+첫 검토본에서는 2026-11-26에 UE 5.8.3 PIE에서 Enhanced Input으로 두 갈래를 밟고 숲문 남쪽 출발점으로 돌아왔다. 총 185.76m를 이동하는 동안 낙하 또는 개울 충돌 영역과 겹친 프레임은 0개였다. 경유점에서 관측한 지형은 30~40개 타일이었다. 2m 간격으로 검사한 31개 단면에서 물길 중심 깊이는 최소 51cm였고, 물가에서 양옆으로 1.5m 떨어진 지면은 수면보다 최소 20cm 높았다. 상류에서 하류까지 수면은 2.37m 낮아졌다. [첫 검토본 플레이 화면](VelesBlockout/GateFork/walk.jpg) · [첫 검토본 측정값](VelesBlockout/GateFork/pie.json)
+
+### 출항 전 시안에 대응하는 세 레벨
+
+현재 검토본은 콘텐츠 브라우저의 `/Game/Level/VelesDeparture/StoryRegions`에 있다. 각 맵을 따로 열고 Play로 들어간다. 아웃라이너에서 시안 번호로 카메라를 찾아 Pilot하면 같은 구도를 볼 수 있다. [16개 시안과 실제 화면 비교](VelesBlockout/DepartureRegions/index.html) · [레벨 화면 모음](VelesBlockout/DepartureRegions/overview.jpg)
+
+| 레벨 | 조감도와 걸어볼 장소 |
+|---|---|
+| [L01_VelesVillage](../../Content/Level/VelesDeparture/StoryRegions/L01_VelesVillage.umap) | V00 강변 전경. V01 수리 공방, V02 공동 물터, V03 참나무 아래 공동 식탁, V04 짐배와 승선판 |
+| [L02_GoldenMistForest](../../Content/Level/VelesDeparture/StoryRegions/L02_GoldenMistForest.umap) | F00 숲 유역 전경. F01 관리림, F02 동쪽 열매숲, F03 수로 작업림, F04 서쪽 원목 작업장, F05 상류 물가, F06 뿌리 언덕의 샘 입구 |
+| [L03_FrostrootCave](../../Content/Level/VelesDeparture/StoryRegions/L03_FrostrootCave.umap) | C00 동굴 단면. C01 얼어붙은 취수구에서 C02 장인의 지하 작업실을 지나 C03 바르툴과 조작단이 있는 수원 공동까지 걸어 내려간다. |
+
+마을에서 [VelesVillageTimes](../../Content/Level/VelesDeparture/StoryRegions/VelesVillageTimes.uasset)를 열고 `Departure`의 `Day`, `Evening`, `Dawn`을 전환할 수 있다. V03은 저녁, V04는 새벽에 촬영했다. 숲에서는 수레를 작업장 안쪽으로 옮겨 돌아 나오는 길을 비웠다. 수계에는 본류와 개울의 WaterBodyRiver를 따로 두었다.
+
+UE 5.8.3에서 세 맵을 하나씩 다시 열어 16개 카메라 화면을 확인했다. 마을 네 장소와 숲 여섯 장소에서 각각 접근점을 잡고 Enhanced Input으로 걸었다. 숲의 별도 연속 보행은 4배 시간 배율에서 2,054.41m였다. 관리림에서 열매숲·수로·원목 작업장·상류를 거쳐 뿌리 언덕 문턱에 도착했다. 동굴은 기본 시간 배율에서 입구부터 공동까지 71.95m를 걸었다. 두 연속 주행 모두 관측한 낙하 프레임은 0개였다. 시간대는 수동 선택이며 바르툴과 파수꾼은 공간과 결박 위치를 확인하는 배치 모델이다. 전투·퀘스트 진행·맵 간 자동 이동은 별도 작업이다.
+
+[맵 해시와 실행 결과](VelesBlockout/DepartureRegions/checks.json) · [제작 진입점](../../Tools/WorldBuilding/build_veles_departure.py) · [조명·식생 보정](../../Tools/WorldBuilding/finish_veles_departure.py) · [동굴 입구·단면 구도](../../Tools/WorldBuilding/frame_veles_spring.py) · [카메라·PIE 보행 검사](../../Tools/WorldBuilding/verify_veles_departure.py)
+
+### 벨레스 북쪽 숲 독립 레벨
+
+[VelesNorthWood](../../Content/Level/VelesNorthWood.umap)는 강변 마을 북쪽의 400 × 300m 숲이다. 남쪽 돌무더기에서 시작해 서쪽 바위숲길을 오르면 수레와 원목 더미가 있는 작업장이 나온다. 작업장 앞 운반로를 따라 동쪽으로 걸은 뒤 능선 초지에서 남쪽 오솔길을 타면 처음 갈림길로 돌아온다. 작업장과 운반로는 [숲 상세 도안](../ArtDirection/EtherWorldMap/Data/veles-forest-detail-v1.json)의 W2와 R04 좌표를 사용했다.
+
+두 레벨은 따로 연다. 마을 좌표계에서 북쪽 숲의 플레이 지형은 X −300~100m, Y 520~820m다. 나중에 합칠 때 두 지형을 원점에 두면 마을의 북쪽 변과 숲의 남쪽 변이 맞닿는다. 단독 보기용 원경은 아웃라이너의 `NorthWood/Backdrop`에 모았고 충돌을 껐다. 통합할 때 조명과 PlayerStart를 선택하고, 마을 숲문에서 북쪽 경계까지의 연결 동선을 마저 조성한다.
+
+제작은 [북쪽 숲 제작 스크립트](../../Tools/WorldBuilding/build_veles_north_wood.py), 저장본의 경계 측정과 Enhanced Input 순환 보행은 [독립 PIE 검사](../../Tools/WorldBuilding/verify_veles_north_wood.py)를 사용한다.
+
+UE 5.8.3에서 북쪽 숲 레벨 하나만 로드해 29개 경유점, 822.5m를 연속 보행했다. 낙하와 카메라 겹침 표본은 각각 0건이었다. 저장한 두 지형 메시의 경계 101곳에서 최대 높이 차이는 0.067cm였다. 보행 검사 후 충돌이 없는 원경 산기슭을 추가하고, 저장본을 다시 열어 능선에서 보는 PIE 화면을 확인했다. 실행 증거는 `Saved/Tests/VelesNorthWood/20261125-180918/walk.json`에 있다. [숲 전경](VelesBlockout/north-wood-overview.png) · [작업장](VelesBlockout/north-wood-workyard.png) · [능선에서 본 산줄기](VelesBlockout/north-wood-ridge.png)
+
+### 11월 25일 조감도 기반 강변 마을
+
+현재 검토할 맵은 [VelesRiverside](../../Content/Level/VelesRiverside.umap)다. [마을 조감도](../ArtDirection/VelesVillageOptions-2026-11-25/Veles-village-aerial.png)를 따라 남쪽 나루에서 북쪽을 바라보면 왼쪽에는 띠밭 여섯 곳과 과수원, 가운데에는 큰 참나무와 장터, 오른쪽에는 수리 공방과 자재 마당이 보인다. 샘물길은 집 사이를 지나 강으로 내려가고 두 저장고 뒤에서 숲길이 시작된다. 지형의 범위는 기존 마을과 같은 700 × 640m다. [에디터 전경](VelesBlockout/riverside-aerial-2026-11-25.png)
+
+주요 건물 35동은 여덟 가지 본채를 사용한다. 긴집, 맞배지붕 집과 다락집의 폭, 처마 높이, 지붕 방향을 바꾸고 열린 작업채 여섯 곳을 별도로 놓았다. [시각 자료집](../ArtDirection/VelesVillageReferences-2026-11-25/README.md)의 V023과 V085에서 본 창 아래 벽과 기단, V043과 V055에서 본 처마 아래 작업 공간을 반영했다. 문은 폭 2.08m, 높이 2.70m다. 창은 폭 1.68m, 높이 1.43m이며 실내 바닥에서 창턱까지 84cm다. 창 안팎의 돌계단을 모두 걷어 내고 창틀과 벽 기단을 남겼다. [창과 샘물길의 PIE 화면](VelesBlockout/riverside-spring-windows-2026-11-25.png)
+
+샘에서 강까지 이어지는 81.4m의 물길이 나루 집과 배 목수의 집 사이를 지난다. 수면 가장자리와 가장 가까운 본채 벽의 간격은 약 1.8m다. 저장된 지형 메시에서 물길 중심 72곳을 측정한 수심은 15–18cm였다. 물길을 가로지르던 정원 울타리 세 칸은 걷어 냈다.
+
+본류와 개울은 각각 `WaterBodyRiver` 스플라인을 사용한다. 기존 지형의 삼각형을 `WaterTerrainComponent`로 Water Zone에 등록해 물길과 집터의 높이를 보존한다. 개울은 걸어서 건너며, 이동 중 물에 닿으면 수면 높이에서 물방울이 튄다. [수면과 발걸음 효과 제작](../../Tools/WorldBuilding/veles_water.py) · [개울 횡단 PIE 검사](../../Tools/WorldBuilding/verify_veles_water.py)
+
+나루와 개울의 가시 수면은 각 스플라인의 높이와 폭을 따라 만든 반투명 메시다. 개울의 물방울은 Niagara가 그리고 둥근 파문은 발걸음 위치와 시각을 받은 수면 재질이 그린다. 저장본 PIE에서 캐릭터가 마른 둑에서 개울로 걸어 들어가 물길을 따라 이동한 뒤 반대편 둑으로 나왔다. 물에 닿은 112프레임 모두 얕은 물 Niagara 시스템이 활성 상태였고 파문 입력을 18회 기록했다. GPU 물결 텍스처의 중앙 표본에는 변화가 없어 유체 시뮬레이션의 수면 변형은 미확인이다. [나루에서 본 본류](VelesBlockout/riverside-water-quay-2026-11-25.png) · [개울 횡단 화면](VelesBlockout/riverside-water-crossing-2026-11-25.png)
+
+수면 교체 전 UE 5.8.3 저장본에는 액터가 691개 있었다. PIE 캡슐 검사에서 문 70개와 창 212개가 통과했고 선 자세는 모든 창에서 막혔다. 35동의 벽도 충돌했다. 공방 문은 걸어서 양방향으로 통과했다. 60Hz 고정 PIE에서는 공방 창 약 1m 앞에서 점프하고 공중에서 왼쪽 Ctrl로 웅크려 양방향으로 넘었다. 가변 프레임 검사에서는 입력 시점에 따라 창턱에 걸렸다. [제작 스크립트](../../Tools/WorldBuilding/build_veles_aerial.py) · [실행 검사](../../Tools/WorldBuilding/verify_veles_aerial.py)
+
+공방 마당에서 물터와 나루를 지나 큰 나무 옆길로 숲문까지 걸은 뒤 공방으로 돌아왔다. Enhanced Input으로 이동을 주입해 경유점 37개를 지나며 583.04m를 이동했다. 이동 중 표본에서 낙하와 카메라 겹침은 각각 0건이었다. 조감도와 비교하면 나루와 공방 앞 풀밭이 넓고, 지붕 표면의 색 변화가 적다. 미술 검토는 이 두 지점을 남겨 두었다.
+
+### 11월 24일 마을과 강기슭 수정본
+
+초기 마을 시안 `VelesVillage`은 기존 벨레스를 바탕으로 공방과 물터 사이에 길을 향한 집 네 채를 추가한 30동 마을이다. 공방에서 가장 가까운 이웃집까지의 중심 거리는 76.8m에서 31.8m로 줄었다. 집 주변의 빈터 일곱 곳에는 작업 통로를 둔 밀밭과 당근밭을 배치했다. 길 가장자리에는 흙과 잔디를 섞고, 강 양쪽에는 물길을 따라 폭이 달라지는 모래톱과 이끼 둔덕, 풀과 관목을 배치했다. [마을 밭의 PIE 화면](VelesBlockout/veles-village-gardens-2026-11-24.jpg)과 [나루의 PIE 화면](VelesBlockout/veles-village-shore-2026-11-24.jpg)에서 확인할 수 있다.
+
+기존 26동의 폭과 깊이를 각각 2배, 높이를 1.5배로 늘렸다. 공방은 36.0 × 26.5 × 10.6m다. 출입문은 폭 2.08m·높이 2.70m이고, 창은 폭 1.66m·높이 1.43m에 창턱 24cm다. 마을 전용 캐릭터는 왼쪽 Ctrl을 누르는 동안 웅크린다. 전용 웅크림 애니메이션은 남아 있다. [제작 스크립트](../../Tools/WorldBuilding/refine_veles.py)
+
+UE 5.8.3에서 맵을 다시 열어 액터 962개를 확인했다. PIE에서 반지름 42cm인 캡슐로 문 60개와 창 282개를 검사했다. 모든 문은 선 높이 192cm로, 모든 창은 앉은 높이 84cm로 통과했다. 선 상태로는 창 282개가 모두 막혔고 30동의 벽도 충돌을 유지했다. 공방에서는 캐릭터를 각 시험의 출발점에 놓고 이동 입력으로 문과 창을 양방향 통과했다. 창 통과에는 왼쪽 Ctrl 키 입력을 사용했다. [개구부 PIE 검사](../../Tools/WorldBuilding/verify_veles_settlement.py)
+
+공방에서 물터와 나루, 숲문을 거쳐 돌아온 PIE 실측 거리는 858.1m였다. Enhanced Input으로 경유점 17개를 통과하고 다섯 지점에서 약 357도씩 회전했다. 낙하와 카메라 겹침은 0건이었고, 길 중심과 좌우 1m에서 검사한 지면·충돌 표본 681개도 통과했다.
+
+### 11월 24일 첫 벨레스 레벨
+
+2026-11-24에 정리한 외부 리소스로 첫 마을 시안 `Veles`을 새로 만들었다. 공방에서 물터를 거쳐 숲문으로 가는 관리로의 첫 284.947m를 원래 좌표에 배치했다. 물터에서 서쪽으로 나가면 나루 접근로와 잔교에 닿는다. 마을에 중세 건물 26동을 세우고 공방에는 모루와 손수레, 물가에는 어구와 배를 놓았다. [제작 스크립트](../../Tools/WorldBuilding/build_veles.py)가 읽는 고도·도로·건물 배치 자료는 아래 재현 절을 따른다. 기본 시작 맵과 패키징 대상은 Empty다.
+
+벨레스의 게임 모드는 공방 앞 PlayerStart에 전용 플레이어를 생성한다. [공방 앞 PIE 화면](VelesBlockout/veles-workshop-2026-11-24.png)에서 ElfArden 메시와 모루, 손수레, 풀무, 자재 상자를 확인했다. 캐릭터는 대기 애니메이션을 재생한다. 보행에 따른 동작 전환과 전투 조우는 남은 작업이다.
+
+[나루 잔교에서 본 강](VelesBlockout/veles-quay-2026-11-24.png)에는 목재 상판과 소형 배, 물결 노멀을 적용한 수면을 배치했다. 수면은 시각 표현만 담당한다. 강기슭과 흙길 가장자리가 직선으로 보이고 지표 재질의 반복이 드러나므로 다음 배경 작업에서는 물가의 단면과 길 가장자리를 다듬어야 한다.
+
+[왕복 PIE 검사](../../Tools/WorldBuilding/validate_veles_slice.py)에서 공방을 출발해 물터, 나루 잔교, 숲문을 거쳐 공방으로 돌아왔다. 설계 중심선은 864.1m, 실제 이동은 858.5m다. Enhanced Input으로 17개 경유점을 통과했고 다섯 차례 약 357도씩 회전했다. 낙하와 카메라 겹침은 모두 0건이었다. [지면·충돌 검사](../../Tools/WorldBuilding/audit_veles_slice.py)는 재로드한 레벨의 액터 510개와 원본 자료 해시를 확인했다. 경로 중심선과 좌우 1m에서 검사한 681개 표본 모두 지면과 캡슐 통과 조건을 충족했다.
+
+검증에는 UE 5.8.3 에디터의 단일 로컬 PIE와 11월 20일 빌드한 CCL 에디터 DLL을 사용했다. DLL은 11월 24일의 마지막 소스 커밋보다 이전 빌드다. 검증 창은 소리와 하드웨어 레이 트레이싱을 껐다. 이번 결과는 에디터에서의 레벨 검증이며 패키지 성능 측정은 남아 있다.
+
+### 11월 16일 시험 기록
+
 공방–물터–숲문 284.947m의 [실리소스 제작·검증 결과](VelesBlockout/ArtSlice-2026-11-16.md)를 완료했다. 별도 VelesArtSlice에서 건축 외형 8동과 식생 795개를 배치했고 왕복 이동·네 번의 카메라 회전·엔진 CSV 측정을 마쳤다. 다음은 지면·수면·조명과 원경 정리, 전투·NavMesh, 목표 환경의 패키지 성능 검증이다. 최종 아트와 전투 완료는 아니다.
 
 별도 [VelesBlockout 레벨](https://github.com/kang-sihwon/ccl8/blob/d65f96af09f94751d57ac0735e07e8617c2f082c/Content/Maps/VelesBlockout.umap)의 제작·저장·재로드와 주요 순환로의 PIE 이동 검증을 완료했다. UE 5.8.3의 Unreal MCP를 사용했다. Campaign과 원본 도안은 변경하지 않았다. 현재 단계는 공간 배치와 통행을 확인한 블록아웃이며 최종 아트나 전투 콘텐츠의 완료가 아니다.

@@ -1,0 +1,43 @@
+{
+  "grid": [
+    371,
+    371
+  ],
+  "tile_range": [
+    -185,
+    185
+  ],
+  "sheets": 137641,
+  "packed_blocks": 576,
+  "original_sheets": 1178,
+  "original_source_files_verified": 1178,
+  "regional_overprints": 45,
+  "original_sources": {
+    "VT": 363,
+    "벨레스": 25,
+    "로덴": 100,
+    "TR": 593,
+    "타르넬": 97
+  },
+  "regional_sheets": 136463,
+  "regional_tiles_by_zone": {
+    "로덴 제방": 3458,
+    "서쪽 돌고개": 11260,
+    "북서 숯등": 22031,
+    "하류 모래턱": 8939,
+    "남쪽 갈대 늪": 11698,
+    "들보리 낮은 단": 4146,
+    "나루와 수원 관리림": 4043,
+    "숲곁 벌채 비탈": 5616,
+    "솔숨 거목 관리림": 9896,
+    "동북 사슴골": 21708,
+    "타르넬 여울": 5898,
+    "동쪽 점토골": 16558,
+    "남동 바람등": 11212
+  },
+  "shared_grid_edges": 274540,
+  "regional_line_crossings": 3336,
+  "mixed_crossings": 29,
+  "max_crossing_error_m": 0.00123,
+  "max_tangent_error_deg": 0.08074
+}

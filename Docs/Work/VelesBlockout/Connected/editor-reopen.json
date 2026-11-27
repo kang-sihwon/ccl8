@@ -1,0 +1,26 @@
+{
+  "initial": {
+    "terrain": 0,
+    "volume_loaded": false,
+    "village": false,
+    "forest": false,
+    "cave": false,
+    "play": false
+  },
+  "ordinary_reopen": {
+    "terrain": 144,
+    "volume_loaded": true,
+    "village": true,
+    "forest": true,
+    "cave": true,
+    "play": false
+  },
+  "second_reopen": {
+    "terrain": 144,
+    "volume_loaded": true,
+    "village": true,
+    "forest": true,
+    "cave": true,
+    "play": false
+  }
+}

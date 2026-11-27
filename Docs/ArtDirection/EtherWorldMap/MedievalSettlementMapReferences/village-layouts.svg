@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="340" height="246" viewBox="0 0 340 246" lang="ko">
+<title>중세 마을의 길과 집터 관계를 설명한 개념도</title>
+<style>.case{display:none}.case:target{display:inline}.case text{font:13px "Malgun Gothic",sans-serif;fill:#253e34}.case .caption{font-size:12px;fill:#57695d}.lane,.track{fill:none;stroke:#aa774a;stroke-width:8;stroke-linecap:round;stroke-linejoin:round}.track{stroke-width:3}.house{fill:#53634e}.yard{fill:#e3ead9;stroke:#839371}.rock{fill:#d6d5cb;stroke:#a4a497}.water{fill:#92c7d2}.late{fill:none;stroke:#58664b;stroke-dasharray:4 2}</style>
+<rect width="340" height="246" fill="#f5f2e7"/>
+<g id="V02" class="case"><title>농가 사이의 옛길</title>
+<path class="lane" d="M169 8 Q214 58 197 112 T220 208"/><path class="track" d="M192 107 Q147 125 79 99 M198 129 Q240 145 292 115"/><path class="yard" d="M53 64h67l33 29-38 23-63-18z M235 74l55-24 31 44-50 28z"/><path class="house" d="M65 81l39 8-3 12-39-8z M139 100l25-17 8 11-26 17z M247 105l17-28 10 5-17 29z"/><text x="65" y="58">마당</text><text x="222" y="183">옛길</text>
+<text class="caption" x="12" y="232">V02 · 배치 관계를 풀어 그린 개념도 · 축척 없음</text></g>
+<g id="V04" class="case"><title>농장마다 다른 장축</title>
+<path class="lane" d="M12 109 Q126 97 190 111 T332 109"/><path class="yard" d="M32 93V34h75v59z M118 94V18h90v81z M37 125h105v61H37z M155 127h95v64h-95z"/><path class="house" d="M42 48h14v34H42z M132 34h51v12h-51z M51 138h66v12H51z M175 141h16v37h-16z"/><text x="224" y="54">농장 울타리</text><text x="252" y="143">큰길</text>
+<text class="caption" x="12" y="232">V04 · 배치 관계를 풀어 그린 개념도 · 축척 없음</text></g>
+<g id="V06" class="case"><title>암반 양편의 집터</title>
+<path class="rock" d="M118 42l51-21 31 33-12 38 14 58-38 33-39-55 9-44z"/><path class="lane" d="M235 18 Q201 77 218 119 T226 204"/><path class="track" d="M95 107 Q68 141 92 180"/><path class="house" d="M234 33l26 7-3 15-26-6z M225 66l28 4-2 16-30-5z M226 100h27v15h-27z M231 134l24-4 2 15-24 5z M58 142l22-9 4 13-21 8z M89 162l19-7 4 13-19 7z"/><text x="126" y="101">암반</text><text x="259" y="183">긴 집터 띠</text>
+<text class="caption" x="12" y="232">V06 · 배치 관계를 풀어 그린 개념도 · 축척 없음</text></g>
+<g id="V07" class="case"><title>한쪽 집열과 뒤의 긴 필지</title>
+<path class="lane" d="M16 114 Q148 102 325 112"/><path class="yard" d="M32 96V34h57v62z M92 96V25h49v71z M144 94V20h42v74z M189 94V23h45v71z"/><path class="house" d="M40 80h30v10H40z M101 78h25v11h-25z M151 77h25v11h-25z M196 78h25v10h-25z"/><path class="late" d="M85 135h26v13H85z M135 134h26v13h-26z M186 135h28v13h-28z"/><text x="28" y="177">점선은 후대에 늘어난 맞은편 집열</text>
+<text class="caption" x="12" y="232">V07 · 배치 관계를 풀어 그린 개념도 · 축척 없음</text></g>
+<g id="V08" class="case"><title>농가 사이에 놓인 교회와 장원</title>
+<path class="lane" d="M143 19 Q176 54 145 92 T131 195"/><path class="track" d="M150 65L91 52 M136 112l76 10 M126 156l-47 8"/><path class="yard" d="M44 29h57v44H44z M205 97h71v50h-71z M54 145h47v38H54z"/><path class="house" d="M55 45h30v11H55z M216 111h42v15h-42z M65 158h24v10H65z"/><text x="34" y="94">농가</text><text x="203" y="172">장원</text><text x="20" y="201">교회 일대</text>
+<text class="caption" x="12" y="232">V08 · 배치 관계를 풀어 그린 개념도 · 축척 없음</text></g>
+<g id="V09" class="case"><title>공원의 바깥으로 난 길</title>
+<path class="yard" d="M114 61Q149 30 214 43q70 11 72 64-3 66-84 74-72 2-91-49-12-35 3-71z"/><path class="lane" d="M16 161Q56 96 85 67T177 27L306 16"/><path class="house" d="M48 109l22-22 8 8-21 23z M90 57l22-12 6 9-23 12z M119 40l25-11 4 9-25 11z"/><text x="164" y="114">사슴 공원</text><text x="17" y="185">마을길</text>
+<text class="caption" x="12" y="232">V09 · 배치 관계를 풀어 그린 개념도 · 축척 없음</text></g>
+<g id="V10" class="case"><title>해자와 방앗간 못</title>
+<path class="water" fill-rule="evenodd" d="M131 24h82v60h-82z M143 36v36h58V36z"/><path class="water" d="M195 171q35-18 95-8l-13 20-82 5z"/><path class="lane" d="M17 105Q128 125 224 96l84-22"/><path class="track" d="M216 100q33 34 27 63 M128 113l-46 53"/><path class="house" d="M133 129l27-7 3 11-27 7z M79 127l23 6-3 11-23-6z"/><text x="223" y="57">해자</text><text x="170" y="203">방앗간 못</text>
+<text class="caption" x="12" y="232">V10 · 배치 관계를 풀어 그린 개념도 · 축척 없음</text></g>
+</svg>

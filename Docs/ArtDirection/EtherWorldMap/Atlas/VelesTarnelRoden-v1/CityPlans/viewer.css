@@ -1,0 +1,22 @@
+*{box-sizing:border-box}
+body{margin:0;background:#f2edde;color:#393c31;font:16px/1.55 "Malgun Gothic",sans-serif}
+main{max-width:1510px;margin:auto;padding:20px clamp(12px,3vw,48px) 60px}
+nav,.tools,#neighbors,#stops{display:flex;flex-wrap:wrap;align-items:center;gap:.45rem .85rem}
+a{color:#365d51;text-underline-offset:.2em}
+header{display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;border-bottom:1px solid #afa88f;margin:15px 0}
+h1,h2{font-family:Batang,serif}h1{font-size:clamp(30px,4vw,54px);line-height:1.15;margin:12px 0}h2{font-size:23px;margin:1.2rem 0 .55rem}
+.layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(265px,315px);gap:24px}
+button,select{font:inherit;color:inherit;background:#f8f3e5;border:1px solid #a69c81;border-radius:3px;padding:.22em .45em}
+button{cursor:pointer}button[aria-current=true]{border-color:#466052;background:#dce1c8}
+.tools{margin:.6rem 0}.tools label{white-space:nowrap}
+#port{overflow:auto;max-height:81vh;border:1px solid #aca68f;background:#e5dfcb}
+#paper{position:relative;width:100%}#plate{width:100%;height:auto;display:block}
+#hits{position:absolute;inset:0;pointer-events:none}#hits a{position:absolute;pointer-events:auto}
+#hits a:hover,#hits a:focus-visible{outline:2px solid #5a6046;background:#fff1b13b;z-index:1}
+#pin{position:absolute;pointer-events:none;transform:translate(-50%,-50%);width:19px;height:19px;border:3px solid #713f2e;border-radius:50%;box-shadow:0 0 0 2px #fff2c9}
+aside label{display:block;margin:.7rem 0}aside select{max-width:100%}
+aside p,details p,output{font-size:.91rem}output{display:block;min-height:1.5em;font-variant-numeric:tabular-nums}
+table{width:100%;border-collapse:collapse;font-size:.86rem}th,td{text-align:left;padding:.35em;border-bottom:1px solid #c8bfa6}
+details{border-top:1px solid #afa88f;margin-top:20px;padding-top:12px}summary{cursor:pointer}button:focus-visible,a:focus-visible,select:focus-visible{outline:2px solid #356654}
+@media(max-width:850px){.layout{display:flex;flex-direction:column;gap:0}aside{display:grid;grid-template-columns:1fr}#port{max-height:75vh}header p{margin:0 0 10px}}
+

@@ -10,16 +10,25 @@ def audit():
     root=Path(unreal.Paths.convert_relative_path_to_full(unreal.Paths.project_dir()))
     data=json.loads((root/'Saved/WorldBuilding/VelesBlockout/layout.json').read_text(encoding='utf-8'))
     world=unreal.get_editor_subsystem(unreal.UnrealEditorSubsystem).get_editor_world()
-    assert world.get_name()=='VelesArtSlice'
+    assert world.get_name() in ('VelesArtSlice','Veles','VelesVillage')
     actors=unreal.get_editor_subsystem(unreal.EditorActorSubsystem).get_all_level_actors()
-    ground=next(a for a in actors if a.get_actor_label()=='VB_Terrain')
-    floors=[a for a in actors if a==ground or a.get_actor_label().startswith(('VB_Bridge','VA_Apron_'))]
-    blockers=[a for a in actors if a.get_actor_label().startswith('VA_') and a.get_actor_enable_collision() and a not in floors]
+    route=next(r['points'] for r in data['roads'] if r['id']=='R01')[:4]
+    segments=list(zip(route,route[1:]))
+    if world.get_name() in ('Veles','VelesVillage'):
+        ground=next(a for a in actors if a.get_actor_label()=='VelesTerrain')
+        floors=[a for a in actors if a==ground or a.get_actor_label() in ('QuayBoardwalk','Landing')]
+        blockers=[a for a in actors if isinstance(a,unreal.StaticMeshActor) and a.get_actor_enable_collision() and a not in floors]
+        quay_road=next(r['points'] for r in data['roads'] if r['id']=='V-WATER')
+        branch=[route[1],[-48,80],*quay_road,[-32,14.6]]
+        segments.extend(zip(branch,branch[1:]))
+    else:
+        ground=next(a for a in actors if a.get_actor_label()=='VB_Terrain')
+        floors=[a for a in actors if a==ground or a.get_actor_label().startswith(('VB_Bridge','VA_Apron_'))]
+        blockers=[a for a in actors if a.get_actor_label().startswith('VA_') and a.get_actor_enable_collision() and a not in floors]
     ignore_ground=[a for a in actors if a not in floors]
     ignore_blockers=[a for a in actors if a not in blockers]
-    route=next(r['points'] for r in data['roads'] if r['id']=='R01')[:4]
     failures=[];samples=[]
-    for a,b in zip(route,route[1:]):
+    for a,b in segments:
         length=math.dist(a,b);steps=max(1,math.ceil(length/2))
         nx=-(b[1]-a[1])/length;ny=(b[0]-a[0])/length
         for i in range(steps+1):
@@ -44,7 +53,8 @@ def audit():
         'sources_preserved':preserved,'failures':failures,'actor_count':len(actors),
         'terrain_mesh':ground.static_mesh_component.static_mesh.get_path_name(),
         'limits':'Three sampled lines, not every point of the corridor or combat navigation.'}
-    out=root/'Saved/WorldBuilding/VelesBlockout/art-audit.json'
+    filename={'Veles':'veles-audit.json','VelesVillage':'village-audit.json','VelesArtSlice':'art-audit.json'}[world.get_name()]
+    out=root/'Saved/WorldBuilding/VelesBlockout'/filename
     out.write_text(json.dumps(result,indent=2),encoding='utf-8')
     unreal.log('VELES_ART_AUDIT '+json.dumps(result))
 

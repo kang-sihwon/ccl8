@@ -6,7 +6,10 @@ Orbis의 그래픽 스타일을 ccl8의 마을, 전투 구간, 보스 공간에 
 
 | 문서 | 읽는 때 |
 |---|---|
+| [벨레스 자연환경 사진 자료집](ArtDirection/VelesNature-2026-11-26/index.html) · [장면별 배치 제안](ArtDirection/VelesNature-2026-11-26/README.md) | 나루에서 상류 개울까지 실제 자연, 게임, 벨레스 화면을 비교하고 나무와 관목을 어디에 모을지 정할 때 |
+| [중세 주거 건축 도감](ArtDirection/MedievalDwellings-2026-11-26/README.md) · [사진 갤러리](ArtDirection/MedievalDwellings-2026-11-26/index.html) | 유럽과 지중해의 농가·점포 주택·저택·거주용 성 109곳에서 집의 평면, 지붕선과 규모를 비교할 때 |
 | [벨레스 B안 건축 키트 비교](ArtDirection/VelesBuildingKits-2026-11-18.md) | 조사한 16종 중 제외 9종의 사유와 남은 7종의 공방·주택 활용안을 비교할 때 |
+| [벨레스 출항 전 지역 콘셉트](ArtDirection/VelesDepartureRegions-2026-11-25/index.html) | 마을·삼림의 조감도와 동굴 단면을 세부 장소별 환경 시안 13장과 함께 볼 때 |
 | [UE5_2 리소스 조사](ArtDirection/UE52ResourceSurvey-2026-11-20.md) | 원본 팩을 가로질러 집·나무·조립 부재를 찾고 전체 파일의 경로와 UE 클래스를 확인할 때 |
 | [UE5_5 석조 건축 부재](ArtDirection/UE55ResourceSurvey-2026-11-24.md) | 문틀·창·벽 48개의 형태를 비교하고 정리 후 경로를 찾을 때 |
 | [MedievalEnvironment 중세 마을 리소스](ArtDirection/MedievalEnvironmentResourceSurvey-2026-11-24.md) | 지붕·벽·수목·대장간 도구를 고르고 마을 맵과 외부 액터의 새 경로를 확인할 때 |
@@ -57,3 +60,5 @@ Orbis의 그래픽 스타일을 ccl8의 마을, 전투 구간, 보스 공간에 
 - 이미지 시안은 하위 문서에서 후보를 비교한다. 최종 에셋 선정과 구매는 정하지 않았다.
 - 성별, 얼굴, 의상, 건축 문화, 몬스터 외형.
 - 하드웨어, 프레임 목표, 렌더링 기능. ccl8 장면에서 측정하기 전까지 정하지 않으며 Orbis의 수치를 그대로 쓰지 않는다.
+- 벨레스 마을의 창·골목·작업 마당·강변 형태는 [시각 자료집](ArtDirection/VelesVillageReferences-2026-11-25/README.md)에서 레퍼런스를 고른 뒤 콘셉트 시안으로 검토한다.
+- [벨레스 마을 콘셉트 10안](ArtDirection/VelesVillageOptions-2026-11-25/index.html)에서 골목형 주거지, 공방 마당, 나루, 경작지 등 공간 구성에 따른 차이를 비교한다. 레벨에 적용할 안은 사용자 검토 뒤에 정한다.

@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>벨레스 5×5 좌표 평면도</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f2eddf;color:#34382f;font:16px/1.65 "Malgun Gothic",sans-serif}main{max-width:1270px;margin:auto;padding:26px clamp(12px,3vw,42px) 50px}a{color:#31574d;text-underline-offset:.22em}nav,.controls,footer{display:flex;align-items:baseline;flex-wrap:wrap;gap:.4rem 1.5rem}nav,footer{font-size:.9rem}h1{font:700 clamp(28px,4.5vw,52px)/1.2 Batang,serif;letter-spacing:-.05em;margin:1.4rem 0 .6rem}p{max-width:60em;margin:.5rem 0 1rem}.controls{margin-bottom:8px;font-size:.92rem}.controls output{margin-left:auto;font-variant-numeric:tabular-nums}
+.atlas{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));grid-template-rows:repeat(5,auto);background:#e6e0d1 url(veles-5x5.webp) center/100% 100% no-repeat;border:1px solid #aba38e;overflow:hidden}
+.tile{display:block;position:relative;aspect-ratio:1084/1160;color:#34382f;min-width:0}.tile svg{position:absolute;inset:0;width:100%;height:100%;display:block;pointer-events:none}main:not(:has(#names:checked)) .tile span{display:none}.tile span{max-width:calc(100% - 6px);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;position:absolute;top:5px;left:5px;border:1px solid #9b9278;font-size:clamp(10px,1.25vw,15px);font-weight:600;background:#f2ecdbed;padding:0 .36em}.tile:focus-visible{outline:4px solid #1b685c;outline-offset:-4px;z-index:2}.tile:hover span{background:#fff9e8}
+main:has(#seams:checked) .tile{box-shadow:inset 0 0 0 1px #635e49}main:has(#seams:checked) .tile::after{content:"";position:absolute;inset:0;border:1px dashed #554e3e;pointer-events:none}main:not(:has(#creek:checked)) .stream{display:none}
+footer{border-top:1px solid #ada590;padding-top:.65rem;margin-top:1rem}.links{margin:.8rem 0;display:flex;gap:.3rem 1.25rem;flex-wrap:wrap}.note{font-size:.92em;color:#555949}label{cursor:pointer}
+@media(max-width:630px){.controls output{margin:0;width:100%}.tile span{top:2px;left:2px}}
+</style>
+</head>
+<body><main>
+<nav><a href="../TernBasin377/index.html">377×377 유역 평면도</a><a href="../02-veles-village.html">벨레스 마을 상세지도</a><a href="../index.html">벨레스에서 로덴까지</a></nav>
+<h1>벨레스 5×5 좌표 평면도</h1>
+<p>마을을 중앙에 두고 북쪽을 위로 놓았다. 전체 범위는 동서 1.275km, 남북 1.365km다. 한 칸은 동서 255.06m, 남북 272.94m다. 타일을 누르면 좌표 눈금과 축척이 있는 원본이 열린다.</p>
+<div class="controls"><label><input type="checkbox" id="names" checked> 타일 이름</label><label><input type="checkbox" id="seams"> 타일 경계</label><label><input type="checkbox" id="creek" checked> 숲문 개울 강조</label><output id="readout">동 X · 북 Y　(m)</output></div>
+<div class="atlas">
+<a class="tile" id="outer-nw" href="outer-nw.svg" data-col="-2" data-row="2" aria-label="서북 분수령 좌표 평면도"><span>서북 분수령</span></a>
+<a class="tile" id="outer-nnw" href="outer-nnw.svg" data-col="-1" data-row="2" aria-label="서쪽 원목 작업장 좌표 평면도"><span>서쪽 원목 작업장</span></a>
+<a class="tile" id="outer-n" href="outer-n.svg" data-col="0" data-row="2" aria-label="수로 작업림 좌표 평면도"><span>수로 작업림</span></a>
+<a class="tile" id="outer-nne" href="outer-nne.svg" data-col="1" data-row="2" aria-label="동쪽 열매숲 좌표 평면도"><span>동쪽 열매숲</span></a>
+<a class="tile" id="outer-ne" href="outer-ne.svg" data-col="2" data-row="2" aria-label="테른 강 상류 숲 좌표 평면도"><span>테른 강 상류 숲</span></a>
+<a class="tile" id="outer-wnw" href="outer-wnw.svg" data-col="-2" data-row="1" aria-label="서쪽 전망 비탈 좌표 평면도"><span>서쪽 전망 비탈</span></a>
+<a class="tile" id="northwest" href="northwest.svg" data-col="-1" data-row="1" aria-label="북서 · 작업장길 좌표 평면도"><span>북서 · 작업장길</span></a>
+<a class="tile" id="north" href="north.svg" data-col="0" data-row="1" aria-label="황금안개숲 좌표 평면도"><span>황금안개숲</span></a>
+<a class="tile" id="northeast" href="northeast.svg" data-col="1" data-row="1" aria-label="테른 강 상류 좌표 평면도"><span>테른 강 상류</span></a>
+<a class="tile" id="outer-ene" href="outer-ene.svg" data-col="2" data-row="1" aria-label="동쪽 본류 굽이 좌표 평면도"><span>동쪽 본류 굽이</span></a>
+<a class="tile" id="outer-w" href="outer-w.svg" data-col="-2" data-row="0" aria-label="서쪽 고갯길 좌표 평면도"><span>서쪽 고갯길</span></a>
+<a class="tile" id="west" href="west.svg" data-col="-1" data-row="0" aria-label="서쪽 강굽이 좌표 평면도"><span>서쪽 강굽이</span></a>
+<a class="tile" id="center" href="../02-veles-village.svg" data-col="0" data-row="0" aria-label="벨레스 마을 좌표 평면도"><svg viewBox="48 142 1084 1160" aria-hidden="true"><path class="stream" transform="translate(575 1123.75) scale(4.25 -4.25)" d="M-71.5266 205 C-71.1424 205.8333 -69.9627 208.3333 -69.2213 210 C-68.4799 211.6667 -67.7680 213.3333 -67.0780 215 C-66.3880 216.6667 -65.7259 218.3333 -65.0811 220 C-64.4363 221.6667 -63.8167 223.3333 -63.2091 225 C-62.6016 226.6667 -62.0154 228.3333 -61.4358 230 C-60.8563 231.6667 -60.2935 233.3333 -59.7317 235" fill="none" stroke="#4f7e7e" stroke-width="2.15" stroke-dasharray="1.4 1.3" stroke-linecap="round"/></svg><span>벨레스 마을</span></a>
+<a class="tile" id="east" href="east.svg" data-col="1" data-row="0" aria-label="강변 밭 좌표 평면도"><span>강변 밭</span></a>
+<a class="tile" id="outer-e" href="outer-e.svg" data-col="2" data-row="0" aria-label="동쪽 숲등 좌표 평면도"><span>동쪽 숲등</span></a>
+<a class="tile" id="outer-wsw" href="outer-wsw.svg" data-col="-2" data-row="-1" aria-label="서안 참나무 비탈 좌표 평면도"><span>서안 참나무 비탈</span></a>
+<a class="tile" id="southwest" href="southwest.svg" data-col="-1" data-row="-1" aria-label="테른 강 하류 좌표 평면도"><span>테른 강 하류</span></a>
+<a class="tile" id="south" href="south.svg" data-col="0" data-row="-1" aria-label="강 건너 숲 좌표 평면도"><span>강 건너 숲</span></a>
+<a class="tile" id="southeast" href="southeast.svg" data-col="1" data-row="-1" aria-label="능선 샛길 좌표 평면도"><span>능선 샛길</span></a>
+<a class="tile" id="outer-ese" href="outer-ese.svg" data-col="2" data-row="-1" aria-label="동쪽 능선길 좌표 평면도"><span>동쪽 능선길</span></a>
+<a class="tile" id="outer-sw" href="outer-sw.svg" data-col="-2" data-row="-2" aria-label="테른 강 바깥굽이 좌표 평면도"><span>테른 강 바깥굽이</span></a>
+<a class="tile" id="outer-ssw" href="outer-ssw.svg" data-col="-1" data-row="-2" aria-label="하류 갈대 둔치 좌표 평면도"><span>하류 갈대 둔치</span></a>
+<a class="tile" id="outer-s" href="outer-s.svg" data-col="0" data-row="-2" aria-label="남쪽 숲 가장자리 좌표 평면도"><span>남쪽 숲 가장자리</span></a>
+<a class="tile" id="outer-sse" href="outer-sse.svg" data-col="1" data-row="-2" aria-label="낮은 풀고개 좌표 평면도"><span>낮은 풀고개</span></a>
+<a class="tile" id="outer-se" href="outer-se.svg" data-col="2" data-row="-2" aria-label="남동쪽 바위골 좌표 평면도"><span>남동쪽 바위골</span></a>
+</div>
+<p>북쪽 숲문에서 서쪽 갈림길을 따르면 원목 작업장이 나온다. 동쪽 갈림길은 열매숲을 지나 개울을 건너 수로 작업림에 닿는다. 마을 나루를 지나는 테른 강은 북동쪽 상류부터 남서쪽 갈대 둔치까지 이어진다.</p>
+<p class="note">작업장·열매숲·수로 작업림의 위치는 기존 숲 좌표를 따랐다. 외곽의 강안 세부 굽이, 남쪽 횡단길과 전망 비탈은 배치 시안이다. 숲문 동쪽의 청록 점선은 좌표가 기록된 개울 구간이다. 중앙 타일을 열면 숲문 초소와 농로, 16가구의 마당을 볼 수 있다.</p>
+<footer><a href="veles-5x5.webp">전체 지도 이미지</a><a href="tiles.json">타일 범위·경계 교점 좌표</a><a href="../coordinates.json">기존 거점·숲길 좌표</a><a href="../03-forest.svg#detail-1">황금안개숲 전체 도면</a></footer>
+</main>
+<script>
+const readout=document.getElementById('readout');
+for(const tile of document.querySelectorAll('.tile')){
+  tile.addEventListener('pointermove',event=>{
+    const bounds=tile.getBoundingClientRect();
+    const east=-124+(Number(tile.dataset.col)+(event.clientX-bounds.left)/bounds.width)*1084/4.25;
+    const north=231+(Number(tile.dataset.row)-(event.clientY-bounds.top)/bounds.height)*1160/4.25;
+    readout.textContent='동 X '+east.toFixed(1)+'　북 Y '+north.toFixed(1)+' m';
+  });
+  tile.addEventListener('pointerleave',()=>{readout.textContent='동 X · 북 Y　(m)'});
+}
+</script>
+</body></html>

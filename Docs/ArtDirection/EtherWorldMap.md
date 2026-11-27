@@ -1,5 +1,27 @@
 # 에테르 세계지도 시안
 
+[벨레스 중심 371×371 좌표 평면도](EtherWorldMap/Atlas/VelesTarnelRoden-v1/Veles371/index.html)에서 세계 타일 (−185, −185)부터 (+185, +185)까지 137,641장을 연다. 한 장과 이웃 3×3을 전환하고, 선택한 SVG나 해당 구역의 ZIP을 저장할 수 있다.
+
+[테른 강 연결 좌표 평면도](EtherWorldMap/Atlas/VelesTarnelRoden-v1/TernPassage/index.html)에서 벨레스 → 타르넬 363장과 타르넬 → 로덴 593장을 연다. 항로와 강변길 중 하나를 고르면 기존 마을·도시 도면을 거쳐 로덴까지 이동한다.
+
+[타르넬 도시와 근교 97장](EtherWorldMap/Atlas/VelesTarnelRoden-v1/CityPlans/Tarnel/index.html)과 [로덴 도시와 근교 124장](EtherWorldMap/Atlas/VelesTarnelRoden-v1/CityPlans/Roden/index.html)은 벨레스와 같은 세계 격자를 쓴다. 각 도시 전체도에서 타일을 선택해 건물과 마당, 강 양안과 외곽 접속점을 확인한다.
+
+[벨레스 마을과 출항 나루 상세지도](EtherWorldMap/Atlas/VelesTarnelRoden-v1/02-veles-village.html)에서 공방 마당을 돌아 숲문으로 오르는 길과 테른 강 양안의 굽이를 본다. [벨레스 좌표 평면도](EtherWorldMap/Atlas/VelesTarnelRoden-v1/02-veles-village.svg)에는 16가구 60명이 쓰는 본채 35동과 열린 작업채 6곳, 숲문·공동 창고·나루에서 경보를 맡는 자리를 표시했다.
+
+[벨레스 중심 377×377 테른 강 유역 좌표 평면도](EtherWorldMap/Atlas/VelesTarnelRoden-v1/TernBasin377/index.html)에서 솔숨·숲곁·들보리와 타르넬·로덴까지 확대한다. [유역 설정집](EtherWorldMap/Atlas/VelesTarnelRoden-v1/TernBasin377/settings.html)에 기존 설정 대조, 권역의 생업과 이동, 신규 탐험 후보를 모았다.
+
+[벨레스 5×5 좌표 평면도](EtherWorldMap/Atlas/VelesTarnelRoden-v1/VelesCardinalTiles/index.html)는 마을을 가운데 두고 같은 축척의 25장을 이어 그린 지도다. 북쪽 숲문에서 원목 작업장과 열매숲을 거쳐 수로 작업림까지 이어지는 길과, 테른 강이 마을 나루를 지나 남서쪽 갈대 둔치로 흐르는 굽이를 따라볼 수 있다.
+
+[타르넬 하류 상세지도](EtherWorldMap/Atlas/VelesTarnelRoden-v1/05-tarnel-lower.html)에서 어살 아래의 자갈턱을 따라 쉼나루로 걸어 내려가는 길을 본다. [하류 좌표 평면도](EtherWorldMap/Atlas/VelesTarnelRoden-v1/05-tarnel-lower.svg)에 강 양안과 얕은 여울·깊은 그늘의 먹이터를 함께 표시했다.
+
+[중세 정착지 지도 자료집](EtherWorldMap/MedievalSettlementMapReferences/index.html)에서 도시 판화와 마을 조감도, 게임 지도 50장을 확대해 길·강둑·부두의 배치를 비교한다. [사례와 출처 목록](EtherWorldMap/MedievalSettlementMapReferences.md)에서 장소별 도판을 바로 찾을 수 있다.
+
+[중세 정착지의 인구와 실제 크기](EtherWorldMap/MedievalSettlementScaleReferences/index.html)에서 유럽의 마을·도시·대도시·수도 41곳과 동시대 아시아·북아프리카 6곳을 비교한다. 축척을 확인한 도판에는 벨레스 타일을 겹쳐 볼 수 있다.
+
+[판타지 마을의 인구와 크기](EtherWorldMap/FantasySettlementScaleReferences/index.html)에서 소설·비디오게임·테이블톱 RPG의 정착지 29곳을 살핀다. 주민 수와 건물·배치 인물을 구분하고 공식 지도 세 장을 같은 축척에서 비교한다.
+
+[벨레스에서 로덴까지의 제작 도면 8장](EtherWorldMap/Atlas/VelesTarnelRoden-v1/index.html)에서 출항 전 마을·숲·수원 동굴, 타르넬 하류, 로덴의 조사·구조·귀환 경로를 장면별로 찾는다. 항로와 현지 평면·단면을 연결하고 몬스터 거점·이동권과 사고 전후의 통행 상태를 표시했다.
+
 [5대륙 전체 진행 관계도](EtherWorldMap/2026-11-13-world-journey-continuity-map.md)는 이그니스 환승·G1 선택 왕래·니베르 귀항·G6와 결말을 구분해 전체 진행을 볼 때 읽는다. 비지리 관계도이며 기존 해안·지역 좌표를 변경하지 않는다.
 
 [세라디온 결말 연결·전장 지도](EtherWorldMap/2026-11-13-seradion-finale-map.md)는 기존 Q계 좌표에 추가한 E01-E12와 경비 접근·중추 발판·정비·철수를 비교할 때 읽는다. 좌표 검토 후보이며 최종 제작 아트·실제 전투 검증은 별도다.

@@ -1,0 +1,14280 @@
+{
+ "frames": {
+  "I": "세계수 중심 방위정거 투영 km",
+  "T": {
+   "origin_km": [
+    137,
+    125
+   ],
+   "unit": "m"
+  },
+  "R": {
+   "origin_km": [
+    110,
+    95
+   ],
+   "unit": "m"
+  },
+  "V": {
+   "origin_km": [
+    150,
+    145
+   ],
+   "unit": "m",
+   "registration": "기존 지역 원점에 UE 로컬 동·북 축을 나란히 놓은 근사 비교. 마을의 실제 배치는 통합 월드 좌표를 따른다."
+  },
+  "SECTION": "문턱부터 북쪽 진행 거리 m / 문턱 중앙 바닥 대비 높이 m"
+ },
+ "sources": {
+  "S2 배치·수계": "../../Data/tarnel-roden-exploration-v1.json",
+  "탐색 공간·사고 전후 통행": "../../../../Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-08-tarnel-roden-exploration/spaces.md",
+  "먹이·거점·추격 종료 조건": "../../../../Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-08-tarnel-roden-exploration/populations.md",
+  "벨레스 생활권": "../../Data/veles-forest-ecology-v2.json",
+  "벨레스 v5 배치 기준": "../VelesDetailTerrain-v1/data/placements.json",
+  "벨레스 통합 월드·PIE 기록": "../../../../Work/VelesBlockout.md",
+  "검증된 왕복 경로와 높이 표본": "../../../../Work/VelesBlockout/Connected/landscape-walk.json",
+  "벨레스 출항 대본": "../../../../Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-26-veles-departure-script/index.md",
+  "타르넬·로덴 12장면": "../../../../Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-26-veles-tarnel-roden-story-tasks.md",
+  "숲길·취수구의 통합 좌표 변환": "../../../../../Tools/WorldBuilding/veles_departure_world_land.py",
+  "마을·건물 배치 기준": "../../../../../Tools/WorldBuilding/build_veles_aerial.py",
+  "마을 장면 기준": "../../../../../Tools/WorldBuilding/build_veles_departure.py",
+  "승선판 제작 기준": "../../../../../Tools/WorldBuilding/veles_departure_finishes.py",
+  "통합 보행 목표 경로": "../../../../../Tools/WorldBuilding/verify_veles_departure_world.py",
+  "황금안개숲 기준": "../../../../../Tools/WorldBuilding/veles_departure_forest.py",
+  "동굴 단면과 조작단": "../../../../../Tools/WorldBuilding/veles_departure_cave.py"
+ },
+ "features": {
+  "B01": {
+   "frame": "R",
+   "name": "공공 나루",
+   "kind": "point",
+   "geometry": [
+    40,
+    90
+   ],
+   "source": "S2 장소 좌표 · 공간표 수면 대비 높이",
+   "z_m": 5
+  },
+  "B02": {
+   "frame": "R",
+   "name": "조합·주거단",
+   "kind": "point",
+   "geometry": [
+    -620,
+    400
+   ],
+   "source": "S2 장소 좌표 · 공간표 수면 대비 높이",
+   "z_m": 30
+  },
+  "B03": {
+   "frame": "R",
+   "name": "작업구 입구",
+   "kind": "point",
+   "geometry": [
+    -320,
+    760
+   ],
+   "source": "S2 장소 좌표 · 공간표 수면 대비 높이",
+   "z_m": 24
+  },
+  "B04": {
+   "frame": "R",
+   "name": "바깥 목재길",
+   "kind": "point",
+   "geometry": [
+    -700,
+    1120
+   ],
+   "source": "S2 장소 좌표 · 공간표 수면 대비 높이",
+   "z_m": 35
+  },
+  "B05": {
+   "frame": "R",
+   "name": "배수굴 마른 턱",
+   "kind": "point",
+   "geometry": [
+    -100,
+    950
+   ],
+   "source": "S2 장소 좌표 · 공간표 수면 대비 높이",
+   "z_m": 20
+  },
+  "B06": {
+   "frame": "R",
+   "name": "배관 정비뜰",
+   "kind": "point",
+   "geometry": [
+    100,
+    900
+   ],
+   "source": "S2 장소 좌표 · 공간표 수면 대비 높이",
+   "z_m": 16
+  },
+  "B07": {
+   "frame": "R",
+   "name": "차단함·외곽길",
+   "kind": "point",
+   "geometry": [
+    260,
+    800
+   ],
+   "source": "S2 장소 좌표 · 공간표 수면 대비 높이",
+   "z_m": 18
+  },
+  "B08": {
+   "frame": "R",
+   "name": "부상자 대기단",
+   "kind": "point",
+   "geometry": [
+    360,
+    690
+   ],
+   "source": "S2 장소 좌표 · 공간표 수면 대비 높이",
+   "z_m": 9
+  },
+  "B09": {
+   "frame": "R",
+   "name": "철근지기 작업뜰",
+   "kind": "point",
+   "geometry": [
+    430,
+    560
+   ],
+   "source": "S2 장소 좌표 · 공간표 수면 대비 높이",
+   "z_m": 6
+  },
+  "B10": {
+   "frame": "R",
+   "name": "열린 구조 선착장",
+   "kind": "point",
+   "geometry": [
+    660,
+    560
+   ],
+   "source": "S2 장소 좌표 · 공간표 수면 대비 높이",
+   "z_m": 3
+  },
+  "B11": {
+   "frame": "R",
+   "name": "제방 귀환길",
+   "kind": "point",
+   "geometry": [
+    120,
+    270
+   ],
+   "source": "S2 장소 좌표 · 공간표 수면 대비 높이",
+   "z_m": 7
+  },
+  "B12": {
+   "frame": "R",
+   "name": "외곽 우회단",
+   "kind": "point",
+   "geometry": [
+    110,
+    600
+   ],
+   "source": "S2 장소 좌표 · 공간표 수면 대비 높이",
+   "z_m": 14
+  },
+  "R-river": {
+   "frame": "R",
+   "name": "테른 본류 중심선",
+   "kind": "river",
+   "geometry": [
+    [
+     -308.571429,
+     -180
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     533.333333,
+     400
+    ],
+    [
+     1066.666667,
+     800
+    ],
+    [
+     1200,
+     900
+    ]
+   ],
+   "source": "S2 장소 좌표 · 공간표 수면 대비 높이"
+  },
+  "A01": {
+   "frame": "T",
+   "name": "공동 나루",
+   "kind": "point",
+   "geometry": [
+    360,
+    80
+   ],
+   "source": "S2 장소 좌표 · 공간표 수면 대비 높이",
+   "z_m": 6
+  },
+  "A02": {
+   "frame": "T",
+   "name": "목재 검사길",
+   "kind": "point",
+   "geometry": [
+    540,
+    -180
+   ],
+   "source": "S2 장소 좌표 · 공간표 수면 대비 높이",
+   "z_m": 14
+  },
+  "A03": {
+   "frame": "T",
+   "name": "샛개울 다리",
+   "kind": "point",
+   "geometry": [
+    420,
+    -650
+   ],
+   "source": "S2 장소 좌표 · 공간표 수면 대비 높이",
+   "z_m": 10
+  },
+  "A04": {
+   "frame": "T",
+   "name": "옛 적재장",
+   "kind": "point",
+   "geometry": [
+    1000,
+    -430
+   ],
+   "source": "S2 장소 좌표 · 공간표 수면 대비 높이",
+   "z_m": 22
+  },
+  "A05": {
+   "frame": "T",
+   "name": "수액 숲",
+   "kind": "point",
+   "geometry": [
+    1220,
+    -950
+   ],
+   "source": "S2 장소 좌표 · 공간표 수면 대비 높이",
+   "z_m": 30
+  },
+  "A06": {
+   "frame": "T",
+   "name": "적토 저장굴",
+   "kind": "point",
+   "geometry": [
+    1050,
+    -1300
+   ],
+   "source": "S2 장소 좌표 · 공간표 수면 대비 높이",
+   "z_m": 18
+  },
+  "A07": {
+   "frame": "T",
+   "name": "어살·여울 관찰턱",
+   "kind": "point",
+   "geometry": [
+    -270,
+    -1170
+   ],
+   "source": "S2 장소 좌표 · 공간표 수면 대비 높이",
+   "z_m": 5
+  },
+  "A08": {
+   "frame": "T",
+   "name": "하류 쉼나루",
+   "kind": "point",
+   "geometry": [
+    -360,
+    -1510
+   ],
+   "source": "S2 장소 좌표 · 공간표 수면 대비 높이",
+   "z_m": 4
+  },
+  "A09": {
+   "frame": "T",
+   "name": "높은 운반길",
+   "kind": "point",
+   "geometry": [
+    720,
+    -1420
+   ],
+   "source": "S2 장소 좌표 · 공간표 수면 대비 높이",
+   "z_m": 26
+  },
+  "A10": {
+   "frame": "T",
+   "name": "숲길 갈림턱",
+   "kind": "point",
+   "geometry": [
+    500,
+    -1030
+   ],
+   "source": "S2 장소 좌표 · 공간표 수면 대비 높이",
+   "z_m": 18
+  },
+  "T-river": {
+   "frame": "T",
+   "name": "테른 본류 중심선",
+   "kind": "river",
+   "geometry": [
+    [
+     720,
+     400
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     -153.846154,
+     -500
+    ],
+    [
+     -307.692308,
+     -1000
+    ],
+    [
+     -538.461538,
+     -1750
+    ]
+   ],
+   "source": "S2 장소 좌표 · 공간표 수면 대비 높이"
+  },
+  "TG1": {
+   "frame": "T",
+   "name": "목재 회수조",
+   "kind": "home",
+   "geometry": [
+    800,
+    -350
+   ],
+   "source": "S2 생활권·초기 수량표",
+   "radius": 140,
+   "members": [
+    {
+     "form": "MN01-A",
+     "count": 4,
+     "readiness": [
+      4,
+      6
+     ]
+    },
+    {
+     "form": "MN01-B",
+     "count": 2,
+     "readiness": [
+      5,
+      8
+     ]
+    }
+   ],
+   "count": 6,
+   "stop": "100 m 또는 공공 나루 경비선"
+  },
+  "TG1-move": {
+   "frame": "T",
+   "name": "목재 회수조 이동",
+   "kind": "patrol",
+   "geometry": [
+    [
+     1000,
+     -430
+    ],
+    [
+     900,
+     -850
+    ],
+    [
+     540,
+     -180
+    ]
+   ],
+   "source": "S2 생활권·초기 수량표",
+   "halfwidth": 75,
+   "group": "TG1"
+  },
+  "TG2": {
+   "frame": "T",
+   "name": "적토 운반·약탈조",
+   "kind": "home",
+   "geometry": [
+    1050,
+    -1300
+   ],
+   "source": "S2 생활권·초기 수량표",
+   "radius": 150,
+   "members": [
+    {
+     "form": "MN01-C",
+     "count": 4,
+     "readiness": [
+      7,
+      10
+     ]
+    }
+   ],
+   "count": 4,
+   "stop": "120 m · 저장굴 경계조 잔류"
+  },
+  "TG2-move": {
+   "frame": "T",
+   "name": "적토 운반·약탈조 이동",
+   "kind": "patrol",
+   "geometry": [
+    [
+     1050,
+     -1300
+    ],
+    [
+     720,
+     -1420
+    ],
+    [
+     100,
+     -1420
+    ],
+    [
+     500,
+     -1030
+    ]
+   ],
+   "source": "S2 생활권·초기 수량표",
+   "halfwidth": 70,
+   "group": "TG2"
+  },
+  "TW1": {
+   "frame": "T",
+   "name": "얕은 어살 사냥",
+   "kind": "feeding",
+   "geometry": [
+    -280,
+    -1100
+   ],
+   "source": "S2 생활권·초기 수량표",
+   "radius": 130,
+   "members": [
+    {
+     "form": "MN04-A",
+     "count": 2,
+     "readiness": [
+      4,
+      6
+     ]
+    }
+   ],
+   "count": 2,
+   "stop": "40 m · 젖은 암반"
+  },
+  "TW2": {
+   "frame": "T",
+   "name": "깊은 그늘 사냥",
+   "kind": "feeding",
+   "geometry": [
+    -390,
+    -1390
+   ],
+   "source": "S2 생활권·초기 수량표",
+   "radius": 100,
+   "members": [
+    {
+     "form": "MN04-B",
+     "count": 1,
+     "readiness": [
+      6,
+      8
+     ]
+    }
+   ],
+   "count": 1,
+   "stop": "40 m · 물가"
+  },
+  "TS1": {
+   "frame": "T",
+   "name": "수액 포획망",
+   "kind": "feeding",
+   "geometry": [
+    1240,
+    -940
+   ],
+   "source": "S2 생활권·초기 수량표",
+   "radius": 170,
+   "members": [
+    {
+     "form": "MN07-A",
+     "count": 2,
+     "readiness": [
+      8,
+      11
+     ]
+    }
+   ],
+   "count": 2,
+   "stop": "60 m · 포획망"
+  },
+  "TC1": {
+   "frame": "T",
+   "name": "고사목 바닥",
+   "kind": "feeding",
+   "geometry": [
+    410,
+    -660
+   ],
+   "source": "S2 생활권·초기 수량표",
+   "radius": 110,
+   "members": [
+    {
+     "form": "MN35-A",
+     "count": 3,
+     "readiness": [
+      4,
+      8
+     ]
+    }
+   ],
+   "count": 3,
+   "stop": "25–40 m · 고사목"
+  },
+  "TL1": {
+   "frame": "T",
+   "name": "샛개울 잔류물",
+   "kind": "feeding",
+   "geometry": [
+    -70,
+    -600
+   ],
+   "source": "S2 생활권·초기 수량표",
+   "radius": 90,
+   "members": [
+    {
+     "form": "MN38-A",
+     "count": 3,
+     "readiness": [
+      3,
+      6
+     ]
+    }
+   ],
+   "count": 3,
+   "stop": "25–40 m · 물가"
+  },
+  "RG1": {
+   "frame": "R",
+   "name": "폐목 회수조",
+   "kind": "home",
+   "geometry": [
+    -740,
+    1170
+   ],
+   "source": "S2 생활권·초기 수량표",
+   "radius": 160,
+   "members": [
+    {
+     "form": "MN01-A",
+     "count": 2,
+     "readiness": [
+      4,
+      6
+     ]
+    },
+    {
+     "form": "MN01-B",
+     "count": 2,
+     "readiness": [
+      5,
+      8
+     ]
+    }
+   ],
+   "count": 4,
+   "stop": "100 m · 관리 통행선"
+  },
+  "RG1-move": {
+   "frame": "R",
+   "name": "폐목 회수조 이동",
+   "kind": "patrol",
+   "geometry": [
+    [
+     -740,
+     1170
+    ],
+    [
+     -520,
+     900
+    ],
+    [
+     -320,
+     760
+    ]
+   ],
+   "source": "S2 생활권·초기 수량표",
+   "halfwidth": 70,
+   "group": "RG1"
+  },
+  "RK1": {
+   "frame": "R",
+   "name": "굴 채집·경보조",
+   "kind": "home",
+   "geometry": [
+    -100,
+    950
+   ],
+   "source": "S2 생활권·초기 수량표",
+   "radius": 95,
+   "members": [
+    {
+     "form": "MN16-A",
+     "count": 4,
+     "readiness": [
+      5,
+      8
+     ]
+    }
+   ],
+   "count": 4,
+   "stop": "60 m · 굴 출구턱"
+  },
+  "RK2": {
+   "frame": "R",
+   "name": "광물 저장조",
+   "kind": "home",
+   "geometry": [
+    150,
+    1080
+   ],
+   "source": "S2 생활권·초기 수량표",
+   "radius": 100,
+   "members": [
+    {
+     "form": "MN16-B",
+     "count": 2,
+     "readiness": [
+      8,
+      10
+     ]
+    }
+   ],
+   "count": 2,
+   "stop": "60 m · 저장턱"
+  },
+  "RU1": {
+   "frame": "R",
+   "name": "외곽 피복 군체",
+   "kind": "feeding",
+   "geometry": [
+    100,
+    900
+   ],
+   "source": "S2 생활권·초기 수량표",
+   "radius": 90,
+   "members": [
+    {
+     "form": "MN05-A",
+     "count": 4,
+     "readiness": [
+      6,
+      8
+     ]
+    }
+   ],
+   "count": 4,
+   "stop": "50 m · 배관 피복"
+  },
+  "RU2": {
+   "frame": "R",
+   "name": "내측 피복 군체",
+   "kind": "feeding",
+   "geometry": [
+    300,
+    810
+   ],
+   "source": "S2 생활권·초기 수량표",
+   "radius": 80,
+   "members": [
+    {
+     "form": "MN05-A",
+     "count": 2,
+     "readiness": [
+      6,
+      8
+     ]
+    },
+    {
+     "form": "MN05-B",
+     "count": 2,
+     "readiness": [
+      8,
+      10
+     ]
+    }
+   ],
+   "count": 4,
+   "stop": "50 m · 수동 격자"
+  },
+  "RU2-move": {
+   "frame": "R",
+   "name": "내측 피복 군체 이동",
+   "kind": "patrol",
+   "geometry": [
+    [
+     300,
+     810
+    ],
+    [
+     360,
+     690
+    ]
+   ],
+   "source": "S2 생활권·초기 수량표",
+   "halfwidth": 45,
+   "group": "RU2"
+  },
+  "RS1": {
+   "frame": "R",
+   "name": "폐수액 포획망",
+   "kind": "feeding",
+   "geometry": [
+    -530,
+    1290
+   ],
+   "source": "S2 생활권·초기 수량표",
+   "radius": 140,
+   "members": [
+    {
+     "form": "MN07-A",
+     "count": 2,
+     "readiness": [
+      8,
+      11
+     ]
+    }
+   ],
+   "count": 2,
+   "stop": "60 m · 포획망"
+  },
+  "RL1": {
+   "frame": "R",
+   "name": "배수 웅덩이",
+   "kind": "feeding",
+   "geometry": [
+    0,
+    600
+   ],
+   "source": "S2 생활권·초기 수량표",
+   "radius": 110,
+   "members": [
+    {
+     "form": "MN38-A",
+     "count": 3,
+     "readiness": [
+      3,
+      6
+     ]
+    }
+   ],
+   "count": 3,
+   "stop": "25–40 m · 웅덩이"
+  },
+  "RO1": {
+   "frame": "R",
+   "name": "곡물 잔여물 은신",
+   "kind": "home",
+   "geometry": [
+    -880,
+    680
+   ],
+   "source": "S2 생활권·초기 수량표",
+   "radius": 160,
+   "members": [
+    {
+     "form": "MN22-A",
+     "count": 1,
+     "readiness": [
+      10,
+      13
+     ]
+    }
+   ],
+   "count": 1,
+   "stop": "70 m · 폐곡물 저장처"
+  },
+  "RC1": {
+   "frame": "R",
+   "name": "견인 수레",
+   "kind": "machine",
+   "geometry": [
+    40,
+    90
+   ],
+   "source": "S2 생활권·초기 수량표",
+   "count": 1,
+   "model": "CT02-A"
+  },
+  "RC2": {
+   "frame": "R",
+   "name": "철근지기",
+   "kind": "machine",
+   "geometry": [
+    430,
+    560
+   ],
+   "source": "S2 생활권·초기 수량표",
+   "count": 1,
+   "model": "CT02-A"
+  },
+  "stairs": {
+   "frame": "R",
+   "name": "stairs",
+   "kind": "walk",
+   "geometry": [
+    [
+     100,
+     900
+    ],
+    [
+     260,
+     800
+    ]
+   ],
+   "source": "S2 통행 상태표 · 중심 간 연결",
+   "via": [
+    "B06",
+    "B07"
+   ],
+   "passage": {
+    "from": "B06",
+    "to": "B07",
+    "actors": [
+     "walker"
+    ],
+    "requires": {
+     "stairs": "open"
+    }
+   }
+  },
+  "foot": {
+   "frame": "R",
+   "name": "foot",
+   "kind": "walk",
+   "geometry": [
+    [
+     260,
+     800
+    ],
+    [
+     360,
+     690
+    ]
+   ],
+   "source": "S2 통행 상태표 · 중심 간 연결",
+   "via": [
+    "B07",
+    "B08"
+   ],
+   "width_m": 1.5,
+   "passage": {
+    "from": "B07",
+    "to": "B08",
+    "actors": [
+     "walker"
+    ]
+   }
+  },
+  "bypass": {
+   "frame": "R",
+   "name": "bypass",
+   "kind": "detour",
+   "geometry": [
+    [
+     260,
+     800
+    ],
+    [
+     110,
+     600
+    ],
+    [
+     430,
+     560
+    ]
+   ],
+   "source": "S2 통행 상태표 · 중심 간 연결",
+   "via": [
+    "B07",
+    "B12",
+    "B09"
+   ],
+   "width_m": 4,
+   "passage": {
+    "from": "B07",
+    "via": [
+     "B12"
+    ],
+    "to": "B09",
+    "actors": [
+     "walker"
+    ]
+   }
+  },
+  "exit": {
+   "frame": "R",
+   "name": "exit",
+   "kind": "detour",
+   "geometry": [
+    [
+     260,
+     800
+    ],
+    [
+     -100,
+     950
+    ]
+   ],
+   "source": "S2 통행 상태표 · 중심 간 연결",
+   "via": [
+    "B07",
+    "B05"
+   ],
+   "passage": {
+    "from": "B07",
+    "to": "B05",
+    "actors": [
+     "walker"
+    ]
+   }
+  },
+  "doorpath": {
+   "frame": "R",
+   "name": "doorpath",
+   "kind": "haul",
+   "geometry": [
+    [
+     360,
+     690
+    ],
+    [
+     430,
+     560
+    ]
+   ],
+   "source": "S2 통행 상태표 · 중심 간 연결",
+   "via": [
+    "B08",
+    "B09"
+   ],
+   "passage": {
+    "from": "B08",
+    "to": "B09",
+    "actors": [
+     "stretcher"
+    ],
+    "requires": {
+     "gate": "open",
+     "yard": "clear"
+    }
+   }
+  },
+  "embark": {
+   "frame": "R",
+   "name": "embark",
+   "kind": "haul",
+   "geometry": [
+    [
+     430,
+     560
+    ],
+    [
+     660,
+     560
+    ]
+   ],
+   "source": "S2 통행 상태표 · 중심 간 연결",
+   "via": [
+    "B09",
+    "B10"
+   ],
+   "width_m": 5,
+   "passage": {
+    "from": "B09",
+    "to": "B10",
+    "actors": [
+     "stretcher"
+    ],
+    "requires": {
+     "yard": "clear"
+    }
+   }
+  },
+  "levee": {
+   "frame": "R",
+   "name": "levee",
+   "kind": "back",
+   "geometry": [
+    [
+     660,
+     560
+    ],
+    [
+     120,
+     270
+    ],
+    [
+     40,
+     90
+    ]
+   ],
+   "source": "S2 통행 상태표 · 중심 간 연결",
+   "via": [
+    "B10",
+    "B11",
+    "B01"
+   ],
+   "passage": {
+    "from": "B10",
+    "via": [
+     "B11"
+    ],
+    "to": "B01",
+    "actors": [
+     "walker"
+    ]
+   }
+  },
+  "guild": {
+   "frame": "R",
+   "name": "guild",
+   "kind": "walk",
+   "geometry": [
+    [
+     40,
+     90
+    ],
+    [
+     -620,
+     400
+    ],
+    [
+     -320,
+     760
+    ]
+   ],
+   "source": "S2 통행 상태표 · 중심 간 연결",
+   "via": [
+    "B01",
+    "B02",
+    "B03"
+   ]
+  },
+  "drain": {
+   "frame": "R",
+   "name": "drain",
+   "kind": "walk",
+   "geometry": [
+    [
+     -320,
+     760
+    ],
+    [
+     -700,
+     1120
+    ],
+    [
+     -100,
+     950
+    ],
+    [
+     100,
+     900
+    ]
+   ],
+   "source": "S2 통행 상태표 · 중심 간 연결",
+   "via": [
+    "B03",
+    "B04",
+    "B05",
+    "B06"
+   ]
+  },
+  "cartway": {
+   "frame": "R",
+   "name": "cartway",
+   "kind": "detour",
+   "geometry": [
+    [
+     -320,
+     760
+    ],
+    [
+     100,
+     900
+    ]
+   ],
+   "source": "S2 통행 상태표 · 중심 간 연결",
+   "via": [
+    "B03",
+    "B06"
+   ],
+   "width_m": 8
+  },
+  "r-pad": {
+   "frame": "R",
+   "name": "부상자 대기단",
+   "kind": "facility",
+   "geometry": [
+    [
+     354,
+     686
+    ],
+    [
+     366,
+     686
+    ],
+    [
+     366,
+     694
+    ],
+    [
+     354,
+     694
+    ]
+   ],
+   "source": "배치 후보 · S2 공간표의 폭과 높이를 적용"
+  },
+  "r-lip": {
+   "frame": "R",
+   "name": "아래 이송턱",
+   "kind": "facility",
+   "geometry": [
+    [
+     356,
+     677
+    ],
+    [
+     364,
+     677
+    ],
+    [
+     364,
+     683
+    ],
+    [
+     356,
+     683
+    ]
+   ],
+   "source": "배치 후보 · S2 공간표의 폭과 높이를 적용"
+  },
+  "r-yard": {
+   "frame": "R",
+   "name": "작업뜰",
+   "kind": "facility",
+   "geometry": [
+    [
+     390,
+     530
+    ],
+    [
+     470,
+     530
+    ],
+    [
+     470,
+     590
+    ],
+    [
+     390,
+     590
+    ]
+   ],
+   "source": "배치 후보 · S2 공간표의 폭과 높이를 적용"
+  },
+  "r-dock": {
+   "frame": "R",
+   "name": "선착 대기부",
+   "kind": "facility",
+   "geometry": [
+    [
+     654,
+     555
+    ],
+    [
+     666,
+     555
+    ],
+    [
+     666,
+     565
+    ],
+    [
+     654,
+     565
+    ]
+   ],
+   "source": "배치 후보 · S2 공간표의 폭과 높이를 적용"
+  },
+  "r-lift": {
+   "frame": "R",
+   "name": "승강기",
+   "kind": "facility",
+   "geometry": [
+    [
+     367,
+     696
+    ],
+    [
+     371,
+     696
+    ],
+    [
+     371,
+     700
+    ],
+    [
+     367,
+     700
+    ]
+   ],
+   "source": "배치 후보 · S2 공간표의 폭과 높이를 적용"
+  },
+  "r-box": {
+   "frame": "R",
+   "name": "차단함",
+   "kind": "facility",
+   "geometry": [
+    [
+     262.5,
+     801
+    ],
+    [
+     265.5,
+     801
+    ],
+    [
+     265.5,
+     803
+    ],
+    [
+     262.5,
+     803
+    ]
+   ],
+   "source": "배치 후보 · S2 공간표의 폭과 높이를 적용"
+  },
+  "r-pipe": {
+   "frame": "R",
+   "name": "배관 정비뜰",
+   "kind": "facility",
+   "geometry": [
+    [
+     93,
+     890
+    ],
+    [
+     107,
+     890
+    ],
+    [
+     107,
+     910
+    ],
+    [
+     93,
+     910
+    ]
+   ],
+   "source": "배치 후보 · S2 공간표의 폭과 높이를 적용"
+  },
+  "r-shelf": {
+   "frame": "R",
+   "name": "굴 출구 휴식턱",
+   "kind": "facility",
+   "geometry": [
+    [
+     -94,
+     948
+    ],
+    [
+     -86,
+     948
+    ],
+    [
+     -86,
+     956
+    ],
+    [
+     -94,
+     956
+    ]
+   ],
+   "source": "배치 후보 · S2 공간표의 폭과 높이를 적용"
+  },
+  "r-support1": {
+   "frame": "R",
+   "name": "서쪽 받침대",
+   "kind": "facility",
+   "geometry": [
+    [
+     401.5,
+     546
+    ],
+    [
+     406.5,
+     546
+    ],
+    [
+     406.5,
+     550
+    ],
+    [
+     401.5,
+     550
+    ]
+   ],
+   "source": "배치 후보 · S2 공간표의 폭과 높이를 적용"
+  },
+  "r-support2": {
+   "frame": "R",
+   "name": "동쪽 받침대",
+   "kind": "facility",
+   "geometry": [
+    [
+     443.5,
+     569
+    ],
+    [
+     448.5,
+     569
+    ],
+    [
+     448.5,
+     573
+    ],
+    [
+     443.5,
+     573
+    ]
+   ],
+   "source": "배치 후보 · S2 공간표의 폭과 높이를 적용"
+  },
+  "R-GATE": {
+   "frame": "R",
+   "name": "들것 문",
+   "kind": "point",
+   "geometry": [
+    401,
+    586
+   ],
+   "source": "배치 후보 · S2 공간표의 폭과 높이를 적용",
+   "width_m": 3.2,
+   "swing": "작업뜰 안쪽"
+  },
+  "R-GRID": {
+   "frame": "R",
+   "name": "추격 종료 격자",
+   "kind": "point",
+   "geometry": [
+    353,
+    692
+   ],
+   "source": "배치 후보 · S2 공간표의 폭과 높이를 적용"
+  },
+  "R-LIFT": {
+   "frame": "R",
+   "name": "승강기",
+   "kind": "point",
+   "geometry": [
+    369,
+    698
+   ],
+   "source": "배치 후보 · S2 공간표의 폭과 높이를 적용"
+  },
+  "R-LATCH": {
+   "frame": "R",
+   "name": "수동 빗장",
+   "kind": "point",
+   "geometry": [
+    404,
+    583
+   ],
+   "source": "배치 후보 · S2 공간표의 폭과 높이를 적용"
+  },
+  "R-TURN": {
+   "frame": "R",
+   "name": "들것 회전 자리",
+   "kind": "point",
+   "geometry": [
+    360,
+    680
+   ],
+   "source": "배치 후보 · S2 공간표의 폭과 높이를 적용",
+   "clear_m": [
+    8,
+    6
+   ],
+   "stretcher_m": 2.2
+  },
+  "R-MOOR": {
+   "frame": "R",
+   "name": "구조선 접안",
+   "kind": "point",
+   "geometry": [
+    730,
+    559
+   ],
+   "source": "배치 후보 · S2 공간표의 폭과 높이를 적용"
+  },
+  "r-pier-link": {
+   "frame": "R",
+   "name": "구조선 접안 연결",
+   "kind": "haul",
+   "geometry": [
+    [
+     660,
+     560
+    ],
+    [
+     696,
+     559
+    ],
+    [
+     730,
+     559
+    ]
+   ],
+   "source": "배치 후보 · S2 공간표의 폭과 높이를 적용",
+   "width_m": 5
+  },
+  "r-gate-leaf": {
+   "frame": "R",
+   "name": "작업뜰 안쪽으로 개방",
+   "kind": "swing",
+   "geometry": [
+    [
+     399.4,
+     586
+    ],
+    [
+     402.6,
+     586
+    ],
+    [
+     402.35,
+     584.78
+    ],
+    [
+     401.66,
+     583.74
+    ],
+    [
+     400.62,
+     583.04
+    ],
+    [
+     399.4,
+     582.8
+    ],
+    [
+     399.4,
+     586
+    ]
+   ],
+   "source": "배치 후보 · S2 공간표의 폭과 높이를 적용"
+  },
+  "r-stretcher": {
+   "frame": "R",
+   "name": "들것 회전과 문 통과",
+   "kind": "haul",
+   "geometry": [
+    [
+     360,
+     690
+    ],
+    [
+     360,
+     680
+    ],
+    [
+     374,
+     662
+    ],
+    [
+     401,
+     586
+    ],
+    [
+     406,
+     572
+    ],
+    [
+     410,
+     538
+    ],
+    [
+     416,
+     536
+    ],
+    [
+     469,
+     536
+    ],
+    [
+     660,
+     560
+    ]
+   ],
+   "source": "배치 후보 · S2 공간표의 폭과 높이를 적용",
+   "width_m": 3
+  },
+  "r-clear": {
+   "frame": "R",
+   "name": "작업뜰 남쪽 대피 통로",
+   "kind": "haul",
+   "geometry": [
+    [
+     390,
+     536
+    ],
+    [
+     470,
+     536
+    ]
+   ],
+   "source": "배치 후보 · S2 공간표의 폭과 높이를 적용",
+   "width_m": 6
+  },
+  "r-arm": {
+   "frame": "R",
+   "name": "작업팔 위험 접근",
+   "kind": "barrier",
+   "geometry": [
+    [
+     420,
+     553
+    ],
+    [
+     430,
+     560
+    ],
+    [
+     449,
+     562
+    ]
+   ],
+   "source": "배치 후보 · S2 공간표의 폭과 높이를 적용"
+  },
+  "R-CART": {
+   "frame": "R",
+   "name": "수레 인출 고리",
+   "kind": "point",
+   "geometry": [
+    40,
+    90
+   ],
+   "source": "배치 후보 · S2 공간표의 폭과 높이를 적용"
+  },
+  "R-GUILD": {
+   "frame": "R",
+   "name": "조합 작업대",
+   "kind": "point",
+   "geometry": [
+    -631,
+    411
+   ],
+   "source": "배치 후보 · S2 공간표의 폭과 높이를 적용"
+  },
+  "R-SMITH": {
+   "frame": "R",
+   "name": "견인 장비 공방",
+   "kind": "point",
+   "geometry": [
+    -574,
+    384
+   ],
+   "source": "배치 후보 · S2 공간표의 폭과 높이를 적용"
+  },
+  "R-QUAY": {
+   "frame": "R",
+   "name": "화물 접안",
+   "kind": "point",
+   "geometry": [
+    97,
+    89
+   ],
+   "source": "배치 후보 · S2 공간표의 폭과 높이를 적용"
+  },
+  "R-LOAD": {
+   "frame": "R",
+   "name": "하역 대기",
+   "kind": "point",
+   "geometry": [
+    57,
+    100
+   ],
+   "source": "배치 후보 · S2 공간표의 폭과 높이를 적용"
+  },
+  "r-guild-hall": {
+   "frame": "R",
+   "name": "조합",
+   "kind": "building",
+   "geometry": [
+    [
+     -644,
+     406
+    ],
+    [
+     -622,
+     406
+    ],
+    [
+     -622,
+     422
+    ],
+    [
+     -644,
+     422
+    ]
+   ],
+   "source": "배치 후보 · S2 공간표의 폭과 높이를 적용"
+  },
+  "r-smith": {
+   "frame": "R",
+   "name": "장인 공방",
+   "kind": "building",
+   "geometry": [
+    [
+     -581,
+     383
+    ],
+    [
+     -567,
+     383
+    ],
+    [
+     -567,
+     395
+    ],
+    [
+     -581,
+     395
+    ]
+   ],
+   "source": "배치 후보 · S2 공간표의 폭과 높이를 적용"
+  },
+  "r-store": {
+   "frame": "R",
+   "name": "나루 창고",
+   "kind": "building",
+   "geometry": [
+    [
+     22.5,
+     103
+    ],
+    [
+     41.5,
+     103
+    ],
+    [
+     41.5,
+     113
+    ],
+    [
+     22.5,
+     113
+    ]
+   ],
+   "source": "배치 후보 · S2 공간표의 폭과 높이를 적용"
+  },
+  "r-housing": {
+   "frame": "R",
+   "name": "주거동",
+   "kind": "building",
+   "geometry": [
+    [
+     -613,
+     426.5
+    ],
+    [
+     -587,
+     426.5
+    ],
+    [
+     -587,
+     439.5
+    ],
+    [
+     -613,
+     439.5
+    ]
+   ],
+   "source": "배치 후보 · S2 공간표의 폭과 높이를 적용"
+  },
+  "r-supply": {
+   "frame": "R",
+   "name": "급수·보온 배분소",
+   "kind": "building",
+   "geometry": [
+    [
+     -654.5,
+     385
+    ],
+    [
+     -641.5,
+     385
+    ],
+    [
+     -641.5,
+     393
+    ],
+    [
+     -654.5,
+     393
+    ]
+   ],
+   "source": "배치 후보 · S2 공간표의 폭과 높이를 적용"
+  },
+  "R-HALL-IN": {
+   "frame": "R",
+   "name": "조합 출입구",
+   "kind": "point",
+   "geometry": [
+    -628,
+    406
+   ],
+   "source": "배치 후보 · S2 공간표의 폭과 높이를 적용"
+  },
+  "R-SHOP-IN": {
+   "frame": "R",
+   "name": "공방 출입구",
+   "kind": "point",
+   "geometry": [
+    -574,
+    383
+   ],
+   "source": "배치 후보 · S2 공간표의 폭과 높이를 적용"
+  },
+  "r-local": {
+   "frame": "R",
+   "name": "조합과 선택 공방",
+   "kind": "detour",
+   "geometry": [
+    [
+     -620,
+     400
+    ],
+    [
+     -628,
+     406
+    ],
+    [
+     -631,
+     411
+    ]
+   ],
+   "source": "배치 후보 · S2 공간표의 폭과 높이를 적용",
+   "via": [
+    "B02",
+    "R-HALL-IN",
+    "R-GUILD"
+   ]
+  },
+  "r-visit": {
+   "frame": "R",
+   "name": "선택 공방 방문",
+   "kind": "detour",
+   "geometry": [
+    [
+     -620,
+     400
+    ],
+    [
+     -609,
+     380
+    ],
+    [
+     -574,
+     380
+    ],
+    [
+     -574,
+     383
+    ],
+    [
+     -574,
+     384
+    ]
+   ],
+   "source": "배치 후보 · S2 공간표의 폭과 높이를 적용"
+  },
+  "r-unload": {
+   "frame": "R",
+   "name": "접안과 하역",
+   "kind": "haul",
+   "geometry": [
+    [
+     97,
+     89
+    ],
+    [
+     57,
+     100
+    ],
+    [
+     40,
+     90
+    ]
+   ],
+   "source": "배치 후보 · S2 공간표의 폭과 높이를 적용",
+   "via": [
+    "R-QUAY",
+    "R-LOAD",
+    "B01"
+   ]
+  },
+  "t-out": {
+   "frame": "T",
+   "name": "out",
+   "kind": "walk",
+   "geometry": [
+    [
+     360,
+     80
+    ],
+    [
+     540,
+     -180
+    ],
+    [
+     420,
+     -650
+    ],
+    [
+     500,
+     -1030
+    ],
+    [
+     -270,
+     -1170
+    ],
+    [
+     -360,
+     -1510
+    ]
+   ],
+   "source": "S2 탐색 경로",
+   "via": [
+    "A01",
+    "A02",
+    "A03",
+    "A10",
+    "A07",
+    "A08"
+   ]
+  },
+  "t-back": {
+   "frame": "T",
+   "name": "back",
+   "kind": "back",
+   "geometry": [
+    [
+     -360,
+     -1510
+    ],
+    [
+     720,
+     -1420
+    ],
+    [
+     1000,
+     -430
+    ],
+    [
+     540,
+     -180
+    ],
+    [
+     360,
+     80
+    ]
+   ],
+   "source": "S2 탐색 경로",
+   "via": [
+    "A08",
+    "A09",
+    "A04",
+    "A02",
+    "A01"
+   ]
+  },
+  "t-short": {
+   "frame": "T",
+   "name": "short",
+   "kind": "retreat",
+   "geometry": [
+    [
+     -360,
+     -1510
+    ],
+    [
+     -270,
+     -1170
+    ],
+    [
+     500,
+     -1030
+    ],
+    [
+     420,
+     -650
+    ],
+    [
+     540,
+     -180
+    ],
+    [
+     360,
+     80
+    ]
+   ],
+   "source": "S2 탐색 경로",
+   "via": [
+    "A08",
+    "A07",
+    "A10",
+    "A03",
+    "A02",
+    "A01"
+   ]
+  },
+  "t-optional": {
+   "frame": "T",
+   "name": "optional",
+   "kind": "detour",
+   "geometry": [
+    [
+     1000,
+     -430
+    ],
+    [
+     1220,
+     -950
+    ],
+    [
+     1050,
+     -1300
+    ],
+    [
+     720,
+     -1420
+    ]
+   ],
+   "source": "S2 탐색 경로",
+   "via": [
+    "A04",
+    "A05",
+    "A06",
+    "A09"
+   ]
+  },
+  "T-wood": {
+   "frame": "T",
+   "name": "숲",
+   "kind": "wood",
+   "geometry": [
+    [
+     650,
+     100
+    ],
+    [
+     1400,
+     -100
+    ],
+    [
+     1450,
+     -1400
+    ],
+    [
+     750,
+     -1600
+    ],
+    [
+     450,
+     -950
+    ]
+   ],
+   "source": "기존 S2 확대도의 숲과 샛개울"
+  },
+  "T-stream": {
+   "frame": "T",
+   "name": "샛개울",
+   "kind": "stream",
+   "geometry": [
+    [
+     500,
+     -500
+    ],
+    [
+     420,
+     -650
+    ],
+    [
+     90,
+     -720
+    ],
+    [
+     -250,
+     -812.5
+    ]
+   ],
+   "source": "기존 S2 확대도의 숲과 샛개울"
+  },
+  "R-wood": {
+   "frame": "R",
+   "name": "숲",
+   "kind": "wood",
+   "geometry": [
+    [
+     -1050,
+     800
+    ],
+    [
+     -1000,
+     1450
+    ],
+    [
+     -300,
+     1450
+    ],
+    [
+     -330,
+     950
+    ]
+   ],
+   "source": "기존 S2 확대도의 숲과 샛개울"
+  },
+  "T-LAND": {
+   "frame": "T",
+   "name": "나룻배 접안",
+   "kind": "point",
+   "geometry": [
+    159,
+    80
+   ],
+   "source": "배치 후보 · 검수와 하역 장면"
+  },
+  "T-GOOD": {
+   "frame": "T",
+   "name": "검수품",
+   "kind": "point",
+   "geometry": [
+    370,
+    92
+   ],
+   "source": "배치 후보 · 검수와 하역 장면"
+  },
+  "T-USED": {
+   "frame": "T",
+   "name": "회수목",
+   "kind": "point",
+   "geometry": [
+    356,
+    99
+   ],
+   "source": "배치 후보 · 검수와 하역 장면"
+  },
+  "T-LOAD": {
+   "frame": "T",
+   "name": "선적 대기",
+   "kind": "point",
+   "geometry": [
+    335,
+    76
+   ],
+   "source": "배치 후보 · 검수와 하역 장면"
+  },
+  "T-CHECK": {
+   "frame": "T",
+   "name": "검수대",
+   "kind": "point",
+   "geometry": [
+    365,
+    84
+   ],
+   "source": "배치 후보 · 검수와 하역 장면"
+  },
+  "t-shed": {
+   "frame": "T",
+   "name": "검수 창고",
+   "kind": "facility",
+   "geometry": [
+    [
+     367,
+     99
+    ],
+    [
+     389,
+     99
+    ],
+    [
+     389,
+     111
+    ],
+    [
+     367,
+     111
+    ]
+   ],
+   "source": "배치 후보 · 검수와 하역 장면"
+  },
+  "t-hall": {
+   "frame": "T",
+   "name": "하역 공동회",
+   "kind": "facility",
+   "geometry": [
+    [
+     337,
+     106
+    ],
+    [
+     353,
+     106
+    ],
+    [
+     353,
+     116
+    ],
+    [
+     337,
+     116
+    ]
+   ],
+   "source": "배치 후보 · 검수와 하역 장면"
+  },
+  "t-good": {
+   "frame": "T",
+   "name": "검수품 더미",
+   "kind": "facility",
+   "geometry": [
+    [
+     367,
+     90
+    ],
+    [
+     373,
+     90
+    ],
+    [
+     373,
+     94
+    ],
+    [
+     367,
+     94
+    ]
+   ],
+   "source": "배치 후보 · 검수와 하역 장면"
+  },
+  "t-used": {
+   "frame": "T",
+   "name": "회수목 더미",
+   "kind": "facility",
+   "geometry": [
+    [
+     353,
+     97
+    ],
+    [
+     359,
+     97
+    ],
+    [
+     359,
+     101
+    ],
+    [
+     353,
+     101
+    ]
+   ],
+   "source": "배치 후보 · 검수와 하역 장면"
+  },
+  "t-load": {
+   "frame": "T",
+   "name": "선적 대기장",
+   "kind": "facility",
+   "geometry": [
+    [
+     329,
+     72.5
+    ],
+    [
+     341,
+     72.5
+    ],
+    [
+     341,
+     79.5
+    ],
+    [
+     329,
+     79.5
+    ]
+   ],
+   "source": "배치 후보 · 검수와 하역 장면"
+  },
+  "t-loadway": {
+   "frame": "T",
+   "name": "검수품 선적",
+   "kind": "haul",
+   "geometry": [
+    [
+     370,
+     92
+    ],
+    [
+     365,
+     84
+    ],
+    [
+     360,
+     80
+    ],
+    [
+     335,
+     76
+    ],
+    [
+     159,
+     80
+    ]
+   ],
+   "source": "배치 후보 · 검수와 하역 장면",
+   "via": [
+    "T-GOOD",
+    "T-CHECK",
+    "A01",
+    "T-LOAD",
+    "T-LAND"
+   ]
+  },
+  "t-dockwalk": {
+   "frame": "T",
+   "name": "배에서 검수대로",
+   "kind": "walk",
+   "geometry": [
+    [
+     159,
+     80
+    ],
+    [
+     320,
+     82
+    ],
+    [
+     360,
+     80
+    ],
+    [
+     365,
+     84
+    ]
+   ],
+   "source": "배치 후보 · 검수와 하역 장면"
+  },
+  "t-separate": {
+   "frame": "T",
+   "name": "회수목 인수",
+   "kind": "detour",
+   "geometry": [
+    [
+     365,
+     84
+    ],
+    [
+     359,
+     90
+    ],
+    [
+     356,
+     99
+    ]
+   ],
+   "source": "배치 후보 · 검수와 하역 장면"
+  },
+  "V-BENCH": {
+   "frame": "V",
+   "name": "수리 공방",
+   "kind": "point",
+   "geometry": [
+    -51,
+    49
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "V-WATER": {
+   "frame": "V",
+   "name": "공동 급수대",
+   "kind": "point",
+   "geometry": [
+    -9.8,
+    86
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "V-TABLE": {
+   "frame": "V",
+   "name": "참나무 공동 식탁",
+   "kind": "point",
+   "geometry": [
+    -3.7,
+    99
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "V-BOARD": {
+   "frame": "V",
+   "name": "승선판 육지 끝",
+   "kind": "point",
+   "geometry": [
+    16.3,
+    5.5
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "V-GATE": {
+   "frame": "V",
+   "name": "숲문",
+   "kind": "point",
+   "geometry": [
+    -80,
+    205
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "V-FIELD": {
+   "frame": "V",
+   "name": "경작지",
+   "kind": "point",
+   "geometry": [
+    85,
+    40
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "F-BERRY": {
+   "frame": "V",
+   "name": "동쪽 열매숲",
+   "kind": "point",
+   "geometry": [
+    228,
+    603
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "F-YARD": {
+   "frame": "V",
+   "name": "서쪽 원목 작업장",
+   "kind": "point",
+   "geometry": [
+    -250,
+    730
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "F-WATER": {
+   "frame": "V",
+   "name": "수로 작업림",
+   "kind": "point",
+   "geometry": [
+    96.721271,
+    756
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "F-UP": {
+   "frame": "V",
+   "name": "상류 물가",
+   "kind": "point",
+   "geometry": [
+    201.565871,
+    1038
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "C-MOUTH": {
+   "frame": "V",
+   "name": "취수구 바깥 문턱",
+   "kind": "point",
+   "geometry": [
+    272,
+    1250
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "house-workshop": {
+   "frame": "V",
+   "name": "workshop",
+   "kind": "building",
+   "geometry": [
+    [
+     -70.058719,
+     34.20324
+    ],
+    [
+     -43.161462,
+     31.850035
+    ],
+    [
+     -41.941281,
+     45.79676
+    ],
+    [
+     -68.838538,
+     48.149965
+    ]
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "opening-workshop1": {
+   "frame": "V",
+   "name": "건물 출입구",
+   "kind": "entrance",
+   "geometry": [
+    -56.596145,
+    33.186028
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "opening-workshop4": {
+   "frame": "V",
+   "name": "건물 출입구",
+   "kind": "entrance",
+   "geometry": [
+    -55.403855,
+    46.813972
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "house-RepairWing": {
+   "frame": "V",
+   "name": "RepairWing",
+   "kind": "building",
+   "geometry": [
+    [
+     -67.840183,
+     51.04068
+    ],
+    [
+     -65.524665,
+     69.899057
+    ],
+    [
+     -74.159817,
+     70.95932
+    ],
+    [
+     -76.475335,
+     52.100943
+    ]
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "opening-RepairWing1": {
+   "frame": "V",
+   "name": "건물 출입구",
+   "kind": "entrance",
+   "geometry": [
+    -66.841232,
+    60.489367
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "opening-RepairWing4": {
+   "frame": "V",
+   "name": "건물 출입구",
+   "kind": "entrance",
+   "geometry": [
+    -75.158768,
+    61.510633
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "house-QuayHouse": {
+   "frame": "V",
+   "name": "QuayHouse",
+   "kind": "building",
+   "geometry": [
+    [
+     -5.377566,
+     28.056355
+    ],
+    [
+     6.035112,
+     31.764559
+    ],
+    [
+     3.377566,
+     39.943645
+    ],
+    [
+     -8.035112,
+     36.235441
+    ]
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "opening-QuayHouse1": {
+   "frame": "V",
+   "name": "건물 출입구",
+   "kind": "entrance",
+   "geometry": [
+    0.27933,
+    30.062626
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "opening-QuayHouse4": {
+   "frame": "V",
+   "name": "건물 출입구",
+   "kind": "entrance",
+   "geometry": [
+    -2.27933,
+    37.937374
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "house-Boatwright": {
+   "frame": "V",
+   "name": "Boatwright",
+   "kind": "building",
+   "geometry": [
+    [
+     -30.106206,
+     37.079466
+    ],
+    [
+     -13.868955,
+     33.628132
+    ],
+    [
+     -11.893794,
+     42.920534
+    ],
+    [
+     -28.131045,
+     46.371868
+    ]
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "opening-Boatwright1": {
+   "frame": "V",
+   "name": "건물 출입구",
+   "kind": "entrance",
+   "geometry": [
+    -21.954315,
+    35.510303
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "opening-Boatwright4": {
+   "frame": "V",
+   "name": "건물 출입구",
+   "kind": "entrance",
+   "geometry": [
+    -20.045685,
+    44.489697
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "house-WaterHouse": {
+   "frame": "V",
+   "name": "WaterHouse",
+   "kind": "building",
+   "geometry": [
+    [
+     -13.713047,
+     48.472904
+    ],
+    [
+     -4.925249,
+     54.400349
+    ],
+    [
+     -9.286953,
+     60.866842
+    ],
+    [
+     -18.074751,
+     54.939397
+    ]
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "opening-WaterHouse1": {
+   "frame": "V",
+   "name": "건물 출입구",
+   "kind": "entrance",
+   "geometry": [
+    -9.408619,
+    51.569272
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "opening-WaterHouse4": {
+   "frame": "V",
+   "name": "건물 출입구",
+   "kind": "entrance",
+   "geometry": [
+    -13.591381,
+    57.770474
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "house-SouthGable": {
+   "frame": "V",
+   "name": "SouthGable",
+   "kind": "building",
+   "geometry": [
+    [
+     19.67327,
+     31.239358
+    ],
+    [
+     33.797214,
+     33.476371
+    ],
+    [
+     32.32673,
+     42.760642
+    ],
+    [
+     18.202786,
+     40.523629
+    ]
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "opening-SouthGable1": {
+   "frame": "V",
+   "name": "건물 출입구",
+   "kind": "entrance",
+   "geometry": [
+    26.710212,
+    32.515895
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "opening-SouthGable4": {
+   "frame": "V",
+   "name": "건물 출입구",
+   "kind": "entrance",
+   "geometry": [
+    25.289788,
+    41.484105
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "house-OrchardHouse": {
+   "frame": "V",
+   "name": "OrchardHouse",
+   "kind": "building",
+   "geometry": [
+    [
+     38.152771,
+     37.309116
+    ],
+    [
+     56.967865,
+     39.953405
+    ],
+    [
+     55.757059,
+     48.568737
+    ],
+    [
+     36.941965,
+     45.924448
+    ]
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "opening-OrchardHouse1": {
+   "frame": "V",
+   "name": "건물 출입구",
+   "kind": "entrance",
+   "geometry": [
+    47.53805,
+    38.789703
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "opening-OrchardHouse4": {
+   "frame": "V",
+   "name": "건물 출입구",
+   "kind": "entrance",
+   "geometry": [
+    46.37178,
+    47.088149
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "house-Baker": {
+   "frame": "V",
+   "name": "Baker",
+   "kind": "building",
+   "geometry": [
+    [
+     20.331483,
+     65.318903
+    ],
+    [
+     34.077526,
+     61.377288
+    ],
+    [
+     36.668517,
+     70.413148
+    ],
+    [
+     22.922474,
+     74.354762
+    ]
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "opening-Baker1": {
+   "frame": "V",
+   "name": "건물 출입구",
+   "kind": "entrance",
+   "geometry": [
+    27.248606,
+    63.501897
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "opening-Baker4": {
+   "frame": "V",
+   "name": "건물 출입구",
+   "kind": "entrance",
+   "geometry": [
+    29.751394,
+    72.230154
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "house-Dyer": {
+   "frame": "V",
+   "name": "Dyer",
+   "kind": "building",
+   "geometry": [
+    [
+     13.619201,
+     60.421195
+    ],
+    [
+     18.307974,
+     71.467253
+    ],
+    [
+     10.391632,
+     74.827541
+    ],
+    [
+     5.702859,
+     63.781483
+    ]
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "opening-Dyer1": {
+   "frame": "V",
+   "name": "건물 출입구",
+   "kind": "entrance",
+   "geometry": [
+    15.816307,
+    66.006741
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "opening-Dyer4": {
+   "frame": "V",
+   "name": "건물 출입구",
+   "kind": "entrance",
+   "geometry": [
+    8.194527,
+    69.241995
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "house-MarketHouse": {
+   "frame": "V",
+   "name": "MarketHouse",
+   "kind": "building",
+   "geometry": [
+    [
+     -28.650306,
+     69.656617
+    ],
+    [
+     -16.965983,
+     75.355442
+    ],
+    [
+     -21.349694,
+     84.343383
+    ],
+    [
+     -33.034017,
+     78.644558
+    ]
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "opening-MarketHouse1": {
+   "frame": "V",
+   "name": "건물 출입구",
+   "kind": "entrance",
+   "geometry": [
+    -22.878284,
+    72.649837
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "opening-MarketHouse4": {
+   "frame": "V",
+   "name": "건물 출입구",
+   "kind": "entrance",
+   "geometry": [
+    -27.121716,
+    81.350163
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "house-WestGable": {
+   "frame": "V",
+   "name": "WestGable",
+   "kind": "building",
+   "geometry": [
+    [
+     32.774959,
+     85.673703
+    ],
+    [
+     37.665847,
+     99.111308
+    ],
+    [
+     28.832736,
+     102.326297
+    ],
+    [
+     23.941848,
+     88.888692
+    ]
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "opening-WestGable1": {
+   "frame": "V",
+   "name": "건물 출입구",
+   "kind": "entrance",
+   "geometry": [
+    35.070052,
+    92.447229
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "opening-WestGable4": {
+   "frame": "V",
+   "name": "건물 출입구",
+   "kind": "entrance",
+   "geometry": [
+    26.537643,
+    95.552771
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "house-MarketWeaver": {
+   "frame": "V",
+   "name": "MarketWeaver",
+   "kind": "building",
+   "geometry": [
+    [
+     -51.317823,
+     82.08225
+    ],
+    [
+     -48.435263,
+     98.430059
+    ],
+    [
+     -57.790937,
+     100.079717
+    ],
+    [
+     -60.673497,
+     83.731908
+    ]
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "opening-MarketWeaver1": {
+   "frame": "V",
+   "name": "건물 출입구",
+   "kind": "entrance",
+   "geometry": [
+    -50.034112,
+    90.283938
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "opening-MarketWeaver4": {
+   "frame": "V",
+   "name": "건물 출입구",
+   "kind": "entrance",
+   "geometry": [
+    -59.074647,
+    91.878029
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "house-Leatherworker": {
+   "frame": "V",
+   "name": "Leatherworker",
+   "kind": "building",
+   "geometry": [
+    [
+     -64.177415,
+     77.187513
+    ],
+    [
+     -62.191375,
+     96.083429
+    ],
+    [
+     -70.843715,
+     96.992827
+    ],
+    [
+     -72.829756,
+     78.096911
+    ]
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "opening-Leatherworker1": {
+   "frame": "V",
+   "name": "건물 출입구",
+   "kind": "entrance",
+   "geometry": [
+    -63.343518,
+    86.652196
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "opening-Leatherworker4": {
+   "frame": "V",
+   "name": "건물 출입구",
+   "kind": "entrance",
+   "geometry": [
+    -71.677612,
+    87.528144
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "house-YardHouse": {
+   "frame": "V",
+   "name": "YardHouse",
+   "kind": "building",
+   "geometry": [
+    [
+     -66.844843,
+     104.709169
+    ],
+    [
+     -56.375346,
+     103.050964
+    ],
+    [
+     -55.155157,
+     110.754933
+    ],
+    [
+     -65.624654,
+     112.413138
+    ]
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "opening-YardHouse1": {
+   "frame": "V",
+   "name": "건물 출입구",
+   "kind": "entrance",
+   "geometry": [
+    -61.585065,
+    104.038096
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "opening-YardHouse4": {
+   "frame": "V",
+   "name": "건물 출입구",
+   "kind": "entrance",
+   "geometry": [
+    -60.414935,
+    111.426005
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "house-CommonHouse": {
+   "frame": "V",
+   "name": "CommonHouse",
+   "kind": "building",
+   "geometry": [
+    [
+     22.012561,
+     110.946433
+    ],
+    [
+     24.002736,
+     125.107266
+    ],
+    [
+     14.694216,
+     126.415493
+    ],
+    [
+     12.704041,
+     112.25466
+    ]
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "opening-CommonHouse1": {
+   "frame": "V",
+   "name": "건물 출입구",
+   "kind": "entrance",
+   "geometry": [
+    22.849205,
+    118.049117
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "opening-CommonHouse4": {
+   "frame": "V",
+   "name": "건물 출입구",
+   "kind": "entrance",
+   "geometry": [
+    13.857571,
+    119.312809
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "house-UpperCommon": {
+   "frame": "V",
+   "name": "UpperCommon",
+   "kind": "building",
+   "geometry": [
+    [
+     -4.591284,
+     120.652952
+    ],
+    [
+     7.375279,
+     115.573448
+    ],
+    [
+     11.28259,
+     124.778496
+    ],
+    [
+     -0.683973,
+     129.858001
+    ]
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "opening-UpperCommon1": {
+   "frame": "V",
+   "name": "건물 출입구",
+   "kind": "entrance",
+   "geometry": [
+    1.454514,
+    118.260481
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "opening-UpperCommon4": {
+   "frame": "V",
+   "name": "건물 출입구",
+   "kind": "entrance",
+   "geometry": [
+    5.236792,
+    127.170968
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "house-Fletcher": {
+   "frame": "V",
+   "name": "Fletcher",
+   "kind": "building",
+   "geometry": [
+    [
+     -30.278958,
+     102.386496
+    ],
+    [
+     -19.683587,
+     108.020155
+    ],
+    [
+     -23.721042,
+     115.613504
+    ],
+    [
+     -34.316413,
+     109.979845
+    ]
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "opening-Fletcher1": {
+   "frame": "V",
+   "name": "건물 출입구",
+   "kind": "entrance",
+   "geometry": [
+    -25.056388,
+    105.344597
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "opening-Fletcher4": {
+   "frame": "V",
+   "name": "건물 출입구",
+   "kind": "entrance",
+   "geometry": [
+    -28.943612,
+    112.655403
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "house-SmithsNeighbor": {
+   "frame": "V",
+   "name": "SmithsNeighbor",
+   "kind": "building",
+   "geometry": [
+    [
+     -45.058301,
+     111.495548
+    ],
+    [
+     -38.566237,
+     124.236941
+    ],
+    [
+     -46.941699,
+     128.504452
+    ],
+    [
+     -53.433763,
+     115.763059
+    ]
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "opening-SmithsNeighbor1": {
+   "frame": "V",
+   "name": "건물 출입구",
+   "kind": "entrance",
+   "geometry": [
+    -41.95483,
+    117.938883
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "opening-SmithsNeighbor4": {
+   "frame": "V",
+   "name": "건물 출입구",
+   "kind": "entrance",
+   "geometry": [
+    -50.04517,
+    122.061117
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "house-GardenGable": {
+   "frame": "V",
+   "name": "GardenGable",
+   "kind": "building",
+   "geometry": [
+    [
+     50.460065,
+     123.272501
+    ],
+    [
+     59.639935,
+     117.972501
+    ],
+    [
+     63.539935,
+     124.727499
+    ],
+    [
+     54.360065,
+     130.027499
+    ]
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "opening-GardenGable1": {
+   "frame": "V",
+   "name": "건물 출입구",
+   "kind": "entrance",
+   "geometry": [
+    55.13,
+    120.761065
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "opening-GardenGable4": {
+   "frame": "V",
+   "name": "건물 출입구",
+   "kind": "entrance",
+   "geometry": [
+    58.87,
+    127.238935
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "house-CiderHouse": {
+   "frame": "V",
+   "name": "CiderHouse",
+   "kind": "building",
+   "geometry": [
+    [
+     69.963427,
+     100.217624
+    ],
+    [
+     76.715255,
+     115.382479
+    ],
+    [
+     68.036573,
+     119.246477
+    ],
+    [
+     61.284745,
+     104.081623
+    ]
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "opening-CiderHouse1": {
+   "frame": "V",
+   "name": "건물 출입구",
+   "kind": "entrance",
+   "geometry": [
+    73.193174,
+    107.86513
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "opening-CiderHouse4": {
+   "frame": "V",
+   "name": "건물 출입구",
+   "kind": "entrance",
+   "geometry": [
+    64.806826,
+    111.598972
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "house-NorthLodge": {
+   "frame": "V",
+   "name": "NorthLodge",
+   "kind": "building",
+   "geometry": [
+    [
+     59.201434,
+     136.620739
+    ],
+    [
+     65.072757,
+     154.690813
+    ],
+    [
+     56.798566,
+     157.379261
+    ],
+    [
+     50.927243,
+     139.309187
+    ]
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "opening-NorthLodge1": {
+   "frame": "V",
+   "name": "건물 출입구",
+   "kind": "entrance",
+   "geometry": [
+    61.984927,
+    145.705219
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "opening-NorthLodge4": {
+   "frame": "V",
+   "name": "건물 출입구",
+   "kind": "entrance",
+   "geometry": [
+    54.015073,
+    148.294781
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "house-Shepherd": {
+   "frame": "V",
+   "name": "Shepherd",
+   "kind": "building",
+   "geometry": [
+    [
+     22.846073,
+     136.950369
+    ],
+    [
+     34.122384,
+     132.846127
+    ],
+    [
+     37.063757,
+     140.927484
+    ],
+    [
+     25.787446,
+     145.031725
+    ]
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "opening-Shepherd1": {
+   "frame": "V",
+   "name": "건물 출입구",
+   "kind": "entrance",
+   "geometry": [
+    28.538952,
+    135.048599
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "opening-Shepherd4": {
+   "frame": "V",
+   "name": "건물 출입구",
+   "kind": "entrance",
+   "geometry": [
+    31.370878,
+    142.829254
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "house-WheelHouse": {
+   "frame": "V",
+   "name": "WheelHouse",
+   "kind": "building",
+   "geometry": [
+    [
+     22.679937,
+     146.840027
+    ],
+    [
+     23.133631,
+     159.832108
+    ],
+    [
+     13.139723,
+     160.181103
+    ],
+    [
+     12.686029,
+     147.189022
+    ]
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "opening-WheelHouse1": {
+   "frame": "V",
+   "name": "건물 출입구",
+   "kind": "entrance",
+   "geometry": [
+    22.746882,
+    153.341652
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "opening-WheelHouse4": {
+   "frame": "V",
+   "name": "건물 출입구",
+   "kind": "entrance",
+   "geometry": [
+    13.072778,
+    153.679479
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "house-HighCroft": {
+   "frame": "V",
+   "name": "HighCroft",
+   "kind": "building",
+   "geometry": [
+    [
+     -11.622819,
+     140.17673
+    ],
+    [
+     2.18992,
+     136.475618
+    ],
+    [
+     4.622819,
+     145.555321
+    ],
+    [
+     -9.18992,
+     149.256433
+    ]
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "opening-HighCroft1": {
+   "frame": "V",
+   "name": "건물 출입구",
+   "kind": "entrance",
+   "geometry": [
+    -4.675038,
+    138.480722
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "opening-HighCroft4": {
+   "frame": "V",
+   "name": "건물 출입구",
+   "kind": "entrance",
+   "geometry": [
+    -2.324962,
+    147.251329
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "house-UpperYard": {
+   "frame": "V",
+   "name": "UpperYard",
+   "kind": "building",
+   "geometry": [
+    [
+     -25.578454,
+     149.381161
+    ],
+    [
+     -16.895442,
+     143.30125
+    ],
+    [
+     -12.421546,
+     149.690636
+    ],
+    [
+     -21.104558,
+     155.770546
+    ]
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "opening-UpperYard1": {
+   "frame": "V",
+   "name": "건물 출입구",
+   "kind": "entrance",
+   "geometry": [
+    -21.145176,
+    146.47227
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "opening-UpperYard4": {
+   "frame": "V",
+   "name": "건물 출입구",
+   "kind": "entrance",
+   "geometry": [
+    -16.854824,
+    152.599527
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "house-PairA": {
+   "frame": "V",
+   "name": "PairA",
+   "kind": "building",
+   "geometry": [
+    [
+     -56.39388,
+     140.444729
+    ],
+    [
+     -45.701802,
+     145.892615
+    ],
+    [
+     -49.60612,
+     153.555271
+    ],
+    [
+     -60.298198,
+     148.107385
+    ]
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "opening-PairA1": {
+   "frame": "V",
+   "name": "건물 출입구",
+   "kind": "entrance",
+   "geometry": [
+    -51.120479,
+    143.311233
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "opening-PairA4": {
+   "frame": "V",
+   "name": "건물 출입구",
+   "kind": "entrance",
+   "geometry": [
+    -54.879521,
+    150.688767
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "house-PairB": {
+   "frame": "V",
+   "name": "PairB",
+   "kind": "building",
+   "geometry": [
+    [
+     -70.696426,
+     145.58859
+    ],
+    [
+     -60.026152,
+     158.304928
+    ],
+    [
+     -67.303574,
+     164.41141
+    ],
+    [
+     -77.973848,
+     151.695072
+    ]
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "opening-PairB1": {
+   "frame": "V",
+   "name": "건물 출입구",
+   "kind": "entrance",
+   "geometry": [
+    -65.483856,
+    152.049605
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "opening-PairB4": {
+   "frame": "V",
+   "name": "건물 출입구",
+   "kind": "entrance",
+   "geometry": [
+    -72.516144,
+    157.950395
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "house-MillerHouse": {
+   "frame": "V",
+   "name": "MillerHouse",
+   "kind": "building",
+   "geometry": [
+    [
+     19.98343,
+     171.916138
+    ],
+    [
+     33.97094,
+     174.889275
+    ],
+    [
+     32.01657,
+     184.083862
+    ],
+    [
+     18.02906,
+     181.110725
+    ]
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "opening-MillerHouse1": {
+   "frame": "V",
+   "name": "건물 출입구",
+   "kind": "entrance",
+   "geometry": [
+    26.943919,
+    173.55921
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "opening-MillerHouse4": {
+   "frame": "V",
+   "name": "건물 출입구",
+   "kind": "entrance",
+   "geometry": [
+    25.056081,
+    182.44079
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "house-Herder": {
+   "frame": "V",
+   "name": "Herder",
+   "kind": "building",
+   "geometry": [
+    [
+     14.07133,
+     179.754234
+    ],
+    [
+     17.34691,
+     189.835433
+    ],
+    [
+     9.92867,
+     192.245766
+    ],
+    [
+     6.65309,
+     182.164567
+    ]
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "opening-Herder1": {
+   "frame": "V",
+   "name": "건물 출입구",
+   "kind": "entrance",
+   "geometry": [
+    15.556951,
+    184.844276
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "opening-Herder4": {
+   "frame": "V",
+   "name": "건물 출입구",
+   "kind": "entrance",
+   "geometry": [
+    8.443049,
+    187.155724
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "house-BeeYard": {
+   "frame": "V",
+   "name": "BeeYard",
+   "kind": "building",
+   "geometry": [
+    [
+     -7.690076,
+     170.857933
+    ],
+    [
+     2.373971,
+     177.393602
+    ],
+    [
+     -2.309924,
+     184.606168
+    ],
+    [
+     -12.373971,
+     178.0705
+    ]
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "opening-BeeYard1": {
+   "frame": "V",
+   "name": "건물 출입구",
+   "kind": "entrance",
+   "geometry": [
+    -2.745194,
+    174.259955
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "opening-BeeYard4": {
+   "frame": "V",
+   "name": "건물 출입구",
+   "kind": "entrance",
+   "geometry": [
+    -7.254806,
+    181.204147
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "house-Woodcutter": {
+   "frame": "V",
+   "name": "Woodcutter",
+   "kind": "building",
+   "geometry": [
+    [
+     -34.673418,
+     171.399834
+    ],
+    [
+     -15.719701,
+     172.725207
+    ],
+    [
+     -16.326582,
+     181.404014
+    ],
+    [
+     -35.280299,
+     180.078641
+    ]
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "opening-Woodcutter1": {
+   "frame": "V",
+   "name": "건물 출입구",
+   "kind": "entrance",
+   "geometry": [
+    -25.20772,
+    172.22213
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "opening-Woodcutter4": {
+   "frame": "V",
+   "name": "건물 출입구",
+   "kind": "entrance",
+   "geometry": [
+    -25.79228,
+    180.581717
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "house-NorthCottage": {
+   "frame": "V",
+   "name": "NorthCottage",
+   "kind": "building",
+   "geometry": [
+    [
+     -24.458469,
+     202.160366
+    ],
+    [
+     -14.053221,
+     204.182942
+    ],
+    [
+     -15.541531,
+     211.839634
+    ],
+    [
+     -25.946779,
+     209.817058
+    ]
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "opening-NorthCottage1": {
+   "frame": "V",
+   "name": "건물 출입구",
+   "kind": "entrance",
+   "geometry": [
+    -19.286374,
+    203.328714
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "opening-NorthCottage4": {
+   "frame": "V",
+   "name": "건물 출입구",
+   "kind": "entrance",
+   "geometry": [
+    -20.713626,
+    210.671286
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "house-ForestersLodge": {
+   "frame": "V",
+   "name": "ForestersLodge",
+   "kind": "building",
+   "geometry": [
+    [
+     -50.549391,
+     186.461225
+    ],
+    [
+     -41.943436,
+     197.881713
+    ],
+    [
+     -49.450609,
+     203.538775
+    ],
+    [
+     -58.056564,
+     192.118287
+    ]
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "opening-ForestersLodge1": {
+   "frame": "V",
+   "name": "건물 출입구",
+   "kind": "entrance",
+   "geometry": [
+    -46.374195,
+    192.26776
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "opening-ForestersLodge4": {
+   "frame": "V",
+   "name": "건물 출입구",
+   "kind": "entrance",
+   "geometry": [
+    -53.625805,
+    197.73224
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "house-TwinStoreA": {
+   "frame": "V",
+   "name": "TwinStoreA",
+   "kind": "building",
+   "geometry": [
+    [
+     -88.659209,
+     175.436576
+    ],
+    [
+     -76.079151,
+     167.26699
+    ],
+    [
+     -71.340791,
+     174.563424
+    ],
+    [
+     -83.920849,
+     182.73301
+    ]
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "opening-TwinStoreA1": {
+   "frame": "V",
+   "name": "건물 출입구",
+   "kind": "entrance",
+   "geometry": [
+    -82.282038,
+    171.48597
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "opening-TwinStoreA4": {
+   "frame": "V",
+   "name": "건물 출입구",
+   "kind": "entrance",
+   "geometry": [
+    -77.717962,
+    178.51403
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "house-TwinStoreB": {
+   "frame": "V",
+   "name": "TwinStoreB",
+   "kind": "building",
+   "geometry": [
+    [
+     -101.159209,
+     169.57055
+    ],
+    [
+     -88.579151,
+     161.400965
+    ],
+    [
+     -83.840791,
+     168.697399
+    ],
+    [
+     -96.420849,
+     176.866984
+    ]
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "opening-TwinStoreB1": {
+   "frame": "V",
+   "name": "건물 출입구",
+   "kind": "entrance",
+   "geometry": [
+    -94.782038,
+    165.619945
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "opening-TwinStoreB4": {
+   "frame": "V",
+   "name": "건물 출입구",
+   "kind": "entrance",
+   "geometry": [
+    -90.217962,
+    172.648004
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "V-HOME": {
+   "frame": "V",
+   "name": "주거지",
+   "kind": "point",
+   "geometry": [
+    22.849205,
+    118.049117
+   ],
+   "source": "통합 월드 제작 좌표",
+   "assignment": "장면 배치 후보"
+  },
+  "V-STORE": {
+   "frame": "V",
+   "name": "저장고",
+   "kind": "point",
+   "geometry": [
+    -82.282038,
+    171.48597
+   ],
+   "source": "통합 월드 제작 좌표",
+   "assignment": "장면 배치 후보"
+  },
+  "plot0": {
+   "frame": "V",
+   "name": "경작지",
+   "kind": "wood",
+   "geometry": [
+    [
+     60.320913,
+     40.438937
+    ],
+    [
+     108.844048,
+     33.619455
+    ],
+    [
+     109.679087,
+     39.561063
+    ],
+    [
+     61.155952,
+     46.380545
+    ]
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "plot1": {
+   "frame": "V",
+   "name": "경작지",
+   "kind": "wood",
+   "geometry": [
+    [
+     56.834323,
+     49.838703
+    ],
+    [
+     110.538506,
+     44.194166
+    ],
+    [
+     111.165677,
+     50.161297
+    ],
+    [
+     57.461494,
+     55.805834
+    ]
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "plot2": {
+   "frame": "V",
+   "name": "경작지",
+   "kind": "wood",
+   "geometry": [
+    [
+     59.376569,
+     58.286342
+    ],
+    [
+     108.309416,
+     55.72188
+    ],
+    [
+     108.623431,
+     61.713658
+    ],
+    [
+     59.690584,
+     64.27812
+    ]
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "plot3": {
+   "frame": "V",
+   "name": "경작지",
+   "kind": "wood",
+   "geometry": [
+    [
+     67.119319,
+     67.16424
+    ],
+    [
+     115.090078,
+     68.839415
+    ],
+    [
+     114.880681,
+     74.83576
+    ],
+    [
+     66.909922,
+     73.160585
+    ]
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "plot4": {
+   "frame": "V",
+   "name": "경작지",
+   "kind": "wood",
+   "geometry": [
+    [
+     72.931365,
+     76.769072
+    ],
+    [
+     115.695806,
+     81.263796
+    ],
+    [
+     115.068635,
+     87.230928
+    ],
+    [
+     72.304194,
+     82.736204
+    ]
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "plot5": {
+   "frame": "V",
+   "name": "경작지",
+   "kind": "wood",
+   "geometry": [
+    [
+     69.332386,
+     87.485789
+    ],
+    [
+     109.709503,
+     94.605364
+    ],
+    [
+     108.667614,
+     100.514211
+    ],
+    [
+     68.290497,
+     93.394636
+    ]
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "lane0": {
+   "frame": "V",
+   "name": "마을길",
+   "kind": "road",
+   "geometry": [
+    [
+     15,
+     18
+    ],
+    [
+     13,
+     30
+    ],
+    [
+     7,
+     42
+    ],
+    [
+     5,
+     55
+    ],
+    [
+     0,
+     65
+    ]
+   ],
+   "source": "통합 월드 제작 좌표",
+   "width_m": 4.6
+  },
+  "lane1": {
+   "frame": "V",
+   "name": "마을길",
+   "kind": "road",
+   "geometry": [
+    [
+     -54,
+     52
+    ],
+    [
+     -41,
+     53
+    ],
+    [
+     -29,
+     58
+    ],
+    [
+     -17,
+     64
+    ],
+    [
+     0,
+     65
+    ]
+   ],
+   "source": "통합 월드 제작 좌표",
+   "width_m": 4.6
+  },
+  "lane2": {
+   "frame": "V",
+   "name": "마을길",
+   "kind": "road",
+   "geometry": [
+    [
+     0,
+     65
+    ],
+    [
+     8,
+     78
+    ],
+    [
+     12,
+     88
+    ],
+    [
+     12,
+     101
+    ],
+    [
+     6,
+     110
+    ],
+    [
+     -9,
+     119
+    ],
+    [
+     -18,
+     135
+    ],
+    [
+     -32,
+     151
+    ],
+    [
+     -51,
+     166
+    ],
+    [
+     -65,
+     180
+    ],
+    [
+     -80,
+     205
+    ]
+   ],
+   "source": "통합 월드 제작 좌표",
+   "width_m": 4.6
+  },
+  "lane3": {
+   "frame": "V",
+   "name": "마을길",
+   "kind": "road",
+   "geometry": [
+    [
+     5,
+     55
+    ],
+    [
+     23,
+     53
+    ],
+    [
+     38,
+     60
+    ],
+    [
+     49,
+     74
+    ],
+    [
+     55,
+     94
+    ],
+    [
+     51,
+     110
+    ],
+    [
+     34,
+     124
+    ],
+    [
+     12,
+     133
+    ],
+    [
+     -18,
+     135
+    ]
+   ],
+   "source": "통합 월드 제작 좌표",
+   "width_m": 3.1
+  },
+  "lane4": {
+   "frame": "V",
+   "name": "마을길",
+   "kind": "road",
+   "geometry": [
+    [
+     12,
+     88
+    ],
+    [
+     25,
+     83
+    ],
+    [
+     41,
+     82
+    ],
+    [
+     49,
+     74
+    ]
+   ],
+   "source": "통합 월드 제작 좌표",
+   "width_m": 3.1
+  },
+  "lane5": {
+   "frame": "V",
+   "name": "마을길",
+   "kind": "road",
+   "geometry": [
+    [
+     6,
+     110
+    ],
+    [
+     23,
+     108
+    ],
+    [
+     38,
+     102
+    ],
+    [
+     55,
+     94
+    ]
+   ],
+   "source": "통합 월드 제작 좌표",
+   "width_m": 3.1
+  },
+  "lane6": {
+   "frame": "V",
+   "name": "마을길",
+   "kind": "road",
+   "geometry": [
+    [
+     0,
+     65
+    ],
+    [
+     -15,
+     78
+    ],
+    [
+     -21,
+     91
+    ],
+    [
+     -14,
+     104
+    ],
+    [
+     -9,
+     119
+    ]
+   ],
+   "source": "통합 월드 제작 좌표",
+   "width_m": 3.1
+  },
+  "lane7": {
+   "frame": "V",
+   "name": "마을길",
+   "kind": "road",
+   "geometry": [
+    [
+     -41,
+     53
+    ],
+    [
+     -50,
+     76
+    ],
+    [
+     -45,
+     96
+    ],
+    [
+     -36,
+     113
+    ],
+    [
+     -18,
+     135
+    ]
+   ],
+   "source": "통합 월드 제작 좌표",
+   "width_m": 3.1
+  },
+  "lane8": {
+   "frame": "V",
+   "name": "마을길",
+   "kind": "road",
+   "geometry": [
+    [
+     -21,
+     91
+    ],
+    [
+     -33,
+     94
+    ],
+    [
+     -45,
+     96
+    ]
+   ],
+   "source": "통합 월드 제작 좌표",
+   "width_m": 3.1
+  },
+  "lane9": {
+   "frame": "V",
+   "name": "마을길",
+   "kind": "road",
+   "geometry": [
+    [
+     34,
+     124
+    ],
+    [
+     42,
+     146
+    ],
+    [
+     28,
+     162
+    ],
+    [
+     8,
+     170
+    ],
+    [
+     -15,
+     165
+    ],
+    [
+     -32,
+     151
+    ]
+   ],
+   "source": "통합 월드 제작 좌표",
+   "width_m": 3.1
+  },
+  "lane10": {
+   "frame": "V",
+   "name": "마을길",
+   "kind": "road",
+   "geometry": [
+    [
+     12,
+     133
+    ],
+    [
+     9,
+     149
+    ],
+    [
+     8,
+     170
+    ]
+   ],
+   "source": "통합 월드 제작 좌표",
+   "width_m": 3.1
+  },
+  "lane11": {
+   "frame": "V",
+   "name": "마을길",
+   "kind": "road",
+   "geometry": [
+    [
+     8,
+     170
+    ],
+    [
+     2,
+     187
+    ],
+    [
+     -19,
+     195
+    ],
+    [
+     -39,
+     181
+    ],
+    [
+     -51,
+     166
+    ]
+   ],
+   "source": "통합 월드 제작 좌표",
+   "width_m": 3.1
+  },
+  "v-river": {
+   "frame": "V",
+   "name": "강변 나루",
+   "kind": "water",
+   "geometry": [
+    [
+     -165,
+     6.717352
+    ],
+    [
+     -163,
+     6.335227
+    ],
+    [
+     -161,
+     6.031366
+    ],
+    [
+     -159,
+     5.819057
+    ],
+    [
+     -157,
+     5.709025
+    ],
+    [
+     -155,
+     5.709018
+    ],
+    [
+     -153,
+     5.823483
+    ],
+    [
+     -151,
+     6.053368
+    ],
+    [
+     -149,
+     6.396037
+    ],
+    [
+     -147,
+     6.845323
+    ],
+    [
+     -145,
+     7.391689
+    ],
+    [
+     -143,
+     8.022524
+    ],
+    [
+     -141,
+     8.722535
+    ],
+    [
+     -139,
+     9.474246
+    ],
+    [
+     -137,
+     10.258559
+    ],
+    [
+     -135,
+     11.055389
+    ],
+    [
+     -133,
+     11.844319
+    ],
+    [
+     -131,
+     12.605275
+    ],
+    [
+     -129,
+     13.319182
+    ],
+    [
+     -127,
+     13.968592
+    ],
+    [
+     -125,
+     14.538241
+    ],
+    [
+     -123,
+     15.01554
+    ],
+    [
+     -121,
+     15.39096
+    ],
+    [
+     -119,
+     15.658311
+    ],
+    [
+     -117,
+     15.814908
+    ],
+    [
+     -115,
+     15.861598
+    ],
+    [
+     -113,
+     15.802679
+    ],
+    [
+     -111,
+     15.645682
+    ],
+    [
+     -109,
+     15.401054
+    ],
+    [
+     -107,
+     15.081724
+    ],
+    [
+     -105,
+     14.702601
+    ],
+    [
+     -103,
+     14.279995
+    ],
+    [
+     -101,
+     13.830995
+    ],
+    [
+     -99,
+     13.372829
+    ],
+    [
+     -97,
+     12.922225
+    ],
+    [
+     -95,
+     12.494796
+    ],
+    [
+     -93,
+     12.104474
+    ],
+    [
+     -91,
+     11.763015
+    ],
+    [
+     -89,
+     11.479592
+    ],
+    [
+     -87,
+     11.260481
+    ],
+    [
+     -85,
+     11.108873
+    ],
+    [
+     -83,
+     11.024799
+    ],
+    [
+     -81,
+     11.005173
+    ],
+    [
+     -79,
+     11.043967
+    ],
+    [
+     -77,
+     11.132486
+    ],
+    [
+     -75,
+     11.259756
+    ],
+    [
+     -73,
+     11.412992
+    ],
+    [
+     -71,
+     11.578143
+    ],
+    [
+     -69,
+     11.740479
+    ],
+    [
+     -67,
+     11.885212
+    ],
+    [
+     -65,
+     11.998116
+    ],
+    [
+     -63,
+     12.066129
+    ],
+    [
+     -61,
+     12.077909
+    ],
+    [
+     -59,
+     12.024333
+    ],
+    [
+     -57,
+     11.898908
+    ],
+    [
+     -55,
+     11.698081
+    ],
+    [
+     -53,
+     11.421447
+    ],
+    [
+     -51,
+     11.071827
+    ],
+    [
+     -49,
+     10.655234
+    ],
+    [
+     -47,
+     10.18071
+    ],
+    [
+     -45,
+     9.660049
+    ],
+    [
+     -43,
+     9.107413
+    ],
+    [
+     -41,
+     8.538859
+    ],
+    [
+     -39,
+     7.971779
+    ],
+    [
+     -37,
+     7.424302
+    ],
+    [
+     -35,
+     6.914641
+    ],
+    [
+     -33,
+     6.46045
+    ],
+    [
+     -31,
+     6.078177
+    ],
+    [
+     -29,
+     5.782467
+    ],
+    [
+     -27,
+     5.585615
+    ],
+    [
+     -25,
+     5.497104
+    ],
+    [
+     -23,
+     5.523237
+    ],
+    [
+     -21,
+     5.666873
+    ],
+    [
+     -19,
+     5.927298
+    ],
+    [
+     -17,
+     6.3002
+    ],
+    [
+     -15,
+     6.77779
+    ],
+    [
+     -13,
+     7.34903
+    ],
+    [
+     -11,
+     7.999985
+    ],
+    [
+     -9,
+     8.71427
+    ],
+    [
+     -7,
+     9.473588
+    ],
+    [
+     -5,
+     10.258331
+    ],
+    [
+     -3,
+     11.048226
+    ],
+    [
+     -1,
+     11.823007
+    ],
+    [
+     1,
+     12.563083
+    ],
+    [
+     3,
+     13.250173
+    ],
+    [
+     5,
+     13.86791
+    ],
+    [
+     7,
+     14.402352
+    ],
+    [
+     9,
+     14.842427
+    ],
+    [
+     11,
+     15.180259
+    ],
+    [
+     13,
+     15.411386
+    ],
+    [
+     15,
+     15.534853
+    ],
+    [
+     17,
+     15.553178
+    ],
+    [
+     19,
+     15.472205
+    ],
+    [
+     21,
+     15.300823
+    ],
+    [
+     23,
+     15.050592
+    ],
+    [
+     25,
+     14.735269
+    ],
+    [
+     27,
+     14.370265
+    ],
+    [
+     29,
+     13.972043
+    ],
+    [
+     31,
+     13.557486
+    ],
+    [
+     33,
+     13.143258
+    ],
+    [
+     35,
+     12.745178
+    ],
+    [
+     37,
+     12.377632
+    ],
+    [
+     39,
+     12.05305
+    ],
+    [
+     41,
+     11.781456
+    ],
+    [
+     43,
+     11.570115
+    ],
+    [
+     45,
+     11.423297
+    ],
+    [
+     47,
+     11.34214
+    ],
+    [
+     49,
+     11.324656
+    ],
+    [
+     51,
+     11.365843
+    ],
+    [
+     53,
+     11.457918
+    ],
+    [
+     55,
+     11.590661
+    ],
+    [
+     57,
+     11.751849
+    ],
+    [
+     59,
+     11.927772
+    ],
+    [
+     61,
+     12.103802
+    ],
+    [
+     63,
+     12.265009
+    ],
+    [
+     65,
+     12.396776
+    ],
+    [
+     67,
+     12.485421
+    ],
+    [
+     69,
+     12.518772
+    ],
+    [
+     71,
+     12.486697
+    ],
+    [
+     73,
+     12.381551
+    ],
+    [
+     75,
+     12.19854
+    ],
+    [
+     77,
+     11.935968
+    ],
+    [
+     79,
+     11.59538
+    ],
+    [
+     81,
+     11.181569
+    ],
+    [
+     83,
+     10.702477
+    ],
+    [
+     85,
+     10.168958
+    ],
+    [
+     87,
+     9.594446
+    ],
+    [
+     89,
+     8.994513
+    ],
+    [
+     91,
+     8.386346
+    ],
+    [
+     93,
+     7.788157
+    ],
+    [
+     95,
+     7.218552
+    ],
+    [
+     97,
+     6.695876
+    ],
+    [
+     99,
+     6.237562
+    ],
+    [
+     101,
+     5.859506
+    ],
+    [
+     103,
+     5.575493
+    ],
+    [
+     105,
+     5.396686
+    ],
+    [
+     107,
+     5.331216
+    ],
+    [
+     109,
+     5.383864
+    ],
+    [
+     111,
+     5.555869
+    ],
+    [
+     113,
+     5.84485
+    ],
+    [
+     115,
+     6.244861
+    ],
+    [
+     117,
+     6.74657
+    ],
+    [
+     119,
+     7.33755
+    ],
+    [
+     121,
+     8.002686
+    ],
+    [
+     123,
+     8.724673
+    ],
+    [
+     125,
+     9.484584
+    ],
+    [
+     127,
+     10.262506
+    ],
+    [
+     129,
+     11.038193
+    ],
+    [
+     131,
+     11.791742
+    ],
+    [
+     133,
+     12.504246
+    ],
+    [
+     135,
+     13.158414
+    ],
+    [
+     137,
+     13.739122
+    ],
+    [
+     139,
+     14.233897
+    ],
+    [
+     141,
+     14.633293
+    ],
+    [
+     143,
+     14.931162
+    ],
+    [
+     145,
+     15.124806
+    ],
+    [
+     147,
+     15.214999
+    ],
+    [
+     149,
+     15.205895
+    ],
+    [
+     151,
+     15.104805
+    ],
+    [
+     153,
+     14.921867
+    ],
+    [
+     155,
+     14.669619
+    ],
+    [
+     157,
+     14.362486
+    ],
+    [
+     159,
+     14.016202
+    ],
+    [
+     159,
+     -12.192947
+    ],
+    [
+     157,
+     -11.781992
+    ],
+    [
+     155,
+     -11.421879
+    ],
+    [
+     153,
+     -11.128561
+    ],
+    [
+     151,
+     -10.91663
+    ],
+    [
+     149,
+     -10.798743
+    ],
+    [
+     147,
+     -10.785107
+    ],
+    [
+     145,
+     -10.883051
+    ],
+    [
+     143,
+     -11.096698
+    ],
+    [
+     141,
+     -11.42674
+    ],
+    [
+     139,
+     -11.870346
+    ],
+    [
+     137,
+     -12.421189
+    ],
+    [
+     135,
+     -13.069592
+    ],
+    [
+     133,
+     -13.802804
+    ],
+    [
+     131,
+     -14.60538
+    ],
+    [
+     129,
+     -15.459659
+    ],
+    [
+     127,
+     -16.346321
+    ],
+    [
+     125,
+     -17.245008
+    ],
+    [
+     123,
+     -18.134982
+    ],
+    [
+     121,
+     -18.995795
+    ],
+    [
+     119,
+     -19.807952
+    ],
+    [
+     117,
+     -20.553547
+    ],
+    [
+     115,
+     -21.216831
+    ],
+    [
+     113,
+     -21.784716
+    ],
+    [
+     111,
+     -22.247183
+    ],
+    [
+     109,
+     -22.597574
+    ],
+    [
+     107,
+     -22.832779
+    ],
+    [
+     105,
+     -22.953289
+    ],
+    [
+     103,
+     -22.963124
+    ],
+    [
+     101,
+     -22.869641
+    ],
+    [
+     99,
+     -22.683226
+    ],
+    [
+     97,
+     -22.416876
+    ],
+    [
+     95,
+     -22.085702
+    ],
+    [
+     93,
+     -21.706354
+    ],
+    [
+     91,
+     -21.296396
+    ],
+    [
+     89,
+     -20.873666
+    ],
+    [
+     87,
+     -20.455615
+    ],
+    [
+     85,
+     -20.058685
+    ],
+    [
+     83,
+     -19.697721
+    ],
+    [
+     81,
+     -19.38545
+    ],
+    [
+     79,
+     -19.132046
+    ],
+    [
+     77,
+     -18.94479
+    ],
+    [
+     75,
+     -18.82785
+    ],
+    [
+     73,
+     -18.782173
+    ],
+    [
+     71,
+     -18.805502
+    ],
+    [
+     69,
+     -18.892515
+    ],
+    [
+     67,
+     -19.035082
+    ],
+    [
+     65,
+     -19.222623
+    ],
+    [
+     63,
+     -19.44256
+    ],
+    [
+     61,
+     -19.68085
+    ],
+    [
+     59,
+     -19.922562
+    ],
+    [
+     57,
+     -20.152495
+    ],
+    [
+     55,
+     -20.355802
+    ],
+    [
+     53,
+     -20.518599
+    ],
+    [
+     51,
+     -20.62854
+    ],
+    [
+     49,
+     -20.675332
+    ],
+    [
+     47,
+     -20.65117
+    ],
+    [
+     45,
+     -20.551078
+    ],
+    [
+     43,
+     -20.373146
+    ],
+    [
+     41,
+     -20.118641
+    ],
+    [
+     39,
+     -19.792006
+    ],
+    [
+     37,
+     -19.400735
+    ],
+    [
+     35,
+     -18.955124
+    ],
+    [
+     33,
+     -18.467921
+    ],
+    [
+     31,
+     -17.953879
+    ],
+    [
+     29,
+     -17.429225
+    ],
+    [
+     27,
+     -16.911074
+    ],
+    [
+     25,
+     -16.416799
+    ],
+    [
+     23,
+     -15.963394
+    ],
+    [
+     21,
+     -15.566834
+    ],
+    [
+     19,
+     -15.241476
+    ],
+    [
+     17,
+     -14.99951
+    ],
+    [
+     15,
+     -14.850485
+    ],
+    [
+     13,
+     -14.800928
+    ],
+    [
+     11,
+     -14.854068
+    ],
+    [
+     9,
+     -15.009678
+    ],
+    [
+     7,
+     -15.264043
+    ],
+    [
+     5,
+     -15.610045
+    ],
+    [
+     3,
+     -16.037384
+    ],
+    [
+     1,
+     -16.532901
+    ],
+    [
+     -1,
+     -17.081009
+    ],
+    [
+     -3,
+     -17.664216
+    ],
+    [
+     -5,
+     -18.263715
+    ],
+    [
+     -7,
+     -18.860018
+    ],
+    [
+     -9,
+     -19.433625
+    ],
+    [
+     -11,
+     -19.965688
+    ],
+    [
+     -13,
+     -20.438656
+    ],
+    [
+     -15,
+     -20.836873
+    ],
+    [
+     -17,
+     -21.147112
+    ],
+    [
+     -19,
+     -21.359021
+    ],
+    [
+     -21,
+     -21.465469
+    ],
+    [
+     -23,
+     -21.462777
+    ],
+    [
+     -25,
+     -21.350827
+    ],
+    [
+     -27,
+     -21.133046
+    ],
+    [
+     -29,
+     -20.816265
+    ],
+    [
+     -31,
+     -20.410458
+    ],
+    [
+     -33,
+     -19.928371
+    ],
+    [
+     -35,
+     -19.385057
+    ],
+    [
+     -37,
+     -18.797331
+    ],
+    [
+     -39,
+     -18.183164
+    ],
+    [
+     -41,
+     -17.561045
+    ],
+    [
+     -43,
+     -16.949325
+    ],
+    [
+     -45,
+     -16.365576
+    ],
+    [
+     -47,
+     -15.82598
+    ],
+    [
+     -49,
+     -15.344777
+    ],
+    [
+     -51,
+     -14.93379
+    ],
+    [
+     -53,
+     -14.602037
+    ],
+    [
+     -55,
+     -14.355456
+    ],
+    [
+     -57,
+     -14.196748
+    ],
+    [
+     -59,
+     -14.125333
+    ],
+    [
+     -61,
+     -14.137439
+    ],
+    [
+     -63,
+     -14.226302
+    ],
+    [
+     -65,
+     -14.382485
+    ],
+    [
+     -67,
+     -14.594284
+    ],
+    [
+     -69,
+     -14.848233
+    ],
+    [
+     -71,
+     -15.129658
+    ],
+    [
+     -73,
+     -15.423284
+    ],
+    [
+     -75,
+     -15.713854
+    ],
+    [
+     -77,
+     -15.986756
+    ],
+    [
+     -79,
+     -16.228608
+    ],
+    [
+     -81,
+     -16.427807
+    ],
+    [
+     -83,
+     -16.575004
+    ],
+    [
+     -85,
+     -16.663484
+    ],
+    [
+     -87,
+     -16.689459
+    ],
+    [
+     -89,
+     -16.652229
+    ],
+    [
+     -91,
+     -16.554242
+    ],
+    [
+     -93,
+     -16.401016
+    ],
+    [
+     -95,
+     -16.200951
+    ],
+    [
+     -97,
+     -15.965024
+    ],
+    [
+     -99,
+     -15.706384
+    ],
+    [
+     -101,
+     -15.439858
+    ],
+    [
+     -103,
+     -15.181388
+    ],
+    [
+     -105,
+     -14.947424
+    ],
+    [
+     -107,
+     -14.754281
+    ],
+    [
+     -109,
+     -14.617509
+    ],
+    [
+     -111,
+     -14.551266
+    ],
+    [
+     -113,
+     -14.567755
+    ],
+    [
+     -115,
+     -14.67671
+    ],
+    [
+     -117,
+     -14.884975
+    ],
+    [
+     -119,
+     -15.196187
+    ],
+    [
+     -121,
+     -15.61056
+    ],
+    [
+     -123,
+     -16.124805
+    ],
+    [
+     -125,
+     -16.732166
+    ],
+    [
+     -127,
+     -17.422581
+    ],
+    [
+     -129,
+     -18.182966
+    ],
+    [
+     -131,
+     -18.997603
+    ],
+    [
+     -133,
+     -19.84863
+    ],
+    [
+     -135,
+     -20.716605
+    ],
+    [
+     -137,
+     -21.58113
+    ],
+    [
+     -139,
+     -22.421512
+    ],
+    [
+     -141,
+     -23.217433
+    ],
+    [
+     -143,
+     -23.949617
+    ],
+    [
+     -145,
+     -24.600454
+    ],
+    [
+     -147,
+     -25.154571
+    ],
+    [
+     -149,
+     -25.599325
+    ],
+    [
+     -151,
+     -25.925198
+    ],
+    [
+     -153,
+     -26.126089
+    ],
+    [
+     -155,
+     -26.199484
+    ],
+    [
+     -157,
+     -26.146497
+    ],
+    [
+     -159,
+     -25.971794
+    ],
+    [
+     -161,
+     -25.683386
+    ],
+    [
+     -163,
+     -25.29231
+    ],
+    [
+     -165,
+     -24.812211
+    ]
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "v-pier": {
+   "frame": "V",
+   "name": "짐배 잔교",
+   "kind": "facility",
+   "geometry": [
+    [
+     13.65,
+     4.8
+    ],
+    [
+     16.35,
+     4.8
+    ],
+    [
+     16.35,
+     18.8
+    ],
+    [
+     13.65,
+     18.8
+    ]
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "v-plank": {
+   "frame": "V",
+   "name": "승선판",
+   "kind": "facility",
+   "geometry": [
+    [
+     16.3,
+     5.08
+    ],
+    [
+     18.05,
+     5.08
+    ],
+    [
+     18.05,
+     6.02
+    ],
+    [
+     16.3,
+     6.02
+    ]
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "v-boat": {
+   "frame": "V",
+   "name": "짐배",
+   "kind": "building",
+   "geometry": [
+    [
+     16.95,
+     1
+    ],
+    [
+     19.55,
+     1
+    ],
+    [
+     19.55,
+     10.4
+    ],
+    [
+     16.95,
+     10.4
+    ]
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "v-out": {
+   "frame": "V",
+   "name": "공방에서 숲문",
+   "kind": "walk",
+   "geometry": [
+    [
+     -51,
+     49
+    ],
+    [
+     -41,
+     53
+    ],
+    [
+     -29,
+     58
+    ],
+    [
+     -17,
+     64
+    ],
+    [
+     0,
+     65
+    ],
+    [
+     8,
+     78
+    ],
+    [
+     12,
+     88
+    ],
+    [
+     12,
+     101
+    ],
+    [
+     6,
+     110
+    ],
+    [
+     -9,
+     119
+    ],
+    [
+     -18,
+     135
+    ],
+    [
+     -32,
+     151
+    ],
+    [
+     -51,
+     166
+    ],
+    [
+     -65,
+     180
+    ],
+    [
+     -80,
+     205
+    ]
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "v-carrier": {
+   "frame": "V",
+   "name": "물 운반과 급수",
+   "kind": "haul",
+   "geometry": [
+    [
+     16.3,
+     5.5
+    ],
+    [
+     15,
+     18
+    ],
+    [
+     13,
+     30
+    ],
+    [
+     7,
+     42
+    ],
+    [
+     5,
+     55
+    ],
+    [
+     0,
+     65
+    ],
+    [
+     -15,
+     78
+    ],
+    [
+     -16,
+     85
+    ],
+    [
+     -9.8,
+     86
+    ]
+   ],
+   "source": "배치 후보 · 기존 골목 연결"
+  },
+  "v-cargo": {
+   "frame": "V",
+   "name": "출항 화물",
+   "kind": "back",
+   "geometry": [
+    [
+     14,
+     9
+    ],
+    [
+     15.6,
+     8.3
+    ],
+    [
+     16.3,
+     5.5
+    ],
+    [
+     18.05,
+     5.5
+    ]
+   ],
+   "source": "배치 후보 · 기존 골목 연결"
+  },
+  "v-return": {
+   "frame": "V",
+   "name": "귀환 후 보고와 승선",
+   "kind": "back",
+   "geometry": [
+    [
+     -80,
+     205
+    ],
+    [
+     -65,
+     180
+    ],
+    [
+     -51,
+     166
+    ],
+    [
+     -32,
+     151
+    ],
+    [
+     -18,
+     135
+    ],
+    [
+     -9,
+     119
+    ],
+    [
+     6,
+     110
+    ],
+    [
+     12,
+     101
+    ],
+    [
+     12,
+     88
+    ],
+    [
+     8,
+     78
+    ],
+    [
+     0,
+     65
+    ],
+    [
+     5,
+     55
+    ],
+    [
+     7,
+     42
+    ],
+    [
+     13,
+     30
+    ],
+    [
+     15,
+     18
+    ],
+    [
+     15,
+     8
+    ],
+    [
+     16.3,
+     5.5
+    ]
+   ],
+   "source": "배치 후보 · 기존 골목 연결"
+  },
+  "draft-workshop": {
+   "frame": "V",
+   "name": "수리 공방 원도",
+   "kind": "reference",
+   "geometry": [
+    60,
+    110
+   ],
+   "source": "벨레스 v5 배치 원본 · 비교점"
+  },
+  "draft-water_point": {
+   "frame": "V",
+   "name": "공동 급수대 원도",
+   "kind": "reference",
+   "geometry": [
+    -20,
+    90
+   ],
+   "source": "벨레스 v5 배치 원본 · 비교점"
+  },
+  "draft-forest_gate": {
+   "frame": "V",
+   "name": "숲문 원도",
+   "kind": "reference",
+   "geometry": [
+    90,
+    260
+   ],
+   "source": "벨레스 v5 배치 원본 · 비교점"
+  },
+  "draft-quay": {
+   "frame": "V",
+   "name": "승선판 육지 끝 원도",
+   "kind": "reference",
+   "geometry": [
+    0,
+    0
+   ],
+   "source": "벨레스 v5 배치 원본 · 비교점"
+  },
+  "draft-cave": {
+   "frame": "V",
+   "name": "취수구 바깥 문턱 원도",
+   "kind": "reference",
+   "geometry": [
+    260,
+    1250
+   ],
+   "source": "벨레스 v5 배치 원본 · 비교점"
+  },
+  "C-ICE": {
+   "frame": "V",
+   "name": "얼어붙은 취수구",
+   "kind": "point",
+   "geometry": [
+    268.240413,
+    1263
+   ],
+   "source": "통합 월드 제작 좌표",
+   "floor_z_m": -0.526
+  },
+  "C-DESK": {
+   "frame": "V",
+   "name": "장인의 도면 책상",
+   "kind": "point",
+   "geometry": [
+    264.434059,
+    1284
+   ],
+   "source": "통합 월드 제작 좌표",
+   "floor_z_m": -1.979
+  },
+  "C-GUARD": {
+   "frame": "V",
+   "name": "실내 파수꾼",
+   "kind": "point",
+   "geometry": [
+    270.146199,
+    1289
+   ],
+   "source": "통합 월드 제작 좌표",
+   "floor_z_m": -2.301
+  },
+  "C-BEAR": {
+   "frame": "V",
+   "name": "바르툴",
+   "kind": "point",
+   "geometry": [
+    269.792078,
+    1323
+   ],
+   "source": "통합 월드 제작 좌표",
+   "floor_z_m": -4.441
+  },
+  "C-TETHER": {
+   "frame": "V",
+   "name": "결박 고정부",
+   "kind": "point",
+   "geometry": [
+    264.292078,
+    1328.3
+   ],
+   "source": "통합 월드 제작 좌표",
+   "floor_z_m": -4.914
+  },
+  "C-WHEEL": {
+   "frame": "V",
+   "name": "조작단",
+   "kind": "point",
+   "geometry": [
+    262.688794,
+    1328.8
+   ],
+   "source": "통합 월드 제작 좌표",
+   "floor_z_m": -4.837
+  },
+  "C-POOL": {
+   "frame": "V",
+   "name": "수원",
+   "kind": "point",
+   "geometry": [
+    276.942078,
+    1323
+   ],
+   "source": "통합 월드 제작 좌표",
+   "floor_z_m": -6.143
+  },
+  "c-floor": {
+   "frame": "V",
+   "name": "공동 바닥 외곽",
+   "kind": "rock",
+   "geometry": [
+    [
+     268.225894,
+     1250
+    ],
+    [
+     268.083901,
+     1251
+    ],
+    [
+     267.959045,
+     1252
+    ],
+    [
+     267.852325,
+     1253
+    ],
+    [
+     267.758637,
+     1254
+    ],
+    [
+     267.667968,
+     1255
+    ],
+    [
+     267.567593,
+     1256
+    ],
+    [
+     267.444823,
+     1257
+    ],
+    [
+     267.289771,
+     1258
+    ],
+    [
+     267.097574,
+     1259
+    ],
+    [
+     266.869623,
+     1260
+    ],
+    [
+     266.613564,
+     1261
+    ],
+    [
+     266.342061,
+     1262
+    ],
+    [
+     266.070557,
+     1263
+    ],
+    [
+     265.814499,
+     1264
+    ],
+    [
+     265.586548,
+     1265
+    ],
+    [
+     265.394351,
+     1266
+    ],
+    [
+     265.239299,
+     1267
+    ],
+    [
+     265.116528,
+     1268
+    ],
+    [
+     265.016153,
+     1269
+    ],
+    [
+     264.925485,
+     1270
+    ],
+    [
+     264.831797,
+     1271
+    ],
+    [
+     264.725076,
+     1272
+    ],
+    [
+     264.600191,
+     1273
+    ],
+    [
+     264.457456,
+     1274
+    ],
+    [
+     264.296228,
+     1275
+    ],
+    [
+     264.08591,
+     1276
+    ],
+    [
+     263.723172,
+     1277
+    ],
+    [
+     263.072072,
+     1278
+    ],
+    [
+     262.128526,
+     1279
+    ],
+    [
+     261.10525,
+     1280
+    ],
+    [
+     260.28605,
+     1281
+    ],
+    [
+     259.82538,
+     1282
+    ],
+    [
+     259.697813,
+     1283
+    ],
+    [
+     259.777417,
+     1284
+    ],
+    [
+     259.930566,
+     1285
+    ],
+    [
+     260.065406,
+     1286
+    ],
+    [
+     260.14594,
+     1287
+    ],
+    [
+     260.193779,
+     1288
+    ],
+    [
+     260.287855,
+     1289
+    ],
+    [
+     260.553281,
+     1290
+    ],
+    [
+     261.116159,
+     1291
+    ],
+    [
+     262.012809,
+     1292
+    ],
+    [
+     263.10484,
+     1293
+    ],
+    [
+     264.118218,
+     1294
+    ],
+    [
+     264.838934,
+     1295
+    ],
+    [
+     265.266437,
+     1296
+    ],
+    [
+     265.535397,
+     1297
+    ],
+    [
+     265.7483,
+     1298
+    ],
+    [
+     265.930739,
+     1299
+    ],
+    [
+     266.072067,
+     1300
+    ],
+    [
+     266.151981,
+     1301
+    ],
+    [
+     266.143842,
+     1302
+    ],
+    [
+     266.01309,
+     1303
+    ],
+    [
+     265.720147,
+     1304
+    ],
+    [
+     265.231552,
+     1305
+    ],
+    [
+     264.53734,
+     1306
+    ],
+    [
+     263.666003,
+     1307
+    ],
+    [
+     262.68621,
+     1308
+    ],
+    [
+     261.690524,
+     1309
+    ],
+    [
+     260.7672,
+     1310
+    ],
+    [
+     259.973629,
+     1311
+    ],
+    [
+     259.323683,
+     1312
+    ],
+    [
+     258.792908,
+     1313
+    ],
+    [
+     258.336482,
+     1314
+    ],
+    [
+     257.910401,
+     1315
+    ],
+    [
+     257.487475,
+     1316
+    ],
+    [
+     257.064031,
+     1317
+    ],
+    [
+     256.657628,
+     1318
+    ],
+    [
+     256.298797,
+     1319
+    ],
+    [
+     256.020505,
+     1320
+    ],
+    [
+     255.848426,
+     1321
+    ],
+    [
+     255.794025,
+     1322
+    ],
+    [
+     255.851449,
+     1323
+    ],
+    [
+     255.998496,
+     1324
+    ],
+    [
+     256.20146,
+     1325
+    ],
+    [
+     256.423232,
+     1326
+    ],
+    [
+     256.633492,
+     1327
+    ],
+    [
+     256.819122,
+     1328
+    ],
+    [
+     256.992139,
+     1329
+    ],
+    [
+     257.191951,
+     1330
+    ],
+    [
+     257.47914,
+     1331
+    ],
+    [
+     257.919911,
+     1332
+    ],
+    [
+     258.563979,
+     1333
+    ],
+    [
+     259.422789,
+     1334
+    ],
+    [
+     260.457373,
+     1335
+    ],
+    [
+     261.583175,
+     1336
+    ],
+    [
+     262.692227,
+     1337
+    ],
+    [
+     263.684198,
+     1338
+    ],
+    [
+     264.492656,
+     1339
+    ],
+    [
+     265.095763,
+     1340
+    ],
+    [
+     265.509802,
+     1341
+    ],
+    [
+     265.77288,
+     1342
+    ],
+    [
+     265.928765,
+     1343
+    ],
+    [
+     266.016958,
+     1344
+    ],
+    [
+     273.317473,
+     1344
+    ],
+    [
+     273.201584,
+     1343
+    ],
+    [
+     273.145748,
+     1342
+    ],
+    [
+     273.198941,
+     1341
+    ],
+    [
+     273.414748,
+     1340
+    ],
+    [
+     273.84189,
+     1339
+    ],
+    [
+     274.512076,
+     1338
+    ],
+    [
+     275.426936,
+     1337
+    ],
+    [
+     276.54782,
+     1336
+    ],
+    [
+     277.794131,
+     1335
+    ],
+    [
+     279.05462,
+     1334
+    ],
+    [
+     280.210743,
+     1333
+    ],
+    [
+     281.164746,
+     1332
+    ],
+    [
+     281.862223,
+     1331
+    ],
+    [
+     282.301435,
+     1330
+    ],
+    [
+     282.527593,
+     1329
+    ],
+    [
+     282.616032,
+     1328
+    ],
+    [
+     282.650966,
+     1327
+    ],
+    [
+     282.70613,
+     1326
+    ],
+    [
+     282.831303,
+     1325
+    ],
+    [
+     283.046067,
+     1324
+    ],
+    [
+     283.340194,
+     1323
+    ],
+    [
+     283.679052,
+     1322
+    ],
+    [
+     284.012193,
+     1321
+    ],
+    [
+     284.283374,
+     1320
+    ],
+    [
+     284.440558,
+     1319
+    ],
+    [
+     284.444515,
+     1318
+    ],
+    [
+     284.274744,
+     1317
+    ],
+    [
+     283.931529,
+     1316
+    ],
+    [
+     283.433387,
+     1315
+    ],
+    [
+     282.810089,
+     1314
+    ],
+    [
+     282.093008,
+     1313
+    ],
+    [
+     281.306177,
+     1312
+    ],
+    [
+     280.462246,
+     1311
+    ],
+    [
+     279.566234,
+     1310
+    ],
+    [
+     278.626172,
+     1309
+    ],
+    [
+     277.664865,
+     1308
+    ],
+    [
+     276.724459,
+     1307
+    ],
+    [
+     275.858445,
+     1306
+    ],
+    [
+     275.113767,
+     1305
+    ],
+    [
+     274.513352,
+     1304
+    ],
+    [
+     274.05003,
+     1303
+    ],
+    [
+     273.695009,
+     1302
+    ],
+    [
+     273.414154,
+     1301
+    ],
+    [
+     273.181543,
+     1300
+    ],
+    [
+     272.984175,
+     1299
+    ],
+    [
+     272.819346,
+     1298
+    ],
+    [
+     272.69449,
+     1297
+    ],
+    [
+     272.648463,
+     1296
+    ],
+    [
+     272.788292,
+     1295
+    ],
+    [
+     273.252499,
+     1294
+    ],
+    [
+     274.057308,
+     1293
+    ],
+    [
+     275.005299,
+     1292
+    ],
+    [
+     275.807865,
+     1291
+    ],
+    [
+     276.279791,
+     1290
+    ],
+    [
+     276.40912,
+     1289
+    ],
+    [
+     276.297682,
+     1288
+    ],
+    [
+     276.073814,
+     1287
+    ],
+    [
+     275.838666,
+     1286
+    ],
+    [
+     275.646811,
+     1285
+    ],
+    [
+     275.50151,
+     1284
+    ],
+    [
+     275.352937,
+     1283
+    ],
+    [
+     275.10443,
+     1282
+    ],
+    [
+     274.647021,
+     1281
+    ],
+    [
+     273.937656,
+     1280
+    ],
+    [
+     273.083656,
+     1279
+    ],
+    [
+     272.324391,
+     1278
+    ],
+    [
+     271.85815,
+     1277
+    ],
+    [
+     271.684932,
+     1276
+    ],
+    [
+     271.666982,
+     1275
+    ],
+    [
+     271.693525,
+     1274
+    ],
+    [
+     271.731882,
+     1273
+    ],
+    [
+     271.787376,
+     1272
+    ],
+    [
+     271.872091,
+     1271
+    ],
+    [
+     271.995484,
+     1270
+    ],
+    [
+     272.161651,
+     1269
+    ],
+    [
+     272.368288,
+     1268
+    ],
+    [
+     272.606925,
+     1267
+    ],
+    [
+     272.864378,
+     1266
+    ],
+    [
+     273.125124,
+     1265
+    ],
+    [
+     273.374121,
+     1264
+    ],
+    [
+     273.599533,
+     1263
+    ],
+    [
+     273.7948,
+     1262
+    ],
+    [
+     273.959656,
+     1261
+    ],
+    [
+     274.09989,
+     1260
+    ],
+    [
+     274.2259,
+     1259
+    ],
+    [
+     274.350338,
+     1258
+    ],
+    [
+     274.485303,
+     1257
+    ],
+    [
+     274.639658,
+     1256
+    ],
+    [
+     274.817002,
+     1255
+    ],
+    [
+     275.014696,
+     1254
+    ],
+    [
+     275.22416,
+     1253
+    ],
+    [
+     275.432352,
+     1252
+    ],
+    [
+     275.624174,
+     1251
+    ],
+    [
+     275.785294,
+     1250
+    ]
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "c-pool": {
+   "frame": "V",
+   "name": "수원 물웅덩이",
+   "kind": "water",
+   "geometry": [
+    [
+     276.228996,
+     1313
+    ],
+    [
+     275.088496,
+     1314
+    ],
+    [
+     274.517129,
+     1315
+    ],
+    [
+     274.161483,
+     1316
+    ],
+    [
+     273.925794,
+     1317
+    ],
+    [
+     273.763325,
+     1318
+    ],
+    [
+     273.645678,
+     1319
+    ],
+    [
+     273.553734,
+     1320
+    ],
+    [
+     273.474263,
+     1321
+    ],
+    [
+     273.398585,
+     1322
+    ],
+    [
+     273.322078,
+     1323
+    ],
+    [
+     273.244037,
+     1324
+    ],
+    [
+     273.167639,
+     1325
+    ],
+    [
+     273.099956,
+     1326
+    ],
+    [
+     273.052059,
+     1327
+    ],
+    [
+     273.039492,
+     1328
+    ],
+    [
+     273.083584,
+     1329
+    ],
+    [
+     273.214814,
+     1330
+    ],
+    [
+     273.481848,
+     1331
+    ],
+    [
+     273.982205,
+     1332
+    ],
+    [
+     275.070862,
+     1333
+    ],
+    [
+     277.488556,
+     1333
+    ],
+    [
+     278.657831,
+     1332
+    ],
+    [
+     279.256063,
+     1331
+    ],
+    [
+     279.636308,
+     1330
+    ],
+    [
+     279.894004,
+     1329
+    ],
+    [
+     280.075601,
+     1328
+    ],
+    [
+     280.209248,
+     1327
+    ],
+    [
+     280.313856,
+     1326
+    ],
+    [
+     280.402491,
+     1325
+    ],
+    [
+     280.483715,
+     1324
+    ],
+    [
+     280.562078,
+     1323
+    ],
+    [
+     280.638263,
+     1322
+    ],
+    [
+     280.709115,
+     1321
+    ],
+    [
+     280.767634,
+     1320
+    ],
+    [
+     280.802867,
+     1319
+    ],
+    [
+     280.799434,
+     1318
+    ],
+    [
+     280.736214,
+     1317
+    ],
+    [
+     280.582977,
+     1316
+    ],
+    [
+     280.291345,
+     1315
+    ],
+    [
+     279.764122,
+     1314
+    ],
+    [
+     278.646689,
+     1313
+    ]
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "c-route": {
+   "frame": "V",
+   "name": "PIE 보행 목표선",
+   "kind": "walk",
+   "geometry": [
+    [
+     272,
+     1250
+    ],
+    [
+     271.889988,
+     1251
+    ],
+    [
+     271.479705,
+     1254
+    ],
+    [
+     270.783371,
+     1258
+    ],
+    [
+     269.992061,
+     1262
+    ],
+    [
+     269.192061,
+     1267
+    ],
+    [
+     268.992061,
+     1274
+    ],
+    [
+     268.992061,
+     1279
+    ],
+    [
+     268.992061,
+     1285
+    ],
+    [
+     268.992061,
+     1291
+    ],
+    [
+     269.992061,
+     1297
+    ],
+    [
+     270.992061,
+     1303
+    ],
+    [
+     270.992061,
+     1309
+    ],
+    [
+     270.992061,
+     1315
+    ],
+    [
+     271.992061,
+     1321
+    ],
+    [
+     270.992061,
+     1327
+    ]
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "c-ramp": {
+   "frame": "V",
+   "name": "조작단 진입 경사",
+   "kind": "detour",
+   "geometry": [
+    [
+     263.185065,
+     1320
+    ],
+    [
+     263.185065,
+     1324.1
+    ],
+    [
+     263.185065,
+     1328.8
+    ]
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "c-tether": {
+   "frame": "V",
+   "name": "앞다리·가슴 결박",
+   "kind": "barrier",
+   "geometry": [
+    [
+     269.792078,
+     1323
+    ],
+    [
+     266.792078,
+     1326.7
+    ],
+    [
+     264.292078,
+     1328.3
+    ]
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "c-flow": {
+   "frame": "V",
+   "name": "정비 배출 후 생활 수로 방향",
+   "kind": "stream",
+   "geometry": [
+    [
+     276.942078,
+     1323
+    ],
+    [
+     272.627483,
+     1311
+    ],
+    [
+     272.524944,
+     1308
+    ],
+    [
+     272.319698,
+     1305
+    ],
+    [
+     272.023409,
+     1302
+    ],
+    [
+     271.657499,
+     1299
+    ],
+    [
+     271.251331,
+     1296
+    ],
+    [
+     270.839661,
+     1293
+    ],
+    [
+     270.459558,
+     1290
+    ],
+    [
+     270.14709,
+     1287
+    ],
+    [
+     269.934059,
+     1284
+    ],
+    [
+     269.845079,
+     1281
+    ],
+    [
+     269.895267,
+     1278
+    ],
+    [
+     270.088742,
+     1275
+    ],
+    [
+     270.418086,
+     1272
+    ],
+    [
+     270.864803,
+     1269
+    ],
+    [
+     271.400751,
+     1266
+    ],
+    [
+     271.990413,
+     1263
+    ],
+    [
+     272.59382,
+     1260
+    ],
+    [
+     273.169864,
+     1257
+    ],
+    [
+     273.679705,
+     1254
+    ],
+    [
+     274.089988,
+     1251
+    ]
+   ],
+   "source": "배치 후보 · 송수 순서"
+  },
+  "floor-profile": {
+   "frame": "SECTION",
+   "name": "중심 바닥",
+   "kind": "profile",
+   "geometry": [
+    [
+     0,
+     0
+    ],
+    [
+     1,
+     -0.119009
+    ],
+    [
+     2,
+     -0.19825
+    ],
+    [
+     3,
+     -0.230373
+    ],
+    [
+     4,
+     -0.227624
+    ],
+    [
+     5,
+     -0.218326
+    ],
+    [
+     6,
+     -0.233334
+    ],
+    [
+     7,
+     -0.288794
+    ],
+    [
+     8,
+     -0.37557
+    ],
+    [
+     9,
+     -0.463325
+    ],
+    [
+     10,
+     -0.518571
+    ],
+    [
+     11,
+     -0.526226
+    ],
+    [
+     12,
+     -0.500546
+    ],
+    [
+     13,
+     -0.477487
+    ],
+    [
+     14,
+     -0.49286
+    ],
+    [
+     15,
+     -0.560475
+    ],
+    [
+     16,
+     -0.664492
+    ],
+    [
+     17,
+     -0.770351
+    ],
+    [
+     18,
+     -0.846325
+    ],
+    [
+     19,
+     -0.881595
+    ],
+    [
+     20,
+     -0.890406
+    ],
+    [
+     21,
+     -0.901615
+    ],
+    [
+     22,
+     -0.941648
+    ],
+    [
+     23,
+     -1.021219
+    ],
+    [
+     24,
+     -1.132132
+    ],
+    [
+     25,
+     -1.253795
+    ],
+    [
+     26,
+     -1.364297
+    ],
+    [
+     27,
+     -1.449933
+    ],
+    [
+     28,
+     -1.509413
+    ],
+    [
+     29,
+     -1.552316
+    ],
+    [
+     30,
+     -1.593843
+    ],
+    [
+     31,
+     -1.64872
+    ],
+    [
+     32,
+     -1.726502
+    ],
+    [
+     33,
+     -1.82936
+    ],
+    [
+     34,
+     -1.952332
+    ],
+    [
+     35,
+     -2.085384
+    ],
+    [
+     36,
+     -2.21639
+    ],
+    [
+     37,
+     -2.334197
+    ],
+    [
+     38,
+     -2.431097
+    ],
+    [
+     39,
+     -2.504218
+    ],
+    [
+     40,
+     -2.555613
+    ],
+    [
+     41,
+     -2.591079
+    ],
+    [
+     42,
+     -2.618107
+    ],
+    [
+     43,
+     -2.643577
+    ],
+    [
+     44,
+     -2.671953
+    ],
+    [
+     45,
+     -2.70452
+    ],
+    [
+     46,
+     -2.739887
+    ],
+    [
+     47,
+     -2.775453
+    ],
+    [
+     48,
+     -2.809215
+    ],
+    [
+     49,
+     -2.841144
+    ],
+    [
+     50,
+     -2.87356
+    ],
+    [
+     51,
+     -2.910375
+    ],
+    [
+     52,
+     -2.955494
+    ],
+    [
+     53,
+     -3.011048
+    ],
+    [
+     54,
+     -3.076141
+    ],
+    [
+     55,
+     -3.146659
+    ],
+    [
+     56,
+     -3.216277
+    ],
+    [
+     57,
+     -3.278428
+    ],
+    [
+     58,
+     -3.32864
+    ],
+    [
+     59,
+     -3.366515
+    ],
+    [
+     60,
+     -3.396617
+    ],
+    [
+     61,
+     -3.427791
+    ],
+    [
+     62,
+     -3.470866
+    ],
+    [
+     63,
+     -3.535223
+    ],
+    [
+     64,
+     -3.625243
+    ],
+    [
+     65,
+     -3.737975
+    ],
+    [
+     66,
+     -3.863205
+    ],
+    [
+     67,
+     -3.986398
+    ],
+    [
+     68,
+     -4.09386
+    ],
+    [
+     69,
+     -4.178244
+    ],
+    [
+     70,
+     -4.242019
+    ],
+    [
+     71,
+     -4.296967
+    ],
+    [
+     72,
+     -4.359395
+    ],
+    [
+     73,
+     -4.442809
+    ],
+    [
+     74,
+     -4.551243
+    ],
+    [
+     75,
+     -4.676483
+    ],
+    [
+     76,
+     -4.800724
+    ],
+    [
+     77,
+     -4.90365
+    ],
+    [
+     78,
+     -4.970796
+    ],
+    [
+     79,
+     -4.999439
+    ],
+    [
+     80,
+     -4.999533
+    ],
+    [
+     81,
+     -4.989593
+    ],
+    [
+     82,
+     -4.98961
+    ],
+    [
+     83,
+     -5.014118
+    ],
+    [
+     84,
+     -5.068021
+    ],
+    [
+     85,
+     -5.14626
+    ],
+    [
+     86,
+     -5.236743
+    ],
+    [
+     87,
+     -5.324891
+    ],
+    [
+     88,
+     -5.398037
+    ],
+    [
+     89,
+     -5.448432
+    ],
+    [
+     90,
+     -5.474421
+    ],
+    [
+     91,
+     -5.480043
+    ],
+    [
+     92,
+     -5.473606
+    ],
+    [
+     93,
+     -5.465776
+    ],
+    [
+     94,
+     -5.467568
+    ]
+   ],
+   "source": "통합 월드 생성식 · 문턱 중앙 바닥 기준"
+  },
+  "roof-profile": {
+   "frame": "SECTION",
+   "name": "중심 천장",
+   "kind": "profile",
+   "geometry": [
+    [
+     0,
+     4.047198
+    ],
+    [
+     1,
+     4.069921
+    ],
+    [
+     2,
+     4.184818
+    ],
+    [
+     3,
+     4.319508
+    ],
+    [
+     4,
+     4.395607
+    ],
+    [
+     5,
+     4.35975
+    ],
+    [
+     6,
+     4.204673
+    ],
+    [
+     7,
+     3.971986
+    ],
+    [
+     8,
+     3.735565
+    ],
+    [
+     9,
+     3.572122
+    ],
+    [
+     10,
+     3.530619
+    ],
+    [
+     11,
+     3.612633
+    ],
+    [
+     12,
+     3.771454
+    ],
+    [
+     13,
+     3.930276
+    ],
+    [
+     14,
+     4.01229
+    ],
+    [
+     15,
+     3.970787
+    ],
+    [
+     16,
+     3.807344
+    ],
+    [
+     17,
+     3.570923
+    ],
+    [
+     18,
+     3.338236
+    ],
+    [
+     19,
+     3.183159
+    ],
+    [
+     20,
+     3.147302
+    ],
+    [
+     21,
+     3.223401
+    ],
+    [
+     22,
+     3.358091
+    ],
+    [
+     23,
+     3.473019
+    ],
+    [
+     24,
+     3.496547
+    ],
+    [
+     25,
+     3.399107
+    ],
+    [
+     26,
+     3.234264
+    ],
+    [
+     27,
+     3.161611
+    ],
+    [
+     28,
+     3.373009
+    ],
+    [
+     29,
+     3.94854
+    ],
+    [
+     30,
+     4.803812
+    ],
+    [
+     31,
+     5.750805
+    ],
+    [
+     32,
+     6.577967
+    ],
+    [
+     33,
+     7.117733
+    ],
+    [
+     34,
+     7.294247
+    ],
+    [
+     35,
+     7.134437
+    ],
+    [
+     36,
+     6.745089
+    ],
+    [
+     37,
+     6.27192
+    ],
+    [
+     38,
+     5.849726
+    ],
+    [
+     39,
+     5.546838
+    ],
+    [
+     40,
+     5.318047
+    ],
+    [
+     41,
+     5.00728
+    ],
+    [
+     42,
+     4.449709
+    ],
+    [
+     43,
+     3.640123
+    ],
+    [
+     44,
+     2.785132
+    ],
+    [
+     45,
+     2.113179
+    ],
+    [
+     46,
+     1.668644
+    ],
+    [
+     47,
+     1.370406
+    ],
+    [
+     48,
+     1.176896
+    ],
+    [
+     49,
+     1.106628
+    ],
+    [
+     50,
+     1.173998
+    ],
+    [
+     51,
+     1.359233
+    ],
+    [
+     52,
+     1.620453
+    ],
+    [
+     53,
+     1.919689
+    ],
+    [
+     54,
+     2.240314
+    ],
+    [
+     55,
+     2.587937
+    ],
+    [
+     56,
+     2.985749
+    ],
+    [
+     57,
+     3.478142
+    ],
+    [
+     58,
+     4.134798
+    ],
+    [
+     59,
+     5.029193
+    ],
+    [
+     60,
+     6.182663
+    ],
+    [
+     61,
+     7.506672
+    ],
+    [
+     62,
+     8.795644
+    ],
+    [
+     63,
+     9.794236
+    ],
+    [
+     64,
+     10.309231
+    ],
+    [
+     65,
+     10.302996
+    ],
+    [
+     66,
+     9.916142
+    ],
+    [
+     67,
+     9.4088
+    ],
+    [
+     68,
+     9.051984
+    ],
+    [
+     69,
+     9.020229
+    ],
+    [
+     70,
+     9.329785
+    ],
+    [
+     71,
+     9.842798
+    ],
+    [
+     72,
+     10.330583
+    ],
+    [
+     73,
+     10.568403
+    ],
+    [
+     74,
+     10.425097
+    ],
+    [
+     75,
+     9.914209
+    ],
+    [
+     76,
+     9.186976
+    ],
+    [
+     77,
+     8.468036
+    ],
+    [
+     78,
+     7.956797
+    ],
+    [
+     79,
+     7.733961
+    ],
+    [
+     80,
+     7.715982
+    ],
+    [
+     81,
+     7.684398
+    ],
+    [
+     82,
+     7.38374
+    ],
+    [
+     83,
+     6.64406
+    ],
+    [
+     84,
+     5.464674
+    ],
+    [
+     85,
+     4.01279
+    ],
+    [
+     86,
+     2.540567
+    ],
+    [
+     87,
+     1.274173
+    ],
+    [
+     88,
+     0.339353
+    ],
+    [
+     89,
+     -0.248812
+    ],
+    [
+     90,
+     -0.552968
+    ],
+    [
+     91,
+     -0.674489
+    ],
+    [
+     92,
+     -0.724573
+    ],
+    [
+     93,
+     -0.799181
+    ],
+    [
+     94,
+     -0.953773
+    ]
+   ],
+   "source": "통합 월드 생성식 · 문턱 중앙 바닥 기준"
+  },
+  "S0": {
+   "frame": "SECTION",
+   "name": "문턱",
+   "kind": "point",
+   "geometry": [
+    0,
+    0
+   ],
+   "source": "통합 월드 생성식 · 문턱 중앙 바닥 기준"
+  },
+  "S1": {
+   "frame": "SECTION",
+   "name": "작업실",
+   "kind": "point",
+   "geometry": [
+    34,
+    -1.952332
+   ],
+   "source": "통합 월드 생성식 · 문턱 중앙 바닥 기준"
+  },
+  "S2": {
+   "frame": "SECTION",
+   "name": "바르툴 공동",
+   "kind": "point",
+   "geometry": [
+    73,
+    -4.442809
+   ],
+   "source": "통합 월드 생성식 · 문턱 중앙 바닥 기준"
+  },
+  "S3": {
+   "frame": "SECTION",
+   "name": "수원 끝",
+   "kind": "point",
+   "geometry": [
+    93,
+    -5.465776
+   ],
+   "source": "통합 월드 생성식 · 문턱 중앙 바닥 기준"
+  },
+  "f-water0": {
+   "frame": "V",
+   "name": "수원 개울",
+   "kind": "stream",
+   "geometry": [
+    [
+     -71.526638,
+     205
+    ],
+    [
+     -69.221308,
+     210
+    ],
+    [
+     -67.078015,
+     215
+    ],
+    [
+     -65.081112,
+     220
+    ],
+    [
+     -63.209117,
+     225
+    ],
+    [
+     -61.435835,
+     230
+    ],
+    [
+     -59.731675,
+     235
+    ],
+    [
+     -58.065092,
+     240
+    ],
+    [
+     -56.4041,
+     245
+    ],
+    [
+     -54.717799,
+     250
+    ],
+    [
+     -52.977848,
+     255
+    ],
+    [
+     -51.15982,
+     260
+    ],
+    [
+     -49.244397,
+     265
+    ],
+    [
+     -47.218333,
+     270
+    ],
+    [
+     -45.075175,
+     275
+    ],
+    [
+     -42.81568,
+     280
+    ],
+    [
+     -40.447936,
+     285
+    ],
+    [
+     -37.987167,
+     290
+    ],
+    [
+     -35.455233,
+     295
+    ],
+    [
+     -32.879842,
+     300
+    ],
+    [
+     -30.293511,
+     305
+    ],
+    [
+     -27.732306,
+     310
+    ],
+    [
+     -25.234424,
+     315
+    ],
+    [
+     -22.838663,
+     320
+    ],
+    [
+     -20.582845,
+     325
+    ],
+    [
+     -18.502253,
+     330
+    ],
+    [
+     -16.628156,
+     335
+    ],
+    [
+     -14.986457,
+     340
+    ],
+    [
+     -13.596548,
+     345
+    ],
+    [
+     -12.470394,
+     350
+    ],
+    [
+     -11.611899,
+     355
+    ],
+    [
+     -11.016573,
+     360
+    ],
+    [
+     -10.67152,
+     365
+    ],
+    [
+     -10.555737,
+     370
+    ],
+    [
+     -10.640737,
+     375
+    ],
+    [
+     -10.89144,
+     380
+    ],
+    [
+     -11.267333,
+     385
+    ],
+    [
+     -11.723828,
+     390
+    ],
+    [
+     -12.213778,
+     395
+    ],
+    [
+     -12.689089,
+     400
+    ],
+    [
+     -13.102372,
+     405
+    ],
+    [
+     -13.408561,
+     410
+    ],
+    [
+     -13.566438,
+     415
+    ],
+    [
+     -13.540014,
+     420
+    ],
+    [
+     -13.299702,
+     425
+    ],
+    [
+     -12.823242,
+     430
+    ],
+    [
+     -12.096347,
+     435
+    ],
+    [
+     -11.113032,
+     440
+    ],
+    [
+     -9.87564,
+     445
+    ],
+    [
+     -8.394534,
+     450
+    ],
+    [
+     -6.687495,
+     455
+    ],
+    [
+     -4.778838,
+     460
+    ],
+    [
+     -2.698288,
+     465
+    ],
+    [
+     -0.479655,
+     470
+    ],
+    [
+     1.840628,
+     475
+    ],
+    [
+     4.225052,
+     480
+    ],
+    [
+     6.636602,
+     485
+    ],
+    [
+     9.040281,
+     490
+    ],
+    [
+     11.404531,
+     495
+    ],
+    [
+     13.7025,
+     500
+    ],
+    [
+     15.913087,
+     505
+    ],
+    [
+     18.021745,
+     510
+    ],
+    [
+     20.020994,
+     515
+    ],
+    [
+     21.910631,
+     520
+    ],
+    [
+     23.697629,
+     525
+    ],
+    [
+     25.39573,
+     530
+    ],
+    [
+     27.024746,
+     535
+    ],
+    [
+     28.609602,
+     540
+    ],
+    [
+     30.179152,
+     545
+    ],
+    [
+     31.764832,
+     550
+    ],
+    [
+     33.399184,
+     555
+    ],
+    [
+     35.114334,
+     560
+    ],
+    [
+     36.940465,
+     565
+    ],
+    [
+     38.904367,
+     570
+    ],
+    [
+     41.028106,
+     575
+    ],
+    [
+     43.327884,
+     580
+    ],
+    [
+     45.813124,
+     585
+    ],
+    [
+     48.485824,
+     590
+    ],
+    [
+     51.340206,
+     595
+    ],
+    [
+     54.362683,
+     600
+    ],
+    [
+     57.532136,
+     605
+    ],
+    [
+     60.820498,
+     610
+    ],
+    [
+     64.193622,
+     615
+    ],
+    [
+     67.612411,
+     620
+    ],
+    [
+     71.034141,
+     625
+    ],
+    [
+     74.413954,
+     630
+    ],
+    [
+     77.706451,
+     635
+    ],
+    [
+     80.867311,
+     640
+    ],
+    [
+     83.854903,
+     645
+    ],
+    [
+     86.631792,
+     650
+    ],
+    [
+     89.166112,
+     655
+    ],
+    [
+     91.432729,
+     660
+    ],
+    [
+     93.41416,
+     665
+    ],
+    [
+     95.101211,
+     670
+    ],
+    [
+     96.493307,
+     675
+    ],
+    [
+     97.5985,
+     680
+    ],
+    [
+     98.433157,
+     685
+    ],
+    [
+     99.021338,
+     690
+    ],
+    [
+     99.393897,
+     695
+    ],
+    [
+     99.587325,
+     700
+    ],
+    [
+     99.642398,
+     705
+    ],
+    [
+     99.60267,
+     710
+    ],
+    [
+     99.51288,
+     715
+    ],
+    [
+     99.417329,
+     720
+    ],
+    [
+     99.358291,
+     725
+    ],
+    [
+     99.374525,
+     730
+    ],
+    [
+     99.499939,
+     735
+    ],
+    [
+     99.762463,
+     740
+    ],
+    [
+     100.183173,
+     745
+    ],
+    [
+     100.775697,
+     750
+    ],
+    [
+     101.545927,
+     755
+    ],
+    [
+     102.492047,
+     760
+    ],
+    [
+     103.60487,
+     765
+    ],
+    [
+     104.868475,
+     770
+    ],
+    [
+     106.261111,
+     775
+    ],
+    [
+     107.756335,
+     780
+    ],
+    [
+     109.324327,
+     785
+    ],
+    [
+     110.933342,
+     790
+    ],
+    [
+     112.551227,
+     795
+    ],
+    [
+     114.146947,
+     800
+    ],
+    [
+     115.692056,
+     805
+    ],
+    [
+     117.162047,
+     810
+    ],
+    [
+     118.537538,
+     815
+    ],
+    [
+     119.805236,
+     820
+    ],
+    [
+     120.958634,
+     825
+    ],
+    [
+     121.99843,
+     830
+    ],
+    [
+     122.932631,
+     835
+    ],
+    [
+     123.776349,
+     840
+    ],
+    [
+     124.551288,
+     845
+    ],
+    [
+     125.284952,
+     850
+    ],
+    [
+     126.009596,
+     855
+    ],
+    [
+     126.76096,
+     860
+    ],
+    [
+     127.576852,
+     865
+    ],
+    [
+     128.495613,
+     870
+    ],
+    [
+     129.554546,
+     875
+    ],
+    [
+     130.788359,
+     880
+    ],
+    [
+     132.227695,
+     885
+    ],
+    [
+     133.897794,
+     890
+    ],
+    [
+     135.817356,
+     895
+    ],
+    [
+     137.997646,
+     900
+    ],
+    [
+     140.441869,
+     905
+    ],
+    [
+     143.144857,
+     910
+    ],
+    [
+     146.093072,
+     915
+    ],
+    [
+     149.264924,
+     920
+    ],
+    [
+     152.631402,
+     925
+    ],
+    [
+     156.156988,
+     930
+    ],
+    [
+     159.800821,
+     935
+    ],
+    [
+     163.518067,
+     940
+    ],
+    [
+     167.26144,
+     945
+    ],
+    [
+     170.982822,
+     950
+    ],
+    [
+     174.634908,
+     955
+    ],
+    [
+     178.172825,
+     960
+    ],
+    [
+     181.555652,
+     965
+    ],
+    [
+     184.747792,
+     970
+    ],
+    [
+     187.720132,
+     975
+    ],
+    [
+     190.450955,
+     980
+    ],
+    [
+     192.926574,
+     985
+    ],
+    [
+     195.141645,
+     990
+    ],
+    [
+     197.099172,
+     995
+    ],
+    [
+     198.810187,
+     1000
+    ],
+    [
+     200.293136,
+     1005
+    ],
+    [
+     201.572973,
+     1010
+    ],
+    [
+     202.680027,
+     1015
+    ],
+    [
+     203.64867,
+     1020
+    ],
+    [
+     204.515843,
+     1025
+    ],
+    [
+     205.319502,
+     1030
+    ],
+    [
+     206.09705,
+     1035
+    ],
+    [
+     206.883812,
+     1040
+    ],
+    [
+     207.711611,
+     1045
+    ],
+    [
+     208.607516,
+     1050
+    ],
+    [
+     209.592793,
+     1055
+    ],
+    [
+     210.682119,
+     1060
+    ],
+    [
+     211.883078,
+     1065
+    ],
+    [
+     213.195955,
+     1070
+    ],
+    [
+     214.613854,
+     1075
+    ],
+    [
+     216.123116,
+     1080
+    ],
+    [
+     217.704022,
+     1085
+    ],
+    [
+     219.331765,
+     1090
+    ],
+    [
+     220.977632,
+     1095
+    ],
+    [
+     222.610365,
+     1100
+    ],
+    [
+     224.19763,
+     1105
+    ],
+    [
+     225.707545,
+     1110
+    ],
+    [
+     227.110201,
+     1115
+    ],
+    [
+     228.379106,
+     1120
+    ],
+    [
+     229.49251,
+     1125
+    ],
+    [
+     230.434531,
+     1130
+    ],
+    [
+     231.196066,
+     1135
+    ],
+    [
+     231.775419,
+     1140
+    ],
+    [
+     232.178637,
+     1145
+    ],
+    [
+     232.419534,
+     1150
+    ],
+    [
+     232.519402,
+     1155
+    ],
+    [
+     232.506409,
+     1160
+    ],
+    [
+     232.414723,
+     1165
+    ],
+    [
+     232.283379,
+     1170
+    ],
+    [
+     232.15494,
+     1175
+    ],
+    [
+     232.074008,
+     1180
+    ],
+    [
+     232.085627,
+     1185
+    ],
+    [
+     232.233666,
+     1190
+    ],
+    [
+     232.559217,
+     1195
+    ],
+    [
+     233.099088,
+     1200
+    ],
+    [
+     233.884452,
+     1205
+    ],
+    [
+     234.939687,
+     1210
+    ],
+    [
+     236.281478,
+     1215
+    ],
+    [
+     237.918195,
+     1220
+    ],
+    [
+     239.849578,
+     1225
+    ],
+    [
+     242.066749,
+     1230
+    ],
+    [
+     244.55254,
+     1235
+    ],
+    [
+     247.28213,
+     1240
+    ],
+    [
+     250.223962,
+     1245
+    ],
+    [
+     253.340914,
+     1250
+    ]
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "f-water1": {
+   "frame": "V",
+   "name": "동쪽 본류",
+   "kind": "river",
+   "geometry": [
+    [
+     338.316133,
+     205
+    ],
+    [
+     339.949654,
+     210
+    ],
+    [
+     341.534294,
+     215
+    ],
+    [
+     343.072036,
+     220
+    ],
+    [
+     344.564991,
+     225
+    ],
+    [
+     346.015392,
+     230
+    ],
+    [
+     347.425595,
+     235
+    ],
+    [
+     348.798062,
+     240
+    ],
+    [
+     350.135363,
+     245
+    ],
+    [
+     351.440163,
+     250
+    ],
+    [
+     352.715218,
+     255
+    ],
+    [
+     353.963368,
+     260
+    ],
+    [
+     355.187526,
+     265
+    ],
+    [
+     356.39067,
+     270
+    ],
+    [
+     357.575839,
+     275
+    ],
+    [
+     358.746119,
+     280
+    ],
+    [
+     359.90464,
+     285
+    ],
+    [
+     361.054563,
+     290
+    ],
+    [
+     362.199073,
+     295
+    ],
+    [
+     363.34137,
+     300
+    ],
+    [
+     364.48466,
+     305
+    ],
+    [
+     365.632147,
+     310
+    ],
+    [
+     366.787022,
+     315
+    ],
+    [
+     367.952457,
+     320
+    ],
+    [
+     369.131594,
+     325
+    ],
+    [
+     370.327538,
+     330
+    ],
+    [
+     371.543344,
+     335
+    ],
+    [
+     372.782018,
+     340
+    ],
+    [
+     374.046497,
+     345
+    ],
+    [
+     375.339649,
+     350
+    ],
+    [
+     376.664263,
+     355
+    ],
+    [
+     378.02304,
+     360
+    ],
+    [
+     379.418587,
+     365
+    ],
+    [
+     380.853409,
+     370
+    ],
+    [
+     382.329901,
+     375
+    ],
+    [
+     383.850345,
+     380
+    ],
+    [
+     385.416899,
+     385
+    ],
+    [
+     387.031595,
+     390
+    ],
+    [
+     388.69633,
+     395
+    ],
+    [
+     390.412863,
+     400
+    ],
+    [
+     392.182812,
+     405
+    ],
+    [
+     394.007643,
+     410
+    ],
+    [
+     395.888672,
+     415
+    ],
+    [
+     397.82706,
+     420
+    ],
+    [
+     399.823809,
+     425
+    ],
+    [
+     401.879758,
+     430
+    ],
+    [
+     403.995583,
+     435
+    ],
+    [
+     406.171794,
+     440
+    ],
+    [
+     408.408734,
+     445
+    ],
+    [
+     410.706577,
+     450
+    ],
+    [
+     413.06533,
+     455
+    ],
+    [
+     415.48483,
+     460
+    ],
+    [
+     417.964746,
+     465
+    ],
+    [
+     420.504579,
+     470
+    ],
+    [
+     423.103666,
+     475
+    ],
+    [
+     425.761178,
+     480
+    ],
+    [
+     428.476125,
+     485
+    ],
+    [
+     431.247357,
+     490
+    ],
+    [
+     434.073571,
+     495
+    ],
+    [
+     436.953308,
+     500
+    ],
+    [
+     439.884963,
+     505
+    ],
+    [
+     442.866786,
+     510
+    ],
+    [
+     445.89689,
+     515
+    ],
+    [
+     448.973252,
+     520
+    ],
+    [
+     452.093722,
+     525
+    ],
+    [
+     455.256029,
+     530
+    ],
+    [
+     458.457783,
+     535
+    ],
+    [
+     461.696487,
+     540
+    ],
+    [
+     464.969543,
+     545
+    ],
+    [
+     468.274254,
+     550
+    ],
+    [
+     471.607839,
+     555
+    ],
+    [
+     474.967436,
+     560
+    ],
+    [
+     478.350108,
+     565
+    ],
+    [
+     481.752859,
+     570
+    ],
+    [
+     485.172634,
+     575
+    ],
+    [
+     488.606332,
+     580
+    ],
+    [
+     492.050813,
+     585
+    ],
+    [
+     495.502908,
+     590
+    ],
+    [
+     498.959426,
+     595
+    ],
+    [
+     502.417165,
+     600
+    ],
+    [
+     505.872917,
+     605
+    ],
+    [
+     509.323482,
+     610
+    ],
+    [
+     512.765674,
+     615
+    ],
+    [
+     516.196329,
+     620
+    ],
+    [
+     519.612316,
+     625
+    ],
+    [
+     523.010545,
+     630
+    ],
+    [
+     526.387973,
+     635
+    ],
+    [
+     529.741618,
+     640
+    ],
+    [
+     533.068561,
+     645
+    ],
+    [
+     536.365958,
+     650
+    ],
+    [
+     539.631047,
+     655
+    ],
+    [
+     542.861154,
+     660
+    ],
+    [
+     546.053705,
+     665
+    ],
+    [
+     549.206227,
+     670
+    ],
+    [
+     552.31636,
+     675
+    ],
+    [
+     555.381859,
+     680
+    ],
+    [
+     558.400604,
+     685
+    ],
+    [
+     561.370606,
+     690
+    ],
+    [
+     564.290009,
+     695
+    ],
+    [
+     567.157096,
+     700
+    ],
+    [
+     569.970298,
+     705
+    ],
+    [
+     572.728194,
+     710
+    ],
+    [
+     575.429515,
+     715
+    ],
+    [
+     578.07315,
+     720
+    ],
+    [
+     580.658147,
+     725
+    ],
+    [
+     583.183716,
+     730
+    ],
+    [
+     585.649234,
+     735
+    ],
+    [
+     588.054242,
+     740
+    ],
+    [
+     590.398448,
+     745
+    ],
+    [
+     592.681732,
+     750
+    ],
+    [
+     594.904138,
+     755
+    ],
+    [
+     597.065881,
+     760
+    ],
+    [
+     599.167346,
+     765
+    ],
+    [
+     601.209081,
+     770
+    ],
+    [
+     603.191801,
+     775
+    ],
+    [
+     605.116386,
+     780
+    ],
+    [
+     606.983875,
+     785
+    ],
+    [
+     608.795466,
+     790
+    ],
+    [
+     610.552511,
+     795
+    ],
+    [
+     612.256515,
+     800
+    ],
+    [
+     613.909127,
+     805
+    ],
+    [
+     615.512141,
+     810
+    ],
+    [
+     617.067487,
+     815
+    ],
+    [
+     618.577227,
+     820
+    ],
+    [
+     620.04355,
+     825
+    ],
+    [
+     621.468765,
+     830
+    ],
+    [
+     622.855294,
+     835
+    ],
+    [
+     624.205667,
+     840
+    ],
+    [
+     625.522514,
+     845
+    ],
+    [
+     626.808558,
+     850
+    ],
+    [
+     628.066607,
+     855
+    ],
+    [
+     629.299546,
+     860
+    ],
+    [
+     630.510331,
+     865
+    ],
+    [
+     631.701978,
+     870
+    ],
+    [
+     632.877557,
+     875
+    ],
+    [
+     634.040182,
+     880
+    ],
+    [
+     635.193003,
+     885
+    ],
+    [
+     636.339196,
+     890
+    ],
+    [
+     637.481957,
+     895
+    ],
+    [
+     638.624491,
+     900
+    ],
+    [
+     639.770004,
+     905
+    ],
+    [
+     640.921693,
+     910
+    ],
+    [
+     642.082738,
+     915
+    ],
+    [
+     643.256293,
+     920
+    ],
+    [
+     644.445478,
+     925
+    ],
+    [
+     645.653369,
+     930
+    ],
+    [
+     646.882991,
+     935
+    ],
+    [
+     648.137308,
+     940
+    ],
+    [
+     649.419217,
+     945
+    ],
+    [
+     650.731536,
+     950
+    ],
+    [
+     652.077001,
+     955
+    ],
+    [
+     653.458255,
+     960
+    ],
+    [
+     654.877843,
+     965
+    ],
+    [
+     656.338204,
+     970
+    ],
+    [
+     657.841662,
+     975
+    ],
+    [
+     659.390424,
+     980
+    ],
+    [
+     660.986569,
+     985
+    ],
+    [
+     662.632048,
+     990
+    ],
+    [
+     664.328673,
+     995
+    ],
+    [
+     666.078115,
+     1000
+    ],
+    [
+     667.881899,
+     1005
+    ],
+    [
+     669.741398,
+     1010
+    ],
+    [
+     671.657834,
+     1015
+    ],
+    [
+     673.632267,
+     1020
+    ],
+    [
+     675.6656,
+     1025
+    ],
+    [
+     677.758572,
+     1030
+    ],
+    [
+     679.911755,
+     1035
+    ],
+    [
+     682.125557,
+     1040
+    ],
+    [
+     684.400215,
+     1045
+    ],
+    [
+     686.735801,
+     1050
+    ],
+    [
+     689.132215,
+     1055
+    ],
+    [
+     691.589191,
+     1060
+    ],
+    [
+     694.106294,
+     1065
+    ],
+    [
+     696.682923,
+     1070
+    ],
+    [
+     699.31831,
+     1075
+    ],
+    [
+     702.011529,
+     1080
+    ],
+    [
+     704.761489,
+     1085
+    ],
+    [
+     707.566945,
+     1090
+    ],
+    [
+     710.426496,
+     1095
+    ],
+    [
+     713.338594,
+     1100
+    ],
+    [
+     716.301542,
+     1105
+    ],
+    [
+     719.313506,
+     1110
+    ],
+    [
+     722.372512,
+     1115
+    ],
+    [
+     725.47646,
+     1120
+    ],
+    [
+     728.623122,
+     1125
+    ],
+    [
+     731.810154,
+     1130
+    ],
+    [
+     735.035099,
+     1135
+    ],
+    [
+     738.295396,
+     1140
+    ],
+    [
+     741.588385,
+     1145
+    ],
+    [
+     744.911316,
+     1150
+    ],
+    [
+     748.261357,
+     1155
+    ],
+    [
+     751.635598,
+     1160
+    ],
+    [
+     755.031066,
+     1165
+    ],
+    [
+     758.444726,
+     1170
+    ],
+    [
+     761.873494,
+     1175
+    ],
+    [
+     765.314244,
+     1180
+    ],
+    [
+     768.763817,
+     1185
+    ],
+    [
+     772.219029,
+     1190
+    ],
+    [
+     775.676681,
+     1195
+    ],
+    [
+     779.133567,
+     1200
+    ],
+    [
+     782.586482,
+     1205
+    ],
+    [
+     786.032235,
+     1210
+    ],
+    [
+     789.467651,
+     1215
+    ],
+    [
+     792.889586,
+     1220
+    ],
+    [
+     796.294934,
+     1225
+    ],
+    [
+     799.680632,
+     1230
+    ],
+    [
+     803.043675,
+     1235
+    ],
+    [
+     806.381118,
+     1240
+    ],
+    [
+     809.690088,
+     1245
+    ],
+    [
+     812.96779,
+     1250
+    ]
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "f-east": {
+   "frame": "V",
+   "name": "동쪽 진입",
+   "kind": "walk",
+   "geometry": [
+    [
+     -80,
+     205
+    ],
+    [
+     -70,
+     234
+    ],
+    [
+     -48,
+     310
+    ],
+    [
+     -10,
+     376
+    ],
+    [
+     16,
+     441
+    ],
+    [
+     88,
+     476
+    ],
+    [
+     135,
+     525
+    ],
+    [
+     228,
+     603
+    ],
+    [
+     200,
+     676
+    ],
+    [
+     107.399061,
+     747
+    ],
+    [
+     93.399061,
+     747
+    ],
+    [
+     95.721271,
+     756
+    ]
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "f-west": {
+   "frame": "V",
+   "name": "서쪽 귀환",
+   "kind": "back",
+   "geometry": [
+    [
+     95.721271,
+     756
+    ],
+    [
+     -40,
+     809
+    ],
+    [
+     -112,
+     814
+    ],
+    [
+     -195,
+     779
+    ],
+    [
+     -250,
+     730
+    ],
+    [
+     -217,
+     660
+    ],
+    [
+     -184,
+     570
+    ],
+    [
+     -153,
+     496
+    ],
+    [
+     -144,
+     379
+    ],
+    [
+     -99,
+     258
+    ],
+    [
+     -80,
+     205
+    ]
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "f-up": {
+   "frame": "V",
+   "name": "상류 취수구 왕복",
+   "kind": "walk",
+   "geometry": [
+    [
+     95.721271,
+     756
+    ],
+    [
+     97.60487,
+     765
+    ],
+    [
+     100.8485,
+     777
+    ],
+    [
+     104.609807,
+     789
+    ],
+    [
+     108.460867,
+     801
+    ],
+    [
+     111.999678,
+     813
+    ],
+    [
+     114.958634,
+     825
+    ],
+    [
+     117.279901,
+     837
+    ],
+    [
+     119.140032,
+     849
+    ],
+    [
+     120.917747,
+     861
+    ],
+    [
+     123.111855,
+     873
+    ],
+    [
+     126.227695,
+     885
+    ],
+    [
+     130.65782,
+     897
+    ],
+    [
+     136.584089,
+     909
+    ],
+    [
+     143.923699,
+     921
+    ],
+    [
+     152.331896,
+     933
+    ],
+    [
+     161.26144,
+     945
+    ],
+    [
+     170.066171,
+     957
+    ],
+    [
+     178.126118,
+     969
+    ],
+    [
+     184.966788,
+     981
+    ],
+    [
+     190.346534,
+     993
+    ],
+    [
+     194.293136,
+     1005
+    ],
+    [
+     197.082066,
+     1017
+    ],
+    [
+     199.162035,
+     1029
+    ],
+    [
+     201.045147,
+     1041
+    ],
+    [
+     203.186863,
+     1053
+    ],
+    [
+     205.883078,
+     1065
+    ],
+    [
+     209.207573,
+     1077
+    ],
+    [
+     213.003802,
+     1089
+    ],
+    [
+     216.932492,
+     1101
+    ],
+    [
+     220.563798,
+     1113
+    ],
+    [
+     223.49251,
+     1125
+    ],
+    [
+     225.449506,
+     1137
+    ],
+    [
+     226.383422,
+     1149
+    ],
+    [
+     226.49318,
+     1161
+    ],
+    [
+     226.20314,
+     1173
+    ],
+    [
+     226.085627,
+     1185
+    ],
+    [
+     226.747562,
+     1197
+    ],
+    [
+     228.706132,
+     1209
+    ],
+    [
+     228.441357,
+     1212
+    ],
+    [
+     242.441357,
+     1212
+    ],
+    [
+     250.567145,
+     1219
+    ],
+    [
+     253.270582,
+     1226
+    ],
+    [
+     256.527416,
+     1233
+    ],
+    [
+     260.28213,
+     1240
+    ],
+    [
+     264.451965,
+     1247
+    ],
+    [
+     272,
+     1248
+    ],
+    [
+     272,
+     1250
+    ]
+   ],
+   "source": "통합 월드 제작 좌표"
+  },
+  "G01-area": {
+   "frame": "V",
+   "name": "뿌리 파수꾼 활동권",
+   "kind": "range",
+   "geometry": [
+    [
+     20,
+     660
+    ],
+    [
+     110,
+     660
+    ],
+    [
+     110,
+     835
+    ],
+    [
+     20,
+     835
+    ]
+   ],
+   "source": "벨레스 숲 분포 v2 · 기존 활동권 후보"
+  },
+  "G01-limit": {
+   "frame": "V",
+   "name": "추격 경계",
+   "kind": "limit",
+   "geometry": [
+    [
+     -20,
+     620
+    ],
+    [
+     115,
+     620
+    ],
+    [
+     115,
+     860
+    ],
+    [
+     -20,
+     860
+    ]
+   ],
+   "source": "벨레스 숲 분포 v2 · 기존 활동권 후보"
+  },
+  "G01": {
+   "frame": "V",
+   "name": "뿌리 파수꾼",
+   "kind": "animal",
+   "geometry": [
+    80,
+    740
+   ],
+   "source": "벨레스 숲 분포 v2 · 기존 활동권 후보",
+   "count": 1,
+   "group": "G01"
+  },
+  "G02-area": {
+   "frame": "V",
+   "name": "뿌리 파수꾼 활동권",
+   "kind": "range",
+   "geometry": [
+    [
+     -160,
+     750
+    ],
+    [
+     -40,
+     750
+    ],
+    [
+     -40,
+     880
+    ],
+    [
+     -160,
+     880
+    ]
+   ],
+   "source": "벨레스 숲 분포 v2 · 기존 활동권 후보"
+  },
+  "G02-limit": {
+   "frame": "V",
+   "name": "추격 경계",
+   "kind": "limit",
+   "geometry": [
+    [
+     -195,
+     700
+    ],
+    [
+     30,
+     700
+    ],
+    [
+     30,
+     920
+    ],
+    [
+     -195,
+     920
+    ]
+   ],
+   "source": "벨레스 숲 분포 v2 · 기존 활동권 후보"
+  },
+  "G02": {
+   "frame": "V",
+   "name": "뿌리 파수꾼",
+   "kind": "animal",
+   "geometry": [
+    -90,
+    820
+   ],
+   "source": "벨레스 숲 분포 v2 · 기존 활동권 후보",
+   "count": 2,
+   "group": "G02"
+  },
+  "G03-area": {
+   "frame": "V",
+   "name": "뿌리 파수꾼 활동권",
+   "kind": "range",
+   "geometry": [
+    [
+     130,
+     1070
+    ],
+    [
+     210,
+     1070
+    ],
+    [
+     210,
+     1190
+    ],
+    [
+     130,
+     1190
+    ]
+   ],
+   "source": "벨레스 숲 분포 v2 · 기존 활동권 후보"
+  },
+  "G03-limit": {
+   "frame": "V",
+   "name": "추격 경계",
+   "kind": "limit",
+   "geometry": [
+    [
+     90,
+     1020
+    ],
+    [
+     184,
+     1020
+    ],
+    [
+     210,
+     1060
+    ],
+    [
+     225,
+     1130
+    ],
+    [
+     225,
+     1230
+    ],
+    [
+     90,
+     1230
+    ]
+   ],
+   "source": "벨레스 숲 분포 v2 · 기존 활동권 후보"
+  },
+  "G03": {
+   "frame": "V",
+   "name": "뿌리 파수꾼",
+   "kind": "animal",
+   "geometry": [
+    190,
+    1140
+   ],
+   "source": "벨레스 숲 분포 v2 · 기존 활동권 후보",
+   "count": 1,
+   "group": "G03"
+  },
+  "G04-area": {
+   "frame": "V",
+   "name": "뿌리 파수꾼 활동권",
+   "kind": "range",
+   "geometry": [
+    [
+     190,
+     1180
+    ],
+    [
+     250,
+     1180
+    ],
+    [
+     250,
+     1240
+    ],
+    [
+     190,
+     1240
+    ]
+   ],
+   "source": "벨레스 숲 분포 v2 · 기존 활동권 후보"
+  },
+  "G04-limit": {
+   "frame": "V",
+   "name": "추격 경계",
+   "kind": "limit",
+   "geometry": [
+    [
+     160,
+     1170
+    ],
+    [
+     245,
+     1170
+    ],
+    [
+     252,
+     1180
+    ],
+    [
+     265,
+     1246
+    ],
+    [
+     160,
+     1246
+    ]
+   ],
+   "source": "벨레스 숲 분포 v2 · 기존 활동권 후보"
+  },
+  "G04": {
+   "frame": "V",
+   "name": "뿌리 파수꾼",
+   "kind": "animal",
+   "geometry": [
+    225,
+    1210
+   ],
+   "source": "벨레스 숲 분포 v2 · 기존 활동권 후보",
+   "count": 1,
+   "group": "G04"
+  },
+  "W01-area": {
+   "frame": "V",
+   "name": "서리발 늑대 활동권",
+   "kind": "range",
+   "geometry": [
+    [
+     -290,
+     780
+    ],
+    [
+     -80,
+     780
+    ],
+    [
+     -80,
+     980
+    ],
+    [
+     -290,
+     980
+    ]
+   ],
+   "source": "벨레스 숲 분포 v2 · 기존 활동권 후보"
+  },
+  "W01-limit": {
+   "frame": "V",
+   "name": "추격 경계",
+   "kind": "limit",
+   "geometry": [
+    [
+     -330,
+     710
+    ],
+    [
+     10,
+     710
+    ],
+    [
+     10,
+     1030
+    ],
+    [
+     -330,
+     1030
+    ]
+   ],
+   "source": "벨레스 숲 분포 v2 · 기존 활동권 후보"
+  },
+  "W01": {
+   "frame": "V",
+   "name": "서리발 늑대",
+   "kind": "animal",
+   "geometry": [
+    -210,
+    870
+   ],
+   "source": "벨레스 숲 분포 v2 · 기존 활동권 후보",
+   "count": 3,
+   "group": "W01"
+  },
+  "W02-area": {
+   "frame": "V",
+   "name": "서리발 늑대 활동권",
+   "kind": "range",
+   "geometry": [
+    [
+     225,
+     965
+    ],
+    [
+     385,
+     965
+    ],
+    [
+     420,
+     1080
+    ],
+    [
+     295,
+     1140
+    ],
+    [
+     255,
+     1120
+    ],
+    [
+     225,
+     1050
+    ]
+   ],
+   "source": "벨레스 숲 분포 v2 · 기존 활동권 후보"
+  },
+  "W02-limit": {
+   "frame": "V",
+   "name": "추격 경계",
+   "kind": "limit",
+   "geometry": [
+    [
+     205,
+     950
+    ],
+    [
+     430,
+     950
+    ],
+    [
+     450,
+     1110
+    ],
+    [
+     290,
+     1190
+    ],
+    [
+     265,
+     1150
+    ],
+    [
+     215,
+     1035
+    ]
+   ],
+   "source": "벨레스 숲 분포 v2 · 기존 활동권 후보"
+  },
+  "W02": {
+   "frame": "V",
+   "name": "서리발 늑대",
+   "kind": "animal",
+   "geometry": [
+    300,
+    1040
+   ],
+   "source": "벨레스 숲 분포 v2 · 기존 활동권 후보",
+   "count": 4,
+   "group": "W02"
+  },
+  "W03-area": {
+   "frame": "V",
+   "name": "서리발 늑대 활동권",
+   "kind": "range",
+   "geometry": [
+    [
+     -100,
+     1000
+    ],
+    [
+     155,
+     1000
+    ],
+    [
+     155,
+     1180
+    ],
+    [
+     -100,
+     1180
+    ]
+   ],
+   "source": "벨레스 숲 분포 v2 · 기존 활동권 후보"
+  },
+  "W03-limit": {
+   "frame": "V",
+   "name": "추격 경계",
+   "kind": "limit",
+   "geometry": [
+    [
+     -150,
+     960
+    ],
+    [
+     155,
+     960
+    ],
+    [
+     185,
+     1050
+    ],
+    [
+     185,
+     1230
+    ],
+    [
+     -150,
+     1230
+    ]
+   ],
+   "source": "벨레스 숲 분포 v2 · 기존 활동권 후보"
+  },
+  "W03": {
+   "frame": "V",
+   "name": "서리발 늑대",
+   "kind": "animal",
+   "geometry": [
+    -30,
+    1070
+   ],
+   "source": "벨레스 숲 분포 v2 · 기존 활동권 후보",
+   "count": 3,
+   "group": "W03"
+  },
+  "GB01-area": {
+   "frame": "V",
+   "name": "고블린 활동권",
+   "kind": "campzone",
+   "geometry": [
+    [
+     350,
+     590
+    ],
+    [
+     455,
+     590
+    ],
+    [
+     455,
+     730
+    ],
+    [
+     350,
+     730
+    ]
+   ],
+   "source": "벨레스 숲 분포 v2 · 기존 활동권 후보"
+  },
+  "GB01": {
+   "frame": "V",
+   "name": "고블린",
+   "kind": "camp",
+   "geometry": [
+    390,
+    640
+   ],
+   "source": "벨레스 숲 분포 v2 · 기존 활동권 후보",
+   "count": 4,
+   "group": "GB01"
+  },
+  "GB02-area": {
+   "frame": "V",
+   "name": "고블린 활동권",
+   "kind": "campzone",
+   "geometry": [
+    [
+     220,
+     450
+    ],
+    [
+     340,
+     450
+    ],
+    [
+     360,
+     540
+    ],
+    [
+     330,
+     600
+    ],
+    [
+     220,
+     580
+    ]
+   ],
+   "source": "벨레스 숲 분포 v2 · 기존 활동권 후보"
+  },
+  "GB02": {
+   "frame": "V",
+   "name": "고블린",
+   "kind": "animal",
+   "geometry": [
+    290,
+    520
+   ],
+   "source": "벨레스 숲 분포 v2 · 기존 활동권 후보",
+   "count": 2,
+   "group": "GB02"
+  },
+  "GB03-area": {
+   "frame": "V",
+   "name": "고블린 활동권",
+   "kind": "campzone",
+   "geometry": [
+    [
+     235,
+     745
+    ],
+    [
+     360,
+     745
+    ],
+    [
+     405,
+     900
+    ],
+    [
+     365,
+     945
+    ],
+    [
+     245,
+     900
+    ]
+   ],
+   "source": "벨레스 숲 분포 v2 · 기존 활동권 후보"
+  },
+  "GB03": {
+   "frame": "V",
+   "name": "고블린",
+   "kind": "animal",
+   "geometry": [
+    330,
+    810
+   ],
+   "source": "벨레스 숲 분포 v2 · 기존 활동권 후보",
+   "count": 3,
+   "group": "GB03"
+  },
+  "GB04-area": {
+   "frame": "V",
+   "name": "고블린 활동권",
+   "kind": "campzone",
+   "geometry": [
+    [
+     -210,
+     610
+    ],
+    [
+     -90,
+     610
+    ],
+    [
+     -90,
+     715
+    ],
+    [
+     -210,
+     715
+    ]
+   ],
+   "source": "벨레스 숲 분포 v2 · 기존 활동권 후보"
+  },
+  "GB04": {
+   "frame": "V",
+   "name": "고블린",
+   "kind": "camp",
+   "geometry": [
+    -155,
+    680
+   ],
+   "source": "벨레스 숲 분포 v2 · 기존 활동권 후보",
+   "count": 3,
+   "group": "GB04"
+  },
+  "GB05": {
+   "frame": "V",
+   "name": "양 거점 운반조",
+   "kind": "patrol",
+   "geometry": [
+    [
+     390,
+     640
+    ],
+    [
+     365,
+     700
+    ],
+    [
+     330,
+     720
+    ],
+    [
+     119.354839,
+     621.935484
+    ],
+    [
+     -110,
+     530
+    ],
+    [
+     -155,
+     680
+    ],
+    [
+     -250,
+     730
+    ]
+   ],
+   "source": "벨레스 숲 분포 v2 · 기존 활동권 후보",
+   "count": 2
+  },
+  "A-SQ1": {
+   "frame": "V",
+   "name": "다람쥐",
+   "kind": "wildlife",
+   "geometry": [
+    180,
+    440
+   ],
+   "source": "벨레스 숲 분포 v2 · 기존 활동권 후보"
+  },
+  "A-SQ2": {
+   "frame": "V",
+   "name": "다람쥐",
+   "kind": "wildlife",
+   "geometry": [
+    300,
+    580
+   ],
+   "source": "벨레스 숲 분포 v2 · 기존 활동권 후보"
+  },
+  "A-SQ3": {
+   "frame": "V",
+   "name": "다람쥐",
+   "kind": "wildlife",
+   "geometry": [
+    -170,
+    570
+   ],
+   "source": "벨레스 숲 분포 v2 · 기존 활동권 후보"
+  },
+  "A-BD1": {
+   "frame": "V",
+   "name": "새",
+   "kind": "wildlife",
+   "geometry": [
+    95,
+    320
+   ],
+   "source": "벨레스 숲 분포 v2 · 기존 활동권 후보"
+  },
+  "A-BD2": {
+   "frame": "V",
+   "name": "새",
+   "kind": "wildlife",
+   "geometry": [
+    300,
+    675
+   ],
+   "source": "벨레스 숲 분포 v2 · 기존 활동권 후보"
+  },
+  "A-BD3": {
+   "frame": "V",
+   "name": "새",
+   "kind": "wildlife",
+   "geometry": [
+    255,
+    1270
+   ],
+   "source": "벨레스 숲 분포 v2 · 기존 활동권 후보"
+  },
+  "A-BD4": {
+   "frame": "V",
+   "name": "새",
+   "kind": "wildlife",
+   "geometry": [
+    -230,
+    760
+   ],
+   "source": "벨레스 숲 분포 v2 · 기존 활동권 후보"
+  },
+  "A-RB1": {
+   "frame": "V",
+   "name": "토끼",
+   "kind": "wildlife",
+   "geometry": [
+    290,
+    420
+   ],
+   "source": "벨레스 숲 분포 v2 · 기존 활동권 후보"
+  },
+  "A-RB2": {
+   "frame": "V",
+   "name": "토끼",
+   "kind": "wildlife",
+   "geometry": [
+    -65,
+    555
+   ],
+   "source": "벨레스 숲 분포 v2 · 기존 활동권 후보"
+  },
+  "A-RB3": {
+   "frame": "V",
+   "name": "토끼",
+   "kind": "wildlife",
+   "geometry": [
+    -285,
+    680
+   ],
+   "source": "벨레스 숲 분포 v2 · 기존 활동권 후보"
+  },
+  "A-DR1": {
+   "frame": "V",
+   "name": "사슴",
+   "kind": "wildlife",
+   "geometry": [
+    -300,
+    620
+   ],
+   "source": "벨레스 숲 분포 v2 · 기존 활동권 후보"
+  },
+  "A-DR2": {
+   "frame": "V",
+   "name": "사슴",
+   "kind": "wildlife",
+   "geometry": [
+    420,
+    875
+   ],
+   "source": "벨레스 숲 분포 v2 · 기존 활동권 후보"
+  },
+  "A-DR3": {
+   "frame": "V",
+   "name": "사슴",
+   "kind": "wildlife",
+   "geometry": [
+    210,
+    930
+   ],
+   "source": "벨레스 숲 분포 v2 · 기존 활동권 후보"
+  },
+  "i-river": {
+   "frame": "I",
+   "name": "테른 본류",
+   "kind": "river",
+   "geometry": [
+    [
+     158,
+     157
+    ],
+    [
+     150,
+     145
+    ],
+    [
+     145,
+     140
+    ],
+    [
+     146,
+     130
+    ],
+    [
+     137,
+     125
+    ],
+    [
+     133,
+     112
+    ],
+    [
+     120,
+     110
+    ],
+    [
+     118,
+     101
+    ],
+    [
+     110,
+     95
+    ],
+    [
+     98,
+     88
+    ],
+    [
+     83,
+     75
+    ],
+    [
+     64,
+     60
+    ],
+    [
+     48,
+     42
+    ],
+    [
+     36,
+     20
+    ],
+    [
+     28,
+     -12
+    ],
+    [
+     31,
+     -30
+    ],
+    [
+     42,
+     -48
+    ]
+   ],
+   "source": "테른 본류 · 세계수 중심 지역 km"
+  },
+  "i-vt": {
+   "frame": "I",
+   "name": "벨레스 → 타르넬",
+   "kind": "walk",
+   "geometry": [
+    [
+     150,
+     145
+    ],
+    [
+     145,
+     140
+    ],
+    [
+     146,
+     130
+    ],
+    [
+     137,
+     125
+    ]
+   ],
+   "source": "테른 본류 · 세계수 중심 지역 km"
+  },
+  "i-tr": {
+   "frame": "I",
+   "name": "타르넬 → 로덴",
+   "kind": "back",
+   "geometry": [
+    [
+     137,
+     125
+    ],
+    [
+     133,
+     112
+    ],
+    [
+     120,
+     110
+    ],
+    [
+     118,
+     101
+    ],
+    [
+     110,
+     95
+    ]
+   ],
+   "source": "테른 본류 · 세계수 중심 지역 km"
+  },
+  "I-V": {
+   "frame": "I",
+   "name": "벨레스",
+   "kind": "point",
+   "geometry": [
+    150,
+    145
+   ],
+   "source": "테른 본류 · 세계수 중심 지역 km"
+  },
+  "I-T": {
+   "frame": "I",
+   "name": "타르넬",
+   "kind": "point",
+   "geometry": [
+    137,
+    125
+   ],
+   "source": "테른 본류 · 세계수 중심 지역 km"
+  },
+  "I-R": {
+   "frame": "I",
+   "name": "로덴",
+   "kind": "point",
+   "geometry": [
+    110,
+    95
+   ],
+   "source": "테른 본류 · 세계수 중심 지역 km"
+  },
+  "i-V-BOARD": {
+   "frame": "I",
+   "name": "승선판 육지 끝",
+   "kind": "point",
+   "geometry": [
+    150.0163,
+    145.0055
+   ],
+   "source": "상세도 접안점 투영 · 벨레스 UE는 근사 중첩",
+   "local": "V-BOARD"
+  },
+  "i-T-LAND": {
+   "frame": "I",
+   "name": "나룻배 접안",
+   "kind": "point",
+   "geometry": [
+    137.159,
+    125.08
+   ],
+   "source": "상세도 접안점 투영 · 벨레스 UE는 근사 중첩",
+   "local": "T-LAND"
+  },
+  "i-R-QUAY": {
+   "frame": "I",
+   "name": "화물 접안",
+   "kind": "point",
+   "geometry": [
+    110.097,
+    95.089
+   ],
+   "source": "상세도 접안점 투영 · 벨레스 UE는 근사 중첩",
+   "local": "R-QUAY"
+  },
+  "i-R-MOOR": {
+   "frame": "I",
+   "name": "구조선 접안",
+   "kind": "point",
+   "geometry": [
+    110.73,
+    95.559
+   ],
+   "source": "상세도 접안점 투영 · 벨레스 UE는 근사 중첩",
+   "local": "R-MOOR"
+  },
+  "R-DRAIN-IN": {
+   "frame": "R",
+   "name": "배수굴 입구",
+   "kind": "point",
+   "geometry": [
+    -111,
+    945
+   ],
+   "source": "배치 후보 · 접근로와 작업 설비"
+  },
+  "R-DRAIN-OUT": {
+   "frame": "R",
+   "name": "마른 출구",
+   "kind": "point",
+   "geometry": [
+    -88,
+    952
+   ],
+   "source": "배치 후보 · 접근로와 작업 설비"
+  },
+  "r-drain-floor": {
+   "frame": "R",
+   "name": "마른 통행턱",
+   "kind": "rock",
+   "geometry": [
+    [
+     -114,
+     943
+    ],
+    [
+     -104,
+     943
+    ],
+    [
+     -95,
+     948
+    ],
+    [
+     -86,
+     949
+    ],
+    [
+     -86,
+     955
+    ],
+    [
+     -96,
+     954
+    ],
+    [
+     -105,
+     948
+    ],
+    [
+     -114,
+     948
+    ]
+   ],
+   "source": "배치 후보 · 접근로와 작업 설비"
+  },
+  "r-drain-water": {
+   "frame": "R",
+   "name": "작업 배수 홈",
+   "kind": "stream",
+   "geometry": [
+    [
+     -86,
+     947
+    ],
+    [
+     -99,
+     945
+    ],
+    [
+     -104,
+     941
+    ],
+    [
+     -114,
+     940
+    ]
+   ],
+   "source": "배치 후보 · 접근로와 작업 설비"
+  },
+  "r-alarm": {
+   "frame": "R",
+   "name": "코볼트 경보줄",
+   "kind": "barrier",
+   "geometry": [
+    [
+     -105,
+     944
+    ],
+    [
+     -106,
+     948
+    ]
+   ],
+   "source": "배치 후보 · 접근로와 작업 설비"
+  },
+  "r-shelf-route": {
+   "frame": "R",
+   "name": "마른 통행로",
+   "kind": "walk",
+   "geometry": [
+    [
+     -111,
+     945
+    ],
+    [
+     -100,
+     950
+    ],
+    [
+     -88,
+     952
+    ]
+   ],
+   "source": "배치 후보 · 접근로와 작업 설비",
+   "via": [
+    "R-DRAIN-IN",
+    "B05",
+    "R-DRAIN-OUT"
+   ],
+   "width_m": 3.5
+  },
+  "r-pipe0": {
+   "frame": "R",
+   "name": "피복 배관",
+   "kind": "pipe",
+   "geometry": [
+    [
+     93,
+     886
+    ],
+    [
+     106,
+     892
+    ],
+    [
+     109,
+     900
+    ],
+    [
+     118,
+     904
+    ]
+   ],
+   "source": "배치 후보 · 접근로와 작업 설비"
+  },
+  "r-pipe1": {
+   "frame": "R",
+   "name": "피복 배관",
+   "kind": "pipe",
+   "geometry": [
+    [
+     93,
+     892
+    ],
+    [
+     106,
+     898
+    ],
+    [
+     109,
+     906
+    ],
+    [
+     118,
+     910
+    ]
+   ],
+   "source": "배치 후보 · 접근로와 작업 설비"
+  },
+  "R-PIPE-IN": {
+   "frame": "R",
+   "name": "정비뜰 입구",
+   "kind": "point",
+   "geometry": [
+    94,
+    894
+   ],
+   "source": "배치 후보 · 접근로와 작업 설비"
+  },
+  "R-PIPE-OUT": {
+   "frame": "R",
+   "name": "계단 쪽 출구",
+   "kind": "point",
+   "geometry": [
+    116,
+    906
+   ],
+   "source": "배치 후보 · 접근로와 작업 설비"
+  },
+  "r-pipe-walk": {
+   "frame": "R",
+   "name": "배관 사이 통로",
+   "kind": "walk",
+   "geometry": [
+    [
+     94,
+     894
+    ],
+    [
+     102,
+     897
+    ],
+    [
+     110,
+     902
+    ],
+    [
+     116,
+     906
+    ]
+   ],
+   "source": "배치 후보 · 접근로와 작업 설비"
+  },
+  "r-wall": {
+   "frame": "R",
+   "name": "낮은 작업벽",
+   "kind": "facility",
+   "geometry": [
+    [
+     97,
+     908.4
+    ],
+    [
+     109,
+     908.4
+    ],
+    [
+     109,
+     909.6
+    ],
+    [
+     97,
+     909.6
+    ]
+   ],
+   "source": "배치 후보 · 접근로와 작업 설비"
+  },
+  "R-BREAK": {
+   "frame": "R",
+   "name": "계단 붕괴 구간",
+   "kind": "point",
+   "geometry": [
+    228,
+    820
+   ],
+   "source": "S2 통행 상태표 · 표시 위치는 배치 후보"
+  },
+  "r-cross": {
+   "frame": "R",
+   "name": "붕괴한 계단",
+   "kind": "closed",
+   "geometry": [
+    [
+     100,
+     900
+    ],
+    [
+     260,
+     800
+    ]
+   ],
+   "source": "S2 통행 상태표 · 표시 위치는 배치 후보"
+  },
+  "r-lock": {
+   "frame": "R",
+   "name": "닫힌 들것 문",
+   "kind": "closed",
+   "geometry": [
+    [
+     398,
+     585
+    ],
+    [
+     404,
+     587
+    ]
+   ],
+   "source": "S2 통행 상태표 · 표시 위치는 배치 후보"
+  },
+  "r-cordon": {
+   "frame": "R",
+   "name": "내린 수동 격자",
+   "kind": "closed",
+   "geometry": [
+    [
+     353,
+     689
+    ],
+    [
+     353,
+     695
+    ]
+   ],
+   "source": "S2 통행 상태표 · 표시 위치는 배치 후보"
+  },
+  "r-turnbox": {
+   "frame": "R",
+   "name": "들것 회전 여유",
+   "kind": "pad",
+   "geometry": [
+    [
+     356,
+     677
+    ],
+    [
+     364,
+     677
+    ],
+    [
+     364,
+     683
+    ],
+    [
+     356,
+     683
+    ]
+   ],
+   "source": "S2 통행 상태표 · 표시 위치는 배치 후보"
+  },
+  "R-NICHE": {
+   "frame": "R",
+   "name": "군체 유인 돌턱",
+   "kind": "point",
+   "geometry": [
+    348,
+    692
+   ],
+   "source": "S2 통행 상태표 · 표시 위치는 배치 후보"
+  },
+  "R-OUTLET": {
+   "frame": "R",
+   "name": "작업뜰 6 m 대피로",
+   "kind": "point",
+   "geometry": [
+    469,
+    536
+   ],
+   "source": "S2 통행 상태표 · 표시 위치는 배치 후보"
+  },
+  "ext2": {
+   "frame": "I",
+   "name": "02 상세 범위",
+   "kind": "extent",
+   "geometry": [
+    [
+     149.877,
+     144.975
+    ],
+    [
+     150.128,
+     144.975
+    ],
+    [
+     150.128,
+     145.227
+    ],
+    [
+     149.877,
+     145.227
+    ]
+   ],
+   "source": "지역별 상세화 범위"
+  },
+  "ext3": {
+   "frame": "I",
+   "name": "03 상세 범위",
+   "kind": "extent",
+   "geometry": [
+    [
+     149.61,
+     145.15
+    ],
+    [
+     150.65,
+     145.15
+    ],
+    [
+     150.65,
+     146.35
+    ],
+    [
+     149.61,
+     146.35
+    ]
+   ],
+   "source": "지역별 상세화 범위"
+  },
+  "ext4": {
+   "frame": "I",
+   "name": "04 상세 범위",
+   "kind": "extent",
+   "geometry": [
+    [
+     150.24,
+     146.242
+    ],
+    [
+     150.3,
+     146.242
+    ],
+    [
+     150.3,
+     146.352
+    ],
+    [
+     150.24,
+     146.352
+    ]
+   ],
+   "source": "지역별 상세화 범위"
+  },
+  "ext5": {
+   "frame": "I",
+   "name": "05 상세 범위",
+   "kind": "extent",
+   "geometry": [
+    [
+     136.3,
+     123.29
+    ],
+    [
+     138.5,
+     123.29
+    ],
+    [
+     138.5,
+     125.29
+    ],
+    [
+     136.3,
+     125.29
+    ]
+   ],
+   "source": "지역별 상세화 범위"
+  },
+  "ext6": {
+   "frame": "I",
+   "name": "06 상세 범위",
+   "kind": "extent",
+   "geometry": [
+    [
+     109.21,
+     94.97
+    ],
+    [
+     110.79,
+     94.97
+    ],
+    [
+     110.79,
+     95.857
+    ],
+    [
+     109.21,
+     95.857
+    ]
+   ],
+   "source": "지역별 상세화 범위"
+  },
+  "ext7": {
+   "frame": "I",
+   "name": "07 상세 범위",
+   "kind": "extent",
+   "geometry": [
+    [
+     108.89,
+     95.45
+    ],
+    [
+     110.61,
+     95.45
+    ],
+    [
+     110.61,
+     96.48
+    ],
+    [
+     108.89,
+     96.48
+    ]
+   ],
+   "source": "지역별 상세화 범위"
+  },
+  "ext8": {
+   "frame": "I",
+   "name": "08 상세 범위",
+   "kind": "extent",
+   "geometry": [
+    [
+     109.875,
+     95.484
+    ],
+    [
+     110.783,
+     95.484
+    ],
+    [
+     110.783,
+     95.975
+    ],
+    [
+     109.875,
+     95.975
+    ]
+   ],
+   "source": "지역별 상세화 범위"
+  },
+  "r-publicwalk": {
+   "frame": "R",
+   "name": "나루·조합·작업구",
+   "kind": "walk",
+   "geometry": [
+    [
+     40,
+     90
+    ],
+    [
+     -50,
+     130
+    ],
+    [
+     -248,
+     212
+    ],
+    [
+     -462,
+     302
+    ],
+    [
+     -620,
+     400
+    ],
+    [
+     -593,
+     475
+    ],
+    [
+     -462,
+     620
+    ],
+    [
+     -320,
+     760
+    ]
+   ],
+   "source": "배치 후보"
+  },
+  "T-WH-IN": {
+   "frame": "T",
+   "name": "창고 입구",
+   "kind": "point",
+   "geometry": [
+    378,
+    99
+   ],
+   "source": "배치 후보"
+  },
+  "T-HALL-IN": {
+   "frame": "T",
+   "name": "공동회 입구",
+   "kind": "point",
+   "geometry": [
+    345,
+    106
+   ],
+   "source": "배치 후보"
+  },
+  "RK-END": {
+   "frame": "R",
+   "name": "굴 밖 추격 종료",
+   "kind": "closed",
+   "geometry": [
+    [
+     -85,
+     948
+    ],
+    [
+     -87,
+     955
+    ]
+   ],
+   "source": "배치 후보"
+  },
+  "RG-END": {
+   "frame": "R",
+   "name": "관리 통행선",
+   "kind": "closed",
+   "geometry": [
+    [
+     -327,
+     754
+    ],
+    [
+     -314,
+     766
+    ]
+   ],
+   "source": "배치 후보"
+  },
+  "TG-END": {
+   "frame": "T",
+   "name": "공공 나루 경비선",
+   "kind": "closed",
+   "geometry": [
+    [
+     349,
+     67
+    ],
+    [
+     366,
+     72
+    ]
+   ],
+   "source": "배치 후보"
+  },
+  "R-QUAY-water": {
+   "frame": "R",
+   "name": "접안 후보에 맞춘 강안",
+   "kind": "water",
+   "geometry": [
+    [
+     3.666667,
+     19
+    ],
+    [
+     43.666667,
+     49
+    ],
+    [
+     97,
+     89
+    ],
+    [
+     150.333333,
+     129
+    ],
+    [
+     190.333333,
+     159
+    ],
+    [
+     233.666667,
+     159
+    ],
+    [
+     193.666667,
+     129
+    ],
+    [
+     140.333333,
+     89
+    ],
+    [
+     87,
+     49
+    ],
+    [
+     47,
+     19
+    ]
+   ],
+   "source": "접안 후보를 위한 국소 강안 · 하폭 미측량"
+  },
+  "R-MOOR-water": {
+   "frame": "R",
+   "name": "접안 후보에 맞춘 강안",
+   "kind": "water",
+   "geometry": [
+    [
+     636.666667,
+     489
+    ],
+    [
+     676.666667,
+     519
+    ],
+    [
+     730,
+     559
+    ],
+    [
+     783.333333,
+     599
+    ],
+    [
+     823.333333,
+     629
+    ],
+    [
+     854,
+     629
+    ],
+    [
+     814,
+     599
+    ],
+    [
+     760.666667,
+     559
+    ],
+    [
+     707.333333,
+     519
+    ],
+    [
+     667.333333,
+     489
+    ]
+   ],
+   "source": "접안 후보를 위한 국소 강안 · 하폭 미측량"
+  },
+  "T-LAND-water": {
+   "frame": "T",
+   "name": "접안 후보에 맞춘 강안",
+   "kind": "water",
+   "geometry": [
+    [
+     33,
+     10
+    ],
+    [
+     87,
+     40
+    ],
+    [
+     159,
+     80
+    ],
+    [
+     231,
+     120
+    ],
+    [
+     285,
+     150
+    ],
+    [
+     255,
+     150
+    ],
+    [
+     201,
+     120
+    ],
+    [
+     129,
+     80
+    ],
+    [
+     57,
+     40
+    ],
+    [
+     3,
+     10
+    ]
+   ],
+   "source": "접안 후보를 위한 국소 강안 · 하폭 미측량"
+  }
+ },
+ "veles_comparison": {
+  "V-BENCH": {
+   "design": "draft-workshop",
+   "ue": "V-BENCH",
+   "delta_xy_m": [
+    -111,
+    -61
+   ],
+   "meaning": "기능 대응점 · 좌표 차이"
+  },
+  "V-WATER": {
+   "design": "draft-water_point",
+   "ue": "V-WATER",
+   "delta_xy_m": [
+    10.2,
+    -4
+   ],
+   "meaning": "기능 대응점 · 좌표 차이"
+  },
+  "V-GATE": {
+   "design": "draft-forest_gate",
+   "ue": "V-GATE",
+   "delta_xy_m": [
+    -170,
+    -55
+   ],
+   "meaning": "기능 대응점 · 좌표 차이"
+  },
+  "V-BOARD": {
+   "design": "draft-quay",
+   "ue": "V-BOARD",
+   "delta_xy_m": [
+    16.3,
+    5.5
+   ],
+   "meaning": "기능 대응점 · 좌표 차이"
+  },
+  "C-MOUTH": {
+   "design": "draft-cave",
+   "ue": "C-MOUTH",
+   "delta_xy_m": [
+    12,
+    0
+   ],
+   "meaning": "기능 대응점 · 좌표 차이"
+  }
+ },
+ "states": [
+  {
+   "name": "점검 진입",
+   "stairs": "open",
+   "lift": "powered",
+   "gate": "closed",
+   "yard": "unsafe",
+   "swarm": "home"
+  },
+  {
+   "name": "계단 붕괴 직후",
+   "stairs": "broken",
+   "lift": "powered",
+   "gate": "closed",
+   "yard": "unsafe",
+   "swarm": "home"
+  },
+  {
+   "name": "공급 차단 뒤",
+   "stairs": "broken",
+   "lift": "stopped",
+   "gate": "closed",
+   "yard": "unsafe",
+   "swarm": "moved"
+  },
+  {
+   "name": "수동 개방·마지막 팔 정지 뒤",
+   "stairs": "broken",
+   "lift": "stopped",
+   "gate": "open",
+   "yard": "clear",
+   "swarm": "contained"
+  }
+ ],
+ "story": [
+  {
+   "id": "VS01",
+   "name": "물통 안쪽",
+   "sheet": 2,
+   "places": [
+    "V-BENCH",
+    "V-WATER"
+   ]
+  },
+  {
+   "id": "VS02",
+   "name": "빈 통이 가는 쪽",
+   "sheet": 2,
+   "places": [
+    "V-WATER",
+    "V-STORE",
+    "V-BOARD"
+   ]
+  },
+  {
+   "id": "VS03",
+   "name": "황금안개숲의 길손",
+   "sheet": 3,
+   "places": [
+    "V-GATE",
+    "F-BERRY",
+    "F-YARD"
+   ]
+  },
+  {
+   "id": "VS04",
+   "name": "물가와 작업 구역",
+   "sheet": 3,
+   "places": [
+    "F-WATER",
+    "F-UP",
+    "C-MOUTH"
+   ]
+  },
+  {
+   "id": "VS05",
+   "name": "도면의 빈 곳",
+   "sheet": 4,
+   "places": [
+    "C-ICE",
+    "C-DESK",
+    "C-GUARD"
+   ]
+  },
+  {
+   "id": "VS06",
+   "name": "곰이 물러서려는 자리",
+   "sheet": 4,
+   "places": [
+    "C-BEAR",
+    "C-TETHER"
+   ]
+  },
+  {
+   "id": "VS07",
+   "name": "한 발 더",
+   "sheet": 4,
+   "places": [
+    "C-BEAR",
+    "C-TETHER",
+    "C-WHEEL"
+   ]
+  },
+  {
+   "id": "VS08",
+   "name": "첫 물은 이쪽으로",
+   "sheet": 4,
+   "places": [
+    "C-WHEEL",
+    "C-POOL"
+   ]
+  },
+  {
+   "id": "VS09",
+   "name": "내려가는 길",
+   "sheet": 3,
+   "places": [
+    "C-MOUTH",
+    "F-WATER",
+    "F-YARD",
+    "V-GATE"
+   ]
+  },
+  {
+   "id": "VS10",
+   "name": "이건 내가 볼게",
+   "sheet": 2,
+   "places": [
+    "V-WATER",
+    "V-STORE"
+   ]
+  },
+  {
+   "id": "VS11",
+   "name": "종이 두 벌",
+   "sheet": 2,
+   "places": [
+    "V-BENCH",
+    "V-TABLE"
+   ]
+  },
+  {
+   "id": "VS12",
+   "name": "내 짐 하나",
+   "sheet": 2,
+   "places": [
+    "V-BOARD"
+   ]
+  },
+  {
+   "id": "TR01",
+   "name": "첫 기항",
+   "sheet": 5,
+   "places": [
+    "T-LAND",
+    "A01"
+   ]
+  },
+  {
+   "id": "TR02",
+   "name": "인수를 멈춘 부두",
+   "sheet": 5,
+   "places": [
+    "A01",
+    "T-CHECK",
+    "T-USED"
+   ]
+  },
+  {
+   "id": "TR03",
+   "name": "낮은 길 조사와 높은 길 귀환",
+   "sheet": 5,
+   "places": [
+    "A03",
+    "A10",
+    "A07",
+    "A08",
+    "A09",
+    "A04"
+   ]
+  },
+  {
+   "id": "TR04",
+   "name": "두 경로의 화물 인수",
+   "sheet": 5,
+   "places": [
+    "A01",
+    "T-GOOD",
+    "T-USED",
+    "T-CHECK"
+   ]
+  },
+  {
+   "id": "TR05",
+   "name": "린의 배에 오르는 날",
+   "sheet": 5,
+   "places": [
+    "T-LOAD",
+    "T-LAND"
+   ]
+  },
+  {
+   "id": "TR06",
+   "name": "견인 수레에 끌리는 작업자",
+   "sheet": 6,
+   "places": [
+    "B01",
+    "RC1",
+    "R-LOAD"
+   ]
+  },
+  {
+   "id": "TR07",
+   "name": "조합에서 펼치는 두 기록",
+   "sheet": 6,
+   "places": [
+    "B02",
+    "R-GUILD"
+   ]
+  },
+  {
+   "id": "TR08",
+   "name": "나루에 머물거나 공방에 들르기",
+   "sheet": 6,
+   "places": [
+    "R-LOAD",
+    "R-SMITH",
+    "B02"
+   ]
+  },
+  {
+   "id": "TR09",
+   "name": "두 접근로와 계단 붕괴",
+   "sheet": 7,
+   "places": [
+    "B03",
+    "B04",
+    "B05",
+    "B06",
+    "B07"
+   ]
+  },
+  {
+   "id": "TR10",
+   "name": "서리가 멎고 승강기도 멎는다",
+   "sheet": 8,
+   "places": [
+    "B07",
+    "B08",
+    "R-LIFT"
+   ]
+  },
+  {
+   "id": "TR11",
+   "name": "들것 앞의 군체와 철근지기",
+   "sheet": 8,
+   "places": [
+    "B08",
+    "R-GRID",
+    "B07",
+    "B12",
+    "B09",
+    "RC2",
+    "B10",
+    "R-MOOR"
+   ]
+  },
+  {
+   "id": "TR12",
+   "name": "배를 보내고 돌아온 나루",
+   "sheet": 6,
+   "places": [
+    "B10",
+    "B11",
+    "B01",
+    "B02",
+    "R-GUILD"
+   ]
+  }
+ ],
+ "sheets": {
+  "01": {
+   "file": "01-river.svg",
+   "name": "테른 강 항로",
+   "subtitle": "벨레스 출항 · 타르넬 기항 · 로덴 북나루와 구조선",
+   "panels": [
+    {
+     "title": "두 항로와 일곱 상세 범위",
+     "frame": "I",
+     "bounds": [
+      105,
+      90,
+      156,
+      151
+     ],
+     "bar": 10,
+     "features": [
+      "i-river",
+      "i-vt",
+      "i-tr",
+      "ext2",
+      "ext3",
+      "ext4",
+      "ext5",
+      "ext6",
+      "ext7",
+      "ext8",
+      "i-V-BOARD",
+      "i-T-LAND",
+      "i-R-QUAY",
+      "i-R-MOOR",
+      "I-V",
+      "I-T",
+      "I-R"
+     ],
+     "labels": {
+      "I-V": "벨레스  02–04",
+      "I-T": "타르넬  05",
+      "I-R": "로덴  06–08"
+     },
+     "notes": [
+      "V01 벨레스 (150,145) km",
+      "T01 타르넬 (137,125) km",
+      "M02 로덴 (110,95) km",
+      "상류의 기존 굽이를 따라 두 항로를 이었다.",
+      "직사각형은 각 상세도의 첫 평면 범위다."
+     ],
+     "legend": [
+      "river",
+      "walk",
+      "back",
+      "extent"
+     ],
+     "section": false
+    },
+    {
+     "title": "벨레스 출항",
+     "frame": "I",
+     "bounds": [
+      149.5,
+      144.75,
+      150.75,
+      146.47
+     ],
+     "bar": 0.25,
+     "features": [
+      "i-river",
+      "i-vt",
+      "i-tr",
+      "I-V",
+      "ext2",
+      "ext3",
+      "ext4",
+      "i-V-BOARD"
+     ],
+     "labels": {
+      "I-V": "정착지 기준점",
+      "i-V-BOARD": "승선판 육지 끝",
+      "ext2": "2 범위",
+      "ext3": "3 범위",
+      "ext4": "4 범위"
+     },
+     "notes": [
+      "접안점은 상세도에서 승선판·부두를 따라 확인한다.",
+      "UE 로컬을 기존 투영 원점에 대조한 근사 위치."
+     ],
+     "legend": [
+      "extent",
+      "point"
+     ],
+     "section": false
+    },
+    {
+     "title": "타르넬 기항",
+     "frame": "I",
+     "bounds": [
+      136.1,
+      123.1,
+      138.7,
+      125.5
+     ],
+     "bar": 0.25,
+     "features": [
+      "i-river",
+      "i-vt",
+      "i-tr",
+      "I-T",
+      "ext5",
+      "i-T-LAND"
+     ],
+     "labels": {
+      "I-T": "정착지 기준점",
+      "i-T-LAND": "나룻배 접안",
+      "ext5": "5 범위"
+     },
+     "notes": [
+      "접안점은 상세도에서 승선판·부두를 따라 확인한다.",
+      "정착지 중심과 하역 마당 A01, 접안점을 구분한다."
+     ],
+     "legend": [
+      "extent",
+      "point"
+     ],
+     "section": false
+    },
+    {
+     "title": "로덴 입항과 구조선",
+     "frame": "I",
+     "bounds": [
+      108.7,
+      94.8,
+      111,
+      96.65
+     ],
+     "bar": 0.25,
+     "features": [
+      "i-river",
+      "i-vt",
+      "i-tr",
+      "I-R",
+      "ext6",
+      "ext7",
+      "ext8",
+      "i-R-QUAY",
+      "i-R-MOOR"
+     ],
+     "labels": {
+      "I-R": "정착지 기준점",
+      "i-R-QUAY": "화물 접안",
+      "i-R-MOOR": "구조선 접안",
+      "ext6": "6 범위",
+      "ext7": "7 범위",
+      "ext8": "8 범위"
+     },
+     "notes": [
+      "접안점은 상세도에서 승선판·부두를 따라 확인한다.",
+      "북나루와 부상자를 태우는 선착장은 다른 곳이다."
+     ],
+     "legend": [
+      "extent",
+      "point"
+     ],
+     "section": false
+    }
+   ]
+  },
+  "02": {
+   "file": "02-village.svg",
+   "name": "벨레스 마을과 출항 나루",
+   "subtitle": "수리 공방과 급수대에서 숲문·짐배까지",
+   "panels": [
+    {
+     "title": "마을 골목과 숲문",
+     "frame": "V",
+     "bounds": [
+      -123,
+      -25,
+      128,
+      227
+     ],
+     "bar": 25,
+     "features": [
+      "house-workshop",
+      "opening-workshop1",
+      "opening-workshop4",
+      "house-RepairWing",
+      "opening-RepairWing1",
+      "opening-RepairWing4",
+      "house-QuayHouse",
+      "opening-QuayHouse1",
+      "opening-QuayHouse4",
+      "house-Boatwright",
+      "opening-Boatwright1",
+      "opening-Boatwright4",
+      "house-WaterHouse",
+      "opening-WaterHouse1",
+      "opening-WaterHouse4",
+      "house-SouthGable",
+      "opening-SouthGable1",
+      "opening-SouthGable4",
+      "house-OrchardHouse",
+      "opening-OrchardHouse1",
+      "opening-OrchardHouse4",
+      "house-Baker",
+      "opening-Baker1",
+      "opening-Baker4",
+      "house-Dyer",
+      "opening-Dyer1",
+      "opening-Dyer4",
+      "house-MarketHouse",
+      "opening-MarketHouse1",
+      "opening-MarketHouse4",
+      "house-WestGable",
+      "opening-WestGable1",
+      "opening-WestGable4",
+      "house-MarketWeaver",
+      "opening-MarketWeaver1",
+      "opening-MarketWeaver4",
+      "house-Leatherworker",
+      "opening-Leatherworker1",
+      "opening-Leatherworker4",
+      "house-YardHouse",
+      "opening-YardHouse1",
+      "opening-YardHouse4",
+      "house-CommonHouse",
+      "opening-CommonHouse1",
+      "opening-CommonHouse4",
+      "house-UpperCommon",
+      "opening-UpperCommon1",
+      "opening-UpperCommon4",
+      "house-Fletcher",
+      "opening-Fletcher1",
+      "opening-Fletcher4",
+      "house-SmithsNeighbor",
+      "opening-SmithsNeighbor1",
+      "opening-SmithsNeighbor4",
+      "house-GardenGable",
+      "opening-GardenGable1",
+      "opening-GardenGable4",
+      "house-CiderHouse",
+      "opening-CiderHouse1",
+      "opening-CiderHouse4",
+      "house-NorthLodge",
+      "opening-NorthLodge1",
+      "opening-NorthLodge4",
+      "house-Shepherd",
+      "opening-Shepherd1",
+      "opening-Shepherd4",
+      "house-WheelHouse",
+      "opening-WheelHouse1",
+      "opening-WheelHouse4",
+      "house-HighCroft",
+      "opening-HighCroft1",
+      "opening-HighCroft4",
+      "house-UpperYard",
+      "opening-UpperYard1",
+      "opening-UpperYard4",
+      "house-PairA",
+      "opening-PairA1",
+      "opening-PairA4",
+      "house-PairB",
+      "opening-PairB1",
+      "opening-PairB4",
+      "house-MillerHouse",
+      "opening-MillerHouse1",
+      "opening-MillerHouse4",
+      "house-Herder",
+      "opening-Herder1",
+      "opening-Herder4",
+      "house-BeeYard",
+      "opening-BeeYard1",
+      "opening-BeeYard4",
+      "house-Woodcutter",
+      "opening-Woodcutter1",
+      "opening-Woodcutter4",
+      "house-NorthCottage",
+      "opening-NorthCottage1",
+      "opening-NorthCottage4",
+      "house-ForestersLodge",
+      "opening-ForestersLodge1",
+      "opening-ForestersLodge4",
+      "house-TwinStoreA",
+      "opening-TwinStoreA1",
+      "opening-TwinStoreA4",
+      "house-TwinStoreB",
+      "opening-TwinStoreB1",
+      "opening-TwinStoreB4",
+      "plot0",
+      "plot1",
+      "plot2",
+      "plot3",
+      "plot4",
+      "plot5",
+      "lane0",
+      "lane1",
+      "lane2",
+      "lane3",
+      "lane4",
+      "lane5",
+      "lane6",
+      "lane7",
+      "lane8",
+      "lane9",
+      "lane10",
+      "lane11",
+      "v-river",
+      "v-out",
+      "v-return",
+      "v-carrier",
+      "v-pier",
+      "v-plank",
+      "v-boat",
+      "V-BENCH",
+      "V-WATER",
+      "V-TABLE",
+      "V-BOARD",
+      "V-GATE",
+      "V-FIELD",
+      "V-STORE",
+      "V-HOME"
+     ],
+     "labels": {
+      "V-BENCH": "수리 공방",
+      "V-WATER": "공동 급수대",
+      "V-TABLE": "참나무 공동 식탁",
+      "V-BOARD": "승선판 육지 끝",
+      "V-GATE": "숲문",
+      "V-FIELD": "경작지",
+      "V-STORE": "저장고",
+      "V-HOME": "주거지"
+     },
+     "notes": [
+      "북쪽 숲문은 황금안개숲 동서 갈림길로 이어진다.",
+      "작은 빈 원은 건물 출입구. 경작지는 동쪽 강변.",
+      "저장고·주거지 대화는 해당 건물 앞 배치 후보다."
+     ],
+     "legend": [
+      "building",
+      "entrance",
+      "wood",
+      "walk",
+      "back",
+      "haul"
+     ],
+     "section": false,
+     "height_ref": "UE 월드 Z · 평면"
+    },
+    {
+     "title": "급수대와 승선판",
+     "frame": "V",
+     "bounds": [
+      -33,
+      -2,
+      35,
+      108
+     ],
+     "bar": 10,
+     "features": [
+      "house-workshop",
+      "opening-workshop1",
+      "opening-workshop4",
+      "house-RepairWing",
+      "opening-RepairWing1",
+      "opening-RepairWing4",
+      "house-QuayHouse",
+      "opening-QuayHouse1",
+      "opening-QuayHouse4",
+      "house-Boatwright",
+      "opening-Boatwright1",
+      "opening-Boatwright4",
+      "house-WaterHouse",
+      "opening-WaterHouse1",
+      "opening-WaterHouse4",
+      "house-SouthGable",
+      "opening-SouthGable1",
+      "opening-SouthGable4",
+      "house-OrchardHouse",
+      "opening-OrchardHouse1",
+      "opening-OrchardHouse4",
+      "house-Baker",
+      "opening-Baker1",
+      "opening-Baker4",
+      "house-Dyer",
+      "opening-Dyer1",
+      "opening-Dyer4",
+      "house-MarketHouse",
+      "opening-MarketHouse1",
+      "opening-MarketHouse4",
+      "house-WestGable",
+      "opening-WestGable1",
+      "opening-WestGable4",
+      "house-MarketWeaver",
+      "opening-MarketWeaver1",
+      "opening-MarketWeaver4",
+      "house-Leatherworker",
+      "opening-Leatherworker1",
+      "opening-Leatherworker4",
+      "house-YardHouse",
+      "opening-YardHouse1",
+      "opening-YardHouse4",
+      "house-CommonHouse",
+      "opening-CommonHouse1",
+      "opening-CommonHouse4",
+      "house-UpperCommon",
+      "opening-UpperCommon1",
+      "opening-UpperCommon4",
+      "house-Fletcher",
+      "opening-Fletcher1",
+      "opening-Fletcher4",
+      "house-SmithsNeighbor",
+      "opening-SmithsNeighbor1",
+      "opening-SmithsNeighbor4",
+      "house-GardenGable",
+      "opening-GardenGable1",
+      "opening-GardenGable4",
+      "house-CiderHouse",
+      "opening-CiderHouse1",
+      "opening-CiderHouse4",
+      "house-NorthLodge",
+      "opening-NorthLodge1",
+      "opening-NorthLodge4",
+      "house-Shepherd",
+      "opening-Shepherd1",
+      "opening-Shepherd4",
+      "house-WheelHouse",
+      "opening-WheelHouse1",
+      "opening-WheelHouse4",
+      "house-HighCroft",
+      "opening-HighCroft1",
+      "opening-HighCroft4",
+      "house-UpperYard",
+      "opening-UpperYard1",
+      "opening-UpperYard4",
+      "house-PairA",
+      "opening-PairA1",
+      "opening-PairA4",
+      "house-PairB",
+      "opening-PairB1",
+      "opening-PairB4",
+      "house-MillerHouse",
+      "opening-MillerHouse1",
+      "opening-MillerHouse4",
+      "house-Herder",
+      "opening-Herder1",
+      "opening-Herder4",
+      "house-BeeYard",
+      "opening-BeeYard1",
+      "opening-BeeYard4",
+      "house-Woodcutter",
+      "opening-Woodcutter1",
+      "opening-Woodcutter4",
+      "house-NorthCottage",
+      "opening-NorthCottage1",
+      "opening-NorthCottage4",
+      "house-ForestersLodge",
+      "opening-ForestersLodge1",
+      "opening-ForestersLodge4",
+      "house-TwinStoreA",
+      "opening-TwinStoreA1",
+      "opening-TwinStoreA4",
+      "house-TwinStoreB",
+      "opening-TwinStoreB1",
+      "opening-TwinStoreB4",
+      "plot0",
+      "plot1",
+      "plot2",
+      "plot3",
+      "plot4",
+      "plot5",
+      "lane0",
+      "lane1",
+      "lane2",
+      "lane3",
+      "lane4",
+      "lane5",
+      "lane6",
+      "lane7",
+      "lane8",
+      "lane9",
+      "lane10",
+      "lane11",
+      "v-river",
+      "v-pier",
+      "v-plank",
+      "v-boat",
+      "v-cargo",
+      "v-carrier",
+      "V-BOARD",
+      "V-WATER",
+      "V-TABLE"
+     ],
+     "labels": {
+      "V-BOARD": "승선판 육지 끝",
+      "V-WATER": "공동 급수대",
+      "V-TABLE": "참나무 공동 식탁",
+      "v-boat": "짐배",
+      "v-cargo": "화물 운반"
+     },
+     "notes": [
+      "급수대는 마을 안쪽, 비상 운반은 나루에서 시작.",
+      "선적할 짐은 잔교 옆에 두고 승선판을 비운다.",
+      "숲에서 돌아온 뒤 하류 급수를 확인하고 출항한다."
+     ],
+     "legend": [
+      "water",
+      "facility",
+      "haul",
+      "back"
+     ],
+     "section": false,
+     "height_ref": "UE 월드 Z · 평면"
+    },
+    {
+     "title": "기존 도안과 UE 배치 대응점",
+     "frame": "V",
+     "bounds": [
+      -113,
+      -20,
+      130,
+      298
+     ],
+     "bar": 25,
+     "features": [
+      "V-BENCH",
+      "V-WATER",
+      "V-GATE",
+      "V-BOARD",
+      "draft-workshop",
+      "draft-water_point",
+      "draft-forest_gate",
+      "draft-quay"
+     ],
+     "labels": {
+      "V-BENCH": "수리 공방",
+      "V-WATER": "공동 급수대",
+      "V-GATE": "숲문",
+      "V-BOARD": "승선판 육지 끝",
+      "draft-workshop": "수리 공방 원도",
+      "draft-water_point": "공동 급수대 원도",
+      "draft-forest_gate": "숲문 원도",
+      "draft-quay": "승선판 육지 끝 원도"
+     },
+     "notes": [
+      "십자 표시는 기존 도안, 짙은 점은 UE 기능 대응점.",
+      "숲문은 (+90,+260)에서 (−80,+205)로 달라졌다.",
+      "위치 차이를 마을 전체에 일괄 적용하지 않는다."
+     ],
+     "legend": [
+      "reference",
+      "point"
+     ],
+     "section": false
+    }
+   ]
+  },
+  "03": {
+   "file": "03-forest.svg",
+   "name": "황금안개숲",
+   "subtitle": "동서 갈림길과 상류 수원 · 생활권을 겹쳐 읽는 도면",
+   "panels": [
+    {
+     "title": "동쪽 진입과 서쪽 귀환",
+     "frame": "V",
+     "bounds": [
+      -390,
+      150,
+      650,
+      1350
+     ],
+     "bar": 100,
+     "features": [
+      "f-water0",
+      "f-water1",
+      "f-east",
+      "f-west",
+      "f-up",
+      "V-GATE",
+      "F-BERRY",
+      "F-YARD",
+      "F-WATER",
+      "F-UP",
+      "C-MOUTH",
+      "draft-cave"
+     ],
+     "labels": {
+      "V-GATE": "숲문",
+      "F-BERRY": "동쪽 열매숲",
+      "F-YARD": "서쪽 원목 작업장",
+      "F-WATER": "수로 작업림",
+      "F-UP": "상류 물가",
+      "C-MOUTH": "취수구 바깥 문턱",
+      "draft-cave": "도안 입구"
+     },
+     "notes": [
+      "동쪽 열매숲과 서쪽 원목 작업장은 수로에서 만난다.",
+      "개울을 거슬러 취수구 바깥 문턱에 도착한다.",
+      "상류에서는 같은 물길을 따라 내려와 서쪽으로 복귀.",
+      "실선은 통합 UE 왕복 검증의 목표 경로다."
+     ],
+     "legend": [
+      "walk",
+      "back",
+      "stream",
+      "reference"
+     ],
+     "section": false,
+     "height_ref": "UE 월드 Z · 평면"
+    },
+    {
+     "title": "고블린 거점과 야생동물",
+     "frame": "V",
+     "bounds": [
+      -390,
+      150,
+      650,
+      1350
+     ],
+     "bar": 100,
+     "features": [
+      "f-water0",
+      "f-water1",
+      "f-east",
+      "f-west",
+      "f-up",
+      "G01-area",
+      "G01-limit",
+      "G01",
+      "G02-area",
+      "G02-limit",
+      "G02",
+      "G03-area",
+      "G03-limit",
+      "G03",
+      "G04-area",
+      "G04-limit",
+      "G04",
+      "W01-area",
+      "W01-limit",
+      "W01",
+      "W02-area",
+      "W02-limit",
+      "W02",
+      "W03-area",
+      "W03-limit",
+      "W03",
+      "GB01-area",
+      "GB01",
+      "GB02-area",
+      "GB02",
+      "GB03-area",
+      "GB03",
+      "GB04-area",
+      "GB04",
+      "GB05",
+      "A-SQ1",
+      "A-SQ2",
+      "A-SQ3",
+      "A-BD1",
+      "A-BD2",
+      "A-BD3",
+      "A-BD4",
+      "A-RB1",
+      "A-RB2",
+      "A-RB3",
+      "A-DR1",
+      "A-DR2",
+      "A-DR3"
+     ],
+     "labels": {
+      "G01": "G01",
+      "G02": "G02",
+      "G03": "G03",
+      "G04": "G04",
+      "W01": "W01",
+      "W02": "W02",
+      "W03": "W03",
+      "GB01": "GB01",
+      "GB02": "GB02",
+      "GB03": "GB03",
+      "GB04": "GB04",
+      "GB05": "GB05 운반조",
+      "A-SQ1": "다람쥐",
+      "A-BD1": "새",
+      "A-RB1": "토끼",
+      "A-DR1": "사슴"
+     },
+     "notes": [
+      "GB01 동쪽 주둔지 · GB04 서쪽 폐자재 거점.",
+      "거점·활동조 12명과 운반조 2명, 총 14명.",
+      "늑대 10마리, 야외 파수꾼 5기.",
+      "동물 점은 관찰 위치. 종 이름은 점에 마우스를 올려 확인.",
+      "기존 생태 좌표와 UE 길의 중첩은 배치 검토용이다."
+     ],
+     "legend": [
+      "camp",
+      "animal",
+      "wildlife",
+      "patrol",
+      "range",
+      "limit"
+     ],
+     "section": false,
+     "height_ref": "UE 월드 Z · 평면"
+    }
+   ]
+  },
+  "04": {
+   "file": "04-cave.svg",
+   "name": "수원 동굴",
+   "subtitle": "취수구와 지하 작업실, 바르툴 공동의 평면·단면",
+   "panels": [
+    {
+     "title": "취수구부터 수원 공동까지",
+     "frame": "V",
+     "bounds": [
+      240,
+      1242,
+      300,
+      1352
+     ],
+     "bar": 10,
+     "features": [
+      "c-floor",
+      "c-pool",
+      "c-route",
+      "c-tether",
+      "c-ramp",
+      "c-flow",
+      "C-MOUTH",
+      "C-ICE",
+      "C-DESK",
+      "C-GUARD",
+      "C-BEAR",
+      "C-WHEEL",
+      "C-TETHER",
+      "C-POOL"
+     ],
+     "labels": {
+      "C-MOUTH": "취수구 바깥 문턱",
+      "C-ICE": "얼어붙은 취수구",
+      "C-DESK": "장인의 도면 책상",
+      "C-GUARD": "실내 파수꾼",
+      "C-BEAR": "바르툴",
+      "C-WHEEL": "조작단",
+      "C-TETHER": "결박 고정부",
+      "C-POOL": "수원"
+     },
+     "notes": [
+      "문턱에서 지하 작업실을 지나 공동으로 내려간다.",
+      "작업실에서 서류와 파수꾼 위치를 확인한다.",
+      "송수선은 장면에서 필요한 흐름을 표시한 후보다."
+     ],
+     "legend": [
+      "rock",
+      "walk",
+      "stream",
+      "barrier"
+     ],
+     "section": false
+    },
+    {
+     "title": "바르툴과 조작단",
+     "frame": "V",
+     "bounds": [
+      252,
+      1308,
+      289,
+      1339
+     ],
+     "bar": 5,
+     "features": [
+      "c-floor",
+      "c-pool",
+      "c-route",
+      "c-tether",
+      "c-ramp",
+      "c-flow",
+      "C-BEAR",
+      "C-TETHER",
+      "C-WHEEL",
+      "C-POOL"
+     ],
+     "labels": {
+      "C-BEAR": "바르툴",
+      "C-TETHER": "결박 고정부",
+      "C-WHEEL": "조작단",
+      "C-POOL": "수원"
+     },
+     "notes": [
+      "곰의 앞다리·가슴에서 바닥 고정부로 결박이 이어진다.",
+      "조작단은 경사를 통해 접근한다. 수원은 반대편.",
+      "곰이 물러난 뒤 조작부를 확인하고 송수를 재개한다."
+     ],
+     "legend": [
+      "barrier",
+      "detour",
+      "water"
+     ],
+     "section": false
+    },
+    {
+     "title": "종단면 · 문턱에서 안쪽으로",
+     "frame": "SECTION",
+     "bounds": [
+      -5,
+      -8,
+      102,
+      18
+     ],
+     "bar": 10,
+     "features": [
+      "roof-profile",
+      "floor-profile",
+      "S0",
+      "S1",
+      "S2",
+      "S3"
+     ],
+     "labels": {
+      "S0": "문턱",
+      "S1": "작업실",
+      "S2": "바르툴 공동",
+      "S3": "수원 끝"
+     },
+     "notes": [
+      "가로는 문턱에서 북쪽으로 잰 거리(m).",
+      "세로는 문턱 중앙 바닥 대비 높이(m).",
+      "천장·바닥은 중심선을 따라 추출한 형상이다."
+     ],
+     "legend": [
+      "profile"
+     ],
+     "section": true
+    }
+   ]
+  },
+  "05": {
+   "file": "05-tarnel.svg",
+   "name": "타르넬 나루와 하류 회수길",
+   "subtitle": "부두 체류·낮은 여울길 조사·높은 운반길 귀환",
+   "panels": [
+    {
+     "title": "하류 생활권과 왕복 경로",
+     "frame": "T",
+     "bounds": [
+      -700,
+      -1710,
+      1500,
+      290
+     ],
+     "bar": 250,
+     "features": [
+      "T-wood",
+      "T-stream",
+      "T-river",
+      "t-out",
+      "t-back",
+      "t-optional",
+      "TG1",
+      "TG1-move",
+      "TG2",
+      "TG2-move",
+      "TW1",
+      "TW2",
+      "TS1",
+      "TC1",
+      "TL1",
+      "A01",
+      "A02",
+      "A03",
+      "A04",
+      "A05",
+      "A06",
+      "A07",
+      "A08",
+      "A09",
+      "A10"
+     ],
+     "labels": {
+      "A01": "A01 공동 나루",
+      "A02": "A02 목재 검사길",
+      "A03": "A03 샛개울 다리",
+      "A04": "A04 옛 적재장",
+      "A05": "A05 수액 숲",
+      "A06": "A06 적토 저장굴",
+      "A07": "A07 어살·여울 관찰턱",
+      "A08": "A08 하류 쉼나루",
+      "A09": "A09 높은 운반길",
+      "A10": "A10 숲길 갈림턱",
+      "TG1": "TG1",
+      "TG2": "TG2",
+      "TW1": "TW1",
+      "TW2": "TW2",
+      "TS1": "TS1",
+      "TC1": "TC1",
+      "TL1": "TL1"
+     },
+     "notes": [
+      "A01 → A02 → A03 → A10 → A07 → A08.",
+      "높은 길은 A08 → A09 → A04 → A02로 복귀.",
+      "중도 귀환은 도달한 지점에서 온 길을 되짚는다.",
+      "7개 생활 단위 · 21개체. 어살은 물가 먹이터다."
+     ],
+     "legend": [
+      "walk",
+      "back",
+      "detour",
+      "home",
+      "feeding",
+      "patrol"
+     ],
+     "section": false
+    },
+    {
+     "title": "공동 나루의 화물 인수",
+     "frame": "T",
+     "bounds": [
+      111,
+      36,
+      413,
+      146
+     ],
+     "bar": 25,
+     "features": [
+      "T-river",
+      "t-shed",
+      "t-hall",
+      "t-good",
+      "t-used",
+      "t-load",
+      "t-loadway",
+      "t-dockwalk",
+      "t-separate",
+      "T-LAND",
+      "T-GOOD",
+      "T-USED",
+      "T-LOAD",
+      "T-CHECK",
+      "A01",
+      "T-WH-IN",
+      "T-HALL-IN",
+      "TG-END",
+      "T-LAND-water"
+     ],
+     "labels": {
+      "T-LAND": "나룻배 접안",
+      "T-GOOD": "검수품",
+      "T-USED": "회수목",
+      "T-LOAD": "선적 대기",
+      "T-CHECK": "검수대",
+      "A01": "공동 나루",
+      "T-WH-IN": "창고 입구",
+      "T-HALL-IN": "공동회 입구",
+      "TG-END": "경비선"
+     },
+     "notes": [
+      "접안 → 검수대 → 선적 대기 → 승선 순서.",
+      "회수목은 정상 검수품과 별도 더미에 둔다.",
+      "부두에 남으면 하류 원인에 대한 증언은 없다.",
+      "청록색 면은 접안 위치에 맞춘 강안 후보다."
+     ],
+     "legend": [
+      "facility",
+      "walk",
+      "haul",
+      "detour",
+      "closed"
+     ],
+     "section": false
+    }
+   ]
+  },
+  "06": {
+   "file": "06-roden-quay.svg",
+   "name": "로덴 북나루와 장인 조합",
+   "subtitle": "첫 구조, 선택 방문, 구조를 마친 뒤 같은 나루로 돌아오는 길",
+   "panels": [
+    {
+     "title": "하역장부터 작업구까지",
+     "frame": "R",
+     "bounds": [
+      -790,
+      -30,
+      790,
+      857
+     ],
+     "bar": 100,
+     "features": [
+      "R-river",
+      "levee",
+      "B01",
+      "B02",
+      "B03",
+      "B10",
+      "B11",
+      "R-QUAY",
+      "R-MOOR",
+      "r-pier-link",
+      "r-publicwalk"
+     ],
+     "labels": {
+      "B01": "B01 공공 나루",
+      "B02": "B02 조합·주거단",
+      "B03": "B03 작업구 입구",
+      "B10": "B10 열린 구조 선착장",
+      "B11": "B11 제방 귀환길"
+     },
+     "notes": [
+      "B01에서 견인 수레가 멈춘다.",
+      "조합에 기록을 건네고 B03에서 점검조와 만난다.",
+      "부상자의 배가 떠난 뒤 B10 → B11 → B01.",
+      "사람들은 수레가 섰던 자리로 짐을 나른다."
+     ],
+     "legend": [
+      "walk",
+      "back",
+      "haul"
+     ],
+     "section": false
+    },
+    {
+     "title": "북나루 하역 마당",
+     "frame": "R",
+     "bounds": [
+      13,
+      66,
+      125,
+      125
+     ],
+     "bar": 10,
+     "features": [
+      "R-river",
+      "r-store",
+      "r-unload",
+      "R-QUAY",
+      "R-LOAD",
+      "RC1",
+      "B01",
+      "R-QUAY-water"
+     ],
+     "labels": {
+      "R-QUAY": "화물 접안",
+      "R-LOAD": "하역 대기",
+      "RC1": "견인 수레"
+     },
+     "notes": [
+      "하역 마당의 중심 B01과 접안점이 떨어져 있다.",
+      "RC1은 일회성 견인 수레 한 기.",
+      "하역 대기 자리를 비워 작업자를 빼낸다.",
+      "청록색 면은 접안 위치에 맞춘 강안 후보다."
+     ],
+     "legend": [
+      "machine",
+      "building",
+      "haul"
+     ],
+     "section": false
+    },
+    {
+     "title": "조합·공방·배분소",
+     "frame": "R",
+     "bounds": [
+      -668,
+      366,
+      -550,
+      455
+     ],
+     "bar": 10,
+     "features": [
+      "r-guild-hall",
+      "r-smith",
+      "r-housing",
+      "r-supply",
+      "r-local",
+      "r-visit",
+      "R-GUILD",
+      "R-SMITH",
+      "R-HALL-IN",
+      "R-SHOP-IN",
+      "B02"
+     ],
+     "labels": {
+      "R-GUILD": "조합 작업대",
+      "R-SMITH": "견인 장비 공방",
+      "R-HALL-IN": "조합 출입구",
+      "R-SHOP-IN": "공방 출입구",
+      "r-supply": "급수·보온 배분소",
+      "r-housing": "주거동"
+     },
+     "notes": [
+      "조합 작업대에서 두 기록을 펼친다.",
+      "공방을 방문하거나 나루로 돌아갈 수 있다.",
+      "구조 뒤에는 비축분을 급수와 보온에 쓴다."
+     ],
+     "legend": [
+      "building",
+      "detour"
+     ],
+     "section": false
+    }
+   ]
+  },
+  "07": {
+   "file": "07-roden-approach.svg",
+   "name": "로덴 조사 접근로",
+   "subtitle": "작업구에서 차단함까지 · 배수굴과 견인 작업로",
+   "panels": [
+    {
+     "title": "외곽 생활권과 두 접근로",
+     "frame": "R",
+     "bounds": [
+      -1110,
+      450,
+      610,
+      1480
+     ],
+     "bar": 200,
+     "features": [
+      "R-wood",
+      "R-river",
+      "drain",
+      "cartway",
+      "stairs",
+      "exit",
+      "RG1",
+      "RG1-move",
+      "RK1",
+      "RK2",
+      "RU1",
+      "RU2",
+      "RU2-move",
+      "RS1",
+      "RL1",
+      "RO1",
+      "B03",
+      "B04",
+      "B05",
+      "B06",
+      "B07",
+      "B12",
+      "RG-END"
+     ],
+     "labels": {
+      "B03": "B03 작업구 입구",
+      "B04": "B04 바깥 목재길",
+      "B05": "B05 배수굴 마른 턱",
+      "B06": "B06 배관 정비뜰",
+      "B07": "B07 차단함·외곽길",
+      "B12": "B12 외곽 우회단",
+      "RG1": "RG1",
+      "RK1": "RK1",
+      "RK2": "RK2",
+      "RU1": "RU1",
+      "RU2": "RU2",
+      "RS1": "RS1",
+      "RL1": "RL1",
+      "RO1": "RO1",
+      "RG-END": "회수조 경계",
+      "RU2-move": "RU2 차단 뒤 이동"
+     },
+     "notes": [
+      "B03 → B04 → B05 → B06은 배수굴 경유.",
+      "B03 → B06은 폭 8 m 견인 작업로.",
+      "부식 계단 위 B07에 닿은 뒤 계단이 무너진다.",
+      "8개 생활 단위 · 24개체. 구조체 2기는 별도."
+     ],
+     "legend": [
+      "home",
+      "feeding",
+      "patrol",
+      "walk",
+      "detour"
+     ],
+     "section": false
+    },
+    {
+     "title": "배수굴 마른 턱",
+     "frame": "R",
+     "bounds": [
+      -122,
+      934,
+      -79,
+      963
+     ],
+     "bar": 5,
+     "features": [
+      "r-drain-floor",
+      "r-drain-water",
+      "r-shelf",
+      "r-alarm",
+      "r-shelf-route",
+      "R-DRAIN-IN",
+      "B05",
+      "R-DRAIN-OUT",
+      "RK-END"
+     ],
+     "labels": {
+      "R-DRAIN-IN": "배수굴 입구",
+      "B05": "배수굴 마른 턱",
+      "R-DRAIN-OUT": "마른 출구",
+      "RK-END": "추격 종료턱"
+     },
+     "notes": [
+      "입구 폭 5 m, 기본 통행 폭 3–4 m.",
+      "낮은 배수 홈을 피해 마른 턱으로 통과한다.",
+      "경보줄 너머로 8 m 출구턱과 철수로가 열린다."
+     ],
+     "legend": [
+      "rock",
+      "stream",
+      "barrier",
+      "walk"
+     ],
+     "section": false
+    },
+    {
+     "title": "정비뜰 접근과 옛 계단",
+     "frame": "R",
+     "bounds": [
+      85,
+      882,
+      128,
+      917
+     ],
+     "bar": 5,
+     "features": [
+      "r-pipe",
+      "r-pipe0",
+      "r-pipe1",
+      "r-wall",
+      "r-pipe-walk",
+      "R-PIPE-IN",
+      "B06",
+      "R-PIPE-OUT"
+     ],
+     "labels": {
+      "R-PIPE-IN": "정비뜰 입구",
+      "B06": "배관 정비뜰",
+      "R-PIPE-OUT": "계단 쪽 출구"
+     },
+     "notes": [
+      "정비 통로 폭 10–14 m.",
+      "두 피복 배관에 붙은 RU1은 뜰 주변에 머문다.",
+      "배관이 겹치는 시선과 낮은 작업벽을 표시했다."
+     ],
+     "legend": [
+      "pipe",
+      "facility",
+      "walk"
+     ],
+     "section": false
+    }
+   ]
+  },
+  "08": {
+   "file": "08-roden-rescue.svg",
+   "name": "로덴 구조와 들것 이송",
+   "subtitle": "같은 지형에서 문·승강기·작업팔의 상태를 비교하는 구조 도면",
+   "panels": [
+    {
+     "title": "점검 진입 · 계단 통행 가능",
+     "frame": "R",
+     "bounds": [
+      -125,
+      484,
+      783,
+      975
+     ],
+     "bar": 100,
+     "features": [
+      "R-river",
+      "r-pad",
+      "r-lip",
+      "r-yard",
+      "r-dock",
+      "r-lift",
+      "r-box",
+      "r-pipe",
+      "r-support1",
+      "r-support2",
+      "R-GATE",
+      "R-LIFT",
+      "R-GRID",
+      "RC2",
+      "B05",
+      "B06",
+      "B07",
+      "B08",
+      "B09",
+      "B10",
+      "B12",
+      "foot",
+      "bypass",
+      "exit",
+      "stairs",
+      "r-lock",
+      "RU2",
+      "R-MOOR-water"
+     ],
+     "labels": {
+      "B06": "B06 배관 정비뜰",
+      "B07": "B07 차단함·외곽길",
+      "B08": "B08 부상자 대기단",
+      "B09": "B09 철근지기 작업뜰",
+      "B10": "B10 열린 구조 선착장",
+      "B12": "B12 외곽 우회단",
+      "R-GATE": "들것 문",
+      "B05": "B05 철수로"
+     },
+     "notes": [
+      "두 접근로가 B06에서 합류한다.",
+      "점검조가 계단을 올라 B07에 도착한다.",
+      "들것 문은 닫혀 있고 승강기는 작동한다.",
+      "높이는 평상시 수면 기준이다."
+     ],
+     "legend": [
+      "walk",
+      "detour",
+      "haul",
+      "closed",
+      "patrol"
+     ],
+     "section": false,
+     "state": "점검 진입"
+    },
+    {
+     "title": "계단 붕괴 직후 · 승강기 작동",
+     "frame": "R",
+     "bounds": [
+      -125,
+      484,
+      783,
+      975
+     ],
+     "bar": 100,
+     "features": [
+      "R-river",
+      "r-pad",
+      "r-lip",
+      "r-yard",
+      "r-dock",
+      "r-lift",
+      "r-box",
+      "r-pipe",
+      "r-support1",
+      "r-support2",
+      "R-GATE",
+      "R-LIFT",
+      "R-GRID",
+      "RC2",
+      "B05",
+      "B06",
+      "B07",
+      "B08",
+      "B09",
+      "B10",
+      "B12",
+      "foot",
+      "bypass",
+      "exit",
+      "r-lock",
+      "RU2",
+      "R-BREAK",
+      "r-cross",
+      "R-MOOR-water"
+     ],
+     "labels": {
+      "B06": "B06 배관 정비뜰",
+      "B07": "B07 차단함·외곽길",
+      "B08": "B08 부상자 대기단",
+      "B09": "B09 철근지기 작업뜰",
+      "B10": "B10 열린 구조 선착장",
+      "B12": "B12 외곽 우회단",
+      "R-GATE": "들것 문",
+      "B05": "B05 철수로",
+      "R-BREAK": "붕괴"
+     },
+     "notes": [
+      "점검조는 B06에서 B07로 오른다.",
+      "계단 붕괴로 부상자가 먼저 생긴다.",
+      "이때 승강기에는 아직 전력이 있다.",
+      "B07 +18 m   B08 +9 m   B09 +6 m",
+      "B10 +3 m · 평상시 수면 기준"
+     ],
+     "legend": [
+      "walk",
+      "detour",
+      "haul",
+      "closed",
+      "patrol"
+     ],
+     "section": false,
+     "state": "계단 붕괴 직후"
+    },
+    {
+     "title": "공급 차단과 보행 우회",
+     "frame": "R",
+     "bounds": [
+      -125,
+      484,
+      783,
+      975
+     ],
+     "bar": 100,
+     "features": [
+      "R-river",
+      "r-pad",
+      "r-lip",
+      "r-yard",
+      "r-dock",
+      "r-lift",
+      "r-box",
+      "r-pipe",
+      "r-support1",
+      "r-support2",
+      "R-GATE",
+      "R-LIFT",
+      "R-GRID",
+      "RC2",
+      "B05",
+      "B06",
+      "B07",
+      "B08",
+      "B09",
+      "B10",
+      "B12",
+      "foot",
+      "bypass",
+      "exit",
+      "r-cross",
+      "r-lock",
+      "RU2",
+      "RU2-move",
+      "R-NICHE",
+      "R-BREAK",
+      "R-MOOR-water"
+     ],
+     "labels": {
+      "B06": "B06 배관 정비뜰",
+      "B07": "B07 차단함·외곽길",
+      "B08": "B08 부상자 대기단",
+      "B09": "B09 철근지기 작업뜰",
+      "B10": "B10 열린 구조 선착장",
+      "B12": "B12 외곽 우회단",
+      "R-GATE": "들것 문",
+      "B05": "B05 철수로",
+      "RU2-move": "RU2 차단 뒤 이동"
+     },
+     "notes": [
+      "차단 뒤 승강기와 점검문이 멎는다.",
+      "B07 → B12 → B09로 우회한다.",
+      "철수는 B07 → B05. 들것은 B08에 남는다.",
+      "B07 +18 m   B08 +9 m   B09 +6 m",
+      "B10 +3 m · 평상시 수면 기준"
+     ],
+     "legend": [
+      "walk",
+      "detour",
+      "haul",
+      "closed",
+      "patrol"
+     ],
+     "section": false,
+     "state": "공급 차단 뒤"
+    },
+    {
+     "title": "문 개방과 선착장 이송",
+     "frame": "R",
+     "bounds": [
+      -125,
+      484,
+      783,
+      975
+     ],
+     "bar": 100,
+     "features": [
+      "R-river",
+      "r-pad",
+      "r-lip",
+      "r-yard",
+      "r-dock",
+      "r-lift",
+      "r-box",
+      "r-pipe",
+      "r-support1",
+      "r-support2",
+      "R-GATE",
+      "R-LIFT",
+      "R-GRID",
+      "RC2",
+      "B05",
+      "B06",
+      "B07",
+      "B08",
+      "B09",
+      "B10",
+      "B12",
+      "r-clear",
+      "foot",
+      "bypass",
+      "exit",
+      "r-cross",
+      "r-stretcher",
+      "r-cordon",
+      "r-pier-link",
+      "R-MOOR",
+      "R-MOOR-water"
+     ],
+     "labels": {
+      "B06": "B06 배관 정비뜰",
+      "B07": "B07 차단함·외곽길",
+      "B08": "B08 부상자 대기단",
+      "B09": "B09 철근지기 작업뜰",
+      "B10": "B10 열린 구조 선착장",
+      "B12": "B12 외곽 우회단",
+      "R-GATE": "들것 문",
+      "B05": "B05 철수로"
+     },
+     "notes": [
+      "군체를 돌턱으로 유인하고 격자를 내린다.",
+      "작업자가 문을 열고 마지막 팔이 멎으면",
+      "B08 → B09 → B10 → 배로 이송한다.",
+      "B07 +18 m   B08 +9 m   B09 +6 m",
+      "B10 +3 m · 평상시 수면 기준"
+     ],
+     "legend": [
+      "walk",
+      "detour",
+      "haul",
+      "closed",
+      "patrol"
+     ],
+     "section": false,
+     "state": "수동 개방·마지막 팔 정지 뒤"
+    },
+    {
+     "title": "대기단과 수동 격자",
+     "frame": "R",
+     "bounds": [
+      341,
+      673,
+      377,
+      707
+     ],
+     "bar": 5,
+     "features": [
+      "r-pad",
+      "r-lip",
+      "r-lift",
+      "r-turnbox",
+      "r-stretcher",
+      "r-cordon",
+      "R-NICHE",
+      "R-TURN",
+      "R-LIFT",
+      "B08",
+      "R-GRID"
+     ],
+     "labels": {
+      "R-NICHE": "군체 유인 돌턱",
+      "R-TURN": "들것 회전 자리",
+      "R-LIFT": "승강기",
+      "R-GRID": "추격 종료 격자",
+      "B08": "부상자 대기단"
+     },
+     "notes": [
+      "12 × 8 m 대기단에서 아래 8 × 6 m 턱으로.",
+      "들것 2.2 m의 꺾임과 작업자의 여유를 본다.",
+      "보행 계단 폭 1.5 m. 들것은 문 쪽으로 돈다."
+     ],
+     "legend": [
+      "haul",
+      "closed",
+      "pad"
+     ],
+     "section": false
+    },
+    {
+     "title": "작업뜰과 문짝의 개방 방향",
+     "frame": "R",
+     "bounds": [
+      377,
+      519,
+      487,
+      600
+     ],
+     "bar": 10,
+     "features": [
+      "r-yard",
+      "r-clear",
+      "r-support1",
+      "r-support2",
+      "r-arm",
+      "r-stretcher",
+      "r-gate-leaf",
+      "R-GATE",
+      "R-LATCH",
+      "R-OUTLET",
+      "RC2"
+     ],
+     "labels": {
+      "R-GATE": "들것 문",
+      "R-LATCH": "수동 빗장",
+      "RC2": "철근지기",
+      "R-OUTLET": "작업뜰 6 m 대피로"
+     },
+     "notes": [
+      "작업뜰 80 × 60 m. 문짝은 뜰 안쪽으로 돈다.",
+      "빗장은 뜰에서 접근한다. 문 폭 후보 3.2 m.",
+      "받침대와 작업팔 남쪽에 6 m 대피로를 둔다.",
+      "통과 조건은 수동 개방과 마지막 팔 정지다."
+     ],
+     "legend": [
+      "swing",
+      "barrier",
+      "haul",
+      "facility"
+     ],
+     "section": false
+    }
+   ]
+  }
+ },
+ "village_layout": {
+  "status": "지도 배치 후보",
+  "frame": "V",
+  "boundary_m": [
+   [
+    -107,
+    163
+   ],
+   [
+    -95,
+    143
+   ],
+   [
+    -83,
+    122
+   ],
+   [
+    -81,
+    61
+   ],
+   [
+    -77,
+    28
+   ],
+   [
+    -61,
+    25
+   ],
+   [
+    -31,
+    22
+   ],
+   [
+    14,
+    18.8
+   ],
+   [
+    47,
+    24
+   ],
+   [
+    59,
+    30
+   ],
+   [
+    58.4,
+    43.5
+   ],
+   [
+    56.4,
+    49.2
+   ],
+   [
+    53,
+    58
+   ],
+   [
+    56,
+    71
+   ],
+   [
+    65,
+    85
+   ],
+   [
+    65,
+    99
+   ],
+   [
+    80,
+    100
+   ],
+   [
+    81,
+    116
+   ],
+   [
+    69,
+    130
+   ],
+   [
+    69,
+    159
+   ],
+   [
+    48,
+    164
+   ],
+   [
+    42,
+    187
+   ],
+   [
+    23,
+    201
+   ],
+   [
+    -10,
+    218
+   ],
+   [
+    -38,
+    216
+   ],
+   [
+    -64,
+    207
+   ],
+   [
+    -82,
+    210
+   ],
+   [
+    -98,
+    191
+   ],
+   [
+    -108,
+    180
+   ]
+  ],
+  "envelope_area_m2": 27676.29,
+  "farm_paths_m": {
+   "field-lane": "M57.2 65 C57.75 63.9 58 62.2 58 61.3",
+   "field-south": "M58 61.3 C56.6 58.7 55.5 55.8 55.3 52.9 S57 46.5 59.3 43.5",
+   "field-north": "M57.2 65 C59.5 65.8 63 66.2 64.5 70 S68.5 75.4 70.2 79.5 S68.5 86.7 66.7 90.4",
+   "field-entry-0": "M59.3 43.5 L60.738 43.410",
+   "field-entry-1": "M55.3 52.9 L57.148 52.822",
+   "field-entry-2": "M58 61.3 L59.534 61.282",
+   "field-entry-3": "M64.5 70 L67.015 70.162",
+   "field-entry-4": "M70.2 79.5 L72.618 79.753",
+   "field-entry-5": "M66.7 90.4 L68.811 90.440"
+  },
+  "gate_watch_m": [
+   -86,
+   198
+  ],
+  "bell_m": [
+   -83.8,
+   199.4
+  ],
+  "creek_source": "f-water0",
+  "households": [
+   {
+    "number": 1,
+    "name": "에테르 공방",
+    "residents": 3,
+    "home": "house-workshop",
+    "associated": [
+     "house-RepairWing"
+    ],
+    "yard": "공방 앞 수리 마당"
+   },
+   {
+    "number": 2,
+    "name": "나루 짐꾼집",
+    "residents": 4,
+    "home": "house-QuayHouse",
+    "associated": [],
+    "yard": "잔교로 짐을 내는 앞뜰"
+   },
+   {
+    "number": 3,
+    "name": "공동 창고 곁집",
+    "residents": 4,
+    "home": "house-PairB",
+    "associated": [
+     "house-TwinStoreA",
+     "house-TwinStoreB"
+    ],
+    "yard": "두 공동 창고의 하역 마당"
+   },
+   {
+    "number": 4,
+    "name": "통장이집",
+    "residents": 3,
+    "home": "house-WaterHouse",
+    "associated": [],
+    "yard": "통널을 맞추는 작업뜰"
+   },
+   {
+    "number": 5,
+    "name": "젖은 노 여관",
+    "residents": 5,
+    "home": "house-CommonHouse",
+    "associated": [
+     "house-UpperCommon"
+    ],
+    "yard": "손님채와 부엌 사이 뜰"
+   },
+   {
+    "number": 6,
+    "name": "판자길 목수집",
+    "residents": 3,
+    "home": "house-HighCroft",
+    "associated": [
+     "house-UpperYard"
+    ],
+    "yard": "판재를 쌓는 마당"
+   },
+   {
+    "number": 7,
+    "name": "풀무간",
+    "residents": 4,
+    "home": "house-SmithsNeighbor",
+    "associated": [
+     "house-Fletcher"
+    ],
+    "yard": "숫돌과 풀무를 둔 뜰"
+   },
+   {
+    "number": 8,
+    "name": "배 목수집",
+    "residents": 3,
+    "home": "house-Boatwright",
+    "associated": [],
+    "yard": "널판을 찌는 강변 마당"
+   },
+   {
+    "number": 9,
+    "name": "그물말뚝집",
+    "residents": 4,
+    "home": "house-SouthGable",
+    "associated": [],
+    "yard": "그물 손질 앞뜰"
+   },
+   {
+    "number": 10,
+    "name": "마을 밭집",
+    "residents": 5,
+    "home": "house-OrchardHouse",
+    "associated": [
+     "house-CiderHouse",
+     "house-GardenGable"
+    ],
+    "yard": "밭머리 짐 모으는 곳"
+   },
+   {
+    "number": 11,
+    "name": "돛감집",
+    "residents": 3,
+    "home": "house-MarketWeaver",
+    "associated": [
+     "house-Leatherworker"
+    ],
+    "yard": "베와 돛감을 펴는 마당"
+   },
+   {
+    "number": 12,
+    "name": "옹기 가마집",
+    "residents": 3,
+    "home": "house-YardHouse",
+    "associated": [],
+    "yard": "흙을 고르고 독을 말리는 뜰"
+   },
+   {
+    "number": 13,
+    "name": "강변 제재집",
+    "residents": 4,
+    "home": "house-Dyer",
+    "associated": [],
+    "yard": "강변 일터로 재목을 내는 앞뜰"
+   },
+   {
+    "number": 14,
+    "name": "보릿간",
+    "residents": 4,
+    "home": "house-MillerHouse",
+    "associated": [
+     "house-WheelHouse"
+    ],
+    "yard": "곡물 보관과 제분 마당"
+   },
+   {
+    "number": 15,
+    "name": "땔감집",
+    "residents": 4,
+    "home": "house-Woodcutter",
+    "associated": [
+     "house-ForestersLodge"
+    ],
+    "yard": "장작을 쌓는 윗마당"
+   },
+   {
+    "number": 16,
+    "name": "버들밭집",
+    "residents": 4,
+    "home": "house-Shepherd",
+    "associated": [
+     "house-NorthLodge"
+    ],
+    "yard": "버들가지를 고르는 마당"
+   }
+  ],
+  "open_work_sheds": {
+   "source": "Tools/WorldBuilding/build_veles_aerial.py#work_sheds",
+   "roof_size_m": [
+    9.1,
+    5.9
+   ],
+   "placement": "처마가 본채나 마을길을 가리는 두 곳은 원좌표 곁의 빈 땅으로 옮긴 평면도 배치안이다.",
+   "sites": [
+    {
+     "id": "work-shed-1",
+     "name": "공방 동쪽",
+     "source_m": [
+      -39,
+      33
+     ],
+     "plan_m": [
+      -37,
+      32
+     ],
+     "yaw_deg": 17
+    },
+    {
+     "id": "work-shed-2",
+     "name": "밭집 남쪽",
+     "source_m": [
+      41,
+      25
+     ],
+     "plan_m": [
+      41,
+      25
+     ],
+     "yaw_deg": -13
+    },
+    {
+     "id": "work-shed-3",
+     "name": "서쪽 밭가",
+     "source_m": [
+      -86,
+      91
+     ],
+     "plan_m": [
+      -86,
+      91
+     ],
+     "yaw_deg": 84
+    },
+    {
+     "id": "work-shed-4",
+     "name": "북동쪽 밭가",
+     "source_m": [
+      55,
+      165
+     ],
+     "plan_m": [
+      55,
+      165
+     ],
+     "yaw_deg": 27
+    },
+    {
+     "id": "work-shed-5",
+     "name": "공동 창고 서쪽",
+     "source_m": [
+      -108,
+      173
+     ],
+     "plan_m": [
+      -111,
+      175
+     ],
+     "yaw_deg": -35
+    },
+    {
+     "id": "work-shed-6",
+     "name": "동쪽 마당",
+     "source_m": [
+      75,
+      134
+     ],
+     "plan_m": [
+      75,
+      134
+     ],
+     "yaw_deg": 74
+    }
+   ]
+  },
+  "watch_posts": [
+   {
+    "id": "watch-gate",
+    "point_m": [
+     -86,
+     198
+    ],
+    "role": "숲문 당번 두 명이 귀환을 살피고 도움 요청을 받으면 종을 친다."
+   },
+   {
+    "id": "watch-store",
+    "point_m": [
+     -81,
+     163.4
+    ],
+    "role": "공동 창고 곁집이 하역 마당에서 돌아온 인원을 확인한다."
+   },
+   {
+    "id": "watch-quay",
+    "point_m": [
+     15,
+     18.8
+    ],
+    "role": "나루 짐꾼이 잔교 앞에서 배와 강변 일꾼에게 경보를 전한다."
+   }
+  ]
+ }
+}
