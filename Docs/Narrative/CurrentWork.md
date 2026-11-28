@@ -2,6 +2,8 @@
 
 ## 현재 결과와 다음 선택
 
+[세력과 계급으로 찾는 주요 인물](Drafts/2026-10-31-ether-taiga-dawn/2026-11-28-faction-figures.html)에서 세 도시의 대표, 물자·접안·기술 보증 담당과 이름이 정해지지 않은 광역 직위를 찾을 수 있다.
+
 [세력과 계급](World.md#세력과-계급)은 [결정 73](../decisions/0073-factions-and-ranks.html)으로 확정했다. [세 도시의 현장 권한](Scenario.md#테른-강-세-도시의-인물과-현장-권한)을 인물표·가구원 명부와 벨레스 출항, 타르넬 검수, 로덴 구조 후 귀환 장면에 반영했다. [채택 원문](Drafts/2026-10-31-ether-taiga-dawn/2026-11-28-factions-and-ranks.html)과 [정본 반영 독립 재검토](Reviews/2026-11-28-factions-and-ranks-review.html#adoption)에서 채택 범위와 검토 결과를 확인할 수 있다.
 
 [세력과 계급 비교 자료](Research/2026-11-28-factions-and-ranks.html)는 실제 중세 제도 10건과 중세 판타지 소설·만화·웹툰·게임 각 10작품을 다룬다. 지위를 얻는 경로, 그 지위로 내릴 수 있는 결정, 권한이 끝나는 지점을 비교했다.
