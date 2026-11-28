@@ -2,6 +2,8 @@
 
 ## 현재 결과와 다음 선택
 
+[이그니스의 세력과 계급](Drafts/2026-10-31-ether-taiga-dawn/2026-11-28-factions-and-ranks.html)에 네 정치권과 에테르 연맹의 서열, 테른 강 세 정착지의 직책과 해외 네 대륙의 현지 권한을 제안했다. [독립 재검토](Reviews/2026-11-28-factions-and-ranks-review.html)를 통과했고, 직급과 선임 관습은 사용자 논의 단계다.
+
 [세력과 계급 비교 자료](Research/2026-11-28-factions-and-ranks.html)는 실제 중세 제도 10건과 중세 판타지 소설·만화·웹툰·게임 각 10작품을 다룬다. 지위를 얻는 경로, 그 지위로 내릴 수 있는 결정, 권한이 끝나는 지점을 비교했다.
 
 [로덴 인물 명부](Drafts/2026-10-31-ether-taiga-dawn/2026-11-28-roden-residents.md)에 주요 NPC 6명, 현장 배역 12명, 생활 인물 16명을 배치했다. 린을 제외한 33명은 네 거주 구획에 집을 둔다. [독립 재검토](Reviews/2026-11-28-roden-residents-review.md) PASS 뒤 사용자 논의 단계다.
