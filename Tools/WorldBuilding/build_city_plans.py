@@ -33,6 +33,47 @@ CITIES = {
 }
 INK = ["#e2c99d","#d1bf98","#d6ba98","#bfbfa0"]
 
+# Width and depth are the outer footprint, including a court where present.
+RODEN_HOMES = {
+    "rent": ("공동벽 셋방", (7, 11), (4, 6), "#a48668"),
+    "shop": ("작업채 딸린 공방집", (11, 16), (8, 12), "#ad7750"),
+    "storey": ("돌 차양 점포주택", (12, 17), (9, 13), "#99604d"),
+    "court": ("안뜰 도매상 저택", (20, 26), (15, 21), "#657786"),
+}
+RODEN_HOME_EXAMPLES = [
+    ("HOME-BOREN", "보렌·누안의 셋방", 2, "rent", "B01"),
+    ("HOME-SORN", "소른의 공방집", 1, "shop", "B02"),
+    ("HOME-MAYOR", "레니카의 점포주택", 0, "storey", "MARKET"),
+    ("HOME-COURT", "곡물 도매상의 안뜰집", 0, "court", "MARKET"),
+]
+
+
+def roden_house_art(kind, tr, a, b):
+    tone = RODEN_HOMES[kind][3]
+    outline = "#594e42"
+    def wing(x, y, w, h, fill=tone):
+        return (f'<rect x="{x:.2f}" y="{y:.2f}" width="{w:.2f}" height="{h:.2f}" fill="{fill}" stroke="{outline}" stroke-width=".45"/>'
+                f'<path d="M{x:.2f} {y+h/2:.2f}h{w:.2f}" stroke="#e1c59f" stroke-width=".42"/>')
+    w,h=2*a,2*b
+    if kind=="rent":
+        art=wing(-a,-b,w,h)
+        for door in (-a*.5,a*.5):
+            art+=f'<path d="M{door:.2f} {-b+.15:.2f}h1" stroke="#eee1c4" stroke-width=".8"/>'
+        art+=f'<path d="M0 {-b:.2f}v{h:.2f}" stroke="#715c48" stroke-width=".5"/>'
+    elif kind=="shop":
+        art=wing(-a,-b,w,h*.63)+wing(-a,-b+h*.63,w*.48,h*.37)
+        art+=f'<rect x="{-a+1:.2f}" y="{b-1.8:.2f}" width="1.4" height="1.5" fill="#574b42"/>'
+    elif kind=="storey":
+        art=wing(-a,-b+.9,w,h-.9)
+        art+=wing(-a*.65,-b,1.3*a,1.2,"#d3bc98")
+        for dormer in (-a*.55,a*.55):
+            art+=f'<path d="M{dormer-1:.2f} {-b+3:.2f}l1 -1.7 1 1.7Z" fill="#e9c998" stroke="{outline}" stroke-width=".32"/>'
+    else:
+        art=f'<rect x="{-a:.2f}" y="{-b:.2f}" width="{w:.2f}" height="{h:.2f}" fill="url(#paving)" stroke="#c5ac85" stroke-width=".85"/>'
+        art+=wing(-a,b*.25,w,b*.75)+wing(-a,-b,a*.53,b*1.25)+wing(a*.47,-b,a*.53,b*1.25)
+        art+=f'<path d="M{-a*.47:.2f} {-b:.2f}h{a*.29:.2f}m{a*.36:.2f} 0h{a*.29:.2f}" stroke="#ad8b4e" stroke-width=".95"/>'
+    return f'<g data-roden-home="{kind}" transform="{tr}">{art}</g>'
+
 
 def fmt(n):
     return f"{n:.3f}".rstrip("0").rstrip(".") or "0"
@@ -197,6 +238,7 @@ class Plan:
         self.roads=CorridorIndex()
         self.solids=CorridorIndex()
         self.housecount=0
+        self.home_sites=[]
         self.rng=random.Random(517 if self.t else 941)
 
     def tile(self,p):
@@ -401,6 +443,8 @@ class Plan:
                 "B11":"제방 경비 한네가 수레와 보행자의 통행을 나눈다. 작업구 입구에서 점검조를 확인하는 사비는 B03에 있다.",
                 "B01":"보렌이 낮은 받침에 앉아 두 번째 짐을 가리킨다. 이번에는 주인공이 먼저 어깨로 짐을 나르는 사람에게 길을 비킨다.",
                 "B02":"계단에서는 에브라가 급수와 보온 몫을 남긴다. 접수대에서는 베딕이 마렌의 우회 승인과 디셀의 목격을 되읽는다. 다음 교대자가 확인 못 한 빈 줄까지 읽고 종이를 받아 가면 베딕의 대표 위임이 끝난다. 디셀이 떠난 뒤 주인공과 마렌은 조합 작업대(R-GUILD)에서 각자 본 선이 만나는 자리를 도면에 그린다."}
+            trip("구조 이튿날 · 시장과 두 사람의 품","B01","rescued")
+            self.trips[-1]["guide"]="이튿날 아침 B01에서 시장 레니카를 처음 만난다. 델모가 두 짐꾼의 품을 묻고 보렌이 어제 일한 손을 확인한다. 레니카는 시 하역비로 통상 품을 정산하게 하고 놓친 배의 추가 수당을 의회에 올린다."
         for k,f in self.features.items():
             ps=f["geometry"]
             if f["kind"] in ("facility","building","pad","rock") and len(ps)>=3:
@@ -525,7 +569,14 @@ class Plan:
                 ux,uy=(q[0]-p[0])/length,(q[1]-p[1])/length
                 for side in (-1,1):
                     nx,ny=-uy*side,ux*side
-                    a=self.rng.uniform(3,5.8); b=self.rng.uniform(3.2,6.3)
+                    if self.t:
+                        a=self.rng.uniform(3,5.8); b=self.rng.uniform(3.2,6.3)
+                    else:
+                        district=next((i for i,poly in enumerate(self.cells) if inside(*p,poly)),0)
+                        weights=((30,18,38,14),(25,52,18,5),(70,15,12,3),(52,33,12,3))[district]
+                        kind=self.rng.choices(tuple(RODEN_HOMES),weights)[0]
+                        _,width,depth,_=RODEN_HOMES[kind]
+                        a=self.rng.uniform(*width)/2; b=self.rng.uniform(*depth)/2
                     setback=self.rng.uniform(3.8,7)
                     x=p[0]+nx*(setback+b); y=p[1]+ny*(setback+b)
                     if self.roads.near((x,y),max(a,b)+.8) or self.solids.near((x,y),math.hypot(a,b)+1):
@@ -553,6 +604,13 @@ class Plan:
                             a *= .86
                             b *= .9
                     tr=f'translate({fmt(x)} {fmt(y)}) rotate({fmt(ang)}) scale(1 {side})'
+                    if not self.t:
+                        self.add(7,[(x,y)],roden_house_art(kind,tr,a,b),a+b+1)
+                        self.solids.add([(x,y),(x,y)],math.hypot(a,b))
+                        self.housecount+=1
+                        home_district=next(i for i,poly in enumerate(self.cells) if inside(x,y,poly))
+                        self.home_sites.append((home_district,kind,(x,y),2*a,2*b))
+                        continue
                     roof=(f'<g transform="{tr}"><rect x="{-a:.2f}" y="{-b:.2f}" width="{2*a:.2f}" height="{2*b:.2f}" fill="{fill}" stroke="#65553f" stroke-width=".6"/>'
                           f'<path d="M{-a:.2f} 0H{a:.2f}V{b:.2f}H{-a:.2f}Z" fill="#4f453b" opacity=".22"/>'
                           f'<path d="M{-a:.2f} 0H{a:.2f}" stroke="#e0bd8e" stroke-width=".5"/>'
@@ -882,6 +940,12 @@ class Plan:
         self.routes()
         self.workplaces()
         self.streets()
+        if not self.t:
+            for key,name,district,kind,near in RODEN_HOME_EXAMPLES:
+                site=min((s for s in self.home_sites if s[:2]==(district,kind)),
+                         key=lambda s:math.dist(s[2],self.stops[near]["point"]))
+                self.mark(key,name,site[2])
+                self.stops[key].update(home_type=kind,plot_m=[round(v,1) for v in site[3:]])
         self.outskirts()
         self.signs()
         self.itineraries()
@@ -964,6 +1028,23 @@ def page(data):
                 houses.append(f'<li>{stop_link(key, escape(site["name"]))} · {fmt(right-left)} × {fmt(top-bottom)}m. '
                               f'{escape(site["description"])}</li>')
         story += '<section id="housing"><h2>타르넬의 다섯 살림</h2><p>치수는 마당을 포함한 대표 필지의 폭과 깊이다.</p><ul>' + ''.join(houses) + '</ul></section>'
+    if data["frame"]=="R":
+        examples=[]
+        for key,name,_,kind,_ in RODEN_HOME_EXAMPLES:
+            stop=data["stops"][key]
+            w,h=stop["plot_m"]
+            roof=roden_house_art(kind,"scale(1 -1)",w/2,h/2).replace("url(#paving)","#cebd9e")
+            examples.append(f'<li><a href="?tile={stop["tile"]}&amp;place={key}#port">'
+                            f'<svg width="88" height="66" viewBox="-14 -10.5 28 21" aria-hidden="true" style="display:block">{roof}</svg>'
+                            f'{name}</a><br>{w:g} × {h:g} m</li>')
+        dawn=next(i for i,trip in enumerate(data["trips"]) if trip["stops"]==["B01"])
+        quay=data["stops"]["B01"]["tile"]
+        story=(f'<section id="morning"><h2>구조 이튿날 아침</h2><p><a href="?tile={quay}&amp;route={dawn}&amp;state=rescued&amp;place=B01#port">B01 · 두 사람의 품</a>에서 '
+               '시의회가 뽑은 시장 레니카를 처음 만난다. 전날 어깨로 짐을 나른 두 사람이 자기 이름으로 품을 청한다.</p></section>'
+               '<section id="homes"><h2>로덴의 살림집</h2><p>공동벽과 따로 낸 두 문, 굴뚝이 선 작업채, 점포 위의 돌 차양과 지붕창, '
+               '청회색 날개채가 감싼 포장 안뜰을 살펴볼 수 있다. 네 그림은 같은 축척이며 치수는 안뜰을 포함한 건물군 바깥 폭과 깊이다.</p>'
+               '<ul style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.8em;list-style:none;padding:0">'
+               +''.join(examples)+'</ul></section>')
     front={k:v for k,v in data.items() if k not in ("urban_boundary_m","boundary_connections")}
     rows="".join(f'<tr><th>{d["name"]}</th><td>{d["population"]:,}명</td><td>{d["land_ha"]:.2f} / {d["target_ha"]} ha</td></tr>' for d in data["districts"])
     spec=("나루에서 높은 시장단까지 곡물 수레가 오르고, 검수를 마친 목재는 남쪽 마당으로 나간다. "

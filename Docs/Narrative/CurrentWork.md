@@ -8,7 +8,7 @@
 
 [세력과 계급 비교 자료](Research/2026-11-28-factions-and-ranks.html)는 실제 중세 제도 10건과 중세 판타지 소설·만화·웹툰·게임 각 10작품을 다룬다. 지위를 얻는 경로, 그 지위로 내릴 수 있는 결정, 권한이 끝나는 지점을 비교했다.
 
-[로덴 인물 명부](Drafts/2026-10-31-ether-taiga-dawn/2026-11-28-roden-residents.md)에 주요 NPC 7명, 현장 배역 11명, 생활 인물 16명을 배치했다. 린을 제외한 33명은 네 거주 구획에 집을 둔다. [독립 재검토](Reviews/2026-11-28-roden-residents-review.md)에서 인물 배치를 확인했다. 베딕의 사고 기록 인계는 결정 74의 채택 범위다. [도시 좌표평면](../ArtDirection/EtherWorldMap/Atlas/VelesTarnelRoden-v1/CityPlans/Roden/index.html)에서 구조선 출발 뒤 B02까지의 육상 귀환을 따라갈 수 있다.
+[로덴 인물 명부](Drafts/2026-10-31-ether-taiga-dawn/2026-11-28-roden-residents.md)에 주요 NPC 8명, 현장 배역 11명, 생활 인물 16명을 배치했다. 린을 제외한 34명은 네 거주 구획에 집을 둔다. [독립 재검토](Reviews/2026-11-28-roden-residents-review.md)에서 인물 배치를 확인했다. 베딕의 사고 기록 인계는 결정 74의 채택 범위다. [도시 좌표평면](../ArtDirection/EtherWorldMap/Atlas/VelesTarnelRoden-v1/CityPlans/Roden/index.html)에서 구조선 출발 뒤 B02까지의 육상 귀환을 따라갈 수 있다. [결정 77](../decisions/0077-roden-elected-mayor.html)에 따라 시장 레니카를 추가하고 이튿날 B01의 품삯 장면과 네 가지 살림집을 평면도에 반영했다.
 
 [결정 76](../decisions/0076-tarnel-magistrate.html)으로 시의회 선출 집정관 마르테와 장날 청원 전달을 정본에 반영했다. [명부](Drafts/2026-10-31-ether-taiga-dawn/2026-11-28-tarnel-residents.md)는 이름 있는 NPC 23명 중 상주민 22명과 방문자 린을 구분한다. [스토리 평면도](../ArtDirection/EtherWorldMap/Atlas/VelesTarnelRoden-v1/05-tarnel.svg)에는 창고와 회의소 남문, [도시 평면도](../ArtDirection/EtherWorldMap/Atlas/VelesTarnelRoden-v1/CityPlans/Tarnel/index.html#housing)에는 회의소와 대표 주거 필지 5곳을 배치했다. [검토와 좌표 검증](Reviews/2026-11-28-tarnel-magistrate-review.html)에서 선택 장면과 배치 검사를 확인할 수 있다.
 
