@@ -2,6 +2,8 @@
 
 ## 현재 결과와 다음 선택
 
+[타르넬 사람과 집](Drafts/2026-10-31-ether-taiga-dawn/2026-11-28-tarnel-households/index.html)은 높은 시장단 555가구, 운반꾼 동네 274가구, 나루 위 집터 138가구의 주민 3,200명을 다룬다. Codex가 [기존 NPC 23명의 상세 생애](Drafts/2026-10-31-ether-taiga-dawn/2026-11-28-tarnel-households/people.html)와 나머지 주민 3,178명의 외모·개인사를 작성했다. [독립 재검토](Reviews/2026-11-29-tarnel-households-review.html)에서 PASS를 받았고 개별 인물 설정은 제작 후보다.
+
 [결정 74](../decisions/0074-regional-officeholders.html)로 [세력별 주요 인물 24명](Drafts/2026-10-31-ether-taiga-dawn/2026-11-28-faction-figures.html#representation)을 확정했다. [지역 스토리와 대본](Drafts/2026-10-31-ether-taiga-dawn/2026-11-28-regional-officeholder-scenes.html)은 타르넬·로덴부터 동부 평야의 곡물 방출, 니베르 구조와 세라디온 귀환까지 해당 원고와 연결한다. [독립 재검토](Reviews/2026-11-28-regional-officeholder-adoption-review.html)에서 북부 합류 시점과 아르베나 구조 선택을 확인했다.
 
 [세력과 계급](World.md#세력과-계급)은 [결정 73](../decisions/0073-factions-and-ranks.html)으로 확정했다. [세 도시의 현장 권한](Scenario.md#테른-강-세-도시의-인물과-현장-권한)을 인물표·가구원 명부와 벨레스 출항, 타르넬 검수, 로덴 구조 후 귀환 장면에 반영했다. [채택 원문](Drafts/2026-10-31-ether-taiga-dawn/2026-11-28-factions-and-ranks.html)과 [정본 반영 독립 재검토](Reviews/2026-11-28-factions-and-ranks-review.html#adoption)에서 채택 범위와 검토 결과를 확인할 수 있다.
