@@ -8,7 +8,7 @@
 
 [세력과 계급 비교 자료](Research/2026-11-28-factions-and-ranks.html)는 실제 중세 제도 10건과 중세 판타지 소설·만화·웹툰·게임 각 10작품을 다룬다. 지위를 얻는 경로, 그 지위로 내릴 수 있는 결정, 권한이 끝나는 지점을 비교했다.
 
-[로덴 인물 명부](Drafts/2026-10-31-ether-taiga-dawn/2026-11-28-roden-residents.md)에 주요 NPC 8명, 현장 배역 11명, 생활 인물 16명을 배치했다. 린을 제외한 34명은 네 거주 구획에 집을 둔다. [독립 재검토](Reviews/2026-11-28-roden-residents-review.md)에서 인물 배치를 확인했다. 베딕의 사고 기록 인계는 결정 74의 채택 범위다. [도시 좌표평면](../ArtDirection/EtherWorldMap/Atlas/VelesTarnelRoden-v1/CityPlans/Roden/index.html)에서 구조선 출발 뒤 B02까지의 육상 귀환을 따라갈 수 있다. [결정 77](../decisions/0077-roden-elected-mayor.html)에 따라 시장 레니카를 추가하고 이튿날 B01의 품삯 장면과 네 가지 살림집을 평면도에 반영했다.
+[로덴 인물 명부](Drafts/2026-10-31-ether-taiga-dawn/2026-11-28-roden-residents.md)에 주요 NPC 8명, 현장 배역 11명, 생활 인물 16명을 배치했다. 린을 제외한 34명은 네 거주 구획에 집을 둔다. [독립 재검토](Reviews/2026-11-28-roden-residents-review.md)에서 인물 배치를 확인했다. 베딕의 사고 기록 인계는 결정 74의 채택 범위다. [도시 좌표평면](../ArtDirection/EtherWorldMap/Atlas/VelesTarnelRoden-v1/CityPlans/Roden/index.html)에서 구조선 출발 뒤 B02까지의 육상 귀환을 따라갈 수 있다. [결정 76](../decisions/0076-roden-elected-mayor.html)에 따라 시장 레니카를 추가하고 이튿날 B01의 품삯 장면과 네 가지 살림집을 평면도에 반영했다.
 
 [로덴 사람들의 얼굴과 생애](Drafts/2026-10-31-ether-taiga-dawn/2026-11-28-roden-lives.html)에 상주민 46명과 방문자 린의 어린 시절, 생업을 배운 때, 가족과의 일화, 현재 장면에 이르는 선택을 담았다. [가구별 주민 명부](Drafts/2026-10-31-ether-taiga-dawn/roden-households/index.html)는 나머지 상주민 23,954명을 6,663가구로 묶어 개인별 성별·나이·생업·외모·짧은 개인사를 제공한다. 시장 10,389명, 공방 7,188명, 부두 4,788명, 외곽 1,589명이다. 개별 인물과 가구는 제작 후보다.
 
