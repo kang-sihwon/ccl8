@@ -346,7 +346,7 @@ class Plan:
             return self.road(key,knots,width,smooth)
         if self.t:
             self.mark("LAND","나룻배 접안",g("T-LAND"))
-            self.mark("STORE","곡물 창고",(436,115))
+            self.mark("STORE","곡물 창고",g("STORE"))
             self.mark("MARKET","높은 단 곡물 시장",(722,208))
             self.mark("TIMBER","검수목 적치 마당",(680,-140))
             link("선적길",g("t-loadway"),5,False)
@@ -873,6 +873,21 @@ def state_flags(trip_count):
 
 
 def page(data):
+    story = ""
+    if data["frame"] == "T":
+        def stop_link(key, label):
+            tile = data["stops"][key]["tile"]
+            return f'<a href="?tile={tile}&amp;place={key}">{label}</a>'
+        story = (
+            '<section id="first-call"><h2>첫 기항의 세 장소</h2>'
+            f'<p>04 · {stop_link("A02", "목재 검사길")}에서 세 경로가 만난다. 부두에 남거나 하류에서 돌아와도 '
+            '에르사는 직접 확인한 묶음만 받고 모릭이 옮긴다. 다벤은 남은 물량의 납기를 로덴에 묻는다.</p>'
+            f'<p>선택 · {stop_link("STORE", "곡물 창고 앞")}에서 첫 자루를 받은 오르벨이 장꾼에게 의결된 경비 급료를 설명한다. '
+            '증원 요청은 시의회에 전달한다. 이 대화를 건너뛰고 선적장으로 갈 수 있다.</p>'
+            f'<p>05 · 다음 날 {stop_link("A01", "공동 나루")}에서 이셀이 접안을 조율한다. '
+            '린은 하역할 사람이 설 폭을 남겨 실을 양을 정하고 로덴으로 떠난다. '
+            '<a href="../../05-tarnel.svg#detail-2">선적 자리 확대</a></p></section>'
+        )
     front={k:v for k,v in data.items() if k not in ("urban_boundary_m","boundary_connections")}
     rows="".join(f'<tr><th>{d["name"]}</th><td>{d["population"]:,}명</td><td>{d["land_ha"]:.2f} / {d["target_ha"]} ha</td></tr>' for d in data["districts"])
     spec=("나루에서 높은 시장단까지 곡물 수레가 오르고, 검수를 마친 목재는 남쪽 마당으로 나간다. "
@@ -892,7 +907,7 @@ def page(data):
 <div id="port"><div id="paper"><img id="plate" src="overview.svg" alt="{data["name"]} 좌표 평면도"><div id="hits"></div><i id="pin" hidden></i></div></div>
 <div class="tools"><div id="neighbors"></div><a id="original" href="overview.svg">SVG 원본</a></div><output id="position" aria-live="off"></output></section>
 <aside><h2>길 따라가기</h2><label>동선 <select id="trip"></select></label>{stages}<label><input type="checkbox" id="ecology"> 몬스터 활동권·추격 경계</label><div id="stops"></div><p id="guide">{spec}</p>
-<h2>정주 구획</h2><table><thead><tr><th>구역</th><th>상주</th><th>도면 / 목표</th></tr></thead><tbody>{rows}</tbody></table>
+{story}<h2>정주 구획</h2><table><thead><tr><th>구역</th><th>상주</th><th>도면 / 목표</th></tr></thead><tbody>{rows}</tbody></table>
 <p>주거지·마당·육상 작업장을 포함한 정주 경계의 면적이다. 지붕은 제작 배치안이며 가구별 인구 집계와 별개다.</p><a href="{source}">기존 탐색 상세도</a></aside></div>
 <details><summary>근교 면적과 몬스터 활동권</summary><p>전체 도면에서 본류 수면 약 {surface["river_ha"]:.1f} ha, 정주지 밖 숲 약 {surface["woodland_ha"]:.1f} ha, 나머지 비정주 육지는 약 {surface["other_land_ha"]:.1f} ha다. 기존 탐색도에 드는 비정주 육지 약 {surface["exploration_land_outside_settlement_ha"]:.1f} ha는 숲과 기타 육지에 걸쳐 있다. 강안과 숲 경계를 남북 4m 이하 간격으로 잘라 추산했다.</p><table><tr><th>무리와 먹이터</th><th>활동 반경</th><th>추격 종료</th></tr>{ecology}</table></details>
 <details><summary>외곽 접속점과 좌표</summary><p>동쪽 X · 북쪽 Y(m). 길은 중심선, 강은 서안과 동안의 접점을 따로 기록했다. 세계 좌표와 바깥쪽 단위 방향 벡터는 <a href="coordinates.json">좌표 원본</a>에서 확인한다.</p><table><tr><th>길·강안</th><th>세계 타일</th><th>로컬 X, Y (m)</th><th>길 폭 (m)</th></tr>{connections}</table></details>
