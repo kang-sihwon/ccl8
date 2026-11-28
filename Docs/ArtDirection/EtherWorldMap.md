@@ -1,6 +1,6 @@
 # 에테르 세계지도 시안
 
-[벨레스 중심 371×371 좌표 평면도](EtherWorldMap/Atlas/VelesTarnelRoden-v1/Veles371/index.html)에서 세계 타일 (−185, −185)부터 (+185, +185)까지 137,641장을 연다. 한 장과 이웃 3×3을 전환하고, 선택한 SVG나 해당 구역의 ZIP을 저장할 수 있다.
+[벨레스 중심 371×371 좌표 평면도](EtherWorldMap/Atlas/VelesTarnelRoden-v1/Veles371/index.html)의 ‘보기 범위’에서 한 장부터 371×371까지 홀수 크기를 고른다. 9×9부터는 원본 타일을 이어 만든 축소 그림을 표시한다. 선택한 타일을 다시 누르면 한 장으로 열리고, SVG나 해당 구역의 ZIP을 저장할 수 있다.
 
 [테른 강 연결 좌표 평면도](EtherWorldMap/Atlas/VelesTarnelRoden-v1/TernPassage/index.html)에서 벨레스 → 타르넬 363장과 타르넬 → 로덴 593장을 연다. 항로와 강변길 중 하나를 고르면 기존 마을·도시 도면을 거쳐 로덴까지 이동한다.
 

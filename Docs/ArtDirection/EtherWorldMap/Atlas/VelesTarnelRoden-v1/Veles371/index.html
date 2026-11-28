@@ -11,12 +11,7 @@
 <p id="range">세계 타일 좌표 −185 ~ +185 · 벨레스 (0, 0)</p>
 <details><summary>도면 축척과 자료</summary><p>한 칸은 동서 255.06m, 남북 272.94m야. 수계·운반로·마을 배치는 테른 강 유역 자료를 따르고, 숲과 비탈의 음영은 지형 시안이야.</p><p>기존 상세도가 있는 칸은 그 도면을 사용해. 별도의 권역 운반로를 덧그린 칸은 제목 아래에 표시해. 로덴 남쪽 바깥 구역은 도시 원도에서 이어 볼 수 있어.</p><a href="../CityPlans/Roden/index.html">로덴 전체도</a> · <a href="../TernPassage/index.html">항로와 강변길</a> · <a href="verification.json">도면 검사 결과</a></details></aside>
 <section><div class="row"><div><small id="zone"></small><h2 id="title">벨레스 (0, 0)</h2></div>
-<div class="switch" role="group" aria-label="타일 보기 범위">
-  <button data-grid-size="1" aria-pressed="false">한 장</button>
-  <button data-grid-size="3" aria-pressed="true">이웃 3×3</button>
-  <button data-grid-size="5" aria-pressed="false">이웃 5×5</button>
-  <button data-grid-size="7" aria-pressed="false">이웃 7×7</button>
-</div></div>
+<label class="grid-control">보기 범위 <select id="grid-size"></select></label></div>
 <p id="source"></p><div id="display" aria-busy="true"></div><output id="status" role="status"></output>
 <div class="row lower"><div id="neighbors"><button data-step="-1,0">← 서</button><button data-step="0,1">↑ 북</button><button data-step="0,-1">↓ 남</button><button data-step="1,0">→ 동</button></div>
 <div><a id="save">이 타일 SVG 저장</a>　<button id="pack">구역 ZIP 저장</button></div></div>

@@ -9,7 +9,8 @@ const originalName={VT:'벨레스 → 타르넬 강변',TR:'타르넬 → 로덴
 const publishedLinks=new Set(world.overprints);
 const svgNS='http://www.w3.org/2000/svg';
 const map=el('overview'),ctx=map.getContext('2d'),base=new Image();
-const sizeButtons=document.querySelectorAll('.switch [data-grid-size]');
+const sizeSelect=el('grid-size');
+for(let n=1;n<=side;n+=2)sizeSelect.add(new Option(n===1?'한 장':n+'×'+n,String(n)));
 let selected=[0,0],gridSize=3,generation=0;
 let view=center(0,0),zoom=1,mw=0,mh=0,scale=0,hold=null;
 const regionName=(x,y)=>{
@@ -66,6 +67,74 @@ function frameImage(i,j,data){
   div.onclick=()=>{if(i===selected[0]&&j===selected[1])gridSize=1;selectTile(i,j)};
   return div;
 }
+async function wideGrid(i,j,n,version){
+  const radius=(n-1)/2;
+  const west=clamp(i-radius,-R,R-n+1),north=clamp(j+radius,-R+n-1,R);
+  const canvas=document.createElement('canvas');
+  canvas.width=1200;canvas.height=Math.round(canvas.width*th/tw);
+  canvas.tabIndex=0;
+  canvas.setAttribute('aria-label',n+'×'+n+' 타일. 방향키로 이동하고 Enter로 선택한 타일을 열어.');
+  const brush=canvas.getContext('2d'),w=canvas.width/n,h=canvas.height/n;
+  const images=[];
+  if(n>63){
+    images.push({file:'world',x:-R,y:R,cols:side,rows:side});
+  }else{
+    const block=world.block;
+    for(let by=Math.floor((north-n+1+R)/block);by<=Math.floor((north+R)/block);by++){
+      for(let bx=Math.floor((west+R)/block);bx<=Math.floor((west+n-1+R)/block);bx++){
+        const x=bx*block-R,south=by*block-R;
+        const cols=Math.min(block,R-x+1),rows=Math.min(block,R-south+1);
+        images.push({file:bx+'_'+by,x,y:south+rows-1,cols,rows});
+      }
+    }
+  }
+  async function paint(){
+    while(images.length&&version===generation){
+      const tile=images.pop(),im=new Image();
+      im.src='previews/'+tile.file+'.webp';
+      await im.decode();
+      if(version!==generation)return;
+      const left=Math.round((tile.x-west)*w),top=Math.round((north-tile.y)*h);
+      const right=Math.round((tile.x+tile.cols-west)*w),bottom=Math.round((north-tile.y+tile.rows)*h);
+      brush.drawImage(im,left,top,right-left,bottom-top);
+    }
+  }
+  await Promise.all(Array.from({length:Math.min(images.length,4)},paint));
+  if(version!==generation)return;
+  brush.beginPath();
+  for(let k=1;k<n;k++){
+    brush.moveTo(k*w,0);brush.lineTo(k*w,canvas.height);
+    brush.moveTo(0,k*h);brush.lineTo(canvas.width,k*h);
+  }
+  brush.lineWidth=Math.min(1,w*.06);brush.strokeStyle='#46523b55';brush.stroke();
+  brush.lineWidth=Math.min(3,w*.28);brush.strokeStyle='#914930';
+  brush.strokeRect((i-west)*w,(north-j)*h,w,h);
+  if(n>63){
+    const cx=(i-west+.5)*w,cy=(north-j+.5)*h;
+    brush.beginPath();brush.lineWidth=2;
+    brush.moveTo(cx-w/2-12,cy);brush.lineTo(cx-w/2,cy);
+    brush.moveTo(cx+w/2,cy);brush.lineTo(cx+w/2+12,cy);
+    brush.moveTo(cx,cy-h/2-12);brush.lineTo(cx,cy-h/2);
+    brush.moveTo(cx,cy+h/2);brush.lineTo(cx,cy+h/2+12);
+    brush.stroke();
+  }
+  const tileAt=event=>{
+    const rect=canvas.getBoundingClientRect();
+    return [west+clamp(Math.floor((event.clientX-rect.left)*n/rect.width),0,n-1),
+      north-clamp(Math.floor((event.clientY-rect.top)*n/rect.height),0,n-1)];
+  };
+  canvas.onpointermove=event=>{canvas.title='('+tileAt(event).join(', ')+')'};
+  canvas.onclick=event=>{
+    const [x,y]=tileAt(event);
+    if(x===i&&y===j)gridSize=1;
+    selectTile(x,y);
+  };
+  canvas.onkeydown=event=>{
+    if(event.key==='Enter'){event.preventDefault();gridSize=1;selectTile(i,j)}
+    else map.onkeydown(event);
+  };
+  return canvas;
+}
 async function selectTile(i,j,keepView=false){
   if(!valid(i,j)){el('status').textContent='동 X와 북 Y를 −185부터 +185 사이로 입력해 줘.';return}
   const version=++generation,k=i+'_'+j,src=world.originals[k];
@@ -82,7 +151,7 @@ async function selectTile(i,j,keepView=false){
     if(publishedLinks.has(k))source.append('　·　권역 운반로 겹침');
   }else source.textContent='유역 지형·생활권 평면도';
   el('metres').textContent='서단 X '+(x-tw/2).toFixed(1)+' m　동단 X '+(x+tw/2).toFixed(1)+' m　남단 Y '+(y-th/2).toFixed(1)+' m　북단 Y '+(y+th/2).toFixed(1)+' m';
-  for(const button of sizeButtons)button.setAttribute('aria-pressed',Number(button.dataset.gridSize)===gridSize);
+  sizeSelect.value=String(gridSize);
   for(const button of el('neighbors').children){const [u,v]=button.dataset.step.split(',').map(Number);button.disabled=!valid(i+u,j+v)}
   const [u,v]=project(x,y);
   if(!keepView&&zoom>1&&(u<0||u>mw||v<0||v>mh))view=[x,y];
@@ -91,11 +160,29 @@ async function selectTile(i,j,keepView=false){
   const hash='#'+i+','+j+suffix;
   if(location.hash!==hash)history.replaceState(null,'',hash);
   const display=el('display');display.setAttribute('aria-busy','true');el('status').textContent='도면을 여는 중…';
-  el('save').removeAttribute('href');
+  const save=el('save');
+  save.removeAttribute('href');save.onclick=null;
   const radius=(gridSize-1)/2;
   visibleDrawings.clear();
   visibleDrawings.add(k);
   try{
+    if(gridSize>7){
+      const canvas=await wideGrid(i,j,gridSize,version);
+      if(version!==generation)return;
+      const keepFocus=display.contains(document.activeElement);
+      display.className='wide';display.replaceChildren(canvas);
+      if(keepFocus)canvas.focus({preventScroll:true});
+      save.href='#';save.download=k+'.svg';
+      save.onclick=async event=>{
+        event.preventDefault();
+        try{
+          const plate=await loadDrawing(i,j);
+          const link=document.createElement('a');link.href=plate.url;link.download=k+'.svg';link.click();
+        }catch(error){if(version===generation)el('status').textContent=error.message}
+      };
+      el('status').textContent='';
+      return;
+    }
     const plate=await loadDrawing(i,j);if(version!==generation)return;
     const nodes=[];
     if(gridSize===1){
@@ -124,8 +211,8 @@ el('places').add(new Option('장소 선택',''));
 world.places.forEach(([n],i)=>el('places').add(new Option(n,String(i))));
 el('places').onchange=e=>{const p=world.places[Number(e.target.value)];if(e.target.value!=='')selectTile(...at(p[1],p[2]))};
 el('jump').onsubmit=e=>{e.preventDefault();selectTile(el('ix').valueAsNumber,el('iy').valueAsNumber)};
-for(const button of sizeButtons)button.onclick=()=>{
-  gridSize=Number(button.dataset.gridSize);
+sizeSelect.onchange=()=>{
+  gridSize=Number(sizeSelect.value);
   selectTile(...selected);
 };
 for(const b of el('neighbors').children)b.onclick=()=>{const [u,v]=b.dataset.step.split(',').map(Number);selectTile(selected[0]+u,selected[1]+v)};
@@ -141,8 +228,10 @@ map.onpointermove=e=>{if(!hold)return;const [u,v]=mouse(e),dx=u-hold.p[0],dy=v-h
 map.onpointerup=e=>{if(hold&&!hold.drag){const ij=at(...inverse(...mouse(e)));if(valid(...ij))selectTile(...ij,true)}hold=null};
 map.onpointercancel=()=>{hold=null};map.onkeydown=e=>{const step={ArrowLeft:[-1,0],ArrowRight:[1,0],ArrowUp:[0,1],ArrowDown:[0,-1]}[e.key];if(step){e.preventDefault();selectTile(selected[0]+step[0],selected[1]+step[1])}};
 function restore(){
-  const match=location.hash.match(/^#(-?\d+),(-?\d+)(?:\/(sheet|5x5|7x7))?$/);
-  if(match&&valid(+match[1],+match[2])){gridSize=({sheet:1,'5x5':5,'7x7':7})[match[3]]||3;selectTile(+match[1],+match[2])}
+  const match=location.hash.match(/^#(-?\d+),(-?\d+)(?:\/(sheet|(\d{1,3})x\4))?$/);
+  const n=match?.[3]==='sheet'?1:Number(match?.[4]||3);
+  gridSize=n>=1&&n<=side&&n%2===1?n:3;
+  if(match&&valid(+match[1],+match[2]))selectTile(+match[1],+match[2]);
   else selectTile(0,0);
 }
 window.addEventListener('hashchange',restore);draw();restore();
