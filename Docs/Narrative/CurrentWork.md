@@ -2,7 +2,7 @@
 
 ## 현재 결과와 다음 선택
 
-[세력과 계급으로 찾는 주요 인물](Drafts/2026-10-31-ether-taiga-dawn/2026-11-28-faction-figures.html)에서 이번 이야기의 직위 보유자와 위임 기간을 찾을 수 있다. 로덴 사고 기록 인계는 접수인 베딕, 타르넬 장날 경비 예산 설명과 뒤이은 도시 대표는 창고지기 오르벨이 맡는다. 이그니스 정치권·연맹과 해외 네 대륙의 협의 상대까지 배역을 설정하고 [독립 재검토](Reviews/2026-11-28-faction-officeholders-review.html)를 마쳤다.
+[결정 74](../decisions/0074-regional-officeholders.html)로 [세력별 주요 인물 24명](Drafts/2026-10-31-ether-taiga-dawn/2026-11-28-faction-figures.html#representation)을 확정했다. [지역 스토리와 대본](Drafts/2026-10-31-ether-taiga-dawn/2026-11-28-regional-officeholder-scenes.html)은 타르넬·로덴부터 동부 평야의 곡물 방출, 니베르 구조와 세라디온 귀환까지 해당 원고와 연결한다. [독립 재검토](Reviews/2026-11-28-regional-officeholder-adoption-review.html)에서 북부 합류 시점과 아르베나 구조 선택을 확인했다.
 
 [세력과 계급](World.md#세력과-계급)은 [결정 73](../decisions/0073-factions-and-ranks.html)으로 확정했다. [세 도시의 현장 권한](Scenario.md#테른-강-세-도시의-인물과-현장-권한)을 인물표·가구원 명부와 벨레스 출항, 타르넬 검수, 로덴 구조 후 귀환 장면에 반영했다. [채택 원문](Drafts/2026-10-31-ether-taiga-dawn/2026-11-28-factions-and-ranks.html)과 [정본 반영 독립 재검토](Reviews/2026-11-28-factions-and-ranks-review.html#adoption)에서 채택 범위와 검토 결과를 확인할 수 있다.
 

@@ -78,6 +78,7 @@
 | [결정 70](decisions/0070-rebuild-item-data-without-conversion.md) | 아이템·장비 | 결정 68·69 구현 때 기존 에셋과 저장을 변환하지 않는다. 정의는 생성 라이브러리로 다시 만들고, 저장 형식 번호를 올려 이전 저장을 거절한다 | 유효, 구현 전 | 결정 16 일부 대체 | [장비](ProgressionFoundation/Equipment.md), [체크포인트](SessionFoundation/Checkpoint.md) |
 | [결정 71](decisions/0071-code-comment-language.md) | 코드 관례 | 코드 주석의 설명은 한국어로 쓴다. 영어가 더 맞는 용어는 영어로, 한국어로 써도 되는 용어는 한국어로 쓴다. 새로 쓰거나 고치는 주석에만 적용한다 | 유효 |  | [Coding](Coding.md) |
 | [결정 72](decisions/0072-auto-usage.md) | 코드 관례 | `auto`는 람다, 반복자, 긴 템플릿 타입, 타입이 드러나는 Cast·FindFragment 결과에만 쓴다. 바꾸는 줄에만 적용한다 | 유효 |  | [Coding](Coding.md) |
-| [결정 73](decisions/0073-factions-and-ranks.html) | 서사 | 네 정치권과 에테르 연맹의 지위·선임·권한, 테른 강과 해외의 현지 직책을 채택하고 세 도시의 기존 직업과 장면에 반영한다 | 유효 | 결정 52 구체화, 결정 59 구체화, 결정 64 구체화 | [세력과 계급](Narrative/World.md#세력과-계급), [세 도시의 현장 권한](Narrative/Scenario.md#테른-강-세-도시의-인물과-현장-권한) |
+| [결정 73](decisions/0073-factions-and-ranks.html) | 서사 | 네 정치권과 에테르 연맹의 지위·선임·권한, 테른 강과 해외의 현지 직책을 채택하고 세 도시의 기존 직업과 장면에 반영한다 | 유효 | 결정 52 구체화, 결정 59 구체화, 결정 64 구체화, 결정 74에서 구체화 | [세력과 계급](Narrative/World.md#세력과-계급), [세 도시의 현장 권한](Narrative/Scenario.md#테른-강-세-도시의-인물과-현장-권한) |
+| [결정 74](decisions/0074-regional-officeholders.html) | 서사 | 세력별 주요 인물 24명의 이름·배경·권한과 이번 이야기의 위임·인계를 채택하고 각 지역 스토리와 대본에 반영한다 | 유효 | 결정 73 구체화 | [세력별 주요 인물과 위임](Narrative/World.md#세력별-주요-인물과-위임), [지역별 주요 인물의 행동과 인계](Narrative/Scenario.md#지역별-주요-인물의-행동과-인계) |
 
 위 결정으로 확정한 범위 밖의 [GameDesign](GameDesign.md), [ArtDirection](ArtDirection.md) 세부 제안과 [StudyRoadmap](StudyRoadmap.md)의 월별 배분은 후보로 유지한다.
