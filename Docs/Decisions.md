@@ -80,5 +80,6 @@
 | [결정 72](decisions/0072-auto-usage.md) | 코드 관례 | `auto`는 람다, 반복자, 긴 템플릿 타입, 타입이 드러나는 Cast·FindFragment 결과에만 쓴다. 바꾸는 줄에만 적용한다 | 유효 |  | [Coding](Coding.md) |
 | [결정 73](decisions/0073-factions-and-ranks.html) | 서사 | 네 정치권과 에테르 연맹의 지위·선임·권한, 테른 강과 해외의 현지 직책을 채택하고 세 도시의 기존 직업과 장면에 반영한다 | 유효 | 결정 52 구체화, 결정 59 구체화, 결정 64 구체화, 결정 74에서 구체화 | [세력과 계급](Narrative/World.md#세력과-계급), [세 도시의 현장 권한](Narrative/Scenario.md#테른-강-세-도시의-인물과-현장-권한) |
 | [결정 74](decisions/0074-regional-officeholders.html) | 서사 | 세력별 주요 인물 24명의 이름·배경·권한과 이번 이야기의 위임·인계를 채택하고 각 지역 스토리와 대본에 반영한다 | 유효 | 결정 73 구체화 | [세력별 주요 인물과 위임](Narrative/World.md#세력별-주요-인물과-위임), [지역별 주요 인물의 행동과 인계](Narrative/Scenario.md#지역별-주요-인물의-행동과-인계) |
+| [결정 75](decisions/0075-raut-carpenter-home.html) | 벨레스 마을 | 6번 판자길 목수집을 벨레스 일반 살림집 중 가장 크고 화려하게 짓고 넓은 앞마루와 목공 장식을 둔다 | 유효 |  | [벨레스 좌표 평면도](ArtDirection/EtherWorldMap/Atlas/VelesTarnelRoden-v1/02-veles-village.html#raut), [판자길 목수집 가구표](Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-27-veles-households.md#판자길-목수집) |
 
 위 결정으로 확정한 범위 밖의 [GameDesign](GameDesign.md), [ArtDirection](ArtDirection.md) 세부 제안과 [StudyRoadmap](StudyRoadmap.md)의 월별 배분은 후보로 유지한다.
