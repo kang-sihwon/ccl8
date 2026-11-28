@@ -2,7 +2,7 @@
 
 ## 현재 결과와 다음 선택
 
-[이그니스의 세력과 계급](Drafts/2026-10-31-ether-taiga-dawn/2026-11-28-factions-and-ranks.html)에 네 정치권과 에테르 연맹의 서열, 테른 강 세 정착지의 직책과 해외 네 대륙의 현지 권한을 제안했다. [독립 재검토](Reviews/2026-11-28-factions-and-ranks-review.html)를 통과했고, 직급과 선임 관습은 사용자 논의 단계다.
+[세력과 계급](World.md#세력과-계급)은 [결정 73](../decisions/0073-factions-and-ranks.html)으로 확정했다. [세 도시의 현장 권한](Scenario.md#테른-강-세-도시의-인물과-현장-권한)을 인물표·가구원 명부와 벨레스 출항, 타르넬 검수, 로덴 구조 후 귀환 장면에 반영했다. [채택 원문](Drafts/2026-10-31-ether-taiga-dawn/2026-11-28-factions-and-ranks.html)과 [정본 반영 독립 재검토](Reviews/2026-11-28-factions-and-ranks-review.html#adoption)에서 채택 범위와 검토 결과를 확인할 수 있다.
 
 [세력과 계급 비교 자료](Research/2026-11-28-factions-and-ranks.html)는 실제 중세 제도 10건과 중세 판타지 소설·만화·웹툰·게임 각 10작품을 다룬다. 지위를 얻는 경로, 그 지위로 내릴 수 있는 결정, 권한이 끝나는 지점을 비교했다.
 

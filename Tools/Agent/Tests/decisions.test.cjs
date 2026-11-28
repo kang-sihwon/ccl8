@@ -48,6 +48,25 @@ test('relations render on both decisions and the index matches the generator', t
   assert.equal(check(root).code, 0);
 });
 
+test('HTML decisions and legacy Markdown share one index and heading check', t => {
+  const [metadata, body] = decision(2, 'refines: [1]\n').split('\n\n# ');
+  const heading = body.split('\n')[0];
+  const file = 'Docs/decisions/0002-second.html';
+  const html = `<!doctype html>\n<!--\n${metadata}\n-->\n<h1>${heading}</h1>\n`;
+  const root = repository(t, {
+    'Docs/decisions/0001-first.md': decision(1),
+    [file]: html,
+  });
+  const { decisions, findings } = loadDecisions(root);
+  assert.deepEqual(findings, []);
+  const table = render(decisions);
+  assert.match(table, /0002-second\.html/);
+  fs.writeFileSync(path.join(root, 'Docs/Decisions.md'), table);
+  assert.equal(check(root).code, 0);
+  fs.writeFileSync(path.join(root, file), html.replace('<h1>', '<p>'));
+  assert.match(check(root).output, /heading .* is missing/);
+});
+
 test('bad numbering, relation targets, status and stale index are reported', t => {
   const root = repository(t, {
     'Docs/decisions/0001-first.md': decision(1, 'supersedes: [2]\n').replace('"유효"', '"보류"'),

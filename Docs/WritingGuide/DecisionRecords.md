@@ -4,7 +4,7 @@
 
 ## 결정을 기록하는 방법
 
-결정 1건은 `Docs/decisions/NNNN-<english-kebab>.md` 파일 하나다. 근거는 [결정 28](../decisions/0028-agent-workflow-restructure.md)이고, 이름의 영어 kebab-case는 2026-10-26 사용자가 골랐다. `Docs/Decisions.md`는 결정 파일의 머리말에서 생성하므로 손으로 고치지 않는다.
+결정 1건은 `Docs/decisions/NNNN-<english-kebab>.html` 파일 하나다. 새 결정은 HTML 주석 안에 기존 형식의 머리말을 넣고, 보이는 제목은 `<h1>`에 쓴다. 색인 생성기는 기존 Markdown 결정도 함께 읽는다. 근거는 [결정 28](../decisions/0028-agent-workflow-restructure.md)이고, 이름의 영어 kebab-case는 2026-10-26 사용자가 골랐다. `Docs/Decisions.md`는 결정 파일의 머리말에서 생성하므로 손으로 고치지 않는다.
 
 머리말에는 결정 28이 적은 상태와 번복 관계에 더해 `topic`, `summary`, `owners`를 둔다. 옛 Decisions 표의 주제, 현재 내용, 소유 문서를 생성 결과에 남기기 위해서다. 결정 28의 "상태·번복 관계만"을 넓게 읽은 것이므로 사용자가 다르게 정하면 머리말과 생성기(`Tools/Agent/decisions.cjs`의 `REQUIRED`)를 고친다. 결정 사이의 관계는 나중 결정의 머리말에만 적고, "결정 7에서 보완" 같은 반대 방향은 생성기가 계산한다.
 

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 'use strict';
 
-// Generates Docs/Decisions.md from the frontmatter of Docs/decisions/NNNN-*.md and checks decision links.
+// Generates Docs/Decisions.md from Markdown and HTML decision records under Docs/decisions/ and checks decision links.
 // Usage: node Tools/Agent/decisions.cjs check | generate [--write] | next
 
 const fs = require('node:fs');
@@ -12,7 +12,7 @@ const { parseFrontmatter } = require('./skills.cjs');
 const ROOT = path.resolve(__dirname, '..', '..');
 const DECISIONS_DIR = 'Docs/decisions';
 const INDEX_FILE = 'Docs/Decisions.md';
-const FILE_NAME = /^(\d{4})-([a-z0-9]+(?:-[a-z0-9]+)*)\.md$/;
+const FILE_NAME = /^(\d{4})-([a-z0-9]+(?:-[a-z0-9]+)*)\.(?:md|html)$/;
 const STATUSES = new Set(['유효', '유효(부분)', '번복', '완료', '미확인']);
 const REQUIRED = ['number', 'date', 'title', 'topic', 'status', 'summary', 'owners'];
 // Relation key, wording on the newer decision, wording on the older decision it points at.
@@ -33,15 +33,17 @@ function loadDecisions(root) {
   const findings = [];
   const decisions = [];
   for (const name of fs.existsSync(dir) ? fs.readdirSync(dir).sort() : []) {
-    if (!name.endsWith('.md')) continue;
+    if (!/\.(md|html)$/.test(name)) continue;
     const file = `${DECISIONS_DIR}/${name}`;
     const match = name.match(FILE_NAME);
     if (!match) {
-      findings.push(`${file}: file name is not NNNN-english-kebab.md`);
+      findings.push(`${file}: file name is not NNNN-english-kebab.md or .html`);
       continue;
     }
     const text = fs.readFileSync(path.join(dir, name), 'utf8');
-    const fields = parseFrontmatter(text);
+    const isHtml = name.endsWith('.html');
+    const metadata = isHtml ? text.match(/<!--\s*(---\r?\n[\s\S]*?\r?\n---\r?\n)\s*-->/)?.[1] : text;
+    const fields = parseFrontmatter(metadata ?? '');
     if (!fields) {
       findings.push(`${file}: frontmatter block is missing`);
       continue;
@@ -52,8 +54,9 @@ function loadDecisions(root) {
     const number = Number(fields.number);
     if (number !== Number(match[1])) findings.push(`${file}: number ${fields.number} does not match the file name`);
     if (fields.status && !STATUSES.has(fields.status)) findings.push(`${file}: status "${fields.status}" is not one of ${[...STATUSES].join(', ')}`);
-    const heading = `# ${fields.date} — 결정 ${number}: ${fields.title}`;
-    if (!text.split(/\r?\n/).includes(heading)) findings.push(`${file}: heading "${heading}" is missing`);
+    const title = `${fields.date} — 결정 ${number}: ${fields.title}`;
+    const heading = isHtml ? `<h1>${title}</h1>` : `# ${title}`;
+    if (!(isHtml ? text.includes(heading) : text.split(/\r?\n/).includes(heading))) findings.push(`${file}: heading "${heading}" is missing`);
     const relations = Object.fromEntries(RELATIONS.map(([key]) => [key, numberList(fields[key])]));
     decisions.push({ ...fields, number, file: name, relations });
   }
@@ -144,7 +147,7 @@ function main(argv, root) {
   const expected = render(decisions);
   if (mode === 'next') {
     const next = decisions.length + 1;
-    process.stdout.write(`${DECISIONS_DIR}/${String(next).padStart(4, '0')}-<english-kebab-slug>.md (결정 ${next})\n`);
+    process.stdout.write(`${DECISIONS_DIR}/${String(next).padStart(4, '0')}-<english-kebab-slug>.html (결정 ${next})\n`);
     return 0;
   }
   if (mode === 'generate') {
