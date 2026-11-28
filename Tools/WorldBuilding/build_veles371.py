@@ -289,6 +289,20 @@ def vegetation(i,j,nx,ny,zones):
     return result
 
 
+# 피복 팔레트의 G-R은 숲에서 10 또는 19, 다른 지면에서는 최대 6이다.
+# 보간된 경계에만 짙은 선을 주고 숲 안쪽에는 약한 그늘을 남긴다.
+FOREST_INK = '''<filter id="forest-edge" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
+<feColorMatrix type="matrix" values="0 0 0 0 .23  0 0 0 0 .29  0 0 0 0 .17  -85 85 0 0 -2"/>
+<feComponentTransfer><feFuncA type="table" tableValues="0 0 .85 .78 .25 .14"/></feComponentTransfer>
+<feMerge><feMergeNode in="SourceGraphic"/><feMergeNode/></feMerge></filter>
+<style>
+g[clip-path="url(#frame)"] > image { filter:url(#forest-edge) }
+#oak > path:first-child { fill:#88965e; stroke:#425338; stroke-width:1.25 }
+#fir > path:first-child { fill:#687f57; stroke:#3d503d; stroke-width:1.15 }
+#oak > path:nth-child(2), #fir > path:nth-child(2) { stroke:#bdc391; stroke-width:.84 }
+</style>'''
+
+
 def sheet(i,j,rname,pixels,features,plants):
     # 7비트 팔레트 PNG는 물길·도로 벡터 아래의 토지 피복만 담는다.
     im=Image.frombytes('P',(PW,PH),pixels.tobytes())
@@ -299,8 +313,12 @@ def sheet(i,j,rname,pixels,features,plants):
     ink=''.join(plants)+''.join(s for _,_,s in sorted(features,key=lambda v:v[0]))
     names=list(dict.fromkeys(s for _,s,_ in sorted(features,key=lambda v:-v[0])))
     legend=" · ".join(names[:3]) or rname
+    has_forest = np.any((pixels >= 16) & (pixels < 48)) or any(
+        plant.startswith(('<use xlink:href="#oak"', '<use xlink:href="#fir"', '<use xlink:href="#copse"'))
+        for plant in plants)
+    forest = FOREST_INK if has_forest else ''
     return f'''<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="900" height="1056" viewBox="0 0 300 352" data-tile="{i}_{j}">
-<title>{escape(rname)} ({i}, {j})</title><defs>{SYMBOLS}<clipPath id="frame"><rect x="22" y="26" width="{W}" height="{H}"/></clipPath><pattern id="field" patternUnits="userSpaceOnUse" patternTransform="rotate(11)" width="3" height="4"><rect width="3" height="4" fill="#b5a378"/><path d="M0 0v4" stroke="#d0bc8c" stroke-width="1"/></pattern></defs>
+<title>{escape(rname)} ({i}, {j})</title><defs>{SYMBOLS}{forest}<clipPath id="frame"><rect x="22" y="26" width="{W}" height="{H}"/></clipPath><pattern id="field" patternUnits="userSpaceOnUse" patternTransform="rotate(11)" width="3" height="4"><rect width="3" height="4" fill="#b5a378"/><path d="M0 0v4" stroke="#d0bc8c" stroke-width="1"/></pattern></defs>
 <rect width="300" height="352" fill="#efe9d8"/><g font-family="Malgun Gothic,sans-serif" fill="#444a3c"><text x="22" y="15" font-size="6">{escape(rname)}　 /　({i}, {j})</text><text x="276" y="15" text-anchor="end" font-size="5">북 ↑</text></g>
 <g clip-path="url(#frame)"><image x="22" y="26" width="{W}" height="{H}" preserveAspectRatio="none" xlink:href="data:image/png;base64,{img}"/><g transform="translate({22-a:.6f} {26+d:.6f}) scale(1 -1)" stroke-linecap="round" stroke-linejoin="round">{ink}</g></g>
 <g font-family="Malgun Gothic,sans-serif" fill="#454a3d" font-size="4.5"><text x="22" y="308">X {a:.1f} → {c:.1f} m　 /　Y {d:.1f} → {b:.1f} m</text><text x="22" y="320">{escape(legend[:48])}</text><path d="M22 335h50m-50 -1.5v3m50 -3v3" fill="none" stroke="#4f5644" stroke-width=".85"/><text x="76" y="337">50 m</text><text x="277" y="337" text-anchor="end">벨레스 세계 격자</text></g></svg>'''.encode('utf-8')
