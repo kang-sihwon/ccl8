@@ -76,7 +76,7 @@
 
 ## 좌표평면에서 인물을 찾는 법
 
-로덴 도시와 근교는 세계 타일 124장에 걸친다. 아래는 **R 로컬 좌표 (동쪽 X, 북쪽 Y), 단위 m**다. 점은 도면에 올라 있는 접안·통행·작업 지점이다. 집과 공방은 생활권까지 배정했고 개별 문패 자리는 미정이다. [도시 전체도](../../../ArtDirection/EtherWorldMap/Atlas/VelesTarnelRoden-v1/CityPlans/Roden/index.html) · [좌표·경로 원본](../../../ArtDirection/EtherWorldMap/Atlas/VelesTarnelRoden-v1/CityPlans/Roden/coordinates.json)
+로덴 도시와 근교는 세계 타일 124장에 걸친다. 아래 표는 접안·통행·작업 지점을 **R 로컬 좌표(동쪽 X, 북쪽 Y)**로 표시한다. 단위는 m다. [대표 주택 네 곳](../../../ArtDirection/EtherWorldMap/Atlas/VelesTarnelRoden-v1/CityPlans/Roden/index.html#homes)에서 보렌과 누안의 셋방, 소른의 공방집, 레니카의 가게집, 오르달의 안뜰집을 지도 위에서 찾을 수 있다. 그 밖의 가구는 거주 구획과 골목까지만 정했고 개별 필지 좌표는 미정이다. [도시 전체도](../../../ArtDirection/EtherWorldMap/Atlas/VelesTarnelRoden-v1/CityPlans/Roden/index.html) · [좌표·경로 원본](../../../ArtDirection/EtherWorldMap/Atlas/VelesTarnelRoden-v1/CityPlans/Roden/coordinates.json)
 
 | 시간과 길 | 도면의 지점 순서와 로컬 좌표 | 장면에 놓을 사람 |
 |---|---|---|
