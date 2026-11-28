@@ -40,7 +40,8 @@ function show(k,place='',write=true){
   key=available(k)?k:''; focus=place; tiles.value=key;
   const file=(key||'overview')+'.svg'+flag();
   plate.src=file;byId('original').href=file;
-  byId('guide').textContent=incidentGuides[stage?.value]||localGuide;
+  const itinerary=data.trips[+trip.value];
+  byId('guide').textContent=itinerary?.notes?.[focus]||itinerary?.guide||incidentGuides[stage?.value]||localGuide;
   plate.alt=data.name+' '+(key?'세계 타일 '+key:'전체도');
   const links=byId('hits');links.replaceChildren();byId('neighbors').replaceChildren();
   if(key){

@@ -394,6 +394,13 @@ class Plan:
             trip("조합의 급수와 작업구","B01 B02 SUPPLY B03")
             trip("사고 후 보행 우회","B07 B12 B09","closed")
             trip("문 개방 뒤 들것 이송","B08 GATE B09 B10 MOOR","rescued")
+            trip("구조선 출발 뒤 조합 귀환","B10 B11 B01 B02","rescued")
+            self.trips[-1]["guide"]="린이 부상자와 함께 떠나면 주인공은 육지에 남는다. B11에서 한네를 지나 B01에서 보렌을 다시 보고 B02 조합으로 오른다."
+            self.trips[-1]["notes"]={
+                "B10":"가넬은 열린 길을 확인해 배를 요청한다. 접안과 출발은 린이 판단하고, 주인공은 배를 바라본 뒤 제방으로 향한다.",
+                "B11":"제방 경비 한네가 수레와 보행자의 통행을 나눈다. 작업구 입구에서 점검조를 확인하는 사비는 B03에 있다.",
+                "B01":"보렌이 낮은 받침에 앉아 두 번째 짐을 가리킨다. 이번에는 주인공이 먼저 어깨로 짐을 나르는 사람에게 길을 비킨다.",
+                "B02":"계단에서는 에브라가 급수와 보온 몫을 남긴다. 접수대에서는 베딕이 마렌의 우회 승인과 디셀의 목격을 되읽는다. 다음 교대자가 확인 못 한 빈 줄까지 읽고 종이를 받아 가면 베딕의 대표 위임이 끝난다. 디셀이 떠난 뒤 주인공과 마렌은 조합 작업대(R-GUILD)에서 각자 본 선이 만나는 자리를 도면에 그린다."}
         for k,f in self.features.items():
             ps=f["geometry"]
             if f["kind"] in ("facility","building","pad","rock") and len(ps)>=3:
@@ -724,10 +731,13 @@ class Plan:
     def itineraries(self):
         # Route highlighting uses the same curves as the underlying streets.
         keys=(["선적길|곡물 수레길","목재 검사길|적치장 진입","목재 검사길|낮은 조사길|어살 둑길|높은 귀환길"] if self.t else
-              ["하역 연결|창고 진입|식료 수레길","조합과 작업구|생활 급수길","bypass","r-stretcher|구조선 연결"])
+              ["하역 연결|창고 진입|식료 수레길","조합과 작업구|생활 급수길","bypass","r-stretcher|구조선 연결","제방 귀환길|조합과 작업구"])
         for i,(trip,names) in enumerate(zip(self.trips,keys)):
             for name in names.split("|"):
                 ps=self.lines[name][0]
+                if trip["stops"][-1]=="B02" and name=="조합과 작업구":
+                    end=ps.index(tuple(self.stops["B02"]["point"]))
+                    ps=ps[:end+1]
                 self.add(9,ps,f'<g class="travel trip{i}">'+draw_path(ps,"#fff4ca",5.4)+
                          draw_path(ps,"#894826" if trip["state"]!="rescued" else "#226c68",2.8)+'</g>',4)
 
@@ -747,7 +757,7 @@ class Plan:
         frame='<rect x="48" y="86" width="1084" height="1160"/>'
         matrix=f'translate({fmt(48-a*4.25)} {fmt(86+d*4.25)}) scale(4.25 -4.25)'
         title=f'{self.name} · 세계 타일 {x}, {y}'
-        art=[svg_head(1180,1344,title,frame),text_at(48,51,title,30),
+        art=[svg_head(1180,1344,title,frame,len(self.trips)),text_at(48,51,title,30),
              text_at(1128,48,"북 ↑　　도시 로컬 m","17","end"),
              f'<g clip-path="url(#crop)"><g id="metric" transform="{matrix}">',
              self.base_svg(bounds),'</g></g>']
@@ -783,7 +793,7 @@ class Plan:
             tiles.append(f'<a data-tile="{k}" target="_top" href="index.html?tile={k}"><title>세계 타일 {ij[0]}, {ij[1]} 열기</title><rect {box} fill="transparent" stroke="{tone}" stroke-opacity=".50" stroke-width="1.6"/></a>')
         title=self.name+" 도시와 근교"
         mat=f'translate({fmt(x0-a*scale)} {fmt(78+d*scale)}) scale({fmt(scale)} -{fmt(scale)})'
-        art=[svg_head(width,height,title,"".join(rects)),text_at(x0,48,title,32),
+        art=[svg_head(width,height,title,"".join(rects),len(self.trips)),text_at(x0,48,title,32),
              text_at(width-x0,45,f"북 ↑　　세계 타일 {len(tiles)}장",18,"end"),
              f'<g transform="{mat}" id="metric"><g clip-path="url(#crop)">',self.base_svg(self.ext,True),"</g>"]
         for key,s in self.stops.items():
@@ -832,7 +842,7 @@ def text_at(x,y,s,size,align="start"):
     return f'<text x="{fmt(x)}" y="{fmt(y)}" font-size="{size}" text-anchor="{align}">{escape(str(s))}</text>'
 
 
-def svg_head(w,h,title,clip):
+def svg_head(w,h,title,clip,trip_count):
     head=f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {w} {h}" width="{w}" height="{h}" lang="ko">
 <title>{escape(title)}</title><defs><clipPath id="crop">{clip}</clipPath>
 <pattern id="ground" patternUnits="userSpaceOnUse" width="37" height="31"><rect width="37" height="31" fill="#c4c5a1"/><path d="M3 7l1 1 2 -1m10 9l2 -.4m11 -11l1 1.5m2 21l2 -1" fill="none" stroke="#a4a780" stroke-width=".6"/></pattern>
@@ -847,17 +857,17 @@ def svg_head(w,h,title,clip):
 <g id="boat"><path d="M-5 0Q-2 -2.45 3 -1.25L5 0Q2 2.1 -2 1.5Z" fill="#ac9168" stroke="#564c38" stroke-width=".55"/><path d="M-2 -1v2m2 -2.3v2.6m2 -2.4v2" stroke="#68593e" stroke-width=".4"/></g>
 <g id="tree"><path d="M-.92 -.22Q-1.2 -.7 -.65 -.8Q-.39 -1.24 .04 -.94Q.67 -1.15 .84 -.67Q1.28 -.36 .93 .1Q1 .67 .49 .7Q.1 1.23 -.29 .9Q-.98 1.08 -.94 .44Q-1.27 .13 -.92 -.22Z" fill="#7d8969" stroke="#646e52" stroke-width=".10"/><path d="M-.74 -.33Q-.65 -.72 -.31 -.58Q-.18 -.9 .16 -.64M.35 .55Q.74 .36 .59 .12" fill="none" stroke="#b1b28a" stroke-width=".11"/></g>
 </defs><style>svg{{background:#f1ead8;font-family:'Malgun Gothic',sans-serif;color:#383c31}}polyline,polygon,path{{stroke-linejoin:round;stroke-linecap:round}}text{{fill:currentColor}}a:hover rect{{fill:#fff5c5;fill-opacity:.28}}.ecology,.state,.travel{{display:none}}.normal{{display:inline}}svg.closed .normal,svg.rescued .normal{{display:none}}svg.closed .closed,svg.rescued .rescued,svg.wild .ecology{{display:inline}}svg.route0 .trip0,svg.route1 .trip1,svg.route2 .trip2,svg.route3 .trip3{{display:inline}}</style>'''
-    return head + state_flags()
+    return head + state_flags(trip_count)
 
 
-def state_flags():
+def state_flags(trip_count):
     # Fragment navigation also works when the HTML is opened from disk.
     flags="".join(f'<g id="s-{s}-{wild}-{r}" class="flag" data-s="{s}" data-w="{wild}" data-r="{r}"/>'
-                  for s in ("normal","broken","closed","rescued") for wild in (0,1) for r in (-1,0,1,2,3))
+                  for s in ("normal","broken","closed","rescued") for wild in (0,1) for r in range(-1,max(4,trip_count)))
     style='.flag[data-w="1"]:target ~ g .ecology{display:inline}'
     for s in ("broken","closed","rescued"):
         style+=f'.flag[data-s="{s}"]:target ~ g .normal{{display:none}}.flag[data-s="{s}"]:target ~ g .{s}{{display:inline}}'
-    for r in range(4):
+    for r in range(max(4,trip_count)):
         style+=f'.flag[data-r="{r}"]:target ~ g .trip{r}{{display:inline}}'
     return "<style>"+style+"</style>"+flags
 

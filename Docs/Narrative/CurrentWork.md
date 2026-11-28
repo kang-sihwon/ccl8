@@ -8,7 +8,7 @@
 
 [세력과 계급 비교 자료](Research/2026-11-28-factions-and-ranks.html)는 실제 중세 제도 10건과 중세 판타지 소설·만화·웹툰·게임 각 10작품을 다룬다. 지위를 얻는 경로, 그 지위로 내릴 수 있는 결정, 권한이 끝나는 지점을 비교했다.
 
-[로덴 인물 명부](Drafts/2026-10-31-ether-taiga-dawn/2026-11-28-roden-residents.md)에 주요 NPC 6명, 현장 배역 12명, 생활 인물 16명을 배치했다. 린을 제외한 33명은 네 거주 구획에 집을 둔다. [독립 재검토](Reviews/2026-11-28-roden-residents-review.md) PASS 뒤 사용자 논의 단계다.
+[로덴 인물 명부](Drafts/2026-10-31-ether-taiga-dawn/2026-11-28-roden-residents.md)에 주요 NPC 7명, 현장 배역 11명, 생활 인물 16명을 배치했다. 린을 제외한 33명은 네 거주 구획에 집을 둔다. [독립 재검토](Reviews/2026-11-28-roden-residents-review.md)에서 인물 배치를 확인했다. 베딕의 사고 기록 인계는 결정 74의 채택 범위다. [도시 좌표평면](../ArtDirection/EtherWorldMap/Atlas/VelesTarnelRoden-v1/CityPlans/Roden/index.html)에서 구조선 출발 뒤 B02까지의 육상 귀환을 따라갈 수 있다.
 
 [타르넬 인물 명부](Drafts/2026-10-31-ether-taiga-dawn/2026-11-28-tarnel-residents.md)에 첫 기항의 주요 인물 5명, 기존 장면 배역 5명, 세 거주 구획의 생활 배역 12명을 정리했다. [독립 재검토](Reviews/2026-11-28-tarnel-residents-review.md) PASS 뒤 사용자 논의 단계다.
 
