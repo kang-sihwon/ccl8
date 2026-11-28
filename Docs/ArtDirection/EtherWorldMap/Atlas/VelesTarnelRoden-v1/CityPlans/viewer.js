@@ -63,6 +63,19 @@ function show(k,place='',write=true){
       link.onclick=e=>{if(!e.ctrlKey&&!e.metaKey){e.preventDefault();show(tile)}};links.append(link);
     }
   }
+  for(const house of document.querySelectorAll('#housing [data-house-stop]')){
+    const stop=data.stops[house.dataset.houseStop];
+    if(key && key!==stop.tile)continue;
+    const [west,south,east,north]=house.dataset.bounds.split(' ').map(Number);
+    const [left,top]=point(west,north),[right,bottom]=point(east,south);
+    const link=document.createElement('a');
+    link.href=house.querySelector('a[href*=".html#"]').href;
+    link.className='house-hit';
+    link.title=stop.name+' · 가구 명부';
+    link.setAttribute('aria-label',link.title);
+    Object.assign(link.style,{left:left+'%',top:top+'%',width:(right-left)+'%',height:(bottom-top)+'%'});
+    links.append(link);
+  }
   const mark=byId('pin');mark.hidden=!focus;
   if(focus){
     const p=data.stops[focus].point,[x,y]=point(...p);

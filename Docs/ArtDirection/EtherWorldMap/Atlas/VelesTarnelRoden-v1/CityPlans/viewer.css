@@ -13,6 +13,8 @@ button{cursor:pointer}button[aria-current=true]{border-color:#466052;background:
 #paper{position:relative;width:100%}#plate{width:100%;height:auto;display:block}
 #hits{position:absolute;inset:0;pointer-events:none}#hits a{position:absolute;pointer-events:auto}
 #hits a:hover,#hits a:focus-visible{outline:2px solid #5a6046;background:#fff1b13b;z-index:1}
+#hits a.house-hit{z-index:2;outline:1px solid #5b6548;background:#eed78826}
+#hits a.house-hit:hover,#hits a.house-hit:focus-visible{z-index:3;outline:2px solid #66482c;background:#ffdf7f70}
 #pin{position:absolute;pointer-events:none;transform:translate(-50%,-50%);width:19px;height:19px;border:3px solid #713f2e;border-radius:50%;box-shadow:0 0 0 2px #fff2c9}
 aside label{display:block;margin:.7rem 0}aside select{max-width:100%}
 aside p,details p,output{font-size:.91rem}output{display:block;min-height:1.5em;font-variant-numeric:tabular-nums}

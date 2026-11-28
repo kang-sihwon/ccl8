@@ -1021,13 +1021,24 @@ def page(data):
             '린은 하역할 사람이 설 폭을 남겨 실을 양을 정하고 로덴으로 떠난다. '
             '<a href="../../05-tarnel.svg#detail-2">선적 자리 확대</a></p></section>'
         )
+        register = "../../../../../../Narrative/Drafts/2026-10-31-ether-taiga-dawn/2026-11-28-tarnel-households/"
+        households = {
+            "SHIP-HOUSE": [("market-01.html#market-008", "오르덴나의 선주집")],
+            "BAKE-HOUSE": [("market-01.html#market-002", "세니의 빵집 살림"), ("market-01.html#market-001", "마르테의 위층 셋방")],
+            "SAW-HOUSE": [("yard-01.html#yard-007", "카스라와 제브의 공방주택")],
+            "RENT-HOUSE": [("yard-01.html#yard-002", "모릭의 가운데 살림"), ("yard-01.html#yard-003", "에르단나의 서쪽 살림"), ("yard-01.html#yard-004", "부엘과 오르니의 동쪽 살림")],
+            "FISH-HOUSE": [("landing-01.html#landing-003", "메리스와 테빅의 집")],
+        }
         houses = []
         for key, site in FEATURES.items():
             if site.get("frame") == "T" and site.get("kind") == "parcel" and site["design"] != "hall":
                 left, bottom, right, top = bbox(site["geometry"])
-                houses.append(f'<li>{stop_link(key, escape(site["name"]))} · {fmt(right-left)} × {fmt(top-bottom)}m. '
-                              f'{escape(site["description"])}</li>')
-        story += '<section id="housing"><h2>타르넬의 다섯 살림</h2><p>치수는 마당을 포함한 대표 필지의 폭과 깊이다.</p><ul>' + ''.join(houses) + '</ul></section>'
+                bounds_text = " ".join(fmt(n) for n in (left, bottom, right, top))
+                family_links = " · ".join(f'<a href="{register}{target}">{label}</a>' for target, label in households[key])
+                houses.append(f'<li data-house-stop="{key}" data-bounds="{bounds_text}"><strong>{escape(site["name"])}</strong> · '
+                              f'{fmt(right-left)} × {fmt(top-bottom)}m. {escape(site["description"])} '
+                              f'{stop_link(key, "지도 위치")}<br>{family_links}</li>')
+        story += '<section id="housing"><h2>타르넬의 다섯 살림</h2><p>지도에서 집을 누르면 그 집의 가구 명부가 열린다. 한 지붕 아래 살림이 여럿이면 아래에서 각각 고를 수 있다. 치수는 마당을 포함한 필지의 폭과 깊이다.</p><ul>' + ''.join(houses) + '</ul></section>'
     if data["frame"]=="R":
         examples=[]
         for key,name,_,kind,_ in RODEN_HOME_EXAMPLES:
