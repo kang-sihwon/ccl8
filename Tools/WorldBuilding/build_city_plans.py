@@ -429,6 +429,44 @@ class Plan:
             x,y=ps
             self.add(7,[ps],f'<g transform="translate({x} {y}) rotate(-7)"><rect x="-2.4" y="-6" width="4.8" height="12" fill="url(#timber)" stroke="#6d583c"/></g>',8)
 
+    def tarnel_properties(self):
+        # 공공 건물과 주거 필지를 먼저 확보한 뒤 남은 자리에 일반 주택을 놓는다.
+        art = {
+            "hall": '<rect x="-13" y="-8" width="26" height="16" fill="#c9bba7"/><path d="M-12 7V-4H12V7Z" fill="#835b46"/><path d="M-12 2H12" stroke="#e5c19c"/><path d="M-7 -4V-7H7V-4M-8 -7H8M-9 -8H9" fill="none"/><path d="M-6 -4v-2m4 2v-2m4 2v-2m4 2v-2"/>',
+            "court": '<rect x="-14" y="-9.5" width="28" height="19" fill="url(#paving)"/><path d="M-13 8V-8H-7V1H13V8Z" fill="#945740"/><path d="M8 -8h5v8H8Z" fill="#89644c"/><path d="M-10 -7V5H12" fill="none" stroke="#ecc98f"/><path d="M-5 1v1.5m4 -1.5v1.5m4 -1.5v1.5m4 -1.5v1.5" stroke="#397267" stroke-width="1.3"/><path d="M-14 -9h8m6 0h14" stroke="#8a745c"/>',
+            "shop": '<rect x="-6.5" y="-4.5" width="13" height="9" fill="#c3ae85"/><rect x="-6" y="-3" width="10" height="7" fill="#a16c4e"/><path d="M-6 1H4" stroke="#dfbd8f"/><path d="M-6 -3H2v-1.4h-8Z" fill="#cbab60"/><path d="M4.5 -3h1.6m-1.6 1.2h1.6m-1.6 1.2h1.6m-1.6 1.2h1.6"/><rect x="0" y="1" width="1.5" height="1.6" fill="#514740"/>',
+            "workshop": '<rect x="-8" y="-6" width="16" height="12" fill="#cbb999"/><path d="M-8 5V-2H2V5Z" fill="#996d51"/><path d="M3 5v-8h4v8Z" fill="#ad865d"/><path d="M-8 2H2" stroke="#dec19a"/><path d="M-6 -4h7m-7 -1h7" stroke="#836648"/>',
+            "row": '<rect x="-8.5" y="-4.5" width="17" height="9" fill="#c1b28c"/><rect x="-8" y="-2.5" width="16" height="6" fill="#8e8068"/><path d="M-8 .5H8m-10.7 -3v6m5.3 -6v6" fill="none"/><path d="M-6 -2.5v-1.3m5.3 1.3v-1.3m5.3 1.3v-1.3" stroke-width="1.1"/><rect x="6.5" y="-4.2" width="1.3" height="1.2" fill="#635746"/>',
+            "deck": '<rect x="-6.5" y="-4.5" width="13" height="9" fill="url(#timber)"/><rect x="-6" y="-3" width="8" height="7" fill="#887861"/><path d="M-6 .5H2" stroke="#d3b697"/><path d="M3 -2h3m-3 2h3m-3 2h3" stroke="#615b43"/>',
+        }
+        self.property_lots = CorridorIndex()
+        for key, site in self.features.items():
+            if site["kind"] != "parcel":
+                continue
+            corners = site["geometry"]
+            left, bottom, right, top = bbox(corners)
+            x, y = (left + right) / 2, (bottom + top) / 2
+            self.mark(key, site["name"], site["point"])
+            self.property_lots.add([(x, y), (x, y)], math.hypot(right-left, top-bottom)/2 + 1)
+            if "approach" in site:
+                path = site["approach"]
+                width, path_id = 3.5, "council-walk"
+            else:
+                # 일반 주택의 대문은 가장 가까운 골목을 향해 낸다.
+                street = min((v for lane in self.frontages for v in lane),
+                             key=lambda v: math.dist(v, (x,y)))
+                gate = (max(left, min(street[0], right)), max(bottom, min(street[1], top)))
+                path = [street, gate]
+                width, path_id = 1.6, key.lower() + "-walk"
+            self.property_lots.add(path, width/2)
+            self.lines[path_id] = (path, width, "길")
+            self.add(5, path, draw_path(path, "#9a856a", width+.7) +
+                     draw_path(path, "#ddd0b4", width, f'data-feature="{path_id}" data-width="{width}"'), width)
+            drawing = (f'<g data-property="{key}" transform="translate({fmt(x)} {fmt(y)})" '
+                       f'stroke="#665440" stroke-width=".4"><title>{escape(site["name"])} · '
+                       f'{escape(site["description"])}</title>{art[site["design"]]}</g>')
+            self.add(7, corners, drawing, 1)
+
     def streets(self):
         rows=11 if self.t else 25
         cols=10 if self.t else 23
@@ -472,6 +510,8 @@ class Plan:
             p=self.stops[key]["point"]
             q=min((q for lane in self.frontages for q in lane),key=lambda q:math.dist(p,q))
             self.road(key+" 마당길",[p,q],4,False)
+        if self.t:
+            self.tarnel_properties()
         for lane in self.frontages:
             next_at=8; walked=0
             for p,q in zip(lane,lane[1:]):
@@ -495,6 +535,23 @@ class Plan:
                         continue
                     ang=math.degrees(math.atan2(uy,ux))
                     fill=self.rng.choice(("#a37454","#b08260","#9b8061","#927b60","#ae8868","#aa765b"))
+                    radius = math.hypot(a,b)
+                    form = ""
+                    if self.t:
+                        # 기존 집터와 시외 수림의 난수 순서를 보존하고 필지 안의 살림채만 나눈다.
+                        if self.property_lots.near((x,y),radius+2):
+                            self.solids.add([(x,y),(x,y)],radius)
+                            continue
+                        market = inside(x,y,self.cells[0])
+                        lot = (round(x) + 7*round(y)) % 100
+                        if lot < (30 if market else 12) and a*b > 20:
+                            form, fill = "merchant", "#985f49"
+                        elif lot >= (72 if market else 48):
+                            form, fill = "tenement", "#8d806b"
+                            b *= .72
+                        else:
+                            a *= .86
+                            b *= .9
                     tr=f'translate({fmt(x)} {fmt(y)}) rotate({fmt(ang)}) scale(1 {side})'
                     roof=(f'<g transform="{tr}"><rect x="{-a:.2f}" y="{-b:.2f}" width="{2*a:.2f}" height="{2*b:.2f}" fill="{fill}" stroke="#65553f" stroke-width=".6"/>'
                           f'<path d="M{-a:.2f} 0H{a:.2f}V{b:.2f}H{-a:.2f}Z" fill="#4f453b" opacity=".22"/>'
@@ -518,10 +575,16 @@ class Plan:
                                  f'<path d="M{-a*.7:.2f} {b*.2:.2f}v{b+1:.2f}" stroke="#dfbd92" stroke-width=".42"/>')
                     elif self.housecount%4==0:
                         fixture=f'<rect x="{-a+.4:.2f}" y="{-b-2:.2f}" width="1.4" height="1.2" fill="#947753" stroke="#766044" stroke-width=".25"/>'
+                    if form == "merchant":
+                        fixture += (f'<path d="M{-a+.6:.2f} {-b:.2f}h{2*a-1.2:.2f}" stroke="#dfbd86" stroke-width=".85"/>'
+                                    f'<path d="M{-a/2:.2f} {-b:.2f}v1.4m{a/2:.2f} -1.4v1.4m{a/2:.2f} -1.4v1.4" stroke="#446e62" stroke-width="1.1"/>')
+                    elif form == "tenement":
+                        fixture = (f'<path d="M{-a/3:.2f} {-b:.2f}v{2*b:.2f}m{2*a/3:.2f} {-2*b:.2f}v{2*b:.2f}" stroke="#6a6251" stroke-width=".5"/>'
+                                   f'<path d="M{-a*2/3:.2f} {-b:.2f}v-1.1m{a*2/3:.2f} 1.1v-1.1m{a*2/3:.2f} 1.1v-1.1" stroke="#ddd0ae" stroke-width="1.15"/>')
                     self.add(4,[(x,y)],yard,a+b+6,False)
                     self.add(7,[(x,y)],roof,a+b+2)
                     self.add(7,[(x,y)],pitch+extras+f'<g transform="{tr}">{fixture}</g>',a+b+6,False)
-                    self.solids.add([(x,y),(x,y)],math.hypot(a,b))
+                    self.solids.add([(x,y),(x,y)],radius)
                     self.housecount+=1
 
     def outskirts(self):
@@ -640,6 +703,11 @@ class Plan:
                 self.add(10,[p],f'<g class="state {stage}">'+label((p[0],p[1]-5),word,5)+"</g>",25,False)
         for key,s in self.stops.items():
             x,y=s["point"]
+            site = self.features.get(key, {})
+            if site.get("kind") == "parcel":
+                _, _, _, top = bbox(site["geometry"])
+                self.add(10, [(x,top+2)], label((x,top+2),s["name"],4.2), 24,False)
+                continue
             dot=f'<circle cx="{x}" cy="{y}" r="2.3" fill="#503f32" stroke="#f6ecd5" stroke-width="1"/>'
             self.add(10,[(x,y)],dot+label((x,y+5),s["name"],5),33,False)
 
@@ -879,15 +947,23 @@ def page(data):
             tile = data["stops"][key]["tile"]
             return f'<a href="?tile={tile}&amp;place={key}">{label}</a>'
         story = (
-            '<section id="first-call"><h2>첫 기항의 세 장소</h2>'
+            '<section id="first-call"><h2>첫 기항과 집정관의 회의소</h2>'
             f'<p>04 · {stop_link("A02", "목재 검사길")}에서 세 경로가 만난다. 부두에 남거나 하류에서 돌아와도 '
             '에르사는 직접 확인한 묶음만 받고 모릭이 옮긴다. 다벤은 남은 물량의 납기를 로덴에 묻는다.</p>'
             f'<p>선택 · {stop_link("STORE", "곡물 창고 앞")}에서 첫 자루를 받은 오르벨이 장꾼에게 의결된 경비 급료를 설명한다. '
-            '증원 요청은 시의회에 전달한다. 이 대화를 건너뛰고 선적장으로 갈 수 있다.</p>'
+            f'장꾼이 짚은 모퉁이를 그린 오르벨은 시장을 지나 {stop_link("COUNCIL", "회의소 남문")}으로 간다. '
+            '마르테는 첫 순찰 순서를 바꾸고 새 급료는 의회에 부친다. 두 장소를 지나쳐 선적장으로 가도 된다.</p>'
             f'<p>05 · 다음 날 {stop_link("A01", "공동 나루")}에서 이셀이 접안을 조율한다. '
             '린은 하역할 사람이 설 폭을 남겨 실을 양을 정하고 로덴으로 떠난다. '
             '<a href="../../05-tarnel.svg#detail-2">선적 자리 확대</a></p></section>'
         )
+        houses = []
+        for key, site in FEATURES.items():
+            if site.get("frame") == "T" and site.get("kind") == "parcel" and site["design"] != "hall":
+                left, bottom, right, top = bbox(site["geometry"])
+                houses.append(f'<li>{stop_link(key, escape(site["name"]))} · {fmt(right-left)} × {fmt(top-bottom)}m. '
+                              f'{escape(site["description"])}</li>')
+        story += '<section id="housing"><h2>타르넬의 다섯 살림</h2><p>치수는 마당을 포함한 대표 필지의 폭과 깊이다.</p><ul>' + ''.join(houses) + '</ul></section>'
     front={k:v for k,v in data.items() if k not in ("urban_boundary_m","boundary_connections")}
     rows="".join(f'<tr><th>{d["name"]}</th><td>{d["population"]:,}명</td><td>{d["land_ha"]:.2f} / {d["target_ha"]} ha</td></tr>' for d in data["districts"])
     spec=("나루에서 높은 시장단까지 곡물 수레가 오르고, 검수를 마친 목재는 남쪽 마당으로 나간다. "

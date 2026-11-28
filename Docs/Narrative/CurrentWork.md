@@ -10,7 +10,7 @@
 
 [로덴 인물 명부](Drafts/2026-10-31-ether-taiga-dawn/2026-11-28-roden-residents.md)에 주요 NPC 7명, 현장 배역 11명, 생활 인물 16명을 배치했다. 린을 제외한 33명은 네 거주 구획에 집을 둔다. [독립 재검토](Reviews/2026-11-28-roden-residents-review.md)에서 인물 배치를 확인했다. 베딕의 사고 기록 인계는 결정 74의 채택 범위다. [도시 좌표평면](../ArtDirection/EtherWorldMap/Atlas/VelesTarnelRoden-v1/CityPlans/Roden/index.html)에서 구조선 출발 뒤 B02까지의 육상 귀환을 따라갈 수 있다.
 
-[타르넬 인물 명부](Drafts/2026-10-31-ether-taiga-dawn/2026-11-28-tarnel-residents.md)는 이름 있는 NPC 22명과 거주지 미상의 장꾼 배역을 구분한다. 결정 73·74에 따른 곡물 창고 선택 대화와 이튿날 선적을 [타르넬 도시 평면도](../ArtDirection/EtherWorldMap/Atlas/VelesTarnelRoden-v1/CityPlans/Tarnel/index.html#first-call)와 [장면별 제작 도면](../ArtDirection/EtherWorldMap/Atlas/VelesTarnelRoden-v1/index.html#scenes)에 반영했다. [명부·도면 독립 재검토](Reviews/2026-11-28-tarnel-cast-plan-review.html)는 PASS다. 인물별 나이·가족관계와 세부 배치는 설정안이다.
+[결정 76](../decisions/0076-tarnel-magistrate.html)으로 시의회 선출 집정관 마르테와 장날 청원 전달을 정본에 반영했다. [명부](Drafts/2026-10-31-ether-taiga-dawn/2026-11-28-tarnel-residents.md)는 이름 있는 NPC 23명 중 상주민 22명과 방문자 린을 구분한다. [스토리 평면도](../ArtDirection/EtherWorldMap/Atlas/VelesTarnelRoden-v1/05-tarnel.svg)에는 창고와 회의소 남문, [도시 평면도](../ArtDirection/EtherWorldMap/Atlas/VelesTarnelRoden-v1/CityPlans/Tarnel/index.html#housing)에는 회의소와 대표 주거 필지 5곳을 배치했다. [검토와 좌표 검증](Reviews/2026-11-28-tarnel-magistrate-review.html)에서 선택 장면과 배치 검사를 확인할 수 있다.
 
 [테른 강 세 정착지의 인구와 시가지](Drafts/2026-10-31-ether-taiga-dawn/2026-11-27-tern-settlement-scale.md)에 벨레스의 숲문 당번, 타르넬의 세 거주 구획과 하류 경보, 로덴의 네 거주 구획과 사고 때의 경비·급수·구조 분담을 반영했다. 설정안 작성은 Codex가 맡았다. [유역 설정집](../ArtDirection/EtherWorldMap/Atlas/VelesTarnelRoden-v1/TernBasin377/settings.html#settlement-scale)에서도 비교할 수 있다. [독립 재검토](Reviews/2026-11-27-tern-settlement-scale-review.md) PASS 뒤 사용자 논의 단계다.
 

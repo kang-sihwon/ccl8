@@ -1469,6 +1469,54 @@
     -140
    ],
    "tile": "-48_-74"
+  },
+  "COUNCIL": {
+   "name": "높은 시장단 회의소",
+   "point": [
+    724,
+    233.0
+   ],
+   "tile": "-48_-73"
+  },
+  "SHIP-HOUSE": {
+   "name": "선주 안뜰집",
+   "point": [
+    829,
+    153
+   ],
+   "tile": "-48_-73"
+  },
+  "BAKE-HOUSE": {
+   "name": "세니의 점포주택",
+   "point": [
+    739,
+    127
+   ],
+   "tile": "-48_-73"
+  },
+  "SAW-HOUSE": {
+   "name": "카스라의 공방주택",
+   "point": [
+    614,
+    -53
+   ],
+   "tile": "-49_-74"
+  },
+  "RENT-HOUSE": {
+   "name": "모릭의 연립 셋집",
+   "point": [
+    507,
+    -115
+   ],
+   "tile": "-49_-74"
+  },
+  "FISH-HOUSE": {
+   "name": "메리스의 어부 집",
+   "point": [
+    365,
+    35
+   ],
+   "tile": "-50_-73"
   }
  },
  "trips": [
@@ -1688,7 +1736,7 @@
  },
  "checks": {
   "shared_edges": 174,
-  "shared_crossings": 168,
-  "frontage_buildings": 669
+  "shared_crossings": 169,
+  "frontage_buildings": 655
  }
 }
