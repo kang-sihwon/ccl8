@@ -3,8 +3,8 @@ header { padding-bottom: 8px; margin-bottom: 10px; }
 h1 { font-size: clamp(26px, 6vw, 36px); margin: 0; }
 h2 { font-size: clamp(22px, 5vw, 30px); }
 header p, #metres { font-size: .875rem; }
-.switch, #neighbors { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
-.switch, #neighbors, #jump { margin: 8px 0; }
+#neighbors { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.grid-control, #neighbors, #jump { margin: 8px 0; }
 button, select, input, summary { min-height: 44px; font-size: 1rem; }
 #display.grid { width: 100%; }
 #display.grid > button { min-height: 0; }

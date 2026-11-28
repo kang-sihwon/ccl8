@@ -17,12 +17,7 @@
   <section aria-labelledby="title">
     <small id="zone"></small>
     <h2 id="title">벨레스 (0, 0)</h2>
-    <div class="switch" role="group" aria-label="타일 보기 범위">
-      <button data-grid-size="1" aria-pressed="false">한 장</button>
-      <button data-grid-size="3" aria-pressed="true">3×3</button>
-      <button data-grid-size="5" aria-pressed="false">5×5</button>
-      <button data-grid-size="7" aria-pressed="false">7×7</button>
-    </div>
+    <label class="grid-control">보기 범위 <select id="grid-size"></select></label>
     <p id="source"></p>
     <div id="display" aria-busy="true"></div>
     <output id="status" role="status"></output>
