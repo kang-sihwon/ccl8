@@ -2,6 +2,8 @@
 
 ## 현재 결과와 다음 선택
 
+[로덴 인물 명부](Drafts/2026-10-31-ether-taiga-dawn/2026-11-28-roden-residents.md)에 주요 NPC 6명, 현장 배역 12명, 생활 인물 16명을 배치했다. 린을 제외한 33명은 네 거주 구획에 집을 둔다. [독립 재검토](Reviews/2026-11-28-roden-residents-review.md) PASS 뒤 사용자 논의 단계다.
+
 [타르넬 인물 명부](Drafts/2026-10-31-ether-taiga-dawn/2026-11-28-tarnel-residents.md)에 첫 기항의 주요 인물 5명, 기존 장면 배역 5명, 세 거주 구획의 생활 배역 12명을 정리했다. [독립 재검토](Reviews/2026-11-28-tarnel-residents-review.md) PASS 뒤 사용자 논의 단계다.
 
 [테른 강 세 정착지의 인구와 시가지](Drafts/2026-10-31-ether-taiga-dawn/2026-11-27-tern-settlement-scale.md)에 벨레스의 숲문 당번, 타르넬의 세 거주 구획과 하류 경보, 로덴의 네 거주 구획과 사고 때의 경비·급수·구조 분담을 반영했다. 설정안 작성은 Codex가 맡았다. [유역 설정집](../ArtDirection/EtherWorldMap/Atlas/VelesTarnelRoden-v1/TernBasin377/settings.html#settlement-scale)에서도 비교할 수 있다. [독립 재검토](Reviews/2026-11-27-tern-settlement-scale-review.md) PASS 뒤 사용자 논의 단계다.
