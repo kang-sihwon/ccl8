@@ -1,5 +1,6 @@
 'use strict';
 const el=id=>document.getElementById(id);
+const originalBase=new URL(document.currentScript.dataset.originalBase||'../TernPassage/',document.baseURI);
 const [tw,th]=world.size,[ox,oy]=world.origin,R=world.radius,side=2*R+1;
 const valid=(i,j)=>Number.isInteger(i)&&Number.isInteger(j)&&Math.max(Math.abs(i),Math.abs(j))<=R;
 const at=(x,y)=>[Math.floor((x-ox)/tw),Math.floor((y-oy)/th)];
@@ -8,7 +9,8 @@ const originalName={VT:'벨레스 → 타르넬 강변',TR:'타르넬 → 로덴
 const publishedLinks=new Set(world.overprints);
 const svgNS='http://www.w3.org/2000/svg';
 const map=el('overview'),ctx=map.getContext('2d'),base=new Image();
-let selected=[0,0],layout='grid',generation=0;
+const sizeButtons=document.querySelectorAll('.switch [data-grid-size]');
+let selected=[0,0],gridSize=3,generation=0;
 let view=center(0,0),zoom=1,mw=0,mh=0,scale=0,hold=null;
 const regionName=(x,y)=>{
   const u=x+1000*Math.sin(y/6800)+490*Math.cos((x+y)/3600),v=y+850*Math.sin(x/5100);
@@ -61,7 +63,7 @@ function frameImage(i,j,data){
   const text=document.createElement('span');text.className='caption';text.textContent=i+', '+j;
   div.title='('+i+', '+j+')';div.setAttribute('aria-label',div.title+' 열기');div.append(svg,text);
   if(i===selected[0]&&j===selected[1])div.className='current';
-  div.onclick=()=>{if(i===selected[0]&&j===selected[1])layout='sheet';selectTile(i,j)};
+  div.onclick=()=>{if(i===selected[0]&&j===selected[1])gridSize=1;selectTile(i,j)};
   return div;
 }
 async function selectTile(i,j,keepView=false){
@@ -76,34 +78,43 @@ async function selectTile(i,j,keepView=false){
   const source=el('source');source.replaceChildren();
   if(src){
     source.append((originalName[src.region]||src.region)+' 상세도　');
-    const a=document.createElement('a');a.href='../TernPassage/'+src.url;a.textContent='기존 원도 열기';source.append(a);
+    const a=document.createElement('a');a.href=new URL(src.url,originalBase);a.textContent='기존 원도 열기';source.append(a);
     if(publishedLinks.has(k))source.append('　·　권역 운반로 겹침');
   }else source.textContent='유역 지형·생활권 평면도';
   el('metres').textContent='서단 X '+(x-tw/2).toFixed(1)+' m　동단 X '+(x+tw/2).toFixed(1)+' m　남단 Y '+(y-th/2).toFixed(1)+' m　북단 Y '+(y+th/2).toFixed(1)+' m';
-  el('single').setAttribute('aria-pressed',layout==='sheet');el('mosaic').setAttribute('aria-pressed',layout==='grid');
+  for(const button of sizeButtons)button.setAttribute('aria-pressed',Number(button.dataset.gridSize)===gridSize);
   for(const button of el('neighbors').children){const [u,v]=button.dataset.step.split(',').map(Number);button.disabled=!valid(i+u,j+v)}
   const [u,v]=project(x,y);
   if(!keepView&&zoom>1&&(u<0||u>mw||v<0||v>mh))view=[x,y];
   draw();
-  const hash='#'+i+','+j+(layout==='sheet'?'/sheet':'');
+  const suffix=gridSize===1?'/sheet':gridSize===3?'':'/'+gridSize+'x'+gridSize;
+  const hash='#'+i+','+j+suffix;
   if(location.hash!==hash)history.replaceState(null,'',hash);
   const display=el('display');display.setAttribute('aria-busy','true');el('status').textContent='도면을 여는 중…';
   el('save').removeAttribute('href');
+  const radius=(gridSize-1)/2;
+  visibleDrawings.clear();
+  visibleDrawings.add(k);
   try{
     const plate=await loadDrawing(i,j);if(version!==generation)return;
     const nodes=[];
-    if(layout==='sheet'){
+    if(gridSize===1){
       const im=new Image();im.src=plate.url;im.alt=el('title').textContent+' 좌표 평면도';await im.decode();nodes.push(im);
     }else{
       const tasks=[];
-      for(let b=j+1;b>=j-1;b--)for(let a=i-1;a<=i+1;a++){
-        if(valid(a,b))tasks.push(loadDrawing(a,b).then(d=>frameImage(a,b,d)));
+      for(let b=j+radius;b>=j-radius;b--)for(let a=i-radius;a<=i+radius;a++){
+        if(valid(a,b)){
+          visibleDrawings.add(a+'_'+b);
+          tasks.push(loadDrawing(a,b).then(d=>frameImage(a,b,d)));
+        }
         else {const e=document.createElement('span');e.className='beyond';e.textContent='도면 경계';tasks.push(e)}
       }
       nodes.push(...await Promise.all(tasks));
     }
     if(version!==generation)return;
-    display.className=layout;display.replaceChildren(...nodes);
+    display.className=gridSize===1?'sheet':'grid';
+    display.style.setProperty('--grid-size',gridSize);
+    display.replaceChildren(...nodes);
     el('save').href=plate.url;el('save').download=k+'.svg';el('status').textContent='';
   }catch(e){if(version===generation){display.replaceChildren();el('status').textContent=e.message}}
   finally{if(version===generation)display.setAttribute('aria-busy','false')}
@@ -113,8 +124,10 @@ el('places').add(new Option('장소 선택',''));
 world.places.forEach(([n],i)=>el('places').add(new Option(n,String(i))));
 el('places').onchange=e=>{const p=world.places[Number(e.target.value)];if(e.target.value!=='')selectTile(...at(p[1],p[2]))};
 el('jump').onsubmit=e=>{e.preventDefault();selectTile(el('ix').valueAsNumber,el('iy').valueAsNumber)};
-el('single').onclick=()=>{layout='sheet';selectTile(...selected)};
-el('mosaic').onclick=()=>{layout='grid';selectTile(...selected)};
+for(const button of sizeButtons)button.onclick=()=>{
+  gridSize=Number(button.dataset.gridSize);
+  selectTile(...selected);
+};
 for(const b of el('neighbors').children)b.onclick=()=>{const [u,v]=b.dataset.step.split(',').map(Number);selectTile(selected[0]+u,selected[1]+v)};
 el('pack').onclick=async()=>{
   const id=blockId(...selected),block=await getBlock(id),url=URL.createObjectURL(new Blob([block.raw],{type:'application/zip'}));
@@ -128,8 +141,8 @@ map.onpointermove=e=>{if(!hold)return;const [u,v]=mouse(e),dx=u-hold.p[0],dy=v-h
 map.onpointerup=e=>{if(hold&&!hold.drag){const ij=at(...inverse(...mouse(e)));if(valid(...ij))selectTile(...ij,true)}hold=null};
 map.onpointercancel=()=>{hold=null};map.onkeydown=e=>{const step={ArrowLeft:[-1,0],ArrowRight:[1,0],ArrowUp:[0,1],ArrowDown:[0,-1]}[e.key];if(step){e.preventDefault();selectTile(selected[0]+step[0],selected[1]+step[1])}};
 function restore(){
-  const match=location.hash.match(/^#(-?\d+),(-?\d+)(\/sheet)?$/);
-  if(match&&valid(+match[1],+match[2])){layout=match[3]?'sheet':'grid';selectTile(+match[1],+match[2])}
+  const match=location.hash.match(/^#(-?\d+),(-?\d+)(?:\/(sheet|5x5|7x7))?$/);
+  if(match&&valid(+match[1],+match[2])){gridSize=({sheet:1,'5x5':5,'7x7':7})[match[3]]||3;selectTile(+match[1],+match[2])}
   else selectTile(0,0);
 }
 window.addEventListener('hashchange',restore);draw();restore();

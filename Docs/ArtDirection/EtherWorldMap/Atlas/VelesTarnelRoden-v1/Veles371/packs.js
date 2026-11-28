@@ -1,5 +1,7 @@
 'use strict';
 const blocks=new Map(), loading=new Map(), drawings=new Map();
+const visibleDrawings=new Set();
+const blockBase=document.currentScript.dataset.blockBase;
 const decoder=new TextDecoder();
 function blockId(i,j){return [Math.floor((i+world.radius)/world.block),Math.floor((j+world.radius)/world.block)].join('_')}
 function plateBlock(id,text){
@@ -19,10 +21,21 @@ function plateBlock(id,text){
   blocks.set(id,{raw,files});
   if(blocks.size>12)blocks.delete(blocks.keys().next().value);
 }
+async function fetchBlock(id){
+  const response=await fetch(new URL(id+'.js',blockBase));
+  if(!response.ok)throw Error('구역 파일을 열 수 없어. 잠시 후 다시 눌러 줘.');
+  const text=(await response.text()).trimEnd();
+  const prefix='plateBlock("'+id+'","';
+  if(!text.startsWith(prefix)||!text.endsWith('");'))throw Error('구역 파일 형식을 확인해 줘.');
+  plateBlock(id,text.slice(prefix.length,-3));
+  return blocks.get(id);
+}
 function getBlock(id){
   if(blocks.has(id))return Promise.resolve(blocks.get(id));
   if(loading.has(id))return loading.get(id);
-  const promise=new Promise((resolve,reject)=>{
+  const promise=blockBase&&location.protocol!=='file:'
+    ?fetchBlock(id).finally(()=>loading.delete(id))
+    :new Promise((resolve,reject)=>{
     const script=document.createElement('script');
     script.onload=()=>{script.remove();loading.delete(id);if(blocks.has(id))resolve(blocks.get(id));else reject(Error('구역 색인을 확인해 줘.'))};
     script.onerror=()=>{script.remove();loading.delete(id);reject(Error('구역 파일을 열 수 없어.'))};
@@ -44,7 +57,10 @@ async function loadDrawing(i,j){
   const url=URL.createObjectURL(new Blob([bytes],{type:'image/svg+xml'}));
   const item={url,w:Number(dimensions[1]),h:Number(dimensions[2])};drawings.set(k,item);
   if(drawings.size>90){
-    const oldest=drawings.keys().next().value;URL.revokeObjectURL(drawings.get(oldest).url);drawings.delete(oldest);
+    for(const [key,drawing] of drawings){
+      if(visibleDrawings.has(key))continue;
+      URL.revokeObjectURL(drawing.url);drawings.delete(key);break;
+    }
   }
   return item;
 }
